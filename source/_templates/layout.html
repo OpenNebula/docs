@@ -1,0 +1,18 @@
+{# Import the theme's layout. #}
+{% extends "!layout.html" %}
+
+{# Add some extra stuff before and use existing with 'super()' call. #}
+{% block extrahead %}
+    <link rel="stylesheet" href="{{ pathto('_static/opennebula.css', 1) }}" type="text/css" />
+  {{ super() }}
+{% endblock %}
+
+{% block footer %}
+  <footer class="footer">
+    <div class="container">
+      <p>
+      Copyright 2002-2013 &copy; OpenNebula Project (OpenNebula.org). All Rights Reserved. Please send comments to the <a href="mailto:webmaster [at] opennebula [dot] org">webmaster</a>. Read the <a href="http://opennebula.org/legal">Legal Notice</a>. This site is hosted by <a href="http://www.c12g.com">C12G Labs</a>.
+      </p>
+    </div>
+  </footer>
+{% endblock %}

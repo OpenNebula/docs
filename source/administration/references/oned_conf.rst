@@ -1,0 +1,614 @@
+==================
+ONED Configuration
+==================
+
+The OpenNebula daemon ``oned`` manages the cluster nodes, virtual
+networks, virtual machines, users, groups and storage datastores. The
+configuration file for the daemon is called ``oned.conf`` and it is
+placed inside the ``/etc/one`` directory. In this reference document we
+describe all the format and options that can be specified in
+``oned.conf``.
+
+Daemon Configuration Attributes
+===============================
+
+-  **``MANAGER_TIMER``** : Time in seconds the core uses to evaluate
+periodical functions. MONITORING\_INTERVAL cannot have a smaller
+value than MANAGER\_TIMER.
+-  **``MONITORING_INTERVAL``** : Time in seconds between each
+monitorization.
+-  **``MONITORING_THREADS``** : Max. number of threads used to process
+monitor messages
+-  **``HOST_PER_INTERVAL``**: Number of hosts monitored in each
+interval.
+-  **``HOST_MONITORING_EXPIRATION_TIME``**: Time, in seconds, to expire
+monitoring information. Use 0 to disable HOST monitoring recording.
+-  **``VM_PER_INTERVAL``**: Number of VMs monitored in each interval.
+-  **``VM_MONITORING_EXPIRATION_TIME``**: Time, in seconds, to expire
+monitoring information. Use 0 to disable VM monitoring recording.
+-  **``SCRIPTS_REMOTE_DIR``**: Remote path to store the monitoring and
+VM management script.
+-  **``PORT``** : Port where oned will listen for xml-rpc calls.
+-  **``DB``** : Vector of configuration attributes for the database
+backend.
+
+-  **``backend``** : Set to ``sqlite`` or ``mysql``. Please visit the
+`MySQL configuration guide </./mysql>`__ for more information.
+-  **``server``** (MySQL only): Host name or an IP address for the
+MySQL server.
+-  **``user``** (MySQL only): MySQL user's login ID.
+-  **``passwd``** (MySQL only): MySQL user's password.
+-  **``db_name``** (MySQL only): MySQL database name.
+
+-  **``VNC_BASE_PORT``** : VNC ports for VMs can be automatically set to
+``VNC_BASE_PORT`` + ``VMID``. Refer to the `VM template
+reference </./template#i_o_devices_section>`__ for further
+information.
+-  **``VM_SUBMIT_ON_HOLD``** : Forces VMs to be created on hold state
+instead of pending. Values: YES or NO.
+-  **``LOG``** : Configure the logging system
+
+-  **``SYSTEM``** : Can be either **``file``** (default) or
+**``syslog``**.
+-  **``DEBUG_LEVEL``** : Sets the level of verbosity of the log
+messages. Possible values are:
+
++----------------+---------------+
+| DEBUG\_LEVEL   | Meaning       |
++================+===============+
+| 0              | **ERROR**     |
++----------------+---------------+
+| 1              | **WARNING**   |
++----------------+---------------+
+| 2              | **INFO**      |
++----------------+---------------+
+| 3              | **DEBUG**     |
++----------------+---------------+
+
+Example of this section:
+
+.. code:: code
+
+#*******************************************************************************
+# Daemon configuration attributes
+#*******************************************************************************
+ 
+LOG = [
+system      = "file",
+debug_level = 3
+]
+ 
+#MANAGER_TIMER = 30
+ 
+MONITORING_INTERVAL = 60
+MONITORING_THREADS  = 50
+ 
+#HOST_PER_INTERVAL               = 15
+#HOST_MONITORING_EXPIRATION_TIME = 43200
+ 
+#VM_PER_INTERVAL               = 5
+#VM_MONITORING_EXPIRATION_TIME = 14400
+ 
+SCRIPTS_REMOTE_DIR=/var/tmp/one
+ 
+PORT = 2633
+ 
+DB = [ backend = "sqlite" ]
+ 
+# Sample configuration for MySQL
+# DB = [ backend = "mysql",
+#        server  = "localhost",
+#        port    = 0,
+#        user    = "oneadmin",
+#        passwd  = "oneadmin",
+#        db_name = "opennebula" ]
+ 
+VNC_BASE_PORT = 5900
+ 
+#VM_SUBMIT_ON_HOLD = "NO"
+
+XML-RPC Server Configuration
+============================
+
+-  **``MAX_CONN``**: Maximum number of simultaneous TCP connections the
+server will maintain
+-  **``MAX_CONN_BACKLOG``**: Maximum number of TCP connections the
+operating system will accept on the server's behalf without the
+server accepting them from the operating system
+-  **``KEEPALIVE_TIMEOUT``**: Maximum time in seconds that the server
+allows a connection to be open between RPCs
+-  **``KEEPALIVE_MAX_CONN``**: Maximum number of RPCs that the server
+will execute on a single connection
+-  **``TIMEOUT``**: Maximum time in seconds the server will wait for the
+client to do anything while processing an RPC
+
+.. code:: code
+
+#*******************************************************************************
+# XML-RPC server configuration
+#*******************************************************************************
+ 
+#MAX_CONN            = 15
+#MAX_CONN_BACKLOG    = 15
+#KEEPALIVE_TIMEOUT   = 15
+#KEEPALIVE_MAX_CONN  = 30
+#TIMEOUT             = 15
+
+|:!:| This functionality is only available when compiled with xmlrpc-c
+libraires >= 1.32. Currently only the packages distributed by OpenNebula
+are linked with this library.
+
+Virtual Networks
+================
+
+-  **``NETWORK_SIZE``**: Default size for virtual networks
+-  **``MAC_PREFIX``**: Default MAC prefix to generate virtual network
+MAC addresses
+
+Sample configuration:
+
+.. code:: code
+
+#*******************************************************************************
+# Physical Networks configuration
+#*******************************************************************************
+ 
+NETWORK_SIZE = 254
+MAC_PREFIX   = "02:00"
+
+Datastores
+==========
+
+The `Storage Subsystem </./sm>`__ allows users to set up images, which
+can be operative systems or data, to be used in Virtual Machines easily.
+These images can be used by several Virtual Machines simultaneously, and
+also shared with other users.
+
+Here you can configure the default values for the Datastores and Image
+templates. You have more information about the templates syntax
+`here </./img_template>`__.
+
+-  **``DATASTORE_LOCATION``**: Path for Datastores in the hosts. It is
+the same for all the hosts in the cluster. ``DATASTORE_LOCATION``
+**is only for the hosts and not the front-end**. It defaults to
+/var/lib/one/datastores (or ``$ONE_LOCATION/var/datastores`` in
+self-contained mode)
+-  **``DATASTORE_BASE_PATH``**: This is the base path for the SOURCE
+attribute of the images registered in a Datastore. This is a default
+value, that can be changed when the datastore is created.
+-  **``DATASTORE_CAPACITY_CHECK``**: Checks that there is enough
+capacity before creating a new imag. Defaults to Yes.
+-  **``DEFAULT_IMAGE_TYPE``** : Default value for TYPE field when it is
+omitted in a template. Values accepted are **``OS``**, **``CDROM``**,
+**``DATABLOCK``**.
+-  **``DEFAULT_DEVICE_PREFIX``** : Default value for DEV\_PREFIX field
+when it is omitted in a template. The missing DEV\_PREFIX attribute
+is filled when Images are created, so changing this prefix won't
+affect existing Images. It can be set to:
+
++----------+--------------------+
+| Prefix   | Device type        |
++==========+====================+
+| hd       | IDE                |
++----------+--------------------+
+| sd       | SCSI               |
++----------+--------------------+
+| xvd      | XEN Virtual Disk   |
++----------+--------------------+
+| vd       | KVM virtual disk   |
++----------+--------------------+
+
+More information on the image repository can be found in the `Managing
+Virtual Machine Images guide </./img_guide>`__.
+
+Sample configuration:
+
+.. code:: code
+
+#*******************************************************************************
+# Image Repository Configuration
+#*******************************************************************************
+#DATASTORE_LOCATION  = /var/lib/one/datastores
+ 
+#DATASTORE_BASE_PATH = /var/lib/one/datastores
+ 
+DATASTORE_CAPACITY_CHECK = "yes"
+ 
+DEFAULT_IMAGE_TYPE    = "OS"
+DEFAULT_DEVICE_PREFIX = "hd"
+
+Information Collector
+=====================
+
+This driver CANNOT BE ASSIGNED TO A HOST, and needs to be used with KVM
+or Xen drivers Options that can be set:
+
+-  **``-a``**: Address to bind the collectd sockect (defults 0.0.0.0)
+-  **``-p``**: UDP port to listen for monitor information (default 4124)
+-  **``-f``**: Interval in seconds to flush collected information
+(default 5)
+-  **``-t``**: Number of threads for the server (defult 50)
+-  **``-i``**: Time in seconds of the monitorization push cycle. This
+parameter must be smaller than MONITORING\_INTERVAL, otherwise push
+monitorization will not be effective.
+
+Sample configuration:
+
+.. code:: code
+
+IM_MAD = [
+name       = "collectd",
+executable = "collectd",
+arguments  = "-p 4124 -f 5 -t 50 -i 20" ]
+
+Information Drivers
+===================
+
+The information drivers are used to gather information from the cluster
+nodes, and they depend on the virtualizer you are using. You can define
+more than one information manager but make sure it has different names.
+To define it, the following needs to be set:
+
+-  **name**: name for this information driver.
+-  **executable**: path of the information driver executable, can be an
+absolute path or relative to ``/usr/lib/one/mads/``
+
+-  **arguments**: for the driver executable, usually a probe
+configuration file, can be an absolute path or relative to
+``/etc/one/``.
+
+For more information on configuring the information and monitoring
+system and hints to extend it please check the `information driver
+configuration guide </./img>`__.
+
+Sample configuration:
+
+.. code:: code
+
+#-------------------------------------------------------------------------------
+#  KVM Information Driver Manager Configuration
+#    -r number of retries when monitoring a host
+#    -t number of threads, i.e. number of hosts monitored at the same time
+#-------------------------------------------------------------------------------
+IM_MAD = [
+name       = "kvm",
+executable = "one_im_ssh",
+arguments  = "-r 0 -t 15 kvm" ]
+#-------------------------------------------------------------------------------
+
+Virtualization Drivers
+======================
+
+The virtualization drivers are used to create, control and monitor VMs
+on the hosts. You can define more than one virtualization driver (e.g.
+you have different virtualizers in several hosts) but make sure they
+have different names. To define it, the following needs to be set:
+
+-  **name**: name of the virtualization driver.
+-  **executable**: path of the virtualization driver executable, can be
+an absolute path or relative to ``/usr/lib/one/mads/``
+-  **arguments**: for the driver executable
+-  **type**: driver type, supported drivers: xen, kvm or xml
+-  **default**: default values and configuration parameters for the
+driver, can be an absolute path or relative to ``/etc/one/``
+
+For more information on configuring and setting up the virtualizer
+please check the guide that suits you:
+
+-  `Xen Adaptor </./xeng>`__
+-  `KVM Adaptor </./kvmg>`__
+-  `VMware Adaptor </./evmwareg>`__
+
+Sample configuration:
+
+.. code:: code
+
+#-------------------------------------------------------------------------------
+# Virtualization Driver Configuration
+#-------------------------------------------------------------------------------
+ 
+VM_MAD = [
+name       = "kvm",
+executable = "one_vmm_ssh",
+arguments  = "-t 15 -r 0 kvm",
+default    = "vmm_ssh/vmm_ssh_kvm.conf",
+type       = "kvm" ]
+
+Transfer Driver
+===============
+
+The transfer drivers are used to transfer, clone, remove and create VM
+images. The default TM\_MAD driver includes plugins for all supported
+storage modes. You may need to modify the TM\_MAD to add custom plugins.
+
+-  **executable**: path of the transfer driver executable, can be an
+absolute path or relative to ``/usr/lib/one/mads/``
+-  **arguments**: for the driver executable:
+
+-  **-t**: number of threads, i.e. number of transfers made at the
+same time
+-  **-d**: list of transfer drivers separated by commas, if not
+defined all the drivers available will be enabled
+
+For more information on configuring different storage alternatives
+`please check the storage configuration guide </./sm>`__.
+
+Sample configuration:
+
+.. code:: code
+
+#-------------------------------------------------------------------------------
+# Transfer Manager Driver Configuration
+#-------------------------------------------------------------------------------
+ 
+TM_MAD = [
+executable = "one_tm",
+arguments  = "-t 15 -d dummy,lvm,shared,fs_lvm,qcow2,ssh,vmfs,ceph" ]
+
+The configuration for each driver is defined in the TM\_MAD\_CONF
+section. These values are used when creating a new datastore and should
+not be modified since they define the datastore behaviour.
+
+-  **name** : name of the transfer driver, listed in the -d option of
+the TM\_MAD section
+-  **ln\_target** : determines how the persistent images will be cloned
+when a new VM is instantiated.
+
+-  **NONE**: The image will be linked and no more storage capacity
+will be used
+-  **SELF**: The image will be cloned in the Images datastore
+-  **SYSTEM**: The image will be cloned in the System datastore
+
+-  **clone\_target** : determines how the non persistent images will be
+cloned when a new VM is instantiated.
+
+-  **NONE**: The image will be linked and no more storage capacity
+will be used
+-  **SELF**: The image will be cloned in the Images datastore
+-  **SYSTEM**: The image will be cloned in the System datastore
+
+-  **shared** : determines if the storage holding the system datastore
+is shared among the different hosts or not. Valid values: â€œyesâ€?
+or â€œnoâ€?
+
+Sample configuration:
+
+.. code:: code
+
+TM_MAD_CONF = [
+name        = "lvm",
+ln_target   = "NONE",
+clone_target= "SELF",
+shared      = "yes"
+]
+ 
+TM_MAD_CONF = [
+name        = "shared",
+ln_target   = "NONE",
+clone_target= "SYSTEM",
+shared      = "yes"
+]
+
+Datastore Driver
+================
+
+The Datastore Driver defines a set of scripts to manage the storage
+backend.
+
+-  **executable**: path of the transfer driver executable, can be an
+absolute path or relative to ``/usr/lib/one/mads/``
+-  **arguments**: for the driver executable
+
+-  **-t** number of threads, i.e. number of repo operations at the
+same time
+-  **-d** datastore mads separated by commas
+
+Sample configuration:
+
+.. code:: code
+
+DATASTORE_MAD = [
+executable = "one_datastore",
+arguments  = "-t 15 -d dummy,fs,vmfs,lvm,ceph"
+]
+
+For more information on this Driver and how to customize it, please
+visit `its reference guide </./sm>`__.
+
+Hook System
+===========
+
+Hooks in OpenNebula are programs (usually scripts) which execution is
+triggered by a change in state in Virtual Machines or Hosts. The hooks
+can be executed either locally or remotely in the node where the VM or
+Host is running. To configure the Hook System the following needs to be
+set in the OpenNebula configuration file:
+
+-  **executable**: path of the hook driver executable, can be an
+absolute path or relative to ``/usr/lib/one/mads/``
+-  **arguments** : for the driver executable, can be an absolute path or
+relative to ``/etc/one/``
+
+Sample configuration:
+
+.. code:: code
+
+HM_MAD = [
+executable = "one_hm" ]
+
+Virtual Machine Hooks (VM\_HOOK) defined by:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+-  **name**: for the hook, useful to track the hook (OPTIONAL).
+-  **on**: when the hook should be executed,
+
+-  **CREATE**, when the VM is created (onevm create)
+-  **PROLOG**, when the VM is in the prolog state
+-  **RUNNING**, after the VM is successfully booted
+-  **UNKNOWN**, when the VM is in the unknown state
+-  **SHUTDOWN**, after the VM is shutdown
+-  **STOP**, after the VM is stopped (including VM image transfers)
+-  **DONE**, after the VM is deleted or shutdown
+-  **FAILED**, when the VM enters the failed state
+-  **CUSTOM**, user defined specific STATE and LCM\_STATE combination
+of states to trigger the hook
+
+-  **command**: path can be absolute or relative to /usr/share/one/hooks
+-  **arguments**: for the hook. You can access to VM information with $
+
+-  **$ID**, the ID of the virtual machine
+-  **$TEMPLATE**, the VM template in xml and base64 encoded multiple
+-  **PREV\_STATE**, the previous STATE of the Virtual Machine
+-  **PREV\_LCM\_STATE**, the previous LCM STATE of the Virtual
+Machine
+
+-  **remote**: values,
+
+-  **YES**, The hook is executed in the host where the VM was
+allocated
+-  **NO**, The hook is executed in the OpenNebula server (default)
+
+Host Hooks (HOST\_HOOK) defined by:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+-  **name**: for the hook, useful to track the hook (OPTIONAL)
+-  **on**: when the hook should be executed,
+
+-  **CREATE**, when the Host is created (onehost create)
+-  **ERROR**, when the Host enters the error state
+-  **DISABLE**, when the Host is disabled
+
+-  **command**: path can be absolute or relative to /usr/share/one/hooks
+-  **arguments**: for the hook. You can use the following Host
+information:
+
+-  **$ID**, the ID of the host
+-  **$TEMPLATE**, the Host template in xml and base64 encoded
+
+-  **remote**: values,
+
+-  **YES**, The hook is executed in the host
+-  **NO**, The hook is executed in the OpenNebula server (default)
+
+Sample configuration:
+
+.. code:: code
+
+VM_HOOK = [
+name      = "on_failure_recreate",
+on        = "FAILED",
+command   = "/usr/bin/env onevm delete --recreate",
+arguments = "$ID" ]
+ 
+VM_HOOK = [
+name      = "advanced_hook",
+on        = "CUSTOM",
+state     = "ACTIVE",
+lcm_state = "BOOT_UNKNOWN",
+command   = "log.rb",
+arguments = "$ID $PREV_STATE $PREV_LCM_STATE" ]
+
+Auth Manager Configuration
+==========================
+
+-  **AUTH\_MAD**: The `driver </./external_auth>`__ that will be used to
+authenticate and authorize OpenNebula requests. If not defined
+OpenNebula will use the built-in auth policies
+
+-  **executable**: path of the auth driver executable, can be an
+absolute path or relative to /usr/lib/one/mads/
+-  **authn**: list of authentication modules separated by commas, if
+not defined all the modules available will be enabled
+-  **authz**: list of authentication modules separated by commas
+
+-  **SESSION\_EXPIRATION\_TIME**: Time in seconds to keep an
+authenticated token as valid. During this time, the driver is not
+used. Use 0 to disable session caching
+-  **ENABLE\_OTHER\_PERMISSIONS**: Whether or not to enable the
+permissions for 'other'. Users in the oneadmin group will still be
+able to change these permissions. Values: YES or NO
+-  **DEFAULT\_UMASK**: Similar to Unix umask, sets the default resources
+permissions. Its format must be 3 octal digits. For example a umask
+of 137 will set the new object's permissions to 640 â€œum- uâ€“
+â€”â€?
+
+Sample configuration:
+
+.. code:: code
+
+AUTH_MAD = [
+executable = "one_auth_mad",
+authn = "ssh,x509,ldap,server_cipher,server_x509"
+]
+ 
+SESSION_EXPIRATION_TIME = 900
+ 
+#ENABLE_OTHER_PERMISSIONS = "YES"
+ 
+DEFAULT_UMASK = 177
+
+Restricted Attributes Configuration
+===================================
+
+-  **VM\_RESTRICTED\_ATTR**: Virtual Machine attribute to be restricted
+for users outside the oneadmin group
+-  **IMAGE\_RESTRICTED\_ATTR**: Image attribute to be restricted for
+users outside the oneadmin group
+
+Sample configuration:
+
+.. code:: code
+
+VM_RESTRICTED_ATTR = "CONTEXT/FILES"
+VM_RESTRICTED_ATTR = "NIC/MAC"
+VM_RESTRICTED_ATTR = "NIC/VLAN_ID"
+VM_RESTRICTED_ATTR = "NIC/BRIDGE"
+ 
+#VM_RESTRICTED_ATTR = "RANK"
+#VM_RESTRICTED_ATTR = "SCHED_RANK"
+#VM_RESTRICTED_ATTR = "REQUIREMENTS"
+#VM_RESTRICTED_ATTR = "SCHED_REQUIREMENTS"
+ 
+IMAGE_RESTRICTED_ATTR = "SOURCE"
+
+Inherited Attributes Configuration
+==================================
+
+The following attributes will be copied from the resource template to
+the instantiated VMs. More than one attribute can be defined.
+
+-  **``INHERIT_IMAGE_ATTR``**: Attribute to be copied from the Image
+template to each VM/DISK.
+-  **``INHERIT_DATASTORE_ATTR``**: Attribute to be copied from the
+Datastore template to each VM/DISK.
+-  **``INHERIT_VNET_ATTR``**: Attribute to be copied from the Network
+template to each VM/NIC.
+
+Sample configuration:
+
+.. code:: code
+
+#INHERIT_IMAGE_ATTR     = "EXAMPLE"
+#INHERIT_IMAGE_ATTR     = "SECOND_EXAMPLE"
+#INHERIT_DATASTORE_ATTR = "COLOR"
+#INHERIT_VNET_ATTR      = "BANDWIDTH_THROTTLING"
+ 
+INHERIT_DATASTORE_ATTR  = "CEPH_HOST"
+INHERIT_DATASTORE_ATTR  = "CEPH_SECRET"
+INHERIT_DATASTORE_ATTR  = "CEPH_USER"
+ 
+INHERIT_VNET_ATTR       = "VLAN_TAGGED_ID"
+
+OneGate Configuration
+=====================
+
+-  **ONEGATE\_ENDPOINT**: Endpoint where OneGate will be listening.
+Optional.
+
+Sample configuration:
+
+.. code:: code
+
+ONEGATE_ENDPOINT = "http://192.168.0.5:5030"
+
+.. |:!:| image:: /./lib/images/smileys/icon_exclaim.gif

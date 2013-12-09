@@ -1,0 +1,65 @@
+body {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 10pt;
+    color: #353735;
+}
+/*
+.navbar-inverse {
+    background-color: #0098c3;
+    border-color: #353735;
+}
+
+.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:hover, .navbar-inverse .navbar-nav>.open>a:focus {
+    color: #fff;
+    background-color: #353735;
+}
+
+.navbar-inverse .navbar-nav>li>a:hover, .navbar-inverse .navbar-nav>li>a:focus {
+    color: #fff;
+    background-color: #353735;
+}
+
+.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus {
+    color: #fff;
+    text-decoration: none;
+    background-color: #0098c3;
+}
+*/
+
+.navbar-inverse {
+    background-color: #353735;
+    border-color: #353735;
+}
+
+.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:hover, .navbar-inverse .navbar-nav>.open>a:focus {
+    color: #fff;
+    background-color: #353735;
+}
+
+.navbar-inverse .navbar-nav>li>a:hover, .navbar-inverse .navbar-nav>li>a:focus {
+    color: #fff;
+    background-color: #0098c3;
+}
+
+a, a:hover, a:focus {
+    color: #0098c3;
+    text-decoration: none;
+}
+
+a:hover, a:focus {
+    color: #0098c3;
+    text-decoration: underline;
+}
+
+.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus {
+    color: #fff;
+    text-decoration: none;
+    background-color: #0098c3;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: Verdana, Geneva, sans-serif;
+    font-weight: 500;
+    line-height: 1.1;
+    color: #353735;
+    }

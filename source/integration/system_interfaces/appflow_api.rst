@@ -1,0 +1,1420 @@
+=====================
+OneFlow Specification
+=====================
+
+Overview
+========
+
+The OpenNebula OneFlow API is a RESTful service to create, control and
+monitor multi-tier applications or services composed of interconnected
+Virtual Machines with deployment dependencies between them. Each group
+of Virtual Machines is deployed and managed as a single entity, and is
+completely integrated with the advanced OpenNebula user and group
+management. There are two kind of resources; services templates and
+services. All data is sent and received as JSON.
+
+This guide is intended for developers. The OpenNebula distribution
+includes a `cli </./cli#oneflow_commands>`__ to interact with OneFlow
+and it is also fully integrated in the `Sunstone
+GUI </./appflow_configure#enable_the_sunstone_tabs>`__
+
+Authentication & Authorization
+==============================
+
+User authentication will be `HTTP Basic access
+authentication <http://tools.ietf.org/html/rfc1945#section-11>`__. The
+credentials passed should be the User name and password.
+
+.. code:: code
+
+$ curl -u "username:password" https://oneflow.server
+
+Return Codes
+============
+
+The OneFlow API uses the following subset of HTTP Status codes:
+
+-  **200 OK** : The request has succeeded.
+-  **201 Created** : Request was successful and a new resource has being
+created
+-  **202 Accepted** : The request has been accepted for processing, but
+the processing has not been completed
+-  **204 No Content** : The request has been accepted for processing,
+but no info in the response
+-  **400 Bad Request** : Malformed syntax
+-  **401 Unauthorized** : Bad authentication
+-  **403 Forbidden** : Bad authorization
+-  **404 Not Found** : Resource not found
+-  **500 Internal Server Error** : The server encountered an unexpected
+condition which prevented it from fulfilling the request.
+-  **501 Not Implemented** : The functionality requested is not
+supported
+
+.. code:: code
+
+> POST /service_template HTTP/1.1
+> User-Agent: curl/7.19.7 (x86_64-redhat-linux-gnu) libcurl/7.19.7 NSS/3.14.0.0 zlib/1.2.3 libidn/1.18 libssh2/1.4.2
+> Host: onflow.server:2474
+>
+< HTTP/1.1 400 Bad Request
+< Content-Type: text/html;charset=utf-8
+< Content-Type:application/json;charset=utf-8
+< Content-Length: 40
+<
+{
+"error": {
+"message": "Role 'worker' 'cardinality' must be greater than or equal to 'min_vms'"
+}
+}
+
+The methods specified below are described without taking into account
+**4xx** (can be inferred from authorization information in section
+above) and **5xx** errors (which are method independent). HTTP verbs not
+defined for a particular entity will return a **501 Not Implemented**.
+
+Methods
+=======
+
+Service
+-------
+
++--------------+----------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------+
+| **Method**   | **URL**                                | **Meaning / Entity Body**                                                                                                                                                                                                                                                                                                                                  | **Response**                                                           |
++==============+========================================+============================================================================================================================================================================================================================================================================================================================================================+========================================================================+
+| **GET**      | ``/service``                           | **List** the contents of the ``SERVICE`` collection.                                                                                                                                                                                                                                                                                                       | **200 OK**: A JSON representation of the collection in the http body   |
++--------------+----------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------+
+| **GET**      | ``/service/<id>``                      | **Show** the ``SERVICE`` resource identified by <id>                                                                                                                                                                                                                                                                                                       | **200 OK**: A JSON representation of the collection in the http body   |
++--------------+----------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------+
+| **DELETE**   | ``/service/<id>``                      | **Delete** the ``SERVICE`` resource identified by <id>                                                                                                                                                                                                                                                                                                     | **201**:                                                               |
++--------------+----------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------+
+| **POST**     | ``/service/<id>/action``               | **Perform** an action on the ``SERVICE`` resource identified by <id>. Available actions: shutdown, recover, chown, chgrp, chmod                                                                                                                                                                                                                            | **201**:                                                               |
++--------------+----------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------+
+| **PUT**      | ``/service/<id>/role/<name>``          | **Update** the ``ROLE`` identified by <name> of the ``SERVICE`` resource identified by <id>. Currently the only attribute that can be updated is the cardinality.                                                                                                                                                                                          | **200 OK**:                                                            |
++--------------+----------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------+
+| **POST**     | ``/service/<id>/role/<name>/action``   | **Perform** an action on all the Virtual Machines belonging to the ``ROLE`` identified by <name> of the ``SERVICE`` resource identified by <id>. Available actions: shutdown, shutdown-hard, undeploy, undeploy-hard, hold, release, stop, suspend, resume, boot, delete, delete-recreate, reboot, reboot-hard, poweroff, poweroff-hard, snapshot-create   | **201**:                                                               |
++--------------+----------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------+
+
+Service Template
+----------------
+
++--------------+-------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+
+| **Method**   | **URL**                             | **Meaning / Entity Body**                                                                                                            | **Response**                                                                                       |
++==============+=====================================+======================================================================================================================================+====================================================================================================+
+| **GET**      | ``/service_template``               | **List** the contents of the ``SERVICE_TEMPLATE`` collection.                                                                        | **200 OK**: A JSON representation of the collection in the http body                               |
++--------------+-------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+
+| **GET**      | ``/service_template/<id>``          | **Show** the ``SERVICE_TEMPLATE`` resource identified by <id>                                                                        | **200 OK**: A JSON representation of the collection in the http body                               |
++--------------+-------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+
+| **DELETE**   | ``/service_template/<id>``          | **Delete** the ``SERVICE_TEMPLATE`` resource identified by <id>                                                                      | **201**:                                                                                           |
++--------------+-------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+
+| **POST**     | ``/service_template``               | **Create** a new ``SERVICE_TEMPLATE`` resource.                                                                                      | **201 Created**: A JSON representation of the new ``SERVICE_TEMPLATE`` resource in the http body   |
++--------------+-------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+
+| **PUT**      | ``/service_template/<id>``          | **Update** the ``SERVICE_TEMPLATE`` resource identified by <id>.                                                                     | **200 OK**:                                                                                        |
++--------------+-------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+
+| **POST**     | ``/service_template/<id>/action``   | **Perform** an action on the ``SERVICE_TEMPLATE`` resource identified by <id>. Available actions: instantiate, chown, chgrp, chmod   | **201**:                                                                                           |
++--------------+-------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+
+
+Resource Representation
+=======================
+
+Service Schema
+--------------
+
+A Service is defined with JSON syntax templates.
+
++--------------------+------------------+-------------+----------------------------------------------------------------------------------------------------------------------------+
+| Attribute          | Type             | Mandatory   | Description                                                                                                                |
++====================+==================+=============+============================================================================================================================+
+| name               | string           | No          | Name of the Service                                                                                                        |
++--------------------+------------------+-------------+----------------------------------------------------------------------------------------------------------------------------+
+| deployment         | string           | No          | Deployment strategy:                                                                                                       |
+|                    |                  |             |  **none**: All roles are deployed at the same time                                                                         |
+|                    |                  |             |  **straight**: Each Role is deployed when all its parent Roles are running                                                 |
+|                    |                  |             |  Defaults to none                                                                                                          |
++--------------------+------------------+-------------+----------------------------------------------------------------------------------------------------------------------------+
+| shutdown\_action   | string           | No          | VM shutdown action: 'shutdown' or 'shutdown-hard'. If it is not set, the default set in oneflow-server.conf will be used   |
++--------------------+------------------+-------------+----------------------------------------------------------------------------------------------------------------------------+
+| roles              | array of Roles   | Yes         | Array of Roles, see below                                                                                                  |
++--------------------+------------------+-------------+----------------------------------------------------------------------------------------------------------------------------+
+
+Each Role is defined as:
+
++------------------------+---------------------+---------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| Attribute              | Type                | Mandatory                 | Description                                                                                                                           |
++========================+=====================+===========================+=======================================================================================================================================+
+| name                   | string              | Yes                       | Role name                                                                                                                             |
++------------------------+---------------------+---------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| cardinality            | integer             | No                        | Number of VMs to deploy. Defaults to 1                                                                                                |
++------------------------+---------------------+---------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| vm\_template           | integer             | Yes                       | OpenNebula VM Template ID. See the `OpenNebula documentation for VM Templates </./vm_guide>`__                                        |
++------------------------+---------------------+---------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| parents                | array of string     | No                        | Names of the roles that must be deployed before this one                                                                              |
++------------------------+---------------------+---------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| shutdown\_action       | string              | No                        | VM shutdown action: 'shutdown' or 'shutdown-hard'. If it is not set, the one set for the Service will be used                         |
++------------------------+---------------------+---------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| min\_vms               | integer             | No (Yes for elasticity)   | Minimum number of VMs for elasticity adjustments                                                                                      |
++------------------------+---------------------+---------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| max\_vms               | integer             | No (Yes for elasticity)   | Maximum number of VMs for elasticity adjustments                                                                                      |
++------------------------+---------------------+---------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| cooldown               | integer             | No                        | Cooldown period duration after a scale operation, in seconds. If it is not set, the default set in oneflow-server.conf will be used   |
++------------------------+---------------------+---------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| elasticity\_policies   | array of Policies   | No                        | Array of Elasticity Policies, see below                                                                                               |
++------------------------+---------------------+---------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| scheduled\_policies    | array of Policies   | No                        | Array of Scheduled Policies, see below                                                                                                |
++------------------------+---------------------+---------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+
+To define a elasticity policy:
+
++---------------------+-----------+-------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Attribute           | Type      | Mandatory   | Description                                                                                                                                                         |
++=====================+===========+=============+=====================================================================================================================================================================+
+| type                | string    | Yes         | Type of adjustment. Values: CHANGE, CARDINALITY, PERCENTAGE\_CHANGE                                                                                                 |
++---------------------+-----------+-------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| adjust              | integer   | Yes         | Positive or negative adjustment. Its meaning depends on 'type'                                                                                                      |
++---------------------+-----------+-------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| min\_adjust\_step   | integer   | No          | Optional parameter for PERCENTAGE\_CHAGE adjustment type. If present, the policy will change the cardinality by at least the number of VMs set in this attribute.   |
++---------------------+-----------+-------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| expression          | string    | Yes         | Expression to trigger the elasticity                                                                                                                                |
++---------------------+-----------+-------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| period\_number      | integer   | No          | Number of periods that the expression must be true before the elasticity is triggered                                                                               |
++---------------------+-----------+-------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| period              | integer   | No          | Duration, in seconds, of each period in period\_duration                                                                                                            |
++---------------------+-----------+-------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| cooldown            | integer   | No          | Cooldown period duration after a scale operation, in seconds. If it is not set, the one set for the Role will be used                                               |
++---------------------+-----------+-------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+And each scheduled policy is defined as:
+
++---------------------+-----------+-------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Attribute           | Type      | Mandatory   | Description                                                                                                                                                         |
++=====================+===========+=============+=====================================================================================================================================================================+
+| type                | string    | Yes         | Type of adjustment. Values: CHANGE, CARDINALITY, PERCENTAGE\_CHANGE                                                                                                 |
++---------------------+-----------+-------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| adjust              | integer   | Yes         | Positive or negative adjustment. Its meaning depends on 'type'                                                                                                      |
++---------------------+-----------+-------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| min\_adjust\_step   | integer   | No          | Optional parameter for PERCENTAGE\_CHAGE adjustment type. If present, the policy will change the cardinality by at least the number of VMs set in this attribute.   |
++---------------------+-----------+-------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| recurrence          | string    | No          | Time for recurring adjustements. Time is specified with the `Unix cron syntax <http://en.wikipedia.org/wiki/Cron>`__                                                |
++---------------------+-----------+-------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| start\_time         | string    | No          | Exact time for the adjustement                                                                                                                                      |
++---------------------+-----------+-------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+.. code:: code
+
+{
+:type => :object,
+:properties => {
+'name' => {
+:type => :string,
+:required => true
+},
+'deployment' => {
+:type => :string,
+:enum => %w{none straight},
+:default => 'none'
+},
+'shutdown_action' => {
+:type => :string,
+:enum => %w{shutdown shutdown-hard},
+:required => false
+},
+'roles' => {
+:type => :array,
+:items => ROLE_SCHEMA,
+:required => true
+}
+}
+}
+
+Role Schema
+~~~~~~~~~~~
+
+.. code:: code
+
+{
+:type => :object,
+:properties => {
+'name' => {
+:type => :string,
+:required => true
+},
+'cardinality' => {
+:type => :integer,
+:default => 1,
+:minimum => 0
+},
+'vm_template' => {
+:type => :integer,
+:required => true
+},
+'parents' => {
+:type => :array,
+:items => {
+:type => :string
+}
+},
+'shutdown_action' => {
+:type => :string,
+:enum => ['shutdown', 'shutdown-hard']},
+:required => false
+},
+'min_vms' => {
+:type => :integer,
+:required => false,
+:minimum => 0
+},
+'max_vms' => {
+:type => :integer,
+:required => false,
+:minimum => 0
+},
+'cooldown' => {
+:type => :integer,
+:required => false,
+:minimum => 0
+},
+'elasticity_policies' => {
+:type => :array,
+:items => {
+:type => :object,
+:properties => {
+'type' => {
+:type => :string,
+:enum => ['CHANGE', 'CARDINALITY', 'PERCENTAGE_CHANGE'],
+:required => true
+},
+'adjust' => {
+:type => :integer,
+:required => true
+},
+'min_adjust_step' => {
+:type => :integer,
+:required => false,
+:minimum => 1
+},
+'period_number' => {
+:type => :integer,
+:required => false,
+:minimum => 0
+},
+'period' => {
+:type => :integer,
+:required => false,
+:minimum => 0
+},
+'expression' => {
+:type => :string,
+:required => true
+},
+'cooldown' => {
+:type => :integer,
+:required => false,
+:minimum => 0
+}
+}
+}
+},
+'scheduled_policies' => {
+:type => :array,
+:items => {
+:type => :object,
+:properties => {
+'type' => {
+:type => :string,
+:enum => ['CHANGE', 'CARDINALITY', 'PERCENTAGE_CHANGE'],
+:required => true
+},
+'adjust' => {
+:type => :integer,
+:required => true
+},
+'min_adjust_step' => {
+:type => :integer,
+:required => false,
+:minimum => 1
+},
+'start_time' => {
+:type => :string,
+:required => false
+},
+'recurrence' => {
+:type => :string,
+:required => false
+}
+}
+}
+}
+}
+}
+
+Action Schema
+-------------
+
+.. code:: code
+
+{
+:type => :object,
+:properties => {
+'action' => {
+:type => :object,
+:properties => {
+'perform' => {
+:type => :string,
+:required => true
+},
+'params' => {
+:type => :object,
+:required => false
+}
+}
+}
+}
+}
+}
+
+Examples
+========
+
+Create a New Service Template
+-----------------------------
+
++--------------+-------------------------+---------------------------------------------------+----------------------------------------------------------------------------------------------------+
+| **Method**   | **URL**                 | **Meaning / Entity Body**                         | **Response**                                                                                       |
++==============+=========================+===================================================+====================================================================================================+
+| **POST**     | ``/service_template``   | **Create** a new ``SERVICE_TEMPLATE`` resource.   | **201 Created**: A JSON representation of the new ``SERVICE_TEMPLATE`` resource in the http body   |
++--------------+-------------------------+---------------------------------------------------+----------------------------------------------------------------------------------------------------+
+
+.. code::
+
+curl http://127.0.0.1:2474/service_template -u 'oneadmin:password' -v --data '{
+"name":"web-application",
+"deployment":"straight",
+"roles":[
+{
+"name":"frontend",
+"cardinality":"1",
+"vm_template":"0",
+"shutdown_action":"shutdown",
+"min_vms":"1",
+"max_vms":"4",
+"cooldown":"30",
+"elasticity_policies":[
+{
+"type":"PERCENTAGE_CHANGE",
+"adjust":"20",
+"min_adjust_step":"1",
+"expression":"CUSTOM_ATT>40",
+"period":"3",
+"period_number":"30",
+"cooldown":"30"
+}
+],
+"scheduled_policies":[
+{
+"type":"CHANGE",
+"adjust":"4",
+"recurrence":"0 2 1-10 * *"
+}
+]
+},
+{
+"name":"worker",
+"cardinality":"2",
+"vm_template":"0",
+"shutdown_action":"shutdown",
+"parents":[
+"frontend"
+],
+"min_vms":"2",
+"max_vms":"10",
+"cooldown":"240",
+"elasticity_policies":[
+{
+"type":"CHANGE",
+"adjust":"5",
+"expression":"ATT=3",
+"period":"5",
+"period_number":"60",
+"cooldown":"240"
+}
+],
+"scheduled_policies":[
+]
+}
+],
+"shutdown_action":"shutdown"
+}'
+
+.. code:: code
+
+> POST /service_template HTTP/1.1
+> Authorization: Basic b25lYWRtaW46b23lbm5lYnVsYQ==
+> User-Agent: curl/7.19.7 (x86_64-redhat-linux-gnu) libcurl/7.19.7 NSS/3.14.0.0 zlib/1.2.3 libidn/1.18 libssh2/1.4.2
+> Host: oneflow.server:2474
+> Accept: */*
+> Content-Length: 771
+> Content-Type: application/x-www-form-urlencoded
+>
+< HTTP/1.1 201 Created
+< Content-Type: text/html;charset=utf-8
+< X-XSS-Protection: 1; mode=block
+< Content-Length: 1990
+< X-Frame-Options: sameorigin
+< Connection: keep-alive
+< Server: thin 1.2.8 codename Black Keys
+<
+{
+"DOCUMENT": {
+"TEMPLATE": {
+"BODY": {
+"deployment": "straight",
+"name": "web-application",
+"roles": [
+{
+"scheduled_policies": [
+{
+"adjust": 4,
+"type": "CHANGE",
+"recurrence": "0 2 1-10 * *"
+}
+],
+"vm_template": 0,
+"name": "frontend",
+"min_vms": 1,
+"max_vms": 4,
+"cardinality": 1,
+"cooldown": 30,
+"shutdown_action": "shutdown",
+"elasticity_policies": [
+{
+"expression": "CUSTOM_ATT>40",
+"adjust": 20,
+"min_adjust_step": 1,
+"cooldown": 30,
+"period": 3,
+"period_number": 30,
+"type": "PERCENTAGE_CHANGE"
+}
+]
+},
+{
+"scheduled_policies": [
+
+],
+"vm_template": 0,
+"name": "worker",
+"min_vms": 2,
+"max_vms": 10,
+"cardinality": 2,
+"parents": [
+"frontend"
+],
+"cooldown": 240,
+"shutdown_action": "shutdown",
+"elasticity_policies": [
+{
+"expression": "ATT=3",
+"adjust": 5,
+"cooldown": 240,
+"period": 5,
+"period_number": 60,
+"type": "CHANGE"
+}
+]
+}
+],
+"shutdown_action": "shutdown"
+}
+},
+"TYPE": "101",
+"GNAME": "oneadmin",
+"NAME": "web-application",
+"GID": "0",
+"ID": "4",
+"UNAME": "oneadmin",
+"PERMISSIONS": {
+"OWNER_A": "0",
+"OWNER_M": "1",
+"OWNER_U": "1",
+"OTHER_A": "0",
+"OTHER_M": "0",
+"OTHER_U": "0",
+"GROUP_A": "0",
+"GROUP_M": "0",
+"GROUP_U": "0"
+},
+"UID": "0"
+}
+
+Get Detailed Information of a Given Service Template
+----------------------------------------------------
+
++--------------+------------------------------+-----------------------------------------------------------------+------------------------------------------------------------------------+
+| **Method**   | **URL**                      | **Meaning / Entity Body**                                       | **Response**                                                           |
++==============+==============================+=================================================================+========================================================================+
+| **GET**      | ``/service_template/<id>``   | **Show** the ``SERVICE_TEMPLATE`` resource identified by <id>   | **200 OK**: A JSON representation of the collection in the http body   |
++--------------+------------------------------+-----------------------------------------------------------------+------------------------------------------------------------------------+
+
+.. code::
+
+curl -u 'oneadmin:opennebula' http://127.0.0.1:2474/service_template/4 -v
+
+.. code:: code
+
+> GET /service_template/4 HTTP/1.1
+> Authorization: Basic b25lYWRtaW46b3Blbm5lYnVsYQ==
+> User-Agent: curl/7.19.7 (x86_64-redhat-linux-gnu) libcurl/7.19.7 NSS/3.14.0.0 zlib/1.2.3 libidn/1.18 libssh2/1.4.2
+> Host: 127.0.0.1:2474
+> Accept: */*
+>
+< HTTP/1.1 200 OK
+< Content-Type: text/html;charset=utf-8
+< X-XSS-Protection: 1; mode=block
+< Content-Length: 1990
+< X-Frame-Options: sameorigin
+< Connection: keep-alive
+< Server: thin 1.2.8 codename Black Keys
+<
+{
+"DOCUMENT": {
+"TEMPLATE": {
+"BODY": {
+"deployment": "straight",
+"name": "web-application",
+"roles": [
+{
+"scheduled_policies": [
+{
+"adjust": 4,
+"type": "CHANGE",
+"recurrence": "0 2 1-10 * *"
+}
+],
+"vm_template": 0,
+...
+
+List the Available Service Templates
+------------------------------------
+
++--------------+-------------------------+-----------------------------------------------------------------+------------------------------------------------------------------------+
+| **Method**   | **URL**                 | **Meaning / Entity Body**                                       | **Response**                                                           |
++==============+=========================+=================================================================+========================================================================+
+| **GET**      | ``/service_template``   | **List** the contents of the ``SERVICE_TEMPLATE`` collection.   | **200 OK**: A JSON representation of the collection in the http body   |
++--------------+-------------------------+-----------------------------------------------------------------+------------------------------------------------------------------------+
+
+.. code::
+
+curl -u 'oneadmin:opennebula' http://127.0.0.1:2474/service_template -v
+
+.. code:: code
+
+> GET /service_template HTTP/1.1
+> Authorization: Basic b25lYWRtaW46b3Blbm5lYnVsYQ==
+> User-Agent: curl/7.19.7 (x86_64-redhat-linux-gnu) libcurl/7.19.7 NSS/3.14.0.0 zlib/1.2.3 libidn/1.18 libssh2/1.4.2
+> Host: 127.0.0.1:2474
+> Accept: */*
+>
+< HTTP/1.1 200 OK
+< Content-Type: text/html;charset=utf-8
+< X-XSS-Protection: 1; mode=block
+< Content-Length: 6929
+< X-Frame-Options: sameorigin
+< Connection: keep-alive
+< Server: thin 1.2.8 codename Black Keys
+<
+{
+"DOCUMENT_POOL": {
+"DOCUMENT": [
+{
+"TEMPLATE": {
+"BODY": {
+"deployment": "straight",
+"name": "web-server",
+"roles": [
+{
+"scheduled_policies": [
+{
+"adjust": 4,
+"type": "CHANGE",
+"recurrence": "0 2 1-10 * *"
+}
+],
+"vm_template": 0,
+"name": "frontend",
+"min_vms": 1,
+"max_vms": 4,
+"cardinality": 1,
+"cooldown": 30,
+"shutdown_action": "shutdown",
+"elasticity_policies": [
+{
+...
+
+Update a Given Template
+-----------------------
+
++--------------+------------------------------+--------------------------------------------------------------------+----------------+
+| **Method**   | **URL**                      | **Meaning / Entity Body**                                          | **Response**   |
++==============+==============================+====================================================================+================+
+| **PUT**      | ``/service_template/<id>``   | **Update** the ``SERVICE_TEMPLATE`` resource identified by <id>.   | **200 OK**:    |
++--------------+------------------------------+--------------------------------------------------------------------+----------------+
+
+.. code::
+
+curl http://127.0.0.1:2474/service_template/4 -u 'oneadmin:opennebula' -v -X PUT --data '{
+"name":"web-application",
+"deployment":"straight",
+"roles":[
+{
+"name":"frontend",
+"cardinality":"1",
+"vm_template":"0",
+"shutdown_action":"shutdown-hard",
+"min_vms":"1",
+"max_vms":"4",
+"cooldown":"30",
+"elasticity_policies":[
+{
+"type":"PERCENTAGE_CHANGE",
+"adjust":"20",
+"min_adjust_step":"1",
+"expression":"CUSTOM_ATT>40",
+"period":"3",
+"period_number":"30",
+"cooldown":"30"
+}
+],
+"scheduled_policies":[
+{
+"type":"CHANGE",
+"adjust":"4",
+"recurrence":"0 2 1-10 * *"
+}
+]
+},
+{
+"name":"worker",
+"cardinality":"2",
+"vm_template":"0",
+"shutdown_action":"shutdown",
+"parents":[
+"frontend"
+],
+"min_vms":"2",
+"max_vms":"10",
+"cooldown":"240",
+"elasticity_policies":[
+{
+"type":"CHANGE",
+"adjust":"5",
+"expression":"ATT=3",
+"period":"5",
+"period_number":"60",
+"cooldown":"240"
+}
+],
+"scheduled_policies":[
+]
+}
+],
+"shutdown_action":"shutdown"
+}'
+
+.. code:: code
+
+> PUT /service_template/4 HTTP/1.1
+> Authorization: Basic b25lYWRtaW46b3Blbm5lYnVsYQ==
+> User-Agent: curl/7.19.7 (x86_64-redhat-linux-gnu) libcurl/7.19.7 NSS/3.14.0.0 zlib/1.2.3 libidn/1.18 libssh2/1.4.2
+> Host: 127.0.0.1:2474
+> Accept: */*
+> Content-Length: 1219
+> Content-Type: application/x-www-form-urlencoded
+> Expect: 100-continue
+>
+* Done waiting for 100-continue
+< HTTP/1.1 200 OK
+< Content-Type: text/html;charset=utf-8
+< X-XSS-Protection: 1; mode=block
+< Content-Length: 1995
+< X-Frame-Options: sameorigin
+< Connection: keep-alive
+< Server: thin 1.2.8 codename Black Keys
+<
+{
+"DOCUMENT": {
+"TEMPLATE": {
+"BODY": {
+"deployment": "straight",
+"name": "web-application",
+"roles": [
+{
+"scheduled_policies": [
+{
+"adjust": 4,
+"type": "CHANGE",
+"recurrence": "0 2 1-10 * *"
+}
+],
+"vm_template": 0,
+"name": "frontend",
+"min_vms": 1,
+"max_vms": 4,
+"cardinality": 1,
+"cooldown": 30,
+"shutdown_action": "shutdown-hard",
+...
+
+Instantiate a Given Template
+----------------------------
+
++--------------+-------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------+----------------+
+| **Method**   | **URL**                             | **Meaning / Entity Body**                                                                                                            | **Response**   |
++==============+=====================================+======================================================================================================================================+================+
+| **POST**     | ``/service_template/<id>/action``   | **Perform** an action on the ``SERVICE_TEMPLATE`` resource identified by <id>. Available actions: instantiate, chown, chgrp, chmod   | **201**:       |
++--------------+-------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------+----------------+
+
+Available actions:
+
+-  instantiate
+-  chown
+-  chmod
+-  chgrp
+
+.. code::
+
+curl http://127.0.0.1:2474/service_template/4/action -u 'oneadmin:opennebula' -v -X POST --data '{
+"action": {
+"perform":"instantiate"
+}
+}'
+
+.. code:: code
+
+> POST /service_template/4/action HTTP/1.1
+> Authorization: Basic b25lYWRtaW46b3Blbm5lYnVsYQ==
+> User-Agent: curl/7.19.7 (x86_64-redhat-linux-gnu) libcurl/7.19.7 NSS/3.14.0.0 zlib/1.2.3 libidn/1.18 libssh2/1.4.2
+> Host: 127.0.0.1:2474
+> Accept: */*
+> Content-Length: 49
+> Content-Type: application/x-www-form-urlencoded
+>
+< HTTP/1.1 201 Created
+< Content-Type: text/html;charset=utf-8
+< X-XSS-Protection: 1; mode=block
+< Content-Length: 2015
+< X-Frame-Options: sameorigin
+< Connection: keep-alive
+< Server: thin 1.2.8 codename Black Keys
+<
+{
+"DOCUMENT": {
+"TEMPLATE": {
+"BODY": {
+"deployment": "straight",
+"name": "web-application",
+"roles": [
+{
+"scheduled_policies": [
+{
+"adjust": 4,
+"type": "CHANGE",
+"recurrence": "0 2 1-10 * *"
+}
+],
+"vm_template": 0,
+
+Delete a Given Template
+-----------------------
+
++--------------+------------------------------+-------------------------------------------------------------------+----------------+
+| **Method**   | **URL**                      | **Meaning / Entity Body**                                         | **Response**   |
++==============+==============================+===================================================================+================+
+| **DELETE**   | ``/service_template/<id>``   | **Delete** the ``SERVICE_TEMPLATE`` resource identified by <id>   | **201**:       |
++--------------+------------------------------+-------------------------------------------------------------------+----------------+
+
+.. code::
+
+curl http://127.0.0.1:2474/service_template/4 -u 'oneadmin:opennebula' -v -X DELETE
+
+.. code:: code
+
+> DELETE /service_template/3 HTTP/1.1
+> Authorization: Basic b25lYWRtaW46b3Blbm5lYnVsYQ==
+> User-Agent: curl/7.19.7 (x86_64-redhat-linux-gnu) libcurl/7.19.7 NSS/3.14.0.0 zlib/1.2.3 libidn/1.18 libssh2/1.4.2
+> Host: 127.0.0.1:2474
+> Accept: */*
+>
+< HTTP/1.1 201 Created
+< Content-Type: text/html;charset=utf-8
+< X-XSS-Protection: 1; mode=block
+< Content-Length: 0
+< X-Frame-Options: sameorigin
+< Connection: keep-alive
+< Server: thin 1.2.8 codename Black Keys
+
+Get Detailed Information of a Given Service
+-------------------------------------------
+
++--------------+---------------------+--------------------------------------------------------+------------------------------------------------------------------------+
+| **Method**   | **URL**             | **Meaning / Entity Body**                              | **Response**                                                           |
++==============+=====================+========================================================+========================================================================+
+| **GET**      | ``/service/<id>``   | **Show** the ``SERVICE`` resource identified by <id>   | **200 OK**: A JSON representation of the collection in the http body   |
++--------------+---------------------+--------------------------------------------------------+------------------------------------------------------------------------+
+
+.. code::
+
+curl http://127.0.0.1:2474/service/5 -u 'oneadmin:opennebula' -v
+
+.. code:: code
+
+> GET /service/5 HTTP/1.1
+> Authorization: Basic b25lYWRtaW46b3Blbm5lYnVsYQ==
+> User-Agent: curl/7.19.7 (x86_64-redhat-linux-gnu) libcurl/7.19.7 NSS/3.14.0.0 zlib/1.2.3 libidn/1.18 libssh2/1.4.2
+> Host: 127.0.0.1:2474
+> Accept: */*
+>
+< HTTP/1.1 200 OK
+< Content-Type: text/html;charset=utf-8
+< X-XSS-Protection: 1; mode=block
+< Content-Length: 11092
+< X-Frame-Options: sameorigin
+< Connection: keep-alive
+< Server: thin 1.2.8 codename Black Keys
+<
+{
+"DOCUMENT": {
+"TEMPLATE": {
+"BODY": {
+"deployment": "straight",
+"name": "web-application",
+"roles": [
+{
+"scheduled_policies": [
+{
+"adjust": 4,
+"last_eval": 1374676803,
+"type": "CHANGE",
+"recurrence": "0 2 1-10 * *"
+}
+],
+"vm_template": 0,
+"disposed_nodes": [
+
+],
+"name": "frontend",
+"min_vms": 1,
+"nodes": [
+{
+"deploy_id": 12,
+"vm_info": {
+"VM": {
+"CPU": "33",
+"TEMPLATE": {
+"CPU": "1",
+"CONTEXT": {
+"TARGET": "hda",
+"NETWORK": "YES",
+"DISK_ID": "0"
+},
+"MEMORY": "1024",
+"TEMPLATE_ID": "0",
+"VMID": "12"
+},
+"GNAME": "oneadmin",
+"RESCHED": "0",
+"NET_RX": "1300",
+"NAME": "frontend_0_(service_5)",
+"ETIME": "0",
+"USER_TEMPLATE": {
+"SERVICE_ID": "5",
+"ROLE_NAME": "frontend"
+},
+"GID": "0",
+"LAST_POLL": "1374676793",
+"MEMORY": "786432",
+"HISTORY_RECORDS": {
+"HISTORY": {
+"RETIME": "0",
+"TMMAD": "dummy",
+"DS_LOCATION": "/var/tmp/one_install/var//datastores",
+"SEQ": "0",
+"VNMMAD": "dummy",
+"ETIME": "0",
+"PETIME": "1374676347",
+"HOSTNAME": "vmx_dummy",
+"VMMMAD": "dummy",
+"ESTIME": "0",
+"HID": "2",
+"EETIME": "0",
+"OID": "12",
+"STIME": "1374676347",
+"DS_ID": "0",
+"ACTION": "0",
+"RSTIME": "1374676347",
+"REASON": "0",
+"PSTIME": "1374676347"
+}
+},
+"ID": "12",
+"DEPLOY_ID": "vmx_dummy:frontend_0_(service_5):dummy",
+"NET_TX": "800",
+"UNAME": "oneadmin",
+"LCM_STATE": "3",
+"STIME": "1374676345",
+"UID": "0",
+"PERMISSIONS": {
+"OWNER_U": "1",
+"OWNER_M": "1",
+"OWNER_A": "0",
+"GROUP_U": "0",
+"GROUP_M": "0",
+"GROUP_A": "0",
+"OTHER_U": "0",
+"OTHER_M": "0",
+"OTHER_A": "0"
+},
+"STATE": "3"
+}
+}
+}
+],
+"last_vmname": 1,
+"max_vms": 4,
+"cardinality": 1,
+"cooldown": 30,
+"shutdown_action": "shutdown-hard",
+"state": "2",
+"elasticity_policies": [
+{
+"expression": "CUSTOM_ATT>40",
+"true_evals": 0,
+"adjust": 20,
+"min_adjust_step": 1,
+"last_eval": 1374676803,
+"cooldown": 30,
+"expression_evaluated": "CUSTOM_ATT[--] > 40",
+"period": 3,
+"period_number": 30,
+"type": "PERCENTAGE_CHANGE"
+}
+]
+},
+{
+"scheduled_policies": [
+
+],
+"vm_template": 0,
+"disposed_nodes": [
+
+],
+"name": "worker",
+"min_vms": 2,
+"nodes": [
+{
+"deploy_id": 13,
+"vm_info": {
+"VM": {
+"CPU": "9",
+"TEMPLATE": {
+"CPU": "1",
+"CONTEXT": {
+"TARGET": "hda",
+"NETWORK": "YES",
+"DISK_ID": "0"
+},
+"MEMORY": "1024",
+"TEMPLATE_ID": "0",
+"VMID": "13"
+},
+"GNAME": "oneadmin",
+"RESCHED": "0",
+"NET_RX": "1600",
+"NAME": "worker_0_(service_5)",
+"ETIME": "0",
+"USER_TEMPLATE": {
+"SERVICE_ID": "5",
+"ROLE_NAME": "worker"
+},
+"GID": "0",
+"LAST_POLL": "1374676783",
+"MEMORY": "545259",
+"HISTORY_RECORDS": {
+"HISTORY": {
+"RETIME": "0",
+"TMMAD": "dummy",
+"DS_LOCATION": "/var/tmp/one_install/var//datastores",
+"SEQ": "0",
+"VNMMAD": "dummy",
+"ETIME": "0",
+"PETIME": "1374676377",
+"HOSTNAME": "xen_dummy",
+"VMMMAD": "dummy",
+"ESTIME": "0",
+"HID": "1",
+"EETIME": "0",
+"OID": "13",
+"STIME": "1374676377",
+"DS_ID": "0",
+"ACTION": "0",
+"RSTIME": "1374676377",
+"REASON": "0",
+"PSTIME": "1374676377"
+}
+},
+"ID": "13",
+"DEPLOY_ID": "xen_dummy:worker_0_(service_5):dummy",
+"NET_TX": "600",
+"UNAME": "oneadmin",
+"LCM_STATE": "3",
+"STIME": "1374676375",
+"UID": "0",
+"PERMISSIONS": {
+"OWNER_U": "1",
+"OWNER_M": "1",
+"OWNER_A": "0",
+"GROUP_U": "0",
+"GROUP_M": "0",
+"GROUP_A": "0",
+"OTHER_U": "0",
+"OTHER_M": "0",
+"OTHER_A": "0"
+},
+"STATE": "3"
+}
+}
+},
+{
+"deploy_id": 14,
+"vm_info": {
+"VM": {
+"CPU": "75",
+"TEMPLATE": {
+"CPU": "1",
+"CONTEXT": {
+"TARGET": "hda",
+"NETWORK": "YES",
+"DISK_ID": "0"
+},
+"MEMORY": "1024",
+"TEMPLATE_ID": "0",
+"VMID": "14"
+},
+"GNAME": "oneadmin",
+"RESCHED": "0",
+"NET_RX": "1100",
+"NAME": "worker_1_(service_5)",
+"ETIME": "0",
+"USER_TEMPLATE": {
+"SERVICE_ID": "5",
+"ROLE_NAME": "worker"
+},
+"GID": "0",
+"LAST_POLL": "1374676783",
+"MEMORY": "471859",
+"HISTORY_RECORDS": {
+"HISTORY": {
+"RETIME": "0",
+"TMMAD": "dummy",
+"DS_LOCATION": "/var/tmp/one_install/var//datastores",
+"SEQ": "0",
+"VNMMAD": "dummy",
+"ETIME": "0",
+"PETIME": "1374676378",
+"HOSTNAME": "kvm_dummy",
+"VMMMAD": "dummy",
+"ESTIME": "0",
+"HID": "0",
+"EETIME": "0",
+"OID": "14",
+"STIME": "1374676378",
+"DS_ID": "0",
+"ACTION": "0",
+"RSTIME": "1374676378",
+"REASON": "0",
+"PSTIME": "1374676378"
+}
+},
+"ID": "14",
+"DEPLOY_ID": "kvm_dummy:worker_1_(service_5):dummy",
+"NET_TX": "550",
+"UNAME": "oneadmin",
+"LCM_STATE": "3",
+"STIME": "1374676375",
+"UID": "0",
+"PERMISSIONS": {
+"OWNER_U": "1",
+"OWNER_M": "1",
+"OWNER_A": "0",
+"GROUP_U": "0",
+"GROUP_M": "0",
+"GROUP_A": "0",
+"OTHER_U": "0",
+"OTHER_M": "0",
+"OTHER_A": "0"
+},
+"STATE": "3"
+}
+}
+}
+],
+"last_vmname": 2,
+"max_vms": 10,
+"cardinality": 2,
+"parents": [
+"frontend"
+],
+"cooldown": 240,
+"shutdown_action": "shutdown",
+"state": "2",
+"elasticity_policies": [
+{
+"expression": "ATT=3",
+"true_evals": 0,
+"adjust": 5,
+"last_eval": 1374676803,
+"cooldown": 240,
+"expression_evaluated": "ATT[--] = 3",
+"period": 5,
+"period_number": 60,
+"type": "CHANGE"
+}
+]
+}
+],
+"log": [
+{
+"message": "New state: DEPLOYING",
+"severity": "I",
+"timestamp": 1374676345
+},
+{
+"message": "New state: RUNNING",
+"severity": "I",
+"timestamp": 1374676406
+}
+],
+"shutdown_action": "shutdown",
+"state": 2
+}
+},
+"TYPE": "100",
+"GNAME": "oneadmin",
+"NAME": "web-application",
+"GID": "0",
+"ID": "5",
+"UNAME": "oneadmin",
+"PERMISSIONS": {
+"OWNER_A": "0",
+"OWNER_M": "1",
+"OWNER_U": "1",
+"OTHER_A": "0",
+"OTHER_M": "0",
+"OTHER_U": "0",
+"GROUP_A": "0",
+"GROUP_M": "0",
+"GROUP_U": "0"
+},
+"UID": "0"
+}
+
+List the Available Services
+---------------------------
+
++--------------+----------------+--------------------------------------------------------+------------------------------------------------------------------------+
+| **Method**   | **URL**        | **Meaning / Entity Body**                              | **Response**                                                           |
++==============+================+========================================================+========================================================================+
+| **GET**      | ``/service``   | **List** the contents of the ``SERVICE`` collection.   | **200 OK**: A JSON representation of the collection in the http body   |
++--------------+----------------+--------------------------------------------------------+------------------------------------------------------------------------+
+
+.. code::
+
+curl http://127.0.0.1:2474/service -u 'oneadmin:opennebula' -v
+
+.. code:: code
+
+> GET /service HTTP/1.1
+> Authorization: Basic b25lYWRtaW46b3Blbm5lYnVsYQ==
+> User-Agent: curl/7.19.7 (x86_64-redhat-linux-gnu) libcurl/7.19.7 NSS/3.14.0.0 zlib/1.2.3 libidn/1.18 libssh2/1.4.2
+> Host: 127.0.0.1:2474
+> Accept: */*
+>
+< HTTP/1.1 200 OK
+< Content-Type: text/html;charset=utf-8
+< X-XSS-Protection: 1; mode=block
+< Content-Length: 12456
+< X-Frame-Options: sameorigin
+< Connection: keep-alive
+< Server: thin 1.2.8 codename Black Keys
+<
+{
+"DOCUMENT_POOL": {
+"DOCUMENT": [
+{
+"TEMPLATE": {
+"BODY": {
+"deployment": "straight",
+"name": "web-application",
+"roles": [
+{
+"scheduled_policies": [
+{
+"adjust": 4,
+"last_eval": 1374676986,
+"type": "CHANGE",
+"recurrence": "0 2 1-10 * *"
+}
+],
+...
+
+Perform an Action on a Given Service
+------------------------------------
+
++--------------+----------------------------+-------------------------------------------------------------------------+----------------+
+| **Method**   | **URL**                    | **Meaning / Entity Body**                                               | **Response**   |
++==============+============================+=========================================================================+================+
+| **POST**     | ``/service/<id>/action``   | **Perform** an action on the ``SERVICE`` resource identified by <id>.   | **201**:       |
++--------------+----------------------------+-------------------------------------------------------------------------+----------------+
+
+Available actions:
+
+-  shutdown: Shutdown a service.
+
+-  From RUNNING or WARNING shuts down the Service
+
+-  recover: Recover a failed service, cleaning the failed VMs.
+
+-  From FAILED\_DEPLOYING continues deploying the Service
+-  From FAILED\_SCALING continues scaling the Service
+-  From FAILED\_UNDEPLOYING continues shutting down the Service
+-  From COOLDOWN the Service is set to running ignoring the cooldown
+duration
+-  From WARNING failed VMs are deleted, and new VMs are instantiated
+
+-  chown
+-  chmod
+-  chgrp
+
+.. code::
+
+curl http://127.0.0.1:2474/service/5/action -u 'oneadmin:opennebula' -v -X POST --data '{
+"action": {
+"perform":"shutdown"
+}
+}'
+
+.. code::
+
+curl http://127.0.0.1:2474/service/5/action -u 'oneadmin:opennebula' -v -X POST --data '{
+"action": {
+"perform":"chgrp",
+"params" : {
+"group_id" : 2
+}
+}
+}'
+
+Update the Cardinality of a Given Role
+--------------------------------------
+
++--------------+---------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------+
+| **Method**   | **URL**                         | **Meaning / Entity Body**                                                                                                                                           | **Response**   |
++==============+=================================+=====================================================================================================================================================================+================+
+| **PUT**      | ``/service/<id>/role/<name>``   | **Update** the ``ROLE`` identified by <name> of the ``SERVICE`` resource identified by <id>. Currently the only attribute that can be updated is the cardinality.   | **200 OK**:    |
++--------------+---------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------+
+
+You can force a cardinality outside the defined range with the force
+param.
+
+.. code::
+
+curl http://127.0.0.1:2474/service/5/role/frontend -u 'oneadmin:opennebula' -X PUT -v --data '{
+"cardinality" : 2,
+"force" : true
+}'
+
+.. code:: code
+
+> PUT /service/5/role/frontend HTTP/1.1
+> Authorization: Basic b25lYWRtaW46b3Blbm5lYnVsYQ==
+> User-Agent: curl/7.19.7 (x86_64-redhat-linux-gnu) libcurl/7.19.7 NSS/3.14.0.0 zlib/1.2.3 libidn/1.18 libssh2/1.4.2
+> Host: 127.0.0.1:2474
+> Accept: */*
+> Content-Length: 41
+> Content-Type: application/x-www-form-urlencoded
+>
+< HTTP/1.1 200 OK
+< Content-Type: text/html;charset=utf-8
+< X-XSS-Protection: 1; mode=block
+< Content-Length: 0
+< X-Frame-Options: sameorigin
+< Connection: keep-alive
+< Server: thin 1.2.8 codename Black Keys
+
+Perform an Action on All the VMs of a Given Role
+------------------------------------------------
+
++--------------+----------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+----------------+
+| **Method**   | **URL**                                | **Meaning / Entity Body**                                                                                                                          | **Response**   |
++==============+========================================+====================================================================================================================================================+================+
+| **POST**     | ``/service/<id>/role/<name>/action``   | **Perform** an action on all the Virtual Machines belonging to the ``ROLE`` identified by <name> of the ``SERVICE`` resource identified by <id>.   | **201**:       |
++--------------+----------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+----------------+
+
+You can use this call to perform a VM action on all the Virtual Machines
+belonging to a role. For example, if you want to suspend the Virtual
+Machines of the worker Role:
+
+These are the commands that can be performed:
+
+-  ``shutdown``
+-  ``shutdown-hard``
+-  ``undeploy``
+-  ``undeploy-hard``
+-  ``hold``
+-  ``release``
+-  ``stop``
+-  ``suspend``
+-  ``resume``
+-  ``boot``
+-  ``delete``
+-  ``delete-recreate``
+-  ``reboot``
+-  ``reboot-hard``
+-  ``poweroff``
+-  ``poweroff-hard``
+-  ``snapshot-create``
+
+Instead of performing the action immediately on all the VMs, you can
+perform it on small groups of VMs with these options:
+
+-  ``period``: Seconds between each group of actions
+-  ``number``: Number of VMs to apply the action to each period
+
+.. code::
+
+curl http://127.0.0.1:2474/service/5/role/frontend/action -u 'oneadmin:opennebula' -v -X POST --data '{
+"action": {
+"perform":"stop",
+"params" : {
+"period" : 60,
+"number" : 2
+}
+}
+}'
+
+.. code:: code
+
+> POST /service/5/role/frontend/action HTTP/1.1
+> Authorization: Basic b25lYWRtaW46b3Blbm5lYnVsYQ==
+> User-Agent: curl/7.19.7 (x86_64-redhat-linux-gnu) libcurl/7.19.7 NSS/3.14.0.0 zlib/1.2.3 libidn/1.18 libssh2/1.4.2
+> Host: 127.0.0.1:2474
+> Accept: */*
+> Content-Length: 106
+> Content-Type: application/x-www-form-urlencoded
+>
+< HTTP/1.1 201 Created
+< Content-Type: text/html;charset=utf-8
+< X-XSS-Protection: 1; mode=block
+< Content-Length: 57
+< X-Frame-Options: sameorigin
+< Connection: keep-alive
+< Server: thin 1.2.8 codename Black Keys
+
