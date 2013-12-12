@@ -18,7 +18,7 @@ OpenNebula provides many different interfaces that can be used to interact with 
 
 -  Cloud interfaces for **Cloud Consumers**, like the :ref:`OCCI <occidd>` and :ref:`EC2 Query and EBS <ec2qug>` interfaces, and a simple :ref:`Sunstone cloud user view <cloud_view>` that can be used as a self-service portal.
 -  Administration interfaces for **Cloud Advanced Users and Operators**, like a Unix-like :ref:`command line interface <cli>` and the powerful :ref:`Sunstone GUI <sunstone>`.
--  Extensible low-level APIs for **Cloud Integrators** in :ref:`Ruby <documentation:rel3.8:ruby>`, :ref:`JAVA <documentation:rel3.8:java>` and :ref:`XMLRPC API <documentation:rel3.8:api>`
+-  Extensible low-level APIs for **Cloud Integrators** in :ref:`Ruby <ruby>`, :ref:`JAVA <java>` and :ref:`XMLRPC API <api>`
 -  A :ref:`Marketplace <marketplace>` for **Appliance Builders** with a catalog of virtual appliances ready to run in OpenNebula environments.
 
 |OpenNebula Cloud Interfaces|
@@ -41,7 +41,7 @@ What Does OpenNebula Offer to Cloud Operators?
 
 OpenNebula is composed of the following subsystems:
 
--  **Users and Groups**: OpenNebula features advanced multi-tenancy with powerful :ref:`users and groups management <manage_users>`, :ref:`fine-grained ACLs <manage_acl>` for resource allocation, and :ref:`resource quota management <rel3.8:quota_auth>` to track and limit computing, storage and networking utilization.
+-  **Users and Groups**: OpenNebula features advanced multi-tenancy with powerful :ref:`users and groups management <manage_users>`, :ref:`fine-grained ACLs <manage_acl>` for resource allocation, and :ref:`resource quota management <quota_auth>` to track and limit computing, storage and networking utilization.
 
 -  **Virtualization**: Various hypervisors are supported in the :ref:`virtualization manager <vmmg>`, with the ability to control the complete lifecycle of Virtual Machines and multiple hypervisors in the same cloud infrastructure.
 
