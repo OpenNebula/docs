@@ -36,7 +36,7 @@ Accounting Output
 
 The oneacct command shows individual Virtual Machine history records. This means that for a single VM you may get several accounting entries, one for each migration or stop/suspend action.
 
-Each entry contains the complete information of the Virtual Machine, including the Virtual Machine monitoring information. By default, only network consumption is reported, see the :ref:`Tuning & Extending <#tuning_extending>` section for more information.
+Each entry contains the complete information of the Virtual Machine, including the Virtual Machine monitoring information. By default, only network consumption is reported, see the `Tuning & Extending <#tuning-extending>`__ section for more information.
 
 When the results are filtered with the ``-s`` and/or ``-e`` options, all the history records that were active during that time interval are shown, but they may start or end outside that interval.
 
@@ -62,12 +62,12 @@ Obtaining all the available accounting information:
 .. code::
 
     $ oneacct
-    # User 0 oneadmin    
+    # User 0 oneadmin
 
      VID HOSTNAME        REAS     START_TIME       END_TIME MEMORY CPU NET_RX NET_TX
        0 host02          user 06/04 14:55:49 06/04 15:05:02  1024M   1     0K     0K
 
-    # User 2 oneuser1    
+    # User 2 oneuser1
 
      VID HOSTNAME        REAS     START_TIME       END_TIME MEMORY CPU NET_RX NET_TX
        1 host01          stop 06/04 14:55:49 06/04 14:56:28  1024M   1     0K     0K
@@ -110,7 +110,7 @@ Obtaining the accounting information for a given user
 .. code::
 
     $ oneacct -u 2 --split
-    # User 2 oneuser1    
+    # User 2 oneuser1
 
      VID HOSTNAME        REAS     START_TIME       END_TIME MEMORY CPU NET_RX NET_TX
        1 host01          stop 06/04 14:55:49 06/04 14:56:28  1024M   1     0K     0K
@@ -275,4 +275,4 @@ There are two kinds of monitoring values:
 -  Instantaneous values: For example, ``VM/CPU`` or ``VM/MEMORY`` show the memory consumption last reported by the monitoring probes.
 -  Accumulative values: For example, ``VM/NET_TX`` and ``VM/NET_TX`` show the total network consumption since the history record started.
 
-Developers interacting with OpenNebula using the Ruby bindings can use the `VirtualMachinePool.accounting method <http://opennebula.org/doc/3.8/oca/ruby/OpenNebula/VirtualMachinePool.html#accounting-instance_method>`__ to retrieve accounting information filtering and ordering by multiple parameters.
+Developers interacting with OpenNebula using the Ruby bindings can use the `VirtualMachinePool.accounting method <http://opennebula.org/doc/4.4/oca/ruby/OpenNebula/VirtualMachinePool.html#accounting-instance_method>`__ to retrieve accounting information filtering and ordering by multiple parameters.

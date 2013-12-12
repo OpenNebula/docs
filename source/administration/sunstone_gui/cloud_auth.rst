@@ -6,16 +6,16 @@ Cloud Servers Authentication
 
 OpenNebula ships with three servers: :ref:`Sunstone <sunstone>`, :ref:`EC2 <ec2qcg>` and :ref:`OCCI <occicg>`. When a user interacts with one of them, the server authenticates the request and then forwards the requested operation to the OpenNebula daemon.
 
-The forwarded requests between the servers and the core daemon include the original user name, and are signed with the credentials of an special “server” user.
+The forwarded requests between the servers and the core daemon include the original user name, and are signed with the credentials of an special ``server`` user.
 
 In this guide this request forwarding mechanism is explained, and how it is secured with a symmetric-key algorithm or x509 certificates.
 
 Server Users
 ============
 
-The :ref:`Sunstone <sunstone>`, :ref:`EC2 <ec2qcg>` and :ref:`OCCI <occicg>` services communicate with the core using a “server” user. OpenNebula creates the **serveradmin** account at bootstrap, with the authentication driver **server\_cipher** (symmetric key).
+The :ref:`Sunstone <sunstone>`, :ref:`EC2 <ec2qcg>` and :ref:`OCCI <occicg>` services communicate with the core using a ``server`` user. OpenNebula creates the **serveradmin** account at bootstrap, with the authentication driver **server\_cipher** (symmetric key).
 
-This “server” user uses a special authentication mechanism that allows the servers to perform an operation on behalf of other user.
+This ``server`` user uses a special authentication mechanism that allows the servers to perform an operation on behalf of other user.
 
 You can strengthen the security of the requests from the servers to the core daemon changing the serveruser's driver to **server\_x509**. This is specially relevant if you are running your server in a machine other than the frontend.
 
@@ -112,7 +112,7 @@ Then edit the relevant configuration file in ``/etc/one``:
 Configure
 ---------
 
-To trust the serveradmin certificate, ”/etc/one/auth/cert.pem” if you used the default path, the CA's certificate must be added to the ``ca_dir`` defined in ``/etc/one/auth/x509_auth.conf``. See the :ref:`x509 Authentication guide for more information <x509_auth#add_and_remove_trusted_ca_certificates>`.
+To trust the serveradmin certificate, ``/etc/one/auth/cert.pem`` if you used the default path, the CA's certificate must be added to the ``ca_dir`` defined in ``/etc/one/auth/x509_auth.conf``. See the :ref:`x509 Authentication guide for more information <x509_auth>`.
 
 .. code::
 
@@ -121,8 +121,8 @@ To trust the serveradmin certificate, ”/etc/one/auth/cert.pem” if you used t
 
     $ sudo cp cacert.pem /etc/one/auth/certificates/78d0bbd8.0
 
-Tunning & Extending
-===================
+Tuning & Extending
+==================
 
 Files
 -----
@@ -144,5 +144,5 @@ Whereas a user with a **server\_**\ \* driver must use this token format:
 
     username:target_username:secret
 
-The core daemon understands a request with this authentication session token as “perform this operation on behalf of target\_user”. The “secret” part of the token is signed with one of the two mechanisms explained below.
+The core daemon understands a request with this authentication session token as ``perform this operation on behalf of target\_user``. The ``secret`` part of the token is signed with one of the two mechanisms explained below.
 

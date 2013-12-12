@@ -91,7 +91,7 @@ Example:
 .. code::
 
       NAME   = test-vm
-      MEMORY = 128 
+      MEMORY = 128
       CPU    = 1
 
 OS and Boot Options Section
@@ -525,8 +525,8 @@ Example:
 
 .. code::
 
-    GRAPHICS = [ 
-      TYPE    = "vnc",              
+    GRAPHICS = [
+      TYPE    = "vnc",
       LISTEN  = "0.0.0.0",
       PORT    = "5"]
 
@@ -534,26 +534,28 @@ Example:
 
 .. warning:: If the user does not specify the port variable, OpenNebula will automatically assign ``$VNC_BASE_PORT + $VMID``, allowing to generate different ports for VMs so they do not collide. The ``VNC_BASE_PORT`` is specified inside the ``oned.conf`` file.
 
+.. _template_context:
+
 Context Section
 ===============
 
 Context information is passed to the Virtual Machine via an ISO mounted as a partition. This information can be defined in the VM template in the optional section called Context, with the following attributes:
 
-+-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------+-------------+
-| Attribute       | Description                                                                                                                                       | Mandatory   |
-+=================+===================================================================================================================================================+=============+
-| **VARIABLE**    | Variables that store values related to this virtual machine or others. The name of the variable is arbitrary (in the example, we use hostname).   | Optional    |
-+-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------+-------------+
-| **FILES \***    | space-separated list of paths to include in context device.                                                                                       | Optional    |
-+-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------+-------------+
-| **FILES\_DS**   | space-separated list of File images to include in context device.                                                                                 | Optional    |
-+-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------+-------------+
-| **TARGET**      | device to attach the context ISO.                                                                                                                 | Optional    |
-+-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------+-------------+
-| **TOKEN**       | “YES” to create a token.txt file for :ref:`OneGate monitorization <onegate_usage>`                                                                   | Optional    |
-+-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------+-------------+
-| **NETWORK**     | “YES” to fill automatically the networking parameters for each NIC, used by the :ref:`Contextualization packages <context_overview>`                 | Optional    |
-+-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------+-------------+
++---------------+-------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+|   Attribute   |                                                                   Description                                                                   | Mandatory |
++===============+=================================================================================================================================================+===========+
+| **VARIABLE**  | Variables that store values related to this virtual machine or others. The name of the variable is arbitrary (in the example, we use hostname). | Optional  |
++---------------+-------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| **FILES \***  | space-separated list of paths to include in context device.                                                                                     | Optional  |
++---------------+-------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| **FILES\_DS** | space-separated list of File images to include in context device.                                                                               | Optional  |
++---------------+-------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| **TARGET**    | device to attach the context ISO.                                                                                                               | Optional  |
++---------------+-------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| **TOKEN**     | ``YES`` to create a token.txt file for :ref:`OneGate monitorization <onegate_usage>`                                                            | Optional  |
++---------------+-------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| **NETWORK**   | ``YES`` to fill automatically the networking parameters for each NIC, used by the :ref:`Contextualization packages <context_overview>`          | Optional  |
++---------------+-------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
 
 \* only for users in oneadmin group
 
@@ -642,6 +644,8 @@ Example:
       FILES_DS   = "$FILE[IMAGE_ID=34] $FILE[IMAGE=\"kernel\"]",
       TARGET     = "sdc"
     ]
+
+.. _template_placement_section:
 
 Placement Section
 =================

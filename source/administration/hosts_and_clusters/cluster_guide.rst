@@ -72,7 +72,7 @@ Add Resources to Clusters
 
 Datastores and Virtual Networks can be added to one Cluster. This means that any Host in that Cluster is properly configured to run VMs using Images from the Datastores, or is using leases from the Virtual Networks.
 
-For instance, if you have several Hosts configured to use the :ref:`iSCSI datastore drivers <iscsi_ds>` and :ref:`Open vSwitch networks <openvswitch>`, you would group them in the same Cluster. The :ref:`Scheduler <schg>` will know that VMs using these resources can be deployed in any of the Hosts of the Cluster.
+For instance, if you have several Hosts configured to use :ref:`Open vSwitch networks <openvswitch>`, you would group them in the same Cluster. The :ref:`Scheduler <schg>` will know that VMs using these resources can be deployed in any of the Hosts of the Cluster.
 
 These operations can be done with the ``onecluster`` ``addvnet/delvnet`` and ``adddatastore/deldatastore``:
 
@@ -91,7 +91,7 @@ These operations can be done with the ``onecluster`` ``addvnet/delvnet`` and ``a
     ID             : 100
     NAME           : production
 
-    CLUSTER TEMPLATE                                                                
+    CLUSTER TEMPLATE
 
     HOSTS
     0
@@ -107,7 +107,7 @@ The System Datastore for a Cluster
 
 You can associate an specific System DS to a cluster to improve its performance (e.g. balance VM I/O between different servers) or to use different system DS types (e.g. shared and ssh).
 
-To use a specific System DS with your cluster, instead of the default one, just create it (with TYPE=SYSTEM\_DS in its template), and associate it just like any other datastore (onecluster adddatastore). Check the :ref:`System DS guide for more information <system_ds#the_system_datastore_for_multi-cluster_setups>`.
+To use a specific System DS with your cluster, instead of the default one, just create it (with TYPE=SYSTEM\_DS in its template), and associate it just like any other datastore (onecluster adddatastore). Check the :ref:`System DS guide for more information <system_ds>`.
 
 Cluster Properties
 ------------------
@@ -140,7 +140,7 @@ You can easily update this values with the ``onecluster`` command:
     NAME             : production
     SYSTEM DATASTORE : 100
 
-    CLUSTER TEMPLATE                                                                
+    CLUSTER TEMPLATE
     DATASTORE_LOCATION="/mnt/nas/datastores"
 
     HOSTS
@@ -169,7 +169,7 @@ Scheduling and Clusters
 Automatic Requirements
 ----------------------
 
-When a Virtual Machine uses resources (Images or Virtual Networks) from a Cluster, OpenNebula adds the following :ref:`requirement <template#requirement_expression_syntax>` to the template:
+When a Virtual Machine uses resources (Images or Virtual Networks) from a Cluster, OpenNebula adds the following :ref:`requirement <template_placement_section>` to the template:
 
 .. code::
 
@@ -189,7 +189,7 @@ Because of this, if you try to use resources from more than one Cluster, the Vir
 Manual Requirements and Rank
 ----------------------------
 
-The placement attributes :ref:`SCHED\_REQUIREMENTS and SCHED\_RANK <template#placement_section>` can use attributes from the Cluster template. Let’s say you have the following scenario:
+The placement attributes :ref:`SCHED\_REQUIREMENTS and SCHED\_RANK <template_placement_section>` can use attributes from the Cluster template. Let’s say you have the following scenario:
 
 .. code::
 
@@ -197,7 +197,7 @@ The placement attributes :ref:`SCHED\_REQUIREMENTS and SCHED\_RANK <template#pla
       ID NAME            CLUSTER   RVM      ALLOCATED_CPU      ALLOCATED_MEM STAT
        1 host01          cluster_a   0       0 / 200 (0%)     0K / 3.6G (0%) on
        2 host02          cluster_a   0       0 / 200 (0%)     0K / 3.6G (0%) on
-       3 host03          cluster_b   0       0 / 200 (0%)     0K / 3.6G (0%) on    
+       3 host03          cluster_b   0       0 / 200 (0%)     0K / 3.6G (0%) on
 
     $ onecluster show cluster_a
     CLUSTER TEMPLATE
@@ -218,7 +218,7 @@ You can use these expressions:
 System Storage
 ==============
 
-The system datastore holds files for running VMs. Each cluster can use a different system datastore, read more in :ref:`the system datastore guide <system_ds#the_system_datastore_for_multi-cluster_setups>`.
+The system datastore holds files for running VMs. Each cluster can use a different system datastore, read more in :ref:`the system datastore guide <system_ds>`.
 
 Managing Clusters in Sunstone
 =============================

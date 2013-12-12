@@ -34,72 +34,49 @@ Defining User/Group Quotas
 Usage quotas are set in a traditional template syntax (either plain text or XML). The following table explains the attributes needed to set each quota:
 
 Datastore Quotas. Attribute name: DATASTORE
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-DATASTORE Attribute
-
-Description
-
-**ID**
-
-ID of the Datastore to set the quota for
-
-**SIZE**
-
-Maximum size in MB that can be used in the datastore
-
-**IMAGE**
-
-Maximum number of images that can be created in the datastore
++---------------------+-----------------------------------------------------------------------------+
+| DATASTORE Attribute |                                 Description                                 |
++=====================+=============================================================================+
+| ID                  | ID of the Datastore to set the quota for                                    |
+| SIZE                | Maximum size in MB that can be used in the datastore                        |
+| IMAGE               | Maximum number of images that can be created in the datastore               |
++---------------------+-----------------------------------------------------------------------------+
 
 Compute Quotas. Attribute name: VM
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-VM Attribute
++---------------+-----------------------------------------------------------------------------+
+|  VM Attribute |                                 Description                                 |
++===============+=============================================================================+
+| VMS           | Maximum number of VMs that can be created                                   |
+| MEMORY        | Maximum memory in MB that can be requested by user/group VMs                |
+| CPU           | Maximum CPU capacity that can be requested by user/group VMs                |
+| VOLATILE_SIZE | Maximum volatile disks size (in MB) that can be requested by user/group VMs |
++---------------+-----------------------------------------------------------------------------+
 
-Description
-
-**VMS**
-
-Maximum number of VMs that can be created
-
-**MEMORY**
-
-Maximum memory in MB that can be requested by user/group VMs
-
-**CPU**
-
-Maximum CPU capacity that can be requested by user/group VMs
-
-**VOLATILE\_SIZE**
-
-Maximum volatile disks size (in MB) that can be requested by user/group VMs
 
 Network Quotas. Attribute name: NETWORK
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-NETWORK Attribute
++-------------------+-------------------------------------------------+
+| NETWORK Attribute |                   Description                   |
++===================+=================================================+
+| ID                | ID of the Network to set the quota for          |
+| LEASES            | Maximum IPs that can be leased from the Network |
++-------------------+-------------------------------------------------+
 
-Description
-
-**ID**
-
-ID of the Network to set the quota for
-
-**LEASES**
-
-Maximum IPs that can be leased from the Network
 
 Image Quotas. Attribute name: IMAGE
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-IMAGE Attribute
-
-Description
-
-**ID**
-
-ID of the Image to set the quota for
-
-**RVMS**
-
-Maximum VMs that can used this image at the same time
++-----------------+-------------------------------------------------------+
+| IMAGE Attribute |                      Description                      |
++=================+=======================================================+
+| ID              | ID of the Image to set the quota for                  |
+| RVMS            | Maximum VMs that can used this image at the same time |
++-----------------+-------------------------------------------------------+
 
 For each quota, there are two special limits:
 
@@ -151,7 +128,7 @@ To set the quota for a user, e.g. userA, just type:
 
 .. code::
 
-    >oneuser quota userA
+    $ oneuser quota userA
 
 This will open an editor session to edit a quota template (with some tips about the syntax).
 
@@ -163,15 +140,15 @@ Similarly, you can set the quotas for group A with:
 
 .. code::
 
-    >onegroup quota groupA
+    $ onegroup quota groupA
 
 There is a ``batchquota`` command that allows you to set the same quotas for several users or groups:
 
 .. code::
 
-    >oneuser batchquota userA,userB,35
+    $ oneuser batchquota userA,userB,35
 
-    >onegroup batchquota 100..104
+    $ onegroup batchquota 100..104
 
 You can also set the user/group quotas in Sunstone through the user/group tab.
 
@@ -197,19 +174,19 @@ Quota limits and usage for each user/group is included as part of its standard i
 
 .. code::
 
-    > oneuser show uA
-    USER 2 INFORMATION                                                              
-    ID             : 2                   
-    NAME           : uA                  
-    GROUP          : gA                  
+    $ oneuser show uA
+    USER 2 INFORMATION
+    ID             : 2
+    NAME           : uA
+    GROUP          : gA
     PASSWORD       : a9993e364706816aba3e25717850c26c9cd0d89d
-    AUTH_DRIVER    : core                
-    ENABLED        : Yes                 
+    AUTH_DRIVER    : core
+    ENABLED        : Yes
 
-    USER TEMPLATE                                                                   
+    USER TEMPLATE
 
 
-    RESOURCE USAGE & QUOTAS                                                         
+    RESOURCE USAGE & QUOTAS
 
     DATASTORE ID  IMAGES (used) IMAGES (limit)    SIZE (used)   SIZE (limit)
     1                         1              0           1024              0
@@ -228,17 +205,17 @@ And for the group:
 
 .. code::
 
-    > onegroup show gA
-    GROUP 100 INFORMATION                                                           
-    ID             : 100                 
-    NAME           : gA                  
+    $ onegroup show gA
+    GROUP 100 INFORMATION
+    ID             : 100
+    NAME           : gA
 
-    USERS                                                                           
-    ID             
-    2              
-    3              
+    USERS
+    ID
+    2
+    3
 
-    RESOURCE USAGE & QUOTAS                                                         
+    RESOURCE USAGE & QUOTAS
 
     DATASTORE ID  IMAGES (used) IMAGES (limit)    SIZE (used)   SIZE (limit)
     1                         2              0           2048              0

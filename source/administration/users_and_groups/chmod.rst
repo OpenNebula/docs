@@ -97,8 +97,8 @@ Setting Default Permissions with umask
 
 The default permissions given to newly created resources can be set:
 
--  Globally, with the **DEFAULT\_UMASK** attribue in :ref:`oned.conf <oned_conf#auth_manager_configuration>`
--  Individually for each User, using the :ref:`''oneuser umask'' command <cli>`.
+-  Globally, with the **DEFAULT\_UMASK** attribute in :ref:`oned.conf <oned_conf>`
+-  Individually for each User, using the :ref:`oneuser umask command <cli>`.
 
 These mask attributes work in a similar way to the `Unix umask command <http://en.wikipedia.org/wiki/Umask>`__. The expected value is a three-digit base-8 number. Each digit is a mask that **disables** permissions for the **owner**, **group** and **other**, respectively.
 

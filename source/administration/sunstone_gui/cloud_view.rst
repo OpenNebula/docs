@@ -4,7 +4,7 @@
 Self-service Cloud View
 ========================
 
-This is a simplified view mainly intended for cloud consumers that just require a portal where they can provision new virtual machines easily. They just have to select one of the available templates and the operating system that will run in this virtual machine. For more information about the suntone views, please check the following :ref:`guide <suns_views>`
+This is a simplified view mainly intended for cloud consumers that just require a portal where they can provision new virtual machines easily. They just have to select one of the available templates and the operating system that will run in this virtual machine. For more information about the suntone views, please check the following :ref:`guide <suns_views>`.
 
 In this scenario the cloud administrator must prepare a set of templates and images and make them available to the cloud users. Templates must define all the required parameters and just leave the DISK section empty, so the user can select any of the available images. New virtual machines will be created merging the information provided by the user (image, vm\_name...) and the base template. Thereby, the user doesn't have to know any details of the infrastructure such as networking, storage...
 
@@ -57,23 +57,23 @@ Example:
 
     $ cat small-x1-1GB.template
     NAME   = small-x1-1GB
-    MEMORY = 1024 
+    MEMORY = 1024
     CPU    = 1
-     
+
     NIC = [ NETWORK = "Public" ]
-     
-    GRAPHICS = [ 
+
+    GRAPHICS = [
       TYPE    = "vnc",
       LISTEN  = "0.0.0.0"]
 
     $ cat large-x4-8GB.template
     NAME   = large-x4-8GB
-    MEMORY = 8192 
+    MEMORY = 8192
     CPU    = 8
-     
+
     NIC = [ NETWORK = "Public" ]
-     
-    GRAPHICS = [ 
+
+    GRAPHICS = [
       TYPE    = "vnc",
       LISTEN  = "0.0.0.0"]
 
@@ -129,10 +129,12 @@ Internationalization and Languages
 
 Sunstone support multiple languages. Users can change it from the settings dialog:
 
-|views\_settings.jpg| |views\_conf.jpg|
+|image3|
+
+|image4|
 
 .. |image0| image:: /images/cloud-view.png
 .. |image1| image:: /images/sunstonelogin4.png
 .. |image2| image:: /images/cloud-view.png
-.. |views\_settings.jpg| image:: /images/views_settings.jpg
-.. |views\_conf.jpg| image:: /images/views_conf.jpg
+.. |image3| image:: /images/views_settings.jpg
+.. |image4| image:: /images/views_conf.jpg

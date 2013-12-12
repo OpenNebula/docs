@@ -58,14 +58,16 @@ Sunstone users can configure several options from the configuration tab:
 
 This options are saved in the user template. If not defined, defaults from ``sunstone-server.conf`` are taken.
 
-|views\_settings.jpg| |views\_conf.jpg|
+|image4|
+
+|image5|
 
 Changing your View
 ------------------
 
 If more than one view are available for this user, she can easily change between them in the settings window, along with other settings (e.g. language).
 
-.. warning:: By default users in the oneadmin group have access to all the views; users in the users group can only use the ``users view``. If you want to expose the ``cloud view`` to a given group of users, you have to modify the ``sunstone-views.yaml``. For more information check the :ref:`configuring access to views <#configuring_access_to_the_views>` section
+.. warning:: By default users in the oneadmin group have access to all the views; users in the users group can only use the ``users view``. If you want to expose the ``cloud view`` to a given group of users, you have to modify the ``sunstone-views.yaml``. For more information check the `configuring access to views <#configuring-access-to-the-views>`_ section
 
 Internationalization and Languages
 ----------------------------------
@@ -242,5 +244,5 @@ You can easily add you logos to the login and main screens by updating the ``log
 .. |image1| image:: /images/vdcadmin_view.png
 .. |image2| image:: /images/user_view.jpg
 .. |image3| image:: /images/cloud-view.png
-.. |views\_settings.jpg| image:: /images/views_settings.jpg
-.. |views\_conf.jpg| image:: /images/views_conf.jpg
+.. |image4| image:: /images/views_settings.jpg
+.. |image5| image:: /images/views_conf.jpg

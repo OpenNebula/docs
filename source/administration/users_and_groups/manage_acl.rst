@@ -49,13 +49,12 @@ The next one allows all users in the group 106 to use the Virtual Network 47. Th
 
     @106 NET/#47 USE
 
-.. warning:: Note the difference between:
+.. Note::
+   Note the difference between:
+   .. code::
+        "* NET/#47 USE"    vs    "* NET/@47 USE"
 
-.. code::
-
-    "* NET/#47 USE"    vs    "* NET/@47 USE"
-
-“All Users can use NETWORK with ID 47” vs “All Users can use NETWORKS belonging to the Group whose ID is 47”
+   **All Users can use NETWORK with ID 47** vs **All Users can use NETWORKS belonging to the Group whose ID is 47**
 
 The following one allows users in group 106 to deploy VMs in Hosts assigned to the cluster 100
 
@@ -151,14 +150,14 @@ If the resource is one of type ``VM``, ``NET``, ``IMAGE`` or ``TEMPLATE``, the o
 .. code::
 
     $ oneimage show 2
-    IMAGE 2 INFORMATION                                                             
-    ID             : 2                   
+    IMAGE 2 INFORMATION
+    ID             : 2
     [...]
 
-    PERMISSIONS                                                                     
-    OWNER          : um-                 
-    GROUP          : u--                 
-    OTHER          : ---                 
+    PERMISSIONS
+    OWNER          : um-
+    GROUP          : u--
+    OTHER          : ---
 
 The output above shows that the owner of the image has ``USE`` and ``MANAGE`` rights.
 
@@ -236,29 +235,29 @@ For example, users #1 or #2 can allow other users in their group ``USE`` (list, 
 .. code::
 
     $ onetemplate show 8
-    TEMPLATE 8 INFORMATION                                                          
+    TEMPLATE 8 INFORMATION
     [...]
 
-    PERMISSIONS                                                                     
-    OWNER          : um-                 
-    GROUP          : ---                 
-    OTHER          : ---                 
+    PERMISSIONS
+    OWNER          : um-
+    GROUP          : ---
+    OTHER          : ---
 
-    TEMPLATE CONTENTS 
+    TEMPLATE CONTENTS
 
     $ onetemplate chmod 8 640
     $ onetemplate show 8
-    TEMPLATE 8 INFORMATION                                                          
+    TEMPLATE 8 INFORMATION
     [...]
 
-    PERMISSIONS                                                                     
-    OWNER          : um-                 
-    GROUP          : u--                 
-    OTHER          : ---                 
+    PERMISSIONS
+    OWNER          : um-
+    GROUP          : u--
+    OTHER          : ---
 
-    TEMPLATE CONTENTS 
+    TEMPLATE CONTENTS
 
-In practice, this means that regular users in the 'restricted' group will be able to list and use only the resources prepared for them by the users #1 and #2.
+In practice, this means that regular users in the *restricted* group will be able to list and use only the resources prepared for them by the users #1 and #2.
 
 .. |image1| image:: /images/sunstone_acl_list.png
 .. |image2| image:: /images/sunstone_acl_create.png

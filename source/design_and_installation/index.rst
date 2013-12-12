@@ -1,3 +1,5 @@
+.. _design_and_installation_guide:
+
 =============================
 Design and Installation Guide
 =============================

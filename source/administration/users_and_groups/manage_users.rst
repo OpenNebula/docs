@@ -187,7 +187,7 @@ The ``USER TEMPLATE`` section can hold any arbitrary data. You can use the ``one
     DEPARTMENT=IT
     EMAIL=user@company.com
 
-These attributes can be later used in the :ref:`Virtual Machine Contextualization <template#context_section>`. For example, using contextualization the user's public ssh key can be automatically installed in the VM:
+These attributes can be later used in the :ref:`Virtual Machine Contextualization <template_context>`. For example, using contextualization the user's public ssh key can be automatically installed in the VM:
 
 .. code::
 

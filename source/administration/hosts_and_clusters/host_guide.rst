@@ -180,12 +180,12 @@ The ``flush`` command will mark all the running VMs in the specified host as to 
 
 .. code::
 
-    $ onehost list         
-      ID NAME            CLUSTER   RVM TCPU FCPU ACPU    TMEM    FMEM    AMEM STAT  
-       0 host01          -           3  800   96  500     16G   11.1G   14.5G on    
-       1 host02          -           0  800  640  800     16G    8.5G     16G on    
-       2 host03          -           3  800  721  500     16G    8.6G   14.5G on    
-    $ onevm list                       
+    $ onehost list
+      ID NAME            CLUSTER   RVM TCPU FCPU ACPU    TMEM    FMEM    AMEM STAT
+       0 host01          -           3  800   96  500     16G   11.1G   14.5G on
+       1 host02          -           0  800  640  800     16G    8.5G     16G on
+       2 host03          -           3  800  721  500     16G    8.6G   14.5G on
+    $ onevm list
         ID USER     GROUP    NAME            STAT UCPU    UMEM HOST             TIME
          0 oneadmin oneadmin vm01            runn   54  102.4M host03       0d 00h01
          1 oneadmin oneadmin vm02            runn   91  276.5M host02       0d 00h01
@@ -195,10 +195,10 @@ The ``flush`` command will mark all the running VMs in the specified host as to 
          5 oneadmin oneadmin vm06            runn   87  414.7M host01       0d 00h00
     $ onehost flush host02
     $ onehost list
-      ID NAME            CLUSTER   RVM TCPU FCPU ACPU    TMEM    FMEM    AMEM STAT  
-       0 host01          -           3  800  264  500     16G    3.5G   14.5G on    
-       1 host02          -           0  800  153  800     16G    3.7G     16G off   
-       2 host03          -           3  800  645  500     16G   10.3G   14.5G on    
+      ID NAME            CLUSTER   RVM TCPU FCPU ACPU    TMEM    FMEM    AMEM STAT
+       0 host01          -           3  800  264  500     16G    3.5G   14.5G on
+       1 host02          -           0  800  153  800     16G    3.7G     16G off
+       2 host03          -           3  800  645  500     16G   10.3G   14.5G on
     $ onevm list
         ID USER     GROUP    NAME            STAT UCPU    UMEM HOST             TIME
          0 oneadmin oneadmin vm01            runn   95  179.2M host03       0d 00h01
@@ -289,7 +289,7 @@ Scheduler Policies
 
 You can define global Scheduler Policies for all VMs in the sched.conf file, follow the :ref:`Scheduler Guide <schg>` for more information. Additionally, users can require their virtual machines to be deployed in a host that meets certain constrains. These constrains can be defined using any attribute reported by ``onehost show``, like the architecture (ARCH).
 
-The attributes and values for a host are inserted by the monitoring probes that run from time to time on the nodes to get information. The administrator can add custom attributes either :ref:`creating a probe in the host <img>`, or updating the host information with: ``onehost update <HOST_ID>``. Calling this command will fire up an editor (the one specified in the ``EDITOR`` environment variable) and you will be able to add, delete or modify some of those values.
+The attributes and values for a host are inserted by the monitoring probes that run from time to time on the nodes to get information. The administrator can add custom attributes either :ref:`creating a probe in the host <img_guide>`, or updating the host information with: ``onehost update <HOST_ID>``. Calling this command will fire up an editor (the one specified in the ``EDITOR`` environment variable) and you will be able to add, delete or modify some of those values.
 
 .. code::
 
@@ -324,7 +324,7 @@ The attributes and values for a host are inserted by the monitoring probes that 
     USEDMEMORY=0
     CUSTOM_ATTRIBUTE=VALUE
 
-This feature is useful when we want to separate a series of hosts or marking some special features of different hosts. These values can then be used for scheduling the same as the ones added by the monitoring probes, as a :ref:`placement requirement <template#placement_section>`:
+This feature is useful when we want to separate a series of hosts or marking some special features of different hosts. These values can then be used for scheduling the same as the ones added by the monitoring probes, as a :ref:`placement requirement <template_placement_section>`:
 
 .. code::
 
@@ -401,7 +401,7 @@ A disabled host should be listed with ``STAT off`` by ``onehost list``. You can 
 
     $ onehost delete host01
 
-.. warning:: Detailed information of the ``onehost`` utility can be found :ref:`in the Command Line Reference <cli#onehost>`
+.. warning:: Detailed information of the ``onehost`` utility can be found :ref:`in the Command Line Reference <cli>`
 
 Using Sunstone to Manage Hosts
 ==============================
