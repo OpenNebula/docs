@@ -1,21 +1,12 @@
-===============================
+.. _template:
+
+================================
 Virtual Machine Definition File
-===============================
+================================
 
-A template file consists of a set of attributes that defines a Virtual
-Machine. Using the command ``onetemplate create``, a template can be
-registered in OpenNebula to be later instantiated. For compatibility
-with previous versions, you can also create a new Virtual Machine
-directly from a template file, using the ``onevm create`` command.
+A template file consists of a set of attributes that defines a Virtual Machine. Using the command ``onetemplate create``, a template can be registered in OpenNebula to be later instantiated. For compatibility with previous versions, you can also create a new Virtual Machine directly from a template file, using the ``onevm create`` command.
 
-|:!:| There are some template attributes that can compromise the
-security of the system or the security of other VMs, and can be used
-**only** by users in the oneadmin group. These attributes can be
-configured in
-`oned.conf </./oned_conf#restricted_attributes_configuration>`__, the
-default ones are labeled with ``*`` in the following tables. See the
-complete list in the `Restricted Attributes <#restricted_attributes>`__
-section.
+.. warning:: There are some template attributes that can compromise the security of the system or the security of other VMs, and can be used **only** by users in the oneadmin group. These attributes can be configured in :ref:`oned.conf <oned_conf#restricted_attributes_configuration>`, the default ones are labeled with ``*`` in the following tables. See the complete list in the :ref:`Restricted Attributes <#restricted_attributes>` section.
 
 Syntax
 ======
@@ -23,70 +14,64 @@ Syntax
 The syntax of the template file is as follows:
 
 -  Anything behind the pound or hash sign (#) is a **comment**.
--  **Strings** are delimited with double quotes (â€?), if a double quote
-is part of the string it needs to be escaped (\\â€?).
+-  **Strings** are delimited with double quotes (”), if a double quote is part of the string it needs to be escaped (\\”).
 -  **Single Attributes** are in the form:
 
-.. code:: code
+.. code::
 
-NAME=VALUE
+    NAME=VALUE
 
--  **Vector Attributes** that contain several values can be defined as
-follows:
+-  **Vector Attributes** that contain several values can be defined as follows:
 
-.. code:: code
+.. code::
 
-NAME=[NAME1=VALUE1,NAME2=VALUE2]
+    NAME=[NAME1=VALUE1,NAME2=VALUE2]
 
 -  **Vector Attributes** must contain at least one value.
--  Attribute names are case insensitive, in fact the names are converted
-to uppercase internally.
+-  Attribute names are case insensitive, in fact the names are converted to uppercase internally.
 
 XML Syntax
 ==========
 
-Since OpenNebula 3.4, template files can be in XML, with the following
-syntax:
+Since OpenNebula 3.4, template files can be in XML, with the following syntax:
 
 -  The root element must be ``TEMPLATE``
 -  **Single Attributes** are in the form:
 
-.. code:: code
+.. code::
 
-<NAME>VALUE</NAME>
+    <NAME>VALUE</NAME>
 
--  **Vector Attributes** that contain several values can be defined as
-follows:
+-  **Vector Attributes** that contain several values can be defined as follows:
 
-.. code:: code
+.. code::
 
-<NAME>
-<NAME1>VALUE1</NAME1>
-<NAME2>VALUE2</NAME2>
-</NAME>
+    <NAME>
+      <NAME1>VALUE1</NAME1>
+      <NAME2>VALUE2</NAME2>
+    </NAME>
 
 A simple example:
 
-.. code:: code
+.. code::
 
-<TEMPLATE>
-<NAME>test_vm</NAME>
-<CPU>2</CPU>
-<MEMORY>1024</MEMORY>
-<DISK>
-<IMAGE_ID>2</IMAGE_ID>
-</DISK>
-<DISK>
-<IMAGE>Data</IMAGE>
-<IMAGE_UNAME>oneadmin</IMAGE_UNAME>
-</DISK>
-</TEMPLATE>
+    <TEMPLATE>
+      <NAME>test_vm</NAME>
+      <CPU>2</CPU>
+      <MEMORY>1024</MEMORY>
+      <DISK>
+        <IMAGE_ID>2</IMAGE_ID>
+      </DISK>
+      <DISK>
+        <IMAGE>Data</IMAGE>
+        <IMAGE_UNAME>oneadmin</IMAGE_UNAME>
+      </DISK>
+    </TEMPLATE>
 
 Capacity Section
 ================
 
-The following attributes can be defined to specified the capacity of a
-VM.
+The following attributes can be defined to specified the capacity of a VM.
 
 +--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------+
 | Attribute    | Description                                                                                                                                                                                                                                                                                       | Mandatory                                                                                |
@@ -103,21 +88,18 @@ VM.
 
 Example:
 
-.. code:: code
+.. code::
 
-NAME   = test-vm
-MEMORY = 128
-CPU    = 1
+      NAME   = test-vm
+      MEMORY = 128 
+      CPU    = 1
 
 OS and Boot Options Section
 ===========================
 
-The OS system is defined with the ``OS`` vector attribute. The following
-sub-attributes are supported:
+The OS system is defined with the ``OS`` vector attribute. The following sub-attributes are supported:
 
-**Note** the hypervisor column states that the attribute is
-**O**\ ptional, **M**\ andatory, or ``-`` not supported for that
-hypervisor
+**Note** the hypervisor column states that the attribute is **O**\ ptional, **M**\ andatory, or ``-`` not supported for that hypervisor
 
 +--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------+------------------------+------------------------+
 | OS Sub-Attribute   | Description                                                                                                                                                                                    | XEN              | KVM                    | VMWARE                 |
@@ -141,49 +123,40 @@ hypervisor
 | **BOOT**           | comma separated list of boot devices types, by order of preference (first device in the list is the first device used for boot). Possible values: ``hd``,\ ``fd``,\ ``cdrom`` ,\ ``network``   | O (only HVM)     | **M**                  | -                      |
 +--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------+------------------------+------------------------+
 
-(\*) If no ``kernel``/``initrd`` or ``bootloader`` are specified a Xen
-HVM will be created.
+(\*) If no ``kernel``/``initrd`` or ``bootloader`` are specified a Xen HVM will be created.
 
 (!!) Use one of KERNEL\_DS or KERNEL (and INITRD or INITRD\_DS).
 
-KERNEL\_DS and INITRD\_DS refer to and image registered in a File
-Datastore and must be of type KERNEL and RAMDISK, respectively. The
-image should be refer using one of the following:
+KERNEL\_DS and INITRD\_DS refer to and image registered in a File Datastore and must be of type KERNEL and RAMDISK, respectively. The image should be refer using one of the following:
 
 -  ``$FILE[IMAGE=<image name>]``, to select own files
--  ``$FILE[IMAGE=<image name>, <IMAGE_UNAME|IMAGE_UID>=<owner name|owner id>]``,
-to select images owned by other users, by user name or uid.
+-  ``$FILE[IMAGE=<image name>, <IMAGE_UNAME|IMAGE_UID>=<owner name|owner id>]``, to select images owned by other users, by user name or uid.
 -  ``$FILE[IMAGE_ID=<image id>]``, global file selection
 
 Example, a VM booting from ``sda1`` with kernel ``/vmlinuz`` :
 
-.. code:: code
+.. code::
 
-OS = [ KERNEL     = /vmlinuz,
-INITRD     = /initrd.img,
-ROOT       = sda1,
-KERNEL_CMD = "ro xencons=tty console=tty1"]
+    OS = [ KERNEL     = /vmlinuz,
+           INITRD     = /initrd.img,
+           ROOT       = sda1,
+           KERNEL_CMD = "ro xencons=tty console=tty1"]
 
-.. code:: code
+.. code::
 
-OS = [ KERNEL_DS  = "$FILE[IMAGE=\"kernel 3.6\"]",
-INITRD_DS  = "$FILE[IMAGE=\"initrd 3.6\"]",
-ROOT       = sda1,
-KERNEL_CMD = "ro xencons=tty console=tty1"]
+    OS = [ KERNEL_DS  = "$FILE[IMAGE=\"kernel 3.6\"]",
+           INITRD_DS  = "$FILE[IMAGE=\"initrd 3.6\"]",
+           ROOT       = sda1,
+           KERNEL_CMD = "ro xencons=tty console=tty1"]
 
 Disks Section
 =============
 
-The disks of a VM are defined with the ``DISK`` vector attribute. You
-can define as many ``DISK`` attributes as you need. There are three
-types of disks:
+The disks of a VM are defined with the ``DISK`` vector attribute. You can define as many ``DISK`` attributes as you need. There are three types of disks:
 
--  Persistent disks, uses an Image registered in a Datastore mark as
-persistent.
--  Clone disks, uses an Image registered in a Datastore. Changes to the
-images will be discarded. A clone disk can be saved as other image.
--  Volatile disks, created on-the-fly on the target hosts. Disks are
-disposed when the VM is shutdown and cannot be saved\_as
+-  Persistent disks, uses an Image registered in a Datastore mark as persistent.
+-  Clone disks, uses an Image registered in a Datastore. Changes to the images will be discarded. A clone disk can be saved as other image.
+-  Volatile disks, created on-the-fly on the target hosts. Disks are disposed when the VM is shutdown and cannot be saved\_as
 
 Persistent and Clone Disks
 --------------------------
@@ -224,17 +197,13 @@ Optional
 
 **DEV\_PREFIX**
 
-Prefix for the emulated device this image will be mounted at. For
-instance, â€œhdâ€?, â€œsdâ€?, or â€œvdâ€? for KVM virtio. If omitted,
-the dev\_prefix attribute of the `Image </./img_template>`__ will be
-used
+Prefix for the emulated device this image will be mounted at. For instance, “hd”, “sd”, or “vd” for KVM virtio. If omitted, the dev\_prefix attribute of the :ref:`Image <img_template>` will be used
 
 Optional
 
 **TARGET**
 
-Device to map image disk. If set, it will overwrite the default device
-mapping.
+Device to map image disk. If set, it will overwrite the default device mapping.
 
 Optional
 
@@ -250,10 +219,7 @@ Optional e.g.: ``raw``, ``qcow2``
 
 **CACHE**
 
-Selects the cache mechanism for the disk. Values are ``default``,
-``none``, ``writethrough``, ``writeback``, ``directsync`` and
-``unsafe``. More info in the `libvirt
-documentation <http://libvirt.org/formatdomain.html#elementsDevices>`__
+Selects the cache mechanism for the disk. Values are ``default``, ``none``, ``writethrough``, ``writeback``, ``directsync`` and ``unsafe``. More info in the `libvirt documentation <http://libvirt.org/formatdomain.html#elementsDevices>`__
 
 -
 
@@ -265,8 +231,7 @@ Optional
 
 Set how the image is exposed by the hypervisor
 
-Optional e.g.: ``yes``, ``no``. This attribute should only be used for
-special storage configurations
+Optional e.g.: ``yes``, ``no``. This attribute should only be used for special storage configurations
 
 **IO**
 
@@ -281,9 +246,7 @@ Optional
 Volatile DISKS
 --------------
 
-There are two special disk types that are created on-the-fly in the
-target resource: ``swap`` and ``fs``. The following sub-attributes for
-``DISK`` are supported:
+There are two special disk types that are created on-the-fly in the target resource: ``swap`` and ``fs``. The following sub-attributes for ``DISK`` are supported:
 
 DISK Sub-Attribute
 
@@ -309,16 +272,13 @@ size in MB
 
 **FORMAT**
 
-filesystem for **fs** images: ``ext2``, ``ext3``\ â€¦ ``raw`` will not
-format the image.
+filesystem for **fs** images: ``ext2``, ``ext3``... ``raw`` will not format the image.
 
 **Mandatory** (for fs)
 
 **DEV\_PREFIX**
 
-Prefix for the emulated device this image will be mounted at. For
-instance, â€œhdâ€?, â€œsdâ€?. If omitted, the default dev\_prefix set in
-`oned.conf </./oned_conf>`__ will be used
+Prefix for the emulated device this image will be mounted at. For instance, “hd”, “sd”. If omitted, the default dev\_prefix set in :ref:`oned.conf <oned_conf>` will be used
 
 Optional
 
@@ -330,17 +290,13 @@ Optional
 
 **DRIVER**
 
-special disk mapping options. KVM: ``raw``,\ ``qcow2``. Xen:
-``tap:aio:``, ``file:``
+special disk mapping options. KVM: ``raw``,\ ``qcow2``. Xen: ``tap:aio:``, ``file:``
 
 Optional
 
 **CACHE**
 
-Selects the cache mechanism for the disk. Values are ``default``,
-``none``, ``writethrough``, ``writeback``, ``directsync`` and
-``unsafe``. More info in the `libvirt
-documentation <http://libvirt.org/formatdomain.html#elementsDevices>`__
+Selects the cache mechanism for the disk. Values are ``default``, ``none``, ``writethrough``, ``writeback``, ``directsync`` and ``unsafe``. More info in the `libvirt documentation <http://libvirt.org/formatdomain.html#elementsDevices>`__
 
 -
 
@@ -352,8 +308,7 @@ Optional
 
 Set how the image is exposed by the hypervisor
 
-Optional e.g.: ``yes``, ``no``. This attribute should only be used for
-special storage configurations
+Optional e.g.: ``yes``, ``no``. This attribute should only be used for special storage configurations
 
 **IO**
 
@@ -368,77 +323,60 @@ Optional
 Disks Device Mapping
 --------------------
 
-If the TARGET attribute is not set for a disk, OpenNebula will
-automatically assign it using the following precedence, starting with
-``dev_prefix + a``:
+If the TARGET attribute is not set for a disk, OpenNebula will automatically assign it using the following precedence, starting with ``dev_prefix + a``:
 
 -  First **OS** type Image.
 -  Contextualization CDROM.
 -  **CDROM** type Images.
 -  The rest of **DATABLOCK** and **OS** Images, and **Volatile** disks.
 
-Please visit the guide for `managing images </./img_guide>`__ and the
-`image template reference </./img_template>`__ to learn more about the
-different image types.
+Please visit the guide for :ref:`managing images <img_guide>` and the :ref:`image template reference <img_template>` to learn more about the different image types.
 
-You can find a complete description of the contextualization features in
-the `contextualization guide </./cong>`__.
+You can find a complete description of the contextualization features in the :ref:`contextualization guide <cong>`.
 
-The default device prefix ``sd`` can be changed to ``hd`` or other
-prefix that suits your virtualization hypervisor requirements. You can
-find more information in the `daemon configuration
-guide </./oned_conf#image_repository>`__.
+The default device prefix ``sd`` can be changed to ``hd`` or other prefix that suits your virtualization hypervisor requirements. You can find more information in the :ref:`daemon configuration guide <oned_conf#image_repository>`.
 
 An Example
 ----------
 
-This a sample section for disks. There are four disks using the image
-repository, and two volatile ones. Note that ``fs`` and ``swap`` are
-generated on-the-fly:
+This a sample section for disks. There are four disks using the image repository, and two volatile ones. Note that ``fs`` and ``swap`` are generated on-the-fly:
 
-.. code:: code
+.. code::
 
-# First OS image, will be mapped to sda. Use image with ID 2
-DISK = [ IMAGE_ID  = 2 ]
- 
-# First DATABLOCK image, mapped to sdb.
-# Use the Image named Data, owned by the user named oneadmin.
-DISK = [ IMAGE        = "Data",
-IMAGE_UNAME  = "oneadmin" ]
- 
-# Second DATABLOCK image, mapped to sdc
-# Use the Image named Results owned by user with ID 7.
-DISK = [ IMAGE        = "Results",
-IMAGE_UID    = 7 ]
- 
-# Third DATABLOCK image, mapped to sdd
-# Use the Image named Experiments owned by user instantiating the VM.
-DISK = [ IMAGE        = "Experiments" ]
- 
-# Volatile filesystem disk, sde
-DISK = [ TYPE   = fs,
-SIZE   = 4096,
-FORMAT = ext3 ]
- 
-# swap, sdf
-DISK = [ TYPE     = swap,
-SIZE     = 1024 ]
+    # First OS image, will be mapped to sda. Use image with ID 2
+    DISK = [ IMAGE_ID  = 2 ]
+     
+    # First DATABLOCK image, mapped to sdb.
+    # Use the Image named Data, owned by the user named oneadmin.
+    DISK = [ IMAGE        = "Data",
+             IMAGE_UNAME  = "oneadmin" ]
+     
+    # Second DATABLOCK image, mapped to sdc
+    # Use the Image named Results owned by user with ID 7.
+    DISK = [ IMAGE        = "Results",
+             IMAGE_UID    = 7 ]
+     
+    # Third DATABLOCK image, mapped to sdd
+    # Use the Image named Experiments owned by user instantiating the VM.
+    DISK = [ IMAGE        = "Experiments" ]
+     
+    # Volatile filesystem disk, sde
+    DISK = [ TYPE   = fs,
+             SIZE   = 4096,
+             FORMAT = ext3 ]
+     
+    # swap, sdf
+    DISK = [ TYPE     = swap,
+             SIZE     = 1024 ]
 
-Because this VM did not declare a CONTEXT or any disk using a CDROM
-Image, the first DATABLOCK found is placed right after the OS Image, in
-``sdb``. For more information on image management and moving please
-check the `Storage guide </./sm>`__.
+Because this VM did not declare a CONTEXT or any disk using a CDROM Image, the first DATABLOCK found is placed right after the OS Image, in ``sdb``. For more information on image management and moving please check the :ref:`Storage guide <sm>`.
 
 Network Section
 ===============
 
-Each network interface of a VM is defined with the ``NIC`` vector
-attribute. You can define as many ``NIC`` attributes as you need. The
-following sub-attributes for ``NIC`` are supported:
+Each network interface of a VM is defined with the ``NIC`` vector attribute. You can define as many ``NIC`` attributes as you need. The following sub-attributes for ``NIC`` are supported:
 
-**Note** the hypervisor column states that the attribute is
-**O**\ ptional, **M**\ andatory, or ``-`` not supported for that
-hypervisor
+**Note** the hypervisor column states that the attribute is **O**\ ptional, **M**\ andatory, or ``-`` not supported for that hypervisor
 
 NIC Sub-Attribute
 
@@ -452,15 +390,13 @@ VMWARE
 
 **NETWORK\_ID**
 
-ID of the network to attach this device, as defined by ``onevnet``. Use
-if no NETWORK
+ID of the network to attach this device, as defined by ``onevnet``. Use if no NETWORK
 
 **Mandatory** (No NETWORK)
 
 **NETWORK**
 
-Name of the network to use (of those owned by user). Use if no
-NETWORK\_ID
+Name of the network to use (of those owned by user). Use if no NETWORK\_ID
 
 **Mandatory** (No NETWORK\_ID)
 
@@ -506,87 +442,69 @@ Optional
 
 **SCRIPT**
 
-name of a shell script to be executed after creating the tun device for
-the VM
+name of a shell script to be executed after creating the tun device for the VM
 
 Optional
 
 **MODEL**
 
-hardware that will emulate this network interface. With Xen this is the
-type attribute of the vif. In KVM you can choose ``virtio`` to select
-its specific virtualization IO framework
+hardware that will emulate this network interface. With Xen this is the type attribute of the vif. In KVM you can choose ``virtio`` to select its specific virtualization IO framework
 
 Optional
 
 **WHITE\_PORTS\_TCP**
 
-**``iptables_range``**: Permits access to the VM only through the
-specified ports in the TCP protocol. Supersedes BLACK\_PORTS\_TCP if
-defined.
+``iptables_range``: Permits access to the VM only through the specified ports in the TCP protocol. Supersedes BLACK\_PORTS\_TCP if defined.
 
 Optional
 
 **BLACK\_PORTS\_TCP**
 
-**``iptables_range``**: Doesn't permit access to the VM through the
-specified ports in the TCP protocol. Superseded by WHITE\_PORTS\_TCP if
-defined.
+``iptables_range``: Doesn't permit access to the VM through the specified ports in the TCP protocol. Superseded by WHITE\_PORTS\_TCP if defined.
 
 Optional
 
 **WHITE\_PORTS\_UDP**
 
-**``iptables_range``**: Permits access to the VM only through the
-specified ports in the UDP protocol. Supersedes BLACK\_PORTS\_UDP if
-defined.
+``iptables_range``: Permits access to the VM only through the specified ports in the UDP protocol. Supersedes BLACK\_PORTS\_UDP if defined.
 
 Optional
 
 **BLACK\_PORTS\_UDP**
 
-**``iptables_range``**: Doesn't permit access to the VM through the
-specified ports in the UDP protocol. Superseded by WHITE\_PORTS\_UDP if
-defined.
+``iptables_range``: Doesn't permit access to the VM through the specified ports in the UDP protocol. Superseded by WHITE\_PORTS\_UDP if defined.
 
 Optional
 
 **ICMP**
 
-**drop**: Blocks ICMP connections to the VM. By default it's set to
-accept.
+**drop**: Blocks ICMP connections to the VM. By default it's set to accept.
 
 Optional
 
 \* only for users in oneadmin group
 
-``iptables_range`` is a list of ports separated by commas or a ranges
-separated by semilocolons, e.g.: ``22,80,5900:6000``.
+``iptables_range`` is a list of ports separated by commas or a ranges separated by semilocolons, e.g.: ``22,80,5900:6000``.
 
-|:!:| The PORTS and ICMP attributes require the firewalling
-functionality to be configured. Please read the `firewall configuration
-guide </./firewall>`__.
+.. warning:: The PORTS and ICMP attributes require the firewalling functionality to be configured. Please read the :ref:`firewall configuration guide <firewall>`.
 
 Example, a VM with two NIC attached to two different networks:
 
-.. code:: code
+.. code::
 
-NIC = [ NETWORK_ID = 1 ]
- 
-NIC = [ NETWORK     = "Blue",
-NETWORK_UID = 0 ]
+    NIC = [ NETWORK_ID = 1 ]
+     
+    NIC = [ NETWORK     = "Blue",
+            NETWORK_UID = 0 ]
 
-For more information on setting up virtual networks please check the
-`Managing Virtual Networks guide </./vgg>`__.
+For more information on setting up virtual networks please check the :ref:`Managing Virtual Networks guide <vgg>`.
 
 I/O Devices Section
 ===================
 
 The following I/O interfaces can be defined for a VM:
 
-**Note** the hypervisor column states that the attribute is
-**O**\ ptional, **M**\ andatory, or ``-`` not supported for that
-hypervisor
+**Note** the hypervisor column states that the attribute is **O**\ ptional, **M**\ andatory, or ``-`` not supported for that hypervisor
 
 +----------------+----------------------------------------------------------------------------------------+-------+-------+----------+
 | Attribute      | Description                                                                            | XEN   | KVM   | VMWARE   |
@@ -605,28 +523,21 @@ hypervisor
 
 Example:
 
-.. code:: code
+.. code::
 
-GRAPHICS = [
-TYPE    = "vnc",
-LISTEN  = "0.0.0.0",
-PORT    = "5"]
+    GRAPHICS = [ 
+      TYPE    = "vnc",              
+      LISTEN  = "0.0.0.0",
+      PORT    = "5"]
 
-|:!:| For KVM hypervisor the port number is a real one, not the VNC
-port. So for VNC port 0 you should specify 5900, for port 1 is 5901 and
-so on.
+.. warning:: For KVM hypervisor the port number is a real one, not the VNC port. So for VNC port 0 you should specify 5900, for port 1 is 5901 and so on.
 
-|:!:| If the user does not specify the port variable, OpenNebula will
-automatically assign ``$VNC_BASE_PORT + $VMID``, allowing to generate
-different ports for VMs so they do not collide. The ``VNC_BASE_PORT`` is
-specified inside the ``oned.conf`` file.
+.. warning:: If the user does not specify the port variable, OpenNebula will automatically assign ``$VNC_BASE_PORT + $VMID``, allowing to generate different ports for VMs so they do not collide. The ``VNC_BASE_PORT`` is specified inside the ``oned.conf`` file.
 
 Context Section
 ===============
 
-Context information is passed to the Virtual Machine via an ISO mounted
-as a partition. This information can be defined in the VM template in
-the optional section called Context, with the following attributes:
+Context information is passed to the Virtual Machine via an ISO mounted as a partition. This information can be defined in the VM template in the optional section called Context, with the following attributes:
 
 +-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------+-------------+
 | Attribute       | Description                                                                                                                                       | Mandatory   |
@@ -639,9 +550,9 @@ the optional section called Context, with the following attributes:
 +-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------+-------------+
 | **TARGET**      | device to attach the context ISO.                                                                                                                 | Optional    |
 +-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------+-------------+
-| **TOKEN**       | â€œYESâ€? to create a token.txt file for `OneGate monitorization </./onegate_usage>`__                                                            | Optional    |
+| **TOKEN**       | “YES” to create a token.txt file for :ref:`OneGate monitorization <onegate_usage>`                                                                   | Optional    |
 +-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------+-------------+
-| **NETWORK**     | â€œYESâ€? to fill automatically the networking parameters for each NIC, used by the `Contextualization packages </./context_overview>`__          | Optional    |
+| **NETWORK**     | “YES” to fill automatically the networking parameters for each NIC, used by the :ref:`Contextualization packages <context_overview>`                 | Optional    |
 +-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------+-------------+
 
 \* only for users in oneadmin group
@@ -650,116 +561,94 @@ The values referred to by **VARIABLE** can be defined :
 
 -  **Hardcoded values:**
 
-.. code:: code
+.. code::
 
-HOSTNAME   = "MAINHOST"
+       HOSTNAME   = "MAINHOST"
 
 -  **Using template variables**
 
--  ``$<template_variable>``: any single value variable of the VM
-template, like for example:
+   -  ``$<template_variable>``: any single value variable of the VM template, like for example:
 
-.. code:: code
+.. code::
 
-IP_GEN     = "10.0.0.$VMID"
+          IP_GEN     = "10.0.0.$VMID"
 
--  ``$<template_variable>[<attribute>]``: Any single value contained
-in a multiple value variable in the VM template, like for example:
+   -  ``$<template_variable>[<attribute>]``: Any single value contained in a multiple value variable in the VM template, like for example:
 
-.. code:: code
+.. code::
 
-IP_PRIVATE = $NIC[IP]
+          IP_PRIVATE = $NIC[IP]
 
--  ``$<template_variable>[<attribute>, <attribute2>=<value2>]``: Any
-single value contained in the variable of the VM template, setting
-one attribute to discern between multiple variables called the
-same way, like for example:
+   -  ``$<template_variable>[<attribute>, <attribute2>=<value2>]``: Any single value contained in the variable of the VM template, setting one attribute to discern between multiple variables called the same way, like for example:
 
-.. code:: code
+.. code::
 
-IP_PUBLIC = "$NIC[IP, NETWORK=\"Public\"]"
+          IP_PUBLIC = "$NIC[IP, NETWORK=\"Public\"]"
 
 -  **Using Virtual Network template variables**
 
--  ``$NETWORK[<vnet_attribute>, <NETWORK_ID|NETWORK>=<vnet_id|vnet_name>]``:
-Any single value variable in the Virtual Network template, like
-for example:
+   -  ``$NETWORK[<vnet_attribute>, <NETWORK_ID|NETWORK>=<vnet_id|vnet_name>]``: Any single value variable in the Virtual Network template, like for example:
 
-.. code:: code
+.. code::
 
-dns = "$NETWORK[DNS, NETWORK_ID=3]"
+          dns = "$NETWORK[DNS, NETWORK_ID=3]"
 
-Note that the network MUST be in used by any of the NICs defined
-in the template. The vnet\_attribute can be ``TEMPLATE`` to
-include the whole vnet template in XML (base64 encoded).
+      Note that the network MUST be in used by any of the NICs defined in the template. The vnet\_attribute can be ``TEMPLATE`` to include the whole vnet template in XML (base64 encoded).
 
 -  **Using Image template variables**
 
--  ``$IMAGE[<image_attribute>, <IMAGE_ID|IMAGE>=<img_id|img_name>]``:
-Any single value variable in the Image template, like for example:
+   -  ``$IMAGE[<image_attribute>, <IMAGE_ID|IMAGE>=<img_id|img_name>]``: Any single value variable in the Image template, like for example:
 
-.. code:: code
+.. code::
 
-root = "$IMAGE[ROOT_PASS, IMAGE_ID=0]"
+          root = "$IMAGE[ROOT_PASS, IMAGE_ID=0]"
 
-Note that the image MUST be in used by any of the DISKs defined in
-the template. The image\_attribute can be ``TEMPLATE`` to include
-the whole image template in XML (base64 encoded).
+      Note that the image MUST be in used by any of the DISKs defined in the template. The image\_attribute can be ``TEMPLATE`` to include the whole image template in XML (base64 encoded).
 
 -  **Using User template variables**
 
--  ``$USER[<user_attribute>]``: Any single value variable in the user
-(owner of the VM) template, like for example:
+   -  ``$USER[<user_attribute>]``: Any single value variable in the user (owner of the VM) template, like for example:
 
-.. code:: code
+.. code::
 
-ssh_key = "$USER[SSH_KEY]"
+          ssh_key = "$USER[SSH_KEY]"
 
-The user\_attribute can be ``TEMPLATE`` to include the whole user
-template in XML (base64 encoded).
+      The user\_attribute can be ``TEMPLATE`` to include the whole user template in XML (base64 encoded).
 
--  **Pre-defined variables**, apart from those defined in the template
-you can use:
+-  **Pre-defined variables**, apart from those defined in the template you can use:
 
--  ``$UID``, the uid of the VM owner
--  ``$UNAME``, the name of the VM owner
--  ``$GID``, the id of the VM owner's group
--  ``$GNAME``, the name of the VM owner's group
--  ``$TEMPLATE``, the whole template in XML format and encoded in
-base64
+   -  ``$UID``, the uid of the VM owner
+   -  ``$UNAME``, the name of the VM owner
+   -  ``$GID``, the id of the VM owner's group
+   -  ``$GNAME``, the name of the VM owner's group
+   -  ``$TEMPLATE``, the whole template in XML format and encoded in base64
 
--  **FILES\_DS**, each file must be registered in a FILE\_DS datastore
-and has to be of type CONTEXT. Use the following to select files from
-Files Datastores:
+-  **FILES\_DS**, each file must be registered in a FILE\_DS datastore and has to be of type CONTEXT. Use the following to select files from Files Datastores:
 
--  ``$FILE[IMAGE=<image name>]``, to select own files
--  ``$FILE[IMAGE=<image name>, <IMAGE_UNAME|IMAGE_UID>=<owner name|owner id>]``,
-to select images owned by other users, by user name or uid.
--  ``$FILE[IMAGE_ID=<image id>]``, global file selection
+   -  ``$FILE[IMAGE=<image name>]``, to select own files
+   -  ``$FILE[IMAGE=<image name>, <IMAGE_UNAME|IMAGE_UID>=<owner name|owner id>]``, to select images owned by other users, by user name or uid.
+   -  ``$FILE[IMAGE_ID=<image id>]``, global file selection
 
 Example:
 
-.. code:: code
+.. code::
 
-CONTEXT = [
-HOSTNAME   = "MAINHOST",
-IP_PRIVATE = "$NIC[IP]",
-DNS        = "$NETWORK[DNS, NAME=\"Public\"]",
-IP_GEN     = "10.0.0.$VMID",
-FILES      = "/service/init.sh /service/certificates /service/service.conf",
-FILES_DS   = "$FILE[IMAGE_ID=34] $FILE[IMAGE=\"kernel\"]",
-TARGET     = "sdc"
-]
+    CONTEXT = [
+      HOSTNAME   = "MAINHOST",
+      IP_PRIVATE = "$NIC[IP]",
+      DNS        = "$NETWORK[DNS, NAME=\"Public\"]",
+      IP_GEN     = "10.0.0.$VMID",
+      FILES      = "/service/init.sh /service/certificates /service/service.conf",
+      FILES_DS   = "$FILE[IMAGE_ID=34] $FILE[IMAGE=\"kernel\"]",
+      TARGET     = "sdc"
+    ]
 
 Placement Section
 =================
 
-The following attributes placement constraints and preferences for the
-VM:
+The following attributes placement constraints and preferences for the VM:
 
-**Note** the hypervisor column states that the attribute is
-**O**\ ptional, **M**\ andatory, or ``-`` not supported for that
-hypervisor
+**Note** the hypervisor column states that the attribute is **O**\ ptional, **M**\ andatory, or ``-`` not supported for that hypervisor
 
 +-------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+-------+-------+----------+
 | Attribute                     | Description                                                                                                                                               | XEN   | KVM   | VMWARE   |
@@ -775,12 +664,12 @@ hypervisor
 
 Example:
 
-.. code:: code
+.. code::
 
-SCHED_REQUIREMENTS    = "CPUSPEED > 1000"
-SCHED_RANK            = "FREECPU"
-SCHED_DS_REQUIREMENTS = "NAME=GoldenCephDS"
-SCHED_DS_RANK         = FREE_MB
+    SCHED_REQUIREMENTS    = "CPUSPEED > 1000"
+    SCHED_RANK            = "FREECPU"
+    SCHED_DS_REQUIREMENTS = "NAME=GoldenCephDS"
+    SCHED_DS_RANK         = FREE_MB
 
 Requirement Expression Syntax
 -----------------------------
@@ -789,86 +678,63 @@ The syntax of the requirement expressions is defined as:
 
 .. code::
 
-stmt::= expr';'
-expr::= VARIABLE '=' NUMBER
-| VARIABLE '!=' NUMBER
-| VARIABLE '>' NUMBER
-| VARIABLE '<' NUMBER
-| VARIABLE '=' STRING
-| VARIABLE '!=' STRING
-| expr '&' expr
-| expr '|' expr
-| '!' expr
-| '(' expr ')'
+      stmt::= expr';'
+      expr::= VARIABLE '=' NUMBER
+            | VARIABLE '!=' NUMBER
+            | VARIABLE '>' NUMBER
+            | VARIABLE '<' NUMBER
+            | VARIABLE '=' STRING
+            | VARIABLE '!=' STRING
+            | expr '&' expr
+            | expr '|' expr
+            | '!' expr
+            | '(' expr ')'
 
-Each expression is evaluated to 1 (TRUE) or 0 (FALSE). Only those hosts
-for which the requirement expression is evaluated to TRUE will be
-considered to run the VM.
+Each expression is evaluated to 1 (TRUE) or 0 (FALSE). Only those hosts for which the requirement expression is evaluated to TRUE will be considered to run the VM.
 
-Logical operators work as expected ( less '<', greater '>', '&' AND,
-'\|' OR, '!' NOT), '=' means equals with numbers (floats and integers).
-When you use '=' operator with strings, it performs a shell wildcard
-pattern matching.
+Logical operators work as expected ( less '<', greater '>', '&' AND, '\|' OR, '!' NOT), '=' means equals with numbers (floats and integers). When you use '=' operator with strings, it performs a shell wildcard pattern matching.
 
-Any variable included in the Host template or its Cluster template can
-be used in the requirements. You may also use an XPath expression to
-refer to the attribute.
+Any variable included in the Host template or its Cluster template can be used in the requirements. You may also use an XPath expression to refer to the attribute.
 
-There is a special variable, ``CURRENT_VMS``, that can be used to deploy
-VMs in a Host where other VMs are (not) running. It can be used only
-with the operators '=' and '!='
+There is a special variable, ``CURRENT_VMS``, that can be used to deploy VMs in a Host where other VMs are (not) running. It can be used only with the operators '=' and '!='
 
-|:!:| Check the `Monitoring Subsystem </./img>`__ guide to find out how
-to extend the information model and add any information probe to the
-Hosts.
+.. warning:: Check the :ref:`Monitoring Subsystem <img>` guide to find out how to extend the information model and add any information probe to the Hosts.
 
-|:!:| There are some predefined variables that can be used: ``NAME``,
-``TOTALCPU``, ``TOTALMEMORY``, ``FREEMEMORY``, ``FREECPU``,
-``USEDMEMORY``, ``USEDCPU``, ``HYPERVISOR``
+.. warning:: There are some predefined variables that can be used: ``NAME``, ``TOTALCPU``, ``TOTALMEMORY``, ``FREEMEMORY``, ``FREECPU``, ``USEDMEMORY``, ``USEDCPU``, ``HYPERVISOR``
 
 Examples:
 
-.. code:: code
+.. code::
 
-# Only aquila hosts (aquila0, aquila1...), note the quotes
-SCHED_REQUIREMENTS = "NAME = \"aquila*\""
- 
-# Only those resources with more than 60% of free CPU
-SCHED_REQUIREMENTS = "FREECPU > 60"
- 
-# Deploy only in the Host where VM 5 is running
-SCHED_REQUIREMENTS = "CURRENT_VMS = 5"
- 
-# Deploy in any Host, except the ones where VM 5 or VM 7 are running
-SCHED_REQUIREMENTS = "(CURRENT_VMS != 5) & (CURRENT_VMS != 7)"
+    # Only aquila hosts (aquila0, aquila1...), note the quotes
+    SCHED_REQUIREMENTS = "NAME = \"aquila*\""
+     
+    # Only those resources with more than 60% of free CPU
+    SCHED_REQUIREMENTS = "FREECPU > 60"
+     
+    # Deploy only in the Host where VM 5 is running
+    SCHED_REQUIREMENTS = "CURRENT_VMS = 5"
+     
+    # Deploy in any Host, except the ones where VM 5 or VM 7 are running
+    SCHED_REQUIREMENTS = "(CURRENT_VMS != 5) & (CURRENT_VMS != 7)"
 
-|:!:| If using OpenNebula's default match-making scheduler in a
-hypervisor heterogeneous environment, it is a good idea to add an extra
-line like the following to the VM template to ensure its placement in a
-VMWare hypervisor enabled machine.
+.. warning:: If using OpenNebula's default match-making scheduler in a hypervisor heterogeneous environment, it is a good idea to add an extra line like the following to the VM template to ensure its placement in a VMWare hypervisor enabled machine.
 
-.. code:: code
+.. code::
 
-SCHED_REQUIREMENTS = "HYPERVISOR=\"vmware\""
+    SCHED_REQUIREMENTS = "HYPERVISOR=\"vmware\""
 
-|:!:| Template variables can be used in the SCHED\_REQUIREMENTS section.
+.. warning:: Template variables can be used in the SCHED\_REQUIREMENTS section.
 
--  ``$<template_variable>``: any single value variable of the VM
-template.
--  ``$<template_variable>[<attribute>]``: Any single value contained in
-a multiple value variable in the VM template.
--  ``$<template_variable>[<attribute>, <attribute2>=<value2>]``: Any
-single value contained in a multiple value variable in the VM
-template, setting one atribute to discern between multiple variables
-called the same way.
+-  ``$<template_variable>``: any single value variable of the VM template.
+-  ``$<template_variable>[<attribute>]``: Any single value contained in a multiple value variable in the VM template.
+-  ``$<template_variable>[<attribute>, <attribute2>=<value2>]``: Any single value contained in a multiple value variable in the VM template, setting one atribute to discern between multiple variables called the same way.
 
-For example, if you have a custom probe that generates a MACS attribute
-for the hosts, you can do short of a MAC pinning, so only VMs with a
-given MAC runs in a given host.
+For example, if you have a custom probe that generates a MACS attribute for the hosts, you can do short of a MAC pinning, so only VMs with a given MAC runs in a given host.
 
-.. code:: code
+.. code::
 
-SCHED_REQUIREMENTS = "MAC=\"$NIC[MAC]\""
+    SCHED_REQUIREMENTS = "MAC=\"$NIC[MAC]\""
 
 Rank Expression Syntax
 ----------------------
@@ -877,46 +743,36 @@ The syntax of the rank expressions is defined as:
 
 .. code::
 
-stmt::= expr';'
-expr::= VARIABLE
-| NUMBER
-| expr '+' expr
-| expr '-' expr
-| expr '*' expr
-| expr '/' expr
-| '-' expr
-| '(' expr ')'
+      stmt::= expr';'
+      expr::= VARIABLE
+            | NUMBER
+            | expr '+' expr
+            | expr '-' expr
+            | expr '*' expr
+            | expr '/' expr
+            | '-' expr
+            | '(' expr ')'
 
-Rank expressions are evaluated using each host information. '+', '-',
-'\*', '/' and '-' are arithmetic operators. The rank expression is
-calculated using floating point arithmetics, and then round to an
-integer value.
+Rank expressions are evaluated using each host information. '+', '-', '\*', '/' and '-' are arithmetic operators. The rank expression is calculated using floating point arithmetics, and then round to an integer value.
 
-|:!:| The rank expression is evaluated for each host, those hosts with a
-higher rank are used first to start the VM. The rank policy must be
-implemented by the scheduler. Check the configuration guide to configure
-the scheduler.
+.. warning:: The rank expression is evaluated for each host, those hosts with a higher rank are used first to start the VM. The rank policy must be implemented by the scheduler. Check the configuration guide to configure the scheduler.
 
-|:!:| Similar to the requirements attribute, any number (integer or
-float) attribute defined for the host can be used in the rank attribute
+.. warning:: Similar to the requirements attribute, any number (integer or float) attribute defined for the host can be used in the rank attribute
 
 Examples:
 
-.. code:: code
+.. code::
 
-# First those resources with a higher Free CPU
-SCHED_RANK = "FREECPU"
- 
-# Consider also the CPU temperature
-SCHED_RANK = "FREECPU * 100 - TEMPERATURE"
+    # First those resources with a higher Free CPU
+      SCHED_RANK = "FREECPU"
+     
+    # Consider also the CPU temperature
+      SCHED_RANK = "FREECPU * 100 - TEMPERATURE"
 
 RAW Section
 ===========
 
-This optional section of the VM template is used whenever the need to
-pass special attributes to the underlying hypervisor arises. Anything
-placed in the data attribute gets passed straight to the hypervisor,
-unmodified.
+This optional section of the VM template is used whenever the need to pass special attributes to the underlying hypervisor arises. Anything placed in the data attribute gets passed straight to the hypervisor, unmodified.
 
 +---------------------+-----------------------------------------------------+-------+-------+----------+
 | RAW Sub-Attribute   | Description                                         | XEN   | KVM   | VMWARE   |
@@ -932,29 +788,28 @@ Example:
 
 Add a custom builder and bootloader to a Xen VM:
 
-.. code:: code
+.. code::
 
-RAW     = [
-TYPE  = "xen",
-DATA  = "builder=\"linux\"
-bootloader=\"/usr/lib/xen/boot/domUloader.py\"
-bootargs=\"--entry=xvda2:/boot/vmlinuz-xenpae,/boot/vmlinuz-xenpae\"" ]
+    RAW     = [
+          TYPE  = "xen",
+          DATA  = "builder=\"linux\"
+                   bootloader=\"/usr/lib/xen/boot/domUloader.py\"
+                   bootargs=\"--entry=xvda2:/boot/vmlinuz-xenpae,/boot/vmlinuz-xenpae\"" ]
 
 Add a guest type and a specific scsi controller to a vmware VM:
 
-.. code:: code
+.. code::
 
-RAW = [
-TYPE     = "vmware",
-DATA     = "<devices><controller type='scsi' index='0' model='lsilogic'/></devices>",
-DATA_VMX = "pciBridge0.present = \"TRUE\"\nguestOS=\"windows7srv-64\""
-]
+    RAW = [
+      TYPE     = "vmware",
+      DATA     = "<devices><controller type='scsi' index='0' model='lsilogic'/></devices>",
+      DATA_VMX = "pciBridge0.present = \"TRUE\"\nguestOS=\"windows7srv-64\""
+    ]
 
 Restricted Attributes
 =====================
 
-All the **default** restricted attributes to users in the oneadmin group
-are summarized in the following list:
+All the **default** restricted attributes to users in the oneadmin group are summarized in the following list:
 
 -  CONTEXT/FILES
 -  DISK/SOURCE
@@ -962,7 +817,5 @@ are summarized in the following list:
 -  NIC/VLAN\_ID
 -  SCHED\_RANK
 
-These attributes can be configured in
-`oned.conf </./oned_conf#restricted_attributes_configuration>`__.
+These attributes can be configured in :ref:`oned.conf <oned_conf#restricted_attributes_configuration>`.
 
-.. |:!:| image:: /./lib/images/smileys/icon_exclaim.gif

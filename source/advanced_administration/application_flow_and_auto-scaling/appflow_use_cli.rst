@@ -1,120 +1,105 @@
-================================
-Managing Multi-tier Applications
-================================
+.. _appflow_use_cli:
 
-OneFlow allows users and administrators to define, execute and manage
-multi-tiered applications, or services composed of interconnected
-Virtual Machines with deployment dependencies between them. Each group
-of Virtual Machines is deployed and managed as a single entity, and is
-completely integrated with the advanced `OpenNebula user and group
-management </./auth_overview>`__.
+=================================
+Managing Multi-tier Applications
+=================================
+
+OneFlow allows users and administrators to define, execute and manage multi-tiered applications, or services composed of interconnected Virtual Machines with deployment dependencies between them. Each group of Virtual Machines is deployed and managed as a single entity, and is completely integrated with the advanced :ref:`OpenNebula user and group management <auth_overview>`.
 
 What Is a Service
 =================
 
-The following diagram represents a multi-tier application. Each node
-represents a Role, and its cardinality (the number of VMs that will be
-deployed). The arrows indicate the deployment dependencies: each Role's
-VMs are deployed only when all its parent's VMs are running.
+The following diagram represents a multi-tier application. Each node represents a Role, and its cardinality (the number of VMs that will be deployed). The arrows indicate the deployment dependencies: each Role's VMs are deployed only when all its parent's VMs are running.
 
 |image0|
 
 This Service can be represented with the following JSON template:
 
-.. code:: code
+.. code::
 
-{
-"name": "my_service",
-"deployment": "straight",
-"roles": [
-{
-"name": "frontend",
-"vm_template": 0
-},
-{
-"name": "db_master",
-"parents": [
-"frontend"
-],
-"vm_template": 1
-},
-{
-"name": "db_slave",
-"parents": [
-"frontend"
-],
-"cardinality": 3,
-"vm_template": 2
-},
-{
-"name": "worker",
-"parents": [
-"db_master",
-"db_slave"
-],
-"cardinality": 10,
-"vm_template": 3
-}
-]
-}
+    {
+      "name": "my_service",
+      "deployment": "straight",
+      "roles": [
+        {
+          "name": "frontend",
+          "vm_template": 0
+        },
+        {
+          "name": "db_master",
+          "parents": [
+            "frontend"
+          ],
+          "vm_template": 1
+        },
+        {
+          "name": "db_slave",
+          "parents": [
+            "frontend"
+          ],
+          "cardinality": 3,
+          "vm_template": 2
+        },
+        {
+          "name": "worker",
+          "parents": [
+            "db_master",
+            "db_slave"
+          ],
+          "cardinality": 10,
+          "vm_template": 3
+        }
+      ]
+    }
 
 Managing Service Templates
 ==========================
 
-OneFlow allows OpenNebula administrators and users to register Service
-Templates in OpenNebula, to be instantiated later as Services. These
-Templates can be instantiated several times, and also shared with other
-users.
+OneFlow allows OpenNebula administrators and users to register Service Templates in OpenNebula, to be instantiated later as Services. These Templates can be instantiated several times, and also shared with other users.
 
-Users can manage the Service Templates using the command
-``oneflow-template``, or the graphical interface. For each user, the
-actual list of Service Templates available is determined by the
-ownership and permissions of the Templates.
+Users can manage the Service Templates using the command ``oneflow-template``, or the graphical interface. For each user, the actual list of Service Templates available is determined by the ownership and permissions of the Templates.
 
 Create and List Existing Service Templates
 ------------------------------------------
 
-The command ``oneflow-template create`` registers a JSON template file.
-For example, if the previous example template is saved in
-/tmp/my\_service.json, you can execute:
+The command ``oneflow-template create`` registers a JSON template file. For example, if the previous example template is saved in /tmp/my\_service.json, you can execute:
 
 .. code::
 
-$ oneflow-template create /tmp/my_service.json
-ID: 0
+    $ oneflow-template create /tmp/my_service.json
+    ID: 0
 
 You can also create service template from Sunstone:
 
 |image1|
 
-To list the available Service Templates, use
-``oneflow-template list/show/top``:
+To list the available Service Templates, use ``oneflow-template list/show/top``:
 
 .. code::
 
-$ oneflow-template list
-ID USER            GROUP           NAME
-0 oneadmin        oneadmin        my_service
+    $ oneflow-template list
+            ID USER            GROUP           NAME                                 
+             0 oneadmin        oneadmin        my_service                           
 
-$ oneflow-template show 0
-SERVICE TEMPLATE 0 INFORMATION
-ID                  : 0
-NAME                : my_service
-USER                : oneadmin
-GROUP               : oneadmin
+    $ oneflow-template show 0
+    SERVICE TEMPLATE 0 INFORMATION                                                  
+    ID                  : 0                   
+    NAME                : my_service          
+    USER                : oneadmin            
+    GROUP               : oneadmin            
 
-PERMISSIONS
-OWNER               : um-
-GROUP               : ---
-OTHER               : ---
+    PERMISSIONS                                                                     
+    OWNER               : um-                 
+    GROUP               : ---                 
+    OTHER               : ---                 
 
-TEMPLATE CONTENTS
-{
-"name": "my_service",
-"roles": [
-{
+    TEMPLATE CONTENTS                                                               
+    {
+      "name": "my_service",
+      "roles": [
+        {
 
-....
+    ....
 
 Templates can be deleted with ``oneflow-template delete``.
 
@@ -123,110 +108,98 @@ Templates can be deleted with ``oneflow-template delete``.
 Managing Services
 =================
 
-A Service Template can be instantiated as a Service. Each newly created
-Service will be deployed by OneFlow following its deployment strategy.
+A Service Template can be instantiated as a Service. Each newly created Service will be deployed by OneFlow following its deployment strategy.
 
-Each Service Role creates `Virtual Machines </./vm_guide_2>`__ in
-OpenNebula from `VM Templates </./vm_guide>`__, that must be created
-beforehand.
+Each Service Role creates :ref:`Virtual Machines <vm_guide_2>` in OpenNebula from :ref:`VM Templates <vm_guide>`, that must be created beforehand.
 
 Create and List Existing Services
 ---------------------------------
 
-New Services are created from Service Templates, using the
-``oneflow-template instantiate`` command:
+New Services are created from Service Templates, using the ``oneflow-template instantiate`` command:
 
 .. code::
 
-$ oneflow-template instantiate 0
-ID: 1
+    $ oneflow-template instantiate 0
+    ID: 1
 
 To list the available Services, use ``oneflow list/top``:
 
 .. code::
 
-$ oneflow list
-ID USER            GROUP           NAME                      STATE
-1 oneadmin        oneadmin        my_service                PENDING
+    $ oneflow list
+            ID USER            GROUP           NAME                      STATE      
+             1 oneadmin        oneadmin        my_service                PENDING    
 
 |image3|
 
-The Service will eventually change to ``DEPLOYING``. You can see
-information for each Role and individual Virtual Machine using
-``oneflow show``
+The Service will eventually change to ``DEPLOYING``. You can see information for each Role and individual Virtual Machine using ``oneflow show``
 
 .. code::
 
-$ oneflow show 1
-SERVICE 1 INFORMATION
-ID                  : 1
-NAME                : my_service
-USER                : oneadmin
-GROUP               : oneadmin
-STRATEGY            : straight
-SERVICE STATE       : DEPLOYING
+    $ oneflow show 1
+    SERVICE 1 INFORMATION                                                           
+    ID                  : 1                   
+    NAME                : my_service          
+    USER                : oneadmin            
+    GROUP               : oneadmin            
+    STRATEGY            : straight            
+    SERVICE STATE       : DEPLOYING           
 
-PERMISSIONS
-OWNER               : um-
-GROUP               : ---
-OTHER               : ---
+    PERMISSIONS                                                                     
+    OWNER               : um-                 
+    GROUP               : ---                 
+    OTHER               : ---                 
 
-ROLE frontend
-ROLE STATE          : RUNNING
-CARNIDALITY         : 1
-VM TEMPLATE         : 0
-NODES INFORMATION
-VM_ID NAME                    STAT UCPU    UMEM HOST                       TIME
-0 frontend_0_(service_1)  runn   67  120.3M localhost              0d 00h01
+    ROLE frontend
+    ROLE STATE          : RUNNING             
+    CARNIDALITY         : 1                   
+    VM TEMPLATE         : 0                   
+    NODES INFORMATION
+     VM_ID NAME                    STAT UCPU    UMEM HOST                       TIME
+         0 frontend_0_(service_1)  runn   67  120.3M localhost              0d 00h01
 
-ROLE db_master
-ROLE STATE          : DEPLOYING
-PARENTS             : frontend
-CARNIDALITY         : 1
-VM TEMPLATE         : 1
-NODES INFORMATION
-VM_ID NAME                    STAT UCPU    UMEM HOST                       TIME
-1                         init           0K                        0d 00h00
+    ROLE db_master
+    ROLE STATE          : DEPLOYING           
+    PARENTS             : frontend            
+    CARNIDALITY         : 1                   
+    VM TEMPLATE         : 1                   
+    NODES INFORMATION
+     VM_ID NAME                    STAT UCPU    UMEM HOST                       TIME
+         1                         init           0K                        0d 00h00
 
-ROLE db_slave
-ROLE STATE          : DEPLOYING
-PARENTS             : frontend
-CARNIDALITY         : 3
-VM TEMPLATE         : 2
-NODES INFORMATION
-VM_ID NAME                    STAT UCPU    UMEM HOST                       TIME
-2                         init           0K                        0d 00h00
-3                         init           0K                        0d 00h00
-4                         init           0K                        0d 00h00
+    ROLE db_slave
+    ROLE STATE          : DEPLOYING           
+    PARENTS             : frontend            
+    CARNIDALITY         : 3                   
+    VM TEMPLATE         : 2                   
+    NODES INFORMATION
+     VM_ID NAME                    STAT UCPU    UMEM HOST                       TIME
+         2                         init           0K                        0d 00h00
+         3                         init           0K                        0d 00h00
+         4                         init           0K                        0d 00h00
 
-ROLE worker
-ROLE STATE          : PENDING
-PARENTS             : db_master, db_slave
-CARNIDALITY         : 10
-VM TEMPLATE         : 3
-NODES INFORMATION
-VM_ID NAME                    STAT UCPU    UMEM HOST                       TIME
+    ROLE worker
+    ROLE STATE          : PENDING             
+    PARENTS             : db_master, db_slave 
+    CARNIDALITY         : 10                  
+    VM TEMPLATE         : 3                   
+    NODES INFORMATION
+     VM_ID NAME                    STAT UCPU    UMEM HOST                       TIME
 
 
 
-LOG MESSAGES
-09/19/12 14:44 [I] New state: DEPLOYING
+    LOG MESSAGES                                                                    
+    09/19/12 14:44 [I] New state: DEPLOYING
 
 Life-cycle
 ----------
 
-The ``deployment`` attribute defines the deployment strategy that the
-Life Cycle Manager (part of the
-`oneflow-server </./appflow_configure>`__) will use. These two values
-can be used:
+The ``deployment`` attribute defines the deployment strategy that the Life Cycle Manager (part of the :ref:`oneflow-server <appflow_configure>`) will use. These two values can be used:
 
 -  **none**: All roles are deployed at the same time.
--  **straight**: Each Role is deployed when all its parent Roles are
-``RUNNING``.
+-  **straight**: Each Role is deployed when all its parent Roles are ``RUNNING``.
 
-Regardless of the strategy used, the Service will be ``RUNNING`` when
-all of the Roles are also ``RUNNING``. Likewise, a Role will enter this
-state only when all the VMs are ``running``.
+Regardless of the strategy used, the Service will be ``RUNNING`` when all of the Roles are also ``RUNNING``. Likewise, a Role will enter this state only when all the VMs are ``running``.
 
 |image4|
 
@@ -289,165 +262,130 @@ Each Role has an individual state, described in the following table:
 Life-Cycle Operations
 ---------------------
 
-Services are deployed automatically by the Life Cycle Manager. To
-undeploy a running Service, users have the commands ``oneflow shutdown``
-and ``oneflow delete``.
+Services are deployed automatically by the Life Cycle Manager. To undeploy a running Service, users have the commands ``oneflow shutdown`` and ``oneflow delete``.
 
-The command ``oneflow shutdown`` will perform a graceful shutdown of all
-the running VMs, and will delete any VM in a failed state (see `onevm
-shutdown and delete </./vm_guide_2#life-cycle_operations>`__). If the
-``straight`` deployment strategy is used, the Roles will be shutdown in
-the reverse order of the deployment.
+The command ``oneflow shutdown`` will perform a graceful shutdown of all the running VMs, and will delete any VM in a failed state (see :ref:`onevm shutdown and delete <vm_guide_2#life-cycle_operations>`). If the ``straight`` deployment strategy is used, the Roles will be shutdown in the reverse order of the deployment.
 
-After a successful shutdown, the Service will remain in the ``DONE``
-state. If any of the VM shutdown operations cannot be performed, the
-Service state will show ``FAILED``, to indicate that manual intervention
-is required to complete the cleanup. In any case, the Service can be
-completely removed using the command ``oneflow delete``.
+After a successful shutdown, the Service will remain in the ``DONE`` state. If any of the VM shutdown operations cannot be performed, the Service state will show ``FAILED``, to indicate that manual intervention is required to complete the cleanup. In any case, the Service can be completely removed using the command ``oneflow delete``.
 
-If a Service and its VMs must be immediately undeployed, the command
-``oneflow delete`` can be used from any Service state. This will execute
-a delete operation for each VM and delete the Service. Please be aware
-that **this is not recommended**, because VMs using persistent Images
-can leave them in an inconsistent state.
+If a Service and its VMs must be immediately undeployed, the command ``oneflow delete`` can be used from any Service state. This will execute a delete operation for each VM and delete the Service. Please be aware that **this is not recommended**, because VMs using persistent Images can leave them in an inconsistent state.
 
-When a Service fails during a deployment, undeployment or scaling
-operation, the command ``oneflow recover`` can be used to retry the
-previous action once the problem has been solved.
+When a Service fails during a deployment, undeployment or scaling operation, the command ``oneflow recover`` can be used to retry the previous action once the problem has been solved.
 
 Elasticity
 ----------
 
-A role's cardinality can be adjusted manually, based on metrics, or
-based on a schedule. To start the scalability immediately, use the
-command ``oneflow scale``:
+A role's cardinality can be adjusted manually, based on metrics, or based on a schedule. To start the scalability immediately, use the command ``oneflow scale``:
 
 .. code::
 
-$ oneflow scale <serviceid> <role_name> <cardinality>
+    $ oneflow scale <serviceid> <role_name> <cardinality>
 
-To define automatic elasticity policies, proceed to the `elasticity
-documentation guide </./appflow_elasticity>`__.
+To define automatic elasticity policies, proceed to the :ref:`elasticity documentation guide <appflow_elasticity>`.
 
 Managing Permissions
 ====================
 
-Both Services and Template resources are completely integrated with the
-`OpenNebula user and group management </./auth_overview>`__. This means
-that each resource has an owner and group, and permissions. The VMs
-created by a Service are owned by the Service owner, so he can list and
-manage them.
+Both Services and Template resources are completely integrated with the :ref:`OpenNebula user and group management <auth_overview>`. This means that each resource has an owner and group, and permissions. The VMs created by a Service are owned by the Service owner, so he can list and manage them.
 
-For example, to change the owner and group of the Service 1, we can use
-``oneflow chown/chgrp``:
+For example, to change the owner and group of the Service 1, we can use ``oneflow chown/chgrp``:
 
 .. code::
 
-$ oneflow list
-ID USER            GROUP           NAME                      STATE
-1 oneadmin        oneadmin        my_service                RUNNING
+    $ oneflow list
+            ID USER            GROUP           NAME                      STATE      
+             1 oneadmin        oneadmin        my_service                RUNNING    
 
-$ onevm list
-ID USER     GROUP    NAME            STAT UCPU    UMEM HOST             TIME
-0 oneadmin oneadmin frontend_0_(ser runn   17   43.5M localhost    0d 01h06
-1 oneadmin oneadmin db_master_0_(se runn   59  106.2M localhost    0d 01h06
-...
+    $ onevm list
+        ID USER     GROUP    NAME            STAT UCPU    UMEM HOST             TIME
+         0 oneadmin oneadmin frontend_0_(ser runn   17   43.5M localhost    0d 01h06
+         1 oneadmin oneadmin db_master_0_(se runn   59  106.2M localhost    0d 01h06
+    ...
 
-$ oneflow chown my_service johndoe apptools
+    $ oneflow chown my_service johndoe apptools
 
-$ oneflow list
-ID USER            GROUP           NAME                      STATE
-1 johndoe         apptools        my_service                RUNNING
+    $ oneflow list
+            ID USER            GROUP           NAME                      STATE      
+             1 johndoe         apptools        my_service                RUNNING    
 
-$ onevm list
-ID USER     GROUP    NAME            STAT UCPU    UMEM HOST             TIME
-0 johndoe  apptools frontend_0_(ser runn   62   83.2M localhost    0d 01h16
-1 johndoe  apptools db_master_0_(se runn   74  115.2M localhost    0d 01h16
-...
+    $ onevm list
+        ID USER     GROUP    NAME            STAT UCPU    UMEM HOST             TIME
+         0 johndoe  apptools frontend_0_(ser runn   62   83.2M localhost    0d 01h16
+         1 johndoe  apptools db_master_0_(se runn   74  115.2M localhost    0d 01h16
+    ...
 
 Note that the Service's VM ownership is also changed.
 
-All Services and Templates have associated permissions for the
-**owner**, the users in its **group**, and **others**. For each one of
-these groups, there are three rights that can be set: **USE**,
-**MANAGE** and **ADMIN**. These permissions are very similar to those of
-UNIX file system, and can be modified with the command ``chmod``.
+All Services and Templates have associated permissions for the **owner**, the users in its **group**, and **others**. For each one of these groups, there are three rights that can be set: **USE**, **MANAGE** and **ADMIN**. These permissions are very similar to those of UNIX file system, and can be modified with the command ``chmod``.
 
-For example, to allow all users in the ``apptools`` group to USE (list,
-show) and MANAGE (shutdown, delete) the Service 1:
+For example, to allow all users in the ``apptools`` group to USE (list, show) and MANAGE (shutdown, delete) the Service 1:
 
 .. code::
 
-$ oneflow show 1
-SERVICE 1 INFORMATION
-..
+    $ oneflow show 1
+    SERVICE 1 INFORMATION                                                           
+    ..
 
-PERMISSIONS
-OWNER               : um-
-GROUP               : ---
-OTHER               : ---
-...
+    PERMISSIONS                                                                     
+    OWNER               : um-                 
+    GROUP               : ---                 
+    OTHER               : ---                 
+    ...
 
-$ oneflow chmod my_service 660
+    $ oneflow chmod my_service 660
 
-$ oneflow show 1
-SERVICE 1 INFORMATION
-..
+    $ oneflow show 1
+    SERVICE 1 INFORMATION                                                           
+    ..
 
-PERMISSIONS
-OWNER               : um-
-GROUP               : um-
-OTHER               : ---
-...
+    PERMISSIONS                                                                     
+    OWNER               : um-                 
+    GROUP               : um-                 
+    OTHER               : ---                 
+    ...
 
-Another common scenario is having Service Templates created by oneadmin
-that can be instantiated by any user. To implement this scenario,
-execute:
+Another common scenario is having Service Templates created by oneadmin that can be instantiated by any user. To implement this scenario, execute:
 
 .. code::
 
-$ oneflow-template show 0
-SERVICE TEMPLATE 0 INFORMATION
-ID                  : 0
-NAME                : my_service
-USER                : oneadmin
-GROUP               : oneadmin
+    $ oneflow-template show 0
+    SERVICE TEMPLATE 0 INFORMATION                                                  
+    ID                  : 0                   
+    NAME                : my_service          
+    USER                : oneadmin            
+    GROUP               : oneadmin            
 
-PERMISSIONS
-OWNER               : um-
-GROUP               : ---
-OTHER               : ---
-...
+    PERMISSIONS                                                                     
+    OWNER               : um-                 
+    GROUP               : ---                 
+    OTHER               : ---                 
+    ...
 
-$ oneflow-template chmod 0 604
+    $ oneflow-template chmod 0 604
 
-$ oneflow-template show 0
-SERVICE TEMPLATE 0 INFORMATION
-ID                  : 0
-NAME                : my_service
-USER                : oneadmin
-GROUP               : oneadmin
+    $ oneflow-template show 0
+    SERVICE TEMPLATE 0 INFORMATION                                                  
+    ID                  : 0                   
+    NAME                : my_service          
+    USER                : oneadmin            
+    GROUP               : oneadmin            
 
-PERMISSIONS
-OWNER               : um-
-GROUP               : ---
-OTHER               : u--
-...
+    PERMISSIONS                                                                     
+    OWNER               : um-                 
+    GROUP               : ---                 
+    OTHER               : u--                 
+    ...
 
-Please refer to the OpenNebula documentation for more information about
-`users & groups </./auth_overview>`__, and `resource
-permissions </./chmod>`__.
+Please refer to the OpenNebula documentation for more information about :ref:`users & groups <auth_overview>`, and :ref:`resource permissions <chmod>`.
 
 Scheduling Actions on the Virtual Machines of a Role
 ====================================================
 
-You can use the ``action`` command to perform a VM action on all the
-Virtual Machines belonging to a role. For example, if you want to
-suspend the Virtual Machines of the worker Role:
+You can use the ``action`` command to perform a VM action on all the Virtual Machines belonging to a role. For example, if you want to suspend the Virtual Machines of the worker Role:
 
 .. code::
 
-$ oneflow action <service_id> <role_name> <vm_action>
+    $ oneflow action <service_id> <role_name> <vm_action>
 
 These are the commands that can be performed:
 
@@ -469,28 +407,23 @@ These are the commands that can be performed:
 -  ``poweroff-hard``
 -  ``snapshot-create``
 
-Instead of performing the action immediately on all the VMs, you can
-perform it on small groups of VMs with these options:
+Instead of performing the action immediately on all the VMs, you can perform it on small groups of VMs with these options:
 
--  ``-p, âperiod x``: Seconds between each group of actions
--  ``-n, ânumber x``: Number of VMs to apply the action to each period
+-  ``-p, –period x``: Seconds between each group of actions
+-  ``-n, –number x``: Number of VMs to apply the action to each period
 
-Let's say you need to reboot all the VMs of a Role, but you also need to
-avoid downtime. This command will reboot 2 VMs each 5 minutes:
+Let's say you need to reboot all the VMs of a Role, but you also need to avoid downtime. This command will reboot 2 VMs each 5 minutes:
 
 .. code::
 
-$ oneflow action my-service my-role reboot --period 300 --number 2
+    $ oneflow action my-service my-role reboot --period 300 --number 2
 
-The ``oneflow-server.conf`` file contains default values for ``period``
-and ``number`` that are used if you omit one of them.
+The ``oneflow-server.conf`` file contains default values for ``period`` and ``number`` that are used if you omit one of them.
 
 Recovering from Failures
 ========================
 
-Some common failures can be resolved without manual intervention,
-calling the ``oneflow recover`` command. This command has different
-effects depending on the Service state:
+Some common failures can be resolved without manual intervention, calling the ``oneflow recover`` command. This command has different effects depending on the Service state:
 
 +--------------------------+-------------------+----------------------------------------------------------------------------+
 | State                    | New State         | Recover action                                                             |
@@ -514,18 +447,12 @@ effects depending on the Service state:
 Service Template Reference
 ==========================
 
-For more information on the resource representation, please check the
-`API guide </./appflow_api>`__
+For more information on the resource representation, please check the :ref:`API guide <appflow_api>`
 
-Read the `elasticity policies documentation </./appflow_elasticity>`__
-for more information.
+Read the :ref:`elasticity policies documentation <appflow_elasticity>` for more information.
 
-.. |image0| image:: /./_media/documentation:rel3.8:service_sample.png
-.. |image1| image:: /./_media/oneflow-templates-create.png?w=650
-:target: /./_media/oneflow-templates-create.png?id=
-.. |image2| image:: /./_media/oneflow-templates.png?w=650
-:target: /./_media/oneflow-templates.png?id=
-.. |image3| image:: /./_media/oneflow-service.png?w=650
-:target: /./_media/oneflow-service.png?id=
-.. |image4| image:: /./_media/documentation:rel4.2:flow_lcm.png?w=600
-:target: /./_media/documentation:rel4.2:flow_lcm.png?id=
+.. |image0| image:: /images/service_sample.png
+.. |image1| image:: /images/oneflow-templates-create.png
+.. |image2| image:: /images/oneflow-templates.png
+.. |image3| image:: /images/oneflow-service.png
+.. |image4| image:: /images/flow_lcm.png

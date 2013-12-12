@@ -1,10 +1,10 @@
-===========
-XML-RPC API
-===========
+.. _api:
 
-This reference documentation describes the xml-rpc methods exposed by
-OpenNebula. Each description consists of the method name and the input
-and output values.
+============
+XML-RPC API
+============
+
+This reference documentation describes the xml-rpc methods exposed by OpenNebula. Each description consists of the method name and the input and output values.
 
 All xml-rpc responses share a common structure.
 
@@ -18,10 +18,7 @@ All xml-rpc responses share a common structure.
 | OUT    | Int         | Error code.                                     |
 +--------+-------------+-------------------------------------------------+
 
-The output will always consist of three values. The first and third ones
-are fixed, but the second one will contain the String error message only
-in case of failure. If the method is successful, the returned value may
-be of another Data Type.
+The output will always consist of three values. The first and third ones are fixed, but the second one will contain the String error message only in case of failure. If the method is successful, the returned value may be of another Data Type.
 
 The Error Code will contain one of the following values:
 
@@ -71,47 +68,34 @@ INTERNAL
 
 |FIXME|
 
-|:!:| All methods expect a session string associated to the connected
-user as the first parameter. It has to be formed with the contents of
-the ONE\_AUTH file, which will be **``<username>:<password>``** with the
-default 'core' auth driver.
+.. warning:: All methods expect a session string associated to the connected user as the first parameter. It has to be formed with the contents of the ONE\_AUTH file, which will be ``<username>:<password>`` with the default 'core' auth driver.
 
-|:!:| Each XML-RPC request has to be authenticated and authorized. See
-the `Auth Subsystem documentation </./auth_overview>`__ for more
-information.
+.. warning:: Each XML-RPC request has to be authenticated and authorized. See the :ref:`Auth Subsystem documentation <auth_overview>` for more information.
 
-The information strings returned by the ``one.*.info`` methods are
-XML-formatted. The complete XML Schemas (XSD) reference is included at
-the end of this page. We encourage you to use the ``-x`` option of the
-`command line interface </./cli>`__ to collect sample outputs from your
-own infrastructure.
+The information strings returned by the ``one.*.info`` methods are XML-formatted. The complete XML Schemas (XSD) reference is included at the end of this page. We encourage you to use the ``-x`` option of the :ref:`command line interface <cli>` to collect sample outputs from your own infrastructure.
 
-The methods that accept XML templates require the root element to be
-TEMPLATE. For instance, this template:
+The methods that accept XML templates require the root element to be TEMPLATE. For instance, this template:
 
-.. code:: code
+.. code::
 
-NAME = abc
-MEMORY = 1024
-ATT1 = value1
+    NAME = abc
+    MEMORY = 1024
+    ATT1 = value1
 
 Can be also given to OpenNebula with the following XML:
 
-.. code:: code
+.. code::
 
-<TEMPLATE>
-<NAME>abc</NAME>
-<MEMORY>1024</MEMORY>
-<ATT1>value1</ATT1>
-</TEMPLATE>
+    <TEMPLATE>
+      <NAME>abc</NAME>
+      <MEMORY>1024</MEMORY>
+      <ATT1>value1</ATT1>
+    </TEMPLATE>
 
 Authorization Requests Reference
 ================================
 
-For each XML-RPC request, the session token is authenticated, and after
-that the Request Manager generates an authorization request that can
-include more than one operation. The following tables document these
-requests.
+For each XML-RPC request, the session token is authenticated, and after that the Request Manager generates an authorization request that can include more than one operation. The following tables document these requests.
 
 onevm
 -----
@@ -119,10 +103,10 @@ onevm
 +-------------------+----------------------------------------------------+------------------------+
 | onevm command     | XML-RPC Method                                     | Auth. Request          |
 +===================+====================================================+========================+
-| deploy            | `one.vm.deploy <#onevmdeploy>`__                   | VM:ADMIN               |
+| deploy            | :ref:`one.vm.deploy <#onevmdeploy>`                   | VM:ADMIN               |
 |                   |                                                    |  HOST:MANAGE           |
 +-------------------+----------------------------------------------------+------------------------+
-| delete            | `one.vm.action <#onevmaction>`__                   | VM:MANAGE              |
+| delete            | :ref:`one.vm.action <#onevmaction>`                   | VM:MANAGE              |
 |  boot             |                                                    |                        |
 |  shutdown         |                                                    |                        |
 |  suspend          |                                                    |                        |
@@ -133,61 +117,58 @@ onevm
 |  poweroff         |                                                    |                        |
 |  reboot           |                                                    |                        |
 +-------------------+----------------------------------------------------+------------------------+
-| resched           | `one.vm.action <#onevmaction>`__                   | VM:ADMIN               |
+| resched           | :ref:`one.vm.action <#onevmaction>`                   | VM:ADMIN               |
 |  unresched        |                                                    |                        |
 +-------------------+----------------------------------------------------+------------------------+
-| migrate           | `one.vm.migrate <#onevmmigrate>`__                 | VM:ADMIN               |
+| migrate           | :ref:`one.vm.migrate <#onevmmigrate>`                 | VM:ADMIN               |
 |                   |                                                    |  HOST:MANAGE           |
 +-------------------+----------------------------------------------------+------------------------+
-| disk-snapshot     | `one.vm.savedisk <#onevmsavedisk>`__               | VM:MANAGE              |
+| disk-snapshot     | :ref:`one.vm.savedisk <#onevmsavedisk>`               | VM:MANAGE              |
 |                   |                                                    |  IMAGE:CREATE          |
 +-------------------+----------------------------------------------------+------------------------+
-| disk-attach       | `one.vm.attach <#onevmattach>`__                   | VM:MANAGE              |
+| disk-attach       | :ref:`one.vm.attach <#onevmattach>`                   | VM:MANAGE              |
 |                   |                                                    |  IMAGE:USE             |
 +-------------------+----------------------------------------------------+------------------------+
-| disk-detach       | `one.vm.detach <#onevmdetach>`__                   | VM:MANAGE              |
+| disk-detach       | :ref:`one.vm.detach <#onevmdetach>`                   | VM:MANAGE              |
 +-------------------+----------------------------------------------------+------------------------+
-| nic-attach        | `one.vm.attachnic <#onevmattachnic>`__             | VM:MANAGE              |
+| nic-attach        | :ref:`one.vm.attachnic <#onevmattachnic>`             | VM:MANAGE              |
 |                   |                                                    |  NET:USE               |
 +-------------------+----------------------------------------------------+------------------------+
-| nic-detach        | `one.vm.detachnic <#onevmdetachnic>`__             | VM:MANAGE              |
+| nic-detach        | :ref:`one.vm.detachnic <#onevmdetachnic>`             | VM:MANAGE              |
 +-------------------+----------------------------------------------------+------------------------+
-| create            | `one.vm.allocate <#onevmallocate>`__               | VM:CREATE              |
+| create            | :ref:`one.vm.allocate <#onevmallocate>`               | VM:CREATE              |
 |                   |                                                    |  IMAGE:USE             |
 |                   |                                                    |  NET:USE               |
 +-------------------+----------------------------------------------------+------------------------+
-| show              | `one.vm.info <#onevminfo>`__                       | VM:USE                 |
+| show              | :ref:`one.vm.info <#onevminfo>`                       | VM:USE                 |
 +-------------------+----------------------------------------------------+------------------------+
-| chown             | `one.vm.chown <#onevmchown>`__                     | VM:MANAGE              |
+| chown             | :ref:`one.vm.chown <#onevmchown>`                     | VM:MANAGE              |
 |  chgrp            |                                                    |  [USER:MANAGE]         |
 |                   |                                                    |  [GROUP:USE]           |
 +-------------------+----------------------------------------------------+------------------------+
-| chmod             | `one.vm.chmod <#onevmchmod>`__                     | VM:<MANAGE \| ADMIN>   |
+| chmod             | :ref:`one.vm.chmod <#onevmchmod>`                     | VM:<MANAGE \| ADMIN>   |
 +-------------------+----------------------------------------------------+------------------------+
-| rename            | `one.vm.rename <#onevmrename>`__                   | VM:MANAGE              |
+| rename            | :ref:`one.vm.rename <#onevmrename>`                   | VM:MANAGE              |
 +-------------------+----------------------------------------------------+------------------------+
-| snapshot-create   | `one.vm.snapshotcreate <#onevmsnapshotcreate>`__   | VM:MANAGE              |
+| snapshot-create   | :ref:`one.vm.snapshotcreate <#onevmsnapshotcreate>`   | VM:MANAGE              |
 +-------------------+----------------------------------------------------+------------------------+
-| snapshot-delete   | `one.vm.snapshotdelete <#onevmsnapshotdelete>`__   | VM:MANAGE              |
+| snapshot-delete   | :ref:`one.vm.snapshotdelete <#onevmsnapshotdelete>`   | VM:MANAGE              |
 +-------------------+----------------------------------------------------+------------------------+
-| snapshot-revert   | `one.vm.snapshotrevert <#onevmsnapshotrevert>`__   | VM:MANAGE              |
+| snapshot-revert   | :ref:`one.vm.snapshotrevert <#onevmsnapshotrevert>`   | VM:MANAGE              |
 +-------------------+----------------------------------------------------+------------------------+
-| resize            | `one.vm.resize <#onevmresize>`__                   | VM:MANAGE              |
+| resize            | :ref:`one.vm.resize <#onevmresize>`                   | VM:MANAGE              |
 +-------------------+----------------------------------------------------+------------------------+
-| update            | `one.vm.update <#onevmupdate>`__                   | VM:MANAGE              |
+| update            | :ref:`one.vm.update <#onevmupdate>`                   | VM:MANAGE              |
 +-------------------+----------------------------------------------------+------------------------+
-| recover           | `one.vm.recover <#onevmrecover>`__                 | VM:ADMIN               |
+| recover           | :ref:`one.vm.recover <#onevmrecover>`                 | VM:ADMIN               |
 +-------------------+----------------------------------------------------+------------------------+
-| list              | `one.vmpool.info <#onevmpoolinfo>`__               | VM:USE                 |
+| list              | :ref:`one.vmpool.info <#onevmpoolinfo>`               | VM:USE                 |
 |  top              |                                                    |                        |
 +-------------------+----------------------------------------------------+------------------------+
 
-|:!:| The deploy action requires the user issuing the command to have
-VM:ADMIN rights. This user will usually be the scheduler with the
-oneadmin credentials.
+.. warning:: The deploy action requires the user issuing the command to have VM:ADMIN rights. This user will usually be the scheduler with the oneadmin credentials.
 
-The scheduler deploys VMs to the Hosts over which the VM owner has
-MANAGE rights.
+The scheduler deploys VMs to the Hosts over which the VM owner has MANAGE rights.
 
 onetemplate
 -----------
@@ -195,30 +176,30 @@ onetemplate
 +-----------------------+----------------------------------------------------------+------------------------------+
 | onetemplate command   | XML-RPC Method                                           | Auth. Request                |
 +=======================+==========================================================+==============================+
-| update                | `one.template.update <#onetemplateupdate>`__             | TEMPLATE:MANAGE              |
+| update                | :ref:`one.template.update <#onetemplateupdate>`             | TEMPLATE:MANAGE              |
 +-----------------------+----------------------------------------------------------+------------------------------+
-| instantiate           | `one.template.instantiate <#onetemplateinstantiate>`__   | TEMPLATE:USE                 |
+| instantiate           | :ref:`one.template.instantiate <#onetemplateinstantiate>`   | TEMPLATE:USE                 |
 |                       |                                                          |  [IMAGE:USE]                 |
 |                       |                                                          |  [NET:USE]                   |
 +-----------------------+----------------------------------------------------------+------------------------------+
-| create                | `one.template.allocate <#onetemplateallocate>`__         | TEMPLATE:CREATE              |
+| create                | :ref:`one.template.allocate <#onetemplateallocate>`         | TEMPLATE:CREATE              |
 +-----------------------+----------------------------------------------------------+------------------------------+
-| clone                 | `one.template.clone <#onetemplateclone>`__               | TEMPLATE:CREATE              |
+| clone                 | :ref:`one.template.clone <#onetemplateclone>`               | TEMPLATE:CREATE              |
 |                       |                                                          |  TEMPLATE:USE                |
 +-----------------------+----------------------------------------------------------+------------------------------+
-| delete                | `one.template.delete <#onetemplatedelete>`__             | TEMPLATE:MANAGE              |
+| delete                | :ref:`one.template.delete <#onetemplatedelete>`             | TEMPLATE:MANAGE              |
 +-----------------------+----------------------------------------------------------+------------------------------+
-| show                  | `one.template.info <#onetemplateinfo>`__                 | TEMPLATE:USE                 |
+| show                  | :ref:`one.template.info <#onetemplateinfo>`                 | TEMPLATE:USE                 |
 +-----------------------+----------------------------------------------------------+------------------------------+
-| chown                 | `one.template.chown <#onetemplatechown>`__               | TEMPLATE:MANAGE              |
+| chown                 | :ref:`one.template.chown <#onetemplatechown>`               | TEMPLATE:MANAGE              |
 |  chgrp                |                                                          |  [USER:MANAGE]               |
 |                       |                                                          |  [GROUP:USE]                 |
 +-----------------------+----------------------------------------------------------+------------------------------+
-| chmod                 | `one.template.chmod <#onetemplatechmod>`__               | TEMPLATE:<MANAGE \| ADMIN>   |
+| chmod                 | :ref:`one.template.chmod <#onetemplatechmod>`               | TEMPLATE:<MANAGE \| ADMIN>   |
 +-----------------------+----------------------------------------------------------+------------------------------+
-| rename                | `one.template.rename <#onetemplaterename>`__             | TEMPLATE:MANAGE              |
+| rename                | :ref:`one.template.rename <#onetemplaterename>`             | TEMPLATE:MANAGE              |
 +-----------------------+----------------------------------------------------------+------------------------------+
-| list                  | `one.templatepool.info <#onetemplatepoolinfo>`__         | TEMPLATE:USE                 |
+| list                  | :ref:`one.templatepool.info <#onetemplatepoolinfo>`         | TEMPLATE:USE                 |
 |  top                  |                                                          |                              |
 +-----------------------+----------------------------------------------------------+------------------------------+
 
@@ -228,25 +209,24 @@ onehost
 +-------------------+--------------------------------------------+-----------------+
 | onehost command   | XML-RPC Method                             | Auth. Request   |
 +===================+============================================+=================+
-| enable            | `one.host.enable <#onehostenable>`__       | HOST:ADMIN      |
+| enable            | :ref:`one.host.enable <#onehostenable>`       | HOST:ADMIN      |
 |  disable          |                                            |                 |
 +-------------------+--------------------------------------------+-----------------+
-| update            | `one.host.update <#onehostupdate>`__       | HOST:ADMIN      |
+| update            | :ref:`one.host.update <#onehostupdate>`       | HOST:ADMIN      |
 +-------------------+--------------------------------------------+-----------------+
-| create            | `one.host.allocate <#onehostallocate>`__   | HOST:CREATE     |
+| create            | :ref:`one.host.allocate <#onehostallocate>`   | HOST:CREATE     |
 +-------------------+--------------------------------------------+-----------------+
-| delete            | `one.host.delete <#onehostdelete>`__       | HOST:ADMIN      |
+| delete            | :ref:`one.host.delete <#onehostdelete>`       | HOST:ADMIN      |
 +-------------------+--------------------------------------------+-----------------+
-| rename            | `one.host.rename <#onehostrename>`__       | HOST:ADMIN      |
+| rename            | :ref:`one.host.rename <#onehostrename>`       | HOST:ADMIN      |
 +-------------------+--------------------------------------------+-----------------+
-| show              | `one.host.info <#onehostinfo>`__           | HOST:USE        |
+| show              | :ref:`one.host.info <#onehostinfo>`           | HOST:USE        |
 +-------------------+--------------------------------------------+-----------------+
-| list              | `one.hostpool.info <#onehostpoolinfo>`__   | HOST:USE        |
+| list              | :ref:`one.hostpool.info <#onehostpoolinfo>`   | HOST:USE        |
 |  top              |                                            |                 |
 +-------------------+--------------------------------------------+-----------------+
 
-|:!:| onehost sync is not performed by the core, it is done by the ruby
-command onehost.
+.. warning:: onehost sync is not performed by the core, it is done by the ruby command onehost.
 
 onecluster
 ----------
@@ -254,35 +234,35 @@ onecluster
 +----------------------+----------------------------------------------------------+--------------------+
 | onecluster command   | XML-RPC Method                                           | Auth. Request      |
 +======================+==========================================================+====================+
-| create               | `one.cluster.allocate <#oneclusterallocate>`__           | CLUSTER:CREATE     |
+| create               | :ref:`one.cluster.allocate <#oneclusterallocate>`           | CLUSTER:CREATE     |
 +----------------------+----------------------------------------------------------+--------------------+
-| delete               | `one.cluster.delete <#oneclusterdelete>`__               | CLUSTER:ADMIN      |
+| delete               | :ref:`one.cluster.delete <#oneclusterdelete>`               | CLUSTER:ADMIN      |
 +----------------------+----------------------------------------------------------+--------------------+
-| update               | `one.cluster.update <#oneclusterupdate>`__               | CLUSTER:MANAGE     |
+| update               | :ref:`one.cluster.update <#oneclusterupdate>`               | CLUSTER:MANAGE     |
 +----------------------+----------------------------------------------------------+--------------------+
-| addhost              | `one.cluster.addhost <#oneclusteraddhost>`__             | CLUSTER:ADMIN      |
+| addhost              | :ref:`one.cluster.addhost <#oneclusteraddhost>`             | CLUSTER:ADMIN      |
 |                      |                                                          |  HOST:ADMIN        |
 +----------------------+----------------------------------------------------------+--------------------+
-| delhost              | `one.cluster.delhost <#oneclusterdelhost>`__             | CLUSTER:ADMIN      |
+| delhost              | :ref:`one.cluster.delhost <#oneclusterdelhost>`             | CLUSTER:ADMIN      |
 |                      |                                                          |  HOST:ADMIN        |
 +----------------------+----------------------------------------------------------+--------------------+
-| adddatastore         | `one.cluster.adddatastore <#oneclusteradddatastore>`__   | CLUSTER:ADMIN      |
+| adddatastore         | :ref:`one.cluster.adddatastore <#oneclusteradddatastore>`   | CLUSTER:ADMIN      |
 |                      |                                                          |  DATASTORE:ADMIN   |
 +----------------------+----------------------------------------------------------+--------------------+
-| deldatastore         | `one.cluster.deldatastore <#oneclusterdeldatastore>`__   | CLUSTER:ADMIN      |
+| deldatastore         | :ref:`one.cluster.deldatastore <#oneclusterdeldatastore>`   | CLUSTER:ADMIN      |
 |                      |                                                          |  DATASTORE:ADMIN   |
 +----------------------+----------------------------------------------------------+--------------------+
-| addvnet              | `one.cluster.addvnet <#oneclusteraddvnet>`__             | CLUSTER:ADMIN      |
+| addvnet              | :ref:`one.cluster.addvnet <#oneclusteraddvnet>`             | CLUSTER:ADMIN      |
 |                      |                                                          |  NET:ADMIN         |
 +----------------------+----------------------------------------------------------+--------------------+
-| delvnet              | `one.cluster.delvnet <#oneclusterdelvnet>`__             | CLUSTER:ADMIN      |
+| delvnet              | :ref:`one.cluster.delvnet <#oneclusterdelvnet>`             | CLUSTER:ADMIN      |
 |                      |                                                          |  NET:ADMIN         |
 +----------------------+----------------------------------------------------------+--------------------+
-| rename               | `one.cluster.rename <#oneclusterrename>`__               | CLUSTER:MANAGE     |
+| rename               | :ref:`one.cluster.rename <#oneclusterrename>`               | CLUSTER:MANAGE     |
 +----------------------+----------------------------------------------------------+--------------------+
-| show                 | `one.cluster.info <#oneclusterinfo>`__                   | CLUSTER:USE        |
+| show                 | :ref:`one.cluster.info <#oneclusterinfo>`                   | CLUSTER:USE        |
 +----------------------+----------------------------------------------------------+--------------------+
-| list                 | `one.clusterpool.info <#oneclusterpoolinfo>`__           | CLUSTER:USE        |
+| list                 | :ref:`one.clusterpool.info <#oneclusterpoolinfo>`           | CLUSTER:USE        |
 +----------------------+----------------------------------------------------------+--------------------+
 
 onegroup
@@ -291,19 +271,19 @@ onegroup
 +--------------------+----------------------------------------------------+-------------------------------------------+
 | onegroup command   | XML-RPC Method                                     | Auth. Request                             |
 +====================+====================================================+===========================================+
-| create             | `one.group.allocate <#onegroupallocate>`__         | GROUP:CREATE                              |
+| create             | :ref:`one.group.allocate <#onegroupallocate>`         | GROUP:CREATE                              |
 +--------------------+----------------------------------------------------+-------------------------------------------+
-| delete             | `one.group.delete <#onegroupdelete>`__             | GROUP:ADMIN                               |
+| delete             | :ref:`one.group.delete <#onegroupdelete>`             | GROUP:ADMIN                               |
 +--------------------+----------------------------------------------------+-------------------------------------------+
-| show               | `one.group.info <#onegroupinfo>`__                 | GROUP:USE                                 |
+| show               | :ref:`one.group.info <#onegroupinfo>`                 | GROUP:USE                                 |
 +--------------------+----------------------------------------------------+-------------------------------------------+
-| quota              | `one.group.quota <#onegroupquota>`__               | GROUP:ADMIN                               |
+| quota              | :ref:`one.group.quota <#onegroupquota>`               | GROUP:ADMIN                               |
 +--------------------+----------------------------------------------------+-------------------------------------------+
-| list               | `one.grouppool.info <#onegrouppoolinfo>`__         | GROUP:USE                                 |
+| list               | :ref:`one.grouppool.info <#onegrouppoolinfo>`         | GROUP:USE                                 |
 +--------------------+----------------------------------------------------+-------------------------------------------+
-| -                  | `one.groupquota.info <#onegroupquotainfo>`__       | -                                         |
+| -                  | :ref:`one.groupquota.info <#onegroupquotainfo>`       | -                                         |
 +--------------------+----------------------------------------------------+-------------------------------------------+
-| defaultquota       | `one.groupquota.update <#onegroupquotaupdate>`__   | Ony for users in the ``oneadmin`` group   |
+| defaultquota       | :ref:`one.groupquota.update <#onegroupquotaupdate>`   | Ony for users in the ``oneadmin`` group   |
 +--------------------+----------------------------------------------------+-------------------------------------------+
 
 onevnet
@@ -312,31 +292,31 @@ onevnet
 +-------------------+------------------------------------------+-------------------------+
 | onevnet command   | XML-RPC Method                           | Auth. Request           |
 +===================+==========================================+=========================+
-| addleases         | `one.vn.addleases <#onevnaddleases>`__   | NET:MANAGE              |
+| addleases         | :ref:`one.vn.addleases <#onevnaddleases>`   | NET:MANAGE              |
 +-------------------+------------------------------------------+-------------------------+
-| rmleases          | `one.vn.rmleases <#onevnrmleases>`__     | NET:MANAGE              |
+| rmleases          | :ref:`one.vn.rmleases <#onevnrmleases>`     | NET:MANAGE              |
 +-------------------+------------------------------------------+-------------------------+
-| hold              | `one.vn.hold <#onevnhold>`__             | NET:MANAGE              |
+| hold              | :ref:`one.vn.hold <#onevnhold>`             | NET:MANAGE              |
 +-------------------+------------------------------------------+-------------------------+
-| release           | `one.vn.release <#onevnrelease>`__       | NET:MANAGE              |
+| release           | :ref:`one.vn.release <#onevnrelease>`       | NET:MANAGE              |
 +-------------------+------------------------------------------+-------------------------+
-| update            | `one.vn.update <#onevnupdate>`__         | NET:MANAGE              |
+| update            | :ref:`one.vn.update <#onevnupdate>`         | NET:MANAGE              |
 +-------------------+------------------------------------------+-------------------------+
-| create            | `one.vn.allocate <#onevnallocate>`__     | NET:CREATE              |
+| create            | :ref:`one.vn.allocate <#onevnallocate>`     | NET:CREATE              |
 +-------------------+------------------------------------------+-------------------------+
-| delete            | `one.vn.delete <#onevndelete>`__         | NET:MANAGE              |
+| delete            | :ref:`one.vn.delete <#onevndelete>`         | NET:MANAGE              |
 +-------------------+------------------------------------------+-------------------------+
-| show              | `one.vn.info <#onevninfo>`__             | NET:USE                 |
+| show              | :ref:`one.vn.info <#onevninfo>`             | NET:USE                 |
 +-------------------+------------------------------------------+-------------------------+
-| chown             | `one.vn.chown <#onevnchown>`__           | NET:MANAGE              |
+| chown             | :ref:`one.vn.chown <#onevnchown>`           | NET:MANAGE              |
 |  chgrp            |                                          |  [USER:MANAGE]          |
 |                   |                                          |  [GROUP:USE]            |
 +-------------------+------------------------------------------+-------------------------+
-| chmod             | `one.vn.chmod <#onevnchmod>`__           | NET:<MANAGE \| ADMIN>   |
+| chmod             | :ref:`one.vn.chmod <#onevnchmod>`           | NET:<MANAGE \| ADMIN>   |
 +-------------------+------------------------------------------+-------------------------+
-| rename            | `one.vn.rename <#onevnrename>`__         | NET:MANAGE              |
+| rename            | :ref:`one.vn.rename <#onevnrename>`         | NET:MANAGE              |
 +-------------------+------------------------------------------+-------------------------+
-| list              | `one.vnpool.info <#onevnpoolinfo>`__     | NET:USE                 |
+| list              | :ref:`one.vnpool.info <#onevnpoolinfo>`     | NET:USE                 |
 +-------------------+------------------------------------------+-------------------------+
 
 oneuser
@@ -345,36 +325,36 @@ oneuser
 +-------------------+--------------------------------------------------+-------------------------------------------+
 | oneuser command   | XML-RPC Method                                   | Auth. Request                             |
 +===================+==================================================+===========================================+
-| create            | `one.user.allocate <#oneuserallocate>`__         | USER:CREATE                               |
+| create            | :ref:`one.user.allocate <#oneuserallocate>`         | USER:CREATE                               |
 +-------------------+--------------------------------------------------+-------------------------------------------+
-| delete            | `one.user.delete <#oneuserdelete>`__             | USER:ADMIN                                |
+| delete            | :ref:`one.user.delete <#oneuserdelete>`             | USER:ADMIN                                |
 +-------------------+--------------------------------------------------+-------------------------------------------+
-| show              | `one.user.info <#oneuserinfo>`__                 | USER:USE                                  |
+| show              | :ref:`one.user.info <#oneuserinfo>`                 | USER:USE                                  |
 +-------------------+--------------------------------------------------+-------------------------------------------+
-| passwd            | `one.user.passwd <#oneuserpasswd>`__             | USER:MANAGE                               |
+| passwd            | :ref:`one.user.passwd <#oneuserpasswd>`             | USER:MANAGE                               |
 +-------------------+--------------------------------------------------+-------------------------------------------+
-| update            | `one.user.update <#oneuserupdate>`__             | USER:MANAGE                               |
+| update            | :ref:`one.user.update <#oneuserupdate>`             | USER:MANAGE                               |
 +-------------------+--------------------------------------------------+-------------------------------------------+
-| chauth            | `one.user.chauth <#oneuserchauth>`__             | USER:ADMIN                                |
+| chauth            | :ref:`one.user.chauth <#oneuserchauth>`             | USER:ADMIN                                |
 +-------------------+--------------------------------------------------+-------------------------------------------+
-| quota             | `one.user.quota <#oneuserquota>`__               | USER:ADMIN                                |
+| quota             | :ref:`one.user.quota <#oneuserquota>`               | USER:ADMIN                                |
 +-------------------+--------------------------------------------------+-------------------------------------------+
-| chgrp             | `one.user.chgrp <#oneuserchgrp>`__               | USER:MANAGE                               |
+| chgrp             | :ref:`one.user.chgrp <#oneuserchgrp>`               | USER:MANAGE                               |
 |                   |                                                  |  GROUP:USE                                |
 +-------------------+--------------------------------------------------+-------------------------------------------+
-| addgroup          | `one.user.addgroup <#oneuseraddgroup>`__         | USER:MANAGE                               |
+| addgroup          | :ref:`one.user.addgroup <#oneuseraddgroup>`         | USER:MANAGE                               |
 |                   |                                                  |  GROUP:MANAGE                             |
 +-------------------+--------------------------------------------------+-------------------------------------------+
-| delgroup          | `one.user.delgroup <#oneuserdelgroup>`__         | USER:MANAGE                               |
+| delgroup          | :ref:`one.user.delgroup <#oneuserdelgroup>`         | USER:MANAGE                               |
 |                   |                                                  |  GROUP:MANAGE                             |
 +-------------------+--------------------------------------------------+-------------------------------------------+
 | encode            | -                                                | -                                         |
 +-------------------+--------------------------------------------------+-------------------------------------------+
-| list              | `one.userpool.info <#oneuserpoolinfo>`__         | USER:USE                                  |
+| list              | :ref:`one.userpool.info <#oneuserpoolinfo>`         | USER:USE                                  |
 +-------------------+--------------------------------------------------+-------------------------------------------+
-| -                 | `one.userquota.info <#oneuserquotainfo>`__       | -                                         |
+| -                 | :ref:`one.userquota.info <#oneuserquotainfo>`       | -                                         |
 +-------------------+--------------------------------------------------+-------------------------------------------+
-| defaultquota      | `one.userquota.update <#oneuserquotaupdate>`__   | Ony for users in the ``oneadmin`` group   |
+| defaultquota      | :ref:`one.userquota.update <#oneuserquotaupdate>`   | Ony for users in the ``oneadmin`` group   |
 +-------------------+--------------------------------------------------+-------------------------------------------+
 
 onedatastore
@@ -383,23 +363,23 @@ onedatastore
 +--------------------+------------------------------------------------------+-------------------------------+
 | oneimage command   | XML-RPC Method                                       | Auth. Request                 |
 +====================+======================================================+===============================+
-| create             | `one.datastore.allocate <#onedatastoreallocate>`__   | DATASTORE:CREATE              |
+| create             | :ref:`one.datastore.allocate <#onedatastoreallocate>`   | DATASTORE:CREATE              |
 +--------------------+------------------------------------------------------+-------------------------------+
-| delete             | `one.datastore.delete <#onedatastoredelete>`__       | DATASTORE:ADMIN               |
+| delete             | :ref:`one.datastore.delete <#onedatastoredelete>`       | DATASTORE:ADMIN               |
 +--------------------+------------------------------------------------------+-------------------------------+
-| show               | `one.datastore.info <#onedatastoreinfo>`__           | DATASTORE:USE                 |
+| show               | :ref:`one.datastore.info <#onedatastoreinfo>`           | DATASTORE:USE                 |
 +--------------------+------------------------------------------------------+-------------------------------+
-| update             | `one.datastore.update <#onedatastoreupdate>`__       | DATASTORE:MANAGE              |
+| update             | :ref:`one.datastore.update <#onedatastoreupdate>`       | DATASTORE:MANAGE              |
 +--------------------+------------------------------------------------------+-------------------------------+
-| rename             | `one.datastore.rename <#onedatastorerename>`__       | DATASTORE:MANAGE              |
+| rename             | :ref:`one.datastore.rename <#onedatastorerename>`       | DATASTORE:MANAGE              |
 +--------------------+------------------------------------------------------+-------------------------------+
-| chown              | `one.datastore.chown <#onedatastorechown>`__         | DATASTORE:MANAGE              |
+| chown              | :ref:`one.datastore.chown <#onedatastorechown>`         | DATASTORE:MANAGE              |
 |  chgrp             |                                                      |  [USER:MANAGE]                |
 |                    |                                                      |  [GROUP:USE]                  |
 +--------------------+------------------------------------------------------+-------------------------------+
-| chmod              | `one.datastore.chmod <#onedatastorechmod>`__         | DATASTORE:<MANAGE \| ADMIN>   |
+| chmod              | :ref:`one.datastore.chmod <#onedatastorechmod>`         | DATASTORE:<MANAGE \| ADMIN>   |
 +--------------------+------------------------------------------------------+-------------------------------+
-| list               | `one.datastorepool.info <#onedatastorepoolinfo>`__   | DATASTORE:USE                 |
+| list               | :ref:`one.datastorepool.info <#onedatastorepoolinfo>`   | DATASTORE:USE                 |
 +--------------------+------------------------------------------------------+-------------------------------+
 
 oneimage
@@ -408,35 +388,35 @@ oneimage
 +--------------------+--------------------------------------------------+---------------------------+
 | oneimage command   | XML-RPC Method                                   | Auth. Request             |
 +====================+==================================================+===========================+
-| persistent         | `one.image.persistent <#oneimagepersistent>`__   | IMAGE:MANAGE              |
+| persistent         | :ref:`one.image.persistent <#oneimagepersistent>`   | IMAGE:MANAGE              |
 |  nonpersistent     |                                                  |                           |
 +--------------------+--------------------------------------------------+---------------------------+
-| enable             | `one.image.enable <#oneimageenable>`__           | IMAGE:MANAGE              |
+| enable             | :ref:`one.image.enable <#oneimageenable>`           | IMAGE:MANAGE              |
 |  disable           |                                                  |                           |
 +--------------------+--------------------------------------------------+---------------------------+
-| chtype             | `one.image.chtype <#oneimagechtype>`__           | IMAGE:MANAGE              |
+| chtype             | :ref:`one.image.chtype <#oneimagechtype>`           | IMAGE:MANAGE              |
 +--------------------+--------------------------------------------------+---------------------------+
-| update             | `one.image.update <#oneimageupdate>`__           | IMAGE:MANAGE              |
+| update             | :ref:`one.image.update <#oneimageupdate>`           | IMAGE:MANAGE              |
 +--------------------+--------------------------------------------------+---------------------------+
-| create             | `one.image.allocate <#oneimageallocate>`__       | IMAGE:CREATE              |
+| create             | :ref:`one.image.allocate <#oneimageallocate>`       | IMAGE:CREATE              |
 |                    |                                                  |  DATASTORE:USE            |
 +--------------------+--------------------------------------------------+---------------------------+
-| clone              | `one.image.clone <#oneimageclone>`__             | IMAGE:CREATE              |
+| clone              | :ref:`one.image.clone <#oneimageclone>`             | IMAGE:CREATE              |
 |                    |                                                  |  IMAGE:USE                |
 +--------------------+--------------------------------------------------+---------------------------+
-| delete             | `one.image.delete <#oneimagedelete>`__           | IMAGE:MANAGE              |
+| delete             | :ref:`one.image.delete <#oneimagedelete>`           | IMAGE:MANAGE              |
 +--------------------+--------------------------------------------------+---------------------------+
-| show               | `one.image.info <#oneimageinfo>`__               | IMAGE:USE                 |
+| show               | :ref:`one.image.info <#oneimageinfo>`               | IMAGE:USE                 |
 +--------------------+--------------------------------------------------+---------------------------+
-| chown              | `one.image.chown <#oneimagechown>`__             | IMAGE:MANAGE              |
+| chown              | :ref:`one.image.chown <#oneimagechown>`             | IMAGE:MANAGE              |
 |  chgrp             |                                                  |  [USER:MANAGE]            |
 |                    |                                                  |  [GROUP:USE]              |
 +--------------------+--------------------------------------------------+---------------------------+
-| chmod              | `one.image.chmod <#oneimagechmod>`__             | IMAGE:<MANAGE \| ADMIN>   |
+| chmod              | :ref:`one.image.chmod <#oneimagechmod>`             | IMAGE:<MANAGE \| ADMIN>   |
 +--------------------+--------------------------------------------------+---------------------------+
-| rename             | `one.image.rename <#oneimagerename>`__           | IMAGE:MANAGE              |
+| rename             | :ref:`one.image.rename <#oneimagerename>`           | IMAGE:MANAGE              |
 +--------------------+--------------------------------------------------+---------------------------+
-| list               | `one.imagepool.info <#oneimagepoolinfo>`__       | IMAGE:USE                 |
+| list               | :ref:`one.imagepool.info <#oneimagepoolinfo>`       | IMAGE:USE                 |
 |  top               |                                                  |                           |
 +--------------------+--------------------------------------------------+---------------------------+
 
@@ -446,11 +426,11 @@ oneacl
 +------------------+----------------------------------------+-----------------+
 | oneacl command   | XML-RPC Method                         | Auth. Request   |
 +==================+========================================+=================+
-| create           | `one.acl.addrule <#oneacladdrule>`__   | ACL:MANAGE      |
+| create           | :ref:`one.acl.addrule <#oneacladdrule>`   | ACL:MANAGE      |
 +------------------+----------------------------------------+-----------------+
-| delete           | `one.acl.delrule <#oneacldelrule>`__   | ACL:MANAGE      |
+| delete           | :ref:`one.acl.delrule <#oneacldelrule>`   | ACL:MANAGE      |
 +------------------+----------------------------------------+-----------------+
-| list             | `one.acl.info <#oneaclinfo>`__         | ACL:MANAGE      |
+| list             | :ref:`one.acl.info <#oneaclinfo>`         | ACL:MANAGE      |
 +------------------+----------------------------------------+-----------------+
 
 oneacct
@@ -459,7 +439,7 @@ oneacct
 +-----------+----------------------------------------------------+-----------------+
 | command   | XML-RPC Method                                     | Auth. Request   |
 +===========+====================================================+=================+
-| oneacct   | `one.vmpool.accounting <#onevmpoolaccounting>`__   | VM:USE          |
+| oneacct   | :ref:`one.vmpool.accounting <#onevmpoolaccounting>`   | VM:USE          |
 +-----------+----------------------------------------------------+-----------------+
 
 documents
@@ -468,23 +448,23 @@ documents
 +----------------------------------------------------+------------------------------+
 | XML-RPC Method                                     | Auth. Request                |
 +====================================================+==============================+
-| `one.document.update <#onedocumentupdate>`__       | DOCUMENT:MANAGE              |
+| :ref:`one.document.update <#onedocumentupdate>`       | DOCUMENT:MANAGE              |
 +----------------------------------------------------+------------------------------+
-| `one.document.allocate <#onedocumentallocate>`__   | DOCUMENT:CREATE              |
+| :ref:`one.document.allocate <#onedocumentallocate>`   | DOCUMENT:CREATE              |
 +----------------------------------------------------+------------------------------+
-| `one.document.delete <#onedocumentdelete>`__       | DOCUMENT:MANAGE              |
+| :ref:`one.document.delete <#onedocumentdelete>`       | DOCUMENT:MANAGE              |
 +----------------------------------------------------+------------------------------+
-| `one.document.info <#onedocumentinfo>`__           | DOCUMENT:USE                 |
+| :ref:`one.document.info <#onedocumentinfo>`           | DOCUMENT:USE                 |
 +----------------------------------------------------+------------------------------+
-| `one.document.chown <#onedocumentchown>`__         | DOCUMENT:MANAGE              |
+| :ref:`one.document.chown <#onedocumentchown>`         | DOCUMENT:MANAGE              |
 |                                                    |  [USER:MANAGE]               |
 |                                                    |  [GROUP:USE]                 |
 +----------------------------------------------------+------------------------------+
-| `one.document.chmod <#onedocumentchmod>`__         | DOCUMENT:<MANAGE \| ADMIN>   |
+| :ref:`one.document.chmod <#onedocumentchmod>`         | DOCUMENT:<MANAGE \| ADMIN>   |
 +----------------------------------------------------+------------------------------+
-| `one.document.rename <#onedocumentrename>`__       | DOCUMENT:MANAGE              |
+| :ref:`one.document.rename <#onedocumentrename>`       | DOCUMENT:MANAGE              |
 +----------------------------------------------------+------------------------------+
-| `one.documentpool.info <#onedocumentpoolinfo>`__   | DOCUMENT:USE                 |
+| :ref:`one.documentpool.info <#onedocumentpoolinfo>`   | DOCUMENT:USE                 |
 +----------------------------------------------------+------------------------------+
 
 system
@@ -493,9 +473,9 @@ system
 +-----------+----------------------------------------------+-------------------------------------------+
 | command   | XML-RPC Method                               | Auth. Request                             |
 +===========+==============================================+===========================================+
-| -         | `one.system.version <#onesystemversion>`__   | -                                         |
+| -         | :ref:`one.system.version <#onesystemversion>`   | -                                         |
 +-----------+----------------------------------------------+-------------------------------------------+
-| -         | `one.system.config <#onesystemconfig>`__     | Ony for users in the ``oneadmin`` group   |
+| -         | :ref:`one.system.config <#onesystemconfig>`     | Ony for users in the ``oneadmin`` group   |
 +-----------+----------------------------------------------+-------------------------------------------+
 
 Actions for Templates Management
@@ -507,19 +487,19 @@ one.template.allocate
 -  **Description**: Allocates a new template in OpenNebula.
 -  **Parameters**
 
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                                                        |
-+========+==============+====================================================================================================+
-| IN     | String       | The session string.                                                                                |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| IN     | String       | A string containing the template contents. Syntax can be the usual â€œattribute=valueâ€? or XML.   |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                                                        |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| OUT    | Int/String   | The allocated resource ID / The error string.                                                      |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                                                        |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
++--------+--------------+------------------------------------------------------------------------------------------------+
+| Type   | Data Type    | Description                                                                                    |
++========+==============+================================================================================================+
+| IN     | String       | The session string.                                                                            |
++--------+--------------+------------------------------------------------------------------------------------------------+
+| IN     | String       | A string containing the template contents. Syntax can be the usual “attribute=value” or XML.   |
++--------+--------------+------------------------------------------------------------------------------------------------+
+| OUT    | Boolean      | true or false whenever is successful or not                                                    |
++--------+--------------+------------------------------------------------------------------------------------------------+
+| OUT    | Int/String   | The allocated resource ID / The error string.                                                  |
++--------+--------------+------------------------------------------------------------------------------------------------+
+| OUT    | Int          | Error code.                                                                                    |
++--------+--------------+------------------------------------------------------------------------------------------------+
 
 one.template.clone
 ------------------
@@ -569,25 +549,25 @@ one.template.instantiate
 -  **Description**: Instantiates a new virtual machine from a template.
 -  **Parameters**
 
-+--------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                                                                                                                  |
-+========+==============+==============================================================================================================================================================+
-| IN     | String       | The session string.                                                                                                                                          |
-+--------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| IN     | Int          | The object ID.                                                                                                                                               |
-+--------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| IN     | String       | Name for the new VM instance. If it is an empty string, OpenNebula will assign one automatically.                                                            |
-+--------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| IN     | Boolean      | False to create the VM on pending (default), True to create it on hold.                                                                                      |
-+--------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| IN     | String       | A string containing an extra template to be merged with the one being instantiated. It can be empty. Syntax can be the usual â€œattribute=valueâ€? or XML.   |
-+--------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                                                                                                                  |
-+--------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| OUT    | Int/String   | The new virtual machine ID / The error string.                                                                                                               |
-+--------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                                                                                                                  |
-+--------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
++--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Type   | Data Type    | Description                                                                                                                                              |
++========+==============+==========================================================================================================================================================+
+| IN     | String       | The session string.                                                                                                                                      |
++--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| IN     | Int          | The object ID.                                                                                                                                           |
++--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| IN     | String       | Name for the new VM instance. If it is an empty string, OpenNebula will assign one automatically.                                                        |
++--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| IN     | Boolean      | False to create the VM on pending (default), True to create it on hold.                                                                                  |
++--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| IN     | String       | A string containing an extra template to be merged with the one being instantiated. It can be empty. Syntax can be the usual “attribute=value” or XML.   |
++--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| OUT    | Boolean      | true or false whenever is successful or not                                                                                                              |
++--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| OUT    | Int/String   | The new virtual machine ID / The error string.                                                                                                           |
++--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| OUT    | Int          | Error code.                                                                                                                                              |
++--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 one.template.update
 -------------------
@@ -602,7 +582,7 @@ one.template.update
 +--------+--------------+----------------------------------------------------------------------------------------------------+
 | IN     | Int          | The object ID.                                                                                     |
 +--------+--------------+----------------------------------------------------------------------------------------------------+
-| IN     | String       | The new template contents. Syntax can be the usual â€œattribute=valueâ€? or XML.                   |
+| IN     | String       | The new template contents. Syntax can be the usual “attribute=value” or XML.                       |
 +--------+--------------+----------------------------------------------------------------------------------------------------+
 | IN     | Int          | Update type: **0**: replace the whole template. **1**: Merge new template with the existing one.   |
 +--------+--------------+----------------------------------------------------------------------------------------------------+
@@ -720,8 +700,7 @@ one.template.info
 one.templatepool.info
 ---------------------
 
--  **Description**: Retrieves information for all or part of the
-Resources in the pool.
+-  **Description**: Retrieves information for all or part of the Resources in the pool.
 -  **Parameters**
 
 +--------+-------------+---------------------------------------------------------+
@@ -746,11 +725,7 @@ Resources in the pool.
 | OUT    | Int         | Error code.                                             |
 +--------+-------------+---------------------------------------------------------+
 
-The range can be used to retrieve a subset of the pool, from the 'start'
-to the 'end' ID. To retrieve the complete pool, use **``(-1, -1)``**; to
-retrieve all the pool from a specific ID to the last one, use
-**``(<id>, -1)``**, and to retrieve the first elements up to an ID, use
-**``(0, <id>)``**.
+The range can be used to retrieve a subset of the pool, from the 'start' to the 'end' ID. To retrieve the complete pool, use ``(-1, -1)``; to retrieve all the pool from a specific ID to the last one, use ``(<id>, -1)``, and to retrieve the first elements up to an ID, use ``(0, <id>)``.
 
 Actions for Virtual Machine Management
 ======================================
@@ -759,16 +734,9 @@ The VM Life Cycle is explained in this diagram:.
 
 |image2|
 
-It contains all the LifeCycleManager states, and the transitions
-triggered by the onevm commands. It is intended to be consulted by
-developers.
+It contains all the LifeCycleManager states, and the transitions triggered by the onevm commands. It is intended to be consulted by developers.
 
-The `simplified
-diagram <http://opennebula.org/_detail/documentation:rel4.4:states-simple.png?direct>`__
-used in the `Virtual Machine Instances documentation </./vm_guide_2>`__
-uses a smaller number of state names. These names are the ones used by
-onevm list, e.g. prolog, prolog\_migrate and prolog\_resume are all
-presented as â€œprolâ€?. It is intended as a reference for end-users.
+The `simplified diagram <http://opennebula.org/_detail/documentation:rel4.4:states-simple.png?direct>`__ used in the :ref:`Virtual Machine Instances documentation <vm_guide_2>` uses a smaller number of state names. These names are the ones used by onevm list, e.g. prolog, prolog\_migrate and prolog\_resume are all presented as “prol”. It is intended as a reference for end-users.
 
 one.vm.allocate
 ---------------
@@ -776,27 +744,26 @@ one.vm.allocate
 -  **Description**: Allocates a new virtual machine in OpenNebula.
 -  **Parameters**
 
-+--------+--------------+------------------------------------------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                                                          |
-+========+==============+======================================================================================================+
-| IN     | String       | The session string.                                                                                  |
-+--------+--------------+------------------------------------------------------------------------------------------------------+
-| IN     | String       | A string containing the template for the vm. Syntax can be the usual â€œattribute=valueâ€? or XML.   |
-+--------+--------------+------------------------------------------------------------------------------------------------------+
-| IN     | Boolean      | False to create the VM on pending (default), True to create it on hold.                              |
-+--------+--------------+------------------------------------------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                                                          |
-+--------+--------------+------------------------------------------------------------------------------------------------------+
-| OUT    | Int/String   | The allocated resource ID / The error string.                                                        |
-+--------+--------------+------------------------------------------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                                                          |
-+--------+--------------+------------------------------------------------------------------------------------------------------+
++--------+--------------+--------------------------------------------------------------------------------------------------+
+| Type   | Data Type    | Description                                                                                      |
++========+==============+==================================================================================================+
+| IN     | String       | The session string.                                                                              |
++--------+--------------+--------------------------------------------------------------------------------------------------+
+| IN     | String       | A string containing the template for the vm. Syntax can be the usual “attribute=value” or XML.   |
++--------+--------------+--------------------------------------------------------------------------------------------------+
+| IN     | Boolean      | False to create the VM on pending (default), True to create it on hold.                          |
++--------+--------------+--------------------------------------------------------------------------------------------------+
+| OUT    | Boolean      | true or false whenever is successful or not                                                      |
++--------+--------------+--------------------------------------------------------------------------------------------------+
+| OUT    | Int/String   | The allocated resource ID / The error string.                                                    |
++--------+--------------+--------------------------------------------------------------------------------------------------+
+| OUT    | Int          | Error code.                                                                                      |
++--------+--------------+--------------------------------------------------------------------------------------------------+
 
 one.vm.deploy
 -------------
 
--  **Description**: initiates the instance of the given vmid on the
-target host.
+-  **Description**: initiates the instance of the given vmid on the target host.
 -  **Parameters**
 
 +--------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -822,8 +789,7 @@ target host.
 one.vm.action
 -------------
 
--  **Description**: submits an action to be performed on a virtual
-machine.
+-  **Description**: submits an action to be performed on a virtual machine.
 -  **Parameters**
 
 +--------+--------------+-----------------------------------------------+
@@ -887,8 +853,7 @@ The action String must be one of the following:
 one.vm.migrate
 --------------
 
--  **Description**: migrates one virtual machine (vid) to the target
-host (hid).
+-  **Description**: migrates one virtual machine (vid) to the target host (hid).
 -  **Parameters**
 
 +--------+--------------+--------------------------------------------------------------------------+
@@ -917,27 +882,27 @@ one.vm.savedisk
 -  **Description**: Sets the disk to be saved in the given image.
 -  **Parameters**
 
-+--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                                                                                                                                                              |
-+========+==============+==========================================================================================================================================================================================================+
-| IN     | String       | The session string.                                                                                                                                                                                      |
-+--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| IN     | Int          | The object ID.                                                                                                                                                                                           |
-+--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| IN     | Int          | Disk ID of the disk we want to save.                                                                                                                                                                     |
-+--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| IN     | String       | Name for the new Image where the disk will be saved.                                                                                                                                                     |
-+--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| IN     | String       | Type for the new Image. If it is an empty string, then `the default one </./oned_conf#image_repository>`__ will be used. See the existing types in the `Image template reference </./img_template>`__.   |
-+--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| IN     | Boolean      | True to save the disk immediately, false will perform the operation when the VM shuts down.                                                                                                              |
-+--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                                                                                                                                                              |
-+--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| OUT    | Int/String   | The new allocated Image ID / The error string.                                                                                                                                                           |
-+--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                                                                                                                                                              |
-+--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Type   | Data Type    | Description                                                                                                                                                                                        |
++========+==============+====================================================================================================================================================================================================+
+| IN     | String       | The session string.                                                                                                                                                                                |
++--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| IN     | Int          | The object ID.                                                                                                                                                                                     |
++--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| IN     | Int          | Disk ID of the disk we want to save.                                                                                                                                                               |
++--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| IN     | String       | Name for the new Image where the disk will be saved.                                                                                                                                               |
++--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| IN     | String       | Type for the new Image. If it is an empty string, then :ref:`the default one <oned_conf#image_repository>` will be used. See the existing types in the :ref:`Image template reference <img_template>`.   |
++--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| IN     | Boolean      | True to save the disk immediately, false will perform the operation when the VM shuts down.                                                                                                        |
++--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| OUT    | Boolean      | true or false whenever is successful or not                                                                                                                                                        |
++--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| OUT    | Int/String   | The new allocated Image ID / The error string.                                                                                                                                                     |
++--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| OUT    | Int          | Error code.                                                                                                                                                                                        |
++--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 one.vm.attach
 -------------
@@ -945,21 +910,21 @@ one.vm.attach
 -  **Description**: Attaches a new disk to the virtual machine
 -  **Parameters**
 
-+--------+--------------+-------------------------------------------------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                                                                 |
-+========+==============+=============================================================================================================+
-| IN     | String       | The session string.                                                                                         |
-+--------+--------------+-------------------------------------------------------------------------------------------------------------+
-| IN     | Int          | The object ID.                                                                                              |
-+--------+--------------+-------------------------------------------------------------------------------------------------------------+
-| IN     | String       | A string containing a single DISK vector attribute. Syntax can be the usual â€œattribute=valueâ€? or XML.   |
-+--------+--------------+-------------------------------------------------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                                                                 |
-+--------+--------------+-------------------------------------------------------------------------------------------------------------+
-| OUT    | Int/String   | The VM ID / The error string.                                                                               |
-+--------+--------------+-------------------------------------------------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                                                                 |
-+--------+--------------+-------------------------------------------------------------------------------------------------------------+
++--------+--------------+---------------------------------------------------------------------------------------------------------+
+| Type   | Data Type    | Description                                                                                             |
++========+==============+=========================================================================================================+
+| IN     | String       | The session string.                                                                                     |
++--------+--------------+---------------------------------------------------------------------------------------------------------+
+| IN     | Int          | The object ID.                                                                                          |
++--------+--------------+---------------------------------------------------------------------------------------------------------+
+| IN     | String       | A string containing a single DISK vector attribute. Syntax can be the usual “attribute=value” or XML.   |
++--------+--------------+---------------------------------------------------------------------------------------------------------+
+| OUT    | Boolean      | true or false whenever is successful or not                                                             |
++--------+--------------+---------------------------------------------------------------------------------------------------------+
+| OUT    | Int/String   | The VM ID / The error string.                                                                           |
++--------+--------------+---------------------------------------------------------------------------------------------------------+
+| OUT    | Int          | Error code.                                                                                             |
++--------+--------------+---------------------------------------------------------------------------------------------------------+
 
 one.vm.detach
 -------------
@@ -986,25 +951,24 @@ one.vm.detach
 one.vm.attachnic
 ----------------
 
--  **Description**: Attaches a new network interface to the virtual
-machine
+-  **Description**: Attaches a new network interface to the virtual machine
 -  **Parameters**
 
-+--------+--------------+------------------------------------------------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                                                                |
-+========+==============+============================================================================================================+
-| IN     | String       | The session string.                                                                                        |
-+--------+--------------+------------------------------------------------------------------------------------------------------------+
-| IN     | Int          | The object ID.                                                                                             |
-+--------+--------------+------------------------------------------------------------------------------------------------------------+
-| IN     | String       | A string containing a single NIC vector attribute. Syntax can be the usual â€œattribute=valueâ€? or XML.   |
-+--------+--------------+------------------------------------------------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                                                                |
-+--------+--------------+------------------------------------------------------------------------------------------------------------+
-| OUT    | Int/String   | The VM ID / The error string.                                                                              |
-+--------+--------------+------------------------------------------------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                                                                |
-+--------+--------------+------------------------------------------------------------------------------------------------------------+
++--------+--------------+--------------------------------------------------------------------------------------------------------+
+| Type   | Data Type    | Description                                                                                            |
++========+==============+========================================================================================================+
+| IN     | String       | The session string.                                                                                    |
++--------+--------------+--------------------------------------------------------------------------------------------------------+
+| IN     | Int          | The object ID.                                                                                         |
++--------+--------------+--------------------------------------------------------------------------------------------------------+
+| IN     | String       | A string containing a single NIC vector attribute. Syntax can be the usual “attribute=value” or XML.   |
++--------+--------------+--------------------------------------------------------------------------------------------------------+
+| OUT    | Boolean      | true or false whenever is successful or not                                                            |
++--------+--------------+--------------------------------------------------------------------------------------------------------+
+| OUT    | Int/String   | The VM ID / The error string.                                                                          |
++--------+--------------+--------------------------------------------------------------------------------------------------------+
+| OUT    | Int          | Error code.                                                                                            |
++--------+--------------+--------------------------------------------------------------------------------------------------------+
 
 one.vm.detachnic
 ----------------
@@ -1215,7 +1179,7 @@ one.vm.update
 +--------+--------------+----------------------------------------------------------------------------------------------------+
 | IN     | Int          | The object ID.                                                                                     |
 +--------+--------------+----------------------------------------------------------------------------------------------------+
-| IN     | String       | The new user template contents. Syntax can be the usual â€œattribute=valueâ€? or XML.              |
+| IN     | String       | The new user template contents. Syntax can be the usual “attribute=value” or XML.                  |
 +--------+--------------+----------------------------------------------------------------------------------------------------+
 | IN     | Int          | Update type: **0**: Replace the whole template. **1**: Merge new template with the existing one.   |
 +--------+--------------+----------------------------------------------------------------------------------------------------+
@@ -1229,10 +1193,7 @@ one.vm.update
 one.vm.recover
 --------------
 
--  **Description**: Recovers a stuck VM that is waiting for a driver
-operation. The recovery may be done by failing or succeeding the
-pending operation. You need to manually check the vm status on the
-host, to decide if the operation was successful or not.
+-  **Description**: Recovers a stuck VM that is waiting for a driver operation. The recovery may be done by failing or succeeding the pending operation. You need to manually check the vm status on the host, to decide if the operation was successful or not.
 -  **Parameters**
 
 +--------+--------------+-----------------------------------------------------------------------------+
@@ -1291,32 +1252,29 @@ one.vm.monitoring
 | OUT    | Int         | Error code.                                             |
 +--------+-------------+---------------------------------------------------------+
 
-The monitoring information returned is a list of VM elements. Each VM
-element contains the complete xml of the VM with the updated information
-returned by the poll action.
+The monitoring information returned is a list of VM elements. Each VM element contains the complete xml of the VM with the updated information returned by the poll action.
 
 For example:
 
-.. code:: code
+.. code::
 
-<MONITORING_DATA>
-<VM>
-...
-<LAST_POLL>123</LAST_POLL>
-...
-</VM>
-<VM>
-...
-<LAST_POLL>456</LAST_POLL>
-...
-</VM>
-</MONITORING_DATA>
+    <MONITORING_DATA>
+        <VM>
+            ...
+            <LAST_POLL>123</LAST_POLL>
+            ...
+        </VM>
+        <VM>
+            ...
+            <LAST_POLL>456</LAST_POLL>
+            ...
+        </VM>
+    </MONITORING_DATA>
 
 one.vmpool.info
 ---------------
 
--  **Description**: Retrieves information for all or part of the VMs in
-the pool.
+-  **Description**: Retrieves information for all or part of the VMs in the pool.
 -  **Parameters**
 
 +--------+-------------+---------------------------------------------------------+
@@ -1343,11 +1301,7 @@ the pool.
 | OUT    | Int         | Error code.                                             |
 +--------+-------------+---------------------------------------------------------+
 
-The range can be used to retrieve a subset of the pool, from the 'start'
-to the 'end' ID. To retrieve the complete pool, use **``(-1, -1)``**; to
-retrieve all the pool from a specific ID to the last one, use
-**``(<id>, -1)``**, and to retrieve the first elements up to an ID, use
-**``(0, <id>)``**.
+The range can be used to retrieve a subset of the pool, from the 'start' to the 'end' ID. To retrieve the complete pool, use ``(-1, -1)``; to retrieve all the pool from a specific ID to the last one, use ``(<id>, -1)``, and to retrieve the first elements up to an ID, use ``(0, <id>)``.
 
 The state filter can be one of the following:
 
@@ -1399,34 +1353,34 @@ one.vmpool.monitoring
 | OUT    | Int         | Error code.                                             |
 +--------+-------------+---------------------------------------------------------+
 
-See `one.vm.monitoring <#onevmmonitoring>`__.
+See :ref:`one.vm.monitoring <#onevmmonitoring>`.
 
 Sample output:
 
-.. code:: code
+.. code::
 
-<MONITORING_DATA>
-<VM>
-<ID>0</ID>
-<LAST_POLL>123</LAST_POLL>
-...
-</VM>
-<VM>
-<ID>0</ID>
-<LAST_POLL>456</LAST_POLL>
-...
-</VM>
-<VM>
-<ID>3</ID>
-<LAST_POLL>123</LAST_POLL>
-...
-</VM>
-<VM>
-<ID>3</ID>
-<LAST_POLL>456</LAST_POLL>
-...
-</VM>
-</MONITORING_DATA>
+    <MONITORING_DATA>
+        <VM>
+            <ID>0</ID>
+            <LAST_POLL>123</LAST_POLL>
+            ...
+        </VM>
+        <VM>
+            <ID>0</ID>
+            <LAST_POLL>456</LAST_POLL>
+            ...
+        </VM>
+        <VM>
+            <ID>3</ID>
+            <LAST_POLL>123</LAST_POLL>
+            ...
+        </VM>
+        <VM>
+            <ID>3</ID>
+            <LAST_POLL>456</LAST_POLL>
+            ...
+        </VM>
+    </MONITORING_DATA>
 
 one.vmpool.accounting
 ---------------------
@@ -1456,8 +1410,7 @@ one.vmpool.accounting
 | OUT    | Int         | Error code.                                                                                                |
 +--------+-------------+------------------------------------------------------------------------------------------------------------+
 
-The XML output is explained in detail in the `''oneacct''
-guide </./accounting>`__.
+The XML output is explained in detail in the :ref:`''oneacct'' guide <accounting>`.
 
 Actions for Hosts Management
 ============================
@@ -1479,7 +1432,7 @@ one.host.allocate
 +--------+--------------+------------------------------------------------------------------------------------------------------------------------------------------------+
 | IN     | String       | The name of the virtual machine manager mad name (vmm\_mad\_name), this values are taken from the oned.conf with the tag name VM\_MAD (name)   |
 +--------+--------------+------------------------------------------------------------------------------------------------------------------------------------------------+
-| IN     | String       | The name of the virtual network manager mad name (vnm\_mad\_name), see the `Networking Subsystem documentation </./nm>`__                      |
+| IN     | String       | The name of the virtual network manager mad name (vnm\_mad\_name), see the :ref:`Networking Subsystem documentation <nm>`                         |
 +--------+--------------+------------------------------------------------------------------------------------------------------------------------------------------------+
 | IN     | Int          | The cluster ID. If it is -1, this host won't be added to any cluster.                                                                          |
 +--------+--------------+------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -1545,7 +1498,7 @@ one.host.update
 +--------+--------------+----------------------------------------------------------------------------------------------------+
 | IN     | Int          | The object ID.                                                                                     |
 +--------+--------------+----------------------------------------------------------------------------------------------------+
-| IN     | String       | The new template contents. Syntax can be the usual â€œattribute=valueâ€? or XML.                   |
+| IN     | String       | The new template contents. Syntax can be the usual “attribute=value” or XML.                       |
 +--------+--------------+----------------------------------------------------------------------------------------------------+
 | IN     | Int          | Update type: **0**: Replace the whole template. **1**: Merge new template with the existing one.   |
 +--------+--------------+----------------------------------------------------------------------------------------------------+
@@ -1618,26 +1571,24 @@ one.host.monitoring
 | OUT    | Int         | Error code.                                             |
 +--------+-------------+---------------------------------------------------------+
 
-The monitoring information returned is a list of HOST elements. Each
-HOST element contains the complete xml of the host with the updated
-information returned by the poll action.
+The monitoring information returned is a list of HOST elements. Each HOST element contains the complete xml of the host with the updated information returned by the poll action.
 
 For example:
 
-.. code:: code
+.. code::
 
-<MONITORING_DATA>
-<HOST>
-...
-<LAST_MON_TIME>123</LAST_MON_TIME>
-...
-</HOST>
-<HOST>
-...
-<LAST_MON_TIME>456</LAST_MON_TIME>
-...
-</HOST>
-</MONITORING_DATA>
+    <MONITORING_DATA>
+        <HOST>
+            ...
+            <LAST_MON_TIME>123</LAST_MON_TIME>
+            ...
+        </HOST>
+        <HOST>
+            ...
+            <LAST_MON_TIME>456</LAST_MON_TIME>
+            ...
+        </HOST>
+    </MONITORING_DATA>
 
 one.hostpool.info
 -----------------
@@ -1675,34 +1626,34 @@ one.hostpool.monitoring
 | OUT    | Int         | Error code.                                   |
 +--------+-------------+-----------------------------------------------+
 
-See `one.host.monitoring <#onehostmonitoring>`__.
+See :ref:`one.host.monitoring <#onehostmonitoring>`.
 
 Sample output:
 
-.. code:: code
+.. code::
 
-<MONITORING_DATA>
-<HOST>
-<ID>0</ID>
-<LAST_MON_TIME>123</LAST_MON_TIME>
-...
-</HOST>
-<HOST>
-<ID>0</ID>
-<LAST_MON_TIME>456</LAST_MON_TIME>
-...
-</HOST>
-<HOST>
-<ID>3</ID>
-<LAST_MON_TIME>123</LAST_MON_TIME>
-...
-</HOST>
-<HOST>
-<ID>3</ID>
-<LAST_MON_TIME>456</LAST_MON_TIME>
-...
-</HOST>
-</MONITORING_DATA>
+    <MONITORING_DATA>
+        <HOST>
+            <ID>0</ID>
+            <LAST_MON_TIME>123</LAST_MON_TIME>
+            ...
+        </HOST>
+        <HOST>
+            <ID>0</ID>
+            <LAST_MON_TIME>456</LAST_MON_TIME>
+            ...
+        </HOST>
+        <HOST>
+            <ID>3</ID>
+            <LAST_MON_TIME>123</LAST_MON_TIME>
+            ...
+        </HOST>
+        <HOST>
+            <ID>3</ID>
+            <LAST_MON_TIME>456</LAST_MON_TIME>
+            ...
+        </HOST>
+    </MONITORING_DATA>
 
 Actions for Cluster Management
 ==============================
@@ -1760,7 +1711,7 @@ one.cluster.update
 +--------+--------------+----------------------------------------------------------------------------------------------------+
 | IN     | Int          | The object ID.                                                                                     |
 +--------+--------------+----------------------------------------------------------------------------------------------------+
-| IN     | String       | The new template contents. Syntax can be the usual â€œattribute=valueâ€? or XML.                   |
+| IN     | String       | The new template contents. Syntax can be the usual “attribute=value” or XML.                       |
 +--------+--------------+----------------------------------------------------------------------------------------------------+
 | IN     | Int          | Update type: **0**: Replace the whole template. **1**: Merge new template with the existing one.   |
 +--------+--------------+----------------------------------------------------------------------------------------------------+
@@ -1948,8 +1899,7 @@ one.cluster.info
 one.clusterpool.info
 --------------------
 
--  **Description**: Retrieves information for all the clusters in the
-pool.
+-  **Description**: Retrieves information for all the clusters in the pool.
 -  **Parameters**
 
 +--------+-------------+-----------------------------------------------+
@@ -1973,21 +1923,21 @@ one.vn.allocate
 -  **Description**: Allocates a new virtual network in OpenNebula.
 -  **Parameters**
 
-+--------+--------------+------------------------------------------------------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                                                                      |
-+========+==============+==================================================================================================================+
-| IN     | String       | The session string.                                                                                              |
-+--------+--------------+------------------------------------------------------------------------------------------------------------------+
-| IN     | String       | A string containing the template of the virtual network. Syntax can be the usual â€œattribute=valueâ€? or XML.   |
-+--------+--------------+------------------------------------------------------------------------------------------------------------------+
-| IN     | Int          | The cluster ID. If it is -1, this virtual network won't be added to any cluster.                                 |
-+--------+--------------+------------------------------------------------------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                                                                      |
-+--------+--------------+------------------------------------------------------------------------------------------------------------------+
-| OUT    | Int/String   | The allocated resource ID / The error string.                                                                    |
-+--------+--------------+------------------------------------------------------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                                                                      |
-+--------+--------------+------------------------------------------------------------------------------------------------------------------+
++--------+--------------+--------------------------------------------------------------------------------------------------------------+
+| Type   | Data Type    | Description                                                                                                  |
++========+==============+==============================================================================================================+
+| IN     | String       | The session string.                                                                                          |
++--------+--------------+--------------------------------------------------------------------------------------------------------------+
+| IN     | String       | A string containing the template of the virtual network. Syntax can be the usual “attribute=value” or XML.   |
++--------+--------------+--------------------------------------------------------------------------------------------------------------+
+| IN     | Int          | The cluster ID. If it is -1, this virtual network won't be added to any cluster.                             |
++--------+--------------+--------------------------------------------------------------------------------------------------------------+
+| OUT    | Boolean      | true or false whenever is successful or not                                                                  |
++--------+--------------+--------------------------------------------------------------------------------------------------------------+
+| OUT    | Int/String   | The allocated resource ID / The error string.                                                                |
++--------+--------------+--------------------------------------------------------------------------------------------------------------+
+| OUT    | Int          | Error code.                                                                                                  |
++--------+--------------+--------------------------------------------------------------------------------------------------------------+
 
 one.vn.delete
 -------------
@@ -2012,75 +1962,73 @@ one.vn.delete
 one.vn.addleases
 ----------------
 
--  **Description**: Adds a new lease to the virtual network. Only
-available for FIXED networks.
+-  **Description**: Adds a new lease to the virtual network. Only available for FIXED networks.
 -  **Parameters**
 
-+--------+--------------+--------------------------------------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                                                      |
-+========+==============+==================================================================================================+
-| IN     | String       | The session string.                                                                              |
-+--------+--------------+--------------------------------------------------------------------------------------------------+
-| IN     | Int          | The object ID.                                                                                   |
-+--------+--------------+--------------------------------------------------------------------------------------------------+
-| IN     | String       | template of the lease to add. Syntax can be the usual â€œattribute=valueâ€? or XML, see below.   |
-+--------+--------------+--------------------------------------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                                                      |
-+--------+--------------+--------------------------------------------------------------------------------------------------+
-| OUT    | Int/String   | The resource ID / The error string.                                                              |
-+--------+--------------+--------------------------------------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                                                      |
-+--------+--------------+--------------------------------------------------------------------------------------------------+
++--------+--------------+----------------------------------------------------------------------------------------------+
+| Type   | Data Type    | Description                                                                                  |
++========+==============+==============================================================================================+
+| IN     | String       | The session string.                                                                          |
++--------+--------------+----------------------------------------------------------------------------------------------+
+| IN     | Int          | The object ID.                                                                               |
++--------+--------------+----------------------------------------------------------------------------------------------+
+| IN     | String       | template of the lease to add. Syntax can be the usual “attribute=value” or XML, see below.   |
++--------+--------------+----------------------------------------------------------------------------------------------+
+| OUT    | Boolean      | true or false whenever is successful or not                                                  |
++--------+--------------+----------------------------------------------------------------------------------------------+
+| OUT    | Int/String   | The resource ID / The error string.                                                          |
++--------+--------------+----------------------------------------------------------------------------------------------+
+| OUT    | Int          | Error code.                                                                                  |
++--------+--------------+----------------------------------------------------------------------------------------------+
 
 Examples of valid templates:
 
-.. code:: code
+.. code::
 
-LEASES=[IP=192.168.0.5]
+    LEASES=[IP=192.168.0.5]
 
-.. code:: code
+.. code::
 
-LEASES=[IP=192.168.0.5, MAC=50:20:20:20:20:20]
+    LEASES=[IP=192.168.0.5, MAC=50:20:20:20:20:20]
 
-.. code:: code
+.. code::
 
-<TEMPLATE>
-<LEASES>
-<IP>192.168.0.5</IP>
-</LEASES>
-</TEMPLATE>
+    <TEMPLATE>
+      <LEASES>
+        <IP>192.168.0.5</IP>
+      </LEASES>
+    </TEMPLATE>
 
-.. code:: code
+.. code::
 
-<TEMPLATE>
-<LEASES>
-<IP>192.168.0.5</IP>
-<MAC>MAC=50:20:20:20:20:20</MAC>
-</LEASES>
-</TEMPLATE>
+    <TEMPLATE>
+      <LEASES>
+        <IP>192.168.0.5</IP>
+        <MAC>MAC=50:20:20:20:20:20</MAC>
+      </LEASES>
+    </TEMPLATE>
 
 one.vn.rmleases
 ---------------
 
--  **Description**: Removes a lease from the virtual network. Only
-available for FIXED networks.
+-  **Description**: Removes a lease from the virtual network. Only available for FIXED networks.
 -  **Parameters**
 
-+--------+--------------+--------------------------------------------------------------------------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                                                                                          |
-+========+==============+======================================================================================================================================+
-| IN     | String       | The session string.                                                                                                                  |
-+--------+--------------+--------------------------------------------------------------------------------------------------------------------------------------+
-| IN     | Int          | The object ID.                                                                                                                       |
-+--------+--------------+--------------------------------------------------------------------------------------------------------------------------------------+
-| IN     | String       | template of the lease to remove. Syntax can be the usual â€œattribute=valueâ€? or XML, see `one.vn.addleases <#onevnaddleases>`__.   |
-+--------+--------------+--------------------------------------------------------------------------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                                                                                          |
-+--------+--------------+--------------------------------------------------------------------------------------------------------------------------------------+
-| OUT    | Int/String   | The resource ID / The error string.                                                                                                  |
-+--------+--------------+--------------------------------------------------------------------------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                                                                                          |
-+--------+--------------+--------------------------------------------------------------------------------------------------------------------------------------+
++--------+--------------+----------------------------------------------------------------------------------------------------------------------------------+
+| Type   | Data Type    | Description                                                                                                                      |
++========+==============+==================================================================================================================================+
+| IN     | String       | The session string.                                                                                                              |
++--------+--------------+----------------------------------------------------------------------------------------------------------------------------------+
+| IN     | Int          | The object ID.                                                                                                                   |
++--------+--------------+----------------------------------------------------------------------------------------------------------------------------------+
+| IN     | String       | template of the lease to remove. Syntax can be the usual “attribute=value” or XML, see :ref:`one.vn.addleases <#onevnaddleases>`.   |
++--------+--------------+----------------------------------------------------------------------------------------------------------------------------------+
+| OUT    | Boolean      | true or false whenever is successful or not                                                                                      |
++--------+--------------+----------------------------------------------------------------------------------------------------------------------------------+
+| OUT    | Int/String   | The resource ID / The error string.                                                                                              |
++--------+--------------+----------------------------------------------------------------------------------------------------------------------------------+
+| OUT    | Int          | Error code.                                                                                                                      |
++--------+--------------+----------------------------------------------------------------------------------------------------------------------------------+
 
 one.vn.hold
 -----------
@@ -2088,21 +2036,21 @@ one.vn.hold
 -  **Description**: Holds a virtual network Lease as used.
 -  **Parameters**
 
-+--------+--------------+----------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                          |
-+========+==============+======================================================================+
-| IN     | String       | The session string.                                                  |
-+--------+--------------+----------------------------------------------------------------------+
-| IN     | Int          | The object ID.                                                       |
-+--------+--------------+----------------------------------------------------------------------+
-| IN     | String       | template of the lease to hold, e.g. â€œLEASES=[IP=192.168.0.5]â€?.   |
-+--------+--------------+----------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                          |
-+--------+--------------+----------------------------------------------------------------------+
-| OUT    | Int/String   | The resource ID / The error string.                                  |
-+--------+--------------+----------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                          |
-+--------+--------------+----------------------------------------------------------------------+
++--------+--------------+------------------------------------------------------------------+
+| Type   | Data Type    | Description                                                      |
++========+==============+==================================================================+
+| IN     | String       | The session string.                                              |
++--------+--------------+------------------------------------------------------------------+
+| IN     | Int          | The object ID.                                                   |
++--------+--------------+------------------------------------------------------------------+
+| IN     | String       | template of the lease to hold, e.g. “LEASES=[IP=192.168.0.5]”.   |
++--------+--------------+------------------------------------------------------------------+
+| OUT    | Boolean      | true or false whenever is successful or not                      |
++--------+--------------+------------------------------------------------------------------+
+| OUT    | Int/String   | The resource ID / The error string.                              |
++--------+--------------+------------------------------------------------------------------+
+| OUT    | Int          | Error code.                                                      |
++--------+--------------+------------------------------------------------------------------+
 
 one.vn.release
 --------------
@@ -2110,21 +2058,21 @@ one.vn.release
 -  **Description**: Releases a virtual network Lease on hold.
 -  **Parameters**
 
-+--------+--------------+-------------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                             |
-+========+==============+=========================================================================+
-| IN     | String       | The session string.                                                     |
-+--------+--------------+-------------------------------------------------------------------------+
-| IN     | Int          | The object ID.                                                          |
-+--------+--------------+-------------------------------------------------------------------------+
-| IN     | String       | template of the lease to release, e.g. â€œLEASES=[IP=192.168.0.5]â€?.   |
-+--------+--------------+-------------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                             |
-+--------+--------------+-------------------------------------------------------------------------+
-| OUT    | Int/String   | The resource ID / The error string.                                     |
-+--------+--------------+-------------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                             |
-+--------+--------------+-------------------------------------------------------------------------+
++--------+--------------+---------------------------------------------------------------------+
+| Type   | Data Type    | Description                                                         |
++========+==============+=====================================================================+
+| IN     | String       | The session string.                                                 |
++--------+--------------+---------------------------------------------------------------------+
+| IN     | Int          | The object ID.                                                      |
++--------+--------------+---------------------------------------------------------------------+
+| IN     | String       | template of the lease to release, e.g. “LEASES=[IP=192.168.0.5]”.   |
++--------+--------------+---------------------------------------------------------------------+
+| OUT    | Boolean      | true or false whenever is successful or not                         |
++--------+--------------+---------------------------------------------------------------------+
+| OUT    | Int/String   | The resource ID / The error string.                                 |
++--------+--------------+---------------------------------------------------------------------+
+| OUT    | Int          | Error code.                                                         |
++--------+--------------+---------------------------------------------------------------------+
 
 one.vn.update
 -------------
@@ -2139,7 +2087,7 @@ one.vn.update
 +--------+--------------+----------------------------------------------------------------------------------------------------+
 | IN     | Int          | The object ID.                                                                                     |
 +--------+--------------+----------------------------------------------------------------------------------------------------+
-| IN     | String       | The new template contents. Syntax can be the usual â€œattribute=valueâ€? or XML.                   |
+| IN     | String       | The new template contents. Syntax can be the usual “attribute=value” or XML.                       |
 +--------+--------------+----------------------------------------------------------------------------------------------------+
 | IN     | Int          | Update type: **0**: Replace the whole template. **1**: Merge new template with the existing one.   |
 +--------+--------------+----------------------------------------------------------------------------------------------------+
@@ -2257,8 +2205,7 @@ one.vn.info
 one.vnpool.info
 ---------------
 
--  **Description**: Retrieves information for all or part of the virtual
-networks in the pool.
+-  **Description**: Retrieves information for all or part of the virtual networks in the pool.
 -  **Parameters**
 
 +--------+-------------+---------------------------------------------------------+
@@ -2283,11 +2230,7 @@ networks in the pool.
 | OUT    | Int         | Error code.                                             |
 +--------+-------------+---------------------------------------------------------+
 
-The range can be used to retrieve a subset of the pool, from the 'start'
-to the 'end' ID. To retrieve the complete pool, use **``(-1, -1)``**; to
-retrieve all the pool from a specific ID to the last one, use
-**``(<id>, -1)``**, and to retrieve the first elements up to an ID, use
-**``(0, <id>)``**.
+The range can be used to retrieve a subset of the pool, from the 'start' to the 'end' ID. To retrieve the complete pool, use ``(-1, -1)``; to retrieve all the pool from a specific ID to the last one, use ``(<id>, -1)``, and to retrieve the first elements up to an ID, use ``(0, <id>)``.
 
 Actions for Datastore Management
 ================================
@@ -2298,19 +2241,19 @@ one.datastore.allocate
 -  **Description**: Allocates a new datastore in OpenNebula.
 -  **Parameters**
 
-+--------+--------------+------------------------------------------------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                                                                |
-+========+==============+============================================================================================================+
-| IN     | String       | The session string.                                                                                        |
-+--------+--------------+------------------------------------------------------------------------------------------------------------+
-| IN     | String       | A string containing the template of the datastore. Syntax can be the usual â€œattribute=valueâ€? or XML.   |
-+--------+--------------+------------------------------------------------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                                                                |
-+--------+--------------+------------------------------------------------------------------------------------------------------------+
-| OUT    | Int/String   | The allocated resource ID / The error string.                                                              |
-+--------+--------------+------------------------------------------------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                                                                |
-+--------+--------------+------------------------------------------------------------------------------------------------------------+
++--------+--------------+--------------------------------------------------------------------------------------------------------+
+| Type   | Data Type    | Description                                                                                            |
++========+==============+========================================================================================================+
+| IN     | String       | The session string.                                                                                    |
++--------+--------------+--------------------------------------------------------------------------------------------------------+
+| IN     | String       | A string containing the template of the datastore. Syntax can be the usual “attribute=value” or XML.   |
++--------+--------------+--------------------------------------------------------------------------------------------------------+
+| OUT    | Boolean      | true or false whenever is successful or not                                                            |
++--------+--------------+--------------------------------------------------------------------------------------------------------+
+| OUT    | Int/String   | The allocated resource ID / The error string.                                                          |
++--------+--------------+--------------------------------------------------------------------------------------------------------+
+| OUT    | Int          | Error code.                                                                                            |
++--------+--------------+--------------------------------------------------------------------------------------------------------+
 
 one.datastore.delete
 --------------------
@@ -2345,7 +2288,7 @@ one.datastore.update
 +--------+--------------+----------------------------------------------------------------------------------------------------+
 | IN     | Int          | The object ID.                                                                                     |
 +--------+--------------+----------------------------------------------------------------------------------------------------+
-| IN     | String       | The new template contents. Syntax can be the usual â€œattribute=valueâ€? or XML.                   |
+| IN     | String       | The new template contents. Syntax can be the usual “attribute=value” or XML.                       |
 +--------+--------------+----------------------------------------------------------------------------------------------------+
 | IN     | Int          | Update type: **0**: Replace the whole template. **1**: Merge new template with the existing one.   |
 +--------+--------------+----------------------------------------------------------------------------------------------------+
@@ -2463,8 +2406,7 @@ one.datastore.info
 one.datastorepool.info
 ----------------------
 
--  **Description**: Retrieves information for all or part of the
-datastores in the pool.
+-  **Description**: Retrieves information for all or part of the datastores in the pool.
 -  **Parameters**
 
 +--------+-------------+-----------------------------------------------+
@@ -2488,21 +2430,21 @@ one.image.allocate
 -  **Description**: Allocates a new image in OpenNebula.
 -  **Parameters**
 
-+--------+--------------+--------------------------------------------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                                                            |
-+========+==============+========================================================================================================+
-| IN     | String       | The session string.                                                                                    |
-+--------+--------------+--------------------------------------------------------------------------------------------------------+
-| IN     | String       | A string containing the template of the image. Syntax can be the usual â€œattribute=valueâ€? or XML.   |
-+--------+--------------+--------------------------------------------------------------------------------------------------------+
-| IN     | Int          | The datastore ID.                                                                                      |
-+--------+--------------+--------------------------------------------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                                                            |
-+--------+--------------+--------------------------------------------------------------------------------------------------------+
-| OUT    | Int/String   | The allocated resource ID / The error string.                                                          |
-+--------+--------------+--------------------------------------------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                                                            |
-+--------+--------------+--------------------------------------------------------------------------------------------------------+
++--------+--------------+----------------------------------------------------------------------------------------------------+
+| Type   | Data Type    | Description                                                                                        |
++========+==============+====================================================================================================+
+| IN     | String       | The session string.                                                                                |
++--------+--------------+----------------------------------------------------------------------------------------------------+
+| IN     | String       | A string containing the template of the image. Syntax can be the usual “attribute=value” or XML.   |
++--------+--------------+----------------------------------------------------------------------------------------------------+
+| IN     | Int          | The datastore ID.                                                                                  |
++--------+--------------+----------------------------------------------------------------------------------------------------+
+| OUT    | Boolean      | true or false whenever is successful or not                                                        |
++--------+--------------+----------------------------------------------------------------------------------------------------+
+| OUT    | Int/String   | The allocated resource ID / The error string.                                                      |
++--------+--------------+----------------------------------------------------------------------------------------------------+
+| OUT    | Int          | Error code.                                                                                        |
++--------+--------------+----------------------------------------------------------------------------------------------------+
 
 one.image.clone
 ---------------
@@ -2596,21 +2538,21 @@ one.image.chtype
 -  **Description**: Changes the type of an Image.
 -  **Parameters**
 
-+--------+--------------+---------------------------------------------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                                                             |
-+========+==============+=========================================================================================================+
-| IN     | String       | The session string.                                                                                     |
-+--------+--------------+---------------------------------------------------------------------------------------------------------+
-| IN     | Int          | The Image ID.                                                                                           |
-+--------+--------------+---------------------------------------------------------------------------------------------------------+
-| IN     | String       | New type for the Image. See the existing types in the `Image template reference </./img_template>`__.   |
-+--------+--------------+---------------------------------------------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not.                                                            |
-+--------+--------------+---------------------------------------------------------------------------------------------------------+
-| OUT    | Int/String   | The Image ID / The error string.                                                                        |
-+--------+--------------+---------------------------------------------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                                                             |
-+--------+--------------+---------------------------------------------------------------------------------------------------------+
++--------+--------------+------------------------------------------------------------------------------------------------------+
+| Type   | Data Type    | Description                                                                                          |
++========+==============+======================================================================================================+
+| IN     | String       | The session string.                                                                                  |
++--------+--------------+------------------------------------------------------------------------------------------------------+
+| IN     | Int          | The Image ID.                                                                                        |
++--------+--------------+------------------------------------------------------------------------------------------------------+
+| IN     | String       | New type for the Image. See the existing types in the :ref:`Image template reference <img_template>`.   |
++--------+--------------+------------------------------------------------------------------------------------------------------+
+| OUT    | Boolean      | true or false whenever is successful or not.                                                         |
++--------+--------------+------------------------------------------------------------------------------------------------------+
+| OUT    | Int/String   | The Image ID / The error string.                                                                     |
++--------+--------------+------------------------------------------------------------------------------------------------------+
+| OUT    | Int          | Error code.                                                                                          |
++--------+--------------+------------------------------------------------------------------------------------------------------+
 
 one.image.update
 ----------------
@@ -2625,7 +2567,7 @@ one.image.update
 +--------+--------------+----------------------------------------------------------------------------------------------------+
 | IN     | Int          | The object ID.                                                                                     |
 +--------+--------------+----------------------------------------------------------------------------------------------------+
-| IN     | String       | The new template contents. Syntax can be the usual â€œattribute=valueâ€? or XML.                   |
+| IN     | String       | The new template contents. Syntax can be the usual “attribute=value” or XML.                       |
 +--------+--------------+----------------------------------------------------------------------------------------------------+
 | IN     | Int          | Update type: **0**: Replace the whole template. **1**: Merge new template with the existing one.   |
 +--------+--------------+----------------------------------------------------------------------------------------------------+
@@ -2743,8 +2685,7 @@ one.image.info
 one.imagepool.info
 ------------------
 
--  **Description**: Retrieves information for all or part of the images
-in the pool.
+-  **Description**: Retrieves information for all or part of the images in the pool.
 -  **Parameters**
 
 +--------+-------------+---------------------------------------------------------+
@@ -2769,11 +2710,7 @@ in the pool.
 | OUT    | Int         | Error code.                                             |
 +--------+-------------+---------------------------------------------------------+
 
-The range can be used to retrieve a subset of the pool, from the 'start'
-to the 'end' ID. To retrieve the complete pool, use **``(-1, -1)``**; to
-retrieve all the pool from a specific ID to the last one, use
-**``(<id>, -1)``**, and to retrieve the first elements up to an ID, use
-**``(0, <id>)``**.
+The range can be used to retrieve a subset of the pool, from the 'start' to the 'end' ID. To retrieve the complete pool, use ``(-1, -1)``; to retrieve all the pool from a specific ID to the last one, use ``(<id>, -1)``, and to retrieve the first elements up to an ID, use ``(0, <id>)``.
 
 Actions for User Management
 ===========================
@@ -2857,7 +2794,7 @@ one.user.update
 +--------+--------------+----------------------------------------------------------------------------------------------------+
 | IN     | Int          | The object ID.                                                                                     |
 +--------+--------------+----------------------------------------------------------------------------------------------------+
-| IN     | String       | The new template contents. Syntax can be the usual â€œattribute=valueâ€? or XML.                   |
+| IN     | String       | The new template contents. Syntax can be the usual “attribute=value” or XML.                       |
 +--------+--------------+----------------------------------------------------------------------------------------------------+
 | IN     | Int          | Update type: **0**: Replace the whole template. **1**: Merge new template with the existing one.   |
 +--------+--------------+----------------------------------------------------------------------------------------------------+
@@ -2871,8 +2808,7 @@ one.user.update
 one.user.chauth
 ---------------
 
--  **Description**: Changes the authentication driver and the password
-for the given user.
+-  **Description**: Changes the authentication driver and the password for the given user.
 -  **Parameters**
 
 +--------+--------------+----------------------------------------------------------------------------+
@@ -2899,21 +2835,21 @@ one.user.quota
 -  **Description**: Sets the user quota limits.
 -  **Parameters**
 
-+--------+--------------+------------------------------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                                              |
-+========+==============+==========================================================================================+
-| IN     | String       | The session string.                                                                      |
-+--------+--------------+------------------------------------------------------------------------------------------+
-| IN     | Int          | The object ID.                                                                           |
-+--------+--------------+------------------------------------------------------------------------------------------+
-| IN     | String       | The new quota template contents. Syntax can be the usual â€œattribute=valueâ€? or XML.   |
-+--------+--------------+------------------------------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                                              |
-+--------+--------------+------------------------------------------------------------------------------------------+
-| OUT    | Int/String   | The resource ID / The error string.                                                      |
-+--------+--------------+------------------------------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                                              |
-+--------+--------------+------------------------------------------------------------------------------------------+
++--------+--------------+--------------------------------------------------------------------------------------+
+| Type   | Data Type    | Description                                                                          |
++========+==============+======================================================================================+
+| IN     | String       | The session string.                                                                  |
++--------+--------------+--------------------------------------------------------------------------------------+
+| IN     | Int          | The object ID.                                                                       |
++--------+--------------+--------------------------------------------------------------------------------------+
+| IN     | String       | The new quota template contents. Syntax can be the usual “attribute=value” or XML.   |
++--------+--------------+--------------------------------------------------------------------------------------+
+| OUT    | Boolean      | true or false whenever is successful or not                                          |
++--------+--------------+--------------------------------------------------------------------------------------+
+| OUT    | Int/String   | The resource ID / The error string.                                                  |
++--------+--------------+--------------------------------------------------------------------------------------+
+| OUT    | Int          | Error code.                                                                          |
++--------+--------------+--------------------------------------------------------------------------------------+
 
 one.user.chgrp
 --------------
@@ -3043,19 +2979,19 @@ one.userquota.update
 -  **Description**: Updates the default user quota limits.
 -  **Parameters**
 
-+--------+-------------+------------------------------------------------------------------------------------------+
-| Type   | Data Type   | Description                                                                              |
-+========+=============+==========================================================================================+
-| IN     | String      | The session string.                                                                      |
-+--------+-------------+------------------------------------------------------------------------------------------+
-| IN     | String      | The new quota template contents. Syntax can be the usual â€œattribute=valueâ€? or XML.   |
-+--------+-------------+------------------------------------------------------------------------------------------+
-| OUT    | Boolean     | true or false whenever is successful or not                                              |
-+--------+-------------+------------------------------------------------------------------------------------------+
-| OUT    | String      | The quota template contents / The error string.                                          |
-+--------+-------------+------------------------------------------------------------------------------------------+
-| OUT    | Int         | Error code.                                                                              |
-+--------+-------------+------------------------------------------------------------------------------------------+
++--------+-------------+--------------------------------------------------------------------------------------+
+| Type   | Data Type   | Description                                                                          |
++========+=============+======================================================================================+
+| IN     | String      | The session string.                                                                  |
++--------+-------------+--------------------------------------------------------------------------------------+
+| IN     | String      | The new quota template contents. Syntax can be the usual “attribute=value” or XML.   |
++--------+-------------+--------------------------------------------------------------------------------------+
+| OUT    | Boolean     | true or false whenever is successful or not                                          |
++--------+-------------+--------------------------------------------------------------------------------------+
+| OUT    | String      | The quota template contents / The error string.                                      |
++--------+-------------+--------------------------------------------------------------------------------------+
+| OUT    | Int         | Error code.                                                                          |
++--------+-------------+--------------------------------------------------------------------------------------+
 
 Actions for Group Management
 ============================
@@ -3126,27 +3062,26 @@ one.group.quota
 -  **Description**: Sets the group quota limits.
 -  **Parameters**
 
-+--------+--------------+------------------------------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                                              |
-+========+==============+==========================================================================================+
-| IN     | String       | The session string.                                                                      |
-+--------+--------------+------------------------------------------------------------------------------------------+
-| IN     | Int          | The object ID.                                                                           |
-+--------+--------------+------------------------------------------------------------------------------------------+
-| IN     | String       | The new quota template contents. Syntax can be the usual â€œattribute=valueâ€? or XML.   |
-+--------+--------------+------------------------------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                                              |
-+--------+--------------+------------------------------------------------------------------------------------------+
-| OUT    | Int/String   | The resource ID / The error string.                                                      |
-+--------+--------------+------------------------------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                                              |
-+--------+--------------+------------------------------------------------------------------------------------------+
++--------+--------------+--------------------------------------------------------------------------------------+
+| Type   | Data Type    | Description                                                                          |
++========+==============+======================================================================================+
+| IN     | String       | The session string.                                                                  |
++--------+--------------+--------------------------------------------------------------------------------------+
+| IN     | Int          | The object ID.                                                                       |
++--------+--------------+--------------------------------------------------------------------------------------+
+| IN     | String       | The new quota template contents. Syntax can be the usual “attribute=value” or XML.   |
++--------+--------------+--------------------------------------------------------------------------------------+
+| OUT    | Boolean      | true or false whenever is successful or not                                          |
++--------+--------------+--------------------------------------------------------------------------------------+
+| OUT    | Int/String   | The resource ID / The error string.                                                  |
++--------+--------------+--------------------------------------------------------------------------------------+
+| OUT    | Int          | Error code.                                                                          |
++--------+--------------+--------------------------------------------------------------------------------------+
 
 one.grouppool.info
 ------------------
 
--  **Description**: Retrieves information for all the groups in the
-pool.
+-  **Description**: Retrieves information for all the groups in the pool.
 -  **Parameters**
 
 +--------+-------------+-----------------------------------------------+
@@ -3185,19 +3120,19 @@ one.groupquota.update
 -  **Description**: Updates the default group quota limits.
 -  **Parameters**
 
-+--------+-------------+------------------------------------------------------------------------------------------+
-| Type   | Data Type   | Description                                                                              |
-+========+=============+==========================================================================================+
-| IN     | String      | The session string.                                                                      |
-+--------+-------------+------------------------------------------------------------------------------------------+
-| IN     | String      | The new quota template contents. Syntax can be the usual â€œattribute=valueâ€? or XML.   |
-+--------+-------------+------------------------------------------------------------------------------------------+
-| OUT    | Boolean     | true or false whenever is successful or not                                              |
-+--------+-------------+------------------------------------------------------------------------------------------+
-| OUT    | String      | The quota template contents / The error string.                                          |
-+--------+-------------+------------------------------------------------------------------------------------------+
-| OUT    | Int         | Error code.                                                                              |
-+--------+-------------+------------------------------------------------------------------------------------------+
++--------+-------------+--------------------------------------------------------------------------------------+
+| Type   | Data Type   | Description                                                                          |
++========+=============+======================================================================================+
+| IN     | String      | The session string.                                                                  |
++--------+-------------+--------------------------------------------------------------------------------------+
+| IN     | String      | The new quota template contents. Syntax can be the usual “attribute=value” or XML.   |
++--------+-------------+--------------------------------------------------------------------------------------+
+| OUT    | Boolean     | true or false whenever is successful or not                                          |
++--------+-------------+--------------------------------------------------------------------------------------+
+| OUT    | String      | The quota template contents / The error string.                                      |
++--------+-------------+--------------------------------------------------------------------------------------+
+| OUT    | Int         | Error code.                                                                          |
++--------+-------------+--------------------------------------------------------------------------------------+
 
 Actions for ACL Rules Management
 ================================
@@ -3226,12 +3161,7 @@ one.acl.addrule
 | OUT    | Int          | Error code.                                                             |
 +--------+--------------+-------------------------------------------------------------------------+
 
-To build the hex. numbers required to create a new rule we recommend you
-to read the
-`ruby <http://dev.opennebula.org/projects/opennebula/repository/revisions/master/entry/src/oca/ruby/OpenNebula/Acl.rb>`__
-or
-`java <http://dev.opennebula.org/projects/opennebula/repository/revisions/master/entry/src/oca/java/src/org/opennebula/client/acl/Acl.java>`__
-code.
+To build the hex. numbers required to create a new rule we recommend you to read the `ruby <http://dev.opennebula.org/projects/opennebula/repository/revisions/master/entry/src/oca/ruby/OpenNebula/Acl.rb>`__ or `java <http://dev.opennebula.org/projects/opennebula/repository/revisions/master/entry/src/oca/java/src/org/opennebula/client/acl/Acl.java>`__ code.
 
 one.acl.delrule
 ---------------
@@ -3282,30 +3212,25 @@ one.document.allocate
 -  **Description**: Allocates a new document in OpenNebula.
 -  **Parameters**
 
-+--------+--------------+-------------------------------------------------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                                                                 |
-+========+==============+=============================================================================================================+
-| IN     | String       | The session string.                                                                                         |
-+--------+--------------+-------------------------------------------------------------------------------------------------------------+
-| IN     | String       | A string containing the document template contents. Syntax can be the usual â€œattribute=valueâ€? or XML.   |
-+--------+--------------+-------------------------------------------------------------------------------------------------------------+
-| IN     | Int          | The document type (\*).                                                                                     |
-+--------+--------------+-------------------------------------------------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                                                                 |
-+--------+--------------+-------------------------------------------------------------------------------------------------------------+
-| OUT    | Int/String   | The allocated resource ID / The error string.                                                               |
-+--------+--------------+-------------------------------------------------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                                                                 |
-+--------+--------------+-------------------------------------------------------------------------------------------------------------+
++--------+--------------+---------------------------------------------------------------------------------------------------------+
+| Type   | Data Type    | Description                                                                                             |
++========+==============+=========================================================================================================+
+| IN     | String       | The session string.                                                                                     |
++--------+--------------+---------------------------------------------------------------------------------------------------------+
+| IN     | String       | A string containing the document template contents. Syntax can be the usual “attribute=value” or XML.   |
++--------+--------------+---------------------------------------------------------------------------------------------------------+
+| IN     | Int          | The document type (\*).                                                                                 |
++--------+--------------+---------------------------------------------------------------------------------------------------------+
+| OUT    | Boolean      | true or false whenever is successful or not                                                             |
++--------+--------------+---------------------------------------------------------------------------------------------------------+
+| OUT    | Int/String   | The allocated resource ID / The error string.                                                           |
++--------+--------------+---------------------------------------------------------------------------------------------------------+
+| OUT    | Int          | Error code.                                                                                             |
++--------+--------------+---------------------------------------------------------------------------------------------------------+
 
-(\*) Type is an integer value used to allow dynamic pools
-compartmentalization.
+(\*) Type is an integer value used to allow dynamic pools compartmentalization.
 
-Let's say you want to store documents representing Chef recipes, and EC2
-security groups; you would allocate documents of each kind with a
-different type. This type is then used in the
-`one.documentpool.info <#onedocumentpoolinfo>`__ method to filter the
-results.
+Let's say you want to store documents representing Chef recipes, and EC2 security groups; you would allocate documents of each kind with a different type. This type is then used in the :ref:`one.documentpool.info <#onedocumentpoolinfo>` method to filter the results.
 
 one.document.clone
 ------------------
@@ -3362,7 +3287,7 @@ one.document.update
 +--------+--------------+----------------------------------------------------------------------------------------------------+
 | IN     | Int          | The object ID.                                                                                     |
 +--------+--------------+----------------------------------------------------------------------------------------------------+
-| IN     | String       | The new document template contents. Syntax can be the usual â€œattribute=valueâ€? or XML.          |
+| IN     | String       | The new document template contents. Syntax can be the usual “attribute=value” or XML.              |
 +--------+--------------+----------------------------------------------------------------------------------------------------+
 | IN     | Int          | Update type: **0**: Replace the whole template. **1**: Merge new template with the existing one.   |
 +--------+--------------+----------------------------------------------------------------------------------------------------+
@@ -3480,8 +3405,7 @@ one.document.info
 one.documentpool.info
 ---------------------
 
--  **Description**: Retrieves information for all or part of the
-Resources in the pool.
+-  **Description**: Retrieves information for all or part of the Resources in the pool.
 -  **Parameters**
 
 +--------+-------------+---------------------------------------------------------------------------+
@@ -3499,7 +3423,7 @@ Resources in the pool.
 +--------+-------------+---------------------------------------------------------------------------+
 | IN     | Int         | Range end ID. Can be -1.                                                  |
 +--------+-------------+---------------------------------------------------------------------------+
-| IN     | Int         | The document type. See `one.document.allocate <#onedocumentallocate>`__   |
+| IN     | Int         | The document type. See :ref:`one.document.allocate <#onedocumentallocate>`   |
 +--------+-------------+---------------------------------------------------------------------------+
 | OUT    | Boolean     | true or false whenever is successful or not                               |
 +--------+-------------+---------------------------------------------------------------------------+
@@ -3508,11 +3432,7 @@ Resources in the pool.
 | OUT    | Int         | Error code.                                                               |
 +--------+-------------+---------------------------------------------------------------------------+
 
-The range can be used to retrieve a subset of the pool, from the 'start'
-to the 'end' ID. To retrieve the complete pool, use **``(-1, -1)``**; to
-retrieve all the pool from a specific ID to the last one, use
-**``(<id>, -1)``**, and to retrieve the first elements up to an ID, use
-**``(0, <id>)``**.
+The range can be used to retrieve a subset of the pool, from the 'start' to the 'end' ID. To retrieve the complete pool, use ``(-1, -1)``; to retrieve all the pool from a specific ID to the last one, use ``(<id>, -1)``, and to retrieve the first elements up to an ID, use ``(0, <id>)``.
 
 System Methods
 ==============
@@ -3530,7 +3450,7 @@ one.system.version
 +--------+-------------+-----------------------------------------------+
 | OUT    | Boolean     | true or false whenever is successful or not   |
 +--------+-------------+-----------------------------------------------+
-| OUT    | String      | The OpenNebula version, e.g. â€œ3.8.0â€?      |
+| OUT    | String      | The OpenNebula version, e.g. “3.8.0”          |
 +--------+-------------+-----------------------------------------------+
 | OUT    | Int         | Error code.                                   |
 +--------+-------------+-----------------------------------------------+
@@ -3561,1503 +3481,1501 @@ The XML schemas describe the XML returned by the one.\*.info methods
 Schemas for Cluster
 -------------------
 
-.. code:: code
+.. code::
 
-<?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
-<xs:element name="CLUSTER">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:integer"/>
-<xs:element name="NAME" type="xs:string"/>
-<xs:element name="HOSTS">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:integer" minOccurs="0" maxOccurs="unbounded"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="DATASTORES">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:integer" minOccurs="0" maxOccurs="unbounded"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="VNETS">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:integer" minOccurs="0" maxOccurs="unbounded"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="TEMPLATE" type="xs:anyType"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:schema>
+    <?xml version="1.0" encoding="UTF-8"?>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+      targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
+      <xs:element name="CLUSTER">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="ID" type="xs:integer"/>
+            <xs:element name="NAME" type="xs:string"/>
+            <xs:element name="HOSTS">
+                  <xs:complexType>
+                    <xs:sequence>
+                      <xs:element name="ID" type="xs:integer" minOccurs="0" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                  </xs:complexType>
+            </xs:element>
+            <xs:element name="DATASTORES">
+                  <xs:complexType>
+                    <xs:sequence>
+                      <xs:element name="ID" type="xs:integer" minOccurs="0" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                  </xs:complexType>
+            </xs:element>
+            <xs:element name="VNETS">
+                  <xs:complexType>
+                    <xs:sequence>
+                      <xs:element name="ID" type="xs:integer" minOccurs="0" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                  </xs:complexType>
+            </xs:element>
+            <xs:element name="TEMPLATE" type="xs:anyType"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
 
-.. code:: code
+.. code::
 
-<?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
-<xs:include schemaLocation="cluster.xsd"/>
-<xs:element name="CLUSTER_POOL">
-<xs:complexType>
-<xs:sequence maxOccurs="1" minOccurs="1">
-<xs:element ref="CLUSTER" maxOccurs="unbounded" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:schema>
+    <?xml version="1.0" encoding="UTF-8"?>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+      targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
+      <xs:include schemaLocation="cluster.xsd"/>
+      <xs:element name="CLUSTER_POOL">
+        <xs:complexType>
+          <xs:sequence maxOccurs="1" minOccurs="1">
+            <xs:element ref="CLUSTER" maxOccurs="unbounded" minOccurs="0"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
 
 Schemas for Datastore
 ---------------------
 
-.. code:: code
+.. code::
 
-<?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://opennebula.org/XMLSchema" elementFormDefault="qualified" targetNamespace="http://opennebula.org/XMLSchema">
-<xs:element name="DATASTORE">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:integer"/>
-<xs:element name="UID" type="xs:integer"/>
-<xs:element name="GID" type="xs:integer"/>
-<xs:element name="UNAME" type="xs:string"/>
-<xs:element name="GNAME" type="xs:string"/>
-<xs:element name="NAME" type="xs:string"/>
-<xs:element name="PERMISSIONS" minOccurs="0" maxOccurs="1">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="OWNER_U" type="xs:integer"/>
-<xs:element name="OWNER_M" type="xs:integer"/>
-<xs:element name="OWNER_A" type="xs:integer"/>
-<xs:element name="GROUP_U" type="xs:integer"/>
-<xs:element name="GROUP_M" type="xs:integer"/>
-<xs:element name="GROUP_A" type="xs:integer"/>
-<xs:element name="OTHER_U" type="xs:integer"/>
-<xs:element name="OTHER_M" type="xs:integer"/>
-<xs:element name="OTHER_A" type="xs:integer"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
- 
-<xs:element name="DS_MAD" type="xs:string"/>
-<xs:element name="TM_MAD" type="xs:string"/>
-<xs:element name="BASE_PATH" type="xs:string"/>
-<xs:element name="TYPE" type="xs:integer"/>
-<xs:element name="DISK_TYPE" type="xs:integer"/>
-<xs:element name="CLUSTER_ID" type="xs:integer"/>
-<xs:element name="CLUSTER" type="xs:string"/>
-<xs:element name="TOTAL_MB" type="xs:integer"/>
-<xs:element name="FREE_MB" type="xs:integer"/>
-<xs:element name="USED_MB" type="xs:integer"/>
-<xs:element name="IMAGES">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:integer" minOccurs="0" maxOccurs="unbounded"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="TEMPLATE" type="xs:anyType"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:schema>
+    <?xml version="1.0" encoding="UTF-8"?>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://opennebula.org/XMLSchema" elementFormDefault="qualified" targetNamespace="http://opennebula.org/XMLSchema">
+      <xs:element name="DATASTORE">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="ID" type="xs:integer"/>
+            <xs:element name="UID" type="xs:integer"/>
+            <xs:element name="GID" type="xs:integer"/>
+            <xs:element name="UNAME" type="xs:string"/>
+            <xs:element name="GNAME" type="xs:string"/>
+            <xs:element name="NAME" type="xs:string"/>
+            <xs:element name="PERMISSIONS" minOccurs="0" maxOccurs="1">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="OWNER_U" type="xs:integer"/>
+                  <xs:element name="OWNER_M" type="xs:integer"/>
+                  <xs:element name="OWNER_A" type="xs:integer"/>
+                  <xs:element name="GROUP_U" type="xs:integer"/>
+                  <xs:element name="GROUP_M" type="xs:integer"/>
+                  <xs:element name="GROUP_A" type="xs:integer"/>
+                  <xs:element name="OTHER_U" type="xs:integer"/>
+                  <xs:element name="OTHER_M" type="xs:integer"/>
+                  <xs:element name="OTHER_A" type="xs:integer"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+     
+            <xs:element name="DS_MAD" type="xs:string"/>
+            <xs:element name="TM_MAD" type="xs:string"/>
+            <xs:element name="BASE_PATH" type="xs:string"/>
+            <xs:element name="TYPE" type="xs:integer"/>
+            <xs:element name="DISK_TYPE" type="xs:integer"/>
+            <xs:element name="CLUSTER_ID" type="xs:integer"/>
+            <xs:element name="CLUSTER" type="xs:string"/>
+            <xs:element name="TOTAL_MB" type="xs:integer"/>
+            <xs:element name="FREE_MB" type="xs:integer"/>
+            <xs:element name="USED_MB" type="xs:integer"/>
+            <xs:element name="IMAGES">
+                  <xs:complexType>
+                    <xs:sequence>
+                      <xs:element name="ID" type="xs:integer" minOccurs="0" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                  </xs:complexType>
+            </xs:element>
+            <xs:element name="TEMPLATE" type="xs:anyType"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
 
-.. code:: code
+.. code::
 
-<?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
-<xs:include schemaLocation="datastore.xsd"/>
-<xs:element name="DATASTORE_POOL">
-<xs:complexType>
-<xs:sequence maxOccurs="1" minOccurs="1">
-<xs:element ref="DATASTORE" maxOccurs="unbounded" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:schema>
+    <?xml version="1.0" encoding="UTF-8"?>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+      targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
+      <xs:include schemaLocation="datastore.xsd"/>
+      <xs:element name="DATASTORE_POOL">
+        <xs:complexType>
+          <xs:sequence maxOccurs="1" minOccurs="1">
+            <xs:element ref="DATASTORE" maxOccurs="unbounded" minOccurs="0"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
 
 Schemas for Group
 -----------------
 
-.. code:: code
+.. code::
 
-<?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
-<xs:element name="GROUP">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:integer"/>
-<xs:element name="NAME" type="xs:string"/>
-<xs:element name="USERS">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:integer" minOccurs="0" maxOccurs="unbounded"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="DATASTORE_QUOTA" minOccurs="0" maxOccurs="1">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="DATASTORE" minOccurs="0" maxOccurs="unbounded">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:string"/>
-<xs:element name="IMAGES" type="xs:string"/>
-<xs:element name="IMAGES_USED" type="xs:string"/>
-<xs:element name="SIZE" type="xs:string"/>
-<xs:element name="SIZE_USED" type="xs:string"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="NETWORK_QUOTA" minOccurs="0" maxOccurs="1">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="NETWORK" minOccurs="0" maxOccurs="unbounded">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:string"/>
-<xs:element name="LEASES" type="xs:string"/>
-<xs:element name="LEASES_USED" type="xs:string"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="VM_QUOTA" minOccurs="0" maxOccurs="1">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="VM" minOccurs="0" maxOccurs="1">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="CPU" type="xs:string"/>
-<xs:element name="CPU_USED" type="xs:string"/>
-<xs:element name="MEMORY" type="xs:string"/>
-<xs:element name="MEMORY_USED" type="xs:string"/>
-<xs:element name="VMS" type="xs:string"/>
-<xs:element name="VMS_USED" type="xs:string"/>
-<xs:element name="VOLATILE_SIZE" type="xs:string"/>
-<xs:element name="VOLATILE_SIZE_USED" type="xs:string"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="IMAGE_QUOTA" minOccurs="0" maxOccurs="1">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="IMAGE" minOccurs="0" maxOccurs="unbounded">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:string"/>
-<xs:element name="RVMS" type="xs:string"/>
-<xs:element name="RVMS_USED" type="xs:string"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="DEFAULT_GROUP_QUOTAS">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="DATASTORE_QUOTA" minOccurs="0" maxOccurs="1">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="DATASTORE" minOccurs="0" maxOccurs="unbounded">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:string"/>
-<xs:element name="IMAGES" type="xs:string"/>
-<xs:element name="IMAGES_USED" type="xs:string"/>
-<xs:element name="SIZE" type="xs:string"/>
-<xs:element name="SIZE_USED" type="xs:string"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="NETWORK_QUOTA" minOccurs="0" maxOccurs="1">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="NETWORK" minOccurs="0" maxOccurs="unbounded">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:string"/>
-<xs:element name="LEASES" type="xs:string"/>
-<xs:element name="LEASES_USED" type="xs:string"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="VM_QUOTA" minOccurs="0" maxOccurs="1">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="VM" minOccurs="0" maxOccurs="1">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="CPU" type="xs:string"/>
-<xs:element name="CPU_USED" type="xs:string"/>
-<xs:element name="MEMORY" type="xs:string"/>
-<xs:element name="MEMORY_USED" type="xs:string"/>
-<xs:element name="VMS" type="xs:string"/>
-<xs:element name="VMS_USED" type="xs:string"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="IMAGE_QUOTA" minOccurs="0" maxOccurs="1">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="IMAGE" minOccurs="0" maxOccurs="unbounded">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:string"/>
-<xs:element name="RVMS" type="xs:string"/>
-<xs:element name="RVMS_USED" type="xs:string"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:schema>
+    <?xml version="1.0" encoding="UTF-8"?>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+      targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
+      <xs:element name="GROUP">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="ID" type="xs:integer"/>
+            <xs:element name="NAME" type="xs:string"/>
+            <xs:element name="USERS">
+                  <xs:complexType>
+                    <xs:sequence>
+                      <xs:element name="ID" type="xs:integer" minOccurs="0" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                  </xs:complexType>
+            </xs:element>
+            <xs:element name="DATASTORE_QUOTA" minOccurs="0" maxOccurs="1">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="DATASTORE" minOccurs="0" maxOccurs="unbounded">
+                  <xs:complexType>
+                    <xs:sequence>
+                      <xs:element name="ID" type="xs:string"/>
+                      <xs:element name="IMAGES" type="xs:string"/>
+                      <xs:element name="IMAGES_USED" type="xs:string"/>
+                      <xs:element name="SIZE" type="xs:string"/>
+                      <xs:element name="SIZE_USED" type="xs:string"/>
+                    </xs:sequence>
+                  </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="NETWORK_QUOTA" minOccurs="0" maxOccurs="1">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="NETWORK" minOccurs="0" maxOccurs="unbounded">
+                  <xs:complexType>
+                    <xs:sequence>
+                      <xs:element name="ID" type="xs:string"/>
+                      <xs:element name="LEASES" type="xs:string"/>
+                      <xs:element name="LEASES_USED" type="xs:string"/>
+                    </xs:sequence>
+                  </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="VM_QUOTA" minOccurs="0" maxOccurs="1">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="VM" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="CPU" type="xs:string"/>
+                        <xs:element name="CPU_USED" type="xs:string"/>               
+                        <xs:element name="MEMORY" type="xs:string"/>
+                        <xs:element name="MEMORY_USED" type="xs:string"/>
+                        <xs:element name="VMS" type="xs:string"/>
+                        <xs:element name="VMS_USED" type="xs:string"/>
+                        <xs:element name="VOLATILE_SIZE" type="xs:string"/>
+                        <xs:element name="VOLATILE_SIZE_USED" type="xs:string"/>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="IMAGE_QUOTA" minOccurs="0" maxOccurs="1">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="IMAGE" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="ID" type="xs:string"/>
+                        <xs:element name="RVMS" type="xs:string"/>
+                        <xs:element name="RVMS_USED" type="xs:string"/>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="DEFAULT_GROUP_QUOTAS">
+              <xs:complexType>
+                <xs:sequence>
+                    <xs:element name="DATASTORE_QUOTA" minOccurs="0" maxOccurs="1">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="DATASTORE" minOccurs="0" maxOccurs="unbounded">
+                          <xs:complexType>
+                            <xs:sequence>
+                              <xs:element name="ID" type="xs:string"/>
+                              <xs:element name="IMAGES" type="xs:string"/>
+                              <xs:element name="IMAGES_USED" type="xs:string"/>
+                              <xs:element name="SIZE" type="xs:string"/>
+                              <xs:element name="SIZE_USED" type="xs:string"/>
+                            </xs:sequence>
+                          </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="NETWORK_QUOTA" minOccurs="0" maxOccurs="1">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="NETWORK" minOccurs="0" maxOccurs="unbounded">
+                          <xs:complexType>
+                            <xs:sequence>
+                              <xs:element name="ID" type="xs:string"/>
+                              <xs:element name="LEASES" type="xs:string"/>
+                              <xs:element name="LEASES_USED" type="xs:string"/>
+                            </xs:sequence>
+                          </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="VM_QUOTA" minOccurs="0" maxOccurs="1">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="VM" minOccurs="0" maxOccurs="1">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="CPU" type="xs:string"/>
+                                <xs:element name="CPU_USED" type="xs:string"/>               
+                                <xs:element name="MEMORY" type="xs:string"/>
+                                <xs:element name="MEMORY_USED" type="xs:string"/>
+                                <xs:element name="VMS" type="xs:string"/>
+                                <xs:element name="VMS_USED" type="xs:string"/>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="IMAGE_QUOTA" minOccurs="0" maxOccurs="1">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="IMAGE" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="ID" type="xs:string"/>
+                                <xs:element name="RVMS" type="xs:string"/>
+                                <xs:element name="RVMS_USED" type="xs:string"/>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
 
-.. code:: code
+.. code::
 
-<?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
-<xs:element name="GROUP_POOL">
-<xs:complexType>
-<xs:sequence maxOccurs="1" minOccurs="1">
-<xs:element name="GROUP" maxOccurs="unbounded" minOccurs="0">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:integer"/>
-<xs:element name="NAME" type="xs:string"/>
-<xs:element name="USERS">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:integer" minOccurs="0" maxOccurs="unbounded"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="DATASTORE_QUOTA" minOccurs="0" maxOccurs="1">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="DATASTORE" minOccurs="0" maxOccurs="unbounded">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:string"/>
-<xs:element name="IMAGES" type="xs:string"/>
-<xs:element name="IMAGES_USED" type="xs:string"/>
-<xs:element name="SIZE" type="xs:string"/>
-<xs:element name="SIZE_USED" type="xs:string"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="NETWORK_QUOTA" minOccurs="0" maxOccurs="1">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="NETWORK" minOccurs="0" maxOccurs="unbounded">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:string"/>
-<xs:element name="LEASES" type="xs:string"/>
-<xs:element name="LEASES_USED" type="xs:string"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="VM_QUOTA" minOccurs="0" maxOccurs="1">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="VM" minOccurs="0" maxOccurs="1">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="CPU" type="xs:string"/>
-<xs:element name="CPU_USED" type="xs:string"/>
-<xs:element name="MEMORY" type="xs:string"/>
-<xs:element name="MEMORY_USED" type="xs:string"/>
-<xs:element name="VMS" type="xs:string"/>
-<xs:element name="VMS_USED" type="xs:string"/>
-<xs:element name="VOLATILE_SIZE" type="xs:string"/>
-<xs:element name="VOLATILE_SIZE_USED" type="xs:string"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="IMAGE_QUOTA" minOccurs="0" maxOccurs="1">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="IMAGE" minOccurs="0" maxOccurs="unbounded">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:string"/>
-<xs:element name="RVMS" type="xs:string"/>
-<xs:element name="RVMS_USED" type="xs:string"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="DEFAULT_GROUP_QUOTAS" minOccurs="1" maxOccurs="1">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="DATASTORE_QUOTA" minOccurs="0" maxOccurs="1">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="DATASTORE" minOccurs="0" maxOccurs="unbounded">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:string"/>
-<xs:element name="IMAGES" type="xs:string"/>
-<xs:element name="IMAGES_USED" type="xs:string"/>
-<xs:element name="SIZE" type="xs:string"/>
-<xs:element name="SIZE_USED" type="xs:string"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="NETWORK_QUOTA" minOccurs="0" maxOccurs="1">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="NETWORK" minOccurs="0" maxOccurs="unbounded">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:string"/>
-<xs:element name="LEASES" type="xs:string"/>
-<xs:element name="LEASES_USED" type="xs:string"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="VM_QUOTA" minOccurs="0" maxOccurs="1">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="VM" minOccurs="0" maxOccurs="1">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="CPU" type="xs:string"/>
-<xs:element name="CPU_USED" type="xs:string"/>
-<xs:element name="MEMORY" type="xs:string"/>
-<xs:element name="MEMORY_USED" type="xs:string"/>
-<xs:element name="VMS" type="xs:string"/>
-<xs:element name="VMS_USED" type="xs:string"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="IMAGE_QUOTA" minOccurs="0" maxOccurs="1">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="IMAGE" minOccurs="0" maxOccurs="unbounded">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:string"/>
-<xs:element name="RVMS" type="xs:string"/>
-<xs:element name="RVMS_USED" type="xs:string"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:schema>
+    <?xml version="1.0" encoding="UTF-8"?>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+      targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
+      <xs:element name="GROUP_POOL">
+        <xs:complexType>
+          <xs:sequence maxOccurs="1" minOccurs="1">
+              <xs:element name="GROUP" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="ID" type="xs:integer"/>
+                    <xs:element name="NAME" type="xs:string"/>
+                    <xs:element name="USERS">
+                          <xs:complexType>
+                            <xs:sequence>
+                              <xs:element name="ID" type="xs:integer" minOccurs="0" maxOccurs="unbounded"/>
+                            </xs:sequence>
+                          </xs:complexType>
+                    </xs:element>
+                    <xs:element name="DATASTORE_QUOTA" minOccurs="0" maxOccurs="1">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="DATASTORE" minOccurs="0" maxOccurs="unbounded">
+                          <xs:complexType>
+                            <xs:sequence>
+                              <xs:element name="ID" type="xs:string"/>
+                              <xs:element name="IMAGES" type="xs:string"/>
+                              <xs:element name="IMAGES_USED" type="xs:string"/>
+                              <xs:element name="SIZE" type="xs:string"/>
+                              <xs:element name="SIZE_USED" type="xs:string"/>
+                            </xs:sequence>
+                          </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="NETWORK_QUOTA" minOccurs="0" maxOccurs="1">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="NETWORK" minOccurs="0" maxOccurs="unbounded">
+                          <xs:complexType>
+                            <xs:sequence>
+                              <xs:element name="ID" type="xs:string"/>
+                              <xs:element name="LEASES" type="xs:string"/>
+                              <xs:element name="LEASES_USED" type="xs:string"/>
+                            </xs:sequence>
+                          </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="VM_QUOTA" minOccurs="0" maxOccurs="1">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="VM" minOccurs="0" maxOccurs="1">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="CPU" type="xs:string"/>
+                                <xs:element name="CPU_USED" type="xs:string"/>               
+                                <xs:element name="MEMORY" type="xs:string"/>
+                                <xs:element name="MEMORY_USED" type="xs:string"/>
+                                <xs:element name="VMS" type="xs:string"/>
+                                <xs:element name="VMS_USED" type="xs:string"/>
+                                <xs:element name="VOLATILE_SIZE" type="xs:string"/>
+                                <xs:element name="VOLATILE_SIZE_USED" type="xs:string"/>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="IMAGE_QUOTA" minOccurs="0" maxOccurs="1">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="IMAGE" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="ID" type="xs:string"/>
+                                <xs:element name="RVMS" type="xs:string"/>
+                                <xs:element name="RVMS_USED" type="xs:string"/>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="DEFAULT_GROUP_QUOTAS" minOccurs="1" maxOccurs="1">
+                <xs:complexType>
+                  <xs:sequence>
+                      <xs:element name="DATASTORE_QUOTA" minOccurs="0" maxOccurs="1">
+                        <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="DATASTORE" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="ID" type="xs:string"/>
+                                <xs:element name="IMAGES" type="xs:string"/>
+                                <xs:element name="IMAGES_USED" type="xs:string"/>
+                                <xs:element name="SIZE" type="xs:string"/>
+                                <xs:element name="SIZE_USED" type="xs:string"/>
+                              </xs:sequence>
+                            </xs:complexType>
+                            </xs:element>
+                          </xs:sequence>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="NETWORK_QUOTA" minOccurs="0" maxOccurs="1">
+                        <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="NETWORK" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="ID" type="xs:string"/>
+                                <xs:element name="LEASES" type="xs:string"/>
+                                <xs:element name="LEASES_USED" type="xs:string"/>
+                              </xs:sequence>
+                            </xs:complexType>
+                            </xs:element>
+                          </xs:sequence>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="VM_QUOTA" minOccurs="0" maxOccurs="1">
+                        <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="VM" minOccurs="0" maxOccurs="1">
+                              <xs:complexType>
+                                <xs:sequence>
+                                  <xs:element name="CPU" type="xs:string"/>
+                                  <xs:element name="CPU_USED" type="xs:string"/>               
+                                  <xs:element name="MEMORY" type="xs:string"/>
+                                  <xs:element name="MEMORY_USED" type="xs:string"/>
+                                  <xs:element name="VMS" type="xs:string"/>
+                                  <xs:element name="VMS_USED" type="xs:string"/>
+                                </xs:sequence>
+                              </xs:complexType>
+                            </xs:element>
+                          </xs:sequence>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="IMAGE_QUOTA" minOccurs="0" maxOccurs="1">
+                        <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="IMAGE" minOccurs="0" maxOccurs="unbounded">
+                              <xs:complexType>
+                                <xs:sequence>
+                                  <xs:element name="ID" type="xs:string"/>
+                                  <xs:element name="RVMS" type="xs:string"/>
+                                  <xs:element name="RVMS_USED" type="xs:string"/>
+                                </xs:sequence>
+                              </xs:complexType>
+                            </xs:element>
+                          </xs:sequence>
+                        </xs:complexType>
+                      </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
 
 Schemas for Host
 ----------------
 
-.. code:: code
+.. code::
 
-<?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://opennebula.org/XMLSchema" elementFormDefault="qualified" targetNamespace="http://opennebula.org/XMLSchema">
-<xs:element name="HOST">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:integer"/>
-<xs:element name="NAME" type="xs:string"/>
-<!-- STATE values
- 
-INIT                 = 0  Initial state for enabled hosts
-MONITORING_MONITORED = 1  Monitoring the host (from monitored)
-MONITORED            = 2  The host has been successfully monitored
-ERROR                = 3  An error ocurrer while monitoring the host
-DISABLED             = 4  The host is disabled won't be monitored
-MONITORING_ERROR     = 5  Monitoring the host (from error)
-MONITORING_INIT      = 6  Monitoring the host (from init)
-MONITORING_DISABLED  = 7  Monitoring the host (from disabled)
--->
-<xs:element name="STATE" type="xs:integer"/>
-<xs:element name="IM_MAD" type="xs:string"/>
-<xs:element name="VM_MAD" type="xs:string"/>
-<xs:element name="VN_MAD" type="xs:string"/>
-<xs:element name="LAST_MON_TIME" type="xs:integer"/>
-<xs:element name="CLUSTER_ID" type="xs:integer"/>
-<xs:element name="CLUSTER" type="xs:string"/>
-<xs:element name="HOST_SHARE">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="DISK_USAGE" type="xs:integer"/>
-<xs:element name="MEM_USAGE" type="xs:integer"/>
-<!-- ^^ KB, Usage of MEMORY calculated by ONE as the summatory MEMORY requested by all VMs running in the host   -->
-<xs:element name="CPU_USAGE" type="xs:integer"/>
-<!-- ^^ Percentage, Usage of CPU calculated by ONE as the summatory CPU requested by all VMs running in the host   -->
-<xs:element name="MAX_DISK" type="xs:integer"/>
-<xs:element name="MAX_MEM" type="xs:integer"/>
-<!-- ^^ KB, Total memory in the host   -->
-<xs:element name="MAX_CPU" type="xs:integer"/>
-<!-- ^^ Percentage, Total CPU in the host (# cores * 100)  -->
-<xs:element name="FREE_DISK" type="xs:integer"/>
-<xs:element name="FREE_MEM" type="xs:integer"/>
-<!-- ^^ KB, Free MEMORY returned by the probes   -->
-<xs:element name="FREE_CPU" type="xs:integer"/>
-<!-- ^^ Percentage, Free CPU as returned by the probes   -->
-<xs:element name="USED_DISK" type="xs:integer"/>
-<xs:element name="USED_MEM" type="xs:integer"/>
-<!-- ^^ KB, Memory used by all host processes (including VMs) over a total of MAX_MEM   -->
-<xs:element name="USED_CPU" type="xs:integer"/>
-<!-- ^^ Percentage of CPU used by all host processes (including VMs) over a total of # cores * 100   -->
-<xs:element name="RUNNING_VMS" type="xs:integer"/>
-<xs:element name="DATASTORES">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="DS" minOccurs="0" maxOccurs="unbounded">
-<xs:complexType>
-<xs:all>
-<xs:element name="ID" type="xs:integer"/>
-<xs:element name="FREE_MB" type="xs:integer"/>
-<xs:element name="TOTAL_MB" type="xs:integer"/>
-<xs:element name="USED_MB" type="xs:integer"/>
-</xs:all>
-</xs:complexType>
-</xs:element>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="VMS">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:integer" minOccurs="0" maxOccurs="unbounded"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="TEMPLATE" type="xs:anyType"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:schema>
+    <?xml version="1.0" encoding="UTF-8"?>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://opennebula.org/XMLSchema" elementFormDefault="qualified" targetNamespace="http://opennebula.org/XMLSchema">
+      <xs:element name="HOST">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="ID" type="xs:integer"/>
+            <xs:element name="NAME" type="xs:string"/>
+            <!-- STATE values
+     
+              INIT                 = 0  Initial state for enabled hosts
+              MONITORING_MONITORED = 1  Monitoring the host (from monitored)
+              MONITORED            = 2  The host has been successfully monitored
+              ERROR                = 3  An error ocurrer while monitoring the host
+              DISABLED             = 4  The host is disabled won't be monitored
+              MONITORING_ERROR     = 5  Monitoring the host (from error)
+              MONITORING_INIT      = 6  Monitoring the host (from init)
+              MONITORING_DISABLED  = 7  Monitoring the host (from disabled)
+            -->
+            <xs:element name="STATE" type="xs:integer"/>
+            <xs:element name="IM_MAD" type="xs:string"/>
+            <xs:element name="VM_MAD" type="xs:string"/>
+            <xs:element name="VN_MAD" type="xs:string"/>
+            <xs:element name="LAST_MON_TIME" type="xs:integer"/>
+            <xs:element name="CLUSTER_ID" type="xs:integer"/>
+            <xs:element name="CLUSTER" type="xs:string"/>
+            <xs:element name="HOST_SHARE">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="DISK_USAGE" type="xs:integer"/>
+                  <xs:element name="MEM_USAGE" type="xs:integer"/>
+                  <!-- ^^ KB, Usage of MEMORY calculated by ONE as the summatory MEMORY requested by all VMs running in the host   -->
+                  <xs:element name="CPU_USAGE" type="xs:integer"/>
+                  <!-- ^^ Percentage, Usage of CPU calculated by ONE as the summatory CPU requested by all VMs running in the host   -->
+                  <xs:element name="MAX_DISK" type="xs:integer"/>
+                  <xs:element name="MAX_MEM" type="xs:integer"/>
+                  <!-- ^^ KB, Total memory in the host   -->
+                  <xs:element name="MAX_CPU" type="xs:integer"/>
+                  <!-- ^^ Percentage, Total CPU in the host (# cores * 100)  -->
+                  <xs:element name="FREE_DISK" type="xs:integer"/>
+                  <xs:element name="FREE_MEM" type="xs:integer"/>
+                  <!-- ^^ KB, Free MEMORY returned by the probes   -->
+                  <xs:element name="FREE_CPU" type="xs:integer"/>
+                  <!-- ^^ Percentage, Free CPU as returned by the probes   -->
+                  <xs:element name="USED_DISK" type="xs:integer"/>
+                  <xs:element name="USED_MEM" type="xs:integer"/>
+                  <!-- ^^ KB, Memory used by all host processes (including VMs) over a total of MAX_MEM   -->
+                  <xs:element name="USED_CPU" type="xs:integer"/>
+                  <!-- ^^ Percentage of CPU used by all host processes (including VMs) over a total of # cores * 100   -->
+                  <xs:element name="RUNNING_VMS" type="xs:integer"/>
+                  <xs:element name="DATASTORES">
+                        <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="DS" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:all>
+                                      <xs:element name="ID" type="xs:integer"/>
+                                      <xs:element name="FREE_MB" type="xs:integer"/>
+                                      <xs:element name="TOTAL_MB" type="xs:integer"/>
+                                      <xs:element name="USED_MB" type="xs:integer"/>
+                                    </xs:all>
+                                  </xs:complexType>
+                            </xs:element>
+                          </xs:sequence>
+                        </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="VMS">
+                  <xs:complexType>
+                    <xs:sequence>
+                      <xs:element name="ID" type="xs:integer" minOccurs="0" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                  </xs:complexType>
+            </xs:element>
+            <xs:element name="TEMPLATE" type="xs:anyType"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
 
-.. code:: code
+.. code::
 
-<?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
-<xs:include schemaLocation="host.xsd"/>
-<xs:element name="HOST_POOL">
-<xs:complexType>
-<xs:sequence maxOccurs="1" minOccurs="1">
-<xs:element ref="HOST" maxOccurs="unbounded" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:schema>
+    <?xml version="1.0" encoding="UTF-8"?>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+      targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
+      <xs:include schemaLocation="host.xsd"/>
+      <xs:element name="HOST_POOL">
+        <xs:complexType>
+          <xs:sequence maxOccurs="1" minOccurs="1">
+            <xs:element ref="HOST" maxOccurs="unbounded" minOccurs="0"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
 
 Schemas for Image
 -----------------
 
-.. code:: code
+.. code::
 
-<?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://opennebula.org/XMLSchema" elementFormDefault="qualified" targetNamespace="http://opennebula.org/XMLSchema">
-<xs:element name="IMAGE">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:integer"/>
-<xs:element name="UID" type="xs:integer"/>
-<xs:element name="GID" type="xs:integer"/>
-<xs:element name="UNAME" type="xs:string"/>
-<xs:element name="GNAME" type="xs:string"/>
-<xs:element name="NAME" type="xs:string"/>
-<xs:element name="PERMISSIONS" minOccurs="0" maxOccurs="1">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="OWNER_U" type="xs:integer"/>
-<xs:element name="OWNER_M" type="xs:integer"/>
-<xs:element name="OWNER_A" type="xs:integer"/>
-<xs:element name="GROUP_U" type="xs:integer"/>
-<xs:element name="GROUP_M" type="xs:integer"/>
-<xs:element name="GROUP_A" type="xs:integer"/>
-<xs:element name="OTHER_U" type="xs:integer"/>
-<xs:element name="OTHER_M" type="xs:integer"/>
-<xs:element name="OTHER_A" type="xs:integer"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="TYPE" type="xs:integer"/>
-<xs:element name="DISK_TYPE" type="xs:integer"/>
-<xs:element name="PERSISTENT" type="xs:integer"/>
-<xs:element name="REGTIME" type="xs:integer"/>
-<xs:element name="SOURCE" type="xs:string"/>
-<xs:element name="PATH" type="xs:string"/>
-<xs:element name="FSTYPE" type="xs:string"/>
-<xs:element name="SIZE" type="xs:integer"/>
- 
-<!-- STATE values,
-INIT      = 0, Initialization state
-READY     = 1, Image ready to use
-USED      = 2, Image in use
-DISABLED  = 3, Image can not be instantiated by a VM
-LOCKED    = 4, FS operation for the Image in process
-ERROR     = 5, Error state the operation FAILED
-CLONE     = 6, Image is being cloned
-DELETE    = 7, DS is deleting the image
-USED_PERS = 8, Image is in use and persistent
--->
-<xs:element name="STATE" type="xs:integer"/>
-<xs:element name="RUNNING_VMS" type="xs:integer"/>
-<xs:element name="CLONING_OPS" type="xs:integer"/>
-<xs:element name="CLONING_ID" type="xs:integer"/>
-<xs:element name="DATASTORE_ID" type="xs:integer"/>
-<xs:element name="DATASTORE" type="xs:string"/>
-<xs:element name="VMS">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:integer" minOccurs="0" maxOccurs="unbounded"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="CLONES">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:integer" minOccurs="0" maxOccurs="unbounded"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="TEMPLATE" type="xs:anyType"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:schema>
+    <?xml version="1.0" encoding="UTF-8"?>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://opennebula.org/XMLSchema" elementFormDefault="qualified" targetNamespace="http://opennebula.org/XMLSchema">
+      <xs:element name="IMAGE">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="ID" type="xs:integer"/>
+            <xs:element name="UID" type="xs:integer"/>
+            <xs:element name="GID" type="xs:integer"/>
+            <xs:element name="UNAME" type="xs:string"/>
+            <xs:element name="GNAME" type="xs:string"/>
+            <xs:element name="NAME" type="xs:string"/>
+            <xs:element name="PERMISSIONS" minOccurs="0" maxOccurs="1">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="OWNER_U" type="xs:integer"/>
+                  <xs:element name="OWNER_M" type="xs:integer"/>
+                  <xs:element name="OWNER_A" type="xs:integer"/>
+                  <xs:element name="GROUP_U" type="xs:integer"/>
+                  <xs:element name="GROUP_M" type="xs:integer"/>
+                  <xs:element name="GROUP_A" type="xs:integer"/>
+                  <xs:element name="OTHER_U" type="xs:integer"/>
+                  <xs:element name="OTHER_M" type="xs:integer"/>
+                  <xs:element name="OTHER_A" type="xs:integer"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="TYPE" type="xs:integer"/>
+            <xs:element name="DISK_TYPE" type="xs:integer"/>
+            <xs:element name="PERSISTENT" type="xs:integer"/>
+            <xs:element name="REGTIME" type="xs:integer"/>
+            <xs:element name="SOURCE" type="xs:string"/>
+            <xs:element name="PATH" type="xs:string"/>
+            <xs:element name="FSTYPE" type="xs:string"/>
+            <xs:element name="SIZE" type="xs:integer"/>
+     
+            <!-- STATE values,
+              INIT      = 0, Initialization state
+              READY     = 1, Image ready to use
+              USED      = 2, Image in use
+              DISABLED  = 3, Image can not be instantiated by a VM
+              LOCKED    = 4, FS operation for the Image in process
+              ERROR     = 5, Error state the operation FAILED
+              CLONE     = 6, Image is being cloned
+              DELETE    = 7, DS is deleting the image
+              USED_PERS = 8, Image is in use and persistent
+            -->
+            <xs:element name="STATE" type="xs:integer"/>
+            <xs:element name="RUNNING_VMS" type="xs:integer"/>
+            <xs:element name="CLONING_OPS" type="xs:integer"/>
+            <xs:element name="CLONING_ID" type="xs:integer"/>
+            <xs:element name="DATASTORE_ID" type="xs:integer"/>
+            <xs:element name="DATASTORE" type="xs:string"/>
+            <xs:element name="VMS">
+                  <xs:complexType>
+                    <xs:sequence>
+                      <xs:element name="ID" type="xs:integer" minOccurs="0" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                  </xs:complexType>
+            </xs:element>
+            <xs:element name="CLONES">
+                  <xs:complexType>
+                    <xs:sequence>
+                      <xs:element name="ID" type="xs:integer" minOccurs="0" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                  </xs:complexType>
+            </xs:element>
+            <xs:element name="TEMPLATE" type="xs:anyType"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
 
-.. code:: code
+.. code::
 
-<?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
-<xs:include schemaLocation="image.xsd"/>
-<xs:element name="IMAGE_POOL">
-<xs:complexType>
-<xs:sequence maxOccurs="1" minOccurs="1">
-<xs:element ref="IMAGE" maxOccurs="unbounded" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:schema>
+    <?xml version="1.0" encoding="UTF-8"?>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+      targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
+      <xs:include schemaLocation="image.xsd"/>
+      <xs:element name="IMAGE_POOL">
+        <xs:complexType>
+          <xs:sequence maxOccurs="1" minOccurs="1">
+            <xs:element ref="IMAGE" maxOccurs="unbounded" minOccurs="0"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
 
 Schemas for User
 ----------------
 
-.. code:: code
+.. code::
 
-<?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
-<xs:element name="USER">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:integer"/>
-<xs:element name="GID" type="xs:integer"/>
-<xs:element name="GROUPS">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:integer" minOccurs="1" maxOccurs="unbounded"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="GNAME" type="xs:string"/>
-<xs:element name="NAME" type="xs:string"/>
-<xs:element name="PASSWORD" type="xs:string"/>
-<xs:element name="AUTH_DRIVER" type="xs:string"/>
-<xs:element name="ENABLED" type="xs:integer"/>
-<xs:element name="TEMPLATE" type="xs:anyType"/>
-<xs:element name="DATASTORE_QUOTA" minOccurs="0" maxOccurs="1">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="DATASTORE" minOccurs="0" maxOccurs="unbounded">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:string"/>
-<xs:element name="IMAGES" type="xs:string"/>
-<xs:element name="IMAGES_USED" type="xs:string"/>
-<xs:element name="SIZE" type="xs:string"/>
-<xs:element name="SIZE_USED" type="xs:string"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="NETWORK_QUOTA" minOccurs="0" maxOccurs="1">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="NETWORK" minOccurs="0" maxOccurs="unbounded">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:string"/>
-<xs:element name="LEASES" type="xs:string"/>
-<xs:element name="LEASES_USED" type="xs:string"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="VM_QUOTA" minOccurs="0" maxOccurs="1">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="VM" minOccurs="0" maxOccurs="1">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="CPU" type="xs:string"/>
-<xs:element name="CPU_USED" type="xs:string"/>
-<xs:element name="MEMORY" type="xs:string"/>
-<xs:element name="MEMORY_USED" type="xs:string"/>
-<xs:element name="VMS" type="xs:string"/>
-<xs:element name="VMS_USED" type="xs:string"/>
-<xs:element name="VOLATILE_SIZE" type="xs:string"/>
-<xs:element name="VOLATILE_SIZE_USED" type="xs:string"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="IMAGE_QUOTA" minOccurs="0" maxOccurs="1">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="IMAGE" minOccurs="0" maxOccurs="unbounded">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:string"/>
-<xs:element name="RVMS" type="xs:string"/>
-<xs:element name="RVMS_USED" type="xs:string"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="DEFAULT_USER_QUOTAS">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="DATASTORE_QUOTA" minOccurs="0" maxOccurs="1">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="DATASTORE" minOccurs="0" maxOccurs="unbounded">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:string"/>
-<xs:element name="IMAGES" type="xs:string"/>
-<xs:element name="IMAGES_USED" type="xs:string"/>
-<xs:element name="SIZE" type="xs:string"/>
-<xs:element name="SIZE_USED" type="xs:string"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="NETWORK_QUOTA" minOccurs="0" maxOccurs="1">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="NETWORK" minOccurs="0" maxOccurs="unbounded">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:string"/>
-<xs:element name="LEASES" type="xs:string"/>
-<xs:element name="LEASES_USED" type="xs:string"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="VM_QUOTA" minOccurs="0" maxOccurs="1">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="VM" minOccurs="0" maxOccurs="1">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="CPU" type="xs:string"/>
-<xs:element name="CPU_USED" type="xs:string"/>
-<xs:element name="MEMORY" type="xs:string"/>
-<xs:element name="MEMORY_USED" type="xs:string"/>
-<xs:element name="VMS" type="xs:string"/>
-<xs:element name="VMS_USED" type="xs:string"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="IMAGE_QUOTA" minOccurs="0" maxOccurs="1">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="IMAGE" minOccurs="0" maxOccurs="unbounded">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:string"/>
-<xs:element name="RVMS" type="xs:string"/>
-<xs:element name="RVMS_USED" type="xs:string"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:schema>
+    <?xml version="1.0" encoding="UTF-8"?>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+      targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
+      <xs:element name="USER">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="ID" type="xs:integer"/>
+            <xs:element name="GID" type="xs:integer"/>
+            <xs:element name="GROUPS">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="ID" type="xs:integer" minOccurs="1" maxOccurs="unbounded"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="GNAME" type="xs:string"/>
+            <xs:element name="NAME" type="xs:string"/>
+            <xs:element name="PASSWORD" type="xs:string"/>
+            <xs:element name="AUTH_DRIVER" type="xs:string"/>
+            <xs:element name="ENABLED" type="xs:integer"/>
+            <xs:element name="TEMPLATE" type="xs:anyType"/>
+            <xs:element name="DATASTORE_QUOTA" minOccurs="0" maxOccurs="1">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="DATASTORE" minOccurs="0" maxOccurs="unbounded">
+                  <xs:complexType>
+                    <xs:sequence>
+                      <xs:element name="ID" type="xs:string"/>
+                      <xs:element name="IMAGES" type="xs:string"/>
+                      <xs:element name="IMAGES_USED" type="xs:string"/>
+                      <xs:element name="SIZE" type="xs:string"/>
+                      <xs:element name="SIZE_USED" type="xs:string"/>
+                    </xs:sequence>
+                  </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="NETWORK_QUOTA" minOccurs="0" maxOccurs="1">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="NETWORK" minOccurs="0" maxOccurs="unbounded">
+                  <xs:complexType>
+                    <xs:sequence>
+                      <xs:element name="ID" type="xs:string"/>
+                      <xs:element name="LEASES" type="xs:string"/>
+                      <xs:element name="LEASES_USED" type="xs:string"/>
+                    </xs:sequence>
+                  </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="VM_QUOTA" minOccurs="0" maxOccurs="1">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="VM" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="CPU" type="xs:string"/>
+                        <xs:element name="CPU_USED" type="xs:string"/>               
+                        <xs:element name="MEMORY" type="xs:string"/>
+                        <xs:element name="MEMORY_USED" type="xs:string"/>
+                        <xs:element name="VMS" type="xs:string"/>
+                        <xs:element name="VMS_USED" type="xs:string"/>
+                        <xs:element name="VOLATILE_SIZE" type="xs:string"/>
+                        <xs:element name="VOLATILE_SIZE_USED" type="xs:string"/>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="IMAGE_QUOTA" minOccurs="0" maxOccurs="1">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="IMAGE" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="ID" type="xs:string"/>
+                        <xs:element name="RVMS" type="xs:string"/>
+                        <xs:element name="RVMS_USED" type="xs:string"/>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="DEFAULT_USER_QUOTAS">
+              <xs:complexType>
+                <xs:sequence>
+                    <xs:element name="DATASTORE_QUOTA" minOccurs="0" maxOccurs="1">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="DATASTORE" minOccurs="0" maxOccurs="unbounded">
+                          <xs:complexType>
+                            <xs:sequence>
+                              <xs:element name="ID" type="xs:string"/>
+                              <xs:element name="IMAGES" type="xs:string"/>
+                              <xs:element name="IMAGES_USED" type="xs:string"/>
+                              <xs:element name="SIZE" type="xs:string"/>
+                              <xs:element name="SIZE_USED" type="xs:string"/>
+                            </xs:sequence>
+                          </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="NETWORK_QUOTA" minOccurs="0" maxOccurs="1">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="NETWORK" minOccurs="0" maxOccurs="unbounded">
+                          <xs:complexType>
+                            <xs:sequence>
+                              <xs:element name="ID" type="xs:string"/>
+                              <xs:element name="LEASES" type="xs:string"/>
+                              <xs:element name="LEASES_USED" type="xs:string"/>
+                            </xs:sequence>
+                          </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="VM_QUOTA" minOccurs="0" maxOccurs="1">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="VM" minOccurs="0" maxOccurs="1">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="CPU" type="xs:string"/>
+                                <xs:element name="CPU_USED" type="xs:string"/>               
+                                <xs:element name="MEMORY" type="xs:string"/>
+                                <xs:element name="MEMORY_USED" type="xs:string"/>
+                                <xs:element name="VMS" type="xs:string"/>
+                                <xs:element name="VMS_USED" type="xs:string"/>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="IMAGE_QUOTA" minOccurs="0" maxOccurs="1">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="IMAGE" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="ID" type="xs:string"/>
+                                <xs:element name="RVMS" type="xs:string"/>
+                                <xs:element name="RVMS_USED" type="xs:string"/>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
 
-.. code:: code
+.. code::
 
-<?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
-<xs:include schemaLocation="user.xsd"/>
-<xs:element name="USER_POOL">
-<xs:complexType>
-<xs:sequence maxOccurs="1" minOccurs="1">
-<xs:element name="USER" maxOccurs="unbounded" minOccurs="0">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:integer"/>
-<xs:element name="GID" type="xs:integer"/>
-<xs:element name="GROUPS">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:integer" minOccurs="1" maxOccurs="unbounded"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="GNAME" type="xs:string"/>
-<xs:element name="NAME" type="xs:string"/>
-<xs:element name="PASSWORD" type="xs:string"/>
-<xs:element name="AUTH_DRIVER" type="xs:string"/>
-<xs:element name="ENABLED" type="xs:integer"/>
-<xs:element name="TEMPLATE" type="xs:anyType"/>
-<xs:element name="DATASTORE_QUOTA" minOccurs="0" maxOccurs="1">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="DATASTORE" minOccurs="0" maxOccurs="unbounded">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:string"/>
-<xs:element name="IMAGES" type="xs:string"/>
-<xs:element name="IMAGES_USED" type="xs:string"/>
-<xs:element name="SIZE" type="xs:string"/>
-<xs:element name="SIZE_USED" type="xs:string"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="NETWORK_QUOTA" minOccurs="0" maxOccurs="1">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="NETWORK" minOccurs="0" maxOccurs="unbounded">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:string"/>
-<xs:element name="LEASES" type="xs:string"/>
-<xs:element name="LEASES_USED" type="xs:string"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="VM_QUOTA" minOccurs="0" maxOccurs="1">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="VM" minOccurs="0" maxOccurs="1">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="CPU" type="xs:string"/>
-<xs:element name="CPU_USED" type="xs:string"/>
-<xs:element name="MEMORY" type="xs:string"/>
-<xs:element name="MEMORY_USED" type="xs:string"/>
-<xs:element name="VMS" type="xs:string"/>
-<xs:element name="VMS_USED" type="xs:string"/>
-<xs:element name="VOLATILE_SIZE" type="xs:string"/>
-<xs:element name="VOLATILE_SIZE_USED" type="xs:string"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="IMAGE_QUOTA" minOccurs="0" maxOccurs="1">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="IMAGE" minOccurs="0" maxOccurs="unbounded">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:string"/>
-<xs:element name="RVMS" type="xs:string"/>
-<xs:element name="RVMS_USED" type="xs:string"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="DEFAULT_USER_QUOTAS">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="DATASTORE_QUOTA" minOccurs="0" maxOccurs="1">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="DATASTORE" minOccurs="0" maxOccurs="unbounded">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:string"/>
-<xs:element name="IMAGES" type="xs:string"/>
-<xs:element name="IMAGES_USED" type="xs:string"/>
-<xs:element name="SIZE" type="xs:string"/>
-<xs:element name="SIZE_USED" type="xs:string"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="NETWORK_QUOTA" minOccurs="0" maxOccurs="1">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="NETWORK" minOccurs="0" maxOccurs="unbounded">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:string"/>
-<xs:element name="LEASES" type="xs:string"/>
-<xs:element name="LEASES_USED" type="xs:string"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="VM_QUOTA" minOccurs="0" maxOccurs="1">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="VM" minOccurs="0" maxOccurs="1">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="CPU" type="xs:string"/>
-<xs:element name="CPU_USED" type="xs:string"/>
-<xs:element name="MEMORY" type="xs:string"/>
-<xs:element name="MEMORY_USED" type="xs:string"/>
-<xs:element name="VMS" type="xs:string"/>
-<xs:element name="VMS_USED" type="xs:string"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="IMAGE_QUOTA" minOccurs="0" maxOccurs="1">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="IMAGE" minOccurs="0" maxOccurs="unbounded">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:string"/>
-<xs:element name="RVMS" type="xs:string"/>
-<xs:element name="RVMS_USED" type="xs:string"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:schema>
+    <?xml version="1.0" encoding="UTF-8"?>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+      targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
+      <xs:include schemaLocation="user.xsd"/>
+      <xs:element name="USER_POOL">
+        <xs:complexType>
+          <xs:sequence maxOccurs="1" minOccurs="1">
+            <xs:element name="USER" maxOccurs="unbounded" minOccurs="0">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="ID" type="xs:integer"/>
+                  <xs:element name="GID" type="xs:integer"/>
+                  <xs:element name="GROUPS">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="ID" type="xs:integer" minOccurs="1" maxOccurs="unbounded"/>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="GNAME" type="xs:string"/>
+                  <xs:element name="NAME" type="xs:string"/>
+                  <xs:element name="PASSWORD" type="xs:string"/>
+                  <xs:element name="AUTH_DRIVER" type="xs:string"/>
+                  <xs:element name="ENABLED" type="xs:integer"/>
+                  <xs:element name="TEMPLATE" type="xs:anyType"/>
+                  <xs:element name="DATASTORE_QUOTA" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="DATASTORE" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="ID" type="xs:string"/>
+                            <xs:element name="IMAGES" type="xs:string"/>
+                            <xs:element name="IMAGES_USED" type="xs:string"/>
+                            <xs:element name="SIZE" type="xs:string"/>
+                            <xs:element name="SIZE_USED" type="xs:string"/>
+                          </xs:sequence>
+                        </xs:complexType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="NETWORK_QUOTA" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="NETWORK" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="ID" type="xs:string"/>
+                            <xs:element name="LEASES" type="xs:string"/>
+                            <xs:element name="LEASES_USED" type="xs:string"/>
+                          </xs:sequence>
+                        </xs:complexType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="VM_QUOTA" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="VM" minOccurs="0" maxOccurs="1">
+                          <xs:complexType>
+                            <xs:sequence>
+                              <xs:element name="CPU" type="xs:string"/>
+                              <xs:element name="CPU_USED" type="xs:string"/>               
+                              <xs:element name="MEMORY" type="xs:string"/>
+                              <xs:element name="MEMORY_USED" type="xs:string"/>
+                              <xs:element name="VMS" type="xs:string"/>
+                              <xs:element name="VMS_USED" type="xs:string"/>
+                              <xs:element name="VOLATILE_SIZE" type="xs:string"/>
+                              <xs:element name="VOLATILE_SIZE_USED" type="xs:string"/>
+                            </xs:sequence>
+                          </xs:complexType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="IMAGE_QUOTA" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="IMAGE" minOccurs="0" maxOccurs="unbounded">
+                          <xs:complexType>
+                            <xs:sequence>
+                              <xs:element name="ID" type="xs:string"/>
+                              <xs:element name="RVMS" type="xs:string"/>
+                              <xs:element name="RVMS_USED" type="xs:string"/>
+                            </xs:sequence>
+                          </xs:complexType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="DEFAULT_USER_QUOTAS">
+              <xs:complexType>
+                <xs:sequence>
+                    <xs:element name="DATASTORE_QUOTA" minOccurs="0" maxOccurs="1">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="DATASTORE" minOccurs="0" maxOccurs="unbounded">
+                          <xs:complexType>
+                            <xs:sequence>
+                              <xs:element name="ID" type="xs:string"/>
+                              <xs:element name="IMAGES" type="xs:string"/>
+                              <xs:element name="IMAGES_USED" type="xs:string"/>
+                              <xs:element name="SIZE" type="xs:string"/>
+                              <xs:element name="SIZE_USED" type="xs:string"/>
+                            </xs:sequence>
+                          </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="NETWORK_QUOTA" minOccurs="0" maxOccurs="1">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="NETWORK" minOccurs="0" maxOccurs="unbounded">
+                          <xs:complexType>
+                            <xs:sequence>
+                              <xs:element name="ID" type="xs:string"/>
+                              <xs:element name="LEASES" type="xs:string"/>
+                              <xs:element name="LEASES_USED" type="xs:string"/>
+                            </xs:sequence>
+                          </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="VM_QUOTA" minOccurs="0" maxOccurs="1">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="VM" minOccurs="0" maxOccurs="1">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="CPU" type="xs:string"/>
+                                <xs:element name="CPU_USED" type="xs:string"/>               
+                                <xs:element name="MEMORY" type="xs:string"/>
+                                <xs:element name="MEMORY_USED" type="xs:string"/>
+                                <xs:element name="VMS" type="xs:string"/>
+                                <xs:element name="VMS_USED" type="xs:string"/>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="IMAGE_QUOTA" minOccurs="0" maxOccurs="1">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="IMAGE" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="ID" type="xs:string"/>
+                                <xs:element name="RVMS" type="xs:string"/>
+                                <xs:element name="RVMS_USED" type="xs:string"/>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
 
 Schemas for Virtual Machine
 ---------------------------
 
-.. code:: code
+.. code::
 
-<?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
-<xs:element name="VM">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:integer"/>
-<xs:element name="UID" type="xs:integer"/>
-<xs:element name="GID" type="xs:integer"/>
-<xs:element name="UNAME" type="xs:string"/>
-<xs:element name="GNAME" type="xs:string"/>
-<xs:element name="NAME" type="xs:string"/>
-<xs:element name="PERMISSIONS" minOccurs="0" maxOccurs="1">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="OWNER_U" type="xs:integer"/>
-<xs:element name="OWNER_M" type="xs:integer"/>
-<xs:element name="OWNER_A" type="xs:integer"/>
-<xs:element name="GROUP_U" type="xs:integer"/>
-<xs:element name="GROUP_M" type="xs:integer"/>
-<xs:element name="GROUP_A" type="xs:integer"/>
-<xs:element name="OTHER_U" type="xs:integer"/>
-<xs:element name="OTHER_M" type="xs:integer"/>
-<xs:element name="OTHER_A" type="xs:integer"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="LAST_POLL" type="xs:integer"/>
- 
-<!-- STATE values,
-see http://opennebula.org/_media/documentation:rel3.6:states-complete.png
- 
-INIT      = 0
-PENDING   = 1
-HOLD      = 2
-ACTIVE    = 3 In this state, the Life Cycle Manager state is relevant
-STOPPED   = 4
-SUSPENDED = 5
-DONE      = 6
-FAILED    = 7
-POWEROFF  = 8
-UNDEPLOYED = 9
--->
-<xs:element name="STATE" type="xs:integer"/>
- 
-<!-- LCM_STATE values, this sub-state is relevant only when STATE is
-ACTIVE (4)
- 
-LCM_INIT            = 0,
-PROLOG              = 1,
-BOOT                = 2,
-RUNNING             = 3,
-MIGRATE             = 4,
-SAVE_STOP           = 5,
-SAVE_SUSPEND        = 6,
-SAVE_MIGRATE        = 7,
-PROLOG_MIGRATE      = 8,
-PROLOG_RESUME       = 9,
-EPILOG_STOP         = 10,
-EPILOG              = 11,
-SHUTDOWN            = 12,
-CANCEL              = 13,
-FAILURE             = 14,
-CLEANUP_RESUBMIT    = 15,
-UNKNOWN             = 16,
-HOTPLUG             = 17,
-SHUTDOWN_POWEROFF   = 18,
-BOOT_UNKNOWN        = 19,
-BOOT_POWEROFF       = 20,
-BOOT_SUSPENDED      = 21,
-BOOT_STOPPED        = 22,
-CLEANUP_DELETE      = 23,
-HOTPLUG_SNAPSHOT    = 24,
-HOTPLUG_NIC         = 25,
-HOTPLUG_SAVEAS           = 26,
-HOTPLUG_SAVEAS_POWEROFF  = 27,
-HOTPLUG_SAVEAS_SUSPENDED = 28,
-SHUTDOWN_UNDEPLOY   = 29,
-EPILOG_UNDEPLOY     = 30,
-PROLOG_UNDEPLOY     = 31,
-BOOT_UNDEPLOY       = 32
--->
-<xs:element name="LCM_STATE" type="xs:integer"/>
-<xs:element name="RESCHED" type="xs:integer"/>
-<xs:element name="STIME" type="xs:integer"/>
-<xs:element name="ETIME" type="xs:integer"/>
-<xs:element name="DEPLOY_ID" type="xs:string"/>
- 
-<!-- MEMORY consumption in kilobytes -->
-<xs:element name="MEMORY" type="xs:integer"/>
- 
-<!-- Percentage of 1 CPU consumed (two fully consumed cpu is 200) -->
-<xs:element name="CPU" type="xs:integer"/>
- 
-<!-- NET_TX: Sent bytes to the network -->
-<xs:element name="NET_TX" type="xs:integer"/>
- 
-<!-- NET_RX: Received bytes from the network -->
-<xs:element name="NET_RX" type="xs:integer"/>
-<xs:element name="TEMPLATE" type="xs:anyType"/>
-<xs:element name="USER_TEMPLATE" type="xs:anyType"/>
-<xs:element name="HISTORY_RECORDS">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="HISTORY" maxOccurs="unbounded" minOccurs="0">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="OID" type="xs:integer"/>
-<xs:element name="SEQ" type="xs:integer"/>
-<xs:element name="HOSTNAME" type="xs:string"/>
-<xs:element name="HID" type="xs:integer"/>
-<xs:element name="CID" type="xs:integer"/>
-<xs:element name="STIME" type="xs:integer"/>
-<xs:element name="ETIME" type="xs:integer"/>
-<xs:element name="VMMMAD" type="xs:string"/>
-<xs:element name="VNMMAD" type="xs:string"/>
-<xs:element name="TMMAD" type="xs:string"/>
-<xs:element name="DS_LOCATION" type="xs:string"/>
-<xs:element name="DS_ID" type="xs:integer"/>
-<xs:element name="PSTIME" type="xs:integer"/>
-<xs:element name="PETIME" type="xs:integer"/>
-<xs:element name="RSTIME" type="xs:integer"/>
-<xs:element name="RETIME" type="xs:integer"/>
-<xs:element name="ESTIME" type="xs:integer"/>
-<xs:element name="EETIME" type="xs:integer"/>
- 
-<!-- REASON values:
-NONE  = 0 History record is not closed yet
-ERROR = 1 History record was closed because of an error
-USER  = 2 History record was closed because of a user action
--->
-<xs:element name="REASON" type="xs:integer"/>
- 
-<!-- ACTION values:
-NONE_ACTION             = 0
-MIGRATE_ACTION          = 1
-LIVE_MIGRATE_ACTION     = 2
-SHUTDOWN_ACTION         = 3
-SHUTDOWN_HARD_ACTION    = 4
-UNDEPLOY_ACTION         = 5
-UNDEPLOY_HARD_ACTION    = 6
-HOLD_ACTION             = 7
-RELEASE_ACTION          = 8
-STOP_ACTION             = 9
-SUSPEND_ACTION          = 10
-RESUME_ACTION           = 11
-BOOT_ACTION             = 12
-DELETE_ACTION           = 13
-DELETE_RECREATE_ACTION  = 14
-REBOOT_ACTION           = 15
-REBOOT_HARD_ACTION      = 16
-RESCHED_ACTION          = 17
-UNRESCHED_ACTION        = 18
-POWEROFF_ACTION         = 19
-POWEROFF_HARD_ACTION    = 20
--->
-<xs:element name="ACTION" type="xs:integer"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:schema>
+    <?xml version="1.0" encoding="UTF-8"?>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+      targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
+      <xs:element name="VM">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="ID" type="xs:integer"/>
+            <xs:element name="UID" type="xs:integer"/>
+            <xs:element name="GID" type="xs:integer"/>
+            <xs:element name="UNAME" type="xs:string"/>
+            <xs:element name="GNAME" type="xs:string"/>
+            <xs:element name="NAME" type="xs:string"/>
+            <xs:element name="PERMISSIONS" minOccurs="0" maxOccurs="1">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="OWNER_U" type="xs:integer"/>
+                  <xs:element name="OWNER_M" type="xs:integer"/>
+                  <xs:element name="OWNER_A" type="xs:integer"/>
+                  <xs:element name="GROUP_U" type="xs:integer"/>
+                  <xs:element name="GROUP_M" type="xs:integer"/>
+                  <xs:element name="GROUP_A" type="xs:integer"/>
+                  <xs:element name="OTHER_U" type="xs:integer"/>
+                  <xs:element name="OTHER_M" type="xs:integer"/>
+                  <xs:element name="OTHER_A" type="xs:integer"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="LAST_POLL" type="xs:integer"/>
+     
+            <!-- STATE values,
+            see http://opennebula.org/_media/documentation:rel3.6:states-complete.png
+     
+              INIT      = 0
+              PENDING   = 1
+              HOLD      = 2
+              ACTIVE    = 3 In this state, the Life Cycle Manager state is relevant
+              STOPPED   = 4
+              SUSPENDED = 5
+              DONE      = 6
+              FAILED    = 7
+              POWEROFF  = 8
+              UNDEPLOYED = 9
+            -->
+            <xs:element name="STATE" type="xs:integer"/>
+     
+            <!-- LCM_STATE values, this sub-state is relevant only when STATE is
+                 ACTIVE (4)
+     
+              LCM_INIT            = 0,
+              PROLOG              = 1,
+              BOOT                = 2,
+              RUNNING             = 3,
+              MIGRATE             = 4,
+              SAVE_STOP           = 5,
+              SAVE_SUSPEND        = 6,
+              SAVE_MIGRATE        = 7,
+              PROLOG_MIGRATE      = 8,
+              PROLOG_RESUME       = 9,
+              EPILOG_STOP         = 10,
+              EPILOG              = 11,
+              SHUTDOWN            = 12,
+              CANCEL              = 13,
+              FAILURE             = 14,
+              CLEANUP_RESUBMIT    = 15,
+              UNKNOWN             = 16,
+              HOTPLUG             = 17,
+              SHUTDOWN_POWEROFF   = 18,
+              BOOT_UNKNOWN        = 19,
+              BOOT_POWEROFF       = 20,
+              BOOT_SUSPENDED      = 21,
+              BOOT_STOPPED        = 22,
+              CLEANUP_DELETE      = 23,
+              HOTPLUG_SNAPSHOT    = 24,
+              HOTPLUG_NIC         = 25,
+              HOTPLUG_SAVEAS           = 26,
+              HOTPLUG_SAVEAS_POWEROFF  = 27,
+              HOTPLUG_SAVEAS_SUSPENDED = 28,
+              SHUTDOWN_UNDEPLOY   = 29,
+              EPILOG_UNDEPLOY     = 30,
+              PROLOG_UNDEPLOY     = 31,
+              BOOT_UNDEPLOY       = 32
+            -->
+            <xs:element name="LCM_STATE" type="xs:integer"/>
+            <xs:element name="RESCHED" type="xs:integer"/>
+            <xs:element name="STIME" type="xs:integer"/>
+            <xs:element name="ETIME" type="xs:integer"/>
+            <xs:element name="DEPLOY_ID" type="xs:string"/>
+     
+            <!-- MEMORY consumption in kilobytes -->
+            <xs:element name="MEMORY" type="xs:integer"/>
+     
+            <!-- Percentage of 1 CPU consumed (two fully consumed cpu is 200) -->
+            <xs:element name="CPU" type="xs:integer"/>
+     
+            <!-- NET_TX: Sent bytes to the network -->
+            <xs:element name="NET_TX" type="xs:integer"/>
+     
+            <!-- NET_RX: Received bytes from the network -->
+            <xs:element name="NET_RX" type="xs:integer"/>
+            <xs:element name="TEMPLATE" type="xs:anyType"/>
+            <xs:element name="USER_TEMPLATE" type="xs:anyType"/>
+            <xs:element name="HISTORY_RECORDS">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="HISTORY" maxOccurs="unbounded" minOccurs="0">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="OID" type="xs:integer"/>
+                        <xs:element name="SEQ" type="xs:integer"/>
+                        <xs:element name="HOSTNAME" type="xs:string"/>
+                        <xs:element name="HID" type="xs:integer"/>
+                        <xs:element name="CID" type="xs:integer"/>
+                        <xs:element name="STIME" type="xs:integer"/>
+                        <xs:element name="ETIME" type="xs:integer"/>
+                        <xs:element name="VMMMAD" type="xs:string"/>
+                        <xs:element name="VNMMAD" type="xs:string"/>
+                        <xs:element name="TMMAD" type="xs:string"/>
+                        <xs:element name="DS_LOCATION" type="xs:string"/>
+                        <xs:element name="DS_ID" type="xs:integer"/>
+                        <xs:element name="PSTIME" type="xs:integer"/>
+                        <xs:element name="PETIME" type="xs:integer"/>
+                        <xs:element name="RSTIME" type="xs:integer"/>
+                        <xs:element name="RETIME" type="xs:integer"/>
+                        <xs:element name="ESTIME" type="xs:integer"/>
+                        <xs:element name="EETIME" type="xs:integer"/>
+     
+                        <!-- REASON values:
+                          NONE  = 0 History record is not closed yet
+                          ERROR = 1 History record was closed because of an error
+                          USER  = 2 History record was closed because of a user action
+                        -->
+                        <xs:element name="REASON" type="xs:integer"/>
+     
+                        <!-- ACTION values:
+                          NONE_ACTION             = 0
+                          MIGRATE_ACTION          = 1
+                          LIVE_MIGRATE_ACTION     = 2
+                          SHUTDOWN_ACTION         = 3
+                          SHUTDOWN_HARD_ACTION    = 4
+                          UNDEPLOY_ACTION         = 5
+                          UNDEPLOY_HARD_ACTION    = 6
+                          HOLD_ACTION             = 7
+                          RELEASE_ACTION          = 8
+                          STOP_ACTION             = 9
+                          SUSPEND_ACTION          = 10
+                          RESUME_ACTION           = 11
+                          BOOT_ACTION             = 12
+                          DELETE_ACTION           = 13
+                          DELETE_RECREATE_ACTION  = 14
+                          REBOOT_ACTION           = 15
+                          REBOOT_HARD_ACTION      = 16
+                          RESCHED_ACTION          = 17
+                          UNRESCHED_ACTION        = 18
+                          POWEROFF_ACTION         = 19
+                          POWEROFF_HARD_ACTION    = 20
+                        -->
+                        <xs:element name="ACTION" type="xs:integer"/>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
 
-.. code:: code
+.. code::
 
-<?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified"
-targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
-<xs:include schemaLocation="vm.xsd"/>
-<xs:element name="VM_POOL">
-<xs:complexType>
-<xs:sequence maxOccurs="1" minOccurs="1">
-<xs:element ref="VM" maxOccurs="unbounded" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:schema>
+    <?xml version="1.0" encoding="UTF-8"?>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified"
+        targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
+        <xs:include schemaLocation="vm.xsd"/>
+        <xs:element name="VM_POOL">
+            <xs:complexType>
+                <xs:sequence maxOccurs="1" minOccurs="1">
+                    <xs:element ref="VM" maxOccurs="unbounded" minOccurs="0"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:element>
+    </xs:schema>
 
 Schemas for Virtual Machine Template
 ------------------------------------
 
-.. code:: code
+.. code::
 
-<?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://opennebula.org/XMLSchema" elementFormDefault="qualified" targetNamespace="http://opennebula.org/XMLSchema">
-<xs:element name="VMTEMPLATE">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:integer"/>
-<xs:element name="UID" type="xs:integer"/>
-<xs:element name="GID" type="xs:integer"/>
-<xs:element name="UNAME" type="xs:string"/>
-<xs:element name="GNAME" type="xs:string"/>
-<xs:element name="NAME" type="xs:string"/>
-<xs:element name="PERMISSIONS" minOccurs="1" maxOccurs="1">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="OWNER_U" type="xs:integer"/>
-<xs:element name="OWNER_M" type="xs:integer"/>
-<xs:element name="OWNER_A" type="xs:integer"/>
-<xs:element name="GROUP_U" type="xs:integer"/>
-<xs:element name="GROUP_M" type="xs:integer"/>
-<xs:element name="GROUP_A" type="xs:integer"/>
-<xs:element name="OTHER_U" type="xs:integer"/>
-<xs:element name="OTHER_M" type="xs:integer"/>
-<xs:element name="OTHER_A" type="xs:integer"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="REGTIME" type="xs:integer"/>
-<xs:element name="TEMPLATE" type="xs:anyType"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:schema>
+    <?xml version="1.0" encoding="UTF-8"?>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://opennebula.org/XMLSchema" elementFormDefault="qualified" targetNamespace="http://opennebula.org/XMLSchema">
+      <xs:element name="VMTEMPLATE">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="ID" type="xs:integer"/>
+            <xs:element name="UID" type="xs:integer"/>
+            <xs:element name="GID" type="xs:integer"/>
+            <xs:element name="UNAME" type="xs:string"/>
+            <xs:element name="GNAME" type="xs:string"/>
+            <xs:element name="NAME" type="xs:string"/>
+            <xs:element name="PERMISSIONS" minOccurs="1" maxOccurs="1">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="OWNER_U" type="xs:integer"/>
+                  <xs:element name="OWNER_M" type="xs:integer"/>
+                  <xs:element name="OWNER_A" type="xs:integer"/>
+                  <xs:element name="GROUP_U" type="xs:integer"/>
+                  <xs:element name="GROUP_M" type="xs:integer"/>
+                  <xs:element name="GROUP_A" type="xs:integer"/>
+                  <xs:element name="OTHER_U" type="xs:integer"/>
+                  <xs:element name="OTHER_M" type="xs:integer"/>
+                  <xs:element name="OTHER_A" type="xs:integer"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="REGTIME" type="xs:integer"/>
+            <xs:element name="TEMPLATE" type="xs:anyType"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
 
-.. code:: code
+.. code::
 
-<?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
-<xs:include schemaLocation="vmtemplate.xsd"/>
-<xs:element name="VMTEMPLATE_POOL">
-<xs:complexType>
-<xs:sequence maxOccurs="1" minOccurs="1">
-<xs:element ref="VMTEMPLATE" maxOccurs="unbounded" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:schema>
+    <?xml version="1.0" encoding="UTF-8"?>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+      targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
+      <xs:include schemaLocation="vmtemplate.xsd"/>
+      <xs:element name="VMTEMPLATE_POOL">
+        <xs:complexType>
+          <xs:sequence maxOccurs="1" minOccurs="1">
+            <xs:element ref="VMTEMPLATE" maxOccurs="unbounded" minOccurs="0"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
 
 Schemas for Virtual Network
 ---------------------------
 
-.. code:: code
+.. code::
 
-<?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
-<xs:element name="VNET">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:integer"/>
-<xs:element name="UID" type="xs:integer"/>
-<xs:element name="GID" type="xs:integer"/>
-<xs:element name="UNAME" type="xs:string"/>
-<xs:element name="GNAME" type="xs:string"/>
-<xs:element name="NAME" type="xs:string"/>
-<xs:element name="PERMISSIONS" minOccurs="0" maxOccurs="1">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="OWNER_U" type="xs:integer"/>
-<xs:element name="OWNER_M" type="xs:integer"/>
-<xs:element name="OWNER_A" type="xs:integer"/>
-<xs:element name="GROUP_U" type="xs:integer"/>
-<xs:element name="GROUP_M" type="xs:integer"/>
-<xs:element name="GROUP_A" type="xs:integer"/>
-<xs:element name="OTHER_U" type="xs:integer"/>
-<xs:element name="OTHER_M" type="xs:integer"/>
-<xs:element name="OTHER_A" type="xs:integer"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="CLUSTER_ID" type="xs:integer"/>
-<xs:element name="CLUSTER" type="xs:string"/>
-<xs:element name="TYPE" type="xs:integer"/>
-<xs:element name="BRIDGE" type="xs:string"/>
-<xs:element name="VLAN" type="xs:integer"/>
-<xs:element name="PHYDEV" type="xs:string"/>
-<xs:element name="VLAN_ID" type="xs:string"/>
-<xs:element name="GLOBAL_PREFIX" type="xs:string"/>
-<xs:element name="SITE_PREFIX" type="xs:string"/>
-<xs:element name="RANGE" minOccurs="0" maxOccurs="1">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="IP_START" type="xs:string"/>
-<xs:element name="IP_END" type="xs:string"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="TOTAL_LEASES" type="xs:integer"/>
-<xs:element name="TEMPLATE" type="xs:anyType"/>
-<xs:element name="LEASES" minOccurs="0" maxOccurs="1">
-<xs:complexType>
-<xs:sequence minOccurs="0">
-<xs:element name="LEASE" minOccurs="0" maxOccurs="unbounded">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="MAC" type="xs:string"/>
-<xs:element name="IP" type="xs:string"/>
-<xs:element name="IP6_LINK" type="xs:string"/>
-<xs:element name="IP6_SITE" type="xs:string" minOccurs="0" maxOccurs="1"/>
-<xs:element name="IP6_GLOBAL" type="xs:string" minOccurs="0" maxOccurs="1"/>
-<xs:element name="USED" type="xs:integer"/>
-<xs:element name="VID" type="xs:integer"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:schema>
+    <?xml version="1.0" encoding="UTF-8"?>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+      targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
+      <xs:element name="VNET">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="ID" type="xs:integer"/>
+            <xs:element name="UID" type="xs:integer"/>
+            <xs:element name="GID" type="xs:integer"/>
+            <xs:element name="UNAME" type="xs:string"/>
+            <xs:element name="GNAME" type="xs:string"/>
+            <xs:element name="NAME" type="xs:string"/>
+            <xs:element name="PERMISSIONS" minOccurs="0" maxOccurs="1">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="OWNER_U" type="xs:integer"/>
+                  <xs:element name="OWNER_M" type="xs:integer"/>
+                  <xs:element name="OWNER_A" type="xs:integer"/>
+                  <xs:element name="GROUP_U" type="xs:integer"/>
+                  <xs:element name="GROUP_M" type="xs:integer"/>
+                  <xs:element name="GROUP_A" type="xs:integer"/>
+                  <xs:element name="OTHER_U" type="xs:integer"/>
+                  <xs:element name="OTHER_M" type="xs:integer"/>
+                  <xs:element name="OTHER_A" type="xs:integer"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="CLUSTER_ID" type="xs:integer"/>
+            <xs:element name="CLUSTER" type="xs:string"/>
+            <xs:element name="TYPE" type="xs:integer"/>
+            <xs:element name="BRIDGE" type="xs:string"/>
+            <xs:element name="VLAN" type="xs:integer"/>
+            <xs:element name="PHYDEV" type="xs:string"/>
+            <xs:element name="VLAN_ID" type="xs:string"/>
+            <xs:element name="GLOBAL_PREFIX" type="xs:string"/>
+            <xs:element name="SITE_PREFIX" type="xs:string"/>
+            <xs:element name="RANGE" minOccurs="0" maxOccurs="1">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="IP_START" type="xs:string"/>
+                  <xs:element name="IP_END" type="xs:string"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="TOTAL_LEASES" type="xs:integer"/>
+            <xs:element name="TEMPLATE" type="xs:anyType"/>
+            <xs:element name="LEASES" minOccurs="0" maxOccurs="1">
+              <xs:complexType>
+                <xs:sequence minOccurs="0">
+                  <xs:element name="LEASE" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="MAC" type="xs:string"/>
+                        <xs:element name="IP" type="xs:string"/>
+                        <xs:element name="IP6_LINK" type="xs:string"/>
+                        <xs:element name="IP6_SITE" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                        <xs:element name="IP6_GLOBAL" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                        <xs:element name="USED" type="xs:integer"/>
+                        <xs:element name="VID" type="xs:integer"/>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
 
-.. code:: code
+.. code::
 
-<?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
-<xs:include schemaLocation="vnet.xsd"/>
-<xs:element name="VNET_POOL">
-<xs:complexType>
-<xs:sequence maxOccurs="1" minOccurs="1">
-<xs:element ref="VNET" maxOccurs="unbounded" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:schema>
+    <?xml version="1.0" encoding="UTF-8"?>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+      targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
+      <xs:include schemaLocation="vnet.xsd"/>
+      <xs:element name="VNET_POOL">
+        <xs:complexType>
+          <xs:sequence maxOccurs="1" minOccurs="1">
+            <xs:element ref="VNET" maxOccurs="unbounded" minOccurs="0"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
 
 Schemas for Accounting
 ----------------------
 
-.. code:: code
+.. code::
 
-<?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
- 
-<xs:element name="HISTORY_RECORDS">
-<xs:complexType>
-<xs:sequence maxOccurs="1" minOccurs="1">
-<xs:element ref="HISTORY" maxOccurs="unbounded" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
- 
-<xs:element name="HISTORY">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="OID" type="xs:integer"/>
-<xs:element name="SEQ" type="xs:integer"/>
-<xs:element name="HOSTNAME" type="xs:string"/>
-<xs:element name="HID" type="xs:integer"/>
-<xs:element name="CID" type="xs:integer"/>
-<xs:element name="STIME" type="xs:integer"/>
-<xs:element name="ETIME" type="xs:integer"/>
-<xs:element name="VMMMAD" type="xs:string"/>
-<xs:element name="VNMMAD" type="xs:string"/>
-<xs:element name="TMMAD" type="xs:string"/>
-<xs:element name="DS_LOCATION" type="xs:string"/>
-<xs:element name="DS_ID" type="xs:integer"/>
-<xs:element name="PSTIME" type="xs:integer"/>
-<xs:element name="PETIME" type="xs:integer"/>
-<xs:element name="RSTIME" type="xs:integer"/>
-<xs:element name="RETIME" type="xs:integer"/>
-<xs:element name="ESTIME" type="xs:integer"/>
-<xs:element name="EETIME" type="xs:integer"/>
- 
-<!-- REASON values:
-NONE  = 0 History record is not closed yet
-ERROR = 1 History record was closed because of an error
-USER  = 2 History record was closed because of a user action
--->
-<xs:element name="REASON" type="xs:integer"/>
- 
-<!-- ACTION values:
-NONE_ACTION             = 0
-MIGRATE_ACTION          = 1
-LIVE_MIGRATE_ACTION     = 2
-SHUTDOWN_ACTION         = 3
-SHUTDOWN_HARD_ACTION    = 4
-UNDEPLOY_ACTION         = 5
-UNDEPLOY_HARD_ACTION    = 6
-HOLD_ACTION             = 7
-RELEASE_ACTION          = 8
-STOP_ACTION             = 9
-SUSPEND_ACTION          = 10
-RESUME_ACTION           = 11
-BOOT_ACTION             = 12
-DELETE_ACTION           = 13
-DELETE_RECREATE_ACTION  = 14
-REBOOT_ACTION           = 15
-REBOOT_HARD_ACTION      = 16
-RESCHED_ACTION          = 17
-UNRESCHED_ACTION        = 18
-POWEROFF_ACTION         = 19
-POWEROFF_HARD_ACTION    = 20
--->
-<xs:element name="ACTION" type="xs:integer"/>
- 
-<xs:element name="VM">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:integer"/>
-<xs:element name="UID" type="xs:integer"/>
-<xs:element name="GID" type="xs:integer"/>
-<xs:element name="UNAME" type="xs:string"/>
-<xs:element name="GNAME" type="xs:string"/>
-<xs:element name="NAME" type="xs:string"/>
-<xs:element name="PERMISSIONS" minOccurs="0" maxOccurs="1">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="OWNER_U" type="xs:integer"/>
-<xs:element name="OWNER_M" type="xs:integer"/>
-<xs:element name="OWNER_A" type="xs:integer"/>
-<xs:element name="GROUP_U" type="xs:integer"/>
-<xs:element name="GROUP_M" type="xs:integer"/>
-<xs:element name="GROUP_A" type="xs:integer"/>
-<xs:element name="OTHER_U" type="xs:integer"/>
-<xs:element name="OTHER_M" type="xs:integer"/>
-<xs:element name="OTHER_A" type="xs:integer"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="LAST_POLL" type="xs:integer"/>
- 
-<!-- STATE values,
-see http://opennebula.org/documentation:documentation:api#actions_for_virtual_machine_management
- 
-INIT      = 0
-PENDING   = 1
-HOLD      = 2
-ACTIVE    = 3 In this state, the Life Cycle Manager state is relevant
-STOPPED   = 4
-SUSPENDED = 5
-DONE      = 6
-FAILED    = 7
-POWEROFF  = 8
-UNDEPLOYED = 9
--->
-<xs:element name="STATE" type="xs:integer"/>
- 
-<!-- LCM_STATE values, this sub-state is relevant only when STATE is
-ACTIVE (4)
- 
-LCM_INIT            = 0,
-PROLOG              = 1,
-BOOT                = 2,
-RUNNING             = 3,
-MIGRATE             = 4,
-SAVE_STOP           = 5,
-SAVE_SUSPEND        = 6,
-SAVE_MIGRATE        = 7,
-PROLOG_MIGRATE      = 8,
-PROLOG_RESUME       = 9,
-EPILOG_STOP         = 10,
-EPILOG              = 11,
-SHUTDOWN            = 12,
-CANCEL              = 13,
-FAILURE             = 14,
-CLEANUP_RESUBMIT    = 15,
-UNKNOWN             = 16,
-HOTPLUG             = 17,
-SHUTDOWN_POWEROFF   = 18,
-BOOT_UNKNOWN        = 19,
-BOOT_POWEROFF       = 20,
-BOOT_SUSPENDED      = 21,
-BOOT_STOPPED        = 22,
-CLEANUP_DELETE      = 23,
-HOTPLUG_SNAPSHOT    = 24,
-HOTPLUG_NIC         = 25,
-HOTPLUG_SAVEAS           = 26,
-HOTPLUG_SAVEAS_POWEROFF  = 27,
-HOTPLUG_SAVEAS_SUSPENDED = 28,
-SHUTDOWN_UNDEPLOY   = 29,
-EPILOG_UNDEPLOY     = 30,
-PROLOG_UNDEPLOY     = 31,
-BOOT_UNDEPLOY       = 32
--->
-<xs:element name="LCM_STATE" type="xs:integer"/>
-<xs:element name="RESCHED" type="xs:integer"/>
-<xs:element name="STIME" type="xs:integer"/>
-<xs:element name="ETIME" type="xs:integer"/>
-<xs:element name="DEPLOY_ID" type="xs:string"/>
- 
-<!-- MEMORY consumption in kilobytes -->
-<xs:element name="MEMORY" type="xs:integer"/>
- 
-<!-- Percentage of 1 CPU consumed (two fully consumed cpu is 200) -->
-<xs:element name="CPU" type="xs:integer"/>
- 
-<!-- NET_TX: Sent bytes to the network -->
-<xs:element name="NET_TX" type="xs:integer"/>
- 
-<!-- NET_RX: Received bytes from the network -->
-<xs:element name="NET_RX" type="xs:integer"/>
-<xs:element name="TEMPLATE" type="xs:anyType"/>
-<xs:element name="USER_TEMPLATE" type="xs:anyType"/>
-<xs:element name="HISTORY_RECORDS">
-</xs:element>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:schema>
+    <?xml version="1.0" encoding="UTF-8"?>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+      targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
+     
+      <xs:element name="HISTORY_RECORDS">
+        <xs:complexType>
+          <xs:sequence maxOccurs="1" minOccurs="1">
+            <xs:element ref="HISTORY" maxOccurs="unbounded" minOccurs="0"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+     
+      <xs:element name="HISTORY">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="OID" type="xs:integer"/>
+            <xs:element name="SEQ" type="xs:integer"/>
+            <xs:element name="HOSTNAME" type="xs:string"/>
+            <xs:element name="HID" type="xs:integer"/>
+            <xs:element name="CID" type="xs:integer"/>
+            <xs:element name="STIME" type="xs:integer"/>
+            <xs:element name="ETIME" type="xs:integer"/>
+            <xs:element name="VMMMAD" type="xs:string"/>
+            <xs:element name="VNMMAD" type="xs:string"/>
+            <xs:element name="TMMAD" type="xs:string"/>
+            <xs:element name="DS_LOCATION" type="xs:string"/>
+            <xs:element name="DS_ID" type="xs:integer"/>
+            <xs:element name="PSTIME" type="xs:integer"/>
+            <xs:element name="PETIME" type="xs:integer"/>
+            <xs:element name="RSTIME" type="xs:integer"/>
+            <xs:element name="RETIME" type="xs:integer"/>
+            <xs:element name="ESTIME" type="xs:integer"/>
+            <xs:element name="EETIME" type="xs:integer"/>
+     
+            <!-- REASON values:
+              NONE  = 0 History record is not closed yet
+              ERROR = 1 History record was closed because of an error
+              USER  = 2 History record was closed because of a user action
+            -->
+            <xs:element name="REASON" type="xs:integer"/>
+     
+            <!-- ACTION values:
+              NONE_ACTION             = 0
+              MIGRATE_ACTION          = 1
+              LIVE_MIGRATE_ACTION     = 2
+              SHUTDOWN_ACTION         = 3
+              SHUTDOWN_HARD_ACTION    = 4
+              UNDEPLOY_ACTION         = 5
+              UNDEPLOY_HARD_ACTION    = 6
+              HOLD_ACTION             = 7
+              RELEASE_ACTION          = 8
+              STOP_ACTION             = 9
+              SUSPEND_ACTION          = 10
+              RESUME_ACTION           = 11
+              BOOT_ACTION             = 12
+              DELETE_ACTION           = 13
+              DELETE_RECREATE_ACTION  = 14
+              REBOOT_ACTION           = 15
+              REBOOT_HARD_ACTION      = 16
+              RESCHED_ACTION          = 17
+              UNRESCHED_ACTION        = 18
+              POWEROFF_ACTION         = 19
+              POWEROFF_HARD_ACTION    = 20
+            -->
+            <xs:element name="ACTION" type="xs:integer"/>
+     
+            <xs:element name="VM">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="ID" type="xs:integer"/>
+                  <xs:element name="UID" type="xs:integer"/>
+                  <xs:element name="GID" type="xs:integer"/>
+                  <xs:element name="UNAME" type="xs:string"/>
+                  <xs:element name="GNAME" type="xs:string"/>
+                  <xs:element name="NAME" type="xs:string"/>
+                  <xs:element name="PERMISSIONS" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="OWNER_U" type="xs:integer"/>
+                        <xs:element name="OWNER_M" type="xs:integer"/>
+                        <xs:element name="OWNER_A" type="xs:integer"/>
+                        <xs:element name="GROUP_U" type="xs:integer"/>
+                        <xs:element name="GROUP_M" type="xs:integer"/>
+                        <xs:element name="GROUP_A" type="xs:integer"/>
+                        <xs:element name="OTHER_U" type="xs:integer"/>
+                        <xs:element name="OTHER_M" type="xs:integer"/>
+                        <xs:element name="OTHER_A" type="xs:integer"/>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="LAST_POLL" type="xs:integer"/>
+     
+                  <!-- STATE values,
+                  see http://opennebula.org/documentation:documentation:api#actions_for_virtual_machine_management
+     
+                    INIT      = 0
+                    PENDING   = 1
+                    HOLD      = 2
+                    ACTIVE    = 3 In this state, the Life Cycle Manager state is relevant
+                    STOPPED   = 4
+                    SUSPENDED = 5
+                    DONE      = 6
+                    FAILED    = 7
+                    POWEROFF  = 8
+                    UNDEPLOYED = 9
+                  -->
+                  <xs:element name="STATE" type="xs:integer"/>
+     
+                  <!-- LCM_STATE values, this sub-state is relevant only when STATE is
+                       ACTIVE (4)
+     
+                    LCM_INIT            = 0,
+                    PROLOG              = 1,
+                    BOOT                = 2,
+                    RUNNING             = 3,
+                    MIGRATE             = 4,
+                    SAVE_STOP           = 5,
+                    SAVE_SUSPEND        = 6,
+                    SAVE_MIGRATE        = 7,
+                    PROLOG_MIGRATE      = 8,
+                    PROLOG_RESUME       = 9,
+                    EPILOG_STOP         = 10,
+                    EPILOG              = 11,
+                    SHUTDOWN            = 12,
+                    CANCEL              = 13,
+                    FAILURE             = 14,
+                    CLEANUP_RESUBMIT    = 15,
+                    UNKNOWN             = 16,
+                    HOTPLUG             = 17,
+                    SHUTDOWN_POWEROFF   = 18,
+                    BOOT_UNKNOWN        = 19,
+                    BOOT_POWEROFF       = 20,
+                    BOOT_SUSPENDED      = 21,
+                    BOOT_STOPPED        = 22,
+                    CLEANUP_DELETE      = 23,
+                    HOTPLUG_SNAPSHOT    = 24,
+                    HOTPLUG_NIC         = 25,
+                    HOTPLUG_SAVEAS           = 26,
+                    HOTPLUG_SAVEAS_POWEROFF  = 27,
+                    HOTPLUG_SAVEAS_SUSPENDED = 28,
+                    SHUTDOWN_UNDEPLOY   = 29,
+                    EPILOG_UNDEPLOY     = 30,
+                    PROLOG_UNDEPLOY     = 31,
+                    BOOT_UNDEPLOY       = 32
+                  -->
+                  <xs:element name="LCM_STATE" type="xs:integer"/>
+                  <xs:element name="RESCHED" type="xs:integer"/>
+                  <xs:element name="STIME" type="xs:integer"/>
+                  <xs:element name="ETIME" type="xs:integer"/>
+                  <xs:element name="DEPLOY_ID" type="xs:string"/>
+     
+                  <!-- MEMORY consumption in kilobytes -->
+                  <xs:element name="MEMORY" type="xs:integer"/>
+     
+                  <!-- Percentage of 1 CPU consumed (two fully consumed cpu is 200) -->
+                  <xs:element name="CPU" type="xs:integer"/>
+     
+                  <!-- NET_TX: Sent bytes to the network -->
+                  <xs:element name="NET_TX" type="xs:integer"/>
+     
+                  <!-- NET_RX: Received bytes from the network -->
+                  <xs:element name="NET_RX" type="xs:integer"/>
+                  <xs:element name="TEMPLATE" type="xs:anyType"/>
+                  <xs:element name="USER_TEMPLATE" type="xs:anyType"/>
+                  <xs:element name="HISTORY_RECORDS">
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
 
-.. |FIXME| image:: /./lib/images/smileys/fixme.gif
-.. |:!:| image:: /./lib/images/smileys/icon_exclaim.gif
-.. |image2| image:: /./_media/documentation:rel4.4:states-complete.png?w=700
-:target: /./_media/documentation:rel4.4:states-complete.png?id=
+.. |FIXME| image:: /images/fixme.gif
+.. |image2| image:: /images/states-complete.png

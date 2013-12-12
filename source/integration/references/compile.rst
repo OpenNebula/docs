@@ -1,17 +1,14 @@
-=========================
+.. _compile:
+
+==========================
 Building from Source Code
-=========================
+==========================
 
-This page will show you how to compile and install OpenNebula from the
-sources.
+This page will show you how to compile and install OpenNebula from the sources.
 
-If you want to install it from your package manager, visit the `software
-menu </./software:software>`__ to find out if OpenNebula is included in
-your official distribution package repositories.
+If you want to install it from your package manager, visit the :ref:`software menu <software:software>` to find out if OpenNebula is included in your official distribution package repositories.
 
-|:!:| Do not forget to check the `Building
-Dependecies </./build_deps>`__ for a list of specific software
-requirements to build OpenNebula.
+.. warning:: Do not forget to check the :ref:`Building Dependecies <build_deps>` for a list of specific software requirements to build OpenNebula.
 
 Compiling the Software
 ======================
@@ -23,10 +20,9 @@ Follow these simple steps to install the OpenNebula software:
 
 .. code::
 
-$ scons [OPTION=VALUE]
+       $ scons [OPTION=VALUE]
 
-the argument expression [OPTION=VALUE] is used to set non-default
-values for :
+   the argument expression [OPTION=VALUE] is used to set non-default values for :
 
 +---------------+--------------------------------------------------------+
 | OPTION        | VALUE                                                  |
@@ -46,21 +42,17 @@ values for :
 | new\_xmlrpc   | **yes** if you have an xmlrpc-c version >= 1.31        |
 +---------------+--------------------------------------------------------+
 
-If the following error appears, then you need to remove the option
-'new\_xmlrpc=yes' or install xmlrpc-c version >= 1.31:
-
-.. code:: code
-
-error: 'class xmlrpc_c::serverAbyss::constrOpt' has no member named 'maxConn'
-
--  OpenNebula can be installed in two modes: ``system-wide``, or in
-``self-contained`` directory. In either case, you do not need to run
-OpenNebula as root. These options can be specified when running the
-install script:
+If the following error appears, then you need to remove the option 'new\_xmlrpc=yes' or install xmlrpc-c version >= 1.31:
 
 .. code::
 
-./install.sh <install_options>
+    error: 'class xmlrpc_c::serverAbyss::constrOpt' has no member named 'maxConn'
+
+-  OpenNebula can be installed in two modes: ``system-wide``, or in ``self-contained`` directory. In either case, you do not need to run OpenNebula as root. These options can be specified when running the install script:
+
+.. code::
+
+    ./install.sh <install_options>
 
 where *<install\_options>* can be one or more of:
 
@@ -82,18 +74,17 @@ where *<install\_options>* can be one or more of:
 | **-h**   | prints installer help                                                                                                                                                          |
 +----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-The packages do a ``system-wide`` installation. To create a similar
-environment, create a ``oneadmin`` user and group, and execute:
+The packages do a ``system-wide`` installation. To create a similar environment, create a ``oneadmin`` user and group, and execute:
 
 .. code::
 
-oneadmin@frontend:~/ $> wget <opennebula tar gz>
-oneadmin@frontend:~/ $> tar xzf <opennebula tar gz>
-oneadmin@frontend:~/ $> cd one-4.0
-oneadmin@frontend:~/one-4.0/ $> scons -j2 mysql=yes syslog=yes
-[ lots of compiling information ]
-scons: done building targets.
-oneadmin@frontend:~/one-4.0 $> sudo ./install.sh -u oneadmin -g oneadmin
+    oneadmin@frontend:~/ $> wget <opennebula tar gz>
+    oneadmin@frontend:~/ $> tar xzf <opennebula tar gz>
+    oneadmin@frontend:~/ $> cd one-4.0
+    oneadmin@frontend:~/one-4.0/ $> scons -j2 mysql=yes syslog=yes
+    [ lots of compiling information ]
+    scons: done building targets.
+    oneadmin@frontend:~/one-4.0 $> sudo ./install.sh -u oneadmin -g oneadmin
 
 Ruby Dependencies
 =================
@@ -102,10 +93,7 @@ Ruby version needs to be:
 
 -  **ruby** >= 1.8.7
 
-Some OpenNebula components need ruby libraries. Some of these libraries
-are interfaces to binary libraries and the development packages should
-be installed in your machine. This is the list of the ruby libraries
-that need a development package:
+Some OpenNebula components need ruby libraries. Some of these libraries are interfaces to binary libraries and the development packages should be installed in your machine. This is the list of the ruby libraries that need a development package:
 
 -  **sqlite3**: sqlite3 development library
 -  **mysql**: mysql client development library
@@ -113,36 +101,27 @@ that need a development package:
 -  **nokogiri**: expat development librarie
 -  **xmlparse**: libxml2 and libxslt development libraries
 
-You will also need ruby development package to be able to compile these
-gems.
+You will also need ruby development package to be able to compile these gems.
 
-We provide a script to ease the installation of these gems. it is
-located in ``/usr/share/one/install_gems`` (system-wide mode) or
-``$ONE_LOCATION/share/install_gems`` (self-contained mode). It can be
-called with the components you want the gem dependencies to be
-installed. Here are the options:
+We provide a script to ease the installation of these gems. it is located in ``/usr/share/one/install_gems`` (system-wide mode) or ``$ONE_LOCATION/share/install_gems`` (self-contained mode). It can be called with the components you want the gem dependencies to be installed. Here are the options:
 
 -  **optional**: libraries that make CLI and OCA faster
 -  **quota**: quota system
 -  **sunstone**: sunstone graphical interface
 -  **cloud**: ec2 and occi interfaces
 -  **ozones\_client**: CLI of ozones
--  **ozones\_server**: server part of ozones, both mysql and sqlite
-support
+-  **ozones\_server**: server part of ozones, both mysql and sqlite support
 -  **ozones\_server\_sqlite**: ozones server, only sqlite support
 -  **ozones\_server\_mysql**: ozones server, only mysql support
 -  **acct**: accounting collector, both mysql and sqlite support
 -  **acct\_sqlite**: accounting collector, only sqlite support
 -  **acct\_mysql**: accounting collector, only mysql support
 
-The tool can be also called without parameters and all the packages will
-be installed.
+The tool can be also called without parameters and all the packages will be installed.
 
-For example, to install only requirements for sunstone, ec2 and occi
-interfaces you'll issue:
+For example, to install only requirements for sunstone, ec2 and occi interfaces you'll issue:
 
 .. code::
 
-oneadmin@frontend: $> ./install_gems sunstone cloud
+    oneadmin@frontend: $> ./install_gems sunstone cloud
 
-.. |:!:| image:: /./lib/images/smileys/icon_exclaim.gif

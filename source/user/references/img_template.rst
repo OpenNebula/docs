@@ -1,21 +1,14 @@
-=========================
+.. _img_template:
+
+==========================
 Image Definition Template
-=========================
+==========================
 
-This page describes how to define a new image template. An image
-template follows the same syntax as the `VM template </./template>`__.
+This page describes how to define a new image template. An image template follows the same syntax as the :ref:`VM template <template>`.
 
-If you want to learn more about the image repository, you can do so
-`here </./img_guide>`__.
+If you want to learn more about the image repository, you can do so :ref:`here <img_guide>`.
 
-|:!:| There are some template attributes that can compromise the
-security of the system or the security of other VMs, and can be used
-**only** by users in the oneadmin group. These attributes can be
-configured in
-`oned.conf </./oned_conf#restricted_attributes_configuration>`__, the
-default ones are labeled with ``*`` in the following tables. See the
-complete list in the `Restricted Attributes <#restricted_attributes>`__
-section.
+.. warning:: There are some template attributes that can compromise the security of the system or the security of other VMs, and can be used **only** by users in the oneadmin group. These attributes can be configured in :ref:`oned.conf <oned_conf#restricted_attributes_configuration>`, the default ones are labeled with ``*`` in the following tables. See the complete list in the :ref:`Restricted Attributes <#restricted_attributes>` section.
 
 Template Attributes
 ===================
@@ -29,15 +22,15 @@ The following attributes can be defined in the template.
 +------------------------+----------------------------+------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **DESCRIPTION**        | Optional                   | Any string                                                       | Human readable description of the image for other users.                                                                                                                                                                                                                                                 |
 +------------------------+----------------------------+------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **TYPE**               | Optional                   | ``OS, CDROM, DATABLOCK``, ``KERNEL``, ``RAMDISK``, ``CONTEXT``   | Type of the image, explained in detail in the following section. If omitted, the default value is the one defined in `oned.conf </./oned_conf>`__ (install default is ``OS``).                                                                                                                           |
+| **TYPE**               | Optional                   | ``OS, CDROM, DATABLOCK``, ``KERNEL``, ``RAMDISK``, ``CONTEXT``   | Type of the image, explained in detail in the following section. If omitted, the default value is the one defined in :ref:`oned.conf <oned_conf>` (install default is ``OS``).                                                                                                                              |
 +------------------------+----------------------------+------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **PERSISTENT**         | Optional                   | ``YES, NO``                                                      | Persistence of the image. If omitted, the default value is ``NO``.                                                                                                                                                                                                                                       |
 +------------------------+----------------------------+------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **PERSISTENT\_TYPE**   | Optional                   | ``IMMUTABLE``                                                    | An special persistent image, that will not be modified. This attribute should only be used for special storage configurations.                                                                                                                                                                           |
 +------------------------+----------------------------+------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **DEV\_PREFIX**        | Optional                   | Any string                                                       | Prefix for the emulated device this image will be mounted at. For instance, â€œhdâ€?, â€œsdâ€?, or â€œvdâ€? for KVM virtio. If omitted, the default value is the one defined in `oned.conf </./oned_conf>`__ (installation default is â€œhdâ€?).                                                         |
+| **DEV\_PREFIX**        | Optional                   | Any string                                                       | Prefix for the emulated device this image will be mounted at. For instance, “hd”, “sd”, or “vd” for KVM virtio. If omitted, the default value is the one defined in :ref:`oned.conf <oned_conf>` (installation default is “hd”).                                                                            |
 +------------------------+----------------------------+------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **TARGET**             | Optional                   | Any string                                                       | Target for the emulated device this image will be mounted at. For instance, â€œhdbâ€?, â€œsdcâ€?. If omitted, it will be `assigned automatically </./template#disks_device_mapping>`__.                                                                                                                  |
+| **TARGET**             | Optional                   | Any string                                                       | Target for the emulated device this image will be mounted at. For instance, “hdb”, “sdc”. If omitted, it will be :ref:`assigned automatically <template#disks_device_mapping>`.                                                                                                                             |
 +------------------------+----------------------------+------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **DRIVER**             | Optional                   | KVM: ``raw``, ``qcow2`` Xen:\ ``tap:aio:``, ``file:``            | Specific image mapping driver. VMware is unsupported                                                                                                                                                                                                                                                     |
 +------------------------+----------------------------+------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -71,38 +64,36 @@ Example of an OS image:
 
 .. code::
 
-NAME          = "Ubuntu Web Development"
-PATH          = /home/one_user/images/ubuntu_desktop.img
-DESCRIPTION   = "Ubuntu 10.04 desktop for Web Development students.
-Contains the pdf lessons and exercises as well as all the necessary
-programming tools and testing frameworks."
+    NAME          = "Ubuntu Web Development"
+    PATH          = /home/one_user/images/ubuntu_desktop.img
+    DESCRIPTION   = "Ubuntu 10.04 desktop for Web Development students.
+    Contains the pdf lessons and exercises as well as all the necessary
+    programming tools and testing frameworks."
 
 Example of a CDROM image:
 
 .. code::
 
-NAME          = "MATLAB install CD"
-TYPE          = CDROM
-PATH          = /home/one_user/images/matlab.iso
-DESCRIPTION   = "Contains the MATLAB installation files. Mount it to install MATLAB on new OS images."
+    NAME          = "MATLAB install CD"
+    TYPE          = CDROM
+    PATH          = /home/one_user/images/matlab.iso
+    DESCRIPTION   = "Contains the MATLAB installation files. Mount it to install MATLAB on new OS images."
 
 Example of a DATABLOCK image:
 
 .. code::
 
-NAME          = "Experiment results"
-TYPE          = DATABLOCK
-# No PATH set, this image will start as a new empty disk
-SIZE          = 3.08
-FSTYPE        = ext3
-DESCRIPTION   = "Storage for my Thesis experiments."
+    NAME          = "Experiment results"
+    TYPE          = DATABLOCK
+    # No PATH set, this image will start as a new empty disk
+    SIZE          = 3.08
+    FSTYPE        = ext3
+    DESCRIPTION   = "Storage for my Thesis experiments."
 
 Restricted Attributes
 =====================
 
-All the **default** restricted attributes to users in the oneadmin group
-are summarized in the following list:
+All the **default** restricted attributes to users in the oneadmin group are summarized in the following list:
 
 -  SOURCE
 
-.. |:!:| image:: /./lib/images/smileys/icon_exclaim.gif
