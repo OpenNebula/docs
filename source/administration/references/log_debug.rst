@@ -10,6 +10,8 @@ In the case of file based logging, OpenNebula keeps separate log files for each 
 
 With syslog the logging strategy is almost identical, except that the logging message change slightly their format following syslog logging conventions.
 
+.. _log_debug_configure_the_logging_system:
+
 Configure the Logging System
 ============================
 

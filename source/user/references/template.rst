@@ -675,6 +675,8 @@ Example:
     SCHED_DS_REQUIREMENTS = "NAME=GoldenCephDS"
     SCHED_DS_RANK         = FREE_MB
 
+.. _template_requirement_expression_syntax:
+
 Requirement Expression Syntax
 -----------------------------
 

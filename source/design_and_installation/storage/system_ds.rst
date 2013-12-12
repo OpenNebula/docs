@@ -195,6 +195,8 @@ There is no special configuration needed to take place to use the ssh drivers fo
 
 Also be sure that there is space in the frontend under ``/var/lib/one/datastores/<ds_id>`` to hold the images of the stopped or undeployed VMs.
 
+.. _system_ds_multiple_system_datastore_setups:
+
 Multiple System Datastore Setups
 ================================
 

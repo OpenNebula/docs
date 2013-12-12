@@ -30,6 +30,10 @@ a, a:hover, a:focus {
     text-decoration: none;
 }
 
+em {
+    font-style: normal;
+}
+
 a:hover, a:focus {
     color: #0098c3;
     text-decoration: underline;
@@ -44,7 +48,6 @@ a:hover, a:focus {
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     font-family: Verdana, Geneva, sans-serif;
     font-weight: 500;
-    line-height: 1.1;
     color: #353735;
     }
 
@@ -69,4 +72,11 @@ h3 {
     font-weight: 500;
     color: #353735;
     font-size: 12pt;
+}
+
+h2 {
+    font-family: Verdana, Geneva, sans-serif;
+    font-weight: 500;
+    color: #353735;
+    font-size: 14pt;
 }

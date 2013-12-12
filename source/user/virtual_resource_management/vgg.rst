@@ -124,6 +124,8 @@ You can also check the IPs leased in a network with the ``onevnet show`` command
 
 Check the ``onevnet`` command help or the :ref:`reference guide <cli>` for more options to list the virtual networks.
 
+.. _vgg_ipv6_networks:
+
 IPv6 Networks
 -------------
 

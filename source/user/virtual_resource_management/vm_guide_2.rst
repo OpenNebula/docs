@@ -254,6 +254,8 @@ To detach a disk from a running VM, find the disk ID of the Image you want to de
 
 |image2|
 
+.. _vm_guide2_nic_hotplugging:
+
 NIC Hotpluging
 --------------
 
@@ -316,6 +318,8 @@ Also, you can detach a NIC by its ID. If you want to detach interface 1 (MAC=02:
 
 |image3|
 
+.. _vm_guide2_snapshotting:
+
 Snapshotting
 ------------
 
@@ -345,6 +349,8 @@ Please take into consideration the following limitations:
 
 |image4|
 
+.. _vm_guide2_resizing_a_vm:
+
 Resizing a VM
 -------------
 
@@ -370,6 +376,8 @@ The following is an example of the previous procedure from the command line (the
 From Sunstone:
 
 |image5|
+
+.. _vm_guide2_scheduling_actions:
 
 Scheduling Actions
 ------------------
@@ -432,6 +440,8 @@ These are the commands that can be scheduled:
 -  ``poweroff``
 -  ``poweroff --hard``
 -  ``snapshot-create``
+
+.. _vm_guide2_user_defined_data:
 
 User Defined Data
 -----------------
