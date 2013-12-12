@@ -6,6 +6,8 @@ Managing Users and Groups
 
 OpenNebula supports user accounts and groups. This guide shows how to manage both. To manage user rights, visit the :ref:`Managing ACL Rules <manage_acl>` guide.
 
+.. _manage_users_users:
+
 Users
 =====
 
@@ -223,6 +225,8 @@ For instance, as ``regularuser`` you could do the following:
 As you can see, any user can find out his ID using the ``oneuser show`` command without any arguments.
 
 Regular users can retrieve their quota and user information in the settings section in the top right corner of the main screen: |image1|
+
+.. _manage_users_groups:
 
 Groups
 ======

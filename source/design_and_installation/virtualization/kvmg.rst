@@ -91,6 +91,8 @@ OpenNebula needs to know if it is going to use the KVM Driver. To achieve this, 
             default    = "vmm_exec/vmm_exec_kvm.conf",
             type       = "kvm" ]
 
+.. _kvmg_working_with_cgroups_optional:
+
 Working with cgroups (Optional)
 -------------------------------
 
