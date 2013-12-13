@@ -14,8 +14,8 @@ The Hosts must have a working installation of Xen that includes a Xen aware kern
 Considerations & Limitations
 ============================
 
--  Xen HVM currently only supports 4 IDE devices, for more disk devices you should better use SCSI. You have to take this into account when adding disks. See the :ref:`Virtual Machine Template documentation <template#disks_device_mapping>` for an explanation on how OpenNebula assigns disk targets.
--  OpenNebula manages kernel and initrd files. You are encouraged to register them in the :ref:`files datastore <img_guide#kernel_and_ramdisk>`.
+-  Xen HVM currently only supports 4 IDE devices, for more disk devices you should better use SCSI. You have to take this into account when adding disks. See the :ref:`Virtual Machine Template documentation <template_disks_device_mapping>` for an explanation on how OpenNebula assigns disk targets.
+-  OpenNebula manages kernel and initrd files. You are encouraged to register them in the :ref:`files datastore <img_guide_kernel_and_ramdisk>`.
 -  To modify the default disk driver to one that works with your Xen version you can change the files ``/etc/one/vmm_exec/vmm_exec_xen*.conf`` and ``/var/lib/one/remotes/vmm/xen*/xenrc``. Make sure that you have ``blktap2`` modules loaded to use ``tap2:tapdisk:aio``:
 
 .. code::

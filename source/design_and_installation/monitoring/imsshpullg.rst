@@ -81,6 +81,8 @@ The information gathered by the probes is also stored in a monitoring table. Thi
 | VM\_MONITORING\_EXPIRATION\_TIME     | Time, in seconds, to expire monitoring information. Use 0 to disable VM monitoring recording.     |
 +--------------------------------------+---------------------------------------------------------------------------------------------------+
 
+.. _imsshpullg_troubleshooting:
+
 Troubleshooting
 ===============
 
@@ -144,5 +146,5 @@ Tuning & Extending
 
 The probes are specialized programs that obtain the monitor metrics. Probes are defined for each hypervisor, and are located at ``/var/lib/one/remotes/im/<hypervisor>-probes.d`` for Xen and KVM.
 
-You can easily write your own probes or modify existing ones, please see the :ref:`Information Manager Drivers <devel-im>` guide. Remember to synchronize the monitor probes in the hosts using ``onehost sync`` as described in the :ref:`Managing Hosts <host_guide#sync>` guide.
+You can easily write your own probes or modify existing ones, please see the :ref:`Information Manager Drivers <devel-im>` guide. Remember to synchronize the monitor probes in the hosts using ``onehost sync`` as described in the :ref:`Managing Hosts <host_guide_sync>` guide.
 

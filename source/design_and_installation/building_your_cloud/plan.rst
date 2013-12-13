@@ -38,7 +38,7 @@ OpenNebula services include:
 
 There are several certified platforms to act as front-end for each version of OpenNebula. Refer to the :ref:`platform notes <uspng>` and chose the one that better fits your needs.
 
-OpenNebula's default database uses **sqlite**. If you are planning a production or medium to large scale deployment, you should consider using **:ref:`MySQL <mysql>`**.
+OpenNebula's default database uses **sqlite**. If you are planning a production or medium to large scale deployment, you should consider using :ref:`MySQL <mysql>`.
 
 If you are interested in setting up a high available cluster for OpenNebula, check the :ref:`High OpenNebula Availability Guide <oneha>`.
 
@@ -63,9 +63,9 @@ The hosts are the physical machines that will run the VMs. There are several cer
 
 OpenNebula natively supports three hypervisors:
 
--  **:ref:`Xen <xeng>`**
--  **:ref:`KVM <kvmg>`**
--  **:ref:`VMware <evmwareg>`**
+-  :ref:`Xen <xeng>`
+-  :ref:`KVM <kvmg>`
+-  :ref:`VMware <evmwareg>`
 
 .. warning:: **Default**: OpenNebula is configured to interact with hosts running KVM.
 
@@ -84,21 +84,21 @@ When a VM is deployed the Images are *transferred* from the Datastore to the hos
 
 OpenNebula is shipped with 3 different datastore classes:
 
--  **:ref:`System Datastores <system_ds>`** to hold images for running VMs, depending on the storage technology used these temporal images can be complete copies of the original image, qcow deltas or simple filesystem links.
+-  :ref:`System Datastores <system_ds>` to hold images for running VMs, depending on the storage technology used these temporal images can be complete copies of the original image, qcow deltas or simple filesystem links.
 
 -  **Image Datastores** store the disk images repository. Disk images are moved, or cloned to/from the System datastore when the VMs are deployed or shutdown; or when disks are attached or snapshoted.
 
--  **:ref:`File Datastore <file_ds>`** is a special datastore used to store plain files and not disk images. The plain files can be used as kernels, ramdisks or context files.
+-  :ref:`File Datastore <file_ds>` is a special datastore used to store plain files and not disk images. The plain files can be used as kernels, ramdisks or context files.
 
 Image datastores can be of different type depending on the underlying storage technology:
 
--  **:ref:`File-system <fs_ds>`**, to store disk images in a file form. The files are stored in a directory mounted from a SAN/NAS server.
+-  :ref:`File-system <fs_ds>`, to store disk images in a file form. The files are stored in a directory mounted from a SAN/NAS server.
 
--  **:ref:`vmfs <vmware_ds#configuring_the_datastore_drivers_for_vmware>`**, a datastore specialized in VMFS format to be used with VMware hypervisors. Cannot be mounted in the OpenNebula front-end since VMFS is not \*nix compatible.
+-  :ref:`vmfs <vmware_ds_datastore_configuration>`, a datastore specialized in VMFS format to be used with VMware hypervisors. Cannot be mounted in the OpenNebula front-end since VMFS is not \*nix compatible.
 
--  **:ref:`LVM <lvm_drivers#lvm>`**, The LVM datastore driver provides OpenNebula with the possibility of using LVM volumes instead of plain files to hold the Virtual Images. This reduces the overhead of having a file-system in place and thus increases performance..
+-  :ref:`LVM <lvm_drivers>`, The LVM datastore driver provides OpenNebula with the possibility of using LVM volumes instead of plain files to hold the Virtual Images. This reduces the overhead of having a file-system in place and thus increases performance..
 
--  **:ref:`Ceph <ceph_ds>`**, to store disk images using Ceph block devices.
+-  :ref:`Ceph <ceph_ds>`, to store disk images using Ceph block devices.
 
 .. warning:: **Default:** The system and images datastores are configured to use a shared filesystem.
 
@@ -115,11 +115,11 @@ OpenNebula provides an easily adaptable and customizable network subsystem in or
 The OpenNebula administrator may associate one of the following drivers to each Host:
 
 -  **dummy**: Default driver that doesn't perform any network operation. Firewalling rules are also ignored.
--  **:ref:`fw <firewall>`**: Firewall rules are applied, but networking isolation is ignored.
--  **:ref:`802.1Q <hm-vlan>`**: restrict network access through VLAN tagging, which also requires support from the hardware switches.
--  **:ref:`ebtables <ebtables>`**: restrict network access through Ebtables rules. No special hardware configuration required.
--  **:ref:`ovswitch <openvswitch>`**: restrict network access with `Open vSwitch Virtual Switch <http://openvswitch.org/>`__.
--  **:ref:`VMware <vmwarenet>`**: uses the VMware networking infrastructure to provide an isolated and 802.1Q compatible network for VMs launched with the VMware hypervisor.
+-  :ref:`fw <firewall>`: Firewall rules are applied, but networking isolation is ignored.
+-  :ref:`802.1Q <hm-vlan>`: restrict network access through VLAN tagging, which also requires support from the hardware switches.
+-  :ref:`ebtables <ebtables>`: restrict network access through Ebtables rules. No special hardware configuration required.
+-  :ref:`ovswitch <openvswitch>`: restrict network access with `Open vSwitch Virtual Switch <http://openvswitch.org/>`__.
+-  :ref:`VMware <vmwarenet>`: uses the VMware networking infrastructure to provide an isolated and 802.1Q compatible network for VMs launched with the VMware hypervisor.
 
 .. warning:: **Default:** The default configuration connects the virtual machine network interface to a bridge in the physical host.
 
@@ -130,10 +130,10 @@ Authentication
 
 You can choose from the following authentication models to access OpenNebula:
 
--  **:ref:`Built-in User/Password <manage_users#adding_and_deleting_users>`**
--  **:ref:`SSH Authentication <ssh_auth>`**
--  **:ref:`X509 Authentication <x509_auth>`**
--  **:ref:`LDAP Authentication <ldap>`**
+-  :ref:`Built-in User/Password <manage_users_adding_and_deleting_users>`
+-  :ref:`SSH Authentication <ssh_auth>`
+-  :ref:`X509 Authentication <x509_auth>`
+-  :ref:`LDAP Authentication <ldap>`
 
 .. warning:: **Default:** OpenNebula comes by default with an internal built-in user/password authentication.
 
@@ -144,11 +144,11 @@ Advanced Components
 
 Once you have an OpenNebula cloud up and running, you can install the following advanced components:
 
--  **:ref:`Application Flow and Auto-scaling <oneapps_overview>`**: OneFlow allows users and administrators to define, execute and manage multi-tiered applications, or services composed of interconnected Virtual Machines with deployment dependencies between them. Each group of Virtual Machines is deployed and managed as a single entity, and is completely integrated with the advanced OpenNebula user and group management.
--  **:ref:`Multiple Zone and Virtual Data Centers <ozones>`**: The OpenNebula Zones (oZones) component allows for the centralized management of multiple instances of OpenNebula (zones), managing in turn potentially different administrative domains. These zones can be effectively shared through the Virtual DataCenter (VDC) abstraction. A VDC is a set of virtual resources (images, VM templates, virtual networks and virtual machines) and users that manage those virtual resources, all sustained by infrastructure resources offered by OpenNebula.
--  **:ref:`Cloud Bursting <introh>`**: Cloud bursting is a model in which the local resources of a Private Cloud are combined with resources from remote Cloud providers. Such support for cloud bursting enables highly scalable hosting environments.
--  **:ref:`Public Cloud <introc>`**: Cloud interfaces can be added to your Private Cloud if you want to provide partners or external users with access to your infrastructure, or to sell your overcapacity. The following interfaces provide a simple and remote management of cloud (virtual) resources at a high abstraction level: :ref:`Amazon EC2 and EBS APIs <ec2qcg>` or :ref:`OGF OCCI <occicg>`.
--  **:ref:`Application Insight <onegate_overview>`**: OneGate allows Virtual Machine guests to push monitoring information to OpenNebula. Users and administrators can use it to gather metrics, detect problems in their applications, and trigger OneFlow auto-scaling rules.
+-  :ref:`Application Flow and Auto-scaling <oneapps_overview>`: OneFlow allows users and administrators to define, execute and manage multi-tiered applications, or services composed of interconnected Virtual Machines with deployment dependencies between them. Each group of Virtual Machines is deployed and managed as a single entity, and is completely integrated with the advanced OpenNebula user and group management.
+-  :ref:`Multiple Zone and Virtual Data Centers <ozones>`: The OpenNebula Zones (oZones) component allows for the centralized management of multiple instances of OpenNebula (zones), managing in turn potentially different administrative domains. These zones can be effectively shared through the Virtual DataCenter (VDC) abstraction. A VDC is a set of virtual resources (images, VM templates, virtual networks and virtual machines) and users that manage those virtual resources, all sustained by infrastructure resources offered by OpenNebula.
+-  :ref:`Cloud Bursting <introh>`: Cloud bursting is a model in which the local resources of a Private Cloud are combined with resources from remote Cloud providers. Such support for cloud bursting enables highly scalable hosting environments.
+-  :ref:`Public Cloud <introc>`: Cloud interfaces can be added to your Private Cloud if you want to provide partners or external users with access to your infrastructure, or to sell your overcapacity. The following interfaces provide a simple and remote management of cloud (virtual) resources at a high abstraction level: :ref:`Amazon EC2 and EBS APIs <ec2qcg>` or :ref:`OGF OCCI <occicg>`.
+-  :ref:`Application Insight <onegate_overview>`: OneGate allows Virtual Machine guests to push monitoring information to OpenNebula. Users and administrators can use it to gather metrics, detect problems in their applications, and trigger OneFlow auto-scaling rules.
 
 .. |high level architecture of cluster, its components and relationship| image:: /images/one_high.png
 .. |OpenNebula Cloud Platform Support| image:: /images/overview_builders.png

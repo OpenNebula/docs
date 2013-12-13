@@ -19,9 +19,9 @@ The hosts must have a working installation of KVM, that usually requires:
 Considerations & Limitations
 ============================
 
--  KVM currently only supports 4 IDE devices, for more disk devices you should better use SCSI or virtio. You have to take this into account when adding disks. See the :ref:`Virtual Machine Template documentation <template#disks_device_mapping>` for an explanation on how OpenNebula assigns disk targets.
+-  KVM currently only supports 4 IDE devices, for more disk devices you should better use SCSI or virtio. You have to take this into account when adding disks. See the :ref:`Virtual Machine Template documentation <template_disks_device_mapping>` for an explanation on how OpenNebula assigns disk targets.
 -  By default live migrations are started from the host the VM is currently running. If this is a problem in your setup you can activate local live migration adding ``-l migrate=migrate_local`` to ``vmm_mad`` arguments.
--  If you get error messages similar to ``error: cannot close file: Bad file descriptor`` upgrade libvirt version. Version 0.8.7 has a bug related to file closing operations. `https://bugzilla.redhat.com/show\_bug.cgi?format=multiple&id=672725 <https://bugzilla.redhat.com/show_bug.cgi?format=multiple&id=672725>`__
+-  If you get error messages similar to ``error: cannot close file: Bad file descriptor`` upgrade libvirt version. Version 0.8.7 has a  `bug related to file closing operations. <https://bugzilla.redhat.com/show_bug.cgi?format=multiple&id=672725>`__
 
 Configuration
 =============

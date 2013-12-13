@@ -53,61 +53,18 @@ In this case the system datastore is distributed among the hosts. The ssh transf
 The System and Image Datastores
 -------------------------------
 
-OpenNebula will automatically transfer VM disk images to/from the system datastore when a VM is booted or shutdown. The actual transfer operations and the space taken from the system datastore depends on both the image configuration (persistent vs non-persistent) as well as the drivers used by the images datastore. The following table summarizes the actions performed by each driver type.
+OpenNebula will automatically transfer VM disk images to/from the system datastore when a VM is booted or shutdown. The actual transfer operations and the space taken from the system datastore depends on both the image configuration (persistent vs non-persistent) as well as the drivers used by the images datastore. The following table summarizes the actions performed by each transfer manager driver type.
 
-Image Type
 
-Transfer Manager Drivers
-
-shared
-
-ssh
-
-qcow
-
-vmfs
-
-ceph
-
-lvm
-
-shared lvm
-
-Persistent
-
-link
-
-copy
-
-link
-
-link
-
-link
-
-link
-
-lv copy
-
-Non-persistent
-
-copy
-
-copy
-
-snapshot
-
-cp
-
-rbd copy\ **+**
-
-lv copy\ **+**
-
-lv copy
-
-Volatile
-
-new
++----------------+--------+------+----------+------+-----------+----------+------------+
+|   Image Type   | shared | ssh  |  qcow2   | vmfs |    ceph   |   lvm    | shared lvm |
++================+========+======+==========+======+===========+==========+============+
+| Persistent     | link   | copy | link     | link | link      | link     | lv copy    |
++----------------+--------+------+----------+------+-----------+----------+------------+
+| Non-persistent | copy   | copy | snapshot | cp   | rdb copy+ | lv copy+ | lv copy    |
++----------------+--------+------+----------+------+-----------+----------+------------+
+| Volatile       | new    | new  | new      | new  | new       | new      | new        |
++----------------+--------+------+----------+------+-----------+----------+------------+
 
 In the table above:
 

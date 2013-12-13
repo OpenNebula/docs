@@ -83,6 +83,8 @@ If ``user`` is specified but not ``password`` the user will be prompted for the 
 
 .. warning:: You should better not use ``--password`` parameter in a shared machine. Process parameters can be seen by any user with the command ``ps`` so it is highly insecure.
 
+.. _manage_users_adding_and_deleting_users:
+
 Adding and Deleting Users
 -------------------------
 

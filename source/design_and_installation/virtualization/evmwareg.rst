@@ -90,7 +90,7 @@ Tools Setup
      $ su
      $ chmod +s /bin/vim-cmd
 
--  In order to use the :ref:`dynamic network mode <vmwarenet#using_the_dynamic_network_mode>` for VM disks, some extra configuration steps are needed in the ESX hosts. For ESX > 5.0
+-  In order to use the :ref:`dynamic network mode <vmwarenet_using_the_dynamic_network_mode>` for VM disks, some extra configuration steps are needed in the ESX hosts. For ESX > 5.0
 
 .. code::
 
@@ -268,7 +268,7 @@ The following attributes can be used for VMware Virtual Machines:
 Custom VMX Attributes
 =====================
 
-You can add metadata straight to the .vmx file using RAW/DATA\_VMX. This comes in handy to specify for example a specific guestOS type, more info :ref:`here <template?&#raw_section>`.
+You can add metadata straight to the .vmx file using RAW/DATA\_VMX. This comes in handy to specify for example a specific guestOS type, more info :ref:`here <template_raw_section>`.
 
 Following the two last sections, if we want a VM of guestOS type “Windows 7 server 64bit”, with disks plugged into a LSI SAS SCSI bus, we can use a template like:
 

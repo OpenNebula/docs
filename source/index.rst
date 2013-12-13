@@ -2,6 +2,8 @@
 OpenNebula Documentation
 ========================
 
+.. _entry_point:
+
 .. toctree::
    :maxdepth: 2
 

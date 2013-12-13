@@ -326,11 +326,11 @@ Then log as root **in your hosts** and follow these steps:
 Step 7. Manual Configuration of Secure Shell Access
 ===================================================
 
-You need to create ``ssh`` keys for the ``oneadmin`` user** and configure the host machines so it can connect to them using ``ssh`` without need for a password.
+You need to create ``ssh`` keys for the ``oneadmin`` user and configure the host machines so it can connect to them using ``ssh`` without need for a password.
 
 Follow these steps in the **front-end**:
 
--  Generate ``oneadmin`` ``ssh`` keys:
+-  Generate ``oneadmin`` ssh keys:
 
 .. code::
 
@@ -409,12 +409,12 @@ To add a node to the cloud, there are four needed parameters: name/IP of the hos
 
     $ onehost create node01 -i kvm -v kvm -n dummy
 
-To learn more about the host subsystem, read `this guide <http://opennebula.org/documentation:rel4.4:hostsubsystem>`__.
+To learn more about the host subsystem, read :ref:`this guide <hostsubsystem>`.
 
 Step 11. Next steps
 ===================
 
-Now that you have a fully functional cloud, it is time to start learning how to use it. A good starting point is this `overview of the virtual resource management <http://opennebula.org/documentation:rel4.4:intropr>`__.
+Now that you have a fully functional cloud, it is time to start learning how to use it. A good starting point is this :ref:`overview of the virtual resource management <intropr>`.
 
 .. |image0| image:: /images/debian-opennebula.png
 .. |image2| image:: /images/sw_small.png

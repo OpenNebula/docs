@@ -6,9 +6,9 @@ Upgrading from Previous Versions
 
 This guide describes the installation procedure for systems that are already running a 2.x or 3.x OpenNebula. The upgrade will preserve all current users, hosts, resources and configurations; for both Sqlite and MySQL backends.
 
-Read the :ref:`Compatibility Guide <compatibility>` and :ref:`Release Notes <software:software>` to know what is new in OpenNebula 4.4.
+Read the :ref:`Compatibility Guide <compatibility>` and `Release Notes <http://opennebula.org/software:software>`_ to know what is new in OpenNebula 4.4.
 
-.. warning:: With the new :ref:`multi-system DS <system_ds#multiple_system_datastore_setups>` functionality, it is now required that the system DS is also part of the cluster. If you are using System DS 0 for Hosts inside a Cluster, any VM saved (stop, suspend, undeploy) **will not be able to be resumed after the upgrade process**.
+.. warning:: With the new :ref:`multi-system DS <system_ds_multiple_system_datastore_setups>` functionality, it is now required that the system DS is also part of the cluster. If you are using System DS 0 for Hosts inside a Cluster, any VM saved (stop, suspend, undeploy) **will not be able to be resumed after the upgrade process**.
 
 .. warning:: Two drivers available in 4.2 are now discontinued: **ganglia** and **iscsi**.
 
@@ -40,9 +40,9 @@ Installation
 
 Follow the :ref:`Platform Notes <uspng>` and the :ref:`Installation guide <ignc>`, taking into account that you will already have configured the passwordless ssh access for oneadmin.
 
-It is highly recommended **not to keep** your current ``oned.conf``, and update the ``oned.conf`` file shipped with OpenNebula 4.4 to your setup. If for any reason you plan to preserve your current ``oned.conf`` file, read the :ref:`Compatibility Guide <compatibility>` and the complete oned.conf reference for :ref:`4.2 <rel4.2:oned_conf>` and :ref:`4.4 <oned_conf>` versions.
+It is highly recommended **not to keep** your current ``oned.conf``, and update the ``oned.conf`` file shipped with OpenNebula 4.4 to your setup. If for any reason you plan to preserve your current ``oned.conf`` file, read the :ref:`Compatibility Guide <compatibility>` and the complete oned.conf reference for `4.2 <http://opennebula.org/documentation:archives:rel4.2:oned_conf>`__ and :ref:`4.4 <oned_conf>` versions.
 
-.. warning:: If you are upgrading from a version prior to 4.2, read the :ref:`3.8 upgrade guide <rel3.8:upgrade#installation>`, :ref:`4.0 upgrade guide <rel4.0:upgrade#installation>` and :ref:`4.2 upgrade guide <rel4.2:upgrade#installation>` for specific notes.
+.. warning:: If you are upgrading from a version prior to 4.2, read the `3.8 upgrade guide <http://opennebula.org/documentation:rel3.8:upgrade#installation>`_, `4.0 upgrade guide <http://opennebula.org/documentation:rel4.0:upgrade#installation>`_ and `4.2 upgrade guide <http://opennebula.org/rel4.2:upgrade#installation>`_ for specific notes.
 
 Database Upgrade
 ================
@@ -89,7 +89,7 @@ If everything goes well, you should get an output similar to this one:
 
     Database migrated from 4.2.0 to 4.4.0 (OpenNebula 4.4.0) by onedb command.
 
-If you receive the message “ATTENTION: manual intervention required”, read the section :ref:`Manual Intervention Required <#manual_intervention_required>` below.
+If you receive the message “ATTENTION: manual intervention required”, read the section :ref:`Manual Intervention Required <upgrade_manual_intervention_required>` below.
 
 .. warning:: Make sure you keep the backup file. If you face any issues, the onedb command can restore this backup, but it won't downgrade databases to previous versions.
 
@@ -125,7 +125,7 @@ You should be able now to start OpenNebula as usual, running 'one start' as onea
 Setting new System DS
 =====================
 
-With the new :ref:`multi-system DS <system_ds#multiple_system_datastore_setups>` functionality, it is now required that the system DS is also part of the cluster. If you are using System DS 0 for Hosts inside a Cluster, any VM saved (stop, suspend, undeploy) **will not be able to be resumed after the upgrade process**.
+With the new :ref:`multi-system DS <system_ds_multiple_system_datastore_setups>` functionality, it is now required that the system DS is also part of the cluster. If you are using System DS 0 for Hosts inside a Cluster, any VM saved (stop, suspend, undeploy) **will not be able to be resumed after the upgrade process**.
 
 You will need to have at least one system DS in each cluster. If you don't already, create new system DS with the same definition as the system DS 0 (TM\_MAD driver). Depending on your setup this may or may not require additional configuration on the hosts.
 
@@ -159,6 +159,8 @@ The workaround is to temporarily change the oneadmin's password to an ASCII stri
     $ mysql -u oneadmin -p
 
     mysql> SET PASSWORD = PASSWORD('newpass');
+
+.. _upgrade_manual_intervention_required:
 
 Manual Intervention Required
 ============================
