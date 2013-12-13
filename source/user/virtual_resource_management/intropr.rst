@@ -4,12 +4,16 @@
 Introduction to Private Cloud Computing
 ========================================
 
-|image0| The aim of a Private Cloud is not to expose to the world a cloud interface to sell capacity over the Internet, but to **provide local cloud users and administrators with a flexible and agile private infrastructure to run virtualized service workloads within the administrative domain**. OpenNebula virtual infrastructure interfaces expose **user and administrator functionality for virtualization, networking, image and physical resource configuration, management, monitoring and accounting**. This guide briefly describes how OpenNebula operates to build a Cloud infrastructure. After reading this guide you may be interested in reading the :ref:`guide describing how an hybrid cloud operates <introh>` and the :ref:`guide describing how a public cloud operates <introc>`.
+|image0|
+
+The aim of a Private Cloud is not to expose to the world a cloud interface to sell capacity over the Internet, but to **provide local cloud users and administrators with a flexible and agile private infrastructure to run virtualized service workloads within the administrative domain**. OpenNebula virtual infrastructure interfaces expose **user and administrator functionality for virtualization, networking, image and physical resource configuration, management, monitoring and accounting**. This guide briefly describes how OpenNebula operates to build a Cloud infrastructure. After reading this guide you may be interested in reading the :ref:`guide describing how an hybrid cloud operates <introh>` and the :ref:`guide describing how a public cloud operates <introc>`.
 
 The User View
 =============
 
-|image1| An OpenNebula Private Cloud provides infrastructure users with an **elastic platform for fast delivery and scalability of services to meet dynamic demands of service end-users**. Services are hosted in VMs, and then submitted, monitored and controlled in the Cloud by using :ref:`Sunstone <sunstone>` or any of the OpenNebula interfaces:
+|image1|
+
+An OpenNebula Private Cloud provides infrastructure users with an **elastic platform for fast delivery and scalability of services to meet dynamic demands of service end-users**. Services are hosted in VMs, and then submitted, monitored and controlled in the Cloud by using :ref:`Sunstone <sunstone>` or any of the OpenNebula interfaces:
 
 -  :ref:`Command Line Interface (CLI) <cli>`
 -  :ref:`XML-RPC API <api>`

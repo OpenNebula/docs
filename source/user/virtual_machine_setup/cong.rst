@@ -65,47 +65,51 @@ In VM description file you can tell OpenNebula to create a contextualization ima
 
 Variables inside CONTEXT section will be added to ``context.sh`` file inside the contextualization image. These variables can be specified in three different ways:
 
--  **Hardcoded variables:**
+Hardcoded variables
+~~~~~~~~~~~~~~~~~~~
 
 .. code::
 
-    hostname   = "MAINHOST"
+   hostname   = "MAINHOST"
 
--  **Using template variables**
+Using template variables
+~~~~~~~~~~~~~~~~~~~~~~~~
 
-   -  ``$<template_variable>``: any single value variable of the VM template, like for example:\\\\
-
-.. code::
-
-          ip_gen     = "10.0.0.$VMID"
-
-   -  ``$<template_variable>[<attribute>]``: Any single value contained in a multiple value variable in the VM template, like for example:
+``$<template_variable>``: any single value variable of the VM template, like for example:
 
 .. code::
 
-          ip_private = $NIC[IP]
+   ip_gen     = "10.0.0.$VMID"
 
-   -  ``$<template_variable>[<attribute>, <attribute2>=<value2>]``: Any single value contained in a multiple value variable in the VM template, setting one attribute to discern between multiple variables called the same way, like for example:
-
-.. code::
-
-          ip_public = "$NIC[IP, NETWORK=\"Public\"]"
-
-      . You can use any of the attributes defined in the variable, NIC in the previous example.
-
--  **Using Virtual Network template variables**
-
--  ``$NETWORK[<vnet_attribute>, <NETWORK_ID|NETWORK>=<vnet_id|vnet_name>]``: Any single value variable in the Virtual Network template, like for example:
+``$<template_variable>[<attribute>]``: Any single value contained in a multiple value variable in the VM template, like for example:
 
 .. code::
 
-       dns = "$NETWORK[DNS, NETWORK_ID=3]"
+   ip_private = $NIC[IP]
 
-   Note that the network MUST be in used by any of the NICs defined in the template. The vnet\_attribute can be ``TEMPLATE`` to include the whole vnet template in XML (base64 encoded).
+``$<template_variable>[<attribute>, <attribute2>=<value2>]``: Any single value contained in a multiple value variable in the VM template, setting one attribute to discern between multiple variables called the same way, like for example:
 
--  **Using Image template variables**
+.. code::
 
--  ``$IMAGE[<image_attribute>, <IMAGE_ID|IMAGE>=<img_id|img_name>]``: Any single value variable in the Image template, like for example:
+   ip_public = "$NIC[IP, NETWORK=\"Public\"]"
+
+You can use any of the attributes defined in the variable, NIC in the previous example.
+
+Using Virtual Network template variables
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+``$NETWORK[<vnet_attribute>, <NETWORK_ID|NETWORK>=<vnet_id|vnet_name>]``: Any single value variable in the Virtual Network template, like for example:
+
+.. code::
+
+   dns = "$NETWORK[DNS, NETWORK_ID=3]"
+
+.. note: The network MUST be in used by any of the NICs defined in the template. The vnet\_attribute can be ``TEMPLATE`` to include the whole vnet template in XML (base64 encoded).
+
+Using Image template variables
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+``$IMAGE[<image_attribute>, <IMAGE_ID|IMAGE>=<img_id|img_name>]``: Any single value variable in the Image template, like for example:
 
 .. code::
 
@@ -113,17 +117,18 @@ Variables inside CONTEXT section will be added to ``context.sh`` file inside the
 
    Note that the image MUST be in used by any of the DISKs defined in the template. The image\_attribute can be ``TEMPLATE`` to include the whole image template in XML (base64 encoded).
 
--  **Using User template variables**
+Using User template variables
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-   -  ``$USER[<user_attribute>]``: Any single value variable in the user (owner of the VM) template, like for example:
+``$USER[<user_attribute>]``: Any single value variable in the user (owner of the VM) template, like for example:
 
 .. code::
 
-          ssh_key = "$USER[SSH_KEY]"
+   ssh_key = "$USER[SSH_KEY]"
 
-      The user\_attribute can be ``TEMPLATE`` to include the whole user template in XML (base64 encoded).
+The user\_attribute can be ``TEMPLATE`` to include the whole user template in XML (base64 encoded).
 
--  **Pre-defined variables**, apart from those defined in the template you can use:
+**Pre-defined variables**, apart from those defined in the template you can use:
 
    -  ``$UID``, the uid of the VM owner
    -  ``$UNAME``, the VM owner user name

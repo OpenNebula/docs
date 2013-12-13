@@ -135,7 +135,7 @@ Now we modify the file ``/etc/init/networking.conf`` and change the line:
 
     pre-start exec mkdir -p /run/network
 
-by
+with
 
 .. code::
 

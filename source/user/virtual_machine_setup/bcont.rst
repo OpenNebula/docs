@@ -18,7 +18,7 @@ The contextualization package will also mount any partition labeled ``swap`` as 
 -  Start a image (or finish its installation)
 -  Install context packages with one of these methods:
 
-   -  Install from our repositories package 'one-context' in Ubuntu/Debian or 'opennebula-context' in CentOS/RedHat. Instructions to add the repository at the :ref:`installation guide <ignc>`.
+   -  Install from our repositories package **one-context** in Ubuntu/Debian or **opennebula-context** in CentOS/RedHat. Instructions to add the repository at the :ref:`installation guide <ignc>`.
    -  Download and install the package for your distribution:
 
       -  `DEB <http://dev.opennebula.org/attachments/download/750/one-context_4.4.0.deb>`__: Compatible with Ubuntu 11.10 to 13.04 and Debian Squeeze
@@ -46,7 +46,7 @@ And then in the VM template contextualization we set NETWORK to ``yes``:
     CONTEXT=[
       NETWORK=YES ]
 
-When the template is instantiated, those parameters for \`eth0\` are automatically set in the VM as:
+When the template is instantiated, those parameters for ``eth0`` are automatically set in the VM as:
 
 .. code::
 
@@ -62,7 +62,7 @@ When the template is instantiated, those parameters for \`eth0\` are automatical
 
 If you add more that one interface to a Virtual Machine you will end with same parameters changing ETH0 to ETH1, ETH2, etc.
 
-You can also add \`SSH\_PUBLIC\_KEY\` parameter to the context to add a SSH public key to the \`authorized\_keys\` file of root.
+You can also add ``SSH_PUBLIC_KEY`` parameter to the context to add a SSH public key to the ``authorized_keys`` file of root.
 
 .. code::
 

@@ -29,17 +29,17 @@ Virtual Machines are defined in an OpenNebula Template. Templates are stored in 
 
 -  **Capacity & Name**, how big will the VM be?
 
-+--------------+-------------------------------------------------------+-------------+--------------+
-| Attribute    | Description                                           | Mandatory   | Default      |
-+==============+=======================================================+=============+==============+
-| **NAME**     | Name that the VM will get for description purposes.   | Yes         | one-<vmid>   |
-+--------------+-------------------------------------------------------+-------------+--------------+
-| **MEMORY**   | Amount of RAM required for the VM, in Megabytes.      | Yes         | -            |
-+--------------+-------------------------------------------------------+-------------+--------------+
-| **CPU**      | CPU ratio (e..g half a physical CPU is 0.5).          | Yes         | -            |
-+--------------+-------------------------------------------------------+-------------+--------------+
-| **VCPU**     | Number of virtual cpus.                               | No          | 1            |
-+--------------+-------------------------------------------------------+-------------+--------------+
++------------+-----------------------------------------------------+-----------+------------+
+| Attribute  |                     Description                     | Mandatory |  Default   |
++============+=====================================================+===========+============+
+| ``NAME``   | Name that the VM will get for description purposes. | Yes       | one-<vmid> |
++------------+-----------------------------------------------------+-----------+------------+
+| ``MEMORY`` | Amount of RAM required for the VM, in Megabytes.    | Yes       |            |
++------------+-----------------------------------------------------+-----------+------------+
+| ``CPU``    | CPU ratio (e..g half a physical CPU is 0.5).        | Yes       |            |
++------------+-----------------------------------------------------+-----------+------------+
+| ``VCPU``   | Number of virtual cpus.                             | No        | 1          |
++------------+-----------------------------------------------------+-----------+------------+
 
 -  **Disks**. Each disk is defined with a DISK attribute. A VM can use three types of disk:
 
@@ -47,101 +47,41 @@ Virtual Machines are defined in an OpenNebula Template. Templates are stored in 
    -  **Use a non-persistent Image** images are cloned, changes to the image will be lost.
    -  **Volatile** disks are created on the fly on the target host. After the VM is shutdown the disk is disposed.
 
-DISK Attribute
+-  **Persistent and Clone Disks**
 
-Description
++----------------------------+----------------------------------------------+-----------+---------+
+|         Attribute          |                 Description                  | Mandatory | Default |
++============================+==============================================+===========+=========+
+| ``IMAGE_ID`` and ``IMAGE`` | The ID or Name of the image in the datastore | Yes       |         |
++----------------------------+----------------------------------------------+-----------+---------+
+| ``IMAGE_UID``              | Select the IMAGE of a given user by her ID   | No        | self    |
++----------------------------+----------------------------------------------+-----------+---------+
+| ``IMAGE_UNAME``            | Select the IMAGE of a given user by her NAME | No        | self    |
++----------------------------+----------------------------------------------+-----------+---------+
 
-Mandatory
+-  **Volatile**
 
-Default
-
-Persistent and Clone Disks
-
-**IMAGE\_ID**
-
-The ID or Name of the image in the datastore
-
-Yes
-
--
-
-**IMAGE**
-
-**IMAGE\_UID**
-
-Select the IMAGE of a given user by her ID
-
-No
-
-self
-
-**IMAGE\_UNAME**
-
-Select the IMAGE of a given user by her NAME
-
-No
-
-self
-
-Volatile
-
-**TYPE**
-
-Type of the disk:\ ``swap``, ``fs``. ``swap`` type will set the label to ``swap`` so it is easier to mount and the context packages will automatically mount it.
-
-Yes (for volatile)
-
--
-
-**SIZE**
-
-size in MB
-
-Yes
-
--
-
-**FORMAT**
-
-filesystem for **fs** images: ``ext2``, ``ext3``, etc. ``raw`` will not format the image. For VMs to run on ``vmfs`` or ``vmware shared`` configurations, the valid values are: ``vmdk_thin``, ``vmdk_zeroedthick``, ``vmdk_eagerzeroedthick``
-
-Yes (for fs)
++------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+---------+
+| Attribute  |                                                                                                                  Description                                                                                                                   | Mandatory | Default |
++============+================================================================================================================================================================================================================================================+===========+=========+
+| ``TYPE``   | Type of the disk: ``swap``, ``fs``. ``swap`` type will set the label to ``swap`` so it is easier to mount and the context packages will automatically mount it.                                                                                | Yes       |         |
++------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+---------+
+| ``SIZE``   | size in MB                                                                                                                                                                                                                                     | Yes       |         |
++------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+---------+
+| ``FORMAT`` | filesystem for **fs** images: ``ext2``, ``ext3``, etc. ``raw`` will not format the image. For VMs to run on ``vmfs`` or ``vmware shared`` configurations, the valid values are: ``vmdk_thin``, ``vmdk_zeroedthick``, ``vmdk_eagerzeroedthick`` | Yes       |         |
++------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+---------+
 
 -  **Network Interfaces**. Each network interface of a VM is defined with the ``NIC`` attribute.
 
-NIC Attribute
-
-Description
-
-Mandatory
-
-Default
-
-**NETWORK\_ID**
-
-The ID or Name of the network to attach this NIC
-
-Yes
-
--
-
-**NETWORK**
-
-**NETWORK\_UID**
-
-Select the NETWORK of a given user by her ID
-
-No
-
-self
-
-**NETWORK\_UNAME**
-
-Select the NETWORK of a given user by her NAME
-
-No
-
-self
++--------------------------------+----------------------------------------------+-----------+---------+
+|           Attribute            |                 Description                  | Mandatory | Default |
++================================+==============================================+===========+=========+
+| ``NETWORK_ID`` and ``NETWORK`` | The ID or Name of the image in the datastore | Yes       |         |
++--------------------------------+----------------------------------------------+-----------+---------+
+| ``NETWORK_UID``                | Select the IMAGE of a given user by her ID   | No        | self    |
++--------------------------------+----------------------------------------------+-----------+---------+
+| ``NETWORK_UNAME``              | Select the IMAGE of a given user by her NAME | No        | self    |
++--------------------------------+----------------------------------------------+-----------+---------+
 
 The following example shows a VM Template file with a couple of disks and a network interface, also a VNC section was added.
 

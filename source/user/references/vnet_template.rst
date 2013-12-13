@@ -35,7 +35,7 @@ These are the common attributes for both types of VNets:
 | **GLOBAL\_PREFIX** | String       | IPv6 global unicast addresses. Must be a valid IPv6                                                                                        | Optional                               |
 +--------------------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------+
 
-Please note that any arbitrary value can be set in the Virtual Network template, and then used in the :ref:`contextualization <cong>` section of the VM. For instance, NETWORK\_GATEWAY="x.x.x.x" might be used to define the Virtual Network, and then used in the context section of the VM to configure its network to connect through the GATEWAY.
+Please note that any arbitrary value can be set in the Virtual Network template, and then used in the :ref:`contextualization <cong>` section of the VM. For instance, ``NETWORK\_GATEWAY="x.x.x.x"`` might be used to define the Virtual Network, and then used in the context section of the VM to configure its network to connect through the GATEWAY.
 
 If you need OpenNebula to generate IPv6 addresses, that can be later used in context or for Virtual Router appliances, you can use the ``GLOBAL_PREFIX`` and ``SITE_PREFIX`` attributes
 
