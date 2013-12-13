@@ -15,21 +15,21 @@ What Datastore Types Are Available?
 
 OpenNebula is shipped with 3 different datastore classes:
 
--  **:ref:`System <system_ds>`**, to hold images for running VMs, depending on the storage technology used these temporal images can be complete copies of the original image, qcow deltas or simple filesystem links.
+-  :ref:`System <system_ds>`, to hold images for running VMs, depending on the storage technology used these temporal images can be complete copies of the original image, qcow deltas or simple filesystem links.
 
 -  **Images**, stores the disk images repository. Disk images are moved, or cloned to/from the System datastore when the VMs are deployed or shutdown; or when disks are attached or snapshoted.
 
--  **:ref:`Files <file_ds>`**, This is a special datastore used to store plain files and not disk images. The plain files can be used as kernels, ramdisks or context files.
+-  :ref:`Files <file_ds>`, This is a special datastore used to store plain files and not disk images. The plain files can be used as kernels, ramdisks or context files.
 
 Image datastores can be of different type depending on the underlying storage technology:
 
--  **:ref:`File-system <fs_ds>`**, to store disk images in a file form. The files are stored in a directory mounted from a SAN/NAS server.
+-  :ref:`File-system <fs_ds>`, to store disk images in a file form. The files are stored in a directory mounted from a SAN/NAS server.
 
--  **:ref:`vmfs <vmware_ds#configuring_the_datastore_drivers_for_vmware>`**, a datastore specialized in VMFS format to be used with VMware hypervisors. Cannot be mounted in the OpenNebula front-end since VMFS is not \*nix compatible.
+-  :ref:`vmfs <vmware_ds_datastore_configuration>`, a datastore specialized in VMFS format to be used with VMware hypervisors. Cannot be mounted in the OpenNebula front-end since VMFS is not \*nix compatible.
 
--  **:ref:`LVM <lvm_drivers#lvm>`**, The LVM datastore driver provides OpenNebula with the possibility of using LVM volumes instead of plain files to hold the Virtual Images. This reduces the overhead of having a file-system in place and thus increases performance..
+-  :ref:`LVM <lvm_drivers>`, The LVM datastore driver provides OpenNebula with the possibility of using LVM volumes instead of plain files to hold the Virtual Images. This reduces the overhead of having a file-system in place and thus increases performance..
 
--  **:ref:`Ceph <ceph_ds>`**, to store disk images using Ceph block devices.
+-  :ref:`Ceph <ceph_ds>`, to store disk images using Ceph block devices.
 
 As usual in OpenNebula the system has been architected to be highly modular, so you can easily adapt the base types to your deployment.
 
@@ -61,53 +61,19 @@ You can take advantage of the multiple datastore features of OpenNebula to bette
 
 There are some limitations and features depending on the transfer mechanism you choose for your system and image datastores (check each datastore guide for more information). The following table summarizes the valid combinations of Datastore and transfer drivers:
 
-Datastore
-
-Transfer Manager Drivers
-
-shared
-
-ssh
-
-qcow
-
-vmfs
-
-ceph
-
-lvm
-
-fs\_lvm
-
-System
-
-x
-
-x
-
-x
-
-File-System
-
-x
-
-x
-
-x
-
-x
-
-vmfs
-
-x
-
-ceph
-
-x
-
-lvm
-
-x
++-------------+--------+-----+-------+------+------+-----+---------+
+|  Datastore  | shared | ssh | qcow2 | vmfs | ceph | lvm | fs\_lvm |
++=============+========+=====+=======+======+======+=====+=========+
+| System      | x      | x   |       | x    |      |     |         |
++-------------+--------+-----+-------+------+------+-----+---------+
+| File-System | x      | x   | x     |      |      |     | x       |
++-------------+--------+-----+-------+------+------+-----+---------+
+| vmfs        |        |     |       | x    |      |     |         |
++-------------+--------+-----+-------+------+------+-----+---------+
+| ceph        |        |     |       |      | x    |     |         |
++-------------+--------+-----+-------+------+------+-----+---------+
+| lvm         |        |     |       |      |      | x   |         |
++-------------+--------+-----+-------+------+------+-----+---------+
 
 Tuning and Extending
 ====================

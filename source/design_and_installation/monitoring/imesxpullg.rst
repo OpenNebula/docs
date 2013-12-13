@@ -24,7 +24,7 @@ In order to configure VMware you need to:
           executable = "one_im_sh",
           arguments  = "-c -t 15 -r 0 vmware" ]
 
--  Make sure that the configuration attributes for VMware drivers are set in ``/etc/one/vmwarerc``, see the :ref:`VMware guide <evmwareg#vmware_drivers>`
+-  Make sure that the configuration attributes for VMware drivers are set in ``/etc/one/vmwarerc``, see the :ref:`VMware guide <evmwareg>`
 
 Monitoring Configuration Parameters
 -----------------------------------

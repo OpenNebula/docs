@@ -130,7 +130,7 @@ If this is the case it's probably because OpenNebula is receiving probes faster 
 Monitoring Probes
 -----------------
 
-For the troubleshooting of errors produced during the execution of the monitoring probes, please refer to the troubleshooting section of the :ref:`SSH-pull guide <imsshpullg#troubleshooting>`.
+For the troubleshooting of errors produced during the execution of the monitoring probes, please refer to the troubleshooting section of the :ref:`SSH-pull guide <imsshpullg_troubleshooting>`.
 
 Tuning & Extending
 ==================
@@ -147,6 +147,6 @@ Driver Files
 
 The probes are specialized programs that obtain the monitor metrics. Probes are defined for each hypervisor, and are located at ``/var/lib/one/remotes/im/<hypervisor>-probes.d`` for Xen and KVM.
 
-You can easily write your own probes or modify existing ones, please see the :ref:`Information Manager Drivers <devel-im>` guide. Remember to synchronize the monitor probes in the hosts using ``onehost sync`` as described in the :ref:`Managing Hosts <host_guide#sync>` guide.
+You can easily write your own probes or modify existing ones, please see the :ref:`Information Manager Drivers <devel-im>` guide. Remember to synchronize the monitor probes in the hosts using ``onehost sync`` as described in the :ref:`Managing Hosts <host_guide_sync>` guide.
 
 .. |image0| image:: /images/collector.png

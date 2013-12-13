@@ -227,6 +227,8 @@ Which can be used at a later time for scheduling purposes by adding the followin
 
 That will restrict the Virtual Machine to be deployed in ``TYPE=production`` hosts.
 
+.. _host_guide_sync:
+
 Sync
 ----
 

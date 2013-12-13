@@ -60,6 +60,8 @@ The NICs of the VM in this Virtual Network will be attached to the specified por
      
     LEASES = ...
 
+.. _vmwarenet_using_the_dynamic_network_mode:
+
 Using the Dynamic Network Mode
 ------------------------------
 

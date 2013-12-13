@@ -320,6 +320,8 @@ Optional
 
 -
 
+.. _template_disks_device_mapping:
+
 Disks Device Mapping
 --------------------
 
@@ -774,6 +776,8 @@ Examples:
      
     # Consider also the CPU temperature
       SCHED_RANK = "FREECPU * 100 - TEMPERATURE"
+
+.. _template_raw_section:
 
 RAW Section
 ===========

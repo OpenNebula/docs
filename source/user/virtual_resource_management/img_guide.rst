@@ -359,6 +359,8 @@ This command copies disk 1 to the datastore with name “Backup of DB volume”,
 How to Use File Images in Virtual Machines
 ==========================================
 
+.. _img_guide_kernel_and_ramdisk:
+
 KERNEL and RAMDISK
 ------------------
 
