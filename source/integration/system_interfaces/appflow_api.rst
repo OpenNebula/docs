@@ -9,7 +9,7 @@ Overview
 
 The OpenNebula OneFlow API is a RESTful service to create, control and monitor multi-tier applications or services composed of interconnected Virtual Machines with deployment dependencies between them. Each group of Virtual Machines is deployed and managed as a single entity, and is completely integrated with the advanced OpenNebula user and group management. There are two kind of resources; services templates and services. All data is sent and received as JSON.
 
-This guide is intended for developers. The OpenNebula distribution includes a :ref:`cli <cli#oneflow_commands>` to interact with OneFlow and it is also fully integrated in the :ref:`Sunstone GUI <appflow_configure#enable_the_sunstone_tabs>`
+This guide is intended for developers. The OpenNebula distribution includes a :ref:`cli <cli>` to interact with OneFlow and it is also fully integrated in the :ref:`Sunstone GUI <appflow_configure>`
 
 Authentication & Authorization
 ==============================
@@ -121,29 +121,29 @@ A Service is defined with JSON syntax templates.
 
 Each Role is defined as:
 
-+------------------------+---------------------+---------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
-| Attribute              | Type                | Mandatory                 | Description                                                                                                                           |
-+========================+=====================+===========================+=======================================================================================================================================+
-| name                   | string              | Yes                       | Role name                                                                                                                             |
-+------------------------+---------------------+---------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
-| cardinality            | integer             | No                        | Number of VMs to deploy. Defaults to 1                                                                                                |
-+------------------------+---------------------+---------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
-| vm\_template           | integer             | Yes                       | OpenNebula VM Template ID. See the :ref:`OpenNebula documentation for VM Templates <vm_guide>`                                           |
-+------------------------+---------------------+---------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
-| parents                | array of string     | No                        | Names of the roles that must be deployed before this one                                                                              |
-+------------------------+---------------------+---------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
-| shutdown\_action       | string              | No                        | VM shutdown action: 'shutdown' or 'shutdown-hard'. If it is not set, the one set for the Service will be used                         |
-+------------------------+---------------------+---------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
-| min\_vms               | integer             | No (Yes for elasticity)   | Minimum number of VMs for elasticity adjustments                                                                                      |
-+------------------------+---------------------+---------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
-| max\_vms               | integer             | No (Yes for elasticity)   | Maximum number of VMs for elasticity adjustments                                                                                      |
-+------------------------+---------------------+---------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
-| cooldown               | integer             | No                        | Cooldown period duration after a scale operation, in seconds. If it is not set, the default set in oneflow-server.conf will be used   |
-+------------------------+---------------------+---------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
-| elasticity\_policies   | array of Policies   | No                        | Array of Elasticity Policies, see below                                                                                               |
-+------------------------+---------------------+---------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
-| scheduled\_policies    | array of Policies   | No                        | Array of Scheduled Policies, see below                                                                                                |
-+------------------------+---------------------+---------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
++----------------------+-------------------+-------------------------+-------------------------------------------------------------------------------------------------------------------------------------+
+|      Attribute       |        Type       |        Mandatory        |                                                             Description                                                             |
++======================+===================+=========================+=====================================================================================================================================+
+| name                 | string            | Yes                     | Role name                                                                                                                           |
++----------------------+-------------------+-------------------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| cardinality          | integer           | No                      | Number of VMs to deploy. Defaults to 1                                                                                              |
++----------------------+-------------------+-------------------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| vm\_template         | integer           | Yes                     | OpenNebula VM Template ID. See the :ref:`OpenNebula documentation for VM Templates <vm_guide>`                                      |
++----------------------+-------------------+-------------------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| parents              | array of string   | No                      | Names of the roles that must be deployed before this one                                                                            |
++----------------------+-------------------+-------------------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| shutdown\_action     | string            | No                      | VM shutdown action: 'shutdown' or 'shutdown-hard'. If it is not set, the one set for the Service will be used                       |
++----------------------+-------------------+-------------------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| min\_vms             | integer           | No (Yes for elasticity) | Minimum number of VMs for elasticity adjustments                                                                                    |
++----------------------+-------------------+-------------------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| max\_vms             | integer           | No (Yes for elasticity) | Maximum number of VMs for elasticity adjustments                                                                                    |
++----------------------+-------------------+-------------------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| cooldown             | integer           | No                      | Cooldown period duration after a scale operation, in seconds. If it is not set, the default set in oneflow-server.conf will be used |
++----------------------+-------------------+-------------------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| elasticity\_policies | array of Policies | No                      | Array of Elasticity Policies, see below                                                                                             |
++----------------------+-------------------+-------------------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| scheduled\_policies  | array of Policies | No                      | Array of Scheduled Policies, see below                                                                                              |
++----------------------+-------------------+-------------------------+-------------------------------------------------------------------------------------------------------------------------------------+
 
 To define a elasticity policy:
 

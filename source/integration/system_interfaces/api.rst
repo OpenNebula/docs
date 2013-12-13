@@ -22,51 +22,23 @@ The output will always consist of three values. The first and third ones are fix
 
 The Error Code will contain one of the following values:
 
-Value
-
-Code
-
-0x0000
-
-SUCCESS
-
-Success response.
-
-0x0100
-
-AUTHENTICATION
-
-User could not be authenticated.
-
-0x0200
-
-AUTHORIZATION
-
-User is not authorized to perform the requested action.
-
-0x0400
-
-NO\_EXISTS
-
-The requested resource does not exist.
-
-0x0800
-
-ACTION
-
-|FIXME|
-
-0x1000
-
-XML\_RPC\_API
-
-|FIXME|
-
-0x2000
-
-INTERNAL
-
-|FIXME|
++--------+----------------+---------------------------------------------------------+
+| Value  |      Code      |                         Meaning                         |
++========+================+=========================================================+
+| 0x0000 | SUCCESS        | Success response.                                       |
++--------+----------------+---------------------------------------------------------+
+| 0x0100 | AUTHENTICATION | User could not be authenticated.                        |
++--------+----------------+---------------------------------------------------------+
+| 0x0200 | AUTHORIZATION  | User is not authorized to perform the requested action. |
++--------+----------------+---------------------------------------------------------+
+| 0x0400 | NO\_EXISTS     | The requested resource delhost not exist.               |
++--------+----------------+---------------------------------------------------------+
+| 0x0800 | ACTION         | FIXME                                                   |
++--------+----------------+---------------------------------------------------------+
+| 0x1000 | XML\_RPC\_API  | FIXME                                                   |
++--------+----------------+---------------------------------------------------------+
+| 0x2000 | INTERNAL       | FIXME                                                   |
++--------+----------------+---------------------------------------------------------+
 
 .. warning:: All methods expect a session string associated to the connected user as the first parameter. It has to be formed with the contents of the ONE\_AUTH file, which will be ``<username>:<password>`` with the default 'core' auth driver.
 
@@ -100,71 +72,71 @@ For each XML-RPC request, the session token is authenticated, and after that the
 onevm
 -----
 
-+-------------------+----------------------------------------------------+------------------------+
-| onevm command     | XML-RPC Method                                     | Auth. Request          |
-+===================+====================================================+========================+
-| deploy            | :ref:`one.vm.deploy <#onevmdeploy>`                   | VM:ADMIN               |
-|                   |                                                    |  HOST:MANAGE           |
-+-------------------+----------------------------------------------------+------------------------+
-| delete            | :ref:`one.vm.action <#onevmaction>`                   | VM:MANAGE              |
-|  boot             |                                                    |                        |
-|  shutdown         |                                                    |                        |
-|  suspend          |                                                    |                        |
-|  hold             |                                                    |                        |
-|  stop             |                                                    |                        |
-|  resume           |                                                    |                        |
-|  release          |                                                    |                        |
-|  poweroff         |                                                    |                        |
-|  reboot           |                                                    |                        |
-+-------------------+----------------------------------------------------+------------------------+
-| resched           | :ref:`one.vm.action <#onevmaction>`                   | VM:ADMIN               |
-|  unresched        |                                                    |                        |
-+-------------------+----------------------------------------------------+------------------------+
-| migrate           | :ref:`one.vm.migrate <#onevmmigrate>`                 | VM:ADMIN               |
-|                   |                                                    |  HOST:MANAGE           |
-+-------------------+----------------------------------------------------+------------------------+
-| disk-snapshot     | :ref:`one.vm.savedisk <#onevmsavedisk>`               | VM:MANAGE              |
-|                   |                                                    |  IMAGE:CREATE          |
-+-------------------+----------------------------------------------------+------------------------+
-| disk-attach       | :ref:`one.vm.attach <#onevmattach>`                   | VM:MANAGE              |
-|                   |                                                    |  IMAGE:USE             |
-+-------------------+----------------------------------------------------+------------------------+
-| disk-detach       | :ref:`one.vm.detach <#onevmdetach>`                   | VM:MANAGE              |
-+-------------------+----------------------------------------------------+------------------------+
-| nic-attach        | :ref:`one.vm.attachnic <#onevmattachnic>`             | VM:MANAGE              |
-|                   |                                                    |  NET:USE               |
-+-------------------+----------------------------------------------------+------------------------+
-| nic-detach        | :ref:`one.vm.detachnic <#onevmdetachnic>`             | VM:MANAGE              |
-+-------------------+----------------------------------------------------+------------------------+
-| create            | :ref:`one.vm.allocate <#onevmallocate>`               | VM:CREATE              |
-|                   |                                                    |  IMAGE:USE             |
-|                   |                                                    |  NET:USE               |
-+-------------------+----------------------------------------------------+------------------------+
-| show              | :ref:`one.vm.info <#onevminfo>`                       | VM:USE                 |
-+-------------------+----------------------------------------------------+------------------------+
-| chown             | :ref:`one.vm.chown <#onevmchown>`                     | VM:MANAGE              |
-|  chgrp            |                                                    |  [USER:MANAGE]         |
-|                   |                                                    |  [GROUP:USE]           |
-+-------------------+----------------------------------------------------+------------------------+
-| chmod             | :ref:`one.vm.chmod <#onevmchmod>`                     | VM:<MANAGE \| ADMIN>   |
-+-------------------+----------------------------------------------------+------------------------+
-| rename            | :ref:`one.vm.rename <#onevmrename>`                   | VM:MANAGE              |
-+-------------------+----------------------------------------------------+------------------------+
-| snapshot-create   | :ref:`one.vm.snapshotcreate <#onevmsnapshotcreate>`   | VM:MANAGE              |
-+-------------------+----------------------------------------------------+------------------------+
-| snapshot-delete   | :ref:`one.vm.snapshotdelete <#onevmsnapshotdelete>`   | VM:MANAGE              |
-+-------------------+----------------------------------------------------+------------------------+
-| snapshot-revert   | :ref:`one.vm.snapshotrevert <#onevmsnapshotrevert>`   | VM:MANAGE              |
-+-------------------+----------------------------------------------------+------------------------+
-| resize            | :ref:`one.vm.resize <#onevmresize>`                   | VM:MANAGE              |
-+-------------------+----------------------------------------------------+------------------------+
-| update            | :ref:`one.vm.update <#onevmupdate>`                   | VM:MANAGE              |
-+-------------------+----------------------------------------------------+------------------------+
-| recover           | :ref:`one.vm.recover <#onevmrecover>`                 | VM:ADMIN               |
-+-------------------+----------------------------------------------------+------------------------+
-| list              | :ref:`one.vmpool.info <#onevmpoolinfo>`               | VM:USE                 |
-|  top              |                                                    |                        |
-+-------------------+----------------------------------------------------+------------------------+
++-----------------+-----------------------+-------------------+
+|  onevm command  |     XML-RPC Method    |   Auth. Request   |
++=================+=======================+===================+
+| deploy          | one.vm.deploy         | VM:ADMIN          |
+|                 |                       | HOST:MANAGE       |
++-----------------+-----------------------+-------------------+
+| delete          | one.vm.action         | VM:MANAGE         |
+| boot            |                       |                   |
+| shutdown        |                       |                   |
+| suspend         |                       |                   |
+| hold            |                       |                   |
+| stop            |                       |                   |
+| resume          |                       |                   |
+| release         |                       |                   |
+| poweroff        |                       |                   |
+| reboot          |                       |                   |
++-----------------+-----------------------+-------------------+
+| resched         | one.vm.action         | VM:ADMIN          |
+| unresched       |                       |                   |
++-----------------+-----------------------+-------------------+
+| migrate         | one.vm.migrate        | VM:ADMIN          |
+|                 |                       | HOST:MANAGE       |
++-----------------+-----------------------+-------------------+
+| disk-snapshot   | one.vm.savedisk       | VM:MANAGE         |
+|                 |                       | IMAGE:CREATE      |
++-----------------+-----------------------+-------------------+
+| disk-attach     | one.vm.attach         | VM:MANAGE         |
+|                 |                       | IMAGE:USE         |
++-----------------+-----------------------+-------------------+
+| disk-detach     | one.vm.detach         | VM:MANAGE         |
++-----------------+-----------------------+-------------------+
+| nic-attach      | one.vm.attachnic      | VM:MANAGE         |
+|                 |                       | NET:USE           |
++-----------------+-----------------------+-------------------+
+| nic-detach      | one.vm.detachnic      | VM:MANAGE         |
++-----------------+-----------------------+-------------------+
+| create          | one.vm.allocate       | VM:CREATE         |
+|                 |                       | IMAGE:USE         |
+|                 |                       | NET:USE           |
++-----------------+-----------------------+-------------------+
+| show            | one.vm.info           | VM:USE            |
++-----------------+-----------------------+-------------------+
+| chown           | one.vm.chown          | VM:MANAGE         |
+| chgrp           |                       | [USER:MANAGE]     |
+|                 |                       | [GROUP:USE]       |
++-----------------+-----------------------+-------------------+
+| chmod           | one.vm.chmod          | VM:<MANAGE\ADMIN> |
++-----------------+-----------------------+-------------------+
+| rename          | one.vm.rename         | VM:MANAGE         |
++-----------------+-----------------------+-------------------+
+| snapshot-create | one.vm.snapshotcreate | VM:MANAGE         |
++-----------------+-----------------------+-------------------+
+| snapshot-delete | one.vm.snapshotdelete | VM:MANAGE         |
++-----------------+-----------------------+-------------------+
+| snapshot-revert | one.vm.snapshotrevert | VM:MANAGE         |
++-----------------+-----------------------+-------------------+
+| resize          | one.vm.resize         | VM:MANAGE         |
++-----------------+-----------------------+-------------------+
+| update          | one.vm.update         | VM:MANAGE         |
++-----------------+-----------------------+-------------------+
+| recover         | one.vm.recover        | VM:ADMIN          |
++-----------------+-----------------------+-------------------+
+| list            | one.vmpool.info       | VM:USE            |
+| top             |                       |                   |
++-----------------+-----------------------+-------------------+
 
 .. warning:: The deploy action requires the user issuing the command to have VM:ADMIN rights. This user will usually be the scheduler with the oneadmin credentials.
 
@@ -173,310 +145,310 @@ The scheduler deploys VMs to the Hosts over which the VM owner has MANAGE rights
 onetemplate
 -----------
 
-+-----------------------+----------------------------------------------------------+------------------------------+
-| onetemplate command   | XML-RPC Method                                           | Auth. Request                |
-+=======================+==========================================================+==============================+
-| update                | :ref:`one.template.update <#onetemplateupdate>`             | TEMPLATE:MANAGE              |
-+-----------------------+----------------------------------------------------------+------------------------------+
-| instantiate           | :ref:`one.template.instantiate <#onetemplateinstantiate>`   | TEMPLATE:USE                 |
-|                       |                                                          |  [IMAGE:USE]                 |
-|                       |                                                          |  [NET:USE]                   |
-+-----------------------+----------------------------------------------------------+------------------------------+
-| create                | :ref:`one.template.allocate <#onetemplateallocate>`         | TEMPLATE:CREATE              |
-+-----------------------+----------------------------------------------------------+------------------------------+
-| clone                 | :ref:`one.template.clone <#onetemplateclone>`               | TEMPLATE:CREATE              |
-|                       |                                                          |  TEMPLATE:USE                |
-+-----------------------+----------------------------------------------------------+------------------------------+
-| delete                | :ref:`one.template.delete <#onetemplatedelete>`             | TEMPLATE:MANAGE              |
-+-----------------------+----------------------------------------------------------+------------------------------+
-| show                  | :ref:`one.template.info <#onetemplateinfo>`                 | TEMPLATE:USE                 |
-+-----------------------+----------------------------------------------------------+------------------------------+
-| chown                 | :ref:`one.template.chown <#onetemplatechown>`               | TEMPLATE:MANAGE              |
-|  chgrp                |                                                          |  [USER:MANAGE]               |
-|                       |                                                          |  [GROUP:USE]                 |
-+-----------------------+----------------------------------------------------------+------------------------------+
-| chmod                 | :ref:`one.template.chmod <#onetemplatechmod>`               | TEMPLATE:<MANAGE \| ADMIN>   |
-+-----------------------+----------------------------------------------------------+------------------------------+
-| rename                | :ref:`one.template.rename <#onetemplaterename>`             | TEMPLATE:MANAGE              |
-+-----------------------+----------------------------------------------------------+------------------------------+
-| list                  | :ref:`one.templatepool.info <#onetemplatepoolinfo>`         | TEMPLATE:USE                 |
-|  top                  |                                                          |                              |
-+-----------------------+----------------------------------------------------------+------------------------------+
++---------------------+--------------------------+------------------------+
+| onetemplate command |      XML-RPC Method      |     Auth. Request      |
++=====================+==========================+========================+
+| update              | one.template.update      | TEMPLATE:MANAGE        |
++---------------------+--------------------------+------------------------+
+| instantiate         | one.template.instantiate | TEMPLATE:USE           |
+|                     |                          | [IMAGE:USE]            |
+|                     |                          | [NET:USE]              |
++---------------------+--------------------------+------------------------+
+| create              | one.template.allocate    | TEMPLATE:CREATE        |
++---------------------+--------------------------+------------------------+
+| clone               | one.template.clone       | TEMPLATE:CREATE        |
+|                     |                          | TEMPLATE:USE           |
++---------------------+--------------------------+------------------------+
+| delete              | one.template.delete      | TEMPLATE:MANAGE        |
++---------------------+--------------------------+------------------------+
+| show                | one.template.info        | TEMPLATE:USE           |
++---------------------+--------------------------+------------------------+
+| chown               | one.template.chown       | TEMPLATE:MANAGE        |
+| chgrp               |                          | [USER:MANAGE]          |
+|                     |                          | [GROUP:USE]            |
++---------------------+--------------------------+------------------------+
+| chmod               | one.template.chmod       | TEMPLATE:<MANAGE\ADMIN |
++---------------------+--------------------------+------------------------+
+| rename              | one.template.rename      | TEMPLATE:MANAGE        |
++---------------------+--------------------------+------------------------+
+| list                | one.templatepool.info    | TEMPLATE:USE           |
+| top                 |                          |                        |
++---------------------+--------------------------+------------------------+
 
 onehost
 -------
 
-+-------------------+--------------------------------------------+-----------------+
-| onehost command   | XML-RPC Method                             | Auth. Request   |
-+===================+============================================+=================+
-| enable            | :ref:`one.host.enable <#onehostenable>`       | HOST:ADMIN      |
-|  disable          |                                            |                 |
-+-------------------+--------------------------------------------+-----------------+
-| update            | :ref:`one.host.update <#onehostupdate>`       | HOST:ADMIN      |
-+-------------------+--------------------------------------------+-----------------+
-| create            | :ref:`one.host.allocate <#onehostallocate>`   | HOST:CREATE     |
-+-------------------+--------------------------------------------+-----------------+
-| delete            | :ref:`one.host.delete <#onehostdelete>`       | HOST:ADMIN      |
-+-------------------+--------------------------------------------+-----------------+
-| rename            | :ref:`one.host.rename <#onehostrename>`       | HOST:ADMIN      |
-+-------------------+--------------------------------------------+-----------------+
-| show              | :ref:`one.host.info <#onehostinfo>`           | HOST:USE        |
-+-------------------+--------------------------------------------+-----------------+
-| list              | :ref:`one.hostpool.info <#onehostpoolinfo>`   | HOST:USE        |
-|  top              |                                            |                 |
-+-------------------+--------------------------------------------+-----------------+
++-----------------+-------------------+---------------+
+| onehost command |   XML-RPC Method  | Auth. Request |
++=================+===================+===============+
+| enable          | one.host.enable   | HOST:ADMIN    |
+| disable         |                   |               |
++-----------------+-------------------+---------------+
+| update          | one.host.update   | HOST:ADMIN    |
++-----------------+-------------------+---------------+
+| create          | one.host.allocate | HOST:CREATE   |
++-----------------+-------------------+---------------+
+| delete          | one.host.delete   | HOST:ADMIN    |
++-----------------+-------------------+---------------+
+| rename          | one.host.rename   | HOST:ADMIN    |
++-----------------+-------------------+---------------+
+| show            | one.host.info     | HOST:USE      |
++-----------------+-------------------+---------------+
+| list            | one.hostpool.info | HOST:USE      |
+| top             |                   |               |
++-----------------+-------------------+---------------+
 
 .. warning:: onehost sync is not performed by the core, it is done by the ruby command onehost.
 
 onecluster
 ----------
 
-+----------------------+----------------------------------------------------------+--------------------+
-| onecluster command   | XML-RPC Method                                           | Auth. Request      |
-+======================+==========================================================+====================+
-| create               | :ref:`one.cluster.allocate <#oneclusterallocate>`           | CLUSTER:CREATE     |
-+----------------------+----------------------------------------------------------+--------------------+
-| delete               | :ref:`one.cluster.delete <#oneclusterdelete>`               | CLUSTER:ADMIN      |
-+----------------------+----------------------------------------------------------+--------------------+
-| update               | :ref:`one.cluster.update <#oneclusterupdate>`               | CLUSTER:MANAGE     |
-+----------------------+----------------------------------------------------------+--------------------+
-| addhost              | :ref:`one.cluster.addhost <#oneclusteraddhost>`             | CLUSTER:ADMIN      |
-|                      |                                                          |  HOST:ADMIN        |
-+----------------------+----------------------------------------------------------+--------------------+
-| delhost              | :ref:`one.cluster.delhost <#oneclusterdelhost>`             | CLUSTER:ADMIN      |
-|                      |                                                          |  HOST:ADMIN        |
-+----------------------+----------------------------------------------------------+--------------------+
-| adddatastore         | :ref:`one.cluster.adddatastore <#oneclusteradddatastore>`   | CLUSTER:ADMIN      |
-|                      |                                                          |  DATASTORE:ADMIN   |
-+----------------------+----------------------------------------------------------+--------------------+
-| deldatastore         | :ref:`one.cluster.deldatastore <#oneclusterdeldatastore>`   | CLUSTER:ADMIN      |
-|                      |                                                          |  DATASTORE:ADMIN   |
-+----------------------+----------------------------------------------------------+--------------------+
-| addvnet              | :ref:`one.cluster.addvnet <#oneclusteraddvnet>`             | CLUSTER:ADMIN      |
-|                      |                                                          |  NET:ADMIN         |
-+----------------------+----------------------------------------------------------+--------------------+
-| delvnet              | :ref:`one.cluster.delvnet <#oneclusterdelvnet>`             | CLUSTER:ADMIN      |
-|                      |                                                          |  NET:ADMIN         |
-+----------------------+----------------------------------------------------------+--------------------+
-| rename               | :ref:`one.cluster.rename <#oneclusterrename>`               | CLUSTER:MANAGE     |
-+----------------------+----------------------------------------------------------+--------------------+
-| show                 | :ref:`one.cluster.info <#oneclusterinfo>`                   | CLUSTER:USE        |
-+----------------------+----------------------------------------------------------+--------------------+
-| list                 | :ref:`one.clusterpool.info <#oneclusterpoolinfo>`           | CLUSTER:USE        |
-+----------------------+----------------------------------------------------------+--------------------+
++--------------------+--------------------------+-----------------+
+| onecluster command |      XML-RPC Method      |  Auth. Request  |
++====================+==========================+=================+
+| create             | one.cluster.allocate     | CLUSTER:CREATE  |
++--------------------+--------------------------+-----------------+
+| delete             | one.cluster.delete       | CLUSTER:ADMIN   |
++--------------------+--------------------------+-----------------+
+| update             | one.cluster.update       | CLUSTER:MANAGE  |
++--------------------+--------------------------+-----------------+
+| addhost            | one.cluster.addhost      | CLUSTER:ADMIN   |
+|                    |                          | HOST:ADMIN      |
++--------------------+--------------------------+-----------------+
+| delhost            | one.cluster.delhost      | CLUSTER:ADMIN   |
+|                    |                          | HOST:ADMIN      |
++--------------------+--------------------------+-----------------+
+| adddatastore       | one.cluster.adddatastore | CLUSTER:ADMIN   |
+|                    |                          | DATASTORE:ADMIN |
++--------------------+--------------------------+-----------------+
+| deldatastore       | one.cluster.deldatastore | CLUSTER:ADMIN   |
+|                    |                          | DATASTORE:ADMIN |
++--------------------+--------------------------+-----------------+
+| addvnet            | one.cluster.addvnet      | CLUSTER:ADMIN   |
+|                    |                          | NET:ADMIN       |
++--------------------+--------------------------+-----------------+
+| delvnet            | one.cluster.delvnet      | CLUSTER:ADMIN   |
+|                    |                          | NET:ADMIN       |
++--------------------+--------------------------+-----------------+
+| rename             | one.cluster.rename       | CLUSTER:MANAGE  |
++--------------------+--------------------------+-----------------+
+| show               | one.cluster.info         | CLUSTER:USE     |
++--------------------+--------------------------+-----------------+
+| list               | one.clusterpool.info     | CLUSTER:USE     |
++--------------------+--------------------------+-----------------+
 
 onegroup
 --------
 
-+--------------------+----------------------------------------------------+-------------------------------------------+
-| onegroup command   | XML-RPC Method                                     | Auth. Request                             |
-+====================+====================================================+===========================================+
-| create             | :ref:`one.group.allocate <#onegroupallocate>`         | GROUP:CREATE                              |
-+--------------------+----------------------------------------------------+-------------------------------------------+
-| delete             | :ref:`one.group.delete <#onegroupdelete>`             | GROUP:ADMIN                               |
-+--------------------+----------------------------------------------------+-------------------------------------------+
-| show               | :ref:`one.group.info <#onegroupinfo>`                 | GROUP:USE                                 |
-+--------------------+----------------------------------------------------+-------------------------------------------+
-| quota              | :ref:`one.group.quota <#onegroupquota>`               | GROUP:ADMIN                               |
-+--------------------+----------------------------------------------------+-------------------------------------------+
-| list               | :ref:`one.grouppool.info <#onegrouppoolinfo>`         | GROUP:USE                                 |
-+--------------------+----------------------------------------------------+-------------------------------------------+
-| -                  | :ref:`one.groupquota.info <#onegroupquotainfo>`       | -                                         |
-+--------------------+----------------------------------------------------+-------------------------------------------+
-| defaultquota       | :ref:`one.groupquota.update <#onegroupquotaupdate>`   | Ony for users in the ``oneadmin`` group   |
-+--------------------+----------------------------------------------------+-------------------------------------------+
++------------------+------------------------------+---------------+
+| onegroup command |        XML-RPC Method        | Auth. Request |
++==================+==============================+===============+
+| create           | one.group.allocate           | GROUP:CREATE  |
++------------------+------------------------------+---------------+
+| delete           | one.group.delete             | GROUP:ADMIN   |
++------------------+------------------------------+---------------+
+| show             | one.group.info               | GROUP:USE     |
++------------------+------------------------------+---------------+
+| quota            | one.group.quota              | GROUP:ADMIN   |
++------------------+------------------------------+---------------+
+| list             | one.grouppool.info           | GROUP:USE     |
++------------------+------------------------------+---------------+
+| -                | one.groupquota.info          | -             |
++------------------+------------------------------+---------------+
+| defaultquota     | one.groupquota.update  group |               |
++------------------+------------------------------+---------------+
 
 onevnet
 -------
 
-+-------------------+------------------------------------------+-------------------------+
-| onevnet command   | XML-RPC Method                           | Auth. Request           |
-+===================+==========================================+=========================+
-| addleases         | :ref:`one.vn.addleases <#onevnaddleases>`   | NET:MANAGE              |
-+-------------------+------------------------------------------+-------------------------+
-| rmleases          | :ref:`one.vn.rmleases <#onevnrmleases>`     | NET:MANAGE              |
-+-------------------+------------------------------------------+-------------------------+
-| hold              | :ref:`one.vn.hold <#onevnhold>`             | NET:MANAGE              |
-+-------------------+------------------------------------------+-------------------------+
-| release           | :ref:`one.vn.release <#onevnrelease>`       | NET:MANAGE              |
-+-------------------+------------------------------------------+-------------------------+
-| update            | :ref:`one.vn.update <#onevnupdate>`         | NET:MANAGE              |
-+-------------------+------------------------------------------+-------------------------+
-| create            | :ref:`one.vn.allocate <#onevnallocate>`     | NET:CREATE              |
-+-------------------+------------------------------------------+-------------------------+
-| delete            | :ref:`one.vn.delete <#onevndelete>`         | NET:MANAGE              |
-+-------------------+------------------------------------------+-------------------------+
-| show              | :ref:`one.vn.info <#onevninfo>`             | NET:USE                 |
-+-------------------+------------------------------------------+-------------------------+
-| chown             | :ref:`one.vn.chown <#onevnchown>`           | NET:MANAGE              |
-|  chgrp            |                                          |  [USER:MANAGE]          |
-|                   |                                          |  [GROUP:USE]            |
-+-------------------+------------------------------------------+-------------------------+
-| chmod             | :ref:`one.vn.chmod <#onevnchmod>`           | NET:<MANAGE \| ADMIN>   |
-+-------------------+------------------------------------------+-------------------------+
-| rename            | :ref:`one.vn.rename <#onevnrename>`         | NET:MANAGE              |
-+-------------------+------------------------------------------+-------------------------+
-| list              | :ref:`one.vnpool.info <#onevnpoolinfo>`     | NET:USE                 |
-+-------------------+------------------------------------------+-------------------------+
++-----------------+------------------+--------------------+
+| onevnet command |  XML-RPC Method  |   Auth. Request    |
++=================+==================+====================+
+| addleases       | one.vn.addleases | NET:MANAGE         |
++-----------------+------------------+--------------------+
+| rmleases        | one.vn.rmleases  | NET:MANAGE         |
++-----------------+------------------+--------------------+
+| hold            | one.vn.hold      | NET:MANAGE         |
++-----------------+------------------+--------------------+
+| release         | one.vn.release   | NET:MANAGE         |
++-----------------+------------------+--------------------+
+| update          | one.vn.update    | NET:MANAGE         |
++-----------------+------------------+--------------------+
+| create          | one.vn.allocate  | NET:CREATE         |
++-----------------+------------------+--------------------+
+| delete          | one.vn.delete    | NET:MANAGE         |
++-----------------+------------------+--------------------+
+| show            | one.vn.info      | NET:USE            |
++-----------------+------------------+--------------------+
+| chown           | one.vn.chown     | NET:MANAGE         |
+| chgrp           |                  | [USER:MANAGE]      |
+|                 |                  | [GROUP:USE]        |
++-----------------+------------------+--------------------+
+| chmod           | one.vn.chmod     | NET:<MANAGE\ADMIN> |
++-----------------+------------------+--------------------+
+| rename          | one.vn.rename    | NET:MANAGE         |
++-----------------+------------------+--------------------+
+| list            | one.vnpool.info  | NET:USE            |
++-----------------+------------------+--------------------+
 
 oneuser
 -------
 
-+-------------------+--------------------------------------------------+-------------------------------------------+
-| oneuser command   | XML-RPC Method                                   | Auth. Request                             |
-+===================+==================================================+===========================================+
-| create            | :ref:`one.user.allocate <#oneuserallocate>`         | USER:CREATE                               |
-+-------------------+--------------------------------------------------+-------------------------------------------+
-| delete            | :ref:`one.user.delete <#oneuserdelete>`             | USER:ADMIN                                |
-+-------------------+--------------------------------------------------+-------------------------------------------+
-| show              | :ref:`one.user.info <#oneuserinfo>`                 | USER:USE                                  |
-+-------------------+--------------------------------------------------+-------------------------------------------+
-| passwd            | :ref:`one.user.passwd <#oneuserpasswd>`             | USER:MANAGE                               |
-+-------------------+--------------------------------------------------+-------------------------------------------+
-| update            | :ref:`one.user.update <#oneuserupdate>`             | USER:MANAGE                               |
-+-------------------+--------------------------------------------------+-------------------------------------------+
-| chauth            | :ref:`one.user.chauth <#oneuserchauth>`             | USER:ADMIN                                |
-+-------------------+--------------------------------------------------+-------------------------------------------+
-| quota             | :ref:`one.user.quota <#oneuserquota>`               | USER:ADMIN                                |
-+-------------------+--------------------------------------------------+-------------------------------------------+
-| chgrp             | :ref:`one.user.chgrp <#oneuserchgrp>`               | USER:MANAGE                               |
-|                   |                                                  |  GROUP:USE                                |
-+-------------------+--------------------------------------------------+-------------------------------------------+
-| addgroup          | :ref:`one.user.addgroup <#oneuseraddgroup>`         | USER:MANAGE                               |
-|                   |                                                  |  GROUP:MANAGE                             |
-+-------------------+--------------------------------------------------+-------------------------------------------+
-| delgroup          | :ref:`one.user.delgroup <#oneuserdelgroup>`         | USER:MANAGE                               |
-|                   |                                                  |  GROUP:MANAGE                             |
-+-------------------+--------------------------------------------------+-------------------------------------------+
-| encode            | -                                                | -                                         |
-+-------------------+--------------------------------------------------+-------------------------------------------+
-| list              | :ref:`one.userpool.info <#oneuserpoolinfo>`         | USER:USE                                  |
-+-------------------+--------------------------------------------------+-------------------------------------------+
-| -                 | :ref:`one.userquota.info <#oneuserquotainfo>`       | -                                         |
-+-------------------+--------------------------------------------------+-------------------------------------------+
-| defaultquota      | :ref:`one.userquota.update <#oneuserquotaupdate>`   | Ony for users in the ``oneadmin`` group   |
-+-------------------+--------------------------------------------------+-------------------------------------------+
++-----------------+-----------------------------+---------------+
+| oneuser command |        XML-RPC Method       | Auth. Request |
++=================+=============================+===============+
+| create          | one.user.allocate           | USER:CREATE   |
++-----------------+-----------------------------+---------------+
+| delete          | one.user.delete             | USER:ADMIN    |
++-----------------+-----------------------------+---------------+
+| show            | one.user.info               | USER:USE      |
++-----------------+-----------------------------+---------------+
+| passwd          | one.user.passwd             | USER:MANAGE   |
++-----------------+-----------------------------+---------------+
+| update          | one.user.update             | USER:MANAGE   |
++-----------------+-----------------------------+---------------+
+| chauth          | one.user.chauth             | USER:ADMIN    |
++-----------------+-----------------------------+---------------+
+| quota           | one.user.quota              | USER:ADMIN    |
++-----------------+-----------------------------+---------------+
+| chgrp           | one.user.chgrp              | USER:MANAGE   |
+|                 |                             | GROUP:USE     |
++-----------------+-----------------------------+---------------+
+| addgroup        | one.user.addgroup           | USER:MANAGE   |
+|                 |                             | GROUP:MANAGE  |
++-----------------+-----------------------------+---------------+
+| delgroup        | one.user.delgroup           | USER:MANAGE   |
+|                 |                             | GROUP:MANAGE  |
++-----------------+-----------------------------+---------------+
+| encode          | -                           | -             |
++-----------------+-----------------------------+---------------+
+| list            | one.userpool.info           | USER:USE      |
++-----------------+-----------------------------+---------------+
+| -               | one.userquota.info          | -             |
++-----------------+-----------------------------+---------------+
+| defaultquota    | one.userquota.update  group |               |
++-----------------+-----------------------------+---------------+
 
 onedatastore
 ------------
 
-+--------------------+------------------------------------------------------+-------------------------------+
-| oneimage command   | XML-RPC Method                                       | Auth. Request                 |
-+====================+======================================================+===============================+
-| create             | :ref:`one.datastore.allocate <#onedatastoreallocate>`   | DATASTORE:CREATE              |
-+--------------------+------------------------------------------------------+-------------------------------+
-| delete             | :ref:`one.datastore.delete <#onedatastoredelete>`       | DATASTORE:ADMIN               |
-+--------------------+------------------------------------------------------+-------------------------------+
-| show               | :ref:`one.datastore.info <#onedatastoreinfo>`           | DATASTORE:USE                 |
-+--------------------+------------------------------------------------------+-------------------------------+
-| update             | :ref:`one.datastore.update <#onedatastoreupdate>`       | DATASTORE:MANAGE              |
-+--------------------+------------------------------------------------------+-------------------------------+
-| rename             | :ref:`one.datastore.rename <#onedatastorerename>`       | DATASTORE:MANAGE              |
-+--------------------+------------------------------------------------------+-------------------------------+
-| chown              | :ref:`one.datastore.chown <#onedatastorechown>`         | DATASTORE:MANAGE              |
-|  chgrp             |                                                      |  [USER:MANAGE]                |
-|                    |                                                      |  [GROUP:USE]                  |
-+--------------------+------------------------------------------------------+-------------------------------+
-| chmod              | :ref:`one.datastore.chmod <#onedatastorechmod>`         | DATASTORE:<MANAGE \| ADMIN>   |
-+--------------------+------------------------------------------------------+-------------------------------+
-| list               | :ref:`one.datastorepool.info <#onedatastorepoolinfo>`   | DATASTORE:USE                 |
-+--------------------+------------------------------------------------------+-------------------------------+
++------------------+------------------------+----------------------------+
+| oneimage command |     XML-RPC Method     |       Auth. Request        |
++==================+========================+============================+
+| create           | one.datastore.allocate | DATASTORE:CREATE           |
++------------------+------------------------+----------------------------+
+| delete           | one.datastore.delete   | DATASTORE:ADMIN            |
++------------------+------------------------+----------------------------+
+| show             | one.datastore.info     | DATASTORE:USE              |
++------------------+------------------------+----------------------------+
+| update           | one.datastore.update   | DATASTORE:MANAGE           |
++------------------+------------------------+----------------------------+
+| rename           | one.datastore.rename   | DATASTORE:MANAGE           |
++------------------+------------------------+----------------------------+
+| chown            | one.datastore.chown    | DATASTORE:MANAGE           |
+| chgrp            |                        | [USER:MANAGE]              |
+|                  |                        | [GROUP:USE]                |
++------------------+------------------------+----------------------------+
+| chmod            | one.datastore.chmod    | DATASTORE:<MANAGE \ ADMIN> |
++------------------+------------------------+----------------------------+
+| list             | one.datastorepool.info | DATASTORE:USE              |
++------------------+------------------------+----------------------------+
 
 oneimage
 --------
 
-+--------------------+--------------------------------------------------+---------------------------+
-| oneimage command   | XML-RPC Method                                   | Auth. Request             |
-+====================+==================================================+===========================+
-| persistent         | :ref:`one.image.persistent <#oneimagepersistent>`   | IMAGE:MANAGE              |
-|  nonpersistent     |                                                  |                           |
-+--------------------+--------------------------------------------------+---------------------------+
-| enable             | :ref:`one.image.enable <#oneimageenable>`           | IMAGE:MANAGE              |
-|  disable           |                                                  |                           |
-+--------------------+--------------------------------------------------+---------------------------+
-| chtype             | :ref:`one.image.chtype <#oneimagechtype>`           | IMAGE:MANAGE              |
-+--------------------+--------------------------------------------------+---------------------------+
-| update             | :ref:`one.image.update <#oneimageupdate>`           | IMAGE:MANAGE              |
-+--------------------+--------------------------------------------------+---------------------------+
-| create             | :ref:`one.image.allocate <#oneimageallocate>`       | IMAGE:CREATE              |
-|                    |                                                  |  DATASTORE:USE            |
-+--------------------+--------------------------------------------------+---------------------------+
-| clone              | :ref:`one.image.clone <#oneimageclone>`             | IMAGE:CREATE              |
-|                    |                                                  |  IMAGE:USE                |
-+--------------------+--------------------------------------------------+---------------------------+
-| delete             | :ref:`one.image.delete <#oneimagedelete>`           | IMAGE:MANAGE              |
-+--------------------+--------------------------------------------------+---------------------------+
-| show               | :ref:`one.image.info <#oneimageinfo>`               | IMAGE:USE                 |
-+--------------------+--------------------------------------------------+---------------------------+
-| chown              | :ref:`one.image.chown <#oneimagechown>`             | IMAGE:MANAGE              |
-|  chgrp             |                                                  |  [USER:MANAGE]            |
-|                    |                                                  |  [GROUP:USE]              |
-+--------------------+--------------------------------------------------+---------------------------+
-| chmod              | :ref:`one.image.chmod <#oneimagechmod>`             | IMAGE:<MANAGE \| ADMIN>   |
-+--------------------+--------------------------------------------------+---------------------------+
-| rename             | :ref:`one.image.rename <#oneimagerename>`           | IMAGE:MANAGE              |
-+--------------------+--------------------------------------------------+---------------------------+
-| list               | :ref:`one.imagepool.info <#oneimagepoolinfo>`       | IMAGE:USE                 |
-|  top               |                                                  |                           |
-+--------------------+--------------------------------------------------+---------------------------+
++------------------+----------------------+------------------------+
+| oneimage command |    XML-RPC Method    |     Auth. Request      |
++==================+======================+========================+
+| persistent       | one.image.persistent | IMAGE:MANAGE           |
+| nonpersistent    |                      |                        |
++------------------+----------------------+------------------------+
+| enable           | one.image.enable     | IMAGE:MANAGE           |
+| disable          |                      |                        |
++------------------+----------------------+------------------------+
+| chtype           | one.image.chtype     | IMAGE:MANAGE           |
++------------------+----------------------+------------------------+
+| update           | one.image.update     | IMAGE:MANAGE           |
++------------------+----------------------+------------------------+
+| create           | one.image.allocate   | IMAGE:CREATE           |
+|                  |                      | DATASTORE:USE          |
++------------------+----------------------+------------------------+
+| clone            | one.image.clone      | IMAGE:CREATE           |
+|                  |                      | IMAGE:USE              |
++------------------+----------------------+------------------------+
+| delete           | one.image.delete     | IMAGE:MANAGE           |
++------------------+----------------------+------------------------+
+| show             | one.image.info       | IMAGE:USE              |
++------------------+----------------------+------------------------+
+| chown            | one.image.chown      | IMAGE:MANAGE           |
+| chgrp            |                      | [USER:MANAGE]          |
+|                  |                      | [GROUP:USE]            |
++------------------+----------------------+------------------------+
+| chmod            | one.image.chmod      | IMAGE:<MANAGE \ ADMIN> |
++------------------+----------------------+------------------------+
+| rename           | one.image.rename     | IMAGE:MANAGE           |
++------------------+----------------------+------------------------+
+| list             | one.imagepool.info   | IMAGE:USE              |
+| top              |                      |                        |
++------------------+----------------------+------------------------+
 
 oneacl
 ------
 
-+------------------+----------------------------------------+-----------------+
-| oneacl command   | XML-RPC Method                         | Auth. Request   |
-+==================+========================================+=================+
-| create           | :ref:`one.acl.addrule <#oneacladdrule>`   | ACL:MANAGE      |
-+------------------+----------------------------------------+-----------------+
-| delete           | :ref:`one.acl.delrule <#oneacldelrule>`   | ACL:MANAGE      |
-+------------------+----------------------------------------+-----------------+
-| list             | :ref:`one.acl.info <#oneaclinfo>`         | ACL:MANAGE      |
-+------------------+----------------------------------------+-----------------+
++----------------+-----------------+---------------+
+| oneacl command |  XML-RPC Method | Auth. Request |
++================+=================+===============+
+| create         | one.acl.addrule | ACL:MANAGE    |
++----------------+-----------------+---------------+
+| delete         | one.acl.delrule | ACL:MANAGE    |
++----------------+-----------------+---------------+
+| list           | one.acl.info    | ACL:MANAGE    |
++----------------+-----------------+---------------+
 
 oneacct
 -------
 
-+-----------+----------------------------------------------------+-----------------+
-| command   | XML-RPC Method                                     | Auth. Request   |
-+===========+====================================================+=================+
-| oneacct   | :ref:`one.vmpool.accounting <#onevmpoolaccounting>`   | VM:USE          |
-+-----------+----------------------------------------------------+-----------------+
++---------+-----------------------+---------------+
+| command |     XML-RPC Method    | Auth. Request |
++=========+=======================+===============+
+| oneacct | one.vmpool.accounting | VM:USE        |
++---------+-----------------------+---------------+
 
 documents
 ---------
 
-+----------------------------------------------------+------------------------------+
-| XML-RPC Method                                     | Auth. Request                |
-+====================================================+==============================+
-| :ref:`one.document.update <#onedocumentupdate>`       | DOCUMENT:MANAGE              |
-+----------------------------------------------------+------------------------------+
-| :ref:`one.document.allocate <#onedocumentallocate>`   | DOCUMENT:CREATE              |
-+----------------------------------------------------+------------------------------+
-| :ref:`one.document.delete <#onedocumentdelete>`       | DOCUMENT:MANAGE              |
-+----------------------------------------------------+------------------------------+
-| :ref:`one.document.info <#onedocumentinfo>`           | DOCUMENT:USE                 |
-+----------------------------------------------------+------------------------------+
-| :ref:`one.document.chown <#onedocumentchown>`         | DOCUMENT:MANAGE              |
-|                                                    |  [USER:MANAGE]               |
-|                                                    |  [GROUP:USE]                 |
-+----------------------------------------------------+------------------------------+
-| :ref:`one.document.chmod <#onedocumentchmod>`         | DOCUMENT:<MANAGE \| ADMIN>   |
-+----------------------------------------------------+------------------------------+
-| :ref:`one.document.rename <#onedocumentrename>`       | DOCUMENT:MANAGE              |
-+----------------------------------------------------+------------------------------+
-| :ref:`one.documentpool.info <#onedocumentpoolinfo>`   | DOCUMENT:USE                 |
-+----------------------------------------------------+------------------------------+
++-----------------------+---------------------------+
+|     XML-RPC Method    |       Auth. Request       |
++=======================+===========================+
+| one.document.update   | DOCUMENT:MANAGE           |
++-----------------------+---------------------------+
+| one.document.allocate | DOCUMENT:CREATE           |
++-----------------------+---------------------------+
+| one.document.delete   | DOCUMENT:MANAGE           |
++-----------------------+---------------------------+
+| one.document.info     | DOCUMENT:USE              |
++-----------------------+---------------------------+
+| one.document.chown    | DOCUMENT:MANAGE           |
+|                       | [USER:MANAGE]             |
+|                       | [GROUP:USE]               |
++-----------------------+---------------------------+
+| one.document.chmod    | DOCUMENT:<MANAGE \ ADMIN> |
++-----------------------+---------------------------+
+| one.document.rename   | DOCUMENT:MANAGE           |
++-----------------------+---------------------------+
+| one.documentpool.info | DOCUMENT:USE              |
++-----------------------+---------------------------+
 
 system
 ------
 
-+-----------+----------------------------------------------+-------------------------------------------+
-| command   | XML-RPC Method                               | Auth. Request                             |
-+===========+==============================================+===========================================+
-| -         | :ref:`one.system.version <#onesystemversion>`   | -                                         |
-+-----------+----------------------------------------------+-------------------------------------------+
-| -         | :ref:`one.system.config <#onesystemconfig>`     | Ony for users in the ``oneadmin`` group   |
-+-----------+----------------------------------------------+-------------------------------------------+
++---------+--------------------------+---------------+
+| command |      XML-RPC Method      | Auth. Request |
++=========+==========================+===============+
+| -       | one.system.version       | -             |
++---------+--------------------------+---------------+
+| -       | one.system.config  group |               |
++---------+--------------------------+---------------+
 
 Actions for Templates Management
 ================================
@@ -487,19 +459,19 @@ one.template.allocate
 -  **Description**: Allocates a new template in OpenNebula.
 -  **Parameters**
 
-+--------+--------------+------------------------------------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                                                    |
-+========+==============+================================================================================================+
-| IN     | String       | The session string.                                                                            |
-+--------+--------------+------------------------------------------------------------------------------------------------+
-| IN     | String       | A string containing the template contents. Syntax can be the usual “attribute=value” or XML.   |
-+--------+--------------+------------------------------------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                                                    |
-+--------+--------------+------------------------------------------------------------------------------------------------+
-| OUT    | Int/String   | The allocated resource ID / The error string.                                                  |
-+--------+--------------+------------------------------------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                                                    |
-+--------+--------------+------------------------------------------------------------------------------------------------+
++------+------------+------------------------------------------------------------------------------------------------+
+| Type | Data Type  |                                          Description                                           |
++======+============+================================================================================================+
+| IN   | String     | The session string.                                                                            |
++------+------------+------------------------------------------------------------------------------------------------+
+| IN   | String     | A string containing the template contents. Syntax can be the usual ``attribute=value`` or XML. |
++------+------------+------------------------------------------------------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not                                                    |
++------+------------+------------------------------------------------------------------------------------------------+
+| OUT  | Int/String | The allocated resource ID / The error string.                                                  |
++------+------------+------------------------------------------------------------------------------------------------+
+| OUT  | Int        | Error code.                                                                                    |
++------+------------+------------------------------------------------------------------------------------------------+
 
 one.template.clone
 ------------------
@@ -549,25 +521,25 @@ one.template.instantiate
 -  **Description**: Instantiates a new virtual machine from a template.
 -  **Parameters**
 
-+--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                                                                                                              |
-+========+==============+==========================================================================================================================================================+
-| IN     | String       | The session string.                                                                                                                                      |
-+--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
-| IN     | Int          | The object ID.                                                                                                                                           |
-+--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
-| IN     | String       | Name for the new VM instance. If it is an empty string, OpenNebula will assign one automatically.                                                        |
-+--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
-| IN     | Boolean      | False to create the VM on pending (default), True to create it on hold.                                                                                  |
-+--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
-| IN     | String       | A string containing an extra template to be merged with the one being instantiated. It can be empty. Syntax can be the usual “attribute=value” or XML.   |
-+--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                                                                                                              |
-+--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
-| OUT    | Int/String   | The new virtual machine ID / The error string.                                                                                                           |
-+--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                                                                                                              |
-+--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
++------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Type | Data Type  |                                                                       Description                                                                        |
++======+============+==========================================================================================================================================================+
+| IN   | String     | The session string.                                                                                                                                      |
++------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| IN   | Int        | The object ID.                                                                                                                                           |
++------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| IN   | String     | Name for the new VM instance. If it is an empty string, OpenNebula will assign one automatically.                                                        |
++------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| IN   | Boolean    | False to create the VM on pending (default), True to create it on hold.                                                                                  |
++------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| IN   | String     | A string containing an extra template to be merged with the one being instantiated. It can be empty. Syntax can be the usual ``attribute=value`` or XML. |
++------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not                                                                                                              |
++------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| OUT  | Int/String | The new virtual machine ID / The error string.                                                                                                           |
++------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| OUT  | Int        | Error code.                                                                                                                                              |
++------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 one.template.update
 -------------------
@@ -575,23 +547,23 @@ one.template.update
 -  **Description**: Replaces the template contents.
 -  **Parameters**
 
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                                                        |
-+========+==============+====================================================================================================+
-| IN     | String       | The session string.                                                                                |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| IN     | Int          | The object ID.                                                                                     |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| IN     | String       | The new template contents. Syntax can be the usual “attribute=value” or XML.                       |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| IN     | Int          | Update type: **0**: replace the whole template. **1**: Merge new template with the existing one.   |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                                                        |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| OUT    | Int/String   | The resource ID / The error string.                                                                |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                                                        |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
++------+------------+--------------------------------------------------------------------------------------------------+
+| Type | Data Type  |                                           Description                                            |
++======+============+==================================================================================================+
+| IN   | String     | The session string.                                                                              |
++------+------------+--------------------------------------------------------------------------------------------------+
+| IN   | Int        | The object ID.                                                                                   |
++------+------------+--------------------------------------------------------------------------------------------------+
+| IN   | String     | The new template contents. Syntax can be the usual ``attribute=value`` or XML.                   |
++------+------------+--------------------------------------------------------------------------------------------------+
+| IN   | Int        | Update type: **0**: replace the whole template. **1**: Merge new template with the existing one. |
++------+------------+--------------------------------------------------------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not                                                      |
++------+------------+--------------------------------------------------------------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.                                                              |
++------+------------+--------------------------------------------------------------------------------------------------+
+| OUT  | Int        | Error code.                                                                                      |
++------+------------+--------------------------------------------------------------------------------------------------+
 
 one.template.chmod
 ------------------
@@ -599,37 +571,37 @@ one.template.chmod
 -  **Description**: Changes the permission bits of a template.
 -  **Parameters**
 
-+--------+--------------+-------------------------------------------------------+
-| Type   | Data Type    | Description                                           |
-+========+==============+=======================================================+
-| IN     | String       | The session string.                                   |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | The object ID.                                        |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | USER USE bit. If set to -1, it will not change.       |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | USER MANAGE bit. If set to -1, it will not change.    |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | USER ADMIN bit. If set to -1, it will not change.     |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | GROUP USE bit. If set to -1, it will not change.      |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | GROUP MANAGE bit. If set to -1, it will not change.   |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | GROUP ADMIN bit. If set to -1, it will not change.    |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | OTHER USE bit. If set to -1, it will not change.      |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | OTHER MANAGE bit. If set to -1, it will not change.   |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | OTHER ADMIN bit. If set to -1, it will not change.    |
-+--------+--------------+-------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not           |
-+--------+--------------+-------------------------------------------------------+
-| OUT    | Int/String   | The resource ID / The error string.                   |
-+--------+--------------+-------------------------------------------------------+
-| OUT    | Int          | Error code.                                           |
-+--------+--------------+-------------------------------------------------------+
++------+------------+-----------------------------------------------------+
+| Type | Data Type  |                     Description                     |
++======+============+=====================================================+
+| IN   | String     | The session string.                                 |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | The object ID.                                      |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | USER USE bit. If set to -1, it will not change.     |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | USER MANAGE bit. If set to -1, it will not change.  |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | USER ADMIN bit. If set to -1, it will not change.   |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | GROUP USE bit. If set to -1, it will not change.    |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | GROUP MANAGE bit. If set to -1, it will not change. |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | GROUP ADMIN bit. If set to -1, it will not change.  |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | OTHER USE bit. If set to -1, it will not change.    |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | OTHER MANAGE bit. If set to -1, it will not change. |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | OTHER ADMIN bit. If set to -1, it will not change.  |
++------+------------+-----------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not         |
++------+------------+-----------------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.                 |
++------+------------+-----------------------------------------------------+
+| OUT  | Int        | Error code.                                         |
++------+------------+-----------------------------------------------------+
 
 one.template.chown
 ------------------
@@ -637,23 +609,23 @@ one.template.chown
 -  **Description**: Changes the ownership of a template.
 -  **Parameters**
 
-+--------+--------------+--------------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                              |
-+========+==============+==========================================================================+
-| IN     | String       | The session string.                                                      |
-+--------+--------------+--------------------------------------------------------------------------+
-| IN     | Int          | The object ID.                                                           |
-+--------+--------------+--------------------------------------------------------------------------+
-| IN     | Int          | The User ID of the new owner. If set to -1, the owner is not changed.    |
-+--------+--------------+--------------------------------------------------------------------------+
-| IN     | Int          | The Group ID of the new group. If set to -1, the group is not changed.   |
-+--------+--------------+--------------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                              |
-+--------+--------------+--------------------------------------------------------------------------+
-| OUT    | Int/String   | The resource ID / The error string.                                      |
-+--------+--------------+--------------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                              |
-+--------+--------------+--------------------------------------------------------------------------+
++------+------------+------------------------------------------------------------------------+
+| Type | Data Type  |                              Description                               |
++======+============+========================================================================+
+| IN   | String     | The session string.                                                    |
++------+------------+------------------------------------------------------------------------+
+| IN   | Int        | The object ID.                                                         |
++------+------------+------------------------------------------------------------------------+
+| IN   | Int        | The User ID of the new owner. If set to -1, the owner is not changed.  |
++------+------------+------------------------------------------------------------------------+
+| IN   | Int        | The Group ID of the new group. If set to -1, the group is not changed. |
++------+------------+------------------------------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not                            |
++------+------------+------------------------------------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.                                    |
++------+------------+------------------------------------------------------------------------+
+| OUT  | Int        | Error code.                                                            |
++------+------------+------------------------------------------------------------------------+
 
 one.template.rename
 -------------------
@@ -661,21 +633,21 @@ one.template.rename
 -  **Description**: Renames a template.
 -  **Parameters**
 
-+--------+--------------+-----------------------------------------------+
-| Type   | Data Type    | Description                                   |
-+========+==============+===============================================+
-| IN     | String       | The session string.                           |
-+--------+--------------+-----------------------------------------------+
-| IN     | Int          | The object ID.                                |
-+--------+--------------+-----------------------------------------------+
-| IN     | String       | The new name.                                 |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not   |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int/String   | The VM ID / The error string.                 |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int          | Error code.                                   |
-+--------+--------------+-----------------------------------------------+
++------+------------+---------------------------------------------+
+| Type | Data Type  |                 Description                 |
++======+============+=============================================+
+| IN   | String     | The session string.                         |
++------+------------+---------------------------------------------+
+| IN   | Int        | The object ID.                              |
++------+------------+---------------------------------------------+
+| IN   | String     | The new name.                               |
++------+------------+---------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not |
++------+------------+---------------------------------------------+
+| OUT  | Int/String | The VM ID / The error string.               |
++------+------------+---------------------------------------------+
+| OUT  | Int        | Error code.                                 |
++------+------------+---------------------------------------------+
 
 one.template.info
 -----------------
@@ -683,19 +655,19 @@ one.template.info
 -  **Description**: Retrieves information for the template.
 -  **Parameters**
 
-+--------+-------------+-----------------------------------------------+
-| Type   | Data Type   | Description                                   |
-+========+=============+===============================================+
-| IN     | String      | The session string.                           |
-+--------+-------------+-----------------------------------------------+
-| IN     | Int         | The object ID.                                |
-+--------+-------------+-----------------------------------------------+
-| OUT    | Boolean     | true or false whenever is successful or not   |
-+--------+-------------+-----------------------------------------------+
-| OUT    | String      | The information string / The error string.    |
-+--------+-------------+-----------------------------------------------+
-| OUT    | Int         | Error code.                                   |
-+--------+-------------+-----------------------------------------------+
++------+-----------+---------------------------------------------+
+| Type | Data Type |                 Description                 |
++======+===========+=============================================+
+| IN   | String    | The session string.                         |
++------+-----------+---------------------------------------------+
+| IN   | Int       | The object ID.                              |
++------+-----------+---------------------------------------------+
+| OUT  | Boolean   | true or false whenever is successful or not |
++------+-----------+---------------------------------------------+
+| OUT  | String    | The information string / The error string.  |
++------+-----------+---------------------------------------------+
+| OUT  | Int       | Error code.                                 |
++------+-----------+---------------------------------------------+
 
 one.templatepool.info
 ---------------------
@@ -703,27 +675,27 @@ one.templatepool.info
 -  **Description**: Retrieves information for all or part of the Resources in the pool.
 -  **Parameters**
 
-+--------+-------------+---------------------------------------------------------+
-| Type   | Data Type   | Description                                             |
-+========+=============+=========================================================+
-| IN     | String      | The session string.                                     |
-+--------+-------------+---------------------------------------------------------+
-| IN     | Int         | Filter flag                                             |
-|        |             |  **- < = -3**: Connected user's resources               |
-|        |             |  **- -2**: All resources                                |
-|        |             |  **- -1**: Connected user's and his group's resources   |
-|        |             |  **- > = 0**: UID User's Resources                      |
-+--------+-------------+---------------------------------------------------------+
-| IN     | Int         | Range start ID. Can be -1.                              |
-+--------+-------------+---------------------------------------------------------+
-| IN     | Int         | Range end ID. Can be -1.                                |
-+--------+-------------+---------------------------------------------------------+
-| OUT    | Boolean     | true or false whenever is successful or not             |
-+--------+-------------+---------------------------------------------------------+
-| OUT    | String      | The information string / The error string.              |
-+--------+-------------+---------------------------------------------------------+
-| OUT    | Int         | Error code.                                             |
-+--------+-------------+---------------------------------------------------------+
++------+-----------+------------------------------------------------------+
+| Type | Data Type |                     Description                      |
++======+===========+======================================================+
+| IN   | String    | The session string.                                  |
++------+-----------+------------------------------------------------------+
+| IN   | Int       | Filter flag                                          |
+|      |           | **- < = -3**: Connected user's resources             |
+|      |           | **- -2**: All resources                              |
+|      |           | **- -1**: Connected user's and his group's resources |
+|      |           | **- > = 0**: UID User's Resources                    |
++------+-----------+------------------------------------------------------+
+| IN   | Int       | Range start ID. Can be -1.                           |
++------+-----------+------------------------------------------------------+
+| IN   | Int       | Range end ID. Can be -1.                             |
++------+-----------+------------------------------------------------------+
+| OUT  | Boolean   | true or false whenever is successful or not          |
++------+-----------+------------------------------------------------------+
+| OUT  | String    | The information string / The error string.           |
++------+-----------+------------------------------------------------------+
+| OUT  | Int       | Error code.                                          |
++------+-----------+------------------------------------------------------+
 
 The range can be used to retrieve a subset of the pool, from the 'start' to the 'end' ID. To retrieve the complete pool, use ``(-1, -1)``; to retrieve all the pool from a specific ID to the last one, use ``(<id>, -1)``, and to retrieve the first elements up to an ID, use ``(0, <id>)``.
 
@@ -744,21 +716,21 @@ one.vm.allocate
 -  **Description**: Allocates a new virtual machine in OpenNebula.
 -  **Parameters**
 
-+--------+--------------+--------------------------------------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                                                      |
-+========+==============+==================================================================================================+
-| IN     | String       | The session string.                                                                              |
-+--------+--------------+--------------------------------------------------------------------------------------------------+
-| IN     | String       | A string containing the template for the vm. Syntax can be the usual “attribute=value” or XML.   |
-+--------+--------------+--------------------------------------------------------------------------------------------------+
-| IN     | Boolean      | False to create the VM on pending (default), True to create it on hold.                          |
-+--------+--------------+--------------------------------------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                                                      |
-+--------+--------------+--------------------------------------------------------------------------------------------------+
-| OUT    | Int/String   | The allocated resource ID / The error string.                                                    |
-+--------+--------------+--------------------------------------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                                                      |
-+--------+--------------+--------------------------------------------------------------------------------------------------+
++------+------------+--------------------------------------------------------------------------------------------------+
+| Type | Data Type  |                                           Description                                            |
++======+============+==================================================================================================+
+| IN   | String     | The session string.                                                                              |
++------+------------+--------------------------------------------------------------------------------------------------+
+| IN   | String     | A string containing the template for the vm. Syntax can be the usual ``attribute=value`` or XML. |
++------+------------+--------------------------------------------------------------------------------------------------+
+| IN   | Boolean    | False to create the VM on pending (default), True to create it on hold.                          |
++------+------------+--------------------------------------------------------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not                                                      |
++------+------------+--------------------------------------------------------------------------------------------------+
+| OUT  | Int/String | The allocated resource ID / The error string.                                                    |
++------+------------+--------------------------------------------------------------------------------------------------+
+| OUT  | Int        | Error code.                                                                                      |
++------+------------+--------------------------------------------------------------------------------------------------+
 
 .. _api_xonevmdeploy:
 
@@ -768,25 +740,25 @@ one.vm.deploy
 -  **Description**: initiates the instance of the given vmid on the target host.
 -  **Parameters**
 
-+--------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                                                                                                                   |
-+========+==============+===============================================================================================================================================================+
-| IN     | String       | The session string.                                                                                                                                           |
-+--------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| IN     | Int          | The object ID.                                                                                                                                                |
-+--------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| IN     | Int          | The Host ID of the target host where the VM will be deployed.                                                                                                 |
-+--------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| IN     | Int          | The Datastore ID of the target system datastore where the VM will be deployed. It is optional, and can be set to -1 to let OpenNebula choose the datastore.   |
-+--------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| IN     | Boolean      | true to enforce the Host capacity is not overcommitted.                                                                                                       |
-+--------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                                                                                                                   |
-+--------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| OUT    | Int/String   | The VM ID / The error string.                                                                                                                                 |
-+--------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                                                                                                                   |
-+--------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
++------+------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Type | Data Type  |                                                                         Description                                                                         |
++======+============+=============================================================================================================================================================+
+| IN   | String     | The session string.                                                                                                                                         |
++------+------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| IN   | Int        | The object ID.                                                                                                                                              |
++------+------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| IN   | Int        | The Host ID of the target host where the VM will be deployed.                                                                                               |
++------+------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| IN   | Int        | The Datastore ID of the target system datastore where the VM will be deployed. It is optional, and can be set to -1 to let OpenNebula choose the datastore. |
++------+------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| IN   | Boolean    | true to enforce the Host capacity is not overcommitted.                                                                                                     |
++------+------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not                                                                                                                 |
++------+------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| OUT  | Int/String | The VM ID / The error string.                                                                                                                               |
++------+------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| OUT  | Int        | Error code.                                                                                                                                                 |
++------+------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 one.vm.action
 -------------
@@ -794,21 +766,21 @@ one.vm.action
 -  **Description**: submits an action to be performed on a virtual machine.
 -  **Parameters**
 
-+--------+--------------+-----------------------------------------------+
-| Type   | Data Type    | Description                                   |
-+========+==============+===============================================+
-| IN     | String       | The session string.                           |
-+--------+--------------+-----------------------------------------------+
-| IN     | String       | the action name to be performed, see below.   |
-+--------+--------------+-----------------------------------------------+
-| IN     | Int          | The object ID.                                |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not   |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int/String   | The VM ID / The error string.                 |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int          | Error code.                                   |
-+--------+--------------+-----------------------------------------------+
++------+------------+---------------------------------------------+
+| Type | Data Type  |                 Description                 |
++======+============+=============================================+
+| IN   | String     | The session string.                         |
++------+------------+---------------------------------------------+
+| IN   | String     | the action name to be performed, see below. |
++------+------------+---------------------------------------------+
+| IN   | Int        | The object ID.                              |
++------+------------+---------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not |
++------+------------+---------------------------------------------+
+| OUT  | Int/String | The VM ID / The error string.               |
++------+------------+---------------------------------------------+
+| OUT  | Int        | Error code.                                 |
++------+------------+---------------------------------------------+
 
 The action String must be one of the following:
 
@@ -858,25 +830,25 @@ one.vm.migrate
 -  **Description**: migrates one virtual machine (vid) to the target host (hid).
 -  **Parameters**
 
-+--------+--------------+--------------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                              |
-+========+==============+==========================================================================+
-| IN     | String       | The session string.                                                      |
-+--------+--------------+--------------------------------------------------------------------------+
-| IN     | Int          | The object ID.                                                           |
-+--------+--------------+--------------------------------------------------------------------------+
-| IN     | Int          | the target host id (hid) where we want to migrate the vm.                |
-+--------+--------------+--------------------------------------------------------------------------+
-| IN     | Boolean      | if true we are indicating that we want livemigration, otherwise false.   |
-+--------+--------------+--------------------------------------------------------------------------+
-| IN     | Boolean      | true to enforce the Host capacity is not overcommitted.                  |
-+--------+--------------+--------------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                              |
-+--------+--------------+--------------------------------------------------------------------------+
-| OUT    | Int/String   | The VM ID / The error string.                                            |
-+--------+--------------+--------------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                              |
-+--------+--------------+--------------------------------------------------------------------------+
++------+------------+------------------------------------------------------------------------+
+| Type | Data Type  |                              Description                               |
++======+============+========================================================================+
+| IN   | String     | The session string.                                                    |
++------+------------+------------------------------------------------------------------------+
+| IN   | Int        | The object ID.                                                         |
++------+------------+------------------------------------------------------------------------+
+| IN   | Int        | the target host id (hid) where we want to migrate the vm.              |
++------+------------+------------------------------------------------------------------------+
+| IN   | Boolean    | if true we are indicating that we want livemigration, otherwise false. |
++------+------------+------------------------------------------------------------------------+
+| IN   | Boolean    | true to enforce the Host capacity is not overcommitted.                |
++------+------------+------------------------------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not                            |
++------+------------+------------------------------------------------------------------------+
+| OUT  | Int/String | The VM ID / The error string.                                          |
++------+------------+------------------------------------------------------------------------+
+| OUT  | Int        | Error code.                                                            |
++------+------------+------------------------------------------------------------------------+
 
 one.vm.savedisk
 ---------------
@@ -884,27 +856,27 @@ one.vm.savedisk
 -  **Description**: Sets the disk to be saved in the given image.
 -  **Parameters**
 
-+--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                                                                                                                                                        |
-+========+==============+====================================================================================================================================================================================================+
-| IN     | String       | The session string.                                                                                                                                                                                |
-+--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| IN     | Int          | The object ID.                                                                                                                                                                                     |
-+--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| IN     | Int          | Disk ID of the disk we want to save.                                                                                                                                                               |
-+--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| IN     | String       | Name for the new Image where the disk will be saved.                                                                                                                                               |
-+--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| IN     | String       | Type for the new Image. If it is an empty string, then :ref:`the default one <oned_conf#image_repository>` will be used. See the existing types in the :ref:`Image template reference <img_template>`.   |
-+--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| IN     | Boolean      | True to save the disk immediately, false will perform the operation when the VM shuts down.                                                                                                        |
-+--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                                                                                                                                                        |
-+--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| OUT    | Int/String   | The new allocated Image ID / The error string.                                                                                                                                                     |
-+--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                                                                                                                                                        |
-+--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Type | Data Type  |                                                                                      Description                                                                                      |
++======+============+=======================================================================================================================================================================================+
+| IN   | String     | The session string.                                                                                                                                                                   |
++------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| IN   | Int        | The object ID.                                                                                                                                                                        |
++------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| IN   | Int        | Disk ID of the disk we want to save.                                                                                                                                                  |
++------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| IN   | String     | Name for the new Image where the disk will be saved.                                                                                                                                  |
++------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| IN   | String     | Type for the new Image. If it is an empty string, then :ref:`the default one <oned_conf>` will be used. See the existing types in the :ref:`Image template reference <img_template>`. |
++------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| IN   | Boolean    | True to save the disk immediately, false will perform the operation when the VM shuts down.                                                                                           |
++------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not                                                                                                                                           |
++------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| OUT  | Int/String | The new allocated Image ID / The error string.                                                                                                                                        |
++------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| OUT  | Int        | Error code.                                                                                                                                                                           |
++------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 one.vm.attach
 -------------
@@ -912,21 +884,21 @@ one.vm.attach
 -  **Description**: Attaches a new disk to the virtual machine
 -  **Parameters**
 
-+--------+--------------+---------------------------------------------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                                                             |
-+========+==============+=========================================================================================================+
-| IN     | String       | The session string.                                                                                     |
-+--------+--------------+---------------------------------------------------------------------------------------------------------+
-| IN     | Int          | The object ID.                                                                                          |
-+--------+--------------+---------------------------------------------------------------------------------------------------------+
-| IN     | String       | A string containing a single DISK vector attribute. Syntax can be the usual “attribute=value” or XML.   |
-+--------+--------------+---------------------------------------------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                                                             |
-+--------+--------------+---------------------------------------------------------------------------------------------------------+
-| OUT    | Int/String   | The VM ID / The error string.                                                                           |
-+--------+--------------+---------------------------------------------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                                                             |
-+--------+--------------+---------------------------------------------------------------------------------------------------------+
++------+------------+---------------------------------------------------------------------------------------------------------+
+| Type | Data Type  |                                               Description                                               |
++======+============+=========================================================================================================+
+| IN   | String     | The session string.                                                                                     |
++------+------------+---------------------------------------------------------------------------------------------------------+
+| IN   | Int        | The object ID.                                                                                          |
++------+------------+---------------------------------------------------------------------------------------------------------+
+| IN   | String     | A string containing a single DISK vector attribute. Syntax can be the usual ``attribute=value`` or XML. |
++------+------------+---------------------------------------------------------------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not                                                             |
++------+------------+---------------------------------------------------------------------------------------------------------+
+| OUT  | Int/String | The VM ID / The error string.                                                                           |
++------+------------+---------------------------------------------------------------------------------------------------------+
+| OUT  | Int        | Error code.                                                                                             |
++------+------------+---------------------------------------------------------------------------------------------------------+
 
 one.vm.detach
 -------------
@@ -934,21 +906,21 @@ one.vm.detach
 -  **Description**: Detaches a disk from a virtual machine
 -  **Parameters**
 
-+--------+--------------+-----------------------------------------------+
-| Type   | Data Type    | Description                                   |
-+========+==============+===============================================+
-| IN     | String       | The session string.                           |
-+--------+--------------+-----------------------------------------------+
-| IN     | Int          | The object ID.                                |
-+--------+--------------+-----------------------------------------------+
-| IN     | Int          | The disk ID.                                  |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not   |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int/String   | The VM ID / The error string.                 |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int          | Error code.                                   |
-+--------+--------------+-----------------------------------------------+
++------+------------+---------------------------------------------+
+| Type | Data Type  |                 Description                 |
++======+============+=============================================+
+| IN   | String     | The session string.                         |
++------+------------+---------------------------------------------+
+| IN   | Int        | The object ID.                              |
++------+------------+---------------------------------------------+
+| IN   | Int        | The disk ID.                                |
++------+------------+---------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not |
++------+------------+---------------------------------------------+
+| OUT  | Int/String | The VM ID / The error string.               |
++------+------------+---------------------------------------------+
+| OUT  | Int        | Error code.                                 |
++------+------------+---------------------------------------------+
 
 one.vm.attachnic
 ----------------
@@ -956,21 +928,21 @@ one.vm.attachnic
 -  **Description**: Attaches a new network interface to the virtual machine
 -  **Parameters**
 
-+--------+--------------+--------------------------------------------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                                                            |
-+========+==============+========================================================================================================+
-| IN     | String       | The session string.                                                                                    |
-+--------+--------------+--------------------------------------------------------------------------------------------------------+
-| IN     | Int          | The object ID.                                                                                         |
-+--------+--------------+--------------------------------------------------------------------------------------------------------+
-| IN     | String       | A string containing a single NIC vector attribute. Syntax can be the usual “attribute=value” or XML.   |
-+--------+--------------+--------------------------------------------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                                                            |
-+--------+--------------+--------------------------------------------------------------------------------------------------------+
-| OUT    | Int/String   | The VM ID / The error string.                                                                          |
-+--------+--------------+--------------------------------------------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                                                            |
-+--------+--------------+--------------------------------------------------------------------------------------------------------+
++------+------------+--------------------------------------------------------------------------------------------------------+
+| Type | Data Type  |                                              Description                                               |
++======+============+========================================================================================================+
+| IN   | String     | The session string.                                                                                    |
++------+------------+--------------------------------------------------------------------------------------------------------+
+| IN   | Int        | The object ID.                                                                                         |
++------+------------+--------------------------------------------------------------------------------------------------------+
+| IN   | String     | A string containing a single NIC vector attribute. Syntax can be the usual ``attribute=value`` or XML. |
++------+------------+--------------------------------------------------------------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not                                                            |
++------+------------+--------------------------------------------------------------------------------------------------------+
+| OUT  | Int/String | The VM ID / The error string.                                                                          |
++------+------------+--------------------------------------------------------------------------------------------------------+
+| OUT  | Int        | Error code.                                                                                            |
++------+------------+--------------------------------------------------------------------------------------------------------+
 
 one.vm.detachnic
 ----------------
@@ -978,21 +950,21 @@ one.vm.detachnic
 -  **Description**: Detaches a network interface from a virtual machine
 -  **Parameters**
 
-+--------+--------------+-----------------------------------------------+
-| Type   | Data Type    | Description                                   |
-+========+==============+===============================================+
-| IN     | String       | The session string.                           |
-+--------+--------------+-----------------------------------------------+
-| IN     | Int          | The object ID.                                |
-+--------+--------------+-----------------------------------------------+
-| IN     | Int          | The nic ID.                                   |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not   |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int/String   | The VM ID / The error string.                 |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int          | Error code.                                   |
-+--------+--------------+-----------------------------------------------+
++------+------------+---------------------------------------------+
+| Type | Data Type  |                 Description                 |
++======+============+=============================================+
+| IN   | String     | The session string.                         |
++------+------------+---------------------------------------------+
+| IN   | Int        | The object ID.                              |
++------+------------+---------------------------------------------+
+| IN   | Int        | The nic ID.                                 |
++------+------------+---------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not |
++------+------------+---------------------------------------------+
+| OUT  | Int/String | The VM ID / The error string.               |
++------+------------+---------------------------------------------+
+| OUT  | Int        | Error code.                                 |
++------+------------+---------------------------------------------+
 
 one.vm.chmod
 ------------
@@ -1000,37 +972,37 @@ one.vm.chmod
 -  **Description**: Changes the permission bits of a virtual machine.
 -  **Parameters**
 
-+--------+--------------+-------------------------------------------------------+
-| Type   | Data Type    | Description                                           |
-+========+==============+=======================================================+
-| IN     | String       | The session string.                                   |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | The object ID.                                        |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | USER USE bit. If set to -1, it will not change.       |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | USER MANAGE bit. If set to -1, it will not change.    |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | USER ADMIN bit. If set to -1, it will not change.     |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | GROUP USE bit. If set to -1, it will not change.      |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | GROUP MANAGE bit. If set to -1, it will not change.   |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | GROUP ADMIN bit. If set to -1, it will not change.    |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | OTHER USE bit. If set to -1, it will not change.      |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | OTHER MANAGE bit. If set to -1, it will not change.   |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | OTHER ADMIN bit. If set to -1, it will not change.    |
-+--------+--------------+-------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not           |
-+--------+--------------+-------------------------------------------------------+
-| OUT    | Int/String   | The resource ID / The error string.                   |
-+--------+--------------+-------------------------------------------------------+
-| OUT    | Int          | Error code.                                           |
-+--------+--------------+-------------------------------------------------------+
++------+------------+-----------------------------------------------------+
+| Type | Data Type  |                     Description                     |
++======+============+=====================================================+
+| IN   | String     | The session string.                                 |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | The object ID.                                      |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | USER USE bit. If set to -1, it will not change.     |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | USER MANAGE bit. If set to -1, it will not change.  |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | USER ADMIN bit. If set to -1, it will not change.   |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | GROUP USE bit. If set to -1, it will not change.    |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | GROUP MANAGE bit. If set to -1, it will not change. |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | GROUP ADMIN bit. If set to -1, it will not change.  |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | OTHER USE bit. If set to -1, it will not change.    |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | OTHER MANAGE bit. If set to -1, it will not change. |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | OTHER ADMIN bit. If set to -1, it will not change.  |
++------+------------+-----------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not         |
++------+------------+-----------------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.                 |
++------+------------+-----------------------------------------------------+
+| OUT  | Int        | Error code.                                         |
++------+------------+-----------------------------------------------------+
 
 one.vm.chown
 ------------
@@ -1038,23 +1010,23 @@ one.vm.chown
 -  **Description**: Changes the ownership of a virtual machine.
 -  **Parameters**
 
-+--------+--------------+--------------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                              |
-+========+==============+==========================================================================+
-| IN     | String       | The session string.                                                      |
-+--------+--------------+--------------------------------------------------------------------------+
-| IN     | Int          | The object ID.                                                           |
-+--------+--------------+--------------------------------------------------------------------------+
-| IN     | Int          | The User ID of the new owner. If set to -1, the owner is not changed.    |
-+--------+--------------+--------------------------------------------------------------------------+
-| IN     | Int          | The Group ID of the new group. If set to -1, the group is not changed.   |
-+--------+--------------+--------------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                              |
-+--------+--------------+--------------------------------------------------------------------------+
-| OUT    | Int/String   | The resource ID / The error string.                                      |
-+--------+--------------+--------------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                              |
-+--------+--------------+--------------------------------------------------------------------------+
++------+------------+------------------------------------------------------------------------+
+| Type | Data Type  |                              Description                               |
++======+============+========================================================================+
+| IN   | String     | The session string.                                                    |
++------+------------+------------------------------------------------------------------------+
+| IN   | Int        | The object ID.                                                         |
++------+------------+------------------------------------------------------------------------+
+| IN   | Int        | The User ID of the new owner. If set to -1, the owner is not changed.  |
++------+------------+------------------------------------------------------------------------+
+| IN   | Int        | The Group ID of the new group. If set to -1, the group is not changed. |
++------+------------+------------------------------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not                            |
++------+------------+------------------------------------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.                                    |
++------+------------+------------------------------------------------------------------------+
+| OUT  | Int        | Error code.                                                            |
++------+------------+------------------------------------------------------------------------+
 
 one.vm.rename
 -------------
@@ -1062,21 +1034,21 @@ one.vm.rename
 -  **Description**: Renames a virtual machine
 -  **Parameters**
 
-+--------+--------------+-----------------------------------------------+
-| Type   | Data Type    | Description                                   |
-+========+==============+===============================================+
-| IN     | String       | The session string.                           |
-+--------+--------------+-----------------------------------------------+
-| IN     | Int          | The object ID.                                |
-+--------+--------------+-----------------------------------------------+
-| IN     | String       | The new name.                                 |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not   |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int/String   | The VM ID / The error string.                 |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int          | Error code.                                   |
-+--------+--------------+-----------------------------------------------+
++------+------------+---------------------------------------------+
+| Type | Data Type  |                 Description                 |
++======+============+=============================================+
+| IN   | String     | The session string.                         |
++------+------------+---------------------------------------------+
+| IN   | Int        | The object ID.                              |
++------+------------+---------------------------------------------+
+| IN   | String     | The new name.                               |
++------+------------+---------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not |
++------+------------+---------------------------------------------+
+| OUT  | Int/String | The VM ID / The error string.               |
++------+------------+---------------------------------------------+
+| OUT  | Int        | Error code.                                 |
++------+------------+---------------------------------------------+
 
 one.vm.snapshotcreate
 ---------------------
@@ -1084,21 +1056,21 @@ one.vm.snapshotcreate
 -  **Description**: Creates a new virtual machine snapshot
 -  **Parameters**
 
-+--------+--------------+-----------------------------------------------+
-| Type   | Data Type    | Description                                   |
-+========+==============+===============================================+
-| IN     | String       | The session string.                           |
-+--------+--------------+-----------------------------------------------+
-| IN     | Int          | The object ID.                                |
-+--------+--------------+-----------------------------------------------+
-| IN     | String       | The new snapshot name. It can be empty.       |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not   |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int/String   | The new snapshot ID / The error string.       |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int          | Error code.                                   |
-+--------+--------------+-----------------------------------------------+
++------+------------+---------------------------------------------+
+| Type | Data Type  |                 Description                 |
++======+============+=============================================+
+| IN   | String     | The session string.                         |
++------+------------+---------------------------------------------+
+| IN   | Int        | The object ID.                              |
++------+------------+---------------------------------------------+
+| IN   | String     | The new snapshot name. It can be empty.     |
++------+------------+---------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not |
++------+------------+---------------------------------------------+
+| OUT  | Int/String | The new snapshot ID / The error string.     |
++------+------------+---------------------------------------------+
+| OUT  | Int        | Error code.                                 |
++------+------------+---------------------------------------------+
 
 one.vm.snapshotrevert
 ---------------------
@@ -1106,21 +1078,21 @@ one.vm.snapshotrevert
 -  **Description**: Reverts a virtual machine to a snapshot
 -  **Parameters**
 
-+--------+--------------+-----------------------------------------------+
-| Type   | Data Type    | Description                                   |
-+========+==============+===============================================+
-| IN     | String       | The session string.                           |
-+--------+--------------+-----------------------------------------------+
-| IN     | Int          | The object ID.                                |
-+--------+--------------+-----------------------------------------------+
-| IN     | Int          | The snapshot ID.                              |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not   |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int/String   | The VM ID / The error string.                 |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int          | Error code.                                   |
-+--------+--------------+-----------------------------------------------+
++------+------------+---------------------------------------------+
+| Type | Data Type  |                 Description                 |
++======+============+=============================================+
+| IN   | String     | The session string.                         |
++------+------------+---------------------------------------------+
+| IN   | Int        | The object ID.                              |
++------+------------+---------------------------------------------+
+| IN   | Int        | The snapshot ID.                            |
++------+------------+---------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not |
++------+------------+---------------------------------------------+
+| OUT  | Int/String | The VM ID / The error string.               |
++------+------------+---------------------------------------------+
+| OUT  | Int        | Error code.                                 |
++------+------------+---------------------------------------------+
 
 one.vm.snapshotdelete
 ---------------------
@@ -1128,21 +1100,21 @@ one.vm.snapshotdelete
 -  **Description**: Deletes a virtual machine snapshot
 -  **Parameters**
 
-+--------+--------------+-----------------------------------------------+
-| Type   | Data Type    | Description                                   |
-+========+==============+===============================================+
-| IN     | String       | The session string.                           |
-+--------+--------------+-----------------------------------------------+
-| IN     | Int          | The object ID.                                |
-+--------+--------------+-----------------------------------------------+
-| IN     | Int          | The snapshot ID.                              |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not   |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int/String   | The VM ID / The error string.                 |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int          | Error code.                                   |
-+--------+--------------+-----------------------------------------------+
++------+------------+---------------------------------------------+
+| Type | Data Type  |                 Description                 |
++======+============+=============================================+
+| IN   | String     | The session string.                         |
++------+------------+---------------------------------------------+
+| IN   | Int        | The object ID.                              |
++------+------------+---------------------------------------------+
+| IN   | Int        | The snapshot ID.                            |
++------+------------+---------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not |
++------+------------+---------------------------------------------+
+| OUT  | Int/String | The VM ID / The error string.               |
++------+------------+---------------------------------------------+
+| OUT  | Int        | Error code.                                 |
++------+------------+---------------------------------------------+
 
 one.vm.resize
 -------------
@@ -1150,23 +1122,23 @@ one.vm.resize
 -  **Description**: Changes the capacity of the virtual machine
 -  **Parameters**
 
-+--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                                                                                                                                            |
-+========+==============+========================================================================================================================================================================================+
-| IN     | String       | The session string.                                                                                                                                                                    |
-+--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| IN     | Int          | The object ID.                                                                                                                                                                         |
-+--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| IN     | String       | Template containing the new capacity elements CPU, VCPU, MEMORY. If one of them is not present, or its value is 0, it will not be resized.                                             |
-+--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| IN     | Boolean      | true to enforce the Host capacity is not overcommitted. This parameter is only acknoledged for users in the oneadmin group, Host capacity will be always enforced for regular users.   |
-+--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                                                                                                                                            |
-+--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| OUT    | Int/String   | The VM ID / The error string.                                                                                                                                                          |
-+--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                                                                                                                                            |
-+--------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++------+------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Type | Data Type  |                                                                                     Description                                                                                      |
++======+============+======================================================================================================================================================================================+
+| IN   | String     | The session string.                                                                                                                                                                  |
++------+------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| IN   | Int        | The object ID.                                                                                                                                                                       |
++------+------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| IN   | String     | Template containing the new capacity elements CPU, VCPU, MEMORY. If one of them is not present, or its value is 0, it will not be resized.                                           |
++------+------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| IN   | Boolean    | true to enforce the Host capacity is not overcommitted. This parameter is only acknoledged for users in the oneadmin group, Host capacity will be always enforced for regular users. |
++------+------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not                                                                                                                                          |
++------+------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| OUT  | Int/String | The VM ID / The error string.                                                                                                                                                        |
++------+------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| OUT  | Int        | Error code.                                                                                                                                                                          |
++------+------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 one.vm.update
 -------------
@@ -1174,23 +1146,23 @@ one.vm.update
 -  **Description**: Replaces the **user template** contents.
 -  **Parameters**
 
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                                                        |
-+========+==============+====================================================================================================+
-| IN     | String       | The session string.                                                                                |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| IN     | Int          | The object ID.                                                                                     |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| IN     | String       | The new user template contents. Syntax can be the usual “attribute=value” or XML.                  |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| IN     | Int          | Update type: **0**: Replace the whole template. **1**: Merge new template with the existing one.   |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                                                        |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| OUT    | Int/String   | The resource ID / The error string.                                                                |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                                                        |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
++------+------------+--------------------------------------------------------------------------------------------------+
+| Type | Data Type  |                                           Description                                            |
++======+============+==================================================================================================+
+| IN   | String     | The session string.                                                                              |
++------+------------+--------------------------------------------------------------------------------------------------+
+| IN   | Int        | The object ID.                                                                                   |
++------+------------+--------------------------------------------------------------------------------------------------+
+| IN   | String     | The new user template contents. Syntax can be the usual ``attribute=value`` or XML.              |
++------+------------+--------------------------------------------------------------------------------------------------+
+| IN   | Int        | Update type: **0**: Replace the whole template. **1**: Merge new template with the existing one. |
++------+------------+--------------------------------------------------------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not                                                      |
++------+------------+--------------------------------------------------------------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.                                                              |
++------+------------+--------------------------------------------------------------------------------------------------+
+| OUT  | Int        | Error code.                                                                                      |
++------+------------+--------------------------------------------------------------------------------------------------+
 
 one.vm.recover
 --------------
@@ -1198,21 +1170,21 @@ one.vm.recover
 -  **Description**: Recovers a stuck VM that is waiting for a driver operation. The recovery may be done by failing or succeeding the pending operation. You need to manually check the vm status on the host, to decide if the operation was successful or not.
 -  **Parameters**
 
-+--------+--------------+-----------------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                                 |
-+========+==============+=============================================================================+
-| IN     | String       | The session string.                                                         |
-+--------+--------------+-----------------------------------------------------------------------------+
-| IN     | Int          | The object ID.                                                              |
-+--------+--------------+-----------------------------------------------------------------------------+
-| IN     | Boolean      | Recover the VM by succeeding (true) of failing (false) the pending action   |
-+--------+--------------+-----------------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                                 |
-+--------+--------------+-----------------------------------------------------------------------------+
-| OUT    | Int/String   | The resource ID / The error string.                                         |
-+--------+--------------+-----------------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                                 |
-+--------+--------------+-----------------------------------------------------------------------------+
++------+------------+---------------------------------------------------------------------------+
+| Type | Data Type  |                                Description                                |
++======+============+===========================================================================+
+| IN   | String     | The session string.                                                       |
++------+------------+---------------------------------------------------------------------------+
+| IN   | Int        | The object ID.                                                            |
++------+------------+---------------------------------------------------------------------------+
+| IN   | Boolean    | Recover the VM by succeeding (true) of failing (false) the pending action |
++------+------------+---------------------------------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not                               |
++------+------------+---------------------------------------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.                                       |
++------+------------+---------------------------------------------------------------------------+
+| OUT  | Int        | Error code.                                                               |
++------+------------+---------------------------------------------------------------------------+
 
 one.vm.info
 -----------
@@ -1220,19 +1192,21 @@ one.vm.info
 -  **Description**: Retrieves information for the virtual machine.
 -  **Parameters**
 
-+--------+-------------+-----------------------------------------------+
-| Type   | Data Type   | Description                                   |
-+========+=============+===============================================+
-| IN     | String      | The session string.                           |
-+--------+-------------+-----------------------------------------------+
-| IN     | Int         | The object ID.                                |
-+--------+-------------+-----------------------------------------------+
-| OUT    | Boolean     | true or false whenever is successful or not   |
-+--------+-------------+-----------------------------------------------+
-| OUT    | String      | The information string / The error string.    |
-+--------+-------------+-----------------------------------------------+
-| OUT    | Int         | Error code.                                   |
-+--------+-------------+-----------------------------------------------+
++------+-----------+---------------------------------------------+
+| Type | Data Type |                 Description                 |
++======+===========+=============================================+
+| IN   | String    | The session string.                         |
++------+-----------+---------------------------------------------+
+| IN   | Int       | The object ID.                              |
++------+-----------+---------------------------------------------+
+| OUT  | Boolean   | true or false whenever is successful or not |
++------+-----------+---------------------------------------------+
+| OUT  | String    | The information string / The error string.  |
++------+-----------+---------------------------------------------+
+| OUT  | Int       | Error code.                                 |
++------+-----------+---------------------------------------------+
+
+.. _api_onevmmonitoring:
 
 one.vm.monitoring
 -----------------
@@ -1240,19 +1214,19 @@ one.vm.monitoring
 -  **Description**: Returns the virtual machine monitoring records.
 -  **Parameters**
 
-+--------+-------------+---------------------------------------------------------+
-| Type   | Data Type   | Description                                             |
-+========+=============+=========================================================+
-| IN     | String      | The session string.                                     |
-+--------+-------------+---------------------------------------------------------+
-| IN     | Int         | The object ID.                                          |
-+--------+-------------+---------------------------------------------------------+
-| OUT    | Boolean     | true or false whenever is successful or not             |
-+--------+-------------+---------------------------------------------------------+
-| OUT    | String      | The monitoring information string / The error string.   |
-+--------+-------------+---------------------------------------------------------+
-| OUT    | Int         | Error code.                                             |
-+--------+-------------+---------------------------------------------------------+
++------+-----------+-------------------------------------------------------+
+| Type | Data Type |                      Description                      |
++======+===========+=======================================================+
+| IN   | String    | The session string.                                   |
++------+-----------+-------------------------------------------------------+
+| IN   | Int       | The object ID.                                        |
++------+-----------+-------------------------------------------------------+
+| OUT  | Boolean   | true or false whenever is successful or not           |
++------+-----------+-------------------------------------------------------+
+| OUT  | String    | The monitoring information string / The error string. |
++------+-----------+-------------------------------------------------------+
+| OUT  | Int       | Error code.                                           |
++------+-----------+-------------------------------------------------------+
 
 The monitoring information returned is a list of VM elements. Each VM element contains the complete xml of the VM with the updated information returned by the poll action.
 
@@ -1279,57 +1253,57 @@ one.vmpool.info
 -  **Description**: Retrieves information for all or part of the VMs in the pool.
 -  **Parameters**
 
-+--------+-------------+---------------------------------------------------------+
-| Type   | Data Type   | Description                                             |
-+========+=============+=========================================================+
-| IN     | String      | The session string.                                     |
-+--------+-------------+---------------------------------------------------------+
-| IN     | Int         | Filter flag                                             |
-|        |             |  **- < = -3**: Connected user's resources               |
-|        |             |  **- -2**: All resources                                |
-|        |             |  **- -1**: Connected user's and his group's resources   |
-|        |             |  **- > = 0**: UID User's Resources                      |
-+--------+-------------+---------------------------------------------------------+
-| IN     | Int         | Range start ID. Can be -1.                              |
-+--------+-------------+---------------------------------------------------------+
-| IN     | Int         | Range end ID. Can be -1.                                |
-+--------+-------------+---------------------------------------------------------+
-| IN     | Int         | VM state to filter by.                                  |
-+--------+-------------+---------------------------------------------------------+
-| OUT    | Boolean     | true or false whenever is successful or not             |
-+--------+-------------+---------------------------------------------------------+
-| OUT    | String      | The information string / The error string.              |
-+--------+-------------+---------------------------------------------------------+
-| OUT    | Int         | Error code.                                             |
-+--------+-------------+---------------------------------------------------------+
++------+-----------+------------------------------------------------------+
+| Type | Data Type |                     Description                      |
++======+===========+======================================================+
+| IN   | String    | The session string.                                  |
++------+-----------+------------------------------------------------------+
+| IN   | Int       | Filter flag                                          |
+|      |           | **- < = -3**: Connected user's resources             |
+|      |           | **- -2**: All resources                              |
+|      |           | **- -1**: Connected user's and his group's resources |
+|      |           | **- > = 0**: UID User's Resources                    |
++------+-----------+------------------------------------------------------+
+| IN   | Int       | Range start ID. Can be -1.                           |
++------+-----------+------------------------------------------------------+
+| IN   | Int       | Range end ID. Can be -1.                             |
++------+-----------+------------------------------------------------------+
+| IN   | Int       | VM state to filter by.                               |
++------+-----------+------------------------------------------------------+
+| OUT  | Boolean   | true or false whenever is successful or not          |
++------+-----------+------------------------------------------------------+
+| OUT  | String    | The information string / The error string.           |
++------+-----------+------------------------------------------------------+
+| OUT  | Int       | Error code.                                          |
++------+-----------+------------------------------------------------------+
 
 The range can be used to retrieve a subset of the pool, from the 'start' to the 'end' ID. To retrieve the complete pool, use ``(-1, -1)``; to retrieve all the pool from a specific ID to the last one, use ``(<id>, -1)``, and to retrieve the first elements up to an ID, use ``(0, <id>)``.
 
 The state filter can be one of the following:
 
-+---------+-----------------------------+
-| Value   | State                       |
-+=========+=============================+
-| -2      | Any state, including DONE   |
-+---------+-----------------------------+
-| -1      | Any state, except DONE      |
-+---------+-----------------------------+
-| 0       | INIT                        |
-+---------+-----------------------------+
-| 1       | PENDING                     |
-+---------+-----------------------------+
-| 2       | HOLD                        |
-+---------+-----------------------------+
-| 3       | ACTIVE                      |
-+---------+-----------------------------+
-| 4       | STOPPED                     |
-+---------+-----------------------------+
-| 5       | SUSPENDED                   |
-+---------+-----------------------------+
-| 6       | DONE                        |
-+---------+-----------------------------+
-| 7       | FAILED                      |
-+---------+-----------------------------+
++-------+---------------------------+
+| Value |           State           |
++=======+===========================+
+|    -2 | Any state, including DONE |
++-------+---------------------------+
+|    -1 | Any state, except DONE    |
++-------+---------------------------+
+|     0 | INIT                      |
++-------+---------------------------+
+|     1 | PENDING                   |
++-------+---------------------------+
+|     2 | HOLD                      |
++-------+---------------------------+
+|     3 | ACTIVE                    |
++-------+---------------------------+
+|     4 | STOPPED                   |
++-------+---------------------------+
+|     5 | SUSPENDED                 |
++-------+---------------------------+
+|     6 | DONE                      |
++-------+---------------------------+
+|     7 | FAILED                    |
++-------+---------------------------+
 
 one.vmpool.monitoring
 ---------------------
@@ -1337,25 +1311,25 @@ one.vmpool.monitoring
 -  **Description**: Returns all the virtual machine monitoring records.
 -  **Parameters**
 
-+--------+-------------+---------------------------------------------------------+
-| Type   | Data Type   | Description                                             |
-+========+=============+=========================================================+
-| IN     | String      | The session string.                                     |
-+--------+-------------+---------------------------------------------------------+
-| IN     | Int         | Filter flag                                             |
-|        |             |  **- < = -3**: Connected user's resources               |
-|        |             |  **- -2**: All resources                                |
-|        |             |  **- -1**: Connected user's and his group's resources   |
-|        |             |  **- > = 0**: UID User's Resources                      |
-+--------+-------------+---------------------------------------------------------+
-| OUT    | Boolean     | true or false whenever is successful or not             |
-+--------+-------------+---------------------------------------------------------+
-| OUT    | String      | The information string / The error string.              |
-+--------+-------------+---------------------------------------------------------+
-| OUT    | Int         | Error code.                                             |
-+--------+-------------+---------------------------------------------------------+
++------+-----------+------------------------------------------------------+
+| Type | Data Type |                     Description                      |
++======+===========+======================================================+
+| IN   | String    | The session string.                                  |
++------+-----------+------------------------------------------------------+
+| IN   | Int       | Filter flag                                          |
+|      |           | **- < = -3**: Connected user's resources             |
+|      |           | **- -2**: All resources                              |
+|      |           | **- -1**: Connected user's and his group's resources |
+|      |           | **- > = 0**: UID User's Resources                    |
++------+-----------+------------------------------------------------------+
+| OUT  | Boolean   | true or false whenever is successful or not          |
++------+-----------+------------------------------------------------------+
+| OUT  | String    | The information string / The error string.           |
++------+-----------+------------------------------------------------------+
+| OUT  | Int       | Error code.                                          |
++------+-----------+------------------------------------------------------+
 
-See :ref:`one.vm.monitoring <#onevmmonitoring>`.
+See :ref:`one.vm.monitoring <api_onevmmonitoring>`.
 
 Sample output:
 
@@ -1390,27 +1364,27 @@ one.vmpool.accounting
 -  **Description**: Returns the virtual machine history records.
 -  **Parameters**
 
-+--------+-------------+------------------------------------------------------------------------------------------------------------+
-| Type   | Data Type   | Description                                                                                                |
-+========+=============+============================================================================================================+
-| IN     | String      | The session string.                                                                                        |
-+--------+-------------+------------------------------------------------------------------------------------------------------------+
-| IN     | Int         | Filter flag                                                                                                |
-|        |             |  **- < = -3**: Connected user's resources                                                                  |
-|        |             |  **- -2**: All resources                                                                                   |
-|        |             |  **- -1**: Connected user's and his group's resources                                                      |
-|        |             |  **- > = 0**: UID User's Resources                                                                         |
-+--------+-------------+------------------------------------------------------------------------------------------------------------+
-| IN     | Int         | Start time for the time interval. Can be -1, in which case the time interval won't have a left boundary.   |
-+--------+-------------+------------------------------------------------------------------------------------------------------------+
-| IN     | Int         | End time for the time interval. Can be -1, in which case the time interval won't have a right boundary.    |
-+--------+-------------+------------------------------------------------------------------------------------------------------------+
-| OUT    | Boolean     | true or false whenever is successful or not                                                                |
-+--------+-------------+------------------------------------------------------------------------------------------------------------+
-| OUT    | String      | The information string / The error string.                                                                 |
-+--------+-------------+------------------------------------------------------------------------------------------------------------+
-| OUT    | Int         | Error code.                                                                                                |
-+--------+-------------+------------------------------------------------------------------------------------------------------------+
++------+-----------+----------------------------------------------------------------------------------------------------------+
+| Type | Data Type |                                               Description                                                |
++======+===========+==========================================================================================================+
+| IN   | String    | The session string.                                                                                      |
++------+-----------+----------------------------------------------------------------------------------------------------------+
+| IN   | Int       | Filter flag                                                                                              |
+|      |           | **- < = -3**: Connected user's resources                                                                 |
+|      |           | **- -2**: All resources                                                                                  |
+|      |           | **- -1**: Connected user's and his group's resources                                                     |
+|      |           | **- > = 0**: UID User's Resources                                                                        |
++------+-----------+----------------------------------------------------------------------------------------------------------+
+| IN   | Int       | Start time for the time interval. Can be -1, in which case the time interval won't have a left boundary. |
++------+-----------+----------------------------------------------------------------------------------------------------------+
+| IN   | Int       | End time for the time interval. Can be -1, in which case the time interval won't have a right boundary.  |
++------+-----------+----------------------------------------------------------------------------------------------------------+
+| OUT  | Boolean   | true or false whenever is successful or not                                                              |
++------+-----------+----------------------------------------------------------------------------------------------------------+
+| OUT  | String    | The information string / The error string.                                                               |
++------+-----------+----------------------------------------------------------------------------------------------------------+
+| OUT  | Int       | Error code.                                                                                              |
++------+-----------+----------------------------------------------------------------------------------------------------------+
 
 The XML output is explained in detail in the :ref:`''oneacct'' guide <accounting>`.
 
@@ -1423,27 +1397,27 @@ one.host.allocate
 -  **Description**: Allocates a new host in OpenNebula
 -  **Parameters**
 
-+--------+--------------+------------------------------------------------------------------------------------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                                                                                                    |
-+========+==============+================================================================================================================================================+
-| IN     | String       | The session string.                                                                                                                            |
-+--------+--------------+------------------------------------------------------------------------------------------------------------------------------------------------+
-| IN     | String       | Hostname of the machine we want to add                                                                                                         |
-+--------+--------------+------------------------------------------------------------------------------------------------------------------------------------------------+
-| IN     | String       | The name of the information manager (im\_mad\_name), this values are taken from the oned.conf with the tag name IM\_MAD (name)                 |
-+--------+--------------+------------------------------------------------------------------------------------------------------------------------------------------------+
-| IN     | String       | The name of the virtual machine manager mad name (vmm\_mad\_name), this values are taken from the oned.conf with the tag name VM\_MAD (name)   |
-+--------+--------------+------------------------------------------------------------------------------------------------------------------------------------------------+
-| IN     | String       | The name of the virtual network manager mad name (vnm\_mad\_name), see the :ref:`Networking Subsystem documentation <nm>`                         |
-+--------+--------------+------------------------------------------------------------------------------------------------------------------------------------------------+
-| IN     | Int          | The cluster ID. If it is -1, this host won't be added to any cluster.                                                                          |
-+--------+--------------+------------------------------------------------------------------------------------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                                                                                                    |
-+--------+--------------+------------------------------------------------------------------------------------------------------------------------------------------------+
-| OUT    | Int/String   | The allocated Host ID / The error string.                                                                                                      |
-+--------+--------------+------------------------------------------------------------------------------------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                                                                                                    |
-+--------+--------------+------------------------------------------------------------------------------------------------------------------------------------------------+
++------+------------+----------------------------------------------------------------------------------------------------------------------------------------------+
+| Type | Data Type  |                                                                 Description                                                                  |
++======+============+==============================================================================================================================================+
+| IN   | String     | The session string.                                                                                                                          |
++------+------------+----------------------------------------------------------------------------------------------------------------------------------------------+
+| IN   | String     | Hostname of the machine we want to add                                                                                                       |
++------+------------+----------------------------------------------------------------------------------------------------------------------------------------------+
+| IN   | String     | The name of the information manager (im\_mad\_name), this values are taken from the oned.conf with the tag name IM\_MAD (name)               |
++------+------------+----------------------------------------------------------------------------------------------------------------------------------------------+
+| IN   | String     | The name of the virtual machine manager mad name (vmm\_mad\_name), this values are taken from the oned.conf with the tag name VM\_MAD (name) |
++------+------------+----------------------------------------------------------------------------------------------------------------------------------------------+
+| IN   | String     | The name of the virtual network manager mad name (vnm\_mad\_name), see the :ref:`Networking Subsystem documentation <nm>`                    |
++------+------------+----------------------------------------------------------------------------------------------------------------------------------------------+
+| IN   | Int        | The cluster ID. If it is -1, this host won't be added to any cluster.                                                                        |
++------+------------+----------------------------------------------------------------------------------------------------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not                                                                                                  |
++------+------------+----------------------------------------------------------------------------------------------------------------------------------------------+
+| OUT  | Int/String | The allocated Host ID / The error string.                                                                                                    |
++------+------------+----------------------------------------------------------------------------------------------------------------------------------------------+
+| OUT  | Int        | Error code.                                                                                                                                  |
++------+------------+----------------------------------------------------------------------------------------------------------------------------------------------+
 
 one.host.delete
 ---------------
@@ -1451,19 +1425,19 @@ one.host.delete
 -  **Description**: Deletes the given host from the pool
 -  **Parameters**
 
-+--------+--------------+-----------------------------------------------+
-| Type   | Data Type    | Description                                   |
-+========+==============+===============================================+
-| IN     | String       | The session string.                           |
-+--------+--------------+-----------------------------------------------+
-| IN     | Int          | The object ID.                                |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not   |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int/String   | The resource ID / The error string.           |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int          | Error code.                                   |
-+--------+--------------+-----------------------------------------------+
++------+------------+---------------------------------------------+
+| Type | Data Type  |                 Description                 |
++======+============+=============================================+
+| IN   | String     | The session string.                         |
++------+------------+---------------------------------------------+
+| IN   | Int        | The object ID.                              |
++------+------------+---------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not |
++------+------------+---------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.         |
++------+------------+---------------------------------------------+
+| OUT  | Int        | Error code.                                 |
++------+------------+---------------------------------------------+
 
 one.host.enable
 ---------------
@@ -1471,21 +1445,21 @@ one.host.enable
 -  **Description**: Enables or disables the given host
 -  **Parameters**
 
-+--------+--------------+--------------------------------------------------------------+
-| Type   | Data Type    | Description                                                  |
-+========+==============+==============================================================+
-| IN     | String       | The session string.                                          |
-+--------+--------------+--------------------------------------------------------------+
-| IN     | Int          | The Host ID.                                                 |
-+--------+--------------+--------------------------------------------------------------+
-| IN     | Boolean      | Set it to true/false to enable or disable the target Host.   |
-+--------+--------------+--------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                  |
-+--------+--------------+--------------------------------------------------------------+
-| OUT    | Int/String   | The resource ID / The error string.                          |
-+--------+--------------+--------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                  |
-+--------+--------------+--------------------------------------------------------------+
++------+------------+------------------------------------------------------------+
+| Type | Data Type  |                        Description                         |
++======+============+============================================================+
+| IN   | String     | The session string.                                        |
++------+------------+------------------------------------------------------------+
+| IN   | Int        | The Host ID.                                               |
++------+------------+------------------------------------------------------------+
+| IN   | Boolean    | Set it to true/false to enable or disable the target Host. |
++------+------------+------------------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not                |
++------+------------+------------------------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.                        |
++------+------------+------------------------------------------------------------+
+| OUT  | Int        | Error code.                                                |
++------+------------+------------------------------------------------------------+
 
 one.host.update
 ---------------
@@ -1493,23 +1467,23 @@ one.host.update
 -  **Description**: Replaces the host's template contents.
 -  **Parameters**
 
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                                                        |
-+========+==============+====================================================================================================+
-| IN     | String       | The session string.                                                                                |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| IN     | Int          | The object ID.                                                                                     |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| IN     | String       | The new template contents. Syntax can be the usual “attribute=value” or XML.                       |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| IN     | Int          | Update type: **0**: Replace the whole template. **1**: Merge new template with the existing one.   |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                                                        |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| OUT    | Int/String   | The resource ID / The error string.                                                                |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                                                        |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
++------+------------+--------------------------------------------------------------------------------------------------+
+| Type | Data Type  |                                           Description                                            |
++======+============+==================================================================================================+
+| IN   | String     | The session string.                                                                              |
++------+------------+--------------------------------------------------------------------------------------------------+
+| IN   | Int        | The object ID.                                                                                   |
++------+------------+--------------------------------------------------------------------------------------------------+
+| IN   | String     | The new template contents. Syntax can be the usual ``attribute=value`` or XML.                   |
++------+------------+--------------------------------------------------------------------------------------------------+
+| IN   | Int        | Update type: **0**: Replace the whole template. **1**: Merge new template with the existing one. |
++------+------------+--------------------------------------------------------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not                                                      |
++------+------------+--------------------------------------------------------------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.                                                              |
++------+------------+--------------------------------------------------------------------------------------------------+
+| OUT  | Int        | Error code.                                                                                      |
++------+------------+--------------------------------------------------------------------------------------------------+
 
 one.host.rename
 ---------------
@@ -1517,21 +1491,21 @@ one.host.rename
 -  **Description**: Renames a host.
 -  **Parameters**
 
-+--------+--------------+-----------------------------------------------+
-| Type   | Data Type    | Description                                   |
-+========+==============+===============================================+
-| IN     | String       | The session string.                           |
-+--------+--------------+-----------------------------------------------+
-| IN     | Int          | The object ID.                                |
-+--------+--------------+-----------------------------------------------+
-| IN     | String       | The new name.                                 |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not   |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int/String   | The VM ID / The error string.                 |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int          | Error code.                                   |
-+--------+--------------+-----------------------------------------------+
++------+------------+---------------------------------------------+
+| Type | Data Type  |                 Description                 |
++======+============+=============================================+
+| IN   | String     | The session string.                         |
++------+------------+---------------------------------------------+
+| IN   | Int        | The object ID.                              |
++------+------------+---------------------------------------------+
+| IN   | String     | The new name.                               |
++------+------------+---------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not |
++------+------------+---------------------------------------------+
+| OUT  | Int/String | The VM ID / The error string.               |
++------+------------+---------------------------------------------+
+| OUT  | Int        | Error code.                                 |
++------+------------+---------------------------------------------+
 
 one.host.info
 -------------
@@ -1539,19 +1513,21 @@ one.host.info
 -  **Description**: Retrieves information for the host.
 -  **Parameters**
 
-+--------+-------------+-----------------------------------------------+
-| Type   | Data Type   | Description                                   |
-+========+=============+===============================================+
-| IN     | String      | The session string.                           |
-+--------+-------------+-----------------------------------------------+
-| IN     | Int         | The object ID.                                |
-+--------+-------------+-----------------------------------------------+
-| OUT    | Boolean     | true or false whenever is successful or not   |
-+--------+-------------+-----------------------------------------------+
-| OUT    | String      | The information string / The error string.    |
-+--------+-------------+-----------------------------------------------+
-| OUT    | Int         | Error code.                                   |
-+--------+-------------+-----------------------------------------------+
++------+-----------+---------------------------------------------+
+| Type | Data Type |                 Description                 |
++======+===========+=============================================+
+| IN   | String    | The session string.                         |
++------+-----------+---------------------------------------------+
+| IN   | Int       | The object ID.                              |
++------+-----------+---------------------------------------------+
+| OUT  | Boolean   | true or false whenever is successful or not |
++------+-----------+---------------------------------------------+
+| OUT  | String    | The information string / The error string.  |
++------+-----------+---------------------------------------------+
+| OUT  | Int       | Error code.                                 |
++------+-----------+---------------------------------------------+
+
+.. _api_onehostmonitoring:
 
 one.host.monitoring
 -------------------
@@ -1559,19 +1535,19 @@ one.host.monitoring
 -  **Description**: Returns the host monitoring records.
 -  **Parameters**
 
-+--------+-------------+---------------------------------------------------------+
-| Type   | Data Type   | Description                                             |
-+========+=============+=========================================================+
-| IN     | String      | The session string.                                     |
-+--------+-------------+---------------------------------------------------------+
-| IN     | Int         | The object ID.                                          |
-+--------+-------------+---------------------------------------------------------+
-| OUT    | Boolean     | true or false whenever is successful or not             |
-+--------+-------------+---------------------------------------------------------+
-| OUT    | String      | The monitoring information string / The error string.   |
-+--------+-------------+---------------------------------------------------------+
-| OUT    | Int         | Error code.                                             |
-+--------+-------------+---------------------------------------------------------+
++------+-----------+-------------------------------------------------------+
+| Type | Data Type |                      Description                      |
++======+===========+=======================================================+
+| IN   | String    | The session string.                                   |
++------+-----------+-------------------------------------------------------+
+| IN   | Int       | The object ID.                                        |
++------+-----------+-------------------------------------------------------+
+| OUT  | Boolean   | true or false whenever is successful or not           |
++------+-----------+-------------------------------------------------------+
+| OUT  | String    | The monitoring information string / The error string. |
++------+-----------+-------------------------------------------------------+
+| OUT  | Int       | Error code.                                           |
++------+-----------+-------------------------------------------------------+
 
 The monitoring information returned is a list of HOST elements. Each HOST element contains the complete xml of the host with the updated information returned by the poll action.
 
@@ -1598,17 +1574,17 @@ one.hostpool.info
 -  **Description**: Retrieves information for all the hosts in the pool.
 -  **Parameters**
 
-+--------+-------------+-----------------------------------------------+
-| Type   | Data Type   | Description                                   |
-+========+=============+===============================================+
-| IN     | String      | The session string.                           |
-+--------+-------------+-----------------------------------------------+
-| OUT    | Boolean     | true or false whenever is successful or not   |
-+--------+-------------+-----------------------------------------------+
-| OUT    | String      | The information string / The error string.    |
-+--------+-------------+-----------------------------------------------+
-| OUT    | Int         | Error code.                                   |
-+--------+-------------+-----------------------------------------------+
++------+-----------+---------------------------------------------+
+| Type | Data Type |                 Description                 |
++======+===========+=============================================+
+| IN   | String    | The session string.                         |
++------+-----------+---------------------------------------------+
+| OUT  | Boolean   | true or false whenever is successful or not |
++------+-----------+---------------------------------------------+
+| OUT  | String    | The information string / The error string.  |
++------+-----------+---------------------------------------------+
+| OUT  | Int       | Error code.                                 |
++------+-----------+---------------------------------------------+
 
 one.hostpool.monitoring
 -----------------------
@@ -1616,19 +1592,17 @@ one.hostpool.monitoring
 -  **Description**: Returns all the host monitoring records.
 -  **Parameters**
 
-+--------+-------------+-----------------------------------------------+
-| Type   | Data Type   | Description                                   |
-+========+=============+===============================================+
-| IN     | String      | The session string.                           |
-+--------+-------------+-----------------------------------------------+
-| OUT    | Boolean     | true or false whenever is successful or not   |
-+--------+-------------+-----------------------------------------------+
-| OUT    | String      | The information string / The error string.    |
-+--------+-------------+-----------------------------------------------+
-| OUT    | Int         | Error code.                                   |
-+--------+-------------+-----------------------------------------------+
-
-See :ref:`one.host.monitoring <#onehostmonitoring>`.
++------+-----------+---------------------------------------------+
+| Type | Data Type |                 Description                 |
++======+===========+=============================================+
+| IN   | String    | The session string.                         |
++------+-----------+---------------------------------------------+
+| OUT  | Boolean   | true or false whenever is successful or not |
++------+-----------+---------------------------------------------+
+| OUT  | String    | The information string / The error string.  |
++------+-----------+---------------------------------------------+
+| OUT  | Int       | Error code.                                 |
++------+-----------+---------------------------------------------+
 
 Sample output:
 
@@ -1666,19 +1640,19 @@ one.cluster.allocate
 -  **Description**: Allocates a new cluster in OpenNebula.
 -  **Parameters**
 
-+--------+--------------+------------------------------------------------+
-| Type   | Data Type    | Description                                    |
-+========+==============+================================================+
-| IN     | String       | The session string.                            |
-+--------+--------------+------------------------------------------------+
-| IN     | String       | Name for the new cluster.                      |
-+--------+--------------+------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not    |
-+--------+--------------+------------------------------------------------+
-| OUT    | Int/String   | The allocated cluster ID / The error string.   |
-+--------+--------------+------------------------------------------------+
-| OUT    | Int          | Error code.                                    |
-+--------+--------------+------------------------------------------------+
++------+------------+----------------------------------------------+
+| Type | Data Type  |                 Description                  |
++======+============+==============================================+
+| IN   | String     | The session string.                          |
++------+------------+----------------------------------------------+
+| IN   | String     | Name for the new cluster.                    |
++------+------------+----------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not  |
++------+------------+----------------------------------------------+
+| OUT  | Int/String | The allocated cluster ID / The error string. |
++------+------------+----------------------------------------------+
+| OUT  | Int        | Error code.                                  |
++------+------------+----------------------------------------------+
 
 one.cluster.delete
 ------------------
@@ -1686,19 +1660,19 @@ one.cluster.delete
 -  **Description**: Deletes the given cluster from the pool.
 -  **Parameters**
 
-+--------+--------------+-----------------------------------------------+
-| Type   | Data Type    | Description                                   |
-+========+==============+===============================================+
-| IN     | String       | The session string.                           |
-+--------+--------------+-----------------------------------------------+
-| IN     | Int          | The object ID.                                |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not   |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int/String   | The resource ID / The error string.           |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int          | Error code.                                   |
-+--------+--------------+-----------------------------------------------+
++------+------------+---------------------------------------------+
+| Type | Data Type  |                 Description                 |
++======+============+=============================================+
+| IN   | String     | The session string.                         |
++------+------------+---------------------------------------------+
+| IN   | Int        | The object ID.                              |
++------+------------+---------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not |
++------+------------+---------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.         |
++------+------------+---------------------------------------------+
+| OUT  | Int        | Error code.                                 |
++------+------------+---------------------------------------------+
 
 one.cluster.update
 ------------------
@@ -1706,23 +1680,23 @@ one.cluster.update
 -  **Description**: Replaces the cluster template contents.
 -  **Parameters**
 
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                                                        |
-+========+==============+====================================================================================================+
-| IN     | String       | The session string.                                                                                |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| IN     | Int          | The object ID.                                                                                     |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| IN     | String       | The new template contents. Syntax can be the usual “attribute=value” or XML.                       |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| IN     | Int          | Update type: **0**: Replace the whole template. **1**: Merge new template with the existing one.   |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                                                        |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| OUT    | Int/String   | The resource ID / The error string.                                                                |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                                                        |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
++------+------------+--------------------------------------------------------------------------------------------------+
+| Type | Data Type  |                                           Description                                            |
++======+============+==================================================================================================+
+| IN   | String     | The session string.                                                                              |
++------+------------+--------------------------------------------------------------------------------------------------+
+| IN   | Int        | The object ID.                                                                                   |
++------+------------+--------------------------------------------------------------------------------------------------+
+| IN   | String     | The new template contents. Syntax can be the usual ``attribute=value`` or XML.                   |
++------+------------+--------------------------------------------------------------------------------------------------+
+| IN   | Int        | Update type: **0**: Replace the whole template. **1**: Merge new template with the existing one. |
++------+------------+--------------------------------------------------------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not                                                      |
++------+------------+--------------------------------------------------------------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.                                                              |
++------+------------+--------------------------------------------------------------------------------------------------+
+| OUT  | Int        | Error code.                                                                                      |
++------+------------+--------------------------------------------------------------------------------------------------+
 
 one.cluster.addhost
 -------------------
@@ -1730,21 +1704,21 @@ one.cluster.addhost
 -  **Description**: Adds a host to the given cluster.
 -  **Parameters**
 
-+--------+--------------+-----------------------------------------------+
-| Type   | Data Type    | Description                                   |
-+========+==============+===============================================+
-| IN     | String       | The session string.                           |
-+--------+--------------+-----------------------------------------------+
-| IN     | Int          | The cluster ID.                               |
-+--------+--------------+-----------------------------------------------+
-| IN     | Int          | The host ID.                                  |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not   |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int/String   | The resource ID / The error string.           |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int          | Error code.                                   |
-+--------+--------------+-----------------------------------------------+
++------+------------+---------------------------------------------+
+| Type | Data Type  |                 Description                 |
++======+============+=============================================+
+| IN   | String     | The session string.                         |
++------+------------+---------------------------------------------+
+| IN   | Int        | The cluster ID.                             |
++------+------------+---------------------------------------------+
+| IN   | Int        | The host ID.                                |
++------+------------+---------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not |
++------+------------+---------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.         |
++------+------------+---------------------------------------------+
+| OUT  | Int        | Error code.                                 |
++------+------------+---------------------------------------------+
 
 one.cluster.delhost
 -------------------
@@ -1752,21 +1726,21 @@ one.cluster.delhost
 -  **Description**: Removes a host from the given cluster.
 -  **Parameters**
 
-+--------+--------------+-----------------------------------------------+
-| Type   | Data Type    | Description                                   |
-+========+==============+===============================================+
-| IN     | String       | The session string.                           |
-+--------+--------------+-----------------------------------------------+
-| IN     | Int          | The cluster ID.                               |
-+--------+--------------+-----------------------------------------------+
-| IN     | Int          | The host ID.                                  |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not   |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int/String   | The resource ID / The error string.           |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int          | Error code.                                   |
-+--------+--------------+-----------------------------------------------+
++------+------------+---------------------------------------------+
+| Type | Data Type  |                 Description                 |
++======+============+=============================================+
+| IN   | String     | The session string.                         |
++------+------------+---------------------------------------------+
+| IN   | Int        | The cluster ID.                             |
++------+------------+---------------------------------------------+
+| IN   | Int        | The host ID.                                |
++------+------------+---------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not |
++------+------------+---------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.         |
++------+------------+---------------------------------------------+
+| OUT  | Int        | Error code.                                 |
++------+------------+---------------------------------------------+
 
 one.cluster.adddatastore
 ------------------------
@@ -1774,21 +1748,21 @@ one.cluster.adddatastore
 -  **Description**: Adds a datastore to the given cluster.
 -  **Parameters**
 
-+--------+--------------+-----------------------------------------------+
-| Type   | Data Type    | Description                                   |
-+========+==============+===============================================+
-| IN     | String       | The session string.                           |
-+--------+--------------+-----------------------------------------------+
-| IN     | Int          | The cluster ID.                               |
-+--------+--------------+-----------------------------------------------+
-| IN     | Int          | The datastore ID.                             |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not   |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int/String   | The resource ID / The error string.           |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int          | Error code.                                   |
-+--------+--------------+-----------------------------------------------+
++------+------------+---------------------------------------------+
+| Type | Data Type  |                 Description                 |
++======+============+=============================================+
+| IN   | String     | The session string.                         |
++------+------------+---------------------------------------------+
+| IN   | Int        | The cluster ID.                             |
++------+------------+---------------------------------------------+
+| IN   | Int        | The datastore ID.                           |
++------+------------+---------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not |
++------+------------+---------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.         |
++------+------------+---------------------------------------------+
+| OUT  | Int        | Error code.                                 |
++------+------------+---------------------------------------------+
 
 one.cluster.deldatastore
 ------------------------
@@ -1796,21 +1770,21 @@ one.cluster.deldatastore
 -  **Description**: Removes a datastore from the given cluster.
 -  **Parameters**
 
-+--------+--------------+-----------------------------------------------+
-| Type   | Data Type    | Description                                   |
-+========+==============+===============================================+
-| IN     | String       | The session string.                           |
-+--------+--------------+-----------------------------------------------+
-| IN     | Int          | The cluster ID.                               |
-+--------+--------------+-----------------------------------------------+
-| IN     | Int          | The datastore ID.                             |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not   |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int/String   | The resource ID / The error string.           |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int          | Error code.                                   |
-+--------+--------------+-----------------------------------------------+
++------+------------+---------------------------------------------+
+| Type | Data Type  |                 Description                 |
++======+============+=============================================+
+| IN   | String     | The session string.                         |
++------+------------+---------------------------------------------+
+| IN   | Int        | The cluster ID.                             |
++------+------------+---------------------------------------------+
+| IN   | Int        | The datastore ID.                           |
++------+------------+---------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not |
++------+------------+---------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.         |
++------+------------+---------------------------------------------+
+| OUT  | Int        | Error code.                                 |
++------+------------+---------------------------------------------+
 
 one.cluster.addvnet
 -------------------
@@ -1818,21 +1792,21 @@ one.cluster.addvnet
 -  **Description**: Adds a vnet to the given cluster.
 -  **Parameters**
 
-+--------+--------------+-----------------------------------------------+
-| Type   | Data Type    | Description                                   |
-+========+==============+===============================================+
-| IN     | String       | The session string.                           |
-+--------+--------------+-----------------------------------------------+
-| IN     | Int          | The cluster ID.                               |
-+--------+--------------+-----------------------------------------------+
-| IN     | Int          | The vnet ID.                                  |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not   |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int/String   | The resource ID / The error string.           |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int          | Error code.                                   |
-+--------+--------------+-----------------------------------------------+
++------+------------+---------------------------------------------+
+| Type | Data Type  |                 Description                 |
++======+============+=============================================+
+| IN   | String     | The session string.                         |
++------+------------+---------------------------------------------+
+| IN   | Int        | The cluster ID.                             |
++------+------------+---------------------------------------------+
+| IN   | Int        | The vnet ID.                                |
++------+------------+---------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not |
++------+------------+---------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.         |
++------+------------+---------------------------------------------+
+| OUT  | Int        | Error code.                                 |
++------+------------+---------------------------------------------+
 
 one.cluster.delvnet
 -------------------
@@ -1840,21 +1814,21 @@ one.cluster.delvnet
 -  **Description**: Removes a vnet from the given cluster.
 -  **Parameters**
 
-+--------+--------------+-----------------------------------------------+
-| Type   | Data Type    | Description                                   |
-+========+==============+===============================================+
-| IN     | String       | The session string.                           |
-+--------+--------------+-----------------------------------------------+
-| IN     | Int          | The cluster ID.                               |
-+--------+--------------+-----------------------------------------------+
-| IN     | Int          | The vnet ID.                                  |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not   |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int/String   | The resource ID / The error string.           |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int          | Error code.                                   |
-+--------+--------------+-----------------------------------------------+
++------+------------+---------------------------------------------+
+| Type | Data Type  |                 Description                 |
++======+============+=============================================+
+| IN   | String     | The session string.                         |
++------+------------+---------------------------------------------+
+| IN   | Int        | The cluster ID.                             |
++------+------------+---------------------------------------------+
+| IN   | Int        | The vnet ID.                                |
++------+------------+---------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not |
++------+------------+---------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.         |
++------+------------+---------------------------------------------+
+| OUT  | Int        | Error code.                                 |
++------+------------+---------------------------------------------+
 
 one.cluster.rename
 ------------------
@@ -1862,21 +1836,21 @@ one.cluster.rename
 -  **Description**: Renames a cluster.
 -  **Parameters**
 
-+--------+--------------+-----------------------------------------------+
-| Type   | Data Type    | Description                                   |
-+========+==============+===============================================+
-| IN     | String       | The session string.                           |
-+--------+--------------+-----------------------------------------------+
-| IN     | Int          | The object ID.                                |
-+--------+--------------+-----------------------------------------------+
-| IN     | String       | The new name.                                 |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not   |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int/String   | The VM ID / The error string.                 |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int          | Error code.                                   |
-+--------+--------------+-----------------------------------------------+
++------+------------+---------------------------------------------+
+| Type | Data Type  |                 Description                 |
++======+============+=============================================+
+| IN   | String     | The session string.                         |
++------+------------+---------------------------------------------+
+| IN   | Int        | The object ID.                              |
++------+------------+---------------------------------------------+
+| IN   | String     | The new name.                               |
++------+------------+---------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not |
++------+------------+---------------------------------------------+
+| OUT  | Int/String | The VM ID / The error string.               |
++------+------------+---------------------------------------------+
+| OUT  | Int        | Error code.                                 |
++------+------------+---------------------------------------------+
 
 one.cluster.info
 ----------------
@@ -1884,19 +1858,19 @@ one.cluster.info
 -  **Description**: Retrieves information for the cluster.
 -  **Parameters**
 
-+--------+-------------+-----------------------------------------------+
-| Type   | Data Type   | Description                                   |
-+========+=============+===============================================+
-| IN     | String      | The session string.                           |
-+--------+-------------+-----------------------------------------------+
-| IN     | Int         | The object ID.                                |
-+--------+-------------+-----------------------------------------------+
-| OUT    | Boolean     | true or false whenever is successful or not   |
-+--------+-------------+-----------------------------------------------+
-| OUT    | String      | The information string / The error string.    |
-+--------+-------------+-----------------------------------------------+
-| OUT    | Int         | Error code.                                   |
-+--------+-------------+-----------------------------------------------+
++------+-----------+---------------------------------------------+
+| Type | Data Type |                 Description                 |
++======+===========+=============================================+
+| IN   | String    | The session string.                         |
++------+-----------+---------------------------------------------+
+| IN   | Int       | The object ID.                              |
++------+-----------+---------------------------------------------+
+| OUT  | Boolean   | true or false whenever is successful or not |
++------+-----------+---------------------------------------------+
+| OUT  | String    | The information string / The error string.  |
++------+-----------+---------------------------------------------+
+| OUT  | Int       | Error code.                                 |
++------+-----------+---------------------------------------------+
 
 one.clusterpool.info
 --------------------
@@ -1904,17 +1878,17 @@ one.clusterpool.info
 -  **Description**: Retrieves information for all the clusters in the pool.
 -  **Parameters**
 
-+--------+-------------+-----------------------------------------------+
-| Type   | Data Type   | Description                                   |
-+========+=============+===============================================+
-| IN     | String      | The session string.                           |
-+--------+-------------+-----------------------------------------------+
-| OUT    | Boolean     | true or false whenever is successful or not   |
-+--------+-------------+-----------------------------------------------+
-| OUT    | String      | The information string / The error string.    |
-+--------+-------------+-----------------------------------------------+
-| OUT    | Int         | Error code.                                   |
-+--------+-------------+-----------------------------------------------+
++------+-----------+---------------------------------------------+
+| Type | Data Type |                 Description                 |
++======+===========+=============================================+
+| IN   | String    | The session string.                         |
++------+-----------+---------------------------------------------+
+| OUT  | Boolean   | true or false whenever is successful or not |
++------+-----------+---------------------------------------------+
+| OUT  | String    | The information string / The error string.  |
++------+-----------+---------------------------------------------+
+| OUT  | Int       | Error code.                                 |
++------+-----------+---------------------------------------------+
 
 Actions for Virtual Network Management
 ======================================
@@ -1925,21 +1899,21 @@ one.vn.allocate
 -  **Description**: Allocates a new virtual network in OpenNebula.
 -  **Parameters**
 
-+--------+--------------+--------------------------------------------------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                                                                  |
-+========+==============+==============================================================================================================+
-| IN     | String       | The session string.                                                                                          |
-+--------+--------------+--------------------------------------------------------------------------------------------------------------+
-| IN     | String       | A string containing the template of the virtual network. Syntax can be the usual “attribute=value” or XML.   |
-+--------+--------------+--------------------------------------------------------------------------------------------------------------+
-| IN     | Int          | The cluster ID. If it is -1, this virtual network won't be added to any cluster.                             |
-+--------+--------------+--------------------------------------------------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                                                                  |
-+--------+--------------+--------------------------------------------------------------------------------------------------------------+
-| OUT    | Int/String   | The allocated resource ID / The error string.                                                                |
-+--------+--------------+--------------------------------------------------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                                                                  |
-+--------+--------------+--------------------------------------------------------------------------------------------------------------+
++------+------------+--------------------------------------------------------------------------------------------------------------+
+| Type | Data Type  |                                                 Description                                                  |
++======+============+==============================================================================================================+
+| IN   | String     | The session string.                                                                                          |
++------+------------+--------------------------------------------------------------------------------------------------------------+
+| IN   | String     | A string containing the template of the virtual network. Syntax can be the usual ``attribute=value`` or XML. |
++------+------------+--------------------------------------------------------------------------------------------------------------+
+| IN   | Int        | The cluster ID. If it is -1, this virtual network won't be added to any cluster.                             |
++------+------------+--------------------------------------------------------------------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not                                                                  |
++------+------------+--------------------------------------------------------------------------------------------------------------+
+| OUT  | Int/String | The allocated resource ID / The error string.                                                                |
++------+------------+--------------------------------------------------------------------------------------------------------------+
+| OUT  | Int        | Error code.                                                                                                  |
++------+------------+--------------------------------------------------------------------------------------------------------------+
 
 one.vn.delete
 -------------
@@ -1947,19 +1921,19 @@ one.vn.delete
 -  **Description**: Deletes the given virtual network from the pool.
 -  **Parameters**
 
-+--------+--------------+-----------------------------------------------+
-| Type   | Data Type    | Description                                   |
-+========+==============+===============================================+
-| IN     | String       | The session string.                           |
-+--------+--------------+-----------------------------------------------+
-| IN     | Int          | The object ID.                                |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not   |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int/String   | The resource ID / The error string.           |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int          | Error code.                                   |
-+--------+--------------+-----------------------------------------------+
++------+------------+---------------------------------------------+
+| Type | Data Type  |                 Description                 |
++======+============+=============================================+
+| IN   | String     | The session string.                         |
++------+------------+---------------------------------------------+
+| IN   | Int        | The object ID.                              |
++------+------------+---------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not |
++------+------------+---------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.         |
++------+------------+---------------------------------------------+
+| OUT  | Int        | Error code.                                 |
++------+------------+---------------------------------------------+
 
 one.vn.addleases
 ----------------
@@ -1967,21 +1941,21 @@ one.vn.addleases
 -  **Description**: Adds a new lease to the virtual network. Only available for FIXED networks.
 -  **Parameters**
 
-+--------+--------------+----------------------------------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                                                  |
-+========+==============+==============================================================================================+
-| IN     | String       | The session string.                                                                          |
-+--------+--------------+----------------------------------------------------------------------------------------------+
-| IN     | Int          | The object ID.                                                                               |
-+--------+--------------+----------------------------------------------------------------------------------------------+
-| IN     | String       | template of the lease to add. Syntax can be the usual “attribute=value” or XML, see below.   |
-+--------+--------------+----------------------------------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                                                  |
-+--------+--------------+----------------------------------------------------------------------------------------------+
-| OUT    | Int/String   | The resource ID / The error string.                                                          |
-+--------+--------------+----------------------------------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                                                  |
-+--------+--------------+----------------------------------------------------------------------------------------------+
++------+------------+----------------------------------------------------------------------------------------------+
+| Type | Data Type  |                                         Description                                          |
++======+============+==============================================================================================+
+| IN   | String     | The session string.                                                                          |
++------+------------+----------------------------------------------------------------------------------------------+
+| IN   | Int        | The object ID.                                                                               |
++------+------------+----------------------------------------------------------------------------------------------+
+| IN   | String     | template of the lease to add. Syntax can be the usual ``attribute=value`` or XML, see below. |
++------+------------+----------------------------------------------------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not                                                  |
++------+------------+----------------------------------------------------------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.                                                          |
++------+------------+----------------------------------------------------------------------------------------------+
+| OUT  | Int        | Error code.                                                                                  |
++------+------------+----------------------------------------------------------------------------------------------+
 
 Examples of valid templates:
 
@@ -2016,21 +1990,21 @@ one.vn.rmleases
 -  **Description**: Removes a lease from the virtual network. Only available for FIXED networks.
 -  **Parameters**
 
-+--------+--------------+----------------------------------------------------------------------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                                                                                      |
-+========+==============+==================================================================================================================================+
-| IN     | String       | The session string.                                                                                                              |
-+--------+--------------+----------------------------------------------------------------------------------------------------------------------------------+
-| IN     | Int          | The object ID.                                                                                                                   |
-+--------+--------------+----------------------------------------------------------------------------------------------------------------------------------+
-| IN     | String       | template of the lease to remove. Syntax can be the usual “attribute=value” or XML, see :ref:`one.vn.addleases <#onevnaddleases>`.   |
-+--------+--------------+----------------------------------------------------------------------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                                                                                      |
-+--------+--------------+----------------------------------------------------------------------------------------------------------------------------------+
-| OUT    | Int/String   | The resource ID / The error string.                                                                                              |
-+--------+--------------+----------------------------------------------------------------------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                                                                                      |
-+--------+--------------+----------------------------------------------------------------------------------------------------------------------------------+
++------+------------+--------------------------------------------------------------------------------------+
+| Type | Data Type  |                                     Description                                      |
++======+============+======================================================================================+
+| IN   | String     | The session string.                                                                  |
++------+------------+--------------------------------------------------------------------------------------+
+| IN   | Int        | The object ID.                                                                       |
++------+------------+--------------------------------------------------------------------------------------+
+| IN   | String     | template of the lease to remove. Syntax can be the usual ``attribute=value`` or XML. |
++------+------------+--------------------------------------------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not                                          |
++------+------------+--------------------------------------------------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.                                                  |
++------+------------+--------------------------------------------------------------------------------------+
+| OUT  | Int        | Error code.                                                                          |
++------+------------+--------------------------------------------------------------------------------------+
 
 one.vn.hold
 -----------
@@ -2038,21 +2012,21 @@ one.vn.hold
 -  **Description**: Holds a virtual network Lease as used.
 -  **Parameters**
 
-+--------+--------------+------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                      |
-+========+==============+==================================================================+
-| IN     | String       | The session string.                                              |
-+--------+--------------+------------------------------------------------------------------+
-| IN     | Int          | The object ID.                                                   |
-+--------+--------------+------------------------------------------------------------------+
-| IN     | String       | template of the lease to hold, e.g. “LEASES=[IP=192.168.0.5]”.   |
-+--------+--------------+------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                      |
-+--------+--------------+------------------------------------------------------------------+
-| OUT    | Int/String   | The resource ID / The error string.                              |
-+--------+--------------+------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                      |
-+--------+--------------+------------------------------------------------------------------+
++------+------------+------------------------------------------------------------------+
+| Type | Data Type  |                           Description                            |
++======+============+==================================================================+
+| IN   | String     | The session string.                                              |
++------+------------+------------------------------------------------------------------+
+| IN   | Int        | The object ID.                                                   |
++------+------------+------------------------------------------------------------------+
+| IN   | String     | template of the lease to hold, e.g. ``LEASES=[IP=192.168.0.5]``. |
++------+------------+------------------------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not                      |
++------+------------+------------------------------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.                              |
++------+------------+------------------------------------------------------------------+
+| OUT  | Int        | Error code.                                                      |
++------+------------+------------------------------------------------------------------+
 
 one.vn.release
 --------------
@@ -2060,21 +2034,21 @@ one.vn.release
 -  **Description**: Releases a virtual network Lease on hold.
 -  **Parameters**
 
-+--------+--------------+---------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                         |
-+========+==============+=====================================================================+
-| IN     | String       | The session string.                                                 |
-+--------+--------------+---------------------------------------------------------------------+
-| IN     | Int          | The object ID.                                                      |
-+--------+--------------+---------------------------------------------------------------------+
-| IN     | String       | template of the lease to release, e.g. “LEASES=[IP=192.168.0.5]”.   |
-+--------+--------------+---------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                         |
-+--------+--------------+---------------------------------------------------------------------+
-| OUT    | Int/String   | The resource ID / The error string.                                 |
-+--------+--------------+---------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                         |
-+--------+--------------+---------------------------------------------------------------------+
++------+------------+---------------------------------------------------------------------+
+| Type | Data Type  |                             Description                             |
++======+============+=====================================================================+
+| IN   | String     | The session string.                                                 |
++------+------------+---------------------------------------------------------------------+
+| IN   | Int        | The object ID.                                                      |
++------+------------+---------------------------------------------------------------------+
+| IN   | String     | template of the lease to release, e.g. ``LEASES=[IP=192.168.0.5]``. |
++------+------------+---------------------------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not                         |
++------+------------+---------------------------------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.                                 |
++------+------------+---------------------------------------------------------------------+
+| OUT  | Int        | Error code.                                                         |
++------+------------+---------------------------------------------------------------------+
 
 one.vn.update
 -------------
@@ -2082,23 +2056,23 @@ one.vn.update
 -  **Description**: Replaces the virtual network template contents.
 -  **Parameters**
 
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                                                        |
-+========+==============+====================================================================================================+
-| IN     | String       | The session string.                                                                                |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| IN     | Int          | The object ID.                                                                                     |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| IN     | String       | The new template contents. Syntax can be the usual “attribute=value” or XML.                       |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| IN     | Int          | Update type: **0**: Replace the whole template. **1**: Merge new template with the existing one.   |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                                                        |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| OUT    | Int/String   | The resource ID / The error string.                                                                |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                                                        |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
++------+------------+--------------------------------------------------------------------------------------------------+
+| Type | Data Type  |                                           Description                                            |
++======+============+==================================================================================================+
+| IN   | String     | The session string.                                                                              |
++------+------------+--------------------------------------------------------------------------------------------------+
+| IN   | Int        | The object ID.                                                                                   |
++------+------------+--------------------------------------------------------------------------------------------------+
+| IN   | String     | The new template contents. Syntax can be the usual ``attribute=value`` or XML.                   |
++------+------------+--------------------------------------------------------------------------------------------------+
+| IN   | Int        | Update type: **0**: Replace the whole template. **1**: Merge new template with the existing one. |
++------+------------+--------------------------------------------------------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not                                                      |
++------+------------+--------------------------------------------------------------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.                                                              |
++------+------------+--------------------------------------------------------------------------------------------------+
+| OUT  | Int        | Error code.                                                                                      |
++------+------------+--------------------------------------------------------------------------------------------------+
 
 one.vn.chmod
 ------------
@@ -2106,37 +2080,37 @@ one.vn.chmod
 -  **Description**: Changes the permission bits of a virtual network.
 -  **Parameters**
 
-+--------+--------------+-------------------------------------------------------+
-| Type   | Data Type    | Description                                           |
-+========+==============+=======================================================+
-| IN     | String       | The session string.                                   |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | The object ID.                                        |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | USER USE bit. If set to -1, it will not change.       |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | USER MANAGE bit. If set to -1, it will not change.    |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | USER ADMIN bit. If set to -1, it will not change.     |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | GROUP USE bit. If set to -1, it will not change.      |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | GROUP MANAGE bit. If set to -1, it will not change.   |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | GROUP ADMIN bit. If set to -1, it will not change.    |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | OTHER USE bit. If set to -1, it will not change.      |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | OTHER MANAGE bit. If set to -1, it will not change.   |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | OTHER ADMIN bit. If set to -1, it will not change.    |
-+--------+--------------+-------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not           |
-+--------+--------------+-------------------------------------------------------+
-| OUT    | Int/String   | The resource ID / The error string.                   |
-+--------+--------------+-------------------------------------------------------+
-| OUT    | Int          | Error code.                                           |
-+--------+--------------+-------------------------------------------------------+
++------+------------+-----------------------------------------------------+
+| Type | Data Type  |                     Description                     |
++======+============+=====================================================+
+| IN   | String     | The session string.                                 |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | The object ID.                                      |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | USER USE bit. If set to -1, it will not change.     |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | USER MANAGE bit. If set to -1, it will not change.  |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | USER ADMIN bit. If set to -1, it will not change.   |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | GROUP USE bit. If set to -1, it will not change.    |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | GROUP MANAGE bit. If set to -1, it will not change. |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | GROUP ADMIN bit. If set to -1, it will not change.  |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | OTHER USE bit. If set to -1, it will not change.    |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | OTHER MANAGE bit. If set to -1, it will not change. |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | OTHER ADMIN bit. If set to -1, it will not change.  |
++------+------------+-----------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not         |
++------+------------+-----------------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.                 |
++------+------------+-----------------------------------------------------+
+| OUT  | Int        | Error code.                                         |
++------+------------+-----------------------------------------------------+
 
 one.vn.chown
 ------------
@@ -2144,23 +2118,23 @@ one.vn.chown
 -  **Description**: Changes the ownership of a virtual network.
 -  **Parameters**
 
-+--------+--------------+--------------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                              |
-+========+==============+==========================================================================+
-| IN     | String       | The session string.                                                      |
-+--------+--------------+--------------------------------------------------------------------------+
-| IN     | Int          | The object ID.                                                           |
-+--------+--------------+--------------------------------------------------------------------------+
-| IN     | Int          | The User ID of the new owner. If set to -1, the owner is not changed.    |
-+--------+--------------+--------------------------------------------------------------------------+
-| IN     | Int          | The Group ID of the new group. If set to -1, the group is not changed.   |
-+--------+--------------+--------------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                              |
-+--------+--------------+--------------------------------------------------------------------------+
-| OUT    | Int/String   | The resource ID / The error string.                                      |
-+--------+--------------+--------------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                              |
-+--------+--------------+--------------------------------------------------------------------------+
++------+------------+------------------------------------------------------------------------+
+| Type | Data Type  |                              Description                               |
++======+============+========================================================================+
+| IN   | String     | The session string.                                                    |
++------+------------+------------------------------------------------------------------------+
+| IN   | Int        | The object ID.                                                         |
++------+------------+------------------------------------------------------------------------+
+| IN   | Int        | The User ID of the new owner. If set to -1, the owner is not changed.  |
++------+------------+------------------------------------------------------------------------+
+| IN   | Int        | The Group ID of the new group. If set to -1, the group is not changed. |
++------+------------+------------------------------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not                            |
++------+------------+------------------------------------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.                                    |
++------+------------+------------------------------------------------------------------------+
+| OUT  | Int        | Error code.                                                            |
++------+------------+------------------------------------------------------------------------+
 
 one.vn.rename
 -------------
@@ -2168,21 +2142,21 @@ one.vn.rename
 -  **Description**: Renames a virtual network.
 -  **Parameters**
 
-+--------+--------------+-----------------------------------------------+
-| Type   | Data Type    | Description                                   |
-+========+==============+===============================================+
-| IN     | String       | The session string.                           |
-+--------+--------------+-----------------------------------------------+
-| IN     | Int          | The object ID.                                |
-+--------+--------------+-----------------------------------------------+
-| IN     | String       | The new name.                                 |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not   |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int/String   | The VM ID / The error string.                 |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int          | Error code.                                   |
-+--------+--------------+-----------------------------------------------+
++------+------------+---------------------------------------------+
+| Type | Data Type  |                 Description                 |
++======+============+=============================================+
+| IN   | String     | The session string.                         |
++------+------------+---------------------------------------------+
+| IN   | Int        | The object ID.                              |
++------+------------+---------------------------------------------+
+| IN   | String     | The new name.                               |
++------+------------+---------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not |
++------+------------+---------------------------------------------+
+| OUT  | Int/String | The VM ID / The error string.               |
++------+------------+---------------------------------------------+
+| OUT  | Int        | Error code.                                 |
++------+------------+---------------------------------------------+
 
 one.vn.info
 -----------
@@ -2190,19 +2164,19 @@ one.vn.info
 -  **Description**: Retrieves information for the virtual network.
 -  **Parameters**
 
-+--------+-------------+-----------------------------------------------+
-| Type   | Data Type   | Description                                   |
-+========+=============+===============================================+
-| IN     | String      | The session string.                           |
-+--------+-------------+-----------------------------------------------+
-| IN     | Int         | The object ID.                                |
-+--------+-------------+-----------------------------------------------+
-| OUT    | Boolean     | true or false whenever is successful or not   |
-+--------+-------------+-----------------------------------------------+
-| OUT    | String      | The information string / The error string.    |
-+--------+-------------+-----------------------------------------------+
-| OUT    | Int         | Error code.                                   |
-+--------+-------------+-----------------------------------------------+
++------+-----------+---------------------------------------------+
+| Type | Data Type |                 Description                 |
++======+===========+=============================================+
+| IN   | String    | The session string.                         |
++------+-----------+---------------------------------------------+
+| IN   | Int       | The object ID.                              |
++------+-----------+---------------------------------------------+
+| OUT  | Boolean   | true or false whenever is successful or not |
++------+-----------+---------------------------------------------+
+| OUT  | String    | The information string / The error string.  |
++------+-----------+---------------------------------------------+
+| OUT  | Int       | Error code.                                 |
++------+-----------+---------------------------------------------+
 
 one.vnpool.info
 ---------------
@@ -2210,27 +2184,27 @@ one.vnpool.info
 -  **Description**: Retrieves information for all or part of the virtual networks in the pool.
 -  **Parameters**
 
-+--------+-------------+---------------------------------------------------------+
-| Type   | Data Type   | Description                                             |
-+========+=============+=========================================================+
-| IN     | String      | The session string.                                     |
-+--------+-------------+---------------------------------------------------------+
-| IN     | Int         | Filter flag                                             |
-|        |             |  **- < = -3**: Connected user's resources               |
-|        |             |  **- -2**: All resources                                |
-|        |             |  **- -1**: Connected user's and his group's resources   |
-|        |             |  **- > = 0**: UID User's Resources                      |
-+--------+-------------+---------------------------------------------------------+
-| IN     | Int         | Range start ID. Can be -1.                              |
-+--------+-------------+---------------------------------------------------------+
-| IN     | Int         | Range end ID. Can be -1.                                |
-+--------+-------------+---------------------------------------------------------+
-| OUT    | Boolean     | true or false whenever is successful or not             |
-+--------+-------------+---------------------------------------------------------+
-| OUT    | String      | The information string / The error string.              |
-+--------+-------------+---------------------------------------------------------+
-| OUT    | Int         | Error code.                                             |
-+--------+-------------+---------------------------------------------------------+
++------+-----------+------------------------------------------------------+
+| Type | Data Type |                     Description                      |
++======+===========+======================================================+
+| IN   | String    | The session string.                                  |
++------+-----------+------------------------------------------------------+
+| IN   | Int       | Filter flag                                          |
+|      |           | **- < = -3**: Connected user's resources             |
+|      |           | **- -2**: All resources                              |
+|      |           | **- -1**: Connected user's and his group's resources |
+|      |           | **- > = 0**: UID User's Resources                    |
++------+-----------+------------------------------------------------------+
+| IN   | Int       | Range start ID. Can be -1.                           |
++------+-----------+------------------------------------------------------+
+| IN   | Int       | Range end ID. Can be -1.                             |
++------+-----------+------------------------------------------------------+
+| OUT  | Boolean   | true or false whenever is successful or not          |
++------+-----------+------------------------------------------------------+
+| OUT  | String    | The information string / The error string.           |
++------+-----------+------------------------------------------------------+
+| OUT  | Int       | Error code.                                          |
++------+-----------+------------------------------------------------------+
 
 The range can be used to retrieve a subset of the pool, from the 'start' to the 'end' ID. To retrieve the complete pool, use ``(-1, -1)``; to retrieve all the pool from a specific ID to the last one, use ``(<id>, -1)``, and to retrieve the first elements up to an ID, use ``(0, <id>)``.
 
@@ -2243,19 +2217,19 @@ one.datastore.allocate
 -  **Description**: Allocates a new datastore in OpenNebula.
 -  **Parameters**
 
-+--------+--------------+--------------------------------------------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                                                            |
-+========+==============+========================================================================================================+
-| IN     | String       | The session string.                                                                                    |
-+--------+--------------+--------------------------------------------------------------------------------------------------------+
-| IN     | String       | A string containing the template of the datastore. Syntax can be the usual “attribute=value” or XML.   |
-+--------+--------------+--------------------------------------------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                                                            |
-+--------+--------------+--------------------------------------------------------------------------------------------------------+
-| OUT    | Int/String   | The allocated resource ID / The error string.                                                          |
-+--------+--------------+--------------------------------------------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                                                            |
-+--------+--------------+--------------------------------------------------------------------------------------------------------+
++------+------------+--------------------------------------------------------------------------------------------------------+
+| Type | Data Type  |                                              Description                                               |
++======+============+========================================================================================================+
+| IN   | String     | The session string.                                                                                    |
++------+------------+--------------------------------------------------------------------------------------------------------+
+| IN   | String     | A string containing the template of the datastore. Syntax can be the usual ``attribute=value`` or XML. |
++------+------------+--------------------------------------------------------------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not                                                            |
++------+------------+--------------------------------------------------------------------------------------------------------+
+| OUT  | Int/String | The allocated resource ID / The error string.                                                          |
++------+------------+--------------------------------------------------------------------------------------------------------+
+| OUT  | Int        | Error code.                                                                                            |
++------+------------+--------------------------------------------------------------------------------------------------------+
 
 one.datastore.delete
 --------------------
@@ -2263,19 +2237,19 @@ one.datastore.delete
 -  **Description**: Deletes the given datastore from the pool.
 -  **Parameters**
 
-+--------+--------------+-----------------------------------------------+
-| Type   | Data Type    | Description                                   |
-+========+==============+===============================================+
-| IN     | String       | The session string.                           |
-+--------+--------------+-----------------------------------------------+
-| IN     | Int          | The object ID.                                |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not   |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int/String   | The resource ID / The error string.           |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int          | Error code.                                   |
-+--------+--------------+-----------------------------------------------+
++------+------------+---------------------------------------------+
+| Type | Data Type  |                 Description                 |
++======+============+=============================================+
+| IN   | String     | The session string.                         |
++------+------------+---------------------------------------------+
+| IN   | Int        | The object ID.                              |
++------+------------+---------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not |
++------+------------+---------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.         |
++------+------------+---------------------------------------------+
+| OUT  | Int        | Error code.                                 |
++------+------------+---------------------------------------------+
 
 one.datastore.update
 --------------------
@@ -2283,23 +2257,23 @@ one.datastore.update
 -  **Description**: Replaces the datastore template contents.
 -  **Parameters**
 
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                                                        |
-+========+==============+====================================================================================================+
-| IN     | String       | The session string.                                                                                |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| IN     | Int          | The object ID.                                                                                     |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| IN     | String       | The new template contents. Syntax can be the usual “attribute=value” or XML.                       |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| IN     | Int          | Update type: **0**: Replace the whole template. **1**: Merge new template with the existing one.   |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                                                        |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| OUT    | Int/String   | The resource ID / The error string.                                                                |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                                                        |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
++------+------------+--------------------------------------------------------------------------------------------------+
+| Type | Data Type  |                                           Description                                            |
++======+============+==================================================================================================+
+| IN   | String     | The session string.                                                                              |
++------+------------+--------------------------------------------------------------------------------------------------+
+| IN   | Int        | The object ID.                                                                                   |
++------+------------+--------------------------------------------------------------------------------------------------+
+| IN   | String     | The new template contents. Syntax can be the usual ``attribute=value`` or XML.                   |
++------+------------+--------------------------------------------------------------------------------------------------+
+| IN   | Int        | Update type: **0**: Replace the whole template. **1**: Merge new template with the existing one. |
++------+------------+--------------------------------------------------------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not                                                      |
++------+------------+--------------------------------------------------------------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.                                                              |
++------+------------+--------------------------------------------------------------------------------------------------+
+| OUT  | Int        | Error code.                                                                                      |
++------+------------+--------------------------------------------------------------------------------------------------+
 
 one.datastore.chmod
 -------------------
@@ -2307,37 +2281,37 @@ one.datastore.chmod
 -  **Description**: Changes the permission bits of a datastore.
 -  **Parameters**
 
-+--------+--------------+-------------------------------------------------------+
-| Type   | Data Type    | Description                                           |
-+========+==============+=======================================================+
-| IN     | String       | The session string.                                   |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | The object ID.                                        |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | USER USE bit. If set to -1, it will not change.       |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | USER MANAGE bit. If set to -1, it will not change.    |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | USER ADMIN bit. If set to -1, it will not change.     |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | GROUP USE bit. If set to -1, it will not change.      |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | GROUP MANAGE bit. If set to -1, it will not change.   |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | GROUP ADMIN bit. If set to -1, it will not change.    |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | OTHER USE bit. If set to -1, it will not change.      |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | OTHER MANAGE bit. If set to -1, it will not change.   |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | OTHER ADMIN bit. If set to -1, it will not change.    |
-+--------+--------------+-------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not           |
-+--------+--------------+-------------------------------------------------------+
-| OUT    | Int/String   | The resource ID / The error string.                   |
-+--------+--------------+-------------------------------------------------------+
-| OUT    | Int          | Error code.                                           |
-+--------+--------------+-------------------------------------------------------+
++------+------------+-----------------------------------------------------+
+| Type | Data Type  |                     Description                     |
++======+============+=====================================================+
+| IN   | String     | The session string.                                 |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | The object ID.                                      |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | USER USE bit. If set to -1, it will not change.     |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | USER MANAGE bit. If set to -1, it will not change.  |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | USER ADMIN bit. If set to -1, it will not change.   |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | GROUP USE bit. If set to -1, it will not change.    |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | GROUP MANAGE bit. If set to -1, it will not change. |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | GROUP ADMIN bit. If set to -1, it will not change.  |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | OTHER USE bit. If set to -1, it will not change.    |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | OTHER MANAGE bit. If set to -1, it will not change. |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | OTHER ADMIN bit. If set to -1, it will not change.  |
++------+------------+-----------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not         |
++------+------------+-----------------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.                 |
++------+------------+-----------------------------------------------------+
+| OUT  | Int        | Error code.                                         |
++------+------------+-----------------------------------------------------+
 
 one.datastore.chown
 -------------------
@@ -2345,23 +2319,23 @@ one.datastore.chown
 -  **Description**: Changes the ownership of a datastore.
 -  **Parameters**
 
-+--------+--------------+--------------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                              |
-+========+==============+==========================================================================+
-| IN     | String       | The session string.                                                      |
-+--------+--------------+--------------------------------------------------------------------------+
-| IN     | Int          | The object ID.                                                           |
-+--------+--------------+--------------------------------------------------------------------------+
-| IN     | Int          | The User ID of the new owner. If set to -1, the owner is not changed.    |
-+--------+--------------+--------------------------------------------------------------------------+
-| IN     | Int          | The Group ID of the new group. If set to -1, the group is not changed.   |
-+--------+--------------+--------------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                              |
-+--------+--------------+--------------------------------------------------------------------------+
-| OUT    | Int/String   | The resource ID / The error string.                                      |
-+--------+--------------+--------------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                              |
-+--------+--------------+--------------------------------------------------------------------------+
++------+------------+------------------------------------------------------------------------+
+| Type | Data Type  |                              Description                               |
++======+============+========================================================================+
+| IN   | String     | The session string.                                                    |
++------+------------+------------------------------------------------------------------------+
+| IN   | Int        | The object ID.                                                         |
++------+------------+------------------------------------------------------------------------+
+| IN   | Int        | The User ID of the new owner. If set to -1, the owner is not changed.  |
++------+------------+------------------------------------------------------------------------+
+| IN   | Int        | The Group ID of the new group. If set to -1, the group is not changed. |
++------+------------+------------------------------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not                            |
++------+------------+------------------------------------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.                                    |
++------+------------+------------------------------------------------------------------------+
+| OUT  | Int        | Error code.                                                            |
++------+------------+------------------------------------------------------------------------+
 
 one.datastore.rename
 --------------------
@@ -2369,21 +2343,21 @@ one.datastore.rename
 -  **Description**: Renames a datastore.
 -  **Parameters**
 
-+--------+--------------+-----------------------------------------------+
-| Type   | Data Type    | Description                                   |
-+========+==============+===============================================+
-| IN     | String       | The session string.                           |
-+--------+--------------+-----------------------------------------------+
-| IN     | Int          | The object ID.                                |
-+--------+--------------+-----------------------------------------------+
-| IN     | String       | The new name.                                 |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not   |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int/String   | The VM ID / The error string.                 |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int          | Error code.                                   |
-+--------+--------------+-----------------------------------------------+
++------+------------+---------------------------------------------+
+| Type | Data Type  |                 Description                 |
++======+============+=============================================+
+| IN   | String     | The session string.                         |
++------+------------+---------------------------------------------+
+| IN   | Int        | The object ID.                              |
++------+------------+---------------------------------------------+
+| IN   | String     | The new name.                               |
++------+------------+---------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not |
++------+------------+---------------------------------------------+
+| OUT  | Int/String | The VM ID / The error string.               |
++------+------------+---------------------------------------------+
+| OUT  | Int        | Error code.                                 |
++------+------------+---------------------------------------------+
 
 one.datastore.info
 ------------------
@@ -2391,19 +2365,19 @@ one.datastore.info
 -  **Description**: Retrieves information for the datastore.
 -  **Parameters**
 
-+--------+-------------+-----------------------------------------------+
-| Type   | Data Type   | Description                                   |
-+========+=============+===============================================+
-| IN     | String      | The session string.                           |
-+--------+-------------+-----------------------------------------------+
-| IN     | Int         | The object ID.                                |
-+--------+-------------+-----------------------------------------------+
-| OUT    | Boolean     | true or false whenever is successful or not   |
-+--------+-------------+-----------------------------------------------+
-| OUT    | String      | The information string / The error string.    |
-+--------+-------------+-----------------------------------------------+
-| OUT    | Int         | Error code.                                   |
-+--------+-------------+-----------------------------------------------+
++------+-----------+---------------------------------------------+
+| Type | Data Type |                 Description                 |
++======+===========+=============================================+
+| IN   | String    | The session string.                         |
++------+-----------+---------------------------------------------+
+| IN   | Int       | The object ID.                              |
++------+-----------+---------------------------------------------+
+| OUT  | Boolean   | true or false whenever is successful or not |
++------+-----------+---------------------------------------------+
+| OUT  | String    | The information string / The error string.  |
++------+-----------+---------------------------------------------+
+| OUT  | Int       | Error code.                                 |
++------+-----------+---------------------------------------------+
 
 one.datastorepool.info
 ----------------------
@@ -2411,17 +2385,17 @@ one.datastorepool.info
 -  **Description**: Retrieves information for all or part of the datastores in the pool.
 -  **Parameters**
 
-+--------+-------------+-----------------------------------------------+
-| Type   | Data Type   | Description                                   |
-+========+=============+===============================================+
-| IN     | String      | The session string.                           |
-+--------+-------------+-----------------------------------------------+
-| OUT    | Boolean     | true or false whenever is successful or not   |
-+--------+-------------+-----------------------------------------------+
-| OUT    | String      | The information string / The error string.    |
-+--------+-------------+-----------------------------------------------+
-| OUT    | Int         | Error code.                                   |
-+--------+-------------+-----------------------------------------------+
++------+-----------+---------------------------------------------+
+| Type | Data Type |                 Description                 |
++======+===========+=============================================+
+| IN   | String    | The session string.                         |
++------+-----------+---------------------------------------------+
+| OUT  | Boolean   | true or false whenever is successful or not |
++------+-----------+---------------------------------------------+
+| OUT  | String    | The information string / The error string.  |
++------+-----------+---------------------------------------------+
+| OUT  | Int       | Error code.                                 |
++------+-----------+---------------------------------------------+
 
 Actions for Image Management
 ============================
@@ -2432,21 +2406,21 @@ one.image.allocate
 -  **Description**: Allocates a new image in OpenNebula.
 -  **Parameters**
 
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                                                        |
-+========+==============+====================================================================================================+
-| IN     | String       | The session string.                                                                                |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| IN     | String       | A string containing the template of the image. Syntax can be the usual “attribute=value” or XML.   |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| IN     | Int          | The datastore ID.                                                                                  |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                                                        |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| OUT    | Int/String   | The allocated resource ID / The error string.                                                      |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                                                        |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
++------+------------+----------------------------------------------------------------------------------------------------+
+| Type | Data Type  |                                            Description                                             |
++======+============+====================================================================================================+
+| IN   | String     | The session string.                                                                                |
++------+------------+----------------------------------------------------------------------------------------------------+
+| IN   | String     | A string containing the template of the image. Syntax can be the usual ``attribute=value`` or XML. |
++------+------------+----------------------------------------------------------------------------------------------------+
+| IN   | Int        | The datastore ID.                                                                                  |
++------+------------+----------------------------------------------------------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not                                                        |
++------+------------+----------------------------------------------------------------------------------------------------+
+| OUT  | Int/String | The allocated resource ID / The error string.                                                      |
++------+------------+----------------------------------------------------------------------------------------------------+
+| OUT  | Int        | Error code.                                                                                        |
++------+------------+----------------------------------------------------------------------------------------------------+
 
 one.image.clone
 ---------------
@@ -2454,21 +2428,21 @@ one.image.clone
 -  **Description**: Clones an existing image.
 -  **Parameters**
 
-+--------+--------------+-----------------------------------------------+
-| Type   | Data Type    | Description                                   |
-+========+==============+===============================================+
-| IN     | String       | The session string.                           |
-+--------+--------------+-----------------------------------------------+
-| IN     | Int          | The ID of the image to be cloned.             |
-+--------+--------------+-----------------------------------------------+
-| IN     | String       | Name for the new image.                       |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not   |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int/String   | The new image ID / The error string.          |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int          | Error code.                                   |
-+--------+--------------+-----------------------------------------------+
++------+------------+---------------------------------------------+
+| Type | Data Type  |                 Description                 |
++======+============+=============================================+
+| IN   | String     | The session string.                         |
++------+------------+---------------------------------------------+
+| IN   | Int        | The ID of the image to be cloned.           |
++------+------------+---------------------------------------------+
+| IN   | String     | Name for the new image.                     |
++------+------------+---------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not |
++------+------------+---------------------------------------------+
+| OUT  | Int/String | The new image ID / The error string.        |
++------+------------+---------------------------------------------+
+| OUT  | Int        | Error code.                                 |
++------+------------+---------------------------------------------+
 
 one.image.delete
 ----------------
@@ -2476,19 +2450,19 @@ one.image.delete
 -  **Description**: Deletes the given image from the pool.
 -  **Parameters**
 
-+--------+--------------+-----------------------------------------------+
-| Type   | Data Type    | Description                                   |
-+========+==============+===============================================+
-| IN     | String       | The session string.                           |
-+--------+--------------+-----------------------------------------------+
-| IN     | Int          | The object ID.                                |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not   |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int/String   | The resource ID / The error string.           |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int          | Error code.                                   |
-+--------+--------------+-----------------------------------------------+
++------+------------+---------------------------------------------+
+| Type | Data Type  |                 Description                 |
++======+============+=============================================+
+| IN   | String     | The session string.                         |
++------+------------+---------------------------------------------+
+| IN   | Int        | The object ID.                              |
++------+------------+---------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not |
++------+------------+---------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.         |
++------+------------+---------------------------------------------+
+| OUT  | Int        | Error code.                                 |
++------+------------+---------------------------------------------+
 
 one.image.enable
 ----------------
@@ -2496,21 +2470,21 @@ one.image.enable
 -  **Description**: Enables or disables an image.
 -  **Parameters**
 
-+--------+--------------+------------------------------------------------+
-| Type   | Data Type    | Description                                    |
-+========+==============+================================================+
-| IN     | String       | The session string.                            |
-+--------+--------------+------------------------------------------------+
-| IN     | Int          | The Image ID.                                  |
-+--------+--------------+------------------------------------------------+
-| IN     | Boolean      | True for enabling, false for disabling.        |
-+--------+--------------+------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not.   |
-+--------+--------------+------------------------------------------------+
-| OUT    | Int/String   | The Image ID / The error string.               |
-+--------+--------------+------------------------------------------------+
-| OUT    | Int          | Error code.                                    |
-+--------+--------------+------------------------------------------------+
++------+------------+----------------------------------------------+
+| Type | Data Type  |                 Description                  |
++======+============+==============================================+
+| IN   | String     | The session string.                          |
++------+------------+----------------------------------------------+
+| IN   | Int        | The Image ID.                                |
++------+------------+----------------------------------------------+
+| IN   | Boolean    | True for enabling, false for disabling.      |
++------+------------+----------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not. |
++------+------------+----------------------------------------------+
+| OUT  | Int/String | The Image ID / The error string.             |
++------+------------+----------------------------------------------+
+| OUT  | Int        | Error code.                                  |
++------+------------+----------------------------------------------+
 
 one.image.persistent
 --------------------
@@ -2518,21 +2492,21 @@ one.image.persistent
 -  **Description**: Sets the Image as persistent or not persistent.
 -  **Parameters**
 
-+--------+--------------+-------------------------------------------------+
-| Type   | Data Type    | Description                                     |
-+========+==============+=================================================+
-| IN     | String       | The session string.                             |
-+--------+--------------+-------------------------------------------------+
-| IN     | Int          | The Image ID.                                   |
-+--------+--------------+-------------------------------------------------+
-| IN     | Boolean      | True for persistent, false for non-persisent.   |
-+--------+--------------+-------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not.    |
-+--------+--------------+-------------------------------------------------+
-| OUT    | Int/String   | The Image ID / The error string.                |
-+--------+--------------+-------------------------------------------------+
-| OUT    | Int          | Error code.                                     |
-+--------+--------------+-------------------------------------------------+
++------+------------+-----------------------------------------------+
+| Type | Data Type  |                  Description                  |
++======+============+===============================================+
+| IN   | String     | The session string.                           |
++------+------------+-----------------------------------------------+
+| IN   | Int        | The Image ID.                                 |
++------+------------+-----------------------------------------------+
+| IN   | Boolean    | True for persistent, false for non-persisent. |
++------+------------+-----------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not.  |
++------+------------+-----------------------------------------------+
+| OUT  | Int/String | The Image ID / The error string.              |
++------+------------+-----------------------------------------------+
+| OUT  | Int        | Error code.                                   |
++------+------------+-----------------------------------------------+
 
 one.image.chtype
 ----------------
@@ -2540,21 +2514,21 @@ one.image.chtype
 -  **Description**: Changes the type of an Image.
 -  **Parameters**
 
-+--------+--------------+------------------------------------------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                                                          |
-+========+==============+======================================================================================================+
-| IN     | String       | The session string.                                                                                  |
-+--------+--------------+------------------------------------------------------------------------------------------------------+
-| IN     | Int          | The Image ID.                                                                                        |
-+--------+--------------+------------------------------------------------------------------------------------------------------+
-| IN     | String       | New type for the Image. See the existing types in the :ref:`Image template reference <img_template>`.   |
-+--------+--------------+------------------------------------------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not.                                                         |
-+--------+--------------+------------------------------------------------------------------------------------------------------+
-| OUT    | Int/String   | The Image ID / The error string.                                                                     |
-+--------+--------------+------------------------------------------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                                                          |
-+--------+--------------+------------------------------------------------------------------------------------------------------+
++------+------------+-------------------------------------------------------------------------------------------------------+
+| Type | Data Type  |                                              Description                                              |
++======+============+=======================================================================================================+
+| IN   | String     | The session string.                                                                                   |
++------+------------+-------------------------------------------------------------------------------------------------------+
+| IN   | Int        | The Image ID.                                                                                         |
++------+------------+-------------------------------------------------------------------------------------------------------+
+| IN   | String     | New type for the Image. See the existing types in the :ref:`Image template reference <img_template>`. |
++------+------------+-------------------------------------------------------------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not.                                                          |
++------+------------+-------------------------------------------------------------------------------------------------------+
+| OUT  | Int/String | The Image ID / The error string.                                                                      |
++------+------------+-------------------------------------------------------------------------------------------------------+
+| OUT  | Int        | Error code.                                                                                           |
++------+------------+-------------------------------------------------------------------------------------------------------+
 
 one.image.update
 ----------------
@@ -2562,23 +2536,23 @@ one.image.update
 -  **Description**: Replaces the image template contents.
 -  **Parameters**
 
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                                                        |
-+========+==============+====================================================================================================+
-| IN     | String       | The session string.                                                                                |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| IN     | Int          | The object ID.                                                                                     |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| IN     | String       | The new template contents. Syntax can be the usual “attribute=value” or XML.                       |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| IN     | Int          | Update type: **0**: Replace the whole template. **1**: Merge new template with the existing one.   |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                                                        |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| OUT    | Int/String   | The resource ID / The error string.                                                                |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                                                        |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
++------+------------+--------------------------------------------------------------------------------------------------+
+| Type | Data Type  |                                           Description                                            |
++======+============+==================================================================================================+
+| IN   | String     | The session string.                                                                              |
++------+------------+--------------------------------------------------------------------------------------------------+
+| IN   | Int        | The object ID.                                                                                   |
++------+------------+--------------------------------------------------------------------------------------------------+
+| IN   | String     | The new template contents. Syntax can be the usual ``attribute=value`` or XML.                   |
++------+------------+--------------------------------------------------------------------------------------------------+
+| IN   | Int        | Update type: **0**: Replace the whole template. **1**: Merge new template with the existing one. |
++------+------------+--------------------------------------------------------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not                                                      |
++------+------------+--------------------------------------------------------------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.                                                              |
++------+------------+--------------------------------------------------------------------------------------------------+
+| OUT  | Int        | Error code.                                                                                      |
++------+------------+--------------------------------------------------------------------------------------------------+
 
 one.image.chmod
 ---------------
@@ -2586,37 +2560,37 @@ one.image.chmod
 -  **Description**: Changes the permission bits of an image.
 -  **Parameters**
 
-+--------+--------------+-------------------------------------------------------+
-| Type   | Data Type    | Description                                           |
-+========+==============+=======================================================+
-| IN     | String       | The session string.                                   |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | The object ID.                                        |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | USER USE bit. If set to -1, it will not change.       |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | USER MANAGE bit. If set to -1, it will not change.    |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | USER ADMIN bit. If set to -1, it will not change.     |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | GROUP USE bit. If set to -1, it will not change.      |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | GROUP MANAGE bit. If set to -1, it will not change.   |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | GROUP ADMIN bit. If set to -1, it will not change.    |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | OTHER USE bit. If set to -1, it will not change.      |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | OTHER MANAGE bit. If set to -1, it will not change.   |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | OTHER ADMIN bit. If set to -1, it will not change.    |
-+--------+--------------+-------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not           |
-+--------+--------------+-------------------------------------------------------+
-| OUT    | Int/String   | The resource ID / The error string.                   |
-+--------+--------------+-------------------------------------------------------+
-| OUT    | Int          | Error code.                                           |
-+--------+--------------+-------------------------------------------------------+
++------+------------+-----------------------------------------------------+
+| Type | Data Type  |                     Description                     |
++======+============+=====================================================+
+| IN   | String     | The session string.                                 |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | The object ID.                                      |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | USER USE bit. If set to -1, it will not change.     |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | USER MANAGE bit. If set to -1, it will not change.  |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | USER ADMIN bit. If set to -1, it will not change.   |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | GROUP USE bit. If set to -1, it will not change.    |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | GROUP MANAGE bit. If set to -1, it will not change. |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | GROUP ADMIN bit. If set to -1, it will not change.  |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | OTHER USE bit. If set to -1, it will not change.    |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | OTHER MANAGE bit. If set to -1, it will not change. |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | OTHER ADMIN bit. If set to -1, it will not change.  |
++------+------------+-----------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not         |
++------+------------+-----------------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.                 |
++------+------------+-----------------------------------------------------+
+| OUT  | Int        | Error code.                                         |
++------+------------+-----------------------------------------------------+
 
 one.image.chown
 ---------------
@@ -2624,23 +2598,23 @@ one.image.chown
 -  **Description**: Changes the ownership of an image.
 -  **Parameters**
 
-+--------+--------------+--------------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                              |
-+========+==============+==========================================================================+
-| IN     | String       | The session string.                                                      |
-+--------+--------------+--------------------------------------------------------------------------+
-| IN     | Int          | The object ID.                                                           |
-+--------+--------------+--------------------------------------------------------------------------+
-| IN     | Int          | The User ID of the new owner. If set to -1, the owner is not changed.    |
-+--------+--------------+--------------------------------------------------------------------------+
-| IN     | Int          | The Group ID of the new group. If set to -1, the group is not changed.   |
-+--------+--------------+--------------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                              |
-+--------+--------------+--------------------------------------------------------------------------+
-| OUT    | Int/String   | The resource ID / The error string.                                      |
-+--------+--------------+--------------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                              |
-+--------+--------------+--------------------------------------------------------------------------+
++------+------------+------------------------------------------------------------------------+
+| Type | Data Type  |                              Description                               |
++======+============+========================================================================+
+| IN   | String     | The session string.                                                    |
++------+------------+------------------------------------------------------------------------+
+| IN   | Int        | The object ID.                                                         |
++------+------------+------------------------------------------------------------------------+
+| IN   | Int        | The User ID of the new owner. If set to -1, the owner is not changed.  |
++------+------------+------------------------------------------------------------------------+
+| IN   | Int        | The Group ID of the new group. If set to -1, the group is not changed. |
++------+------------+------------------------------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not                            |
++------+------------+------------------------------------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.                                    |
++------+------------+------------------------------------------------------------------------+
+| OUT  | Int        | Error code.                                                            |
++------+------------+------------------------------------------------------------------------+
 
 one.image.rename
 ----------------
@@ -2648,21 +2622,21 @@ one.image.rename
 -  **Description**: Renames an image.
 -  **Parameters**
 
-+--------+--------------+-----------------------------------------------+
-| Type   | Data Type    | Description                                   |
-+========+==============+===============================================+
-| IN     | String       | The session string.                           |
-+--------+--------------+-----------------------------------------------+
-| IN     | Int          | The object ID.                                |
-+--------+--------------+-----------------------------------------------+
-| IN     | String       | The new name.                                 |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not   |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int/String   | The VM ID / The error string.                 |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int          | Error code.                                   |
-+--------+--------------+-----------------------------------------------+
++------+------------+---------------------------------------------+
+| Type | Data Type  |                 Description                 |
++======+============+=============================================+
+| IN   | String     | The session string.                         |
++------+------------+---------------------------------------------+
+| IN   | Int        | The object ID.                              |
++------+------------+---------------------------------------------+
+| IN   | String     | The new name.                               |
++------+------------+---------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not |
++------+------------+---------------------------------------------+
+| OUT  | Int/String | The VM ID / The error string.               |
++------+------------+---------------------------------------------+
+| OUT  | Int        | Error code.                                 |
++------+------------+---------------------------------------------+
 
 one.image.info
 --------------
@@ -2670,19 +2644,19 @@ one.image.info
 -  **Description**: Retrieves information for the image.
 -  **Parameters**
 
-+--------+-------------+-----------------------------------------------+
-| Type   | Data Type   | Description                                   |
-+========+=============+===============================================+
-| IN     | String      | The session string.                           |
-+--------+-------------+-----------------------------------------------+
-| IN     | Int         | The object ID.                                |
-+--------+-------------+-----------------------------------------------+
-| OUT    | Boolean     | true or false whenever is successful or not   |
-+--------+-------------+-----------------------------------------------+
-| OUT    | String      | The information string / The error string.    |
-+--------+-------------+-----------------------------------------------+
-| OUT    | Int         | Error code.                                   |
-+--------+-------------+-----------------------------------------------+
++------+-----------+---------------------------------------------+
+| Type | Data Type |                 Description                 |
++======+===========+=============================================+
+| IN   | String    | The session string.                         |
++------+-----------+---------------------------------------------+
+| IN   | Int       | The object ID.                              |
++------+-----------+---------------------------------------------+
+| OUT  | Boolean   | true or false whenever is successful or not |
++------+-----------+---------------------------------------------+
+| OUT  | String    | The information string / The error string.  |
++------+-----------+---------------------------------------------+
+| OUT  | Int       | Error code.                                 |
++------+-----------+---------------------------------------------+
 
 one.imagepool.info
 ------------------
@@ -2690,27 +2664,27 @@ one.imagepool.info
 -  **Description**: Retrieves information for all or part of the images in the pool.
 -  **Parameters**
 
-+--------+-------------+---------------------------------------------------------+
-| Type   | Data Type   | Description                                             |
-+========+=============+=========================================================+
-| IN     | String      | The session string.                                     |
-+--------+-------------+---------------------------------------------------------+
-| IN     | Int         | Filter flag                                             |
-|        |             |  **- < = -3**: Connected user's resources               |
-|        |             |  **- -2**: All resources                                |
-|        |             |  **- -1**: Connected user's and his group's resources   |
-|        |             |  **- > = 0**: UID User's Resources                      |
-+--------+-------------+---------------------------------------------------------+
-| IN     | Int         | Range start ID. Can be -1.                              |
-+--------+-------------+---------------------------------------------------------+
-| IN     | Int         | Range end ID. Can be -1.                                |
-+--------+-------------+---------------------------------------------------------+
-| OUT    | Boolean     | true or false whenever is successful or not             |
-+--------+-------------+---------------------------------------------------------+
-| OUT    | String      | The information string / The error string.              |
-+--------+-------------+---------------------------------------------------------+
-| OUT    | Int         | Error code.                                             |
-+--------+-------------+---------------------------------------------------------+
++------+-----------+------------------------------------------------------+
+| Type | Data Type |                     Description                      |
++======+===========+======================================================+
+| IN   | String    | The session string.                                  |
++------+-----------+------------------------------------------------------+
+| IN   | Int       | Filter flag                                          |
+|      |           | **- < = -3**: Connected user's resources             |
+|      |           | **- -2**: All resources                              |
+|      |           | **- -1**: Connected user's and his group's resources |
+|      |           | **- > = 0**: UID User's Resources                    |
++------+-----------+------------------------------------------------------+
+| IN   | Int       | Range start ID. Can be -1.                           |
++------+-----------+------------------------------------------------------+
+| IN   | Int       | Range end ID. Can be -1.                             |
++------+-----------+------------------------------------------------------+
+| OUT  | Boolean   | true or false whenever is successful or not          |
++------+-----------+------------------------------------------------------+
+| OUT  | String    | The information string / The error string.           |
++------+-----------+------------------------------------------------------+
+| OUT  | Int       | Error code.                                          |
++------+-----------+------------------------------------------------------+
 
 The range can be used to retrieve a subset of the pool, from the 'start' to the 'end' ID. To retrieve the complete pool, use ``(-1, -1)``; to retrieve all the pool from a specific ID to the last one, use ``(<id>, -1)``, and to retrieve the first elements up to an ID, use ``(0, <id>)``.
 
@@ -2723,23 +2697,23 @@ one.user.allocate
 -  **Description**: Allocates a new user in OpenNebula
 -  **Parameters**
 
-+--------+--------------+-------------------------------------------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                                                           |
-+========+==============+=======================================================================================================+
-| IN     | String       | The session string.                                                                                   |
-+--------+--------------+-------------------------------------------------------------------------------------------------------+
-| IN     | String       | username for the new user                                                                             |
-+--------+--------------+-------------------------------------------------------------------------------------------------------+
-| IN     | String       | password for the new user                                                                             |
-+--------+--------------+-------------------------------------------------------------------------------------------------------+
-| IN     | String       | authentication driver for the new user. If it is an empty string, then the default ('core') is used   |
-+--------+--------------+-------------------------------------------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                                                           |
-+--------+--------------+-------------------------------------------------------------------------------------------------------+
-| OUT    | Int/String   | The allocated User ID / The error string.                                                             |
-+--------+--------------+-------------------------------------------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                                                           |
-+--------+--------------+-------------------------------------------------------------------------------------------------------+
++------+------------+-----------------------------------------------------------------------------------------------------+
+| Type | Data Type  |                                             Description                                             |
++======+============+=====================================================================================================+
+| IN   | String     | The session string.                                                                                 |
++------+------------+-----------------------------------------------------------------------------------------------------+
+| IN   | String     | username for the new user                                                                           |
++------+------------+-----------------------------------------------------------------------------------------------------+
+| IN   | String     | password for the new user                                                                           |
++------+------------+-----------------------------------------------------------------------------------------------------+
+| IN   | String     | authentication driver for the new user. If it is an empty string, then the default ('core') is used |
++------+------------+-----------------------------------------------------------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not                                                         |
++------+------------+-----------------------------------------------------------------------------------------------------+
+| OUT  | Int/String | The allocated User ID / The error string.                                                           |
++------+------------+-----------------------------------------------------------------------------------------------------+
+| OUT  | Int        | Error code.                                                                                         |
++------+------------+-----------------------------------------------------------------------------------------------------+
 
 one.user.delete
 ---------------
@@ -2747,19 +2721,19 @@ one.user.delete
 -  **Description**: Deletes the given user from the pool.
 -  **Parameters**
 
-+--------+--------------+-----------------------------------------------+
-| Type   | Data Type    | Description                                   |
-+========+==============+===============================================+
-| IN     | String       | The session string.                           |
-+--------+--------------+-----------------------------------------------+
-| IN     | Int          | The object ID.                                |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not   |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int/String   | The resource ID / The error string.           |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int          | Error code.                                   |
-+--------+--------------+-----------------------------------------------+
++------+------------+---------------------------------------------+
+| Type | Data Type  |                 Description                 |
++======+============+=============================================+
+| IN   | String     | The session string.                         |
++------+------------+---------------------------------------------+
+| IN   | Int        | The object ID.                              |
++------+------------+---------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not |
++------+------------+---------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.         |
++------+------------+---------------------------------------------+
+| OUT  | Int        | Error code.                                 |
++------+------------+---------------------------------------------+
 
 one.user.passwd
 ---------------
@@ -2767,21 +2741,21 @@ one.user.passwd
 -  **Description**: Changes the password for the given user.
 -  **Parameters**
 
-+--------+--------------+-----------------------------------------------+
-| Type   | Data Type    | Description                                   |
-+========+==============+===============================================+
-| IN     | String       | The session string.                           |
-+--------+--------------+-----------------------------------------------+
-| IN     | Int          | The object ID.                                |
-+--------+--------------+-----------------------------------------------+
-| IN     | String       | The new password                              |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not   |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int/String   | The User ID / The error string.               |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int          | Error code.                                   |
-+--------+--------------+-----------------------------------------------+
++------+------------+---------------------------------------------+
+| Type | Data Type  |                 Description                 |
++======+============+=============================================+
+| IN   | String     | The session string.                         |
++------+------------+---------------------------------------------+
+| IN   | Int        | The object ID.                              |
++------+------------+---------------------------------------------+
+| IN   | String     | The new password                            |
++------+------------+---------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not |
++------+------------+---------------------------------------------+
+| OUT  | Int/String | The User ID / The error string.             |
++------+------------+---------------------------------------------+
+| OUT  | Int        | Error code.                                 |
++------+------------+---------------------------------------------+
 
 one.user.update
 ---------------
@@ -2789,23 +2763,23 @@ one.user.update
 -  **Description**: Replaces the user template contents.
 -  **Parameters**
 
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                                                        |
-+========+==============+====================================================================================================+
-| IN     | String       | The session string.                                                                                |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| IN     | Int          | The object ID.                                                                                     |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| IN     | String       | The new template contents. Syntax can be the usual “attribute=value” or XML.                       |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| IN     | Int          | Update type: **0**: Replace the whole template. **1**: Merge new template with the existing one.   |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                                                        |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| OUT    | Int/String   | The resource ID / The error string.                                                                |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                                                        |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
++------+------------+--------------------------------------------------------------------------------------------------+
+| Type | Data Type  |                                           Description                                            |
++======+============+==================================================================================================+
+| IN   | String     | The session string.                                                                              |
++------+------------+--------------------------------------------------------------------------------------------------+
+| IN   | Int        | The object ID.                                                                                   |
++------+------------+--------------------------------------------------------------------------------------------------+
+| IN   | String     | The new template contents. Syntax can be the usual ``attribute=value`` or XML.                   |
++------+------------+--------------------------------------------------------------------------------------------------+
+| IN   | Int        | Update type: **0**: Replace the whole template. **1**: Merge new template with the existing one. |
++------+------------+--------------------------------------------------------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not                                                      |
++------+------------+--------------------------------------------------------------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.                                                              |
++------+------------+--------------------------------------------------------------------------------------------------+
+| OUT  | Int        | Error code.                                                                                      |
++------+------------+--------------------------------------------------------------------------------------------------+
 
 one.user.chauth
 ---------------
@@ -2813,23 +2787,23 @@ one.user.chauth
 -  **Description**: Changes the authentication driver and the password for the given user.
 -  **Parameters**
 
-+--------+--------------+----------------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                                |
-+========+==============+============================================================================+
-| IN     | String       | The session string.                                                        |
-+--------+--------------+----------------------------------------------------------------------------+
-| IN     | Int          | The object ID.                                                             |
-+--------+--------------+----------------------------------------------------------------------------+
-| IN     | String       | The new authentication driver.                                             |
-+--------+--------------+----------------------------------------------------------------------------+
-| IN     | String       | The new password. If it is an empty string, the password is not changed.   |
-+--------+--------------+----------------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                                |
-+--------+--------------+----------------------------------------------------------------------------+
-| OUT    | Int/String   | The User ID / The error string.                                            |
-+--------+--------------+----------------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                                |
-+--------+--------------+----------------------------------------------------------------------------+
++------+------------+--------------------------------------------------------------------------+
+| Type | Data Type  |                               Description                                |
++======+============+==========================================================================+
+| IN   | String     | The session string.                                                      |
++------+------------+--------------------------------------------------------------------------+
+| IN   | Int        | The object ID.                                                           |
++------+------------+--------------------------------------------------------------------------+
+| IN   | String     | The new authentication driver.                                           |
++------+------------+--------------------------------------------------------------------------+
+| IN   | String     | The new password. If it is an empty string, the password is not changed. |
++------+------------+--------------------------------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not                              |
++------+------------+--------------------------------------------------------------------------+
+| OUT  | Int/String | The User ID / The error string.                                          |
++------+------------+--------------------------------------------------------------------------+
+| OUT  | Int        | Error code.                                                              |
++------+------------+--------------------------------------------------------------------------+
 
 one.user.quota
 --------------
@@ -2837,21 +2811,21 @@ one.user.quota
 -  **Description**: Sets the user quota limits.
 -  **Parameters**
 
-+--------+--------------+--------------------------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                                          |
-+========+==============+======================================================================================+
-| IN     | String       | The session string.                                                                  |
-+--------+--------------+--------------------------------------------------------------------------------------+
-| IN     | Int          | The object ID.                                                                       |
-+--------+--------------+--------------------------------------------------------------------------------------+
-| IN     | String       | The new quota template contents. Syntax can be the usual “attribute=value” or XML.   |
-+--------+--------------+--------------------------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                                          |
-+--------+--------------+--------------------------------------------------------------------------------------+
-| OUT    | Int/String   | The resource ID / The error string.                                                  |
-+--------+--------------+--------------------------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                                          |
-+--------+--------------+--------------------------------------------------------------------------------------+
++------+------------+--------------------------------------------------------------------------------------+
+| Type | Data Type  |                                     Description                                      |
++======+============+======================================================================================+
+| IN   | String     | The session string.                                                                  |
++------+------------+--------------------------------------------------------------------------------------+
+| IN   | Int        | The object ID.                                                                       |
++------+------------+--------------------------------------------------------------------------------------+
+| IN   | String     | The new quota template contents. Syntax can be the usual ``attribute=value`` or XML. |
++------+------------+--------------------------------------------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not                                          |
++------+------------+--------------------------------------------------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.                                                  |
++------+------------+--------------------------------------------------------------------------------------+
+| OUT  | Int        | Error code.                                                                          |
++------+------------+--------------------------------------------------------------------------------------+
 
 one.user.chgrp
 --------------
@@ -2859,21 +2833,21 @@ one.user.chgrp
 -  **Description**: Changes the group of the given user.
 -  **Parameters**
 
-+--------+--------------+-----------------------------------------------+
-| Type   | Data Type    | Description                                   |
-+========+==============+===============================================+
-| IN     | String       | The session string.                           |
-+--------+--------------+-----------------------------------------------+
-| IN     | Int          | The User ID.                                  |
-+--------+--------------+-----------------------------------------------+
-| IN     | Int          | The Group ID of the new group.                |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not   |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int/String   | The User ID / The error string.               |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int          | Error code.                                   |
-+--------+--------------+-----------------------------------------------+
++------+------------+---------------------------------------------+
+| Type | Data Type  |                 Description                 |
++======+============+=============================================+
+| IN   | String     | The session string.                         |
++------+------------+---------------------------------------------+
+| IN   | Int        | The User ID.                                |
++------+------------+---------------------------------------------+
+| IN   | Int        | The Group ID of the new group.              |
++------+------------+---------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not |
++------+------------+---------------------------------------------+
+| OUT  | Int/String | The User ID / The error string.             |
++------+------------+---------------------------------------------+
+| OUT  | Int        | Error code.                                 |
++------+------------+---------------------------------------------+
 
 one.user.addgroup
 -----------------
@@ -2881,21 +2855,21 @@ one.user.addgroup
 -  **Description**: Adds the User to a secondary group.
 -  **Parameters**
 
-+--------+--------------+-----------------------------------------------+
-| Type   | Data Type    | Description                                   |
-+========+==============+===============================================+
-| IN     | String       | The session string.                           |
-+--------+--------------+-----------------------------------------------+
-| IN     | Int          | The User ID.                                  |
-+--------+--------------+-----------------------------------------------+
-| IN     | Int          | The Group ID of the new group.                |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not   |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int/String   | The User ID / The error string.               |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int          | Error code.                                   |
-+--------+--------------+-----------------------------------------------+
++------+------------+---------------------------------------------+
+| Type | Data Type  |                 Description                 |
++======+============+=============================================+
+| IN   | String     | The session string.                         |
++------+------------+---------------------------------------------+
+| IN   | Int        | The User ID.                                |
++------+------------+---------------------------------------------+
+| IN   | Int        | The Group ID of the new group.              |
++------+------------+---------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not |
++------+------------+---------------------------------------------+
+| OUT  | Int/String | The User ID / The error string.             |
++------+------------+---------------------------------------------+
+| OUT  | Int        | Error code.                                 |
++------+------------+---------------------------------------------+
 
 one.user.delgroup
 -----------------
@@ -2903,21 +2877,21 @@ one.user.delgroup
 -  **Description**: Removes the User from a secondary group
 -  **Parameters**
 
-+--------+--------------+-----------------------------------------------+
-| Type   | Data Type    | Description                                   |
-+========+==============+===============================================+
-| IN     | String       | The session string.                           |
-+--------+--------------+-----------------------------------------------+
-| IN     | Int          | The User ID.                                  |
-+--------+--------------+-----------------------------------------------+
-| IN     | Int          | The Group ID.                                 |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not   |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int/String   | The User ID / The error string.               |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int          | Error code.                                   |
-+--------+--------------+-----------------------------------------------+
++------+------------+---------------------------------------------+
+| Type | Data Type  |                 Description                 |
++======+============+=============================================+
+| IN   | String     | The session string.                         |
++------+------------+---------------------------------------------+
+| IN   | Int        | The User ID.                                |
++------+------------+---------------------------------------------+
+| IN   | Int        | The Group ID.                               |
++------+------------+---------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not |
++------+------------+---------------------------------------------+
+| OUT  | Int/String | The User ID / The error string.             |
++------+------------+---------------------------------------------+
+| OUT  | Int        | Error code.                                 |
++------+------------+---------------------------------------------+
 
 one.user.info
 -------------
@@ -2925,19 +2899,19 @@ one.user.info
 -  **Description**: Retrieves information for the user.
 -  **Parameters**
 
-+--------+-------------+-----------------------------------------------------------------------------------+
-| Type   | Data Type   | Description                                                                       |
-+========+=============+===================================================================================+
-| IN     | String      | The session string.                                                               |
-+--------+-------------+-----------------------------------------------------------------------------------+
-| IN     | Int         | The object ID. If it is -1, then the connected user's own info info is returned   |
-+--------+-------------+-----------------------------------------------------------------------------------+
-| OUT    | Boolean     | true or false whenever is successful or not                                       |
-+--------+-------------+-----------------------------------------------------------------------------------+
-| OUT    | String      | The information string / The error string.                                        |
-+--------+-------------+-----------------------------------------------------------------------------------+
-| OUT    | Int         | Error code.                                                                       |
-+--------+-------------+-----------------------------------------------------------------------------------+
++------+-----------+---------------------------------------------------------------------------------+
+| Type | Data Type |                                   Description                                   |
++======+===========+=================================================================================+
+| IN   | String    | The session string.                                                             |
++------+-----------+---------------------------------------------------------------------------------+
+| IN   | Int       | The object ID. If it is -1, then the connected user's own info info is returned |
++------+-----------+---------------------------------------------------------------------------------+
+| OUT  | Boolean   | true or false whenever is successful or not                                     |
++------+-----------+---------------------------------------------------------------------------------+
+| OUT  | String    | The information string / The error string.                                      |
++------+-----------+---------------------------------------------------------------------------------+
+| OUT  | Int       | Error code.                                                                     |
++------+-----------+---------------------------------------------------------------------------------+
 
 one.userpool.info
 -----------------
@@ -2945,17 +2919,17 @@ one.userpool.info
 -  **Description**: Retrieves information for all the users in the pool.
 -  **Parameters**
 
-+--------+-------------+-----------------------------------------------+
-| Type   | Data Type   | Description                                   |
-+========+=============+===============================================+
-| IN     | String      | The session string.                           |
-+--------+-------------+-----------------------------------------------+
-| OUT    | Boolean     | true or false whenever is successful or not   |
-+--------+-------------+-----------------------------------------------+
-| OUT    | String      | The information string / The error string.    |
-+--------+-------------+-----------------------------------------------+
-| OUT    | Int         | Error code.                                   |
-+--------+-------------+-----------------------------------------------+
++------+-----------+---------------------------------------------+
+| Type | Data Type |                 Description                 |
++======+===========+=============================================+
+| IN   | String    | The session string.                         |
++------+-----------+---------------------------------------------+
+| OUT  | Boolean   | true or false whenever is successful or not |
++------+-----------+---------------------------------------------+
+| OUT  | String    | The information string / The error string.  |
++------+-----------+---------------------------------------------+
+| OUT  | Int       | Error code.                                 |
++------+-----------+---------------------------------------------+
 
 one.userquota.info
 ------------------
@@ -2963,17 +2937,17 @@ one.userquota.info
 -  **Description**: Returns the default user quota limits.
 -  **Parameters**
 
-+--------+-------------+---------------------------------------------------+
-| Type   | Data Type   | Description                                       |
-+========+=============+===================================================+
-| IN     | String      | The session string.                               |
-+--------+-------------+---------------------------------------------------+
-| OUT    | Boolean     | true or false whenever is successful or not       |
-+--------+-------------+---------------------------------------------------+
-| OUT    | String      | The quota template contents / The error string.   |
-+--------+-------------+---------------------------------------------------+
-| OUT    | Int         | Error code.                                       |
-+--------+-------------+---------------------------------------------------+
++------+-----------+-------------------------------------------------+
+| Type | Data Type |                   Description                   |
++======+===========+=================================================+
+| IN   | String    | The session string.                             |
++------+-----------+-------------------------------------------------+
+| OUT  | Boolean   | true or false whenever is successful or not     |
++------+-----------+-------------------------------------------------+
+| OUT  | String    | The quota template contents / The error string. |
++------+-----------+-------------------------------------------------+
+| OUT  | Int       | Error code.                                     |
++------+-----------+-------------------------------------------------+
 
 one.userquota.update
 --------------------
@@ -2981,19 +2955,19 @@ one.userquota.update
 -  **Description**: Updates the default user quota limits.
 -  **Parameters**
 
-+--------+-------------+--------------------------------------------------------------------------------------+
-| Type   | Data Type   | Description                                                                          |
-+========+=============+======================================================================================+
-| IN     | String      | The session string.                                                                  |
-+--------+-------------+--------------------------------------------------------------------------------------+
-| IN     | String      | The new quota template contents. Syntax can be the usual “attribute=value” or XML.   |
-+--------+-------------+--------------------------------------------------------------------------------------+
-| OUT    | Boolean     | true or false whenever is successful or not                                          |
-+--------+-------------+--------------------------------------------------------------------------------------+
-| OUT    | String      | The quota template contents / The error string.                                      |
-+--------+-------------+--------------------------------------------------------------------------------------+
-| OUT    | Int         | Error code.                                                                          |
-+--------+-------------+--------------------------------------------------------------------------------------+
++------+-----------+--------------------------------------------------------------------------------------+
+| Type | Data Type |                                     Description                                      |
++======+===========+======================================================================================+
+| IN   | String    | The session string.                                                                  |
++------+-----------+--------------------------------------------------------------------------------------+
+| IN   | String    | The new quota template contents. Syntax can be the usual ``attribute=value`` or XML. |
++------+-----------+--------------------------------------------------------------------------------------+
+| OUT  | Boolean   | true or false whenever is successful or not                                          |
++------+-----------+--------------------------------------------------------------------------------------+
+| OUT  | String    | The quota template contents / The error string.                                      |
++------+-----------+--------------------------------------------------------------------------------------+
+| OUT  | Int       | Error code.                                                                          |
++------+-----------+--------------------------------------------------------------------------------------+
 
 Actions for Group Management
 ============================
@@ -3004,19 +2978,19 @@ one.group.allocate
 -  **Description**: Allocates a new group in OpenNebula.
 -  **Parameters**
 
-+--------+--------------+-----------------------------------------------+
-| Type   | Data Type    | Description                                   |
-+========+==============+===============================================+
-| IN     | String       | The session string.                           |
-+--------+--------------+-----------------------------------------------+
-| IN     | String       | Name for the new group.                       |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not   |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int/String   | The allocated Group ID / The error string.    |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int          | Error code.                                   |
-+--------+--------------+-----------------------------------------------+
++------+------------+---------------------------------------------+
+| Type | Data Type  |                 Description                 |
++======+============+=============================================+
+| IN   | String     | The session string.                         |
++------+------------+---------------------------------------------+
+| IN   | String     | Name for the new group.                     |
++------+------------+---------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not |
++------+------------+---------------------------------------------+
+| OUT  | Int/String | The allocated Group ID / The error string.  |
++------+------------+---------------------------------------------+
+| OUT  | Int        | Error code.                                 |
++------+------------+---------------------------------------------+
 
 one.group.delete
 ----------------
@@ -3024,19 +2998,19 @@ one.group.delete
 -  **Description**: Deletes the given group from the pool.
 -  **Parameters**
 
-+--------+--------------+-----------------------------------------------+
-| Type   | Data Type    | Description                                   |
-+========+==============+===============================================+
-| IN     | String       | The session string.                           |
-+--------+--------------+-----------------------------------------------+
-| IN     | Int          | The object ID.                                |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not   |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int/String   | The resource ID / The error string.           |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int          | Error code.                                   |
-+--------+--------------+-----------------------------------------------+
++------+------------+---------------------------------------------+
+| Type | Data Type  |                 Description                 |
++======+============+=============================================+
+| IN   | String     | The session string.                         |
++------+------------+---------------------------------------------+
+| IN   | Int        | The object ID.                              |
++------+------------+---------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not |
++------+------------+---------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.         |
++------+------------+---------------------------------------------+
+| OUT  | Int        | Error code.                                 |
++------+------------+---------------------------------------------+
 
 one.group.info
 --------------
@@ -3044,19 +3018,19 @@ one.group.info
 -  **Description**: Retrieves information for the group.
 -  **Parameters**
 
-+--------+-------------+-------------------------------------------------------------------------------------+
-| Type   | Data Type   | Description                                                                         |
-+========+=============+=====================================================================================+
-| IN     | String      | The session string.                                                                 |
-+--------+-------------+-------------------------------------------------------------------------------------+
-| IN     | Int         | The object ID. If it is -1, then the connected user's group info info is returned   |
-+--------+-------------+-------------------------------------------------------------------------------------+
-| OUT    | Boolean     | true or false whenever is successful or not                                         |
-+--------+-------------+-------------------------------------------------------------------------------------+
-| OUT    | String      | The information string / The error string.                                          |
-+--------+-------------+-------------------------------------------------------------------------------------+
-| OUT    | Int         | Error code.                                                                         |
-+--------+-------------+-------------------------------------------------------------------------------------+
++------+-----------+-----------------------------------------------------------------------------------+
+| Type | Data Type |                                    Description                                    |
++======+===========+===================================================================================+
+| IN   | String    | The session string.                                                               |
++------+-----------+-----------------------------------------------------------------------------------+
+| IN   | Int       | The object ID. If it is -1, then the connected user's group info info is returned |
++------+-----------+-----------------------------------------------------------------------------------+
+| OUT  | Boolean   | true or false whenever is successful or not                                       |
++------+-----------+-----------------------------------------------------------------------------------+
+| OUT  | String    | The information string / The error string.                                        |
++------+-----------+-----------------------------------------------------------------------------------+
+| OUT  | Int       | Error code.                                                                       |
++------+-----------+-----------------------------------------------------------------------------------+
 
 one.group.quota
 ---------------
@@ -3064,21 +3038,21 @@ one.group.quota
 -  **Description**: Sets the group quota limits.
 -  **Parameters**
 
-+--------+--------------+--------------------------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                                          |
-+========+==============+======================================================================================+
-| IN     | String       | The session string.                                                                  |
-+--------+--------------+--------------------------------------------------------------------------------------+
-| IN     | Int          | The object ID.                                                                       |
-+--------+--------------+--------------------------------------------------------------------------------------+
-| IN     | String       | The new quota template contents. Syntax can be the usual “attribute=value” or XML.   |
-+--------+--------------+--------------------------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                                          |
-+--------+--------------+--------------------------------------------------------------------------------------+
-| OUT    | Int/String   | The resource ID / The error string.                                                  |
-+--------+--------------+--------------------------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                                          |
-+--------+--------------+--------------------------------------------------------------------------------------+
++------+------------+--------------------------------------------------------------------------------------+
+| Type | Data Type  |                                     Description                                      |
++======+============+======================================================================================+
+| IN   | String     | The session string.                                                                  |
++------+------------+--------------------------------------------------------------------------------------+
+| IN   | Int        | The object ID.                                                                       |
++------+------------+--------------------------------------------------------------------------------------+
+| IN   | String     | The new quota template contents. Syntax can be the usual ``attribute=value`` or XML. |
++------+------------+--------------------------------------------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not                                          |
++------+------------+--------------------------------------------------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.                                                  |
++------+------------+--------------------------------------------------------------------------------------+
+| OUT  | Int        | Error code.                                                                          |
++------+------------+--------------------------------------------------------------------------------------+
 
 one.grouppool.info
 ------------------
@@ -3086,17 +3060,17 @@ one.grouppool.info
 -  **Description**: Retrieves information for all the groups in the pool.
 -  **Parameters**
 
-+--------+-------------+-----------------------------------------------+
-| Type   | Data Type   | Description                                   |
-+========+=============+===============================================+
-| IN     | String      | The session string.                           |
-+--------+-------------+-----------------------------------------------+
-| OUT    | Boolean     | true or false whenever is successful or not   |
-+--------+-------------+-----------------------------------------------+
-| OUT    | String      | The information string / The error string.    |
-+--------+-------------+-----------------------------------------------+
-| OUT    | Int         | Error code.                                   |
-+--------+-------------+-----------------------------------------------+
++------+-----------+---------------------------------------------+
+| Type | Data Type |                 Description                 |
++======+===========+=============================================+
+| IN   | String    | The session string.                         |
++------+-----------+---------------------------------------------+
+| OUT  | Boolean   | true or false whenever is successful or not |
++------+-----------+---------------------------------------------+
+| OUT  | String    | The information string / The error string.  |
++------+-----------+---------------------------------------------+
+| OUT  | Int       | Error code.                                 |
++------+-----------+---------------------------------------------+
 
 one.groupquota.info
 -------------------
@@ -3104,17 +3078,17 @@ one.groupquota.info
 -  **Description**: Returns the default group quota limits.
 -  **Parameters**
 
-+--------+-------------+---------------------------------------------------+
-| Type   | Data Type   | Description                                       |
-+========+=============+===================================================+
-| IN     | String      | The session string.                               |
-+--------+-------------+---------------------------------------------------+
-| OUT    | Boolean     | true or false whenever is successful or not       |
-+--------+-------------+---------------------------------------------------+
-| OUT    | String      | The quota template contents / The error string.   |
-+--------+-------------+---------------------------------------------------+
-| OUT    | Int         | Error code.                                       |
-+--------+-------------+---------------------------------------------------+
++------+-----------+-------------------------------------------------+
+| Type | Data Type |                   Description                   |
++======+===========+=================================================+
+| IN   | String    | The session string.                             |
++------+-----------+-------------------------------------------------+
+| OUT  | Boolean   | true or false whenever is successful or not     |
++------+-----------+-------------------------------------------------+
+| OUT  | String    | The quota template contents / The error string. |
++------+-----------+-------------------------------------------------+
+| OUT  | Int       | Error code.                                     |
++------+-----------+-------------------------------------------------+
 
 one.groupquota.update
 ---------------------
@@ -3122,19 +3096,19 @@ one.groupquota.update
 -  **Description**: Updates the default group quota limits.
 -  **Parameters**
 
-+--------+-------------+--------------------------------------------------------------------------------------+
-| Type   | Data Type   | Description                                                                          |
-+========+=============+======================================================================================+
-| IN     | String      | The session string.                                                                  |
-+--------+-------------+--------------------------------------------------------------------------------------+
-| IN     | String      | The new quota template contents. Syntax can be the usual “attribute=value” or XML.   |
-+--------+-------------+--------------------------------------------------------------------------------------+
-| OUT    | Boolean     | true or false whenever is successful or not                                          |
-+--------+-------------+--------------------------------------------------------------------------------------+
-| OUT    | String      | The quota template contents / The error string.                                      |
-+--------+-------------+--------------------------------------------------------------------------------------+
-| OUT    | Int         | Error code.                                                                          |
-+--------+-------------+--------------------------------------------------------------------------------------+
++------+-----------+--------------------------------------------------------------------------------------+
+| Type | Data Type |                                     Description                                      |
++======+===========+======================================================================================+
+| IN   | String    | The session string.                                                                  |
++------+-----------+--------------------------------------------------------------------------------------+
+| IN   | String    | The new quota template contents. Syntax can be the usual ``attribute=value`` or XML. |
++------+-----------+--------------------------------------------------------------------------------------+
+| OUT  | Boolean   | true or false whenever is successful or not                                          |
++------+-----------+--------------------------------------------------------------------------------------+
+| OUT  | String    | The quota template contents / The error string.                                      |
++------+-----------+--------------------------------------------------------------------------------------+
+| OUT  | Int       | Error code.                                                                          |
++------+-----------+--------------------------------------------------------------------------------------+
 
 Actions for ACL Rules Management
 ================================
@@ -3145,23 +3119,23 @@ one.acl.addrule
 -  **Description**: Adds a new ACL rule.
 -  **Parameters**
 
-+--------+--------------+-------------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                             |
-+========+==============+=========================================================================+
-| IN     | String       | The session string.                                                     |
-+--------+--------------+-------------------------------------------------------------------------+
-| IN     | String       | User component of the new rule. A string containing a hex number.       |
-+--------+--------------+-------------------------------------------------------------------------+
-| IN     | String       | Resource component of the new rule. A string containing a hex number.   |
-+--------+--------------+-------------------------------------------------------------------------+
-| IN     | String       | Rights component of the new rule. A string containing a hex number.     |
-+--------+--------------+-------------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                             |
-+--------+--------------+-------------------------------------------------------------------------+
-| OUT    | Int/String   | The allocated ACL rule ID / The error string.                           |
-+--------+--------------+-------------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                             |
-+--------+--------------+-------------------------------------------------------------------------+
++------+------------+-----------------------------------------------------------------------+
+| Type | Data Type  |                              Description                              |
++======+============+=======================================================================+
+| IN   | String     | The session string.                                                   |
++------+------------+-----------------------------------------------------------------------+
+| IN   | String     | User component of the new rule. A string containing a hex number.     |
++------+------------+-----------------------------------------------------------------------+
+| IN   | String     | Resource component of the new rule. A string containing a hex number. |
++------+------------+-----------------------------------------------------------------------+
+| IN   | String     | Rights component of the new rule. A string containing a hex number.   |
++------+------------+-----------------------------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not                           |
++------+------------+-----------------------------------------------------------------------+
+| OUT  | Int/String | The allocated ACL rule ID / The error string.                         |
++------+------------+-----------------------------------------------------------------------+
+| OUT  | Int        | Error code.                                                           |
++------+------------+-----------------------------------------------------------------------+
 
 To build the hex. numbers required to create a new rule we recommend you to read the `ruby <http://dev.opennebula.org/projects/opennebula/repository/revisions/master/entry/src/oca/ruby/OpenNebula/Acl.rb>`__ or `java <http://dev.opennebula.org/projects/opennebula/repository/revisions/master/entry/src/oca/java/src/org/opennebula/client/acl/Acl.java>`__ code.
 
@@ -3171,19 +3145,19 @@ one.acl.delrule
 -  **Description**: Deletes an ACL rule.
 -  **Parameters**
 
-+--------+--------------+-----------------------------------------------+
-| Type   | Data Type    | Description                                   |
-+========+==============+===============================================+
-| IN     | String       | The session string.                           |
-+--------+--------------+-----------------------------------------------+
-| IN     | Int          | ACL rule ID.                                  |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not   |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int/String   | The ACL rule ID / The error string.           |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int          | Error code.                                   |
-+--------+--------------+-----------------------------------------------+
++------+------------+---------------------------------------------+
+| Type | Data Type  |                 Description                 |
++======+============+=============================================+
+| IN   | String     | The session string.                         |
++------+------------+---------------------------------------------+
+| IN   | Int        | ACL rule ID.                                |
++------+------------+---------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not |
++------+------------+---------------------------------------------+
+| OUT  | Int/String | The ACL rule ID / The error string.         |
++------+------------+---------------------------------------------+
+| OUT  | Int        | Error code.                                 |
++------+------------+---------------------------------------------+
 
 one.acl.info
 ------------
@@ -3191,19 +3165,19 @@ one.acl.info
 -  **Description**: Returns the complete ACL rule set.
 -  **Parameters**
 
-+--------+-------------+-----------------------------------------------+
-| Type   | Data Type   | Description                                   |
-+========+=============+===============================================+
-| IN     | String      | The session string.                           |
-+--------+-------------+-----------------------------------------------+
-| IN     | Int         | ACL rule ID.                                  |
-+--------+-------------+-----------------------------------------------+
-| OUT    | Boolean     | true or false whenever is successful or not   |
-+--------+-------------+-----------------------------------------------+
-| OUT    | String      | The information string / The error string.    |
-+--------+-------------+-----------------------------------------------+
-| OUT    | Int         | Error code.                                   |
-+--------+-------------+-----------------------------------------------+
++------+-----------+---------------------------------------------+
+| Type | Data Type |                 Description                 |
++======+===========+=============================================+
+| IN   | String    | The session string.                         |
++------+-----------+---------------------------------------------+
+| IN   | Int       | ACL rule ID.                                |
++------+-----------+---------------------------------------------+
+| OUT  | Boolean   | true or false whenever is successful or not |
++------+-----------+---------------------------------------------+
+| OUT  | String    | The information string / The error string.  |
++------+-----------+---------------------------------------------+
+| OUT  | Int       | Error code.                                 |
++------+-----------+---------------------------------------------+
 
 Actions for Document Management
 ===============================
@@ -3214,25 +3188,25 @@ one.document.allocate
 -  **Description**: Allocates a new document in OpenNebula.
 -  **Parameters**
 
-+--------+--------------+---------------------------------------------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                                                             |
-+========+==============+=========================================================================================================+
-| IN     | String       | The session string.                                                                                     |
-+--------+--------------+---------------------------------------------------------------------------------------------------------+
-| IN     | String       | A string containing the document template contents. Syntax can be the usual “attribute=value” or XML.   |
-+--------+--------------+---------------------------------------------------------------------------------------------------------+
-| IN     | Int          | The document type (\*).                                                                                 |
-+--------+--------------+---------------------------------------------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                                                             |
-+--------+--------------+---------------------------------------------------------------------------------------------------------+
-| OUT    | Int/String   | The allocated resource ID / The error string.                                                           |
-+--------+--------------+---------------------------------------------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                                                             |
-+--------+--------------+---------------------------------------------------------------------------------------------------------+
++------+------------+---------------------------------------------------------------------------------------------------------+
+| Type | Data Type  |                                               Description                                               |
++======+============+=========================================================================================================+
+| IN   | String     | The session string.                                                                                     |
++------+------------+---------------------------------------------------------------------------------------------------------+
+| IN   | String     | A string containing the document template contents. Syntax can be the usual ``attribute=value`` or XML. |
++------+------------+---------------------------------------------------------------------------------------------------------+
+| IN   | Int        | The document type (\*).                                                                                 |
++------+------------+---------------------------------------------------------------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not                                                             |
++------+------------+---------------------------------------------------------------------------------------------------------+
+| OUT  | Int/String | The allocated resource ID / The error string.                                                           |
++------+------------+---------------------------------------------------------------------------------------------------------+
+| OUT  | Int        | Error code.                                                                                             |
++------+------------+---------------------------------------------------------------------------------------------------------+
 
 (\*) Type is an integer value used to allow dynamic pools compartmentalization.
 
-Let's say you want to store documents representing Chef recipes, and EC2 security groups; you would allocate documents of each kind with a different type. This type is then used in the :ref:`one.documentpool.info <#onedocumentpoolinfo>` method to filter the results.
+Let's say you want to store documents representing Chef recipes, and EC2 security groups; you would allocate documents of each kind with a different type. This type is then used in the one.documentpool.info method to filter the results.
 
 one.document.clone
 ------------------
@@ -3240,21 +3214,21 @@ one.document.clone
 -  **Description**: Clones an existing virtual machine document.
 -  **Parameters**
 
-+--------+--------------+-----------------------------------------------+
-| Type   | Data Type    | Description                                   |
-+========+==============+===============================================+
-| IN     | String       | The session string.                           |
-+--------+--------------+-----------------------------------------------+
-| IN     | Int          | The ID of the document to be cloned.          |
-+--------+--------------+-----------------------------------------------+
-| IN     | String       | Name for the new document.                    |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not   |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int/String   | The new document ID / The error string.       |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int          | Error code.                                   |
-+--------+--------------+-----------------------------------------------+
++------+------------+---------------------------------------------+
+| Type | Data Type  |                 Description                 |
++======+============+=============================================+
+| IN   | String     | The session string.                         |
++------+------------+---------------------------------------------+
+| IN   | Int        | The ID of the document to be cloned.        |
++------+------------+---------------------------------------------+
+| IN   | String     | Name for the new document.                  |
++------+------------+---------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not |
++------+------------+---------------------------------------------+
+| OUT  | Int/String | The new document ID / The error string.     |
++------+------------+---------------------------------------------+
+| OUT  | Int        | Error code.                                 |
++------+------------+---------------------------------------------+
 
 one.document.delete
 -------------------
@@ -3262,19 +3236,19 @@ one.document.delete
 -  **Description**: Deletes the given document from the pool.
 -  **Parameters**
 
-+--------+--------------+-----------------------------------------------+
-| Type   | Data Type    | Description                                   |
-+========+==============+===============================================+
-| IN     | String       | The session string.                           |
-+--------+--------------+-----------------------------------------------+
-| IN     | Int          | The object ID.                                |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not   |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int/String   | The resource ID / The error string.           |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int          | Error code.                                   |
-+--------+--------------+-----------------------------------------------+
++------+------------+---------------------------------------------+
+| Type | Data Type  |                 Description                 |
++======+============+=============================================+
+| IN   | String     | The session string.                         |
++------+------------+---------------------------------------------+
+| IN   | Int        | The object ID.                              |
++------+------------+---------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not |
++------+------------+---------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.         |
++------+------------+---------------------------------------------+
+| OUT  | Int        | Error code.                                 |
++------+------------+---------------------------------------------+
 
 one.document.update
 -------------------
@@ -3282,23 +3256,23 @@ one.document.update
 -  **Description**: Replaces the document template contents.
 -  **Parameters**
 
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                                                        |
-+========+==============+====================================================================================================+
-| IN     | String       | The session string.                                                                                |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| IN     | Int          | The object ID.                                                                                     |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| IN     | String       | The new document template contents. Syntax can be the usual “attribute=value” or XML.              |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| IN     | Int          | Update type: **0**: Replace the whole template. **1**: Merge new template with the existing one.   |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                                                        |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| OUT    | Int/String   | The resource ID / The error string.                                                                |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                                                        |
-+--------+--------------+----------------------------------------------------------------------------------------------------+
++------+------------+--------------------------------------------------------------------------------------------------+
+| Type | Data Type  |                                           Description                                            |
++======+============+==================================================================================================+
+| IN   | String     | The session string.                                                                              |
++------+------------+--------------------------------------------------------------------------------------------------+
+| IN   | Int        | The object ID.                                                                                   |
++------+------------+--------------------------------------------------------------------------------------------------+
+| IN   | String     | The new document template contents. Syntax can be the usual ``attribute=value`` or XML.          |
++------+------------+--------------------------------------------------------------------------------------------------+
+| IN   | Int        | Update type: **0**: Replace the whole template. **1**: Merge new template with the existing one. |
++------+------------+--------------------------------------------------------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not                                                      |
++------+------------+--------------------------------------------------------------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.                                                              |
++------+------------+--------------------------------------------------------------------------------------------------+
+| OUT  | Int        | Error code.                                                                                      |
++------+------------+--------------------------------------------------------------------------------------------------+
 
 one.document.chmod
 ------------------
@@ -3306,37 +3280,37 @@ one.document.chmod
 -  **Description**: Changes the permission bits of a document.
 -  **Parameters**
 
-+--------+--------------+-------------------------------------------------------+
-| Type   | Data Type    | Description                                           |
-+========+==============+=======================================================+
-| IN     | String       | The session string.                                   |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | The object ID.                                        |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | USER USE bit. If set to -1, it will not change.       |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | USER MANAGE bit. If set to -1, it will not change.    |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | USER ADMIN bit. If set to -1, it will not change.     |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | GROUP USE bit. If set to -1, it will not change.      |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | GROUP MANAGE bit. If set to -1, it will not change.   |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | GROUP ADMIN bit. If set to -1, it will not change.    |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | OTHER USE bit. If set to -1, it will not change.      |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | OTHER MANAGE bit. If set to -1, it will not change.   |
-+--------+--------------+-------------------------------------------------------+
-| IN     | Int          | OTHER ADMIN bit. If set to -1, it will not change.    |
-+--------+--------------+-------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not           |
-+--------+--------------+-------------------------------------------------------+
-| OUT    | Int/String   | The resource ID / The error string.                   |
-+--------+--------------+-------------------------------------------------------+
-| OUT    | Int          | Error code.                                           |
-+--------+--------------+-------------------------------------------------------+
++------+------------+-----------------------------------------------------+
+| Type | Data Type  |                     Description                     |
++======+============+=====================================================+
+| IN   | String     | The session string.                                 |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | The object ID.                                      |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | USER USE bit. If set to -1, it will not change.     |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | USER MANAGE bit. If set to -1, it will not change.  |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | USER ADMIN bit. If set to -1, it will not change.   |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | GROUP USE bit. If set to -1, it will not change.    |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | GROUP MANAGE bit. If set to -1, it will not change. |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | GROUP ADMIN bit. If set to -1, it will not change.  |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | OTHER USE bit. If set to -1, it will not change.    |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | OTHER MANAGE bit. If set to -1, it will not change. |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | OTHER ADMIN bit. If set to -1, it will not change.  |
++------+------------+-----------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not         |
++------+------------+-----------------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.                 |
++------+------------+-----------------------------------------------------+
+| OUT  | Int        | Error code.                                         |
++------+------------+-----------------------------------------------------+
 
 one.document.chown
 ------------------
@@ -3344,23 +3318,23 @@ one.document.chown
 -  **Description**: Changes the ownership of a document.
 -  **Parameters**
 
-+--------+--------------+--------------------------------------------------------------------------+
-| Type   | Data Type    | Description                                                              |
-+========+==============+==========================================================================+
-| IN     | String       | The session string.                                                      |
-+--------+--------------+--------------------------------------------------------------------------+
-| IN     | Int          | The object ID.                                                           |
-+--------+--------------+--------------------------------------------------------------------------+
-| IN     | Int          | The User ID of the new owner. If set to -1, the owner is not changed.    |
-+--------+--------------+--------------------------------------------------------------------------+
-| IN     | Int          | The Group ID of the new group. If set to -1, the group is not changed.   |
-+--------+--------------+--------------------------------------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not                              |
-+--------+--------------+--------------------------------------------------------------------------+
-| OUT    | Int/String   | The resource ID / The error string.                                      |
-+--------+--------------+--------------------------------------------------------------------------+
-| OUT    | Int          | Error code.                                                              |
-+--------+--------------+--------------------------------------------------------------------------+
++------+------------+------------------------------------------------------------------------+
+| Type | Data Type  |                              Description                               |
++======+============+========================================================================+
+| IN   | String     | The session string.                                                    |
++------+------------+------------------------------------------------------------------------+
+| IN   | Int        | The object ID.                                                         |
++------+------------+------------------------------------------------------------------------+
+| IN   | Int        | The User ID of the new owner. If set to -1, the owner is not changed.  |
++------+------------+------------------------------------------------------------------------+
+| IN   | Int        | The Group ID of the new group. If set to -1, the group is not changed. |
++------+------------+------------------------------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not                            |
++------+------------+------------------------------------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.                                    |
++------+------------+------------------------------------------------------------------------+
+| OUT  | Int        | Error code.                                                            |
++------+------------+------------------------------------------------------------------------+
 
 one.document.rename
 -------------------
@@ -3368,21 +3342,21 @@ one.document.rename
 -  **Description**: Renames a document.
 -  **Parameters**
 
-+--------+--------------+-----------------------------------------------+
-| Type   | Data Type    | Description                                   |
-+========+==============+===============================================+
-| IN     | String       | The session string.                           |
-+--------+--------------+-----------------------------------------------+
-| IN     | Int          | The object ID.                                |
-+--------+--------------+-----------------------------------------------+
-| IN     | String       | The new name.                                 |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not   |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int/String   | The VM ID / The error string.                 |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int          | Error code.                                   |
-+--------+--------------+-----------------------------------------------+
++------+------------+---------------------------------------------+
+| Type | Data Type  |                 Description                 |
++======+============+=============================================+
+| IN   | String     | The session string.                         |
++------+------------+---------------------------------------------+
+| IN   | Int        | The object ID.                              |
++------+------------+---------------------------------------------+
+| IN   | String     | The new name.                               |
++------+------------+---------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not |
++------+------------+---------------------------------------------+
+| OUT  | Int/String | The VM ID / The error string.               |
++------+------------+---------------------------------------------+
+| OUT  | Int        | Error code.                                 |
++------+------------+---------------------------------------------+
 
 one.document.info
 -----------------
@@ -3390,19 +3364,19 @@ one.document.info
 -  **Description**: Retrieves information for the document.
 -  **Parameters**
 
-+--------+-------------+-----------------------------------------------+
-| Type   | Data Type   | Description                                   |
-+========+=============+===============================================+
-| IN     | String      | The session string.                           |
-+--------+-------------+-----------------------------------------------+
-| IN     | Int         | The object ID.                                |
-+--------+-------------+-----------------------------------------------+
-| OUT    | Boolean     | true or false whenever is successful or not   |
-+--------+-------------+-----------------------------------------------+
-| OUT    | String      | The information string / The error string.    |
-+--------+-------------+-----------------------------------------------+
-| OUT    | Int         | Error code.                                   |
-+--------+-------------+-----------------------------------------------+
++------+-----------+---------------------------------------------+
+| Type | Data Type |                 Description                 |
++======+===========+=============================================+
+| IN   | String    | The session string.                         |
++------+-----------+---------------------------------------------+
+| IN   | Int       | The object ID.                              |
++------+-----------+---------------------------------------------+
+| OUT  | Boolean   | true or false whenever is successful or not |
++------+-----------+---------------------------------------------+
+| OUT  | String    | The information string / The error string.  |
++------+-----------+---------------------------------------------+
+| OUT  | Int       | Error code.                                 |
++------+-----------+---------------------------------------------+
 
 one.documentpool.info
 ---------------------
@@ -3410,29 +3384,29 @@ one.documentpool.info
 -  **Description**: Retrieves information for all or part of the Resources in the pool.
 -  **Parameters**
 
-+--------+-------------+---------------------------------------------------------------------------+
-| Type   | Data Type   | Description                                                               |
-+========+=============+===========================================================================+
-| IN     | String      | The session string.                                                       |
-+--------+-------------+---------------------------------------------------------------------------+
-| IN     | Int         | Filter flag                                                               |
-|        |             |  **- < = -3**: Connected user's resources                                 |
-|        |             |  **- -2**: All resources                                                  |
-|        |             |  **- -1**: Connected user's and his group's resources                     |
-|        |             |  **- > = 0**: UID User's Resources                                        |
-+--------+-------------+---------------------------------------------------------------------------+
-| IN     | Int         | Range start ID. Can be -1.                                                |
-+--------+-------------+---------------------------------------------------------------------------+
-| IN     | Int         | Range end ID. Can be -1.                                                  |
-+--------+-------------+---------------------------------------------------------------------------+
-| IN     | Int         | The document type. See :ref:`one.document.allocate <#onedocumentallocate>`   |
-+--------+-------------+---------------------------------------------------------------------------+
-| OUT    | Boolean     | true or false whenever is successful or not                               |
-+--------+-------------+---------------------------------------------------------------------------+
-| OUT    | String      | The information string / The error string.                                |
-+--------+-------------+---------------------------------------------------------------------------+
-| OUT    | Int         | Error code.                                                               |
-+--------+-------------+---------------------------------------------------------------------------+
++------+-----------+------------------------------------------------------+
+| Type | Data Type |                     Description                      |
++======+===========+======================================================+
+| IN   | String    | The session string.                                  |
++------+-----------+------------------------------------------------------+
+| IN   | Int       | Filter flag                                          |
+|      |           | **- < = -3**: Connected user's resources             |
+|      |           | **- -2**: All resources                              |
+|      |           | **- -1**: Connected user's and his group's resources |
+|      |           | **- > = 0**: UID User's Resources                    |
++------+-----------+------------------------------------------------------+
+| IN   | Int       | Range start ID. Can be -1.                           |
++------+-----------+------------------------------------------------------+
+| IN   | Int       | Range end ID. Can be -1.                             |
++------+-----------+------------------------------------------------------+
+| IN   | Int       | The document type.                                   |
++------+-----------+------------------------------------------------------+
+| OUT  | Boolean   | true or false whenever is successful or not          |
++------+-----------+------------------------------------------------------+
+| OUT  | String    | The information string / The error string.           |
++------+-----------+------------------------------------------------------+
+| OUT  | Int       | Error code.                                          |
++------+-----------+------------------------------------------------------+
 
 The range can be used to retrieve a subset of the pool, from the 'start' to the 'end' ID. To retrieve the complete pool, use ``(-1, -1)``; to retrieve all the pool from a specific ID to the last one, use ``(<id>, -1)``, and to retrieve the first elements up to an ID, use ``(0, <id>)``.
 
@@ -3445,17 +3419,17 @@ one.system.version
 -  **Description**: Returns the OpenNebula core version
 -  **Parameters**
 
-+--------+-------------+-----------------------------------------------+
-| Type   | Data Type   | Description                                   |
-+========+=============+===============================================+
-| IN     | String      | The session string.                           |
-+--------+-------------+-----------------------------------------------+
-| OUT    | Boolean     | true or false whenever is successful or not   |
-+--------+-------------+-----------------------------------------------+
-| OUT    | String      | The OpenNebula version, e.g. “3.8.0”          |
-+--------+-------------+-----------------------------------------------+
-| OUT    | Int         | Error code.                                   |
-+--------+-------------+-----------------------------------------------+
++------+-----------+---------------------------------------------+
+| Type | Data Type |                 Description                 |
++======+===========+=============================================+
+| IN   | String    | The session string.                         |
++------+-----------+---------------------------------------------+
+| OUT  | Boolean   | true or false whenever is successful or not |
++------+-----------+---------------------------------------------+
+| OUT  | String    | The OpenNebula version, e.g. ``4.4.0``      |
++------+-----------+---------------------------------------------+
+| OUT  | Int       | Error code.                                 |
++------+-----------+---------------------------------------------+
 
 one.system.config
 -----------------
@@ -3463,17 +3437,19 @@ one.system.config
 -  **Description**: Returns the OpenNebula configuration
 -  **Parameters**
 
-+--------+-------------+-----------------------------------------------+
-| Type   | Data Type   | Description                                   |
-+========+=============+===============================================+
-| IN     | String      | The session string.                           |
-+--------+-------------+-----------------------------------------------+
-| OUT    | Boolean     | true or false whenever is successful or not   |
-+--------+-------------+-----------------------------------------------+
-| OUT    | String      | The loaded oned.conf file, in XML form        |
-+--------+-------------+-----------------------------------------------+
-| OUT    | Int         | Error code.                                   |
-+--------+-------------+-----------------------------------------------+
++------+-----------+---------------------------------------------+
+| Type | Data Type |                 Description                 |
++======+===========+=============================================+
+| IN   | String    | The session string.                         |
++------+-----------+---------------------------------------------+
+| OUT  | Boolean   | true or false whenever is successful or not |
++------+-----------+---------------------------------------------+
+| OUT  | String    | The loaded oned.conf file, in XML form      |
++------+-----------+---------------------------------------------+
+| OUT  | Int       | Error code.                                 |
++------+-----------+---------------------------------------------+
+
+.. _api_xsd_reference:
 
 XSD Reference
 =============
@@ -3483,7 +3459,7 @@ The XML schemas describe the XML returned by the one.\*.info methods
 Schemas for Cluster
 -------------------
 
-.. code::
+.. code:: xml
 
     <?xml version="1.0" encoding="UTF-8"?>
     <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
@@ -3520,7 +3496,7 @@ Schemas for Cluster
       </xs:element>
     </xs:schema>
 
-.. code::
+.. code:: xml
 
     <?xml version="1.0" encoding="UTF-8"?>
     <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
@@ -3538,7 +3514,7 @@ Schemas for Cluster
 Schemas for Datastore
 ---------------------
 
-.. code::
+.. code:: xml
 
     <?xml version="1.0" encoding="UTF-8"?>
     <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://opennebula.org/XMLSchema" elementFormDefault="qualified" targetNamespace="http://opennebula.org/XMLSchema">
@@ -3590,7 +3566,7 @@ Schemas for Datastore
       </xs:element>
     </xs:schema>
 
-.. code::
+.. code:: xml
 
     <?xml version="1.0" encoding="UTF-8"?>
     <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
@@ -3608,7 +3584,7 @@ Schemas for Datastore
 Schemas for Group
 -----------------
 
-.. code::
+.. code:: xml
 
     <?xml version="1.0" encoding="UTF-8"?>
     <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
@@ -3664,7 +3640,7 @@ Schemas for Group
                     <xs:complexType>
                       <xs:sequence>
                         <xs:element name="CPU" type="xs:string"/>
-                        <xs:element name="CPU_USED" type="xs:string"/>               
+                        <xs:element name="CPU_USED" type="xs:string"/>
                         <xs:element name="MEMORY" type="xs:string"/>
                         <xs:element name="MEMORY_USED" type="xs:string"/>
                         <xs:element name="VMS" type="xs:string"/>
@@ -3734,7 +3710,7 @@ Schemas for Group
                             <xs:complexType>
                               <xs:sequence>
                                 <xs:element name="CPU" type="xs:string"/>
-                                <xs:element name="CPU_USED" type="xs:string"/>               
+                                <xs:element name="CPU_USED" type="xs:string"/>
                                 <xs:element name="MEMORY" type="xs:string"/>
                                 <xs:element name="MEMORY_USED" type="xs:string"/>
                                 <xs:element name="VMS" type="xs:string"/>
@@ -3768,7 +3744,7 @@ Schemas for Group
       </xs:element>
     </xs:schema>
 
-.. code::
+.. code:: xml
 
     <?xml version="1.0" encoding="UTF-8"?>
     <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
@@ -3827,7 +3803,7 @@ Schemas for Group
                             <xs:complexType>
                               <xs:sequence>
                                 <xs:element name="CPU" type="xs:string"/>
-                                <xs:element name="CPU_USED" type="xs:string"/>               
+                                <xs:element name="CPU_USED" type="xs:string"/>
                                 <xs:element name="MEMORY" type="xs:string"/>
                                 <xs:element name="MEMORY_USED" type="xs:string"/>
                                 <xs:element name="VMS" type="xs:string"/>
@@ -3900,7 +3876,7 @@ Schemas for Group
                               <xs:complexType>
                                 <xs:sequence>
                                   <xs:element name="CPU" type="xs:string"/>
-                                  <xs:element name="CPU_USED" type="xs:string"/>               
+                                  <xs:element name="CPU_USED" type="xs:string"/>
                                   <xs:element name="MEMORY" type="xs:string"/>
                                   <xs:element name="MEMORY_USED" type="xs:string"/>
                                   <xs:element name="VMS" type="xs:string"/>
@@ -3937,7 +3913,7 @@ Schemas for Group
 Schemas for Host
 ----------------
 
-.. code::
+.. code:: xml
 
     <?xml version="1.0" encoding="UTF-8"?>
     <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://opennebula.org/XMLSchema" elementFormDefault="qualified" targetNamespace="http://opennebula.org/XMLSchema">
@@ -4020,7 +3996,7 @@ Schemas for Host
       </xs:element>
     </xs:schema>
 
-.. code::
+.. code:: xml
 
     <?xml version="1.0" encoding="UTF-8"?>
     <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
@@ -4038,7 +4014,7 @@ Schemas for Host
 Schemas for Image
 -----------------
 
-.. code::
+.. code:: xml
 
     <?xml version="1.0" encoding="UTF-8"?>
     <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://opennebula.org/XMLSchema" elementFormDefault="qualified" targetNamespace="http://opennebula.org/XMLSchema">
@@ -4112,7 +4088,7 @@ Schemas for Image
       </xs:element>
     </xs:schema>
 
-.. code::
+.. code:: xml
 
     <?xml version="1.0" encoding="UTF-8"?>
     <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
@@ -4130,7 +4106,7 @@ Schemas for Image
 Schemas for User
 ----------------
 
-.. code::
+.. code:: xml
 
     <?xml version="1.0" encoding="UTF-8"?>
     <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
@@ -4192,7 +4168,7 @@ Schemas for User
                     <xs:complexType>
                       <xs:sequence>
                         <xs:element name="CPU" type="xs:string"/>
-                        <xs:element name="CPU_USED" type="xs:string"/>               
+                        <xs:element name="CPU_USED" type="xs:string"/>
                         <xs:element name="MEMORY" type="xs:string"/>
                         <xs:element name="MEMORY_USED" type="xs:string"/>
                         <xs:element name="VMS" type="xs:string"/>
@@ -4262,7 +4238,7 @@ Schemas for User
                             <xs:complexType>
                               <xs:sequence>
                                 <xs:element name="CPU" type="xs:string"/>
-                                <xs:element name="CPU_USED" type="xs:string"/>               
+                                <xs:element name="CPU_USED" type="xs:string"/>
                                 <xs:element name="MEMORY" type="xs:string"/>
                                 <xs:element name="MEMORY_USED" type="xs:string"/>
                                 <xs:element name="VMS" type="xs:string"/>
@@ -4296,7 +4272,7 @@ Schemas for User
       </xs:element>
     </xs:schema>
 
-.. code::
+.. code:: xml
 
     <?xml version="1.0" encoding="UTF-8"?>
     <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
@@ -4362,7 +4338,7 @@ Schemas for User
                           <xs:complexType>
                             <xs:sequence>
                               <xs:element name="CPU" type="xs:string"/>
-                              <xs:element name="CPU_USED" type="xs:string"/>               
+                              <xs:element name="CPU_USED" type="xs:string"/>
                               <xs:element name="MEMORY" type="xs:string"/>
                               <xs:element name="MEMORY_USED" type="xs:string"/>
                               <xs:element name="VMS" type="xs:string"/>
@@ -4435,7 +4411,7 @@ Schemas for User
                             <xs:complexType>
                               <xs:sequence>
                                 <xs:element name="CPU" type="xs:string"/>
-                                <xs:element name="CPU_USED" type="xs:string"/>               
+                                <xs:element name="CPU_USED" type="xs:string"/>
                                 <xs:element name="MEMORY" type="xs:string"/>
                                 <xs:element name="MEMORY_USED" type="xs:string"/>
                                 <xs:element name="VMS" type="xs:string"/>
@@ -4472,7 +4448,7 @@ Schemas for User
 Schemas for Virtual Machine
 ---------------------------
 
-.. code::
+.. code:: xml
 
     <?xml version="1.0" encoding="UTF-8"?>
     <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
@@ -4642,7 +4618,7 @@ Schemas for Virtual Machine
       </xs:element>
     </xs:schema>
 
-.. code::
+.. code:: xml
 
     <?xml version="1.0" encoding="UTF-8"?>
     <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified"
@@ -4660,7 +4636,7 @@ Schemas for Virtual Machine
 Schemas for Virtual Machine Template
 ------------------------------------
 
-.. code::
+.. code:: xml
 
     <?xml version="1.0" encoding="UTF-8"?>
     <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://opennebula.org/XMLSchema" elementFormDefault="qualified" targetNamespace="http://opennebula.org/XMLSchema">
@@ -4695,7 +4671,7 @@ Schemas for Virtual Machine Template
       </xs:element>
     </xs:schema>
 
-.. code::
+.. code:: xml
 
     <?xml version="1.0" encoding="UTF-8"?>
     <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
@@ -4713,7 +4689,7 @@ Schemas for Virtual Machine Template
 Schemas for Virtual Network
 ---------------------------
 
-.. code::
+.. code:: xml
 
     <?xml version="1.0" encoding="UTF-8"?>
     <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
@@ -4785,7 +4761,7 @@ Schemas for Virtual Network
       </xs:element>
     </xs:schema>
 
-.. code::
+.. code:: xml
 
     <?xml version="1.0" encoding="UTF-8"?>
     <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
@@ -4803,7 +4779,7 @@ Schemas for Virtual Network
 Schemas for Accounting
 ----------------------
 
-.. code::
+.. code:: xml
 
     <?xml version="1.0" encoding="UTF-8"?>
     <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"

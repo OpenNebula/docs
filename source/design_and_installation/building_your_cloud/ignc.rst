@@ -9,7 +9,7 @@ This page shows you how to install OpenNebula from the binary packages.
 Step 1. Front-end Installation
 ==============================
 
-Using the packages provided in our site is the recommended method, to ensure the installation of the latest version and to avoid possible packages divergences of different distributions. There are two alternatives here, to install OpenNebula you can add **our package repositories** to your system, or visit the :ref:`software menu <software:software>` to **download the latest package** for your Linux distribution.
+Using the packages provided in our site is the recommended method, to ensure the installation of the latest version and to avoid possible packages divergences of different distributions. There are two alternatives here, to install OpenNebula you can add **our package repositories** to your system, or visit the `software menu <http://opennebula.org/software:software>`__ to **download the latest package** for your Linux distribution.
 
 Do not forget that we offer Quickstart guides for:
 
@@ -27,7 +27,7 @@ Before installing:
 
 -  Activate the `EPEL <http://fedoraproject.org/wiki/EPEL#How_can_I_use_these_extra_packages.3F>`__ repo.
 
-There are packages for the front-end, distributed in the various components that conform OpenNebula, and packages for the virtualization host. See the :ref:`CentOS/RHEL annex <>` for a description of these packages.
+There are packages for the front-end, distributed in the various components that conform OpenNebula, and packages for the virtualization host.
 
 To install a CentOS/RHEL OpenNebula front-end with packages from **our repository**, execute the following as root:
 
@@ -211,7 +211,7 @@ Log in as the ``oneadmin`` user follow these steps:
     $ echo "oneadmin:password" > ~/.one/one_auth
     $ chmod 600 ~/.one/one_auth
 
-.. warning:: This will set the oneadmin password on the first boot. From that point, you must use the ':ref:`oneuser passwd <manage_users#manage_your_own_user>`\ ' command to change oneadmin's password.
+.. warning:: This will set the oneadmin password on the first boot. From that point, you must use the ':ref:`oneuser passwd <manage_users>`\ ' command to change oneadmin's password.
 
 -  You are ready to start the OpenNebula daemons:
 
