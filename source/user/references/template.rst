@@ -214,8 +214,6 @@ Volatile DISKS
 
 .. _template_disks_device_mapping:
 
-.. _template_disks_device_mapping:
-
 Disks Device Mapping
 --------------------
 

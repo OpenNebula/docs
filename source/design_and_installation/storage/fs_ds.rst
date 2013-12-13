@@ -48,7 +48,7 @@ The other important attribute to configure the datastore is the transfer drivers
 +--------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------+
 | ``TM_MAD``                     | Transfer drivers for the datastore: ``shared``, ``ssh`` or ``qcow2``, see below                                                                      | ceph, dummy, iscsi, lvm, qcow2, shared, ssh, vmfs   |
 +--------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------+
-| ``RESTRICTED_DIRS``            | Paths that can not be used to register images. A space separated list of paths. .. warning::                                                                | N/A                                                 |
+| ``RESTRICTED_DIRS``            | Paths that can not be used to register images. A space separated list of paths.                                                                      | N/A                                                 |
 +--------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------+
 | ``SAFE_DIRS``                  | If you need to un-block a directory under one of the RESTRICTED\_DIRS. A space separated list of paths.                                              | N/A                                                 |
 +--------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------+
@@ -56,12 +56,12 @@ The other important attribute to configure the datastore is the transfer drivers
 +--------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------+
 | ``LIMIT_TRANSFER_BW``          | Specify the maximum transfer rate in bytes/second when downloading images from a http/https URL. Suffixes K, M or G can be used.                     | N/A                                                 |
 +--------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------+
-| ``DATASTORE_CAPACITY_CHECK``   | If “yes”, the available capacity of the datastore is checked before creating a new image                                                             | yes                                                 |
+| ``DATASTORE_CAPACITY_CHECK``   | If ``yes``, the available capacity of the datastore is checked before creating a new image                                                           | yes                                                 |
 +--------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------+
 | ``BASE_PATH``                  | Base path to build the path of the Datastore Images. This path is used to store the images when they are created in the datastore                    | N/A                                                 |
 +--------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------+
 
-.. warning:: This will prevent users registering important files as VM images and accessing them thourgh their VMs. OpenNebula will automatically add its configuration directories: /var/lib/one, /etc/one and oneadmin's home. If users try to register an image from a restricted directory, they will get the following error message: “Not allowed to copy image file”.
+.. note:: The ``RESTRICTED_DIRS`` directive will prevent users registering important files as VM images and accessing them thourgh their VMs. OpenNebula will automatically add its configuration directories: /var/lib/one, /etc/one and oneadmin's home. If users try to register an image from a restricted directory, they will get the following error message: ``Not allowed to copy image file``.
 
 For example, the following illustrates the creation of a filesystem datastore using the shared transfer drivers.
 
@@ -76,7 +76,7 @@ For example, the following illustrates the creation of a filesystem datastore us
     ID: 100
 
     > onedatastore list
-      ID NAME            CLUSTER  IMAGES TYPE   TM    
+      ID NAME            CLUSTER  IMAGES TYPE   TM
        0 system          none     0      fs     shared
        1 default         none     3      fs     shared
      100 production      none     0      fs     shared
@@ -85,7 +85,7 @@ The DS and TM MAD can be changed later using the ``onedatastore update`` command
 
 Finally, you have to prepare the storage for the datastore and configure the hosts to access it. This depends on the transfer mechanism you have chosen for your datastore.
 
-After creating a new datastore the LN\_TARGET and CLONE\_TARGET parameters will be added to the template. These values should not be changed since they define the datastore behaviour. The default values for these parameters are defined in :ref:`oned.conf <oned_conf?&#transfer_driver>` for each driver.
+After creating a new datastore the LN\_TARGET and CLONE\_TARGET parameters will be added to the template. These values should not be changed since they define the datastore behaviour. The default values for these parameters are defined in :ref:`oned.conf <oned_conf_transfer_driver>` for each driver.
 
 .. warning:: Note that datastores are not associated to any cluster by default, and their are supposed to be accessible by every single host. If you need to configure datastores for just a subset of the hosts take a look to the :ref:`Cluster guide <cluster_guide>`.
 
