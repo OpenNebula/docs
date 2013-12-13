@@ -50,7 +50,7 @@ The life-cycle of a Virtual Machine within OpenNebula includes the following sta
 +---------------+------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``unkn``      | ``Unknown``      | The VM couldn't be reached, it is in an unknown state.                                                                                                                                                                                                                                                     |
 +---------------+------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``done``      | ``Done``         | The VM is done. VMs in this state won't be shown with “onevm list” but are kept in the database for accounting purposes. You can still get their information with the ``onevm show`` command.                                                                                                              |
+| ``done``      | ``Done``         | The VM is done. VMs in this state won't be shown with ``onevm list`` but are kept in the database for accounting purposes. You can still get their information with the ``onevm show`` command.                                                                                                            |
 +---------------+------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 |Virtual Machine States|
@@ -141,7 +141,7 @@ You can terminate a running instance with the following operations (either as ``
 
 -  ``shutdown``: Gracefully shuts down a running VM, sending the ACPI signal. Once the VM is shutdown the host is cleaned, and persistent and deferred-snapshot disk will be moved to the associated datastore. If after a given time the VM is still running (e.g. guest ignoring ACPI signals), OpenNebula will returned the VM to the ``RUNNING`` state.
 
--  ``shutdown --hard``: Same as above but the VM is immediately destroyed. Use this action instead of “shutdown” when the VM doesn't have ACPI support.
+-  ``shutdown --hard``: Same as above but the VM is immediately destroyed. Use this action instead of ``shutdown`` when the VM doesn't have ACPI support.
 
 If you need to terminate an instance in any state use:
 
@@ -203,7 +203,7 @@ There are some ``onevm`` commands operations meant for the cloud administrators:
 
 **Scheduling:**
 
--  ``resched``: Sets the reschedule flag for the VM. The Scheduler will migrate (or migrate --live, depending on the :ref:`Scheduler configuration <schg#configuration>`) the VM in the next monitorization cycle to a Host that better matches the requirements and rank restrictions. Read more in the :ref:`Scheduler documentation <schg#re-scheduling_virtual_machines>`.
+-  ``resched``: Sets the reschedule flag for the VM. The Scheduler will migrate (or migrate --live, depending on the :ref:`Scheduler configuration <schg_configuration>`) the VM in the next monitorization cycle to a Host that better matches the requirements and rank restrictions. Read more in the :ref:`Scheduler documentation <schg_re-scheduling_virtual_machines>`.
 -  ``unresched``: Clears the reschedule flag for the VM, canceling the rescheduling operation.
 
 **Deployment:**
@@ -212,7 +212,7 @@ There are some ``onevm`` commands operations meant for the cloud administrators:
 -  ``migrate --live``: The Virtual Machine is transferred between Hosts with no noticeable downtime. This action requires a :ref:`shared file system storage <sm>`.
 -  ``migrate``: The VM gets stopped and resumed in the target host.
 
-Note: By default, the above operations do not check the target host capacity. You can use the -e (–enforce) option to be sure that the host capacity is not overcommitted.
+Note: By default, the above operations do not check the target host capacity. You can use the -e (-enforce) option to be sure that the host capacity is not overcommitted.
 
 **Troubleshooting:**
 
@@ -227,12 +227,12 @@ You can take a snapshot of a VM disk to preserve or backup its state at a given 
 -  **Deferred snapshots**, changes to a disk will be saved as a new Image in the associated datastore when the VM is shutdown. The new image will be locked till the VM is properly shutdown and the transferred from the host to the datastore.
 -  **Live snapshots**, just as the deferred snapshots, but the disk is copied to the datastore the moment the operation is triggered. Therefore, you must guarantee that the disk is in a consistent state during the copy operation (e.g. by umounting the disk from the VM). While the disk is copied to the datastore the VM will be in the HOTPLUG state.
 
-The ``onevm disk-snapshot`` command can be run while the VM is RUNNING, POWEROFF or SUSPENDED. See the :ref:`Image guide <img_guide#save_changes>` for specific examples of the disk-snapshot command.
+The ``onevm disk-snapshot`` command can be run while the VM is RUNNING, POWEROFF or SUSPENDED. See the :ref:`Image guide <img_guide_save_changes>` for specific examples of the disk-snapshot command.
 
 Disk Hotpluging
 ---------------
 
-New disks can be hot-plugged to running VMs with the ``onevm`` ``disk-attach`` and ``disk-detach`` commands. For example, to attach to a running VM the Image named “storage”:
+New disks can be hot-plugged to running VMs with the ``onevm`` ``disk-attach`` and ``disk-detach`` commands. For example, to attach to a running VM the Image named **storage**:
 
 .. code::
 
@@ -343,7 +343,7 @@ You can create, delete and restore snapshots for running VMs. A snapshot will co
 Please take into consideration the following limitations:
 
 -  **The snapshots are lost if any life-cycle operation is performed, e.g. a suspend, migrate, delete request.**
--  KVM: Snapshots are only available if all the VM disks use the :ref:`'qcow2' driver <img_template#driver>`.
+-  KVM: Snapshots are only available if all the VM disks use the :ref:`qcow2 driver <img_template>`.
 -  VMware: the snapshots will persist in the hypervisor after any life-cycle operation is performed, but they will not be available to be used with OpenNebula.
 -  Xen: does not support snapshotting
 
@@ -502,7 +502,7 @@ Sunstone
 
 You can manage your virtual machines using the :ref:`onevm command <cli>` or :ref:`Sunstone <sunstone>`.
 
-In Sunstone, you can easily instantiate currently defined :ref:`templates <vm_guide>` by clicking “New” on the Virtual Machines tab and manage the life cycle of the new instances
+In Sunstone, you can easily instantiate currently defined :ref:`templates <vm_guide>` by clicking ``New`` on the Virtual Machines tab and manage the life cycle of the new instances
 
 |image6|
 
@@ -541,7 +541,7 @@ Information for Developers and Integrators
 -  Although the default way to create a VM instance is to register a Template and then instantiate it, VMs can be created directly from a template file using the ``onevm create`` command.
 -  When a VM reaches the ``done`` state, it disappears from the ``onevm list`` output, but the VM is still in the database and can be retrieved with the ``onevm show`` command.
 -  OpenNebula comes with an :ref:`accounting tool <accounting>` that reports resource usage data.
--  The monitoring information, shown with nice graphs in :ref:`Sunstone <sunstone>`, can be retrieved using the XML-RPC methods :ref:`one.vm.monitoring <api#onevmmonitoring>` and :ref:`one.vmpool.monitoring <api#onevmpoolmonitoring>`.
+-  The monitoring information, shown with nice graphs in :ref:`Sunstone <sunstone>`, can be retrieved using the XML-RPC methods :ref:`one.vm.monitoring and one.vmpool.monitoring <api>`.
 
 .. |Virtual Machine States| image:: /images/states-simple.png
 .. |image2| image:: /images/sunstone_vm_attach.png

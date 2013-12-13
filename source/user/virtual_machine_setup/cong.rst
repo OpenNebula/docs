@@ -6,7 +6,7 @@ Advanced Contextualization
 
 There are two contextualization mechanisms available in OpenNebula: the automatic IP assignment, and a more generic way to give any file and configuration parameters. You can use any of them individually, or both.
 
-You can use already made packages that install context scripts and prepare udev configuration in your appliances. This is described in :ref:`Contextualization Packages for VM Images <#contextualization_packages_for_vm_images>` section.
+You can use already made packages that install context scripts and prepare udev configuration in your appliances. This is described in :ref:`Contextualization Packages for VM Images <cong_generating_custom_contextualization_packages>` section.
 
 Automatic IP Assignment
 =======================
@@ -146,23 +146,23 @@ The file generated will be something like this:
 
 Some of the variables have special meanings, but none of them are mandatory:
 
-+---------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Attribute           | Description                                                                                                                                                                                                                                                                                             |
-+=====================+=========================================================================================================================================================================================================================================================================================================+
-| **files\_ds**       | Files that will be included in the contextualization image. Each file must be stored in a FILE\_DS Datastore and must be of type CONTEXT                                                                                                                                                                |
-+---------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **target**          | device where the contextualization image will be available to the VM instance. Please note that the proper device mapping may depend on the guest OS, e.g. ubuntu VMs should use hd\* as the target device                                                                                              |
-+---------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **file**            | Files and directories that will be included in the contextualization image. Specified as absolute paths, by default this **can be used only by oneadmin**.                                                                                                                                              |
-+---------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **init\_scripts**   | If you want the VM to execute an script that is not called init.sh (or if you want to call more than just one script),this list contains the scripts to run and their order. Ex. ``init.sh users.sh mysql.sh`` will force the VM to execute init.sh , then users.sh and lastly mysql.sh at boot time'   |
-+---------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **TOKEN**           | “YES” to create a token.txt file for :ref:`OneGate monitorization <onegate_usage>`                                                                                                                                                                                                                         |
-+---------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **NETWORK**         | “YES” to fill automatically the networking parameters for each NIC, used by the :ref:`Contextualization packages <context_overview>`                                                                                                                                                                       |
-+---------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++-------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|     Attribute     |                                                                                                                                              Description                                                                                                                                              |
++===================+=======================================================================================================================================================================================================================================================================================================+
+| **files\_ds**     | Files that will be included in the contextualization image. Each file must be stored in a FILE\_DS Datastore and must be of type CONTEXT                                                                                                                                                              |
++-------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **target**        | device where the contextualization image will be available to the VM instance. Please note that the proper device mapping may depend on the guest OS, e.g. ubuntu VMs should use hd\* as the target device                                                                                            |
++-------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **file**          | Files and directories that will be included in the contextualization image. Specified as absolute paths, by default this **can be used only by oneadmin**.                                                                                                                                            |
++-------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **init\_scripts** | If you want the VM to execute an script that is not called init.sh (or if you want to call more than just one script),this list contains the scripts to run and their order. Ex. ``init.sh users.sh mysql.sh`` will force the VM to execute init.sh , then users.sh and lastly mysql.sh at boot time' |
++-------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **TOKEN**         | ``YES`` to create a token.txt file for :ref:`OneGate monitorization <onegate_usage>`                                                                                                                                                                                                                  |
++-------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **NETWORK**       | ``YES`` to fill automatically the networking parameters for each NIC, used by the :ref:`Contextualization packages <context_overview>`                                                                                                                                                                |
++-------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-.. warning:: A default target attribute is :ref:`generated automatically <template#disks_device_mapping>` by OpenNebula, based on the default device prefix set at :ref:`oned.conf <oned_conf#image_repository>`.
+.. warning:: A default target attribute is :ref:`generated automatically <template_disks_device_mapping>` by OpenNebula, based on the default device prefix set at :ref:`oned.conf <oned_conf>`.
 
 Contextualization Packages for VM Images
 ----------------------------------------
@@ -180,7 +180,7 @@ Contextualization packages are available to several distributions so you can pre
 
 .. warning:: These packages are destructive. The configuration for networking will be deleted. Make sure to use this script on copies of your images.
 
-Instructions on how to install the contextualization packages are located in the :ref:`contextualization overview documentation <context_overview#preparing_the_virtual_machine_image>`.
+Instructions on how to install the contextualization packages are located in the :ref:`contextualization overview documentation <context_overview>`.
 
 After the installation of these packages the images on start will configure the network using the mac address generated by OpenNebula. They will also try to mount the cdrom context image from ``/dev/cdrom`` and if ``init.sh`` is found it will be executed.
 
@@ -274,6 +274,8 @@ When this template is instantiated, the context section will contain all the rel
       NETWORK="YES",
       SSH_PUBLIC_KEY="ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC+vPFFwem49zcepQxsyO51YMSpuywwt6GazgpJe9vQzw3BA97tFrU5zABDLV6GHnI0/ARqsXRX1mWGwOlZkVBl4yhGSK9xSnzBPXqmKdb4TluVgV5u7R5ZjmVGjCYyYVaK7BtIEx3ZQGMbLQ6Av3IFND+EEzf04NeSJYcg9LA3lKIueLHNED1x/6e7uoNW2/VvNhKK5Ajt56yupRS9mnWTjZUM9cTvlhp/Ss1T10iQ51XEVTQfS2VM2y0ZLdfY5nivIIvj5ooGLaYfv8L4VY57zTKBafyWyRZk1PugMdGHxycEh8ek8VZ3wUgltnK+US3rYUTkX9jj+Km/VGhDRehp user@host"
       TARGET="hda" ]
+
+.. _cong_generating_custom_contextualization_packages:
 
 Generating Custom Contextualization Packages
 ============================================

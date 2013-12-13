@@ -15,7 +15,7 @@ Images in the marketplace are just direct installation of OS, prepared to run wi
 
 -  Disable udev network rule writing, usually images are cloned multiple times, using different MAC addresses each time. In this case, you'll need to disable udev to prevent getting a new interface each time.
 
-These both steps can be automated in some distributions (Debian, Ubuntu, CentOS and RHEL) using preparation packages. You can find the packages and more information about them at the :ref:`Contextualization Packages for VM Images <context_overview#preparing_the_virtual_machine_image>` section.
+These both steps can be automated in some distributions (Debian, Ubuntu, CentOS and RHEL) using preparation packages. You can find the packages and more information about them at the :ref:`Contextualization Packages for VM Images <context_overview>` section.
 
 Add OpenNebula Contextualization Script
 ---------------------------------------
@@ -32,7 +32,7 @@ Most linux distribution upon start search for new devices and write the configur
 Tutorial: Preparing an Ubuntu 12.04 Xen for the Marketplace
 ===========================================================
 
-The installation is based on the `Ubuntu documentation <https://help.ubuntu.com/community/XenProposed>`__. Check the part called “Manually creating a PV Guest VM”
+The installation is based on the `Ubuntu documentation <https://help.ubuntu.com/community/XenProposed#Manually_creating_a_PV_Guest_VM>`__.
 
 You will need a machine where xen is correctly configured, a bridge with internet connection and a public IP or a private IP with access to a router that can connecto the internet.
 

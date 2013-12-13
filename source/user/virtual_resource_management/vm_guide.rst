@@ -20,6 +20,8 @@ A Virtual Machine within the OpenNebula system consists of:
 
 The above items, plus some additional VM attributes like the OS kernel and context information to be used inside the VM, are specified in a template file.
 
+.. _vm_guide_defining_a_vm_in_3_steps:
+
 Defining a VM in 3 Steps
 ========================
 
@@ -146,7 +148,7 @@ The following example shows a VM Template file with a couple of disks and a netw
 .. code::
 
     NAME   = test-vm
-    MEMORY = 128 
+    MEMORY = 128
     CPU    = 1
      
     DISK = [ IMAGE  = "Arch Linux" ]
@@ -155,7 +157,7 @@ The following example shows a VM Template file with a couple of disks and a netw
      
     NIC = [ NETWORK = "Public", NETWORK_UNAME="oneadmin" ]
      
-    GRAPHICS = [ 
+    GRAPHICS = [
       TYPE    = "vnc",
       LISTEN  = "0.0.0.0"]
 
@@ -164,31 +166,31 @@ Simple templates can be also created using the command line instead of creating 
 +----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Parameter                  | Description                                                                                                                                                                                                   |
 +============================+===============================================================================================================================================================================================================+
-| ``–name name``             | Name for the VM                                                                                                                                                                                               |
+| ``-name name``             | Name for the VM                                                                                                                                                                                               |
 +----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``–cpu cpu``               | CPU percentage reserved for the VM (1=100% one CPU)                                                                                                                                                           |
+| ``-cpu cpu``               | CPU percentage reserved for the VM (1=100% one CPU)                                                                                                                                                           |
 +----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``–vcpu vcpu``             | Number of virtualized CPUs                                                                                                                                                                                    |
+| ``-vcpu vcpu``             | Number of virtualized CPUs                                                                                                                                                                                    |
 +----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``–arch arch``             | Architecture of the VM, e.g.: i386 or x86\_64                                                                                                                                                                 |
+| ``-arch arch``             | Architecture of the VM, e.g.: i386 or x86\_64                                                                                                                                                                 |
 +----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``–memory memory``         | Memory ammount given to the VM                                                                                                                                                                                |
+| ``-memory memory``         | Memory ammount given to the VM                                                                                                                                                                                |
 +----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``–disk disk0,disk1``      | Disks to attach. To use a disk owned by other user use user[disk]                                                                                                                                             |
+| ``-disk disk0,disk1``      | Disks to attach. To use a disk owned by other user use user[disk]                                                                                                                                             |
 +----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``–nic vnet0,vnet1``       | Networks to attach. To use a network owned by other user use user[network]                                                                                                                                    |
+| ``-nic vnet0,vnet1``       | Networks to attach. To use a network owned by other user use user[network]                                                                                                                                    |
 +----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``–raw string``            | Raw string to add to the template. Not to be confused with the RAW attribute. If you want to provide more than one element, just include an enter inside quotes, instead of using more than one –raw option   |
+| ``-raw string``            | Raw string to add to the template. Not to be confused with the RAW attribute. If you want to provide more than one element, just include an enter inside quotes, instead of using more than one -raw option   |
 +----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``–vnc``                   | Add VNC server to the VM                                                                                                                                                                                      |
+| ``-vnc``                   | Add VNC server to the VM                                                                                                                                                                                      |
 +----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``–ssh [file]``            | Add an ssh public key to the context. If the file is omited then the user variable SSH\_PUBLIC\_KEY will be used.                                                                                             |
+| ``-ssh [file]``            | Add an ssh public key to the context. If the file is omited then the user variable SSH\_PUBLIC\_KEY will be used.                                                                                             |
 +----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``–net_context``           | Add network contextualization parameters                                                                                                                                                                      |
+| ``-net_context``           | Add network contextualization parameters                                                                                                                                                                      |
 +----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``–context line1,line2``   | Lines to add to the context section                                                                                                                                                                           |
+| ``-context line1,line2``   | Lines to add to the context section                                                                                                                                                                           |
 +----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``–boot device``           | Select boot device (``hd``, ``fd``, ``cdrom`` or ``network``)                                                                                                                                                 |
+| ``-boot device``           | Select boot device (``hd``, ``fd``, ``cdrom`` or ``network``)                                                                                                                                                 |
 +----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 A similar template as the previous example can be created with the following command:
@@ -217,9 +219,9 @@ You can use the ``onetemplate list`` command to check the available Templates in
 
     $ onetemplate list a
       ID USER     GROUP    NAME                         REGTIME
-       0 oneadmin oneadmin template-0            09/27 09:37:00 
-       1 oneuser  users    template-1            09/27 09:37:19 
-       2 oneadmin oneadmin Ubuntu_server         09/27 09:37:42 
+       0 oneadmin oneadmin template-0            09/27 09:37:00
+       1 oneuser  users    template-1            09/27 09:37:19
+       2 oneadmin oneadmin Ubuntu_server         09/27 09:37:42
 
 To get complete information about a Template, use ``onetemplate show``.
 
@@ -302,7 +304,7 @@ The commands ``onetemplate publish`` and ``onetemplate unpublish`` are still pre
 Instantiating Templates
 =======================
 
-The ``onetemplate instantiate`` command accepts a Template ID or name, and creates a VM instance (you can define the number of instances using the ``–multiple num_of_instances`` option) from the given template.
+The ``onetemplate instantiate`` command accepts a Template ID or name, and creates a VM instance (you can define the number of instances using the ``-multiple num_of_instances`` option) from the given template.
 
 .. code::
 
@@ -324,7 +326,7 @@ You can also merge another template to the one being instantiated. The new attri
     $ onetemplate instantiate 6 /tmp/file
     VM ID: 1
 
-The same options to create new templates can be used to be merged with an existing one. See the above table, or execute 'onetemplate instantiate –help' for a complete reference.
+The same options to create new templates can be used to be merged with an existing one. See the above table, or execute 'onetemplate instantiate -help' for a complete reference.
 
 .. code::
 
@@ -336,7 +338,7 @@ Merge Use Case
 
 The template merge functionality, combined with the restricted attibutes, can be used to allow users some degree of customization for predefined templates.
 
-Let's say the administrator wants to provide base templates that the users can customize, but with some restrictions. Having the following :ref:`restricted attributes in oned.conf <oned_conf#restricted_attributes_configuration>`:
+Let's say the administrator wants to provide base templates that the users can customize, but with some restrictions. Having the following :ref:`restricted attributes in oned.conf <oned_conf_restricted_attributes_configuration>`:
 
 .. code::
 

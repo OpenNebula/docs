@@ -446,6 +446,8 @@ Sample configuration:
      
     DEFAULT_UMASK = 177
 
+.. _oned_conf_restricted_attributes_configuration:
+
 Restricted Attributes Configuration
 ===================================
 

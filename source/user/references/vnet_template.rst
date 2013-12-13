@@ -15,27 +15,27 @@ There are two types of Virtual Networks, ranged and fixed. Their only difference
 
 These are the common attributes for both types of VNets:
 
-+----------------------+----------------+-------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------+
-| Attribute            | Value          | Description                                                                                                                               | Mandatory                             |
-+======================+================+===========================================================================================================================================+=======================================+
-| **NAME**             | String         | Name of the Virtual Network                                                                                                               | YES                                   |
-+----------------------+----------------+-------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------+
-| **BRIDGE**           | String         | Name of the physical bridge in the physical host where the VM should connect its network interface                                        | YES if PHYDEV is not set              |
-+----------------------+----------------+-------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------+
-| **TYPE**             | RANGED/FIXED   | Type of this VNet                                                                                                                         | YES                                   |
-+----------------------+----------------+-------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------+
-| **VLAN**             | YES/NO         | Whether or not to isolate this virtual network using the :ref:`Virtual Network Manager drivers <nm>`. If omitted, the default value is NO.   | NO                                    |
-+----------------------+----------------+-------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------+
-| **VLAN\_ID**         | Integer        | Optional VLAN id for the :ref:`802.1Q <hm-vlan>` and :ref:`Open vSwitch <openvswitch>` networking drivers.                                      | NO                                    |
-+----------------------+----------------+-------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------+
-| **PHYDEV**           | String         | Name of the physical network device that will be attached to the bridge.                                                                  | YES for :ref:`802.1Q <hm-vlan>` driver   |
-+----------------------+----------------+-------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------+
-| **SITE\_PREFIX**     | String         | IPv6 unicast local addresses (ULAs). Must be a valid IPv6                                                                                 | Optional                              |
-+----------------------+----------------+-------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------+
-| **GLOBAL\_PREFIX**   | String         | IPv6 global unicast addresses. Must be a valid IPv6                                                                                       | Optional                              |
-+----------------------+----------------+-------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------+
++--------------------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------+
+|     Attribute      |    Value     |                                                                Description                                                                 |               Mandatory                |
++====================+==============+============================================================================================================================================+========================================+
+| **NAME**           | String       | Name of the Virtual Network                                                                                                                | YES                                    |
++--------------------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------+
+| **BRIDGE**         | String       | Name of the physical bridge in the physical host where the VM should connect its network interface                                         | YES if PHYDEV is not set               |
++--------------------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------+
+| **TYPE**           | RANGED/FIXED | Type of this VNet                                                                                                                          | YES                                    |
++--------------------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------+
+| **VLAN**           | YES/NO       | Whether or not to isolate this virtual network using the :ref:`Virtual Network Manager drivers <nm>`. If omitted, the default value is NO. | NO                                     |
++--------------------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------+
+| **VLAN\_ID**       | Integer      | Optional VLAN id for the :ref:`802.1Q <hm-vlan>` and :ref:`Open vSwitch <openvswitch>` networking drivers.                                 | NO                                     |
++--------------------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------+
+| **PHYDEV**         | String       | Name of the physical network device that will be attached to the bridge.                                                                   | YES for :ref:`802.1Q <hm-vlan>` driver |
++--------------------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------+
+| **SITE\_PREFIX**   | String       | IPv6 unicast local addresses (ULAs). Must be a valid IPv6                                                                                  | Optional                               |
++--------------------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------+
+| **GLOBAL\_PREFIX** | String       | IPv6 global unicast addresses. Must be a valid IPv6                                                                                        | Optional                               |
++--------------------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------+
 
-Please note that any arbitrary value can be set in the Virtual Network template, and then used in the :ref:`contextualization <cong>` section of the VM. For instance, NETWORK\_GATEWAY=“x.x.x.x” might be used to define the Virtual Network, and then used in the context section of the VM to configure its network to connect through the GATEWAY.
+Please note that any arbitrary value can be set in the Virtual Network template, and then used in the :ref:`contextualization <cong>` section of the VM. For instance, NETWORK\_GATEWAY="x.x.x.x" might be used to define the Virtual Network, and then used in the context section of the VM to configure its network to connect through the GATEWAY.
 
 If you need OpenNebula to generate IPv6 addresses, that can be later used in context or for Virtual Router appliances, you can use the ``GLOBAL_PREFIX`` and ``SITE_PREFIX`` attributes
 
@@ -80,7 +80,7 @@ Fixed VNets need a series of ``LEASES`` vector attributes, defined with the foll
 | **MAC**         | MAC address   | MAC associated to this IP   | NO          |
 +-----------------+---------------+-----------------------------+-------------+
 
-.. warning:: The optional MAC attribute will overwrite the default MAC\_PREFIX:IP rule. Be aware that this will break the default :ref:`contextualization mechanism <cong#using_virtual_network_leases_within_a_virtual_machine>`.
+.. warning:: The optional MAC attribute will overwrite the default MAC\_PREFIX:IP rule. Be aware that this will break the default :ref:`contextualization mechanism <cong>`.
 
 Ranged Virtual Networks
 -----------------------

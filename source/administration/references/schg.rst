@@ -31,6 +31,8 @@ The policy used to place a VM can be configured in two places:
 -  For each VM, as defined by the SCHED\_RANK and SCHED\_DS\_RANK attributes in the VM template.
 -  Globally for all the VMs in the ``sched.conf`` file
 
+.. _schg_re-scheduling_virtual_machines:
+
 Re-Scheduling Virtual Machines
 ------------------------------
 

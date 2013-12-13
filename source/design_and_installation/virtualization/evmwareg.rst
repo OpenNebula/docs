@@ -108,17 +108,17 @@ Here is a recipe to make the configuration needed for OpenNebula persistent acro
 
     # vi /etc/rc.local
        ## Add this at the bottom of the file
-       
+
     mkdir /etc/ssh/keys-oneadmin
     cat > /etc/ssh/ssh-oneadmin/authorized_keys << _SSH_HEYS_
     ssh-rsa <really long string with oneadmin's ssh public key>
     _SSH_KEYS_
-    chmod 600 /etc/ssh/keys-oneadmin/authorized_keys  
+    chmod 600 /etc/ssh/keys-oneadmin/authorized_keys
     chmod +s /sbin/vmkfstools /bin/vim-cmd
     chmod 755 /etc/ssh/keys-oneadmin
     chown oneadmin /etc/ssh/keys-oneadmin/authorized_keys
 
-    # /sbin/auto-backup.sh 
+    # /sbin/auto-backup.sh
 
 This information was based on this `blog post <http://www.virtuallyghetto.com/2011/08/how-to-persist-configuration-changes-in.html>`__.
 
@@ -213,6 +213,8 @@ or for pre-defined networking
 .. code::
 
     $ onehost create esx-host -i vmware -v vmware -n dummy
+
+.. _evmwareg_usage:
 
 Usage
 =====

@@ -6,15 +6,15 @@ Virtual Machine Definition File
 
 A template file consists of a set of attributes that defines a Virtual Machine. Using the command ``onetemplate create``, a template can be registered in OpenNebula to be later instantiated. For compatibility with previous versions, you can also create a new Virtual Machine directly from a template file, using the ``onevm create`` command.
 
-.. warning:: There are some template attributes that can compromise the security of the system or the security of other VMs, and can be used **only** by users in the oneadmin group. These attributes can be configured in :ref:`oned.conf <oned_conf#restricted_attributes_configuration>`, the default ones are labeled with ``*`` in the following tables. See the complete list in the :ref:`Restricted Attributes <#restricted_attributes>` section.
+.. warning:: There are some template attributes that can compromise the security of the system or the security of other VMs, and can be used **only** by users in the oneadmin group. These attributes can be configured in :ref:`oned.conf <oned_conf>`, the default ones are labeled with ``*`` in the following tables. See the complete list in the :ref:`Restricted Attributes <template_restricted_attributes>` section.
 
 Syntax
 ======
 
 The syntax of the template file is as follows:
 
--  Anything behind the pound or hash sign (#) is a **comment**.
--  **Strings** are delimited with double quotes (”), if a double quote is part of the string it needs to be escaped (\\”).
+-  Anything behind the pound or hash sign ``#`` is a **comment**.
+-  **Strings** are delimited with double quotes ``"``, if a double quote is part of the string it needs to be escaped ``\\"``.
 -  **Single Attributes** are in the form:
 
 .. code::
@@ -93,6 +93,8 @@ Example:
       NAME   = test-vm
       MEMORY = 128
       CPU    = 1
+
+.. _template_os_and_boot_options_section:
 
 OS and Boot Options Section
 ===========================
@@ -197,7 +199,7 @@ Optional
 
 **DEV\_PREFIX**
 
-Prefix for the emulated device this image will be mounted at. For instance, “hd”, “sd”, or “vd” for KVM virtio. If omitted, the dev\_prefix attribute of the :ref:`Image <img_template>` will be used
+Prefix for the emulated device this image will be mounted at. For instance, ``hd``, ``sd``, or ``vd`` for KVM virtio. If omitted, the dev\_prefix attribute of the :ref:`Image <img_template>` will be used
 
 Optional
 
@@ -278,7 +280,7 @@ filesystem for **fs** images: ``ext2``, ``ext3``... ``raw`` will not format the 
 
 **DEV\_PREFIX**
 
-Prefix for the emulated device this image will be mounted at. For instance, “hd”, “sd”. If omitted, the default dev\_prefix set in :ref:`oned.conf <oned_conf>` will be used
+Prefix for the emulated device this image will be mounted at. For instance, ``hd``, ``sd``. If omitted, the default dev\_prefix set in :ref:`oned.conf <oned_conf>` will be used
 
 Optional
 
@@ -320,6 +322,8 @@ Optional
 
 -
 
+.. _template_disks_device_mapping:
+
 Disks Device Mapping
 --------------------
 
@@ -334,7 +338,7 @@ Please visit the guide for :ref:`managing images <img_guide>` and the :ref:`imag
 
 You can find a complete description of the contextualization features in the :ref:`contextualization guide <cong>`.
 
-The default device prefix ``sd`` can be changed to ``hd`` or other prefix that suits your virtualization hypervisor requirements. You can find more information in the :ref:`daemon configuration guide <oned_conf#image_repository>`.
+The default device prefix ``sd`` can be changed to ``hd`` or other prefix that suits your virtualization hypervisor requirements. You can find more information in the :ref:`daemon configuration guide <oned_conf>`.
 
 An Example
 ----------
@@ -704,7 +708,7 @@ Any variable included in the Host template or its Cluster template can be used i
 
 There is a special variable, ``CURRENT_VMS``, that can be used to deploy VMs in a Host where other VMs are (not) running. It can be used only with the operators '=' and '!='
 
-.. warning:: Check the :ref:`Monitoring Subsystem <img>` guide to find out how to extend the information model and add any information probe to the Hosts.
+.. warning:: Check the :ref:`Monitoring Subsystem <devel-im>` guide to find out how to extend the information model and add any information probe to the Hosts.
 
 .. warning:: There are some predefined variables that can be used: ``NAME``, ``TOTALCPU``, ``TOTALMEMORY``, ``FREEMEMORY``, ``FREECPU``, ``USEDMEMORY``, ``USEDCPU``, ``HYPERVISOR``
 
@@ -812,6 +816,8 @@ Add a guest type and a specific scsi controller to a vmware VM:
       DATA_VMX = "pciBridge0.present = \"TRUE\"\nguestOS=\"windows7srv-64\""
     ]
 
+.. _template_restricted_attributes:
+
 Restricted Attributes
 =====================
 
@@ -823,5 +829,5 @@ All the **default** restricted attributes to users in the oneadmin group are sum
 -  NIC/VLAN\_ID
 -  SCHED\_RANK
 
-These attributes can be configured in :ref:`oned.conf <oned_conf#restricted_attributes_configuration>`.
+These attributes can be configured in :ref:`oned.conf <oned_conf>`.
 

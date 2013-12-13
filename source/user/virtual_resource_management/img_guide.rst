@@ -45,7 +45,7 @@ Image Life-cycle
 +---------------+-----------------+------------------------------------------------------------------------------------------------------------------+
 | ``disa``      | ``DISABLED``    | Image disabled by the owner, it cannot be used by new VMs.                                                       |
 +---------------+-----------------+------------------------------------------------------------------------------------------------------------------+
-| ``err``       | ``ERROR``       | Error state, a FS operation failed. See the Image information with ``oneimage show`` for an error message.   |
+| ``err``       | ``ERROR``       | Error state, a FS operation failed. See the Image information with ``oneimage show`` for an error message.       |
 +---------------+-----------------+------------------------------------------------------------------------------------------------------------------+
 | ``dele``      | ``DELETE``      | The image is being deleted from the Datastore.                                                                   |
 +---------------+-----------------+------------------------------------------------------------------------------------------------------------------+
@@ -70,13 +70,13 @@ You can also manage your images using :ref:`Sunstone <sunstone>`. Select the Ima
 Create Images
 -------------
 
-.. warning:: For VMWare images, please read **also** the :ref:`VMware Drivers guide <evmwareg#images>`.
+.. warning:: For VMWare images, please read **also** the :ref:`VMware Drivers guide <evmwareg_usage>`.
 
 The three types of images can be created from an existing file, but for **datablock** images you can specify a size and filesystem type and let OpenNebula create an empty image in the datastore.
 
 If you want to create an **OS image**, you need to prepare a contextualized virtual machine, and extract its disk.
 
-Please read first the documentation about the MAC to IP mechanism in the :ref:`virtual network management documentation <vgg#using_the_leases_within_the_virtual_machine>`, and how to use contextualization :ref:`here <cong>`.
+Please read first the documentation about the MAC to IP mechanism in the :ref:`virtual network management documentation <vgg>`, and how to use contextualization :ref:`here <cong>`.
 
 Once you have a disk you want to upload, you need to create a new :ref:`image template <img_template>`, and submit it using the ``oneimage create`` command.
 
@@ -95,7 +95,7 @@ You need to choose the Datastore where to register the new Image. To know the av
 .. code::
 
     $ onedatastore list
-      ID NAME            CLUSTER  IMAGES TYPE   TM    
+      ID NAME            CLUSTER  IMAGES TYPE   TM
        1 default         -        1      fs     shared
 
 To submit the template, you just have to issue the command
@@ -110,29 +110,29 @@ You can also create images using just parameters in the ``oneimage create`` call
 +--------------------------------+---------------------------------------------------------------------------------------+
 | Parameter                      | Description                                                                           |
 +================================+=======================================================================================+
-| ``–name name``                 | Name of the new image                                                                 |
+| ``-name name``                 | Name of the new image                                                                 |
 +--------------------------------+---------------------------------------------------------------------------------------+
-| ``–description description``   | Description for the new Image                                                         |
+| ``-description description``   | Description for the new Image                                                         |
 +--------------------------------+---------------------------------------------------------------------------------------+
-| ``–type type``                 | Type of the new Image: OS, CDROM or DATABLOCK, FILE                                   |
+| ``-type type``                 | Type of the new Image: OS, CDROM or DATABLOCK, FILE                                   |
 +--------------------------------+---------------------------------------------------------------------------------------+
-| ``–persistent``                | Tells if the image will be persistent                                                 |
+| ``-persistent``                | Tells if the image will be persistent                                                 |
 +--------------------------------+---------------------------------------------------------------------------------------+
-| ``–prefix prefix``             | Device prefix for the disk (eg. hd, sd, xvd or vd)                                    |
+| ``-prefix prefix``             | Device prefix for the disk (eg. hd, sd, xvd or vd)                                    |
 +--------------------------------+---------------------------------------------------------------------------------------+
-| ``–target target``             | Device the disk will be attached to                                                   |
+| ``-target target``             | Device the disk will be attached to                                                   |
 +--------------------------------+---------------------------------------------------------------------------------------+
-| ``–path path``                 | Path of the image file                                                                |
+| ``-path path``                 | Path of the image file                                                                |
 +--------------------------------+---------------------------------------------------------------------------------------+
-| ``–driver driver``             | Driver to use image (raw, qcow2, tap:aio:...)                                         |
+| ``-driver driver``             | Driver to use image (raw, qcow2, tap:aio:...)                                         |
 +--------------------------------+---------------------------------------------------------------------------------------+
-| ``–disk_type disk_type``       | Type of the image (BLOCK, CDROM or FILE)                                              |
+| ``-disk_type disk_type``       | Type of the image (BLOCK, CDROM or FILE)                                              |
 +--------------------------------+---------------------------------------------------------------------------------------+
-| ``–source source``             | Source to be used. Useful for not file-based images                                   |
+| ``-source source``             | Source to be used. Useful for not file-based images                                   |
 +--------------------------------+---------------------------------------------------------------------------------------+
-| ``–size size``                 | Size in MB. Used for DATABLOCK type                                                   |
+| ``-size size``                 | Size in MB. Used for DATABLOCK type                                                   |
 +--------------------------------+---------------------------------------------------------------------------------------+
-| ``–fstype fstype``             | Type of file system to be built: ext2, ext3, ext4, ntfs, reiserfs, jfs, swap, qcow2   |
+| ``-fstype fstype``             | Type of file system to be built: ext2, ext3, ext4, ntfs, reiserfs, jfs, swap, qcow2   |
 +--------------------------------+---------------------------------------------------------------------------------------+
 
 To create the previous example image you can do it like this:
@@ -250,7 +250,7 @@ How to Use Images in Virtual Machines
 
 This a simple example on how to specify images as virtual machine disks. Please visit the :ref:`virtual machine user guide <vm_guide>` and the :ref:`virtual machine template <template>` documentation for a more thorough explanation.
 
-Assuming you have an OS image called “Ubuntu desktop” with ID 1, you can use it in your :ref:`virtual machine template <template>` as a DISK. When this machine is deployed, the first disk will be taken from the image repository.
+Assuming you have an OS image called *Ubuntu desktop* with ID 1, you can use it in your :ref:`virtual machine template <template>` as a DISK. When this machine is deployed, the first disk will be taken from the image repository.
 
 Images can be referred in a DISK in two different ways:
 
@@ -282,6 +282,8 @@ Images can be referred in a DISK in two different ways:
     CONTEXT = [
         files      = "/home/cloud/images/ubuntu-desktop/init.sh"  ]
 
+.. _img_guide_save_changes:
+
 Save Changes
 ------------
 
@@ -297,40 +299,40 @@ To know the ID of the disk you want to save, just take a look at the ``onevm sho
 .. code::
 
     $ onevm show 11
-    VIRTUAL MACHINE 11 INFORMATION                                                  
-    ID                  : 11                  
-    NAME                : ttylinux-11         
-    USER                : ruben               
-    GROUP               : oneadmin            
-    STATE               : PENDING             
-    LCM_STATE           : LCM_INIT            
-    RESCHED             : No                  
-    START TIME          : 03/08 22:24:57      
-    END TIME            : -                   
-    DEPLOY ID           : -                   
+    VIRTUAL MACHINE 11 INFORMATION
+    ID                  : 11
+    NAME                : ttylinux-11
+    USER                : ruben
+    GROUP               : oneadmin
+    STATE               : PENDING
+    LCM_STATE           : LCM_INIT
+    RESCHED             : No
+    START TIME          : 03/08 22:24:57
+    END TIME            : -
+    DEPLOY ID           : -
 
-    VIRTUAL MACHINE MONITORING                                                      
-    USED MEMORY         : 0K                  
-    USED CPU            : 0                   
-    NET_TX              : 0K                  
-    NET_RX              : 0K                  
+    VIRTUAL MACHINE MONITORING
+    USED MEMORY         : 0K
+    USED CPU            : 0
+    NET_TX              : 0K
+    NET_RX              : 0K
 
-    PERMISSIONS                                                                     
-    OWNER               : um-                 
-    GROUP               : ---                 
-    OTHER               : ---                 
+    PERMISSIONS
+    OWNER               : um-
+    GROUP               : ---
+    OTHER               : ---
 
-    VM DISKS                                                                        
+    VM DISKS
      ID TARGET IMAGE                               TYPE SAVE SAVE_AS
       0    hda ttylinux                            file   NO       -
       1    hdb raw - 100M                          fs     NO       -
 
-    VM NICS                                                                         
-    ID NETWORK      VLAN BRIDGE   IP              MAC              
+    VM NICS
+    ID NETWORK      VLAN BRIDGE   IP              MAC
      0 net_172        no vbr0     172.16.0.201    02:00:ac:10:00:c9
-                                  fe80::400:acff:fe10:c9                  
+                                  fe80::400:acff:fe10:c9
 
-    VIRTUAL MACHINE TEMPLATE                                                        
+    VIRTUAL MACHINE TEMPLATE
     CPU="1"
     GRAPHICS=[
       LISTEN="0.0.0.0",
@@ -344,13 +346,13 @@ To know the ID of the disk you want to save, just take a look at the ``onevm sho
 
 The IDs are assigned in the same order the disks were defined in the :ref:`VM template <template>`.
 
-The next command will register a new image called “SO upgrade”, that will be ready as soon as the VM is shut down. Till then the image will be locked, and so you cannot use it.
+The next command will register a new image called *SO upgrade*, that will be ready as soon as the VM is shut down. Till then the image will be locked, and so you cannot use it.
 
 .. code::
 
     $ onevm disk-snapshot ttylinux-11 0 "SO upgraded"
 
-This command copies disk 1 to the datastore with name “Backup of DB volume”, the image will be available once the image copy end:
+This command copies disk 1 to the datastore with name *Backup of DB volume*, the image will be available once the image copy end:
 
 .. code::
 
@@ -362,7 +364,7 @@ How to Use File Images in Virtual Machines
 KERNEL and RAMDISK
 ------------------
 
-KERNEL and RAMDISK type Images can be used in the OS/KERNEL\_DS and OS/INITRD\_DS attributes of the VM template. See the :ref:`complete reference <template#os_and_boot_options_section>` for more information.
+KERNEL and RAMDISK type Images can be used in the OS/KERNEL\_DS and OS/INITRD\_DS attributes of the VM template. See the :ref:`complete reference <template_os_and_boot_options_section>` for more information.
 
 Example:
 
@@ -376,7 +378,7 @@ Example:
 CONTEXT
 -------
 
-The :ref:`contextualization cdrom <context_overview>` can include CONTEXT type Images. Visit the :ref:`complete reference <template#context_section>` for more information.
+The :ref:`contextualization cdrom <context_overview>` can include CONTEXT type Images. Visit the :ref:`complete reference <template_context>` for more information.
 
 .. code::
 

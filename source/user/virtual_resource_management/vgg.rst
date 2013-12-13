@@ -194,7 +194,7 @@ To remove existing leases from the network, they must be free (i.e., not used by
 Hold and Release Leases
 -----------------------
 
-Leases can be temporarily be marked “on hold” state. These leases are reserved, they are part of the network, but they will not be assigned to any VM.
+Leases can be temporarily be marked ``on hold`` state. These leases are reserved, they are part of the network, but they will not be assigned to any VM.
 
 To do so, use the 'onevnet hold' and 'onevnet release' commands. You see the list of leases on hold with the 'onevnet show' command.
 
@@ -213,7 +213,7 @@ If you are using the Sunstone GUI, you can then easily add, remove, hold and rel
 Update the Virtual Network Template
 -----------------------------------
 
-The ``TEMPLATE`` section can hold any arbitrary data. You can use the ``onevnet update`` command to open an editor and edit or add new template attributes. These attributes can be later used in the :ref:`Virtual Machine Contextualization <template#context_section>`. For example:
+The ``TEMPLATE`` section can hold any arbitrary data. You can use the ``onevnet update`` command to open an editor and edit or add new template attributes. These attributes can be later used in the :ref:`Virtual Machine Contextualization <template_context>`. For example:
 
 .. code::
 
@@ -271,7 +271,7 @@ For example, to define VM with two network interfaces, one connected to ``Red LA
     NIC = [ NETWORK_ID = 0 ]
     NIC = [ NETWORK    = "Red LAN" ]
 
-Networks can be referred in a NIC in two different ways, see the :ref:`Simplified Virtual Machine Definition File documentation <vm_guide#defining_a_vm_in_3_steps>` for more information:
+Networks can be referred in a NIC in two different ways, see the :ref:`Simplified Virtual Machine Definition File documentation <vm_guide_defining_a_vm_in_3_steps>` for more information:
 
 -  NETWORK\_ID, using its ID as returned by the create operation
 -  NETWORK, using its name. In this case the name refers to one of the virtual networks owned by the user (names can not be repeated for the same user). If you want to refer to an NETWORK of other user you can specify that with NETWORK\_UID (by the uid of the user) or NETWORK\_UNAME (by the name of the user).
@@ -287,29 +287,29 @@ When the VM is submitted, OpenNebula will look for available IPs in the ``Blue L
 .. code::
 
     $ onevm show 0
-    VIRTUAL MACHINE 0 INFORMATION                                                   
-    ID                  : 0                   
-    NAME                : server              
-    USER                : oneadmin            
-    GROUP               : oneadmin            
-    STATE               : PENDING             
-    LCM_STATE           : LCM_INIT            
-    START TIME          : 12/13 06:59:07      
-    END TIME            : -                   
-    DEPLOY ID           : -                   
+    VIRTUAL MACHINE 0 INFORMATION
+    ID                  : 0
+    NAME                : server
+    USER                : oneadmin
+    GROUP               : oneadmin
+    STATE               : PENDING
+    LCM_STATE           : LCM_INIT
+    START TIME          : 12/13 06:59:07
+    END TIME            : -
+    DEPLOY ID           : -
 
     PERMISSIONS
     OWNER          : um-
     GROUP          : ---
     OTHER          : ---
 
-    VIRTUAL MACHINE MONITORING                                                      
-    NET_TX              : 0                   
-    NET_RX              : 0                   
-    USED MEMORY         : 0                   
-    USED CPU            : 0                   
+    VIRTUAL MACHINE MONITORING
+    NET_TX              : 0
+    NET_RX              : 0
+    USED MEMORY         : 0
+    USED CPU            : 0
 
-    VIRTUAL MACHINE TEMPLATE                                                        
+    VIRTUAL MACHINE TEMPLATE
     NAME=server
     NIC=[
       BRIDGE=vbr1,
@@ -345,38 +345,38 @@ Note that there are two LEASES on hold, and one LEASE used in each network
 .. code::
 
     $ onevnet show 1
-    VIRTUAL NETWORK 1 INFORMATION                                                   
-    ID             : 1                   
-    NAME           : Red LAN             
-    USER           : oneadmin            
-    GROUP          : oneadmin            
-    TYPE           : RANGED              
-    BRIDGE         : vbr0                
-    VLAN           : No                  
-    PHYSICAL DEVICE:                     
-    VLAN ID        :                     
-    USED LEASES    : 3                   
+    VIRTUAL NETWORK 1 INFORMATION
+    ID             : 1
+    NAME           : Red LAN
+    USER           : oneadmin
+    GROUP          : oneadmin
+    TYPE           : RANGED
+    BRIDGE         : vbr0
+    VLAN           : No
+    PHYSICAL DEVICE:
+    VLAN ID        :
+    USED LEASES    : 3
 
     PERMISSIONS
     OWNER          : um-
     GROUP          : ---
     OTHER          : ---
 
-    VIRTUAL NETWORK TEMPLATE                                                        
+    VIRTUAL NETWORK TEMPLATE
     DNS=192.168.0.1
     GATEWAY=192.168.0.1
     LOAD_BALANCER=192.168.0.3
     NETWORK_MASK=255.255.255.0
 
-    RANGE                                                                           
-    IP_START       : 192.168.0.1         
-    IP_END         : 192.168.0.254       
+    RANGE
+    IP_START       : 192.168.0.1
+    IP_END         : 192.168.0.254
 
-    LEASES ON HOLD                                                                  
+    LEASES ON HOLD
     LEASE=[ MAC="02:00:c0:a8:00:01", IP="192.168.0.1", IP6_LINK="fe80::400:c0ff:fea8:1", USED="1", VID="-1" ]
     LEASE=[ MAC="02:00:c0:a8:00:03", IP="192.168.0.3", IP6_LINK="fe80::400:c0ff:fea8:3", USED="1", VID="-1" ]
 
-    USED LEASES                                                                     
+    USED LEASES
 
     LEASE=[ MAC="02:00:c0:a8:00:02", IP="192.168.0.2", IP6_LINK="fe80::400:c0ff:fea8:2", USED="1", VID="4" ]
 

@@ -61,7 +61,7 @@ Once we have tailored the requirements to our needs (specially, CPU and MEMORY f
 
 .. code::
 
-    $ onetemplate create vm 
+    $ onetemplate create vm
     ID: 0
 
     $ onetemplate list
@@ -108,12 +108,12 @@ Next Steps
 
 You can now read the different guides describing how to define and manage virtual resources on your OpenNebula cloud:
 
--  :ref:`Virtual Networks <rel4.4:vgg>`
--  :ref:`Virtual Machine Images <rel4.4:img_guide>`
--  :ref:`Virtual Machine Templates <rel4.4:vm_guide>`
--  :ref:`Virtual Machine Instances <rel4.4:vm_guide_2>`
+-  :ref:`Virtual Networks <vgg>`
+-  :ref:`Virtual Machine Images <img_guide>`
+-  :ref:`Virtual Machine Templates <vm_guide>`
+-  :ref:`Virtual Machine Instances <vm_guide_2>`
 
-You can also install :ref:`OneFlow <rel4.4:oneapps_overview>` to allows users and administrators to define, execute and manage multi-tiered applications composed of interconnected Virtual Machines with auto-scaling.
+You can also install :ref:`OneFlow <oneapps_overview>` to allows users and administrators to define, execute and manage multi-tiered applications composed of interconnected Virtual Machines with auto-scaling.
 
 .. |image0| image:: /images/privatecloud.png
 .. |image1| image:: /images/userview.png
