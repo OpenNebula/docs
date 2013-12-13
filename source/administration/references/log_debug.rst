@@ -30,12 +30,12 @@ There are different log resources corresponding to different OpenNebula componen
 
 -  **Virtual Machines**: The information specific of the VM will be dumped in the log file ``/var/log/one/<vmid>.log``. All VMs controlled by OpenNebula have their folder, ``/var/lib/one/vms/<VID>``, or to the syslog if enabled. You can find the following information in it:
 
-   -  **Deployment description files** : Stored in ”\ ``deployment.<EXECUTION>``\ ”, where ``<EXECUTION>`` is the sequence number in the execution history of the VM (deployment.0 for the first host, deployment.1 for the second and so on).
-   -  **Transfer description files** : Stored in ”\ ``transfer.<EXECUTION>.<OPERATION>``\ ”, where ``<EXECUTION>`` is the sequence number in the execution history of the VM, ``<OPERATION>`` is the stage where the script was used, e.g. transfer.0.prolog, transfer.0.epilog, or transfer.1.cleanup.
+   -  **Deployment description files** : Stored in ``deployment.<EXECUTION>``, where ``<EXECUTION>`` is the sequence number in the execution history of the VM (deployment.0 for the first host, deployment.1 for the second and so on).
+   -  **Transfer description files** : Stored in ``transfer.<EXECUTION>.<OPERATION>``, where ``<EXECUTION>`` is the sequence number in the execution history of the VM, ``<OPERATION>`` is the stage where the script was used, e.g. transfer.0.prolog, transfer.0.epilog, or transfer.1.cleanup.
 
--  **Drivers**: Each driver can have activated its **ONE\_MAD\_DEBUG** variable in their **RC** files (see the :ref:`Drivers configuration section <cg#drivers_configuration>` for more details). If so, error information will be dumped to ``/var/log/one/name-of-the-driver-executable.log``; log information of the drivers is in ``oned.log``.
+-  **Drivers**: Each driver can have activated its **ONE\_MAD\_DEBUG** variable in their **RC** files. If so, error information will be dumped to ``/var/log/one/name-of-the-driver-executable.log``; log information of the drivers is in ``oned.log``.
 
-Logging Fromat
+Logging Format
 ==============
 
 The anatomy of an OpenNebula message for a file based logging system is the following:
@@ -50,7 +50,7 @@ In the case of syslog it follows the standard:
 
     date hostname process[pid]: [module][log_level]: message body
 
-Where module is any of the internal OpenNebula components: “VMM”, “ReM”, “TM”, etc. And the log\_level is a single character indicating the log level: I for info, D for debug, etc.
+Where module is any of the internal OpenNebula components: ``VMM``, ``ReM``, ``TM``, etc. And the log\_level is a single character indicating the log level: I for info, D for debug, etc.
 
 For the syslog, OpenNebula will also log the Virtual Machine events like this:
 
@@ -66,24 +66,24 @@ Virtual Machine errors can be checked by the owner or an administrator using the
 .. code::
 
     $ onevm show 0
-    VIRTUAL MACHINE 0 INFORMATION                                                   
-    ID                  : 0                   
-    NAME                : one-0               
-    USER                : oneadmin            
-    GROUP               : oneadmin            
-    STATE               : FAILED              
-    LCM_STATE           : LCM_INIT            
-    START TIME          : 07/19 17:44:20      
-    END TIME            : 07/19 17:44:31      
-    DEPLOY ID           : -                   
+    VIRTUAL MACHINE 0 INFORMATION
+    ID                  : 0
+    NAME                : one-0
+    USER                : oneadmin
+    GROUP               : oneadmin
+    STATE               : FAILED
+    LCM_STATE           : LCM_INIT
+    START TIME          : 07/19 17:44:20
+    END TIME            : 07/19 17:44:31
+    DEPLOY ID           : -
 
-    VIRTUAL MACHINE MONITORING                                                      
-    NET_TX              : 0                   
-    NET_RX              : 0                   
-    USED MEMORY         : 0                   
-    USED CPU            : 0                   
+    VIRTUAL MACHINE MONITORING
+    NET_TX              : 0
+    NET_RX              : 0
+    USED MEMORY         : 0
+    USED CPU            : 0
 
-    VIRTUAL MACHINE TEMPLATE                                                        
+    VIRTUAL MACHINE TEMPLATE
     CONTEXT=[
       FILES=/tmp/some_file,
       TARGET=hdb ]
@@ -95,7 +95,7 @@ Virtual Machine errors can be checked by the owner or an administrator using the
     NAME=one-0
     VMID=0
 
-    VIRTUAL MACHINE HISTORY                                                         
+    VIRTUAL MACHINE HISTORY
      SEQ        HOSTNAME REASON           START        TIME       PTIME
        0          host01   erro  07/19 17:44:31 00 00:00:00 00 00:00:00
 
@@ -111,24 +111,24 @@ Host errors can be checked executing the ``onehost show`` command:
 .. code::
 
     $ onehost show 1
-    HOST 1 INFORMATION                                                              
-    ID                    : 1                   
-    NAME                  : host01              
-    STATE                 : ERROR               
-    IM_MAD                : im_kvm              
-    VM_MAD                : vmm_kvm             
-    TM_MAD                : tm_shared              
+    HOST 1 INFORMATION
+    ID                    : 1
+    NAME                  : host01
+    STATE                 : ERROR
+    IM_MAD                : im_kvm
+    VM_MAD                : vmm_kvm
+    TM_MAD                : tm_shared
 
-    HOST SHARES                                                                     
-    MAX MEM               : 0                   
-    USED MEM (REAL)       : 0                   
-    USED MEM (ALLOCATED)  : 0                   
-    MAX CPU               : 0                   
-    USED CPU (REAL)       : 0                   
-    USED CPU (ALLOCATED)  : 0                   
-    RUNNING VMS           : 0                   
+    HOST SHARES
+    MAX MEM               : 0
+    USED MEM (REAL)       : 0
+    USED MEM (ALLOCATED)  : 0
+    MAX CPU               : 0
+    USED CPU (REAL)       : 0
+    USED CPU (ALLOCATED)  : 0
+    RUNNING VMS           : 0
 
-    MONITORING INFORMATION                                                          
+    MONITORING INFORMATION
     ERROR=[
       MESSAGE="Error monitoring host 1 : MONITOR FAILURE 1 Could not update remotes",
       TIMESTAMP="Tue Jul 19 17:17:22 2011" ]

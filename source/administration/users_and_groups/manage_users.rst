@@ -32,7 +32,7 @@ URL where the OpenNebula daemon is listening. If it is not set, CLI tools will u
 
 **ONE\_AUTH**
 
-Needs to point to **a file containing just a single line stating “username:password”**. If ONE\_AUTH is not defined, $HOME/.one/one\_auth will be used instead. If no auth file is present, OpenNebula cannot work properly, as this is needed by the core, the CLI, and the cloud components as well.
+Needs to point to **a file containing just a single line stating ``username:password``**. If ONE\_AUTH is not defined, $HOME/.one/one\_auth will be used instead. If no auth file is present, OpenNebula cannot work properly, as this is needed by the core, the CLI, and the cloud components as well.
 
 If OpenNebula was installed from sources in **self-contained mode** (this is not the default, and not recommended), these two variables must be also set. Usually, these are not needed.
 

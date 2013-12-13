@@ -14,9 +14,9 @@ OpenNebula comes with a ``match making`` scheduler (*mm\_sched*) that implements
 The match-making algorithm works as follows:
 
 -  Each disk of a running VM consumes storage from an Image Datastore. The VMs that require more storage than there is currently available are filtered out, and will remain in the 'pending' state.
--  Those hosts that do not meet the VM requirements (see the :ref:`''SCHED\_REQUIREMENTS'' attribute <template#placement_section>`) or do not have enough resources (available CPU and memory) to run the VM are filtered out.
--  The same happens for System Datastores: the ones that do not meet the DS requirements (see the :ref:`''SCHED\_DS\_REQUIREMENTS'' attribute <template>`) or do not have enough free storage are filtered out.
--  The :ref:`''SCHED\_RANK'' and ''SCHED\_DS\_RANK'' expressions <template#placement_section>` are evaluated upon the Host and Datastore list using the information gathered by the monitor drivers. Any variable reported by the monitor driver (or manually set in the Host or Datastore template) can be included in the rank expressions.
+-  Those hosts that do not meet the VM requirements (see the :ref:`SCHED\_REQUIREMENTS attribute <template_placement_section>`) or do not have enough resources (available CPU and memory) to run the VM are filtered out.
+-  The same happens for System Datastores: the ones that do not meet the DS requirements (see the :ref:`SCHED\_DS\_REQUIREMENTS attribute <template>`) or do not have enough free storage are filtered out.
+-  The :ref:`SCHED\_RANK and SCHED\_DS\_RANK expressions <template_placement_section>` are evaluated upon the Host and Datastore list using the information gathered by the monitor drivers. Any variable reported by the monitor driver (or manually set in the Host or Datastore template) can be included in the rank expressions.
 -  Those resources with a higher rank are used first to allocate VMs.
 
 This scheduler algorithm easily allows the implementation of several placement heuristics (see below) depending on the RANK expressions used.
@@ -42,7 +42,7 @@ This feature can be used by other components to trigger rescheduling action when
 Scheduling VM Actions
 ---------------------
 
-Users can schedule one or more VM actions to be executed at a certain date and time. The :ref:`onevm command <cli>` 'schedule' option will add a new SCHED\_ACTION attribute to the Virtual Machine editable template. Visit :ref:`the VM guide <vm_guide_2#scheduling_actions>` for more information.
+Users can schedule one or more VM actions to be executed at a certain date and time. The :ref:`onevm command <cli>` 'schedule' option will add a new SCHED\_ACTION attribute to the Virtual Machine editable template. Visit :ref:`the VM guide <vm_guide2_scheduling_actions>` for more information.
 
 Configuration
 =============
@@ -61,36 +61,36 @@ The behavior of the scheduler can be tuned to adapt it to your infrastructure wi
    -  ``RANK``: Arithmetic expression to rank suitable **hosts** based on their attributes.
    -  ``POLICY``: A predefined policy, it can be set to:
 
-+----------+---------------------------------------------------------------------------------------------------------------------------------+
-| POLICY   | DESCRIPTION                                                                                                                     |
-+==========+=================================================================================================================================+
-| 0        | :ref:`Packing <#packing_policy>`: Minimize the number of hosts in use by packing the VMs in the hosts to reduce VM fragmentation   |
-+----------+---------------------------------------------------------------------------------------------------------------------------------+
-| 1        | :ref:`Striping <#striping_policy>`: Maximize resources available for the VMs by spreading the VMs in the hosts                     |
-+----------+---------------------------------------------------------------------------------------------------------------------------------+
-| 2        | :ref:`Load-aware <#load-aware_policy>`: Maximize resources available for the VMs by using those nodes with less load               |
-+----------+---------------------------------------------------------------------------------------------------------------------------------+
-| 3        | **Custom**: Use a custom RANK                                                                                                   |
-+----------+---------------------------------------------------------------------------------------------------------------------------------+
-| 4        | :ref:`Fixed <#fixed_policy>`: Hosts will be ranked according to the PRIORITY attribute found in the Host or Cluster template       |
-+----------+---------------------------------------------------------------------------------------------------------------------------------+
++--------+-------------------------------------------------------------------------------------------------------------+
+| POLICY |                                                 DESCRIPTION                                                 |
++========+=============================================================================================================+
+|      0 | **Packing**: Minimize the number of hosts in use by packing the VMs in the hosts to reduce VM fragmentation |
++--------+-------------------------------------------------------------------------------------------------------------+
+|      1 | **Striping**: Maximize resources available for the VMs by spreading the VMs in the hosts                    |
++--------+-------------------------------------------------------------------------------------------------------------+
+|      2 | **Load-aware**: Maximize resources available for the VMs by using those nodes with less load                |
++--------+-------------------------------------------------------------------------------------------------------------+
+|      3 | **Custom**: Use a custom RANK                                                                               |
++--------+-------------------------------------------------------------------------------------------------------------+
+|      4 | **Fixed**: Hosts will be ranked according to the PRIORITY attribute found in the Host or Cluster template   |
++--------+-------------------------------------------------------------------------------------------------------------+
 
 -  ``DEFAULT_DS_SCHED``: Definition of the default storage scheduling algorithm.
 
    -  ``RANK``: Arithmetic expression to rank suitable **datastores** based on their attributes.
    -  ``POLICY``: A predefined policy, it can be set to:
 
-+----------+-----------------------------------------------------------------------------------------------------------------------------+
-| POLICY   | DESCRIPTION                                                                                                                 |
-+==========+=============================================================================================================================+
-| 0        | :ref:`Packing <#packing_policy1>`: Tries to optimize storage usage by selecting the DS with less free space                    |
-+----------+-----------------------------------------------------------------------------------------------------------------------------+
-| 1        | :ref:`Striping <#striping_policy1>`: Tries to optimize I/O by distributing the VMs across datastores                           |
-+----------+-----------------------------------------------------------------------------------------------------------------------------+
-| 2        | **Custom**: Use a custom RANK                                                                                               |
-+----------+-----------------------------------------------------------------------------------------------------------------------------+
-| 3        | :ref:`Fixed <#fixed_policy1>`: Datastores will be ranked according to the PRIORITY attribute found in the Datastore template   |
-+----------+-----------------------------------------------------------------------------------------------------------------------------+
++--------+----------------------------------------------------------------------------------------------------------+
+| POLICY |                                               DESCRIPTION                                                |
++========+==========================================================================================================+
+|      0 | **Packing**:: Tries to optimize storage usage by selecting the DS with less free space                   |
++--------+----------------------------------------------------------------------------------------------------------+
+|      1 | **Striping**: Tries to optimize I/O by distributing the VMs across datastores                            |
++--------+----------------------------------------------------------------------------------------------------------+
+|      2 | **Custom**: Use a custom RANK                                                                            |
++--------+----------------------------------------------------------------------------------------------------------+
+|      3 | **Fixed**: Datastores will be ranked according to the PRIORITY attribute found in the Datastore template |
++--------+----------------------------------------------------------------------------------------------------------+
 
 The optimal values of the scheduler parameters depend on the hypervisor, storage subsystem and number of physical hosts. The values can be derived by finding out the max number of VMs that can be started in your set up with out getting hypervisor related errors.
 
@@ -98,7 +98,6 @@ Sample Configuration:
 
 .. code::
 
-     
     ONED_PORT = 2633
 
     SCHED_INTERVAL = 30

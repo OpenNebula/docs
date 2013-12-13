@@ -30,7 +30,7 @@ This is how the permissions look in the terminal:
 
     [...]
 
-The previous output shows that for the Template 0, the owner user “oneuser1” has **USE** and **MANAGE** rights. Users in the group “users” have **USE** rights, and users that are not the owner or in the “users” group don't have any rights over this Template.
+The previous output shows that for the Template 0, the owner user ``oneuser1`` has **USE** and **MANAGE** rights. Users in the group ``users`` have **USE** rights, and users that are not the owner or in the ``users`` group don't have any rights over this Template.
 
 You can check what operations are allowed with each of the **USE**, **MANAGE** and **ADMIN** rights in the :ref:`xml-rpc reference documentation <api>`. In general these rights are associated with the following operations:
 

@@ -26,7 +26,7 @@ Daemon Configuration Attributes
    -  ``passwd`` (MySQL only): MySQL user's password.
    -  ``db_name`` (MySQL only): MySQL database name.
 
--  ``VNC_BASE_PORT`` : VNC ports for VMs can be automatically set to ``VNC_BASE_PORT`` + ``VMID``. Refer to the :ref:`VM template reference <template#i_o_devices_section>` for further information.
+-  ``VNC_BASE_PORT`` : VNC ports for VMs can be automatically set to ``VNC_BASE_PORT`` + ``VMID``. Refer to the :ref:`VM template reference <template>` for further information.
 -  ``VM_SUBMIT_ON_HOLD`` : Forces VMs to be created on hold state instead of pending. Values: YES or NO.
 -  ``LOG`` : Configure the logging system
 
@@ -200,7 +200,7 @@ The information drivers are used to gather information from the cluster nodes, a
 
 -  **arguments**: for the driver executable, usually a probe configuration file, can be an absolute path or relative to ``/etc/one/``.
 
-For more information on configuring the information and monitoring system and hints to extend it please check the :ref:`information driver configuration guide <img>`.
+For more information on configuring the information and monitoring system and hints to extend it please check the :ref:`information driver configuration guide <img_guide>`.
 
 Sample configuration:
 
@@ -239,7 +239,7 @@ Sample configuration:
 .. code::
 
     #-------------------------------------------------------------------------------
-    # Virtualization Driver Configuration                                           
+    # Virtualization Driver Configuration
     #-------------------------------------------------------------------------------
      
     VM_MAD = [
@@ -247,7 +247,7 @@ Sample configuration:
         executable = "one_vmm_ssh",
         arguments  = "-t 15 -r 0 kvm",
         default    = "vmm_ssh/vmm_ssh_kvm.conf",
-        type       = "kvm" ]           
+        type       = "kvm" ]
 
 Transfer Driver
 ===============
@@ -289,7 +289,7 @@ The configuration for each driver is defined in the TM\_MAD\_CONF section. These
    -  **SELF**: The image will be cloned in the Images datastore
    -  **SYSTEM**: The image will be cloned in the System datastore
 
--  **shared** : determines if the storage holding the system datastore is shared among the different hosts or not. Valid values: “yes” or “no”
+-  **shared** : determines if the storage holding the system datastore is shared among the different hosts or not. Valid values: *yes* or *no*.
 
 Sample configuration:
 
@@ -425,7 +425,7 @@ Auth Manager Configuration
 
 -  **SESSION\_EXPIRATION\_TIME**: Time in seconds to keep an authenticated token as valid. During this time, the driver is not used. Use 0 to disable session caching
 -  **ENABLE\_OTHER\_PERMISSIONS**: Whether or not to enable the permissions for 'other'. Users in the oneadmin group will still be able to change these permissions. Values: YES or NO
--  **DEFAULT\_UMASK**: Similar to Unix umask, sets the default resources permissions. Its format must be 3 octal digits. For example a umask of 137 will set the new object's permissions to 640 “um- u– —”
+-  **DEFAULT\_UMASK**: Similar to Unix umask, sets the default resources permissions. Its format must be 3 octal digits. For example a umask of 137 will set the new object's permissions to 640 ``um- u– —``
 
 Sample configuration:
 
