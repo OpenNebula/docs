@@ -87,6 +87,8 @@ Example of this section:
      
     #VM_SUBMIT_ON_HOLD = "NO"
 
+.. _oned_conf_xml_rpc_server_configuration:
+
 XML-RPC Server Configuration
 ============================
 
@@ -126,6 +128,8 @@ Sample configuration:
      
     NETWORK_SIZE = 254
     MAC_PREFIX   = "02:00"
+
+.. _oned_conf_datastores:
 
 Datastores
 ==========

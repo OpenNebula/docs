@@ -279,6 +279,8 @@ Use the ``oneuser chgrp`` command to assign users to groups.
 
 To delete a user from a group, just move it again to the default ``users`` group.
 
+.. _manage_users_primary_and_secondary_groups:
+
 Primary and Secondary Groups
 ----------------------------
 

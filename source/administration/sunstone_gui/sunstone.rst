@@ -36,6 +36,8 @@ OpenNebula Sunstone supports Firefox (> 3.5) and Chrome browsers. Internet Explo
 Configuration
 =============
 
+.. _sunstone_sunstone_server_conf:
+
 sunstone-server.conf
 --------------------
 
