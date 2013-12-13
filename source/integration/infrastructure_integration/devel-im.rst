@@ -16,7 +16,7 @@ The default probes are installed in the frontend in the following path:
 -  **KVM and Xen**: ``/var/lib/one/remotes/im/<hypervisor>-probes.d``
 -  **VMware and EC2**: ``/var/lib/one/remotes/im/<hypervisor>.d``
 
-In the case of ``KVM`` and ``Xen``, the probes are distributed to the hosts, therefore if the probes are changed, they **must be distributed to the hosts by running ``onehost sync``.
+In the case of ``KVM`` and ``Xen``, the probes are distributed to the hosts, therefore if the probes are changed, they **must** be distributed to the hosts by running ``onehost sync``.
 
 General Probe Structure
 =======================
@@ -56,6 +56,8 @@ Take into account that in shell script the parameters start at 1 (``$1``) and in
     monitor_push_cycle=$4
     host_id=$5
     host_name=$6
+
+.. _devel-im_basic_monitoring_scripts:
 
 Basic Monitoring Scripts
 ========================
@@ -111,6 +113,8 @@ Executing it should give use memory values:
 
 For real examples check the directories at ``/var/lib/one/remotes/im``.
 
+.. _devel-im_vm_information:
+
 VM Information
 ==============
 
@@ -130,15 +134,15 @@ The scripts should also provide information about the VMs running in the host. T
 
 The first line (``VM_POLL=YES``) is used to indicate OpenNebula that VM information will follow. Then the information about the VMs is output in that form.
 
-+--------------+--------------------------------------------------------------------------------+
-| Key          | Description                                                                    |
-+==============+================================================================================+
-| ID           | OpenNebula VM id. It can be -1 in case this VM was not created by OpenNebula   |
-+--------------+--------------------------------------------------------------------------------+
-| DEPLOY\_ID   | Hypervisor name or identifier of the VM                                        |
-+--------------+--------------------------------------------------------------------------------+
-| POLL         | VM monitoring info, in the same format as :ref:`VMM driver <devel-vmm>` poll      |
-+--------------+--------------------------------------------------------------------------------+
++------------+------------------------------------------------------------------------------+
+|    Key     |                                 Description                                  |
++============+==============================================================================+
+| ID         | OpenNebula VM id. It can be -1 in case this VM was not created by OpenNebula |
++------------+------------------------------------------------------------------------------+
+| DEPLOY\_ID | Hypervisor name or identifier of the VM                                      |
++------------+------------------------------------------------------------------------------+
+| POLL       | VM monitoring info, in the same format as :ref:`VMM driver <devel-vmm>` poll |
++------------+------------------------------------------------------------------------------+
 
 For example here is a simple script to get qemu/kvm VMs status from libvirt. As before, check the scripts from OpenNebula for a complete example:
 
