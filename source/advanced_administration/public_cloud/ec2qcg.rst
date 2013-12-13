@@ -26,6 +26,9 @@ The OpenNebula EC2 Query service was installed during the OpenNebula installatio
 
 If you installed OpenNebula from source you can install the EC2 Query dependencias as explained at the end of the :ref:`Building from Source Code guide <compile>`
 
+
+.. _ec2qcg_configuration:
+
 Configuration
 =============
 

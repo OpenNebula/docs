@@ -45,6 +45,8 @@ In this example we see a Virtual Machine with two associated disks. The Disk Ima
 
 .. warning:: To prevent regular users to copy system/secure files, the ``FILES`` attribute within ``CONTEXT`` is only allowed to OpenNebula users within the oneadmin group. ``FILES_DS`` can be used to include arbitrary files from Files Datastores.
 
+.. _cong_defining_context:
+
 Defining Context
 ----------------
 

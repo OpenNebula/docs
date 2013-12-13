@@ -6,6 +6,8 @@ Scheduler
 
 The Scheduler module is in charge of the assignment between pending Virtual Machines and known Hosts. OpenNebula's architecture defines this module as a separate process that can be started independently of ``oned``. The OpenNebula scheduling framework is designed in a generic way, so it is highly modifiable and can be easily replaced by third-party developments.
 
+.. _schg_the_match_making_scheduler:
+
 The Match-making Scheduler
 ==========================
 
@@ -43,6 +45,8 @@ Scheduling VM Actions
 ---------------------
 
 Users can schedule one or more VM actions to be executed at a certain date and time. The :ref:`onevm command <cli>` 'schedule' option will add a new SCHED\_ACTION attribute to the Virtual Machine editable template. Visit :ref:`the VM guide <vm_guide2_scheduling_actions>` for more information.
+
+.. _schg_configuration:
 
 Configuration
 =============

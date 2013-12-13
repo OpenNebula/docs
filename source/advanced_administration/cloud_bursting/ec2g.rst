@@ -164,6 +164,8 @@ Default values for all these attributes can be defined in the ``/etc/one/ec2_dri
       </EC2>
     </TEMPLATE>
 
+.. _ec2g_multi_ec2_site_region_account_support:
+
 Multi EC2 Site/Region/Account Support
 =====================================
 
