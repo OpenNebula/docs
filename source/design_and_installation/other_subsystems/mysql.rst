@@ -13,7 +13,7 @@ The two backends cannot coexist, and you will have to decide which one is going 
 Building OpenNebula with MySQL Support
 ======================================
 
-This section is only relevant if you are building OpenNebula from source. If you downloaded our compiled packages, you can skip to :ref:`Installation <mysql#installation>`.
+This section is only relevant if you are building OpenNebula from source. If you downloaded our compiled packages, you can skip to :ref:`Installation <mysql_installation>`.
 
 Requirements
 ------------
@@ -37,6 +37,8 @@ To compile OpenNebula from source with mysql support, you need the following opt
     $ scons mysql=yes
 
 Afterwards, installation proceeds normally, configuration needs to take into account the mysql server details, and for users of OpenNebula the DB backend is fully transparent.
+
+.. _mysql_installation:
 
 Installation
 ============

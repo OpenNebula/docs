@@ -13,7 +13,7 @@ The network filtering functionality is very similar to the :ref:`Firewall <firew
 Requirements
 ============
 
-This driver requires Open vSwitch to be installed on each OpenNebula Host. Follow the resources specified in :ref:`hosts\_configuration <#hosts_configuration>` to install it.
+This driver requires Open vSwitch to be installed on each OpenNebula Host. Follow the resources specified in :ref:`hosts\_configuration <openvswitch_hosts_configuration>` to install it.
 
 Considerations & Limitations
 ============================
@@ -32,6 +32,8 @@ OpenNebula ships with two sets of drivers that provide the same functionality: *
 
 Configuration
 =============
+
+.. _openvswitch_hosts_configuration:
 
 Hosts Configuration
 -------------------
@@ -56,15 +58,15 @@ To enable this driver, use **ovswitch** or **ovswitch\_brcompat** as the Virtual
 Driver Actions
 --------------
 
-+-------------+----------------------------------------------------------------------------------------------------------------+
-| Action      | Description                                                                                                    |
-+=============+================================================================================================================+
-| **Pre**     | -                                                                                                              |
-+-------------+----------------------------------------------------------------------------------------------------------------+
-| **Post**    | Performs the appropriate Open vSwitch commands to tag the virtual tap interface.                               |
-+-------------+----------------------------------------------------------------------------------------------------------------+
-| **Clean**   | It doesn't do anything. The virtual tap interfaces will be automatically discarded when the VM is shut down.   |
-+-------------+----------------------------------------------------------------------------------------------------------------+
++-----------+--------------------------------------------------------------------------------------------------------------+
+|   Action  |                                                 Description                                                  |
++===========+==============================================================================================================+
+| **Pre**   | N/A                                                                                                          |
++-----------+--------------------------------------------------------------------------------------------------------------+
+| **Post**  | Performs the appropriate Open vSwitch commands to tag the virtual tap interface.                             |
++-----------+--------------------------------------------------------------------------------------------------------------+
+| **Clean** | It doesn't do anything. The virtual tap interfaces will be automatically discarded when the VM is shut down. |
++-----------+--------------------------------------------------------------------------------------------------------------+
 
 Usage
 =====
@@ -92,11 +94,11 @@ Network Filtering
 
 The first rule that is always applied when using the Open vSwitch drivers is the MAC-spoofing rule, that prevents any traffic coming out of the VM if the user changes the MAC address.
 
-The firewall directives must be placed in the :ref:`network section <template#network_section>` of the Virtual Machine template. These are the possible attributes:
+The firewall directives must be placed in the :ref:`network section <template_network_section>` of the Virtual Machine template. These are the possible attributes:
 
--  **BLACK\_PORTS\_TCP = ``iptables_range``: Doesn't permit access to the VM through the specified ports in the TCP protocol. Superseded by WHITE\_PORTS\_TCP if defined.
--  **BLACK\_PORTS\_UDP = ``iptables_range``: Doesn't permit access to the VM through the specified ports in the UDP protocol. Superseded by WHITE\_PORTS\_UDP if defined.
--  **ICMP = drop**: Blocks ICMP connections to the VM. By default it's set to accept.
+-  ``BLACK\_PORTS\_TCP = iptables_range``: Doesn't permit access to the VM through the specified ports in the TCP protocol. Superseded by WHITE\_PORTS\_TCP if defined.
+-  ``BLACK\_PORTS\_UDP = iptables_range``: Doesn't permit access to the VM through the specified ports in the UDP protocol. Superseded by WHITE\_PORTS\_UDP if defined.
+-  ``ICMP = drop``: Blocks ICMP connections to the VM. By default it's set to accept.
 
 ``iptables_range``: a list of ports separated by commas, e.g.: ``80,8080``. Currently no ranges are supporteg, e.g.: ``5900:6000`` is **not** supported.
 
