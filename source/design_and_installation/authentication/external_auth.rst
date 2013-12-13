@@ -18,7 +18,7 @@ a) CLI Authentication
 
 You can choose from the following authentication drivers to access OpenNebula from the command line:
 
--  :ref:`Built-in User/Password <manage_users#adding_and_deleting_users>`
+-  :ref:`Built-in User/Password <manage_users_adding_and_deleting_users>`
 -  :ref:`SSH Authentication <ssh_auth>`
 -  :ref:`X509 Authentication <x509_auth>`
 -  :ref:`LDAP Authentication <ldap>`

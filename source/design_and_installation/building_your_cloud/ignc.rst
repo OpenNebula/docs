@@ -368,6 +368,8 @@ When prompted for password press enter so the private key is not encrypted.
 
 To test your configuration just verify that ``oneadmin`` can log in the hosts without being prompt for a password.
 
+.. _ignc_step_8_networking_configuration:
+
 Step 8. Networking Configuration
 ================================
 

@@ -117,6 +117,8 @@ where
 -  ``<user_dn>`` the DN of the user in the LDAP service
 -  ``ldap_password`` is the password of the user in the LDAP service
 
+.. _ldap_dn_with_special_characters:
+
 DN's With Special Characters
 ----------------------------
 
@@ -160,7 +162,7 @@ Update the ``/etc/one/sunstone-server.conf`` :auth parameter to use the ``openne
 
 Using this method the credentials provided in the login screen will be sent to the OpenNebula core and the authentication will be delegated to the OpenNebula auth system, using the specified driver for that user. Therefore any OpenNebula auth driver can be used through this method to authenticate the user (i.e: LDAP).
 
-To automatically encode credentials as explained in :ref:`DN's with special characters <#dn_s_with_special_characters>` section also add this parameter to sunstone configuration:
+To automatically encode credentials as explained in :ref:`DN's with special characters <ldap_dn_with_special_characters>` section also add this parameter to sunstone configuration:
 
 .. code::
 

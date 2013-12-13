@@ -27,7 +27,7 @@ Hosts Configuration
 OpenNebula Configuration
 ------------------------
 
-This Virtual Machine Network Manager driver can be used individually, or combined with the isolation features of either **:ref:`802.1Q <hm-vlan>`** or **:ref:`ebtables <ebtables>`**. However it's **not** currently supported with the **:ref:`ovswitch <openvswitch>`** drivers, they provide their own filtering mechanism.
+This Virtual Machine Network Manager driver can be used individually, or combined with the isolation features of either :ref:`802.1Q <hm-vlan>` or :ref:`ebtables <ebtables>`. However it's **not** currently supported with the :ref:`ovswitch <openvswitch>` drivers, they provide their own filtering mechanism.
 
 To enable firewalling without any network isolation features, use **fw** as the Virtual Network Manager driver parameter when the hosts are created with the :ref:`onehost command <host_guide>`:
 
@@ -40,20 +40,20 @@ The firewall driver is automatically enabled when any of the previously mentione
 Driver Actions
 --------------
 
-+-------------+--------------------------------------------------------------------------------+
-| Action      | Description                                                                    |
-+=============+================================================================================+
-| **Pre**     | -                                                                              |
-+-------------+--------------------------------------------------------------------------------+
-| **Post**    | Creates appropriate IPTABLES rules in the Host where the VM has been placed.   |
-+-------------+--------------------------------------------------------------------------------+
-| **Clean**   | Removes the IPTABLES rules created during the ``Post`` action.                 |
-+-------------+--------------------------------------------------------------------------------+
++-----------+------------------------------------------------------------------------------+
+|   Action  |                                 Description                                  |
++===========+==============================================================================+
+| **Pre**   | N/A                                                                          |
++-----------+------------------------------------------------------------------------------+
+| **Post**  | Creates appropriate IPTABLES rules in the Host where the VM has been placed. |
++-----------+------------------------------------------------------------------------------+
+| **Clean** | Removes the IPTABLES rules created during the ``Post`` action.               |
++-----------+------------------------------------------------------------------------------+
 
 Usage
 =====
 
-The firewall directives must be placed in the :ref:`network section <template#network_section>` of the Virtual Machine template. These are the possible attributes:
+The firewall directives must be placed in the :ref:`network section <template_network_section>` of the Virtual Machine template. These are the possible attributes:
 
 -  **WHITE\_PORTS\_TCP = ``iptables_range``: Permits access to the VM only through the specified ports in the TCP protocol. Supersedes BLACK\_PORTS\_TCP if defined.
 -  **BLACK\_PORTS\_TCP = ``iptables_range``: Doesn't permit access to the VM through the specified ports in the TCP protocol. Superseded by WHITE\_PORTS\_TCP if defined.

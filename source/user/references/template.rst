@@ -265,6 +265,8 @@ This a sample section for disks. There are four disks using the image repository
 
 Because this VM did not declare a CONTEXT or any disk using a CDROM Image, the first DATABLOCK found is placed right after the OS Image, in ``sdb``. For more information on image management and moving please check the :ref:`Storage guide <sm>`.
 
+.. _template_network_section:
+
 Network Section
 ===============
 

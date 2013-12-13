@@ -37,13 +37,13 @@ Follow these steps to change oneadmin's authentication method to x509:
 
 .. warning:: You should have another account in the oneadmin group, so you can revert these steps if the process fails.
 
--  :ref:`Change the oneadmin password <#update_existing_users_to_x509_multiple_dn>` to the oneadmin certificate DN.
+-  :ref:`Change the oneadmin password <x509_auth_update_existing_users_to_x509_multiple_dn>` to the oneadmin certificate DN.
 
 .. code::
 
     oneadmin@frontend $ oneuser chauth 0 x509 --x509 --cert /tmp/newcert.pem
 
--  :ref:`Add trusted CA certificates <#add_and_remove_trusted_ca_certificates>` to the certificates directory
+-  :ref:`Add trusted CA certificates <x509_auth_add_and_remove_trusted_ca_certificates>` to the certificates directory
 
 .. code::
 
@@ -52,7 +52,7 @@ Follow these steps to change oneadmin's authentication method to x509:
 
     $ sudo cp cacert.pem /etc/one/auth/certificates/78d0bbd8.0
 
--  :ref:`Create a login <#user_login>` for oneadmin using the –x509 option. This token has a default expiration time set to 1 hour, you can change this value using the option –time.
+-  :ref:`Create a login <x509_auth_user_login>` for oneadmin using the –x509 option. This token has a default expiration time set to 1 hour, you can change this value using the option –time.
 
 .. code::
 
@@ -68,6 +68,8 @@ Follow these steps to change oneadmin's authentication method to x509:
 
 Usage
 =====
+
+.. _x509_auth_add_and_remove_trusted_ca_certificates:
 
 Add and Remove Trusted CA Certificates
 --------------------------------------
@@ -100,6 +102,8 @@ This command will create a new user whose password contains the subject DN of hi
 
     oneadmin@frontend $ oneuser create newuser --x509 "user_subject_DN"
 
+.. _x509_auth_update_existing_users_to_x509_multiple_dn:
+
 Update Existing Users to x509 & Multiple DN
 -------------------------------------------
 
@@ -122,6 +126,8 @@ You can also map multiple certificates to the same OpenNebula account. Just add 
 .. code::
 
     oneadmin@frontend $ oneuser passwd <id|name> --x509 "/DC=es/O=one/CN=user|/DC=us/O=two/CN=user"
+
+.. _x509_auth_user_login:
 
 User Login
 ----------
