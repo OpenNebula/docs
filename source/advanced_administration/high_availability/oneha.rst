@@ -10,7 +10,7 @@ We will be using the classical active-passive cluster architecture which is the 
 
 If you are interested in failover protection against hardware and operating system outages within your virtualized IT environment, check the :ref:`Virtual Machines High Availability Guide <ftguide>`.
 
-This guide is structured in a “how-to” form using the Red Hat HA Cluster suite tested in a CentOS installation; but generic considerations and requirements for this setup are discussed to easily implement this solution with other systems.
+This guide is structured in a *how-to* form using the Red Hat HA Cluster suite tested in a CentOS installation; but generic considerations and requirements for this setup are discussed to easily implement this solution with other systems.
 
 Overview
 ========
@@ -36,7 +36,7 @@ As shown in the previous figure, we will use just one fail-over domain (blue) wi
 
 The following components will be installed and configured based on the RedHat Cluster suite:
 
-\* **Cluster management**, CMAN (cluster manager) and corosync. These components manage cluster membership and quorum. It prevents service corruption in a distributed setting because of a “split-brain” condition (e.g. two opennebulas updating the DB).
+\* **Cluster management**, CMAN (cluster manager) and corosync. These components manage cluster membership and quorum. It prevents service corruption in a distributed setting because of a *split-brain* condition (e.g. two opennebulas updating the DB).
 
 \* **Cluster configuration system**, CCS. It keeps and synchronizes the cluster configuration information. There are other windows-based configuration systems.
 
@@ -111,7 +111,7 @@ Now you should have a cluster with two nodes, note the specific quorum options f
     # ccs -h one-server1 --addfailoverdomain opennebula ordered
     # ccs -h one-server1 --addfailoverdomainnode opennebula one-server1 1
     # ccs -h one-server1 --addfailoverdomainnode opennebula one-server2 2
-    # ccs -h one-server1 --sync --activate 
+    # ccs -h one-server1 --sync --activate
 
 Step 4: Define the OpenNebula Service
 -------------------------------------
@@ -194,8 +194,8 @@ Now we need to generate a random key, for the virtual servers to communicate wit
 .. code::
 
     # mkdir /etc/cluster
-    # date +%s | sha256sum | base64 | head -c 32  > /etc/cluster/fence_xvm.key 
-    # chmod 400 /etc/cluster/fence_xvm.key 
+    # date +%s | sha256sum | base64 | head -c 32  > /etc/cluster/fence_xvm.key
+    # chmod 400 /etc/cluster/fence_xvm.key
 
 Finally configure the fence-virtd agent
 
@@ -267,7 +267,7 @@ Finally we need to add the fencing device to the cluster:
 
 .. code::
 
-    ccs --addfencedev libvirt-kvm agent=fence_xvm key_file="/etc/cluster/fence_xvm.key" multicast_address="225.0.0.12" ipport="1229" 
+    ccs --addfencedev libvirt-kvm agent=fence_xvm key_file="/etc/cluster/fence_xvm.key" multicast_address="225.0.0.12" ipport="1229"
 
 And let the servers use it:
 
@@ -289,7 +289,7 @@ What to Do After a Fail-over Event
 
 When the active node fails and the passive one takes control, it will start OpenNebula again. This OpenNebula will see the resources in the exact same way as the one in the server that crashed. However, there will be a set of Virtual Machines which will be stuck in transient states. For example when a Virtual Machine is deployed and it starts copying the disks to the target hosts it enters one of this transient states (in this case 'PROLOG'). OpenNebula will wait for the storage driver to return the 'PROLOG' exit status. This will never happen since the driver fails during the crash, therefore the Virtual Machine will get stuck in the state.
 
-In these cases it's important to review the states of all the Virtual Machines and let OpenNebula know if the driver exited succesfully or not. There is a command specific for this: ``onevm recover``. You can read more about this command in the :ref:`Managing Virtual Machines <rel4.2:vm_guide_2#life-cycle_operations_for_administrators>` guide.
+In these cases it's important to review the states of all the Virtual Machines and let OpenNebula know if the driver exited succesfully or not. There is a command specific for this: ``onevm recover``. You can read more about this command in the :ref:`Managing Virtual Machines <vm_guide_2>` guide.
 
 In our example we would need to manually check if the disk files have been properly deployed to our host and execute:
 

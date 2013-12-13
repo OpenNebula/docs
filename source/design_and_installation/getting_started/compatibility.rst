@@ -14,7 +14,7 @@ OpenNebula Administrators and Users
 Add-ons Catalog
 ---------------
 
--  There is a new initiative to host `OpenNebula add-ons in github <http://github.com/OpenNebula>`__. There you will find community-contributed components that may not be mature enough, or not general-purpose enough to be included in the main distribution.
+- There is a new initiative to host `OpenNebula add-ons in github <http://github.com/OpenNebula>`__. There you will find community-contributed components that may not be mature enough, or not general-purpose enough to be included in the main distribution.
 
 Sunstone
 --------

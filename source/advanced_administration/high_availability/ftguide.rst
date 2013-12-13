@@ -26,7 +26,7 @@ Let's see how to configure ``/etc/one/oned.conf`` to set up this Host hook, to b
         remote    = no ]
     #-------------------------------------------------------------------------------
 
-We are defining a host hook, named “error”, that will execute the script 'host\_error.rb' locally with the following arguments:
+We are defining a host hook, named ``error``, that will execute the script 'host\_error.rb' locally with the following arguments:
 
 +-------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Argument          | Description                                                                                                                                                                              |
@@ -47,7 +47,7 @@ Virtual Machine Failures
 
 The Virtual Machine lifecycle management can fail in several points. The following two cases should cover them:
 
--  **VM fails**: This may be due to a network error that prevents the image to be staged into the node, a hypervisor related issue, a migration problem, etc. The common symptom is that the VM enters the FAILED state. In order to deal with these errors, a Virtual Machine hook can be set to “recreate” the failed VM (or, depending the production scenario, delete it). This can be achieved by uncommenting the following (for recreating, the deletion hook is also present in the same file) in ``/etc/one/oned.conf`` (and restarting ``oned``):
+-  **VM fails**: This may be due to a network error that prevents the image to be staged into the node, a hypervisor related issue, a migration problem, etc. The common symptom is that the VM enters the FAILED state. In order to deal with these errors, a Virtual Machine hook can be set to ``recreate`` the failed VM (or, depending the production scenario, delete it). This can be achieved by uncommenting the following (for recreating, the deletion hook is also present in the same file) in ``/etc/one/oned.conf`` (and restarting ``oned``):
 
 .. code::
 
@@ -59,5 +59,5 @@ The Virtual Machine lifecycle management can fail in several points. The followi
        arguments = "$VMID" ]
     #-------------------------------------------------------------------------------
 
--  **VM crash**: This point is concerned with crashes that can happen to a VM **after** it has been successfully booted (note that here boot doesn't refer to the actual VM boot process, but to the OpenNebula boot process, that comprises staging and hypervisor deployment). OpenNebula is able to detect such crashes, and report it as the VM being in an UNKNOWN state. This failure can be recovered from using the “onevm boot” functionality.
+-  **VM crash**: This point is concerned with crashes that can happen to a VM **after** it has been successfully booted (note that here boot doesn't refer to the actual VM boot process, but to the OpenNebula boot process, that comprises staging and hypervisor deployment). OpenNebula is able to detect such crashes, and report it as the VM being in an UNKNOWN state. This failure can be recovered from using the ``onevm boot`` functionality.
 

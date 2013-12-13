@@ -226,7 +226,7 @@ An example of a hybrid template:
     NIC=[NETWORK="public"]
      
     EC2=[
-      AMI="ami-xxxxx" ] 
+      AMI="ami-xxxxx" ]
 
 OpenNebula will use the first portion (from NAME to NIC) in the above template when the VM is scheduled to a local virtualization node, and the EC2 section when the VM is scheduled to an EC2 node (ie, when the VM is going to be launched in Amazon EC2).
 
@@ -370,7 +370,7 @@ A quick way to ensure that your local infrastructure will be always used before 
 Force a Local or Remote Deployment
 ----------------------------------
 
-The ec2 drivers report the host attribute PUBLIC\_CLOUD = YES. Knowing this, you can use that attribute in your :ref:`VM requirements <template#placement_section>`.
+The ec2 drivers report the host attribute PUBLIC\_CLOUD = YES. Knowing this, you can use that attribute in your :ref:`VM requirements <template_placement_section>`.
 
 To force a VM deployment in a local host, use:
 

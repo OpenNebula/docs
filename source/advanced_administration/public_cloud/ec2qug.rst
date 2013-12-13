@@ -65,7 +65,9 @@ Commands description can be accessed from the :ref:`Command Line Reference <cli>
 User Account Configuration
 ==========================
 
-An account is needed in order to use the OpenNebula cloud. The cloud administrator will be responsible for assigning these accounts, which have a one to one correspondence with OpenNebula accounts, so all the cloud administrator has to do is check the :ref:`configuration guide <cg>` to setup accounts, and automatically the OpenNebula cloud account will be created.
+An account is needed in order to use the OpenNebula cloud. The cloud administrator will be responsible for assigning these accounts, which have a one to one correspondence with OpenNebula accounts, so all the cloud administrator has to do is check the configuration guide to setup accounts, and automatically the OpenNebula cloud account will be created.
+
+.. todo:: What configuration guide
 
 In order to use such an account, the end user can make use of clients programmed to access the services described in the previous section. For this, she has to set up his environment, particularly the following aspects:
 
@@ -90,7 +92,7 @@ Assuming we have a working Gentoo installation residing in an **.img** file, we 
 
 .. code::
 
-    $ econe-upload /images/gentoo.img 
+    $ econe-upload /images/gentoo.img
     Success: ImageId ami-00000001
 
 -  **describe\_images**
@@ -124,18 +126,18 @@ If we have too many instances launched and we don't remember everyone of them, w
 .. code::
 
     $ econe-describe-instances  -H
-    Owner       Id    ImageId      State         IP              Type      
+    Owner       Id    ImageId      State         IP              Type
     ------------------------------------------------------------------------------------------------------------
-    helen       i-15  ami-00000001 pending       147.96.80.33    m1.small  
+    helen       i-15  ami-00000001 pending       147.96.80.33    m1.small
 
 We can see that the instances with Id i-15 has been launched, but it is still pending, i.e., it still needs to be deployed into a physical host. If we try the same command again after a short while, we should be seeing it running as in the following excerpt:
 
 .. code::
 
     $ econe-describe-instances  -H
-    Owner       Id    ImageId      State         IP              Type      
+    Owner       Id    ImageId      State         IP              Type
     ------------------------------------------------------------------------------------------------------------
-    helen       i-15  ami-00000001 running      147.96.80.33     m1.small  
+    helen       i-15  ami-00000001 running      147.96.80.33     m1.small
 
 -  **terminate\_instances**
 

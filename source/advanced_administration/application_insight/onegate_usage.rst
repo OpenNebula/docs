@@ -21,7 +21,7 @@ First, the cloud administrator must configure and start the :ref:`OneGate server
 Setup the VM Template
 ---------------------
 
-Your VM Template must set the CONTEXT/TOKEN attribute to “yes”.
+Your VM Template must set the CONTEXT/TOKEN attribute to ``yes``.
 
 .. code::
 
@@ -72,17 +72,9 @@ The contextualization cdrom should contain the ``context.sh`` and ``token.txt`` 
 
 With that data, you can perform this http request message:
 
-Request
-
-PUT ONEGATE\_URL
-
-Headers
-
-X-ONEGATE-TOKEN: token.txt contents
-
-Body
-
-Monitoring values, in the usual “ATTRIBUTE = VALUE” OpenNebula syntax
+* **Request**: ``PUT ONEGATE\_URL``.
+* **Headers**: ``X-ONEGATE-TOKEN: token.txt contents``.
+* **Body**: Monitoring values, in the usual ``ATTRIBUTE = VALUE`` OpenNebula syntax.
 
 For example, using the curl command:
 
@@ -96,7 +88,7 @@ The new metric is stored in the user template section of the VM:
 
     $ onevm show 0
     ...
-    USER TEMPLATE                                                                   
+    USER TEMPLATE
     APP_LOAD="9.7"
 
 Sample Script

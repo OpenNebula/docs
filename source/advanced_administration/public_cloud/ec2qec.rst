@@ -4,16 +4,16 @@
 EC2 Ecosystem
 ==============
 
-In order to interact with the EC2 Service that OpenNebula implements you can use the :ref:`client <ec2qcs>` included in the OpenNebula distribution, but also you can choose one of the well known tools that are supposed to interact with cloud servers through the EC2 Query API, like the Firefox extension `HybridFox <http://code.google.com/p/hybridfox/>`__, or the command line tools, `Euca2ools <http://open.eucalyptus.com/wiki/Euca2oolsGuide_v1.1/>`__.
+In order to interact with the EC2 Service that OpenNebula implements you can use the client included in the OpenNebula distribution, but also you can choose one of the well known tools that are supposed to interact with cloud servers through the EC2 Query API, like the Firefox extension `HybridFox <http://code.google.com/p/hybridfox/>`__, or the command line tools, `Euca2ools <http://open.eucalyptus.com/wiki/Euca2oolsGuide_v1.1/>`__.
 
 HybridFox
 =========
 
 | `HybridFox <http://code.google.com/p/hybridfox/>`__ is a Mozilla Firefox extension for managing your Amazon EC2 account. Launch new instances, mount Elastic Block Storage volumes, map Elastic IP addresses, and more.
-| 
-|  ***Configuration***
+|
+|  **Configuration**
 
--  You have to set up the credentials to interact with OpenNebula, by pressing the “Credentials” button:
+-  You have to set up the credentials to interact with OpenNebula, by pressing the ``Credentials`` button:
 
    #. Account Name, add a name for this account
    #. AWS Access Key, add your OpenNebula username
@@ -21,14 +21,14 @@ HybridFox
 
 | |image0|
 
--  Also you have to specify in a new “Region” the endpoint in which the EC2 Service is running, by pressing on the Regions button. Take care of using exactly the same url and port that is specified in the econe.conf file, otherwise you will get “AuthFailure”:
+-  Also you have to specify in a new ``Region`` the endpoint in which the EC2 Service is running, by pressing on the Regions button. Take care of using exactly the same url and port that is specified in the econe.conf file, otherwise you will get ``AuthFailure``:
 
 | |image1|
 
 .. warning:: If you have problems adding a new region, try to add it manually in the ec2ui.endpoints variable inside the Firefox about:config
 
-| 
-|  ***Typical usage scenarios***
+|
+|  **Typical usage scenarios**
 
 -  **List images**
 
@@ -57,8 +57,8 @@ Euca2ools
     EC2_URL=http://localhost:4567
     EC2_ACCESS_KEY=oneadmin
 
-| 
-|  ***Typical usage scenarios***
+|
+|  **Typical usage scenarios**
 
 -  **List images**
 
@@ -68,9 +68,9 @@ Euca2ools
     IMAGE   ami-00000001    srv/cloud/images/1  daniel  available   private     i386    machine
     IMAGE   ami-00000002    srv/cloud/images/2  daniel  available   private     i386    machine
     IMAGE   ami-00000003    srv/cloud/images/3  daniel  available   private     i386    machine
-    IMAGE   ami-00000004    srv/cloud/images/4  daniel  available   private     i386    machine 
+    IMAGE   ami-00000004    srv/cloud/images/4  daniel  available   private     i386    machine
 
-| 
+|
 
 -  **List instances**
 
@@ -81,7 +81,7 @@ Euca2ools
     INSTANCE    i-0 ami-00000002    192.168.0.1 192.168.0.1 running     default     0   m1.small    2010-06-21T18:51:13+02:00   default     eki-EA801065    eri-1FEE1144
     INSTANCE    i-3 ami-00000002    192.168.0.4 192.168.0.4 running     default     0   m1.small    2010-06-21T18:53:30+02:00   default     eki-EA801065    eri-1FEE1144
 
-| 
+|
 
 -  **Run instances**
 

@@ -9,7 +9,7 @@ Virtual Data Centers (VDCs) are fully-isolated virtual infrastructure environmen
 Adding a New VDC
 ================
 
-This guide assumes that the oZones command line interface is correctly :ref:`installed <ozonescfg#installation>` and :ref:`configured <ozonescfg#configure_ozones_client>`.
+This guide assumes that the oZones command line interface is correctly :ref:`installed and configured <ozonescfg>`.
 
 VDCs resources can be managed using the **onevdc** command. In order to create a VDC, we will need a VDC template, with the necessary information to setup such resource:
 
@@ -26,12 +26,12 @@ VDCs resources can be managed using the **onevdc** command. In order to create a
 
 Once created, the above VDC template will mean the following in the OpenNebula managing the Zone with ID 1:
 
--  New group called “MyVDC”
--  New user called “vdcadmin”, using “vdcpass” as password
--  A set of ACLs to allow users from group “MyVDC” to:
+-  New group called ``MyVDC``
+-  New user called ``vdcadmin``, using ``vdcpass`` as password
+-  A set of ACLs to allow users from group ``MyVDC`` to:
 
    -  deploy in Hosts 4,7,9 and 10
-   -  allow “vdcadmin” to create new users
+   -  allow ``vdcadmin`` to create new users
    -  manage newly created resources in the group.
    -  use previously available resources. This resources must belong to the cluster with 100, such as virtual network with id 0 and datastores 100 and 101 (with their respective images)
 
@@ -57,10 +57,10 @@ If we have access to the Zone 3, we can see that the following has just been cre
 .. code::
 
     $ onegroup list
-      ID NAME           
-       0 oneadmin       
-       1 users          
-     100 MyZone  
+      ID NAME
+       0 oneadmin
+       1 users
+     100 MyZone
 
 **User**
 
@@ -107,16 +107,16 @@ Once created, a VDC can be asked for details with **onevdc show**, passing the V
 .. code::
 
     $ onevdc show 4
-    VDC  INFORMATION                                            
-    ID          : 4                   
-    NAME        : MyZone              
-    ZONE_ID     : 4                   
-    CLUSTER_ID  : 100                 
-    GROUP_ID    : 100                 
-    VDCADMIN    : myvdcadmin          
-    HOSTS       : 2                   
-    DATASTORES  : 1                   
-    NETWORKS    : 0   
+    VDC  INFORMATION
+    ID          : 4
+    NAME        : MyZone
+    ZONE_ID     : 4
+    CLUSTER_ID  : 100
+    GROUP_ID    : 100
+    VDCADMIN    : myvdcadmin
+    HOSTS       : 2
+    DATASTORES  : 1
+    NETWORKS    : 0
 
 Deleting a VDC
 ==============
@@ -133,7 +133,7 @@ Adding or Removing Resources to/from VDC
 
 Resources such as Datastores, hosts and Virtual Networks pertaining to the cluster associated to the VDC can be updated, using the CLI and the oZones GUI.
 
-The CLI offers the functionality through the “onevdc” command:
+The CLI offers the functionality through the ``onevdc`` command:
 
 .. code::
 
@@ -149,7 +149,7 @@ In the oZones GUI the VDC can be updated graphically.
 Using VDCs
 ==========
 
-After :ref:`creating a Zone <zonesmngt#adding_a_new_zone>`, and a :ref:`VDC <vdcmngt#adding_a_new_vdc>` inside it, users can start to be added to the VDC in order to allow them to use the VDC resources. This can be done through the command line interface or the Sunstone GUI.
+After :ref:`creating a Zone <zonesmngt>`, and a :ref:`VDC <vdcmngt>` inside it, users can start to be added to the VDC in order to allow them to use the VDC resources. This can be done through the command line interface or the Sunstone GUI.
 
 Accessing through the Command Line Interface
 --------------------------------------------
@@ -177,7 +177,7 @@ where ~/.one/one\_auth contains:
 
     vdcadmin:vdcpass
 
-Once this is in place, the VDC admin can start adding new users to the VDC. This works pretty much as a normal “oneadmin” session (although with no ability to change the host pool):
+Once this is in place, the VDC admin can start adding new users to the VDC. This works pretty much as a normal ``oneadmin`` session (although with no ability to change the host pool):
 
 .. code::
 

@@ -20,106 +20,55 @@ The current implementation includes the basic routines to use a Cloud, namely: i
 Requirements & Installation
 ===========================
 
-You must have an OpenNebula site properly configured and running , be sure to check the :ref:`OpenNebula Installation and Configuration Guides <#designing_and_installing_your_cloud_infrastructure>` to set up your private cloud first. This guide also assumes that you are familiar with the configuration and use of OpenNebula.
+You must have an OpenNebula site properly configured and running , be sure to check the :ref:`OpenNebula Installation and Configuration Guides <design_and_installation_guide>` to set up your private cloud first. This guide also assumes that you are familiar with the configuration and use of OpenNebula.
 
-The OpenNebula EC2 Query service was installed during the OpenNebula installation, and the dependencies of this service are installed when using the install\_gems tool as explained in the :ref:`installation guide <ignc#ruby_libraries_requirements_front-end>`
+The OpenNebula EC2 Query service was installed during the OpenNebula installation, and the dependencies of this service are installed when using the install\_gems tool as explained in the :ref:`installation guide <ignc>`
 
-If you installed OpenNebula from source you can install the EC2 Query dependencias as explained at the end of the :ref:`Building from Source Code guide <compile#ruby_dependencies-end>`
+If you installed OpenNebula from source you can install the EC2 Query dependencias as explained at the end of the :ref:`Building from Source Code guide <compile>`
 
 Configuration
 =============
 
 The service is configured through the ``/etc/one/econe.conf`` file, where you can set up the basic operational parameters for the EC2 Query web service. The following table summarizes the available options:
 
-VARIABLE
+**Server configuration**
 
-VALUE
+* ``tmpdir``: Directory to store temp files when uploading images
+* ``one_xmlrpc``: oned xmlrpc service, http://localhost:2633/RPC2
+* ``host``: Host where econe server will run
+* ``port``: Port where econe server will run
+* ``ssl_server``: URL for the EC2 service endpoint, when configured through a proxy
 
-Server configuration
+**Log**
 
-:tmpdir:
+* ``debug_level``: Log debug level, ``0 = ERROR``, ``1 = WARNING``, ``2 = INFO``, ``3 = DEBUG``.
 
-Directory to store temp files when uploading images
+**Auth**
 
-:one\_xmlrpc
+* ``auth``: Authentication driver for incomming requests
+* ``core_auth``: Authentication driver to communicate with OpenNebula core. Check :ref:`this guide <cloud_auth>` for more information about the core\_auth syste
 
-oned xmlrpc service, http://localhost:2633/RPC2
+**File based templates**
 
-:host
+* ``use_file_templates``: Use former file based templates for instance types instead of OpenNebula templates
+* ``instance_types``: DEPRECATED The VM types for your cloud
 
-Host where econe server will run
+**Resources**
 
-:port
+* ``describe_with_terminated_instances``: Include terminated instances in the describe\_instances xml. When this parameter is enabled all the VMs in DONE state will be retrieved in each descibe\_instances action and then filtered. This can cause performance issues when the pool of VMs in DONE state is huge
+* ``terminated_instances_expiration_time``: Terminated VMs will be included in the list till the termination date + terminated\_instances\_expiration\_time is eached
+* ``datastore_id``: Datastore in which the Images uploaded through EC2 will be allocated, by default 1
+* ``cluster_id``: Cluster associated with the EC2 resources, by default no Cluster is defined
 
-Port where econe server will run
+**Elastic IP**
 
-:ssl\_server
+* ``elasticips_vnet_id``: VirtualNetwork containing the elastic ips to be used with EC2. If no defined the Elastic IP functionality is disabled
+* ``associate_script``: Script to associate a public IP with a private IP arguments: elastic\_ip private\_ip vnet\_template(base64\_encoded)
+* ``disassociate_script``: Script to disassociate a public IP arguments: elastic\_ip
 
-URL for the EC2 service endpoint, when configured through a proxy
+**EBS**
 
-Log
-
-:debug\_level
-
-Log debug level, 0 = ERROR, 1 = WARNING, 2 = INFO, 3 = DEBUG
-
-Auth
-
-:auth
-
-Authentication driver for incomming requests
-
-:core\_auth
-
-Authentication driver to communicate with OpenNebula core. Check :ref:`this guide <cloud_auth>` for more information about the core\_auth system
-
-File based templates
-
-:use\_file\_templates
-
-Use former file based templates for instance types instead of OpenNebula templates
-
-:instance\_types
-
-DEPRECATED The VM types for your cloud
-
-Resources
-
-:describe\_with\_terminated\_instances
-
-Include terminated instances in the describe\_instances xml. When this parameter is enabled all the VMs in DONE state will be retrieved in each describe\_instances action and then filtered. This can cause performance issues when the pool of VMs in DONE state is huge
-
-:terminated\_instances\_expiration\_time
-
-Terminated VMs will be included in the list till the termination date + terminated\_instances\_expiration\_time is reached
-
-:datastore\_id
-
-Datastore in which the Images uploaded through EC2 will be allocated, by default 1
-
-:cluster\_id
-
-Cluster associated with the EC2 resources, by default no Cluster is defined
-
-Elastic IP
-
-:elasticips\_vnet\_id
-
-VirtualNetwork containing the elastic ips to be used with EC2. If no defined the Elastic IP functionality is disabled
-
-:associate\_script
-
-Script to associate a public IP with a private IP arguments: elastic\_ip private\_ip vnet\_template(base64\_encoded)
-
-:disassociate\_script
-
-Script to disassociate a public IP arguments: elastic\_ip
-
-EBS
-
-:ebs\_fstype
-
-FSTYPE that will be used when creating new volumes (DATABLOCKs)
+* ``ebs_fstype``: FSTYPE that will be used when creating new volumes (DATABLOCKs)
 
 .. warning:: The ``:host`` **must** be a FQDN, do not use IP's here.
 
@@ -132,7 +81,7 @@ The cloud users have to be created in the OpenNebula system by ``oneadmin`` usin
 
 The users will authenticate using the `Amazon EC2 procedure <http://docs.amazonwebservices.com/AWSEC2/latest/DeveloperGuide/index.html?using-query-api.html>`__ with ``AWSAccessKeyId`` their OpenNebula's username and ``AWSSecretAccessKey`` their OpenNebula's hashed password.
 
-The cloud administrator can limit the interfaces that these users can use to interact with OpenNebula by setting the driver “public” for them. Using that driver cloud users will not be able to interact with OpenNebula through Sunstone, CLI nor XML-RPC.
+The cloud administrator can limit the interfaces that these users can use to interact with OpenNebula by setting the driver ``public`` for them. Using that driver cloud users will not be able to interact with OpenNebula through Sunstone, CLI nor XML-RPC.
 
 .. code::
 
@@ -158,7 +107,7 @@ You can define as many Virtual Machine types as you want, just:
 
     $ ontemplate create /tmp/m1.small
     $ ontemplate chgrp m1.small users
-    $ ontemplate chmod m1.small 640 
+    $ ontemplate chmod m1.small 640
 
 The template must include all the required information to instantiate a new virtual machine, such as network configuration, capacity, placement requirements, etc. This information will be used as a base template and will be merged with the information provided by the user.
 
@@ -217,12 +166,12 @@ In order to enable this functionality you have to follow the following steps:
     VLAN    = "YES"
     VLAN_ID = 50
     BRIDGE  = "brhm"
-     
+
     LEASES  = [IP=10.0.0.1]
     LEASES  = [IP=10.0.0.2]
     LEASES  = [IP=10.0.0.3]
     LEASES  = [IP=10.0.0.4]
-     
+
     # Custom Attributes to be used in Context
     GATEWAY = 130.10.0.1
 
@@ -238,7 +187,7 @@ This VNET will be managed by the oneadmin user, therefore ``USE`` permission for
 .. code::
 
     :elastic_ips_vnet: 8
-      
+
 
 -  Provide associate and disassociate scripts
 
@@ -280,7 +229,7 @@ Also, you will have to create ACL rules so that the cloud users are able to depl
 .. code::
 
     $ onehost list
-      ID NAME            CLUSTER   RVM      ALLOCATED_CPU      ALLOCATED_MEM   STAT  
+      ID NAME            CLUSTER   RVM      ALLOCATED_CPU      ALLOCATED_MEM   STAT
        1 kvm1            -           2    110 / 200 (55%)  640M / 3.6G (17%)   on
        1 kvm2            -           2    110 / 200 (55%)  640M / 3.6G (17%)   on
        1 kvm3            -           2    110 / 200 (55%)  640M / 3.6G (17%)   on
@@ -296,7 +245,7 @@ You **have to create a VNet network** using the ``onevnet utility`` with the IP'
 
 .. code::
 
-    $ onevnet create /tmp/templates/vnet 
+    $ onevnet create /tmp/templates/vnet
     ID: 12
 
 Remember that you will have to add this VNet (ID:12) to the users group (ID:100) and give USE (640) permissions to the group in order to get leases from it.

@@ -78,22 +78,22 @@ To list the available Service Templates, use ``oneflow-template list/show/top``:
 .. code::
 
     $ oneflow-template list
-            ID USER            GROUP           NAME                                 
-             0 oneadmin        oneadmin        my_service                           
+            ID USER            GROUP           NAME
+             0 oneadmin        oneadmin        my_service
 
     $ oneflow-template show 0
-    SERVICE TEMPLATE 0 INFORMATION                                                  
-    ID                  : 0                   
-    NAME                : my_service          
-    USER                : oneadmin            
-    GROUP               : oneadmin            
+    SERVICE TEMPLATE 0 INFORMATION
+    ID                  : 0
+    NAME                : my_service
+    USER                : oneadmin
+    GROUP               : oneadmin
 
-    PERMISSIONS                                                                     
-    OWNER               : um-                 
-    GROUP               : ---                 
-    OTHER               : ---                 
+    PERMISSIONS
+    OWNER               : um-
+    GROUP               : ---
+    OTHER               : ---
 
-    TEMPLATE CONTENTS                                                               
+    TEMPLATE CONTENTS
     {
       "name": "my_service",
       "roles": [
@@ -127,8 +127,8 @@ To list the available Services, use ``oneflow list/top``:
 .. code::
 
     $ oneflow list
-            ID USER            GROUP           NAME                      STATE      
-             1 oneadmin        oneadmin        my_service                PENDING    
+            ID USER            GROUP           NAME                      STATE
+             1 oneadmin        oneadmin        my_service                PENDING
 
 |image3|
 
@@ -137,41 +137,41 @@ The Service will eventually change to ``DEPLOYING``. You can see information for
 .. code::
 
     $ oneflow show 1
-    SERVICE 1 INFORMATION                                                           
-    ID                  : 1                   
-    NAME                : my_service          
-    USER                : oneadmin            
-    GROUP               : oneadmin            
-    STRATEGY            : straight            
-    SERVICE STATE       : DEPLOYING           
+    SERVICE 1 INFORMATION
+    ID                  : 1
+    NAME                : my_service
+    USER                : oneadmin
+    GROUP               : oneadmin
+    STRATEGY            : straight
+    SERVICE STATE       : DEPLOYING
 
-    PERMISSIONS                                                                     
-    OWNER               : um-                 
-    GROUP               : ---                 
-    OTHER               : ---                 
+    PERMISSIONS
+    OWNER               : um-
+    GROUP               : ---
+    OTHER               : ---
 
     ROLE frontend
-    ROLE STATE          : RUNNING             
-    CARNIDALITY         : 1                   
-    VM TEMPLATE         : 0                   
+    ROLE STATE          : RUNNING
+    CARNIDALITY         : 1
+    VM TEMPLATE         : 0
     NODES INFORMATION
      VM_ID NAME                    STAT UCPU    UMEM HOST                       TIME
          0 frontend_0_(service_1)  runn   67  120.3M localhost              0d 00h01
 
     ROLE db_master
-    ROLE STATE          : DEPLOYING           
-    PARENTS             : frontend            
-    CARNIDALITY         : 1                   
-    VM TEMPLATE         : 1                   
+    ROLE STATE          : DEPLOYING
+    PARENTS             : frontend
+    CARNIDALITY         : 1
+    VM TEMPLATE         : 1
     NODES INFORMATION
      VM_ID NAME                    STAT UCPU    UMEM HOST                       TIME
          1                         init           0K                        0d 00h00
 
     ROLE db_slave
-    ROLE STATE          : DEPLOYING           
-    PARENTS             : frontend            
-    CARNIDALITY         : 3                   
-    VM TEMPLATE         : 2                   
+    ROLE STATE          : DEPLOYING
+    PARENTS             : frontend
+    CARNIDALITY         : 3
+    VM TEMPLATE         : 2
     NODES INFORMATION
      VM_ID NAME                    STAT UCPU    UMEM HOST                       TIME
          2                         init           0K                        0d 00h00
@@ -179,16 +179,16 @@ The Service will eventually change to ``DEPLOYING``. You can see information for
          4                         init           0K                        0d 00h00
 
     ROLE worker
-    ROLE STATE          : PENDING             
-    PARENTS             : db_master, db_slave 
-    CARNIDALITY         : 10                  
-    VM TEMPLATE         : 3                   
+    ROLE STATE          : PENDING
+    PARENTS             : db_master, db_slave
+    CARNIDALITY         : 10
+    VM TEMPLATE         : 3
     NODES INFORMATION
      VM_ID NAME                    STAT UCPU    UMEM HOST                       TIME
 
 
 
-    LOG MESSAGES                                                                    
+    LOG MESSAGES
     09/19/12 14:44 [I] New state: DEPLOYING
 
 Life-cycle
@@ -264,7 +264,7 @@ Life-Cycle Operations
 
 Services are deployed automatically by the Life Cycle Manager. To undeploy a running Service, users have the commands ``oneflow shutdown`` and ``oneflow delete``.
 
-The command ``oneflow shutdown`` will perform a graceful shutdown of all the running VMs, and will delete any VM in a failed state (see :ref:`onevm shutdown and delete <vm_guide_2#life-cycle_operations>`). If the ``straight`` deployment strategy is used, the Roles will be shutdown in the reverse order of the deployment.
+The command ``oneflow shutdown`` will perform a graceful shutdown of all the running VMs, and will delete any VM in a failed state (see :ref:`onevm shutdown and delete <vm_guide_2>`). If the ``straight`` deployment strategy is used, the Roles will be shutdown in the reverse order of the deployment.
 
 After a successful shutdown, the Service will remain in the ``DONE`` state. If any of the VM shutdown operations cannot be performed, the Service state will show ``FAILED``, to indicate that manual intervention is required to complete the cleanup. In any case, the Service can be completely removed using the command ``oneflow delete``.
 
@@ -293,8 +293,8 @@ For example, to change the owner and group of the Service 1, we can use ``oneflo
 .. code::
 
     $ oneflow list
-            ID USER            GROUP           NAME                      STATE      
-             1 oneadmin        oneadmin        my_service                RUNNING    
+            ID USER            GROUP           NAME                      STATE
+             1 oneadmin        oneadmin        my_service                RUNNING
 
     $ onevm list
         ID USER     GROUP    NAME            STAT UCPU    UMEM HOST             TIME
@@ -305,8 +305,8 @@ For example, to change the owner and group of the Service 1, we can use ``oneflo
     $ oneflow chown my_service johndoe apptools
 
     $ oneflow list
-            ID USER            GROUP           NAME                      STATE      
-             1 johndoe         apptools        my_service                RUNNING    
+            ID USER            GROUP           NAME                      STATE
+             1 johndoe         apptools        my_service                RUNNING
 
     $ onevm list
         ID USER     GROUP    NAME            STAT UCPU    UMEM HOST             TIME
@@ -323,25 +323,25 @@ For example, to allow all users in the ``apptools`` group to USE (list, show) an
 .. code::
 
     $ oneflow show 1
-    SERVICE 1 INFORMATION                                                           
+    SERVICE 1 INFORMATION
     ..
 
-    PERMISSIONS                                                                     
-    OWNER               : um-                 
-    GROUP               : ---                 
-    OTHER               : ---                 
+    PERMISSIONS
+    OWNER               : um-
+    GROUP               : ---
+    OTHER               : ---
     ...
 
     $ oneflow chmod my_service 660
 
     $ oneflow show 1
-    SERVICE 1 INFORMATION                                                           
+    SERVICE 1 INFORMATION
     ..
 
-    PERMISSIONS                                                                     
-    OWNER               : um-                 
-    GROUP               : um-                 
-    OTHER               : ---                 
+    PERMISSIONS
+    OWNER               : um-
+    GROUP               : um-
+    OTHER               : ---
     ...
 
 Another common scenario is having Service Templates created by oneadmin that can be instantiated by any user. To implement this scenario, execute:
@@ -349,31 +349,31 @@ Another common scenario is having Service Templates created by oneadmin that can
 .. code::
 
     $ oneflow-template show 0
-    SERVICE TEMPLATE 0 INFORMATION                                                  
-    ID                  : 0                   
-    NAME                : my_service          
-    USER                : oneadmin            
-    GROUP               : oneadmin            
+    SERVICE TEMPLATE 0 INFORMATION
+    ID                  : 0
+    NAME                : my_service
+    USER                : oneadmin
+    GROUP               : oneadmin
 
-    PERMISSIONS                                                                     
-    OWNER               : um-                 
-    GROUP               : ---                 
-    OTHER               : ---                 
+    PERMISSIONS
+    OWNER               : um-
+    GROUP               : ---
+    OTHER               : ---
     ...
 
     $ oneflow-template chmod 0 604
 
     $ oneflow-template show 0
-    SERVICE TEMPLATE 0 INFORMATION                                                  
-    ID                  : 0                   
-    NAME                : my_service          
-    USER                : oneadmin            
-    GROUP               : oneadmin            
+    SERVICE TEMPLATE 0 INFORMATION
+    ID                  : 0
+    NAME                : my_service
+    USER                : oneadmin
+    GROUP               : oneadmin
 
-    PERMISSIONS                                                                     
-    OWNER               : um-                 
-    GROUP               : ---                 
-    OTHER               : u--                 
+    PERMISSIONS
+    OWNER               : um-
+    GROUP               : ---
+    OTHER               : u--
     ...
 
 Please refer to the OpenNebula documentation for more information about :ref:`users & groups <auth_overview>`, and :ref:`resource permissions <chmod>`.

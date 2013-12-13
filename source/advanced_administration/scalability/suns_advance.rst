@@ -18,7 +18,7 @@ By default the Sunstone server is configured to run in the frontend, but you are
 
 -  Make sure ``:one_xmlprc:`` variable in ``sunstone-server.conf`` points to the right place where OpenNebula frontend is running, You can also leave it undefined and export ``ONE_XMLRPC`` environment variable.
 
--  Provide the serveradmin credentials in the following file ``/var/lib/one/.one/sunstone_auth``. If you changed the serveradmin password please check the following :ref:`section <cloud_auth#configure>`
+-  Provide the serveradmin credentials in the following file ``/var/lib/one/.one/sunstone_auth``. If you changed the serveradmin password please check the :ref:`Cloud Servers Authentication guide <cloud_auth>`.
 
 .. code::
 

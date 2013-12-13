@@ -265,23 +265,23 @@ You can also hotplug network interfaces to a RUNNING VM. Simply, specify the net
 
     $ onevm show 2
 
-    VIRTUAL MACHINE 2 INFORMATION                                                   
-    ID                  : 2                   
-    NAME                : centos-server           
+    VIRTUAL MACHINE 2 INFORMATION
+    ID                  : 2
+    NAME                : centos-server
     USER                : ruben
     GROUP               : oneadmin
-    STATE               : ACTIVE              
-    LCM_STATE           : RUNNING             
-    RESCHED             : No                  
-    HOST                : cloud01             
+    STATE               : ACTIVE
+    LCM_STATE           : RUNNING
+    RESCHED             : No
+    HOST                : cloud01
 
-    ... 
+    ...
 
-    VM NICS                                                                         
-    ID NETWORK      VLAN BRIDGE   IP              MAC              
+    VM NICS
+    ID NETWORK      VLAN BRIDGE   IP              MAC
      0 net_172        no vbr0     172.16.0.201    02:00:ac:10:0
 
-    VIRTUAL MACHINE HISTORY                                                         
+    VIRTUAL MACHINE HISTORY
      SEQ HOST            REASON           START            TIME     PROLOG_TIME
        0 cloud01         none    03/07 11:37:40    0d 00h02m14s    0d 00h00m00s
     ...
@@ -293,21 +293,21 @@ After the operation you should see two NICs 0 and 1:
 .. code::
 
     $ onevm show 2
-    VIRTUAL MACHINE 2 INFORMATION                                                   
-    ID                  : 2                   
+    VIRTUAL MACHINE 2 INFORMATION
+    ID                  : 2
     NAME                : centos-server
-    USER                : ruben               
-    GROUP               : oneadmin            
+    USER                : ruben
+    GROUP               : oneadmin
 
-    ...             
+    ...
 
 
-    VM NICS                                                                         
-    ID NETWORK      VLAN BRIDGE   IP              MAC              
+    VM NICS
+    ID NETWORK      VLAN BRIDGE   IP              MAC
      0 net_172        no vbr0     172.16.0.201    02:00:ac:10:00:c9
-                                  fe80::400:acff:fe10:c9                  
+                                  fe80::400:acff:fe10:c9
      1 net_172        no vbr0     172.16.0.202    02:00:ac:10:00:ca
-                                  fe80::400:acff:fe10:ca 
+                                  fe80::400:acff:fe10:ca
     ...
 
 Also, you can detach a NIC by its ID. If you want to detach interface 1 (MAC=02:00:ac:10:00:ca), just:
@@ -333,9 +333,9 @@ You can create, delete and restore snapshots for running VMs. A snapshot will co
 
     $ onevm show 4
     ...
-    SNAPSHOTS                                                                       
-      ID         TIME NAME                                           HYPERVISOR_ID  
-       0  02/21 16:05 just in case                                   onesnap-0      
+    SNAPSHOTS
+      ID         TIME NAME                                           HYPERVISOR_ID
+       0  02/21 16:05 just in case                                   onesnap-0
 
     $ onevm snapshot-revert 4 0 --verbose
     VM 4: snapshot reverted
@@ -395,16 +395,16 @@ Here is an usage example:
     VM 0: resume scheduled at 2013-09-23 14:15:00 +0200
 
     $ onevm show 0
-    VIRTUAL MACHINE 0 INFORMATION                                                   
-    ID                  : 0                   
-    NAME                : one-0               
+    VIRTUAL MACHINE 0 INFORMATION
+    ID                  : 0
+    NAME                : one-0
 
     [...]
 
-    SCHEDULED ACTIONS                                                               
-    ID ACTION        SCHEDULED         DONE MESSAGE                                 
-     0 suspend     09/20 00:00            -                                         
-     1 resume      09/23 14:15            -                                         
+    SCHEDULED ACTIONS
+    ID ACTION        SCHEDULED         DONE MESSAGE
+     0 suspend     09/20 00:00            -
+     1 resume      09/23 14:15            -
 
 These actions can be deleted or edited using the 'onevm update' command. The time attributes use Unix time internally.
 
@@ -453,7 +453,7 @@ Custom tags can be associated to a VM to store metadata related to this specific
     $ onevm show 0
     ...
 
-    VIRTUAL MACHINE TEMPLATE                                                        
+    VIRTUAL MACHINE TEMPLATE
     ...
     VMID="0"
 
@@ -465,11 +465,11 @@ Custom tags can be associated to a VM to store metadata related to this specific
     $onevm show 0
     ...
 
-    VIRTUAL MACHINE TEMPLATE                                                        
+    VIRTUAL MACHINE TEMPLATE
     ...
     VMID="0"
 
-    USER TEMPLATE                                                                   
+    USER TEMPLATE
     ROOT_GENERATED_PASSWORD="1234"
 
 Manage VM Permissions

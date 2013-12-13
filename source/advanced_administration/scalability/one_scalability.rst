@@ -7,7 +7,7 @@ Configuring OpenNebula for Large Deployments
 Monitoring
 ==========
 
-OpenNebula supports two native monitoring systems: ``ssh-pull`` and ``udp-push``. The former one, ``ssh-pull`` is the default monitoring system for OpenNebula ⇐4.2, however from OpenNebula 4.4 onwards, the default monitoring system is the ``udp-push`` system. This model is highly scalable and its limit (in terms of number of VMs monitored per second) is bounded to the performance of the server running oned and the database server. Our scalability testing achieves the monitoring of tens of thousands of VMs in a few minutes.
+OpenNebula supports two native monitoring systems: ``ssh-pull`` and ``udp-push``. The former one, ``ssh-pull`` is the default monitoring system for OpenNebula <= 4.2, however from OpenNebula 4.4 onwards, the default monitoring system is the ``udp-push`` system. This model is highly scalable and its limit (in terms of number of VMs monitored per second) is bounded to the performance of the server running oned and the database server. Our scalability testing achieves the monitoring of tens of thousands of VMs in a few minutes.
 
 Read more in the :ref:`Monitoring guide <mon>`.
 
@@ -19,7 +19,7 @@ OpenNebula keeps the monitorization history for a defined time in a database tab
 These monitorization entries can take quite a bit of storage in your database. The amount of storage used will depend on the size of your cloud, and the following configuration attributes in oned.conf:
 
 -  ``MONITORING_INTERVAL`` (VMware only): Time in seconds between each monitorization. Default: 60.
--  **collectd IM\_MAD ``-i`` argument** (KVM & Xen only): Time in seconds of the monitorization push cycle. Default: 20.
+-  collectd IM\_MAD ``-i`` argument (KVM & Xen only): Time in seconds of the monitorization push cycle. Default: 20.
 -  ``HOST_MONITORING_EXPIRATION_TIME``: Time, in seconds, to expire monitoring information. Default: 12h.
 -  ``VM_MONITORING_EXPIRATION_TIME``: Time, in seconds, to expire monitoring information. Default: 4h.
 
@@ -46,11 +46,11 @@ Each monitoring entry will be around 2 KB for each Host, and 4 KB for each VM. T
 API Tuning
 ==========
 
-For large deployments with lots of xmlprc calls the default values for the xmlprc server are too conservative. The values you can modify and its meaning are explained in the :ref:`oned.conf guide <oned_conf#xml-rpc_server_configuration>` and the `xmlrpc-c library documentation <http://xmlrpc-c.sourceforge.net/doc/libxmlrpc_server_abyss.html#max_conn>`__. From our experience these values improve the server behaviour with a high amount of client calls:
+For large deployments with lots of xmlprc calls the default values for the xmlprc server are too conservative. The values you can modify and its meaning are explained in the :ref:`oned.conf guide <oned_conf>` and the `xmlrpc-c library documentation <http://xmlrpc-c.sourceforge.net/doc/libxmlrpc_server_abyss.html#max_conn>`__. From our experience these values improve the server behaviour with a high amount of client calls:
 
 .. code::
 
-    MAX_CONN = 240 
+    MAX_CONN = 240
     MAX_CONN_BACKLOG = 480
 
 Driver Tuning

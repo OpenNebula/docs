@@ -52,9 +52,9 @@ In order to use such an account, the end user can make use of clients programmed
 -  **Authentication**: This can be achieved in two different ways, listed here in order of priority (i.e. values specified in the argument line supersede environmental variables)
 
    -  Using the **commands arguments**. All the commands accept a **username** (as the OpenNebula username) and a **password** (as the OpenNebula password)
-   -  If the above is not available, the **ONE\_AUTH** variable will be checked for authentication (with the same used for OpenNebula CLI, pointing to a file containing a single line: “username:password”).
+   -  If the above is not available, the **ONE\_AUTH** variable will be checked for authentication (with the same used for OpenNebula CLI, pointing to a file containing a single line: ``username:password``).
 
--  **Server location**: The command need to know where the OpenNebula OCCI service is running. You can pass the OCCI service endpoint using the ”–url” flag in the commands. If that is not present, the **OCCI\_URL** environment variable is used (in the form of a http URL, including the port if it is not the standard 80). Again, if the **OCCI\_URL** variable is not present, it will default to “\ http://localhost:4567\ ”
+-  **Server location**: The command need to know where the OpenNebula OCCI service is running. You can pass the OCCI service endpoint using the ``-url`` flag in the commands. If that is not present, the **OCCI\_URL** environment variable is used (in the form of a http URL, including the port if it is not the standard 80). Again, if the **OCCI\_URL** variable is not present, it will default to ``http://localhost:4567``
 
 .. warning:: The **OCCI\_URL** has to use the FQDN of the OCCI Service
 
@@ -362,7 +362,7 @@ In this example we will show how to create a new volume using the following temp
 
 .. code::
 
-    $ cat /tmp/storage 
+    $ cat /tmp/storage
     <STORAGE>
         <NAME>Volume1</NAME>
         <TYPE>DATABLOCK</TYPE>

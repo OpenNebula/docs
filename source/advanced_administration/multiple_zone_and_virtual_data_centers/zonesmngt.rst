@@ -9,7 +9,7 @@ A Zone is essentially a group of interconnected physical hosts with hypervisors 
 Adding a New Zone
 =================
 
-This guide assumes that the oZones command line interface is correctly :ref:`installed <ozonescfg#installation>` and :ref:`configured <ozonescfg#configure_ozones_client>`.
+This guide assumes that the oZones command line interface is correctly :ref:`installed and configured <ozonescfg>`.
 
 Zones resource can be managed using the **onezone** command. In order to create a zone, we will need a Zone template, with the necessary information to setup such resource:
 
@@ -45,13 +45,13 @@ We can further examine the contents of the zone with the **onezone show** comman
 .. code::
 
     $ onezone show 1
-    ZONE zone0 INFORMATION                                       
-    ID             : 1                   
-    NAME           : zone0               
-    ZONE ADMIN     : oneadmin              
+    ZONE zone0 INFORMATION
+    ID             : 1
+    NAME           : zone0
+    ZONE ADMIN     : oneadmin
     ZONE PASS      : 4478db59d30855454ece114e8ccfa5563d21c9bd
     ENDPOINT       : http://zone.domain.name:2633/RPC2
-    # VDCS         : 0    
+    # VDCS         : 0
 
 Zone resources can be specifically queried with **onezone show <id>** plus one of the following flags:
 
@@ -66,14 +66,14 @@ Let's query the hosts of the newly created zone:
 
 .. code::
 
-    $ onezone show 1 host   
-    ZONE zone0 INFORMATION                                       
-    ID             : 1                   
-    NAME           : MyZone               
-    ZONE ADMIN     : tinova              
+    $ onezone show 1 host
+    ZONE zone0 INFORMATION
+    ID             : 1
+    NAME           : MyZone
+    ZONE ADMIN     : tinova
     ZONE PASS      : 4478db59d30855454ece114e8ccfa5563d21c9bd
     ENDPOINT       : http://zone.domain.name:2633/RPC2
-    # VDCS         : 0                   
+    # VDCS         : 0
 
       ID NAME               RVM   TCPU   FCPU   ACPU   TMEM   FMEM   AMEM   STAT
        0 MyHost               0      0      0    100     0K     0K     0K     on

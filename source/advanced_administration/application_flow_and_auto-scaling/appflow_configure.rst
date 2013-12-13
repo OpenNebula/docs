@@ -16,59 +16,40 @@ Configuration
 
 The OneFlow configuration file can be found at ``/etc/one/oneflow-server.conf``. It uses YAML syntax to define the following options:
 
-Option
++----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|        Option        |                                                                               Description                                                                               |
++======================+=========================================================================================================================================================================+
+| **Server Configuration**                                                                                                                                                                       |
++----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| :one\_xmlrpc         | OpenNebula daemon host and port                                                                                                                                         |
++----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| :lcm\_interval       | Time in seconds between Life Cycle Manager steps                                                                                                                        |
++----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| :host                | Host where OneFlow will listen                                                                                                                                          |
++----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| :port                | Port where OneFlow will listen                                                                                                                                          |
++----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Defaults**                                                                                                                                                                                   |
++----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| :default\_cooldown   | Default cooldown period after a scale operation, in seconds                                                                                                             |
++----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| :shutdown\_action    | Default shutdown action. Values: 'shutdown', 'shutdown-hard'                                                                                                            |
++----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| :action\_number      | Default number of virtual machines (action\_number) that will receive the given call in each interval defined by action\_period, when an action is performed on a role. |
+| :action\_period      |                                                                                                                                                                         |
++----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Auth**                                                                                                                                                                                       |
++----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| :core\_auth          | Authentication driver to communicate with OpenNebula core                                                                                                               |
+|                      | ``cipher``: for symmetric cipher encryption of tokens                                                                                                                   |
+|                      | ``x509``: for x509 certificate encryption of tokens                                                                                                                     |
+|                      | For more information, visit the `OpenNebula Cloud Auth documentation </documentation:rel4.4:cloud_auth>`__                                                              |
++----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Log**                                                                                                                                                                                        |
++----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| :debug\_level        | Log debug level. 0 = ERROR, 1 = WARNING, 2 = INFO, 3 = DEBUG                                                                                                            |
++----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-Description
-
-Server Configuration
-
-:one\_xmlrpc
-
-OpenNebula daemon host and port
-
-:lcm\_interval
-
-Time in seconds between Life Cycle Manager steps
-
-:host
-
-Host where OneFlow will listen
-
-:port
-
-Port where OneFlow will listen
-
-Defaults
-
-:default\_cooldown
-
-Default cooldown period after a scale operation, in seconds
-
-:shutdown\_action
-
-Default shutdown action. Values: 'shutdown', 'shutdown-hard'
-
-:action\_number
-
-Default number of virtual machines (action\_number) that will receive the given call in each interval defined by action\_period, when an action is performed on a role.
-
-:action\_period
-
-Auth
-
-:core\_auth
-
-| Authentication driver to communicate with OpenNebula core
-|  ``cipher``: for symmetric cipher encryption of tokens
-|  ``x509``: for x509 certificate encryption of tokens
-| 
-|  For more information, visit the :ref:`OpenNebula Cloud Auth documentation <cloud_auth>`
-
-Log
-
-:debug\_level
-
-Log debug level. 0 = ERROR, 1 = WARNING, 2 = INFO, 3 = DEBUG
 
 This is the default file
 

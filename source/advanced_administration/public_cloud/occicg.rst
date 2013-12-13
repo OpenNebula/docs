@@ -17,11 +17,11 @@ The following sections explain how to install and configure the OCCI service on 
 Requirements
 ============
 
-You must have an OpenNebula site properly configured and running to install the OpenNebula OCCI service, be sure to check the :ref:`OpenNebula Installation and Configuration Guides <#designing_and_installing_your_cloud_infrastructure>` to set up your private cloud first. This guide also assumes that you are familiar with the configuration and use of OpenNebula.
+You must have an OpenNebula site properly configured and running to install the OpenNebula OCCI service, be sure to check the :ref:`OpenNebula Installation and Configuration Guides <design_and_installation_guide>` to set up your private cloud first. This guide also assumes that you are familiar with the configuration and use of OpenNebula.
 
-The OpenNebula OCCI service was installed during the OpenNebula installation, and the dependencies of this service are installed when using the install\_gems tool as explained in the :ref:`installation guide <ignc#ruby_libraries_requirements_front-end>`
+The OpenNebula OCCI service was installed during the OpenNebula installation, and the dependencies of this service are installed when using the install\_gems tool as explained in the :ref:`installation guide <ignc>`
 
-If you installed OpenNebula from source you can install the OCCI dependencias as explained at the end of the :ref:`Building from Source Code guide <compile#ruby_dependencies-end>`
+If you installed OpenNebula from source you can install the OCCI dependencias as explained at the end of the :ref:`Building from Source Code guide <compile>`
 
 Considerations & Limitations
 ============================
@@ -38,61 +38,28 @@ The service is configured through the ``/etc/one/occi-server.conf`` file, where 
 
 The following table summarizes the available options:
 
-VARIABLE
+**Server configuration**
 
-VALUE
+``tmpdir``: Directory to store temp files when uploading images
+``one_xmlrpc``: oned xmlrpc service, http://localhost:2633/RPC2
+``host``: Host where OCCI server will run.
+``port``: Port where OCCI server will run.
+``ssl_server``: SSL proxy that serves the API (set if is being used).
 
-Server configuration
+**Log**
 
-:tmpdir:
+``debug_level``: Log debug level, ``0 = ERROR``, ``1 = WARNING``, ``2 = INFO``, ``3 = DEBUG``
 
-Directory to store temp files when uploading images
+**Auth**
 
-:one\_xmlrpc
+``auth``: Authentication driver for incoming requests
+``core_auth``: Authentication driver to communicate with OpenNebula core
 
-oned xmlrpc service, http://localhost:2633/RPC2
+**Resources**
 
-:host
-
-Host where OCCI server will run
-
-:port
-
-Port where OCCI server will run
-
-:ssl\_server
-
-SSL proxy that serves the API (set if is being used)
-
-Log
-
-:debug\_level
-
-Log debug level, 0 = ERROR, 1 = WARNING, 2 = INFO, 3 = DEBUG
-
-Auth
-
-:auth
-
-Authentication driver for incoming requests
-
-:core\_auth
-
-Authentication driver to communicate with OpenNebula core
-
-Resources
-
-:instance\_types
-
-The Computes types for your cloud
-
-:datastore\_id
-
-Datastore in which the Images uploaded through OCCI will be allocated, by default 1
-
-:cluster\_id
-
-Cluster associated with the OCCI resources, by default no Cluster is defined
+``instance_types``: The Computes types for your cloud
+``datastore_id``: Datastore in which the Images uploaded through OCCI will be allocated, by default 1
+``cluster_id``: Cluster associated with the OCCI resources, by default no Cluster is defined
 
 .. warning:: The ``SERVER`` **must** be a FQDN, do not use IP's here
 
@@ -252,7 +219,7 @@ Cloud Users
 
 The cloud users have to be created in the OpenNebula system by ``oneadmin`` using the ``oneuser`` utility. Once a user is registered in the system, using the same procedure as to create private cloud users, they can start using the system. The users will authenticate using the `HTTP basic authentication <http://tools.ietf.org/html/rfc1945#section-11.1>`__ with ``user-ID`` their OpenNebula's username and ``password`` their OpenNebula's password.
 
-The cloud administrator can limit the interfaces that these users can use to interact with OpenNebula by setting the driver “public” for them. Using that driver cloud users will not be able to interact with OpenNebula through Sunstone, CLI nor XML-RPC.
+The cloud administrator can limit the interfaces that these users can use to interact with OpenNebula by setting the driver ``public`` for them. Using that driver cloud users will not be able to interact with OpenNebula through Sunstone, CLI nor XML-RPC.
 
 .. code::
 
@@ -264,7 +231,7 @@ Tuning & Extending
 Authorization Methods
 ---------------------
 
-OpenNebula OCCI Server supports two authorization methods in order to log in. The method can be set in the :ref:`occi-server.conf <#occi-serverconf>`, as explained above. These two methods are:
+OpenNebula OCCI Server supports two authorization methods in order to log in. The method can be set in the :ref:`occi-server.conf <occicg_occi_service_configuration>`, as explained above. These two methods are:
 
 Basic Auth
 ~~~~~~~~~~
@@ -377,8 +344,10 @@ You will need to edit the ``/etc/lighttpd/lighttpd.conf`` configuration file and
 
 The host must be the server hostname of the computer running the EC2Query Service, and the port the one that the EC2Query Service is running on.
 
-3.OCCI Service Configuration
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. _occicg_occi_service_configuration:
+
+3. OCCI Service Configuration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The ``occi.conf`` needs to define the following:
 

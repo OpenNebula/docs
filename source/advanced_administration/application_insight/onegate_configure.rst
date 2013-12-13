@@ -16,44 +16,20 @@ Configuration
 
 The OneGate configuration file can be found at ``/etc/one/onegate-server.conf``. It uses YAML syntax to define the following options:
 
-Option
+**Server Configuration**
 
-Description
+* ``one_xmlrpc``: OpenNebula daemon host and port
+* ``host``: Host where OneGate will listen
+* ``port``: Port where OneGate will listen
 
-Server Configuration
+**Log**
 
-:one\_xmlrpc
+* ``debug_level``: Log debug level. 0 = ERROR, 1 = WARNING, 2 = INFO, 3 = DEBUG
 
-OpenNebula daemon host and port
+**Auth**
 
-:host
-
-Host where OneGate will listen
-
-:port
-
-Port where OneGate will listen
-
-Log
-
-:debug\_level
-
-Log debug level. 0 = ERROR, 1 = WARNING, 2 = INFO, 3 = DEBUG
-
-Auth
-
-:auth
-
-| Authentication driver for incomming requests
-|  ``onegate``: based on token provided in the context
-
-:core\_auth
-
-| Authentication driver to communicate with OpenNebula core
-|  ``cipher``: for symmetric cipher encryption of tokens
-|  ``x509``: for x509 certificate encryption of tokens
-| 
-|  For more information, visit the :ref:`OpenNebula Cloud Auth documentation <cloud_auth>`
+* ``auth``: Authentication driver for incomming requests. ``onegate``: based on token provided in the context
+* ``core_auth``: Authentication driver to communicate with OpenNebula core, ``cipher`` for symmetric cipher encryption of tokens ``x509`` for x509 certificate encryption of tokens. For more information, visit the :ref:`OpenNebula Cloud Auth documentation <cloud_auth>`.
 
 This is the default file
 

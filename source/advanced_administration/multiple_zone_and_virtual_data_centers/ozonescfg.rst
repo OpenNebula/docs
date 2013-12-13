@@ -49,7 +49,7 @@ Apache needs to be configured to act as a reverse proxy, using the mod\_proxy mo
 
     ServerName <hostname-of-ozones-front-end>
 
--  Edit /etc/apache2/mods-available/proxy.conf and change “Deny from all” line to “Allow from all”
+-  Edit /etc/apache2/mods-available/proxy.conf and change ``Deny from all`` line to ``Allow from all``
 -  Then edit /etc/apache2/sites-available/default. Change the following
 
 .. code::
@@ -77,18 +77,18 @@ Configure oZones Server
 
 Before starting the oZones server be sure to:
 
--  If you are planning to use a DB backend , make sure you have at hand the credentials of a DB user with access to a pre-created database called “ozones”, and also the DNS or IP adress of the DB server.
+-  If you are planning to use a DB backend , make sure you have at hand the credentials of a DB user with access to a pre-created database called ``ozones``, and also the DNS or IP adress of the DB server.
 
 -  Edit ``/etc/one/ozones-server.conf`` and change any of the following parameters accordingly:
 
 +----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Attribute            | Description                                                                                                                                                                                                                                                                                                    |
 +======================+================================================================================================================================================================================================================================================================================================================+
-| **databsetype**      | This can to be set to 'sqlite' or 'mysql'. For the latter, a “ozones” named database needs to be created manually.                                                                                                                                                                                             |
+| **databsetype**      | This can to be set to 'sqlite' or 'mysql'. For the latter, a *ozones* named database needs to be created manually.                                                                                                                                                                                             |
 +----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **databaseserver**   | Only needed for mysql and postgres backends. Syntax is <dbusername>:<dbuserpassword>@<DBserver\_hostname>.                                                                                                                                                                                                     |
 +----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **htaccess**         | Location of the root .htaccess file for the apache reverse proxying configuration, if not sure leave the default /var/www/.htaccess. This file needs to be writable by “oneadmin” (or the user executing the ozones-server), one option is to precreate the .htaccess file and change its owner to oneadmin.   |
+| **htaccess**         | Location of the root .htaccess file for the apache reverse proxying configuration, if not sure leave the default /var/www/.htaccess. This file needs to be writable by *oneadmin* (or the user executing the ozones-server), one option is to precreate the .htaccess file and change its owner to oneadmin.   |
 +----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **dbdebug**          | Wether the DB related events are going to be logged or not.                                                                                                                                                                                                                                                    |
 +----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -114,7 +114,7 @@ You will need to set the following environment variables in order to use the CLI
 +--------------------+--------------------------------------------------------------------------------------------------------------------------+
 | Variables          | Description                                                                                                              |
 +====================+==========================================================================================================================+
-| **OZONES\_URL**    | Should point to the HTTP URL of the oZones server (defaults to “\ http://localhost:6121\ ”).                             |
+| **OZONES\_URL**    | Should point to the HTTP URL of the oZones server (defaults to ``http://localhost:6121``).                               |
 +--------------------+--------------------------------------------------------------------------------------------------------------------------+
 | **OZONES\_AUTH**   | Should point to a file containing the oZones administrator credentials separated by a colon, like 'username:password'.   |
 +--------------------+--------------------------------------------------------------------------------------------------------------------------+
