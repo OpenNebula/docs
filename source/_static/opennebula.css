@@ -80,3 +80,7 @@ h2 {
     color: #353735;
     font-size: 14pt;
 }
+
+ul.current a.current {
+    font-weight: bold;
+}
