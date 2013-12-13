@@ -27,7 +27,7 @@ Infrastructure Configuration
 
 -  The ESX servers needs to present or mount (as iSCSI, NFS or local storage) both the ``system`` datastore and the ``image`` datastore (naming them with just the <datastore-id>, for instance ``0`` for the ``system`` datastore and ``1`` for the ``image`` datastore).
 
-.. warning:: The system datastore can be other than the default one (”“0””). In this case, the ESX will need to mount the datastore *with the same id as the datastores has in OpenNebula*. More details in the :ref:`System Datastore Guide <system_ds#the_system_datastore_for_multi-cluster_setups>`.
+.. warning:: The system datastore can be other than the default one (``0``). In this case, the ESX will need to mount the datastore *with the same id as the datastores has in OpenNebula*. More details in the :ref:`System Datastore Guide <system_ds>`.
 
 OpenNebula Configuration
 ========================
@@ -68,7 +68,7 @@ System Datastore
 
 **vmfs** drivers: the ``system`` datastore needs to be updated in OpenNebula (``onedatastore update <ds_id>``) to set the TM\_MAD drivers to ``vmfs``. There is no need to configure datastore drivers for the system datastore.
 
-OpenNebula expects the system datastore to have the ID=0, but a system datastore with different ID can be defined per cluster. See the :ref:`system datastore guide <system_ds_the_system_datastore_for_multi-cluster_setups>` for more details.
+OpenNebula expects the system datastore to have the ID=0, but a system datastore with different ID can be defined per cluster. See the :ref:`system datastore guide <system_ds_multiple_system_datastore_setups>` for more details.
 
 Images Datastore
 ~~~~~~~~~~~~~~~~
@@ -84,35 +84,35 @@ The ``image`` datastore needs to be updated to use **vmfs** drivers for the data
 
 Apart from DS\_MAD, TM\_MAD and BRIDGE\_LIST; the following attributes can be set:
 
-+--------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Attribute                      | Description                                                                                                                                                                     |
-+================================+=================================================================================================================================================================================+
-| ``NAME``                       | The name of the datastore                                                                                                                                                       |
-+--------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``DS_MAD``                     | The DS type, use ``vmware`` or ``vmfs``                                                                                                                                         |
-+--------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``TM_MAD``                     | Transfer drivers for the datastore: ``shared``, ``ssh`` or ``vmfs``, see below                                                                                                  |
-+--------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``RESTRICTED_DIRS``            | Paths that can not be used to register images. A space separated list of paths. .. warning::                                                                                           |
-+--------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``SAFE_DIRS``                  | If you need to un-block a directory under one of the RESTRICTED\_DIRS. A space separated list of paths.                                                                         |
-+--------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``UMASK``                      | Default mask for the files created in the datastore. Defaults to ``0007``                                                                                                       |
-+--------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``BRIDGE_LIST``                | Space separated list of ESX servers that are going to be used as proxies to stage images into the datastore (``vmfs`` datastores only)                                          |
-+--------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``DS_TMP_DIR``                 | Path in the OpenNebula front-end to be used as a buffer to stage in files in ``vmfs`` datastores. Defaults to the value in ``/var/lib/one/remotes/datastore/vmfs/vmfs.conf``.   |
-+--------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``NO_DECOMPRESS``              | Do not try to untar or decompress the file to be registered. Useful for specialized Transfer Managers                                                                           |
-+--------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``DATASTORE_CAPACITY_CHECK``   | If “yes”, the available capacity of the datastore is checked before creating a new image                                                                                        |
-+--------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``BASE_PATH``                  | This variable must be set to /vmfs/volumes for VMFS datastores.                                                                                                                 |
-+--------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|          Attribute           |                                                                                  Description                                                                                  |
++==============================+===============================================================================================================================================================================+
+| ``NAME``                     | The name of the datastore                                                                                                                                                     |
++------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``DS_MAD``                   | The DS type, use ``vmware`` or ``vmfs``                                                                                                                                       |
++------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``TM_MAD``                   | Transfer drivers for the datastore: ``shared``, ``ssh`` or ``vmfs``, see below                                                                                                |
++------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``RESTRICTED_DIRS``          | Paths that can not be used to register images. A space separated list of paths. .. warning::                                                                                  |
++------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``SAFE_DIRS``                | If you need to un-block a directory under one of the RESTRICTED\_DIRS. A space separated list of paths.                                                                       |
++------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``UMASK``                    | Default mask for the files created in the datastore. Defaults to ``0007``                                                                                                     |
++------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``BRIDGE_LIST``              | Space separated list of ESX servers that are going to be used as proxies to stage images into the datastore (``vmfs`` datastores only)                                        |
++------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``DS_TMP_DIR``               | Path in the OpenNebula front-end to be used as a buffer to stage in files in ``vmfs`` datastores. Defaults to the value in ``/var/lib/one/remotes/datastore/vmfs/vmfs.conf``. |
++------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``NO_DECOMPRESS``            | Do not try to untar or decompress the file to be registered. Useful for specialized Transfer Managers                                                                         |
++------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``DATASTORE_CAPACITY_CHECK`` | If “yes”, the available capacity of the datastore is checked before creating a new image                                                                                      |
++------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``BASE_PATH``                | This variable must be set to /vmfs/volumes for VMFS datastores.                                                                                                               |
++------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 .. warning:: SAFE\_DIRS will prevent users registering important files as VM images and accessing them through their VMs. OpenNebula will automatically add its configuration directories: /var/lib/one, /etc/one and oneadmin's home. If users try to register an image from a restricted directory, they will get the following error message: “Not allowed to copy image file”.
 
-After creating a new datastore the LN\_TARGET and CLONE\_TARGET parameters will be added to the template. These values should not be changed since they define the datastore behaviour. The default values for these parameters are defined in :ref:`oned.conf <oned_conf?&#transfer_driver>` for each driver.
+After creating a new datastore the LN\_TARGET and CLONE\_TARGET parameters will be added to the template. These values should not be changed since they define the datastore behaviour. The default values for these parameters are defined in :ref:`oned.conf <oned_conf_transfer_driver>` for each driver.
 
 Driver Configuration
 --------------------
