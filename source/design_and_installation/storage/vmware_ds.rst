@@ -48,6 +48,8 @@ The datastore location on ESX hypervisors is ”/vmfs/volumes”. There are two 
 
 .. warning:: You need also to set the BASE\_PATH attribute in the template when the Datastore is created.
 
+.. _vmware_ds_datastore_configuration:
+
 Datastore Configuration
 -----------------------
 
@@ -66,7 +68,7 @@ System Datastore
 
 **vmfs** drivers: the ``system`` datastore needs to be updated in OpenNebula (``onedatastore update <ds_id>``) to set the TM\_MAD drivers to ``vmfs``. There is no need to configure datastore drivers for the system datastore.
 
-OpenNebula expects the system datastore to have the ID=0, but a system datastore with different ID can be defined per cluster. See the :ref:`system datastore guide <system_ds#the_system_datastore_for_multi-cluster_setups>` for more details.
+OpenNebula expects the system datastore to have the ID=0, but a system datastore with different ID can be defined per cluster. See the :ref:`system datastore guide <system_ds_the_system_datastore_for_multi-cluster_setups>` for more details.
 
 Images Datastore
 ~~~~~~~~~~~~~~~~

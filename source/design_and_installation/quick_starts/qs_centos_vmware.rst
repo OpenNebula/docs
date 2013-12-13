@@ -210,7 +210,7 @@ The paths to be used as input:
 
     /var/lib/one/datastores/1
 
-More info on :ref:`datastores <documentation:documentation:vmware_ds>` and different possible configurations.
+More info on :ref:`datastores <vmware_ds>` and different possible configurations.
 
 **3.4 Configure VNC**
 
@@ -428,12 +428,10 @@ Enjoy!
 Step 6. Next Steps
 ==================
 
--  Follow the :ref:`VMware Virtualization Driver Guide <documentation:documentation:evmwareg>` for the complete installation and tuning reference, and how to enable the disk attach/detach functionality, and vMotion live migration.
--  OpenNebula can use :ref:`VMware native networks <documentation:documentation:vmwarenet>` to provide network isolation through VLAN tagging.
+-  Follow the :ref:`VMware Virtualization Driver Guide <evmwareg>` for the complete installation and tuning reference, and how to enable the disk attach/detach functionality, and vMotion live migration.
+-  OpenNebula can use :ref:`VMware native networks <vmwarenet>` to provide network isolation through VLAN tagging.
 
-| 
-| 
-|  .. warning:: Did we miss something? Please :ref:`let us know <mailto:contact@opennebula.org?subject=Feedback-on-OpenNebula-VMware-Sandbox>`!
+.. warning:: Did we miss something? Please `let us know <mailto:contact@opennebula.org?subject=Feedback-on-OpenNebula-VMware-Sandbox>`_!
 
 .. |image1| image:: /images/quickstart-vmware.png
 .. |image2| image:: /images/usercreation.png

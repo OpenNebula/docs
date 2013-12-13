@@ -334,10 +334,9 @@ Execute ``onevm list`` and watch the virtual machine going from PENDING to PROLO
 Further information
 ===================
 
--  `Planning the Installation <http://opennebula.org/documentation:documentation:plan>`__
--  `Installing the Software <http://opennebula.org/documentation:documentation:ignc>`__
--  `Basic Configuration <http://opennebula.org/documentation:documentation:cg>`__
+-  :ref:`Planning the Installation <plan>`
+-  :ref:`Installing the Software <ignc>`
 -  `FAQs. Good for troubleshooting <http://wiki.opennebula.org/faq>`__
--  `Main Documentation <http://opennebula.org/documentation:documentation>`__
+-  :ref:`Main Documentation <entry_point>`
 
 .. |image1| image:: /images/centos_sunstone_dashboard_44.png
