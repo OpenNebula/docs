@@ -13,17 +13,17 @@ There are two main drivers ``one_vmm_exec`` and ``one_vmm_sh``. Both take comman
 
 The driver takes some parameters, described here:
 
-+-----------------------+---------------------------------------------------------------------------------------------------+
-| parameter             | description                                                                                       |
-+=======================+===================================================================================================+
-| -r <num>              | number of retries when executing an action                                                        |
-+-----------------------+---------------------------------------------------------------------------------------------------+
-| -t <num               | number of threads, i.e. number of actions done at the same time                                   |
-+-----------------------+---------------------------------------------------------------------------------------------------+
-| -l <actions>          | (``one_vmm_exec`` only) actions executed locally, command can be overridden for each action   |
-+-----------------------+---------------------------------------------------------------------------------------------------+
-| <driver\_directory>   | where in the remotes directory the driver can find the action scripts                             |
-+-----------------------+---------------------------------------------------------------------------------------------------+
++---------------------+---------------------------------------------------------------------------------------------+
+|      parameter      |                                         description                                         |
++=====================+=============================================================================================+
+| -r <num>            | number of retries when executing an action                                                  |
++---------------------+---------------------------------------------------------------------------------------------+
+| -t <num             | number of threads, i.e. number of actions done at the same time                             |
++---------------------+---------------------------------------------------------------------------------------------+
+| -l <actions>        | (``one_vmm_exec`` only) actions executed locally, command can be overridden for each action |
++---------------------+---------------------------------------------------------------------------------------------+
+| <driver\_directory> | where in the remotes directory the driver can find the action scripts                       |
++---------------------+---------------------------------------------------------------------------------------------+
 
 These are the actions valid in the -l parameter:
 
@@ -62,6 +62,8 @@ These arguments are specified in the :ref:`oned.conf file <oned_conf>`, ``argume
         arguments  = "-t 15 -r 0 -l migrate,save kvm",
         default    = "vmm_exec/vmm_exec_kvm.conf",
         type       = "kvm" ]
+
+.. _devel-vmm_action:
 
 Actions
 =======
@@ -335,19 +337,19 @@ The poll action can give back any information and it will be added to the VM inf
 
 ``STATE`` is a single character that tells OpenNebula the status of the VM, the states are the ones in this table:
 
-+---------+----------------------------------------------------------------------------------------------+
-| state   | description                                                                                  |
-+=========+==============================================================================================+
-| -       | Detecting state error. The monitoring could be done, but it returned an unexpected output.   |
-+---------+----------------------------------------------------------------------------------------------+
-| a       | Active. The VM is alive, but not necessary running. Could be blocked, booting, etc.          |
-+---------+----------------------------------------------------------------------------------------------+
-| p       | Paused. Self-explanatory.                                                                    |
-+---------+----------------------------------------------------------------------------------------------+
-| e       | Error. The VM crashed or somehow its deployment failed.                                      |
-+---------+----------------------------------------------------------------------------------------------+
-| d       | Disappeared. The VM is not known by the hypervisor anymore.                                  |
-+---------+----------------------------------------------------------------------------------------------+
++-------+--------------------------------------------------------------------------------------------+
+| state |                                        description                                         |
++=======+============================================================================================+
+| N/A   | Detecting state error. The monitoring could be done, but it returned an unexpected output. |
++-------+--------------------------------------------------------------------------------------------+
+| a     | Active. The VM is alive, but not necessary running. Could be blocked, booting, etc.        |
++-------+--------------------------------------------------------------------------------------------+
+| p     | Paused. Self-explanatory.                                                                  |
++-------+--------------------------------------------------------------------------------------------+
+| e     | Error. The VM crashed or somehow its deployment failed.                                    |
++-------+--------------------------------------------------------------------------------------------+
+| d     | Disappeared. The VM is not known by the hypervisor anymore.                                |
++-------+--------------------------------------------------------------------------------------------+
 
 Deployment File
 ===============

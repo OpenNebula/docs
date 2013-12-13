@@ -37,11 +37,11 @@ IM driver gather information about the physical host and hypervisor status, so t
 
 VMM drivers translate the high-level OpenNebula virtual machine life-cycle management actions, like deploy, shutdown, etc. into specific hypervisor operations. For instance, the KVM driver will issue a virsh create command in the physical host. The EC2 driver translate the actions into Amazon EC2 API calls.
 
--  `Transfer Manager <http://www.opennebula.org/documentation:rel3.2:sd>`__: ``tm_dummy``
+-  :ref:`Transfer Manager <sd>`: ``tm_dummy``
 
 TM drivers are used to transfer, clone and remove Virtual Machines Image files. They take care of the file transfer from the OpenNebula image repository to the physical hosts. There are specific drivers for different storage configurations: shared, non-shared, lvm storage, etc.
 
--  `VirtualNetwork Manager <http://www.opennebula.org/documentation:rel3.2:nm>`__: ``dummy``
+-  :ref:`VirtualNetwork Manager <nm>`: ``dummy``
 
 VNM drivers are used to set the network configuration in the host (firewall, 802.1Q, ebtables, osvswitch)
 
@@ -93,8 +93,8 @@ Create a new directory to store your probes, the name of this folder must match 
 
 These probes must return:
 
--  :ref:`Information of the host capacity <devel-im#basic_monitoring_scripts>`, to limit the number of VMs that can be deployed in this hosts.
--  :ref:`Information of the VMs <devel-im#vm_information>` running in this host-
+-  :ref:`Information of the host capacity <devel-im_basic_monitoring_scripts>`, to limit the number of VMs that can be deployed in this hosts.
+-  :ref:`Information of the VMs <devel-im_vm_information>` running in this host-
 
 You can see an example of these probes in the `ec2 driver <https://github.com/OpenNebula/one/tree/master/src/im_mad/remotes/ec2.d>`__ (`code <https://github.com/OpenNebula/one/blob/master/src/vmm_mad/remotes/ec2/ec2_driver.rb#L300>`__) included in OpenNebula
 
@@ -147,7 +147,7 @@ Create the Driver Folder and Implement the Specific Actions
 
 Create a new folder inside the remotes dir (/var/lib/one/remotes/vmm). The new folder should be named “providet\_name”, the name specified in the previous VM\_MAD arguments section.
 
-This folder must contain scripts for the supported actions. You can see the list of available actions in the :ref:`Virtual Machine Driver guide <devel-vmm#action>`. These scripts are language-agnostic so you can implement them using python, ruby, bash...
+This folder must contain scripts for the supported actions. You can see the list of available actions in the :ref:`Virtual Machine Driver guide <devel-vmm_action>`. These scripts are language-agnostic so you can implement them using python, ruby, bash...
 
 You can see examples on how to implement this in the `ec2 driver <https://github.com/OpenNebula/one/tree/master/src/vmm_mad/remotes/ec2>`__:
 
