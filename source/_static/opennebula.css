@@ -84,3 +84,7 @@ h2 {
 ul.current a.current {
     font-weight: bold;
 }
+footer {
+    text-align: center;
+    font-size: 0.8em;
+}
