@@ -96,8 +96,8 @@ The first rule that is always applied when using the Open vSwitch drivers is the
 
 The firewall directives must be placed in the :ref:`network section <template_network_section>` of the Virtual Machine template. These are the possible attributes:
 
--  ``BLACK\_PORTS\_TCP = iptables_range``: Doesn't permit access to the VM through the specified ports in the TCP protocol. Superseded by WHITE\_PORTS\_TCP if defined.
--  ``BLACK\_PORTS\_UDP = iptables_range``: Doesn't permit access to the VM through the specified ports in the UDP protocol. Superseded by WHITE\_PORTS\_UDP if defined.
+-  ``BLACK_PORTS_TCP = iptables_range``: Doesn't permit access to the VM through the specified ports in the TCP protocol. Superseded by WHITE\_PORTS\_TCP if defined.
+-  ``BLACK_PORTS_UDP = iptables_range``: Doesn't permit access to the VM through the specified ports in the UDP protocol. Superseded by WHITE\_PORTS\_UDP if defined.
 -  ``ICMP = drop``: Blocks ICMP connections to the VM. By default it's set to accept.
 
 ``iptables_range``: a list of ports separated by commas, e.g.: ``80,8080``. Currently no ranges are supporteg, e.g.: ``5900:6000`` is **not** supported.
