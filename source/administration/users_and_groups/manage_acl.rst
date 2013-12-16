@@ -49,12 +49,10 @@ The next one allows all users in the group 106 to use the Virtual Network 47. Th
 
     @106 NET/#47 USE
 
-.. Note::
-   Note the difference between:
-   .. code::
-        "* NET/#47 USE"    vs    "* NET/@47 USE"
+.. note::
+   Note the difference between ``* NET/#47 USE"`` **vs** ``* NET/@47 USE``
 
-   **All Users can use NETWORK with ID 47** vs **All Users can use NETWORKS belonging to the Group whose ID is 47**
+   All Users can use NETWORK with ID 47 **vs** All Users can use NETWORKS belonging to the Group whose ID is 47
 
 The following one allows users in group 106 to deploy VMs in Hosts assigned to the cluster 100
 
