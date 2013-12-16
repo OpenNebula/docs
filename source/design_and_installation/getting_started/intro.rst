@@ -9,7 +9,7 @@ OpenNebula is the **open-source industry standard for data center virtualization
 What Are the Key Features Provided by OpenNebula?
 =================================================
 
-You can refer to our a summarized table of :ref:`Key Features <about:keyfeatures>` or to the :ref:`Detailed Features and Functionality Guide <features>` included in the documentation of each version.
+You can refer to our a summarized table of `Key Features <http://opennebula.org/about:keyfeatures>`__ or to the :ref:`Detailed Features and Functionality Guide <features>` included in the documentation of each version.
 
 What Are the Interfaces Provided by OpenNebula?
 ===============================================
@@ -76,7 +76,7 @@ What Does OpenNebula Offer to Cloud Builders?
 
 OpenNebula offers broad support for commodity and enterprise-grade hypervisor, monitoring, storage, networking and user management services:
 
--  **User Management**: OpenNebula can validate users using its own internal user database based on :ref:`passwords <manage_users#users>`, or external mechanisms, like :ref:`ssh <ssh_auth>`, :ref:`x509 <x509_auth>`, :ref:`ldap <ldap>` or :ref:`Active Directory <ldap>`
+-  **User Management**: OpenNebula can validate users using its own internal user database based on :ref:`passwords <manage_users>`, or external mechanisms, like :ref:`ssh <ssh_auth>`, :ref:`x509 <x509_auth>`, :ref:`ldap <ldap>` or :ref:`Active Directory <ldap>`
 
 -  **Virtualization**: Several hypervisor technologies are fully supported, like :ref:`Xen <xeng>`, :ref:`KVM <kvmg>` and :ref:`VMware <evmwareg>`.
 
@@ -84,7 +84,7 @@ OpenNebula offers broad support for commodity and enterprise-grade hypervisor, m
 
 -  **Networking**: Virtual networks can be backed up by :ref:`802.1Q VLANs <hm-vlan>`, :ref:`ebtables <ebtables>`, :ref:`Open vSwitch <openvswitch>` or :ref:`VMware networking <vmwarenet>`.
 
--  **Storage**: Multiple backends are supported like the regular (shared or not) :ref:`filesystem datastore <fs_ds>` supporting popular distributed file systems like NFS, Lustre, GlusterFS, ZFS, GPFS, MooseFS...; the :ref:`iSCSI datastore <iscsi_ds>`, the :ref:`VMware datastore <vmware_ds>` (both regular filesystem or VMFS based) specialized for the VMware hypervisor that handle the vmdk format; the :ref:`iSCSI/LVM datastore <lvm_ds>` to store disk images in a block device form; and :ref:`Ceph <ceph_ds>` for distributed block device.
+-  **Storage**: Multiple backends are supported like the regular (shared or not) :ref:`filesystem datastore <fs_ds>` supporting popular distributed file systems like NFS, Lustre, GlusterFS, ZFS, GPFS, MooseFS...; the :ref:`VMware datastore <vmware_ds>` (both regular filesystem or VMFS based) specialized for the VMware hypervisor that handle the vmdk format; the :ref:`LVM datastore <lvm_ds>` to store disk images in a block device form; and :ref:`Ceph <ceph_ds>` for distributed block device.
 
 -  **Databases**: Aside from the original sqlite backend, :ref:`mysql <mysql>` is also supported.
 

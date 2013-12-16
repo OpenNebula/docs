@@ -93,7 +93,7 @@ Apart from DS\_MAD, TM\_MAD and BRIDGE\_LIST; the following attributes can be se
 +------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``TM_MAD``                   | Transfer drivers for the datastore: ``shared``, ``ssh`` or ``vmfs``, see below                                                                                                |
 +------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``RESTRICTED_DIRS``          | Paths that can not be used to register images. A space separated list of paths. .. warning::                                                                                  |
+| ``RESTRICTED_DIRS``          | Paths that can not be used to register images. A space separated list of paths.                                                                                               |
 +------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``SAFE_DIRS``                | If you need to un-block a directory under one of the RESTRICTED\_DIRS. A space separated list of paths.                                                                       |
 +------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -110,7 +110,7 @@ Apart from DS\_MAD, TM\_MAD and BRIDGE\_LIST; the following attributes can be se
 | ``BASE_PATH``                | This variable must be set to /vmfs/volumes for VMFS datastores.                                                                                                               |
 +------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-.. warning:: SAFE\_DIRS will prevent users registering important files as VM images and accessing them through their VMs. OpenNebula will automatically add its configuration directories: /var/lib/one, /etc/one and oneadmin's home. If users try to register an image from a restricted directory, they will get the following error message: “Not allowed to copy image file”.
+.. warning:: ``RESTRICTED_DIRS`` will prevent users registering important files as VM images and accessing them through their VMs. OpenNebula will automatically add its configuration directories: /var/lib/one, /etc/one and oneadmin's home. If users try to register an image from a restricted directory, they will get the following error message: “Not allowed to copy image file”.
 
 After creating a new datastore the LN\_TARGET and CLONE\_TARGET parameters will be added to the template. These values should not be changed since they define the datastore behaviour. The default values for these parameters are defined in :ref:`oned.conf <oned_conf_transfer_driver>` for each driver.
 

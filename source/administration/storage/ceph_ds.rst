@@ -75,7 +75,7 @@ The first step to create a Ceph datastore is to set up a template file for it. I
 +------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``STAGING_DIR``              | Default path for image operations in the OpenNebula Ceph frontend.                                                                                                                                                                        |
 +------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``RESTRICTED_DIRS``          | Paths that can not be used to register images. A space separated list of paths. .. warning::                                                                                                                                              |
+| ``RESTRICTED_DIRS``          | Paths that can not be used to register images. A space separated list of paths.                                                                                                                                                           |
 +------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``SAFE_DIRS``                | If you need to un-block a directory under one of the RESTRICTED\_DIRS. A space separated list of paths.                                                                                                                                   |
 +------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -83,9 +83,9 @@ The first step to create a Ceph datastore is to set up a template file for it. I
 +------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``LIMIT_TRANSFER_BW``        | Specify the maximum transfer rate in bytes/second when downloading images from a http/https URL. Suffixes K, M or G can be used.                                                                                                          |
 +------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``DATASTORE_CAPACITY_CHECK`` | If “yes”, the available capacity of the datastore is checked before creating a new image                                                                                                                                                  |
+| ``DATASTORE_CAPACITY_CHECK`` | If ``yes``, the available capacity of the datastore is checked before creating a new image                                                                                                                                                |
 +------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``CEPH_HOST``                | Space-separated list of Ceph monitors. Example: “host1 host2:port2 host3 host4:port4” (if no port is specified, the default one is chosen). **Required for Libvirt 1.x when cephx is enabled** .                                          |
+| ``CEPH_HOST``                | Space-separated list of Ceph monitors. Example: ``host1 host2:port2 host3 host4:port4`` (if no port is specified, the default one is chosen). **Required for Libvirt 1.x when cephx is enabled** .                                        |
 +------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``CEPH_SECRET``              | A generated UUID for a LibVirt secret (to hold the CephX authentication key in Libvirt on each hypervisor). This should be generated when creating the Ceph datastore in OpenNebula. **Required for Libvirt 1.x when cephx is enabled** . |
 +------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -120,7 +120,7 @@ An example of datastore:
     ID: 101
 
     > onedatastore list
-      ID NAME            CLUSTER  IMAGES TYPE   TM    
+      ID NAME            CLUSTER  IMAGES TYPE   TM
        0 system          none     0      fs     shared
        1 default         none     3      fs     shared
      100 cephds          none     0      ceph   ceph

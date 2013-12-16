@@ -62,7 +62,7 @@ The first step to create a LVM datastore is to set up a template file for it. In
 +--------------------------------+------------------------------------------------------------------------------------------------------------------------------------+
 | ``BRIDGE_LIST``                | **Mandatory** space separated list of LVM frontends.                                                                               |
 +--------------------------------+------------------------------------------------------------------------------------------------------------------------------------+
-| ``RESTRICTED_DIRS``            | Paths that can not be used to register images. A space separated list of paths. .. warning::                                              |
+| ``RESTRICTED_DIRS``            | Paths that can not be used to register images. A space separated list of paths.                                                    |
 +--------------------------------+------------------------------------------------------------------------------------------------------------------------------------+
 | ``SAFE_DIRS``                  | If you need to un-block a directory under one of the RESTRICTED\_DIRS. A space separated list of paths.                            |
 +--------------------------------+------------------------------------------------------------------------------------------------------------------------------------+
@@ -73,7 +73,7 @@ The first step to create a LVM datastore is to set up a template file for it. In
 | ``DATASTORE_CAPACITY_CHECK``   | If “yes”, the available capacity of the datastore is checked before creating a new image                                           |
 +--------------------------------+------------------------------------------------------------------------------------------------------------------------------------+
 
-.. warning:: This will prevent users registering important files as VM images and accessing them through their VMs. OpenNebula will automatically add its configuration directories: /var/lib/one, /etc/one and oneadmin's home. If users try to register an image from a restricted directory, they will get the following error message: “Not allowed to copy image file”.
+.. warning:: ``RESTRICTED_DIRS`` will prevent users registering important files as VM images and accessing them through their VMs. OpenNebula will automatically add its configuration directories: /var/lib/one, /etc/one and oneadmin's home. If users try to register an image from a restricted directory, they will get the following error message: ``Not allowed to copy image file``.
 
 For example, the following examples illustrates the creation of an LVM datastore using a configuration file. In this case we will use the host ``host01`` as one of our OpenNebula LVM-enabled hosts.
 
@@ -99,7 +99,7 @@ The DS and TM MAD can be changed later using the ``onedatastore update`` command
 
 .. warning:: Note that datastores are not associated to any cluster by default, and they are supposed to be accessible by every single host. If you need to configure datastores for just a subset of the hosts take a look to the :ref:`Cluster guide <cluster_guide>`.
 
-After creating a new datastore the LN\_TARGET and CLONE\_TARGET parameters will be added to the template. These values should not be changed since they define the datastore behaviour. The default values for these parameters are defined in :ref:`oned.conf <oned_conf?&#transfer_driver>` for each driver.
+After creating a new datastore the LN\_TARGET and CLONE\_TARGET parameters will be added to the template. These values should not be changed since they define the datastore behaviour. The default values for these parameters are defined in :ref:`oned.conf <oned_conf>` for each driver.
 
 Host Configuration
 ------------------
