@@ -5,7 +5,7 @@ body {
 }
 
 .navbar-inverse {
-    background-color: #0098c3;
+    background-color: #353735;
     border-color: #353735;
 }
 
@@ -16,12 +16,6 @@ body {
 
 .navbar-inverse .navbar-nav>li>a:hover, .navbar-inverse .navbar-nav>li>a:focus {
     color: #fff;
-    background-color: #353735;
-}
-
-.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus {
-    color: #fff;
-    text-decoration: none;
     background-color: #0098c3;
 }
 
@@ -81,9 +75,25 @@ h2 {
     font-size: 14pt;
 }
 
+.bs-sidenav.affix {
+    position: fixed;
+    top: auto;
+}
+
 ul.current a.current {
     font-weight: bold;
 }
+
+.navbar-brand {
+    padding-top: 15px;
+    padding-bottom: 11px;
+}
+
+.navbar-brand-logo {
+    position:relative;
+    top:-2px;
+}
+
 footer {
     text-align: center;
     font-size: 0.8em;
