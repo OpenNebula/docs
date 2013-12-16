@@ -260,13 +260,16 @@ html_theme_options = {
     # Note the "1" or "True" value above as the third argument to indicate
     # an arbitrary url.
     'navbar_links': [
+        ("OpenNebula.org","http://opennebula.org",1),
+        ("Dev","http://dev.opennebula.org",1),
+        ("Archives","http://opennebula.org/documentation:archives",1),
     ],
 
     # Render the next and previous page links in navbar. (Default: true)
     'navbar_sidebarrel': True,
 
     # Render the current pages TOC in the navbar. (Default: true)
-    'navbar_pagenav': True,
+    'navbar_pagenav': False,
 
     # Global TOC depth for "site" navbar tab. (Default: 1)
     # Switching to -1 shows all levels.
