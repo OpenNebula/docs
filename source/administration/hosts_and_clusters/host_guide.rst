@@ -291,7 +291,7 @@ Scheduler Policies
 
 You can define global Scheduler Policies for all VMs in the sched.conf file, follow the :ref:`Scheduler Guide <schg>` for more information. Additionally, users can require their virtual machines to be deployed in a host that meets certain constrains. These constrains can be defined using any attribute reported by ``onehost show``, like the architecture (ARCH).
 
-The attributes and values for a host are inserted by the monitoring probes that run from time to time on the nodes to get information. The administrator can add custom attributes either :ref:`creating a probe in the host <img_guide>`, or updating the host information with: ``onehost update <HOST_ID>``. Calling this command will fire up an editor (the one specified in the ``EDITOR`` environment variable) and you will be able to add, delete or modify some of those values.
+The attributes and values for a host are inserted by the monitoring probes that run from time to time on the nodes to get information. The administrator can add custom attributes either :ref:`creating a probe in the host <devel-im>`, or updating the host information with: ``onehost update <HOST_ID>``. Calling this command will fire up an editor (the one specified in the ``EDITOR`` environment variable) and you will be able to add, delete or modify some of those values.
 
 .. code::
 

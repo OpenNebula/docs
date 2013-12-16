@@ -204,7 +204,7 @@ The information drivers are used to gather information from the cluster nodes, a
 
 -  **arguments**: for the driver executable, usually a probe configuration file, can be an absolute path or relative to ``/etc/one/``.
 
-For more information on configuring the information and monitoring system and hints to extend it please check the :ref:`information driver configuration guide <img_guide>`.
+For more information on configuring the information and monitoring system and hints to extend it please check the :ref:`information driver configuration guide <devel-im>`.
 
 Sample configuration:
 
