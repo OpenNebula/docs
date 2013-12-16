@@ -286,8 +286,8 @@ For further configuration and/or installation of other hypervisors, check their 
 
 .. warning:: Due to the Debian packaging policy, there are some paths which are different in the Debian/Ubuntu packages with respect to OpenNebula's documentation. In particular:
 
--  /usr/share/one/examples/ ⇒ /usr/share/doc/opennebula/examples/
--  /usr/share/one/ ⇒ /usr/share/opennebula/
+-  /usr/share/one/examples/ => /usr/share/doc/opennebula/examples/
+-  /usr/share/one/ => /usr/share/opennebula/
 
 Step 6. Manual Configuration of Unix Accounts
 =============================================
