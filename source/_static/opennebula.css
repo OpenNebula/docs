@@ -2,6 +2,7 @@ body {
     font-family: Verdana, Geneva, sans-serif;
     font-size: 10pt;
     color: #353735;
+    background-color: #F5F5F5;
 }
 
 .navbar-inverse {
@@ -97,4 +98,18 @@ ul.current a.current {
 footer {
     text-align: center;
     font-size: 0.8em;
+}
+
+.bs-sidenav, pre {
+    background-color: #EBEBED;
+}
+
+code {
+    color: #0098c3;
+    background-color: #EBEBED;
+}
+
+.admonition code {
+    color: #888888;
+    background-color: #EBEBED;
 }
