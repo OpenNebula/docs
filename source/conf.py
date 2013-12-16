@@ -187,8 +187,18 @@ latex_elements = {
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'OpenNebula.tex', 'OpenNebula Documentation',
-   'OpenNebula Team \\textless{}contact@opennebula.org\\textgreater{}', 'manual'),
+  # Main Guides
+  ('design_and_installation/index', 'design_and_installation.tex', 'Design and Installation Guide', 'OpenNebula Team \\textless{}contact@opennebula.org\\textgreater{}', 'manual'),
+  ('administration/index', 'administration.tex', 'Administration Guide', 'OpenNebula Team \\textless{}contact@opennebula.org\\textgreater{}', 'manual'),
+  ('user/index', 'user.tex', 'User Guide', 'OpenNebula Team \\textless{}contact@opennebula.org\\textgreater{}', 'manual'),
+  ('advanced_administration/index', 'advanced_administration.tex', 'Advanced Administration Guide', 'OpenNebula Team \\textless{}contact@opennebula.org\\textgreater{}', 'manual'),
+  ('integration/index', 'integration.tex', 'Integration Guide', 'OpenNebula Team \\textless{}contact@opennebula.org\\textgreater{}', 'manual'),
+
+  # Quick Starts
+  ('design_and_installation/quick_starts/qs_centos_kvm', 'qs_centos_kvm.tex', 'Quickstart CentOS 6 and KVM', 'OpenNebula Team \\textless{}contact@opennebula.org\\textgreater{}', 'manual'),
+  ('design_and_installation/quick_starts/qs_centos_vmware', 'qs_centos_vmware.tex', 'Quickstart CentOS 6 and ESX 5.x', 'OpenNebula Team \\textless{}contact@opennebula.org\\textgreater{}', 'manual'),
+  ('design_and_installation/quick_starts/qs_centos_xen', 'qs_centos_xen.tex', 'Quickstart CentOS 6 and Xen', 'OpenNebula Team \\textless{}contact@opennebula.org\\textgreater{}', 'manual'),
+  ('design_and_installation/quick_starts/qs_ubuntu_kvm', 'qs_ubuntu_kvm.tex', 'Quickstart Ubuntu 12.04 and KVM', 'OpenNebula Team \\textless{}contact@opennebula.org\\textgreater{}', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
