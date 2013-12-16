@@ -41,7 +41,8 @@ Add the OpenNebula repository:
 .. code::
 
     # wget -q -O- http://downloads.opennebula.org/repo/Ubuntu/repo.key | apt-key add -
-    # echo "deb http://downloads.opennebula.org/repo/Ubuntu/12.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # echo "deb http://downloads.opennebula.org/repo/Ubuntu/12.04 stable opennebula"
+        > /etc/apt/sources.list.d/opennebula.list
 
 1.2. Install the required packages
 ----------------------------------
@@ -115,7 +116,8 @@ Add the OpenNebula repository:
 .. code::
 
     # wget -q -O- http://downloads.opennebula.org/repo/Ubuntu/repo.key | apt-key add -
-    # echo "deb http://downloads.opennebula.org/repo/Ubuntu/12.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # echo "deb http://downloads.opennebula.org/repo/Ubuntu/12.04 stable opennebula" >
+        /etc/apt/sources.list.d/opennebula.list
 
 2.2. Install the required packages
 ----------------------------------
