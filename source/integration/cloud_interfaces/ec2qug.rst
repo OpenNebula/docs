@@ -1,1 +1,0 @@
-../../advanced_administration/public_cloud/ec2qug.rst
