@@ -38,4 +38,4 @@ Next Steps
 -  :ref:`Manage Zones <zonesmngt>`
 -  :ref:`Manage VDCs <vdcmngt>`
 
-.. |image0| image:: /images/ozones-arch-v3.4.png
+.. |image0| image:: /images/ozones-arch.png

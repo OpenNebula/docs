@@ -205,4 +205,4 @@ All the VDC functionality can be accessed using the CLI. The creation of VDCs us
 
 |image0|
 
-.. |image0| image:: /images/ozonesgui-v3.4.png
+.. |image0| image:: /images/ozonesgui.png

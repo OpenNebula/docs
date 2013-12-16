@@ -111,7 +111,7 @@ OpenNebula is fully platform independent and offers many tools for cloud integra
 
 |OpenNebula Cloud Architecture|
 
-.. |OpenNebula Cloud Interfaces| image:: /images/overview_interfaces.4.0.png
+.. |OpenNebula Cloud Interfaces| image:: /images/overview_interfaces.png
 .. |OpenNebula Cloud Support for Virtual Infrastructures| image:: /images/overview_consumers.png
 .. |OpenNebula Cloud Internals| image:: /images/overview_operators.png
 .. |OpenNebula Cloud Platform Support| image:: /images/overview_builders.png
