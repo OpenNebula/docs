@@ -55,11 +55,11 @@ Usage
 
 The firewall directives must be placed in the :ref:`network section <template_network_section>` of the Virtual Machine template. These are the possible attributes:
 
--  **WHITE\_PORTS\_TCP = ``iptables_range``: Permits access to the VM only through the specified ports in the TCP protocol. Supersedes BLACK\_PORTS\_TCP if defined.
--  **BLACK\_PORTS\_TCP = ``iptables_range``: Doesn't permit access to the VM through the specified ports in the TCP protocol. Superseded by WHITE\_PORTS\_TCP if defined.
--  **WHITE\_PORTS\_UDP = ``iptables_range``: Permits access to the VM only through the specified ports in the UDP protocol. Supersedes BLACK\_PORTS\_UDP if defined.
--  **BLACK\_PORTS\_UDP = ``iptables_range``: Doesn't permit access to the VM through the specified ports in the UDP protocol. Superseded by WHITE\_PORTS\_UDP if defined.
--  **ICMP = drop**: Blocks ICMP connections to the VM. By default it's set to accept.
+* ``WHITE_PORTS_TCP = <iptables_range>``: Permits access to the VM only through the specified ports in the TCP protocol. Supersedes BLACK\_PORTS\_TCP if defined.
+* ``BLACK_PORTS_TCP = <iptables_range>``: Doesn't permit access to the VM through the specified ports in the TCP protocol. Superseded by WHITE\_PORTS\_TCP if defined.
+* ``WHITE_PORTS_UDP = <iptables_range>``: Permits access to the VM only through the specified ports in the UDP protocol. Supersedes BLACK\_PORTS\_UDP if defined.
+* ``BLACK_PORTS_UDP = <iptables_range>``: Doesn't permit access to the VM through the specified ports in the UDP protocol. Superseded by WHITE\_PORTS\_UDP if defined.
+* ``ICMP = drop``: Blocks ICMP connections to the VM. By default it's set to accept.
 
 ``iptables_range``: a list of ports separated by commas or ranges separated by semicolons, e.g.: ``22,80,5900:6000``
 
