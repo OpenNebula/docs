@@ -326,6 +326,5 @@ More generic information about drivers:
 
 -  :ref:`Virtual Machine Manager drivers reference <devel-vmm>`
 -  :ref:`Transfer Manager driver reference <sd>`
--  :ref:`Image Manager drivers reference <img_mad>`
 
 .. |image1| image:: /images/adduservmware.png

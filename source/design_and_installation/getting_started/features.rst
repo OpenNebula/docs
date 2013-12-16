@@ -157,7 +157,7 @@ Easy Extension and Integration
 ==============================
 
 -  Modular and extensible architecture to fit into any existing datacenter
--  Customizable drivers for the main subsystems to easily leverage existing IT infrastructure and system management products: :ref:`Virtualization <devel-vmm>`, :ref:`Storage <sd>`, :ref:`Monitoring <devel-im>`, :ref:`Image Repository <img_mad>`, :ref:`Network <devel-nm>`, :ref:`Auth <auth_overview>` and :ref:`Hybrid Cloud <devel-vmm>`
+-  Customizable drivers for the main subsystems to easily leverage existing IT infrastructure and system management products: :ref:`Virtualization <devel-vmm>`, :ref:`Storage <sd>`, :ref:`Monitoring <devel-im>`, :ref:`Network <devel-nm>`, :ref:`Auth <auth_overview>` and :ref:`Hybrid Cloud <devel-vmm>`
 -  New drivers can be easily written in any language
 -  Plugin support to easily extend SunStone Graphical Interface with additional tabs to better integrate Cloud and VM management with each site own operations and tools
 -  Easily customizable self-service portal for cloud consumers
