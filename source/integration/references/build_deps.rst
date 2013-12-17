@@ -219,14 +219,4 @@ When installing libxmlrpc you have to specify that it will be compiled with thre
 Arch
 ====
 
-The xmlrpc-c package available in the extra repository is not compiled with support for the abyss server. Use the Arch Build System (ABS) to include support for the server. Just remove ``-disable-abyss`` from the configure command in the ``PKGBUILD`` file, and install the package:
-
-.. code::
-
-        cd $srcdir/$pkgname-$pkgver
-        ./configure --prefix=/usr \
-            --enable-libxml2-backend \
-            --disable-cgi-server \
-            --disable-libwww-client \
-            --disable-wininet-client
-
+They are listed in this `PKGBUILD <https://aur.archlinux.org/packages/opennebula/>`__.
