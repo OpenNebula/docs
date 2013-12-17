@@ -193,54 +193,54 @@ latex_elements = {
 latex_documents = [
   # Main Guides
   ( 'design_and_installation/index',
-    file_main_title  + 'design_and_installation.tex',
+    file_main_title  + 'design_and_installation_guide.tex',
     guide_main_title + 'Design and Installation Guide',
     latex_author,
     'manual'),
 
   ( 'administration/index',
-    file_main_title  + 'administration.tex',
+    file_main_title  + 'administration_guide.tex',
     guide_main_title + 'Administration Guide',
     latex_author,
     'manual'),
 
   ( 'user/index',
-    file_main_title  + 'user.tex',
+    file_main_title  + 'user_guide.tex',
     guide_main_title + 'User Guide',
     latex_author,
     'manual'),
 
   ( 'advanced_administration/index',
-    file_main_title  + 'advanced_administration.tex',
+    file_main_title  + 'advanced_administration_guide.tex',
     guide_main_title + 'Advanced Administration Guide',
     latex_author,
     'manual'),
 
   ( 'integration/index',
-    file_main_title  + 'integration.tex',
+    file_main_title  + 'integration_guide.tex',
     guide_main_title + 'Integration Guide',
     latex_author,
     'manual'),
 
   # Quick Starts
   ( 'design_and_installation/quick_starts/qs_centos_kvm',
-    file_main_title  + 'qs_centos_kvm.tex',
+    file_main_title  + 'qs_centos_kvm_guide.tex',
     guide_main_title + 'Quickstart CentOS 6 and KVM',
     latex_author,
     'manual'),
 
   ( 'design_and_installation/quick_starts/qs_centos_vmware',
-    file_main_title  + 'qs_centos_vmware.tex', guide_main_title + 'Quickstart CentOS 6 and ESX 5.x',
+    file_main_title  + 'qs_centos_vmware_guide.tex', guide_main_title + 'Quickstart CentOS 6 and ESX 5.x',
     latex_author,
     'manual'),
 
   ( 'design_and_installation/quick_starts/qs_centos_xen',
-    file_main_title  + 'qs_centos_xen.tex', guide_main_title + 'Quickstart CentOS 6 and Xen',
+    file_main_title  + 'qs_centos_xen_guide.tex', guide_main_title + 'Quickstart CentOS 6 and Xen',
     latex_author,
     'manual'),
 
   ( 'design_and_installation/quick_starts/qs_ubuntu_kvm',
-    file_main_title  + 'qs_ubuntu_kvm.tex',
+    file_main_title  + 'qs_ubuntu_kvm_guide.tex',
     guide_main_title + 'Quickstart Ubuntu 12.04 and KVM',
     latex_author,
     'manual'),
