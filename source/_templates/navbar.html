@@ -8,12 +8,13 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="{{ pathto(master_doc) }}"><img class="navbar-brand-logo" src="{{ pathto('_static/opennebula-white.png',1) }}" alt="opennebula-logo"/></a>
-        <span class="navbar-text navbar-version pull-left"><b>{{ version|e }}</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
           <ul class="nav navbar-nav">
             <li class="divider-vertical"></li>
+            {% include "versions.html" %}
+
             {% if theme_navbar_links %}
               {%- for link in theme_navbar_links %}
                 <li><a href="{{ pathto(*link[1:]) }}">{{ link[0] }}</a></li>
