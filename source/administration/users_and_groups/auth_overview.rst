@@ -6,12 +6,14 @@ Users & Groups Overview
 
 OpenNebula includes a complete user & group management system. Users in an OpenNebula installation are classified in four types:
 
--  **Administrators**, an admin user belongs to the oneadmin group and can perform any operation
+-  **Administrators**, an admin user belongs to an admin group (oneadmin or otherwise) and can perform manage operations
 -  **Regular users**, that may access most OpenNebula functionality.
 -  **Public users**, only basic functionality (and public interfaces) are open to public users.
 -  **Service users**, a service user account is used by the OpenNebula services (i.e. cloud APIs like EC2 or GUI's like Sunstone) to proxy auth requests.
 
 The resources a user may access in OpenNebula are controlled by a permissions system that resembles the typical UNIX one. By default, only the owner of a resource (e.g. a VM or an image) can use and manage it. Users can easily share the resources by granting use or manage permissions to other users in her group or to any other user in the system.
+
+Upon group creation, an associated admin group can be also spawn, with a admin user belonging to both of them. By default this user will be able to create users in both groups, and manage non owned resources for the regular group, through the CLI and/or a special Sunstone view. This group can also be assigned with different Resource providers, in practice OpenNebula clusters with all the associated resources of said cluster (hosts, datastores and virtual networks). This allows for the management of virtual datacenters using group functionality. 
 
 Along with the users & groups the Auth Subsystem is responsible for the authentication and authorization of user's requests.
 

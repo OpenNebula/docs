@@ -283,6 +283,48 @@ To delete a user from a group, just move it again to the default ``users`` group
 
 .. _manage_users_primary_and_secondary_groups:
 
+Admin Groups
+------------
+
+Upon group creation, an associated administration group can be defined. This admin group will contain users with administrative privileges for the associated regular group, not for all the resources in the OpenNebula cloud as the 'oneadmin' group users have. Also, an admin user belonging to both groups can be defined upon creation as well. Another aspect that can be controlled on creation time is the type of resources that group users will be alowed to create. 
+
+This can be managed visually in Sunstone, and can also be managed through the CLI.
+
+.. code::
+
+    $ vi grptmpl.one
+    NAME = MyGroup
+    ADMIN_GROUP = MyAdminGroup
+    ADMIN_USER_NAME = MyAdminUser
+    ADMIN_USER_PASSWORD = MyAdminPassword
+    ADMIN_USER_AUTH_DRIVER = Core
+    RESOURCES = VM+TEMPLATE+NET+IMAGE      # This is the default if nothing is declared explicitly
+
+    $ onegroup create grptmpl.one
+
+    $ onegroup create --name MyGroup -admin_group MyAdminGroup --admin_user MyAdminUser --admin_password MyAdminPassword --admin_driver core --resource VM+TEMPLATE+NET+IMAGE 
+
+Managing Resource Provider within Groups
+----------------------------------------
+
+Groups can be assigned with resource providers. A resource provider is an OpenNebula cluster (set of physical hosts and associated datastores and virtual networks) from a particular zone (an OpenNebula instance). A group can be assigned with (examples with CLI, but functionality also available through Sunstone):
+
+  * a particular resource provider, for instance cluster 7 of Zone 0
+
+.. code::
+
+    $ onegroup add_provider <group_id> 0 7
+
+  * all resources from a particular zone (special cluster id 10)
+
+.. code::
+
+    $ onegroup add_provider <group_id> 0 10
+
+By default a group doesn't have any resource provider, so users won't be entitled to use any resource until explicitly added a resource provider.
+
+To remove resource providers within a group, use the simetric operation ''del_provider''.
+
 Primary and Secondary Groups
 ----------------------------
 
