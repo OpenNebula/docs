@@ -94,7 +94,7 @@ pygments_style = 'sphinx'
 
 # Github path
 github_repo   = "https://github.com/OpenNebula/docs"
-github_branch = "master"
+github_branch = "one-4.4"
 
 # -- Options for HTML output ---------------------------------------------------
 
