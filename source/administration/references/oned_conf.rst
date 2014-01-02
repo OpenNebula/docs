@@ -97,6 +97,7 @@ XML-RPC Server Configuration
 -  ``KEEPALIVE_TIMEOUT``: Maximum time in seconds that the server allows a connection to be open between RPCs
 -  ``KEEPALIVE_MAX_CONN``: Maximum number of RPCs that the server will execute on a single connection
 -  ``TIMEOUT``: Maximum time in seconds the server will wait for the client to do anything while processing an RPC
+-  ``RPC_LOG: Create a separated log file for xml-rpc requests, in /var/log/one/one_xmlrpc.log.
 
 .. code::
 
@@ -104,11 +105,12 @@ XML-RPC Server Configuration
     # XML-RPC server configuration
     #*******************************************************************************
      
-    #MAX_CONN            = 15
-    #MAX_CONN_BACKLOG    = 15
-    #KEEPALIVE_TIMEOUT   = 15
-    #KEEPALIVE_MAX_CONN  = 30
-    #TIMEOUT             = 15
+    #MAX_CONN           = 15
+    #MAX_CONN_BACKLOG   = 15
+    #KEEPALIVE_TIMEOUT  = 15
+    #KEEPALIVE_MAX_CONN = 30
+    #TIMEOUT            = 15
+    #RPC_LOG            = NO
 
 .. warning:: This functionality is only available when compiled with xmlrpc-c libraires >= 1.32. Currently only the packages distributed by OpenNebula are linked with this library.
 
