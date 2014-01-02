@@ -104,6 +104,7 @@ The optimal values of the scheduler parameters depend on the hypervisor, storage
 Sample Configuration:
 
 .. code::
+
     MESSAGE_SIZE = 1073741824
     
     ONED_PORT = 2633
