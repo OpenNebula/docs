@@ -97,7 +97,7 @@ XML-RPC Server Configuration
 -  ``KEEPALIVE_TIMEOUT``: Maximum time in seconds that the server allows a connection to be open between RPCs
 -  ``KEEPALIVE_MAX_CONN``: Maximum number of RPCs that the server will execute on a single connection
 -  ``TIMEOUT``: Maximum time in seconds the server will wait for the client to do anything while processing an RPC
--  ``RPC_LOG: Create a separated log file for xml-rpc requests, in /var/log/one/one_xmlrpc.log.
+-  ``RPC_LOG``: Create a separated log file for xml-rpc requests, in /var/log/one/one_xmlrpc.log.
 
 .. code::
 
