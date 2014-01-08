@@ -288,7 +288,7 @@ Admin Groups
 
 Upon group creation, an associated administration group can be defined. This admin group will contain users with administrative privileges for the associated regular group, not for all the resources in the OpenNebula cloud as the 'oneadmin' group users have. Also, an admin user belonging to both groups can be defined upon creation as well. Another aspect that can be controlled on creation time is the type of resources that group users will be alowed to create. 
 
-This can be managed visually in Sunstone, and can also be managed through the CLI.
+This can be managed visually in Sunstone, and can also be managed through the CLI. In the latter, details of the group are passed to the ``onegroup`` or a text file containing the template of the group. See the :ref:`group definition template  <group_template>` for a description of valid attributes.
 
 .. code::
 
@@ -323,7 +323,7 @@ Groups can be assigned with resource providers. A resource provider is an OpenNe
 
 By default a group doesn't have any resource provider, so users won't be entitled to use any resource until explicitly added a resource provider.
 
-To remove resource providers within a group, use the simetric operation ''del_provider''.
+To remove resource providers within a group, use the simetric operation "del_provider".
 
 Primary and Secondary Groups
 ----------------------------
