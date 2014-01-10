@@ -43,7 +43,23 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     font-family: Verdana, Geneva, sans-serif;
     font-weight: 500;
     color: #353735;
-    }
+}
+
+h1 {
+    font-size: 26pt;
+}
+
+h2 {
+    font-size: 20pt;
+}
+
+h3 {
+    font-size: 18pt;
+}
+
+h4 {
+    font-size: 14pt;
+}
 
 /* Center Images */
 .section > p > img:only-child {
@@ -59,20 +75,6 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     color: #b94a48;
     background-color: #f2dede;
     border-color: #eed3d7;
-}
-
-h3 {
-    font-family: Verdana, Geneva, sans-serif;
-    font-weight: 500;
-    color: #353735;
-    font-size: 12pt;
-}
-
-h2 {
-    font-family: Verdana, Geneva, sans-serif;
-    font-weight: 500;
-    color: #353735;
-    font-size: 14pt;
 }
 
 .bs-sidenav.affix {
