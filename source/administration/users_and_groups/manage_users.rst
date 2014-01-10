@@ -307,15 +307,15 @@ This can be managed visually in Sunstone, and can also be managed through the CL
 Managing Resource Provider within Groups
 ----------------------------------------
 
-Groups can be assigned with resource providers. A resource provider is an OpenNebula cluster (set of physical hosts and associated datastores and virtual networks) from a particular zone (an OpenNebula instance). A group can be assigned with (examples with CLI, but functionality also available through Sunstone):
+Groups can be assigned with resource providers. A resource provider is an OpenNebula cluster (set of physical hosts and associated datastores and virtual networks) from a particular zone (an OpenNebula instance). A group can be assigned (examples with CLI, but functionality is also available through Sunstone):
 
-  * a particular resource provider, for instance cluster 7 of Zone 0
+* A particular resource provider, for instance cluster 7 of Zone 0
 
 .. code::
 
     $ onegroup add_provider <group_id> 0 7
 
-  * all resources from a particular zone (special cluster id 10)
+* All resources from a particular zone (special cluster id 10)
 
 .. code::
 
