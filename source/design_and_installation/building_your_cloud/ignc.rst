@@ -36,7 +36,7 @@ To install a CentOS/RHEL OpenNebula front-end with packages from **our repositor
     # cat << EOT > /etc/yum.repos.d/opennebula.repo
     [opennebula]
     name=opennebula
-    baseurl=http://downloads.opennebula.org/repo/CentOS/6/stable/$basearch
+    baseurl=http://downloads.opennebula.org/repo/CentOS/6/stable/\$basearch
     enabled=1
     gpgcheck=0
     EOT
