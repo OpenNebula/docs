@@ -9,6 +9,8 @@ Low to medium enterprise clouds will typically deploy Sunstone in a single machi
 -  Isolating the access from Web clients to the Sunstone server. This can be achieved by deploying the Sunstone server in a separated machine.
 -  Improve the scalability of the server for large user pools. Usually deploying sunstone in a separate application container in one or more hosts.
 
+Check also the :ref:`api scalability guide <one_scalability_api_tuning>` as these of the tips also have an impact on Sunstone performance.
+
 Deploying Sunstone in a Different Machine
 =========================================
 

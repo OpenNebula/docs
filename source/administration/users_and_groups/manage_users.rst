@@ -40,6 +40,15 @@ If OpenNebula was installed from sources in **self-contained mode** (this is not
 
 It must point to the installation <destination\_folder>.
 
+**ONE\_POOL\_PAGE\_SIZE**
+
+By default OpenNebula Cloud API (CLI and Sunstone make use of it) paginates some pool responses. By default this size is 2000 but it can be changed with this variable. A numeric value greater that 2 is the pool size. To disable it you can use a non numeric value.
+
+.. code-block:: bash
+
+    $ export ONE_POOL_PAGE_SIZE=5000        # Sets the page size to 5000
+    $ export ONE_POOL_PAGE_SIZE=disabled    # Disables pool pagination
+
 **PATH**
 
 ``$ONE_LOCATION/bin``:$PATH .

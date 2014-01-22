@@ -675,27 +675,29 @@ one.templatepool.info
 -  **Description**: Retrieves information for all or part of the Resources in the pool.
 -  **Parameters**
 
-+------+-----------+------------------------------------------------------+
-| Type | Data Type |                     Description                      |
-+======+===========+======================================================+
-| IN   | String    | The session string.                                  |
-+------+-----------+------------------------------------------------------+
-| IN   | Int       | Filter flag                                          |
-|      |           | **- < = -3**: Connected user's resources             |
-|      |           | **- -2**: All resources                              |
-|      |           | **- -1**: Connected user's and his group's resources |
-|      |           | **- > = 0**: UID User's Resources                    |
-+------+-----------+------------------------------------------------------+
-| IN   | Int       | Range start ID. Can be -1.                           |
-+------+-----------+------------------------------------------------------+
-| IN   | Int       | Range end ID. Can be -1.                             |
-+------+-----------+------------------------------------------------------+
-| OUT  | Boolean   | true or false whenever is successful or not          |
-+------+-----------+------------------------------------------------------+
-| OUT  | String    | The information string / The error string.           |
-+------+-----------+------------------------------------------------------+
-| OUT  | Int       | Error code.                                          |
-+------+-----------+------------------------------------------------------+
++------+-----------+-----------------------------------------------------------------------+
+| Type | Data Type |                              Description                              |
++======+===========+=======================================================================+
+| IN   | String    | The session string.                                                   |
++------+-----------+-----------------------------------------------------------------------+
+| IN   | Int       | Filter flag                                                           |
+|      |           | **- < = -3**: Connected user's resources                              |
+|      |           | **- -2**: All resources                                               |
+|      |           | **- -1**: Connected user's and his group's resources                  |
+|      |           | **- > = 0**: UID User's Resources                                     |
++------+-----------+-----------------------------------------------------------------------+
+| IN   | Int       | When the next parameter is >= -1 this is the Range start ID.          |
+|      |           | Can be -1. For smaller values this is the offset used for pagination. |
++------+-----------+-----------------------------------------------------------------------+
+| IN   | Int       | For values >= -1 this is the Range end ID. Can be -1 to get until the |
+|      |           | last ID. For values < -1 this is the page size used for pagination.   |
++------+-----------+-----------------------------------------------------------------------+
+| OUT  | Boolean   | true or false whenever is successful or not                           |
++------+-----------+-----------------------------------------------------------------------+
+| OUT  | String    | The information string / The error string.                            |
++------+-----------+-----------------------------------------------------------------------+
+| OUT  | Int       | Error code.                                                           |
++------+-----------+-----------------------------------------------------------------------+
 
 The range can be used to retrieve a subset of the pool, from the 'start' to the 'end' ID. To retrieve the complete pool, use ``(-1, -1)``; to retrieve all the pool from a specific ID to the last one, use ``(<id>, -1)``, and to retrieve the first elements up to an ID, use ``(0, <id>)``.
 
@@ -1232,29 +1234,31 @@ one.vmpool.info
 -  **Description**: Retrieves information for all or part of the VMs in the pool.
 -  **Parameters**
 
-+------+-----------+------------------------------------------------------+
-| Type | Data Type |                     Description                      |
-+======+===========+======================================================+
-| IN   | String    | The session string.                                  |
-+------+-----------+------------------------------------------------------+
-| IN   | Int       | Filter flag                                          |
-|      |           | **- < = -3**: Connected user's resources             |
-|      |           | **- -2**: All resources                              |
-|      |           | **- -1**: Connected user's and his group's resources |
-|      |           | **- > = 0**: UID User's Resources                    |
-+------+-----------+------------------------------------------------------+
-| IN   | Int       | Range start ID. Can be -1.                           |
-+------+-----------+------------------------------------------------------+
-| IN   | Int       | Range end ID. Can be -1.                             |
-+------+-----------+------------------------------------------------------+
-| IN   | Int       | VM state to filter by.                               |
-+------+-----------+------------------------------------------------------+
-| OUT  | Boolean   | true or false whenever is successful or not          |
-+------+-----------+------------------------------------------------------+
-| OUT  | String    | The information string / The error string.           |
-+------+-----------+------------------------------------------------------+
-| OUT  | Int       | Error code.                                          |
-+------+-----------+------------------------------------------------------+
++------+-----------+-----------------------------------------------------------------------+
+| Type | Data Type |                              Description                              |
++======+===========+=======================================================================+
+| IN   | String    | The session string.                                                   |
++------+-----------+-----------------------------------------------------------------------+
+| IN   | Int       | Filter flag                                                           |
+|      |           | **- < = -3**: Connected user's resources                              |
+|      |           | **- -2**: All resources                                               |
+|      |           | **- -1**: Connected user's and his group's resources                  |
+|      |           | **- > = 0**: UID User's Resources                                     |
++------+-----------+-----------------------------------------------------------------------+
+| IN   | Int       | When the next parameter is >= -1 this is the Range start ID.          |
+|      |           | Can be -1. For smaller values this is the offset used for pagination. |
++------+-----------+-----------------------------------------------------------------------+
+| IN   | Int       | For values >= -1 this is the Range end ID. Can be -1 to get until the |
+|      |           | last ID. For values < -1 this is the page size used for pagination.   |
++------+-----------+-----------------------------------------------------------------------+
+| IN   | Int       | VM state to filter by.                                                |
++------+-----------+-----------------------------------------------------------------------+
+| OUT  | Boolean   | true or false whenever is successful or not                           |
++------+-----------+-----------------------------------------------------------------------+
+| OUT  | String    | The information string / The error string.                            |
++------+-----------+-----------------------------------------------------------------------+
+| OUT  | Int       | Error code.                                                           |
++------+-----------+-----------------------------------------------------------------------+
 
 The range can be used to retrieve a subset of the pool, from the 'start' to the 'end' ID. To retrieve the complete pool, use ``(-1, -1)``; to retrieve all the pool from a specific ID to the last one, use ``(<id>, -1)``, and to retrieve the first elements up to an ID, use ``(0, <id>)``.
 
@@ -2163,27 +2167,29 @@ one.vnpool.info
 -  **Description**: Retrieves information for all or part of the virtual networks in the pool.
 -  **Parameters**
 
-+------+-----------+------------------------------------------------------+
-| Type | Data Type |                     Description                      |
-+======+===========+======================================================+
-| IN   | String    | The session string.                                  |
-+------+-----------+------------------------------------------------------+
-| IN   | Int       | Filter flag                                          |
-|      |           | **- < = -3**: Connected user's resources             |
-|      |           | **- -2**: All resources                              |
-|      |           | **- -1**: Connected user's and his group's resources |
-|      |           | **- > = 0**: UID User's Resources                    |
-+------+-----------+------------------------------------------------------+
-| IN   | Int       | Range start ID. Can be -1.                           |
-+------+-----------+------------------------------------------------------+
-| IN   | Int       | Range end ID. Can be -1.                             |
-+------+-----------+------------------------------------------------------+
-| OUT  | Boolean   | true or false whenever is successful or not          |
-+------+-----------+------------------------------------------------------+
-| OUT  | String    | The information string / The error string.           |
-+------+-----------+------------------------------------------------------+
-| OUT  | Int       | Error code.                                          |
-+------+-----------+------------------------------------------------------+
++------+-----------+-----------------------------------------------------------------------+
+| Type | Data Type |                              Description                              |
++======+===========+=======================================================================+
+| IN   | String    | The session string.                                                   |
++------+-----------+-----------------------------------------------------------------------+
+| IN   | Int       | Filter flag                                                           |
+|      |           | **- < = -3**: Connected user's resources                              |
+|      |           | **- -2**: All resources                                               |
+|      |           | **- -1**: Connected user's and his group's resources                  |
+|      |           | **- > = 0**: UID User's Resources                                     |
++------+-----------+-----------------------------------------------------------------------+
+| IN   | Int       | When the next parameter is >= -1 this is the Range start ID.          |
+|      |           | Can be -1. For smaller values this is the offset used for pagination. |
++------+-----------+-----------------------------------------------------------------------+
+| IN   | Int       | For values >= -1 this is the Range end ID. Can be -1 to get until the |
+|      |           | last ID. For values < -1 this is the page size used for pagination.   |
++------+-----------+-----------------------------------------------------------------------+
+| OUT  | Boolean   | true or false whenever is successful or not                           |
++------+-----------+-----------------------------------------------------------------------+
+| OUT  | String    | The information string / The error string.                            |
++------+-----------+-----------------------------------------------------------------------+
+| OUT  | Int       | Error code.                                                           |
++------+-----------+-----------------------------------------------------------------------+
 
 The range can be used to retrieve a subset of the pool, from the 'start' to the 'end' ID. To retrieve the complete pool, use ``(-1, -1)``; to retrieve all the pool from a specific ID to the last one, use ``(<id>, -1)``, and to retrieve the first elements up to an ID, use ``(0, <id>)``.
 
@@ -2643,27 +2649,29 @@ one.imagepool.info
 -  **Description**: Retrieves information for all or part of the images in the pool.
 -  **Parameters**
 
-+------+-----------+------------------------------------------------------+
-| Type | Data Type |                     Description                      |
-+======+===========+======================================================+
-| IN   | String    | The session string.                                  |
-+------+-----------+------------------------------------------------------+
-| IN   | Int       | Filter flag                                          |
-|      |           | **- < = -3**: Connected user's resources             |
-|      |           | **- -2**: All resources                              |
-|      |           | **- -1**: Connected user's and his group's resources |
-|      |           | **- > = 0**: UID User's Resources                    |
-+------+-----------+------------------------------------------------------+
-| IN   | Int       | Range start ID. Can be -1.                           |
-+------+-----------+------------------------------------------------------+
-| IN   | Int       | Range end ID. Can be -1.                             |
-+------+-----------+------------------------------------------------------+
-| OUT  | Boolean   | true or false whenever is successful or not          |
-+------+-----------+------------------------------------------------------+
-| OUT  | String    | The information string / The error string.           |
-+------+-----------+------------------------------------------------------+
-| OUT  | Int       | Error code.                                          |
-+------+-----------+------------------------------------------------------+
++------+-----------+-----------------------------------------------------------------------+
+| Type | Data Type |                              Description                              |
++======+===========+=======================================================================+
+| IN   | String    | The session string.                                                   |
++------+-----------+-----------------------------------------------------------------------+
+| IN   | Int       | Filter flag                                                           |
+|      |           | **- < = -3**: Connected user's resources                              |
+|      |           | **- -2**: All resources                                               |
+|      |           | **- -1**: Connected user's and his group's resources                  |
+|      |           | **- > = 0**: UID User's Resources                                     |
++------+-----------+-----------------------------------------------------------------------+
+| IN   | Int       | When the next parameter is >= -1 this is the Range start ID.          |
+|      |           | Can be -1. For smaller values this is the offset used for pagination. |
++------+-----------+-----------------------------------------------------------------------+
+| IN   | Int       | For values >= -1 this is the Range end ID. Can be -1 to get until the |
+|      |           | last ID. For values < -1 this is the page size used for pagination.   |
++------+-----------+-----------------------------------------------------------------------+
+| OUT  | Boolean   | true or false whenever is successful or not                           |
++------+-----------+-----------------------------------------------------------------------+
+| OUT  | String    | The information string / The error string.                            |
++------+-----------+-----------------------------------------------------------------------+
+| OUT  | Int       | Error code.                                                           |
++------+-----------+-----------------------------------------------------------------------+
 
 The range can be used to retrieve a subset of the pool, from the 'start' to the 'end' ID. To retrieve the complete pool, use ``(-1, -1)``; to retrieve all the pool from a specific ID to the last one, use ``(<id>, -1)``, and to retrieve the first elements up to an ID, use ``(0, <id>)``.
 
@@ -3363,29 +3371,31 @@ one.documentpool.info
 -  **Description**: Retrieves information for all or part of the Resources in the pool.
 -  **Parameters**
 
-+------+-----------+------------------------------------------------------+
-| Type | Data Type |                     Description                      |
-+======+===========+======================================================+
-| IN   | String    | The session string.                                  |
-+------+-----------+------------------------------------------------------+
-| IN   | Int       | Filter flag                                          |
-|      |           | **- < = -3**: Connected user's resources             |
-|      |           | **- -2**: All resources                              |
-|      |           | **- -1**: Connected user's and his group's resources |
-|      |           | **- > = 0**: UID User's Resources                    |
-+------+-----------+------------------------------------------------------+
-| IN   | Int       | Range start ID. Can be -1.                           |
-+------+-----------+------------------------------------------------------+
-| IN   | Int       | Range end ID. Can be -1.                             |
-+------+-----------+------------------------------------------------------+
-| IN   | Int       | The document type.                                   |
-+------+-----------+------------------------------------------------------+
-| OUT  | Boolean   | true or false whenever is successful or not          |
-+------+-----------+------------------------------------------------------+
-| OUT  | String    | The information string / The error string.           |
-+------+-----------+------------------------------------------------------+
-| OUT  | Int       | Error code.                                          |
-+------+-----------+------------------------------------------------------+
++------+-----------+-----------------------------------------------------------------------+
+| Type | Data Type |                              Description                              |
++======+===========+=======================================================================+
+| IN   | String    | The session string.                                                   |
++------+-----------+-----------------------------------------------------------------------+
+| IN   | Int       | Filter flag                                                           |
+|      |           | **- < = -3**: Connected user's resources                              |
+|      |           | **- -2**: All resources                                               |
+|      |           | **- -1**: Connected user's and his group's resources                  |
+|      |           | **- > = 0**: UID User's Resources                                     |
++------+-----------+-----------------------------------------------------------------------+
+| IN   | Int       | When the next parameter is >= -1 this is the Range start ID.          |
+|      |           | Can be -1. For smaller values this is the offset used for pagination. |
++------+-----------+-----------------------------------------------------------------------+
+| IN   | Int       | For values >= -1 this is the Range end ID. Can be -1 to get until the |
+|      |           | last ID. For values < -1 this is the page size used for pagination.   |
++------+-----------+-----------------------------------------------------------------------+
+| IN   | Int       | The document type.                                                    |
++------+-----------+-----------------------------------------------------------------------+
+| OUT  | Boolean   | true or false whenever is successful or not                           |
++------+-----------+-----------------------------------------------------------------------+
+| OUT  | String    | The information string / The error string.                            |
++------+-----------+-----------------------------------------------------------------------+
+| OUT  | Int       | Error code.                                                           |
++------+-----------+-----------------------------------------------------------------------+
 
 The range can be used to retrieve a subset of the pool, from the 'start' to the 'end' ID. To retrieve the complete pool, use ``(-1, -1)``; to retrieve all the pool from a specific ID to the last one, use ``(<id>, -1)``, and to retrieve the first elements up to an ID, use ``(0, <id>)``.
 

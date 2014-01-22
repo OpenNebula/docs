@@ -43,6 +43,8 @@ Each monitoring entry will be around 2 KB for each Host, and 4 KB for each VM. T
 | 20s                   | 24h             | 10000   | 7 GB      |
 +-----------------------+-----------------+---------+-----------+
 
+.. _one_scalability_api_tuning:
+
 API Tuning
 ==========
 
@@ -52,6 +54,22 @@ For large deployments with lots of xmlprc calls the default values for the xmlpr
 
     MAX_CONN = 240
     MAX_CONN_BACKLOG = 480
+
+OpenNebula Cloud API (OCA) is able to use the library `Ox <https://rubygems.org/gems/ox>`__ for XML parsing. This library is makes the parsing of pools much faster. It is used by both the CLI and Sunstone so both will benefit from it.
+
+The core is able to paginate some pool answers. This makes the memory consumption decrease and in some cases the parsing faster. By default the pagination value is 2000 objects but can be changed using the environment variable ``ONE_POOL_PAGE_SIZE``. It should be bigger that 2. For example, to list VMs with a page size of 5000 we can use:
+
+.. code::
+
+    $ ONE_POOL_PAGE_SIZE=5000 onevm list
+
+To disable pagination we can use a non numeric value:
+
+.. code::
+
+    $ ONE_POOL_PAGE_SIZE=disabled onevm list
+
+This environment variable can be also used for Sunstone.
 
 Driver Tuning
 =============
