@@ -115,6 +115,7 @@ Next thing we have to do is configure the virtual host that will run our Sunston
 
     <VirtualHost *:80>
       ServerName sunstone-server
+      PassengerUser oneadmin
       # !!! Be sure to point DocumentRoot to 'public'!
       DocumentRoot /usr/lib/one/sunstone/public
       <Directory /usr/lib/one/sunstone/publicc>
