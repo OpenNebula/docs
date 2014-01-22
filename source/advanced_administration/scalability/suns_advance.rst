@@ -118,7 +118,7 @@ Next thing we have to do is configure the virtual host that will run our Sunston
       PassengerUser oneadmin
       # !!! Be sure to point DocumentRoot to 'public'!
       DocumentRoot /usr/lib/one/sunstone/public
-      <Directory /usr/lib/one/sunstone/publicc>
+      <Directory /usr/lib/one/sunstone/public>
          # This relaxes Apache security settings.
          AllowOverride all
          # MultiViews must be turned off.
@@ -126,9 +126,7 @@ Next thing we have to do is configure the virtual host that will run our Sunston
       </Directory>
     </VirtualHost>
 
-Make sure you change the directory to ``/usr/share/opennebula/sunstone/public`` if you are using Debian or Ubuntu.
-
-Now the configuration should be ready, restart of reload apache configuration to start the application and point to the virtual host to check if everything is running.
+Now the configuration should be ready, restart -or reload apache configuration- to start the application and point to the virtual host to check if everything is running.
 
 Running Sunstone in Multiple Servers
 ------------------------------------
