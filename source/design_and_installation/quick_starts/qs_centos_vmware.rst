@@ -194,7 +194,7 @@ We need now to mount the two datastores exported by default by the OpenNebula fr
 
 |image5|
 
-Again in the VI client, go to Configuration → Storage → Add Storage (Upper right). We need to add two datastores (**0** and **100**). The picture shows the details for the datastore **100**, to add datastore **0** simply change the reference from 1 to 0 in the Folder and Datastore Name textboxes.
+Again in the VI client, go to Configuration → Storage → Add Storage (Upper right). We need to add two datastores (**0** and **1**). The picture shows the details for the datastore **100**, to add datastore **0** and **1** simply change the reference from **100** to **0** and then **1** in the Folder and Datastore Name textboxes.
 
 Please note that the IP of the server displayed may not correspond with your value, which has to be the IP your front-end uses to connect to the ESX.
 
