@@ -70,6 +70,8 @@ And then install all the needed packages:
 
     $ sudo yum localinstall opennebula-4.4.0/*.rpm
 
+.. warning:: Do not start OpenNebula at this point, some pre configuration needs to be done. Starting OpenNebula is not due until :ref:`here <qs_centos_vmware_start_opennebula>`.
+
 Let's install noVNC to gain access to the VMs:
 
 .. code::
@@ -336,6 +338,8 @@ Edit ``/etc/one/sunstone-server.conf`` with “sudo” and allow incoming connec
     :password: "password"
 
 .. warning:: Do not edit ``:libvirt_uri:``, the HOST placeholder is needed by the drivers
+
+.. _qs_centos_vmware_start_opennebula:
 
 **4.3 Start OpenNebula**
 
