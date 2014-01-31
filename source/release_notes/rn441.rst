@@ -1,0 +1,46 @@
+.. _rn441:
+
+=============================================
+OopenNebula 4.4.1 - Incremental Release Notes
+=============================================
+
+The OpenNebula project announces the general availability of OpenNebula 4.4.1. This is a maintenance release that fixes bugs reported by the community after 4.4 was released. This release only includes bug fixes and it is a recommended update for everyone running any 3.x or 4.x version of OpenNebula.
+
+This maintenance release fixes several bugs related to different OpenNebula components, ranging from datastore drivers to logging messages, see below for a complete list.
+
+Check out the :ref:`OpenNebula 4.4 Retina release notes <rn44>` for the release highlights and a summary of the new features incorporated in OpenNebula 4.4.
+
+Bugs fixed in OpenNebula 4.4.1
+------------------------------
+
+-  `#2699 <http://dev.opennebula.org/issues/2699>`__: FILES in CONTEXT now accepts multiple lines
+-  `#2689 <http://dev.opennebula.org/issues/2689>`__: Fix for wrong monitoring value being picked on hook on host error
+-  `#2657 <http://dev.opennebula.org/issues/2657>`__: Fix VMM driver to send one action per host
+-  `#2483 <http://dev.opennebula.org/issues/2483>`__: User proper vnc parameters for HVM XEN
+-  `#2699 <http://dev.opennebula.org/issues/2535>`__: Set cdrom disk type in xen driver
+-  `#2602 <http://dev.opennebula.org/issues/2602>`__: Fix DS name space on ESX
+-  `#2601 <http://dev.opennebula.org/issues/2601>`__: Use ssh_public_key when updating a template
+-  `#2544 <http://dev.opennebula.org/issues/2544>`__: Do not output error messages when inserting multiple monitoring values for the same time
+-  `#2542 <http://dev.opennebula.org/issues/2542>`__: CDROM on ceph datastore now uses CEPH_HOST, CEPH_SECRET, CEPH_USER
+-  `#2572 <http://dev.opennebula.org/issues/2572>`__: Configuration option for XML-RPC message size limit
+-  `#2548 <http://dev.opennebula.org/issues/2548>`__: Set correct flag for pool retrieval
+-  `#2541 <http://dev.opennebula.org/issues/2541>`__: Defaults 0 to monitor probes when error occur to prevent syntax errors
+-  `#2535 <http://dev.opennebula.org/issues/2535>`__: Put quotes around role name in the instantiate extra template
+
+
+Migrating from previous versions of OpenNebula
+----------------------------------------------
+
+The migration from OpenNebula 4.4 is straightforward by just upgrading the :ref:`database version using the procedure described here <upgrade>`.
+
+If you are upgrading from any other previous version please refer to the information included in the :ref:`OpenNebula 4.4 Retina release notes <rn44>`.
+
+Acknowledgements
+----------------
+
+We'd like to thank the great feedback received, it is an essential part of the process that makes OpenNebula a reality, and the primary source of improvement. A detailed list of people that have contributed to OpenNebula 4.4, can be found in the :ref:`Retina release notes <rn44>`.
+
+About OpenNebula
+----------------
+
+More information about the project can be found at the `project web page <http://www.opennebula.org/>`__. You may be also interested in checking the `OpenNebula addons <http://opennebula.org/addons/>`__ that includes many interesting projects contributed by the community to enhance or add new features to OpenNebula.
