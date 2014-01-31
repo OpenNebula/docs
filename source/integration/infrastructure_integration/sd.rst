@@ -290,7 +290,7 @@ Decoded Example
 
 .. _sd_dump:
 
-.. code:
+.. code-block:: xml
 
     <DS_DRIVER_ACTION_DATA>
         <IMAGE>
@@ -370,4 +370,4 @@ Decoded Example
                 <TYPE><![CDATA[IMAGE_DS]]></TYPE>
             </TEMPLATE>
         </DATASTORE>
-    </DS_DRIVER_ACTION_DATA>algun
+    </DS_DRIVER_ACTION_DATA>
