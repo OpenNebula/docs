@@ -12,8 +12,6 @@ GlusterFS driver allows KVM machines access VM images using native GlusterFS API
 
 .. warning:: The hypervisor nodes need to be part of a working GlusterFS server/s and the Libvirt and QEMU packages need to be recent enough to have support for GlusterFS.
 
-.. warning:: KVM/GlusterFS integration does not support more than one host at the moment. VM HA using GlusterFS replicas is not possible.
-
 Requirements
 ============
 
@@ -72,7 +70,7 @@ The datastore that holds the images will also be of type ``shared`` but you will
 +=====================+=========================================================================================================+
 | ``NAME``            | The name of the datastore                                                                               |
 +---------------------+---------------------------------------------------------------------------------------------------------+
-| ``DS_MAD``          | The DS type, use ``shared`` for the Ceph datastore                                                      |
+| ``DS_MAD``          | The DS type, use ``shared`` for the Gluster datastore                                                   |
 +---------------------+---------------------------------------------------------------------------------------------------------+
 | ``TM_MAD``          | Transfer drivers for the datastore, use ``shared``, see below                                           |
 +---------------------+---------------------------------------------------------------------------------------------------------+
@@ -115,6 +113,6 @@ An example of datastore:
        0 system              9.9G 98%   -                 0 sys  -        shared
        1 default             9.9G 98%   -                 2 img  shared   shared
        2 files              12.3G 66%   -                 0 fil  fs       ssh
-     101 default             9.9G 98%   -                 0 img  gluster  gluster
+     101 default             9.9G 98%   -                 0 img  shared   shared
 
 .. warning:: Note that datastores are not associated to any cluster by default, and they are supposed to be accessible by every single host. If you need to configure datastores for just a subset of the hosts take a look to the :ref:`Cluster guide <cluster_guide>`.
