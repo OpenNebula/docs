@@ -1,19 +1,12 @@
-.. _upgrade:
+.. _migrating:
 
-=================================
-Upgrading from Previous Versions
-=================================
+=============================
+Upgrading from OpenNebula 4.4
+=============================
 
-This guide describes the installation procedure for systems that are already running a 2.x, 3.x or 4.x OpenNebula. The upgrade will preserve all current users, hosts, resources and configurations; for both Sqlite and MySQL backends.
+.. warning:: If you are upgrading from any other previous version please refer to the information included in the :ref:`OpenNebula 4.4 Retina release notes <rn44>`.
 
-Read the :ref:`Compatibility Guide <compatibility>` and `Release Notes <http://opennebula.org/software:software>`_ to know what is new in OpenNebula 4.4.
-
-.. warning:: With the new :ref:`multi-system DS <system_ds_multiple_system_datastore_setups>` functionality, it is now required that the system DS is also part of the cluster. If you are using System DS 0 for Hosts inside a Cluster, any VM saved (stop, suspend, undeploy) **will not be able to be resumed after the upgrade process**.
-
-.. warning:: Two drivers available in 4.2 are now discontinued: **ganglia** and **iscsi**.
-
--  **iscsi** drivers have been moved out of the main OpenNebula distribution and are available (although not supported) as an `addon <https://github.com/OpenNebula/addon-iscsi>`__.
--  **ganglia** drivers have been moved out of the main OpenNebula distribution and are available (although not supported) as an `addon <https://github.com/OpenNebula/addon-ganglia>`__.
+The migration from OpenNebula 4.4 is straightforward by just upgrading the database version using the following procedure.
 
 Preparation
 ===========
@@ -40,9 +33,7 @@ Installation
 
 Follow the :ref:`Platform Notes <uspng>` and the :ref:`Installation guide <ignc>`, taking into account that you will already have configured the passwordless ssh access for oneadmin.
 
-It is highly recommended **not to keep** your current ``oned.conf``, and update the ``oned.conf`` file shipped with OpenNebula 4.4 to your setup. If for any reason you plan to preserve your current ``oned.conf`` file, read the :ref:`Compatibility Guide <compatibility>` and the complete oned.conf reference for `4.2 <http://opennebula.org/documentation:archives:rel4.2:oned_conf>`__ and :ref:`4.4 <oned_conf>` versions.
-
-.. warning:: If you are upgrading from a version prior to 4.2, read the `3.8 upgrade guide <http://opennebula.org/documentation:rel3.8:upgrade#installation>`_, `4.0 upgrade guide <http://opennebula.org/documentation:rel4.0:upgrade#installation>`_ and `4.2 upgrade guide <http://opennebula.org/rel4.2:upgrade#installation>`_ for specific notes.
+You can keep your current ``oned.conf`` as there are no changes between 4.4 and 4.4.1 in the file.
 
 Database Upgrade
 ================
@@ -98,12 +89,6 @@ Check DB Consistency
 
 After the upgrade is completed, you should run the command ``onedb fsck``.
 
-First, move the 4.2 backup file created by the upgrade command to a save place.
-
-.. code::
-
-    $ mv /var/lib/one/mysql_localhost_opennebula.sql /path/for/one-backups/
-
 Then execute the following command:
 
 .. code::
@@ -114,22 +99,6 @@ Then execute the following command:
     mysql -u user -h server -P port db_name < backup_file
 
     Total errors found: 0
-
-Update the Drivers
-==================
-
-You should be able now to start OpenNebula as usual, running 'one start' as oneadmin. At this point, execute ``onehost sync`` to update the new drivers in the hosts.
-
-.. warning:: Doing ``onehost sync`` is important. If the monitorization drivers are not updated, the hosts will behave erratically.
-
-Setting new System DS
-=====================
-
-With the new :ref:`multi-system DS <system_ds_multiple_system_datastore_setups>` functionality, it is now required that the system DS is also part of the cluster. If you are using System DS 0 for Hosts inside a Cluster, any VM saved (stop, suspend, undeploy) **will not be able to be resumed after the upgrade process**.
-
-You will need to have at least one system DS in each cluster. If you don't already, create new system DS with the same definition as the system DS 0 (TM\_MAD driver). Depending on your setup this may or may not require additional configuration on the hosts.
-
-You may also try to recover saved VMs (stop, suspend, undeploy) following the steps described in this `thread of the users mailing list <http://lists.opennebula.org/pipermail/users-opennebula.org/2013-December/025727.html>`__.
 
 Testing
 =======
@@ -143,8 +112,8 @@ Restoring the Previous Version
 
 If for any reason you need to restore your previous OpenNebula, follow these steps:
 
--  With OpenNebula 4.4 still installed, restore the DB backup using 'onedb restore -f'
--  Uninstall OpenNebula 4.4, and install again your previous version.
+-  With OpenNebula 4.4.1 still installed, restore the DB backup using 'onedb restore -f'
+-  Uninstall OpenNebula 4.4.1, and install again 4.4.
 -  Copy back the backup of /etc/one you did to restore your configuration.
 
 Known Issues
@@ -176,7 +145,7 @@ If you have a datastore configured to use a tm driver not included in the OpenNe
     configuration parameters in oned.conf for this driver, see
     http://opennebula.org/documentation:rel4.4:upgrade
 
-In OpenNebula 4.4, each tm\_mad driver has a TM\_MAD\_CONF section in oned.conf. If you developed the driver, it should be fairly easy to define the required information looking at the existing ones:
+In OpenNebula 4.4.1, each tm\_mad driver has a TM\_MAD\_CONF section in oned.conf. If you developed the driver, it should be fairly easy to define the required information looking at the existing ones:
 
 .. code::
 
@@ -204,4 +173,6 @@ In OpenNebula 4.4, each tm\_mad driver has a TM\_MAD\_CONF section in oned.conf.
         clone_target= "SELF",
         shared      = "yes"
     ]
+
+
 

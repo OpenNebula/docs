@@ -7,9 +7,8 @@ Release Notes
 .. toctree::
    :maxdepth: 2
 
-   Incremental Release Notes 4.4.1 <rn441>
    What's new <whats_new>
-   Migrating from OpenNebula 4.2 <migrating>
+   Upgrade From Previous Versions <migrating>
    Platform Notes <uspng>
    Compatibility Guide <compatibility>
    Known Issues <known_issues>
