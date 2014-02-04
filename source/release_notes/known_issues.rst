@@ -6,6 +6,16 @@ Known Issues
 
 The following bugs or issues have been identified in the current 4.4 version, and will be solved in future releases.
 
+Installation
+------------
+
+-  `#2705 <http://dev.opennebula.org/issues/2705>`__: ``install_gems`` script crashes installing nokogiri in ruby 1.8.7. These commands should be executed to fix it:
+
+.. code-block:: none
+
+    # /usr/share/one/install_gems oca
+    # /usr/share/one/install_gems
+
 VMware
 ------
 
@@ -38,6 +48,7 @@ Drivers - VM
 
 -  `#2511 <http://dev.opennebula.org/issues/2511>`__: EC2 Tags are not correctly formatted before sending them to EC2
 -  `#2483 <http://dev.opennebula.org/issues/2483>`__: Properly support cdrom in Xen HVM. Right now cdrom images in xen HVM are added like normal disks but should be set to emulate cdrom.
+
 
 OneGate
 -------
