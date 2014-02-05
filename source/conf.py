@@ -178,8 +178,9 @@ htmlhelp_basename = 'OpenNebuladoc'
 
 # -- Options for LaTeX output --------------------------------------------------
 
-guide_main_title = "OpenNebula %s " % (version,)
-file_main_title  = "opennebula_%s_" % (version,)
+pdfversion = "4.4.1"
+guide_main_title = "OpenNebula %s " % (pdfversion,)
+file_main_title  = "opennebula_%s_" % (pdfversion,)
 latex_author     = "OpenNebula Project"
 
 latex_elements = {
