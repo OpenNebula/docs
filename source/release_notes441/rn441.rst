@@ -4,7 +4,7 @@
 Issues Fixed In OpenNebula 4.4.1
 ================================
 
-OpenNebula 4.4.1 is a maintenance release that fixes bugs reported by the community after 4.4 was released. To see what's new in OpenNebula 4.4 Retina, refer to its :ref:` release notes <rn44>`.
+OpenNebula 4.4.1 is a maintenance release that fixes bugs reported by the community after 4.4 was released. To see what's new in OpenNebula 4.4 Retina, refer to its :ref:`release notes <rn44>`.
 
 This release only includes bug fixes and it is a recommended update for everyone running any 3.x or 4.x version of OpenNebula. Several bugs related to different OpenNebula components were fixed, ranging from datastore drivers to logging messages, see below for a complete list.
 
