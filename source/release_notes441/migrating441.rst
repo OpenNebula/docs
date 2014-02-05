@@ -80,7 +80,7 @@ If everything goes well, you should get an output similar to this one:
 
     Database migrated from 4.2.0 to 4.4.0 (OpenNebula 4.4.0) by onedb command.
 
-If you receive the message “ATTENTION: manual intervention required”, read the section :ref:`Manual Intervention Required <upgrade_manual_intervention_required>` below.
+If you receive the message “ATTENTION: manual intervention required”, read the section :ref:`Manual Intervention Required <upgrade_manual_intervention_required441>` below.
 
 .. warning:: Make sure you keep the backup file. If you face any issues, the onedb command can restore this backup, but it won't downgrade databases to previous versions.
 
@@ -129,7 +129,7 @@ The workaround is to temporarily change the oneadmin's password to an ASCII stri
 
     mysql> SET PASSWORD = PASSWORD('newpass');
 
-.. _upgrade_manual_intervention_required:
+.. _upgrade_manual_intervention_required441:
 
 Manual Intervention Required
 ============================
