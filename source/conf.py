@@ -197,9 +197,15 @@ latex_elements = {
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
   # Main Guides
-  ( 'release_notes/index',
-    file_main_title  + 'release_notes.tex',
-    guide_main_title + 'Release Notes',
+  ( 'release_notes44/index',
+    file_main_title  + 'release_notes_4.4.tex',
+    guide_main_title + 'Release Notes 4.4',
+    latex_author,
+    'manual'),
+
+  ( 'release_notes441/index',
+    file_main_title  + 'release_notes_4.4.1.tex',
+    guide_main_title + 'Release Notes 4.4.1',
     latex_author,
     'manual'),
 
