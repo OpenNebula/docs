@@ -1,7 +1,7 @@
 .. _migrating441:
 
 =============================
-Upgrading from OpenNebula 4.4
+Upgrading From OpenNebula 4.4
 =============================
 
 .. warning:: If you are upgrading from any other previous version please refer to the information included in the :ref:`OpenNebula 4.4 Retina release notes <rn44>`.
