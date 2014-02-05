@@ -1,7 +1,7 @@
 .. _whats_new:
 
 ============================
-What's new in OpenNebula 4.4
+What's New in OpenNebula 4.4
 ============================
 
 In the following list you can check the highlights of OpenNebula 4.4 Retina organised by component (`a detailed list of changes can be found here <http://dev.opennebula.org/projects/opennebula/issues?query_id=42>`__):
