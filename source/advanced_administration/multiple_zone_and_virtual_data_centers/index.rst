@@ -9,3 +9,4 @@ Multiple Zone and Virtual Data Centers
    oZones Server Setup <ozonescfg>
    Managing Multiple Zones <zonesmngt>
    Managing Virtual Data Centers <vdcmngt>
+   Federation Configuration <federationconfig>
