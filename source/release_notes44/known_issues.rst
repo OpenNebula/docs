@@ -1,8 +1,8 @@
 .. _known_issues:
 
-=============
+============
 Known Issues
-=============
+============
 
 The following bugs or issues have been identified in the current 4.4 version, and will be solved in future releases.
 
