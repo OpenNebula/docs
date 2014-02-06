@@ -2,16 +2,65 @@
 OpenNebula Federation Configuration
 ====================================
 
-Configure a Federation from Scratch
-======================================
+Configure a Federation, Installing a Slave from Scratch
+================================================================================
 
-This section will explain how to configure two (or more) OpenNebula zones to work as federation master and slave. It is assumed that both OpenNebula zones will be installed from scratch.
-
+This section will explain how to configure two (or more) OpenNebula zones to work as federation master and slave, when the slave is going to be installed from scratch.
 
 MySQL needs to be configured to enable the master-slave replication. Please read `the MySQL documentation for your version <http://dev.mysql.com/doc/refman/5.7/en/replication.html>`_ for complete instructions. The required steps are summarized here.
 
-Configure the MySQL Replication Master
-----------------------------------------
+1. Configure the OpenNebula Federation Master
+-------------------------------------------------------------------------------
+
+- Start with an existing OpenNebula, or install OpenNebula as usual following the :ref:`installation guide <ignc>`. For new installations, you may need to create a MySQL user for OpenNebula, read more in the :ref:`MySQL configuration guide <mysql>`.
+
+.. code-block:: none
+
+    # mysql -u root -p
+    mysql> GRANT ALL PRIVILEGES ON opennebula.* TO 'oneadmin' IDENTIFIED BY 'oneadmin';
+
+- Configure OpenNebula to use the **master MySQL**, and to act as a **federation master**.
+
+.. code-block:: none
+
+    # vi /etc/one/oned.conf
+    #DB = [ backend = "sqlite" ]
+
+    # Sample configuration for MySQL
+     DB = [ backend = "mysql",
+            server  = "<ip>",
+            port    = 0,
+            user    = "oneadmin",
+            passwd  = "oneadmin",
+            db_name = "opennebula" ]
+
+    FEDERATION = [
+        MODE = "MASTER",
+        ZONE_ID = 0,
+        MASTER_ONED = ""
+    ]
+
+- Restart OpenNebula
+- Create a Zone for each one of the slaves. This can be done via Sunstone, or with the onezone command.
+
+.. code-block:: none
+
+    $ vim /tmp/zone.tmpl
+    NAME     = slave-name
+    ENDPOINT = http://<slave-ip>:2633/RPC2
+
+    $ onezone create /tmp/zone.tmpl 
+    ID: 100
+
+    $ onezone list
+       ID NAME                     
+        0 OpenNebula
+      100 slave-name
+
+- Stop OpenNebula.
+
+2. Configure the MySQL Replication Master
+--------------------------------------------------------------------------------
 
 - In your **master MySQL**: enable the binary log for the opennebula database and set a server ID. Change the 'opennebula' database name to the one set in oned.conf.
 
@@ -33,24 +82,26 @@ Configure the MySQL Replication Master
     mysql> CREATE USER 'one-replication'@'%.mydomain.com' IDENTIFIED BY 'slavepass';
     mysql> GRANT REPLICATION SLAVE ON *.* TO 'repl'@'%.mydomain.com';
 
-- **Master MySQL**: Get the current position of the binary log. Write down the File and Position, and don't forget to unlock the tables.
+- **Master MySQL**: Lock the tables and perform a dump. 
+
+In one terminal, lock the tables while you execute the mysqldump command in another terminal. Please note the ``--master-data`` option, it must be present to allow the slaves to know the current position of the binary log.
 
 .. code-block:: none
 
     mysql> FLUSH TABLES WITH READ LOCK;
-    mysql> SHOW MASTER STATUS;
-    +------------------+----------+--------------+------------------+
-    | File             | Position | Binlog_Do_DB | Binlog_Ignore_DB |
-    +------------------+----------+--------------+------------------+
-    | mysql-bin.000005 |      106 | opennebula   |                  |
-    +------------------+----------+--------------+------------------+
 
     mysql> UNLOCK TABLES;
 
+.. code-block:: none
+
+    mysqldump -u root -p --master-data opennebula user_pool group_pool zone_pool db_versioning acl > dump.sql
+
 - MySQL replication cannot use Unix socket files. You must be able to connect from the slaves to the master MySQL server using TCP/IP. The default port is 3306.
 
-Configure the MySQL Replication Slave
-----------------------------------------
+- You can start the master OpenNebula at this point.
+
+3. Configure the MySQL Replication Slave
+--------------------------------------------------------------------------------
 
 For each one of the slaves, configure the MySQL server as a replication slave. Pay attention to the ``server-id`` set in my.cnf, it must be unique for each one.
 
@@ -63,7 +114,6 @@ For each one of the slaves, configure the MySQL server as a replication slave. P
     server-id           = 100
     replicate-do-table  = opennebula.user_pool
     replicate-do-table  = opennebula.group_pool
-    replicate-do-table  = opennebula.acl_pool
     replicate-do-table  = opennebula.zone_pool
     replicate-do-table  = opennebula.db_versioning
     replicate-do-table  = opennebula.acl
@@ -78,9 +128,15 @@ For each one of the slaves, configure the MySQL server as a replication slave. P
     mysql> CHANGE MASTER TO
         ->     MASTER_HOST='master_host_name',
         ->     MASTER_USER='replication_user_name',
-        ->     MASTER_PASSWORD='replication_password',
-        ->     MASTER_LOG_FILE='recorded_log_file_name',
-        ->     MASTER_LOG_POS=recorded_log_position;
+        ->     MASTER_PASSWORD='replication_password';
+
+- Copy the mysql dump file from the **master**, and import its contents to the **slave**.
+
+.. code-block:: none
+
+    mysql> CREATE DATABASE opennebula;
+    mysql> USE opennebula;
+    mysql> SOURCE /path/to/dump.sql;
 
 - Start the **slave MySQL** process and check its status.
 
@@ -97,47 +153,9 @@ The ``SHOW SLAVE STATUS`` output will provide detailed information, but to confi
      Slave_IO_Running: Yes
     Slave_SQL_Running: Yes
 
-Configure the OpenNebula Federation Master
--------------------------------------------------------------------------------
 
-- Install OpenNebula as usual following the :ref:`installation guide <ignc>`.
-- Configure OpenNebula to use the **master MySQL**, and to act as a **federation master**. You need to create a MySQL user for OpenNebula, read more in the :ref:`MySQL configuration guide <mysql>`
-
-.. code-block:: none
-
-    # vi /etc/one/oned.conf
-    #DB = [ backend = "sqlite" ]
-
-    # Sample configuration for MySQL
-     DB = [ backend = "mysql",
-            server  = "<ip>",
-            port    = 0,
-            user    = "oneadmin",
-            passwd  = "oneadmin",
-            db_name = "opennebula" ]
-
-    # mysql -u root -p
-    mysql> GRANT ALL PRIVILEGES ON opennebula.* TO 'oneadmin' IDENTIFIED BY 'oneadmin';
-
-- Start OpenNebula
-- Create a Zone for each one of the slaves. This can be done via Sunstone, or with the onezone command.
-
-.. code-block:: none
-
-    $ vim /tmp/zone.tmpl
-    NAME     = slave-name
-    ENDPOINT = http://<slave-ip>:2633/RPC2
-
-    $ onezone create /tmp/zone.tmpl 
-    ID: 100
-
-    $ onezone list
-       ID NAME                     
-        0 OpenNebula
-      100 slave-name
-
-Configure the OpenNebula Federation Slave
--------------------------------------------------------------------------------
+4. Configure the OpenNebula Federation Slave
+--------------------------------------------------------------------------------
 
 For each slave, follow these steps.
 
@@ -157,6 +175,12 @@ For each slave, follow these steps.
             passwd  = "oneadmin",
             db_name = "opennebula" ]
 
+    FEDERATION = [
+        MODE = "SLAVE",
+        ZONE_ID = 100,
+        MASTER_ONED = "http://<oned-master-ip>:2633/RPC2"
+    ]
+
     # mysql -u root -p
     mysql> GRANT ALL PRIVILEGES ON opennebula.* TO 'oneadmin' IDENTIFIED BY 'oneadmin';
 
@@ -174,4 +198,4 @@ For each slave, follow these steps.
 
 Make sure ``one_auth`` is present. If it's not, copy it from **master** oneadmin's ``$HOME/.one`` to the **slave** oneadmin's ``$HOME/.one``. For most configurations, oneadmin's home is ``/var/lib/one`` and this won't be necessary.
 
-- Start OpenNebula
+- Start the slave OpenNebula.
