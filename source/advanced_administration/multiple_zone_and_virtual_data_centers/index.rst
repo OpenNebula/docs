@@ -10,3 +10,4 @@ Multiple Zone and Virtual Data Centers
    Managing Multiple Zones <zonesmngt>
    Managing Virtual Data Centers <vdcmngt>
    Federation Configuration <federationconfig>
+   Federation Management <federationmng>
