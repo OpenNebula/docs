@@ -4,12 +4,9 @@
 OpenNebula Federation Configuration
 ====================================
 
-Configure a Federation, Installing a Slave from Scratch
-================================================================================
+This section will explain how to configure two (or more) OpenNebula zones to work as federation master and slave. The process described here can be applied to new installations, or existing OpenNebula instances.
 
-This section will explain how to configure two (or more) OpenNebula zones to work as federation master and slave, when the slave is going to be installed from scratch.
-
-MySQL needs to be configured to enable the master-slave replication. Please read `the MySQL documentation for your version <http://dev.mysql.com/doc/refman/5.7/en/replication.html>`_ for complete instructions. The required steps are summarized here.
+MySQL needs to be configured to enable the master-slave replication. Please read `the MySQL documentation for your version <http://dev.mysql.com/doc/refman/5.7/en/replication.html>`_ for complete instructions. The required steps are summarized here, but it may happen that your MySQL version needs a different configuration.
 
 1. Configure the OpenNebula Federation Master
 -------------------------------------------------------------------------------
@@ -61,7 +58,73 @@ MySQL needs to be configured to enable the master-slave replication. Please read
 
 - Stop OpenNebula.
 
-2. Configure the MySQL Replication Master
+2. Import the Existing Slave OpenNebula
+--------------------------------------------------------------------------------
+
+If your slave OpenNebula is going be installed from scratch, you can skip this step.
+
+If the OpenNebula to be added as a Slave is an existing installation, and you need to preserve its database (users, groups, VMs, hosts...), you need to import the contents with the ``onedb`` command.
+
+- Stop the slave OpenNebula. Make sure the master OpenNebula is also stopped.
+- Run the ``onedb import-slave`` command. Use ``-h`` to get an explanation of each option.
+
+.. code-block:: none
+
+    $ onedb import-slave -h
+    ## USAGE
+    import-slave 
+        Imports an existing federation slave into the federation master database
+
+    ## OPTIONS
+    ...
+
+    $ onedb import-slave -v \
+    --username oneadmin --password oneadmin \
+    --server 192.168.122.3 -dbname opennebula  \
+    --slave-username oneadmin --slave-password oneadmin \
+    --slave-server 192.168.122.4 --slave-dbname opennebula
+
+The tool will ask for the Zone ID you created in step 1.
+
+.. code-block:: none
+
+    Please enter the Zone ID that you created to represent the new Slave OpenNebula:
+    Zone ID: 
+
+You will also need to decide if the users and groups will be merged.
+
+If you had different people using the master and slave OpenNebula instances, then choose not to merge users. In case of name collision, the slave account will be renamed to ``username-1``.
+
+You will want to merge if your users were accessing both the master and slave OpenNebula instances before the federation. To put it more clearly, the same person had previous access to the ``alice`` user in master and ``alice`` user in the slave. This will be the case if, for example, you had more than one OpenNebula instances pointing to the same LDAP server for authentication.
+
+When a user is merged, its user template is also copied, using the master contents in case of conflict. This means that if alice had a different password or 'SSH_KEY' in her master and slave OpenNebula users, only the one in master will be preserved.
+
+In any case, the ownership of existing resources and group membership is preserved.
+
+.. code-block:: none
+
+    The import process will move the users from the slave OpeNenbula to the master
+    OpenNebula. In case of conflict, it can merge users with the same name.
+    For example:
+    +----------+-------------++------------+---------------+
+    | Master   | Slave       || With merge | Without merge |
+    +----------+-------------++------------+---------------+
+    | 5, alice | 2, alice    || 5, alice   | 5, alice      |
+    | 6, bob   | 5, bob      || 6, bob     | 6, bob        |
+    |          |             ||            | 7, alice-1    |
+    |          |             ||            | 8, bob-1      |
+    +----------+-------------++------------+---------------+
+
+    In any case, the ownership of existing resources and group membership
+    is preserved.
+
+    Do you want to merge USERS (Y/N): y
+
+    Do you want to merge GROUPS (Y/N): y
+
+When the import process finishes, onedb will write in ``/var/log/one/onedb-import.log`` the new user IDs and names if they were renamed.
+
+3. Configure the MySQL Replication Master
 --------------------------------------------------------------------------------
 
 - In your **master MySQL**: enable the binary log for the opennebula database and set a server ID. Change the 'opennebula' database name to the one set in oned.conf.
@@ -102,7 +165,7 @@ In one terminal, lock the tables while you execute the mysqldump command in anot
 
 - You can start the master OpenNebula at this point.
 
-3. Configure the MySQL Replication Slave
+4. Configure the MySQL Replication Slave
 --------------------------------------------------------------------------------
 
 For each one of the slaves, configure the MySQL server as a replication slave. Pay attention to the ``server-id`` set in my.cnf, it must be unique for each one.
@@ -156,13 +219,13 @@ The ``SHOW SLAVE STATUS`` output will provide detailed information, but to confi
     Slave_SQL_Running: Yes
 
 
-4. Configure the OpenNebula Federation Slave
+5. Configure the OpenNebula Federation Slave
 --------------------------------------------------------------------------------
 
 For each slave, follow these steps.
 
-- Install OpenNebula as usual following the :ref:`installation guide <ignc>`.
-- Configure OpenNebula to use the **slave MySQL**, and to act as a **federation slave**. You also need to create a user in this **slave MySQL**.
+- If it is a new installation, install OpenNebula as usual following the :ref:`installation guide <ignc>`.
+- Configure OpenNebula to use the **slave MySQL**, and to act as a **federation slave**. You may also need to create a user in this **slave MySQL**.
 
 .. code-block:: none
 
@@ -198,6 +261,6 @@ For each slave, follow these steps.
     onegate_auth
     sunstone_auth
 
-Make sure ``one_auth`` is present. If it's not, copy it from **master** oneadmin's ``$HOME/.one`` to the **slave** oneadmin's ``$HOME/.one``. For most configurations, oneadmin's home is ``/var/lib/one`` and this won't be necessary.
+Make sure ``one_auth`` (the oneadmin credentials) is present. If it's not, copy it from **master** oneadmin's ``$HOME/.one`` to the **slave** oneadmin's ``$HOME/.one``. For most configurations, oneadmin's home is ``/var/lib/one`` and this won't be necessary.
 
 - Start the slave OpenNebula.
