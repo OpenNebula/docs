@@ -368,20 +368,20 @@ The following I/O interfaces can be defined for a VM:
 
 **Note** the hypervisor column states that the attribute is **O**\ ptional, **M**\ andatory, or ``-`` not supported for that hypervisor
 
-+----------------+----------------------------------------------------------------------------------------+-------+-------+----------+
-| Attribute      | Description                                                                            | XEN   | KVM   | VMWARE   |
-+================+========================================================================================+=======+=======+==========+
-| **INPUT**      | Define input devices, available sub-attributes:                                        | -     | O     | -        |
-|                |  **- TYPE**: values are ``mouse`` or ``tablet``                                        |       |       |          |
-|                |  **- BUS**: values are ``usb``, ``ps2`` or ``xen``                                     |       |       |          |
-+----------------+----------------------------------------------------------------------------------------+-------+-------+----------+
-| **GRAPHICS**   | Wether the VM should export its graphical display and how, available sub-attributes:   | O     | O     | -        |
-|                |  **- TYPE**: values: ``vnc``, ``sdl``, ``spice``                                       |       |       |          |
-|                |  **- LISTEN**: IP to listen on.                                                        |       |       |          |
-|                |  **- PORT**: port for the VNC server                                                   |       |       |          |
-|                |  **- PASSWD**: password for the VNC server                                             |       |       |          |
-|                |  **- KEYMAP**: keyboard configuration locale to use in the VNC display                 |       |       |          |
-+----------------+----------------------------------------------------------------------------------------+-------+-------+----------+
++--------------+--------------------------------------------------------------------------------------+-------------+-----+--------+
+|  Attribute   |                                     Description                                      |     XEN     | KVM | VMWARE |
++==============+======================================================================================+=============+=====+========+
+| **INPUT**    | Define input devices, available sub-attributes:                                      | O (only usb | O   | -      |
+|              | **- TYPE**: values are ``mouse`` or ``tablet``                                       | tablet is   |     |        |
+|              | **- BUS**: values are ``usb``, ``ps2`` or ``xen``                                    | supported)  |     |        |
++--------------+--------------------------------------------------------------------------------------+-------------+-----+--------+
+| **GRAPHICS** | Wether the VM should export its graphical display and how, available sub-attributes: | O           | O   | -      |
+|              | **- TYPE**: values: ``vnc``, ``sdl``, ``spice``                                      |             |     |        |
+|              | **- LISTEN**: IP to listen on.                                                       |             |     |        |
+|              | **- PORT**: port for the VNC server                                                  |             |     |        |
+|              | **- PASSWD**: password for the VNC server                                            |             |     |        |
+|              | **- KEYMAP**: keyboard configuration locale to use in the VNC display                |             |     |        |
++--------------+--------------------------------------------------------------------------------------+-------------+-----+--------+
 
 Example:
 
