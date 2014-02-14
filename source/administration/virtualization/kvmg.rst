@@ -253,6 +253,8 @@ If properly configured, libvirt and KVM can work with SPICE (`check this for mor
 
 -  ``type = spice``
 
+Enabling spice will also make the driver inject specific configuration for these machines. The configuration can be changed in the driver configuration file, variable ``SPICE_OPTIONS``.
+
 Virtio
 ~~~~~~
 
