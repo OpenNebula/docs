@@ -372,15 +372,17 @@ The following I/O interfaces can be defined for a VM:
 |  Attribute   |                                     Description                                      |     XEN     | KVM | VMWARE |
 +==============+======================================================================================+=============+=====+========+
 | **INPUT**    | Define input devices, available sub-attributes:                                      | O (only usb | O   | -      |
-|              | **- TYPE**: values are ``mouse`` or ``tablet``                                       | tablet is   |     |        |
-|              | **- BUS**: values are ``usb``, ``ps2`` or ``xen``                                    | supported)  |     |        |
+|              |                                                                                      | tablet is   |     |        |
+|              | * **TYPE**: values are ``mouse`` or ``tablet``                                       | supported)  |     |        |
+|              | * **BUS**: values are ``usb``, ``ps2`` or ``xen``                                    |             |     |        |
 +--------------+--------------------------------------------------------------------------------------+-------------+-----+--------+
 | **GRAPHICS** | Wether the VM should export its graphical display and how, available sub-attributes: | O           | O   | -      |
-|              | **- TYPE**: values: ``vnc``, ``sdl``, ``spice``                                      |             |     |        |
-|              | **- LISTEN**: IP to listen on.                                                       |             |     |        |
-|              | **- PORT**: port for the VNC server                                                  |             |     |        |
-|              | **- PASSWD**: password for the VNC server                                            |             |     |        |
-|              | **- KEYMAP**: keyboard configuration locale to use in the VNC display                |             |     |        |
+|              |                                                                                      |             |     |        |
+|              | * **TYPE**: values: ``vnc``, ``sdl``, ``spice``                                      |             |     |        |
+|              | * **LISTEN**: IP to listen on.                                                       |             |     |        |
+|              | * **PORT**: port for the VNC server                                                  |             |     |        |
+|              | * **PASSWD**: password for the VNC server                                            |             |     |        |
+|              | * **KEYMAP**: keyboard configuration locale to use in the VNC display                |             |     |        |
 +--------------+--------------------------------------------------------------------------------------+-------------+-----+--------+
 
 Example:
