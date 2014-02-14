@@ -263,22 +263,6 @@ If you want to use the virtio drivers add the following attributes to your devic
 -  ``DISK``, add the attribute ``DEV_PREFIX=vd``
 -  ``NIC``, add the attribute ``model=virtio``
 
-FEATURES
-~~~~~~~~
-
--  **pae**: Physical address extension mode allows 32-bit guests to address more than 4 GB of memory:
--  **acpi**: useful for power management, for example, with KVM guests it is required for graceful shutdown to work.
-
-Format and valid values:
-
-.. code::
-
-        FEATURES=[
-            pae={yes|no},   
-            acpi={yes|no} ]
-
-Default values for this features can be set in the driver configuration file so they don't need to be specified for every VM.
-
 Additional Attributes
 ---------------------
 
