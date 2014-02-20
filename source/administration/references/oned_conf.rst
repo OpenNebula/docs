@@ -158,6 +158,8 @@ Here you can configure the default values for the Datastores and Image templates
 | vd       | KVM virtual disk   |
 +----------+--------------------+
 
+- ``DEFAULT_CDROM_DEVICE_PREFIX``: Same as above but for CDROM devices.
+
 More information on the image repository can be found in the :ref:`Managing Virtual Machine Images guide <img_guide>`.
 
 Sample configuration:
@@ -175,6 +177,8 @@ Sample configuration:
      
     DEFAULT_IMAGE_TYPE    = "OS"
     DEFAULT_DEVICE_PREFIX = "hd"
+
+    DEFAULT_CDROM_DEVICE_PREFIX = "hd"
 
 Information Collector
 =====================
