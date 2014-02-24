@@ -4,13 +4,13 @@
 The GlusterFS Datastore
 =======================
 
-GlusterFS driver allows KVM machines access VM images using native GlusterFS API. This datastores use the same shared Transfer Manager and Datastore Manager scripts to access a Gluster fuse filesystem to manage images.
+GlusterFS driver allows KVM machines access VM images using native GlusterFS API. This datastores uses the :ref:`Shared Transfer Manager <fs_ds_using_the_shared_transfer_driver>` and the :ref:`Filesystem Datastore <fs_ds>`  to access a Gluster fuse filesystem to manage images.
 
 .. warning:: This driver **only** works with libvirt/KVM drivers. Xen is not (yet) supported.
 
 .. warning:: All virtualization nodes and the head need to mount the GlusterFS volume used to store images.
 
-.. warning:: The hypervisor nodes need to be part of a working GlusterFS server/s and the Libvirt and QEMU packages need to be recent enough to have support for GlusterFS.
+.. warning:: The hypervisor nodes need to be part of a working GlusterFS cluster and the Libvirt and QEMU packages need to be recent enough to have support for GlusterFS.
 
 Requirements
 ============
@@ -18,19 +18,19 @@ Requirements
 GlusterFS Volume Configuration
 ------------------------------
 
-OpenNebula does not run as ``root`` user. To be able to access native GlusterFS API user access must me allowed. This can be archived adding this line to ``/etc/glusterfs/glusterd.vol``:
+OpenNebula does not run as ``root`` user. To be able to access native GlusterFS API user access must be allowed. This can be achieved by adding this line to ``/etc/glusterfs/glusterd.vol``:
 
 .. code::
 
     option rpc-auth-allow-insecure on
 
-and execute this command changing ``<volume>`` with your volume name:
+and executing this command (replace ``<volume>`` with your volume name):
 
 .. code-block:: none
 
     # gluster volume set <volume> server.allow-insecure on
 
-As stated in the `Libvirt documentation <http://libvirt.org/storage.html#StorageBackendGluster>`_ it will be useful to set the ``owner-uid`` and ``owner-gid`` to the ones used by ``oneadmin``:
+As stated in the `Libvirt documentation <http://libvirt.org/storage.html#StorageBackendGluster>`_ it will be useful to set the ``owner-uid`` and ``owner-gid`` to the ones used by ``oneadmin`` user and group:
 
 .. code-block:: none
 
@@ -41,7 +41,7 @@ As stated in the `Libvirt documentation <http://libvirt.org/storage.html#Storage
 Datastore Mount
 ---------------
 
-The GlusterFS volume must be mounted in all the virtualization nodes and the head node using fuse mount. This mount will be used to manage images and VM related files (images and checkpoints). The mounted filesystem must be able to be written by ``oneadmin`` user and be accessible by both system and image datastore. One possible way of configuring it is mounting in one of the datastore directories and creating a symlink to the other:
+The GlusterFS volume must be mounted in all the virtualization nodes and the head node using fuse mount. This mount will be used to manage images and VM related files (images and checkpoints). The ``oneadmin`` account must have write permissions on the mounted filesystem and it must be accessible by both the system and image datastore. The recommended way of setting the mount points is to mount the gluster volume in a specific path and to symlink the datastore directories:
 
 .. code-block:: none
 
@@ -58,7 +58,7 @@ Configuring the System Datastore
 
 The system datastore must be of type ``shared``. See more details on the :ref:`System Datastore Guide <system_ds>`
 
-It will also be used to hold context images and Disks created on the fly, they will be created as regular files.
+It will also be used to hold context images and volatile disks.
 
 Configuring GlusterFS Datastore
 -------------------------------
@@ -82,7 +82,7 @@ The datastore that holds the images will also be of type ``shared`` but you will
 +---------------------+---------------------------------------------------------------------------------------------------------+
 | ``NO_DECOMPRESS``   | Do not try to untar or decompress the file to be registered. Useful for specialized Transfer Managers   |
 +---------------------+---------------------------------------------------------------------------------------------------------+
-| ``GLUSTER_HOST``    | Host and port of one Gluster daemon ``host:port``                                                       |
+| ``GLUSTER_HOST``    | Host and port of one (only one) Gluster server ``host:port``                                            |
 +---------------------+---------------------------------------------------------------------------------------------------------+
 | ``GLUSTER_VOLUME``  | Gluster volume to use for the datastore                                                                 |
 +---------------------+---------------------------------------------------------------------------------------------------------+
@@ -115,4 +115,4 @@ An example of datastore:
        2 files              12.3G 66%   -                 0 fil  fs       ssh
      101 default             9.9G 98%   -                 0 img  shared   shared
 
-.. warning:: Note that datastores are not associated to any cluster by default, and they are supposed to be accessible by every single host. If you need to configure datastores for just a subset of the hosts take a look to the :ref:`Cluster guide <cluster_guide>`.
+.. warning:: It is recommended to group the Gluster datastore and the Gluster enabled hypervisors in an OpenNebula ref:`cluster<cluster_guide>`.

@@ -89,6 +89,8 @@ After creating a new datastore the LN\_TARGET and CLONE\_TARGET parameters will 
 
 .. warning:: Note that datastores are not associated to any cluster by default, and their are supposed to be accessible by every single host. If you need to configure datastores for just a subset of the hosts take a look to the :ref:`Cluster guide <cluster_guide>`.
 
+.. _fs_ds_using_the_shared_transfer_driver:
+
 Using the Shared Transfer Driver
 ================================
 
