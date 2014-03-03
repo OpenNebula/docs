@@ -22,6 +22,22 @@ Considerations & Limitations
 -  KVM currently only supports 4 IDE devices, for more disk devices you should better use SCSI or virtio. You have to take this into account when adding disks. See the :ref:`Virtual Machine Template documentation <template_disks_device_mapping>` for an explanation on how OpenNebula assigns disk targets.
 -  By default live migrations are started from the host the VM is currently running. If this is a problem in your setup you can activate local live migration adding ``-l migrate=migrate_local`` to ``vmm_mad`` arguments.
 -  If you get error messages similar to ``error: cannot close file: Bad file descriptor`` upgrade libvirt version. Version 0.8.7 has a  `bug related to file closing operations. <https://bugzilla.redhat.com/show_bug.cgi?format=multiple&id=672725>`__
+-   In case you are using disks with a cache setting different to none may may have problems with live migration depending on the libvirt version. You can enable the migration adding the ``--unsafe`` parameter to the virsh command. The file to change is ``/var/lib/one/remotes/vmm/kvm/migrate``, change this:
+
+    .. code-block:: bash
+
+            exec_and_log "virsh --connect $LIBVIRT_URI migrate --live $deploy_id $QEMU_PROTOCOL://$dest_host/system" \
+                "Could not migrate $deploy_id to $dest_host"
+
+    to this:
+
+    .. code-block:: bash
+
+            exec_and_log "virsh --connect $LIBVIRT_URI migrate --live --unsafe $deploy_id $QEMU_PROTOCOL://$dest_host/system" \
+                "Could not migrate $deploy_id to $dest_host"
+
+    and execute ``onehost sync --force``.
+
 
 Configuration
 =============
