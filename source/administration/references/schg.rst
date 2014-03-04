@@ -61,7 +61,6 @@ The behavior of the scheduler can be tuned to adapt it to your infrastructure wi
 -  ``MAX_VM``: Maximum number of Virtual Machines scheduled in each scheduling action (Default: 5000). Use 0 to schedule all pending VMs each time.
 -  ``MAX_DISPATCH``: Maximum number of Virtual Machines actually dispatched to a host in each scheduling action (Default: 30)
 -  ``MAX_HOST``: Maximum number of Virtual Machines dispatched to a given host in each scheduling action (Default: 1)
--  ``HYPERVISOR_MEM``: Fraction of total MEMORY reserved for the hypervisor. E.g. 0.1 means that only 90% of the total MEMORY will be used
 -  ``LIVE_RESCHEDS``: Perform live (1) or cold migrations (0) when rescheduling a VM
 -  ``DEFAULT_SCHED``: Definition of the default scheduling algorithm.
 
@@ -106,7 +105,7 @@ Sample Configuration:
 .. code::
 
     MESSAGE_SIZE = 1073741824
-    
+
     ONED_PORT = 2633
 
     SCHED_INTERVAL = 30
@@ -116,8 +115,6 @@ Sample Configuration:
     MAX_HOST     = 1
 
     LIVE_RESCHEDS  = 0
-
-    HYPERVISOR_MEM = 0.1
 
     DEFAULT_SCHED = [
        policy = 3,

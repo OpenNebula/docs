@@ -145,7 +145,7 @@ The following outlines the steps need to configure cgroups, this should be **per
     *:libvirtd       memory          virt/
 
 -  After configuring the hosts start/restart the cgroups service.
--  (Optional) If you have limited the amount of memory for VMs, you may want to set ``HYPERVISOR_MEM`` parameter in ``/etc/one/sched.conf``
+-  (Optional) If you have limited the amount of memory for VMs, you may want to set ``RESERVED_MEM`` parameter in host or cluster templates.
 
 That's it. OpenNebula automatically generates a number of CPU shares proportional to the CPU attribute in the VM template. For example, consider a host running 2 VMs (73 and 74, with CPU=0.5 and CPU=1) respectively. If everything is properly configured you should see:
 
@@ -181,9 +181,9 @@ and the cpu shares for each VM:
 
 .. code::
 
-    > cat /mnt/cgroups/cpu/sysdefault/libvirt/qemu/one-73/cpu.shares 
+    > cat /mnt/cgroups/cpu/sysdefault/libvirt/qemu/one-73/cpu.shares
     512
-    > cat /mnt/cgroups/cpu/sysdefault/libvirt/qemu/one-74/cpu.shares 
+    > cat /mnt/cgroups/cpu/sysdefault/libvirt/qemu/one-74/cpu.shares
     1024
 
 Udev Rules
@@ -218,7 +218,7 @@ For example:
 
 .. code::
 
-        OS   = [ 
+        OS   = [
           KERNEL = /vmlinuz,
           BOOT   = hd,
           ARCH   = "x86_64"]
