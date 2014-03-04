@@ -40,6 +40,13 @@ MySQL needs to be configured to enable the master-slave replication. Please read
     ]
 
 - Restart OpenNebula
+- Edit the local (master) Zone Endpoint. This can be done via Sunstone, or with the onezone command.
+
+.. code-block:: none
+
+    $ onezone update 0
+    ENDPOINT = http://<master-ip>:2633/RPC2
+
 - Create a Zone for each one of the slaves. This can be done via Sunstone, or with the onezone command.
 
 .. code-block:: none
