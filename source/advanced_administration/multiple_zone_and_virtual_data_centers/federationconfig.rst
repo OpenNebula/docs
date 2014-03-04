@@ -47,7 +47,7 @@ MySQL needs to be configured to enable the master-slave replication. Please read
     $ onezone update 0
     ENDPOINT = http://<master-ip>:2633/RPC2
 
-- Create a Zone for each one of the slaves. This can be done via Sunstone, or with the onezone command.
+- Create a Zone for each one of the slaves, and write down the new Zone ID. This can be done via Sunstone, or with the onezone command.
 
 .. code-block:: none
 
@@ -87,7 +87,7 @@ If the OpenNebula to be added as a Slave is an existing installation, and you ne
 
     $ onedb import-slave -v \
     --username oneadmin --password oneadmin \
-    --server 192.168.122.3 -dbname opennebula  \
+    --server 192.168.122.3 --dbname opennebula  \
     --slave-username oneadmin --slave-password oneadmin \
     --slave-server 192.168.122.4 --slave-dbname opennebula
 
