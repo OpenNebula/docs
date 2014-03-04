@@ -16,7 +16,7 @@ OpenNebula comes with a ``match making`` scheduler (*mm\_sched*) that implements
 The match-making algorithm works as follows:
 
 -  Each disk of a running VM consumes storage from an Image Datastore. The VMs that require more storage than there is currently available are filtered out, and will remain in the 'pending' state.
--  Those hosts that do not meet the VM requirements (see the :ref:`SCHED\_REQUIREMENTS attribute <template_placement_section>`) or do not have enough resources (available CPU and memory) to run the VM are filtered out.
+-  Those hosts that do not meet the VM requirements (see the :ref:`SCHED\_REQUIREMENTS attribute <template_placement_section>`) or do not have enough resources (available CPU and memory) to run the VM are filtered out (see below for more information).
 -  The same happens for System Datastores: the ones that do not meet the DS requirements (see the :ref:`SCHED\_DS\_REQUIREMENTS attribute <template>`) or do not have enough free storage are filtered out.
 -  The :ref:`SCHED\_RANK and SCHED\_DS\_RANK expressions <template_placement_section>` are evaluated upon the Host and Datastore list using the information gathered by the monitor drivers. Any variable reported by the monitor driver (or manually set in the Host or Datastore template) can be included in the rank expressions.
 -  Those resources with a higher rank are used first to allocate VMs.
@@ -214,3 +214,18 @@ Fixed Policy
 
     RANK = PRIORITY
 
+Limiting the Resources Exposed by a Host
+========================================
+
+Prior to assgining a VM to a Host, the available capacity is checked to ensure that the VM fits in the host. The capacity is obtained by the monitor probes. You may alter this behaviour by reserving an amount of capacity (memory and cpu). You can reserve this capacity:
+
+- Cluster-wise, by updating the cluster template (e.g. ``onecluster update``). All the host of the cluster will reserve the same amount of capacity.
+
+- Host-wise, by updating the host template (e.g. ``onehost update``). This value will override those defined at cluster level.
+
+In particular the following capacity attributes can be reserved:
+
+- ``RESERVED_CPU`` in percentage. It will be substracted from the ``TOTAL CPU``
+- ``RESERVED_MEM`` in KB. It will be substracted from the ``TOTAL MEM``
+
+.. note:: These values can be negative, in that case you'll be actually increassing the overall capacity so overcommiting host capacity.
