@@ -488,7 +488,7 @@ Example:
 .. code::
 
     SCHED_REQUIREMENTS    = "CPUSPEED > 1000"
-    SCHED_RANK            = "FREECPU"
+    SCHED_RANK            = "FREE_CPU"
     SCHED_DS_REQUIREMENTS = "NAME=GoldenCephDS"
     SCHED_DS_RANK         = FREE_MB
 
@@ -523,7 +523,7 @@ There is a special variable, ``CURRENT_VMS``, that can be used to deploy VMs in 
 
 .. warning:: Check the :ref:`Monitoring Subsystem <devel-im>` guide to find out how to extend the information model and add any information probe to the Hosts.
 
-.. warning:: There are some predefined variables that can be used: ``NAME``, ``TOTALCPU``, ``TOTALMEMORY``, ``FREEMEMORY``, ``FREECPU``, ``USEDMEMORY``, ``USEDCPU``, ``HYPERVISOR``
+.. warning:: There are some predefined variables that can be used: ``NAME``, ``MAX_CPU``, ``MAX_MEM``, ``FREE_MEM``, ``FREE_CPU``, ``USED_MEM``, ``USED_CPU``, ``HYPERVISOR``
 
 Examples:
 
@@ -533,7 +533,7 @@ Examples:
     SCHED_REQUIREMENTS = "NAME = \"aquila*\""
      
     # Only those resources with more than 60% of free CPU
-    SCHED_REQUIREMENTS = "FREECPU > 60"
+    SCHED_REQUIREMENTS = "FREE_CPU > 60"
      
     # Deploy only in the Host where VM 5 is running
     SCHED_REQUIREMENTS = "CURRENT_VMS = 5"
@@ -587,10 +587,10 @@ Examples:
 .. code::
 
     # First those resources with a higher Free CPU
-      SCHED_RANK = "FREECPU"
+      SCHED_RANK = "FREE_CPU"
      
     # Consider also the CPU temperature
-      SCHED_RANK = "FREECPU * 100 - TEMPERATURE"
+      SCHED_RANK = "FREE_CPU * 100 - TEMPERATURE"
 
 .. _template_raw_section:
 
