@@ -85,4 +85,9 @@ USEDCPU          USED_CPU
 USEDMEMORY       USED_MEM
 ===============  ===============
 
+If you have templates using any of these attributes and they stopped working in 4.4, try this fix:
+
+* `Download this file <https://gist.github.com/carlosms/9394393>`_ into /usr/lib/one/ruby/onedb/fsck.rb.
+* Then follow the fsck procedure :ref:`described here <onedb>`.
+
 You can see all tickets in our development portal: `dev.opennebula.org <http://dev.opennebula.org/>`__.
