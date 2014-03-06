@@ -297,19 +297,27 @@ Admin Groups
 
 Upon group creation, an associated administration group can be defined. This admin group will contain users with administrative privileges for the associated regular group, not for all the resources in the OpenNebula cloud as the 'oneadmin' group users have. Also, an admin user belonging to both groups can be defined upon creation as well. Another aspect that can be controlled on creation time is the type of resources that group users will be alowed to create. 
 
-This can be managed visually in Sunstone, and can also be managed through the CLI. In the latter, details of the group are passed to the ``onegroup`` or a text file containing the template of the group. See the :ref:`group definition template  <group_template>` for a description of valid attributes.
+This can be managed visually in Sunstone, and can also be managed through the CLI. In the latter, details of the group are passed to the ``onegroup``. This table lists the description of valid attributes when creating a group using ``onegroup``.
+
++---------------------+-----------+--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|      Attribute      |   M / O   |       Value        |                                                                             Description                                                                              |
++=====================+===========+====================+======================================================================================================================================================================+
+| **NAME**            | Mandatory | Any string         | Name that the Group will get. Every group must have a unique name.                                                                                                   |
++---------------------+-----------+--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **RESOURCES**       | Optional  | "+" separated list | List of resources that group members are allowed to create. If not present, it defaults to VM+IMAGE+NET+TEMPLATE                                                     |
++---------------------+-----------+--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **ADMIN_GROUP**     | Optional  | Any string         | Name of the administrator group (if desired). All members of this group would be administrators of the created group.                                                |
++---------------------+-----------+--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **ADMIN_RESOURCES** | Optional  | "+" separated list | List of resources that admin group members are allowed to manage. If not present, it defaults to **RESOURCES**, and if that is missing too, to VM+IMAGE+NET+TEMPLATE |
++---------------------+-----------+--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **ADMIN_USER**      | Optional  | Any string         | Name of the administrator of the group (if desired). This user can only be defined if ADMIN_GROUP is present.                                                        |
++---------------------+-----------+--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **ADMIN_PASSWORD**  | Optional  | Any string         | Password for the group administrator                                                                                                                                 |
++---------------------+-----------+--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **ADMIN_DRIVER**    | Optional  | Any string         | Auth driver for the group administrator                                                                                                                              |
++---------------------+-----------+--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 .. code::
-
-    $ vi grptmpl.one
-    NAME = MyGroup
-    ADMIN_GROUP = MyAdminGroup
-    ADMIN_USER_NAME = MyAdminUser
-    ADMIN_USER_PASSWORD = MyAdminPassword
-    ADMIN_USER_AUTH_DRIVER = Core
-    RESOURCES = VM+TEMPLATE+NET+IMAGE      # This is the default if nothing is declared explicitly
-
-    $ onegroup create grptmpl.one
 
     $ onegroup create --name MyGroup -admin_group MyAdminGroup --admin_user MyAdminUser --admin_password MyAdminPassword --admin_driver core --resource VM+TEMPLATE+NET+IMAGE 
 

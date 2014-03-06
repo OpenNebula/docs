@@ -10,4 +10,3 @@ References
    Logging and Debugging <log_debug>
    onedb FSCK Tool <onedb>
    Datastore Configuration <ds_conf>
-   Group Definition Template <group_template>
