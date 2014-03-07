@@ -38,6 +38,13 @@ The OneFlow configuration file can be found at ``/etc/one/oneflow-server.conf``.
 | :action\_number      | Default number of virtual machines (action\_number) that will receive the given call in each interval defined by action\_period, when an action is performed on a role. |
 | :action\_period      |                                                                                                                                                                         |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| :vm\_name\_template  | Default name for the Virtual Machines created by oneflow. You can use any of the following placeholders:                                                                |
+|                      |                                                                                                                                                                         |
+|                      | - $SERVICE_ID                                                                                                                                                           |
+|                      | - $SERVICE_NAME                                                                                                                                                         |
+|                      | - $ROLE_NAME                                                                                                                                                            |
+|                      | - $VM_NUMBER                                                                                                                                                            |
++----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **Auth**                                                                                                                                                                                       |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | :core\_auth          | Authentication driver to communicate with OpenNebula core                                                                                                               |
@@ -84,6 +91,15 @@ This is the default file
     # Default oneflow action options when only one is supplied
     :action_number: 1
     :action_period: 60
+     
+    # Default name for the Virtual Machines created by oneflow. You can use any
+    # of the following placeholders:
+    #   $SERVICE_ID
+    #   $SERVICE_NAME
+    #   $ROLE_NAME
+    #   $VM_NUMBER
+     
+    :vm_name_template: '$ROLE_NAME_$VM_NUMBER_(service_$SERVICE_ID)'
      
     #############################################################
     # Auth
