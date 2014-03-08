@@ -55,11 +55,11 @@ MySQL needs to be configured to enable the master-slave replication. Please read
     NAME     = slave-name
     ENDPOINT = http://<slave-ip>:2633/RPC2
 
-    $ onezone create /tmp/zone.tmpl 
+    $ onezone create /tmp/zone.tmpl
     ID: 100
 
     $ onezone list
-       ID NAME                     
+       ID NAME
         0 OpenNebula
       100 slave-name
 
@@ -79,7 +79,7 @@ If the OpenNebula to be added as a Slave is an existing installation, and you ne
 
     $ onedb import-slave -h
     ## USAGE
-    import-slave 
+    import-slave
         Imports an existing federation slave into the federation master database
 
     ## OPTIONS
@@ -96,7 +96,7 @@ The tool will ask for the Zone ID you created in step 1.
 .. code-block:: none
 
     Please enter the Zone ID that you created to represent the new Slave OpenNebula:
-    Zone ID: 
+    Zone ID:
 
 You will also need to decide if the users and groups will be merged.
 
@@ -151,24 +151,33 @@ When the import process finishes, onedb will write in ``/var/log/one/onedb-impor
 .. code-block:: none
 
     # mysql -u root -p
-    mysql> CREATE USER 'one-replication'@'%.mydomain.com' IDENTIFIED BY 'slavepass';
-    mysql> GRANT REPLICATION SLAVE ON *.* TO 'repl'@'%.mydomain.com';
+    mysql> CREATE USER 'one-slave'@'%' IDENTIFIED BY 'one-slave-pass';
+    mysql> GRANT REPLICATION SLAVE ON *.* TO 'one-slave'@'%';
 
-- **Master MySQL**: Lock the tables and perform a dump. 
+.. warning:: In the previous example we are granting access to user one-replication from any host. You may want to restrict the hosts with the hostnames of the mysql slaves
 
-In one terminal, lock the tables while you execute the mysqldump command in another terminal. Please note the ``--master-data`` option, it must be present to allow the slaves to know the current position of the binary log.
+
+- **Master MySQL**: Lock the tables and perform a dump.
+
+First you need to lock the tables before dumping the federated tables.
 
 .. code-block:: none
 
     mysql> FLUSH TABLES WITH READ LOCK;
 
-    mysql> UNLOCK TABLES;
+Then you can safetly execute the mysqldump command in another terminal. Please note the ``--master-data`` option, it must be present to allow the slaves to know the current position of the binary log.
 
 .. code-block:: none
 
     mysqldump -u root -p --master-data opennebula user_pool group_pool zone_pool db_versioning acl > dump.sql
 
-- MySQL replication cannot use Unix socket files. You must be able to connect from the slaves to the master MySQL server using TCP/IP. The default port is 3306.
+Once you get the dump you can unlock the DB tables again.
+
+.. code-block:: none
+
+    mysql> UNLOCK TABLES;
+
+- MySQL replication cannot use Unix socket files. You must be able to connect from the slaves to the master MySQL server using TCP/IP and port 3306 (default mysql port). Please update your firewall accordingly.
 
 - You can start the master OpenNebula at this point.
 
@@ -199,8 +208,8 @@ For each one of the slaves, configure the MySQL server as a replication slave. P
     # mysql -u root -p
     mysql> CHANGE MASTER TO
         ->     MASTER_HOST='master_host_name',
-        ->     MASTER_USER='replication_user_name',
-        ->     MASTER_PASSWORD='replication_password';
+        ->     MASTER_USER='one-slave',
+        ->     MASTER_PASSWORD='one-slave-pass';
 
 - Copy the mysql dump file from the **master**, and import its contents to the **slave**.
 
@@ -232,7 +241,14 @@ The ``SHOW SLAVE STATUS`` output will provide detailed information, but to confi
 For each slave, follow these steps.
 
 - If it is a new installation, install OpenNebula as usual following the :ref:`installation guide <ignc>`.
-- Configure OpenNebula to use the **slave MySQL**, and to act as a **federation slave**. You may also need to create a user in this **slave MySQL**.
+- Configure OpenNebula to use MySQL, first you'll need to create a database user for OpenNebula and grant access to the OpenNebula database:
+
+.. code-block:: none
+
+    # mysql -u root -p
+    mysql> GRANT ALL PRIVILEGES ON opennebula.* TO 'oneadmin' IDENTIFIED BY 'oneadmin';
+
+and update oned.conf to use these values:
 
 .. code-block:: none
 
@@ -247,14 +263,16 @@ For each slave, follow these steps.
             passwd  = "oneadmin",
             db_name = "opennebula" ]
 
+- Configure OpenNebula to act as a **federation slave**. Remember to use the ID obtained when the zone was created.
+
+.. code-block:: none
+
     FEDERATION = [
         MODE = "SLAVE",
         ZONE_ID = 100,
         MASTER_ONED = "http://<oned-master-ip>:2633/RPC2"
     ]
 
-    # mysql -u root -p
-    mysql> GRANT ALL PRIVILEGES ON opennebula.* TO 'oneadmin' IDENTIFIED BY 'oneadmin';
 
 - Copy the directory ``/var/lib/one/.one`` from the **master** front-end to the **slave**. This directory should contain these files:
 
