@@ -7,7 +7,7 @@ OpenNebula Documentation
 .. toctree::
    :maxdepth: 2
 
-   Release Notes <release_notes/index>
+   Release Notes 4.6 <release_notes46/index>
    Design and Installation Guide <design_and_installation/index>
    Administration Guide <administration/index>
    User Guide <user/index>

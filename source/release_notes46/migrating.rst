@@ -1,8 +1,8 @@
 .. _migrating:
 
-=============================
-Migrating from OpenNebula 4.2
-=============================
+==============================
+Upgrade from Previous Versions
+==============================
 
 A detailed :ref:`upgrade process <upgrade>` can be found in the documentation. For a complete set of changes to migrate from a 4.4 installation please refer to the :ref:`Compatibility Guide <compatibility>`.
 

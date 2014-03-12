@@ -1,10 +1,20 @@
 .. _known_issues:
 
-=============
+============
 Known Issues
-=============
+============
 
 The following bugs or issues have been identified in the current 4.4 version, and will be solved in future releases.
+
+Installation
+------------
+
+-  `#2705 <http://dev.opennebula.org/issues/2705>`__: ``install_gems`` script crashes installing nokogiri in ruby 1.8.7. These commands should be executed to fix it:
+
+.. code-block:: none
+
+    # /usr/share/one/install_gems oca
+    # /usr/share/one/install_gems
 
 VMware
 ------
@@ -39,6 +49,7 @@ Drivers - VM
 -  `#2511 <http://dev.opennebula.org/issues/2511>`__: EC2 Tags are not correctly formatted before sending them to EC2
 -  `#2483 <http://dev.opennebula.org/issues/2483>`__: Properly support cdrom in Xen HVM. Right now cdrom images in xen HVM are added like normal disks but should be set to emulate cdrom.
 
+
 OneGate
 -------
 
@@ -56,5 +67,27 @@ Sunstone
 -  `#2292 <http://dev.opennebula.org/issues/2292>`__: sunstone novnc send ctrl-alt-del not working in Firefox
 -  `#2246 <http://dev.opennebula.org/issues/2246>`__: OneFlow Update wizard: reset button discards the resource, and shows a create dialog
 -  `#1877 <http://dev.opennebula.org/issues/1877>`__: If syslog is enabled, the logs tab in the VM detailed view are not populated
+- `#2764 <http://dev.opennebula.org/issues/2764>`__: In the Template wizard, Scheduling Policy Load-aware will set the expression "FREECPU", when it should be "FREE_CPU". It must be changed manually.
+
+Scheduling
+----------
+
+- `#2764 <http://dev.opennebula.org/issues/2764>`__: For the :ref:`SCHED\_REQUIREMENTS and SCHED\_RANK expressions <template_placement_section>`, some attributes were deprecated but not properly documented or updated by the onedb upgrade tool:
+
+===============  ===============
+4.2              4.4
+===============  ===============
+TOTALCPU         MAX_CPU
+TOTALMEMORY      MAX_MEM
+FREECPU          FREE_CPU
+FREEMEMORY       FREE_MEM
+USEDCPU          USED_CPU
+USEDMEMORY       USED_MEM
+===============  ===============
+
+If you have templates using any of these attributes and they stopped working in 4.4, try this fix:
+
+* `Download this file <https://gist.github.com/carlosms/9394393>`_ into /usr/lib/one/ruby/onedb/fsck.rb.
+* Then follow the fsck procedure :ref:`described here <onedb>`.
 
 You can see all tickets in our development portal: `dev.opennebula.org <http://dev.opennebula.org/>`__.
