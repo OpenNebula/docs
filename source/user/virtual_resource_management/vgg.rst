@@ -18,8 +18,8 @@ This guide uses the CLI command ``onevnet``, but you can also manage your virtua
 
 |image0|
 
-Adding and Deleting Virtual Networks
-====================================
+Adding, Deleting and Updating Virtual Networks
+==============================================
 
 A virtual network is defined by two sets of options:
 
@@ -112,6 +112,8 @@ Also, ``onevnet`` can be used to query OpenNebula about available VNets:
        1 oneadmin oneadmin Red LAN         -             R   vbr0       0
 
 In the output above, ``USER`` is the owner of the network and ``LEASES`` the number of IP-MACs assigned to a VM from this network.
+
+The following attributes can be changed after creating the network: ``VLAN_ID``, ``BRIDGE``, ``VLAN`` and ``PHYDEV``. To update the network run ``onevnet update <id>``.
 
 To delete a virtual network just use ``onevnet delete``. For example to delete the previous networks:
 
