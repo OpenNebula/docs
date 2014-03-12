@@ -62,9 +62,6 @@ OneFlow
 
 -  **Configurable setting to render names assigned to VMs**, being able to use placeholders like ``SERVICE_ID`` and ``SERVICE_NAME``, see the :ref:`OneFlow Server Configuration <appflow_configure>` guide for more information.
 
-OpenNebula vDCs
-----------------
-
-OpenNebula Zones
-----------------
+OpenNebula vDCs and Zones
+-------------------------
 
