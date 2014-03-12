@@ -4,6 +4,10 @@
 What's New in OpenNebula 4.6
 ============================
 
+OpenNebula 4.6 introduces the possibility of managing Virtual Data Centers natively, via Sunstone and the CLI. The new OpenNebula Zones component, which is tightly integrated with the rest of the OpenNebula components, makes it very easy to federate OpenNebula deployments. Federated environments share the same users, groups and acls, while maintaining the other resources locally.Virtual Data Centers, VDCs, have been also greatly improved, both in multi-tenant deployments and in stand-alone OpenNebula installations. 
+
+The Sunstone graphical interface has been completely redesigned, making a very strong emphasis on simplifying the interface and delivering a more intuitive experience. The dialogs have been reworked in order to help the user workflows. It also supports federated environments natively and allows users to switch to another OpenNebula Zone from within Sunstone. It has also been improved in order to natively support the new Marketplace version, which provides the possibility of creating multi-disk virtual machines.
+
 In the following list you can check the highlights of OpenNebula 4.6 Carina organised by component (`a detailed list of changes can be found here <http://dev.opennebula.org/projects/opennebula/issues?query_id=50>`__):
 
 OpenNebula Core: End-user functionality
