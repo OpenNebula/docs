@@ -17,7 +17,7 @@ There has been several improvements for end-users:
 
 -  **Add --list and --describe optiosn to oneacct**, see `oneacct <http://opennebula.org/doc/4.6/cli/oneacct.1.html>`__.
 -  **Network parameters can now be changed**, by updating the template. This includes ``VLAN_ID``, ``BRIDGE``, ``VLAN`` and ``PHYDEV``. See the :ref:`Managing Virtual Networks <vgg>` guide for more information.
--  **Templates for GROUP resources** TODO: documentation?
+-  **Templates for Group resources**.
 -  **Allow to change the base_path for existing Datastores** TODO: documentation?
 -  **Disable the XML-RPC log**, see the :ref:`ONED Configuration <oned_conf>` for more information.
 -  **Support for limiting the Resources Exposed by a Host**, see :ref:`Scheduler <schg>` for more information.
