@@ -24,8 +24,6 @@ There has been several improvements for end-users:
 -  **Support for an http proxy in the Ruby OCA client**, which can be passed as an option.
 See the `Ruby API Documentation <http://docs.opennebula.org/doc/4.6/oca/ruby/OpenNebula/Client.html>`
 
-
-
 OpenNebula Core: Internals & Administration Interface
 -----------------------------------------------------
 
@@ -56,6 +54,10 @@ Virtualization Drivers
 Sunstone
 --------
 
+-  **Updated UI Library** providing a new look.
+-  The **Sunstone View** for each user can be **specified in the User template or in the new Group template**, more info in the :ref:`Sunstone Views <suns_views>` guide.
+-  **Support for Zone selection**, which allos users to switch between OpenNebula Zones from within the same Sunstone.
+-  General usability enhancements, like **Improved Create dialogs** for all the resources simplyifing the form options, ability to **sort Hosts by name in the VM migration dialog**, allow **multiple line values in custom attributes**, display a **list of VMs using an Image**, improved **password change dialog with confirmation**, and **confirmation dialog for shutdown and delete**.
 
 OneFlow
 -------
@@ -65,3 +67,9 @@ OneFlow
 OpenNebula vDCs and Zones
 -------------------------
 
+-  **Resources available in an OpenNebula Group** are obtained from **Clusters in federated OpenNebulas (Resource Providers)**, read more about :ref:`Managing Multiple Virtual Data Centers <vdcmngt>`.
+-  **Federated Database** with a **new schema for users and quotas**, and with **migrator and fsck**, more info in the :ref:`OpenNebula Federation Configuration <federationconfig>` guide.
+-  Improved ACL rules for federated environments, with Zones as a new ACL resource, , read more about :ref:`Managing Multiple Virtual Data Centers <vdcmngt>`.
+-  Enhanced **XML-RPC API** that accepts the **target Zone** as a parameter. More info in the :ref:`XML-RPC API <api>` guide.
+-  **Optimized federated environments**, with disabled cache for federated slave nodes.
+-  Sunstone **Tab for VDC** management.
