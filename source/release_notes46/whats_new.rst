@@ -79,9 +79,9 @@ OneFlow
 OpenNebula vDCs and Zones
 -------------------------
 
--  **Resources available in an OpenNebula Group** are obtained from **Clusters in federated OpenNebulas (Resource Providers)**, read more about :ref:`Managing Multiple Virtual Data Centers <vdcmngt>`.
+-  **Resources available in an OpenNebula Group** are obtained from **Clusters in federated OpenNebulas (Resource Providers)**, read more about :ref:`Managing Multiple Virtual Data Centers <introf>`.
 -  **Federated Database** with a **new schema for users and quotas**, and with **migrator and fsck**, more info in the :ref:`OpenNebula Federation Configuration <federationconfig>` guide.
--  Improved ACL rules for federated environments, with Zones as a new ACL resource, , read more about :ref:`Managing Multiple Virtual Data Centers <vdcmngt>`.
+-  Improved ACL rules for federated environments, with Zones as a new ACL resource, , read more about :ref:`Managing Multiple Virtual Data Centers <introf>`.
 -  Enhanced **XML-RPC API** that accepts the **target Zone** as a parameter. More info in the :ref:`XML-RPC API <api>` guide.
 -  **Optimized federated environments**, with disabled cache for federated slave nodes.
 -  Sunstone **Tab for VDC** management.
