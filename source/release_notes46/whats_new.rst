@@ -46,7 +46,7 @@ Storage Drivers
 Virtualization Drivers
 ~~~~~~~~~~~~~~~~~~~~~~
 
--  **KVM Hypervisor improvements** like tweakable SPICE parameters, KVM Hyper-V Enhancements, ``LOCALTIME``and ``MACHINE`` parameters support , see the :ref:`Template <template>` guide for more information.
+-  **KVM Hypervisor improvements** like tweakable SPICE parameters, KVM Hyper-V Enhancements, ``LOCALTIME`` and ``MACHINE`` parameters support , see the :ref:`Template <template>` guide for more information.
 -  **Support for Xen FEATURES parameters**, which includes options like ``PAE``, ``ACPI``, ``APIC``, etc. See the :ref:`Template <template>` guide for more information.
 
 API
@@ -67,8 +67,8 @@ Sunstone
 AppMarket
 ---------
 
--  **Native support of the new Marketplace version** by the CLI and Sunstone, which provides the possibility of importing multi-disk virtual machines. Read more in the `<https://github.com/OpenNebula/addon-appmarket>`__
--  Support for **importing OVAs** processed by the **AppMarket Worker**. Read more `here <https://github.com/OpenNebula/addon-appmarket/blob/master/doc/usage.md#importing-an-appliance-from-sunstone>`__
+-  **Native support of the new Marketplace version** by the CLI and Sunstone, which provides the possibility of importing multi-disk virtual machines. Read more in the `<https://github.com/OpenNebula/addon-appmarket>`__.
+-  Support for **importing OVAs** processed by the **AppMarket Worker**. Read more `here <https://github.com/OpenNebula/addon-appmarket/blob/master/doc/usage.md#importing-an-appliance-from-sunstone>`__.
 
 
 OneFlow
