@@ -15,9 +15,9 @@ There are six different types of images. Using the command ``oneimage chtype``, 
 
 -  **OS**: An OS image contains a working operative system. Every :ref:`VM template <template>` must define one DISK referring to an image of this type.
 
--  **CDROM**: This images are readonly data. Only one image of this type can be used in each :ref:`VM template <template>`. These type of images are not cloned when using shared storage.
+-  **CDROM**: These images are readonly data. Only one image of this type can be used in each :ref:`VM template <template>`. These type of images are not cloned when using shared storage.
 
--  **DATABLOCK**: A datablock image is a storage for data, which can be accessed and modified from different Virtual Machines. This images can be created from previous existing data, or as an empty drive.
+-  **DATABLOCK**: A datablock image is a storage for data, which can be accessed and modified from different Virtual Machines. These images can be created from previous existing data, or as an empty drive.
 
 -  **KERNEL**: A plain file to be used as kernel (VM attribute OS/KERNEL\_DS). Note that KERNEL file images can be registered only in File Datastores.
 
