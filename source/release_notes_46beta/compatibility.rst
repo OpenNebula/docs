@@ -1,7 +1,5 @@
 .. _compatibility_46beta:
 
-.. warning:: This guide is under development. The material on this page needs to be reviewed for completeness and accuracy.
-
 ====================
 Compatibility Guide
 ====================
