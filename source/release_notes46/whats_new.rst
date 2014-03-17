@@ -45,21 +45,17 @@ OpenNebula Core: Federation & Zones
 
 Federation has been integrated in OpenNebula core.
 
-- Users can seamlessly provision virtual machines from multiple zones with an
-integrated interface both in Sunstone and CLI
-- A **new tool set** has been developed to upgrade, integrate new zones and import
-existing zones into an OpenNebula federation.
+- Users can seamlessly provision virtual machines from multiple zones with an integrated interface both in Sunstone and CLI
+- A **new tool set** has been developed to upgrade, integrate new zones and import existing zones into an OpenNebula federation.
 - **Integrated zone management** in OpenNebula core
-- **Redesigned data model** to minimize replication data across zones and to
-tolerate large latencies.
+- **Redesigned data model** to minimize replication data across zones and to tolerate large latencies.
 
 OpenNebula Core: Usability & Performance Enhancements
 -----------------------------------------------------
 
 There has been several improvements for end-users:
 
-- **Datastore management** improved with the ability to redefine some configuration
-attributes and default datastores.
+- **Datastore management** improved with the ability to redefine some configuration attributes and default datastores.
 - **Network management** also allows to change configuration attributes by updating the template. This includes ``VLAN_ID``, ``BRIDGE``, ``VLAN`` and ``PHYDEV``. See the :ref:`Managing Virtual Networks <vgg>` guide for more information. Network leases can be also deleted on hold.
 - **Optionally limit resources** exposed by host or a cluster, see :ref:`Scheduler <schg>` for more information.
 -  **Support for pool pagination**, which makes OpenNebula interfaces such as the CLI and Sunstone more responsive and improves scalability. See the :ref:`Scalability <one_scalability>` guide for more information.
@@ -72,8 +68,7 @@ The back-end of OpenNebula has been also improved in several areas, as described
 Storage Drivers
 ~~~~~~~~~~~~~~~
 
--  **Improved Support for Ceph**, includeing RBD format 2 and direct support for
-CDROM devices, more info :ref:`here <ceph_ds>`.
+-  **Improved Support for Ceph**, includeing RBD format 2 and direct support for CDROM devices, more info :ref:`here <ceph_ds>`.
 -  **Gluster support using libgfapi**, more info :ref:`here <gluster_ds>`.
 
 Virtualization Drivers
