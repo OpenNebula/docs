@@ -11,7 +11,7 @@ Virtual Machine Life-cycle
 
 The life-cycle of a Virtual Machine within OpenNebula includes the following stages:
 
-.. warning:: Note that this is a simplified version. If you are a developer you may want to take a look at the `complete diagram <http://opennebula.org/_media/documentation:rel4.4:states-complete.png>`__ referenced in the :ref:`xml-rpc api page <api>`):
+.. warning:: Note that this is a simplified version. If you are a developer you may want to take a look at the complete diagram referenced in the :ref:`xml-rpc api page <api>`):
 
 +---------------+------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Short state   | State            | Meaning                                                                                                                                                                                                                                                                                                    |

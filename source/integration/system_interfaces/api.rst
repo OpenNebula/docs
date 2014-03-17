@@ -710,7 +710,7 @@ The VM Life Cycle is explained in this diagram:.
 
 It contains all the LifeCycleManager states, and the transitions triggered by the onevm commands. It is intended to be consulted by developers.
 
-The `simplified diagram <http://opennebula.org/_detail/documentation:rel4.4:states-simple.png?direct>`__ used in the :ref:`Virtual Machine Instances documentation <vm_guide_2>` uses a smaller number of state names. These names are the ones used by onevm list, e.g. prolog, prolog\_migrate and prolog\_resume are all presented as ``prol``. It is intended as a reference for end-users.
+The simplified diagram used in the :ref:`Virtual Machine Instances documentation <vm_guide_2>` uses a smaller number of state names. These names are the ones used by onevm list, e.g. prolog, prolog\_migrate and prolog\_resume are all presented as ``prol``. It is intended as a reference for end-users.
 
 one.vm.allocate
 ---------------
