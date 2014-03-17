@@ -1,4 +1,4 @@
-.. _whats_new:
+.. _whats_new_46beta:
 
 ============================
 What's New in OpenNebula 4.6

@@ -36,7 +36,7 @@ OpenNebula services include:
 
 .. warning:: Note that these components communicate through :ref:`XML-RPC <api>` and may be installed in different machines for security or performance reasons
 
-There are several certified platforms to act as front-end for each version of OpenNebula. Refer to the :ref:`platform notes <uspng>` and chose the one that better fits your needs.
+There are several certified platforms to act as front-end for each version of OpenNebula. Refer to the :ref:`platform notes <uspng_46beta>` and chose the one that better fits your needs.
 
 OpenNebula's default database uses **sqlite**. If you are planning a production or medium to large scale deployment, you should consider using :ref:`MySQL <mysql>`.
 
@@ -59,7 +59,7 @@ Please check the :ref:`the Monitoring Guide <mon>` for more details.
 Virtualization Hosts
 ====================
 
-The hosts are the physical machines that will run the VMs. There are several certified platforms to act as nodes for each version of OpenNebula. Refer to the :ref:`platform notes <uspng>` and chose the one that better fits your needs. The Virtualization Subsystem is the component in charge of talking with the hypervisor installed in the hosts and taking the actions needed for each step in the VM lifecycle.
+The hosts are the physical machines that will run the VMs. There are several certified platforms to act as nodes for each version of OpenNebula. Refer to the :ref:`platform notes <uspng_46beta>` and chose the one that better fits your needs. The Virtualization Subsystem is the component in charge of talking with the hypervisor installed in the hosts and taking the actions needed for each step in the VM lifecycle.
 
 OpenNebula natively supports three hypervisors:
 

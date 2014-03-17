@@ -6,7 +6,7 @@ Upgrading from Previous Versions
 
 This guide describes the installation procedure for systems that are already running a 2.x or 3.x OpenNebula. The upgrade will preserve all current users, hosts, resources and configurations; for both Sqlite and MySQL backends.
 
-Read the :ref:`Compatibility Guide <compatibility>` and `Release Notes <http://opennebula.org/software/release/>`_ to know what is new in OpenNebula 4.6.
+Read the :ref:`Compatibility Guide <compatibility_46beta>` and `Release Notes <http://opennebula.org/software/release/>`_ to know what is new in OpenNebula 4.6.
 
 .. warning:: With the new :ref:`multi-system DS <system_ds_multiple_system_datastore_setups>` functionality, it is now required that the system DS is also part of the cluster. If you are using System DS 0 for Hosts inside a Cluster, any VM saved (stop, suspend, undeploy) **will not be able to be resumed after the upgrade process**.
 
@@ -40,7 +40,7 @@ Installation
 
 Follow the :ref:`Platform Notes <uspng>` and the :ref:`Installation guide <ignc>`, taking into account that you will already have configured the passwordless ssh access for oneadmin.
 
-It is highly recommended **not to keep** your current ``oned.conf``, and update the ``oned.conf`` file shipped with OpenNebula 4.4 to your setup. If for any reason you plan to preserve your current ``oned.conf`` file, read the :ref:`Compatibility Guide <compatibility>` and the complete oned.conf reference for `4.2 <http://opennebula.org/documentation:archives:rel4.2:oned_conf>`__ and :ref:`4.4 <oned_conf>` versions.
+It is highly recommended **not to keep** your current ``oned.conf``, and update the ``oned.conf`` file shipped with OpenNebula 4.4 to your setup. If for any reason you plan to preserve your current ``oned.conf`` file, read the :ref:`Compatibility Guide <compatibility_46beta>` and the complete oned.conf reference for `4.2 <http://opennebula.org/documentation:archives:rel4.2:oned_conf>`__ and :ref:`4.4 <oned_conf>` versions.
 
 .. warning:: If you are upgrading from a version prior to 4.2, read the `3.8 upgrade guide <http://opennebula.org/documentation:rel3.8:upgrade#installation>`_, `4.0 upgrade guide <http://opennebula.org/documentation:rel4.0:upgrade#installation>`_ and `4.2 upgrade guide <http://opennebula.org/rel4.2:upgrade#installation>`_ for specific notes.
 

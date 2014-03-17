@@ -1,4 +1,4 @@
-.. _migrating:
+.. _migrating_46beta:
 
 ==============================
 Upgrade from Previous Versions

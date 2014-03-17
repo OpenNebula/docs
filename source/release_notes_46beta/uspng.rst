@@ -1,4 +1,4 @@
-.. _uspng:
+.. _uspng_46beta:
 
 ===============
 Platform Notes
