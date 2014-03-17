@@ -35,7 +35,7 @@ organised by component (`a detailed list of changes can be found here <http://de
 OpenNebula Core: Virtual Data Centers
 -------------------------------------
 
-The provisioning model of OpenNebula 4.6 has been simplify to provide an
+The provisioning model of OpenNebula 4.6 has been simplified to provide an
 integrated and comprehensive framework for resource allocation and isolation in
 federated data centers and hybrid cloud deployments:
 
