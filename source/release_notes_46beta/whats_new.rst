@@ -89,7 +89,6 @@ Sunstone
 -  **Support for Zone selection**, which allows users to switch between OpenNebula Zones from within the same Sunstone.
 -  General usability enhancements for all the resources.
 
-
 AppMarket
 ---------
 
