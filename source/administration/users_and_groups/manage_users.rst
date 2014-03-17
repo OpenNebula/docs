@@ -321,6 +321,8 @@ This can be managed visually in Sunstone, and can also be managed through the CL
 
     $ onegroup create --name MyGroup -admin_group MyAdminGroup --admin_user MyAdminUser --admin_password MyAdminPassword --admin_driver core --resource VM+TEMPLATE+NET+IMAGE 
 
+.. _managing-resource-provider-within-groups:
+
 Managing Resource Provider within Groups
 ----------------------------------------
 
