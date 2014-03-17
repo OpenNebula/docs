@@ -35,12 +35,9 @@ The provisioning model of OpenNebula 4.6 has been simplify to provide an
 integrated and comprehensive framework for resource allocation and isolation in
 federated data centers and hybrid cloud deployments:
 
-- **User Groups** can be assigned one or more **resource providers**. Resource providers
-are defined as a cluster in an OpenNebula zone.
-- An special **administration group** can be defined to manage specific aspects of
-the group like user management or appliances definition.
-- **Suntone views** for new groups can be dynamically defined without the need of
-modifying the Suntone configuration files.
+- **User Groups** can be assigned one or more **resource providers**. Resource providers are defined as a cluster in an OpenNebula zone.
+- An special **administration group** can be defined to manage specific aspects of the group like user management or appliances definition.
+- **Suntone views** for new groups can be dynamically defined without the need of modifying the Suntone configuration files.
 - Groups can now be tagged with custom attributes.
 
 OpenNebula Core: Federation & Zones
