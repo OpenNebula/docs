@@ -50,7 +50,7 @@ The OneFlow configuration file can be found at ``/etc/one/oneflow-server.conf``.
 | :core\_auth          | Authentication driver to communicate with OpenNebula core                                                                                                               |
 |                      | ``cipher``: for symmetric cipher encryption of tokens                                                                                                                   |
 |                      | ``x509``: for x509 certificate encryption of tokens                                                                                                                     |
-|                      | For more information, visit the `OpenNebula Cloud Auth documentation </documentation:rel4.4:cloud_auth>`__                                                              |
+|                      | For more information, visit the `OpenNebula Cloud Auth documentation </documentation:rel4.6:cloud_auth>`__                                                              |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **Log**                                                                                                                                                                                        |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+

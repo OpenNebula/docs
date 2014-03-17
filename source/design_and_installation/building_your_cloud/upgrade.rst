@@ -6,7 +6,7 @@ Upgrading from Previous Versions
 
 This guide describes the installation procedure for systems that are already running a 2.x or 3.x OpenNebula. The upgrade will preserve all current users, hosts, resources and configurations; for both Sqlite and MySQL backends.
 
-Read the :ref:`Compatibility Guide <compatibility>` and `Release Notes <http://opennebula.org/software:software>`_ to know what is new in OpenNebula 4.4.
+Read the :ref:`Compatibility Guide <compatibility>` and `Release Notes <http://opennebula.org/software/release/>`_ to know what is new in OpenNebula 4.6.
 
 .. warning:: With the new :ref:`multi-system DS <system_ds_multiple_system_datastore_setups>` functionality, it is now required that the system DS is also part of the cluster. If you are using System DS 0 for Hosts inside a Cluster, any VM saved (stop, suspend, undeploy) **will not be able to be resumed after the upgrade process**.
 
@@ -68,7 +68,7 @@ If everything goes well, you should get an output similar to this one:
 .. code::
 
     $ onedb upgrade -v -u oneadmin -d opennebula
-    MySQL Password: 
+    MySQL Password:
     Version read:
     4.0.1 : Database migrated from 3.8.0 to 4.2.0 (OpenNebula 4.2.0) by onedb command.
 

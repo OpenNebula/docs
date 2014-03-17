@@ -1,15 +1,15 @@
 .. _features:
 
 ===================================================
-OpenNebula 4.4 Detailed Features and Functionality
+OpenNebula 4.6 Detailed Features and Functionality
 ===================================================
 
-This section describes the **detailed features and functionality of the latest version of OpenNebula (v4.4)** for the management of private clouds and datacenter virtualization(\*). It includes links to the different parts of the documentation and the web site that provide extended information about each feature. We also provide a summarized table of `key features <http://opennebula.org/about:keyfeatures>`__.
+This section describes the **detailed features and functionality of the latest version of OpenNebula (v4.6)** for the management of private clouds and datacenter virtualization(\*). It includes links to the different parts of the documentation and the web site that provide extended information about each feature. We also provide a summarized table of `key features <http://opennebula.org/about:keyfeatures>`__.
 
 Powerful User Security Management
 =================================
 
--  Secure and efficient :ref:`Users and Groups Subsystem <auth_overview>` for authentication and authorization of requests with complete functionality for `user management <http://opennebula.org/doc/4.4/cli/oneuser.1.html>`__: create, delete, show...
+-  Secure and efficient :ref:`Users and Groups Subsystem <auth_overview>` for authentication and authorization of requests with complete functionality for `user management <http://opennebula.org/doc/4.6/cli/oneuser.1.html>`__: create, delete, show...
 -  :ref:`Pluggable authentication and authorization <external_auth>` based on :ref:`passwords <manage_users_users>`, :ref:`ssh rsa keypairs <ssh_auth>`, :ref:`X509 certificates <x509_auth>`, :ref:`LDAP <ldap>` or :ref:`Active Directory <ldap>`
 -  Special authentication mechanisms for :ref:`SunStone (OpenNebula GUI) <sunstone>` and the :ref:`Cloud Services (EC2 and OCCI) <cloud_auth>`
 -  Authorization framework with :ref:`fine-grained ACLs <manage_acl>` that allows multiple-role support for different types of users and administrators, delegated control to authorized users, secure isolated multi-tenant environments, and easy resource (VM template, VM image, VM instance, virtual network and host) sharing
@@ -20,7 +20,7 @@ Advanced Multi-tenancy with Group Management
 -  Administrators can :ref:`groups users <manage_users_groups>` into organizations that can represent different projects, division...
 -  Each group have :ref:`configurable access to shared resources <manage_acl>` so enabling a multi-tenant environment with multiple groups sharing the same infrastructure
 -  Configuration of special :ref:`users that are restricted to public cloud APIs <cloud_auth>` (e.g. EC2 or OCCI)
--  Complete functionality for management of `groups <http://opennebula.org/doc/4.4/cli/onegroup.1.html>`__: create, delete, show...
+-  Complete functionality for management of `groups <http://opennebula.org/doc/4.6/cli/onegroup.1.html>`__: create, delete, show...
 -  Multiple group support, with the ability to define `primary and secondary groups <http://opennebula.org/manage_users#primary_and_secondary_groups>`__.
 
 On-demand Provision of Virtual Data Centers
@@ -28,18 +28,18 @@ On-demand Provision of Virtual Data Centers
 
 -  A :ref:`Virtual Data Centers (VDC) <vdcmngt>` is a fully-isolated virtual infrastructure environment where a group of users, under the control of the VDC administrator, can create and manage compute, storage and networking capacity
 -  Support for the creation and management of multiples VDCs within the same logical cluster and zone
--  Advanced multi-tenancy with complete functionality for management of `VDCs <http://opennebula.org/doc/4.4/cli/onevdc.1.html>`__: create, delete, show...
+-  Advanced multi-tenancy with complete functionality for management of `VDCs <http://opennebula.org/doc/4.6/cli/onevdc.1.html>`__: create, delete, show...
 
 Advanced Control and Monitoring of Virtual Infrastructure
 =========================================================
 
--  :ref:`Image Repository Subsystem <img_guide>` with catalog and complete functionality for `VM image management <http://opennebula.org/doc/4.4/cli/oneimage.1.html>`__: list, publish, unpublish, show, enable, disable, register, update, saveas, delete, clone...
--  :ref:`Template Repository Subsystem <vm_guide>` with catalog and complete functionality for `VM template management <http://opennebula.org/doc/4.4/cli/onetemplate.1.html>`__: add, delete, list, duplicate...
--  :ref:`Full control of VM instance life-cycle <vm_guide_2>` and complete functionality for `VM instance management <http://opennebula.org/doc/4.4/cli/onevm.1.html>`__: submit, deploy, migrate, livemigrate, reschedule, stop, save, resume, cancel, shutdown, restart, reboot, delete, monitor, list, power-on, power-off,...
+-  :ref:`Image Repository Subsystem <img_guide>` with catalog and complete functionality for `VM image management <http://opennebula.org/doc/4.6/cli/oneimage.1.html>`__: list, publish, unpublish, show, enable, disable, register, update, saveas, delete, clone...
+-  :ref:`Template Repository Subsystem <vm_guide>` with catalog and complete functionality for `VM template management <http://opennebula.org/doc/4.6/cli/onetemplate.1.html>`__: add, delete, list, duplicate...
+-  :ref:`Full control of VM instance life-cycle <vm_guide_2>` and complete functionality for `VM instance management <http://opennebula.org/doc/4.6/cli/onevm.1.html>`__: submit, deploy, migrate, livemigrate, reschedule, stop, save, resume, cancel, shutdown, restart, reboot, delete, monitor, list, power-on, power-off,...
 -  Advanced functionality for VM dynamic management like :ref:`system and disk snapshotting <vm_guide2_snapshotting>`, :ref:`capacity resizing <vm_guide2_resizing_a_vm>`, or :ref:`NIC hotplugging <vm_guide2_nic_hotplugging>`
 -  :ref:`Programmable VM operations <vm_guide2_scheduling_actions>`, so allowing users to schedule actions
 -  Volume hotplugging to easily hot plug a volatile disk created on-the-fly or an existing image from a Datastore to a running VM
--  :ref:`Broad network virtualization capabilities <vgg>` with traffic isolation, ranged or fixed networks, definition of generic attributes to define multi-tier services consisting of groups of inter-connected VMs, and complete functionality for `virtual network management <http://opennebula.org/doc/4.4/cli/onevnet.1.html>`__ to interconnect VM instances: create, delete, monitor, list...
+-  :ref:`Broad network virtualization capabilities <vgg>` with traffic isolation, ranged or fixed networks, definition of generic attributes to define multi-tier services consisting of groups of inter-connected VMs, and complete functionality for `virtual network management <http://opennebula.org/doc/4.6/cli/onevnet.1.html>`__ to interconnect VM instances: create, delete, monitor, list...
 -  :ref:`IPv6 support <vgg_ipv6_networks>` with definition site and global unicast addresses
 -  Configurable :ref:`system accounting statistics <accounting>` to visualize and report resource usage data, to allow their integration with chargeback and billing platforms, or to guarantee fair share of resources among users
 -  Tagging of users, VM images and virtual networks with arbitrary metadata that can be later used by other components
@@ -61,7 +61,7 @@ Advanced Control and Monitoring of Physical Infrastructure
 ==========================================================
 
 -  :ref:`Configurable to deploy public, private and hybrid clouds <intro>`
--  :ref:`Host Management Subsystem <host_guide>` with complete functionality for management of `physical hosts <http://opennebula.org/doc/4.4/cli/onehost.1.html>`__: create, delete, enable, disable, monitor, list...
+-  :ref:`Host Management Subsystem <host_guide>` with complete functionality for management of `physical hosts <http://opennebula.org/doc/4.6/cli/onehost.1.html>`__: create, delete, enable, disable, monitor, list...
 -  Dynamic creation of :ref:`clusters <cluster_guide>` as a logical set of physical resources, namely: hosts, networks and data stores, within each zone
 -  Highly scalable and extensible built-in :ref:`monitoring subsystem <mon>`
 
@@ -89,7 +89,7 @@ Centralized Management of Multiple Zones
 -  :ref:`Single access point and centralized management for multiple instances of OpenNebula <ozones>`
 -  :ref:`Federation of multiple OpenNebula zones <zonesmngt>` for scalability, isolation or multiple-site support
 -  Support for the creation and management of multiples clusters within the same zone
--  Complete functionality for management of `zones <http://opennebula.org/doc/4.4/cli/onezone.1.html>`__: create, delete, show, list...
+-  Complete functionality for management of `zones <http://opennebula.org/doc/4.6/cli/onezone.1.html>`__: create, delete, show, list...
 
 High Availability
 =================
@@ -107,7 +107,7 @@ Community Virtual Appliance Marketplace
 Management of Multi-tier Applications
 =====================================
 
--  :ref:`Automatic execution of multi-tiered applications <oneapps_overview>` with complete `functionality for the management of groups of virtual machines as a single entity <http://opennebula.org/doc/4.4/cli/oneflow.1.html>`__: list, delete, scale up, scale down, shutdown... and the `management of Service Templates <http://opennebula.org/doc/4.4/cli/oneflow-template.1.html>`__: create, show, delete, instantiate...
+-  :ref:`Automatic execution of multi-tiered applications <oneapps_overview>` with complete `functionality for the management of groups of virtual machines as a single entity <http://opennebula.org/doc/4.6/cli/oneflow.1.html>`__: list, delete, scale up, scale down, shutdown... and the `management of Service Templates <http://opennebula.org/doc/4.6/cli/oneflow-template.1.html>`__: create, show, delete, instantiate...
 -  :ref:`Automatic deployment and undeployment of Virtual Machines <appflow_use_cli>` according to their dependencies in the Service Template
 -  Provide configurable services from a catalog and self-service portal
 -  Enable tight, efficient administrative control
