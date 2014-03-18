@@ -24,12 +24,13 @@ Usage
           --xpath expression  Xpath expression to filter the results. For example: oneacct --xpath 'HISTORY[ETIME>0]'
       -j, --json              Output in json format
       -x, --xml               Output in xml format
+      --csv                   Write table in csv format
           --split             Split the output in a table for each VM
       -h, --help              Show this message
 
 The time can be written as ``month/day/year hour:minute:second``, or any other similar format, e.g ``month/day hour:minute``.
 
-To integrate this tool with your billing system you can use ``-j`` or ``-x`` flags to get all the information in an easy computer readable format.
+To integrate this tool with your billing system you can use ``-j``, ``-x`` or ``--csv`` flags to get all the information in an easy computer readable format.
 
 Accounting Output
 =================
@@ -122,6 +123,18 @@ Obtaining the accounting information for a given user
 
      VID HOSTNAME        REAS     START_TIME       END_TIME MEMORY CPU NET_RX NET_TX
        3 host01          none 06/04 15:04:47              -     4G   2     0K   0.1K
+
+In case you use CSV output (``--csv``) you will het a header with the neame of each column and then the data. For example:
+
+.. code::
+
+    $ oneacct --csv
+    UID,VID,HOSTNAME,ACTION,REASON,START_TIME,END_TIME,MEMORY,CPU,NET_RX,NET_TX
+    3,68,esx2,none,none,02/17 11:16:06,-,512M,1,0K,0K
+    0,0,piscis,none,erro,09/18 15:57:55,09/18 15:57:57,1024M,1,0K,0K
+    0,0,piscis,shutdown-hard,user,09/18 16:01:55,09/18 16:19:57,1024M,1,0K,0K
+    0,1,piscis,none,none,09/18 16:20:25,-,1024M,1,2G,388M
+    0,2,esx1,shutdown-hard,user,09/18 19:27:14,09/19 12:23:45,512M,1,0K,0K
 
 Output Reference
 ----------------
