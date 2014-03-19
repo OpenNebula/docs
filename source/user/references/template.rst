@@ -163,27 +163,28 @@ This section configures the features enabled for the VM.
 
 **Note** the hypervisor column states that the attribute is **O**\ ptional or ``-`` not supported for that hypervisor
 
-+------------------+---------------------------------------------------------+---------+-----+
-| OS Sub-Attribute |                       Description                       | XEN HVM | KVM |
-+==================+=========================================================+=========+=====+
-| **PAE**          | Physical address extension mode allows 32-bit           | O       | O   |
-|                  | guests to address more than 4 GB of memory              |         |     |
-+------------------+---------------------------------------------------------+---------+-----+
-| **ACPI**         | Useful for power management, for example, with          | O       | O   |
-|                  | KVM guests it is required for graceful shutdown to work |         |     |
-+------------------+---------------------------------------------------------+---------+-----+
-| **APIC**         | Enables the advanced programmable IRQ management.       | O       | O   |
-|                  | Useful for SMP machines.                                |         |     |
-+------------------+---------------------------------------------------------+---------+-----+
-| **LOCALTIME**    | The guest clock will be synchronized to the host's      | -       | O   |
-|                  | configured timezone when booted. Useful for Windows VMs |         |     |
-+------------------+---------------------------------------------------------+---------+-----+
-| **HYPERV**       | Add hyperv extensions to the VM. The options can be     | -       | O   |
-|                  | configured in the driver configuration,                 |         |     |
-|                  | HYPERV_OPTIONS                                          |         |     |
-+------------------+---------------------------------------------------------+---------+-----+
-| **DEVICE_MODE**  | Used to change the IO emulator in Xen HVM.              | O       | -   |
-+------------------+---------------------------------------------------------+---------+-----+
++-----------------+---------------------------------------------------------+---------+-----+
+|    FFEATURES    |                       Description                       | XEN HVM | KVM |
+|  Sub-Attribute  |                                                         |         |     |
++=================+=========================================================+=========+=====+
+| **PAE**         | Physical address extension mode allows 32-bit           | O       | O   |
+|                 | guests to address more than 4 GB of memory              |         |     |
++-----------------+---------------------------------------------------------+---------+-----+
+| **ACPI**        | Useful for power management, for example, with          | O       | O   |
+|                 | KVM guests it is required for graceful shutdown to work |         |     |
++-----------------+---------------------------------------------------------+---------+-----+
+| **APIC**        | Enables the advanced programmable IRQ management.       | O       | O   |
+|                 | Useful for SMP machines.                                |         |     |
++-----------------+---------------------------------------------------------+---------+-----+
+| **LOCALTIME**   | The guest clock will be synchronized to the host's      | -       | O   |
+|                 | configured timezone when booted. Useful for Windows VMs |         |     |
++-----------------+---------------------------------------------------------+---------+-----+
+| **HYPERV**      | Add hyperv extensions to the VM. The options can be     | -       | O   |
+|                 | configured in the driver configuration,                 |         |     |
+|                 | HYPERV_OPTIONS                                          |         |     |
++-----------------+---------------------------------------------------------+---------+-----+
+| **DEVICE_MODE** | Used to change the IO emulator in Xen HVM.              | O       | -   |
++-----------------+---------------------------------------------------------+---------+-----+
 
 .. code::
 
