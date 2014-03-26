@@ -142,12 +142,7 @@ If you were using DHCP for your ``eth0`` interface, replace ``/etc/network/inter
     iface lo inet loopback
 
     auto br0
-    iface br0 inet static
-            address 192.168.0.10
-            network 192.168.0.0
-            netmask 255.255.255.0
-            broadcast 192.168.0.255
-            gateway 192.168.0.1
+    iface br0 inet dhcp
             bridge_ports eth0
             bridge_fd 9
             bridge_hello 2
@@ -162,7 +157,12 @@ If you were using a static IP addresses instead, use this other template:
     iface lo inet loopback
 
     auto br0
-    iface br0 inet dhcp
+    iface br0 inet static
+            address 192.168.0.10
+            network 192.168.0.0
+            netmask 255.255.255.0
+            broadcast 192.168.0.255
+            gateway 192.168.0.1
             bridge_ports eth0
             bridge_fd 9
             bridge_hello 2
