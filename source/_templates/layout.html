@@ -4,6 +4,7 @@
 {# Add some extra stuff before and use existing with 'super()' call. #}
 {% block extrahead %}
     <link rel="stylesheet" href="{{ pathto('_static/opennebula.css', 1) }}" type="text/css" />
+    <script type="text/javascript" src="{{ pathto('_static/opennebula.js', 1) }}"></script>
   {{ super() }}
 {% endblock %}
 
