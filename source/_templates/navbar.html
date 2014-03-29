@@ -14,12 +14,6 @@
           <ul class="nav navbar-nav">
             <li class="divider-vertical"></li>
             {% include "versions.html" %}
-
-            {% if theme_navbar_links %}
-              {%- for link in theme_navbar_links %}
-                <li><a href="{{ pathto(*link[1:]) }}" target="_blank">{{ link[0] }}</a></li>
-              {%- endfor %}
-            {% endif %}
             {% block navbartoc %}
               {% include "globaltoc.html" %}
               {% if theme_navbar_pagenav %}
@@ -31,6 +25,9 @@
                 {% include "relations.html" %}
               {% endblock %}
             {% endif %}
+            <li>
+                <a href="{{ github_source }}" rel="nofollow"><span class="glyphicon glyphicon-edit"></span>&nbsp;Edit in GitHub</a>
+            </li>
             {% block navbarextra %}
             {% endblock %}
             {% if theme_source_link_position == "nav" %}
