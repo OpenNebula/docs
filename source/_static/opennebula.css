@@ -138,3 +138,25 @@ code {
     display: none;
 }
 
+#opennebula-frontpage .ofp-box {
+    width: 300px;
+    float: left;
+    padding: 15px;
+    margin: 15px;
+    border: 1px solid #ccc;
+    background-color: #eee;
+}
+
+#opennebula-frontpage .ofp-box > a,
+#opennebula-frontpage > h3 > a {
+    font-weight: bold;
+    color: #353735;
+}
+
+#opennebula-frontpage .ofp-box > ul  {
+    margin-top:10px;
+}
+
+#opennebula-frontpage h3, #opennebula-frontpage .ofp-box-1 {
+    clear: both;
+}
