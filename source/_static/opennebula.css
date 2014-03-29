@@ -122,3 +122,8 @@ code {
 #sidebar > ul > li.current {
     display: block;
 }
+
+.bs-sidenav.affix-bottom, .bs-sidenav.affix {
+    position: relative;
+}
+
