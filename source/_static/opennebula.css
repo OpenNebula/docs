@@ -114,3 +114,11 @@ code {
     color: #888888;
     background-color: #EBEBED;
 }
+
+#sidebar > ul > li {
+    display: none;
+}
+
+#sidebar > ul > li.current {
+    display: block;
+}
