@@ -127,3 +127,10 @@ code {
     position: relative;
 }
 
+#sidebar > ul > li.current > a {
+    color: #353725;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+
