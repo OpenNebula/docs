@@ -43,6 +43,7 @@ clean:
 	-rm -rf $(BUILDDIR)/*
 
 html:
+	ruby generate_index.rb > source/toc.html
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."

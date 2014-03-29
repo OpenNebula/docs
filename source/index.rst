@@ -14,3 +14,7 @@ OpenNebula Documentation
    User Guide <user/index>
    Advanced Administration Guide <advanced_administration/index>
    Integration Guide <integration/index>
+
+.. raw:: html
+   :file: toc.html
+
