@@ -143,8 +143,9 @@ code {
     float: left;
     padding: 15px;
     margin: 15px;
-    border: 1px solid #ccc;
-    background-color: #eee;
+    text-shadow: 0 1px 0 #fff;
+    background-color: #EBEBED;
+    border-radius: 5px;
 }
 
 #opennebula-frontpage .ofp-box > a,
