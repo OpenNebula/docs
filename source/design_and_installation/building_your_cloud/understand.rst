@@ -42,6 +42,9 @@ For example, you can think Web Development, Human Resources, and Big Data Analys
 * **RED**: Allocation of (ClusterB-DC_West_Coast + ClusterA-DC_Europe + Cloudbursting) to Human Resources
 * **GREEN**: Allocation of (ClusterC-DC_West_Coast + ClusterB-DC_Europe) to Big Data Analysis
 
+A New Cloud Provisioning Model Based on vDCs
+================================================================================
+
 |vDC Organization|
 
 A vDC is a fully-isolated virtual infrastructure environment where a Group of users, under the control of the vDC admin, can create and manage compute, storage and networking capacity. The users in the vDC, including the vDC administrator, would only see the virtual resources and not the underlying physical infrastructure. The physical resources allocated by the cloud administrator to the vDC can be completely dedicated to the vDC, providing isolation at the physical level too.
