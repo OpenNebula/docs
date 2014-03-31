@@ -10,7 +10,7 @@ OpenNebula is the **open-source industry standard for data center virtualization
 What Are the Key Features Provided by OpenNebula?
 =================================================
 
-You can refer to our a summarized table of `Key Features <http://opennebula.org/about:keyfeatures>`__ or to the :ref:`Detailed Features and Functionality Guide <features>` included in the documentation of each version.
+You can refer to our a summarized table of `Key Features <http://opennebula.org/about/key-features/>`__ or to the :ref:`Detailed Features and Functionality Guide <features>` included in the documentation of each version.
 
 What Are the Interfaces Provided by OpenNebula?
 ===============================================
