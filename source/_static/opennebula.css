@@ -134,7 +134,7 @@ code {
 }
 
 
-#opennebula-documentation .toctree-wrapper {
+div[id^='opennebula-'][id$='-documentation'] .toctree-wrapper {
     display: none;
 }
 
