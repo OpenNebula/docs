@@ -16,9 +16,8 @@ $(document).ready(function(){
     }
 
     /* Remove the "Guide" word from the sidebar titles */
-    $("#sidebar .nav-header").each(function(i,e){
+    $("#sidebar > ul.current > li.current > a").each(function(i,e){
         var html = $(e).html();
-        console.log("!!!! "+ html);
         $(e).html(html.replace(/ guide/i, ""));
     });
 
