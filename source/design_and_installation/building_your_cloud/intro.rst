@@ -6,6 +6,7 @@ An Overview of OpenNebula
 
 OpenNebula is the **open-source industry standard for data center virtualization**, offering a **simple but feature-rich and flexible solution** to build and manage enterprise clouds and virtualized data centers. This introductory guide gives an overview of OpenNebula and summarizes its main benefits for the different stakeholders involved in a cloud computing infrastructure.
 
+
 What Are the Key Features Provided by OpenNebula?
 =================================================
 
@@ -73,6 +74,8 @@ OpenNebula is composed of the following subsystems:
 
 What Does OpenNebula Offer to Cloud Builders?
 =============================================
+
+
 
 OpenNebula offers broad support for commodity and enterprise-grade hypervisor, monitoring, storage, networking and user management services:
 
