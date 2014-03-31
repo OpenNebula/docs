@@ -148,14 +148,18 @@ div[id^='opennebula-'][id$='-documentation'] .toctree-wrapper {
     border-radius: 5px;
 }
 
-#opennebula-frontpage .ofp-box > a,
-#opennebula-frontpage > h3 > a {
+#opennebula-frontpage h3 {
+    padding-top: 20px;
+}
+
+#opennebula-frontpage .ofp-box > a {
     font-weight: bold;
     color: #353735;
 }
 
 #opennebula-frontpage .ofp-box > ul  {
     margin-top:10px;
+    margin-bottom: 0px;
 }
 
 #opennebula-frontpage h3, #opennebula-frontpage .ofp-box-1 {
