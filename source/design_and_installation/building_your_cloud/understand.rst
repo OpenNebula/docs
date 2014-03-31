@@ -42,7 +42,7 @@ For example, you can think Web Development, Human Resources, and Big Data Analys
 * **RED**: Allocation of (ClusterB-DC_West_Coast + ClusterA-DC_Europe + Cloudbursting) to Human Resources
 * **GREEN**: Allocation of (ClusterC-DC_West_Coast + ClusterB-DC_Europe) to Big Data Analysis
 
-A New Cloud Provisioning Model Based on vDCs
+A Cloud Provisioning Model Based on vDCs
 ================================================================================
 
 |vDC Organization|
