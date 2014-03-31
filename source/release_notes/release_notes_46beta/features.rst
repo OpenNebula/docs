@@ -1,8 +1,8 @@
 .. _features:
 
-===================================================
-OpenNebula 4.6 Detailed Features and Functionality
-===================================================
+=======================
+OpenNebula 4.6 Features
+=======================
 
 This section describes the **detailed features and functionality of the latest version of OpenNebula (v4.6)** for the management of private clouds and datacenter virtualization(\*). It includes links to the different parts of the documentation and the web site that provide extended information about each feature. We also provide a summarized table of `key features <http://opennebula.org/about:keyfeatures>`__.
 

@@ -8,9 +8,9 @@ Release Notes 4.6 Beta
    :maxdepth: 2
 
    What's New <whats_new>
-   Detailed Features and Functionality <features>
-   Upgrading from Previous Versions <upgrade>
+   Features <features>
    Platform Notes <uspng>
    Compatibility Guide <compatibility>
    Known Issues <known_issues>
+   Upgrading from Previous Versions <upgrade>
    Acknowledgements <acknowledgements>
