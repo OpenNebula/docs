@@ -15,6 +15,12 @@ OpenNebula 4.4 Documentation
    Advanced Administration Guide <advanced_administration/index>
    Integration Guide <integration/index>
 
+Release Notes
+=============
+
+* :ref:`Release Notes 4.4.1 <rn441>`
+* :ref:`Release Notes 4.4 <rn44>`
+
 .. raw:: html
    :file: toc.html
 
