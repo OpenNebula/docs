@@ -44,15 +44,15 @@ toc_template = %q{
                 <a href="<%= box[:url] %>">
                     <%= box[:name] %>
                 </a>
-                <% box[:children].each do |guide| %>
-                    <ul>
+                <ul>
+                    <% box[:children].each do |guide| %>
                         <li>
                             <a href="<%= guide[:url] %>">
                                 <%= guide[:name]%>
                             </a>
                         </li>
-                    </ul>
-                <% end %>
+                    <% end %>
+                </ul>
             </div><!-- close ofp-box -->
         <% end %>
     </div><!-- close ofb-boxes -->
