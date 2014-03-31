@@ -38,9 +38,9 @@ The following are common enterprise use cases in large cloud computing deploymen
 
 For example, you can think Web Development, Human Resources, and Big Data Analysis as business units represented by vDCs in a private OpenNebula cloud.
 
-* **BLUE**: Allocation of (ClusterA@DC_West_Coast + Cloudbursting) to Web Development
-* **RED**: Allocation of (ClusterB@DC_West_Coast + ClusterA@DC_Europe + Cloudbursting) to Human Resources
-* **GREEN**: Allocation of (ClusterC@DC_West_Coast + ClusterB@DC_Europe) to Big Data Analysis
+* **BLUE**: Allocation of (ClusterA-DC_West_Coast + Cloudbursting) to Web Development
+* **RED**: Allocation of (ClusterB-DC_West_Coast + ClusterA-DC_Europe + Cloudbursting) to Human Resources
+* **GREEN**: Allocation of (ClusterC-DC_West_Coast + ClusterB-DC_Europe) to Big Data Analysis
 
 |vDC Organization|
 
