@@ -4,7 +4,7 @@
 Understanding the OpenNebula Provisioning Model
 ================================================================================
 
-OpenNebula is designed to be simple. Simple to install, simple to operate by the admins, and simple to use by end users.
+OpenNebula is designed to be simple. Simple to install, simple to install, update and operate by the admins, and simple to use by end users.
 
 Being focused on simplicity, we integrate with existing technogolies whenever possible. You'll see that OpenNebula works with MySQL, Ceph, LVM, GlusterFS, Open vSwitch, LDAP... This allows us to deliver a light, flexible and robust cloud manager.
 
