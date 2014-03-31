@@ -33,7 +33,7 @@ toc = get_toc('source/index.rst')
 
 nrow = -1
 toc_template = %q{
-    <h3><a href="<%= manual[:url] %>"><%= manual[:name] %></a></h3>
+    <h3><i class="fa fa-book"></i>&nbsp;<%= manual[:name] %></h3>
     <div class="ofp-boxes">
         <% manual[:children].each do |box| %>
             <% nbox = nboxes.next %>
