@@ -87,7 +87,7 @@ OpenNebula has three pre-defined roles: Cloud Administrator, vDC Adminitrator an
 |                  | * Operates on vDC virtual machines and disk images                                                                                                      |
 |                  | * Creates and registers disk images to be used by the vDC users                                                                                         |
 |                  | * Checks vDC usage and quotas                                                                                                                           |
-|                  | * Defines and consumes application flows                                                                                                                |
+|                  | * Defines and consumes multi-VM application flows                                                                                                       |
 +------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **vDC User**     | * Instantiates VMs using the templates defined by the Cloud Admins and the images defined by the Cloud Admins or vDC Admins.                            |
 |                  | * Instantiates VMs using their own Images saved from a previous running VM                                                                              |
