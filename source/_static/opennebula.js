@@ -15,4 +15,11 @@ $(document).ready(function(){
         row++;
     }
 
+    /* Remove the "Guide" word from the sidebar titles */
+    $("#sidebar .nav-header").each(function(i,e){
+        var html = $(e).html();
+        console.log("!!!! "+ html);
+        $(e).html(html.replace(/ guide/i, ""));
+    });
+
 });
