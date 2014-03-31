@@ -75,26 +75,26 @@ OpenNebula has three pre-defined roles: Cloud Administrator, vDC Adminitrator an
 .. todo:: Update VM management actions allowed for vDC users
 
 +------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------+
-|       Roles      |                                                                     Capabilities                                                                    |
+|       Roles      |                                                                     Capabilities                                                                        |
 +==================+=========================================================================================================================================================+
 | **Cloud Admin.** | * Operates the Cloud infrastructure (i.e. computing nodes, networking fabric, storage servers)                                                          |
 |                  | * Creates and manage OpenNebula infrastructure resources: Hosts, Virtual Networks, Datastores                                                           |
 |                  | * Creates new groups for vDCs                                                                                                                           |
-|                  | * Assigns resource providers to a vDC and sets quota limits                                                                                                      |
+|                  | * Assigns resource providers to a vDC and sets quota limits                                                                                             |
 |                  | * Defines base instance types to be used by the vDCs. These types define the capacity of the VMs (memory, cpu and additional storage) and connectivity. |
 |                  | * Prepare VM images to be used by the vDCs                                                                                                              |
 |                  | * Monitor the status and health of the cloud                                                                                                            |
 |                  | * Generate activity reports                                                                                                                             |
 +------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **vDC Admin.**   | * Creates new users in the vDC                                                                                                                                     |
+| **vDC Admin.**   | * Creates new users in the vDC                                                                                                                          |
 |                  | * Operates on vDC virtual machines and disk images                                                                                                      |
 |                  | * Creates and registers disk images to be used by the vDC users                                                                                         |
 |                  | * Checks vDC usage and quotas                                                                                                                           |
-|                  | * Defines and consumes application flows                                                                                                          |
+|                  | * Defines and consumes application flows                                                                                                                |
 +------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **vDC User**     | * Instantiates VMs using the templates defined by the Cloud Admins and the images defined by the Cloud Admins or vDC Admins.                            |
 |                  | * Instantiates VMs using their own Images saved from a previous running VM                                                                              |
-|                  | * Manages their VMs, including                                                                                                                            |
+|                  | * Manages their VMs, including                                                                                                                          |
 |                  |                                                                                                                                                         |
 |                  |   * reboot                                                                                                                                              |
 |                  |   * power off/on (short-term switching-off)                                                                                                             |
