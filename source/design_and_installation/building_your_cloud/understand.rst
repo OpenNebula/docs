@@ -1,0 +1,111 @@
+.. _understand:
+
+================================================================================
+Understanding the OpenNebula Provisioning Model
+================================================================================
+
+OpenNebula is designed to be simple. Simple to install, simple to operate by the admins, and simple to use by end users.
+
+Being focused on simplicity, we integrate with existing technogolies whenever possible. You'll see that OpenNebula works with MySQL, Ceph, LVM, GlusterFS, Open vSwitch, LDAP... This allows us to deliver a light, flexible and robust cloud manager.
+
+Although OpenNebula is made to be easy to adapt to your specific use case, and perform fine-tuning of multiple aspects, we will define here the default OpenNebula model.
+
+
+The Infrastructure Perspective
+================================================================================
+
+Common large IT shops have multiple Data Centers (DCs), each one of them consisting of several physical Clusters of infrastructure resources (hosts, networks and storage). These Clusters could present different architectures and software/hardware execution environments to fulfill the needs of different workload profiles. Moreover, many organizations have access to external public clouds to build hybrid cloud scenarios where the private capacity of the Data Centers is supplemented with resources from external clouds to address peaks of demand. Sysadmins need a single comprehensive framework to dynamically allocate all these available resources to the multiple groups of users.
+
+For example, you could have two Data Centers in different geographic locations, Europe and USA West Coast, and an agreement for cloudbursting with a public cloud provider, such as Amazon. Each Data Center runs its own full OpenNebula deployment. Multiple OpenNebula installations can be configured as a federation, and in this case they will share the same user accounts, groups, and permissions across Data Centers.
+
+|vDC Resources|
+
+The Organizational Perspective
+================================================================================
+
+Users are organized into Groups (also called Projects, Domains, Tenants...). A Group is an authorization boundary that can be seen as a business unit if you are considering it as private cloud or as a complete new company if it is public cloud.
+
+A Group is simply a boundary, you need to populate resources into the Group which can then be consumed by the users of that Group. A vDC (Virtual Data Center) is a Group plus Resource Providers assigned. A Resource Provider is a Cluster of infrastructure resources (physical hosts, networks, storage and external clouds) from one of the Data Centers.
+
+Different authorization scenarios can be enabled with the powerful and configurable ACL system provided, from the definition of vDC Admins to the privileges of the users that can deploy virtual machines. Each vDC can execute different types of workload profiles with different performance and security requirements.
+
+The following are common enterprise use cases in large cloud computing deployments:
+
+* **On-premise Private Clouds** Serving Multiple Projects, Departments, Units or Organizations. On-premise private clouds in large organizations require powerful and flexible mechanisms to manage the access privileges to the virtual and physical infrastructure and to dynamically allocate the available resources. In these scenarios, the Cloud Administrator would define a vDC for each Department, dynamically allocating resources according to their needs, and delegating the internal administration of the vDC to the Department IT Administrator.
+* **Cloud Providers** Offering Virtual Private Cloud Computing. Cloud providers providing customers with a fully-configurable and isolated environment where they have full control and capacity to administer its users and resources. This combines a public cloud with the control usually seen in a personal private cloud system.
+
+|vDC Groups|
+
+For example, you can think Web Development, Human Resources, and Big Data Analysis as business units represented by vDCs in a private OpenNebula cloud.
+
+* **BLUE**: Allocation of (ClusterA@DC_West_Coast + Cloudbursting) to Web Development
+* **RED**: Allocation of (ClusterB@DC_West_Coast + ClusterA@DC_Europe + Cloudbursting) to Human Resources
+* **GREEN**: Allocation of (ClusterC@DC_West_Coast + ClusterB@DC_Europe) to Big Data Analysis
+
+|vDC Organization|
+
+A vDC is a fully-isolated virtual infrastructure environment where a Group of users, under the control of the vDC admin, can create and manage compute, storage and networking capacity. The users in the vDC, including the vDC administrator, would only see the virtual resources and not the underlying physical infrastructure. The physical resources allocated by the cloud administrator to the vDC can be completely dedicated to the vDC, providing isolation at the physical level too.
+
+.. todo:: vDC administrator can create virtual networks?
+
+The privileges of the vDC users and the administrator regarding the operations over the virtual resources created by other users can be configured. In a typical scenario the vDC administrator can create virtual networks, upload and create images and templates, and monitor other users virtual resources, while the users can only instantiate virtual machines to create their services. The administrators of the vDC have full control over resources and can also create new users in the vDC.
+
+.. todo:: Mention new simplified interface
+
+Users can then access their vDC through any of the existing OpenNebula interfaces, such as the CLI, Sunstone, OCA, or the OCCI and AWS APIs. vDC administrators can manage their vDCs through the CLI or the vDC admin view in Sunstone. Cloud Administrators can manage the vDCs through the CLI or Sunstone.
+
+The Cloud provisioning model based on vDCs enables an integrated, comprehensive framework to dynamically provision the infrastructure resources in large multi-datacenter environments to different customers, business units or groups. This brings several benefits:
+
+* Partitioning of cloud physical resources between Groups of users
+* Complete isolation of users, organizations or workloads
+* Allocation of Clusters with different levels of security, performance or high availability
+* Containers for the execution of software-defined data centers
+* Way of hiding physical resources from Group members
+* Simple federation, scalability and cloudbursting of private cloud infrastructures beyond a single cloud instance and data center
+
+The User's Perspective
+================================================================================
+
+In the default OpenNebula model, there are three types of OpenNebula users.
+
+.. todo:: Update VM management actions allowed for vDC users
+
++------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------+
+|       User       |                                                                     Responsibilities                                                                    |
++==================+=========================================================================================================================================================+
+| **Cloud Admin.** | * Operates the Cloud infrastructure (i.e. computing nodes, networking fabric, storage servers)                                                          |
+|                  | * Creates and manage OpenNebula infrastructure resources: Hosts, Virtual Networks, Datastores                                                           |
+|                  | * Creates new groups for vDCs                                                                                                                           |
+|                  | * Assigns resources to a vDC and sets quota limits                                                                                                      |
+|                  | * Defines base instance types to be used by the vDCs. These types define the capacity of the VMs (memory, cpu and additional storage) and connectivity. |
+|                  | * Prepare VM images to be used by the vDCs                                                                                                              |
+|                  | * Monitor the status and health of the cloud                                                                                                            |
+|                  | * Generate activity reports                                                                                                                             |
++------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **vDC Admin.**   | * Creates new users                                                                                                                                     |
+|                  | * Operates on vDC virtual machines and disk images                                                                                                      |
+|                  | * Creates and registers disk images to be used by the vDC users                                                                                         |
+|                  | * Checks vDC usage and quotas                                                                                                                           |
+|                  | * Defines and consumes application flows                                                                                                                |
++------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **vDC User**     | * Instantiates VMs using the templates defined by the Cloud Admins and the images defined by the Cloud Admins or vDC Admins.                            |
+|                  | * Instantiates VMs using their own Images saved from a previous running VM                                                                              |
+|                  | * Manages his VMs, including                                                                                                                            |
+|                  |                                                                                                                                                         |
+|                  |   * reboot                                                                                                                                              |
+|                  |   * power off/on (short-term switching-off)                                                                                                             |
+|                  |   * stop/resume (long-term switching-off)                                                                                                               |
+|                  |   * shutdown                                                                                                                                            |
+|                  |   * set a deferred execution of any of the previous operations                                                                                          |
+|                  |   * make a VM image snapshot                                                                                                                            |
+|                  |   * resize the VM                                                                                                                                       |
+|                  |   * obtain basic monitor information and status (including IP addresses)                                                                                |
+|                  |                                                                                                                                                         |
+|                  | * Delete any previous disk snapshot                                                                                                                     |
+|                  | * Check user usage and quotas                                                                                                                           |
+|                  | * Upload SSH keys to access the VMs                                                                                                                     |
++------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+.. |vDC Resources| image:: /images/vdc_resources.png
+.. |vDC Groups| image:: /images/vdc_groups.png
+.. |vDC Organization| image:: /images/vdc_organization.png
