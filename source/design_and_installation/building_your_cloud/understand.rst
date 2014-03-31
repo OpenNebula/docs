@@ -5,8 +5,8 @@ Understanding OpenNebula
 ================================================================================
 
 
-Although OpenNebula is made to be easy to adapt to your specific use case, and perform fine-tuning of multiple aspects, we define here the default OpenNebula model for cloud provisioning and consumption.
-
+Although OpenNebula is made to be easy to adapt to your specific use case and processes, and perform fine-tuning of multiple aspects, OpenNebula brings a pre-defined model for cloud provisioning and consumption. 
+This model is a result of our collaboration with our user community duting the last years.
 
 The Infrastructure Perspective
 ================================================================================
