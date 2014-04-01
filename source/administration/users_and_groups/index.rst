@@ -6,7 +6,8 @@ Users and Groups
    :maxdepth: 2
 
    Overview <auth_overview>
-   Managing Users and Groups <manage_users>
+   Managing Users <manage_users>
+   Managing Groups & vDC <manage_groups>
    Managing Permissions <chmod>
    Accounting Tool <accounting>
    Using ACLs <manage_acl>
