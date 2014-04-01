@@ -63,11 +63,23 @@ The Cloud provisioning model based on vDCs enables an integrated, comprehensive 
 * Way of hiding physical resources from Group members
 * Simple federation, scalability and cloudbursting of private cloud infrastructures beyond a single cloud instance and data center
 
-Roles and Capabilities
+Cloud Consumption Cases
 ================================================================================
 
-OpenNebula has three pre-defined roles: Cloud Administrator, vDC Adminitrator and vDC User (Cloud Consumer). Each role is allowed to perform a set of tasks called Capabilities.
+OpenNebula has three pre-defined user roles and capabilitties to implement to typical enterprise cloud escenarios: infrastructure management and infrastructure provisioning.
 
+* infrastructure management: advanced users, compartimentados en differetn vDCs
+* infra...: cloud comsumers interested basic usage, vDC admin, and cloud admin
+
+Infrastructure Management
+-----------------------------------------------------------------------------
+
+We have here two roles...  Each role is allowed to perform a set of tasks called Capabilities.
+
+Infrastructure Provisioning
+-----------------------------------------------------------------------------
+
+We have here there roles... Cloud Administrator, vDC Adminitrator and vDC User (Cloud Consumer). Each role is allowed to perform a set of tasks called Capabilities.
 
 .. todo:: Update VM management actions allowed for vDC users
 
@@ -87,7 +99,6 @@ OpenNebula has three pre-defined roles: Cloud Administrator, vDC Adminitrator an
 |                  | * Operates on vDC virtual machines and disk images                                                                                                      |
 |                  | * Creates and registers disk images to be used by the vDC users                                                                                         |
 |                  | * Checks vDC usage and quotas                                                                                                                           |
-|                  | * Defines and consumes multi-VM application flows                                                                                                       |
 +------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **vDC User**     | * Instantiates VMs using the templates defined by the Cloud Admins and the images defined by the Cloud Admins or vDC Admins.                            |
 |                  | * Instantiates VMs using their own Images saved from a previous running VM                                                                              |
