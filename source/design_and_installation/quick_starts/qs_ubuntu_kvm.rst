@@ -206,6 +206,12 @@ The ``oneadmin`` user must be able to manage libvirt as root:
     group = "oneadmin"
     dynamic_ownership = 0
     EOT
+    
+Restart libvirt to capture these changes:
+
+.. code::
+
+    # service libvirt-bin restart
 
 Step 3. Basic Usage
 ===================
