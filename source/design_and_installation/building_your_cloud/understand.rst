@@ -65,13 +65,15 @@ The Cloud provisioning model based on vDCs enables an integrated, comprehensive 
 * Way of hiding physical resources from Group members
 * Simple federation, scalability and cloudbursting of private cloud infrastructures beyond a single cloud instance and data center
 
-Cloud Consumption Cases
+Cloud Usage Models
 ================================================================================
 
 OpenNebula has three pre-defined user roles and capabilitties to implement to typical enterprise cloud escenarios: infrastructure management and infrastructure provisioning.
 
 * infrastructure management: advanced users, compartimentados en differetn vDCs
 * infra...: cloud comsumers interested basic usage, vDC admin, and cloud admin
+
+
 
 Infrastructure Management
 -----------------------------------------------------------------------------
