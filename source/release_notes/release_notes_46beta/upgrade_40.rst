@@ -1,19 +1,24 @@
-.. _upgrade:
 
 =================================
-Upgrading from Previous Versions
+Upgrading from OpenNebula 4.0.x
 =================================
 
-This guide describes the installation procedure for systems that are already running a 2.x or 3.x OpenNebula. The upgrade will preserve all current users, hosts, resources and configurations; for both Sqlite and MySQL backends.
+This guide describes the installation procedure for systems that are already running a 4.0.x OpenNebula. The upgrade will preserve all current users, hosts, resources and configurations; for both Sqlite and MySQL backends.
 
-Read the :ref:`Compatibility Guide <compatibility_46beta>` and `Release Notes <http://opennebula.org/software/release/>`_ to know what is new in OpenNebula 4.6.
+Read the Compatibility Guide `for 4.2 <http://archives.opennebula.org/documentation:archives:rel4.2:compatibility>`_, `4.4 <http://docs.opennebula.org/4.4/release_notes44/compatibility.html>`_ and :ref:`4.6 <compatibility_46beta>`, and the `Release Notes <http://opennebula.org/software/release/>`_ to know what is new in OpenNebula 4.6.
 
 .. warning:: With the new :ref:`multi-system DS <system_ds_multiple_system_datastore_setups>` functionality, it is now required that the system DS is also part of the cluster. If you are using System DS 0 for Hosts inside a Cluster, any VM saved (stop, suspend, undeploy) **will not be able to be resumed after the upgrade process**.
 
-.. warning:: Two drivers available in 4.2 are now discontinued: **ganglia** and **iscsi**.
+.. warning::
+    Two drivers available in 4.0 are now discontinued: **ganglia** and **iscsi**.
 
--  **iscsi** drivers have been moved out of the main OpenNebula distribution and are available (although not supported) as an `addon <https://github.com/OpenNebula/addon-iscsi>`__.
--  **ganglia** drivers have been moved out of the main OpenNebula distribution and are available (although not supported) as an `addon <https://github.com/OpenNebula/addon-ganglia>`__.
+    -  **iscsi** drivers have been moved out of the main OpenNebula distribution and are available (although not supported) as an `addon <https://github.com/OpenNebula/addon-iscsi>`__.
+    -  **ganglia** drivers have been moved out of the main OpenNebula distribution and are available (although not supported) as an `addon <https://github.com/OpenNebula/addon-ganglia>`__.
+
+.. warning::
+    There are combinations of **VMware storage** no longer supported (see :ref:`the VMFS Datastore guide<vmware_ds>` for the supported configurations).
+
+    If you want to upgrade and you are using SSH, NFS or VMFS without SSH-mode, you will need to manually migrate your images to a newly created VMFS with SSH-mode datastore. To do so implies powering off all the VMs with images in any of the deprecated datastores, upgrade OpenNebula, create a VMFS datastore and then manually register the images from those deprecated datastores into the new one. `Let us know <http://opennebula.org/community/mailinglists/>`_ if you have doubts or problems with this process.
 
 Preparation
 ===========
@@ -38,11 +43,9 @@ Backup the configuration files located in **/etc/one**. You don't need to do a m
 Installation
 ============
 
-Follow the :ref:`Platform Notes <uspng>` and the :ref:`Installation guide <ignc>`, taking into account that you will already have configured the passwordless ssh access for oneadmin.
+Follow the :ref:`Platform Notes <uspng_46beta>` and the :ref:`Installation guide <ignc>`, taking into account that you will already have configured the passwordless ssh access for oneadmin.
 
-It is highly recommended **not to keep** your current ``oned.conf``, and update the ``oned.conf`` file shipped with OpenNebula 4.4 to your setup. If for any reason you plan to preserve your current ``oned.conf`` file, read the :ref:`Compatibility Guide <compatibility_46beta>` and the complete oned.conf reference for `4.2 <http://opennebula.org/documentation:archives:rel4.2:oned_conf>`__ and :ref:`4.4 <oned_conf>` versions.
-
-.. warning:: If you are upgrading from a version prior to 4.2, read the `3.8 upgrade guide <http://opennebula.org/documentation:rel3.8:upgrade#installation>`_, `4.0 upgrade guide <http://opennebula.org/documentation:rel4.0:upgrade#installation>`_ and `4.2 upgrade guide <http://opennebula.org/rel4.2:upgrade#installation>`_ for specific notes.
+It is highly recommended **not to keep** your current ``oned.conf``, and update the ``oned.conf`` file shipped with OpenNebula 4.6 to your setup. If for any reason you plan to preserve your current ``oned.conf`` file, read the :ref:`Compatibility Guide <compatibility_46beta>` and the complete oned.conf reference for `4.0 <http://opennebula.org/documentation:archives:rel4.0:oned_conf>`__ and :ref:`4.6 <oned_conf>` versions.
 
 Database Upgrade
 ================
@@ -70,35 +73,33 @@ If everything goes well, you should get an output similar to this one:
     $ onedb upgrade -v -u oneadmin -d opennebula
     MySQL Password:
     Version read:
-    4.0.1 : Database migrated from 3.8.0 to 4.2.0 (OpenNebula 4.2.0) by onedb command.
+    Shared tables 4.4.0 : OpenNebula 4.4.0 daemon bootstrap
+    Local tables  4.4.0 : OpenNebula 4.4.0 daemon bootstrap
 
-    MySQL dump stored in /var/lib/one/mysql_localhost_opennebula.sql
-    Use 'onedb restore' or restore the DB using the mysql command:
-    mysql -u user -h server -P port db_name < backup_file
-      > Running migrator /usr/lib/one/ruby/onedb/4.2.0_to_4.3.80.rb
-      > Done
+    >>> Running migrators for shared tables
+      > Running migrator /usr/lib/one/ruby/onedb/shared/4.4.0_to_4.4.1.rb
+      > Done in 0.00s
 
-      > Running migrator /usr/lib/one/ruby/onedb/4.3.80_to_4.3.85.rb
-      > Done
+      > Running migrator /usr/lib/one/ruby/onedb/shared/4.4.1_to_4.5.80.rb
+      > Done in 0.75s
 
-      > Running migrator /usr/lib/one/ruby/onedb/4.3.85_to_4.3.90.rb
-      > Done
+    Database migrated from 4.4.0 to 4.5.80 (OpenNebula 4.5.80) by onedb command.
 
-      > Running migrator /usr/lib/one/ruby/onedb/4.3.90_to_4.4.0.rb
-      > Done
+    >>> Running migrators for local tables
+    Database already uses version 4.5.80
+    Total time: 0.77s
 
-    Database migrated from 4.2.0 to 4.4.0 (OpenNebula 4.4.0) by onedb command.
 
-If you receive the message “ATTENTION: manual intervention required”, read the section :ref:`Manual Intervention Required <upgrade_manual_intervention_required>` below.
+If you receive the message “ATTENTION: manual intervention required”, read the section :ref:`Manual Intervention Required <upgrade_40_manual_intervention_required>` below.
 
-.. warning:: Make sure you keep the backup file. If you face any issues, the onedb command can restore this backup, but it won't downgrade databases to previous versions.
+.. note:: Make sure you keep the backup file. If you face any issues, the onedb command can restore this backup, but it won't downgrade databases to previous versions.
 
 Check DB Consistency
 ====================
 
 After the upgrade is completed, you should run the command ``onedb fsck``.
 
-First, move the 4.2 backup file created by the upgrade command to a save place.
+First, move the 4.0 backup file created by the upgrade command to a safe place.
 
 .. code::
 
@@ -143,8 +144,8 @@ Restoring the Previous Version
 
 If for any reason you need to restore your previous OpenNebula, follow these steps:
 
--  With OpenNebula 4.4 still installed, restore the DB backup using 'onedb restore -f'
--  Uninstall OpenNebula 4.4, and install again your previous version.
+-  With OpenNebula 4.6 still installed, restore the DB backup using 'onedb restore -f'
+-  Uninstall OpenNebula 4.6, and install again your previous version.
 -  Copy back the backup of /etc/one you did to restore your configuration.
 
 Known Issues
@@ -160,7 +161,7 @@ The workaround is to temporarily change the oneadmin's password to an ASCII stri
 
     mysql> SET PASSWORD = PASSWORD('newpass');
 
-.. _upgrade_manual_intervention_required:
+.. _upgrade_40_manual_intervention_required:
 
 Manual Intervention Required
 ============================
@@ -176,7 +177,7 @@ If you have a datastore configured to use a tm driver not included in the OpenNe
     configuration parameters in oned.conf for this driver, see
     http://opennebula.org/documentation:rel4.4:upgrade
 
-In OpenNebula 4.4, each tm\_mad driver has a TM\_MAD\_CONF section in oned.conf. If you developed the driver, it should be fairly easy to define the required information looking at the existing ones:
+Since OpenNebula 4.4, each tm\_mad driver has a TM\_MAD\_CONF section in oned.conf. If you developed the driver, it should be fairly easy to define the required information looking at the existing ones:
 
 .. code::
 
