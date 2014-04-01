@@ -4,11 +4,13 @@
 Understanding OpenNebula
 ================================================================================
 
+This guide is meant for the cloud architect and administrator, to help him to understand the way OpenNebula categorizes the infrastructure resources, and how they are consumed by the users.
 
-Although OpenNebula has been designed and developed to be easy to adapt to each individual company use case and processes, and perform fine-tuning of multiple aspects, OpenNebula brings a pre-defined model for cloud provisioning and consumption. 
-The OpenNebula model is a result of our collaboration with our user community duting the last years.
+In a tiny installation with a few hosts, you can use OpenNebula with the two default groups for the administrator and the users, without giving much though to the infrastructure partitioning and user organization. But for medium and big deployments you will probably want to provide some level of isolation and structure.
 
-Guide from the paerspective of the cloud architect... admin
+Although OpenNebula has been designed and developed to be easy to adapt to each individual company use case and processes, and perform fine-tuning of multiple aspects, OpenNebula brings a pre-defined model for cloud provisioning and consumption.
+
+The OpenNebula model is a result of our collaboration with our user community during the last years.
 
 The Infrastructure Perspective
 ================================================================================
@@ -46,9 +48,9 @@ For example, you can think Web Development, Human Resources, and Big Data Analys
 A Cloud Provisioning Model Based on vDCs
 ================================================================================
 
-A vDC is a fully-isolated virtual infrastructure environment where a Group of users, under the control of the vDC admin, can create and manage compute, storage and networking capacity. The users in the vDC, including the vDC administrator, would only see the virtual resources and not the underlying physical infrastructure. The physical resources allocated by the cloud administrator to the vDC can be completely dedicated to the vDC, providing isolation at the physical level too.
+A vDC is a fully-isolated virtual infrastructure environment where a Group of users, optionally under the control of the vDC admin, can create and manage compute and storage capacity. The users in the vDC, including the vDC administrator, would only see the virtual resources and not the underlying physical infrastructure. The physical resources allocated by the cloud administrator to the vDC can be completely dedicated to the vDC, providing isolation at the physical level too.
 
-.. todo:: vDC administrator can create virtual networks?
+.. todo:: vDC administrator can create virtual networks, images, templates?
 
 The privileges of the vDC users and the administrator regarding the operations over the virtual resources created by other users can be configured. In a typical scenario the vDC administrator can create virtual networks, upload and create images and templates, and monitor other users virtual resources, while the users can only instantiate virtual machines to create their services. The administrators of the vDC have full control over resources and can also create new users in the vDC.
 
@@ -68,27 +70,14 @@ The Cloud provisioning model based on vDCs enables an integrated, comprehensive 
 Cloud Usage Models
 ================================================================================
 
-OpenNebula has three pre-defined user roles and capabilitties to implement to typical enterprise cloud escenarios: infrastructure management and infrastructure provisioning.
+OpenNebula has three pre-defined user roles to implement two typical enterprise cloud scenarios: infrastructure management and infrastructure provisioning.
 
-* infrastructure management: advanced users, compartimentados en differetn vDCs
-* infra...: cloud comsumers interested basic usage, vDC admin, and cloud admin
+.. todo:: decide which roles have access to oneflow
 
-
-
-Infrastructure Management
------------------------------------------------------------------------------
-
-We have here two roles...  Each role is allowed to perform a set of tasks called Capabilities.
-
-Infrastructure Provisioning
------------------------------------------------------------------------------
-
-We have here there roles... Cloud Administrator, vDC Adminitrator and vDC User (Cloud Consumer). Each role is allowed to perform a set of tasks called Capabilities.
-
-.. todo:: Update VM management actions allowed for vDC users
+In both scenarios, the Cloud Administrator manages the physical infrastructure, creates users and vDC, and prepares base templates and images for other users.
 
 +------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------+
-|       Roles      |                                                                     Capabilities                                                                        |
+|       Role       |                                                                       Capabilities                                                                      |
 +==================+=========================================================================================================================================================+
 | **Cloud Admin.** | * Operates the Cloud infrastructure (i.e. computing nodes, networking fabric, storage servers)                                                          |
 |                  | * Creates and manage OpenNebula infrastructure resources: Hosts, Virtual Networks, Datastores                                                           |
@@ -99,28 +88,60 @@ We have here there roles... Cloud Administrator, vDC Adminitrator and vDC User (
 |                  | * Monitor the status and health of the cloud                                                                                                            |
 |                  | * Generate activity reports                                                                                                                             |
 +------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **vDC Admin.**   | * Creates new users in the vDC                                                                                                                          |
-|                  | * Operates on vDC virtual machines and disk images                                                                                                      |
-|                  | * Creates and registers disk images to be used by the vDC users                                                                                         |
-|                  | * Checks vDC usage and quotas                                                                                                                           |
-+------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **vDC User**     | * Instantiates VMs using the templates defined by the Cloud Admins and the images defined by the Cloud Admins or vDC Admins.                            |
-|                  | * Instantiates VMs using their own Images saved from a previous running VM                                                                              |
-|                  | * Manages their VMs, including                                                                                                                          |
-|                  |                                                                                                                                                         |
-|                  |   * reboot                                                                                                                                              |
-|                  |   * power off/on (short-term switching-off)                                                                                                             |
-|                  |   * stop/resume (long-term switching-off)                                                                                                               |
-|                  |   * shutdown                                                                                                                                            |
-|                  |   * set a deferred execution of any of the previous operations                                                                                          |
-|                  |   * make a VM image snapshot                                                                                                                            |
-|                  |   * resize the VM                                                                                                                                       |
-|                  |   * obtain basic monitor information and status (including IP addresses)                                                                                |
-|                  |                                                                                                                                                         |
-|                  | * Delete any previous disk snapshot                                                                                                                     |
-|                  | * Check user usage and quotas                                                                                                                           |
-|                  | * Upload SSH keys to access the VMs                                                                                                                     |
-+------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Infrastructure Management
+-----------------------------------------------------------------------------
+
+In this usage model, users are familiar with virtualization concepts. Except for the infrastructure resources, the web interface offeres the same operations available to the Cloud Admin.
+
+End users can use the templates and images pre-defined by the cloud administrator, but are also allowed to create their own. They are also able to manage the life-cycle of their resources, including advanced features that may harm the VM guests, like hot-plugging of new disks, resize of Virtual Machines, modify boot parameters, etc.
+
+
++----------------+-----------------------------------------------------------------+
+|      Role      |                           Capabilities                          |
++================+=================================================================+
+| **User**       | * Instantiates VMs using their own templates                    |
+|                | * Creates new Images                                            |
+|                | * Manages their VMs, including advanced life-cycle features     |
+|                | * Check their usage and quotas                                  |
+|                | * Upload SSH keys to access the VMs                             |
++----------------+-----------------------------------------------------------------+
+
+
+Infrastructure Provisioning
+-----------------------------------------------------------------------------
+
+In a infrastructure provisioning model, the end users access a simplified web interface that allows them to launch Virtual Machines from pre-defined Templates and Images. They can access their VMs, and perform basic operations like shutdown. The changes made to a VM disk can be saved back, but new Images cannot be created from scratch.
+
+Optionally, each vDC can define one or more users as vDC Admins. These admins can create new users inside the vDC, and also manage the resources of the rest of the users. A vDC Admin may, for example, shutdown a VM from other user to free group quota usage.
+
+.. todo:: Update VM management actions allowed for vDC users
+
++----------------+------------------------------------------------------------------------------------------------------------------------------+
+|      Role      |                                                         Capabilities                                                         |
++================+==============================================================================================================================+
+| **vDC Admin.** | * Creates new users in the vDC                                                                                               |
+|                | * Operates on vDC virtual machines and disk images                                                                           |
+|                | * Creates and registers disk images to be used by the vDC users                                                              |
+|                | * Checks vDC usage and quotas                                                                                                |
++----------------+------------------------------------------------------------------------------------------------------------------------------+
+| **vDC User**   | * Instantiates VMs using the templates defined by the Cloud Admins and the images defined by the Cloud Admins or vDC Admins. |
+|                | * Instantiates VMs using their own Images saved from a previous running VM                                                   |
+|                | * Manages their VMs, including                                                                                               |
+|                |                                                                                                                              |
+|                |   * reboot                                                                                                                   |
+|                |   * power off/on (short-term switching-off)                                                                                  |
+|                |   * stop/resume (long-term switching-off)                                                                                    |
+|                |   * shutdown                                                                                                                 |
+|                |   * set a deferred execution of any of the previous operations                                                               |
+|                |   * make a VM image snapshot                                                                                                 |
+|                |   * resize the VM                                                                                                            |
+|                |   * obtain basic monitor information and status (including IP addresses)                                                     |
+|                |                                                                                                                              |
+|                | * Delete any previous disk snapshot                                                                                          |
+|                | * Check user usage and quotas                                                                                                |
+|                | * Upload SSH keys to access the VMs                                                                                          |
++----------------+------------------------------------------------------------------------------------------------------------------------------+
 
 .. |vDC Resources| image:: /images/vdc_resources.png
 .. |vDC Groups| image:: /images/vdc_groups.png
