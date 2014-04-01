@@ -8,6 +8,8 @@ Understanding OpenNebula
 Although OpenNebula has been designed and developed to be easy to adapt to each individual company use case and processes, and perform fine-tuning of multiple aspects, OpenNebula brings a pre-defined model for cloud provisioning and consumption. 
 The OpenNebula model is a result of our collaboration with our user community duting the last years.
 
+Guide from the paerspective of the cloud architect... admin
+
 The Infrastructure Perspective
 ================================================================================
 
