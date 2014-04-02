@@ -1,20 +1,18 @@
 .. _manage_groups:
+.. _manage_users_groups:
 
 ==========================
 Managing Groups & vDC
 ==========================
 
-.. _manage_users_groups:
-
-Groups
-======
-
 A group in OpenNebula makes it possible to isolate users and resources. A user can see and use the :ref:`shared resources <chmod>` from other users.
 
-There are two special groups created by default. The ``onedmin`` group allows any user in it to perform any operation, allowing different users to act with the same privileges as the ``oneadmin`` user. The ``users`` group is the default group where new users are created.
+The group is an authorization boundary for the users, but you can also partition your cloud infrastructure and define what resources are available to each group. The vDC (Virtual Data Center) concept is not a different entity in OpenNebula, it is how we call groups that have some resources assigned to them. You can read more about OpenNebula's approach to vDC's and the cloud from the perspective of different user roles in the :ref:`Understanding OpenNebula <understand>` guide.
 
 Adding and Deleting Groups
---------------------------
+================================================================================
+
+There are two special groups created by default. The ``onedmin`` group allows any user in it to perform any operation, allowing different users to act with the same privileges as the ``oneadmin`` user. The ``users`` group is the default group where new users are created.
 
 Your can use the ``onegroup`` command line tool to manage groups in OpenNebula. There are two groups created by default, ``oneadmin`` and ``users``.
 
@@ -29,15 +27,13 @@ To create new groups:
 
     $ onegroup create "new group"
     ID: 100
-    ACL_ID: 2
-    ACL_ID: 3
 
 The new group has ID 100 to differentiate the special groups to the user-defined ones.
 
-When a new group is created, two ACL rules are also created to provide the default behaviour. You can learn more about ACL rules in :ref:`this guide <manage_acl>`; but you don't need any further configuration to start using the new group.
+.. note:: When a new group is created, an ACL rule is also created to provide the default behaviour, allowing users to create basic resources. You can learn more about ACL rules in :ref:`this guide <manage_acl>`; but you don't need any further configuration to start using the new group.
 
 Adding Users to Groups
-----------------------
+================================================================================
 
 Use the ``oneuser chgrp`` command to assign users to groups.
 
@@ -57,10 +53,33 @@ Use the ``oneuser chgrp`` command to assign users to groups.
 
 To delete a user from a group, just move it again to the default ``users`` group.
 
-.. _manage_users_primary_and_secondary_groups:
+.. _managing-resource-provider-within-groups:
+
+Managing vDC and Resource Providers
+================================================================================
+
+A vDC (Virtual Data Center) is how we call groups that have some resources assigned to them. A resource provider is an OpenNebula :ref:`cluster <cluster_guide>` (set of physical hosts and associated datastores and virtual networks) from a particular zone (an OpenNebula instance). A group can be assigned (examples with CLI, but functionality is also available through Sunstone):
+
+* A particular resource provider, for instance cluster 7 of Zone 0
+
+.. code::
+
+    $ onegroup add_provider <group_id> 0 7
+
+* All resources from a particular zone (special cluster id ``ALL``)
+
+.. code::
+
+    $ onegroup add_provider <group_id> 0 ALL
+
+.. note:: By default a group doesn't have any resource provider, so users won't be entitled to use any resource until explicitly added a resource provider.
+
+To remove resource providers within a group, use the symmetric operation "del_provider".
 
 Admin Groups
-------------
+================================================================================
+
+.. todo:: Confirm if it's up to date, change if necessary
 
 Upon group creation, an associated administration group can be defined. This admin group will contain users with administrative privileges for the associated regular group, not for all the resources in the OpenNebula cloud as the 'oneadmin' group users have. Also, an admin user belonging to both groups can be defined upon creation as well. Another aspect that can be controlled on creation time is the type of resources that group users will be alowed to create. 
 
@@ -88,38 +107,17 @@ This can be managed visually in Sunstone, and can also be managed through the CL
 
     $ onegroup create --name MyGroup -admin_group MyAdminGroup --admin_user MyAdminUser --admin_password MyAdminPassword --admin_driver core --resource VM+TEMPLATE+NET+IMAGE 
 
-.. _managing-resource-provider-within-groups:
-
-Managing Resource Provider within Groups
-----------------------------------------
-
-Groups can be assigned with resource providers. A resource provider is an OpenNebula cluster (set of physical hosts and associated datastores and virtual networks) from a particular zone (an OpenNebula instance). A group can be assigned (examples with CLI, but functionality is also available through Sunstone):
-
-* A particular resource provider, for instance cluster 7 of Zone 0
-
-.. code::
-
-    $ onegroup add_provider <group_id> 0 7
-
-* All resources from a particular zone (special cluster id 10)
-
-.. code::
-
-    $ onegroup add_provider <group_id> 0 10
-
-By default a group doesn't have any resource provider, so users won't be entitled to use any resource until explicitly added a resource provider.
-
-To remove resource providers within a group, use the simetric operation "del_provider".
+.. _manage_users_primary_and_secondary_groups:
 
 Primary and Secondary Groups
-----------------------------
+================================================================================
 
 With the commands ``oneuser addgroup`` and ``delgroup`` the administrator can add or delete secondary groups. Users assigned to more than one group will see the resources from all their groups. e.g. a user in the groups testing and production will see VMs from both groups.
 
 The group set with ``chgrp`` is the primary group, and resources (Images, VMs, etc) created by a user will belong to this primary group. Users can change their primary group to any of their secondary group without the intervention of an administrator, using ``chgrp`` again.
 
 Managing Groups in Sunstone
-=====================================
+================================================================================
 
 All the described functionality is available graphically using :ref:`Sunstone <sunstone>`:
 
