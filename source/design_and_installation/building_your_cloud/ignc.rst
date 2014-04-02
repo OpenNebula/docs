@@ -42,13 +42,6 @@ To install a CentOS/RHEL OpenNebula front-end with packages from **our repositor
     EOT
     # yum install opennebula-server opennebula-sunstone opennebula-ruby
 
-To install a CentOS/RHEL OpenNebula front-end with **packages downloaded from our page**, untar the tar.gz in the front-end and run:
-
-.. code::
-
-    # tar xvzf CentOS-6-opennebula-<OpenNebula Version>.tar.gz
-    # sudo yum localinstall opennebula-server opennebula-sunstone opennebula-ruby
-
 **CentOS/RHEL Package Description**
 
 These are the packages available for this distribution:
@@ -146,13 +139,6 @@ To install the packages on a Debian/Ubuntu front-end:
 
     # apt-get update
     # apt-get install opennebula opennebula-sunstone
-
-To install an Debian/Ubuntu OpenNebula front-end with packages from **our repository**, execute the following as root:
-
-.. code::
-
-    $ sudo dpkg -i opennebula opennebula-sunstone
-    $ sudo apt-get install -f
 
 **Debian/Ubuntu Package Description**
 
@@ -275,19 +261,13 @@ When the front-end is installed, it is time to install the virtualization nodes.
 5.3. Installing on Debian/Ubuntu
 --------------------------------
 
-When the front-end is installed, it is time to install the packages for the nodes if you are using KVM. To install a Debian/Ubuntu OpenNebula front-end with packages from our repository, execute the following as root:
+When the front-end is installed, it is time to install the packages for the nodes if you are using KVM. To install a Debian/Ubuntu OpenNebula front-end with packages from our repository, add the repo as described in the previous section and then install the node package.
 
 .. code::
 
-    $ sudo dpkg -i opennebula-node-kvm
-    $ sudo apt-get install -f
+    $ sudo apt-get install opennebula-node
 
 For further configuration and/or installation of other hypervisors, check their specific guides: :ref:`Xen <xeng>`, :ref:`KVM <kvmg>` and :ref:`VMware <evmwareg>`.
-
-.. warning:: Due to the Debian packaging policy, there are some paths which are different in the Debian/Ubuntu packages with respect to OpenNebula's documentation. In particular:
-
--  /usr/share/one/examples/ => /usr/share/doc/opennebula/examples/
--  /usr/share/one/ => /usr/share/opennebula/
 
 Step 6. Manual Configuration of Unix Accounts
 =============================================
