@@ -38,9 +38,9 @@ Using a Zone
 Through Sunstone
 ----------------
 
-In the upper right position of Sunstone page, user will see a house icon next to the name of the Zone you are curently using. If the user clicks on that, she will get a dropdown with all the Zones she has access to. Clicking on any of the Zones in the dropdown will get the user to that Zone.
+In the upper right position of Sunstone page, users will see a house icon next to the name of the Zone you are curently using. If the user clicks on that, she will get a dropdown with all the Zones she has access to. Clicking on any of the Zones in the dropdown will get the user to that Zone.
 
-What's happening behind the scenes is that the Sunstone server you are connecting to is redirecting it's requests to the OpenNebula present in the other Zone. In the example above, if the uer clicks on ZoneB, Sunstone will contact the OpenNebula listening at "http://zoneb.opennebula.front-end.server:2633/RPC2".
+What's happening behind the scenes is that the Sunstone server you are connecting to is redirecting its requests to the OpenNebula oned process present in the other Zone. In the example above, if the uer clicks on ZoneB, Sunstone will contact the OpenNebula listening at `http://zoneb.opennebula.front-end.server:2633/RPC2`.
 
 |zoneswitchsunstone|
 

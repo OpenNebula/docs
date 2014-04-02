@@ -68,7 +68,7 @@ MySQL needs to be configured to enable the master-slave replication. Please read
 2. Import the Existing Slave OpenNebula
 --------------------------------------------------------------------------------
 
-If your slave OpenNebula is going be installed from scratch, you can skip this step.
+.. note:: If your slave OpenNebula is going to be installed from scratch, you can skip this step.
 
 If the OpenNebula to be added as a Slave is an existing installation, and you need to preserve its database (users, groups, VMs, hosts...), you need to import the contents with the ``onedb`` command.
 
