@@ -34,3 +34,36 @@ There are plenty of examples on what can go in the USER\_DATA string at the `clo
      mode: reboot
     " ]
 
+
+Platform Specific Notes
+=======================
+
+CentOS
+------
+
+Works correctly for ``cloud-init >= 0.7.4``.
+
+Ubuntu/Debian
+-------------
+
+To make it configure the network correctly it needs to be down so the network configuration
+part makes its work:
+
+.. code::
+
+    CONTEXT=[
+      NETWORK="YES",
+      SSH_PUBLIC_KEY="$USER[SSH_PUBLIC_KEY]",
+      USER_DATA="#cloud-config
+    bootcmd:
+      - ifdown -a
+    runcmd:
+      - curl http://10.0.1.1:8999/I_am_alive
+    write_files:
+    -   encoding: b64
+        content: RG9lcyBpdCB3b3JrPwo=
+        owner: root:root
+        path: /etc/test_file
+        permissions: '0644'
+    packages:
+      - ruby2.0" ]
