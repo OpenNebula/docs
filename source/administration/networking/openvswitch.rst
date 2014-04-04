@@ -68,6 +68,13 @@ Driver Actions
 | **Clean** | It doesn't do anything. The virtual tap interfaces will be automatically discarded when the VM is shut down. |
 +-----------+--------------------------------------------------------------------------------------------------------------+
 
+Multiple VLANs (VLAN trunking)
+------------------------------
+
+VLAN trunking is also supported by adding the following tag to the ``NIC`` element in the VM template or to the virtual network template:
+
+-  ``VLAN_TAGGED_ID``: Specify a range of VLANs to tag, for example: ``1,10,30,32``.
+
 Usage
 =====
 
