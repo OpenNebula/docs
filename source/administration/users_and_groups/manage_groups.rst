@@ -53,12 +53,45 @@ Use the ``oneuser chgrp`` command to assign users to groups.
 
 To delete a user from a group, just move it again to the default ``users`` group.
 
+Admin Users and Allowed Resources
+================================================================================
+
+Upon group creation, an special admin user account can be defined. This admin user will have administrative privileges only for the new group, not for all the resources in the OpenNebula cloud as the 'oneadmin' group users have.
+
+Another aspect that can be controlled on creation time is the type of resources that group users will be alowed to create.
+
+This can be managed visually in Sunstone, and can also be managed through the CLI. In the latter, details of the group are passed to the ``onegroup create`` command as arguments. This table lists the description of said arguments.
+
++-------------------------+-----------+--------------------+-------------------------------------------------------------------------------------+
+|         Argument        |   M / O   |       Value        |                                     Description                                     |
++=========================+===========+====================+=====================================================================================+
+| `-n, --name name`       | Mandatory | Any string         | Name for the new group                                                              |
++-------------------------+-----------+--------------------+-------------------------------------------------------------------------------------+
+| `-u, --admin_user`      | Optional  | Any string         | Creates an admin user for the group with the given name                             |
++-------------------------+-----------+--------------------+-------------------------------------------------------------------------------------+
+| `-p, --admin_password`  | Optional  | Any string         | Password for the admin user of the group                                            |
++-------------------------+-----------+--------------------+-------------------------------------------------------------------------------------+
+| `-d, --admin_driver`    | Optional  | Any string         | Auth driver for the admin user of the group                                         |
++-------------------------+-----------+--------------------+-------------------------------------------------------------------------------------+
+| `-r, --resources`       | Optional  | "+" separated list | Which resources can be created by group users (VM+NET+IMAGE+TEMPLATE by default)    |
++-------------------------+-----------+--------------------+-------------------------------------------------------------------------------------+
+| `-o, --admin_resources` | Optional  | "+" separated list | Which resources can be created by the admin user (VM+NET+IMAGE+TEMPLATE by default) |
++-------------------------+-----------+--------------------+-------------------------------------------------------------------------------------+
+
+An example:
+
+.. code::
+
+    $ onegroup create --name groupA \
+    --admin_user admin_userA --admin_password somestr \
+    --resources TEMPLATE+VM --admin_resources TEMPLATE+VM+IMAGE+NET
+
 .. _managing-resource-provider-within-groups:
 
 Managing vDC and Resource Providers
 ================================================================================
 
-A vDC (Virtual Data Center) is how we call groups that have some resources assigned to them. A resource provider is an OpenNebula :ref:`cluster <cluster_guide>` (set of physical hosts and associated datastores and virtual networks) from a particular zone (an OpenNebula instance). A group can be assigned (examples with CLI, but functionality is also available through Sunstone):
+A vDC (Virtual Data Center) is how we call groups that have some resources assigned to them. A resource provider is an OpenNebula :ref:`cluster <cluster_guide>` (set of physical hosts and associated datastores and virtual networks) from a particular zone (an OpenNebula instance). A group can be assigned:
 
 * A particular resource provider, for instance cluster 7 of Zone 0
 
@@ -72,40 +105,14 @@ A vDC (Virtual Data Center) is how we call groups that have some resources assig
 
     $ onegroup add_provider <group_id> 0 ALL
 
+To remove resource providers within a group, use the symmetric operation ``del_provider``.
+
 .. note:: By default a group doesn't have any resource provider, so users won't be entitled to use any resource until explicitly added a resource provider.
 
-To remove resource providers within a group, use the symmetric operation "del_provider".
+When you assign a Resource Provider to a group, users in that group will be able to use the Datastores and Virtual Networks of that Cluster. The scheduler will also deploy VMs from that group into any of the Cluster Hosts.
 
-Admin Groups
-================================================================================
+If you are familiar with :ref:`ACL rules <manage_acl>`, you can take a look at the rules that are created with ``oneacl list``. These rules are automatically added, and should not be manually edited. They will be removed by the ``onegroup del_provider`` command.
 
-.. todo:: Confirm if it's up to date, change if necessary
-
-Upon group creation, an associated administration group can be defined. This admin group will contain users with administrative privileges for the associated regular group, not for all the resources in the OpenNebula cloud as the 'oneadmin' group users have. Also, an admin user belonging to both groups can be defined upon creation as well. Another aspect that can be controlled on creation time is the type of resources that group users will be alowed to create. 
-
-This can be managed visually in Sunstone, and can also be managed through the CLI. In the latter, details of the group are passed to the ``onegroup``. This table lists the description of valid attributes when creating a group using ``onegroup``.
-
-+---------------------+-----------+--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-|      Attribute      |   M / O   |       Value        |                                                                             Description                                                                              |
-+=====================+===========+====================+======================================================================================================================================================================+
-| **NAME**            | Mandatory | Any string         | Name that the Group will get. Every group must have a unique name.                                                                                                   |
-+---------------------+-----------+--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **RESOURCES**       | Optional  | "+" separated list | List of resources that group members are allowed to create. If not present, it defaults to VM+IMAGE+NET+TEMPLATE                                                     |
-+---------------------+-----------+--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **ADMIN_GROUP**     | Optional  | Any string         | Name of the administrator group (if desired). All members of this group would be administrators of the created group.                                                |
-+---------------------+-----------+--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **ADMIN_RESOURCES** | Optional  | "+" separated list | List of resources that admin group members are allowed to manage. If not present, it defaults to **RESOURCES**, and if that is missing too, to VM+IMAGE+NET+TEMPLATE |
-+---------------------+-----------+--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **ADMIN_USER**      | Optional  | Any string         | Name of the administrator of the group (if desired). This user can only be defined if ADMIN_GROUP is present.                                                        |
-+---------------------+-----------+--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **ADMIN_PASSWORD**  | Optional  | Any string         | Password for the group administrator                                                                                                                                 |
-+---------------------+-----------+--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **ADMIN_DRIVER**    | Optional  | Any string         | Auth driver for the group administrator                                                                                                                              |
-+---------------------+-----------+--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-
-.. code::
-
-    $ onegroup create --name MyGroup -admin_group MyAdminGroup --admin_user MyAdminUser --admin_password MyAdminPassword --admin_driver core --resource VM+TEMPLATE+NET+IMAGE 
 
 .. _manage_users_primary_and_secondary_groups:
 
