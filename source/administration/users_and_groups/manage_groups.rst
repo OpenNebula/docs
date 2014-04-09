@@ -64,21 +64,21 @@ Another aspect that can be controlled on creation time is the type of resources 
 
 This can be managed visually in Sunstone, and can also be managed through the CLI. In the latter, details of the group are passed to the ``onegroup create`` command as arguments. This table lists the description of said arguments.
 
-+-------------------------+-----------+--------------------+-------------------------------------------------------------------------------------+
-|         Argument        |   M / O   |       Value        |                                     Description                                     |
-+=========================+===========+====================+=====================================================================================+
-| `-n, --name name`       | Mandatory | Any string         | Name for the new group                                                              |
-+-------------------------+-----------+--------------------+-------------------------------------------------------------------------------------+
-| `-u, --admin_user`      | Optional  | Any string         | Creates an admin user for the group with the given name                             |
-+-------------------------+-----------+--------------------+-------------------------------------------------------------------------------------+
-| `-p, --admin_password`  | Optional  | Any string         | Password for the admin user of the group                                            |
-+-------------------------+-----------+--------------------+-------------------------------------------------------------------------------------+
-| `-d, --admin_driver`    | Optional  | Any string         | Auth driver for the admin user of the group                                         |
-+-------------------------+-----------+--------------------+-------------------------------------------------------------------------------------+
-| `-r, --resources`       | Optional  | "+" separated list | Which resources can be created by group users (VM+NET+IMAGE+TEMPLATE by default)    |
-+-------------------------+-----------+--------------------+-------------------------------------------------------------------------------------+
-| `-o, --admin_resources` | Optional  | "+" separated list | Which resources can be created by the admin user (VM+NET+IMAGE+TEMPLATE by default) |
-+-------------------------+-----------+--------------------+-------------------------------------------------------------------------------------+
++-------------------------+-----------+--------------------+---------------------------------------------------------------------------------+
+|         Argument        |   M / O   |       Value        |                                   Description                                   |
++=========================+===========+====================+=================================================================================+
+| `-n, --name name`       | Mandatory | Any string         | Name for the new group                                                          |
++-------------------------+-----------+--------------------+---------------------------------------------------------------------------------+
+| `-u, --admin_user`      | Optional  | Any string         | Creates an admin user for the group with the given name                         |
++-------------------------+-----------+--------------------+---------------------------------------------------------------------------------+
+| `-p, --admin_password`  | Optional  | Any string         | Password for the admin user of the group                                        |
++-------------------------+-----------+--------------------+---------------------------------------------------------------------------------+
+| `-d, --admin_driver`    | Optional  | Any string         | Auth driver for the admin user of the group                                     |
++-------------------------+-----------+--------------------+---------------------------------------------------------------------------------+
+| `-r, --resources`       | Optional  | "+" separated list | Which resources can be created by group users (VM+IMAGE+TEMPLATE by default)    |
++-------------------------+-----------+--------------------+---------------------------------------------------------------------------------+
+| `-o, --admin_resources` | Optional  | "+" separated list | Which resources can be created by the admin user (VM+IMAGE+TEMPLATE by default) |
++-------------------------+-----------+--------------------+---------------------------------------------------------------------------------+
 
 An example:
 
