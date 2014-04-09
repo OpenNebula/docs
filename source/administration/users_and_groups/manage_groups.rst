@@ -53,6 +53,8 @@ Use the ``oneuser chgrp`` command to assign users to groups.
 
 To delete a user from a group, just move it again to the default ``users`` group.
 
+.. _manage_groups_permissions:
+
 Admin Users and Allowed Resources
 ================================================================================
 
