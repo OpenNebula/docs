@@ -50,11 +50,9 @@ A Cloud Provisioning Model Based on vDCs
 
 A vDC is a fully-isolated virtual infrastructure environment where a Group of users, optionally under the control of the vDC admin, can create and manage compute and storage capacity. The users in the vDC, including the vDC administrator, would only see the virtual resources and not the underlying physical infrastructure. The physical resources allocated by the cloud administrator to the vDC can be completely dedicated to the vDC, providing isolation at the physical level too.
 
-.. todo:: vDC administrator can create virtual networks, images, templates?
+The privileges of the vDC users and the administrator regarding the operations over the virtual resources created by other users can be configured. In a typical scenario the vDC administrator can upload and create images and virtual machine templates, while the users can only instantiate virtual machine templates to create their machines. The administrators of the vDC have full control over other users' resources and can also create new users in the vDC.
 
-The privileges of the vDC users and the administrator regarding the operations over the virtual resources created by other users can be configured. In a typical scenario the vDC administrator can create virtual networks, upload and create images and templates, and monitor other users virtual resources, while the users can only instantiate virtual machines to create their services. The administrators of the vDC have full control over resources and can also create new users in the vDC.
-
-.. todo:: Mention new simplified interface
+.. todo:: Screenshot of the cloud view
 
 Users can then access their vDC through any of the existing OpenNebula interfaces, such as the CLI, Sunstone Cloud View, OCA, or the OCCI and AWS APIs. vDC administrators can manage their vDCs through the CLI or the vDC admin view in Sunstone. Cloud Administrators can manage the vDCs through the CLI or Sunstone.
 
@@ -115,8 +113,6 @@ In a infrastructure provisioning model, the end users access a simplified web in
 
 Optionally, each vDC can define one or more users as vDC Admins. These admins can create new users inside the vDC, and also manage the resources of the rest of the users. A vDC Admin may, for example, shutdown a VM from other user to free group quota usage.
 
-.. todo:: Update VM management actions allowed for vDC users
-
 +----------------+------------------------------------------------------------------------------------------------------------------------------+
 |      Role      |                                                         Capabilities                                                         |
 +================+==============================================================================================================================+
@@ -131,11 +127,8 @@ Optionally, each vDC can define one or more users as vDC Admins. These admins ca
 |                |                                                                                                                              |
 |                |   * reboot                                                                                                                   |
 |                |   * power off/on (short-term switching-off)                                                                                  |
-|                |   * stop/resume (long-term switching-off)                                                                                    |
 |                |   * shutdown                                                                                                                 |
-|                |   * set a deferred execution of any of the previous operations                                                               |
 |                |   * make a VM image snapshot                                                                                                 |
-|                |   * resize the VM                                                                                                            |
 |                |   * obtain basic monitor information and status (including IP addresses)                                                     |
 |                |                                                                                                                              |
 |                | * Delete any previous disk snapshot                                                                                          |
