@@ -4,137 +4,26 @@
 Self-service Cloud View
 ========================
 
-This is a simplified view mainly intended for cloud consumers that just require a portal where they can provision new virtual machines easily. They just have to select one of the available templates and the operating system that will run in this virtual machine. For more information about the suntone views, please check the following :ref:`guide <suns_views>`.
+This is a simplified view intended for cloud consumers that just require a portal where they can provision new virtual machines easily. To create new VMs, they just have to select one of the available templates prepared by the administrators.
 
-In this scenario the cloud administrator must prepare a set of templates and images and make them available to the cloud users. Templates must define all the required parameters and just leave the DISK section empty, so the user can select any of the available images. New virtual machines will be created merging the information provided by the user (image, vm\_name...) and the base template. Thereby, the user doesn't have to know any details of the infrastructure such as networking, storage...
+In this scenario the cloud administrator, or the vDC administrator, must prepare a set of templates and images and make them available to the cloud users. These Templates must be ready to be instantiated, i.e. they define all the mandatory attributes. Before using them, users can optinally customize the VM capacity, and add new network interfaces.
+
 
 |image0|
 
-How to Configure
+How to Prepare the Templates
+=============================
+
+When launching a new VM, users are required to select a Template. These templates should be prepared by the cloud or vDC administrator. Make sure that any Image or Network referenced by the Template can be also used by the users. Read more about how to prepare resources for end users in the :ref:`Adding Content to Your Cloud <add_content>` guide.
+
+|cloud-view-create|
+
+How to Enable
 ================
 
-These are the steps that an administrator should follow in order to prepare a self-service scenario for his users.
+The cloud view is enabled by default for all users. If you want to disable it, or enable just for certain groups, proceed to the :ref:`Sunstone Views <suns_views>` documentation.
 
-Create the Cloud Group
-----------------------
-
-Create a new group for the users, to which you want to expose the cloud vie.
-
-.. code::
-
-    $ onegroup create cloud_consumers
-
-Update the ``/etc/one/sunstone-views.yaml`` file adding the new group and the desired view (``cloud``).
-
-.. code::
-
-    groups:
-        oneadmin:
-            - admin
-            - user
-        cloud_consumers:
-            - cloud
-
-and restart sunstone-server after that.
-
-Create new users in this group
-
-.. code::
-
-    $ oneuser crete new_user password
-    $ oneuser chgrp new_user cloud_consumer
-
-You can modify the functionality that is exposed in this view, in the ``/etc/one/sunstone-views/cloud.yaml`` file.
-
-Prepare a Set of Templates
---------------------------
-
-Prepare a set of template that the cloud consumers will use to create new instances. These templates should define all the required parameters of the virtual machine that depends on you network, storage... but should not define the OS image of the virtual machine. The OS image will be selected by the user in the creation dialog along with the template.
-
-Example:
-
-.. code::
-
-    $ cat small-x1-1GB.template
-    NAME   = small-x1-1GB
-    MEMORY = 1024
-    CPU    = 1
-
-    NIC = [ NETWORK = "Public" ]
-
-    GRAPHICS = [
-      TYPE    = "vnc",
-      LISTEN  = "0.0.0.0"]
-
-    $ cat large-x4-8GB.template
-    NAME   = large-x4-8GB
-    MEMORY = 8192
-    CPU    = 8
-
-    NIC = [ NETWORK = "Public" ]
-
-    GRAPHICS = [
-      TYPE    = "vnc",
-      LISTEN  = "0.0.0.0"]
-
-    $ onetemplate create small-x1-1GB.template
-    $ onetemplate create large-x4-8GB.template
-
-If you want to make these template available to the users of the cloud\_cosumers group, the easiest way is to move them to that group and enable the use permission for group:
-
-.. code::
-
-    ontemplate chgrp small-x1-1GB.template cloud_consumers
-    ontemplate chmod small-x1-1GB.template 640
-
-You can also create the template using the Sunstone wizard
-
-Prepare a Set of OS Images
---------------------------
-
-Prepare a set of images that will be used by the cloud consumers in the templates that were created in the previous step.
-
-.. code::
-
-    $ oneimage create --datastore default --name Ubuntu-1204 --path /home/cloud/images/ubuntu-desktop \
-      --description "Ubuntu 12.04 desktop for students."
-    $ oneimage create --datastore default --name CentOS-65 --path /home/cloud/images/ubuntu-desktop \
-      --description "CentOS-65 desktop for developers."
-
-If you want to make these available available to the users of the cloud\_consumers group, the easiest way is to move them to that group and enable the use permission for group:
-
-.. code::
-
-    oneimage chgrp Ubuntu-1204 cloud_consumers
-    oneimage chmod CentOS-65 640
-
-The Cloud Consumer View
-=======================
-
-End users that want to interact with Sunstone have to open a new browser and go to the url where the Sunstone server is deployed. They will find the login screen where the username and password correspond to the OpenNebula credentials.
-
-|image1|
-
-Launch a New VM in Three Steps
-------------------------------
-
--  Define a name and the number of instances
--  Select one of the available templates
--  Select one of the available OS images
-
-|image2|
-
-Internationalization and Languages
-----------------------------------
-
-Sunstone support multiple languages. Users can change it from the settings dialog:
-
-|image3|
-
-|image4|
+.. note:: Any user can change the current view in the Sunstone settings. Administrators can use this view without any problem if they find it easier to manage their VMs.
 
 .. |image0| image:: /images/cloud-view.png
-.. |image1| image:: /images/sunstonelogin4.png
-.. |image2| image:: /images/cloud-view.png
-.. |image3| image:: /images/views_settings.jpg
-.. |image4| image:: /images/views_conf.jpg
+.. |cloud-view-create| image:: /images/cloud-view-create.png

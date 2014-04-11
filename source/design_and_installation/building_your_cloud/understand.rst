@@ -52,7 +52,7 @@ A vDC is a fully-isolated virtual infrastructure environment where a Group of us
 
 The privileges of the vDC users and the administrator regarding the operations over the virtual resources created by other users can be configured. In a typical scenario the vDC administrator can upload and create images and virtual machine templates, while the users can only instantiate virtual machine templates to create their machines. The administrators of the vDC have full control over other users' resources and can also create new users in the vDC.
 
-.. todo:: Screenshot of the cloud view
+|cloud-view|
 
 Users can then access their vDC through any of the existing OpenNebula interfaces, such as the CLI, Sunstone Cloud View, OCA, or the OCCI and AWS APIs. vDC administrators can manage their vDCs through the CLI or the vDC admin view in Sunstone. Cloud Administrators can manage the vDCs through the CLI or Sunstone.
 
@@ -139,3 +139,4 @@ Optionally, each vDC can define one or more users as vDC Admins. These admins ca
 .. |vDC Resources| image:: /images/vdc_resources.png
 .. |vDC Groups| image:: /images/vdc_groups.png
 .. |vDC Organization| image:: /images/vdc_organization.png
+.. |cloud-view| image:: /images/cloud-view.png
