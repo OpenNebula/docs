@@ -1,8 +1,8 @@
 .. _whats_new:
 
-=================================
-What's New in OpenNebula 4.6 Beta
-=================================
+==========
+What's New
+==========
 
 OpenNebula 4.6 introduces important improvements in several areas. The
 provisioning model has been greatly simplify by supplementing user groups with
@@ -31,7 +31,7 @@ As usual OpenNebula releases are named after a Nebula. The Carina Nebula (NGC
 southern hemisphere, in the Carina constellation.
 
 In the following list you can check the highlights of OpenNebula 4.6 Carina
-organised by component (`a detailed list of changes can be found here 
+organised by component (`a detailed list of changes can be found here
 <http://dev.opennebula.org/projects/opennebula/issues?query_id=50>`__):
 
 OpenNebula Core: Virtual Data Centers
