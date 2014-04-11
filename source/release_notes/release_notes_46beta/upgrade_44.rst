@@ -1,4 +1,4 @@
-.. _upgrade_46beta:
+.. _upgrade:
 
 =================================
 Upgrading from OpenNebula 4.4.x

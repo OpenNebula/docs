@@ -97,7 +97,7 @@ Each time the DB is upgraded, the process is logged. You can use the ``history``
 onedb upgrade
 =============
 
-The upgrade process is fully documented in the :ref:`Upgrading from Previous Versions guide <upgrade_46rc>`.
+The upgrade process is fully documented in the :ref:`Upgrading from Previous Versions guide <upgrade>`.
 
 onedb backup
 ============

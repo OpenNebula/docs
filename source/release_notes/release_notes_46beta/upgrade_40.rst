@@ -89,7 +89,8 @@ If everything goes well, you should get an output similar to this one:
     Database already uses version 4.5.80
     Total time: 0.77s
 
-If you receive the message ``ATTENTION: manual intervention required``, read the section ``Manual Intervention Required`` below.
+
+If you receive the message “ATTENTION: manual intervention required”, read the section :ref:`Manual Intervention Required <upgrade_40_manual_intervention_required>` below.
 
 .. note:: Make sure you keep the backup file. If you face any issues, the onedb command can restore this backup, but it won't downgrade databases to previous versions.
 
@@ -159,6 +160,8 @@ The workaround is to temporarily change the oneadmin's password to an ASCII stri
     $ mysql -u oneadmin -p
 
     mysql> SET PASSWORD = PASSWORD('newpass');
+
+.. _upgrade_40_manual_intervention_required:
 
 Manual Intervention Required
 ============================
