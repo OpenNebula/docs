@@ -13,6 +13,10 @@ Release Notes 4.6 RC
    Compatibility Guide <compatibility>
    Known Issues <known_issues>
    Acknowledgements <acknowledgements>
-   Upgrade from Older Versions <upgrade>
+   Upgrading from 4.4.x <upgrade_44>
+   Upgrading from 4.2 <upgrade_42>
+   Upgrading from 4.0.x <upgrade_40>
+   Upgrading from 3.8.x <upgrade_38>
+
 
 
