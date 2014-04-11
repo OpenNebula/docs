@@ -1,4 +1,4 @@
-.. _features_46beta:
+.. _features_46rc:
 
 =======================
 OpenNebula 4.6 Features

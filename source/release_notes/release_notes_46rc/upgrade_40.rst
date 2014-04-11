@@ -89,6 +89,7 @@ If everything goes well, you should get an output similar to this one:
     Database already uses version 4.5.80
     Total time: 0.77s
 
+
 If you receive the message ``ATTENTION: manual intervention required``, read the section ``Manual Intervention Required`` below.
 
 .. note:: Make sure you keep the backup file. If you face any issues, the onedb command can restore this backup, but it won't downgrade databases to previous versions.

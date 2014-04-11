@@ -11,7 +11,7 @@ This introductory guide gives an overview of OpenNebula and summarizes its main 
 What Are the Key Features Provided by OpenNebula?
 =================================================
 
-You can refer to our a summarized table of `Key Features <http://opennebula.org/about/key-features/>`__ or to the :ref:`Detailed Features and Functionality Guide <features>` included in the documentation of each version.
+You can refer to our a summarized table of `Key Features <http://opennebula.org/about/key-features/>`__ or to the :ref:`Detailed Features and Functionality Guide <features_46rc>` included in the documentation of each version.
 
 What Are the Interfaces Provided by OpenNebula?
 ===============================================
