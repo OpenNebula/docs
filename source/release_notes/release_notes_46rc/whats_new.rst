@@ -86,7 +86,7 @@ Virtualization Drivers
 Sunstone
 --------
 
--  New simplified cloud view with a simpler, clean and intuitive design
+-  New cloud view with a simpler, clean and intuitive design
 -  **Updated UI Library** providing a new look.
 -  The **Sunstone View** for each user can be **specified in the User template or in the new Group template**, more info in the :ref:`Sunstone Views <suns_views>` guide.
 -  **Support for Zone selection**, which allows users to switch between OpenNebula Zones from within the same Sunstone.
