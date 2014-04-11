@@ -91,9 +91,9 @@ This set up needs:
 -  An HTTP proxy that understands SSL
 -  OpenNebula Sunstone configuration to accept petitions from the proxy
 
-If you want to try out the SSL setup easily, you can find in the following lines an example to set a self-signed certificate to be used by a lighttpd configured to act as an HTTP proxy to a correctly configured OpenNebula Sunstone.
+If you want to try out the SSL setup easily, you can find in the following lines an example to set a self-signed certificate to be used by a web server configured to act as an HTTP proxy to a correctly configured OpenNebula Sunstone.
 
-Let's assume the server were the lighttpd proxy is going to be started is called ``cloudserver.org``. Therefore, the steps are:
+Let's assume the server where the proxy is going to be started is called ``cloudserver.org``. Therefore, the steps are:
 
 Step 1: Server Certificate (Snakeoil)
 -------------------------------------
@@ -118,8 +118,11 @@ We are going to generate a snakeoil certificate. If using an Ubuntu system follo
 
     $ sudo cat /etc/ssl/private/ssl-cert-snakeoil.key /etc/ssl/certs/ssl-cert-snakeoil.pem > /etc/lighttpd/server.pem
 
-Step 2: SSL HTTP Proxy (e.g. lighttpd)
---------------------------------------
+Step 2: SSL HTTP Proxy
+----------------------
+
+lighttpd
+^^^^^^^^
 
 You will need to edit the ``/etc/lighttpd/lighttpd.conf`` configuration file and
 
@@ -159,11 +162,52 @@ You will need to edit the ``/etc/lighttpd/lighttpd.conf`` configuration file and
 
 The host must be the server hostname of the computer running the Sunstone server, and the port the one that the Sunstone Server is running on.
 
+nginx
+^^^^^
+
+You will need to configure a new virtual host in nginx. Depending on the operating system and the method of installation, nginx loads virtual host configurations from either ``/etc/nginx/conf.d`` or ``/etc/nginx/sites-enabled``.
+
+-  A sample ``cloudserver.org`` virtual host is presented next:
+
+.. code::
+
+    #### OpenNebula Sunstone upstream
+    upstream sunstone  {
+            server 127.0.0.1:9869;
+    }
+
+    #### cloudserver.org HTTP virtual host
+    server {
+            listen 80;
+            server_name cloudserver.org;
+            
+            ### Permanent redirect to HTTPS (optional)
+            return 301 https://$server_name:8443;
+    }
+
+    #### cloudserver.org HTTPS virtual host
+    server {
+            listen 8443;
+            server_name cloudserver.org;
+            
+            ### SSL Parameters
+            ssl on;
+            ssl_certificate /etc/ssl/certs/ssl-cert-snakeoil.pem;
+            ssl_certificate_key /etc/ssl/private/ssl-cert-snakeoil.key;
+
+            ### Proxy requests to upstream
+            location / {
+                     proxy_pass http://sunstone;
+            }
+    }
+
+The IP address and port number used in ``upstream`` must be the ones of the server Sunstone is running on. On typical installations the nginx master process is run as user root so you don't need to modify the HTTPS port.
+
 Step 3: Sunstone Configuration
 ------------------------------
 
-Start the Sunstone server using the default values, this way the server will be listening at localhost:9869
+Start the Sunstone server using the default values, this way the server will be listening at localhost:9869.
 
-Once the lighttpd server is started, OpenNebula Sunstone requests using HTTPS URIs can be directed to ``https://cloudserver.org:8443``, that will then be unencrypted, passed to localhost, port 9869, satisfied (hopefully), encrypted again and then passed back to the client.
+Once the proxy server is started, OpenNebula Sunstone requests using HTTPS URIs can be directed to ``https://cloudserver.org:8443``, that will then be unencrypted, passed to localhost, port 9869, satisfied (hopefully), encrypted again and then passed back to the client.
 
 .. |image0| image:: /images/sunstone_login_x5094.png
