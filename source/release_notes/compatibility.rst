@@ -1,4 +1,4 @@
-.. _compatibility_46beta:
+.. _compatibility:
 
 ====================
 Compatibility Guide

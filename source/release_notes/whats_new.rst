@@ -1,8 +1,8 @@
-.. _whats_new_46beta:
+.. _whats_new:
 
-============================
-What's New in OpenNebula 4.6
-============================
+=================================
+What's New in OpenNebula 4.6 Beta
+=================================
 
 OpenNebula 4.6 introduces important improvements in several areas. The
 provisioning model has been greatly simplify by supplementing user groups with

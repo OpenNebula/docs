@@ -1,4 +1,4 @@
-.. _acknowledgements_46beta:
+.. _acknowledgements:
 
 ================
 Acknowledgements

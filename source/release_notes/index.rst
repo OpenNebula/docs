@@ -1,10 +1,18 @@
 .. _rn:
 
-=============
-Release Notes
-=============
+======================
+Release Notes 4.6 Beta
+======================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
-   Release Notes 4.6 Beta <release_notes_46beta/index>
+   What's New <whats_new>
+   Features <features>
+   Platform Notes <uspng>
+   Compatibility Guide <compatibility>
+   Known Issues <known_issues>
+   Acknowledgements <acknowledgements>
+   Upgrade from Older Versions <upgrade>
+
+
