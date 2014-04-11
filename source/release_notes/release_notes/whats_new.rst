@@ -17,7 +17,8 @@ providers from multiple data-centers in a federated way.
 With Carina the OpenNebula team has started a journey to deliver a more
 intuitive and simpler provisioning experience for users. Our goal is level the
 final user usability with the system administration and operation ones. First,
-the Sunstone graphical interface has been tweaked to help the user workflows. It has also been improved in order to support the new Marketplace version,
+the Sunstone graphical interface has been tweaked to help the user workflows. It has also
+been improved in order to support the new Marketplace version,
 which makes even easier for a user to get a virtual application up and running.
 
 Finally, some other areas has received the attention of the OpenNebula developers,
@@ -30,7 +31,8 @@ As usual OpenNebula releases are named after a Nebula. The Carina Nebula (NGC
 southern hemisphere, in the Carina constellation.
 
 In the following list you can check the highlights of OpenNebula 4.6 Carina
-organised by component (`a detailed list of changes can be found here <http://dev.opennebula.org/projects/opennebula/issues?query_id=50>`__):
+organised by component (`a detailed list of changes can be found here 
+<http://dev.opennebula.org/projects/opennebula/issues?query_id=50>`__):
 
 OpenNebula Core: Virtual Data Centers
 -------------------------------------
@@ -84,6 +86,7 @@ Virtualization Drivers
 Sunstone
 --------
 
+-  New cloud view with a simpler, clean and intuitive design
 -  **Updated UI Library** providing a new look.
 -  The **Sunstone View** for each user can be **specified in the User template or in the new Group template**, more info in the :ref:`Sunstone Views <suns_views>` guide.
 -  **Support for Zone selection**, which allows users to switch between OpenNebula Zones from within the same Sunstone.
