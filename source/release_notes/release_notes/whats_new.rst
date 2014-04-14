@@ -16,9 +16,10 @@ providers from multiple data-centers in a federated way.
 
 With Carina the OpenNebula team has started a journey to deliver a more
 intuitive and simpler provisioning experience for users. Our goal is level the
-final user usability with the system administration and operation ones. First,
-the Sunstone graphical interface has been tweaked to help the user workflows. It has also
-been improved in order to support the new Marketplace version,
+final user usability with the system administration and operation ones. OpenNebula
+Carina brings a new cloud provisioning portal with a simpler, clean and intuitive design.
+The Sunstone graphical interface has also been tweaked to help implement common user workflows
+and improved in order to support the new Marketplace version,
 which makes even easier for a user to get a virtual application up and running.
 
 Finally, some other areas has received the attention of the OpenNebula developers,
