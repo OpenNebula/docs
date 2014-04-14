@@ -44,7 +44,7 @@ federated data centers and hybrid cloud deployments:
 
 - **User Groups** can be assigned one or more **resource providers**. Resource providers are defined as a cluster of servers, virtual networs, datastores and public clouds for cloud bursting in an OpenNebula zone. Read more in the :ref:`Users and Groups Management Guide <managing-resource-provider-within-groups>`.
 - A special **administration group** can be defined to manage specific aspects of the group like user management or appliances definition. Read more in the :ref:`Managing Users and Groups <manage_users>` guide.
-- **Suntone views** for new groups can be dynamically defined without the need of modifying the Suntone configuration files. More information in the :ref:`Sunstone Views <suns_views>` guide.
+- **Sunstone views** for new groups can be dynamically defined without the need of modifying the Sunstone configuration files. More information in the :ref:`Sunstone Views <suns_views>` guide.
 - Groups can now be tagged with custom attributes. Read more in the :ref:`Managing Users and Groups <manage_users>` guide.
 
 OpenNebula Core: Federation & Zones
