@@ -89,9 +89,16 @@ End users access OpenNebula through a simplified instantiate, where they can lau
 
 
 .. |qs_vdc1| image:: /images/qs_vdc1.png
+   :width: 100 %
 .. |qs_vdc2| image:: /images/qs_vdc2.png
+   :width: 100 %
 .. |qs_vdc3| image:: /images/qs_vdc3.png
+   :width: 100 %
 .. |qs_vdc4| image:: /images/qs_vdc4.png
+   :width: 100 %
 .. |qs_vdc5| image:: /images/qs_vdc5.png
+   :width: 100 %
 .. |qs_vdc6| image:: /images/qs_vdc6.png
+   :width: 100 %
 .. |qs_vdc7| image:: /images/qs_vdc7.png
+   :width: 100 %
