@@ -164,8 +164,7 @@ This section configures the features enabled for the VM.
 **Note** the hypervisor column states that the attribute is **O**\ ptional or ``-`` not supported for that hypervisor
 
 +-----------------+---------------------------------------------------------+---------+-----+
-|    FFEATURES    |                       Description                       | XEN HVM | KVM |
-|  Sub-Attribute  |                                                         |         |     |
+|  Sub-Attribute  |                       Description                       | XEN HVM | KVM |
 +=================+=========================================================+=========+=====+
 | **PAE**         | Physical address extension mode allows 32-bit           | O       | O   |
 |                 | guests to address more than 4 GB of memory              |         |     |

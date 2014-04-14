@@ -85,12 +85,12 @@ Virtualization Drivers
 -  **Support for Xen FEATURES parameters**, which includes options like ``PAE``, ``ACPI``, ``APIC``, etc. See the :ref:`Template <template>` guide for more information.
 
 Sunstone: New Cloud View
---------
+------------------------
 
 -  New **cloud view with a simpler, clean and intuitive design**
 
 Sunstone: Usability Enhancements
---------
+--------------------------------
 
 -  **Updated UI Library** providing a new look.
 -  The **Sunstone View** for each user can be **specified in the User template or in the new Group template**, more info in the :ref:`Sunstone Views <suns_views>` guide.
