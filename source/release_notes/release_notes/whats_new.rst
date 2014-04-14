@@ -83,10 +83,14 @@ Virtualization Drivers
 -  **KVM Hypervisor improvements** like tweakable SPICE parameters, KVM Hyper-V Enhancements, ``LOCALTIME`` and ``MACHINE`` parameters support , see the :ref:`Template <template>` guide for more information.
 -  **Support for Xen FEATURES parameters**, which includes options like ``PAE``, ``ACPI``, ``APIC``, etc. See the :ref:`Template <template>` guide for more information.
 
-Sunstone
+Sunstone: New Cloud View
 --------
 
--  New cloud view with a simpler, clean and intuitive design
+-  New **cloud view with a simpler, clean and intuitive design**
+
+Sunstone: Usability Enhancements
+--------
+
 -  **Updated UI Library** providing a new look.
 -  The **Sunstone View** for each user can be **specified in the User template or in the new Group template**, more info in the :ref:`Sunstone Views <suns_views>` guide.
 -  **Support for Zone selection**, which allows users to switch between OpenNebula Zones from within the same Sunstone.
