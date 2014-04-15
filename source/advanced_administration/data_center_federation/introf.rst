@@ -12,11 +12,6 @@ The typical scenario for an OpenNebula Federation is a company with several Data
 
 For the end users, a Federation allows them to use the resources allocated by the Federation Administrators no matter where they are. The integration is seamless, meaning that a user logged into the Sunstone web interface of a Zone will not have to log out and enter the address of the other Zone. Sunstone allows to change the active Zone at any time, and it will automatically redirect the requests to the right OpenNebula at the target Zone.
 
-Benefits
-================================================================================
-
-.. todo::
-
 Architecture
 ================================================================================
 
@@ -32,10 +27,9 @@ Regarding the OpenNebula updates, we have designed the database in such a way th
 
 To enable users to change zones, Sunstone server is connected to all the oned daemons in the Federation. You can have one Sunstone for all the Federation, or run one Sunstone for each Zone.
 
-.. todo::
+Regarding the administrator users, a Federtion will have a unique oneadmin account. That is the Federation Administrator account. In a trusted environment, each Zone Administrator will log in with an account in the 'oneadmin' group. In other scenarios, the Federation Administrator can create a special administrative group with total permissions for one zone only.
 
-- oneadmin account. one oneadmin per zone, one federation admin?
-- Mention marketplace as the method to share images across zones?
+The administrators can share appliances across Zones deploying a private :ref:`OpenNebula Marketplace <marketplace>`.
 
 Next Steps
 ================================================================================
