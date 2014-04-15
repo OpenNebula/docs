@@ -70,15 +70,14 @@ Cloud Usage Models
 
 OpenNebula has three pre-defined user roles to implement two typical enterprise cloud scenarios: infrastructure management and infrastructure provisioning.
 
-.. todo:: decide which roles have access to oneflow
-
 In both scenarios, the Cloud Administrator manages the physical infrastructure, creates users and vDC, and prepares base templates and images for other users.
 
 +------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------+
 |       Role       |                                                                       Capabilities                                                                      |
 +==================+=========================================================================================================================================================+
 | **Cloud Admin.** | * Operates the Cloud infrastructure (i.e. computing nodes, networking fabric, storage servers)                                                          |
-|                  | * Creates and manage OpenNebula infrastructure resources: Hosts, Virtual Networks, Datastores                                                           |
+|                  | * Creates and manages OpenNebula infrastructure resources: Hosts, Virtual Networks, Datastores                                                          |
+|                  | * Creates and manages :ref:`Application Flows <oneapps_overview>`                                                                                       |
 |                  | * Creates new groups for vDCs                                                                                                                           |
 |                  | * Assigns resource providers to a vDC and sets quota limits                                                                                             |
 |                  | * Defines base instance types to be used by the vDCs. These types define the capacity of the VMs (memory, cpu and additional storage) and connectivity. |
@@ -95,15 +94,16 @@ In this usage model, users are familiar with virtualization concepts. Except for
 End users can use the templates and images pre-defined by the cloud administrator, but are also allowed to create their own. They are also able to manage the life-cycle of their resources, including advanced features that may harm the VM guests, like hot-plugging of new disks, resize of Virtual Machines, modify boot parameters, etc.
 
 
-+----------------+-----------------------------------------------------------------+
-|      Role      |                           Capabilities                          |
-+================+=================================================================+
-| **User**       | * Instantiates VMs using their own templates                    |
-|                | * Creates new Images                                            |
-|                | * Manages their VMs, including advanced life-cycle features     |
-|                | * Check their usage and quotas                                  |
-|                | * Upload SSH keys to access the VMs                             |
-+----------------+-----------------------------------------------------------------+
++----------+-------------------------------------------------------------------+
+|   Role   |                            Capabilities                           |
++==========+===================================================================+
+| **User** | * Instantiates VMs using their own templates                      |
+|          | * Creates new Images                                              |
+|          | * Manages their VMs, including advanced life-cycle features       |
+|          | * Creates and manages :ref:`Application Flows <oneapps_overview>` |
+|          | * Check their usage and quotas                                    |
+|          | * Upload SSH keys to access the VMs                               |
++----------+-------------------------------------------------------------------+
 
 
 Infrastructure Provisioning

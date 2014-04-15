@@ -28,7 +28,7 @@ New slaves can be added to an existing Federation at any moment. Moreover, the a
 
 Regarding the OpenNebula updates, we have designed the database in such a way that different OpenNebula versions will be able to be part of the same Federation. While an upgrade of the local tables (VM, Image, VNet objects) will be needed, new versions will keep compatibility with the shared tables. In practice, this means that when a new OpenNebula version comes out each zone can be updated at a different pace, and the Federation will not be affected.
 
-.. todo:: figure of the architecture
+|fed_architecture|
 
 To enable users to change zones, Sunstone server is connected to all the oned daemons in the Federation. You can have one Sunstone for all the Federation, or run one Sunstone for each Zone.
 
@@ -44,3 +44,6 @@ Continue to the following guides to learn how to configure and manage a Federati
 
 * :ref:`Federation Configuration <federationconfig>`
 * :ref:`Federation Management <federationmng>`
+
+.. |fed_architecture| image:: /images/fed_architecture.png
+   :width: 90 %

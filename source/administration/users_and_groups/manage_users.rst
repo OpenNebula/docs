@@ -15,13 +15,14 @@ After the installation, you will have two administrative accounts, ``oneadmin`` 
 
 There are different user types in the OpenNebula system:
 
-.. todo:: These types of users should be redefined with the contents of `understanding ONe guide <understand>`.
-
--  **Administrators**, the **oneadmin** account is created **the first time** OpenNebula is started using the ONE\_AUTH data. ``oneadmin`` has enough privileges to perform any operation on any object. Any other user in the oneadmin group has the same privileges as ``oneadmin``
--  **Regular user** accounts may access most of the functionality offered by OpenNebula to manage resources.
+-  **Cloud Administrators**, the **oneadmin** account is created **the first time** OpenNebula is started using the ONE\_AUTH data. ``oneadmin`` has enough privileges to perform any operation on any object. Any other user in the oneadmin group has the same privileges as ``oneadmin``
+-  **Infrastructure User** accounts may access most of the functionality offered by OpenNebula to manage resources.
+- **vDC Administrators** accounts manage a limited set of resources and users.
+- **vDC Users** access a simplified Sunstone view with limited actions to create new VMs, and perform basic life cycle operations.
 -  **Public users** can only access OpenNebula through a public API (e.g. OCCI, EC2), hence they can only use a limited set of functionality and can not access the xml-rpc API directly (nor any application using it like the CLI or SunStone )
 -  User **serveradmin** is also created the first time OpenNebula is started. Its password is created randomly, and this account is used by the :ref:`Sunstone <sunstone>`, :ref:`OCCI <occicg>` and :ref:`EC2 <ec2qcg>` servers to interact with OpenNebula.
 
+.. note:: The complete OpenNebula approach to user accounts, groups and vDC is explained in more detain in the :ref:`Understanding OpenNebula <understand>` guide.
 
 Shell Environment
 ================================================================================

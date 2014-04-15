@@ -32,5 +32,5 @@ OpenNebula Management
 
 -  **ACL**: Access Control List. Check :ref:`the managing ACL rules guide <manage_acl>`.
 -  **oneadmin**: Special administrative account. See the :ref:`Users and Groups guide <manage_users>`.
--  **oZones**: The :ref:`susbsystem <ozones>` in OpenNebula that manages zones.
+-  **Federation**: Several OpenNebula instances can be :ref:`configured as zones <introf>`.
 
