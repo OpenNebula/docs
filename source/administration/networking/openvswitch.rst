@@ -171,6 +171,15 @@ These rules prevent any traffic to come out of the port the MAC address has chan
 
     in_port=<PORT>,dl_src=<MAC>,priority=40000,actions=normal
     in_port=<PORT>,priority=39000,actions=normal
+    
+**IP hijacking**
+
+These rules prevent any traffic to come out of the port for IPv4 IP's not configured for a VM
+
+.. code::
+
+    in_port=<PORT>,arp,dl_src=<MAC>priority=45000,actions=drop
+    in_port=<PORT>,arp,dl_src=<MAC>,nw_src=<IP>,priority=46000,actions=normal
 
 **Black ports (one rule per port)**
 
