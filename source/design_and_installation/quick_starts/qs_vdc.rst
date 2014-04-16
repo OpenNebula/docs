@@ -6,7 +6,11 @@ Quickstart: Create Your First vDC
 
 This guide will provide a quick example of how to partition your cloud for a vDC. In short, a vDC is a group of users with part of the physical resources assigned to them. The :ref:`Understanding OpenNebula<understand>` guide explains the OpenNebula provisioning model in detail.
 
-We will first create a :ref:`cluster <cluster_guide>`, 'web-dev', where we can group hosts, datastores and virtual network for the new vDC.
+
+Step 1. Create a Cluster
+================================================================================
+
+We will first create a :ref:`cluster <cluster_guide>`, 'web-dev', where we can group hosts, datastores and virtual networks for the new vDC.
 
 .. code::
 
@@ -29,6 +33,9 @@ We will first create a :ref:`cluster <cluster_guide>`, 'web-dev', where we can g
 
 |qs_vdc1|
 
+Step 2. Create a vDC Group
+================================================================================
+
 We can now create the new :ref:`group <manage_groups>`, named also 'web-dev'. This group, or vDC, will have a special admin user, 'web-dev-admin'.
 
 .. code::
@@ -41,6 +48,9 @@ We can now create the new :ref:`group <manage_groups>`, named also 'web-dev'. Th
 |qs_vdc2|
 
 |qs_vdc3|
+
+Step 3. Optionally, Set Quotas
+================================================================================
 
 The cloud administrator can set :ref:`usage quotas <quota_auth>` for the vDC. In this case, we will put a limit of 10 VMs.
 
@@ -71,6 +81,9 @@ The cloud administrator can set :ref:`usage quotas <quota_auth>` for the vDC. In
 
 |qs_vdc4|
 
+Step 4. Prepare Virtual Resources for the Users
+================================================================================
+
 At this point, the cloud administrator can also prepare working Templates and Images for the vDC users.
 
 .. code::
@@ -79,9 +92,14 @@ At this point, the cloud administrator can also prepare working Templates and Im
 
 |qs_vdc5|
 
+Reference for End Users
+================================================================================
+
 The vDC admin uses an interface similar to the cloud administrator, but without any information about the physical infrastructure. He will be able to create new users inside the vDC, monitor their resources, and create new Templates for them. The vDC admin can also decide to configure quota limits for each user.
 
-End users access OpenNebula through a simplified instantiate, where they can launch their own VMs from the Templates prepared by the administrator. Users can also save the changes they make to their machines.
+Refer your vDC admin user to the :ref:`vDC Admin View Guide <vdc_admin_view>`.
+
+End users access OpenNebula through a simplified instantiate, where they can launch their own VMs from the Templates prepared by the administrator. Users can also save the changes they make to their machines. This view is self explanatory, you can read more about it in the :ref:`Cloud View Guide <cloud_view>`.
 
 |qs_vdc6|
 
