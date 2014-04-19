@@ -28,7 +28,7 @@ Located under ``/var/lib/one/remotes/datastore/<ds_mad>``
    -  ``datastore_image_dump`` is an XML dump of the driver action encoded in Base 64. See a decoded :ref:`example <sd_dump>`.
    -  ``image_source`` is the image source which will be later sent to the transfer manager.
 
--  **rm**: removes an image fromthe datastore
+-  **rm**: removes an image from the datastore
 
    -  **ARGUMENTS**: ``datastore_image_dump image_id``
    -  **RETURNS**: ``-``
@@ -86,7 +86,7 @@ Action scripts for generic image datastores:
    -  ``vm_id`` is the id of the VM
    -  ``ds_id`` is the target datastore (the system datastore)
 
--  **mvds**: moves an image back to its datastore (persitent images or deferred snapshots)
+-  **mvds**: moves an image back to its datastore (persistent images or deferred snapshots)
 
    -  **ARGUMENTS**: ``host:remote_system_ds/disk.i fe:SOURCE vm_id ds_id``
    -  ``fe`` is the front-end hostname
@@ -116,7 +116,7 @@ Action scripts needed when the TM is used for the system datastore:
    -  ``vm_id`` is the id of the VM
    -  ``ds_id`` is the target datastore (the system datastore)
 
--  **delete**: removes the eithr system datastore's directory of the VM or a disk itself.
+-  **delete**: removes the either system datastore's directory of the VM or a disk itself.
 
    -  **ARGUMENTS**: ``host:remote_system_ds/disk.i|host:remote_system_ds/ vm_id ds_id``
    -  ``host`` is the target host to deploy the VM
