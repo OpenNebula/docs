@@ -75,4 +75,13 @@ If you have templates using any of these attributes and they stopped working in 
 * `Download this file <https://gist.github.com/carlosms/9394393>`_ into /usr/lib/one/ruby/onedb/fsck.rb.
 * Then follow the fsck procedure :ref:`described here <onedb>`.
 
+Onedb FSCK
+--------------
+
+The fsck file shipped contains two bugs solved in the repository. The latest fsck file must be downloaded before proceding:
+
+.. code::
+
+    wget https://raw.githubusercontent.com/OpenNebula/one/one-4.4/src/onedb/fsck.rb -O /usr/lib/one/ruby/onedb/fsck.rb
+
 You can see all tickets in our development portal: `dev.opennebula.org <http://dev.opennebula.org/>`__.

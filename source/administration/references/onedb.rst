@@ -20,6 +20,13 @@ The command ``onedb`` can connect to any SQLite or MySQL database. Visit the :re
 onedb fsck
 ==========
 
+.. warning::
+    The fsck file shipped contains two bugs solved in the repository. The latest fsck file must be downloaded before proceeding:
+
+    .. code::
+
+        wget https://raw.githubusercontent.com/OpenNebula/one/one-4.4/src/onedb/fsck.rb -O /usr/lib/one/ruby/onedb/fsck.rb
+
 Checks the consistency of the DB, and fixes the problems found. For example, if the machine where OpenNebula is running crashes, or looses connectivity with the database, you may have a wrong number of VMs running in a Host, or incorrect usage quotas for some users.
 
 .. code::

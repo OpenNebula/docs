@@ -96,6 +96,13 @@ If you receive the message “ATTENTION: manual intervention required”, read t
 Check DB Consistency
 ====================
 
+.. warning::
+    The fsck file shipped contains two bugs solved in the repository. The latest fsck file must be downloaded before proceeding:
+
+    .. code::
+
+        wget https://raw.githubusercontent.com/OpenNebula/one/one-4.4/src/onedb/fsck.rb -O /usr/lib/one/ruby/onedb/fsck.rb
+
 After the upgrade is completed, you should run the command ``onedb fsck``.
 
 First, move the 4.2 backup file created by the upgrade command to a save place.
