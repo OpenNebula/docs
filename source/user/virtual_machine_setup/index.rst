@@ -9,4 +9,5 @@ Virtual Machine Setup
    Adding content to your cloud <add_content>
    Basic Contextualization <bcont>
    Advanced Contextualization <cong>
+   Windows Contextualization <windows_context>
    Cloud-init <cloud-init>
