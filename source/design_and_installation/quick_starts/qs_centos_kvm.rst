@@ -1,8 +1,8 @@
 .. _qs_centos_kvm:
 
-===============================================
-Quickstart: OpenNebula 4.4 on CentOS 6 and KVM
-===============================================
+==========================================
+Quickstart: OpenNebula on CentOS 6 and KVM
+==========================================
 
 The purpose of this guide is to provide users with step by step guide to install OpenNebula using CentOS 6 as the operating system and KVM as the hypervisor.
 

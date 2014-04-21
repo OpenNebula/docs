@@ -1,8 +1,8 @@
 .. _qs_centos_vmware:
 
-===================================================
-Quickstart: OpenNebula 4.4 on CentOS 6 and ESX 5.x
-===================================================
+==============================================
+Quickstart: OpenNebula on CentOS 6 and ESX 5.x
+==============================================
 
 This guide aids in the process of quickly get a VMware-based OpenNebula cloud up and running on CentOS. This is useful at the time of setting up pilot clouds, to quickly test new features and as base deployment to build a large infrastructure.
 
@@ -56,19 +56,19 @@ Step 2. OpenNebula Front-end Set-up
 
 **2.1 OpenNebula installation**
 
-The first step is to install OpenNebula in the front-end. Please download OpeNebula 4.4 from `here <http://opennebula.org/software:software>`__, choosing the CentOS package.
+The first step is to install OpenNebula in the front-end. Please download OpeNebula from `here <http://opennebula.org/software:software>`__, choosing the CentOS package.
 
 Once it is downloaded to the front-end, you need to untar it:
 
 .. code::
 
-    $ tar xvzf CentOS-6-opennebula-4.0.0-1.tar.gz
+    $ tar xvzf CentOS-6-opennebula-*.tar.gz
 
 And then install all the needed packages:
 
 .. code::
 
-    $ sudo yum localinstall opennebula-4.4.0/*.rpm
+    $ sudo yum localinstall opennebula-*/*.rpm
 
 .. warning:: Do not start OpenNebula at this point, some pre configuration needs to be done. Starting OpenNebula is not due until :ref:`here <qs_centos_vmware_start_opennebula>`.
 
@@ -76,7 +76,7 @@ Let's install noVNC to gain access to the VMs:
 
 .. code::
 
-    $ sudo /usr/share/one/install_novnc.sh 
+    $ sudo /usr/share/one/install_novnc.sh
 
 Find out the uid and gid of oneadmin, we will need it for the next section:
 
@@ -108,7 +108,7 @@ In order to avoid problems, we recommend to disable SELinux for the pilot cloud 
 
 **2.2 NFS configuration**
 
-The front-end needs to export via NFS two datastores (the system and the images datastore). This is required just so the ESX has access to two different datastores, and this guides uses NFS exported from the front-end to achieve this. This can be seamlessly replaced with two iSCSI backed datastores or even two local hard disks. In any case, we will use the 'vmfs' drivers to manage both datastores, independently of the storage backend. See the `VMFS Datastore Guide <http://opennebula.org/documentation:rel4.4:vmware_ds>`__ for more details.
+The front-end needs to export via NFS two datastores (the system and the images datastore). This is required just so the ESX has access to two different datastores, and this guides uses NFS exported from the front-end to achieve this. This can be seamlessly replaced with two iSCSI backed datastores or even two local hard disks. In any case, we will use the 'vmfs' drivers to manage both datastores, independently of the storage backend. See the :ref:`VMFS Datastore Guide <vmware_ds>` for more details.
 
 Let's configure the NFS server. You will need to allow incoming connections, here we will simply stop iptables (as root):
 
@@ -176,7 +176,7 @@ Then the following needs to be done:
 
     $ su
 
-    # mkdir /etc/ssh/keys-oneadmin 
+    # mkdir /etc/ssh/keys-oneadmin
     # chmod 755 /etc/ssh/keys-oneadmin
     # vi /etc/ssh/keys-oneadmin/authorized_keys
     paste here the contents of oneadmin's id_rsa.pub and exit vi

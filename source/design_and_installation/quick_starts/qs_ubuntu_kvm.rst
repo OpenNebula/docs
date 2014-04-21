@@ -1,8 +1,8 @@
 .. _qs_ubuntu_kvm:
 
-===================================================
-Quickstart: OpenNebula 4.4 on Ubuntu 12.04 and KVM
-===================================================
+==============================================
+Quickstart: OpenNebula on Ubuntu 12.04 and KVM
+==============================================
 
 The purpose of this guide is to provide users with step by step guide to install OpenNebula using Ubuntu 12.04 as the operating system and KVM as the hypervisor.
 
@@ -206,7 +206,7 @@ The ``oneadmin`` user must be able to manage libvirt as root:
     group = "oneadmin"
     dynamic_ownership = 0
     EOT
-    
+
 Restart libvirt to capture these changes:
 
 .. code::

@@ -1,8 +1,8 @@
 .. _qs_centos_xen:
 
-===============================================
-Quickstart: OpenNebula 4.4 on CentOS 6 and Xen
-===============================================
+==========================================
+Quickstart: OpenNebula on CentOS 6 and Xen
+==========================================
 
 The purpose of this guide is to provide users with step by step guide to install OpenNebula using CentOS 6 as the operating system and Xen as the hypervisor.
 
