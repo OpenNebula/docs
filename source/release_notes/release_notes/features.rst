@@ -26,10 +26,10 @@ Advanced Multi-tenancy with Group Management
 On-demand Provision of Virtual Data Centers
 ===========================================
 
-- A vDC is a **fully-isolated virtual infrastructure environment** where a Group of users, optionally under the control of the vDC admin, can create and manage compute and storage capacity.
-- **User Groups** can be assigned one or more **resource providers**. Resource providers are defined as a cluster of servers, virtual networs, datastores and public clouds for cloud bursting in an OpenNebula zone. Read more in the :ref:`Users and Groups Management Guide <managing-resource-provider-within-groups>`.
-- A special **administration group** can be defined to manage specific aspects of the group like user management or appliances definition. Read more in the :ref:`Managing Users and Groups <manage_users>` guide.
-- **Sunstone views** for new groups can be dynamically defined without the need of modifying the Sunstone configuration files. More information in the :ref:`Sunstone Views <suns_views>` guide.
+- A vDC is a fully-isolated virtual infrastructure environment where a Group of users, optionally under the control of the vDC admin, can create and manage compute and storage capacity.
+- User Groups can be assigned one or more resource providers. Resource providers are defined as a cluster of servers, virtual networs, datastores and public clouds for cloud bursting in an OpenNebula zone. Read more in the :ref:`Users and Groups Management Guide <managing-resource-provider-within-groups>`.
+- A special administration group can be defined to manage specific aspects of the group like user management or appliances definition. Read more in the :ref:`Managing Users and Groups <manage_users>` guide.
+- Sunstone views for new groups can be dynamically defined without the need of modifying the Sunstone configuration files. More information in the :ref:`Sunstone Views <suns_views>` guide.
 - Groups can now be tagged with custom attributes. Read more in the :ref:`Managing Users and Groups <manage_users>` guide.
 
 Advanced Control and Monitoring of Virtual Infrastructure
@@ -90,9 +90,9 @@ Centralized Management of Multiple Zones
 
 - Federation of multiple OpenNebula zones for scalability, isolation or multiple-site support
 - Users can seamlessly provision virtual machines from multiple zones with an integrated interface both in Sunstone and CLI.
-- A **new tool set** has been developed to upgrade, integrate new zones and import existing zones into an OpenNebula federation. Read more in the :ref:`Federation Configuration <federationconfig>` guide.
-- **Integrated zone management** in OpenNebula core. Read more about this in the :ref:`Data Center Federation <introf>` guide.
-- **Redesigned data model** to minimize replication data across zones and to tolerate large latencies. Read more about this in the :ref:`Data Center Federation <introf>` guide.
+- A new tool set has been developed to upgrade, integrate new zones and import existing zones into an OpenNebula federation. Read more in the :ref:`Federation Configuration <federationconfig>` guide.
+- Integrated zone management in OpenNebula core. Read more about this in the :ref:`Data Center Federation <introf>` guide.
+- Redesigned data model to minimize replication data across zones and to tolerate large latencies. Read more about this in the :ref:`Data Center Federation <introf>` guide.
 -  Complete functionality for management of `zones <http://docs.opennebula.org/doc/4.6/cli/onezone.1.html>`__: create, delete, show, list...
 
 High Availability
@@ -107,6 +107,8 @@ Community Virtual Appliance Marketplace
 
 -  `Marketplace <http://marketplace.c12g.com>`__ with an online catalog where individuals and organizations can quickly distribute and deploy virtual appliances ready-to-run on OpenNebula cloud environments
 -  :ref:`Marketplace is fully integrated with OpenNebula <marketplace>` so any user of an OpenNebula cloud can find and deploy virtual appliances in a single click through familiar tools like the SunStone GUI or the OpenNebula CLI
+-  Support for importing OVAs processed by the AppMarket Worker. Read more `here <https://github.com/OpenNebula/addon-appmarket/blob/master/doc/usage.md#importing-an-appliance-from-sunstone>`__.
+
 
 Management of Multi-tier Applications
 =====================================
@@ -132,14 +134,14 @@ Hybrid Cloud Computing and Cloud Bursting
 -  :ref:`Extension of the local private infrastructure with resources from remote clouds <introh>`
 -  :ref:`Support for Amazon EC2 <ec2g>` with most of the EC2 features like tags, security groups or VPC; and simultaneous access to multiple remote clouds
 
-Standard Cloud Interfaces and Simple Self-Service Portal for Cloud Consumers
+Standard Cloud Interfaces and Simple Provisioning Portal for Cloud Consumers
 ============================================================================
 
 -  :ref:`Transform your local infrastructure into a public cloud by exposing REST-based interfaces <introc>`
 -  :ref:`OGF OCCI service <occicg>`, the emerging cloud API standard, and :ref:`client tools <occiug>`
 -  :ref:`AWS EC2 API service <ec2qcg>`, the de facto cloud API standard, with :ref:`compatibility with EC2 ecosystem tools <ec2qec>` and :ref:`client tools <ec2qug>`
 -  Support for simultaneously exposing multiple cloud APIs
--  :ref:`Self-service provisioning portal implemented as a user view of Sunstone <cloud_view>` to allow non-IT end users to easily create, deploy and manage compute, storage and network resources
+-  :ref:`Provisioning portal implemented as a user view of Sunstone <cloud_view>` to allow non-IT end users to easily create, deploy and manage compute, storage and network resources
 
 Rich Command Line and Web Interfaces for Cloud Administrators
 =============================================================
