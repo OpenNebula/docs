@@ -4,7 +4,7 @@
 Features
 ========
 
-This section describes the **detailed features and functionality of the latest version of OpenNebula (v4.6)** for the management of private clouds and datacenter virtualization(\*). It includes links to the different parts of the documentation and the web site that provide extended information about each feature. We also provide a summarized table of `key features <http://opennebula.org/about/key-features/>`__.
+This section describes the **detailed features and functionality of OpenNebula** for the management of private clouds and datacenter virtualization(\*). It includes links to the different parts of the documentation and the web site that provide extended information about each feature. We also provide a summarized table of `key features <http://opennebula.org/about/key-features/>`__.
 
 Powerful User Security Management
 =================================
@@ -26,9 +26,11 @@ Advanced Multi-tenancy with Group Management
 On-demand Provision of Virtual Data Centers
 ===========================================
 
--  A :ref:`Virtual Data Centers (VDC) <vdcmngt>` is a fully-isolated virtual infrastructure environment where a group of users, under the control of the VDC administrator, can create and manage compute, storage and networking capacity
--  Support for the creation and management of multiples VDCs within the same logical cluster and zone
--  Advanced multi-tenancy with complete functionality for management of `VDCs <http://docs.opennebula.org/doc/4.6/cli/onevdc.1.html>`__: create, delete, show...
+- A vDC is a **fully-isolated virtual infrastructure environment** where a Group of users, optionally under the control of the vDC admin, can create and manage compute and storage capacity.
+- **User Groups** can be assigned one or more **resource providers**. Resource providers are defined as a cluster of servers, virtual networs, datastores and public clouds for cloud bursting in an OpenNebula zone. Read more in the :ref:`Users and Groups Management Guide <managing-resource-provider-within-groups>`.
+- A special **administration group** can be defined to manage specific aspects of the group like user management or appliances definition. Read more in the :ref:`Managing Users and Groups <manage_users>` guide.
+- **Sunstone views** for new groups can be dynamically defined without the need of modifying the Sunstone configuration files. More information in the :ref:`Sunstone Views <suns_views>` guide.
+- Groups can now be tagged with custom attributes. Read more in the :ref:`Managing Users and Groups <manage_users>` guide.
 
 Advanced Control and Monitoring of Virtual Infrastructure
 =========================================================
@@ -86,9 +88,11 @@ Distributed Resource Optimization
 Centralized Management of Multiple Zones
 ========================================
 
--  :ref:`Single access point and centralized management for multiple instances of OpenNebula <ozones>`
--  :ref:`Federation of multiple OpenNebula zones <zonesmngt>` for scalability, isolation or multiple-site support
--  Support for the creation and management of multiples clusters within the same zone
+- Federation of multiple OpenNebula zones for scalability, isolation or multiple-site support
+- Users can seamlessly provision virtual machines from multiple zones with an integrated interface both in Sunstone and CLI.
+- A **new tool set** has been developed to upgrade, integrate new zones and import existing zones into an OpenNebula federation. Read more in the :ref:`Federation Configuration <federationconfig>` guide.
+- **Integrated zone management** in OpenNebula core. Read more about this in the :ref:`Data Center Federation <introf>` guide.
+- **Redesigned data model** to minimize replication data across zones and to tolerate large latencies. Read more about this in the :ref:`Data Center Federation <introf>` guide.
 -  Complete functionality for management of `zones <http://docs.opennebula.org/doc/4.6/cli/onezone.1.html>`__: create, delete, show, list...
 
 High Availability
