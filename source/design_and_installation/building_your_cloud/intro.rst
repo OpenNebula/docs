@@ -63,9 +63,9 @@ OpenNebula is composed of the following subsystems:
 
 -  **Clusters**: :ref:`Clusters <cluster_guide>` are pools of hosts that share datastores and virtual networks. Clusters are used for load balancing, high availability, and high performance computing.
 
--  **Multiple Zones**: The OpenNebula Zones component (:ref:`oZones <ozones>`) allows for the centralized management of multiple instances of OpenNebula, called :ref:`Zones <zonesmngt>`, for scalability, isolation and multiple-site support.
+-  **Multiple Zones**: The :ref:`Data Center Federation <introf>` functionality allows for the centralized management of multiple instances of OpenNebula for scalability, isolation and multiple-site support.
 
--  **VDCs**. An OpenNebula instance (or Zone) can be further compartmentalized in :ref:`Virtual Data Centers (VDCs) <vdcmngt>`, which offer a fully-isolated virtual infrastructure environments where a group of users, under the control of the VDC administrator, can create and manage compute, storage and networking capacity.
+-  **VDCs**. An OpenNebula instance (or Zone) can be further compartmentalized in  :ref:`Virtual Data Centers (VDCs) <managing-resource-provider-within-groups>`, which offer a fully-isolated virtual infrastructure environments where a group of users, under the control of the VDC administrator, can create and manage compute, storage and networking capacity.
 
 -  **Cloud Bursting**: OpenNebula gives support to build a :ref:`hybrid cloud <introh>`, an extension of a private cloud to combine local resources with resources from remote cloud providers. A whole public cloud provider can be encapsulated as a local resource to be able to use extra computational capacity to satisfy peak demands.
 
