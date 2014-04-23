@@ -21,7 +21,7 @@ The contextualization package will also mount any partition labeled ``swap`` as 
    -  Install from our repositories package **one-context** in Ubuntu/Debian or **opennebula-context** in CentOS/RedHat. Instructions to add the repository at the :ref:`installation guide <ignc>`.
    -  Download and install the package for your distribution:
 
-      -  `DEB <http://dev.opennebula.org/attachments/download/750/one-context_4.4.0.deb>`__: Compatible with Ubuntu 11.10 to 13.04 and Debian Squeeze
+      -  `DEB <http://dev.opennebula.org/attachments/download/750/one-context_4.4.0.deb>`__: Compatible with Ubuntu 11.10 to 14.04 and Debian Squeeze
       -  `RPM <http://dev.opennebula.org/attachments/download/747/one-context_4.4.0.rpm>`__: Compatible with CentOS and RHEL 6.x
 
 -  Shutdown the VM
