@@ -41,7 +41,7 @@ OpenNebula allows to customize the general behaviour of the whole monitoring sub
 | VM\_PER\_INTERVAL      | Number of VMs monitored in each interval.                                                                 |
 +------------------------+-----------------------------------------------------------------------------------------------------------+
 
-.. warning:: VM\_PER\_INTERVAL is only relevant in case of host failure when OpenNebula pro-actively monitors each VM.
+.. warning:: VM\_PER\_INTERVAL is only relevant in case of host failure when OpenNebula pro-actively monitors each VM. You need to set VM_INDIVIDUAL_MONITORING to "yes" in oned.conf.
 
 The information gathered by the probes is also stored in a monitoring table. This table is used by Sunstone to draw monitoring graphics and can be queried using the OpenNebula API. The size of this table can be controlled with:
 
