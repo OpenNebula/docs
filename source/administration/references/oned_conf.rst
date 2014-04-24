@@ -14,6 +14,7 @@ Daemon Configuration Attributes
 -  ``MONITORING_THREADS`` : Max. number of threads used to process monitor messages
 -  ``HOST_PER_INTERVAL``: Number of hosts monitored in each interval.
 -  ``HOST_MONITORING_EXPIRATION_TIME``: Time, in seconds, to expire monitoring information. Use 0 to disable HOST monitoring recording.
+-  ``VM_INDIVIDUAL_MONITORING``: VM moniroting information is obtained along with the host information. For some custom monitor drivers you may need activate the individual VM monitoring process.
 -  ``VM_PER_INTERVAL``: Number of VMs monitored in each interval.
 -  ``VM_MONITORING_EXPIRATION_TIME``: Time, in seconds, to expire monitoring information. Use 0 to disable VM monitoring recording.
 -  ``SCRIPTS_REMOTE_DIR``: Remote path to store the monitoring and VM management script.
@@ -65,7 +66,8 @@ Example of this section:
      
     #HOST_PER_INTERVAL               = 15
     #HOST_MONITORING_EXPIRATION_TIME = 43200
-     
+
+    #VM_MONITORING_EXPIRATION_TIME = "no"
     #VM_PER_INTERVAL               = 5
     #VM_MONITORING_EXPIRATION_TIME = 14400
      
