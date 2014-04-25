@@ -226,13 +226,20 @@ Ruby OCA
 XML-RPC API
 --------------------------------------------------------------------------------
 
-.. todo::
+.. todo:: * Feature #2371 Paginate the .info API responses
 
-* Feature #2371 Paginate the .info API responses
 * New api calls:
 
-  * ...
+  * ``one.group.update``: Replaces the group template contents.
+  * ``one.group.addprovider``: Adds a resource provider to the group.
+  * ``one.group.delprovider``: Deletes a resource provider from the group.
+  * ``one.zone.allocate``: Allocates a new zone in OpenNebula.
+  * ``one.zone.delete``: Deletes the given zone from the pool.
+  * ``one.zone.update``: Replaces the zone template contents.
+  * ``one.zone.rename``: Renames a zone.
+  * ``one.zone.info``: Retrieves information for the zone.
+  * ``one.zonepool.info``: Retrieves information for all the zones in the pool.
 
 * Changed api calls:
 
-  * ...
+  * ``one.vm.savedisk``: New optional parameter. Boolean, True to clone clone also the VM originating Template, and replace the disk with the saved image.
