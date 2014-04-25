@@ -11,13 +11,13 @@ This is the list of the individual platform components that have been through th
 +------------------------------+-----------------------------------------------------------------------------+
 | Certified Platform Component |                                   Version                                   |
 +==============================+=============================================================================+
-| RedHat Enterprise Linux      | 6.4                                                                         |
+| RedHat Enterprise Linux      | 6.5                                                                         |
 +------------------------------+-----------------------------------------------------------------------------+
 | Ubuntu Server                | 12.04 (LTS) & 14.04 (LTS)                                                   |
 +------------------------------+-----------------------------------------------------------------------------+
 | SUSE Linux Enterprise        | 12.3                                                                        |
 +------------------------------+-----------------------------------------------------------------------------+
-| CentOS                       | 6.4                                                                         |
+| CentOS                       | 6.5                                                                         |
 +------------------------------+-----------------------------------------------------------------------------+
 | openSUSE                     | 12.3                                                                        |
 +------------------------------+-----------------------------------------------------------------------------+
@@ -64,7 +64,7 @@ ESX 5.x as VMware Node
 
    -  VM needs to have all network card model with model “E1000”
 
-CentOS 6.4 as KVM Node
+CentOS 6.5 as KVM Node
 ----------------------
 
 -  to accomplish disk hotplugging:
@@ -84,7 +84,7 @@ Ubuntu 12.04 as KVM Node
 
 -  due to libvirt version < = 0.10.2, there is a `bug in libvrit/qemu attac/detach nic functionality <https://bugzilla.redhat.com/show_bug.cgi?id=813748>`__ that prevents the reuse of net IDs. This means that after a successful attach/detach NIC, a new attach will fail.
 
-CentOS 6.4 Usage Platform Notes
+CentOS 6.5 Usage Platform Notes
 ===============================
 
 Because home directory of oneadmin is located in ``/var``, it violates SELinux default policy. So in ssh passwordless configuration you should disable SELinux by setting ``SELINUX=disabled`` in ``/etc/selinux/config``.

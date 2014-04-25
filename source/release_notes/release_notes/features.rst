@@ -170,7 +170,6 @@ Easy Extension and Integration
 -  :ref:`Configuration and tuning parameters <oned_conf>` to adjust behavior of the cloud management instance to the requirements of the environment and use cases
 -  `Fully open-source technology available under Apache license <http://dev.opennebula.org/projects/opennebula/repository>`__
 -  Powerful and extensible low-level cloud API in :ref:`Ruby <ruby>` and :ref:`JAVA <java>` and :ref:`XMLRPC API <api>`
--  A Ruby API to build applications on top of the Zones/VDC component :ref:`ZONA, the ZONes Api <zona>`
 -  `OpenNebula Add-on Catalog <http://opennebula.org/addons:addons>`_ with components enhancing the functionality provided by OpenNebula
 
 Reliability, Efficiency and Massive Scalability
