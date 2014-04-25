@@ -33,6 +33,24 @@ There is a new concept: Resource Provider. A Resource Provider is an OpenNebula 
 
 When you upgrade from a previous version, the groups will not have any Resource Provider assigned. The existing ACL Rules are preserved, but they will not be interpreted as Resource Providers.
 
+ACL Rules in a Federation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Each :ref:`ACL Rule <manage_acl>` now can define the Zone(s) where it applies. 
+
+.. code::
+
+    $ oneacl create "@103 IMAGE/@100 USE #0"
+    ID: 4
+
+    $ oneacl create "@103 IMAGE/@102 USE *"
+    ID: 5
+
+    $ oneacl list
+       ID     USER RES_VHNIUTGDCOZ   RID OPE_UMAC  ZONE
+        4     @103     ---I-------  @100     u---    #0
+        5     @103     ---I-------  @102     u---     *
+
 Groups
 --------------------------------------------------------------------------------
 
