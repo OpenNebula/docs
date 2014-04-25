@@ -65,6 +65,7 @@ Sunstone Configuration
     * Instance types
     * autorefresh in yaml files
     * compatibility of view yaml files?
+    * Flow enabled by default
 
 
 Storage
@@ -152,12 +153,13 @@ Virtual Networks
 oned.conf
 --------------------------------------------------------------------------------
 
-.. todo::
+New attributes in :ref:`oned.conf <oned_conf>`:
 
-* FEDERATION
-* RPC_LOG
-* MESSAGE_SIZE
-* DEFAULT_CDROM_DEVICE_PREFIX
+* ``VM_INDIVIDUAL_MONITORING``: VM monitoring information is obtained along with the host information. For some custom monitor drivers you may need activate the individual VM monitoring process.
+* ``FEDERATION``: Attributes to control the :ref:`federation config <oned_conf_federation>`.
+* ``MESSAGE_SIZE``: Buffer size in bytes for XML-RPC responses. Only relevant for federation slave zones.
+* ``RPC_LOG``: Create a separated log file for xml-rpc requests, in /var/log/one/one_xmlrpc.log.
+* ``DEFAULT_CDROM_DEVICE_PREFIX``: Same as ``DEFAULT_DEVICE_PREFIX`` but for CDROM devices. Default value for DEV\_PREFIX field when it is omitted in a template.
 
 CLI configuration
 --------------------------------------------------------------------------------
