@@ -214,6 +214,8 @@ Fixed Policy
 
     RANK = PRIORITY
 
+.. _schg_limit:
+
 Limiting the Resources Exposed by a Host
 ========================================
 

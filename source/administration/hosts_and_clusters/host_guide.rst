@@ -267,6 +267,8 @@ You can also select which hosts you want to upgrade naming them or selecting a c
 
     $ onehost sync --rsync
 
+.. _host_guide_information:
+
 Host Information
 ================
 

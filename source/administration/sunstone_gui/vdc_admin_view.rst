@@ -42,6 +42,7 @@ The :ref:`Cloud View <cloud_view>` is self explanatory.
 
 |vdcadmin_create_vm|
 
+.. _vdc_admin_view_save:
 
 Prepare Resources for Other Users
 ================================================================================

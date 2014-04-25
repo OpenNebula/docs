@@ -19,6 +19,7 @@ Datastores can be parametrized with several parameters. In the following list th
 -  **CEPH\_HOST**: Space-separated list of Ceph monitors.
 -  **CEPH\_SECRET**: A generated UUID for a LibVirt secret.
 -  **LIMIT\_MB**: Limit, in MB, of storage that OpenNebula will use for this datastore
+-  **BASE\_PATH**: Base path is generated automatically with the value in :ref:`oned.conf <oned_conf_datastores>`. If the value is changed in oned.conf, it won't apply to existing datastores. The administrator can change it manually for each datastore with this attribute. Please note that BASE_PATH will only be used for new Images, the SOURCE of existing Images will still use the previous BASE_PATH.
 
 Not all these parameters have meaning for all the datastores. Here is the matrix of parameters accepted by each one:
 
@@ -50,5 +51,7 @@ Not all these parameters have meaning for all the datastores. Here is the matrix
 | CEPH\_SECRET          | yes    | -     | -       | -     | -      |
 +-----------------------+--------+-------+---------+-------+--------+
 | LIMIT\_MB             | yes    | yes   | yes     | yes   | yes    |
++-----------------------+--------+-------+---------+-------+--------+
+| BASE\PATH             | yes    | yes   | yes     | yes   | yes    |
 +-----------------------+--------+-------+---------+-------+--------+
 
