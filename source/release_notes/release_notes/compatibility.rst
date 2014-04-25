@@ -33,6 +33,32 @@ There is a new concept: Resource Provider. A Resource Provider is an OpenNebula 
 
 When you upgrade from a previous version, the groups will not have any Resource Provider assigned. The existing ACL Rules are preserved, but they will not be interpreted as Resource Providers.
 
+Groups
+--------------------------------------------------------------------------------
+
+Group resources now have a template that can be edited, via Sunstone or with the ``onegroup update`` command.
+
+The 4.4 configuration file ``group.default`` defined the ACL rules to create when new groups were created. This was the default ``group.default`` file:
+
+.. code::
+
+    # This rule allows users in the new group to create common resources
+    VM+NET+IMAGE+TEMPLATE/* CREATE
+    # This rule allows users in the group to deploy VMs in any host in the cloud
+    HOST/* MANAGE
+
+This file does not exist in 4.6, and the ACL rules are controlled with the :ref:`--resources option <manage_groups_permissions>` and Resource Providers.
+
+    ``-r, --resources``: Defines the resources that can be created by group users (VM+IMAGE+TEMPLATE by default)
+
+Users in new groups cannot deploy VMs until the admin assigns a :ref:`Resource Provider <managing-resource-provider-within-groups>`. To replicate the default 4.4 behaviour, assign the resource provider ALL:
+
+.. code::
+
+    $ onegroup add_provider <group_id> 0 ALL
+
+.. note:: Note the difference in the default resources: users cannot create VNETs by default anymore.
+
 Sunstone
 --------------------------------------------------------------------------------
 
@@ -132,11 +158,6 @@ For example:
 
     $ oneacct --list UID,HOSTNAME,CPU --csv
 
-Group
---------------------------------------------------------------------------------
-
-Group resources now have a template that can be edited, via Sunstone or with the ``onegroup update`` command.
-
 Virtual Networks
 --------------------------------------------------------------------------------
 
@@ -160,11 +181,6 @@ New attributes in :ref:`oned.conf <oned_conf>`:
 * ``MESSAGE_SIZE``: Buffer size in bytes for XML-RPC responses. Only relevant for federation slave zones.
 * ``RPC_LOG``: Create a separated log file for xml-rpc requests, in /var/log/one/one_xmlrpc.log.
 * ``DEFAULT_CDROM_DEVICE_PREFIX``: Same as ``DEFAULT_DEVICE_PREFIX`` but for CDROM devices. Default value for DEV\_PREFIX field when it is omitted in a template.
-
-CLI configuration
---------------------------------------------------------------------------------
-
-.. todo:: * group.default removed. ACL rules are defined with options
 
 oneflow-server.conf
 --------------------------------------------------------------------------------
