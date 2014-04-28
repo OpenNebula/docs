@@ -211,12 +211,14 @@ There is a new configuration attribute to customize the name given to the VMs cr
 KVM
 --------------------------------------------------------------------------------
 
-.. todo::
-  * Feature #2567 KVM Hyper-V Enlightenments
-  * Feature #2547 Support libvirt "localtime" parameter for Windows KVM guest template
-  * Feature #2485 Configuring SPICE should enable qxl paravirtual graphic card
-  * Feature #2247 Graphics section in vmm_exec_kvm.conf
-  * Feature #2143 Add machine type to KVM deployment file
+There are new parameters for KVM machines. They can be seen in more detail at the :ref:`VM Template reference guide <_template>`:
+
+* ``hyperv`` feature to give better support to Windows machines. Its paramaters can be changed in the driver configuration file (``/etc/one/vmm_exec/vmm_exec_kvm.conf``).
+* ``localtime`` feature so the clock reported to the VM is in local time and not UTC.
+* When selecting spice support some other parameters are added to the VM. These can be changed in the driver configuration file (``/etc/one/vmm_exec/vmm_exec_kvm.conf``).
+* Add default ``GRAPHICS`` section parameters, configurable in the driver configuration file (``/etc/one/vmm_exec/vmm_exec_kvm.conf``).
+* ``machine`` option in the ``OS`` section. This is useful for migration between different host OS versions and to select other chipset than the default one.
+
 
 Xen
 --------------------------------------------------------------------------------
