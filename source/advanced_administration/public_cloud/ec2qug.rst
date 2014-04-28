@@ -65,9 +65,7 @@ Commands description can be accessed from the :ref:`Command Line Reference <cli>
 User Account Configuration
 ==========================
 
-An account is needed in order to use the OpenNebula cloud. The cloud administrator will be responsible for assigning these accounts, which have a one to one correspondence with OpenNebula accounts, so all the cloud administrator has to do is check the configuration guide to setup accounts, and automatically the OpenNebula cloud account will be created.
-
-.. todo:: What configuration guide
+An account is needed in order to use the OpenNebula cloud. The cloud administrator will be responsible for assigning these accounts, which have a one to one correspondence with OpenNebula accounts, so all the cloud administrator has to do is check the :ref:`configuration guide to setup accounts <ec2qcg_cloud_users>`, and automatically the OpenNebula cloud account will be created.
 
 In order to use such an account, the end user can make use of clients programmed to access the services described in the previous section. For this, she has to set up his environment, particularly the following aspects:
 

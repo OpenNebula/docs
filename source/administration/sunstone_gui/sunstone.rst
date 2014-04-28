@@ -108,8 +108,6 @@ Available options are:
 
 .. warning:: In order to access Sunstone from other place than ``localhost`` you need to set the server's public IP in the ``:host`` option. Otherwise it will not be reachable from the outside.
 
-.. todo:: Running Sunstone Server separate host.
-
 Starting Sunstone
 -----------------
 

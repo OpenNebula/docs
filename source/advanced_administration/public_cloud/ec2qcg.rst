@@ -77,6 +77,8 @@ The service is configured through the ``/etc/one/econe.conf`` file, where you ca
 
 .. warning:: Preserve YAML syntax in the ``econe.conf`` file.
 
+.. _ec2qcg_cloud_users:
+
 Cloud Users
 -----------
 
