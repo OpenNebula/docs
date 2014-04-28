@@ -116,10 +116,7 @@ Storage
 * Default Datastores (0,1,2) could not be deleted, or assigned to a Cluster up to 4.4. This limitation has been removed for the 4.6 release.
 * OpenNebula can now operate with RBD Format 1 and RBD Format 2. RBD Format 2 brings many advantages, like creating new clones based on snapshots which runs a lot faster. If you want to take advantage of this you will need to manually convert your previously created images from RBD Format 1 to Format 2.
 * For Ceph Datastores, you can specify the extra args sent to ``qemu-img convert`` in the ``/var/lib/one/remotes/datastore/ceph/ceph.conf```file. Adding ``-O rbd`` is recommended depening on the RBD version.
-
-.. todo::
-
-    * Feature #2202 Bring glusterfs support via libvirt integration
+* KVM machines support ``libgfapi`` to connect to disk images greatly improving the IO performance over FUSE mounts. The information about is is at the :ref:`GlusterFS Datastore guide <gluster_ds>`
 
 Monitoring
 ----------
