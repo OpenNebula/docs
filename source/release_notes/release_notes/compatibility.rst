@@ -211,10 +211,10 @@ There is a new configuration attribute to customize the name given to the VMs cr
 KVM
 --------------------------------------------------------------------------------
 
-There are new parameters for KVM machines. They can be seen in more detail at the :ref:`VM Template reference guide <_template>`:
+There are new parameters for KVM machines. They can be seen in more detail at the :ref:`VM Template reference guide <template>`:
 
 * ``hyperv`` feature to give better support to Windows machines. Its paramaters can be changed in the driver configuration file (``/etc/one/vmm_exec/vmm_exec_kvm.conf``).
-* ``localtime`` feature so the clock reported to the VM is in local time and not UTC.
+* ``localtime`` feature so the clock reported to the VM is in local time instead of UTC.
 * When selecting spice support some other parameters are added to the VM. These can be changed in the driver configuration file (``/etc/one/vmm_exec/vmm_exec_kvm.conf``).
 * Add default ``GRAPHICS`` section parameters, configurable in the driver configuration file (``/etc/one/vmm_exec/vmm_exec_kvm.conf``).
 * ``machine`` option in the ``OS`` section. This is useful for migration between different host OS versions and to select other chipset than the default one.
@@ -223,7 +223,12 @@ There are new parameters for KVM machines. They can be seen in more detail at th
 Xen
 --------------------------------------------------------------------------------
 
-.. todo:: * Feature #1762 Implement Xen FEATURES
+There are new parameters for Xen machines. They can be seen in more detail at the :ref:`VM Template reference guide <template>`:
+
+* ``localtime`` feature so the clock reported to the VM is in local time instead of UTC.
+* New VM features ``pae``, ``acpi`` and ``apic`` for Xen HVM.
+* Device model can now be set as a VM feature.
+* The pointer device can be a tablet usb. This makes VNC mouse handling more precise.
 
 Developers and Integrators
 ==========================
