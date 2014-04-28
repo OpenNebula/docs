@@ -114,12 +114,11 @@ Storage
 
 * The Datastore :ref:`BASE_PATH can be edited <ds_conf>` after the Datastore creation. You can also modify the base path of the default Datastores (0,1,2).
 * Default Datastores (0,1,2) could not be deleted, or assigned to a Cluster up to 4.4. This limitation has been removed for the 4.6 release.
+* OpenNebula can now operate with RBD Format 1 and RBD Format 2. RBD Format 2 brings many advantages, like creating new clones based on snapshots which runs a lot faster. If you want to take advantage of this you will need to manually convert your previously created images from RBD Format 1 to Format 2.
+* For Ceph Datastores, you can specify the extra args sent to ``qemu-img convert`` in the ``/var/lib/one/remotes/datastore/ceph/ceph.conf```file. Adding ``-O rbd`` is recommended depening on the RBD version.
 
 .. todo::
 
-    * RBD_FORMAT
-    * QEMU_IMG_CONVERT_ARGS
-    * Feature #2568 Support for RBD Format 2 images
     * Feature #2202 Bring glusterfs support via libvirt integration
 
 Monitoring
@@ -140,10 +139,10 @@ This functionality is somewhat similar the 4.4 ``HYPERVISOR_MEM`` attribute in `
 
 * A new attribute has been included in sched.conf ``MESSAGE_SIZE`` to set the buffer size in bytes for XML-RPC responses. This can be increased in large clouds with a great number of VMs.
 
-Marketplace
+AppMarket
 --------------------------------------------------------------------------------
 
-.. todo::
+In the new Appmarket version (>= 2) all the appliances can have multiple disks. This however does not affect the Sunstone workflow.
 
 Contextualization
 --------------------------------------------------------------------------------
@@ -203,10 +202,11 @@ oneflow-server.conf
 There is a new configuration attribute to customize the name given to the VMs created by oneflow. Read the :ref:`OneFlow Server Configuration guide <appflow_configure>` for more information
 
 ``:vm_name_template``: Default name for the Virtual Machines created by oneflow. You can use any of the following placeholders
-  * $SERVICE_ID
-  * $SERVICE_NAME
-  * $ROLE_NAME
-  * $VM_NUMBER
+
+* $SERVICE_ID
+* $SERVICE_NAME
+* $ROLE_NAME
+* $VM_NUMBER
 
 KVM
 --------------------------------------------------------------------------------
