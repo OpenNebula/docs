@@ -36,6 +36,17 @@ OpenNebula Sunstone supports Firefox (> 3.5) and Chrome browsers. Internet Explo
 Configuration
 =============
 
+.. _sunstone_connect_oneflow:
+
+Cannot connect to OneFlow server
+-----------------------------------------------
+
+The last two tabs, OneFlow Services and Templates, will show the following message:
+
+    Cannot connect to OneFlow server
+
+You need to start the OneFlow component :ref:`following this guide <appflow_configure>`, or disable these two menu entries in the ``admin.yaml`` and ``user.yaml`` :ref:`sunstone views <suns_views>`.
+
 .. _sunstone_sunstone_server_conf:
 
 sunstone-server.conf

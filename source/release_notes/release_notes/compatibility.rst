@@ -103,13 +103,14 @@ Sunstone Cloud View
 Sunstone Configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+* The ``admin.yaml`` and ``user.yaml`` views now have OneFlow visible by default. If you don't have OneFlow running, you'll see the message: 'Cannot connect to OneFlow server'. :ref:`Follow this section <sunstone_connect_oneflow>` to know more.
+
 .. todo::
 
     * New system to assign views to users/groups
     * Instance types
     * autorefresh in yaml files
     * compatibility of view yaml files?
-    * Flow enabled by default
 
 
 Storage
