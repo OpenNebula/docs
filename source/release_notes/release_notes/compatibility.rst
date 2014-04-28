@@ -144,11 +144,6 @@ In the new Appmarket version (>= 2) all the appliances can have multiple disks. 
 Contextualization
 --------------------------------------------------------------------------------
 
-.. todo::
-
-    * cloud init?
-    * Feature #2453 Add hostname configuration to contexualization
-
 * VM hostname can be specified in the ccontext section with ``SET_HOSTNAME`` or can be automatically set from DNS with ``DNS_HOSTNAME=YES``.
 * Latest versions of cloud-init can be used if the network is disabled in ``USER_DATA``. For example:
 
