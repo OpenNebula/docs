@@ -36,7 +36,7 @@ When you upgrade from a previous version, the groups will not have any Resource 
 ACL Rules in a Federation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Each :ref:`ACL Rule <manage_acl>` now can define the Zone(s) where it applies. 
+Each :ref:`ACL Rule <manage_acl>` now can define the Zone(s) where it applies.
 
 .. code::
 
@@ -103,15 +103,11 @@ Sunstone Cloud View
 Sunstone Configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* The ``admin.yaml`` and ``user.yaml`` views now have OneFlow visible by default. If you don't have OneFlow running, you'll see the message: 'Cannot connect to OneFlow server'. :ref:`Follow this section <sunstone_connect_oneflow>` to know more.
-
-.. todo::
-
-    * New system to assign views to users/groups
-    * Instance types
-    * autorefresh in yaml files
-    * compatibility of view yaml files?
-
+    * Available sunstone views for each user are now defined group-wise, instead of specifying it in ``sunstone-views.yaml`` (this file keeps the default view). Note, that there is no need to restart the Sunstone server when views are updated.
+    * The new Cloud view features predefined Instance types, that specify capacity values to instantiate the predefined VM templates. The instance types can be defined in ``sunstone-server.conf``.
+    * The ``admin.yaml`` and ``user.yaml`` views now have OneFlow visible by default. If you don't have OneFlow running, you'll see the message: 'Cannot connect to OneFlow server'. :ref:`Follow this section <sunstone_connect_oneflow>` to know more. Flow can be disables in ``sunstone-server.conf``.
+    * The communication between clients and Sunstone server has been reduced in this release to increase the overall performance (server-side). Just the active view periodically refresh its contents. This behavior is controlled by the ``autorefresh`` option in the yaml view definition file.
+    * Views should be compatible with Sunstone 4.6, note that ``autorefresh`` will be set to ``false`` for existing views.
 
 Storage
 -------
@@ -142,7 +138,7 @@ The admin can now :ref:`update the Host information <host_guide_information>` to
 
 This functionality is somewhat similar the 4.4 ``HYPERVISOR_MEM`` attribute in ``sched.conf``. But it is more useful since the limitation applies to the complete OpenNebula system, not only to the Scheduler, and because it can be set for each Host individually.
 
-.. todo:: * MESSAGE_SIZE
+* A new attribute has been included in sched.conf ``MESSAGE_SIZE`` to set the buffer size in bytes for XML-RPC responses. This can be increased in large clouds with a great number of VMs.
 
 Marketplace
 --------------------------------------------------------------------------------
@@ -207,10 +203,10 @@ oneflow-server.conf
 There is a new configuration attribute to customize the name given to the VMs created by oneflow. Read the :ref:`OneFlow Server Configuration guide <appflow_configure>` for more information
 
 ``:vm_name_template``: Default name for the Virtual Machines created by oneflow. You can use any of the following placeholders
-  * $SERVICE_ID    
-  * $SERVICE_NAME  
-  * $ROLE_NAME     
-  * $VM_NUMBER     
+  * $SERVICE_ID
+  * $SERVICE_NAME
+  * $ROLE_NAME
+  * $VM_NUMBER
 
 KVM
 --------------------------------------------------------------------------------
@@ -233,8 +229,7 @@ Developers and Integrators
 Monitoring
 ----------
 
-.. todo:: * New requirement: return vm poll in host im drivers
-
+* Individual VM monitoring has been disabled by default for stock monitoring drivers. These drivers include VM information along with the hypervisor one. As the VM information is also obtained (in general) through the hypervisor, a failure may collapse VM actions. If you have develop a driver that relies on individual VM monitoring, you can enable it in ``oned.conf`` (attribute ``VM_INDIVIDUAL_MONITORING``)
 
 Ruby OCA
 --------------------------------------------------------------------------------
