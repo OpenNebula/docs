@@ -106,7 +106,7 @@ Sunstone Configuration
 * Available sunstone views for each user are now defined group-wise, instead of specifying it in ``sunstone-views.yaml`` (this file keeps the default view). Note, that there is no need to restart the Sunstone server when views are updated.
 * The new Cloud view features predefined Instance types, that specify capacity values to instantiate the predefined VM templates. The instance types can be defined in ``sunstone-server.conf``.
 * The ``admin.yaml`` and ``user.yaml`` views now have OneFlow visible by default. If you don't have OneFlow running, you'll see the message: 'Cannot connect to OneFlow server'. :ref:`Follow this section <sunstone_connect_oneflow>` to know more. Flow can be disables in ``sunstone-server.conf``.
-* The communication between clients and Sunstone server has been reduced in this release to increase the overall performance (server-side). Just the active view periodically refresh its contents. This behavior is controlled by the ``autorefresh`` option in the yaml view definition file.
+* The communication between clients and Sunstone server has been reduced in this release to increase the overall performance (server-side). The active tab panel periodically refresh its contents. This behavior is controlled by the ``autorefresh`` option in the yaml view definition file.
 * Views should be compatible with Sunstone 4.6, note that ``autorefresh`` will be set to ``false`` for existing views.
 
 Storage
@@ -156,11 +156,6 @@ Contextualization
       bootcmd:
         - ifdown -a"
     ]
-
-Econe
---------------------------------------------------------------------------------
-
-.. todo:: * econe-register public_ip
 
 Accounting: oneacct command
 --------------------------------------------------------------------------------
