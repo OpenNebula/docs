@@ -149,6 +149,19 @@ Contextualization
     * cloud init?
     * Feature #2453 Add hostname configuration to contexualization
 
+* VM hostname can be specified in the ccontext section with ``SET_HOSTNAME`` or can be automatically set from DNS with ``DNS_HOSTNAME=YES``.
+* Latest versions of cloud-init can be used if the network is disabled in ``USER_DATA``. For example:
+
+.. code::
+
+    CONTEXT=[
+      NETWORK="YES",
+      SSH_PUBLIC_KEY="$USER[SSH_PUBLIC_KEY]",
+      USER_DATA="#cloud-config
+      bootcmd:
+        - ifdown -a"
+    ]
+
 Econe
 --------------------------------------------------------------------------------
 
