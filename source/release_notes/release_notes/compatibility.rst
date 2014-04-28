@@ -121,7 +121,7 @@ Storage
 Monitoring
 ----------
 
-.. todo:: * collectd shepherd.
+There is a new probe that kills wild ``collectd-client`` processes in case more than one is running.
 
 Scheduling
 --------------------------------------------------------------------------------
