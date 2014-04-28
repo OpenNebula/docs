@@ -241,13 +241,19 @@ Monitoring
 Ruby OCA
 --------------------------------------------------------------------------------
 
-.. todo:: * Feature #2732 Support for http proxy in ruby oca client
-
+* ``OpenNebula::Client`` has a new option ``http_proxy`` to specify the proxy.
+* ``OpenNebula::*Pool.get_hash`` can be used to retrieve a hash with the pool. For Pools that support it the query to ``oned`` can be paginated.
+* OCA will use the gem Ox when it is installed. This makes parsing both XML-RPC and xml responses much faster.
 
 XML-RPC API
 --------------------------------------------------------------------------------
 
-.. todo:: * Feature #2371 Paginate the .info API responses
+* ``Pool.info`` calls with ``end_id`` < -1 can be used to paginate responses. The offset is specified as ``start_id`` and the number of objects * -1 as ``end_id``. For example to get 15 VMs skiping 250 the call will be:
+
+.. code-block:: ruby
+
+    vm_pool.info(-1, 250, -15)
+
 
 * New api calls:
 
