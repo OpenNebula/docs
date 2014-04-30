@@ -1,0 +1,640 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:5
+msgid "Managing Multi-tier Applications"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:7
+msgid ""
+"OneFlow allows users and administrators to define, execute and manage multi-"
+"tiered applications, or services composed of interconnected Virtual Machines"
+" with deployment dependencies between them. Each group of Virtual Machines "
+"is deployed and managed as a single entity, and is completely integrated "
+"with the advanced :ref:`OpenNebula user and group management "
+"<auth_overview>`."
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:10
+msgid "What Is a Service"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:12
+msgid ""
+"The following diagram represents a multi-tier application. Each node "
+"represents a Role, and its cardinality (the number of VMs that will be "
+"deployed). The arrows indicate the deployment dependencies: each Role's VMs "
+"are deployed only when all its parent's VMs are running."
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:14
+msgid "|image0|"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:16
+msgid "This Service can be represented with the following JSON template:"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:56
+msgid "Managing Service Templates"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:58
+msgid ""
+"OneFlow allows OpenNebula administrators and users to register Service "
+"Templates in OpenNebula, to be instantiated later as Services. These "
+"Templates can be instantiated several times, and also shared with other "
+"users."
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:60
+msgid ""
+"Users can manage the Service Templates using the command ``oneflow-"
+"template``, or the graphical interface. For each user, the actual list of "
+"Service Templates available is determined by the ownership and permissions "
+"of the Templates."
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:63
+msgid "Create and List Existing Service Templates"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:65
+msgid ""
+"The command ``oneflow-template create`` registers a JSON template file. For "
+"example, if the previous example template is saved in "
+"/tmp/my\\_service.json, you can execute:"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:72
+msgid "You can also create service template from Sunstone:"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:74
+msgid "|image1|"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:76
+msgid ""
+"To list the available Service Templates, use ``oneflow-template "
+"list/show/top``:"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:104
+msgid "Templates can be deleted with ``oneflow-template delete``."
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:106
+msgid "|image2|"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:109
+msgid "Managing Services"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:111
+msgid ""
+"A Service Template can be instantiated as a Service. Each newly created "
+"Service will be deployed by OneFlow following its deployment strategy."
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:113
+msgid ""
+"Each Service Role creates :ref:`Virtual Machines <vm_guide_2>` in OpenNebula"
+" from :ref:`VM Templates <vm_guide>`, that must be created beforehand."
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:116
+msgid "Create and List Existing Services"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:118
+msgid ""
+"New Services are created from Service Templates, using the ``oneflow-"
+"template instantiate`` command:"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:125
+msgid "To list the available Services, use ``oneflow list/top``:"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:133
+msgid "|image3|"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:135
+msgid ""
+"The Service will eventually change to ``DEPLOYING``. You can see information"
+" for each Role and individual Virtual Machine using ``oneflow show``"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:195
+msgid "Life-cycle"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:197
+msgid ""
+"The ``deployment`` attribute defines the deployment strategy that the Life "
+"Cycle Manager (part of the :ref:`oneflow-server <appflow_configure>`) will "
+"use. These two values can be used:"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:199
+msgid "**none**: All roles are deployed at the same time."
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:200
+msgid ""
+"**straight**: Each Role is deployed when all its parent Roles are "
+"``RUNNING``."
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:202
+msgid ""
+"Regardless of the strategy used, the Service will be ``RUNNING`` when all of"
+" the Roles are also ``RUNNING``. Likewise, a Role will enter this state only"
+" when all the VMs are ``running``."
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:204
+msgid "|image4|"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:206
+msgid "This table describes the Service states:"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:209
+msgid "Service State"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:209
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:237
+msgid "Meaning"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:211
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:239
+msgid "``PENDING``"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:211
+msgid ""
+"The Service starts in this state, and will stay in it until the LCM decides "
+"to deploy it"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:213
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:241
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:431
+msgid "``DEPLOYING``"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:213
+msgid "Some Roles are being deployed"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:215
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:243
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:440
+msgid "``RUNNING``"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:215
+msgid "All Roles are deployed successfully"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:217
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:245
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:442
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:442
+msgid "``WARNING``"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:217
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:245
+msgid "A VM was found in a failure state"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:219
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:247
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:436
+msgid "``SCALING``"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:219
+msgid "A Role is scaling up or down"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:221
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:249
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:440
+msgid "``COOLDOWN``"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:221
+msgid "A Role is in the cooldown period after a scaling operation"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:223
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:251
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:434
+msgid "``UNDEPLOYING``"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:223
+msgid "Some Roles are being undeployed"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:225
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:253
+msgid "``DONE``"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:225
+msgid ""
+"The Service will stay in this state after a successful undeployment. It can "
+"be deleted"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:227
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:255
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:431
+msgid "``FAILED_DEPLOYING``"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:227
+msgid "An error occurred while deploying the Service"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:229
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:257
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:434
+msgid "``FAILED_UNDEPLOYING``"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:229
+msgid "An error occurred while undeploying the Service"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:231
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:259
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:436
+msgid "``FAILED_SCALING``"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:231
+msgid "An error occurred while scaling the Service"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:234
+msgid "Each Role has an individual state, described in the following table:"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:237
+msgid "Role State"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:239
+msgid "The Role is waiting to be deployed"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:241
+msgid ""
+"The VMs are being created, and will be monitored until all of them are "
+"``running``"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:243
+msgid "All the VMs are ``running``"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:247
+msgid "The Role is waiting for VMs to be deployed or to be shutdown"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:249
+msgid "The Role is in the cooldown period after a scaling operation"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:251
+msgid ""
+"The VMs are being shutdown. The role will stay in this state until all VMs "
+"are ``done``"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:253
+msgid "All the VMs are ``done``"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:255
+msgid "An error occurred while deploying the VMs"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:257
+msgid "An error occurred while undeploying the VMs"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:259
+msgid "An error occurred while scaling the Role"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:263
+msgid "Life-Cycle Operations"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:265
+msgid ""
+"Services are deployed automatically by the Life Cycle Manager. To undeploy a"
+" running Service, users have the commands ``oneflow shutdown`` and ``oneflow"
+" delete``."
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:267
+msgid ""
+"The command ``oneflow shutdown`` will perform a graceful shutdown of all the"
+" running VMs, and will delete any VM in a failed state (see :ref:`onevm "
+"shutdown and delete <vm_guide_2>`). If the ``straight`` deployment strategy "
+"is used, the Roles will be shutdown in the reverse order of the deployment."
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:269
+msgid ""
+"After a successful shutdown, the Service will remain in the ``DONE`` state. "
+"If any of the VM shutdown operations cannot be performed, the Service state "
+"will show ``FAILED``, to indicate that manual intervention is required to "
+"complete the cleanup. In any case, the Service can be completely removed "
+"using the command ``oneflow delete``."
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:271
+msgid ""
+"If a Service and its VMs must be immediately undeployed, the command "
+"``oneflow delete`` can be used from any Service state. This will execute a "
+"delete operation for each VM and delete the Service. Please be aware that "
+"**this is not recommended**, because VMs using persistent Images can leave "
+"them in an inconsistent state."
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:273
+msgid ""
+"When a Service fails during a deployment, undeployment or scaling operation,"
+" the command ``oneflow recover`` can be used to retry the previous action "
+"once the problem has been solved."
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:276
+msgid "Elasticity"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:278
+msgid ""
+"A role's cardinality can be adjusted manually, based on metrics, or based on"
+" a schedule. To start the scalability immediately, use the command ``oneflow"
+" scale``:"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:284
+msgid ""
+"To define automatic elasticity policies, proceed to the :ref:`elasticity "
+"documentation guide <appflow_elasticity>`."
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:287
+msgid "Managing Permissions"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:289
+msgid ""
+"Both Services and Template resources are completely integrated with the "
+":ref:`OpenNebula user and group management <auth_overview>`. This means that"
+" each resource has an owner and group, and permissions. The VMs created by a"
+" Service are owned by the Service owner, so he can list and manage them."
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:291
+msgid ""
+"For example, to change the owner and group of the Service 1, we can use "
+"``oneflow chown/chgrp``:"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:317
+msgid "Note that the Service's VM ownership is also changed."
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:319
+msgid ""
+"All Services and Templates have associated permissions for the **owner**, "
+"the users in its **group**, and **others**. For each one of these groups, "
+"there are three rights that can be set: **USE**, **MANAGE** and **ADMIN**. "
+"These permissions are very similar to those of UNIX file system, and can be "
+"modified with the command ``chmod``."
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:321
+msgid ""
+"For example, to allow all users in the ``apptools`` group to USE (list, "
+"show) and MANAGE (shutdown, delete) the Service 1:"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:347
+msgid ""
+"Another common scenario is having Service Templates created by oneadmin that"
+" can be instantiated by any user. To implement this scenario, execute:"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:379
+msgid ""
+"Please refer to the OpenNebula documentation for more information about "
+":ref:`users & groups <auth_overview>`, and :ref:`resource permissions "
+"<chmod>`."
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:382
+msgid "Scheduling Actions on the Virtual Machines of a Role"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:384
+msgid ""
+"You can use the ``action`` command to perform a VM action on all the Virtual"
+" Machines belonging to a role. For example, if you want to suspend the "
+"Virtual Machines of the worker Role:"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:390
+msgid "These are the commands that can be performed:"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:392
+msgid "``shutdown``"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:393
+msgid "``shutdown-hard``"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:394
+msgid "``undeploy``"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:395
+msgid "``undeploy-hard``"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:396
+msgid "``hold``"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:397
+msgid "``release``"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:398
+msgid "``stop``"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:399
+msgid "``suspend``"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:400
+msgid "``resume``"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:401
+msgid "``boot``"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:402
+msgid "``delete``"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:403
+msgid "``delete-recreate``"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:404
+msgid "``reboot``"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:405
+msgid "``reboot-hard``"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:406
+msgid "``poweroff``"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:407
+msgid "``poweroff-hard``"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:408
+msgid "``snapshot-create``"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:410
+msgid ""
+"Instead of performing the action immediately on all the VMs, you can perform"
+" it on small groups of VMs with these options:"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:412
+msgid "``-p, –period x``: Seconds between each group of actions"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:413
+msgid "``-n, –number x``: Number of VMs to apply the action to each period"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:415
+msgid ""
+"Let's say you need to reboot all the VMs of a Role, but you also need to "
+"avoid downtime. This command will reboot 2 VMs each 5 minutes:"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:421
+msgid ""
+"The ``oneflow-server.conf`` file contains default values for ``period`` and "
+"``number`` that are used if you omit one of them."
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:424
+msgid "Recovering from Failures"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:426
+msgid ""
+"Some common failures can be resolved without manual intervention, calling "
+"the ``oneflow recover`` command. This command has different effects "
+"depending on the Service state:"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:429
+msgid "State"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:429
+msgid "New State"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:429
+msgid "Recover action"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:431
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:437
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:443
+msgid "VMs in ``DONE`` or ``FAILED`` are deleted."
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:432
+msgid "VMs in ``UNKNOWN`` are booted."
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:434
+msgid "The undeployment is resumed."
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:437
+msgid ""
+"VMs in ``UNKNOWN`` are booted. For a scale-down, the shutdown actions are "
+"retried."
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:440
+msgid ""
+"The Service is simply set to running before the cooldown period is over."
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:443
+msgid ""
+"VMs in ``UNKNOWN`` are booted. New VMs are instantiated to maintain the "
+"current cardinality."
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:448
+msgid "Service Template Reference"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:450
+msgid ""
+"For more information on the resource representation, please check the "
+":ref:`API guide <appflow_api>`"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_use_cli.rst:452
+msgid ""
+"Read the :ref:`elasticity policies documentation <appflow_elasticity>` for "
+"more information."
+msgstr ""

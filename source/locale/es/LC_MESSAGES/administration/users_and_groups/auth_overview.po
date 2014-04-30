@@ -1,0 +1,125 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/administration/users_and_groups/auth_overview.rst:5
+msgid "Users & Groups Overview"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/auth_overview.rst:7
+msgid ""
+"OpenNebula includes a complete user & group management system. Users in an "
+"OpenNebula installation are classified in four types:"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/auth_overview.rst:9
+msgid ""
+"**Administrators**, an admin user belongs to an admin group (oneadmin or "
+"otherwise) and can perform manage operations"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/auth_overview.rst:10
+msgid "**Regular users**, that may access most OpenNebula functionality."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/auth_overview.rst:11
+msgid ""
+"**Public users**, only basic functionality (and public interfaces) are open "
+"to public users."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/auth_overview.rst:12
+msgid ""
+"**Service users**, a service user account is used by the OpenNebula services"
+" (i.e. cloud APIs like EC2 or GUI's like Sunstone) to proxy auth requests."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/auth_overview.rst:14
+msgid ""
+"The resources a user may access in OpenNebula are controlled by a "
+"permissions system that resembles the typical UNIX one. By default, only the"
+" owner of a resource (e.g. a VM or an image) can use and manage it. Users "
+"can easily share the resources by granting use or manage permissions to "
+"other users in her group or to any other user in the system."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/auth_overview.rst:16
+msgid ""
+"Upon group creation, an associated admin group can be also spawn, with a "
+"admin user belonging to both of them. By default this user will be able to "
+"create users in both groups, and manage non owned resources for the regular "
+"group, through the CLI and/or a special Sunstone view. This group can also "
+"be assigned with different Resource providers, in practice OpenNebula "
+"clusters with all the associated resources of said cluster (hosts, "
+"datastores and virtual networks). This allows for the management of virtual "
+"datacenters using group functionality."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/auth_overview.rst:18
+msgid ""
+"Along with the users & groups the Auth Subsystem is responsible for the "
+"authentication and authorization of user's requests."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/auth_overview.rst:20
+msgid ""
+"Any interface to OpenNebula (CLI, Sunstone, Ruby or Java OCA) communicates "
+"with the core using xml-rpc calls, that contain the user's session string, "
+"which is authenticated by the OpenNebula core comparing the username and "
+"password with the registered users."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/auth_overview.rst:22
+msgid ""
+"Each operation generates an authorization request that is checked against "
+"the registered ACL rules. The core then can grant permission, or reject the "
+"request."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/auth_overview.rst:24
+msgid ""
+"OpenNebula comes with a default set of ACL rules that enables a standard "
+"usage. You don't need to manage the ACL rules unless you need the level of "
+"permission customization if offers."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/auth_overview.rst:26
+msgid "Please proceed to the following guides to learn more:"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/auth_overview.rst:28
+msgid ":ref:`Managing Users <manage_users>`"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/auth_overview.rst:29
+msgid ":ref:`Managing Groups & vDC <manage_groups>`"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/auth_overview.rst:30
+msgid ":ref:`Managing Permissions <chmod>`"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/auth_overview.rst:31
+msgid ":ref:`Managing ACL Rules <manage_acl>`"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/auth_overview.rst:32
+msgid ":ref:`Quota Management <quota_auth>`"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/auth_overview.rst:34
+msgid ""
+"By default, the authentication and authorization is handled by the "
+"OpenNebula Core as described above. Optionally, you can delegate it to an "
+"external module, see the :ref:`External Auth Setup <external_auth>` guide "
+"for more information."
+msgstr ""

@@ -1,0 +1,249 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/administration/hosts_and_clusters/cluster_guide.rst:5
+msgid "Managing Clusters"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/cluster_guide.rst:7
+msgid ""
+"A Cluster is a group of :ref:`Hosts <host_guide>`. Clusters can have "
+"associated :ref:`Datastores <sm>` and :ref:`Virtual Networks <vgg>`, this is"
+" how the administrator sets which Hosts have the underlying requirements for"
+" each Datastore and Virtual Network configured."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/cluster_guide.rst:10
+msgid "Cluster Management"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/cluster_guide.rst:12
+msgid ""
+"Clusters are managed with the :ref:`''onecluster'' command <cli>`. To create"
+" new Clusters, use ``onecluster create <name>``. Existing Clusters can be "
+"inspected with the ``onecluster list`` and ``show`` commands."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/cluster_guide.rst:38
+msgid "Add Hosts to Clusters"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/cluster_guide.rst:40
+msgid ""
+"Hosts can be created directly in a Cluster, using the ``–cluster`` option of"
+" ``onehost create``, or be added at any moment using the command "
+"``onecluster addhost``. Hosts can be in only one Cluster at a time."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/cluster_guide.rst:42
+msgid ""
+"To delete a Host from a Cluster, the command ``onecluster delhost`` must be "
+"used. When a Host is removed from a Cluster, it is seen as part of the "
+"Cluster 'none', more about this below."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/cluster_guide.rst:44
+msgid ""
+"In the following example, we will add Host 0 to the Cluster we created "
+"before. You will notice that the ``onecluster show`` command will list the "
+"Host ID 0 as part of the Cluster."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/cluster_guide.rst:71
+msgid "Add Resources to Clusters"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/cluster_guide.rst:73
+msgid ""
+"Datastores and Virtual Networks can be added to one Cluster. This means that"
+" any Host in that Cluster is properly configured to run VMs using Images "
+"from the Datastores, or is using leases from the Virtual Networks."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/cluster_guide.rst:75
+msgid ""
+"For instance, if you have several Hosts configured to use :ref:`Open vSwitch"
+" networks <openvswitch>`, you would group them in the same Cluster. The "
+":ref:`Scheduler <schg>` will know that VMs using these resources can be "
+"deployed in any of the Hosts of the Cluster."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/cluster_guide.rst:77
+msgid ""
+"These operations can be done with the ``onecluster`` ``addvnet/delvnet`` and"
+" ``adddatastore/deldatastore``:"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/cluster_guide.rst:106
+msgid "The System Datastore for a Cluster"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/cluster_guide.rst:108
+msgid ""
+"You can associate an specific System DS to a cluster to improve its "
+"performance (e.g. balance VM I/O between different servers) or to use "
+"different system DS types (e.g. shared and ssh)."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/cluster_guide.rst:110
+msgid ""
+"To use a specific System DS with your cluster, instead of the default one, "
+"just create it (with TYPE=SYSTEM\\_DS in its template), and associate it "
+"just like any other datastore (onecluster adddatastore). Check the "
+":ref:`System DS guide for more information <system_ds>`."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/cluster_guide.rst:113
+msgid "Cluster Properties"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/cluster_guide.rst:115
+msgid ""
+"Each cluster includes a generic template where cluster configuration "
+"properties or attributes can be defined. The following list of attributes "
+"are recognized by OpenNebula:"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/cluster_guide.rst:118
+msgid "Attribute"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/cluster_guide.rst:118
+msgid "Description"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/cluster_guide.rst:120
+msgid "``DATASTORE_LOCATION``"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/cluster_guide.rst:120
+msgid ""
+"\\*Default\\* path for datastores in the cluster hosts. It **is** the same "
+"for all the hosts in the cluster. Note that DATASTORE\\_LOCATION is only for"
+" the cluster hosts and not for the front-end. It defaults to "
+"/var/lib/one/datastores"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/cluster_guide.rst:123
+msgid "You can easily update this values with the ``onecluster`` command:"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/cluster_guide.rst:155
+msgid ""
+"You can add as many variables as you want, following the standard template "
+"syntax. These variables will be used for now only for informational "
+"purposes."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/cluster_guide.rst:158
+msgid "The Default Cluster 'None'"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/cluster_guide.rst:160
+msgid ""
+"Hosts, Datastores and Virtual Networks can be grouped into clusters, but "
+"this is optional. By default, these resources are created outside of any "
+"Cluster, what can be seen as a special Cluster named 'none' in Sunstone. In "
+"the CLI, this Cluster name is shown as '-'."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/cluster_guide.rst:162
+msgid ""
+"Virtual Machines using resources from Datastores or Virtual Networks in the "
+"Cluster 'none' can be deployed in any Host, which must be properly "
+"configured."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/cluster_guide.rst:164
+msgid ""
+"Hosts in the Cluster 'none' will only run VMs using resources without a "
+"Cluster."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/cluster_guide.rst:167
+msgid "Scheduling and Clusters"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/cluster_guide.rst:170
+msgid "Automatic Requirements"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/cluster_guide.rst:172
+msgid ""
+"When a Virtual Machine uses resources (Images or Virtual Networks) from a "
+"Cluster, OpenNebula adds the following :ref:`requirement "
+"<template_placement_section>` to the template:"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/cluster_guide.rst:180
+msgid ""
+"Because of this, if you try to use resources from more than one Cluster, the"
+" Virtual Machine creation will fail with a message similar to this one:"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/cluster_guide.rst:190
+msgid "Manual Requirements and Rank"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/cluster_guide.rst:192
+msgid ""
+"The placement attributes :ref:`SCHED\\_REQUIREMENTS and SCHED\\_RANK "
+"<template_placement_section>` can use attributes from the Cluster template. "
+"Let’s say you have the following scenario:"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/cluster_guide.rst:210
+msgid "You can use these expressions:"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/cluster_guide.rst:219
+msgid "System Storage"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/cluster_guide.rst:221
+msgid ""
+"The system datastore holds files for running VMs. Each cluster can use a "
+"different system datastore, read more in :ref:`the system datastore guide "
+"<system_ds>`."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/cluster_guide.rst:224
+msgid "Managing Clusters in Sunstone"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/cluster_guide.rst:226
+msgid ""
+"The :ref:`Sunstone UI interface <sunstone>` offers an easy way to manage "
+"clusters and the resources whithin them. You will find the cluster submenu "
+"under the infraestructure menu. From there, you will be able to:"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/cluster_guide.rst:228
+msgid ""
+"Create new clusters selecting the resources you want to include in this "
+"cluster:"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/cluster_guide.rst:230
+msgid "|image0|"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/cluster_guide.rst:232
+msgid ""
+"See the list of current clusters, from which you can update the template of "
+"existing ones, or delete them."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/cluster_guide.rst:234
+msgid "|image1|"
+msgstr ""

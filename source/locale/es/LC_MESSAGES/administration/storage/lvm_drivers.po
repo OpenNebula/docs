@@ -1,0 +1,128 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/administration/storage/lvm_drivers.rst:5
+msgid "LVM Drivers"
+msgstr ""
+
+#: ../../source/administration/storage/lvm_drivers.rst:7
+msgid ""
+"The LVM datastore driver provides OpenNebula with the possibility of using "
+"LVM volumes instead of plain files to hold the Virtual Images. This reduces "
+"the overhead of having a file-system in place and thus increases "
+"performance."
+msgstr ""
+
+#: ../../source/administration/storage/lvm_drivers.rst:10
+msgid "Overview"
+msgstr ""
+
+#: ../../source/administration/storage/lvm_drivers.rst:12
+msgid "OpenNebula ships with two sets of LVM drivers:"
+msgstr ""
+
+#: ../../source/administration/storage/lvm_drivers.rst:14
+msgid ""
+"**FS LVM**, file based VM disk images with Logical Volumes (LV), using the "
+"``fs_lvm`` drivers"
+msgstr ""
+
+#: ../../source/administration/storage/lvm_drivers.rst:15
+msgid "**Block LVM**, pure Logical Volume (LV), using the ``lvm`` drivers"
+msgstr ""
+
+#: ../../source/administration/storage/lvm_drivers.rst:17
+msgid ""
+"In both cases Virtual Machine will run from Logical Volumes in the host, and"
+" they both require cLVM in order to provide live-migration."
+msgstr ""
+
+#: ../../source/administration/storage/lvm_drivers.rst:19
+msgid ""
+"However there are some differences, in particular the way non active images "
+"are stored, and the name of the Volume Group where they are executed."
+msgstr ""
+
+#: ../../source/administration/storage/lvm_drivers.rst:21
+msgid "This is a brief description of both drivers:"
+msgstr ""
+
+#: ../../source/administration/storage/lvm_drivers.rst:24
+msgid "FS LVM"
+msgstr ""
+
+#: ../../source/administration/storage/lvm_drivers.rst:26
+msgid ""
+"In a FS LVM datastore using the fs\\_lvm drivers (the now recommended LVM "
+"drivers), images are registered as files in a shared FS volume, under the "
+"usual path: ``/var/lib/one/datastores/<id>``."
+msgstr ""
+
+#: ../../source/administration/storage/lvm_drivers.rst:28
+msgid ""
+"This directory needs to be accessible in the worker nodes, using NFS or any "
+"other shared/distributed file-system."
+msgstr ""
+
+#: ../../source/administration/storage/lvm_drivers.rst:30
+msgid ""
+"When a Virtual Machine is instantiated OpenNebula will dynamically select "
+"the system datastore. Let's assume for instance the selected datastore is "
+"``104``. The virtual disk image will be copied from the stored image file "
+"under the ``datastores`` directory and dumped into a LV under the Volume "
+"Group: ``vg-one-104``. It follows that each node **must** have a cluster-"
+"aware LVM Volume Group for every possible system datastore it may execute."
+msgstr ""
+
+#: ../../source/administration/storage/lvm_drivers.rst:32
+msgid ""
+"This set of drivers brings precisely the advantage of dynamic selection of "
+"the system datastore, allowing therefore more granular control of the "
+"performance of the storage backend."
+msgstr ""
+
+#: ../../source/administration/storage/lvm_drivers.rst:34
+msgid "|image0|"
+msgstr ""
+
+#: ../../source/administration/storage/lvm_drivers.rst:36
+msgid ":ref:`Read more <fs_lvm_ds>`"
+msgstr ""
+
+#: ../../source/administration/storage/lvm_drivers.rst:39
+msgid "Block LVM"
+msgstr ""
+
+#: ../../source/administration/storage/lvm_drivers.rst:41
+msgid ""
+"The Block LVM datastore use the ``lvm`` drivers with the classical approach "
+"to using LVM in OpenNebula."
+msgstr ""
+
+#: ../../source/administration/storage/lvm_drivers.rst:43
+msgid ""
+"When a new datastore that uses this set of drivers is created, it requires "
+"the VG\\_NAME parameter, which will tie the images to that Volume Group. "
+"Images will be registered directly as Logical Volumes in that Volume Group "
+"(as opposed to being registered as files in the frontend), and when they are"
+" instantiated the new cloned Logical Volume will also be created in that "
+"very same Volume Group."
+msgstr ""
+
+#: ../../source/administration/storage/lvm_drivers.rst:45
+msgid "|image1|"
+msgstr ""
+
+#: ../../source/administration/storage/lvm_drivers.rst:47
+msgid ":ref:`Read more <lvm_ds>`"
+msgstr ""

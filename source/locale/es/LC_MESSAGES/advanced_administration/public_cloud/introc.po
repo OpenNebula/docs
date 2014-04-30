@@ -1,0 +1,89 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/advanced_administration/public_cloud/introc.rst:5
+msgid "Building a Public Cloud"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/introc.rst:8
+msgid "What is a Public Cloud?"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/introc.rst:10
+msgid "|image0|"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/introc.rst:12
+msgid ""
+"A Public Cloud is an **extension of a Private Cloud to expose RESTful Cloud "
+"interfaces**. Cloud interfaces can be added to your Private or Hybrid Cloud "
+"if you want to provide partners or external users with access to your "
+"infrastructure, or to sell your overcapacity. Obviously, a local cloud "
+"solution is the natural back-end for any public cloud."
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/introc.rst:15
+msgid "The User View"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/introc.rst:17
+msgid ""
+"The following interfaces provide a **simple and remote management of cloud "
+"(virtual) resources at a high abstraction level**:"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/introc.rst:19
+msgid ":ref:`EC2 Query subset <ec2qcg>`"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/introc.rst:20
+msgid ":ref:`OGF OCCI <occicg>`"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/introc.rst:22
+msgid ""
+"Users will be able to use commands that\\ **clone the functionality of the "
+"EC2 Cloud service**. Starting with a working installation of an OS residing "
+"on an **.img** file, with three simple steps a user can launch it in the "
+"cloud."
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/introc.rst:24
+msgid "First, they will be able to **upload** it to the cloud using:"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/introc.rst:31
+msgid ""
+"After the image is uploaded in OpenNebula repository, it needs to be "
+"**registered** to be used in the cloud:"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/introc.rst:38
+msgid ""
+"Now the user can **launch** the registered image to be run in the cloud:"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/introc.rst:47
+msgid "Additionally, the instance can be **monitored** with:"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/introc.rst:57
+msgid "How the System Operates"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/introc.rst:59
+msgid ""
+"There is **no modification in the operation of OpenNebula to expose Cloud "
+"interfaces**. Users can interface the infrastructure using any Private or "
+"Public Cloud interface."
+msgstr ""

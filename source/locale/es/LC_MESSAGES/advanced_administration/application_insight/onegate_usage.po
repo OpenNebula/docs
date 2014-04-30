@@ -1,0 +1,108 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/advanced_administration/application_insight/onegate_usage.rst:5
+msgid "Application Monitoring"
+msgstr ""
+
+#: ../../source/advanced_administration/application_insight/onegate_usage.rst:7
+msgid ""
+"OneGate allows Virtual Machine guests to push monitoring information to "
+"OpenNebula. Users and administrators can use it to gather metrics, detect "
+"problems in their applications, and trigger OneFlow elasticity rules."
+msgstr ""
+
+#: ../../source/advanced_administration/application_insight/onegate_usage.rst:10
+msgid "OneGate Workflow Explained"
+msgstr ""
+
+#: ../../source/advanced_administration/application_insight/onegate_usage.rst:12
+msgid ""
+"OneGate is a server that listens to http connections from the Virtual "
+"Machines. OpenNebula assigns an individual token to each VM instance, and "
+"Applications running inside the VM use this token to send monitoring metrics"
+" to OneGate."
+msgstr ""
+
+#: ../../source/advanced_administration/application_insight/onegate_usage.rst:14
+msgid ""
+"When OneGate checks the VM ID and the token sent, the new information is "
+"placed inside the VM's user template section. This means that the "
+"application metrics are visible from the command line, Sunstone, or the "
+"APIs."
+msgstr ""
+
+#: ../../source/advanced_administration/application_insight/onegate_usage.rst:17
+msgid "OneGate Usage"
+msgstr ""
+
+#: ../../source/advanced_administration/application_insight/onegate_usage.rst:19
+msgid ""
+"First, the cloud administrator must configure and start the :ref:`OneGate "
+"server <onegate_configure>`."
+msgstr ""
+
+#: ../../source/advanced_administration/application_insight/onegate_usage.rst:22
+msgid "Setup the VM Template"
+msgstr ""
+
+#: ../../source/advanced_administration/application_insight/onegate_usage.rst:24
+msgid "Your VM Template must set the CONTEXT/TOKEN attribute to ``yes``."
+msgstr ""
+
+#: ../../source/advanced_administration/application_insight/onegate_usage.rst:39
+msgid ""
+"When this Template is instantiated, OpenNebula will automatically add the "
+"ONEGATE\\_URL context variable, and a token.txt will be placed in the "
+"context cdrom. This token.txt file is only accessible from inside the VM."
+msgstr ""
+
+#: ../../source/advanced_administration/application_insight/onegate_usage.rst:52
+msgid "Push Metrics from the VM Guest"
+msgstr ""
+
+#: ../../source/advanced_administration/application_insight/onegate_usage.rst:54
+msgid ""
+"The contextualization cdrom should contain the ``context.sh`` and "
+"``token.txt`` files."
+msgstr ""
+
+#: ../../source/advanced_administration/application_insight/onegate_usage.rst:73
+msgid "With that data, you can perform this http request message:"
+msgstr ""
+
+#: ../../source/advanced_administration/application_insight/onegate_usage.rst:75
+msgid "**Request**: ``PUT ONEGATE\\_URL``."
+msgstr ""
+
+#: ../../source/advanced_administration/application_insight/onegate_usage.rst:76
+msgid "**Headers**: ``X-ONEGATE-TOKEN: token.txt contents``."
+msgstr ""
+
+#: ../../source/advanced_administration/application_insight/onegate_usage.rst:77
+msgid ""
+"**Body**: Monitoring values, in the usual ``ATTRIBUTE = VALUE`` OpenNebula "
+"syntax."
+msgstr ""
+
+#: ../../source/advanced_administration/application_insight/onegate_usage.rst:79
+msgid "For example, using the curl command:"
+msgstr ""
+
+#: ../../source/advanced_administration/application_insight/onegate_usage.rst:85
+msgid "The new metric is stored in the user template section of the VM:"
+msgstr ""
+
+#: ../../source/advanced_administration/application_insight/onegate_usage.rst:95
+msgid "Sample Script"
+msgstr ""

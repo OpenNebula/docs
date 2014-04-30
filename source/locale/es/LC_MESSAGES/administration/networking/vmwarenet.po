@@ -1,0 +1,185 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/administration/networking/vmwarenet.rst:5
+msgid "VMware Networking"
+msgstr ""
+
+#: ../../source/administration/networking/vmwarenet.rst:7
+msgid ""
+"This guide describes how to use the VMware network driver in OpenNebula. "
+"This driver optionally provides network isolation through VLAN tagging. The "
+"VLAN id will be the same for every interface in a given network, calculated "
+"by adding a constant to the network id. It may also be forced by specifying "
+"an VLAN\\_ID parameter in the :ref:`Virtual Network template "
+"<vnet_template>`."
+msgstr ""
+
+#: ../../source/administration/networking/vmwarenet.rst:10
+msgid "Requirements"
+msgstr ""
+
+#: ../../source/administration/networking/vmwarenet.rst:12
+msgid ""
+"In order to use the dynamic network mode for VM disks, some extra "
+"configuration steps are needed in the ESX hosts."
+msgstr ""
+
+#: ../../source/administration/networking/vmwarenet.rst:20
+msgid "Considerations & Limitations"
+msgstr ""
+
+#: ../../source/administration/networking/vmwarenet.rst:22
+msgid ""
+"It should be noted that the drivers will not create/delete/manage VMware "
+"virtual switches, these should be created before-hand by VMware "
+"administrators."
+msgstr ""
+
+#: ../../source/administration/networking/vmwarenet.rst:24
+msgid ""
+"Since the dynamic driver will however create VMware port groups, it should "
+"be noted that there's a default limit of 56 port groups per switch. "
+"Administrators should be aware of these limitations."
+msgstr ""
+
+#: ../../source/administration/networking/vmwarenet.rst:27
+msgid "Configuration"
+msgstr ""
+
+#: ../../source/administration/networking/vmwarenet.rst:29
+msgid "The vSphere hosts can work in two different networking modes, namely:"
+msgstr ""
+
+#: ../../source/administration/networking/vmwarenet.rst:31
+msgid ""
+"**pre-defined**: The VMWare administrator has set up the network for each "
+"vSphere host, defining the vSwitch'es and port groups for the VMs. This mode"
+" is associated with the ``dummy`` network driver. To configure this mode use"
+" ``dummy`` as the Virtual Network Manager driver parameter when the hosts "
+"are created:"
+msgstr ""
+
+#: ../../source/administration/networking/vmwarenet.rst:37
+msgid ""
+"**dynamic**: In this mode OpenNebula will create on-the-fly port groups "
+"(with an optional VLAN\\_ID) for your VMs. The VMWare administrator has to "
+"set up only the vSwitch to be used by OpenNebula. To enable this driver, use"
+" ``vmware`` as the VNM driver for the hosts:"
+msgstr ""
+
+#: ../../source/administration/networking/vmwarenet.rst:43
+msgid ""
+"Dynamic and pre-defined networking modes can be mixed in a datacenter. Just "
+"use the desired mode for each host."
+msgstr ""
+
+#: ../../source/administration/networking/vmwarenet.rst:46
+msgid "Usage"
+msgstr ""
+
+#: ../../source/administration/networking/vmwarenet.rst:49
+msgid "Using the Pre-defined Network Mode"
+msgstr ""
+
+#: ../../source/administration/networking/vmwarenet.rst:51
+msgid ""
+"In this mode there the VMware admin has created one or more port groups in "
+"the ESX hosts to bridge the VMs. The port group has to be specified for each"
+" Virtual Network in its template through the ``BRIDGE`` attribute "
+"(:ref:`check the Virtual Network usage guide for more info <vgg>`)."
+msgstr ""
+
+#: ../../source/administration/networking/vmwarenet.rst:53
+msgid ""
+"The NICs of the VM in this Virtual Network will be attached to the specified"
+" port group in the vSphere host. For example:"
+msgstr ""
+
+#: ../../source/administration/networking/vmwarenet.rst:66
+msgid "Using the Dynamic Network Mode"
+msgstr ""
+
+#: ../../source/administration/networking/vmwarenet.rst:68
+msgid ""
+"In this mode the driver will dynamically create a port-group with name "
+"``one-pg-<network_id>`` in the specified vSwitch of the target host. In this"
+" scenario the vSwitch is specified by the ``BRIDGE`` attribute of the "
+"Virtual Network template."
+msgstr ""
+
+#: ../../source/administration/networking/vmwarenet.rst:70
+msgid ""
+"Additionally the port groups can be tagged with a vlan\\_id. You can set "
+"VLAN=“YES” in the Virtual Network template to automatically tag the port "
+"groups in each ESX host. Optionally the tag can be specified through the "
+"VLAN\\_ID attribute. For example:"
+msgstr ""
+
+#: ../../source/administration/networking/vmwarenet.rst:84
+msgid "Tuning & Extending"
+msgstr ""
+
+#: ../../source/administration/networking/vmwarenet.rst:86
+msgid ""
+"The predefined mode (dummy driver) does not execute any operation in the "
+"pre, post and clean steps (see :ref:`for more details on these phases "
+"<nm>`)."
+msgstr ""
+
+#: ../../source/administration/networking/vmwarenet.rst:88
+msgid ""
+"The strategy of the dynamic driver is to dynamically create a VMware port "
+"group attached to a pre-existing VMware virtual switch (standard or "
+"distributed) for each Virtual Network."
+msgstr ""
+
+#: ../../source/administration/networking/vmwarenet.rst:91
+msgid "Action"
+msgstr ""
+
+#: ../../source/administration/networking/vmwarenet.rst:91
+msgid "Description"
+msgstr ""
+
+#: ../../source/administration/networking/vmwarenet.rst:93
+msgid "**Pre**"
+msgstr ""
+
+#: ../../source/administration/networking/vmwarenet.rst:93
+msgid "Creates the VMware port group with name ``one-pg-<network_id>``."
+msgstr ""
+
+#: ../../source/administration/networking/vmwarenet.rst:95
+msgid "**Post**"
+msgstr ""
+
+#: ../../source/administration/networking/vmwarenet.rst:95
+#: ../../source/administration/networking/vmwarenet.rst:97
+msgid "No operation"
+msgstr ""
+
+#: ../../source/administration/networking/vmwarenet.rst:97
+msgid "**Clean**"
+msgstr ""
+
+#: ../../source/administration/networking/vmwarenet.rst:101
+msgid "Calculating VLAN ID"
+msgstr ""
+
+#: ../../source/administration/networking/vmwarenet.rst:103
+msgid ""
+"The vlan id is calculated by adding the network id to a constant defined in "
+"``/var/lib/one/remotes/vnm/OpenNebulaNetwork.rb``. The administrator may "
+"customize that value to their own needs:"
+msgstr ""

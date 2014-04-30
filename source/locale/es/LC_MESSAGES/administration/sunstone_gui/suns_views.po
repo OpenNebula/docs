@@ -1,0 +1,374 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:5
+msgid "Sunstone Views"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:7
+msgid ""
+"Using the new OpenNebula Sunstone Views you will be able to provide a "
+"simplified UI aimed at end-users of an OpenNebula cloud. The OpenNebula "
+"Sunstone Views are fully customizable, so you can easily enable or disable "
+"specific information tabs or action buttons. You can define multiple cloud "
+"views for different user groups. Each view defines a set of UI components so"
+" each user just access and view the relevant parts of the cloud for her "
+"role."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:10
+msgid "Default Views"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:12
+msgid ""
+"OpenNebula provides a default ``admin``, ``vdcadmin``, ``user`` and "
+"``cloud`` view that implements four common views. By default, the ``admin`` "
+"view is only available to the oneadmin group. New users will be included in "
+"the users group and will use the deafault ``user`` view."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:15
+msgid "Admin View"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:17
+msgid "This view provides full control of the cloud."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:19
+msgid "|image0|"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:22
+msgid "VDCAdmin View"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:24
+msgid ""
+"This view provides control of all the resources belonging to a Virtual "
+"DataCenter (VDC), but with no access to resources outside that VDC. It is "
+"basically and Admin view restricted to the physical and virtual resources of"
+" the VDC, with the ability to create new users within the VDC."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:26
+msgid "|image1|"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:29
+msgid "User View"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:31
+msgid ""
+"In this view users will not be able to manage nor retrieve the hosts and "
+"clusters of the cloud. They will be able to see Datastores and Virtual "
+"Networks in order to use them when creating a new Image or Virtual Machine, "
+"but they will not be able to create new ones. For more information about "
+"this view, please check the ``/etc/one/sunstone-views/user.yaml`` file."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:33
+msgid "|image2|"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:36
+msgid "Cloud View"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:38
+msgid ""
+"This is a simplified view mainly intended for user that just require a "
+"portal where they can provision new virtual machines easily. They just have "
+"to select one of the available templates and the operating system that will "
+"run in this virtual machine. For more information about this view, please "
+"check the ``/etc/one/sunstone-views/cloud.yaml`` file."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:40
+msgid ""
+"In this scenario the cloud administrator must prepare a set of templates and"
+" images and make them available to the cloud users. Templates must define "
+"all the required parameters and just leave the DISK section empty, so the "
+"user can select any of the available images. New virtual machines will be "
+"created merging the information provided by the user (image, vm\\_name...) "
+"and the base template. Thereby, the user doesn't have to know any details of"
+" the infrastructure such as networking, storage. For more information on how"
+" to configure this scenario see :ref:`this guide <cloud_view>`"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:42
+msgid "|image3|"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:45
+msgid "Requirements"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:47
+msgid ""
+"OpenNebula Sunstone Views does not require any additional service to run. "
+"You may want to review the Sunstone configuration to deploy advanced setups,"
+" to scale the access to the web interface or to use SSL security."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:50
+msgid "Usage"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:52
+msgid ""
+"Sunstone users can configure several options from the configuration tab:"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:54
+msgid "Language: select the language that they want to use for the UI."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:55
+msgid ""
+"Use secure websockets for VNC: Try to connect using secure websockets when "
+"starting VNC sessions."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:56
+msgid ""
+"Views: change between the different available views for the given user/group"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:57
+msgid ""
+"Display Name: If the user wishes to customize the username that is shown in "
+"Sunstone it is possible to so by adding a special parameter named "
+"``SUNSTONE_DISPLAY_NAME`` with the desired value. It is worth noting that "
+"Cloud Administrators may want to automate this with a hook on user create in"
+" order to fetch the user name from outside OpenNebula."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:59
+msgid ""
+"This options are saved in the user template. If not defined, defaults from "
+"``sunstone-server.conf`` are taken."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:61
+msgid "|image4|"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:63
+msgid "|image5|"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:66
+msgid "Changing your View"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:68
+msgid ""
+"If more than one view are available for this user, she can easily change "
+"between them in the settings window, along with other settings (e.g. "
+"language)."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:70
+msgid ""
+"By default users in the oneadmin group have access to all the views; users "
+"in the users group can only use the ``users view``. If you want to expose "
+"the ``cloud view`` to a given group of users, you have to modify the "
+"``sunstone-views.yaml``. For more information check the `configuring access "
+"to views <#configuring-access-to-the-views>`_ section"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:73
+msgid "Internationalization and Languages"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:75
+msgid ""
+"Sunstone support multiple languages. If you want to contribute a new "
+"language, make corrections or complete a translation, you can visit our:"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:77
+msgid "`Transifex poject page <https://www.transifex.com/projects/p/one/>`__"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:79
+msgid ""
+"Translating through Transifex is easy and quick. All translations should be "
+"submitted via Transifex."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:81
+msgid ""
+"Users can update or contribute translations anytime. Prior to every release,"
+" normally after the beta release, a call for translations will be made in "
+"the user list. Then the source strings will be updated in Transifex so all "
+"the translations can be updated to the latest OpenNebula version. "
+"Translation with an acceptable level of completeness will be added to the "
+"final OpenNebula release."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:84
+msgid "Advanced Configuration"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:86
+msgid ""
+"There are three basic areas that can be tuned to adapt the default behavior "
+"to your provisioning needs:"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:88
+msgid "Define views, the set of UI components that will be enabled."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:89
+msgid "Define the users and groups that may access to each view."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:90
+msgid "Brand your OpenNebula Sunstone portal."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:93
+msgid "Defining a New OpenNebula Sunstone View or Customizing an Existing one"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:95
+msgid ""
+"View definitions are placed in the ``/etc/one/sunstone-views`` directory. "
+"Each view is defined by a configuration file, in the form:"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:101
+msgid ""
+"The name of the view is the the filename without the yaml extension. The "
+"default views are defined by the user.yaml and admin.yaml files, as shown "
+"below:"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:113
+msgid ""
+"The content of a view file specifies the tabs available in the view (note: "
+"tab is on of the main sections of the UI, those in the left-side menu). Each"
+" tab can be enabled or disabled by updating the ``enabled_tabs:`` attribute."
+" For example to disable the Clusters tab, just set ``clusters-tab`` value to"
+" ``false``:"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:138
+msgid "Each tab, can be tuned by selecting:"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:140
+msgid ""
+"The bottom tabs available (``panel_tabs:`` attribute) in the tab, these are "
+"the tabs activated when an object is selected (e.g. the information, or "
+"capacity tabs in the Virtual Machines tab)."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:141
+msgid ""
+"The columns shown in the main information table (``table_columns:`` "
+"attribute)."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:142
+msgid "The action buttons available to the view (``actions:`` attribute)."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:144
+msgid ""
+"The attributes in each of the above sections should be self-explanatory. As "
+"an example, the following section, defines a simplified datastore tab, "
+"without the info panel\\_tab and no action buttons:"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:172
+msgid ""
+"The easiest way to create a custom view is to copy the ``admin.yaml`` file "
+"to the new view then harden it as needed."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:175
+msgid "Configuring Access to the Views"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:177
+msgid ""
+"Once you have defined and customized the UI views for the different roles, "
+"you need to define which user groups or users may access to each view. This "
+"information is defined in the ``/etc/one/sunstone-views.yaml``."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:179
+msgid "The views can be defined for:"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:181
+msgid ""
+"Each user (``users:`` section), list each user and the set of views "
+"available for her."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:182
+msgid "Each group (``groups:`` section), list the set of views for the group."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:183
+msgid ""
+"The default view, if a user is not listed in the ``users:`` section, nor its"
+" group in the ``groups:`` section, the default views will be used."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:185
+msgid ""
+"For example the following enables the user (user.yaml) and the cloud "
+"(cloud.yaml) views for helen and the cloud (cloud.yaml) view for group "
+"cloud-users. If more than one view for a given user the first one is the "
+"default:"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:201
+msgid "A Different Endpoint for Each View"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:203
+msgid ""
+"OpenNebula Sunstone views can be adapted to deploy a different endpoint for "
+"each kind of user. For example if you want an endpoint for the admins and a "
+"different one for the cloud users. You will just have to deploy a new "
+"sunstone server (TODO deploy in a different machine link) and set a default "
+"view for each sunstone instance:"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:236
+msgid "Branding the Sunstone Portal"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:238
+msgid ""
+"You can easily add you logos to the login and main screens by updating the "
+"``logo:`` attribute as follows:"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:240
+msgid "The login screen is defined in the ``/etc/one/sunstone-views.yaml``."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_views.rst:241
+msgid ""
+"The logo of the main UI screen is defined for each view in the view file."
+msgstr ""

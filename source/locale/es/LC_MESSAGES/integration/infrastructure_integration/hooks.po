@@ -1,0 +1,287 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:5
+msgid "Using Hooks"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:7
+msgid ""
+"The Hook Manager present in OpenNebula enables the triggering of custom "
+"scripts tied to a change in state in a particular resource, being that a "
+"Host or a Virtual Machine. This opens a wide area of automation for system "
+"administrators to tailor their cloud infrastructures."
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:10
+msgid "Configuration"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:12
+msgid ""
+"Hook Manager configuration is set in ``/etc/one/oned.conf``. Hooks can be "
+"tied to changes in host or virtual machine states, and they can be executed "
+"locally to the OpenNebula front-end and remotely in the relevant worker "
+"node."
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:14
+msgid ""
+"In general, hook definition in ``/etc/one/oned.conf`` has two paremeters:"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:16
+msgid ""
+"**executable**: path of the hook driver executable, can be an absolute path "
+"or relative to ``/usr/lib/one/mads``"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:18
+msgid ""
+"**arguments**: for the driver executable, can be an absolute path or "
+"relative to ``/etc/one/``"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:21
+msgid "Hooks for VirtualMachines"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:23
+msgid "In the case of VirtualMachine hooks, the following can be defined:"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:25
+#: ../../source/integration/infrastructure_integration/hooks.rst:77
+#: ../../source/integration/infrastructure_integration/hooks.rst:131
+msgid "**name** : for the hook, useful to track the hook (OPTIONAL)"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:26
+#: ../../source/integration/infrastructure_integration/hooks.rst:78
+#: ../../source/integration/infrastructure_integration/hooks.rst:132
+msgid "**on** : when the hook should be executed,"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:28
+msgid "**CREATE**, when the VM is created (onevm create)"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:29
+msgid "**RUNNING**, after the VM is successfully booted"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:30
+msgid "**SHUTDOWN**, after the VM is shutdown"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:31
+msgid "**STOP**, after the VM is stopped (including VM image transfers)"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:32
+msgid "**DONE**, after the VM is destroyed or shutdown"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:33
+msgid "**UNKNOWN**, when the VM enters the unknown state"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:34
+msgid "**FAILED**, when the VM enters the failed state"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:35
+msgid ""
+"**CUSTOM**, user defined specific STATE and LCM\\_STATE combination of "
+"states to trigger the hook."
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:37
+#: ../../source/integration/infrastructure_integration/hooks.rst:84
+#: ../../source/integration/infrastructure_integration/hooks.rst:137
+msgid ""
+"**command** : path can be absolute or relative to "
+"``/var/lib/one/remotes/hooks``"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:38
+msgid ""
+"**arguments** : for the hook. You can access the following VM attributes "
+"with $"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:40
+msgid "**$ID**, the ID of the VM that triggered the hook execution"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:41
+msgid ""
+"**$TEMPLATE**, the template of the VM that triggered the hook, in xml and "
+"base64 encoded"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:42
+msgid "**$PREV\\_STATE**, the previous STATE of the Virtual Machine"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:43
+msgid "**$PREV\\_LCM\\_STATE**, the previous LCM STATE of the Virtual Machine"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:45
+#: ../../source/integration/infrastructure_integration/hooks.rst:90
+msgid "**remote** : values,"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:47
+msgid "**YES**, The hook is executed in the host where the VM was allocated"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:48
+#: ../../source/integration/infrastructure_integration/hooks.rst:93
+msgid "**NO**, The hook is executed in the OpenNebula server (default)"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:50
+msgid "The following is an example of a hook tied to the DONE state of a VM:"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:60
+msgid "Or an more advanced example:"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:73
+msgid "Hooks for Hosts"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:75
+msgid "In the case of Host hooks, the following can be defined:"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:80
+msgid "**CREATE**, when the Host is created (onehost create)"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:81
+msgid "**ERROR**, when the Host enters the error state"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:82
+msgid "**DISABLE**, when the Host is disabled"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:85
+#: ../../source/integration/infrastructure_integration/hooks.rst:138
+msgid ""
+"**arguments** : for the hook. You can use the following Host attributes with"
+" $"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:87
+#: ../../source/integration/infrastructure_integration/hooks.rst:140
+msgid "**$ID**, the ID of the Host that triggered the hook execution"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:88
+#: ../../source/integration/infrastructure_integration/hooks.rst:141
+msgid "**$TEMPLATE**, the full Host information, in xml and base64 encoded"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:92
+msgid "**YES**, The hook is executed in the host"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:95
+msgid ""
+"The following is an example of a hook tied to the ERROR state of a Host:"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:120
+msgid "Other Hooks"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:122
+msgid ""
+"Other OpenNebula entities like Virtual Networks, Users, Groups and Images "
+"can be hooked on creation and removal. These hooks are specified with the "
+"following variables in oned.conf:"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:124
+msgid "**VNET\\_HOOK**, for virtual networks"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:125
+msgid "**USER\\_HOOK**, for users"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:126
+msgid "**GROUP\\_HOOK**, for groups"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:127
+msgid "**IMAGE\\_HOOK**, for disk images."
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:129
+msgid ""
+"These hooks are always executed on the front-end and are defined by the "
+"following attributes"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:134
+msgid ""
+"**CREATE**, when the object (virtual network, user, group or image) is "
+"created"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:135
+msgid "**REMOVE**, when the object is removed from the DB"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:143
+msgid ""
+"The following is an example of a hook that sends and email to a new register"
+" user:"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:155
+msgid "Developing your Hooks"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:157
+msgid ""
+"The execution of each hook is tied to the object that trigger the event. The"
+" data of the object can be passed to the hook through the $ID and the "
+"$TEMPLATE variables:"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:159
+msgid ""
+"$TEMPLATE will give you the full output of the corresponding show command in"
+" XML and base64 encoding. This can be easily deal with in any language. If "
+"you are using bash for your scripts you may be interested in the xpath.rb "
+"util, check the following example:"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:179
+msgid ""
+"$ID you can use the ID of the object to retreive more information or to "
+"perform an action over the object. (e.g. onevm hold $ID)"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/hooks.rst:181
+msgid ""
+"Note that within the hook you can further interact with OpenNebula to "
+"retrieve more information, or perform any other action"
+msgstr ""

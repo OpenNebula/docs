@@ -1,0 +1,77 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/integration/system_interfaces/ruby.rst:5
+msgid "Ruby OpenNebula Cloud API"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/ruby.rst:7
+msgid ""
+"This page contains the OpenNebula Cloud API Specification for Ruby. It has "
+"been designed as a wrapper for the :ref:`XML-RPC methods <api>`, with some "
+"basic helpers. This means that you should be familiar with the XML-RPC API "
+"and the XML formats returned by the OpenNebula core. As stated in the :ref"
+":`XML-RPC documentation <api>`, you can download the :ref:`XML Schemas (XSD)"
+" here <api_xsd_reference>`."
+msgstr ""
+
+#: ../../source/integration/system_interfaces/ruby.rst:10
+msgid "API Documentation"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/ruby.rst:12
+msgid "You can consult the `doc online </doc/4.6/oca/ruby/>`__."
+msgstr ""
+
+#: ../../source/integration/system_interfaces/ruby.rst:15
+msgid "Usage"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/ruby.rst:17
+msgid ""
+"You can use the Ruby OCA included in the OpenNebula distribution by adding "
+"the OpenNebula Ruby library path to the search path:"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/ruby.rst:40
+msgid "Code Sample: Shutdown all the VMs of the Pool"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/ruby.rst:42
+msgid ""
+"This is a small code snippet. As you can see, the code flow would be as "
+"follows:"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/ruby.rst:44
+msgid ""
+"Create a new Client, setting up the authorization string. You only need to "
+"create it once."
+msgstr ""
+
+#: ../../source/integration/system_interfaces/ruby.rst:45
+msgid ""
+"Get the VirtualMachine pool that contains the VirtualMachines owned by this "
+"User."
+msgstr ""
+
+#: ../../source/integration/system_interfaces/ruby.rst:46
+msgid ""
+"You can perform “actions” over these objects right away, like "
+"``myVNet.delete();``. In this example all the VirtualMachines will be shut "
+"down."
+msgstr ""
+
+#: ../../source/integration/system_interfaces/ruby.rst:99
+msgid "Code Sample: Create a new VirtualNetwork"
+msgstr ""

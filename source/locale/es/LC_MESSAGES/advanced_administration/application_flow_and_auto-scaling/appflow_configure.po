@@ -1,0 +1,244 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_configure.rst:5
+msgid "OneFlow Server Configuration"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_configure.rst:7
+msgid ""
+"The OneFlow commands do not interact directly with the OpenNebula daemon, "
+"there is a server that takes the requests and manages the service (multi-"
+"tiered application) life-cycle. This guide shows how to start OneFlow, and "
+"the different options that can be configured."
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_configure.rst:10
+msgid "Installation"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_configure.rst:12
+msgid ""
+"Starting with OpenNebula 4.2, OneFlow is included in the default "
+"installation. Check the :ref:`Installation guide <ignc>` for details of what"
+" package you have to install depending on your distribution"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_configure.rst:15
+msgid "Configuration"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_configure.rst:17
+msgid ""
+"The OneFlow configuration file can be found at ``/etc/one/oneflow-"
+"server.conf``. It uses YAML syntax to define the following options:"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_configure.rst:20
+msgid "Option"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_configure.rst:20
+msgid "Description"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_configure.rst:22
+msgid "**Server Configuration**"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_configure.rst:24
+msgid ":one\\_xmlrpc"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_configure.rst:24
+msgid "OpenNebula daemon host and port"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_configure.rst:26
+msgid ":lcm\\_interval"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_configure.rst:26
+msgid "Time in seconds between Life Cycle Manager steps"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_configure.rst:28
+msgid ":host"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_configure.rst:28
+msgid "Host where OneFlow will listen"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_configure.rst:30
+msgid ":port"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_configure.rst:30
+msgid "Port where OneFlow will listen"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_configure.rst:32
+msgid "**Defaults**"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_configure.rst:34
+msgid ":default\\_cooldown"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_configure.rst:34
+msgid "Default cooldown period after a scale operation, in seconds"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_configure.rst:36
+msgid ":shutdown\\_action"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_configure.rst:36
+msgid "Default shutdown action. Values: 'shutdown', 'shutdown-hard'"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_configure.rst:38
+msgid ":action\\_number :action\\_period"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_configure.rst:38
+msgid ""
+"Default number of virtual machines (action\\_number) that will receive the "
+"given call in each interval defined by action\\_period, when an action is "
+"performed on a role."
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_configure.rst:41
+msgid ":vm\\_name\\_template"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_configure.rst:41
+msgid ""
+"Default name for the Virtual Machines created by oneflow. You can use any of"
+" the following placeholders:"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_configure.rst:43
+msgid "$SERVICE_ID"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_configure.rst:44
+msgid "$SERVICE_NAME"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_configure.rst:45
+msgid "$ROLE_NAME"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_configure.rst:46
+msgid "$VM_NUMBER"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_configure.rst:48
+msgid "**Auth**"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_configure.rst:50
+msgid ":core\\_auth"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_configure.rst:50
+msgid ""
+"Authentication driver to communicate with OpenNebula core ``cipher``: for "
+"symmetric cipher encryption of tokens ``x509``: for x509 certificate "
+"encryption of tokens For more information, visit the `OpenNebula Cloud Auth "
+"documentation </documentation:rel4.6:cloud_auth>`__"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_configure.rst:55
+msgid "**Log**"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_configure.rst:57
+msgid ":debug\\_level"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_configure.rst:57
+msgid "Log debug level. 0 = ERROR, 1 = WARNING, 2 = INFO, 3 = DEBUG"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_configure.rst:61
+msgid "This is the default file"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_configure.rst:123
+msgid "Start OneFlow"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_configure.rst:125
+msgid ""
+"To start and stop the server, use the ``oneflow-server start/stop`` command:"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_configure.rst:132
+msgid ""
+"By default, the server will only listen to requests coming from localhost. "
+"Change the ``:host`` attribute in ``/etc/one/oneflow-server.conf`` to your "
+"server public IP, or 0.0.0.0 so oneflow will listen on any interface."
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_configure.rst:134
+msgid ""
+"Inside ``/var/log/one/`` you will find new log files for the server, and "
+"individual ones for each service in ``/var/log/one/oneflow/<id>.log``"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_configure.rst:142
+msgid "Enable the Sunstone Tabs"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_configure.rst:144
+msgid ""
+"The OneFlow tabs are hidden by default. To enable them, edit '/etc/one"
+"/sunstone-views/admin.yaml' and '/etc/one/sunstone-views/user.yaml' and set "
+"oneflow tabs inside 'enabled\\_tabs' to true:"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_configure.rst:157
+msgid "Be sure to restart Sunstone for the changes to take effect."
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_configure.rst:159
+msgid ""
+"For more information on how to customize the views based on the user/group "
+"interacting with Sunstone check the :ref:`sunstone views guide <suns_views>`"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_configure.rst:162
+msgid "Advanced Setup"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_configure.rst:165
+msgid "ACL Rule"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_configure.rst:167
+msgid ""
+"By default this rule is defined in OpenNebula to enable the creation of new "
+"services by any user. If you want to limit this, you will have to delete "
+"this rule and generate new ones."
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_configure.rst:173
+msgid "If you only want a specific group to be able to use OneFlow, execute:"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_configure.rst:179
+msgid "Read more about the :ref:`ACL Rules system here <manage_acl>`."
+msgstr ""

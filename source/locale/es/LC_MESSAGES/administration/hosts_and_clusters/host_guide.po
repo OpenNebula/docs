@@ -1,0 +1,672 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:5
+msgid "Managing Hosts"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:7
+msgid ""
+"In order to use your existing physical nodes, you have to add them to the "
+"system as OpenNebula hosts. You need the following information:"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:9
+msgid "*Hostname* of the host or IP"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:10
+msgid ""
+"*Information Driver* to be used to monitor the host, e.g. ``kvm``. These "
+"should match the Virtualization Drivers installed and more info about them "
+"can be found at the :ref:`Virtualization Subsystem guide <vmmg>`."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:11
+msgid ""
+"*Virtualization Driver* to boot, stop, resume or migrate VMs in the host, "
+"e.g. ``kvm``. Information about these drivers can be found in :ref:`its "
+"guide <vmmg>`."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:12
+msgid ""
+"*Networking Driver* to isolate virtual networks and apply firewalling rules,"
+" e.g. ``802.1Q``. Information about these drivers can be found in :ref:`its "
+"guide <nm>`."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:13
+msgid ""
+"*Cluster* where to place this host. The Cluster assignment is optional, you "
+"can read more about it in the :ref:`Managing Clusters <cluster_guide>` "
+"guide."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:15
+msgid ""
+"Before adding a host check that you can ssh to it without being prompt for a"
+" password"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:18
+msgid "onehost Command"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:20
+msgid ""
+"The following sections show the basics of the ``onehost`` command with "
+"simple usage examples. A complete reference for these commands can be found "
+":ref:`here <cli>`."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:22
+msgid "This command enables Host management. Actions offered are:"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:24
+msgid "``create``: Creates a new Host"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:25
+msgid "``delete``: Deletes the given Host"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:26
+msgid "``enable``: Enables the given Host"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:27
+msgid "``disable``: Disables the given Host"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:28
+msgid "``update``: Update the template contents."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:29
+msgid "``sync``: Synchronizes probes in all the hosts."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:30
+msgid "``list``: Lists Hosts in the pool"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:31
+msgid "``show``: Shows information for the given Host"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:32
+msgid "``top``: Lists Hosts continuously"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:33
+msgid "``flush``: Disables the host and reschedules all the running VMs it."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:36
+msgid "Create and Delete"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:38
+msgid ""
+"Hosts, also known as physical nodes, are the serves managed by OpenNebula "
+"responsible for Virtual Machine execution. To use these hosts in OpenNebula "
+"you need to register them so they are monitored and well-known to the "
+"scheduler."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:40
+msgid "Creating a host:"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:47
+msgid "The parameters are:"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:49
+msgid ""
+"``--im/-i``: Information Manager driver. Valid options: ``kvm``, ``xen``, "
+"``vmware``, ``ec2``, ``ganglia``, ``dummy``."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:50
+msgid ""
+"``--vm/-v``: Virtual Machine Manager driver. Valid options: ``kvm``, "
+"``xen``, ``vmware``, ``ec2``, ``dummy``."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:51
+msgid ""
+"``--net/-n``: Network manager driver. Valid options: ``802.1Q``,\\ "
+"``dummy``,\\ ``ebtables``,\\ ``fw``,\\ ``ovswitch``,\\ ``vmware``."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:53
+msgid ""
+"To remove a host, just like with other OpenNebula commands, you can either "
+"specify it by ID or by name. The following commands are equivalent:"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:61
+msgid "Show, List and Top"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:63
+msgid ""
+"To display information about a single host the ``show`` command is used:"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:98
+msgid ""
+"We can instead display this information in XML format with the ``-x`` "
+"parameter:"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:141
+msgid "To see a list of all the hosts:"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:150
+msgid "It can also be displayed in XML format using ``-x``:"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:162
+msgid ""
+"The ``top`` command is similar to the ``list`` command, except that the "
+"output is refreshed until the user presses ``CTRL-C``."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:165
+msgid "Enable, Disable and Flush"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:167
+msgid ""
+"The ``disable`` command disables a host, which means that no further "
+"monitorization is performed on this host and no Virtual Machines are "
+"deployed in it. It won't however affect the running VMs in the host."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:173
+msgid "To re-enable the host use the ``enable`` command:"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:179
+msgid ""
+"The ``flush`` command will mark all the running VMs in the specified host as"
+" to be rescheduled, which means that they will be migrated to another server"
+" with enough capacity. At the same time, the specified host will be "
+"disabled, so no more Virtual Machines are deployed in it. This command is "
+"useful to clean a host of running VMs."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:212
+msgid "Update"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:214
+msgid ""
+"It's sometimes useful to store information in the host's template. To do so,"
+" the ``update`` command is used."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:216
+msgid ""
+"An example use case is to add the following line to the host's template:"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:222
+msgid ""
+"Which can be used at a later time for scheduling purposes by adding the "
+"following section in a VM template:"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:228
+msgid ""
+"That will restrict the Virtual Machine to be deployed in ``TYPE=production``"
+" hosts."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:233
+msgid "Sync"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:235
+msgid ""
+"When OpenNebula monitors a host, it copies a certain amount of files to "
+"``/var/tmp/one``. When the administrator changes these files, they can be "
+"copied again to the hosts with the ``sync`` command. When executed this "
+"command will copy the probes to the nodes and will return the prompt after "
+"it has finished telling which nodes it could not update."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:237
+msgid ""
+"To keep track of the probes version there's a new file in "
+"``/var/lib/one/remotes/VERSION``. By default this holds the OpenNebula "
+"version (ex. '4.4.0'). This version can be seen in he hosts with a ``onehost"
+" show <host>``:"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:249
+msgid ""
+"The command ``onehost sync`` only updates the hosts with ``VERSION`` lower "
+"than the one in the file ``/var/lib/one/remotes/VERSION``. In case you "
+"modify the probes this ``VERSION`` file should be modified with a greater "
+"value, for example ``4.4.0.01``."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:251
+msgid ""
+"In case you want to force upgrade, that is, no ``VERSION`` checking you can "
+"do that adding ``–force`` option:"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:257
+msgid ""
+"You can also select which hosts you want to upgrade naming them or selecting"
+" a cluster:"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:264
+msgid ""
+"``onehost sync`` command can alternatively use ``rsync`` as the method of "
+"upgrade. To do this you need to have installed ``rsync`` command in the "
+"frontend and the nodes. This method is faster that the standard one and also"
+" has the benefit of deleting remote files no longer existing in the "
+"frontend. To use it add the parameter ``–rsync``:"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:273
+msgid "Host Information"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:275
+msgid ""
+"Hosts include the following monitoring information. You can use this "
+"variables to create custom ``RANK`` and ``REQUIREMENTS`` expressions for "
+"scheduling. Note also that you can manually add any tag and use it also for "
+"``RANK`` and ``REQUIREMENTS``"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:278
+msgid "Key"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:278
+msgid "Description"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:280
+msgid "HYPERVISOR"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:280
+msgid ""
+"Name of the hypervisor of the host, useful for selecting the hosts with an "
+"specific technology."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:282
+msgid "ARCH"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:282
+msgid "Architecture of the host CPUs, e.g. x86_64."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:284
+msgid "MODELNAME"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:284
+msgid ""
+"Model name of the host CPU, e.g. Intel(R) Core(TM) i7-2620M CPU @ 2.70GHz."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:286
+msgid "CPUSPEED"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:286
+msgid "Speed in Mhz of the CPUs."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:288
+msgid "HOSTNAME"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:288
+msgid "As returned by the ``hostname`` command."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:290
+msgid "VERSION"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:290
+msgid ""
+"This is the version of the monitoring probes. Used to control local changes "
+"and the update process"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:292
+msgid "MAX_CPU"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:292
+msgid ""
+"Number of CPUs multiplied by 100. For example, a 16 cores machine will have "
+"a value of 1600. The value of RESERVED_CPU will be substracted from the "
+"information reported by the monitoring system.  This value is displayed as "
+"``TOTAL CPU`` by the ``onehost show`` command under ``HOST SHARE`` section."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:294
+msgid "MAX_MEM"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:294
+msgid ""
+"Maximum memory that could be used for VMs. It is advised to take out the "
+"memory used by the hypervisor using RESERVED_MEM. This values is substracted"
+" from the memory amount reported. This value is displayed as ``TOTAL MEM`` "
+"by the ``onehost show`` command under ``HOST SHARE`` section."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:296
+msgid "MAX_DISK"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:296
+msgid "Total space in megabytes in the DATASTORE LOCATION."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:298
+msgid "USED_CPU"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:298
+msgid ""
+"Percentage of used CPU multiplied by the number of cores. This value is "
+"displayed as ``USED CPU (REAL)`` by the ``onehost show`` command under "
+"``HOST SHARE`` section."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:300
+msgid "USED_MEM"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:300
+msgid ""
+"Memory used, in kilobytes. This value is displayed as ``USED MEM (REAL)`` by"
+" the ``onehost show`` command under ``HOST SHARE`` section."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:302
+msgid "USED_DISK"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:302
+msgid "Used space in megabytes in the DATASTORE LOCATION."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:304
+msgid "FREE_CPU"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:304
+msgid ""
+"Percentage of idling CPU multiplied by the number of cores. For example, if "
+"50% of the CPU is idling in a 4 core machine the value will be 200."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:306
+msgid "FREE_MEM"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:306
+msgid "Available memory for VMs at that moment, in kilobytes."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:308
+msgid "FREE_DISK"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:308
+msgid "Free space in megabytes in the DATASTORE LOCATION"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:310
+msgid "CPU_USAGE"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:310
+msgid ""
+"Total CPU allocated to VMs running on the host as requested in ``CPU`` in "
+"each VM template. This value is displayed as ``USED CPU (ALLOCATED)`` by the"
+" ``onehost show`` command under ``HOST SHARE`` section."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:312
+msgid "MEM_USAGE"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:312
+msgid ""
+"Total MEM allocated to VMs running on the host as requested in ``MEMORY`` in"
+" each VM template. This value is displayed as ``USED MEM (ALLOCATED)`` by "
+"the ``onehost show`` command under ``HOST SHARE`` section."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:314
+msgid "DISK_USAGE"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:314
+msgid ""
+"Total size allocated to disk images of VMs running on the host computed "
+"using the ``SIZE`` attribute of each image and considering the datastore "
+"characteristics."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:316
+msgid "NETRX"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:316
+msgid "Received bytes from the network"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:318
+msgid "NETTX"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:318
+msgid "Transferred bytes to the network"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:323
+msgid "Host Life-cycle"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:326
+msgid "Short state"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:326
+msgid "State"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:326
+msgid "Meaning"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:328
+msgid "``init``"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:328
+msgid "``INIT``"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:328
+msgid "Initial state for enabled hosts."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:330
+msgid "``update``"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:330
+msgid "``MONITORING_MONITORED``"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:330
+msgid "Monitoring a healthy Host."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:332
+msgid "``on``"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:332
+msgid "``MONITORED``"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:332
+msgid "The host has been successfully monitored."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:334
+msgid "``err``"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:334
+msgid "``ERROR``"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:334
+msgid ""
+"An error occurred while monitoring the host. See the Host information with "
+"``onehost show`` for an error message."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:336
+msgid "``off``"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:336
+msgid "``DISABLED``"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:336
+msgid ""
+"The host is disabled, and won't be monitored. The scheduler ignores Hosts in"
+" this state."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:338
+msgid "``retry``"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:338
+msgid "``MONITORING_ERROR``"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:338
+msgid "Monitoring a host in error state."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:342
+msgid "Scheduler Policies"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:344
+msgid ""
+"You can define global Scheduler Policies for all VMs in the sched.conf file,"
+" follow the :ref:`Scheduler Guide <schg>` for more information. "
+"Additionally, users can require their virtual machines to be deployed in a "
+"host that meets certain constrains. These constrains can be defined using "
+"any attribute reported by ``onehost show``, like the architecture (ARCH)."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:346
+msgid ""
+"The attributes and values for a host are inserted by the monitoring probes "
+"that run from time to time on the nodes to get information. The "
+"administrator can add custom attributes either :ref:`creating a probe in the"
+" host <devel-im>`, or updating the host information with: ``onehost update "
+"<HOST_ID>``. Calling this command will fire up an editor (the one specified "
+"in the ``EDITOR`` environment variable) and you will be able to add, delete "
+"or modify some of those values."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:381
+msgid ""
+"This feature is useful when we want to separate a series of hosts or marking"
+" some special features of different hosts. These values can then be used for"
+" scheduling the same as the ones added by the monitoring probes, as a "
+":ref:`placement requirement <template_placement_section>`:"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:388
+msgid "A Sample Session"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:390
+msgid ""
+"Hosts can be added to the system anytime with the ``onehost`` command. You "
+"can add the hosts to be used by OpenNebula like this:"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:397
+msgid ""
+"The status of the hosts can be checked with the ``onehost list`` command:"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:407
+msgid "And specific information about a host with ``show``:"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:446
+msgid "If you want not to use a given host you can temporarily disable it:"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:452
+msgid ""
+"A disabled host should be listed with ``STAT off`` by ``onehost list``. You "
+"can also remove a host permanently with:"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:458
+msgid ""
+"Detailed information of the ``onehost`` utility can be found :ref:`in the "
+"Command Line Reference <cli>`"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:461
+msgid "Using Sunstone to Manage Hosts"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:463
+msgid ""
+"You can also manage your hosts using :ref:`Sunstone <sunstone>`. Select the "
+"Host tab, and there, you will be able to create, enable, disable, delete and"
+" see information about your hosts in a user friendly way."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/host_guide.rst:465
+msgid "|image1|"
+msgstr ""

@@ -1,0 +1,111 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/user/virtual_machine_setup/add_content.rst:5
+msgid "Adding Content to Your Cloud"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/add_content.rst:6
+msgid ""
+"Once you have setup your OpenNebula cloud you'll have ready the "
+"infrastructure (clusters, hosts, virtual networks and datastores) but you "
+"need to add contents to it for your users. This basically means two "
+"different things:"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/add_content.rst:10
+msgid ""
+"Add base disk images with OS installations of your choice. Including any "
+"software package of interest."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/add_content.rst:11
+msgid ""
+"Define virtual servers in the form of VM Templates. We recommend that VM "
+"definitions are made by the admins as it may require fine or advanced "
+"tunning. For example you may want to define a LAMP server with the capacity "
+"to be instantiated in a remote AWS cloud."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/add_content.rst:13
+msgid ""
+"When you have basic virtual server definitions the users of your cloud can "
+"use them to easily provision VMs, adjusting basic parameters, like capacity "
+"or network connectivity."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/add_content.rst:15
+msgid ""
+"There are three basic methods to bootstratp the contents of your cloud, "
+"namely:"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/add_content.rst:17
+msgid ""
+"**External Images**. If you already have disk images in any supported format"
+" (raw, qcow2, vmdk...) you can just add them to a datastore. Alternatively "
+"you can use any virtualization tool (e.g. virt-manager) to install an image "
+"and then add it to a OpenNebula datastore."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/add_content.rst:18
+msgid ""
+"**Install within OpenNebula**. You can also use OpenNebula to prepare the "
+"images for your cloud. The process will be as follows:"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/add_content.rst:20
+msgid ""
+"Add the installation medium to a OpenNebula datastore. Usually it will be a "
+"OS installation CD-ROM/DVD."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/add_content.rst:21
+msgid ""
+"Create a DATABLOCK image of the desired capacity to install the OS. Once "
+"created change its type to OS and make it persistent."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/add_content.rst:22
+msgid ""
+"Create a new template using the previous two images. Make sure to set the "
+"OS/BOOT parameter to cdrom and enable the VNC console."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/add_content.rst:23
+msgid ""
+"Instantiate the template and install the OS and any additional software"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/add_content.rst:24
+msgid "Once you are done, shutdown the VM"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/add_content.rst:26
+msgid ""
+"**Use the OpenNebula Marketplace**. Go to the marketplace tab in Sunstone, "
+"and simply pick a disk image with the OS and Hypervisor of your choice."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/add_content.rst:28
+msgid ""
+"Once the images are ready, just create VM templates with the relevant "
+"configuration attributes, including default capacity, networking or any "
+"other preset needed by your infrastructure."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/add_content.rst:30
+msgid ""
+"You are done, make sure that your cloud users can access the images and "
+"templates you have just created."
+msgstr ""

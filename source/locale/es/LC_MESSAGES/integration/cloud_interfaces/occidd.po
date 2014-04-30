@@ -1,0 +1,778 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:5
+msgid "OpenNebula OCCI Specification"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:8
+msgid "Overview"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:10
+msgid ""
+"The OpenNebula OCCI API is a RESTful service to create, control and monitor "
+"cloud resources using an implementation of the `OGF OCCI API specification "
+"<http://www.occi-wg.org>`__ based on the `draft 0.8 "
+"<http://forge.ogf.org/sf/docman/do/downloadDocument/projects.occi-"
+"wg/docman.root.drafts/doc15731/3>`__. This implementation also includes some"
+" extensions, requested by the community, to support OpenNebula specific "
+"functionality. There are two types of resources that resemble the basic "
+"entities managed by the OpenNebula system, namely:"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:12
+msgid ""
+"**Pool Resources (PR)**: Represents a collection of elements owned by a "
+"given user. In particular five collections are defined:"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:25
+msgid ""
+"**Entry Resources (ER)**: Represents a single entry within a given "
+"collection: COMPUTE, NETWORK, STORAGE, INSTANCE\\_TYPE and USER."
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:27
+msgid ""
+"Each one of ERs in the pool are described by an element (e.g. ``COMPUTE``, "
+"``INSTANCE_TYPE``, ``NETWORK``, ``STORAGE`` or ``USER``) with one attribute:"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:29
+msgid "``href``, a URI for the ER"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:40
+msgid ""
+"A ``COMPUTE`` entry resource can be linked to one or more ``STORAGE`` or "
+"``NETWORK`` resources and one ``INSTANCE_TYPE`` and ``USER``."
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:42
+msgid "|image0|"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:45
+msgid "Authentication & Authorization"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:47
+msgid ""
+"User authentication will be `HTTP Basic access authentication "
+"<http://tools.ietf.org/html/rfc1945#section-11>`__ to comply with REST "
+"philosophy. The credentials passed should be the User name and password. If "
+"you are not using the occi tools provided by OpenNebula, the password has to"
+" be SHA1 hashed as well as it is stored in the database instead of using the"
+" plain version."
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:50
+msgid "HTTP Headers"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:52
+msgid "The following headers are compulsory:"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:54
+msgid "**Content-Length**: The size of the Entity Body in octets"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:55
+msgid "**Content-Type**: application/xml"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:57
+msgid ""
+"Uploading images needs HTTP multi part support, and also the following "
+"header"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:59
+msgid "**Content-Type**: multipart/form-data"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:62
+msgid "Return Codes"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:64
+msgid ""
+"The OpenNebula Cloud API uses the following subset of HTTP Status codes:"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:66
+msgid "**200 OK** : The request has succeeded."
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:67
+msgid ""
+"**201 Created** : Request was successful and a new resource has being "
+"created"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:68
+msgid ""
+"**202 Accepted** : The request has been accepted for processing, but the "
+"processing has not been completed"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:69
+msgid ""
+"**204 No Content** : The request has been accepted for processing, but no "
+"info in the response"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:70
+msgid "**400 Bad Request** : Malformed syntax"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:71
+msgid "**401 Unauthorized** : Bad authentication"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:72
+msgid "**403 Forbidden** : Bad authorization"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:73
+msgid "**404 Not Found** : Resource not found"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:74
+msgid ""
+"**500 Internal Server Error** : The server encountered an unexpected "
+"condition which prevented it from fulfilling the request."
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:75
+msgid "**501 Not Implemented** : The functionality requested is not supported"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:77
+msgid ""
+"The methods specified below are described without taking into account "
+"**4xx** (can be inferred from authorization information in section above) "
+"and **5xx** errors (which are method independent). HTTP verbs not defined "
+"for a particular entity will return a **501 Not Implemented**."
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:80
+msgid "Resource Representation"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:83
+#: ../../source/integration/cloud_interfaces/occidd.rst:298
+msgid "Network"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:85
+msgid ""
+"The ``NETWORK`` element defines a virtual network that interconnects those "
+"``COMPUTES`` with a network interface card attached to that network. The "
+"traffic of each network is isolated from any other network, so it "
+"constitutes a broadcasting domain."
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:87
+msgid "The following elements define a ``NETWORK``:"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:89
+msgid "``ID``, the uuid of the NETWORK"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:90
+msgid "``NAME`` describing the NETWORK"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:91
+msgid "``USER`` link to the USER owner of the NETWORK"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:92
+msgid "``GROUP`` of the NETWORK"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:93
+msgid "``DESCRIPTION`` of the NETWORK"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:94
+msgid "``ADDRESS``, of the NETWORK"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:95
+msgid "``SIZE``, of the network, defaults to C"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:97
+#: ../../source/integration/cloud_interfaces/occidd.rst:132
+msgid ""
+"The elements in bold can be provided in a POST request in order to create a "
+"new NETWORK resource based on those parameters."
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:99
+#: ../../source/integration/cloud_interfaces/occidd.rst:134
+#: ../../source/integration/cloud_interfaces/occidd.rst:184
+#: ../../source/integration/cloud_interfaces/occidd.rst:233
+#: ../../source/integration/cloud_interfaces/occidd.rst:266
+msgid "Example:"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:114
+#: ../../source/integration/cloud_interfaces/occidd.rst:315
+msgid "Storage"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:116
+msgid ""
+"The ``STORAGE`` is a resource containing an operative system or data, to be "
+"used as a virtual machine disk:"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:118
+msgid "``ID`` the uuid of the STORAGE"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:119
+msgid "``NAME`` describing the STORAGE"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:120
+msgid "``USER`` link to the USER owner of the STORAGE"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:121
+msgid "``GROUP`` of the STORAGE"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:122
+msgid "``DESCRIPTION`` of the STORAGE"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:123
+msgid "``TYPE``, type of the image"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:125
+msgid "``OS``: contains a working operative system"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:126
+msgid "``CDROM``: readonly data"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:127
+msgid ""
+"``DATABLOCK``: storage for data, which can be accessed and modified from "
+"different Computes"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:129
+msgid "``SIZE``, of the image in MBs"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:130
+msgid "``FSTYPE``, in case of DATABLOCK, the type of filesystem desired"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:149
+#: ../../source/integration/cloud_interfaces/occidd.rst:332
+msgid "Compute"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:151
+msgid ""
+"The ``COMPUTE`` element defines a virtual machine by specifying its basic "
+"configuration attributes such as ``NIC`` or ``DISK``."
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:153
+msgid "The following elements define a COMPUTE:"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:155
+msgid "``ID``, the uuid of the COMPUTE."
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:156
+msgid "``NAME``, describing the COMPUTE."
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:157
+msgid "``USER`` link to the USER owner of the COMPUTE"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:158
+msgid "``GROUP`` of the COMPUTE"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:159
+msgid "``CPU`` number of CPUs of the COMPUTE"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:160
+msgid "``MEMORY`` MBs of MEMORY of the COMPUTE"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:161
+msgid "``INSTANCE_TYPE``, ink to a INSTANCE\\_TYPE resource"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:162
+msgid "``DISK``, the block devices attached to the virtual machine."
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:164
+msgid "``STORAGE`` link to a STORAGE resource"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:165
+msgid "``TARGET``"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:166
+msgid ""
+"``SAVE_AS`` link to a STORAGE resource to save the disk image when the "
+"COMPUTE is DONE"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:167
+msgid "``TYPE``"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:169
+msgid "``NIC``, the network interfaces."
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:171
+msgid "``NETWORK`` link to a NETWORK resource"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:172
+msgid "``IP``"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:173
+msgid "``MAC``"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:175
+msgid "``CONTEXT``, key value pairs to be passed on creation to the COMPUTE."
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:177
+msgid "``KEY1`` VALUE1"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:178
+msgid "``KEY2`` VALUE2"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:180
+msgid "``STATE``, the state of the COMPUTE. This can be one of:"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:182
+msgid "|image1|"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:224
+#: ../../source/integration/cloud_interfaces/occidd.rst:349
+msgid "Instance type"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:226
+msgid "An INSTANCE\\_TYPE specifies the COMPUTE capacity values"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:228
+#: ../../source/integration/cloud_interfaces/occidd.rst:249
+msgid "``ID``, the uuid of the INSTANCE\\_TYPE."
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:229
+#: ../../source/integration/cloud_interfaces/occidd.rst:250
+msgid "``NAME``, describing the INSTANCE\\_TYPE."
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:230
+msgid "``CPU`` number of CPUs of the INSTANCE\\_TYPE"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:231
+msgid "``MEMORY`` MBs of MEMORY of the INSTANCE\\_TYPE"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:245
+#: ../../source/integration/cloud_interfaces/occidd.rst:360
+msgid "User"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:247
+msgid "A USER specifies the COMPUTE capacity values"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:251
+msgid "``GROUP``, fo the USER"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:252
+msgid "``QUOTA``,"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:254
+#: ../../source/integration/cloud_interfaces/occidd.rst:261
+msgid "``CPU``:"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:255
+#: ../../source/integration/cloud_interfaces/occidd.rst:262
+msgid "``MEMORY``:"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:256
+#: ../../source/integration/cloud_interfaces/occidd.rst:263
+msgid "``NUM_VMS``:"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:257
+#: ../../source/integration/cloud_interfaces/occidd.rst:264
+msgid "``STORAGE``"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:259
+msgid "``USAGE``,"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:289
+msgid "Request Methods"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:292
+#: ../../source/integration/cloud_interfaces/occidd.rst:301
+#: ../../source/integration/cloud_interfaces/occidd.rst:318
+#: ../../source/integration/cloud_interfaces/occidd.rst:335
+#: ../../source/integration/cloud_interfaces/occidd.rst:352
+#: ../../source/integration/cloud_interfaces/occidd.rst:363
+msgid "**Method**"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:292
+#: ../../source/integration/cloud_interfaces/occidd.rst:301
+#: ../../source/integration/cloud_interfaces/occidd.rst:318
+#: ../../source/integration/cloud_interfaces/occidd.rst:335
+#: ../../source/integration/cloud_interfaces/occidd.rst:352
+#: ../../source/integration/cloud_interfaces/occidd.rst:363
+msgid "**URL**"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:292
+#: ../../source/integration/cloud_interfaces/occidd.rst:301
+#: ../../source/integration/cloud_interfaces/occidd.rst:318
+#: ../../source/integration/cloud_interfaces/occidd.rst:335
+#: ../../source/integration/cloud_interfaces/occidd.rst:352
+#: ../../source/integration/cloud_interfaces/occidd.rst:363
+msgid "**Meaning / Entity Body**"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:292
+#: ../../source/integration/cloud_interfaces/occidd.rst:301
+#: ../../source/integration/cloud_interfaces/occidd.rst:318
+#: ../../source/integration/cloud_interfaces/occidd.rst:335
+#: ../../source/integration/cloud_interfaces/occidd.rst:352
+#: ../../source/integration/cloud_interfaces/occidd.rst:363
+msgid "**Response**"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:294
+#: ../../source/integration/cloud_interfaces/occidd.rst:303
+#: ../../source/integration/cloud_interfaces/occidd.rst:307
+#: ../../source/integration/cloud_interfaces/occidd.rst:320
+#: ../../source/integration/cloud_interfaces/occidd.rst:324
+#: ../../source/integration/cloud_interfaces/occidd.rst:337
+#: ../../source/integration/cloud_interfaces/occidd.rst:341
+#: ../../source/integration/cloud_interfaces/occidd.rst:354
+#: ../../source/integration/cloud_interfaces/occidd.rst:356
+#: ../../source/integration/cloud_interfaces/occidd.rst:365
+#: ../../source/integration/cloud_interfaces/occidd.rst:367
+msgid "**GET**"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:294
+msgid "``/``"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:294
+msgid "**List** the available collections in the cloud."
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:294
+msgid ""
+"**200 OK**: An XML representation of the the available collections in the "
+"http body"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:303
+#: ../../source/integration/cloud_interfaces/occidd.rst:305
+msgid "``/network``"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:303
+msgid ""
+"**List** the contents of the NETWORK collection. Optionally a verbose param "
+"(``/network?verbose=true``) can be provided to retrieve an extended version "
+"of the collection"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:303
+#: ../../source/integration/cloud_interfaces/occidd.rst:320
+#: ../../source/integration/cloud_interfaces/occidd.rst:354
+#: ../../source/integration/cloud_interfaces/occidd.rst:365
+msgid "**200 OK**: An XML representation of the collection in the http body"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:305
+#: ../../source/integration/cloud_interfaces/occidd.rst:322
+#: ../../source/integration/cloud_interfaces/occidd.rst:339
+msgid "**POST**"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:305
+msgid ""
+"**Create** a new NETWORK. An XML representation of a NETWORK without the ID "
+"element should be passed in the http body"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:305
+#: ../../source/integration/cloud_interfaces/occidd.rst:322
+msgid "**201 Created**: An XML representation of the new NETWORK with the ID"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:307
+#: ../../source/integration/cloud_interfaces/occidd.rst:309
+#: ../../source/integration/cloud_interfaces/occidd.rst:311
+msgid "``/network/<id>``"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:307
+msgid "**Show** the NETWORK resource identified by <id>"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:307
+msgid "**200 OK** : An XML representation of the NETWORK in the http body"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:309
+#: ../../source/integration/cloud_interfaces/occidd.rst:326
+#: ../../source/integration/cloud_interfaces/occidd.rst:343
+msgid "**PUT**"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:309
+msgid "**Update** the NETWORK resource identified by <id>"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:309
+#: ../../source/integration/cloud_interfaces/occidd.rst:326
+#: ../../source/integration/cloud_interfaces/occidd.rst:343
+msgid ""
+"**202 Accepted** : The update request is being process, polling required to "
+"confirm update"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:311
+#: ../../source/integration/cloud_interfaces/occidd.rst:328
+#: ../../source/integration/cloud_interfaces/occidd.rst:345
+msgid "**DELETE**"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:311
+msgid "**Delete** the NETWORK resource identified by <id>"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:311
+#: ../../source/integration/cloud_interfaces/occidd.rst:328
+msgid "**204 No Content**:"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:320
+#: ../../source/integration/cloud_interfaces/occidd.rst:322
+msgid "``/storage``"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:320
+msgid ""
+"**List** the contents of the STORAGE collection. Optionally a verbose param "
+"(``/storage?verbose=true``) can be provided to retrieve an extended version "
+"of the collection"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:322
+msgid ""
+"**Create** an new STORAGE. An XML representation of a STORAGE without the ID"
+" element should be passed in the http body"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:324
+#: ../../source/integration/cloud_interfaces/occidd.rst:326
+#: ../../source/integration/cloud_interfaces/occidd.rst:328
+msgid "``/storage/<id>``"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:324
+msgid "**Show** the STORAGE resource identified by <id>"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:324
+msgid "**200 OK** : An XML representation of the STORAGE in the http body"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:326
+msgid "**Update** the STORAGE resource identified by <id>"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:328
+msgid "**Delete** the STORAGE resource identified by <id>"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:337
+#: ../../source/integration/cloud_interfaces/occidd.rst:339
+msgid "``/compute``"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:337
+msgid ""
+"**List** the contents of the COMPUTE collection. Optionally a verbose param "
+"(``/compute?verbose=true``) can be provided to retrieve an extended version "
+"of the collection"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:337
+msgid "**200 OK**: An XML representation of the pool in the http body"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:339
+msgid ""
+"**Create** a new COMPUTE. An XML representation of a COMPUTE without the ID "
+"element should be passed in the http body"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:339
+msgid "**201 Created**: An XML representation of the new COMPUTE with the ID"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:341
+#: ../../source/integration/cloud_interfaces/occidd.rst:343
+#: ../../source/integration/cloud_interfaces/occidd.rst:345
+msgid "``/compute/<id>``"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:341
+msgid "**Show** the COMPUTE resource identified by <id>"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:341
+msgid "**200 OK** : An XML representation of the network in the http body"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:343
+msgid "**Update** the COMMPUTE resource identified by <id>"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:345
+msgid "**Delete** the COMPUTE resource identified by <id>"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:345
+msgid "**204 No Content**: The Network has been successfully deleted"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:354
+msgid "``/instance_type``"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:354
+msgid ""
+"**List** the contents of the INSTANCE\\_TYPE collection. Optionally a "
+"verbose param (``/instance_type?verbose=true``) can be provided to retrieve "
+"an extended version of the collection"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:356
+msgid "``/instance_type/<id>``"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:356
+msgid "**Show** the INSTANCE\\_TYPE resource identified by <id>"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:356
+msgid ""
+"**200 OK** : An XML representation of the INSTANCE\\_TYPE in the http body"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:365
+msgid "``/user``"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:365
+msgid ""
+"**List** the contents of the USER collection. Optionally a verbose param "
+"(``/user?verbose=true``) can be provided to retrieve an extended version of "
+"the collection"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:367
+msgid "``/user/<id>``"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:367
+msgid "**Show** the USER resource identified by <id>"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:367
+msgid "**200 OK** : An XML representation of the USER in the http body"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:371
+msgid "Implementation Notes"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:374
+msgid "Authentication"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:376
+msgid ""
+"It is recommended that the server-client communication is performed over "
+"HTTPS to avoid sending user authentication information in plain text."
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:379
+msgid "Notifications"
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:381
+msgid ""
+"HTTP protocol does not provide means for notification, so this API relies on"
+" asynchronous polling to find whether a RESOURCE update is successful or "
+"not."
+msgstr ""
+
+#: ../../source/integration/cloud_interfaces/occidd.rst:384
+msgid "Examples"
+msgstr ""

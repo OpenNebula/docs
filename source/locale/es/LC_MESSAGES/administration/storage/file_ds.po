@@ -1,0 +1,167 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/administration/storage/file_ds.rst:5
+msgid "The Kernels & Files Datastore"
+msgstr ""
+
+#: ../../source/administration/storage/file_ds.rst:7
+msgid ""
+"The Files Datastore lets you store plain files to be used as VM kernels, "
+"ramdisks or context files. The Files Datastore does not expose any special "
+"storage mechanism but a simple and secure way to use files within VM "
+"templates. There is a Files Datastore (datastore ID: 2) ready to be used in "
+"OpenNebula."
+msgstr ""
+
+#: ../../source/administration/storage/file_ds.rst:10
+msgid "Requirements"
+msgstr ""
+
+#: ../../source/administration/storage/file_ds.rst:12
+msgid ""
+"There are no special requirements or software dependencies to use the Files "
+"Datastore. The recommended drivers make use of standard filesystem utils "
+"(cp, ln, mv, tar, mkfs...) that should be installed in your system."
+msgstr ""
+
+#: ../../source/administration/storage/file_ds.rst:15
+msgid "Configuration"
+msgstr ""
+
+#: ../../source/administration/storage/file_ds.rst:17
+msgid ""
+"Most of the configuration considerations used for disk images datastores do "
+"apply to the Files Datastore (e.g. driver setup, cluster assignment, "
+"datastore management...). However, given the special nature of the Files "
+"Datastore most of these attributes can be fixed as summarized in the "
+"following table:"
+msgstr ""
+
+#: ../../source/administration/storage/file_ds.rst:20
+msgid "Attribute"
+msgstr ""
+
+#: ../../source/administration/storage/file_ds.rst:20
+msgid "Description"
+msgstr ""
+
+#: ../../source/administration/storage/file_ds.rst:22
+msgid "``NAME``"
+msgstr ""
+
+#: ../../source/administration/storage/file_ds.rst:22
+msgid "The name of the datastore"
+msgstr ""
+
+#: ../../source/administration/storage/file_ds.rst:24
+msgid "``TYPE``"
+msgstr ""
+
+#: ../../source/administration/storage/file_ds.rst:24
+msgid "Use ``FILE_DS`` to setup a Files datastore"
+msgstr ""
+
+#: ../../source/administration/storage/file_ds.rst:26
+msgid "``DS_MAD``"
+msgstr ""
+
+#: ../../source/administration/storage/file_ds.rst:26
+msgid "The DS type, use ``fs`` to use the file-based drivers"
+msgstr ""
+
+#: ../../source/administration/storage/file_ds.rst:28
+msgid "``TM_MAD``"
+msgstr ""
+
+#: ../../source/administration/storage/file_ds.rst:28
+msgid "Transfer drivers for the datastore, use ``ssh`` to transfer the files"
+msgstr ""
+
+#: ../../source/administration/storage/file_ds.rst:30
+msgid "``RESTRICTED_DIRS``"
+msgstr ""
+
+#: ../../source/administration/storage/file_ds.rst:30
+msgid ""
+"Paths that can not be used to register images. A space separated list of "
+"paths."
+msgstr ""
+
+#: ../../source/administration/storage/file_ds.rst:32
+msgid "``SAFE_DIRS``"
+msgstr ""
+
+#: ../../source/administration/storage/file_ds.rst:32
+msgid ""
+"If you need to un-block a directory under one of the RESTRICTED\\_DIRS. A "
+"space separated list of paths."
+msgstr ""
+
+#: ../../source/administration/storage/file_ds.rst:34
+msgid "``LIMIT_TRANSFER_BW``"
+msgstr ""
+
+#: ../../source/administration/storage/file_ds.rst:34
+msgid ""
+"Specify the maximum transfer rate in bytes/second when downloading images "
+"from a http/https URL. Suffixes K, M or G can be used."
+msgstr ""
+
+#: ../../source/administration/storage/file_ds.rst:36
+msgid "``DATASTORE_CAPACITY_CHECK``"
+msgstr ""
+
+#: ../../source/administration/storage/file_ds.rst:36
+msgid ""
+"If “yes”, the available capacity of the datastore is checked before creating"
+" a new image"
+msgstr ""
+
+#: ../../source/administration/storage/file_ds.rst:39
+msgid ""
+"This will prevent users registering important files as VM images and "
+"accessing them thourgh their VMs. OpenNebula will automatically add its "
+"configuration directories: /var/lib/one, /etc/one and oneadmin's home. If "
+"users try to register an image from a restricted directory, they will get "
+"the following error message: “Not allowed to copy image file”."
+msgstr ""
+
+#: ../../source/administration/storage/file_ds.rst:41
+msgid "For example, the following illustrates the creation of File Datastore."
+msgstr ""
+
+#: ../../source/administration/storage/file_ds.rst:62
+msgid ""
+"The DS and TM MAD can be changed later using the ``onedatastore update`` "
+"command. You can check more details of the datastore by issuing the "
+"``onedatastore show`` command."
+msgstr ""
+
+#: ../../source/administration/storage/file_ds.rst:65
+msgid "Host Configuration"
+msgstr ""
+
+#: ../../source/administration/storage/file_ds.rst:67
+msgid ""
+"The recommended ``ssh`` driver for the File Datastore does not need any "
+"special configuration for the hosts. Just make sure that there is enough "
+"space under ``$DATASTORE_LOCATION`` to hold the VM files in the front-end "
+"and hosts."
+msgstr ""
+
+#: ../../source/administration/storage/file_ds.rst:69
+msgid ""
+"For more details :ref:`refer to the Filesystem Datastore guide <fs_ds>`, as "
+"the same configuration guidelines applies."
+msgstr ""

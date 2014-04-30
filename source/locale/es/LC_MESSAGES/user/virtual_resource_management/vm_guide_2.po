@@ -1,0 +1,1015 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:5
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:59
+msgid "Managing Virtual Machines"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:7
+msgid ""
+"This guide follows the :ref:`Creating Virtual Machines guide <vm_guide>`. "
+"Once a Template is instantiated to a Virtual Machine, there are a number of "
+"operations that can be performed using the ``onevm`` command."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:10
+msgid "Virtual Machine Life-cycle"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:12
+msgid ""
+"The life-cycle of a Virtual Machine within OpenNebula includes the following"
+" stages:"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:14
+msgid ""
+"Note that this is a simplified version. If you are a developer you may want "
+"to take a look at the complete diagram referenced in the :ref:`xml-rpc api "
+"page <api>`):"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:17
+msgid "Short state"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:17
+msgid "State"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:17
+msgid "Meaning"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:19
+msgid "``pend``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:19
+msgid "``Pending``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:19
+msgid ""
+"By default a VM starts in the pending state, waiting for a resource to run "
+"on. It will stay in this state until the scheduler decides to deploy it, or "
+"the user deploys it using the ``onevm deploy`` command."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:21
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:430
+msgid "``hold``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:21
+msgid "``Hold``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:21
+msgid ""
+"The owner has held the VM and it will not be scheduled until it is released."
+" It can be, however, deployed manually."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:23
+msgid "``prol``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:23
+msgid "``Prolog``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:23
+msgid ""
+"The system is transferring the VM files (disk images and the recovery file) "
+"to the host in which the virtual machine will be running."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:25
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:435
+msgid "``boot``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:25
+msgid "``Boot``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:25
+msgid "OpenNebula is waiting for the hypervisor to create the VM."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:27
+msgid "``runn``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:27
+msgid "``Running``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:27
+msgid ""
+"The VM is running (note that this stage includes the internal virtualized "
+"machine booting and shutting down phases). In this state, the virtualization"
+" driver will periodically monitor it."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:29
+msgid "``migr``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:29
+msgid "``Migrate``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:29
+msgid ""
+"The VM is migrating from one resource to another. This can be a life "
+"migration or cold migration (the VM is saved and VM files are transferred to"
+" the new resource)."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:31
+msgid "``hotp``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:31
+msgid "``Hotplug``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:31
+msgid "A disk attach/detach, nic attach/detach operation is in process."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:33
+msgid "``snap``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:33
+msgid "``Snapshot``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:33
+msgid "A system snapshot is being taken."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:35
+msgid "``save``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:35
+msgid "``Save``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:35
+msgid ""
+"The system is saving the VM files after a migration, stop or suspend "
+"operation."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:37
+msgid "``epil``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:37
+msgid "``Epilog``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:37
+msgid ""
+"In this phase the system cleans up the Host used to virtualize the VM, and "
+"additionally disk images to be saved are copied back to the system "
+"datastore."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:39
+msgid "``shut``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:39
+msgid "``Shutdown``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:39
+msgid ""
+"OpenNebula has sent the VM the shutdown ACPI signal, and is waiting for it "
+"to complete the shutdown process. If after a timeout period the VM does not "
+"disappear, OpenNebula will assume that the guest OS ignored the ACPI signal "
+"and the VM state will be changed to **running**, instead of **done**."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:41
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:432
+msgid "``stop``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:41
+msgid "``Stopped``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:41
+msgid ""
+"The VM is stopped. VM state has been saved and it has been transferred back "
+"along with the disk images to the system datastore."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:43
+msgid "``susp``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:43
+msgid "``Suspended``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:43
+msgid ""
+"Same as stopped, but the files are left in the host to later resume the VM "
+"there (i.e. there is no need to re-schedule the VM)."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:45
+msgid "``poff``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:45
+msgid "``PowerOff``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:45
+msgid ""
+"Same as suspended, but no checkpoint file is generated. Note that the files "
+"are left in the host to later boot the VM there."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:47
+msgid "``unde``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:47
+msgid "``Undeployed``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:47
+msgid ""
+"The VM is shut down. The VM disks are transfered to the system datastore. "
+"The VM can be resumed later."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:49
+msgid "``fail``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:49
+msgid "``Failed``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:49
+msgid "The VM failed."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:51
+msgid "``unkn``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:51
+msgid "``Unknown``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:51
+msgid "The VM couldn't be reached, it is in an unknown state."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:53
+msgid "``done``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:53
+msgid "``Done``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:53
+msgid ""
+"The VM is done. VMs in this state won't be shown with ``onevm list`` but are"
+" kept in the database for accounting purposes. You can still get their "
+"information with the ``onevm show`` command."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:56
+msgid "|Virtual Machine States|"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:61
+msgid ""
+"The following sections show the basics of the ``onevm`` command with simple "
+"usage examples. A complete reference for these commands can be found "
+":ref:`here <cli>`."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:64
+msgid "Create and List Existing VMs"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:66
+msgid ""
+"Read the :ref:`Creating Virtual Machines guide <vm_guide>` for more "
+"information on how to manage and instantiate VM Templates."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:68
+msgid ""
+"Read the complete reference for :ref:`Virtual Machine templates <template>`."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:70
+msgid ""
+"Assuming we have a VM Template registered called *vm-example* with ID 6, "
+"then we can instantiate the VM issuing a:"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:81
+msgid ""
+"afterwards, the VM can be listed with the ``onevm list`` command. You can "
+"also use the ``onevm top`` command to list VMs continuously."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:89
+msgid ""
+"After a Scheduling cycle, the VM will be automatically deployed. But the "
+"deployment can also be forced by oneadmin using ``onevm deploy``:"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:103
+msgid "and details about it can be obtained with ``show``:"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:138
+msgid "Terminating VM Instances..."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:140
+msgid ""
+"You can terminate a running instance with the following operations (either "
+"as ``onevm`` commands or through Sunstone):"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:142
+msgid ""
+"``shutdown``: Gracefully shuts down a running VM, sending the ACPI signal. "
+"Once the VM is shutdown the host is cleaned, and persistent and deferred-"
+"snapshot disk will be moved to the associated datastore. If after a given "
+"time the VM is still running (e.g. guest ignoring ACPI signals), OpenNebula "
+"will returned the VM to the ``RUNNING`` state."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:144
+msgid ""
+"``shutdown --hard``: Same as above but the VM is immediately destroyed. Use "
+"this action instead of ``shutdown`` when the VM doesn't have ACPI support."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:146
+msgid "If you need to terminate an instance in any state use:"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:148
+msgid ""
+"``delete``: The VM is immediately destroyed no matter its state. Hosts are "
+"cleaned as needed but no images are moved to the repository, leaving then in"
+" error. Think of delete as kill -9 for a process, an so it should be only "
+"used when the VM is not responding to other actions."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:150
+msgid "All the above operations free the resources used by the VM"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:153
+msgid "Pausing VM Instances..."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:155
+msgid ""
+"There are two different ways to temporarily stop the execution of a VM: "
+"short and long term pauses. A **short term** pause keeps all the VM "
+"resources allocated to the hosts so its resume its operation in the same "
+"hosts quickly. Use the following ``onevm`` commands or Sunstone actions:"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:157
+msgid ""
+"``suspend``: the VM state is saved in the running Host. When a suspended VM "
+"is resumed, it is immediately deployed in the same Host by restoring its "
+"saved state."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:159
+msgid ""
+"``poweroff``: Gracefully powers off a running VM by sending the ACPI signal."
+" It is similar to suspend but without saving the VM state. When the VM is "
+"resumed it will boot immediately in the same Host."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:161
+msgid ""
+"``poweroff --hard``: Same as above but the VM is immediately powered off. "
+"Use this action when the VM doesn't have ACPI support."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:163
+msgid ""
+"You can also plan a **long term pause**. The Host resources used by the VM "
+"are freed and the Host is cleaned. Any needed disk is saved in the system "
+"datastore. The following actions are useful if you want to preserve network "
+"and storage allocations (e.g. IPs, persistent disk images):"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:165
+msgid ""
+"``undeploy``: Gracefully shuts down a running VM, sending the ACPI signal. "
+"The Virtual Machine disks are transferred back to the system datastore. When"
+" an undeployed VM is resumed, it is be moved to the pending state, and the "
+"scheduler will choose where to re-deploy it."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:167
+msgid ""
+"``undeploy --hard``: Same as above but the running VM is immediately "
+"destroyed."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:169
+msgid ""
+"``stop``: Same as ``undeploy`` but also the VM state is saved to later "
+"resume it."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:171
+msgid "When the VM is successfully paused you can resume its execution with:"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:173
+msgid ""
+"``resume``: Resumes the execution of VMs in the stopped, suspended, "
+"undeployed and poweroff states."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:176
+msgid "Resetting VM Instances..."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:178
+msgid ""
+"There are two ways of resetting a VM: in-host and full reset. The first one "
+"does not frees any resources and reset a RUNNING VM instance at the "
+"hypervisor level:"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:180
+msgid "``reboot``: Gracefully reboots a running VM, sending the ACPI signal."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:182
+msgid "``reboot --hard``: Performs a 'hard' reboot."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:184
+msgid "A VM instance can be reset in any state with:"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:186
+msgid ""
+"``delete --recreate``: Deletes the VM as described above, but instead of "
+"disposing it the VM is moving again to PENDING state. As the delete "
+"operation this action should be used when the VM is not responding to other "
+"actions. Try undeploy or undeploy --hard first."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:189
+msgid "Delaying VM Instances..."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:191
+msgid ""
+"The deployment of a PENDING VM (e.g. after creating or resuming it) can be "
+"delayed with:"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:193
+msgid ""
+"``hold``: Sets the VM to hold state. The scheduler will not deploy VMs in "
+"the ``hold`` state. Please note that VMs can be created directly on hold, "
+"using 'onetemplate instantiate --hold' or 'onevm create --hold'."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:195
+msgid "Then you can resume it with:"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:197
+msgid ""
+"``release``: Releases a VM from hold state, setting it to pending. Note that"
+" you can automatically release a VM by scheduling the operation as explained"
+" below"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:200
+msgid "Life-Cycle Operations for Administrators"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:202
+msgid ""
+"There are some ``onevm`` commands operations meant for the cloud "
+"administrators:"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:204
+msgid "**Scheduling:**"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:206
+msgid ""
+"``resched``: Sets the reschedule flag for the VM. The Scheduler will migrate"
+" (or migrate --live, depending on the :ref:`Scheduler configuration "
+"<schg_configuration>`) the VM in the next monitorization cycle to a Host "
+"that better matches the requirements and rank restrictions. Read more in the"
+" :ref:`Scheduler documentation <schg_re-scheduling_virtual_machines>`."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:207
+msgid ""
+"``unresched``: Clears the reschedule flag for the VM, canceling the "
+"rescheduling operation."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:209
+msgid "**Deployment:**"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:211
+msgid "``deploy``: Starts an existing VM in a specific Host."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:212
+msgid ""
+"``migrate --live``: The Virtual Machine is transferred between Hosts with no"
+" noticeable downtime. This action requires a :ref:`shared file system "
+"storage <sm>`."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:213
+msgid "``migrate``: The VM gets stopped and resumed in the target host."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:215
+msgid ""
+"Note: By default, the above operations do not check the target host "
+"capacity. You can use the -e (-enforce) option to be sure that the host "
+"capacity is not overcommitted."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:217
+msgid "**Troubleshooting:**"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:219
+msgid ""
+"``boot``: Forces the hypervisor boot action of a VM stuck in UNKNOWN or BOOT"
+" state."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:220
+msgid ""
+"``recover``: If the VM is stuck in any other state (or the boot operation "
+"does not work), you can recover the VM by simulating the failure or success "
+"of the missing action. You **have to check the VM state on the host** to "
+"decide if the missing action was successful or not."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:223
+msgid "Disk Snapshoting"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:225
+msgid ""
+"You can take a snapshot of a VM disk to preserve or backup its state at a "
+"given point of time. There are two types of disk snapshots in OpenNebula:"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:227
+msgid ""
+"**Deferred snapshots**, changes to a disk will be saved as a new Image in "
+"the associated datastore when the VM is shutdown. The new image will be "
+"locked till the VM is properly shutdown and the transferred from the host to"
+" the datastore."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:228
+msgid ""
+"**Live snapshots**, just as the deferred snapshots, but the disk is copied "
+"to the datastore the moment the operation is triggered. Therefore, you must "
+"guarantee that the disk is in a consistent state during the copy operation "
+"(e.g. by umounting the disk from the VM). While the disk is copied to the "
+"datastore the VM will be in the HOTPLUG state."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:230
+msgid ""
+"The ``onevm disk-snapshot`` command can be run while the VM is RUNNING, "
+"POWEROFF or SUSPENDED. See the :ref:`Image guide <img_guide_save_changes>` "
+"for specific examples of the disk-snapshot command."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:233
+msgid "Disk Hotpluging"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:235
+msgid ""
+"New disks can be hot-plugged to running VMs with the ``onevm`` ``disk-"
+"attach`` and ``disk-detach`` commands. For example, to attach to a running "
+"VM the Image named **storage**:"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:241
+msgid ""
+"To detach a disk from a running VM, find the disk ID of the Image you want "
+"to detach using the ``onevm show`` command, and then simply execute ``onevm "
+"detach vm_id disk_id``:"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:255
+msgid "|image2|"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:260
+msgid "NIC Hotpluging"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:262
+msgid ""
+"You can also hotplug network interfaces to a RUNNING VM. Simply, specify the"
+" network where the new interface should be attach to, for example:"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:291
+msgid "After the operation you should see two NICs 0 and 1:"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:313
+msgid ""
+"Also, you can detach a NIC by its ID. If you want to detach interface 1 "
+"(MAC=02:00:ac:10:00:ca), just:"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:319
+msgid "|image3|"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:324
+msgid "Snapshotting"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:326
+msgid ""
+"You can create, delete and restore snapshots for running VMs. A snapshot "
+"will contain the current disks and memory state."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:328
+msgid ""
+"The snapshots will only be available during the ``RUNNING`` state. If the "
+"state changes (stop, migrate, etc...) the snapshots **will** be lost."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:343
+msgid "Please take into consideration the following limitations:"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:345
+msgid ""
+"**The snapshots are lost if any life-cycle operation is performed, e.g. a "
+"suspend, migrate, delete request.**"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:346
+msgid ""
+"KVM: Snapshots are only available if all the VM disks use the :ref:`qcow2 "
+"driver <img_template>`."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:347
+msgid ""
+"VMware: the snapshots will persist in the hypervisor after any life-cycle "
+"operation is performed, but they will not be available to be used with "
+"OpenNebula."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:348
+msgid "Xen: does not support snapshotting"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:350
+msgid "|image4|"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:355
+msgid "Resizing a VM"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:357
+msgid ""
+"You may re-size the capacity assigned to a Virtual Machine in terms of the "
+"virtual CPUs, memory and CPU allocated. VM re-sizing can be done when the VM"
+" is not ACTIVE, an so in any of the following states: PENDING, HOLD, FAILED "
+"and specially in POWEROFF."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:359
+msgid ""
+"If you have created a Virtual Machine and you need more resources, the "
+"following procedure is recommended:"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:361
+msgid ""
+"Perform any operation needed to prepare your Virtual Machine for shutting "
+"down, e.g. you may want to manually stop some services..."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:362
+msgid "Poweroff the Virtual Machine"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:363
+msgid "Re-size the VM"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:364
+msgid "Resume the Virtual Machine using the new capacity"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:366
+msgid ""
+"Note that using this procedure the VM will preserve any resource assigned by"
+" OpenNebula (e.g. IP leases)"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:368
+msgid ""
+"The following is an example of the previous procedure from the command line "
+"(the Sunstone equivalent is straight forward):"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:376
+msgid "From Sunstone:"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:378
+msgid "|image5|"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:383
+msgid "Scheduling Actions"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:385
+msgid ""
+"Most of the onevm commands accept the '--schedule' option, allowing users to"
+" delay the actions until the given date and time."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:387
+msgid "Here is an usage example:"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:409
+msgid ""
+"These actions can be deleted or edited using the 'onevm update' command. The"
+" time attributes use Unix time internally."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:424
+msgid "These are the commands that can be scheduled:"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:426
+msgid "``shutdown``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:427
+msgid "``shutdown --hard``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:428
+msgid "``undeploy``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:429
+msgid "``undeploy --hard``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:431
+msgid "``release``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:433
+msgid "``suspend``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:434
+msgid "``resume``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:436
+msgid "``delete``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:437
+msgid "``delete-recreate``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:438
+msgid "``reboot``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:439
+msgid "``reboot --hard``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:440
+msgid "``poweroff``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:441
+msgid "``poweroff --hard``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:442
+msgid "``snapshot-create``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:447
+msgid "User Defined Data"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:449
+msgid ""
+"Custom tags can be associated to a VM to store metadata related to this "
+"specific VM instance. To add custom attributes simply use the ``onevm "
+"update`` command."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:476
+msgid "Manage VM Permissions"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:478
+msgid ""
+"OpenNebula comes with an advanced :ref:`ACL rules permission mechanism "
+"<manage_acl>` intended for administrators, but each VM object has also "
+":ref:`implicit permissions <chmod>` that can be managed by the VM owner. To "
+"share a VM instance with other users, to allow them to list and show its "
+"information, use the ``onevm chmod`` command:"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:498
+msgid ""
+"Administrators can also change the VM's group and owner with the ``chgrp`` "
+"and ``chown`` commands."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:501
+msgid "Sunstone"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:503
+msgid ""
+"You can manage your virtual machines using the :ref:`onevm command <cli>` or"
+" :ref:`Sunstone <sunstone>`."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:505
+msgid ""
+"In Sunstone, you can easily instantiate currently defined :ref:`templates "
+"<vm_guide>` by clicking ``New`` on the Virtual Machines tab and manage the "
+"life cycle of the new instances"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:507
+msgid "|image6|"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:510
+msgid "Using the noVNC Console"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:512
+msgid "In order to use this feature, make sure that:"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:514
+msgid ""
+"The VM template has a ``GRAPHICS`` section defined, that the ``TYPE`` "
+"attribute in it is set to ``VNC``."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:516
+msgid ""
+"The specified VNC port on the host on which the VM is deployed is accessible"
+" from the Sunstone server host."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:518
+msgid "The VM is in ``running`` state."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:520
+msgid ""
+"If the VM supports VNC and is ``running``, then the VNC icon on the Virtual "
+"Machines view should be visible and clickable:"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:522
+msgid "|image7|"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:524
+msgid "When clicking the VNC icon, the process of starting a session begins:"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:526
+msgid ""
+"A request is made and if a VNC session is possible, Sunstone server will add"
+" the VM Host to the list of allowed vnc session targets and create a random "
+"token associated to it."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:528
+msgid ""
+"The server responds with the session token, then a ``noVNC`` dialog pops up."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:530
+msgid ""
+"The VNC console embedded in this dialog will try to connect to the proxy "
+"either using websockets (default) or emulating them using ``Flash``. Only "
+"connections providing the right token will be successful. Websockets are "
+"supported from Firefox 4.0 (manual activation required in this version) and "
+"Chrome. The token expires and cannot be reused."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:532
+msgid "|image8|"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:534
+msgid "In order to close the VNC session just close the console dialog."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:536
+msgid ""
+"From Sunstone 3.8, a single instance of the VNC proxy is launched when "
+"Sunstone server starts. This instance will listen on a single port and proxy"
+" all connections from there."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:539
+msgid "Information for Developers and Integrators"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:541
+msgid ""
+"Although the default way to create a VM instance is to register a Template "
+"and then instantiate it, VMs can be created directly from a template file "
+"using the ``onevm create`` command."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:542
+msgid ""
+"When a VM reaches the ``done`` state, it disappears from the ``onevm list`` "
+"output, but the VM is still in the database and can be retrieved with the "
+"``onevm show`` command."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:543
+msgid ""
+"OpenNebula comes with an :ref:`accounting tool <accounting>` that reports "
+"resource usage data."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide_2.rst:544
+msgid ""
+"The monitoring information, shown with nice graphs in :ref:`Sunstone "
+"<sunstone>`, can be retrieved using the XML-RPC methods "
+":ref:`one.vm.monitoring and one.vmpool.monitoring <api>`."
+msgstr ""

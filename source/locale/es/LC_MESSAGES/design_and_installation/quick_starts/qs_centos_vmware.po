@@ -1,0 +1,531 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:5
+msgid "Quickstart: OpenNebula on CentOS 6 and ESX 5.x"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:7
+msgid ""
+"This guide aids in the process of quickly get a VMware-based OpenNebula "
+"cloud up and running on CentOS. This is useful at the time of setting up "
+"pilot clouds, to quickly test new features and as base deployment to build a"
+" large infrastructure."
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:10
+msgid "Package Layout"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:12
+msgid "opennebula-server: OpenNebula Daemons"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:13
+msgid "opennebula: OpenNebula CLI commands"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:14
+msgid "opennebula-sunstone: OpenNebula's web GUI"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:15
+msgid "opennebula-ozones: OpenNebula's web GUI"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:16
+msgid "opennebula-java: OpenNebula Java API"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:17
+msgid ""
+"opennebula-node-kvm: Installs dependencies required by OpenNebula in the "
+"nodes"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:18
+msgid "opennebula-gate: Send information from Virtual Machines to OpenNebula"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:19
+msgid "opennebula-flow: Manage OpenNebula Services"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:20
+msgid "opennebula-context: Package for OpenNebula Guests"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:22
+msgid ""
+"Additionally ``opennebula-common`` and ``opennebula-ruby`` exist but they're"
+" intended to be used as dependencies. ``opennebula-occi``, which is RESTful "
+"service to manage the cloud, is included in the ``opennebula-sunstone`` "
+"package."
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:25
+msgid "Step 1. Infrastructure Set-up"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:27
+msgid ""
+"The infrastructure needs to be set up in a similar fashion as the one "
+"depicted in the figure."
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:29
+msgid ""
+"A ESX version 5.0 was used to create this guide. This guide may be useful "
+"for other versions of ESX, although the configuration (and therefore your "
+"mileage) may vary."
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:31
+msgid "|image1|"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:33
+msgid ""
+"In this guide it is assumed that at least two physical servers are "
+"available, one to host the OpenNebula front-end and one to be used as a ESX "
+"virtualization node (this is the one you need to configure in the following "
+"section). The figure depicts one more ESX host, to show that the pilot cloud"
+" is ready to grow just by adding more virtualization nodes."
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:35
+msgid "**Front-End**"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:37
+msgid "**Operating System**: Centos 6.4"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:38
+msgid "**Required extra repository**: EPEL"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:39
+msgid "**Required packages**: NFS, libvirt"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:46
+msgid "**Virtualization node**"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:48
+msgid "**Operating System**: ESX 5.0"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:50
+msgid ""
+"The ESX hosts needs to be configured. To achieve this, you will need access "
+"to a Windows machine with the Virtual Infrastructure Client (vSphere client)"
+" install. The VI client can be downloaded from the ESX node, by pointing a "
+"browser to its IP."
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:52
+msgid ""
+"The ESX hosts need to be properly licensed, with write access to the "
+"exported API (as the Evaluation license does). More information on valid "
+"licenses `here <http://www.virtuallyghetto.com/2011/06/dreaded-"
+"faultrestrictedversionsummary.html>`__."
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:55
+msgid "Step 2. OpenNebula Front-end Set-up"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:57
+msgid "**2.1 OpenNebula installation**"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:59
+msgid ""
+"The first step is to install OpenNebula in the front-end. Please download "
+"OpeNebula from `here <http://opennebula.org/software:software>`__, choosing "
+"the CentOS package."
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:61
+msgid "Once it is downloaded to the front-end, you need to untar it:"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:67
+msgid "And then install all the needed packages:"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:73
+msgid ""
+"Do not start OpenNebula at this point, some pre configuration needs to be "
+"done. Starting OpenNebula is not due until :ref:`here "
+"<qs_centos_vmware_start_opennebula>`."
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:75
+msgid "Let's install noVNC to gain access to the VMs:"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:81
+msgid ""
+"Find out the uid and gid of oneadmin, we will need it for the next section:"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:88
+msgid ""
+"In order to avoid problems, we recommend to disable SELinux for the pilot "
+"cloud front-end (sometimes it is the root of all evil). Follow `these "
+"instructions <http://www.ehowstuff.com/how-to-check-and-disable-selinux-on-"
+"centos-6-3/>`__:"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:109
+msgid "**2.2 NFS configuration**"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:111
+msgid ""
+"The front-end needs to export via NFS two datastores (the system and the "
+"images datastore). This is required just so the ESX has access to two "
+"different datastores, and this guides uses NFS exported from the front-end "
+"to achieve this. This can be seamlessly replaced with two iSCSI backed "
+"datastores or even two local hard disks. In any case, we will use the 'vmfs'"
+" drivers to manage both datastores, independently of the storage backend. "
+"See the :ref:`VMFS Datastore Guide <vmware_ds>` for more details."
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:113
+msgid ""
+"Let's configure the NFS server. You will need to allow incoming connections,"
+" here we will simply stop iptables (as root):"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:128
+msgid ""
+"Make sure **anonuid** and **anongid** are set to the oneadmin uid and gid."
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:130
+msgid "**2.3 Networking**"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:132
+msgid ""
+"There must be connection between the front-end and the ESX node. This can be"
+" tested with the ping command:"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:139
+msgid "Step 3. VMware Virtualization Node Set-up"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:141
+msgid ""
+"This is probably the step that involves more work to get the pilot cloud up "
+"and running, but it is crucial to ensure its correct functioning. The ESX "
+"that is going to be used as worker node needs the following steps:"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:143
+msgid "**3.1 Creation of a oneadmin user**"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:145
+msgid ""
+"With the VI client connected to the ESX host, go to the “local Users & "
+"Groups” and add a new user like shown in the figure (**the UID is important,"
+" it needs to match the one of the front-end.**). Make sure that you are "
+"selecting the “Grant shell to this user” checkbox, and write down the "
+"password you enter."
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:147
+msgid "|image2|"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:149
+msgid ""
+"Afterwards, go to the “Permissions” tab and assign the “Administrator” Role "
+"to oneadmin (right click → Add Permission...)."
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:151
+msgid "|image3|"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:153
+msgid "**3.2 Grant ssh access**"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:155
+msgid ""
+"Again in the VI client go to Configuration → Security Profile → Services "
+"Properties (Upper right). Click on the SSH label, select the “Options” "
+"button, and then “Start”. You can set it to start and stop with the host, as"
+" seen on the picture."
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:157
+msgid "|image4|"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:159
+msgid "Then the following needs to be done:"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:161
+msgid ""
+"Connect via ssh to the OpenNebula front-end as the oneadmin user. Copy the "
+"output of the following command to the clipboard:"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:170
+msgid ""
+"Connect via ssh to the ESX worker node (as oneadmin). Run the following from"
+" the front-end:"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:187
+msgid ""
+"Now oneadmin should be able to ssh without been prompted for a password"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:193
+msgid "**3.3 Mount datastores**"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:195
+msgid ""
+"We need now to mount the two datastores exported by default by the "
+"OpenNebula front-end. First, you need to make sure that the firewall will "
+"allow the NFS Client to connect to the front-end. Go to Configuration → "
+"Software → Security Profile, and enable the row NFS Client:"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:197
+msgid "|image5|"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:199
+msgid ""
+"Again in the VI client, go to Configuration → Storage → Add Storage (Upper "
+"right). We need to add two datastores (**0** and **1**). The picture shows "
+"the details for the datastore **100**, to add datastore **0** and **1** "
+"simply change the reference from **100** to **0** and then **1** in the "
+"Folder and Datastore Name textboxes."
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:201
+msgid ""
+"Please note that the IP of the server displayed may not correspond with your"
+" value, which has to be the IP your front-end uses to connect to the ESX."
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:203
+msgid "|image6|"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:205
+msgid "The paths to be used as input:"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:215
+msgid ""
+"More info on :ref:`datastores <vmware_ds>` and different possible "
+"configurations."
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:217
+msgid "**3.4 Configure VNC**"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:219
+msgid "Open an ssh connection to the ESX as root, and:"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:229
+msgid "Add the following to /etc/vmware/firewall/service.xml"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:235
+msgid ""
+"The service id must be the last service id+1. It will depend on your "
+"firewall configuration"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:264
+msgid "Refresh the firewall"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:272
+msgid "Step 4. OpenNebula Configuration"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:274
+msgid ""
+"Let's configure OpenNebula in the front-end to allow it to use the ESX "
+"hypervisor. The following must be run under the “oneadmin” account."
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:276
+msgid "**4.1 Configure oned and Sunstone**"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:278
+msgid "Edit ``/etc/one/oned.conf`` with “sudo” and uncomment the following:"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:317
+msgid ""
+"Edit ``/etc/one/sunstone-server.conf`` with “sudo” and allow incoming "
+"connections from any IP:"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:330
+msgid "**4.2 Add the ESX credentials**"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:340
+msgid ""
+"Do not edit ``:libvirt_uri:``, the HOST placeholder is needed by the drivers"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:344
+msgid "**4.3 Start OpenNebula**"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:346
+msgid "Start OpenNebula and Sunstone **as oneadmin**"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:353
+msgid "If no error message is shown, then everything went smooth!"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:355
+msgid "**4.4 Configure physical resources**"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:357
+msgid "Let's configure both system and image datastores:"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:379
+msgid "And the ESX Host:"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:385
+msgid "**4.5 Create a regular cloud user**"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:392
+msgid "Step 5. Using the Cloud through Sunstone"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:394
+msgid ""
+"Ok, so now that everything is in place, let's start using your brand new "
+"OpenNebula cloud! Use your browser to access Sunstone. The URL would be "
+"``http://@IP-of-the-front-end@:9869``"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:396
+msgid ""
+"Once you introduce the credentials for the “oneuser” user (with the chosen "
+"password in the previous section) you will get to see the Sunstone "
+"dashboard. You can also log in as “oneadmin”, you will notice the access to "
+"more functionality (basically, the administration and physical "
+"infrastructure management tasks)"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:398
+msgid "|image7|"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:400
+msgid ""
+"It is time to launch our first VM. Let's use one of the pre created "
+"appliances found in the `marketplace <http://marketplace.c12g.com/>`__."
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:402
+msgid ""
+"Log in as “oneuser”, go to the Marketplace tab in Sunstone (in the left "
+"menu), and select the “ttylinux-VMware” row. Click on the “Import to local "
+"infrastructure” button in the upper right, and set the new image a name (use"
+" “ttylinux - VMware”) and place it in the “VMwareImages” datastore. If you "
+"go to the Virtual Resources/Image tab, you will see that the new Image will "
+"eventually change its status from ``LOCKED`` to ``READY``."
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:404
+msgid ""
+"Now we need to create a template that uses this image. Go to the Virtual "
+"Resources/Templates tab, click on ”+Create” and follow the wizard, or use "
+"the “Advanced mode” tab of the wizard to paste the following:"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:422
+msgid ""
+"Select the newly created template and click on the Instantiate button. You "
+"can now proceed to the “Virtual Machines” tab. Once the VM is in state "
+"RUNNING you can click on the VNC icon and you should see the ttylinux login "
+"(root/password)."
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:424
+msgid "|image8|"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:426
+msgid ""
+"Please note that the minimal ttylinux VM does not come with the VMware "
+"Tools, and cannot be gracefully shutdown. Use the “Cancel” action instead."
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:428
+msgid ""
+"And that's it! You have now a fully functional pilot cloud. You can now "
+"create your own virtual machines, or import other appliances from the "
+"marketplace, like `Centos 6.2 "
+"<http://marketplace.c12g.com/appliance/4ff2ce348fb81d4406000003>`__."
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:430
+msgid "Enjoy!"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:433
+msgid "Step 6. Next Steps"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:435
+msgid ""
+"Follow the :ref:`VMware Virtualization Driver Guide <evmwareg>` for the "
+"complete installation and tuning reference, and how to enable the disk "
+"attach/detach functionality, and vMotion live migration."
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:436
+msgid ""
+"OpenNebula can use :ref:`VMware native networks <vmwarenet>` to provide "
+"network isolation through VLAN tagging."
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_centos_vmware.rst:438
+msgid ""
+"Did we miss something? Please `let us know "
+"<mailto:contact@opennebula.org?subject=Feedback-on-OpenNebula-VMware-"
+"Sandbox>`_!"
+msgstr ""

@@ -1,0 +1,221 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/administration/networking/router.rst:5
+msgid "Virtual Router"
+msgstr ""
+
+#: ../../source/administration/networking/router.rst:7
+msgid ""
+"This guide describes how to use the `Virtual Router "
+"<http://marketplace.c12g.com/appliance/51f2a09f8fb81d4d19000004>`__ in "
+"OpenNebula."
+msgstr ""
+
+#: ../../source/administration/networking/router.rst:10
+msgid "Overview"
+msgstr ""
+
+#: ../../source/administration/networking/router.rst:12
+msgid ""
+"When instantiated in a network, this appliance provides the following "
+"services for other Virtual Machines running in the same network:"
+msgstr ""
+
+#: ../../source/administration/networking/router.rst:14
+msgid "Router (masquerade)"
+msgstr ""
+
+#: ../../source/administration/networking/router.rst:15
+msgid "Port forwarding"
+msgstr ""
+
+#: ../../source/administration/networking/router.rst:16
+msgid "DHCP server"
+msgstr ""
+
+#: ../../source/administration/networking/router.rst:17
+msgid "RADVD server"
+msgstr ""
+
+#: ../../source/administration/networking/router.rst:18
+msgid "DNS server"
+msgstr ""
+
+#: ../../source/administration/networking/router.rst:20
+msgid "|image0|"
+msgstr ""
+
+#: ../../source/administration/networking/router.rst:22
+msgid ""
+"A big advantage of using this appliance is that Virtual Machines can be run "
+"in the same network **without** being :ref:`contextualized <cong>` for "
+"OpenNebula."
+msgstr ""
+
+#: ../../source/administration/networking/router.rst:24
+msgid ""
+"This appliance is controlled via ``CONTEXT``. More information in the "
+"following sections."
+msgstr ""
+
+#: ../../source/administration/networking/router.rst:27
+msgid "Considerations & Limitations"
+msgstr ""
+
+#: ../../source/administration/networking/router.rst:29
+msgid ""
+"This is a 64-bit appliance and will run both in ``KVM``, ``Xen`` and "
+"``VMware`` environments. It will run with any network driver."
+msgstr ""
+
+#: ../../source/administration/networking/router.rst:31
+msgid ""
+"Since each virtual router will start a DHCP server and it's not recommended "
+"to have more than one DHCP server per network, it's recommend to use it "
+"along network isolation drivers if you're going to deploy two or more router"
+" instances in your environment:"
+msgstr ""
+
+#: ../../source/administration/networking/router.rst:33
+msgid ":ref:`Open vSwitch <openvswitch>`"
+msgstr ""
+
+#: ../../source/administration/networking/router.rst:34
+msgid ":ref:`Ebtables <ebtables>`"
+msgstr ""
+
+#: ../../source/administration/networking/router.rst:35
+msgid ":ref:`802.1Q VLAN <hm-vlan>`"
+msgstr ""
+
+#: ../../source/administration/networking/router.rst:38
+msgid "Configuration"
+msgstr ""
+
+#: ../../source/administration/networking/router.rst:40
+msgid ""
+"The appliance is based on `alpinelinux <http://alpinelinux.org/>`__. There's"
+" only one user account: ``root``. There is no default password for the root "
+"account, however, it can be specified in the ``CONTEXT`` section along with "
+"root's public key."
+msgstr ""
+
+#: ../../source/administration/networking/router.rst:42
+msgid "**ROOT\\_PUBKEY**: If set, it will be set as root's authorized\\_keys."
+msgstr ""
+
+#: ../../source/administration/networking/router.rst:43
+msgid ""
+"**ROOT\\_PASSWORD**: To change the root account password use this attribute."
+" It expects the password in an encrypted format as returned by ``openssl "
+"passwd -1`` and encoded in base64."
+msgstr ""
+
+#: ../../source/administration/networking/router.rst:46
+msgid "Usage"
+msgstr ""
+
+#: ../../source/administration/networking/router.rst:48
+msgid "The virtual router can be used in two ways:"
+msgstr ""
+
+#: ../../source/administration/networking/router.rst:51
+msgid "DHCP or RADVD Server"
+msgstr ""
+
+#: ../../source/administration/networking/router.rst:53
+msgid ""
+"Only one interface. Useful if you only want DHCP or RADVD. Of course, "
+"enabling RADVD only makes sense if the private network is IPv6."
+msgstr ""
+
+#: ../../source/administration/networking/router.rst:55
+msgid "To enable this you need to add the following context to the VM:"
+msgstr ""
+
+#: ../../source/administration/networking/router.rst:65
+msgid ""
+"If you're going to a use a netmask different to '255.255.255.0' you will "
+"have to add the following to the private network's template:"
+msgstr ""
+
+#: ../../source/administration/networking/router.rst:72
+msgid "Full Router"
+msgstr ""
+
+#: ../../source/administration/networking/router.rst:74
+msgid ""
+"In this case, the Virtual Machine will need two network interfaces: a "
+"private and a public one. The public one will be masqueraded. In this mode "
+"you can also configure a DNS server by setting the ``DNS`` and optionally "
+"the ``SEARCH`` attribute (useful for domain searches in "
+"``/etc/resolv.conf``). This mode also includes all the attributes related to"
+" the previous section, i.e. DHCP and RADVD servers."
+msgstr ""
+
+#: ../../source/administration/networking/router.rst:76
+msgid "This is an example context for the router mode:"
+msgstr ""
+
+#: ../../source/administration/networking/router.rst:91
+msgid "**DNS**"
+msgstr ""
+
+#: ../../source/administration/networking/router.rst:93
+msgid "This attribute expects a list of dns servers separated by spaces."
+msgstr ""
+
+#: ../../source/administration/networking/router.rst:95
+msgid "**NTP\\_SERVER**"
+msgstr ""
+
+#: ../../source/administration/networking/router.rst:97
+msgid ""
+"This attribute expects the IP of the NTP server of the cluster. The DHCP "
+"server will be configured to serve the NTP parameter to its leases."
+msgstr ""
+
+#: ../../source/administration/networking/router.rst:99
+msgid "**FORWARDING**"
+msgstr ""
+
+#: ../../source/administration/networking/router.rst:101
+msgid ""
+"This attribute expects a list of forwarding rules separated by spaces. Each "
+"rule has either 2 or 3 components separated by ``:``. If only two components"
+" are specified, the first is the IP to forward the port to, and the second "
+"is the port number. If there are three components, the first is the port in "
+"the router, the second the IP to forward to, and the third the port in the "
+"forwarded Virtual Machine. Examples:"
+msgstr ""
+
+#: ../../source/administration/networking/router.rst:103
+msgid ""
+"``8080:10.0.10.10:80`` This will forward the port 8080 in the router to the "
+"port 80 to the VM with IP 10.0.10.10."
+msgstr ""
+
+#: ../../source/administration/networking/router.rst:104
+msgid ""
+"``10.0.10.10:22`` This will forward the port 22 in the router to the port 22"
+" to the VM with IP 10.0.10.10."
+msgstr ""
+
+#: ../../source/administration/networking/router.rst:106
+msgid ""
+"If the public network uses a netmask different to ``255.255.255.0`` or if "
+"the gateway is not the ip's network with one as the last byte: ``x.y.z.1`` "
+"it can be explicitely set adding the following attributes to the public "
+"network's template:"
+msgstr ""

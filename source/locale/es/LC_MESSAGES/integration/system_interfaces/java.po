@@ -1,0 +1,121 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/integration/system_interfaces/java.rst:5
+msgid "Java OpenNebula Cloud API"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/java.rst:7
+msgid ""
+"This page contains the OpenNebula Cloud API Specification for Java. It has "
+"been designed as a wrapper for the :ref:`XML-RPC methods <api>`, with some "
+"basic helpers. This means that you should be familiar with the XML-RPC API "
+"and the XML formats returned by the OpenNebula core. As stated in the :ref"
+":`XML-RPC documentation <api>`, you can download the :ref:`XML Schemas (XSD)"
+" here <api_xsd_reference>`."
+msgstr ""
+
+#: ../../source/integration/system_interfaces/java.rst:10
+msgid "Download"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/java.rst:12
+msgid ""
+"The Java OCA is part of the OpenNebula core distribution. If you installed "
+"from the Debian, Ubuntu or CentOS packages it should be already installed in"
+" ``/usr/share/java/org.opennebula.client.jar``. You also can download the "
+"``.jar`` file compiled using Java OpenJDK 1.7, the required libraries, and "
+"the javadoc packaged in a tar.gz file `following this link "
+"<http://downloads.opennebula.org/packages/>`__."
+msgstr ""
+
+#: ../../source/integration/system_interfaces/java.rst:14
+msgid "You can also consult the `javadoc online </doc/4.6/oca/java/>`__."
+msgstr ""
+
+#: ../../source/integration/system_interfaces/java.rst:17
+msgid "Usage"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/java.rst:19
+msgid ""
+"To use the OpenNebula Cloud API for Java in your Java project, you have to "
+"add to the classpath the org.opennebula.client.jar file and the xml-rpc "
+"libraries located in the lib directory."
+msgstr ""
+
+#: ../../source/integration/system_interfaces/java.rst:22
+msgid "Code Sample"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/java.rst:24
+msgid ""
+"This is a small code snippet. As you can see, the code flow would be as "
+"follows:"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/java.rst:26
+msgid ""
+"Create a ``org.opennebula.client.Client`` object, setting up the "
+"authorization string and the endpoint. You only need to create it once."
+msgstr ""
+
+#: ../../source/integration/system_interfaces/java.rst:27
+msgid ""
+"Create a pool (e.g. ``HostPool``) or element (e.g. ``VirtualNetwork``) "
+"object."
+msgstr ""
+
+#: ../../source/integration/system_interfaces/java.rst:28
+msgid ""
+"You can perform “actions” over these objects right away, like "
+"``myVNet.delete();``"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/java.rst:29
+msgid ""
+"If you want to query any information (like what objects the pool contains, "
+"or one of the element attributes), you have to issue an ``info()`` call "
+"before, so the object retrieves the data from OpenNebula."
+msgstr ""
+
+#: ../../source/integration/system_interfaces/java.rst:31
+msgid ""
+"For more complete examples, please check the ``src/oca/java/share/examples``"
+" directory included. You may be also interested in the java files included "
+"in ``src/oca/java/test``."
+msgstr ""
+
+#: ../../source/integration/system_interfaces/java.rst:118
+msgid "Compilation"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/java.rst:120
+msgid ""
+"To compile the Java OCA, untar the `OpenNebula source "
+"<http://downloads.opennebula.org>`__, ``cd`` to the java directory and use "
+"the build script:"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/java.rst:130
+msgid ""
+"This command will compile and package the code in "
+"``jar/org.opennebula.client.jar``, and the javadoc will be created in "
+"``share/doc/``."
+msgstr ""
+
+#: ../../source/integration/system_interfaces/java.rst:132
+msgid ""
+"You might want to copy the .jar files to a more convenient directory. You "
+"could use /usr/lib/one/java/"
+msgstr ""

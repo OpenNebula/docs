@@ -1,0 +1,895 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/administration/references/oned_conf.rst:5
+msgid "ONED Configuration"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:7
+msgid ""
+"The OpenNebula daemon ``oned`` manages the cluster nodes, virtual networks, "
+"virtual machines, users, groups and storage datastores. The configuration "
+"file for the daemon is called ``oned.conf`` and it is placed inside the "
+"``/etc/one`` directory. In this reference document we describe all the "
+"format and options that can be specified in ``oned.conf``."
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:10
+msgid "Daemon Configuration Attributes"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:12
+msgid ""
+"``MANAGER_TIMER`` : Time in seconds the core uses to evaluate periodical "
+"functions. MONITORING\\_INTERVAL cannot have a smaller value than "
+"MANAGER\\_TIMER."
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:13
+msgid "``MONITORING_INTERVAL`` : Time in seconds between each monitorization."
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:14
+msgid ""
+"``MONITORING_THREADS`` : Max. number of threads used to process monitor "
+"messages"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:15
+msgid "``HOST_PER_INTERVAL``: Number of hosts monitored in each interval."
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:16
+msgid ""
+"``HOST_MONITORING_EXPIRATION_TIME``: Time, in seconds, to expire monitoring "
+"information. Use 0 to disable HOST monitoring recording."
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:17
+msgid ""
+"``VM_INDIVIDUAL_MONITORING``: VM monitoring information is obtained along "
+"with the host information. For some custom monitor drivers you may need "
+"activate the individual VM monitoring process."
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:18
+msgid "``VM_PER_INTERVAL``: Number of VMs monitored in each interval."
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:19
+msgid ""
+"``VM_MONITORING_EXPIRATION_TIME``: Time, in seconds, to expire monitoring "
+"information. Use 0 to disable VM monitoring recording."
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:20
+msgid ""
+"``SCRIPTS_REMOTE_DIR``: Remote path to store the monitoring and VM "
+"management script."
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:21
+msgid "``PORT`` : Port where oned will listen for xml-rpc calls."
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:22
+msgid "``DB`` : Vector of configuration attributes for the database backend."
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:24
+msgid ""
+"``backend`` : Set to ``sqlite`` or ``mysql``. Please visit the :ref:`MySQL "
+"configuration guide <mysql>` for more information."
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:25
+msgid ""
+"``server`` (MySQL only): Host name or an IP address for the MySQL server."
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:26
+msgid "``user`` (MySQL only): MySQL user's login ID."
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:27
+msgid "``passwd`` (MySQL only): MySQL user's password."
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:28
+msgid "``db_name`` (MySQL only): MySQL database name."
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:30
+msgid ""
+"``VNC_BASE_PORT`` : VNC ports for VMs can be automatically set to "
+"``VNC_BASE_PORT`` + ``VMID``. Refer to the :ref:`VM template reference "
+"<template>` for further information."
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:31
+msgid ""
+"``VM_SUBMIT_ON_HOLD`` : Forces VMs to be created on hold state instead of "
+"pending. Values: YES or NO."
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:32
+msgid "``LOG`` : Configure the logging system"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:34
+msgid "``SYSTEM`` : Can be either ``file`` (default) or ``syslog``."
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:35
+msgid ""
+"``DEBUG_LEVEL`` : Sets the level of verbosity of the log messages. Possible "
+"values are:"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:38
+msgid "DEBUG\\_LEVEL"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:38
+msgid "Meaning"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:40
+msgid "0"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:40
+msgid "**ERROR**"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:42
+msgid "1"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:42
+msgid "**WARNING**"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:44
+msgid "2"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:44
+msgid "**INFO**"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:46
+msgid "3"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:46
+msgid "**DEBUG**"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:49
+msgid "Example of this section:"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:95
+msgid "Federation Configuration Attributes"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:97
+msgid ""
+"Control the :ref:`federation capabilities of oned <introf>`. Operation in a "
+"federated setup requires a special DB configuration."
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:99
+msgid "``FEDERATION`` : Federation attributes."
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:101
+msgid "``MODE`` : Operation mode of this oned."
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:103
+msgid "``STANDALONE``: not federated. This is the default operational mode"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:104
+msgid "``MASTER``: this oned is the master zone of the federation"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:105
+msgid "``SLAVE``: this oned is a slave zone"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:107
+msgid "``ZONE_ID`` : The zone ID as returned by onezone command."
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:108
+msgid ""
+"``MASTER_ONED`` : The xml-rpc endpoint of the master oned, e.g. "
+"http://master.one.org:2633/RPC2"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:125
+msgid "XML-RPC Server Configuration"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:127
+msgid ""
+"``MAX_CONN``: Maximum number of simultaneous TCP connections the server will"
+" maintain"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:128
+msgid ""
+"``MAX_CONN_BACKLOG``: Maximum number of TCP connections the operating system"
+" will accept on the server's behalf without the server accepting them from "
+"the operating system"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:129
+msgid ""
+"``KEEPALIVE_TIMEOUT``: Maximum time in seconds that the server allows a "
+"connection to be open between RPCs"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:130
+msgid ""
+"``KEEPALIVE_MAX_CONN``: Maximum number of RPCs that the server will execute "
+"on a single connection"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:131
+msgid ""
+"``TIMEOUT``: Maximum time in seconds the server will wait for the client to "
+"do anything while processing an RPC"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:132
+msgid ""
+"``RPC_LOG``: Create a separated log file for xml-rpc requests, in "
+"/var/log/one/one_xmlrpc.log."
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:133
+msgid ""
+"``MESSAGE_SIZE``: Buffer size in bytes for XML-RPC responses. Only relevant "
+"for federation slave zones."
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:149
+msgid ""
+"This functionality is only available when compiled with xmlrpc-c libraires "
+">= 1.32. Currently only the packages distributed by OpenNebula are linked "
+"with this library."
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:152
+msgid "Virtual Networks"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:154
+msgid "``NETWORK_SIZE``: Default size for virtual networks"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:155
+msgid ""
+"``MAC_PREFIX``: Default MAC prefix to generate virtual network MAC addresses"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:157
+#: ../../source/administration/references/oned_conf.rst:199
+#: ../../source/administration/references/oned_conf.rst:228
+#: ../../source/administration/references/oned_conf.rst:249
+#: ../../source/administration/references/oned_conf.rst:281
+#: ../../source/administration/references/oned_conf.rst:311
+#: ../../source/administration/references/oned_conf.rst:340
+#: ../../source/administration/references/oned_conf.rst:369
+#: ../../source/administration/references/oned_conf.rst:388
+#: ../../source/administration/references/oned_conf.rst:445
+#: ../../source/administration/references/oned_conf.rst:476
+#: ../../source/administration/references/oned_conf.rst:499
+#: ../../source/administration/references/oned_conf.rst:524
+#: ../../source/administration/references/oned_conf.rst:544
+msgid "Sample configuration:"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:171
+msgid "Datastores"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:173
+msgid ""
+"The :ref:`Storage Subsystem <sm>` allows users to set up images, which can "
+"be operative systems or data, to be used in Virtual Machines easily. These "
+"images can be used by several Virtual Machines simultaneously, and also "
+"shared with other users."
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:175
+msgid ""
+"Here you can configure the default values for the Datastores and Image "
+"templates. You have more information about the templates syntax :ref:`here "
+"<img_template>`."
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:177
+msgid ""
+"``DATASTORE_LOCATION``: Path for Datastores in the hosts. It is the same for"
+" all the hosts in the cluster. ``DATASTORE_LOCATION`` **is only for the "
+"hosts and not the front-end**. It defaults to /var/lib/one/datastores (or "
+"``$ONE_LOCATION/var/datastores`` in self-contained mode)"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:178
+msgid ""
+"``DATASTORE_BASE_PATH``: This is the base path for the SOURCE attribute of "
+"the images registered in a Datastore. This is a default value, that can be "
+"changed when the datastore is created."
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:179
+msgid ""
+"``DATASTORE_CAPACITY_CHECK``: Checks that there is enough capacity before "
+"creating a new imag. Defaults to Yes."
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:180
+msgid ""
+"``DEFAULT_IMAGE_TYPE`` : Default value for TYPE field when it is omitted in "
+"a template. Values accepted are ``OS``, ``CDROM``, ``DATABLOCK``."
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:181
+msgid ""
+"``DEFAULT_DEVICE_PREFIX`` : Default value for DEV\\_PREFIX field when it is "
+"omitted in a template. The missing DEV\\_PREFIX attribute is filled when "
+"Images are created, so changing this prefix won't affect existing Images. It"
+" can be set to:"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:184
+msgid "Prefix"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:184
+msgid "Device type"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:186
+msgid "hd"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:186
+msgid "IDE"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:188
+msgid "sd"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:188
+msgid "SCSI"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:190
+msgid "xvd"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:190
+msgid "XEN Virtual Disk"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:192
+msgid "vd"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:192
+msgid "KVM virtual disk"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:195
+msgid "``DEFAULT_CDROM_DEVICE_PREFIX``: Same as above but for CDROM devices."
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:197
+msgid ""
+"More information on the image repository can be found in the :ref:`Managing "
+"Virtual Machine Images guide <img_guide>`."
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:218
+msgid "Information Collector"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:220
+msgid ""
+"This driver CANNOT BE ASSIGNED TO A HOST, and needs to be used with KVM or "
+"Xen drivers Options that can be set:"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:222
+msgid "``-a``: Address to bind the collectd sockect (defults 0.0.0.0)"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:223
+msgid "``-p``: UDP port to listen for monitor information (default 4124)"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:224
+msgid "``-f``: Interval in seconds to flush collected information (default 5)"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:225
+msgid "``-t``: Number of threads for the server (defult 50)"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:226
+msgid ""
+"``-i``: Time in seconds of the monitorization push cycle. This parameter "
+"must be smaller than MONITORING\\_INTERVAL, otherwise push monitorization "
+"will not be effective."
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:238
+msgid "Information Drivers"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:240
+msgid ""
+"The information drivers are used to gather information from the cluster "
+"nodes, and they depend on the virtualizer you are using. You can define more"
+" than one information manager but make sure it has different names. To "
+"define it, the following needs to be set:"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:242
+msgid "**name**: name for this information driver."
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:243
+msgid ""
+"**executable**: path of the information driver executable, can be an "
+"absolute path or relative to ``/usr/lib/one/mads/``"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:245
+msgid ""
+"**arguments**: for the driver executable, usually a probe configuration "
+"file, can be an absolute path or relative to ``/etc/one/``."
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:247
+msgid ""
+"For more information on configuring the information and monitoring system "
+"and hints to extend it please check the :ref:`information driver "
+"configuration guide <devel-im>`."
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:265
+msgid "Virtualization Drivers"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:267
+msgid ""
+"The virtualization drivers are used to create, control and monitor VMs on "
+"the hosts. You can define more than one virtualization driver (e.g. you have"
+" different virtualizers in several hosts) but make sure they have different "
+"names. To define it, the following needs to be set:"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:269
+msgid "**name**: name of the virtualization driver."
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:270
+msgid ""
+"**executable**: path of the virtualization driver executable, can be an "
+"absolute path or relative to ``/usr/lib/one/mads/``"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:271
+#: ../../source/administration/references/oned_conf.rst:364
+msgid "**arguments**: for the driver executable"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:272
+msgid "**type**: driver type, supported drivers: xen, kvm or xml"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:273
+msgid ""
+"**default**: default values and configuration parameters for the driver, can"
+" be an absolute path or relative to ``/etc/one/``"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:275
+msgid ""
+"For more information on configuring and setting up the virtualizer please "
+"check the guide that suits you:"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:277
+msgid ":ref:`Xen Adaptor <xeng>`"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:278
+msgid ":ref:`KVM Adaptor <kvmg>`"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:279
+msgid ":ref:`VMware Adaptor <evmwareg>`"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:299
+msgid "Transfer Driver"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:301
+msgid ""
+"The transfer drivers are used to transfer, clone, remove and create VM "
+"images. The default TM\\_MAD driver includes plugins for all supported "
+"storage modes. You may need to modify the TM\\_MAD to add custom plugins."
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:303
+#: ../../source/administration/references/oned_conf.rst:363
+msgid ""
+"**executable**: path of the transfer driver executable, can be an absolute "
+"path or relative to ``/usr/lib/one/mads/``"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:304
+msgid "**arguments**: for the driver executable:"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:306
+msgid ""
+"**-t**: number of threads, i.e. number of transfers made at the same time"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:307
+msgid ""
+"**-d**: list of transfer drivers separated by commas, if not defined all the"
+" drivers available will be enabled"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:309
+msgid ""
+"For more information on configuring different storage alternatives "
+":ref:`please check the storage configuration guide <sm>`."
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:323
+msgid ""
+"The configuration for each driver is defined in the TM\\_MAD\\_CONF section."
+" These values are used when creating a new datastore and should not be "
+"modified since they define the datastore behaviour."
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:325
+msgid ""
+"**name** : name of the transfer driver, listed in the -d option of the "
+"TM\\_MAD section"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:326
+msgid ""
+"**ln\\_target** : determines how the persistent images will be cloned when a"
+" new VM is instantiated."
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:328
+#: ../../source/administration/references/oned_conf.rst:334
+msgid ""
+"**NONE**: The image will be linked and no more storage capacity will be used"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:329
+#: ../../source/administration/references/oned_conf.rst:335
+msgid "**SELF**: The image will be cloned in the Images datastore"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:330
+#: ../../source/administration/references/oned_conf.rst:336
+msgid "**SYSTEM**: The image will be cloned in the System datastore"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:332
+msgid ""
+"**clone\\_target** : determines how the non persistent images will be cloned"
+" when a new VM is instantiated."
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:338
+msgid ""
+"**shared** : determines if the storage holding the system datastore is "
+"shared among the different hosts or not. Valid values: *yes* or *no*."
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:359
+msgid "Datastore Driver"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:361
+msgid ""
+"The Datastore Driver defines a set of scripts to manage the storage backend."
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:366
+msgid ""
+"**-t** number of threads, i.e. number of repo operations at the same time"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:367
+msgid "**-d** datastore mads separated by commas"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:378
+msgid ""
+"For more information on this Driver and how to customize it, please visit "
+":ref:`its reference guide <sm>`."
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:381
+msgid "Hook System"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:383
+msgid ""
+"Hooks in OpenNebula are programs (usually scripts) which execution is "
+"triggered by a change in state in Virtual Machines or Hosts. The hooks can "
+"be executed either locally or remotely in the node where the VM or Host is "
+"running. To configure the Hook System the following needs to be set in the "
+"OpenNebula configuration file:"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:385
+msgid ""
+"**executable**: path of the hook driver executable, can be an absolute path "
+"or relative to ``/usr/lib/one/mads/``"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:386
+msgid ""
+"**arguments** : for the driver executable, can be an absolute path or "
+"relative to ``/etc/one/``"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:396
+msgid "Virtual Machine Hooks (VM\\_HOOK) defined by:"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:398
+msgid "**name**: for the hook, useful to track the hook (OPTIONAL)."
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:399
+#: ../../source/administration/references/oned_conf.rst:428
+msgid "**on**: when the hook should be executed,"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:401
+msgid "**CREATE**, when the VM is created (onevm create)"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:402
+msgid "**PROLOG**, when the VM is in the prolog state"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:403
+msgid "**RUNNING**, after the VM is successfully booted"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:404
+msgid "**UNKNOWN**, when the VM is in the unknown state"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:405
+msgid "**SHUTDOWN**, after the VM is shutdown"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:406
+msgid "**STOP**, after the VM is stopped (including VM image transfers)"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:407
+msgid "**DONE**, after the VM is deleted or shutdown"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:408
+msgid "**FAILED**, when the VM enters the failed state"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:409
+msgid ""
+"**CUSTOM**, user defined specific STATE and LCM\\_STATE combination of "
+"states to trigger the hook"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:411
+#: ../../source/administration/references/oned_conf.rst:434
+msgid "**command**: path can be absolute or relative to /usr/share/one/hooks"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:412
+msgid "**arguments**: for the hook. You can access to VM information with $"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:414
+msgid "**$ID**, the ID of the virtual machine"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:415
+msgid "**$TEMPLATE**, the VM template in xml and base64 encoded multiple"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:416
+msgid "**PREV\\_STATE**, the previous STATE of the Virtual Machine"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:417
+msgid "**PREV\\_LCM\\_STATE**, the previous LCM STATE of the Virtual Machine"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:419
+#: ../../source/administration/references/oned_conf.rst:440
+msgid "**remote**: values,"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:421
+msgid "**YES**, The hook is executed in the host where the VM was allocated"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:422
+#: ../../source/administration/references/oned_conf.rst:443
+msgid "**NO**, The hook is executed in the OpenNebula server (default)"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:425
+msgid "Host Hooks (HOST\\_HOOK) defined by:"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:427
+msgid "**name**: for the hook, useful to track the hook (OPTIONAL)"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:430
+msgid "**CREATE**, when the Host is created (onehost create)"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:431
+msgid "**ERROR**, when the Host enters the error state"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:432
+msgid "**DISABLE**, when the Host is disabled"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:435
+msgid ""
+"**arguments**: for the hook. You can use the following Host information:"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:437
+msgid "**$ID**, the ID of the host"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:438
+msgid "**$TEMPLATE**, the Host template in xml and base64 encoded"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:442
+msgid "**YES**, The hook is executed in the host"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:464
+msgid "Auth Manager Configuration"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:466
+msgid ""
+"**AUTH\\_MAD**: The :ref:`driver <external_auth>` that will be used to "
+"authenticate and authorize OpenNebula requests. If not defined OpenNebula "
+"will use the built-in auth policies"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:468
+msgid ""
+"**executable**: path of the auth driver executable, can be an absolute path "
+"or relative to /usr/lib/one/mads/"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:469
+msgid ""
+"**authn**: list of authentication modules separated by commas, if not "
+"defined all the modules available will be enabled"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:470
+msgid "**authz**: list of authentication modules separated by commas"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:472
+msgid ""
+"**SESSION\\_EXPIRATION\\_TIME**: Time in seconds to keep an authenticated "
+"token as valid. During this time, the driver is not used. Use 0 to disable "
+"session caching"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:473
+msgid ""
+"**ENABLE\\_OTHER\\_PERMISSIONS**: Whether or not to enable the permissions "
+"for 'other'. Users in the oneadmin group will still be able to change these "
+"permissions. Values: YES or NO"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:474
+msgid ""
+"**DEFAULT\\_UMASK**: Similar to Unix umask, sets the default resources "
+"permissions. Its format must be 3 octal digits. For example a umask of 137 "
+"will set the new object's permissions to 640 ``um- u– —``"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:494
+msgid "Restricted Attributes Configuration"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:496
+msgid ""
+"**VM\\_RESTRICTED\\_ATTR**: Virtual Machine attribute to be restricted for "
+"users outside the oneadmin group"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:497
+msgid ""
+"**IMAGE\\_RESTRICTED\\_ATTR**: Image attribute to be restricted for users "
+"outside the oneadmin group"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:516
+msgid "Inherited Attributes Configuration"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:518
+msgid ""
+"The following attributes will be copied from the resource template to the "
+"instantiated VMs. More than one attribute can be defined."
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:520
+msgid ""
+"``INHERIT_IMAGE_ATTR``: Attribute to be copied from the Image template to "
+"each VM/DISK."
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:521
+msgid ""
+"``INHERIT_DATASTORE_ATTR``: Attribute to be copied from the Datastore "
+"template to each VM/DISK."
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:522
+msgid ""
+"``INHERIT_VNET_ATTR``: Attribute to be copied from the Network template to "
+"each VM/NIC."
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:540
+msgid "OneGate Configuration"
+msgstr ""
+
+#: ../../source/administration/references/oned_conf.rst:542
+msgid ""
+"**ONEGATE\\_ENDPOINT**: Endpoint where OneGate will be listening. Optional."
+msgstr ""

@@ -1,0 +1,290 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/administration/monitoring/imudppushg.rst:5
+msgid "KVM and Xen UDP-push Monitoring"
+msgstr ""
+
+#: ../../source/administration/monitoring/imudppushg.rst:7
+msgid ""
+"KVM and Xen can be monitored with this ``UDP`` based monitoring system."
+msgstr ""
+
+#: ../../source/administration/monitoring/imudppushg.rst:9
+msgid ""
+"Monitorization data is sent from each host to the frontend periodically via "
+"``UDP`` by an agent. This agent is started by the initial bootstrap system "
+"of the monitoring system which is performed via ``ssh`` like with the SSH-"
+"pull system."
+msgstr ""
+
+#: ../../source/administration/monitoring/imudppushg.rst:12
+msgid "Requirements"
+msgstr ""
+
+#: ../../source/administration/monitoring/imudppushg.rst:14
+msgid ""
+"``ssh`` access from the frontends to the hosts as ``oneadmin`` without "
+"password has to be possible."
+msgstr ""
+
+#: ../../source/administration/monitoring/imudppushg.rst:15
+msgid "``ruby`` is required in the hosts."
+msgstr ""
+
+#: ../../source/administration/monitoring/imudppushg.rst:16
+msgid "KVM hosts: ``libvirt`` must be enabled."
+msgstr ""
+
+#: ../../source/administration/monitoring/imudppushg.rst:17
+msgid ""
+"Xen hosts: ``sudo`` access to run ``xl`` or ``xm`` and ``xentop`` as "
+"``oneadmin``."
+msgstr ""
+
+#: ../../source/administration/monitoring/imudppushg.rst:18
+msgid ""
+"The firewall of the frontend (if enabled) must allow UDP packages incoming "
+"from the hosts on port 4124."
+msgstr ""
+
+#: ../../source/administration/monitoring/imudppushg.rst:21
+msgid "Overview"
+msgstr ""
+
+#: ../../source/administration/monitoring/imudppushg.rst:23
+msgid ""
+"OpenNebula starts a ``collectd`` daemon running in the frontend host that "
+"listens for UDP connections on port 4124. In the first monitoring cycle the "
+"OpenNebula connects to the host using ``ssh`` and starts a daemon that will "
+"execute the probe scripts as in the SSH-pull model and sends the collected "
+"data to the collectd daemon in the fronted every specific amount of seconds "
+"(configurable with the ``-i`` option of the ``collectd IM_MAD``). This way "
+"the monitoring subsystem doesn't need to make new ssh connections to the "
+"hosts when it needs data."
+msgstr ""
+
+#: ../../source/administration/monitoring/imudppushg.rst:25
+msgid "|image0|"
+msgstr ""
+
+#: ../../source/administration/monitoring/imudppushg.rst:27
+msgid ""
+"If the agent stops in a specific host, OpenNebula will detect that no "
+"monitorization data is received from that hosts and will automatically "
+"fallback to the SSH-pull model, thus starting the agent again in the host."
+msgstr ""
+
+#: ../../source/administration/monitoring/imudppushg.rst:30
+msgid "OpenNebula Configuration"
+msgstr ""
+
+#: ../../source/administration/monitoring/imudppushg.rst:33
+msgid "Enabling the Drivers"
+msgstr ""
+
+#: ../../source/administration/monitoring/imudppushg.rst:35
+msgid ""
+"To enable this monitoring system ``/etc/one/oned.conf`` must be configured "
+"with the following snippets:"
+msgstr ""
+
+#: ../../source/administration/monitoring/imudppushg.rst:37
+msgid "``collectd`` must be enabled both for KVM and Xen:"
+msgstr ""
+
+#: ../../source/administration/monitoring/imudppushg.rst:46
+msgid "Valid arguments for this driver are:"
+msgstr ""
+
+#: ../../source/administration/monitoring/imudppushg.rst:48
+msgid "**-a**: Address to bind the collectd sockect (defults 0.0.0.0)"
+msgstr ""
+
+#: ../../source/administration/monitoring/imudppushg.rst:49
+msgid "**-p**: port number"
+msgstr ""
+
+#: ../../source/administration/monitoring/imudppushg.rst:50
+msgid ""
+"**-f**: Interval in seconds to flush collected information to OpenNebula "
+"(default 5)"
+msgstr ""
+
+#: ../../source/administration/monitoring/imudppushg.rst:51
+msgid "**-t**: Number of threads for the collectd server (defult 50)"
+msgstr ""
+
+#: ../../source/administration/monitoring/imudppushg.rst:52
+msgid ""
+"**-i**: Time in seconds of the monitorization push cycle. This parameter "
+"must be smaller than MONITORING\\_INTERVAL (see below), otherwise push "
+"monitorization will not be effective."
+msgstr ""
+
+#: ../../source/administration/monitoring/imudppushg.rst:54
+msgid "**KVM**:"
+msgstr ""
+
+#: ../../source/administration/monitoring/imudppushg.rst:63
+msgid "**Xen 3**:"
+msgstr ""
+
+#: ../../source/administration/monitoring/imudppushg.rst:72
+msgid "**Xen 4**:"
+msgstr ""
+
+#: ../../source/administration/monitoring/imudppushg.rst:81
+msgid "The arguments passed to this driver are:"
+msgstr ""
+
+#: ../../source/administration/monitoring/imudppushg.rst:83
+msgid "**-r**: number of retries when monitoring a host"
+msgstr ""
+
+#: ../../source/administration/monitoring/imudppushg.rst:84
+msgid ""
+"**-t**: number of threads, i.e. number of hosts monitored at the same time"
+msgstr ""
+
+#: ../../source/administration/monitoring/imudppushg.rst:87
+msgid "Monitoring Configuration Parameters"
+msgstr ""
+
+#: ../../source/administration/monitoring/imudppushg.rst:89
+msgid ""
+"OpenNebula allows to customize the general behaviour of the whole monitoring"
+" subsystem:"
+msgstr ""
+
+#: ../../source/administration/monitoring/imudppushg.rst:92
+msgid "Parameter"
+msgstr ""
+
+#: ../../source/administration/monitoring/imudppushg.rst:92
+msgid "Description"
+msgstr ""
+
+#: ../../source/administration/monitoring/imudppushg.rst:94
+msgid "MONITORING\\_INTERVAL"
+msgstr ""
+
+#: ../../source/administration/monitoring/imudppushg.rst:94
+msgid ""
+"Time in seconds between host and VM monitorization. It must have a value "
+"greater than the manager timer"
+msgstr ""
+
+#: ../../source/administration/monitoring/imudppushg.rst:96
+msgid "HOST\\_PER\\_INTERVAL"
+msgstr ""
+
+#: ../../source/administration/monitoring/imudppushg.rst:96
+msgid "Number of hosts monitored in each interval."
+msgstr ""
+
+#: ../../source/administration/monitoring/imudppushg.rst:99
+msgid ""
+"Note that in this case HOST\\_PER\\_INTERVAL is only relevant when "
+"bootstraping the monitor agents. Once the agents are up and running, "
+"OpenNebula does not polls the hosts."
+msgstr ""
+
+#: ../../source/administration/monitoring/imudppushg.rst:102
+msgid "Troubleshooting"
+msgstr ""
+
+#: ../../source/administration/monitoring/imudppushg.rst:105
+msgid "Healthy Monitoring System"
+msgstr ""
+
+#: ../../source/administration/monitoring/imudppushg.rst:107
+msgid ""
+"If the ``UDP-push`` model is running successfully, it means that it has not "
+"fallen back to the ``SSH-pull`` model. We can verify this based on the "
+"information logged in ``oned.log``."
+msgstr ""
+
+#: ../../source/administration/monitoring/imudppushg.rst:109
+msgid ""
+"Every (approximately) ``monitoring_push_cycle`` of seconds OpenNebula is "
+"receiving the monitoring data of every Virtual Machine and of a host like "
+"such:"
+msgstr ""
+
+#: ../../source/administration/monitoring/imudppushg.rst:120
+msgid ""
+"However, if in ``oned.log`` a host is being monitored **actively** "
+"periodically (every ``MONITORING_INTERVAL`` seconds) then the ``UDP-push`` "
+"monitorization is **not** working correctly:"
+msgstr ""
+
+#: ../../source/administration/monitoring/imudppushg.rst:128
+msgid ""
+"If this is the case it's probably because OpenNebula is receiving probes "
+"faster than it can process. See the Tuning section to fix this."
+msgstr ""
+
+#: ../../source/administration/monitoring/imudppushg.rst:131
+msgid "Monitoring Probes"
+msgstr ""
+
+#: ../../source/administration/monitoring/imudppushg.rst:133
+msgid ""
+"For the troubleshooting of errors produced during the execution of the "
+"monitoring probes, please refer to the troubleshooting section of the :ref"
+":`SSH-pull guide <imsshpullg_troubleshooting>`."
+msgstr ""
+
+#: ../../source/administration/monitoring/imudppushg.rst:136
+msgid "Tuning & Extending"
+msgstr ""
+
+#: ../../source/administration/monitoring/imudppushg.rst:139
+msgid "Adjust Monitoring Interval Times"
+msgstr ""
+
+#: ../../source/administration/monitoring/imudppushg.rst:141
+msgid ""
+"In order to tune your OpenNebula installation with appropriate values of the"
+" monitoring parameters you need to adjust the **-i** option of the "
+"``collectd IM_MAD`` (the monitoring push cycle)."
+msgstr ""
+
+#: ../../source/administration/monitoring/imudppushg.rst:143
+msgid ""
+"If the system is not working healthily it will be due to the database "
+"throughput since OpenNebula will write the monitoring information to a "
+"database, an amount of ~4KB per VM. If the number of virtual machines is too"
+" large and the monitoring push cycle too low, OpenNebula will not be able to"
+" write that amount of data to the database."
+msgstr ""
+
+#: ../../source/administration/monitoring/imudppushg.rst:146
+msgid "Driver Files"
+msgstr ""
+
+#: ../../source/administration/monitoring/imudppushg.rst:148
+msgid ""
+"The probes are specialized programs that obtain the monitor metrics. Probes "
+"are defined for each hypervisor, and are located at "
+"``/var/lib/one/remotes/im/<hypervisor>-probes.d`` for Xen and KVM."
+msgstr ""
+
+#: ../../source/administration/monitoring/imudppushg.rst:150
+msgid ""
+"You can easily write your own probes or modify existing ones, please see the"
+" :ref:`Information Manager Drivers <devel-im>` guide. Remember to "
+"synchronize the monitor probes in the hosts using ``onehost sync`` as "
+"described in the :ref:`Managing Hosts <host_guide_sync>` guide."
+msgstr ""

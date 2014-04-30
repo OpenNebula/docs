@@ -1,0 +1,676 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/release_notes/release_notes/compatibility.rst:5
+msgid "Compatibility Guide"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:7
+msgid ""
+"This guide is aimed at OpenNebula 4.4 users and administrators who want to "
+"upgrade to the latest version. The following sections summarize the new "
+"features and usage changes that should be taken into account, or prone to "
+"cause confusion. You can check the upgrade process in the following "
+":ref:`guide <upgrade>`"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:9
+msgid ""
+"Visit the :ref:`Features list <features>` and the `Release Notes "
+"<http://opennebula.org/software/release/>`_ for a comprehensive list of "
+"what's new in OpenNebula 4.6."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:12
+msgid "OpenNebula Administrators and Users"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:15
+msgid "oZones and Federation"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:18
+msgid "oZones"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:20
+msgid ""
+"The **oZones** component has been deprecated, its funcitonality has been "
+"integrated into the main OpenNebula daemon. You can read more about the new "
+"**OpenNebula Federation** capabilities :ref:`here <introf>`. In a "
+"Federation, different OpenNebula instances share the same user accounts, "
+"groups, and permissions configuration."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:23
+msgid "Virtual Data Centers (vDC)"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:25
+msgid ""
+"The **onevdc** command was part of the now deprecated **oZones** component. "
+"In 4.4, vDC provided a way to assign physical resources to groups, and to "
+"define a group administrator. These features have been extended and "
+"integrated into the core Group, so everything is managed through Sunstone "
+"and the CLI. You can read more about Groups, vDC, and Resource Providers in "
+"the :ref:`Group Management guides <manage_groups>` and the :ref:`Quickstart "
+"guide <qs_vdc>`."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:28
+msgid "Resource Providers"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:30
+msgid ""
+"In previous versions, administrators could decide the physical resources "
+"exposed to each group using :ref:`ACL rules <manage_acl>`. In 4.6, this "
+"process has been simplified merging the oZones vDC functionality in the "
+"core."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:32
+msgid ""
+"There is a new concept: Resource Provider. A Resource Provider is an "
+"OpenNebula :ref:`cluster <cluster_guide>` (set of physical hosts and "
+"associated datastores and virtual networks) from a particular Zone (an "
+"OpenNebula instance). You can :ref:`assign/remove Resource Providers "
+"<managing-resource-provider-within-groups>` to each group, and internally "
+"that will create the ACL rules that you had to manually manage in 4.4."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:34
+msgid ""
+"When you upgrade from a previous version, the groups will not have any "
+"Resource Provider assigned. The existing ACL Rules are preserved, but they "
+"will not be interpreted as Resource Providers."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:37
+msgid "ACL Rules in a Federation"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:39
+msgid ""
+"Each :ref:`ACL Rule <manage_acl>` now can define the Zone(s) where it "
+"applies."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:55
+msgid "Groups"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:57
+msgid ""
+"Group resources now have a template that can be edited, via Sunstone or with"
+" the ``onegroup update`` command."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:59
+msgid ""
+"The 4.4 configuration file ``group.default`` defined the ACL rules to create"
+" when new groups were created. This was the default ``group.default`` file:"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:68
+msgid ""
+"This file does not exist in 4.6, and the ACL rules are controlled with the "
+":ref:`--resources option <manage_groups_permissions>` and Resource "
+"Providers."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:70
+msgid ""
+"``-r, --resources``: Defines the resources that can be created by group "
+"users (VM+IMAGE+TEMPLATE by default)"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:72
+msgid ""
+"Users in new groups cannot deploy VMs until the admin assigns a "
+":ref:`Resource Provider <managing-resource-provider-within-groups>`. To "
+"replicate the default 4.4 behaviour, assign the resource provider ALL:"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:78
+msgid ""
+"Note the difference in the default resources: users cannot create VNETs by "
+"default anymore."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:81
+msgid "Sunstone"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:83
+msgid ""
+"The Sunstone web interface has undergone a major redesign to make it more "
+"intuitive to use. There is more information available, new Views, and better"
+" creations wizards. You will not experience any incompatibility interaction "
+"with previous resources."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:86
+msgid "Sunstone Cloud View"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:89
+msgid ""
+"The Self-service Cloud View in OpenNebula 4.4 was a trimmed down version of "
+"the normal Sunstone. Now the users access a newly designed :ref:`Cloud View "
+"<cloud_view>`."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:90
+msgid ""
+"The Templates for the 4.4 self-service cloud view **are not compatible** "
+"with the new 4.6 Cloud View."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:92
+msgid ""
+"In 4.4, self-service Templates were defined without the Disk, that the user "
+"could select at launch time."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:93
+msgid ""
+"For 4.6, Templates are complete i.e. can be instantiated without adding any "
+"attributes."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:95
+msgid "The rationale behind this is:"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:97
+msgid ""
+"The same Templates work for both the Cloud View and for "
+"administrators/advanced user views. There is no need to create specific "
+"Templates."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:98
+msgid ""
+"Allowing users to combine Templates with Images may end in non-functional "
+"VMs. For example, if you setup OS/ARCH to be 64bits a 64bit Image is needed."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:99
+msgid ""
+"It is quite difficult to combine the self-service Templates in 4.4 with "
+"advanced features like hybrid clouds. You need to tie somehow the local "
+"Image with the remote AMI. That can only be done at the Template level."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:101
+msgid ""
+"The Cloud View Users can now save the changes they make to their VMs. This "
+"is a new action that combines a deferred disk snapshot with a template "
+"clone. Read more in the :ref:`vDC Admin View guide <vdc_admin_view_save>`."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:104
+msgid "Sunstone Configuration"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:106
+msgid ""
+"Available sunstone views for each user are now defined group-wise, instead "
+"of specifying it in ``sunstone-views.yaml`` (this file keeps the default "
+"view). Note, that there is no need to restart the Sunstone server when views"
+" are updated."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:107
+msgid ""
+"The new Cloud view features predefined Instance types, that specify capacity"
+" values to instantiate the predefined VM templates. The instance types can "
+"be defined in ``sunstone-server.conf``."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:108
+msgid ""
+"The ``admin.yaml`` and ``user.yaml`` views now have OneFlow visible by "
+"default. If you don't have OneFlow running, you'll see the message: 'Cannot "
+"connect to OneFlow server'. :ref:`Follow this section "
+"<sunstone_connect_oneflow>` to know more. Flow can be disables in "
+"``sunstone-server.conf``."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:109
+msgid ""
+"The communication between clients and Sunstone server has been reduced in "
+"this release to increase the overall performance (server-side). The active "
+"tab panel periodically refresh its contents. This behavior is controlled by "
+"the ``autorefresh`` option in the yaml view definition file."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:110
+msgid ""
+"Views should be compatible with Sunstone 4.6, note that ``autorefresh`` will"
+" be set to ``false`` for existing views."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:113
+msgid "Storage"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:115
+msgid ""
+"The Datastore :ref:`BASE_PATH can be edited <ds_conf>` after the Datastore "
+"creation. You can also modify the base path of the default Datastores "
+"(0,1,2)."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:116
+msgid ""
+"Default Datastores (0,1,2) could not be deleted, or assigned to a Cluster up"
+" to 4.4. This limitation has been removed for the 4.6 release."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:117
+msgid ""
+"OpenNebula can now operate with RBD Format 1 and RBD Format 2. RBD Format 2 "
+"brings many advantages, like creating new clones based on snapshots which "
+"runs a lot faster. If you want to take advantage of this you will need to "
+"manually convert your previously created images from RBD Format 1 to Format "
+"2."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:118
+msgid ""
+"For Ceph Datastores, you can specify the extra args sent to ``qemu-img "
+"convert`` in the ``/var/lib/one/remotes/datastore/ceph/ceph.conf```file. "
+"Adding ``-O rbd`` is recommended depening on the RBD version."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:119
+msgid ""
+"KVM machines support ``libgfapi`` to connect to disk images greatly "
+"improving the IO performance over FUSE mounts. The information about is is "
+"at the :ref:`GlusterFS Datastore guide <gluster_ds>`"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:122
+#: ../../source/release_notes/release_notes/compatibility.rst:237
+msgid "Monitoring"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:124
+msgid ""
+"There is a new probe that kills wild ``collectd-client`` processes in case "
+"more than one is running."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:127
+msgid "Scheduling"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:129
+msgid "**Deprecated** attribute in sched.conf, ``HYPERVISOR_MEM``."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:131
+msgid ""
+"``HYPERVISOR_MEM``: Fraction of total MEMORY reserved for the hypervisor. "
+"E.g. 0.1 means that only 90% of the total MEMORY will be used."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:133
+msgid ""
+"The admin can now :ref:`update the Host information "
+"<host_guide_information>` to set a limit on the CPU and MEMORY available to "
+"OpenNebula. See the :ref:`Scheduler Guide <schg_limit>` for more "
+"information."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:135
+msgid ""
+"This functionality is somewhat similar the 4.4 ``HYPERVISOR_MEM`` attribute "
+"in ``sched.conf``. But it is more useful since the limitation applies to the"
+" complete OpenNebula system, not only to the Scheduler, and because it can "
+"be set for each Host individually."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:137
+msgid ""
+"A new attribute has been included in sched.conf ``MESSAGE_SIZE`` to set the "
+"buffer size in bytes for XML-RPC responses. This can be increased in large "
+"clouds with a great number of VMs."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:140
+msgid "AppMarket"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:142
+msgid ""
+"In the new Appmarket version (>= 2) all the appliances can have multiple "
+"disks. This however does not affect the Sunstone workflow."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:145
+msgid "Contextualization"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:147
+msgid ""
+"VM hostname can be specified in the ccontext section with ``SET_HOSTNAME`` "
+"or can be automatically set from DNS with ``DNS_HOSTNAME=YES``."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:148
+msgid ""
+"Latest versions of cloud-init can be used if the network is disabled in "
+"``USER_DATA``. For example:"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:161
+msgid "Accounting: oneacct command"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:163
+msgid "The ``oneacct`` command now accepts the following options:"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:165
+msgid "``--csv``: Writes the table in csv format"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:166
+msgid "``--describe``: Describes the list columns"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:167
+msgid "``-l, --list``: Selects the columns to display with list command"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:169
+msgid "For example:"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:176
+msgid "Virtual Networks"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:178
+msgid ""
+"The following Virtual Network attributes can now be updated after the VNet "
+"creation:"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:180
+msgid "``PHYDEV``"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:181
+msgid "``VLAN``"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:182
+msgid "``VLAN_ID``"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:183
+msgid "``BRIDGE``"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:185
+msgid "Leases on hold can now be deleted."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:186
+msgid ""
+"Up to 4.4, a Virtual Network could be deleted at any time even if there were"
+" VMs using IPs from that network. Now a Virtual Network cannot be deleted if"
+" there are leases in use."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:189
+msgid "oned.conf"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:191
+msgid "New attributes in :ref:`oned.conf <oned_conf>`:"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:193
+msgid ""
+"``VM_INDIVIDUAL_MONITORING``: VM monitoring information is obtained along "
+"with the host information. For some custom monitor drivers you may need "
+"activate the individual VM monitoring process."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:194
+msgid ""
+"``FEDERATION``: Attributes to control the :ref:`federation config "
+"<oned_conf_federation>`."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:195
+msgid ""
+"``MESSAGE_SIZE``: Buffer size in bytes for XML-RPC responses. Only relevant "
+"for federation slave zones."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:196
+msgid ""
+"``RPC_LOG``: Create a separated log file for xml-rpc requests, in "
+"/var/log/one/one_xmlrpc.log."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:197
+msgid ""
+"``DEFAULT_CDROM_DEVICE_PREFIX``: Same as ``DEFAULT_DEVICE_PREFIX`` but for "
+"CDROM devices. Default value for DEV\\_PREFIX field when it is omitted in a "
+"template."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:200
+msgid "oneflow-server.conf"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:202
+msgid ""
+"There is a new configuration attribute to customize the name given to the "
+"VMs created by oneflow. Read the :ref:`OneFlow Server Configuration guide "
+"<appflow_configure>` for more information"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:204
+msgid ""
+"``:vm_name_template``: Default name for the Virtual Machines created by "
+"oneflow. You can use any of the following placeholders"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:206
+msgid "$SERVICE_ID"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:207
+msgid "$SERVICE_NAME"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:208
+msgid "$ROLE_NAME"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:209
+msgid "$VM_NUMBER"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:212
+msgid "KVM"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:214
+msgid ""
+"There are new parameters for KVM machines. They can be seen in more detail "
+"at the :ref:`VM Template reference guide <template>`:"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:216
+msgid ""
+"``hyperv`` feature to give better support to Windows machines. Its "
+"paramaters can be changed in the driver configuration file "
+"(``/etc/one/vmm_exec/vmm_exec_kvm.conf``)."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:217
+#: ../../source/release_notes/release_notes/compatibility.rst:228
+msgid ""
+"``localtime`` feature so the clock reported to the VM is in local time "
+"instead of UTC."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:218
+msgid ""
+"When selecting spice support some other parameters are added to the VM. "
+"These can be changed in the driver configuration file "
+"(``/etc/one/vmm_exec/vmm_exec_kvm.conf``)."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:219
+msgid ""
+"Add default ``GRAPHICS`` section parameters, configurable in the driver "
+"configuration file (``/etc/one/vmm_exec/vmm_exec_kvm.conf``)."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:220
+msgid ""
+"``machine`` option in the ``OS`` section. This is useful for migration "
+"between different host OS versions and to select other chipset than the "
+"default one."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:224
+msgid "Xen"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:226
+msgid ""
+"There are new parameters for Xen machines. They can be seen in more detail "
+"at the :ref:`VM Template reference guide <template>`:"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:229
+msgid "New VM features ``pae``, ``acpi`` and ``apic`` for Xen HVM."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:230
+msgid "Device model can now be set as a VM feature."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:231
+msgid ""
+"The pointer device can be a tablet usb. This makes VNC mouse handling more "
+"precise."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:234
+msgid "Developers and Integrators"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:239
+msgid ""
+"Individual VM monitoring has been disabled by default for stock monitoring "
+"drivers. These drivers include VM information along with the hypervisor one."
+" As the VM information is also obtained (in general) through the hypervisor,"
+" a failure may collapse VM actions. If you have develop a driver that relies"
+" on individual VM monitoring, you can enable it in ``oned.conf`` (attribute "
+"``VM_INDIVIDUAL_MONITORING``)"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:242
+msgid "Ruby OCA"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:244
+msgid ""
+"``OpenNebula::Client`` has a new option ``http_proxy`` to specify the proxy."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:245
+msgid ""
+"``OpenNebula::*Pool.get_hash`` can be used to retrieve a hash with the pool."
+" For Pools that support it the query to ``oned`` can be paginated."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:246
+msgid ""
+"OCA will use the gem Ox when it is installed. This makes parsing both XML-"
+"RPC and xml responses much faster."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:249
+msgid "XML-RPC API"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:251
+msgid ""
+"``Pool.info`` calls with ``end_id`` < -1 can be used to paginate responses. "
+"The offset is specified as ``start_id`` and the number of objects * -1 as "
+"``end_id``. For example to get 15 VMs skiping 250 the call will be:"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:258
+msgid "New api calls:"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:260
+msgid "``one.group.update``: Replaces the group template contents."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:261
+msgid "``one.group.addprovider``: Adds a resource provider to the group."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:262
+msgid "``one.group.delprovider``: Deletes a resource provider from the group."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:263
+msgid "``one.zone.allocate``: Allocates a new zone in OpenNebula."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:264
+msgid "``one.zone.delete``: Deletes the given zone from the pool."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:265
+msgid "``one.zone.update``: Replaces the zone template contents."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:266
+msgid "``one.zone.rename``: Renames a zone."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:267
+msgid "``one.zone.info``: Retrieves information for the zone."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:268
+msgid ""
+"``one.zonepool.info``: Retrieves information for all the zones in the pool."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:270
+msgid "Changed api calls:"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/compatibility.rst:272
+msgid ""
+"``one.vm.savedisk``: New optional parameter. Boolean, True to clone clone "
+"also the VM originating Template, and replace the disk with the saved image."
+msgstr ""

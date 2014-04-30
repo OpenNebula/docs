@@ -1,0 +1,212 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/integration/getting_started/introapis.rst:5
+msgid "Scalable Architecture and APIs"
+msgstr ""
+
+#: ../../source/integration/getting_started/introapis.rst:7
+msgid ""
+"OpenNebula has been designed to be easily adapted to any infrastructure and "
+"easily extended with new components. The result is a modular system that can"
+" implement a variety of Cloud architectures and can interface with multiple "
+"datacenter services. In this Guide we review the main interfaces of "
+"OpenNebula, their use and give pointers to additional documentation for each"
+" one."
+msgstr ""
+
+#: ../../source/integration/getting_started/introapis.rst:9
+msgid ""
+"We have classified the interfaces in two categories: end-user cloud and "
+"system interfaces. Cloud interfaces are primary used to develop tools "
+"targeted to the end-user, and they provide a high level abstraction of the "
+"functionality provided by the Cloud. On the other hand, the system "
+"interfaces expose the full functionality of OpenNebula and are mainly used "
+"to adapt and tune the behavior of OpenNebula to the target infrastructure."
+msgstr ""
+
+#: ../../source/integration/getting_started/introapis.rst:11
+msgid "|image0|"
+msgstr ""
+
+#: ../../source/integration/getting_started/introapis.rst:14
+msgid "1. Cloud Interfaces"
+msgstr ""
+
+#: ../../source/integration/getting_started/introapis.rst:16
+msgid ""
+"Cloud interfaces enable you to manage virtual machines, networks and images "
+"through a simple and easy-to-use REST API. The Cloud interfaces hide most of"
+" the complexity of a Cloud and are specially suited for end-users. "
+"OpenNebula implements two different interfaces, namely:"
+msgstr ""
+
+#: ../../source/integration/getting_started/introapis.rst:18
+msgid ""
+"**EC2-Query API**. OpenNebula implements the functionality offered by the "
+"`Amazon's EC2 API "
+"<http://docs.aws.amazon.com/AWSEC2/latest/APIReference/Welcome.html>`__, "
+"mainly those related to virtual machine management. In this way, you can use"
+" any EC2 Query tool to access your OpenNebula Cloud."
+msgstr ""
+
+#: ../../source/integration/getting_started/introapis.rst:19
+msgid ""
+"**OCCI-OGF**. The OpenNebula OCCI API is a RESTful service to create, "
+"control and monitor cloud resources using an implementation of the `OGF OCCI"
+" API specification <http://www.occi-wg.org>`__ based on the `draft 0.8 "
+"<http://forge.ogf.org/sf/docman/do/downloadDocument/projects.occi-"
+"wg/docman.root.drafts/doc15731/3>`__"
+msgstr ""
+
+#: ../../source/integration/getting_started/introapis.rst:21
+msgid ""
+"*Use the cloud interface if...* you are developing portals, tools or "
+"specialized solutions for end-users."
+msgstr ""
+
+#: ../../source/integration/getting_started/introapis.rst:23
+msgid ""
+"*You can find more information at...* :ref:`EC2-Query reference <ec2qug>`, "
+"and :ref:`OCCI reference guides <occidd>`."
+msgstr ""
+
+#: ../../source/integration/getting_started/introapis.rst:26
+msgid "2. System Interfaces"
+msgstr ""
+
+#: ../../source/integration/getting_started/introapis.rst:29
+msgid "2.1. The OpenNebula XML-RPC Interface"
+msgstr ""
+
+#: ../../source/integration/getting_started/introapis.rst:31
+msgid ""
+"The XML-RPC interface is the primary interface for OpenNebula, and it "
+"exposes all the functionality to interface the OpenNebula daemon. Through "
+"the XML-RPC interface you can control and manage any OpenNebula resource, "
+"including virtual machines, networks, images, users, hosts and clusters."
+msgstr ""
+
+#: ../../source/integration/getting_started/introapis.rst:33
+msgid ""
+"*Use the XML-RPC interface if...* you are developing specialized libraries "
+"for Cloud applications or you need a low-level interface with the OpenNebula"
+" core."
+msgstr ""
+
+#: ../../source/integration/getting_started/introapis.rst:35
+msgid ""
+"*You can find more information at...* :ref:`XML-RPC reference guide <api>`."
+msgstr ""
+
+#: ../../source/integration/getting_started/introapis.rst:38
+msgid "2.2. The OpenNebula Cloud API (OCA)"
+msgstr ""
+
+#: ../../source/integration/getting_started/introapis.rst:40
+msgid ""
+"The OpenNebula Cloud API provides a simplified and convenient way to "
+"interface the OpenNebula core. The OCA interfaces exposes the same "
+"functionality as that of the XML-RPC interface. OpenNebula includes two "
+"language bindings for OCA: Ruby and JAVA."
+msgstr ""
+
+#: ../../source/integration/getting_started/introapis.rst:42
+msgid ""
+"*Use the OCA interface if...* you are developing advanced IaaS tools that "
+"need full access to the OpenNebula functionality."
+msgstr ""
+
+#: ../../source/integration/getting_started/introapis.rst:44
+msgid ""
+"*You can find more information at...* :ref:`OCA-Ruby reference guide <ruby>`"
+" and the :ref:`OCA-JAVA reference guide <java>`."
+msgstr ""
+
+#: ../../source/integration/getting_started/introapis.rst:47
+msgid "2.3. The OpenNebula Drivers Interfaces"
+msgstr ""
+
+#: ../../source/integration/getting_started/introapis.rst:49
+msgid ""
+"The interactions between OpenNebula and the Cloud infrastructure are "
+"performed by specific drivers each one addressing a particular area:"
+msgstr ""
+
+#: ../../source/integration/getting_started/introapis.rst:51
+msgid ""
+"**Storage**. The OpenNebula core issue abstract storage operations (e.g. "
+"clone or delete) that are implemented by specific programs that can be "
+"replaced or modified to interface special storage backends and file-systems."
+msgstr ""
+
+#: ../../source/integration/getting_started/introapis.rst:52
+msgid ""
+"**Virtualization**. The interaction with the hypervisors are also "
+"implemented with custom programs to boot, stop or migrate a virtual machine."
+" This allows you to specialize each VM operation so to perform custom "
+"operations."
+msgstr ""
+
+#: ../../source/integration/getting_started/introapis.rst:53
+msgid ""
+"**Monitoring**. Monitoring information is also gathered by external probes. "
+"You can add additional probes to include custom monitoring metrics that can "
+"be later used to allocate virtual machines or for accounting purposes"
+msgstr ""
+
+#: ../../source/integration/getting_started/introapis.rst:54
+msgid ""
+"**Authorization**. OpenNebula can be also configured to use an external "
+"program to authorize and authenticate user requests. In this way, you can "
+"implement any access policy to Cloud resources."
+msgstr ""
+
+#: ../../source/integration/getting_started/introapis.rst:55
+msgid ""
+"**Networking** the hypervisor is also prepared with the network "
+"configuration for each Virtual Machine."
+msgstr ""
+
+#: ../../source/integration/getting_started/introapis.rst:57
+msgid ""
+"*Use the driver interfaces if...* you need OpenNebula to interface any "
+"specific storage, virtualization, monitoring or authorization system already"
+" deployed in your datacenter or to tune the behavior of the standard "
+"OpenNebula drivers."
+msgstr ""
+
+#: ../../source/integration/getting_started/introapis.rst:59
+msgid ""
+"*You can find more information at...* the :ref:`virtualization system "
+"<devel-vmm>`,\\ :ref:`storage system <sd>`, the :ref:`information system "
+"<devel-im>`, the :ref:`authentication system <auth_overview>` and "
+":ref:`network system <devel-nm>` guides."
+msgstr ""
+
+#: ../../source/integration/getting_started/introapis.rst:62
+msgid "2.4. The OpenNebula DataBase"
+msgstr ""
+
+#: ../../source/integration/getting_started/introapis.rst:64
+msgid ""
+"OpenNebula saves its state and lots of accounting information in a "
+"persistent data-base. OpenNebula can use MySQL or SQLite database that can "
+"be easily interfaced with any of DB tool."
+msgstr ""
+
+#: ../../source/integration/getting_started/introapis.rst:66
+msgid ""
+"*Use the OpenNebula DB if...* you need to generate custom accounting or "
+"billing reports."
+msgstr ""

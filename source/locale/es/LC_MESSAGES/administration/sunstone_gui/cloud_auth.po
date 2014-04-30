@@ -1,0 +1,207 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/administration/sunstone_gui/cloud_auth.rst:5
+msgid "Cloud Servers Authentication"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/cloud_auth.rst:7
+msgid ""
+"OpenNebula ships with three servers: :ref:`Sunstone <sunstone>`, :ref:`EC2 "
+"<ec2qcg>` and :ref:`OCCI <occicg>`. When a user interacts with one of them, "
+"the server authenticates the request and then forwards the requested "
+"operation to the OpenNebula daemon."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/cloud_auth.rst:9
+msgid ""
+"The forwarded requests between the servers and the core daemon include the "
+"original user name, and are signed with the credentials of an special "
+"``server`` user."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/cloud_auth.rst:11
+msgid ""
+"In this guide this request forwarding mechanism is explained, and how it is "
+"secured with a symmetric-key algorithm or x509 certificates."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/cloud_auth.rst:14
+msgid "Server Users"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/cloud_auth.rst:16
+msgid ""
+"The :ref:`Sunstone <sunstone>`, :ref:`EC2 <ec2qcg>` and :ref:`OCCI <occicg>`"
+" services communicate with the core using a ``server`` user. OpenNebula "
+"creates the **serveradmin** account at bootstrap, with the authentication "
+"driver **server\\_cipher** (symmetric key)."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/cloud_auth.rst:18
+msgid ""
+"This ``server`` user uses a special authentication mechanism that allows the"
+" servers to perform an operation on behalf of other user."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/cloud_auth.rst:20
+msgid ""
+"You can strengthen the security of the requests from the servers to the core"
+" daemon changing the serveruser's driver to **server\\_x509**. This is "
+"specially relevant if you are running your server in a machine other than "
+"the frontend."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/cloud_auth.rst:22
+msgid ""
+"Please note that you can have as many users with a **server\\_**\\ \\* "
+"driver as you need. For example, you may want to have Sunstone configured "
+"with a user with **server\\_x509** driver, and EC2 with **server\\_cipher**."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/cloud_auth.rst:25
+msgid "Symmetric Key"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/cloud_auth.rst:28
+#: ../../source/administration/sunstone_gui/cloud_auth.rst:69
+msgid "Enable"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/cloud_auth.rst:30
+msgid ""
+"This mechanism is enabled by default, you will have a user named "
+"**serveradmin** with driver **server\\_cipher**."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/cloud_auth.rst:32
+msgid ""
+"To use it, you need a user with the driver **server\\_cipher**. Enable it in"
+" the relevant configuration file in ``/etc/one``:"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/cloud_auth.rst:34
+#: ../../source/administration/sunstone_gui/cloud_auth.rst:104
+msgid ":ref:`Sunstone <sunstone>`: ``/etc/one/sunstone-server.conf``"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/cloud_auth.rst:35
+#: ../../source/administration/sunstone_gui/cloud_auth.rst:105
+msgid ":ref:`EC2 <ec2qcg>`: ``/etc/one/econe.conf``"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/cloud_auth.rst:36
+#: ../../source/administration/sunstone_gui/cloud_auth.rst:106
+msgid ":ref:`OCCI <occicg>`: ``/etc/one/occi-server.conf``"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/cloud_auth.rst:43
+#: ../../source/administration/sunstone_gui/cloud_auth.rst:113
+msgid "Configure"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/cloud_auth.rst:45
+msgid ""
+"You must update the configuration files in ``/var/lib/one/.one`` if you "
+"change the serveradmin's password, or create a different user with the "
+"**server\\_cipher** driver."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/cloud_auth.rst:57
+msgid ""
+"``serveradmin`` password is hashed in the database. You can use the "
+"``–sha1`` flag when issuing ``oneuser passwd`` command for this user."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/cloud_auth.rst:59
+msgid ""
+"When Sunstone is running in a different machine than oned you should use an "
+"SSL connection. This can be archived with an SSL proxy like stunnel or "
+"apache/nginx acting as proxy. After securing OpenNebula XMLRPC connection "
+"configure Sunstone to use https with the proxy port:"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/cloud_auth.rst:66
+msgid "x509 Encryption"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/cloud_auth.rst:71
+msgid ""
+"To enable it, change the authentication driver of the **serveradmin** user, "
+"or create a new user with the driver **server\\_x509**:"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/cloud_auth.rst:78
+msgid "The serveradmin account should look like:"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/cloud_auth.rst:88
+msgid ""
+"You need to edit ``/etc/one/auth/server_x509_auth.conf`` and uncomment all "
+"the fields. The defaults should work:"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/cloud_auth.rst:100
+msgid ""
+"Copy the certificate and the private key to the paths set in ``:one_cert:`` "
+"and ``:one_key:``, or simply update the paths."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/cloud_auth.rst:102
+msgid "Then edit the relevant configuration file in ``/etc/one``:"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/cloud_auth.rst:115
+msgid ""
+"To trust the serveradmin certificate, ``/etc/one/auth/cert.pem`` if you used"
+" the default path, the CA's certificate must be added to the ``ca_dir`` "
+"defined in ``/etc/one/auth/x509_auth.conf``. See the :ref:`x509 "
+"Authentication guide for more information <x509_auth>`."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/cloud_auth.rst:125
+msgid "Tuning & Extending"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/cloud_auth.rst:128
+msgid "Files"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/cloud_auth.rst:130
+msgid ""
+"You can find the drivers in these paths: "
+"``/var/lib/one/remotes/auth/server_cipher/authenticate`` "
+"``/var/lib/one/remotes/auth/server_server/authenticate``"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/cloud_auth.rst:133
+msgid "Authentication Session String"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/cloud_auth.rst:135
+msgid ""
+"OpenNebula users with the driver **server\\_cipher** or **server\\_x509** "
+"use a special authentication session string (the first parameter of the :ref"
+":`XML-RPC calls <api>`). A regular authentication token is in the form:"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/cloud_auth.rst:141
+msgid "Whereas a user with a **server\\_**\\ \\* driver must use this token format:"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/cloud_auth.rst:147
+msgid ""
+"The core daemon understands a request with this authentication session token"
+" as ``perform this operation on behalf of target\\_user``. The ``secret`` "
+"part of the token is signed with one of the two mechanisms explained below."
+msgstr ""

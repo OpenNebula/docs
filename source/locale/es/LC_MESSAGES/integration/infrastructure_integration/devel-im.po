@@ -1,0 +1,465 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:5
+msgid "Monitoring Driver"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:7
+msgid ""
+"The Monitoring Drivers (or IM drivers) collect host and virtual machine "
+"monitoring data by executing a set of probes in the hosts. This data is "
+"either actively queried by OpenNebula or sent periodically by an agent "
+"running in the hosts to the frontend."
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:9
+msgid ""
+"This guide describes the process of customize or add probes to the hosts. It"
+" is also a starting point on how to create a new IM driver from scratch."
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:12
+msgid "Probe Location"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:14
+msgid ""
+"The default probes are installed in the frontend in the following path:"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:16
+msgid "**KVM and Xen**: ``/var/lib/one/remotes/im/<hypervisor>-probes.d``"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:17
+msgid "**VMware and EC2**: ``/var/lib/one/remotes/im/<hypervisor>.d``"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:19
+msgid ""
+"In the case of ``KVM`` and ``Xen``, the probes are distributed to the hosts,"
+" therefore if the probes are changed, they **must** be distributed to the "
+"hosts by running ``onehost sync``."
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:22
+msgid "General Probe Structure"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:24
+msgid ""
+"An IM diver is composed of one or several scripts that write to ``stdout`` "
+"information in this form:"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:31
+msgid "The drivers receive the following parameters:"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:34
+msgid "Position"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:34
+#: ../../source/integration/infrastructure_integration/devel-im.rst:68
+#: ../../source/integration/infrastructure_integration/devel-im.rst:138
+#: ../../source/integration/infrastructure_integration/devel-im.rst:219
+msgid "Description"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:36
+msgid "1"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:36
+msgid "**hypervisor**: The name of the hypervisor: ``kvm``, ``xen``, etc..."
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:38
+msgid "2"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:38
+msgid "**datastore location**: path of the datastores directory in the host"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:40
+msgid "3"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:40
+msgid "**collectd port**: port in which the ``collectd`` is listening on"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:42
+msgid "4"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:42
+msgid ""
+"**monitor push cycle**: time in seconds between monitorization actions for "
+"the UDP-push model"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:44
+msgid "5"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:44
+msgid "**host\\_id**: id of the host"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:46
+msgid "6"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:46
+msgid "**host\\_name**: name of the host"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:49
+msgid ""
+"Take into account that in shell script the parameters start at 1 (``$1``) "
+"and in ruby start at 0 (``ARGV[0]``). For shell script you can use this "
+"snippet to get the parameters:"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:63
+msgid "Basic Monitoring Scripts"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:65
+msgid ""
+"You can add any key and value you want to use later in ``RANK`` and "
+"``REQUIREMENTS`` for scheduling but there are some basic values you should "
+"output:"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:68
+#: ../../source/integration/infrastructure_integration/devel-im.rst:138
+msgid "Key"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:70
+msgid "HYPERVISOR"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:70
+msgid ""
+"Name of the hypervisor of the host, useful for selecting the hosts with an "
+"specific technology."
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:72
+msgid "TOTALCPU"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:72
+msgid ""
+"Number of CPUs multiplied by 100. For example, a 16 cores machine will have "
+"a value of 1600."
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:74
+msgid "CPUSPEED"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:74
+msgid "Speed in Mhz of the CPUs."
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:76
+msgid "TOTALMEMORY"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:76
+msgid ""
+"Maximum memory that could be used for VMs. It is advised to take out the "
+"memory used by the hypervisor."
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:78
+msgid "USEDMEMORY"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:78
+msgid "Memory used, in kilobytes."
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:80
+msgid "FREEMEMORY"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:80
+msgid "Available memory for VMs at that moment, in kilobytes."
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:82
+msgid "FREECPU"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:82
+msgid ""
+"Percentage of idling CPU multiplied by the number of cores. For example, if "
+"50% of the CPU is idling in a 4 core machine the value will be 200."
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:84
+msgid "USEDCPU"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:84
+msgid "Percentage of used CPU multiplied by the number of cores."
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:86
+msgid "NETRX"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:86
+msgid "Received bytes from the network"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:88
+msgid "NETTX"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:88
+msgid "Transferred bytes to the network"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:91
+msgid ""
+"For example, a probe that gets memory information about a host could be "
+"something like:"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:105
+msgid "Executing it should give use memory values:"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:114
+msgid ""
+"For real examples check the directories at ``/var/lib/one/remotes/im``."
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:119
+msgid "VM Information"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:121
+msgid ""
+"The scripts should also provide information about the VMs running in the "
+"host. This is useful as it will only need one call to gather all that "
+"information about the VMs in each host. The output should be in this form:"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:135
+msgid ""
+"The first line (``VM_POLL=YES``) is used to indicate OpenNebula that VM "
+"information will follow. Then the information about the VMs is output in "
+"that form."
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:140
+#: ../../source/integration/infrastructure_integration/devel-im.rst:227
+msgid "ID"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:140
+msgid ""
+"OpenNebula VM id. It can be -1 in case this VM was not created by OpenNebula"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:142
+msgid "DEPLOY\\_ID"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:142
+msgid "Hypervisor name or identifier of the VM"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:144
+msgid "POLL"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:144
+msgid ""
+"VM monitoring info, in the same format as :ref:`VMM driver <devel-vmm>` poll"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:147
+msgid ""
+"For example here is a simple script to get qemu/kvm VMs status from libvirt."
+" As before, check the scripts from OpenNebula for a complete example:"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:186
+msgid "System Datastore Information"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:188
+msgid ""
+"Information Manager drivers are also responsible to collect the datastore "
+"sizes and its available space. To do so there is an already made script that"
+" collects this information for filesystem and lvm based datastores. You can "
+"copy it from the KVM driver (``/var/lib/one/remotes/im/kvm-"
+"probes.d/monitor_ds.sh``) into your driver directory."
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:190
+msgid ""
+"In case you want to create your own datastore monitor you have to return "
+"something like this in STDOUT:"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:216
+msgid "These are the meanings of the values:"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:219
+msgid "Variable"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:221
+msgid "DS\\_LOCATION\\_USED\\_MB"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:221
+msgid "Used space in megabytes in the DATASTORE LOCATION"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:223
+msgid "DS\\_LOCATION\\_TOTAL\\_MB"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:223
+msgid "Total space in megabytes in the DATASTORE LOCATION"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:225
+msgid "DS\\_LOCATION\\_FREE\\_MB"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:225
+msgid "FREE space in megabytes in the DATASTORE LOCATION"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:227
+msgid "ID of the datastore, this is the same as the name of the directory"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:229
+msgid "USED\\_MB"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:229
+msgid "Used space in megabytes for that datastore"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:231
+msgid "TOTAL\\_MB"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:231
+msgid "Total space in megabytes for that datastore"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:233
+msgid "FREE\\_MB"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:233
+msgid "Free space in megabytes for that datastore"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:236
+msgid ""
+"The DATASTORE LOCATION is the path where the datastores are mounted. By "
+"default is ``/var/lib/one/datastores`` but it is specified in the second "
+"parameter of the script call."
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:239
+msgid "Creating a New IM Driver"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:242
+msgid "Choosing the Execution Engine"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:244
+msgid ""
+"OpenNebula provides two IM probe execution engines: ``one_im_sh`` and "
+"``one_im_ssh``. ``one_im_sh`` is used to execute probes in the frontend, for"
+" example ``vmware`` uses this engine as it collects data via an API call "
+"executed in the frontend. On the other hand, ``one_im_ssh`` is used when "
+"probes need to be run remotely in the hosts, which is the case for ``Xen`` "
+"and ``KVM``."
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:247
+msgid "Populating the Probes"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:249
+msgid ""
+"Both ``one_im_sh`` and ``one_im_ssh`` require an argument which indicates "
+"the directory that contains the probes. This argument is appended with ”.d”."
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:251
+msgid ""
+"**Example**: For ``VMware`` the execution engine is ``one_im_sh`` (local "
+"execution) and the argument is ``vmware``, therefore the probes that will be"
+" executed in the hosts are located in ``/var/lib/one/remotes/im/vmware.d``"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:254
+msgid "Making Use of Colllectd"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:256
+msgid ""
+"If the new IM driver wishes to use the ``collectd`` component, it needs to:"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:258
+msgid "Use ``one_im_ssh``"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:259
+msgid ""
+"The ``/var/lib/one/remotes/im/<im_name>.d`` should **only** contain 2 files,"
+" the sames that are provided by default inside ``kvm.d`` and ``xen.d``, "
+"which are: ``collectd-client_control.sh`` and ``collectd-client.rb``."
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:260
+msgid ""
+"The probes should be actually placed in the "
+"``/var/lib/one/remotes/im/<im_name>-probes.d`` folder."
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:263
+msgid "Enabling the Driver"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:265
+msgid "A new IM section should be placed added to ``oned.conf``."
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-im.rst:267
+msgid "Example:"
+msgstr ""

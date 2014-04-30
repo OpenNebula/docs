@@ -1,0 +1,120 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/design_and_installation/quick_starts/qs_vdc.rst:5
+msgid "Quickstart: Create Your First vDC"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_vdc.rst:7
+msgid ""
+"This guide will provide a quick example of how to partition your cloud for a"
+" vDC. In short, a vDC is a group of users with part of the physical "
+"resources assigned to them. The :ref:`Understanding OpenNebula<understand>` "
+"guide explains the OpenNebula provisioning model in detail."
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_vdc.rst:11
+msgid "Step 1. Create a Cluster"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_vdc.rst:13
+msgid ""
+"We will first create a :ref:`cluster <cluster_guide>`, 'web-dev', where we "
+"can group hosts, datastores and virtual networks for the new vDC."
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_vdc.rst:34
+msgid "|qs_vdc1|"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_vdc.rst:37
+msgid "Step 2. Create a vDC Group"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_vdc.rst:39
+msgid ""
+"We can now create the new :ref:`group <manage_groups>`, named also 'web-"
+"dev'. This group, or vDC, will have a special admin user, 'web-dev-admin'."
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_vdc.rst:48
+msgid "|qs_vdc2|"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_vdc.rst:50
+msgid "|qs_vdc3|"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_vdc.rst:53
+msgid "Step 3. Optionally, Set Quotas"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_vdc.rst:55
+msgid ""
+"The cloud administrator can set :ref:`usage quotas <quota_auth>` for the "
+"vDC. In this case, we will put a limit of 10 VMs."
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_vdc.rst:82
+msgid "|qs_vdc4|"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_vdc.rst:85
+msgid "Step 4. Prepare Virtual Resources for the Users"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_vdc.rst:87
+msgid ""
+"At this point, the cloud administrator can also prepare working Templates "
+"and Images for the vDC users."
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_vdc.rst:93
+msgid "|qs_vdc5|"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_vdc.rst:96
+msgid "Reference for End Users"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_vdc.rst:98
+msgid ""
+"The vDC admin uses an interface similar to the cloud administrator, but "
+"without any information about the physical infrastructure. He will be able "
+"to create new users inside the vDC, monitor their resources, and create new "
+"Templates for them. The vDC admin can also decide to configure quota limits "
+"for each user."
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_vdc.rst:100
+msgid ""
+"Refer your vDC admin user to the :ref:`vDC Admin View Guide "
+"<vdc_admin_view>`."
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_vdc.rst:102
+msgid ""
+"End users access OpenNebula through a simplified instantiate, where they can"
+" launch their own VMs from the Templates prepared by the administrator. "
+"Users can also save the changes they make to their machines. This view is "
+"self explanatory, you can read more about it in the :ref:`Cloud View Guide "
+"<cloud_view>`."
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_vdc.rst:104
+msgid "|qs_vdc6|"
+msgstr ""
+
+#: ../../source/design_and_installation/quick_starts/qs_vdc.rst:106
+msgid "|qs_vdc7|"
+msgstr ""

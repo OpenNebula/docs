@@ -1,0 +1,143 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/advanced_administration/public_cloud/ec2qec.rst:5
+msgid "EC2 Ecosystem"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qec.rst:7
+msgid ""
+"In order to interact with the EC2 Service that OpenNebula implements you can"
+" use the client included in the OpenNebula distribution, but also you can "
+"choose one of the well known tools that are supposed to interact with cloud "
+"servers through the EC2 Query API, like the Firefox extension `HybridFox "
+"<http://code.google.com/p/hybridfox/>`__, or the command line tools, "
+"`Euca2ools <http://open.eucalyptus.com/wiki/Euca2oolsGuide_v1.1/>`__."
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qec.rst:10
+msgid "HybridFox"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qec.rst:12
+msgid ""
+"`HybridFox <http://code.google.com/p/hybridfox/>`__ is a Mozilla Firefox "
+"extension for managing your Amazon EC2 account. Launch new instances, mount "
+"Elastic Block Storage volumes, map Elastic IP addresses, and more."
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qec.rst:14
+msgid "**Configuration**"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qec.rst:16
+msgid ""
+"You have to set up the credentials to interact with OpenNebula, by pressing "
+"the ``Credentials`` button:"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qec.rst:18
+msgid "Account Name, add a name for this account"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qec.rst:19
+msgid "AWS Access Key, add your OpenNebula username"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qec.rst:20
+msgid "AWS Secret Access Key, add your OpenNebula SHA1 hashed password"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qec.rst:22
+msgid "|image0|"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qec.rst:24
+msgid ""
+"Also you have to specify in a new ``Region`` the endpoint in which the EC2 "
+"Service is running, by pressing on the Regions button. Take care of using "
+"exactly the same url and port that is specified in the econe.conf file, "
+"otherwise you will get ``AuthFailure``:"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qec.rst:26
+msgid "|image1|"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qec.rst:28
+msgid ""
+"If you have problems adding a new region, try to add it manually in the "
+"ec2ui.endpoints variable inside the Firefox about:config"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qec.rst:31
+#: ../../source/advanced_administration/public_cloud/ec2qec.rst:61
+msgid "**Typical usage scenarios**"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qec.rst:33
+#: ../../source/advanced_administration/public_cloud/ec2qec.rst:63
+msgid "**List images**"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qec.rst:35
+msgid "|image3|"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qec.rst:37
+#: ../../source/advanced_administration/public_cloud/ec2qec.rst:86
+msgid "**Run instances**"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qec.rst:39
+msgid "|image4|"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qec.rst:41
+msgid "**Control instances**"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qec.rst:43
+msgid "|image5|"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qec.rst:44
+msgid ""
+"You can also use `HybridFox <http://code.google.com/p/hybridfox/>`__ a "
+"similar Mozilla Firefox extension to interact with cloud services through "
+"the EC2 Query API"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qec.rst:47
+msgid "Euca2ools"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qec.rst:49
+msgid ""
+"`Euca2ools <http://open.eucalyptus.com/wiki/Euca2oolsGuide_v1.1/>`__ are "
+"command-line tools for interacting with Web services that export a REST"
+"/Query-based API compatible with Amazon EC2 and S3 services."
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qec.rst:51
+msgid ""
+"You have to set the following environment variables in order to interact "
+"with the OpenNebula EC2 Query Server. The ``EC2_URL`` will be the same "
+"endpoint as defined in the ``/etc/one/econe.conf`` file of Opennebula. The "
+"``EC2_ACCESS_KEY`` will be the OpenNebula username and the "
+"``EC2_SECRET_KEY`` the OpenNebula sha1 hashed user password"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qec.rst:75
+msgid "**List instances**"
+msgstr ""

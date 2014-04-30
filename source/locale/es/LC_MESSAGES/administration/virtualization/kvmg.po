@@ -1,0 +1,602 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/administration/virtualization/kvmg.rst:5
+msgid "KVM Driver"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:7
+msgid ""
+"`KVM (Kernel-based Virtual Machine) <http://www.linux-kvm.org/>`__ is a "
+"complete virtualization technique for Linux. It offers full virtualization, "
+"where each Virtual Machine interacts with its own virtualized hardware. This"
+" guide describes the use of the KVM virtualizer with OpenNebula, please "
+"refer to KVM specific documentation for further information on the setup of "
+"the KVM hypervisor itself."
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:10
+msgid "Requirements"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:12
+msgid ""
+"The hosts must have a working installation of KVM, that usually requires:"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:14
+msgid "CPU with VT extensions"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:15
+msgid "libvirt >= 0.4.0"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:16
+msgid ""
+"kvm kernel modules (kvm.ko, kvm-{intel,amd}.ko). Available from kernel "
+"2.6.20 onwards."
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:17
+msgid "the qemu user-land tools"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:20
+msgid "Considerations & Limitations"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:22
+msgid ""
+"KVM currently only supports 4 IDE devices, for more disk devices you should "
+"better use SCSI or virtio. You have to take this into account when adding "
+"disks. See the :ref:`Virtual Machine Template documentation "
+"<template_disks_device_mapping>` for an explanation on how OpenNebula "
+"assigns disk targets."
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:23
+msgid ""
+"By default live migrations are started from the host the VM is currently "
+"running. If this is a problem in your setup you can activate local live "
+"migration adding ``-l migrate=migrate_local`` to ``vmm_mad`` arguments."
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:24
+msgid ""
+"If you get error messages similar to ``error: cannot close file: Bad file "
+"descriptor`` upgrade libvirt version. Version 0.8.7 has a  `bug related to "
+"file closing operations. "
+"<https://bugzilla.redhat.com/show_bug.cgi?format=multiple&id=672725>`__"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:25
+msgid ""
+"In case you are using disks with a cache setting different to none may may "
+"have problems with live migration depending on the libvirt version. You can "
+"enable the migration adding the ``--unsafe`` parameter to the virsh command."
+" The file to change is ``/var/lib/one/remotes/vmm/kvm/migrate``, change "
+"this:"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:32
+msgid "to this:"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:39
+msgid "and execute ``onehost sync --force``."
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:43
+msgid "Configuration"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:46
+msgid "KVM Configuration"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:48
+msgid ""
+"OpenNebula uses the libvirt interface to interact with KVM, so the following"
+" steps are required in the hosts to get the KVM driver running:"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:50
+msgid ""
+"Qemu should be configured to not change file ownership. Modify "
+"``/etc/libvirt/qemu.conf`` to include ``dynamic_ownership = 0``. To be able "
+"to use the images copied by OpenNebula, change also the user and group under"
+" which the libvirtd is run to “oneadmin”:"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:59
+msgid ""
+"Note that oneadmin's group may be other than oneadmin. Some distributions "
+"adds oneadmin to the cloud group. Use group = “cloud” above in that case."
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:61
+msgid "The remote hosts must have the libvirt daemon running."
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:62
+msgid ""
+"The user with access to these remotes hosts on behalf of OpenNebula "
+"(typically ``<oneadmin>``) has to pertain to the <libvirtd> and <kvm> groups"
+" in order to use the deaemon and be able to launch VMs."
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:64
+msgid ""
+"If apparmor is active (by default in Ubuntu it is), you should add "
+"/var/lib/one to the end of /etc/apparmor.d/libvirt-qemu"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:70
+msgid ""
+"If your distro is using PolicyKit you can use this recipe by Jan Horacek to "
+"add the require privileges to ``oneadmin`` user:"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:83
+msgid ""
+"OpenNebula uses libvirt's migration capabilities. More precisely, it uses "
+"the TCP protocol offered by libvirt. In order to configure the physical "
+"hosts, the following files have to be modified:"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:85
+msgid ""
+"``/etc/libvirt/libvirtd.conf`` : Uncomment “listen\\_tcp = 1”. Security "
+"configuration is left to the admin's choice, file is full of useful comments"
+" to achieve a correct configuration. As a tip, if you don't want to use TLS "
+"for connections set ``listen_tls = 0``."
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:86
+msgid "Add the listen option to libvirt init script:"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:88
+msgid "``/etc/default/libvirt-bin`` : add **-l** option to ``libvirtd_opts``"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:89
+msgid ""
+"For RHEL based distributions, edit this file instead: "
+"``/etc/sysconfig/libvirtd`` : uncomment ``LIBVIRTD_ARGS=\"--listen\"``"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:92
+msgid "OpenNebula Configuration"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:94
+msgid ""
+"OpenNebula needs to know if it is going to use the KVM Driver. To achieve "
+"this, uncomment these drivers in :ref:`/etc/one/oned.conf <oned_conf>`:"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:113
+msgid "Working with cgroups (Optional)"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:115
+msgid ""
+"This section outlines the configuration and use of cgroups with OpenNebula "
+"and libvirt/KVM. Please refer to the cgroups documentation of your Linux "
+"distribution for specific details."
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:117
+msgid ""
+"Cgroups is a kernel feature that allows you to control the amount of "
+"resources allocated to a given process (among other things). This feature "
+"can be used to enforce the amount of CPU assigned to a VM, as defined in its"
+" template. So, thanks to cgroups a VM with CPU=0.5 will get half of the "
+"physical CPU cycles than a VM with CPU=1.0."
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:119
+msgid ""
+"Cgroups can be also used to limit the overall amount of physical RAM that "
+"the VMs can use, so you can leave always a fraction to the host OS."
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:121
+msgid ""
+"The following outlines the steps need to configure cgroups, this should be "
+"**performed in the hosts, not in the front-end**:"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:123
+msgid ""
+"Define where to mount the cgroup controller virtual file systems, at least "
+"memory and cpu are needed."
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:124
+msgid ""
+"(Optional) You may want to limit the total memory devoted to VMs. Create a "
+"group for the libvirt processes (VMs) and the total memory you want to "
+"assign to them. Be sure to assign libvirt processes to this group, e.g. wih "
+"CGROUP\\_DAEMON or in cgrules.conf. Example:"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:147
+msgid "After configuring the hosts start/restart the cgroups service."
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:148
+msgid ""
+"(Optional) If you have limited the amount of memory for VMs, you may want to"
+" set ``RESERVED_MEM`` parameter in host or cluster templates."
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:150
+msgid ""
+"That's it. OpenNebula automatically generates a number of CPU shares "
+"proportional to the CPU attribute in the VM template. For example, consider "
+"a host running 2 VMs (73 and 74, with CPU=0.5 and CPU=1) respectively. If "
+"everything is properly configured you should see:"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:180
+msgid "and the cpu shares for each VM:"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:190
+msgid "Udev Rules"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:192
+msgid ""
+"When creating VMs as a regular user, ``/dev/kvm`` needs to be chowned to the"
+" ``oneadmin`` user. For that to be persistent you have to apply the "
+"following UDEV rule:"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:200
+msgid "Usage"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:202
+msgid ""
+"The following are template attributes specific to KVM, please refer to the "
+":ref:`template reference documentation <template>` for a complete list of "
+"the attributes supported to define a VM."
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:205
+msgid "Default Attributes"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:207
+msgid ""
+"There are some attributes required for KVM to boot a VM. You can set a "
+"suitable defaults for them so, all the VMs get needed values. These "
+"attributes are set in ``/etc/one/vmm_exec/vmm_exec_kvm.conf``. The following"
+" can be set for KVM:"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:209
+msgid ""
+"emulator, path to the kvm executable. You may need to adjust it to your "
+"ditsro"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:210
+msgid "os, the attraibutes: kernel, initrd, boot, root, kernel\\_cmd, and arch"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:211
+msgid "vcpu"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:212
+msgid "features, attributes: acpi, pae"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:213
+msgid ""
+"disk, attributes driver and cache. All disks will use that driver and "
+"caching algorithm"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:214
+msgid "nic, attribute filter."
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:215
+msgid "raw, to add libvirt attributes to the domain XML file."
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:217
+msgid "For example:"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:233
+msgid "KVM Specific Attributes"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:236
+msgid "DISK"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:238
+msgid ""
+"**type**, This attribute defines the type of the media to be exposed to the "
+"VM, possible values are: ``disk`` (default), ``cdrom`` or ``floppy``. This "
+"attribute corresponds to the ``media`` option of the ``-driver`` argument of"
+" the ``kvm`` command."
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:240
+msgid ""
+"**driver**, specifies the format of the disk image; possible values are "
+"``raw``, ``qcow2``... This attribute corresponds to the ``format`` option of"
+" the ``-driver`` argument of the ``kvm`` command."
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:242
+msgid ""
+"**cache**, specifies the optional cache mechanism, possible values are "
+"“default”, “none”, “writethrough” and “writeback”."
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:244
+msgid "**io**, set IO policy possible values are “threads” and “native”"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:247
+msgid "NIC"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:249
+msgid ""
+"**target**, name for the tun device created for the VM. It corresponds to "
+"the ``ifname`` option of the '-net' argument of the ``kvm`` command."
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:251
+msgid ""
+"**script**, name of a shell script to be executed after creating the tun "
+"device for the VM. It corresponds to the ``script`` option of the '-net' "
+"argument of the ``kvm`` command."
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:253
+msgid ""
+"**model**, ethernet hardware to emulate. You can get the list of available "
+"models with this command:"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:259
+msgid ""
+"**filter** to define a network filtering rule for the interface. Libvirt "
+"includes some predefined rules (e.g. clean-traffic) that can be used. `Check"
+" the Libvirt documentation "
+"<http://libvirt.org/formatnwfilter.html#nwfelemsRules>`__ for more "
+"information, you can also list the rules in your system with:"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:266
+msgid "Graphics"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:268
+msgid ""
+"If properly configured, libvirt and KVM can work with SPICE (`check this for"
+" more information <http://www.spice-space.org/>`__). To select it, just add "
+"to the ``GRAPHICS`` attribute:"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:270
+msgid "``type = spice``"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:272
+msgid ""
+"Enabling spice will also make the driver inject specific configuration for "
+"these machines. The configuration can be changed in the driver configuration"
+" file, variable ``SPICE_OPTIONS``."
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:275
+msgid "Virtio"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:277
+msgid ""
+"Virtio is the framework for IO virtualization in KVM. You will need a linux "
+"kernel with the virtio drivers for the guest, check `the KVM documentation "
+"for more info <http://www.linux-kvm.org/page/Virtio>`__."
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:279
+msgid ""
+"If you want to use the virtio drivers add the following attributes to your "
+"devices:"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:281
+msgid "``DISK``, add the attribute ``DEV_PREFIX=vd``"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:282
+msgid "``NIC``, add the attribute ``model=virtio``"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:285
+msgid "Additional Attributes"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:287
+msgid ""
+"The **raw** attribute offers the end user the possibility of passing by "
+"attributes not known by OpenNebula to KVM. Basically, everything placed here"
+" will be written literally into the KVM deployment file (**use libvirt xml "
+"format and semantics**)."
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:295
+msgid "Disk/Nic Hotplugging"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:297
+msgid ""
+"KVM supports hotplugging to the ``virtio`` and the ``SCSI`` buses. For "
+"disks, the bus the disk will be attached to is inferred from the "
+"``DEV_PREFIX`` attribute of the disk template."
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:299
+msgid "``sd``: ``SCSI`` (default)."
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:300
+msgid "``vd``: ``virtio``."
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:302
+msgid ""
+"If ``TARGET`` is passed instead of ``DEV_PREFIX`` the same rules apply (what"
+" happens behind the scenes is that OpenNebula generates a ``TARGET`` based "
+"on the ``DEV_PREFIX`` if no ``TARGET`` is provided)."
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:304
+msgid ""
+"The configuration for the default cache type on newly attached disks is "
+"configured in ``/var/lib/one/remotes/vmm/kvm/kvmrc``:"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:313
+msgid ""
+"For Disks and NICs, if the guest OS is a Linux flavour, the guest needs to "
+"be explicitly tell to rescan the PCI bus. This can be done issuing the "
+"following command as root:"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:320
+msgid "Tuning & Extending"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:322
+msgid "The driver consists of the following files:"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:324
+msgid "``/usr/lib/one/mads/one_vmm_exec`` : generic VMM driver."
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:325
+msgid ""
+"``/var/lib/one/remotes/vmm/kvm`` : commands executed to perform actions."
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:327
+msgid "And the following driver configuration files:"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:329
+msgid ""
+"``/etc/one/vmm_exec/vmm_exec_kvm.conf`` : This file is home for default "
+"values for domain definitions (in other words, OpenNebula templates)."
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:331
+msgid ""
+"It is generally a good idea to place defaults for the KVM-specific "
+"attributes, that is, attributes mandatory in the KVM driver that are not "
+"mandatory for other hypervisors. Non mandatory attributes for KVM but "
+"specific to them are also recommended to have a default."
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:333
+msgid ""
+"``/var/lib/one/remotes/vmm/kvm/kvmrc`` : This file holds instructions to be "
+"executed before the actual driver load to perform specific tasks or to pass "
+"environmental variables to the driver. The syntax used for the former is "
+"plain shell script that will be evaluated before the driver execution. For "
+"the latter, the syntax is the familiar:"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:339
+msgid "The parameters that can be changed here are as follows:"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:342
+msgid "Parameter"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:342
+msgid "Description"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:344
+msgid "LIBVIRT\\_URI"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:344
+msgid "Connection string to libvirtd"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:346
+msgid "QEMU\\_PROTOCOL"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:346
+msgid "Protocol used for live migrations"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:348
+msgid "SHUTDOWN\\_TIMEOUT"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:348
+msgid "Seconds to wait after shutdown until timeout"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:350
+msgid "FORCE\\_DESTROY"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:350
+msgid "Force VM cancellation after shutdown timeout"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:352
+msgid "CANCEL\\_NO\\_ACPI"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:352
+msgid "Force VM's without ACPI enabled to be destroyed on shutdown"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:354
+msgid "DEFAULT\\_ATTACH\\_CACHE"
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:354
+msgid ""
+"This parameter will set the default cache type for new attached disks. It "
+"will be used in case the attached disk does not have an specific cache "
+"method set (can be set using templates when attaching a disk)."
+msgstr ""
+
+#: ../../source/administration/virtualization/kvmg.rst:357
+msgid ""
+"See the :ref:`Virtual Machine drivers reference <devel-vmm>` for more "
+"information."
+msgstr ""

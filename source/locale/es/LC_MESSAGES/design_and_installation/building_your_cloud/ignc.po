@@ -1,0 +1,666 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:5
+msgid "Installing the Software"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:7
+msgid ""
+"This page shows you how to install OpenNebula from the binary packages."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:10
+msgid "Step 1. Front-end Installation"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:12
+msgid ""
+"Using the packages provided in our site is the recommended method, to ensure"
+" the installation of the latest version and to avoid possible packages "
+"divergences of different distributions. There are two alternatives here, to "
+"install OpenNebula you can add **our package repositories** to your system, "
+"or visit the `software menu <http://opennebula.org/software:software>`__ to "
+"**download the latest package** for your Linux distribution."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:14
+msgid "Do not forget that we offer Quickstart guides for:"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:16
+msgid ":ref:`OpenNebula on CentOS and KVM <qs_centos_kvm>`"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:17
+msgid ":ref:`OpenNebula on CentOS and Xen <qs_centos_xen>`"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:18
+msgid ":ref:`OpenNebula on CentOS and VMware <qs_centos_vmware>`"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:19
+msgid ":ref:`OpenNebula on Ubuntu and KVM <qs_ubuntu_kvm>`"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:21
+msgid ""
+"If there are no packages for your distribution, head to the :ref:`Building "
+"from Source Code guide <compile>`."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:24
+msgid "1.1. Installing on CentOS/RHEL"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:26
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:61
+msgid "Before installing:"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:28
+msgid ""
+"Activate the `EPEL "
+"<http://fedoraproject.org/wiki/EPEL#How_can_I_use_these_extra_packages.3F>`__"
+" repo."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:30
+msgid ""
+"There are packages for the front-end, distributed in the various components "
+"that conform OpenNebula, and packages for the virtualization host."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:32
+msgid ""
+"To install a CentOS/RHEL OpenNebula front-end with packages from **our "
+"repository**, execute the following as root:"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:45
+msgid "**CentOS/RHEL Package Description**"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:47
+msgid "These are the packages available for this distribution:"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:49
+msgid "**opennebula-server**: Main OpenNebula daemon, scheduler, etc"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:50
+msgid "**opennebula-sunstone**: OpenNebula Sunstone, EC2, OCCI"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:51
+msgid "**opennebula-ozones**: OpenNebula OZones"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:52
+msgid "**opennebula-ruby**: Ruby Bindings"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:53
+msgid "**opennebula-java**: Java Bindings"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:54
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:154
+msgid ""
+"**opennebula-gate**: Gate server that enables communication between VMs and "
+"OpenNebula"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:55
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:155
+msgid "**opennebula-flow**: Manages services and elasticity"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:56
+msgid ""
+"**opennebula-node-kvm**: Meta-package that installs the oneadmin user, "
+"libvirt and kvm"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:59
+msgid "1.2. Installing on openSUSE"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:63
+msgid ""
+"Activate the `PackMan <http://wiki.links2linux.de/wiki/PackMan:FAQ_(en)>`__ "
+"repo."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:69
+msgid ""
+"To install an openSUSE OpenNebula front-end with packages **from our "
+"repository**, execute the following as root:"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:77
+msgid ""
+"To install an openSUSE OpenNebula front-end with packages from **our "
+"repository**, execute the following as root:"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:84
+msgid ""
+"After installation you need to manually create "
+"``/var/lib/one/.one/one_auth`` with the following contents:"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:90
+msgid "**openSUSE Package Description**"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:96
+msgid "**opennebula**: main OpenNebula binaries"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:97
+msgid ""
+"**opennebula-devel**: Examples, manpages and install\\_gems (depends on "
+"**opennebula**)"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:98
+msgid "**opennebula-zones**: OpenNebula OZones (depends on **opennebula**)"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:99
+msgid ""
+"**opennebula-sunstone**: OpenNebula Sunstone (depends on **opennebula**)"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:102
+msgid "1.3. Installing on Debian/Ubuntu"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:104
+msgid ""
+"Also the JSON ruby library packaged with Debian 6 is not compatible with "
+"ozones. To make it work a new gem should be installed and the old one "
+"disabled. You can do so executing these commands:"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:111
+msgid ""
+"To install OpenNebula on a Debian/Ubuntu front-end from packages from **our "
+"repositories** execute as root:"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:118
+msgid "**Debian**"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:124
+msgid "**Ubuntu 12.04**"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:130
+msgid "**Ubuntu 14.04**"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:136
+msgid "To install the packages on a Debian/Ubuntu front-end:"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:143
+msgid "**Debian/Ubuntu Package Description**"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:145
+msgid "These are the packages available for these distributions:"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:147
+msgid "|image0|"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:149
+msgid "**opennebula-common**: provides the user and common files"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:150
+msgid "**libopennebula-ruby**: all ruby libraries"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:151
+msgid "**opennebula-node**: prepares a node as an opennebula-node"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:152
+msgid "**opennebula-sunstone**: OpenNebula Sunstone Web Interface"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:153
+msgid "**opennebula-tools**: Command Line interface"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:156
+msgid "**opennebula**: OpenNebula Daemon"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:159
+msgid "Step 2. Ruby Runtime Installation"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:161
+msgid ""
+"Some OpenNebula components need ruby libraries. OpenNebula provides a script"
+" that installs the required gems as well as some development libraries "
+"packages needed."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:163
+msgid "As root execute:"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:169
+msgid ""
+"The previous script is prepared to detect common linux distributions and "
+"install the required libraries. If it fails to find the packages needed in "
+"your system, manually install these packages:"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:171
+msgid "sqlite3 development library"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:172
+msgid "mysql client development library"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:173
+msgid "curl development library"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:174
+msgid "libxml2 and libxslt development libraries"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:175
+msgid "ruby development library"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:176
+msgid "gcc and g++"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:177
+msgid "make"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:179
+msgid ""
+"If you want to install only a set of gems for an specific component read "
+":ref:`Building from Source Code <compile>` where it is explained in more "
+"depth."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:181
+msgid ""
+"For **cloud bursting**, a newer nokogiri gem than the on packed by current "
+"distros is required. If you are planning to use cloud bursting, you need to "
+"install nokogiri >= 1.4.4 prior to run ``install_gems``"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:188
+msgid "Step 3. Starting OpenNebula"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:190
+msgid "Log in as the ``oneadmin`` user follow these steps:"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:192
+msgid ""
+"If you installed from packages, you should have the '~/.one/one\\_auth' file"
+" created with a randomly-generated password. Otherwise, set oneadmin's "
+"OpenNebula credentials (username and password) adding the following to "
+"``~/.one/one_auth`` (change ``password`` for the desired password):"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:200
+msgid ""
+"This will set the oneadmin password on the first boot. From that point, you "
+"must use the ':ref:`oneuser passwd <manage_users>`\\ ' command to change "
+"oneadmin's password."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:202
+msgid "You are ready to start the OpenNebula daemons:"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:208
+msgid "Remember to always start OpenNebula as ``oneadmin``!"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:211
+msgid "Step 4. Verifying the Installation"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:213
+msgid ""
+"After OpenNebula is started for the first time, you should check that the "
+"commands can connect to the OpenNebula daemon. In the front-end, run as "
+"oneadmin the command onevm:"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:220
+msgid ""
+"If instead of an empty list of VMs you get an error message, then the "
+"OpenNebula daemon could not be started properly:"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:227
+msgid ""
+"The OpenNebula logs are located in ``/var/log/one``, you should have at "
+"least the files ``oned.log`` and ``sched.log``, the core and scheduler logs."
+" Check ``oned.log`` for any error messages, marked with ``[E]``."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:229
+msgid ""
+"The first time OpenNebula is started, it performs some SQL queries to check "
+"if the DB exists and if it needs a bootstrap. You will have two error "
+"messages in your log similar to these ones, and can be ignored:"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:238
+msgid ""
+"After installing the opennebula packages in the front-end the following "
+"directory structure will be used"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:240
+msgid "|image2|"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:243
+msgid "Step 5. Node Installation"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:246
+msgid "5.1. Installing on CentOS/RHEL"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:248
+msgid ""
+"When the front-end is installed and verified, it is time to install the "
+"packages for the nodes if you are using KVM. To install a CentOS/RHEL "
+"OpenNebula front-end with packages from our repository, execute the "
+"following as root:"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:254
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:270
+msgid ""
+"For further configuration and/or installation of other hypervisors, check "
+"their specific guides: :ref:`Xen <xeng>`, :ref:`KVM <kvmg>` and :ref:`VMware"
+" <evmwareg>`."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:257
+msgid "5.2. Installing on openSUSE"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:259
+msgid ""
+"When the front-end is installed, it is time to install the virtualization "
+"nodes. Depending on the chosen hypervisor, check their specific guides: "
+":ref:`Xen <xeng>`, :ref:`KVM <kvmg>` and :ref:`VMware <evmwareg>`."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:262
+msgid "5.3. Installing on Debian/Ubuntu"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:264
+msgid ""
+"When the front-end is installed, it is time to install the packages for the "
+"nodes if you are using KVM. To install a Debian/Ubuntu OpenNebula front-end "
+"with packages from our repository, add the repo as described in the previous"
+" section and then install the node package."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:273
+msgid "Step 6. Manual Configuration of Unix Accounts"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:275
+msgid ""
+"This step can be skipped if you have installed the kvm node package for "
+"CentOS or Ubuntu, as it has already been taken care of."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:277
+msgid ""
+"The OpenNebula package installation creates a new user and group named "
+"``oneadmin`` in the front-end. This account will be used to run the "
+"OpenNebula services and to do regular administration and maintenance tasks. "
+"That means that you eventually need to login as that user or to use the ”\\ "
+"``sudo -u oneadmin``\\ ” method."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:279
+msgid ""
+"The hosts need also this user created and configured. Make sure you change "
+"the uid and gid by the ones you have in the frontend."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:281
+msgid ""
+"Get the user and group id of oneadmin. This id will be used later to create "
+"users in the hosts with the same id. In the **front-end**, execute as "
+"oneadmin:"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:288
+msgid "In this case the user id will be 1001 and group also 1001."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:290
+msgid "Then log as root **in your hosts** and follow these steps:"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:292
+msgid ""
+"Create the ``oneadmin`` group. Make sure that its id is the same as in the "
+"frontend. In this example 1001:"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:298
+msgid ""
+"Create the ``oneadmin`` account, we will use the OpenNebula ``var`` "
+"directory as the home directory for this user."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:304
+msgid ""
+"You can use any other method to make a common ``oneadmin`` group and account"
+" in the nodes, for example NIS."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:307
+msgid "Step 7. Manual Configuration of Secure Shell Access"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:309
+msgid ""
+"You need to create ``ssh`` keys for the ``oneadmin`` user and configure the "
+"host machines so it can connect to them using ``ssh`` without need for a "
+"password."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:311
+msgid "Follow these steps in the **front-end**:"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:313
+msgid "Generate ``oneadmin`` ssh keys:"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:319
+msgid ""
+"When prompted for password press enter so the private key is not encrypted."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:321
+msgid ""
+"Append the public key to ``~/.ssh/authorized_keys`` to let ``oneadmin`` user"
+" log without the need to type a password."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:327
+msgid ""
+"Many distributions (RHEL/CentOS for example) have permission requirements "
+"for the public key authentication to work:"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:336
+msgid ""
+"Tell ssh client to not ask before adding hosts to ``known_hosts`` file. Also"
+" it is a good idea to reduced the connection timeout in case of network "
+"problems. This is configured into ``~/.ssh/config``, see ``man ssh_config`` "
+"for a complete reference.:"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:345
+msgid ""
+"Check that the ``sshd`` daemon is running in the hosts. Also remove any "
+"``Banner`` option from the ``sshd_config`` file in the hosts."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:347
+msgid ""
+"Finally, Copy the front-end ``/var/lib/one/.ssh`` directory to each one of "
+"the hosts in the same path."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:349
+msgid ""
+"To test your configuration just verify that ``oneadmin`` can log in the "
+"hosts without being prompt for a password."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:354
+msgid "Step 8. Networking Configuration"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:356
+msgid "|image3|"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:358
+msgid ""
+"A network connection is needed by the OpenNebula front-end daemons to access"
+" the hosts to manage and monitor the hypervisors; and move image files. It "
+"is highly recommended to install a dedicated network for this purpose."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:360
+msgid ""
+"There are various network models (please check the :ref:`Networking guide "
+"<nm>` to find out the networking technologies supported by OpenNebula), but "
+"they all have something in common. They rely on network bridges with the "
+"same name in all the hosts to connect Virtual Machines to the physical "
+"network interfaces."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:362
+msgid ""
+"The simplest network model corresponds to the ``dummy`` drivers, where only "
+"the network bridges are needed."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:364
+msgid ""
+"For example, a typical host with two physical networks, one for public IP "
+"addresses (attached to eth0 NIC) and the other for private virtual LANs (NIC"
+" eth1) should have two bridges:"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:374
+msgid "Step 9. Storage Configuration"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:376
+msgid ""
+"OpenNebula uses Datastores to manage VM disk Images. There are two "
+"configuration steps needed to perform a basic set up:"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:378
+msgid ""
+"First, you need to configure the **system datastore** to hold images for the"
+" running VMs, check the :ref:`the System Datastore Guide <system_ds>`, for "
+"more details."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:379
+msgid ""
+"Then you have to setup one ore more datastore for the disk images of the "
+"VMs, you can find more information on setting up :ref:`Filesystem Datastores"
+" here <fs_ds>`."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:381
+msgid ""
+"The suggested configuration is to use a shared FS, which enables most of "
+"OpenNebula VM controlling features. OpenNebula **can work without a Shared "
+"FS**, but this will force the deployment to always clone the images and you "
+"will only be able to do *cold* migrations."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:383
+msgid ""
+"The simplest way to achieve a shared FS backend for OpenNebula datastores is"
+" to export via NFS from the OpenNebula front-end both the ``system`` "
+"(``/var/lib/one/datastores/0``) and the ``images`` "
+"(``/var/lib/one/datastores/1``) datastores. They need to be mounted by all "
+"the virtualization nodes to be added into the OpenNebula cloud."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:386
+msgid "Step 10. Adding a Node to the OpenNebula Cloud"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:388
+msgid ""
+"To add a node to the cloud, there are four needed parameters: name/IP of the"
+" host, virtualization, network and information driver. Using the recommended"
+" configuration above, and assuming a KVM hypervisor, you can add your host "
+"'node01' to OpenNebula in the following fashion (as oneadmin, in the front-"
+"end):"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:394
+msgid ""
+"To learn more about the host subsystem, read :ref:`this guide "
+"<hostsubsystem>`."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:397
+msgid "Step 11. Next steps"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/ignc.rst:399
+msgid ""
+"Now that you have a fully functional cloud, it is time to start learning how"
+" to use it. A good starting point is this :ref:`overview of the virtual "
+"resource management <intropr>`."
+msgstr ""

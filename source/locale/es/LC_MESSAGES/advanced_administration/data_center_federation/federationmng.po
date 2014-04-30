@@ -1,0 +1,127 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/advanced_administration/data_center_federation/federationmng.rst:5
+msgid "OpenNebula Federation Management"
+msgstr ""
+
+#: ../../source/advanced_administration/data_center_federation/federationmng.rst:7
+msgid ""
+"The administrator of a federation has the ability to add or remove Zones "
+"from the federation. See this guide for details on how to configure the "
+"federation in both the master and the slave of the OpenNebula federation."
+msgstr ""
+
+#: ../../source/advanced_administration/data_center_federation/federationmng.rst:9
+msgid ""
+"A user will have access to all the Zones where at least one of her groups "
+"has Resource Providers in. This access can done through Sunstone or through "
+"the CLI"
+msgstr ""
+
+#: ../../source/advanced_administration/data_center_federation/federationmng.rst:12
+msgid "Adding a Zone"
+msgstr ""
+
+#: ../../source/advanced_administration/data_center_federation/federationmng.rst:14
+msgid "Adding a Zone through the CLI entails the creation of a Zone template."
+msgstr ""
+
+#: ../../source/advanced_administration/data_center_federation/federationmng.rst:17
+msgid "Parameter"
+msgstr ""
+
+#: ../../source/advanced_administration/data_center_federation/federationmng.rst:17
+msgid "Description"
+msgstr ""
+
+#: ../../source/advanced_administration/data_center_federation/federationmng.rst:19
+msgid "Name"
+msgstr ""
+
+#: ../../source/advanced_administration/data_center_federation/federationmng.rst:19
+msgid "Name of the new Zone"
+msgstr ""
+
+#: ../../source/advanced_administration/data_center_federation/federationmng.rst:21
+msgid "Endpoint"
+msgstr ""
+
+#: ../../source/advanced_administration/data_center_federation/federationmng.rst:21
+msgid "XMLRPC endpoint of the OpenNebula"
+msgstr ""
+
+#: ../../source/advanced_administration/data_center_federation/federationmng.rst:30
+msgid ""
+"This same operation can be performed through Sunstone (Zone tab -> Create)."
+msgstr ""
+
+#: ../../source/advanced_administration/data_center_federation/federationmng.rst:33
+msgid ""
+"The ENDPOINT has to be reachable from the Sunstone server machine, or the "
+"computer running the CLI in order for the user to access the Zone."
+msgstr ""
+
+#: ../../source/advanced_administration/data_center_federation/federationmng.rst:36
+msgid "Using a Zone"
+msgstr ""
+
+#: ../../source/advanced_administration/data_center_federation/federationmng.rst:39
+msgid "Through Sunstone"
+msgstr ""
+
+#: ../../source/advanced_administration/data_center_federation/federationmng.rst:41
+msgid ""
+"In the upper right position of Sunstone page, users will see a house icon "
+"next to the name of the Zone you are curently using. If the user clicks on "
+"that, she will get a dropdown with all the Zones she has access to. Clicking"
+" on any of the Zones in the dropdown will get the user to that Zone."
+msgstr ""
+
+#: ../../source/advanced_administration/data_center_federation/federationmng.rst:43
+msgid ""
+"What's happening behind the scenes is that the Sunstone server you are "
+"connecting to is redirecting its requests to the OpenNebula oned process "
+"present in the other Zone. In the example above, if the uer clicks on ZoneB,"
+" Sunstone will contact the OpenNebula listening at `http://zoneb.opennebula"
+".front-end.server:2633/RPC2`."
+msgstr ""
+
+#: ../../source/advanced_administration/data_center_federation/federationmng.rst:45
+msgid "|zoneswitchsunstone|"
+msgstr ""
+
+#: ../../source/advanced_administration/data_center_federation/federationmng.rst:50
+msgid "Through CLI"
+msgstr ""
+
+#: ../../source/advanced_administration/data_center_federation/federationmng.rst:52
+msgid ""
+"Users can switch Zones through the command line using the `onezone "
+"</doc/4.6/cli/onezone.1.html>`__ command. The following session can be "
+"examined to understand the Zone management through the CLI."
+msgstr ""
+
+#: ../../source/advanced_administration/data_center_federation/federationmng.rst:61
+msgid ""
+"We can see in the above command output that the user has access to both "
+"\"OpenNebula\" and \"ZoneB\", and it is currently in the \"OpenNebula\" "
+"Zone. To change the active Zone can be changed using the 'set' command of "
+"`onezone </doc/4.6/cli/onezone.1.html>`__:"
+msgstr ""
+
+#: ../../source/advanced_administration/data_center_federation/federationmng.rst:73
+msgid ""
+"All the subsequent CLI commands executed would connect to the OpenNebula "
+"listening at \"http://zoneb.opennebula.front-end.server:2633/RPC2\"."
+msgstr ""

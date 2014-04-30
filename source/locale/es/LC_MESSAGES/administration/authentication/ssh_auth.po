@@ -1,0 +1,156 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/administration/authentication/ssh_auth.rst:5
+msgid "SSH Auth"
+msgstr ""
+
+#: ../../source/administration/authentication/ssh_auth.rst:7
+msgid ""
+"This guide will show you how to enable and use the SSH authentication for "
+"the OpenNebula CLI. Using this authentication method, users login to "
+"OpenNebula with a token encrypted with their private ssh keys."
+msgstr ""
+
+#: ../../source/administration/authentication/ssh_auth.rst:10
+msgid "Requirements"
+msgstr ""
+
+#: ../../source/administration/authentication/ssh_auth.rst:12
+msgid "You don't need to install any additional software."
+msgstr ""
+
+#: ../../source/administration/authentication/ssh_auth.rst:15
+msgid "Considerations & Limitations"
+msgstr ""
+
+#: ../../source/administration/authentication/ssh_auth.rst:17
+msgid ""
+"With the current release, this authentication method is only valid to "
+"interact with OpenNebula using the CLI."
+msgstr ""
+
+#: ../../source/administration/authentication/ssh_auth.rst:20
+msgid "Configuration"
+msgstr ""
+
+#: ../../source/administration/authentication/ssh_auth.rst:23
+msgid "OpenNebula Configuration"
+msgstr ""
+
+#: ../../source/administration/authentication/ssh_auth.rst:25
+msgid ""
+"The Auth MAD and ssh authentication is enabled by default. In case it does "
+"not work make sure that the authentication method is in the list of enabled "
+"methods."
+msgstr ""
+
+#: ../../source/administration/authentication/ssh_auth.rst:34
+msgid ""
+"There is an external plain user/password authentication driver, and existing"
+" accounts will keep working as usual."
+msgstr ""
+
+#: ../../source/administration/authentication/ssh_auth.rst:37
+msgid "Usage"
+msgstr ""
+
+#: ../../source/administration/authentication/ssh_auth.rst:40
+msgid "Create New Users"
+msgstr ""
+
+#: ../../source/administration/authentication/ssh_auth.rst:42
+msgid ""
+"This authentication method uses standard ssh rsa keypairs for "
+"authentication. Users can create these files **if they don't exist** using "
+"this command:"
+msgstr ""
+
+#: ../../source/administration/authentication/ssh_auth.rst:48
+msgid ""
+"OpenNebula commands look for the files generated at the standard location "
+"(``$HOME/.ssh/id_rsa``) so it is a good idea not to change the default path."
+" It is also a good idea to protect the private key with a password."
+msgstr ""
+
+#: ../../source/administration/authentication/ssh_auth.rst:50
+msgid ""
+"The users requesting a new account have to generate a public key and send it"
+" to the administrator. The way to extract it is the following:"
+msgstr ""
+
+#: ../../source/administration/authentication/ssh_auth.rst:62
+msgid ""
+"The string written to the console must be sent to the administrator, so the "
+"can create the new user in a similar way as the default user/password "
+"authentication users."
+msgstr ""
+
+#: ../../source/administration/authentication/ssh_auth.rst:64
+msgid ""
+"The following command will create a new user with username 'newuser', "
+"assuming that the previous public key is saved in the text file "
+"/tmp/pub\\_key:"
+msgstr ""
+
+#: ../../source/administration/authentication/ssh_auth.rst:70
+msgid ""
+"Instead of using the ``–read-file`` option, the public key could be "
+"specified as the second parameter."
+msgstr ""
+
+#: ../../source/administration/authentication/ssh_auth.rst:72
+msgid ""
+"If the administrator has access to the user's **private ssh key**, he can "
+"create new users with the following command:"
+msgstr ""
+
+#: ../../source/administration/authentication/ssh_auth.rst:79
+msgid "Update Existing Users to SSH"
+msgstr ""
+
+#: ../../source/administration/authentication/ssh_auth.rst:81
+msgid ""
+"You can change the authentication method of an existing user to SSH with the"
+" following commands:"
+msgstr ""
+
+#: ../../source/administration/authentication/ssh_auth.rst:89
+msgid ""
+"As with the ``create`` command, you can specify the public key as the second"
+" parameter, or use the user's private key with the ``–key`` option."
+msgstr ""
+
+#: ../../source/administration/authentication/ssh_auth.rst:92
+msgid "User Login"
+msgstr ""
+
+#: ../../source/administration/authentication/ssh_auth.rst:94
+msgid ""
+"Users must execute the 'oneuser login' command to generate a login token, "
+"and export the new ``ONE_AUTH`` environment variable. The command requires "
+"the OpenNebula username, and the authentication method (``–ssh`` in this "
+"case)."
+msgstr ""
+
+#: ../../source/administration/authentication/ssh_auth.rst:103
+msgid ""
+"The default ssh key is assumed to be in ``~/.ssh/id_rsa``, otherwise the "
+"path can be specified with the ``–key`` option."
+msgstr ""
+
+#: ../../source/administration/authentication/ssh_auth.rst:105
+msgid ""
+"The generated token has a default **expiration time** of 1 hour. You can "
+"change that with the ``–time`` option."
+msgstr ""

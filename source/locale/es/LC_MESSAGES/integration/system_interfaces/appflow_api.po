@@ -1,0 +1,930 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:5
+msgid "OneFlow Specification"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:8
+msgid "Overview"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:10
+msgid ""
+"The OpenNebula OneFlow API is a RESTful service to create, control and "
+"monitor multi-tier applications or services composed of interconnected "
+"Virtual Machines with deployment dependencies between them. Each group of "
+"Virtual Machines is deployed and managed as a single entity, and is "
+"completely integrated with the advanced OpenNebula user and group "
+"management. There are two kind of resources; services templates and "
+"services. All data is sent and received as JSON."
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:12
+msgid ""
+"This guide is intended for developers. The OpenNebula distribution includes "
+"a :ref:`cli <cli>` to interact with OneFlow and it is also fully integrated "
+"in the :ref:`Sunstone GUI <appflow_configure>`"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:15
+msgid "Authentication & Authorization"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:17
+msgid ""
+"User authentication will be `HTTP Basic access authentication "
+"<http://tools.ietf.org/html/rfc1945#section-11>`__. The credentials passed "
+"should be the User name and password."
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:24
+msgid "Return Codes"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:26
+msgid "The OneFlow API uses the following subset of HTTP Status codes:"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:28
+msgid "**200 OK** : The request has succeeded."
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:29
+msgid ""
+"**201 Created** : Request was successful and a new resource has being "
+"created"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:30
+msgid ""
+"**202 Accepted** : The request has been accepted for processing, but the "
+"processing has not been completed"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:31
+msgid ""
+"**204 No Content** : The request has been accepted for processing, but no "
+"info in the response"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:32
+msgid "**400 Bad Request** : Malformed syntax"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:33
+msgid "**401 Unauthorized** : Bad authentication"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:34
+msgid "**403 Forbidden** : Bad authorization"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:35
+msgid "**404 Not Found** : Resource not found"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:36
+msgid ""
+"**500 Internal Server Error** : The server encountered an unexpected "
+"condition which prevented it from fulfilling the request."
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:37
+msgid "**501 Not Implemented** : The functionality requested is not supported"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:56
+msgid ""
+"The methods specified below are described without taking into account "
+"**4xx** (can be inferred from authorization information in section above) "
+"and **5xx** errors (which are method independent). HTTP verbs not defined "
+"for a particular entity will return a **501 Not Implemented**."
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:59
+msgid "Methods"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:62
+msgid "Service"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:65
+#: ../../source/integration/system_interfaces/appflow_api.rst:84
+#: ../../source/integration/system_interfaces/appflow_api.rst:364
+#: ../../source/integration/system_interfaces/appflow_api.rst:535
+#: ../../source/integration/system_interfaces/appflow_api.rst:582
+#: ../../source/integration/system_interfaces/appflow_api.rst:639
+#: ../../source/integration/system_interfaces/appflow_api.rst:753
+#: ../../source/integration/system_interfaces/appflow_api.rst:812
+#: ../../source/integration/system_interfaces/appflow_api.rst:841
+#: ../../source/integration/system_interfaces/appflow_api.rst:1206
+#: ../../source/integration/system_interfaces/appflow_api.rst:1255
+#: ../../source/integration/system_interfaces/appflow_api.rst:1301
+#: ../../source/integration/system_interfaces/appflow_api.rst:1337
+msgid "**Method**"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:65
+#: ../../source/integration/system_interfaces/appflow_api.rst:84
+#: ../../source/integration/system_interfaces/appflow_api.rst:364
+#: ../../source/integration/system_interfaces/appflow_api.rst:535
+#: ../../source/integration/system_interfaces/appflow_api.rst:582
+#: ../../source/integration/system_interfaces/appflow_api.rst:639
+#: ../../source/integration/system_interfaces/appflow_api.rst:753
+#: ../../source/integration/system_interfaces/appflow_api.rst:812
+#: ../../source/integration/system_interfaces/appflow_api.rst:841
+#: ../../source/integration/system_interfaces/appflow_api.rst:1206
+#: ../../source/integration/system_interfaces/appflow_api.rst:1255
+#: ../../source/integration/system_interfaces/appflow_api.rst:1301
+#: ../../source/integration/system_interfaces/appflow_api.rst:1337
+msgid "**URL**"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:65
+#: ../../source/integration/system_interfaces/appflow_api.rst:84
+#: ../../source/integration/system_interfaces/appflow_api.rst:364
+#: ../../source/integration/system_interfaces/appflow_api.rst:535
+#: ../../source/integration/system_interfaces/appflow_api.rst:582
+#: ../../source/integration/system_interfaces/appflow_api.rst:639
+#: ../../source/integration/system_interfaces/appflow_api.rst:753
+#: ../../source/integration/system_interfaces/appflow_api.rst:812
+#: ../../source/integration/system_interfaces/appflow_api.rst:841
+#: ../../source/integration/system_interfaces/appflow_api.rst:1206
+#: ../../source/integration/system_interfaces/appflow_api.rst:1255
+#: ../../source/integration/system_interfaces/appflow_api.rst:1301
+#: ../../source/integration/system_interfaces/appflow_api.rst:1337
+msgid "**Meaning / Entity Body**"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:65
+#: ../../source/integration/system_interfaces/appflow_api.rst:84
+#: ../../source/integration/system_interfaces/appflow_api.rst:364
+#: ../../source/integration/system_interfaces/appflow_api.rst:535
+#: ../../source/integration/system_interfaces/appflow_api.rst:582
+#: ../../source/integration/system_interfaces/appflow_api.rst:639
+#: ../../source/integration/system_interfaces/appflow_api.rst:753
+#: ../../source/integration/system_interfaces/appflow_api.rst:812
+#: ../../source/integration/system_interfaces/appflow_api.rst:841
+#: ../../source/integration/system_interfaces/appflow_api.rst:1206
+#: ../../source/integration/system_interfaces/appflow_api.rst:1255
+#: ../../source/integration/system_interfaces/appflow_api.rst:1301
+#: ../../source/integration/system_interfaces/appflow_api.rst:1337
+msgid "**Response**"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:67
+#: ../../source/integration/system_interfaces/appflow_api.rst:69
+#: ../../source/integration/system_interfaces/appflow_api.rst:86
+#: ../../source/integration/system_interfaces/appflow_api.rst:88
+#: ../../source/integration/system_interfaces/appflow_api.rst:537
+#: ../../source/integration/system_interfaces/appflow_api.rst:584
+#: ../../source/integration/system_interfaces/appflow_api.rst:843
+#: ../../source/integration/system_interfaces/appflow_api.rst:1208
+msgid "**GET**"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:67
+#: ../../source/integration/system_interfaces/appflow_api.rst:1208
+msgid "``/service``"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:67
+#: ../../source/integration/system_interfaces/appflow_api.rst:1208
+msgid "**List** the contents of the ``SERVICE`` collection."
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:67
+#: ../../source/integration/system_interfaces/appflow_api.rst:69
+#: ../../source/integration/system_interfaces/appflow_api.rst:86
+#: ../../source/integration/system_interfaces/appflow_api.rst:88
+#: ../../source/integration/system_interfaces/appflow_api.rst:537
+#: ../../source/integration/system_interfaces/appflow_api.rst:584
+#: ../../source/integration/system_interfaces/appflow_api.rst:843
+#: ../../source/integration/system_interfaces/appflow_api.rst:1208
+msgid "**200 OK**: A JSON representation of the collection in the http body"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:69
+#: ../../source/integration/system_interfaces/appflow_api.rst:71
+#: ../../source/integration/system_interfaces/appflow_api.rst:843
+msgid "``/service/<id>``"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:69
+#: ../../source/integration/system_interfaces/appflow_api.rst:843
+msgid "**Show** the ``SERVICE`` resource identified by <id>"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:71
+#: ../../source/integration/system_interfaces/appflow_api.rst:90
+#: ../../source/integration/system_interfaces/appflow_api.rst:814
+msgid "**DELETE**"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:71
+msgid "**Delete** the ``SERVICE`` resource identified by <id>"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:71
+#: ../../source/integration/system_interfaces/appflow_api.rst:73
+#: ../../source/integration/system_interfaces/appflow_api.rst:77
+#: ../../source/integration/system_interfaces/appflow_api.rst:90
+#: ../../source/integration/system_interfaces/appflow_api.rst:96
+#: ../../source/integration/system_interfaces/appflow_api.rst:755
+#: ../../source/integration/system_interfaces/appflow_api.rst:814
+#: ../../source/integration/system_interfaces/appflow_api.rst:1257
+#: ../../source/integration/system_interfaces/appflow_api.rst:1339
+msgid "**201**:"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:73
+#: ../../source/integration/system_interfaces/appflow_api.rst:77
+#: ../../source/integration/system_interfaces/appflow_api.rst:92
+#: ../../source/integration/system_interfaces/appflow_api.rst:96
+#: ../../source/integration/system_interfaces/appflow_api.rst:366
+#: ../../source/integration/system_interfaces/appflow_api.rst:755
+#: ../../source/integration/system_interfaces/appflow_api.rst:1257
+#: ../../source/integration/system_interfaces/appflow_api.rst:1339
+msgid "**POST**"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:73
+#: ../../source/integration/system_interfaces/appflow_api.rst:1257
+msgid "``/service/<id>/action``"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:73
+msgid ""
+"**Perform** an action on the ``SERVICE`` resource identified by <id>. "
+"Available actions: shutdown, recover, chown, chgrp, chmod"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:75
+#: ../../source/integration/system_interfaces/appflow_api.rst:94
+#: ../../source/integration/system_interfaces/appflow_api.rst:641
+#: ../../source/integration/system_interfaces/appflow_api.rst:1303
+msgid "**PUT**"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:75
+#: ../../source/integration/system_interfaces/appflow_api.rst:1303
+msgid "``/service/<id>/role/<name>``"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:75
+#: ../../source/integration/system_interfaces/appflow_api.rst:1303
+msgid ""
+"**Update** the ``ROLE`` identified by <name> of the ``SERVICE`` resource "
+"identified by <id>. Currently the only attribute that can be updated is the "
+"cardinality."
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:75
+#: ../../source/integration/system_interfaces/appflow_api.rst:94
+#: ../../source/integration/system_interfaces/appflow_api.rst:641
+#: ../../source/integration/system_interfaces/appflow_api.rst:1303
+msgid "**200 OK**:"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:77
+#: ../../source/integration/system_interfaces/appflow_api.rst:1339
+msgid "``/service/<id>/role/<name>/action``"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:77
+msgid ""
+"**Perform** an action on all the Virtual Machines belonging to the ``ROLE`` "
+"identified by <name> of the ``SERVICE`` resource identified by <id>. "
+"Available actions: shutdown, shutdown-hard, undeploy, undeploy-hard, hold, "
+"release, stop, suspend, resume, boot, delete, delete-recreate, reboot, "
+"reboot-hard, poweroff, poweroff-hard, snapshot-create"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:81
+msgid "Service Template"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:86
+#: ../../source/integration/system_interfaces/appflow_api.rst:92
+#: ../../source/integration/system_interfaces/appflow_api.rst:366
+#: ../../source/integration/system_interfaces/appflow_api.rst:584
+msgid "``/service_template``"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:86
+#: ../../source/integration/system_interfaces/appflow_api.rst:584
+msgid "**List** the contents of the ``SERVICE_TEMPLATE`` collection."
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:88
+#: ../../source/integration/system_interfaces/appflow_api.rst:90
+#: ../../source/integration/system_interfaces/appflow_api.rst:94
+#: ../../source/integration/system_interfaces/appflow_api.rst:537
+#: ../../source/integration/system_interfaces/appflow_api.rst:641
+#: ../../source/integration/system_interfaces/appflow_api.rst:814
+msgid "``/service_template/<id>``"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:88
+#: ../../source/integration/system_interfaces/appflow_api.rst:537
+msgid "**Show** the ``SERVICE_TEMPLATE`` resource identified by <id>"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:90
+#: ../../source/integration/system_interfaces/appflow_api.rst:814
+msgid "**Delete** the ``SERVICE_TEMPLATE`` resource identified by <id>"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:92
+#: ../../source/integration/system_interfaces/appflow_api.rst:366
+msgid "**Create** a new ``SERVICE_TEMPLATE`` resource."
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:92
+#: ../../source/integration/system_interfaces/appflow_api.rst:366
+msgid ""
+"**201 Created**: A JSON representation of the new ``SERVICE_TEMPLATE`` "
+"resource in the http body"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:94
+#: ../../source/integration/system_interfaces/appflow_api.rst:641
+msgid "**Update** the ``SERVICE_TEMPLATE`` resource identified by <id>."
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:96
+#: ../../source/integration/system_interfaces/appflow_api.rst:755
+msgid "``/service_template/<id>/action``"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:96
+#: ../../source/integration/system_interfaces/appflow_api.rst:755
+msgid ""
+"**Perform** an action on the ``SERVICE_TEMPLATE`` resource identified by "
+"<id>. Available actions: instantiate, chown, chgrp, chmod"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:100
+msgid "Resource Representation"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:103
+msgid "Service Schema"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:105
+msgid "A Service is defined with JSON syntax templates."
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:108
+#: ../../source/integration/system_interfaces/appflow_api.rst:125
+#: ../../source/integration/system_interfaces/appflow_api.rst:151
+#: ../../source/integration/system_interfaces/appflow_api.rst:171
+msgid "Attribute"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:108
+#: ../../source/integration/system_interfaces/appflow_api.rst:125
+#: ../../source/integration/system_interfaces/appflow_api.rst:151
+#: ../../source/integration/system_interfaces/appflow_api.rst:171
+msgid "Type"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:108
+#: ../../source/integration/system_interfaces/appflow_api.rst:125
+#: ../../source/integration/system_interfaces/appflow_api.rst:151
+#: ../../source/integration/system_interfaces/appflow_api.rst:171
+msgid "Mandatory"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:108
+#: ../../source/integration/system_interfaces/appflow_api.rst:125
+#: ../../source/integration/system_interfaces/appflow_api.rst:151
+#: ../../source/integration/system_interfaces/appflow_api.rst:171
+msgid "Description"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:110
+#: ../../source/integration/system_interfaces/appflow_api.rst:127
+msgid "name"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:110
+#: ../../source/integration/system_interfaces/appflow_api.rst:112
+#: ../../source/integration/system_interfaces/appflow_api.rst:117
+#: ../../source/integration/system_interfaces/appflow_api.rst:127
+#: ../../source/integration/system_interfaces/appflow_api.rst:135
+#: ../../source/integration/system_interfaces/appflow_api.rst:153
+#: ../../source/integration/system_interfaces/appflow_api.rst:159
+#: ../../source/integration/system_interfaces/appflow_api.rst:173
+#: ../../source/integration/system_interfaces/appflow_api.rst:179
+#: ../../source/integration/system_interfaces/appflow_api.rst:181
+msgid "string"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:110
+#: ../../source/integration/system_interfaces/appflow_api.rst:112
+#: ../../source/integration/system_interfaces/appflow_api.rst:117
+#: ../../source/integration/system_interfaces/appflow_api.rst:129
+#: ../../source/integration/system_interfaces/appflow_api.rst:133
+#: ../../source/integration/system_interfaces/appflow_api.rst:135
+#: ../../source/integration/system_interfaces/appflow_api.rst:141
+#: ../../source/integration/system_interfaces/appflow_api.rst:143
+#: ../../source/integration/system_interfaces/appflow_api.rst:145
+#: ../../source/integration/system_interfaces/appflow_api.rst:157
+#: ../../source/integration/system_interfaces/appflow_api.rst:161
+#: ../../source/integration/system_interfaces/appflow_api.rst:163
+#: ../../source/integration/system_interfaces/appflow_api.rst:165
+#: ../../source/integration/system_interfaces/appflow_api.rst:177
+#: ../../source/integration/system_interfaces/appflow_api.rst:179
+#: ../../source/integration/system_interfaces/appflow_api.rst:181
+msgid "No"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:110
+msgid "Name of the Service"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:112
+msgid "deployment"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:114
+msgid "Deployment strategy:"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:113
+msgid ""
+"**none**: All roles are deployed at the same time **straight**: Each Role is"
+" deployed when all its parent Roles are running Defaults to none"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:117
+#: ../../source/integration/system_interfaces/appflow_api.rst:135
+msgid "shutdown\\_action"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:117
+msgid ""
+"VM shutdown action: 'shutdown' or 'shutdown-hard'. If it is not set, the "
+"default set in oneflow-server.conf will be used"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:119
+msgid "roles"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:119
+msgid "array of Roles"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:119
+#: ../../source/integration/system_interfaces/appflow_api.rst:127
+#: ../../source/integration/system_interfaces/appflow_api.rst:131
+#: ../../source/integration/system_interfaces/appflow_api.rst:153
+#: ../../source/integration/system_interfaces/appflow_api.rst:155
+#: ../../source/integration/system_interfaces/appflow_api.rst:159
+#: ../../source/integration/system_interfaces/appflow_api.rst:173
+#: ../../source/integration/system_interfaces/appflow_api.rst:175
+msgid "Yes"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:119
+msgid "Array of Roles, see below"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:122
+msgid "Each Role is defined as:"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:127
+msgid "Role name"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:129
+msgid "cardinality"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:129
+#: ../../source/integration/system_interfaces/appflow_api.rst:131
+#: ../../source/integration/system_interfaces/appflow_api.rst:137
+#: ../../source/integration/system_interfaces/appflow_api.rst:139
+#: ../../source/integration/system_interfaces/appflow_api.rst:141
+#: ../../source/integration/system_interfaces/appflow_api.rst:155
+#: ../../source/integration/system_interfaces/appflow_api.rst:157
+#: ../../source/integration/system_interfaces/appflow_api.rst:161
+#: ../../source/integration/system_interfaces/appflow_api.rst:163
+#: ../../source/integration/system_interfaces/appflow_api.rst:165
+#: ../../source/integration/system_interfaces/appflow_api.rst:175
+#: ../../source/integration/system_interfaces/appflow_api.rst:177
+msgid "integer"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:129
+msgid "Number of VMs to deploy. Defaults to 1"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:131
+msgid "vm\\_template"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:131
+msgid ""
+"OpenNebula VM Template ID. See the :ref:`OpenNebula documentation for VM "
+"Templates <vm_guide>`"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:133
+msgid "parents"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:133
+msgid "array of string"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:133
+msgid "Names of the roles that must be deployed before this one"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:135
+msgid ""
+"VM shutdown action: 'shutdown' or 'shutdown-hard'. If it is not set, the one"
+" set for the Service will be used"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:137
+msgid "min\\_vms"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:137
+#: ../../source/integration/system_interfaces/appflow_api.rst:139
+msgid "No (Yes for elasticity)"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:137
+msgid "Minimum number of VMs for elasticity adjustments"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:139
+msgid "max\\_vms"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:139
+msgid "Maximum number of VMs for elasticity adjustments"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:141
+#: ../../source/integration/system_interfaces/appflow_api.rst:165
+msgid "cooldown"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:141
+msgid ""
+"Cooldown period duration after a scale operation, in seconds. If it is not "
+"set, the default set in oneflow-server.conf will be used"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:143
+msgid "elasticity\\_policies"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:143
+#: ../../source/integration/system_interfaces/appflow_api.rst:145
+msgid "array of Policies"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:143
+msgid "Array of Elasticity Policies, see below"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:145
+msgid "scheduled\\_policies"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:145
+msgid "Array of Scheduled Policies, see below"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:148
+msgid "To define a elasticity policy:"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:153
+#: ../../source/integration/system_interfaces/appflow_api.rst:173
+msgid "type"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:153
+#: ../../source/integration/system_interfaces/appflow_api.rst:173
+msgid "Type of adjustment. Values: CHANGE, CARDINALITY, PERCENTAGE\\_CHANGE"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:155
+#: ../../source/integration/system_interfaces/appflow_api.rst:175
+msgid "adjust"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:155
+#: ../../source/integration/system_interfaces/appflow_api.rst:175
+msgid "Positive or negative adjustment. Its meaning depends on 'type'"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:157
+#: ../../source/integration/system_interfaces/appflow_api.rst:177
+msgid "min\\_adjust\\_step"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:157
+#: ../../source/integration/system_interfaces/appflow_api.rst:177
+msgid ""
+"Optional parameter for PERCENTAGE\\_CHAGE adjustment type. If present, the "
+"policy will change the cardinality by at least the number of VMs set in this"
+" attribute."
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:159
+msgid "expression"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:159
+msgid "Expression to trigger the elasticity"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:161
+msgid "period\\_number"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:161
+msgid ""
+"Number of periods that the expression must be true before the elasticity is "
+"triggered"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:163
+msgid "period"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:163
+msgid "Duration, in seconds, of each period in period\\_duration"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:165
+msgid ""
+"Cooldown period duration after a scale operation, in seconds. If it is not "
+"set, the one set for the Role will be used"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:168
+msgid "And each scheduled policy is defined as:"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:179
+msgid "recurrence"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:179
+msgid ""
+"Time for recurring adjustements. Time is specified with the `Unix cron "
+"syntax <http://en.wikipedia.org/wiki/Cron>`__"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:181
+msgid "start\\_time"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:181
+msgid "Exact time for the adjustement"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:212
+msgid "Role Schema"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:333
+msgid "Action Schema"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:358
+msgid "Examples"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:361
+msgid "Create a New Service Template"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:532
+msgid "Get Detailed Information of a Given Service Template"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:579
+msgid "List the Available Service Templates"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:636
+msgid "Update a Given Template"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:750
+msgid "Instantiate a Given Template"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:758
+#: ../../source/integration/system_interfaces/appflow_api.rst:1260
+msgid "Available actions:"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:760
+msgid "instantiate"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:761
+#: ../../source/integration/system_interfaces/appflow_api.rst:1274
+msgid "chown"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:762
+#: ../../source/integration/system_interfaces/appflow_api.rst:1275
+msgid "chmod"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:763
+#: ../../source/integration/system_interfaces/appflow_api.rst:1276
+msgid "chgrp"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:809
+msgid "Delete a Given Template"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:838
+msgid "Get Detailed Information of a Given Service"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:1203
+msgid "List the Available Services"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:1252
+msgid "Perform an Action on a Given Service"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:1257
+msgid "**Perform** an action on the ``SERVICE`` resource identified by <id>."
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:1262
+msgid "shutdown: Shutdown a service."
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:1264
+msgid "From RUNNING or WARNING shuts down the Service"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:1266
+msgid "recover: Recover a failed service, cleaning the failed VMs."
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:1268
+msgid "From FAILED\\_DEPLOYING continues deploying the Service"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:1269
+msgid "From FAILED\\_SCALING continues scaling the Service"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:1270
+msgid "From FAILED\\_UNDEPLOYING continues shutting down the Service"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:1271
+msgid ""
+"From COOLDOWN the Service is set to running ignoring the cooldown duration"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:1272
+msgid "From WARNING failed VMs are deleted, and new VMs are instantiated"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:1298
+msgid "Update the Cardinality of a Given Role"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:1306
+msgid ""
+"You can force a cardinality outside the defined range with the force param."
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:1334
+msgid "Perform an Action on All the VMs of a Given Role"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:1339
+msgid ""
+"**Perform** an action on all the Virtual Machines belonging to the ``ROLE`` "
+"identified by <name> of the ``SERVICE`` resource identified by <id>."
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:1342
+msgid ""
+"You can use this call to perform a VM action on all the Virtual Machines "
+"belonging to a role. For example, if you want to suspend the Virtual "
+"Machines of the worker Role:"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:1344
+msgid "These are the commands that can be performed:"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:1346
+msgid "``shutdown``"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:1347
+msgid "``shutdown-hard``"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:1348
+msgid "``undeploy``"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:1349
+msgid "``undeploy-hard``"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:1350
+msgid "``hold``"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:1351
+msgid "``release``"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:1352
+msgid "``stop``"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:1353
+msgid "``suspend``"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:1354
+msgid "``resume``"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:1355
+msgid "``boot``"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:1356
+msgid "``delete``"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:1357
+msgid "``delete-recreate``"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:1358
+msgid "``reboot``"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:1359
+msgid "``reboot-hard``"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:1360
+msgid "``poweroff``"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:1361
+msgid "``poweroff-hard``"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:1362
+msgid "``snapshot-create``"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:1364
+msgid ""
+"Instead of performing the action immediately on all the VMs, you can perform"
+" it on small groups of VMs with these options:"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:1366
+msgid "``period``: Seconds between each group of actions"
+msgstr ""
+
+#: ../../source/integration/system_interfaces/appflow_api.rst:1367
+msgid "``number``: Number of VMs to apply the action to each period"
+msgstr ""

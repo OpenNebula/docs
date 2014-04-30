@@ -1,0 +1,358 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/user/references/img_template.rst:5
+msgid "Image Definition Template"
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:7
+msgid ""
+"This page describes how to define a new image template. An image template "
+"follows the same syntax as the :ref:`VM template <template>`."
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:9
+msgid ""
+"If you want to learn more about the image repository, you can do so "
+":ref:`here <img_guide>`."
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:11
+msgid ""
+"There are some template attributes that can compromise the security of the "
+"system or the security of other VMs, and can be used **only** by users in "
+"the oneadmin group. These attributes can be configured in :ref:`oned.conf "
+"<oned_conf>`, the default ones are labeled with ``*`` in the following "
+"tables. See the complete list in the :ref:`Restricted Attributes "
+"<img_template_restricted_attributes>` section."
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:14
+msgid "Template Attributes"
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:16
+msgid "The following attributes can be defined in the template."
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:19
+#: ../../source/user/references/img_template.rst:59
+msgid "Attribute"
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:19
+msgid "M / O"
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:19
+#: ../../source/user/references/img_template.rst:59
+msgid "Value"
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:19
+#: ../../source/user/references/img_template.rst:59
+msgid "Description"
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:21
+msgid "**NAME**"
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:21
+msgid "Mandatory"
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:21
+#: ../../source/user/references/img_template.rst:23
+#: ../../source/user/references/img_template.rst:31
+#: ../../source/user/references/img_template.rst:33
+#: ../../source/user/references/img_template.rst:37
+#: ../../source/user/references/img_template.rst:39
+msgid "Any string"
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:21
+msgid "Name that the Image will get. Every image must have a unique name."
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:23
+msgid "**DESCRIPTION**"
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:23
+#: ../../source/user/references/img_template.rst:25
+#: ../../source/user/references/img_template.rst:27
+#: ../../source/user/references/img_template.rst:29
+#: ../../source/user/references/img_template.rst:31
+#: ../../source/user/references/img_template.rst:33
+#: ../../source/user/references/img_template.rst:35
+#: ../../source/user/references/img_template.rst:41
+#: ../../source/user/references/img_template.rst:43
+#: ../../source/user/references/img_template.rst:45
+#: ../../source/user/references/img_template.rst:49
+#: ../../source/user/references/img_template.rst:51
+msgid "Optional"
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:23
+msgid "Human readable description of the image for other users."
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:25
+msgid "**TYPE**"
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:25
+msgid "``OS, CDROM, DATABLOCK``, ``KERNEL``, ``RAMDISK``, ``CONTEXT``"
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:25
+msgid ""
+"Type of the image, explained in detail in the following section. If omitted,"
+" the default value is the one defined in :ref:`oned.conf <oned_conf>` "
+"(install default is ``OS``)."
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:27
+msgid "**PERSISTENT**"
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:27
+msgid "``YES, NO``"
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:27
+msgid "Persistence of the image. If omitted, the default value is ``NO``."
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:29
+msgid "**PERSISTENT\\_TYPE**"
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:29
+msgid "``IMMUTABLE``"
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:29
+msgid ""
+"An special persistent image, that will not be modified. This attribute "
+"should only be used for special storage configurations."
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:31
+msgid "**DEV\\_PREFIX**"
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:31
+msgid ""
+"Prefix for the emulated device this image will be mounted at. For instance, "
+"``hd``, ``sd``, or ``vd`` for KVM virtio. If omitted, the default value is "
+"the one defined in :ref:`oned.conf <oned_conf>` (installation default is "
+"``hd``)."
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:33
+msgid "**TARGET**"
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:33
+msgid ""
+"Target for the emulated device this image will be mounted at. For instance, "
+"``hdb``, ``sdc``. If omitted, it will be :ref:`assigned automatically "
+"<template_disks_device_mapping>`."
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:35
+msgid "**DRIVER**"
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:35
+msgid "KVM: ``raw``, ``qcow2`` Xen:\\ ``tap:aio:``, ``file:``"
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:35
+msgid "Specific image mapping driver. VMware is unsupported"
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:37
+msgid "**PATH**"
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:37
+msgid "Mandatory (if no SOURCE)"
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:37
+msgid ""
+"Path to the original file that will be copied to the image repository. If "
+"not specified for a DATABLOCK type image, an empty image will be created. "
+"Note that gzipped files are supported and OpenNebula will automatically "
+"decompress them. Bzip2 compressed files is also supported, but it's strongly"
+" discouraged since OpenNebula will not calculate it's size properly."
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:39
+msgid "**SOURCE\\***"
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:39
+msgid "Mandatory (if no PATH)"
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:39
+msgid ""
+"Source to be used in the DISK attribute. Useful for not file-based images."
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:41
+msgid "**DISK\\_TYPE**"
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:41
+msgid "``BLOCK``, ``CDROM`` or ``FILE`` (default)."
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:41
+msgid ""
+"This is the type of the supporting media for the image: a block device "
+"(``BLOCK``) an ISO-9660 file or readonly block device (``CDROM``) or a plain"
+" file (``FILE``)."
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:43
+msgid "**READONLY**"
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:43
+msgid "``YES``, ``NO``."
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:43
+msgid ""
+"This attribute should only be used for special storage configurations. It "
+"sets how the image is going to be exposed to the hypervisor. Images of type "
+"``CDROM`` and those with PERSISTENT\\_TYPE set to ``IMMUTABLE`` will have "
+"``READONLY`` set to ``YES``. Otherwise, by default it is set to ``NO``."
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:45
+msgid "**CLONE\\_FSTYPE**"
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:45
+msgid "``thin``,\\ ``zeroedthick``, ``eagerzeroedthick`` ,\\ ``thick``,\\ ``thin``"
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:45
+msgid ""
+"Only for VMware images ion ``vmfs`` datastores. Sets the format of the "
+"target image when cloning within the datstore. More `information on types "
+"<https://communities.vmware.com/message/716009>`__."
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:49
+msgid "**MD5**"
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:49
+msgid "An md5 hash"
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:49
+msgid "MD5 hash to check for image integrity"
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:51
+msgid "**SHA1**"
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:51
+msgid "An sha1 hash"
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:51
+msgid "SHA1 hash to check for image integrity"
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:54
+msgid ""
+"Be careful when ``PATH`` points to a compressed bz2 image, since although it"
+" will work, OpenNebula will not calculate its size correctly."
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:56
+msgid "Mandatory attributes for ``DATABLOCK`` images with no ``PATH`` set:"
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:61
+msgid "**SIZE**"
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:61
+msgid "An integer"
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:61
+msgid "Size in MB."
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:63
+msgid "**FSTYPE**"
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:63
+msgid "String"
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:63
+msgid ""
+"Type of file system to be built. **Plain**. When the disk image is used "
+"directly by the hypervisor we can format the image, and so it is ready to be"
+" used by the guest OS. **Values**: ``ext2``, ``ext3``, ``ext4``, ``ntfs``, "
+"``reiserfs``, ``jfs``, ``swap``. Any other fs supported by mkfs will work if"
+" no special option is needed. **Formatted**. The disk image is stored in a "
+"hypervisor specific format VMDK or Qcow2. Then we cannot really make a "
+"filesystem on the image, just create the device and let the guest OS format "
+"the disk. Use ``raw`` to not to format the new image. **Values**: ``raw``, "
+"``qcow2``, ``vmdk_*``."
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:67
+msgid "Template Examples"
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:69
+msgid "Example of an OS image:"
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:79
+msgid "Example of a CDROM image:"
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:88
+msgid "Example of a DATABLOCK image:"
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:102
+msgid "Restricted Attributes"
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:104
+msgid ""
+"All the **default** restricted attributes to users in the oneadmin group are"
+" summarized in the following list:"
+msgstr ""
+
+#: ../../source/user/references/img_template.rst:106
+msgid "SOURCE"
+msgstr ""

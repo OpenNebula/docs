@@ -1,0 +1,288 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/administration/users_and_groups/manage_groups.rst:6
+msgid "Managing Groups & vDC"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_groups.rst:8
+msgid ""
+"A group in OpenNebula makes it possible to isolate users and resources. A "
+"user can see and use the :ref:`shared resources <chmod>` from other users."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_groups.rst:10
+msgid ""
+"The group is an authorization boundary for the users, but you can also "
+"partition your cloud infrastructure and define what resources are available "
+"to each group. The vDC (Virtual Data Center) concept is not a different "
+"entity in OpenNebula, it is how we call groups that have some resources "
+"assigned to them. You can read more about OpenNebula's approach to vDC's and"
+" the cloud from the perspective of different user roles in the "
+":ref:`Understanding OpenNebula <understand>` guide."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_groups.rst:13
+msgid "Adding and Deleting Groups"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_groups.rst:15
+msgid ""
+"There are two special groups created by default. The ``onedmin`` group "
+"allows any user in it to perform any operation, allowing different users to "
+"act with the same privileges as the ``oneadmin`` user. The ``users`` group "
+"is the default group where new users are created."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_groups.rst:17
+msgid ""
+"Your can use the ``onegroup`` command line tool to manage groups in "
+"OpenNebula. There are two groups created by default, ``oneadmin`` and "
+"``users``."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_groups.rst:19
+msgid "To create new groups:"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_groups.rst:31
+msgid ""
+"The new group has ID 100 to differentiate the special groups to the user-"
+"defined ones."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_groups.rst:33
+msgid ""
+"When a new group is created, an ACL rule is also created to provide the "
+"default behaviour, allowing users to create basic resources. You can learn "
+"more about ACL rules in :ref:`this guide <manage_acl>`; but you don't need "
+"any further configuration to start using the new group."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_groups.rst:36
+msgid "Adding Users to Groups"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_groups.rst:38
+msgid "Use the ``oneuser chgrp`` command to assign users to groups."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_groups.rst:54
+msgid ""
+"To delete a user from a group, just move it again to the default ``users`` "
+"group."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_groups.rst:59
+msgid "Admin Users and Allowed Resources"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_groups.rst:61
+msgid ""
+"Upon group creation, an special admin user account can be defined. This "
+"admin user will have administrative privileges only for the new group, not "
+"for all the resources in the OpenNebula cloud as the 'oneadmin' group users "
+"have."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_groups.rst:63
+msgid ""
+"Another aspect that can be controlled on creation time is the type of "
+"resources that group users will be alowed to create."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_groups.rst:65
+msgid ""
+"This can be managed visually in Sunstone, and can also be managed through "
+"the CLI. In the latter, details of the group are passed to the ``onegroup "
+"create`` command as arguments. This table lists the description of said "
+"arguments."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_groups.rst:68
+msgid "Argument"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_groups.rst:68
+msgid "M / O"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_groups.rst:68
+msgid "Value"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_groups.rst:68
+msgid "Description"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_groups.rst:70
+msgid "`-n, --name name`"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_groups.rst:70
+msgid "Mandatory"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_groups.rst:70
+#: ../../source/administration/users_and_groups/manage_groups.rst:72
+#: ../../source/administration/users_and_groups/manage_groups.rst:74
+#: ../../source/administration/users_and_groups/manage_groups.rst:76
+msgid "Any string"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_groups.rst:70
+msgid "Name for the new group"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_groups.rst:72
+msgid "`-u, --admin_user`"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_groups.rst:72
+#: ../../source/administration/users_and_groups/manage_groups.rst:74
+#: ../../source/administration/users_and_groups/manage_groups.rst:76
+#: ../../source/administration/users_and_groups/manage_groups.rst:78
+#: ../../source/administration/users_and_groups/manage_groups.rst:80
+msgid "Optional"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_groups.rst:72
+msgid "Creates an admin user for the group with the given name"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_groups.rst:74
+msgid "`-p, --admin_password`"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_groups.rst:74
+msgid "Password for the admin user of the group"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_groups.rst:76
+msgid "`-d, --admin_driver`"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_groups.rst:76
+msgid "Auth driver for the admin user of the group"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_groups.rst:78
+msgid "`-r, --resources`"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_groups.rst:78
+#: ../../source/administration/users_and_groups/manage_groups.rst:80
+msgid "\"+\" separated list"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_groups.rst:78
+msgid ""
+"Which resources can be created by group users (VM+IMAGE+TEMPLATE by default)"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_groups.rst:80
+msgid "`-o, --admin_resources`"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_groups.rst:80
+msgid ""
+"Which resources can be created by the admin user (VM+IMAGE+TEMPLATE by "
+"default)"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_groups.rst:83
+msgid "An example:"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_groups.rst:94
+msgid "Managing vDC and Resource Providers"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_groups.rst:96
+msgid ""
+"A vDC (Virtual Data Center) is how we call groups that have some resources "
+"assigned to them. A resource provider is an OpenNebula :ref:`cluster "
+"<cluster_guide>` (set of physical hosts and associated datastores and "
+"virtual networks) from a particular zone (an OpenNebula instance). A group "
+"can be assigned:"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_groups.rst:98
+msgid "A particular resource provider, for instance cluster 7 of Zone 0"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_groups.rst:104
+msgid "All resources from a particular zone (special cluster id ``ALL``)"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_groups.rst:110
+msgid ""
+"To remove resource providers within a group, use the symmetric operation "
+"``del_provider``."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_groups.rst:112
+msgid ""
+"By default a group doesn't have any resource provider, so users won't be "
+"entitled to use any resource until explicitly added a resource provider."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_groups.rst:114
+msgid ""
+"When you assign a Resource Provider to a group, users in that group will be "
+"able to use the Datastores and Virtual Networks of that Cluster. The "
+"scheduler will also deploy VMs from that group into any of the Cluster "
+"Hosts."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_groups.rst:116
+msgid ""
+"If you are familiar with :ref:`ACL rules <manage_acl>`, you can take a look "
+"at the rules that are created with ``oneacl list``. These rules are "
+"automatically added, and should not be manually edited. They will be removed"
+" by the ``onegroup del_provider`` command."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_groups.rst:122
+msgid "Primary and Secondary Groups"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_groups.rst:124
+msgid ""
+"With the commands ``oneuser addgroup`` and ``delgroup`` the administrator "
+"can add or delete secondary groups. Users assigned to more than one group "
+"will see the resources from all their groups. e.g. a user in the groups "
+"testing and production will see VMs from both groups."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_groups.rst:126
+msgid ""
+"The group set with ``chgrp`` is the primary group, and resources (Images, "
+"VMs, etc) created by a user will belong to this primary group. Users can "
+"change their primary group to any of their secondary group without the "
+"intervention of an administrator, using ``chgrp`` again."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_groups.rst:129
+msgid "Managing Groups in Sunstone"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_groups.rst:131
+msgid ""
+"All the described functionality is available graphically using "
+":ref:`Sunstone <sunstone>`:"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_groups.rst:133
+msgid "|image3|"
+msgstr ""

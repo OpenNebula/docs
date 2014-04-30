@@ -1,0 +1,213 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/administration/networking/firewall.rst:5
+msgid "Configuring Firewalls for VMs"
+msgstr ""
+
+#: ../../source/administration/networking/firewall.rst:7
+msgid ""
+"This driver installs iptables rules in the physical host executing the VM. "
+"This driver can be used to filter (and enforce) TCP and UDP ports, and to "
+"define a policy for ICMP connections, without any additional modification to"
+" the guest VMs."
+msgstr ""
+
+#: ../../source/administration/networking/firewall.rst:10
+msgid "Requirements"
+msgstr ""
+
+#: ../../source/administration/networking/firewall.rst:12
+msgid "The package ``iptables`` must be installed in the hosts."
+msgstr ""
+
+#: ../../source/administration/networking/firewall.rst:15
+msgid "Considerations & Limitations"
+msgstr ""
+
+#: ../../source/administration/networking/firewall.rst:17
+msgid ""
+"In OpenNebula 3.0, this functionality was provided through a hook, and it "
+"wasn't effective after a migration. Since OpenNebula 3.2 this limitation "
+"does not apply."
+msgstr ""
+
+#: ../../source/administration/networking/firewall.rst:20
+msgid "Configuration"
+msgstr ""
+
+#: ../../source/administration/networking/firewall.rst:23
+msgid "Hosts Configuration"
+msgstr ""
+
+#: ../../source/administration/networking/firewall.rst:25
+msgid ""
+"The ``sudoers`` file must be configured so ``oneadmin`` can execute "
+"``iptables`` in the hosts."
+msgstr ""
+
+#: ../../source/administration/networking/firewall.rst:28
+msgid "OpenNebula Configuration"
+msgstr ""
+
+#: ../../source/administration/networking/firewall.rst:30
+msgid ""
+"This Virtual Machine Network Manager driver can be used individually, or "
+"combined with the isolation features of either :ref:`802.1Q <hm-vlan>` or "
+":ref:`ebtables <ebtables>`. However it's **not** currently supported with "
+"the :ref:`ovswitch <openvswitch>` drivers, they provide their own filtering "
+"mechanism."
+msgstr ""
+
+#: ../../source/administration/networking/firewall.rst:32
+msgid ""
+"To enable firewalling without any network isolation features, use **fw** as "
+"the Virtual Network Manager driver parameter when the hosts are created with"
+" the :ref:`onehost command <host_guide>`:"
+msgstr ""
+
+#: ../../source/administration/networking/firewall.rst:38
+msgid ""
+"The firewall driver is automatically enabled when any of the previously "
+"mentioned drivers are used, additional configuration is not required."
+msgstr ""
+
+#: ../../source/administration/networking/firewall.rst:41
+msgid "Driver Actions"
+msgstr ""
+
+#: ../../source/administration/networking/firewall.rst:44
+msgid "Action"
+msgstr ""
+
+#: ../../source/administration/networking/firewall.rst:44
+msgid "Description"
+msgstr ""
+
+#: ../../source/administration/networking/firewall.rst:46
+msgid "**Pre**"
+msgstr ""
+
+#: ../../source/administration/networking/firewall.rst:46
+msgid "N/A"
+msgstr ""
+
+#: ../../source/administration/networking/firewall.rst:48
+msgid "**Post**"
+msgstr ""
+
+#: ../../source/administration/networking/firewall.rst:48
+msgid ""
+"Creates appropriate IPTABLES rules in the Host where the VM has been placed."
+msgstr ""
+
+#: ../../source/administration/networking/firewall.rst:50
+msgid "**Clean**"
+msgstr ""
+
+#: ../../source/administration/networking/firewall.rst:50
+msgid "Removes the IPTABLES rules created during the ``Post`` action."
+msgstr ""
+
+#: ../../source/administration/networking/firewall.rst:54
+msgid "Usage"
+msgstr ""
+
+#: ../../source/administration/networking/firewall.rst:56
+msgid ""
+"The firewall directives must be placed in the :ref:`network section "
+"<template_network_section>` of the Virtual Machine template. These are the "
+"possible attributes:"
+msgstr ""
+
+#: ../../source/administration/networking/firewall.rst:58
+msgid ""
+"``WHITE_PORTS_TCP = <iptables_range>``: Permits access to the VM only "
+"through the specified ports in the TCP protocol. Supersedes "
+"BLACK\\_PORTS\\_TCP if defined."
+msgstr ""
+
+#: ../../source/administration/networking/firewall.rst:59
+msgid ""
+"``BLACK_PORTS_TCP = <iptables_range>``: Doesn't permit access to the VM "
+"through the specified ports in the TCP protocol. Superseded by "
+"WHITE\\_PORTS\\_TCP if defined."
+msgstr ""
+
+#: ../../source/administration/networking/firewall.rst:60
+msgid ""
+"``WHITE_PORTS_UDP = <iptables_range>``: Permits access to the VM only "
+"through the specified ports in the UDP protocol. Supersedes "
+"BLACK\\_PORTS\\_UDP if defined."
+msgstr ""
+
+#: ../../source/administration/networking/firewall.rst:61
+msgid ""
+"``BLACK_PORTS_UDP = <iptables_range>``: Doesn't permit access to the VM "
+"through the specified ports in the UDP protocol. Superseded by "
+"WHITE\\_PORTS\\_UDP if defined."
+msgstr ""
+
+#: ../../source/administration/networking/firewall.rst:62
+msgid ""
+"``ICMP = drop``: Blocks ICMP connections to the VM. By default it's set to "
+"accept."
+msgstr ""
+
+#: ../../source/administration/networking/firewall.rst:64
+msgid ""
+"``iptables_range``: a list of ports separated by commas or ranges separated "
+"by semicolons, e.g.: ``22,80,5900:6000``"
+msgstr ""
+
+#: ../../source/administration/networking/firewall.rst:66
+msgid "Example:"
+msgstr ""
+
+#: ../../source/administration/networking/firewall.rst:72
+msgid ""
+"Note that WHITE\\_PORTS\\_TCP and BLACK\\_PORTS\\_TCP are mutually "
+"exclusive. In the event where they're both defined the more restrictive will"
+" prevail i.e. WHITE\\_PORTS\\_TCP. The same happens with WHITE\\_PORTS\\_UDP"
+" and BLACK\\_PORTS\\_UDP."
+msgstr ""
+
+#: ../../source/administration/networking/firewall.rst:75
+msgid "Tuning & Extending"
+msgstr ""
+
+#: ../../source/administration/networking/firewall.rst:78
+msgid "IPTABLES Rules"
+msgstr ""
+
+#: ../../source/administration/networking/firewall.rst:80
+msgid ""
+"This section lists the IPTABLES rules that are created for each possible "
+"configuration:"
+msgstr ""
+
+#: ../../source/administration/networking/firewall.rst:82
+msgid "**TCP\\_WHITE\\_PORTS and UDP\\_WHITE\\_PORTS**"
+msgstr ""
+
+#: ../../source/administration/networking/firewall.rst:95
+msgid "**TCP\\_BLACK\\_PORTS and UDP\\_BLACK\\_PORTS**"
+msgstr ""
+
+#: ../../source/administration/networking/firewall.rst:104
+msgid "**ICMP DROP**"
+msgstr ""
+
+#: ../../source/administration/networking/firewall.rst:115
+msgid "These rules will be removed once the VM is shut down or destroyed."
+msgstr ""

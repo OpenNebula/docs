@@ -1,0 +1,668 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:5
+#: ../../source/user/virtual_resource_management/img_guide.rst:62
+msgid "Managing Images"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:7
+msgid ""
+"The :ref:`Storage system <sm>` allows OpenNebula administrators and users to"
+" set up images, which can be operative systems or data, to be used in "
+"Virtual Machines easily. These images can be used by several Virtual "
+"Machines simultaneously, and also shared with other users."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:9
+msgid ""
+"If you want to customize the Storage in your system, visit the :ref:`Storage"
+" subsystem guide <sm>`."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:12
+msgid "Image Types"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:14
+msgid ""
+"There are six different types of images. Using the command ``oneimage "
+"chtype``, you can change the type of an existing Image."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:16
+msgid ""
+"**OS**: An OS image contains a working operative system. Every :ref:`VM "
+"template <template>` must define one DISK referring to an image of this "
+"type."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:18
+msgid ""
+"**CDROM**: These images are readonly data. Only one image of this type can "
+"be used in each :ref:`VM template <template>`. These type of images are not "
+"cloned when using shared storage."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:20
+msgid ""
+"**DATABLOCK**: A datablock image is a storage for data, which can be "
+"accessed and modified from different Virtual Machines. These images can be "
+"created from previous existing data, or as an empty drive."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:22
+msgid ""
+"**KERNEL**: A plain file to be used as kernel (VM attribute OS/KERNEL\\_DS)."
+" Note that KERNEL file images can be registered only in File Datastores."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:24
+msgid ""
+"**RAMDISK**: A plain file to be used as ramdisk (VM attribute "
+"OS/INITRD\\_DS). Note that RAMDISK file images can be registered only in "
+"File Datastores."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:26
+msgid ""
+"**CONTEXT**: A plain file to be included in the context CD-ROM (VM attribute"
+" CONTEXT/FILES\\_DS). Note that CONTEXT file images can be registered only "
+"in File Datastores."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:28
+msgid ""
+"The Virtual Machines can use as many datablocks as needed. Refer to the "
+":ref:`VM template <template>` documentation for further information."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:30
+msgid ""
+"Note that some of the operations described below do not apply to KERNEL, "
+"RAMDISK and CONTEXT images, in particular: clone and persistent."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:33
+msgid "Image Life-cycle"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:36
+msgid "Short state"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:36
+msgid "State"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:36
+msgid "Meaning"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:38
+msgid "``lock``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:38
+msgid "``LOCKED``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:38
+msgid "The image file is being copied or created in the Datastore."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:40
+msgid "``rdy``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:40
+msgid "``READY``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:40
+msgid "Image ready to be used."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:42
+#: ../../source/user/virtual_resource_management/img_guide.rst:44
+msgid "``used``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:42
+msgid "``USED``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:42
+msgid ""
+"Non-persistent Image used by at least one VM. It can still be used by other "
+"VMs."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:44
+msgid "``USED_PERS``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:44
+msgid "Persistent Image is use by a VM. It cannot be used by new VMs."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:46
+msgid "``disa``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:46
+msgid "``DISABLED``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:46
+msgid "Image disabled by the owner, it cannot be used by new VMs."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:48
+msgid "``err``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:48
+msgid "``ERROR``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:48
+msgid ""
+"Error state, a FS operation failed. See the Image information with "
+"``oneimage show`` for an error message."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:50
+msgid "``dele``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:50
+msgid "``DELETE``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:50
+msgid "The image is being deleted from the Datastore."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:53
+msgid "This is the state diagram for **persistent** images:"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:55
+msgid "|Persistent Image States|"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:57
+msgid ""
+"And the following one is the state diagram for **non-persistent** images:"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:59
+msgid "|Non-Persistent Image States|"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:64
+msgid ""
+"Users can manage their images using the command line interface command "
+"``oneimage``. The complete reference is :ref:`here <cli>`."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:66
+msgid ""
+"You can also manage your images using :ref:`Sunstone <sunstone>`. Select the"
+" Images tab, and there you will be able to create, enable, disable, delete "
+"your images and even manage their persistence and publicity in a user "
+"friendly way. From Sunstone 3.4, you can also upload images directly from "
+"the web UI."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:68
+msgid "|image3|"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:71
+msgid "Create Images"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:73
+msgid ""
+"For VMWare images, please read **also** the :ref:`VMware Drivers guide "
+"<evmwareg_usage>`."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:75
+msgid ""
+"The three types of images can be created from an existing file, but for "
+"**datablock** images you can specify a size and filesystem type and let "
+"OpenNebula create an empty image in the datastore."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:77
+msgid ""
+"If you want to create an **OS image**, you need to prepare a contextualized "
+"virtual machine, and extract its disk."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:79
+msgid ""
+"Please read first the documentation about the MAC to IP mechanism in the "
+":ref:`virtual network management documentation <vgg>`, and how to use "
+"contextualization :ref:`here <cong>`."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:81
+msgid ""
+"Once you have a disk you want to upload, you need to create a new "
+":ref:`image template <img_template>`, and submit it using the ``oneimage "
+"create`` command."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:83
+msgid ""
+"The complete reference for the image template is :ref:`here <img_template>`."
+" This is how a sample template looks like:"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:93
+msgid ""
+"You need to choose the Datastore where to register the new Image. To know "
+"the available datastores, use the ``onedatastore list`` command. In this "
+"case, only the 'default' one is listed:"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:101
+msgid "To submit the template, you just have to issue the command"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:108
+msgid ""
+"You can also create images using just parameters in the ``oneimage create`` "
+"call. The parameters to generate the image are as follows:"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:111
+msgid "Parameter"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:111
+msgid "Description"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:113
+msgid "``-name name``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:113
+msgid "Name of the new image"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:115
+msgid "``-description description``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:115
+msgid "Description for the new Image"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:117
+msgid "``-type type``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:117
+msgid "Type of the new Image: OS, CDROM or DATABLOCK, FILE"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:119
+msgid "``-persistent``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:119
+msgid "Tells if the image will be persistent"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:121
+msgid "``-prefix prefix``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:121
+msgid "Device prefix for the disk (eg. hd, sd, xvd or vd)"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:123
+msgid "``-target target``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:123
+msgid "Device the disk will be attached to"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:125
+msgid "``-path path``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:125
+msgid "Path of the image file"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:127
+msgid "``-driver driver``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:127
+msgid "Driver to use image (raw, qcow2, tap:aio:...)"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:129
+msgid "``-disk_type disk_type``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:129
+msgid "Type of the image (BLOCK, CDROM or FILE)"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:131
+msgid "``-source source``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:131
+msgid "Source to be used. Useful for not file-based images"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:133
+msgid "``-size size``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:133
+msgid "Size in MB. Used for DATABLOCK type"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:135
+msgid "``-fstype fstype``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:135
+msgid ""
+"Type of file system to be built: ext2, ext3, ext4, ntfs, reiserfs, jfs, "
+"swap, qcow2"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:138
+msgid "To create the previous example image you can do it like this:"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:145
+msgid ""
+"You can use **gz** compressed image files (i.e. as specified in path) when "
+"registering them in OpenNebula."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:148
+msgid "Uploading Images from Sunstone"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:150
+msgid ""
+"Image file upload to the server via the client browser is possible with the "
+"help of a vendor library. The process is as follow:"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:152
+msgid ""
+"Step 1: The client uploads the whole image to the server in a temporal file "
+"in the ``tpmdir`` folder specified in the configuration."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:153
+msgid ""
+"Step 2: OpenNebula registers an image setting the PATH to that temporal "
+"file."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:154
+msgid "Step 3: OpenNebula copies the images to the datastore."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:155
+msgid ""
+"Step 4: The temporal file is deleted and the request returns successfully to"
+" the user (a message pops up indicating that image was uploaded correctly)."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:157
+msgid ""
+"Note that when file sizes become big (normally over 1GB), and depending on "
+"your hardware, it may take long to complete the copying in step 3. Since the"
+" upload request needs to stay pending until copying is sucessful (so it can "
+"delete the temp file safely), there might be Ajax timeouts and/or lack of "
+"response from the server. This may cause errors, or trigger re-uploads "
+"(which reinitiate the loading progress bar)."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:159
+msgid ""
+"As of Firefox 11 and previous versions, uploads seem to be limited to 2GB. "
+"Chrome seems to work well with images > 4 GB."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:162
+msgid "Clone Images"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:164
+msgid ""
+"Existing images can be cloned to a new one. This is useful to make a backup "
+"of an Image before you modify it, or to get a private persistent copy of an "
+"image shared by other user."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:166
+msgid "To clone an image, execute"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:173
+msgid "Listing Available Images"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:175
+msgid ""
+"You can use the ``oneimage list`` command to check the available images in "
+"the repository."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:183
+msgid ""
+"To get complete information about an image, use ``oneimage show``, or list "
+"images continuously with ``oneimage top``."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:186
+msgid "Publishing Images"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:188
+msgid ""
+"The users can share their images with other users in their group, or with "
+"all the users in OpenNebula. See the :ref:`Managing Permissions "
+"documentation <chmod>` for more information."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:190
+msgid ""
+"Let's see a quick example. To share the image 0 with users in the group, the"
+" **USE** right bit for **GROUP** must be set with the **chmod** command:"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:210
+msgid ""
+"The following command allows users in the same group **USE** and **MANAGE** "
+"the image, and the rest of the users **USE** it:"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:223
+msgid ""
+"The commands ``oneimage publish`` and ``oneimage unpublish`` are still "
+"present for compatibility with previous versions. These commands set/unset "
+"the GROUP USE bit."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:226
+msgid "Making Images Persistent"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:228
+msgid ""
+"Use the ``oneimage persistent`` and ``oneimage nonpersistent`` commands to "
+"make your images persistent or not."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:230
+msgid ""
+"A persistent image saves back to the datastore the changes made inside the "
+"VM after it is shut down. More specifically, the changes are correctly "
+"preserved only if the VM is ended with the ``onevm shutdown`` or ``onevm "
+"shutdown --hard`` commands. Note that depending on the Datastore type a "
+"persistent image can be a link to the original image, so any modification is"
+" directly made on the image."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:246
+msgid ""
+"When images are public (GROUP or OTHER USE bit set) they are always cloned, "
+"and persistent images are never cloned. Therefore, an image cannot be public"
+" and persistent at the same time. To manage a public image that won't be "
+"cloned, unpublish it first and make it persistent."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:249
+msgid "How to Use Images in Virtual Machines"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:251
+msgid ""
+"This a simple example on how to specify images as virtual machine disks. "
+"Please visit the :ref:`virtual machine user guide <vm_guide>` and the "
+":ref:`virtual machine template <template>` documentation for a more thorough"
+" explanation."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:253
+msgid ""
+"Assuming you have an OS image called *Ubuntu desktop* with ID 1, you can use"
+" it in your :ref:`virtual machine template <template>` as a DISK. When this "
+"machine is deployed, the first disk will be taken from the image repository."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:255
+msgid "Images can be referred in a DISK in two different ways:"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:257
+msgid "IMAGE\\_ID, using its ID as returned by the create operation"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:259
+msgid ""
+"IMAGE, using its name. In this case the name refers to one of the images "
+"owned by the user (names can not be repeated for the same user). If you want"
+" to refer to an IMAGE of other user you can specify that with IMAGE\\_UID "
+"(by the uid of the user) or IMAGE\\_UNAME (by the name of the user)."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:288
+msgid "Save Changes"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:290
+msgid ""
+"Once the VM is deployed you can snapshot a disk, i.e. save the changes made "
+"to the disk as a new image. There are two types of disk snapshots in "
+"OpenNebula:"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:292
+msgid ""
+"**Deferred snapshots** (disk-snapshot), changes to a disk will be saved as a"
+" new Image in the associated datastore when the VM is shutdown."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:293
+msgid ""
+"**Hot snapshots** (hot disk-snapshot), just as the deferred snapshots, but "
+"the disk is copied to the datastore the moment the operation is triggered. "
+"Therefore, you must guarantee that the disk is in a consistent state during "
+"the save\\_as operation (e.g. by umounting the disk from the VM)."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:295
+msgid ""
+"To save a disk, use the ``onevm disk-snapshot`` command. This command takes "
+"three arguments: The VM name (or ID), the disk ID to save and the name of "
+"the new image to register. And optionally the --live argument to not defer "
+"the disk-snapshot operation."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:297
+msgid ""
+"To know the ID of the disk you want to save, just take a look at the ``onevm"
+" show`` output for your VM, you are interested in the ID column in the VM "
+"DISK section."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:347
+msgid ""
+"The IDs are assigned in the same order the disks were defined in the "
+":ref:`VM template <template>`."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:349
+msgid ""
+"The next command will register a new image called *SO upgrade*, that will be"
+" ready as soon as the VM is shut down. Till then the image will be locked, "
+"and so you cannot use it."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:355
+msgid ""
+"This command copies disk 1 to the datastore with name *Backup of DB volume*,"
+" the image will be available once the image copy end:"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:362
+msgid "How to Use File Images in Virtual Machines"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:367
+msgid "KERNEL and RAMDISK"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:369
+msgid ""
+"KERNEL and RAMDISK type Images can be used in the OS/KERNEL\\_DS and "
+"OS/INITRD\\_DS attributes of the VM template. See the :ref:`complete "
+"reference <template_os_and_boot_options_section>` for more information."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:371
+msgid "Example:"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:381
+msgid "CONTEXT"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/img_guide.rst:383
+msgid ""
+"The :ref:`contextualization cdrom <context_overview>` can include CONTEXT "
+"type Images. Visit the :ref:`complete reference <template_context>` for more"
+" information."
+msgstr ""

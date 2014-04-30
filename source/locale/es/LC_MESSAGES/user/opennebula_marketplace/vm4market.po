@@ -1,0 +1,223 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/user/opennebula_marketplace/vm4market.rst:5
+msgid "Howto Create Apps for the Marketplace"
+msgstr ""
+
+#: ../../source/user/opennebula_marketplace/vm4market.rst:7
+msgid ""
+"In this section some general guidelines on creating OpenNebula compatible "
+"images for the marketplace are described. Following this you will find a "
+"tutorial showing how to create an Ubuntu 12.04 image ready to distribute it "
+"in the marketplace."
+msgstr ""
+
+#: ../../source/user/opennebula_marketplace/vm4market.rst:10
+msgid "Image Creation Guidelines"
+msgstr ""
+
+#: ../../source/user/opennebula_marketplace/vm4market.rst:12
+msgid ""
+"Images in the marketplace are just direct installation of OS, prepared to "
+"run with OpenNebula. There are two basic things you need to do (apart from "
+"the standard OS installation):"
+msgstr ""
+
+#: ../../source/user/opennebula_marketplace/vm4market.rst:14
+msgid ""
+"Add OpenNebula contextualization script, so the image is able to receive and"
+" use context information"
+msgstr ""
+
+#: ../../source/user/opennebula_marketplace/vm4market.rst:16
+msgid ""
+"Disable udev network rule writing, usually images are cloned multiple times,"
+" using different MAC addresses each time. In this case, you'll need to "
+"disable udev to prevent getting a new interface each time."
+msgstr ""
+
+#: ../../source/user/opennebula_marketplace/vm4market.rst:18
+msgid ""
+"These both steps can be automated in some distributions (Debian, Ubuntu, "
+"CentOS and RHEL) using preparation packages. You can find the packages and "
+"more information about them at the :ref:`Contextualization Packages for VM "
+"Images <context_overview>` section."
+msgstr ""
+
+#: ../../source/user/opennebula_marketplace/vm4market.rst:21
+msgid "Add OpenNebula Contextualization Script"
+msgstr ""
+
+#: ../../source/user/opennebula_marketplace/vm4market.rst:23
+msgid ""
+"The contextualization scripts configure the VM on startup. You can find the "
+"scripts for different distributions at the `OpenNebula repository "
+"<http://dev.opennebula.org/projects/opennebula/repository/revisions/master/show/share/scripts>`__."
+" Depending on the distribution the method of installation is different so "
+"refer to the distribution documentation to do so. Make sure that these "
+"scripts are executed before the network is initialized."
+msgstr ""
+
+#: ../../source/user/opennebula_marketplace/vm4market.rst:25
+msgid ""
+"You can find more information about contextualization in the "
+":ref:`Contextualizing Virtual Machines <cong>` guide."
+msgstr ""
+
+#: ../../source/user/opennebula_marketplace/vm4market.rst:28
+msgid "Disable udev Network Rule Writing"
+msgstr ""
+
+#: ../../source/user/opennebula_marketplace/vm4market.rst:30
+msgid ""
+"Most linux distribution upon start search for new devices and write the "
+"configuration for them. This fixes the network device for each different "
+"network mac address. This is a bad behavir in VM images as they will be used"
+" to run with very different mac addresses. You need to disable this udev "
+"configuration saving and also delete any udev network rule that could be "
+"already saved."
+msgstr ""
+
+#: ../../source/user/opennebula_marketplace/vm4market.rst:33
+msgid "Tutorial: Preparing an Ubuntu 12.04 Xen for the Marketplace"
+msgstr ""
+
+#: ../../source/user/opennebula_marketplace/vm4market.rst:35
+msgid ""
+"The installation is based on the `Ubuntu documentation "
+"<https://help.ubuntu.com/community/XenProposed#Manually_creating_a_PV_Guest_VM>`__."
+msgstr ""
+
+#: ../../source/user/opennebula_marketplace/vm4market.rst:37
+msgid ""
+"You will need a machine where xen is correctly configured, a bridge with "
+"internet connection and a public IP or a private IP with access to a router "
+"that can connecto the internet."
+msgstr ""
+
+#: ../../source/user/opennebula_marketplace/vm4market.rst:39
+msgid "First we create an empty disk, in this case it will be 8 Gb:"
+msgstr ""
+
+#: ../../source/user/opennebula_marketplace/vm4market.rst:45
+msgid ""
+"Then we download netboot kernel and initrd compatible with Xen. We are using"
+" a mirror near to us but you can select one from the `Ubuntu mirrors list "
+"<https://launchpad.net/ubuntu/+archivemirrors>`__:"
+msgstr ""
+
+#: ../../source/user/opennebula_marketplace/vm4market.rst:52
+msgid ""
+"Now we can create a file describing the VM where the ubuntu will be "
+"installed:"
+msgstr ""
+
+#: ../../source/user/opennebula_marketplace/vm4market.rst:66
+msgid ""
+"Change ``PATH`` to the path where the VM files are located and ``BRIDGE`` to"
+" the name of the network bridge you are going to use. After this we can "
+"start the VM:"
+msgstr ""
+
+#: ../../source/user/opennebula_marketplace/vm4market.rst:72
+msgid ""
+"To connect to the VM console and proceed with the installation you can use "
+"xm console command:"
+msgstr ""
+
+#: ../../source/user/opennebula_marketplace/vm4market.rst:78
+msgid ""
+"Use the menus to configure your VM. Make sure that you configure the network"
+" correctly as this installation will use it to download packages."
+msgstr ""
+
+#: ../../source/user/opennebula_marketplace/vm4market.rst:80
+msgid ""
+"After the installation is done it will reboot again into the installation. "
+"You can exit the console pressing ``<CTRL>+<]>``. Now you should shutdown "
+"the machine:"
+msgstr ""
+
+#: ../../source/user/opennebula_marketplace/vm4market.rst:86
+msgid ""
+"The system is now installed in the disk image and now we must start it to "
+"configure it so it plays nice with OpenNebula. The configuratio we are going"
+" to do is:"
+msgstr ""
+
+#: ../../source/user/opennebula_marketplace/vm4market.rst:88
+msgid ""
+"Disable udev network generation rules and clean any that could be saved"
+msgstr ""
+
+#: ../../source/user/opennebula_marketplace/vm4market.rst:89
+msgid "Add contextualization scripts"
+msgstr ""
+
+#: ../../source/user/opennebula_marketplace/vm4market.rst:91
+msgid "To start the VM we will need a new xen description file:"
+msgstr ""
+
+#: ../../source/user/opennebula_marketplace/vm4market.rst:104
+msgid ""
+"It is pretty similar to the other one but notice that we no longer specify "
+"kernel nor initrd and we also add the bootloader option. This will make out "
+"VM use the kernel and initrd that reside inside out VM image."
+msgstr ""
+
+#: ../../source/user/opennebula_marketplace/vm4market.rst:106
+msgid "We can start it using the same command as before:"
+msgstr ""
+
+#: ../../source/user/opennebula_marketplace/vm4market.rst:112
+msgid "And the console also works the same as before:"
+msgstr ""
+
+#: ../../source/user/opennebula_marketplace/vm4market.rst:118
+msgid ""
+"We log and become ``root``. To disable udev network rule generation we "
+"should edit the file ``/lib/udev/rules.d/75-persistent-net-generator.rules``"
+" and comment the line that says:"
+msgstr ""
+
+#: ../../source/user/opennebula_marketplace/vm4market.rst:124
+msgid ""
+"Now to make sure that no network rules are saved we can empty the rules "
+"file:"
+msgstr ""
+
+#: ../../source/user/opennebula_marketplace/vm4market.rst:130
+msgid ""
+"Copy the contextualiza located at the `OpenNebula repository "
+"<http://dev.opennebula.org/projects/opennebula/repository/revisions/master/entry/share/scripts/ubuntu"
+"/net-vmcontext/vmcontext>`__ to ``/etc/init.d`` and give it write "
+"permissions. This is the script that will contextualize the VM on start."
+msgstr ""
+
+#: ../../source/user/opennebula_marketplace/vm4market.rst:132
+msgid ""
+"Now we modify the file ``/etc/init/networking.conf`` and change the line:"
+msgstr ""
+
+#: ../../source/user/opennebula_marketplace/vm4market.rst:138
+msgid "with"
+msgstr ""
+
+#: ../../source/user/opennebula_marketplace/vm4market.rst:147
+msgid "and also in ``/etc/init/network-interface.conf`` we add the line:"
+msgstr ""
+
+#: ../../source/user/opennebula_marketplace/vm4market.rst:153
+msgid "so it looks similar to:"
+msgstr ""

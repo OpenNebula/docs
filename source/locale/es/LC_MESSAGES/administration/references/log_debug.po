@@ -1,0 +1,185 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/administration/references/log_debug.rst:5
+msgid "Logging & Debugging"
+msgstr ""
+
+#: ../../source/administration/references/log_debug.rst:7
+msgid ""
+"OpenNebula provides logs for many resources. It supports two logging "
+"systems: file based logging systems and syslog logging."
+msgstr ""
+
+#: ../../source/administration/references/log_debug.rst:9
+msgid ""
+"In the case of file based logging, OpenNebula keeps separate log files for "
+"each active component, all of them stored in ``/var/log/one``. To help users"
+" and administrators find and solve problems, they can also access some of "
+"the error messages from the :ref:`CLI <cli>` or the :ref:`Sunstone GUI "
+"<sunstone>`."
+msgstr ""
+
+#: ../../source/administration/references/log_debug.rst:11
+msgid ""
+"With syslog the logging strategy is almost identical, except that the "
+"logging message change slightly their format following syslog logging "
+"conventions."
+msgstr ""
+
+#: ../../source/administration/references/log_debug.rst:16
+msgid "Configure the Logging System"
+msgstr ""
+
+#: ../../source/administration/references/log_debug.rst:18
+msgid ""
+"The Logging system can be changed in ``/etc/one/oned.conf``, specifically "
+"under the ``LOG`` section. Two parameters can be changed: ``SYSTEM``, which "
+"is either 'syslog' or 'file' (default), and the ``DEBUG_LEVEL`` is the "
+"logging verbosity."
+msgstr ""
+
+#: ../../source/administration/references/log_debug.rst:20
+msgid ""
+"For the scheduler the logging system can be changed in the exact same way. "
+"In this case the configuration is in ``/etc/one/sched.conf``."
+msgstr ""
+
+#: ../../source/administration/references/log_debug.rst:23
+msgid "Log Resources"
+msgstr ""
+
+#: ../../source/administration/references/log_debug.rst:25
+msgid ""
+"There are different log resources corresponding to different OpenNebula "
+"components:"
+msgstr ""
+
+#: ../../source/administration/references/log_debug.rst:27
+msgid ""
+"**ONE Daemon**: The core component of OpenNebula dumps all its logging "
+"information onto ``/var/log/one/oned.log``. Its verbosity is regulated by "
+"DEBUG\\_LEVEL in ``/etc/one/oned.conf``. By default the one start up scripts"
+" will backup the last oned.log file using the current time, e.g. "
+"oned.log.20121011151807. Alternatively, this resource can be logged to the "
+"syslog."
+msgstr ""
+
+#: ../../source/administration/references/log_debug.rst:29
+msgid ""
+"**Scheduler**: All the scheduler information is collected into the "
+"/var/log/one/sched.log file. This resource can also be logged to the syslog."
+msgstr ""
+
+#: ../../source/administration/references/log_debug.rst:31
+msgid ""
+"**Virtual Machines**: The information specific of the VM will be dumped in "
+"the log file ``/var/log/one/<vmid>.log``. All VMs controlled by OpenNebula "
+"have their folder, ``/var/lib/one/vms/<VID>``, or to the syslog if enabled. "
+"You can find the following information in it:"
+msgstr ""
+
+#: ../../source/administration/references/log_debug.rst:33
+msgid ""
+"**Deployment description files** : Stored in ``deployment.<EXECUTION>``, "
+"where ``<EXECUTION>`` is the sequence number in the execution history of the"
+" VM (deployment.0 for the first host, deployment.1 for the second and so "
+"on)."
+msgstr ""
+
+#: ../../source/administration/references/log_debug.rst:34
+msgid ""
+"**Transfer description files** : Stored in "
+"``transfer.<EXECUTION>.<OPERATION>``, where ``<EXECUTION>`` is the sequence "
+"number in the execution history of the VM, ``<OPERATION>`` is the stage "
+"where the script was used, e.g. transfer.0.prolog, transfer.0.epilog, or "
+"transfer.1.cleanup."
+msgstr ""
+
+#: ../../source/administration/references/log_debug.rst:36
+msgid ""
+"**Drivers**: Each driver can have activated its **ONE\\_MAD\\_DEBUG** "
+"variable in their **RC** files. If so, error information will be dumped to "
+"``/var/log/one/name-of-the-driver-executable.log``; log information of the "
+"drivers is in ``oned.log``."
+msgstr ""
+
+#: ../../source/administration/references/log_debug.rst:39
+msgid "Logging Format"
+msgstr ""
+
+#: ../../source/administration/references/log_debug.rst:41
+msgid ""
+"The anatomy of an OpenNebula message for a file based logging system is the "
+"following:"
+msgstr ""
+
+#: ../../source/administration/references/log_debug.rst:47
+msgid "In the case of syslog it follows the standard:"
+msgstr ""
+
+#: ../../source/administration/references/log_debug.rst:53
+msgid ""
+"Where module is any of the internal OpenNebula components: ``VMM``, ``ReM``,"
+" ``TM``, etc. And the log\\_level is a single character indicating the log "
+"level: I for info, D for debug, etc."
+msgstr ""
+
+#: ../../source/administration/references/log_debug.rst:55
+msgid ""
+"For the syslog, OpenNebula will also log the Virtual Machine events like "
+"this:"
+msgstr ""
+
+#: ../../source/administration/references/log_debug.rst:62
+msgid "Virtual Machine Errors"
+msgstr ""
+
+#: ../../source/administration/references/log_debug.rst:64
+msgid ""
+"Virtual Machine errors can be checked by the owner or an administrator using"
+" the ``onevm show`` output:"
+msgstr ""
+
+#: ../../source/administration/references/log_debug.rst:102
+msgid ""
+"Here the error tells that it could not copy a file, most probably it does "
+"not exist."
+msgstr ""
+
+#: ../../source/administration/references/log_debug.rst:104
+msgid ""
+"Alternatively you can also check the log files for the VM at "
+"``/var/log/one/<vmid>.log``."
+msgstr ""
+
+#: ../../source/administration/references/log_debug.rst:107
+msgid "Host Errors"
+msgstr ""
+
+#: ../../source/administration/references/log_debug.rst:109
+msgid "Host errors can be checked executing the ``onehost show`` command:"
+msgstr ""
+
+#: ../../source/administration/references/log_debug.rst:136
+msgid ""
+"The error message appears in the ``ERROR`` value of the monitoring. To get "
+"more information you can check ``/var/log/one/oned.log``. For example for "
+"this error we get in the log file:"
+msgstr ""
+
+#: ../../source/administration/references/log_debug.rst:147
+msgid ""
+"From the execution output we notice that the host name is not know, probably"
+" a mistake naming the host."
+msgstr ""

@@ -1,0 +1,347 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:5
+msgid "Managing ACL Rules"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:7
+msgid ""
+"The ACL authorization system enables fine-tuning of the allowed operations "
+"for any user, or group of users. Each operation generates an authorization "
+"request that is checked against the registered set of ACL rules. The core "
+"then can grant permission, or reject the request."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:9
+msgid ""
+"This allows administrators to tailor the user roles according to their "
+"infrastructure needs. For instance, using ACL rules you could create a group"
+" of users that can see and use existing virtual resources, but not create "
+"any new ones. Or grant permissions to a specific user to manage Virtual "
+"Networks for some of the existing groups, but not to perform any other "
+"operation in your cloud. Some examples are provided at the end of this "
+"guide."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:11
+msgid ""
+"Please note: the ACL rules is an advanced mechanism. For most use cases, you"
+" should be able to rely on the built-in :ref:`resource permissions <chmod>` "
+"and the ACL Rules created automatically when a :ref:`group is created "
+"<manage_groups_permissions>`, and when a :ref:`resource provider is added "
+"<managing-resource-provider-within-groups>`."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:14
+msgid "Understanding ACL Rules"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:16
+msgid "Lets start with an example:"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:22
+msgid ""
+"This rule grants the user with ID 5 the right to perform USE and MANAGE "
+"operations over all Images and Templates in the group with id 103."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:24
+msgid "The rule is split in four components, separated by a space:"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:26
+msgid "**User** component is composed only by an **ID definition**."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:27
+msgid ""
+"**Resources** is composed by a list of **'+'** separated resource types, "
+"**'/'** and an **ID definition**."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:28
+msgid "**Rights** is a list of Operations separated by the **'+'** character."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:29
+msgid ""
+"**Zone** is an **ID definition** of the zones where the rule applies. This "
+"last part is optional, and can be ignored unless OpenNebula is configured in"
+" a :ref:`federation <introf>`."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:31
+msgid "The **ID definition** for User in a rule is written as:"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:33
+msgid "``#<id> :`` for individual IDs"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:34
+msgid "``@<id> :`` for a group ID"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:35
+msgid "``* :`` for All"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:37
+msgid ""
+"The **ID definition** for a Resource has the same syntax as the ones for "
+"Users, but adding:"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:39
+msgid "``%<id> :`` for cluster IDs"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:41
+msgid "Some more examples:"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:43
+msgid ""
+"This rule allows all users in group 105 to create new virtual resources:"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:49
+msgid ""
+"The next one allows all users in the group 106 to use the Virtual Network "
+"47. That means that they can instantiate VM templates that use this network."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:56
+msgid "Note the difference between ``* NET/#47 USE\"`` **vs** ``* NET/@47 USE``"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:58
+msgid ""
+"All Users can use NETWORK with ID 47 **vs** All Users can use NETWORKS "
+"belonging to the Group whose ID is 47"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:60
+msgid ""
+"The following one allows users in group 106 to deploy VMs in Hosts assigned "
+"to the cluster 100"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:67
+msgid "Managing ACL Rules via Console"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:69
+msgid ""
+"The ACL rules are managed using the :ref:`oneacl command <cli>`. The 'oneacl"
+" list' output looks like this:"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:82
+msgid "The rules shown correspond to the following ones:"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:93
+msgid ""
+"The first four were created on bootstrap by OpenNebula, and the last two "
+"were created using oneacl:"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:103
+msgid ""
+"The **ID** column identifies each rule's ID. This ID is needed to delete "
+"rules, using **'oneacl delete <id>'**."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:105
+msgid ""
+"Next column is **USER**, which can be an individual user (#) or group (@) "
+"id; or all (\\*) users."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:107
+msgid ""
+"The **Resources** column lists the existing Resource types initials. Each "
+"rule fills the initials of the resource types it applies to."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:109
+msgid "``V : VM``"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:110
+msgid "``H : HOST``"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:111
+msgid "``N : NET``"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:112
+msgid "``I : IMAGE``"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:113
+msgid "``U : USER``"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:114
+msgid "``T : TEMPLATE``"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:115
+msgid "``G : GROUP``"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:116
+msgid "``D : DATASTORE``"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:117
+msgid "``C : CLUSTER``"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:118
+msgid "``O : DOCUMENT``"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:119
+msgid "``O : ZONE``"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:121
+msgid ""
+"**RID** stands for Resource ID, it can be an individual object (#), group "
+"(@) or cluster (%) id; or all (\\*) objects."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:123
+msgid "The next **Operations** column lists the allowed operations initials."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:125
+msgid "``U : USE``"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:126
+msgid "``M : MANAGE``"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:127
+msgid "``A : ADMIN``"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:128
+msgid "``C : CREATE``"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:130
+msgid ""
+"And the last column, **Zone**, shows the zone(s) where the rule applies. It "
+"can be an individual zone id (#), or all (\\*) zone."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:133
+msgid "Managing ACLs via Sunstone"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:135
+msgid "Sunstone offers a very intuitive and easy way of managing ACLs."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:137
+msgid ""
+"Select ACLs in the left-side menu to access a view of the current ACLs "
+"defined in OpenNebula:"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:139
+msgid "|image1|"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:141
+msgid ""
+"This view is designed to easily undestand what the purpose of each ACL is. "
+"You can create new ACLs by clicking on the ``New`` button at the top. A "
+"dialog will pop up:"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:143
+msgid "|image2|"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:145
+msgid ""
+"In the creation dialog you can easily define the resouces affected by the "
+"rule and the permissions that are granted upon them."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:148
+msgid "How Permission is Granted or Denied"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:150
+msgid ""
+"Visit the :ref:`XML-RPC API reference documentation <api>` for a complete "
+"list of the permissions needed by each OpenNebula command."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:152
+msgid ""
+"For the internal Authorization in OpenNebula, there is an implicit rule:"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:154
+msgid ""
+"The oneadmin user, or users in the oneadmin group are authorized to perform "
+"any operation."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:156
+msgid ""
+"If the resource is one of type ``VM``, ``NET``, ``IMAGE``, ``TEMPLATE``, or "
+"``DOCUMENT`` the object's permissions are checked. For instance, this is an "
+"example of the oneimage show output:"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:170
+msgid ""
+"The output above shows that the owner of the image has ``USE`` and "
+"``MANAGE`` rights."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:172
+msgid ""
+"If none of the above conditions are true, then the set of ACL rules is "
+"iterated until one of the rules allows the operation."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:174
+msgid ""
+"An important concept about the ACL set is that each rule adds new "
+"permissions, and they can't restrict existing ones: if any rule grants "
+"permission, the operation is allowed."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:176
+msgid ""
+"This is important because you have to be aware of the rules that apply to a "
+"user and his group. Consider the following example: if a user **#7** is in "
+"the group **@108**, with the following existing rule:"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_acl.rst:182
+msgid "Then the following rule won't have any effect:"
+msgstr ""

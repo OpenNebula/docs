@@ -1,0 +1,475 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/administration/references/schg.rst:5
+msgid "Scheduler"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:7
+msgid ""
+"The Scheduler module is in charge of the assignment between pending Virtual "
+"Machines and known Hosts. OpenNebula's architecture defines this module as a"
+" separate process that can be started independently of ``oned``. The "
+"OpenNebula scheduling framework is designed in a generic way, so it is "
+"highly modifiable and can be easily replaced by third-party developments."
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:12
+msgid "The Match-making Scheduler"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:14
+msgid ""
+"OpenNebula comes with a ``match making`` scheduler (*mm\\_sched*) that "
+"implements the *Rank Scheduling Policy*. The goal of this policy is to "
+"prioritize those resources more suitable for the VM."
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:16
+msgid "The match-making algorithm works as follows:"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:18
+msgid ""
+"Each disk of a running VM consumes storage from an Image Datastore. The VMs "
+"that require more storage than there is currently available are filtered "
+"out, and will remain in the 'pending' state."
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:19
+msgid ""
+"Those hosts that do not meet the VM requirements (see the "
+":ref:`SCHED\\_REQUIREMENTS attribute <template_placement_section>`) or do "
+"not have enough resources (available CPU and memory) to run the VM are "
+"filtered out (see below for more information)."
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:20
+msgid ""
+"The same happens for System Datastores: the ones that do not meet the DS "
+"requirements (see the :ref:`SCHED\\_DS\\_REQUIREMENTS attribute <template>`)"
+" or do not have enough free storage are filtered out."
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:21
+msgid ""
+"The :ref:`SCHED\\_RANK and SCHED\\_DS\\_RANK expressions "
+"<template_placement_section>` are evaluated upon the Host and Datastore list"
+" using the information gathered by the monitor drivers. Any variable "
+"reported by the monitor driver (or manually set in the Host or Datastore "
+"template) can be included in the rank expressions."
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:22
+msgid "Those resources with a higher rank are used first to allocate VMs."
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:24
+msgid ""
+"This scheduler algorithm easily allows the implementation of several "
+"placement heuristics (see below) depending on the RANK expressions used."
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:27
+msgid "Configuring the Scheduling Policies"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:29
+msgid "The policy used to place a VM can be configured in two places:"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:31
+msgid ""
+"For each VM, as defined by the SCHED\\_RANK and SCHED\\_DS\\_RANK attributes"
+" in the VM template."
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:32
+msgid "Globally for all the VMs in the ``sched.conf`` file"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:37
+msgid "Re-Scheduling Virtual Machines"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:39
+msgid ""
+"When a VM is in the running state it can be rescheduled. By issuing the "
+"``onevm resched`` command the VM's recheduling flag is set. In a subsequent "
+"scheduling interval, the VM will be consider for rescheduling, if:"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:41
+msgid "There is a suitable host for the VM"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:42
+msgid "The VM is not already running in it"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:44
+msgid ""
+"This feature can be used by other components to trigger rescheduling action "
+"when certain conditions are met."
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:47
+msgid "Scheduling VM Actions"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:49
+msgid ""
+"Users can schedule one or more VM actions to be executed at a certain date "
+"and time. The :ref:`onevm command <cli>` 'schedule' option will add a new "
+"SCHED\\_ACTION attribute to the Virtual Machine editable template. Visit "
+":ref:`the VM guide <vm_guide2_scheduling_actions>` for more information."
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:54
+msgid "Configuration"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:56
+msgid ""
+"The behavior of the scheduler can be tuned to adapt it to your "
+"infrastructure with the following configuration parameters defined in "
+"/etc/one/sched.conf:"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:58
+msgid "``MESSAGE_SIZE``: Buffer size in bytes for XML-RPC responses."
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:59
+msgid ""
+"``ONED_PORT``: Port to connect to the OpenNebula daemon oned (Default: 2633)"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:60
+msgid ""
+"``SCHED_INTERVAL``: Seconds between two scheduling actions (Default: 30)"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:61
+msgid ""
+"``MAX_VM``: Maximum number of Virtual Machines scheduled in each scheduling "
+"action (Default: 5000). Use 0 to schedule all pending VMs each time."
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:62
+msgid ""
+"``MAX_DISPATCH``: Maximum number of Virtual Machines actually dispatched to "
+"a host in each scheduling action (Default: 30)"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:63
+msgid ""
+"``MAX_HOST``: Maximum number of Virtual Machines dispatched to a given host "
+"in each scheduling action (Default: 1)"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:64
+msgid ""
+"``LIVE_RESCHEDS``: Perform live (1) or cold migrations (0) when rescheduling"
+" a VM"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:65
+msgid "``DEFAULT_SCHED``: Definition of the default scheduling algorithm."
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:67
+msgid ""
+"``RANK``: Arithmetic expression to rank suitable **hosts** based on their "
+"attributes."
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:68
+#: ../../source/administration/references/schg.rst:87
+msgid "``POLICY``: A predefined policy, it can be set to:"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:71
+#: ../../source/administration/references/schg.rst:90
+msgid "POLICY"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:71
+#: ../../source/administration/references/schg.rst:90
+msgid "DESCRIPTION"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:73
+#: ../../source/administration/references/schg.rst:92
+msgid "0"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:73
+msgid ""
+"**Packing**: Minimize the number of hosts in use by packing the VMs in the "
+"hosts to reduce VM fragmentation"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:75
+#: ../../source/administration/references/schg.rst:94
+msgid "1"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:75
+msgid ""
+"**Striping**: Maximize resources available for the VMs by spreading the VMs "
+"in the hosts"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:77
+#: ../../source/administration/references/schg.rst:96
+msgid "2"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:77
+msgid ""
+"**Load-aware**: Maximize resources available for the VMs by using those "
+"nodes with less load"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:79
+#: ../../source/administration/references/schg.rst:98
+msgid "3"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:79
+#: ../../source/administration/references/schg.rst:96
+msgid "**Custom**: Use a custom RANK"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:81
+msgid "4"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:81
+msgid ""
+"**Fixed**: Hosts will be ranked according to the PRIORITY attribute found in"
+" the Host or Cluster template"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:84
+msgid ""
+"``DEFAULT_DS_SCHED``: Definition of the default storage scheduling "
+"algorithm."
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:86
+msgid ""
+"``RANK``: Arithmetic expression to rank suitable **datastores** based on "
+"their attributes."
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:92
+msgid ""
+"**Packing**:: Tries to optimize storage usage by selecting the DS with less "
+"free space"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:94
+msgid ""
+"**Striping**: Tries to optimize I/O by distributing the VMs across "
+"datastores"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:98
+msgid ""
+"**Fixed**: Datastores will be ranked according to the PRIORITY attribute "
+"found in the Datastore template"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:101
+msgid ""
+"The optimal values of the scheduler parameters depend on the hypervisor, "
+"storage subsystem and number of physical hosts. The values can be derived by"
+" finding out the max number of VMs that can be started in your set up with "
+"out getting hypervisor related errors."
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:103
+msgid "Sample Configuration:"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:129
+msgid "Pre-defined Placement Policies"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:131
+msgid ""
+"The following list describes the predefined policies (``DEFAULT_SCHED``) "
+"that can be configured through the ``sched.conf`` file."
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:134
+#: ../../source/administration/references/schg.rst:183
+msgid "Packing Policy"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:136
+msgid "**Target**: Minimize the number of cluster nodes in use"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:137
+msgid ""
+"**Heuristic**: Pack the VMs in the cluster nodes to reduce VM fragmentation"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:138
+msgid "**Implementation**: Use those nodes with more VMs running first"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:145
+#: ../../source/administration/references/schg.rst:196
+msgid "Striping Policy"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:147
+#: ../../source/administration/references/schg.rst:158
+msgid "**Target**: Maximize the resources available to VMs in a node"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:148
+msgid "**Heuristic**: Spread the VMs in the cluster nodes"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:149
+msgid "**Implementation**: Use those nodes with less VMs running first"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:156
+msgid "Load-aware Policy"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:159
+msgid "**Heuristic**: Use those nodes with less load"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:160
+msgid "**Implementation**: Use those nodes with more FREE\\_CPU first"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:167
+#: ../../source/administration/references/schg.rst:207
+msgid "Fixed Policy"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:169
+msgid "**Target**: Sort the hosts manually"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:170
+#: ../../source/administration/references/schg.rst:210
+msgid "**Heuristic**: Use the PRIORITY attribute"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:171
+msgid "**Implementation**: Use those nodes with more PRIORITY first"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:178
+msgid "Pre-defined Storage Policies"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:180
+msgid ""
+"The following list describes the predefined storage policies "
+"(``DEFAULT_DS_SCHED``) that can be configured through the ``sched.conf`` "
+"file."
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:185
+msgid ""
+"Tries to optimize storage usage by selecting the DS with less free space"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:187
+msgid "**Target**: Minimize the number of system datastores in use"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:188
+msgid ""
+"**Heuristic**: Pack the VMs in the system datastores to reduce VM "
+"fragmentation"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:189
+msgid "**Implementation**: Use those datastores with less free space first"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:198
+msgid "**Target**: Maximize the I/O available to VMs"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:199
+msgid "**Heuristic**: Spread the VMs in the system datastores"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:200
+msgid "**Implementation**: Use those datastores with more free space first"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:209
+msgid "**Target**: Sort the datastores manually"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:211
+msgid "**Implementation**: Use those datastores with more PRIORITY first"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:220
+msgid "Limiting the Resources Exposed by a Host"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:222
+msgid ""
+"Prior to assgining a VM to a Host, the available capacity is checked to "
+"ensure that the VM fits in the host. The capacity is obtained by the monitor"
+" probes. You may alter this behaviour by reserving an amount of capacity "
+"(memory and cpu). You can reserve this capacity:"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:224
+msgid ""
+"Cluster-wise, by updating the cluster template (e.g. ``onecluster update``)."
+" All the host of the cluster will reserve the same amount of capacity."
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:226
+msgid ""
+"Host-wise, by updating the host template (e.g. ``onehost update``). This "
+"value will override those defined at cluster level."
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:228
+msgid "In particular the following capacity attributes can be reserved:"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:230
+msgid ""
+"``RESERVED_CPU`` in percentage. It will be substracted from the ``TOTAL "
+"CPU``"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:231
+msgid "``RESERVED_MEM`` in KB. It will be substracted from the ``TOTAL MEM``"
+msgstr ""
+
+#: ../../source/administration/references/schg.rst:233
+msgid ""
+"These values can be negative, in that case you'll be actually increassing "
+"the overall capacity so overcommiting host capacity."
+msgstr ""

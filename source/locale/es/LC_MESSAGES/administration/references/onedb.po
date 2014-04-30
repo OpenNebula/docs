@@ -1,0 +1,110 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/administration/references/onedb.rst:5
+msgid "Onedb Tool"
+msgstr ""
+
+#: ../../source/administration/references/onedb.rst:7
+msgid ""
+"This guide describes the ``onedb`` CLI tool. It can be used to get "
+"information from an OpenNebula database, upgrade it, or fix inconsistency "
+"problems."
+msgstr ""
+
+#: ../../source/administration/references/onedb.rst:10
+msgid "Connection Parameters"
+msgstr ""
+
+#: ../../source/administration/references/onedb.rst:12
+msgid ""
+"The command ``onedb`` can connect to any SQLite or MySQL database. Visit the"
+" :ref:`onedb man page <cli>` for a complete reference. These are two "
+"examples for the default databases:"
+msgstr ""
+
+#: ../../source/administration/references/onedb.rst:21
+msgid "onedb fsck"
+msgstr ""
+
+#: ../../source/administration/references/onedb.rst:23
+msgid ""
+"Checks the consistency of the DB, and fixes the problems found. For example,"
+" if the machine where OpenNebula is running crashes, or looses connectivity "
+"with the database, you may have a wrong number of VMs running in a Host, or "
+"incorrect usage quotas for some users."
+msgstr ""
+
+#: ../../source/administration/references/onedb.rst:47
+msgid "onedb version"
+msgstr ""
+
+#: ../../source/administration/references/onedb.rst:49
+msgid "Prints the current DB version."
+msgstr ""
+
+#: ../../source/administration/references/onedb.rst:56
+msgid "Use the ``-v`` flag to see the complete version and comment."
+msgstr ""
+
+#: ../../source/administration/references/onedb.rst:65
+msgid ""
+"If the MySQL database password contains specials characters, such as ``@`` "
+"or ``#``, the onedb command will fail to connect to it."
+msgstr ""
+
+#: ../../source/administration/references/onedb.rst:67
+msgid ""
+"The workaround is to temporarily change the oneadmin's password to an ASCII "
+"string. The `set password <http://dev.mysql.com/doc/refman/5.6/en/set-"
+"password.html>`__ statement can be used for this:"
+msgstr ""
+
+#: ../../source/administration/references/onedb.rst:76
+msgid "onedb history"
+msgstr ""
+
+#: ../../source/administration/references/onedb.rst:78
+msgid ""
+"Each time the DB is upgraded, the process is logged. You can use the "
+"``history`` command to retrieve the upgrade history."
+msgstr ""
+
+#: ../../source/administration/references/onedb.rst:98
+msgid "onedb upgrade"
+msgstr ""
+
+#: ../../source/administration/references/onedb.rst:100
+msgid ""
+"The upgrade process is fully documented in the :ref:`Upgrading from Previous"
+" Versions guide <upgrade>`."
+msgstr ""
+
+#: ../../source/administration/references/onedb.rst:103
+msgid "onedb backup"
+msgstr ""
+
+#: ../../source/administration/references/onedb.rst:105
+msgid "Dumps the OpenNebula DB to a file."
+msgstr ""
+
+#: ../../source/administration/references/onedb.rst:114
+msgid "onedb restore"
+msgstr ""
+
+#: ../../source/administration/references/onedb.rst:116
+msgid ""
+"Restores the DB from a backup file. Please not that this tool will only "
+"restore backups generated from the same backend, i.e. you cannot backup a "
+"SQLite database and then try to populate a MySQL one."
+msgstr ""

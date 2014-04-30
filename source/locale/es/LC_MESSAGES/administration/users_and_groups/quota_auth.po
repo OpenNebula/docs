@@ -1,0 +1,300 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:5
+msgid "Managing Quotas"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:7
+msgid ""
+"This guide will show you how to set the usage quotas for users and groups."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:10
+msgid "Overview"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:12
+msgid ""
+"The quota system tracks user and group usage of system resources, and allows"
+" the system administrator to set limits on the usage of these resources. "
+"Quota limits can be set for:"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:14
+msgid "**users**, to individually limit the usage made by a given user."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:16
+msgid ""
+"**groups**, to limit the overall usage made by all the users in a given "
+"group. This can be of special interest for the OpenNebula Zones and Virtual "
+"Data Center (VDC) components."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:19
+msgid "Which Resource can be limited?"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:21
+msgid "The quota system allows you to track and limit usage on:"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:23
+msgid ""
+"**Datastores**, to control the amount of storage capacity allocated to each "
+"user/group for each datastore."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:25
+msgid "**Compute**, to limit the overall memory, cpu or VM instances."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:27
+msgid ""
+"**Network**, to limit the number of IPs a user/group can get from a given "
+"network. This is specially interesting for networks with public IPs, which "
+"usually are a limited resource."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:29
+msgid ""
+"**Images**, you can limit the how many VM instances from a given user/group "
+"are using a given image. You can take advantage of this quota when the image"
+" contains consumable resources (e.g. software licenses)."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:32
+msgid "Defining User/Group Quotas"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:34
+msgid ""
+"Usage quotas are set in a traditional template syntax (either plain text or "
+"XML). The following table explains the attributes needed to set each quota:"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:37
+msgid "Datastore Quotas. Attribute name: DATASTORE"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:40
+msgid "DATASTORE Attribute"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:40
+#: ../../source/administration/users_and_groups/quota_auth.rst:51
+#: ../../source/administration/users_and_groups/quota_auth.rst:64
+#: ../../source/administration/users_and_groups/quota_auth.rst:75
+msgid "Description"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:42
+msgid "ID SIZE IMAGE"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:42
+msgid ""
+"ID of the Datastore to set the quota for Maximum size in MB that can be used"
+" in the datastore Maximum number of images that can be created in the "
+"datastore"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:48
+msgid "Compute Quotas. Attribute name: VM"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:51
+msgid "VM Attribute"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:53
+msgid "VMS MEMORY CPU VOLATILE_SIZE"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:53
+msgid ""
+"Maximum number of VMs that can be created Maximum memory in MB that can be "
+"requested by user/group VMs Maximum CPU capacity that can be requested by "
+"user/group VMs Maximum volatile disks size (in MB) that can be requested by "
+"user/group VMs"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:61
+msgid "Network Quotas. Attribute name: NETWORK"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:64
+msgid "NETWORK Attribute"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:66
+msgid "ID LEASES"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:66
+msgid ""
+"ID of the Network to set the quota for Maximum IPs that can be leased from "
+"the Network"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:72
+msgid "Image Quotas. Attribute name: IMAGE"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:75
+msgid "IMAGE Attribute"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:77
+msgid "ID RVMS"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:77
+msgid ""
+"ID of the Image to set the quota for Maximum VMs that can used this image at"
+" the same time"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:81
+msgid "For each quota, there are two special limits:"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:83
+msgid "**0** means **unlimited**"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:84
+msgid "**-1** means that the **default quota** will be used"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:86
+msgid ""
+"Each quota has an usage counter associated named ``<QUOTA_NAME>_USED``. For "
+"example ``MEMORY_USED`` means the total memory used by user/group VMs, and "
+"its associated quota is ``MEMORY``."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:88
+msgid ""
+"The following template shows a quota example for a user in plain text. It "
+"limits the overall usage in Datastore 0 to 20Gb (for an unlimited number of "
+"images); the number of VMs that can be created to 4 with a maximum memory to"
+" 2G and 5 CPUs; the number of leases from network 1 to 4; and image 1 can "
+"only be used by 3 VMs at the same time:"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:120
+msgid ""
+"Note that whenever a network, image, datastore or VM is used the "
+"corresponding quota counters are created for the user with an unlimited "
+"value. This allows to track the usage of each user/group even when quotas "
+"are not used."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:123
+msgid "Setting User/Group Quotas"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:125
+msgid ""
+"User/group quotas can be easily set up either trough the command line "
+"interface or sunstone. Note that you need ``MANAGE`` permissions to set a "
+"quota of user, and ``ADMIN`` permissions to set the quota of a group. In "
+"this way, by default, only oneadmin can set quotas for a group, but if you "
+"define a group manager (as in a VDC) she can set specific usage quotas for "
+"the users on her group (so distributing resources as required). You can "
+"always change this behaviour setting the appropriate ACL rules."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:127
+msgid "To set the quota for a user, e.g. userA, just type:"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:133
+msgid ""
+"This will open an editor session to edit a quota template (with some tips "
+"about the syntax)."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:135
+msgid ""
+"Usage metrics are included for information purposes (e.g. CPU\\_USED, "
+"MEMORY\\_USED, LEASES\\_USED...) you cannot modify them"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:137
+msgid ""
+"You can add as many resource quotas as needed even if they have not been "
+"automatically initialized."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:139
+msgid "Similarly, you can set the quotas for group A with:"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:145
+msgid ""
+"There is a ``batchquota`` command that allows you to set the same quotas for"
+" several users or groups:"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:153
+msgid ""
+"You can also set the user/group quotas in Sunstone through the user/group "
+"tab."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:155
+msgid "|image1|"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:157
+msgid "|image2|"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:160
+msgid "Setting Default Quotas"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:162
+msgid ""
+"There are two default quota limit templates, one for users and another for "
+"groups. This template applies to all users/groups, unless they have an "
+"individual limit set."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:164
+msgid "Use the ``oneuser/onegroup defaultquota`` command."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:171
+msgid "Checking User/Group Quotas"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:173
+msgid ""
+"Quota limits and usage for each user/group is included as part of its "
+"standard information, so it can be easily check with the usual commands. "
+"Check the following examples:"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:204
+msgid "And for the group:"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/quota_auth.rst:236
+msgid ""
+"This information is also available through Sunstone as part of the "
+"user/group information."
+msgstr ""

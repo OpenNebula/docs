@@ -1,0 +1,113 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/integration/infrastructure_integration/devel-nm.rst:5
+msgid "Networking Driver"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-nm.rst:7
+msgid ""
+"This component is in charge of configuring the network in the hypervisors. "
+"The purpose of this guide is to describe how to create a new network manager"
+" driver."
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-nm.rst:10
+msgid "Driver Configuration and Description"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-nm.rst:12
+msgid ""
+"To enable a new network manager driver, the only requirement is to make a "
+"new directory with the name of the driver in "
+"``/var/lib/one/remotes/vnm/remotes/<name>`` with three files:"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-nm.rst:14
+msgid ""
+"**Pre**: This driver should perform all the network related actions required"
+" before the Virtual Machine starts in a host."
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-nm.rst:15
+msgid ""
+"**Post**: This driver should perform all the network related actions "
+"required after the Virtual Machine starts (actions which typically require "
+"the knowledge of the ``tap`` interface the Virtual Machine is connected to)."
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-nm.rst:16
+msgid ""
+"**Clean**: If any clean-up should be performed after the Virtual Machine "
+"shuts down, it should be placed here."
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-nm.rst:18
+msgid ""
+"The above three files **must exist**. If no action is required in them a "
+"simple ``exit 0`` will be enough."
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-nm.rst:20
+msgid "Virtual Machine actions and their relation with Network actions:"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-nm.rst:22
+msgid "**Deploy**: ``pre`` and ``post``"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-nm.rst:23
+msgid "**Shutdown**: ``clean``"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-nm.rst:24
+msgid "**Cancel**: ``clean``"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-nm.rst:25
+msgid "**Save**: ``clean``"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-nm.rst:26
+msgid "**Restore**: ``pre`` and ``post``"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-nm.rst:27
+msgid ""
+"**Migrate**: ``pre`` (target host), ``clean`` (source host), ``post`` "
+"(target host)"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-nm.rst:28
+msgid "**Attach Nic**: ``pre`` and ``post``"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-nm.rst:29
+msgid "**Detach Nic**: ``clean``"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-nm.rst:32
+msgid "Driver Paramenters"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-nm.rst:34
+msgid ""
+"All three driver actions have a first parameter which is the XML VM template"
+" encoded in base64 format."
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-nm.rst:36
+msgid ""
+"Additionally the ``post`` driver has a second parameter which is the deploy-"
+"id of the Virtual Machine e.g.: ``one-17``."
+msgstr ""

@@ -1,0 +1,124 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/user/virtual_machine_setup/bcont.rst:5
+msgid "Basic Contextualization"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/bcont.rst:7
+msgid ""
+"This guide shows how to automatically configure networking in the "
+"initialization process of the VM. Following are the instructions to "
+"contextualize your images to configure the network. For more in depth "
+"information and information on how to use this information for other duties "
+"head to the :ref:`Advanced Contextualization <cong>` guide."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/bcont.rst:10
+msgid "Preparing the Virtual Machine Image"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/bcont.rst:12
+msgid ""
+"To enable the Virtual Machine images to use the contextualization "
+"information written by OpenNebula we need to add to it a series of scripts "
+"that will trigger the contextualization."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/bcont.rst:14
+msgid ""
+"You can use the images available in the Marketplace, that are already "
+"prepared, or prepare your own images. To make your life easier you can use a"
+" couple of Linux packages that do the work for you."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/bcont.rst:16
+msgid ""
+"The contextualization package will also mount any partition labeled ``swap``"
+" as swap. OpenNebula sets this label for volatile swap disks."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/bcont.rst:18
+msgid "Start a image (or finish its installation)"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/bcont.rst:19
+msgid "Install context packages with one of these methods:"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/bcont.rst:21
+msgid ""
+"Install from our repositories package **one-context** in Ubuntu/Debian or "
+"**opennebula-context** in CentOS/RedHat. Instructions to add the repository "
+"at the :ref:`installation guide <ignc>`."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/bcont.rst:22
+msgid "Download and install the package for your distribution:"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/bcont.rst:24
+msgid ""
+"`DEB <http://dev.opennebula.org/attachments/download/780/one-"
+"context_4.6.0.deb>`__: Compatible with Ubuntu 11.10 to 14.04 and Debian 6/7"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/bcont.rst:25
+msgid ""
+"`RPM <http://dev.opennebula.org/attachments/download/778/one-"
+"context_4.6.0.rpm>`__: Compatible with CentOS and RHEL 6.x"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/bcont.rst:27
+msgid "Shutdown the VM"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/bcont.rst:30
+msgid "Preparing the Template"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/bcont.rst:32
+msgid ""
+"We will also need to add the gateway information to the Virtual Networks "
+"that need it. This is an example of a Virtual Network with gateway "
+"information:"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/bcont.rst:42
+msgid ""
+"And then in the VM template contextualization we set NETWORK to ``yes``:"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/bcont.rst:49
+msgid ""
+"When the template is instantiated, those parameters for ``eth0`` are "
+"automatically set in the VM as:"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/bcont.rst:63
+msgid ""
+"If you add more that one interface to a Virtual Machine you will end with "
+"same parameters changing ETH0 to ETH1, ETH2, etc."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/bcont.rst:65
+msgid ""
+"You can also add ``SSH_PUBLIC_KEY`` parameter to the context to add a SSH "
+"public key to the ``authorized_keys`` file of root."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/bcont.rst:73
+msgid ""
+"If you want to known more in deep the contextualization options head to the "
+":ref:`Advanced Contextualization guide <cong>`."
+msgstr ""

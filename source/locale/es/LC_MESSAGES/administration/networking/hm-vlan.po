@@ -1,0 +1,218 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/administration/networking/hm-vlan.rst:5
+msgid "802.1Q VLAN"
+msgstr ""
+
+#: ../../source/administration/networking/hm-vlan.rst:7
+msgid ""
+"This guide describes how to enable Network isolation provided through host-"
+"managed VLANs. This driver will create a bridge for each OpenNebula Virtual "
+"Network and attach an VLAN tagged network interface to the bridge. This "
+"mechanism is compliant with `IEEE 802.1Q "
+"<http://en.wikipedia.org/wiki/IEEE_802.1Q>`__."
+msgstr ""
+
+#: ../../source/administration/networking/hm-vlan.rst:9
+msgid ""
+"The VLAN id will be the same for every interface in a given network, "
+"calculated by adding a constant to the network id. It may also be forced by "
+"specifying an VLAN\\_ID parameter in the :ref:`Virtual Network template "
+"<vnet_template>`."
+msgstr ""
+
+#: ../../source/administration/networking/hm-vlan.rst:12
+msgid "Requirements"
+msgstr ""
+
+#: ../../source/administration/networking/hm-vlan.rst:14
+msgid ""
+"A network switch capable of forwarding VLAN tagged traffic. The physical "
+"switch ports should be VLAN trunks."
+msgstr ""
+
+#: ../../source/administration/networking/hm-vlan.rst:17
+msgid "Considerations & Limitations"
+msgstr ""
+
+#: ../../source/administration/networking/hm-vlan.rst:19
+msgid ""
+"This driver requires some previous work on the network components, namely "
+"the switches, to enable VLAN trunking in the network interfaces connected to"
+" the OpenNebula hosts. If this is not activated the VLAN tags will not get "
+"trough and the network will behave erratically."
+msgstr ""
+
+#: ../../source/administration/networking/hm-vlan.rst:21
+msgid ""
+"In OpenNebula 3.0, this functionality was provided through a hook, and it "
+"wasn't effective after a migration. Since OpenNebula 3.2 this limitation "
+"does not apply."
+msgstr ""
+
+#: ../../source/administration/networking/hm-vlan.rst:24
+msgid "Configuration"
+msgstr ""
+
+#: ../../source/administration/networking/hm-vlan.rst:27
+msgid "Hosts Configuration"
+msgstr ""
+
+#: ../../source/administration/networking/hm-vlan.rst:29
+msgid ""
+"The ``sudoers`` file must be configured so ``oneadmin`` can execute "
+"``vconfig``, ``brctl`` and ``ip`` in the hosts."
+msgstr ""
+
+#: ../../source/administration/networking/hm-vlan.rst:30
+msgid "The package ``vconfig`` must be installed in the hosts."
+msgstr ""
+
+#: ../../source/administration/networking/hm-vlan.rst:31
+msgid "Hosts must have the module ``8021q`` loaded."
+msgstr ""
+
+#: ../../source/administration/networking/hm-vlan.rst:33
+msgid ""
+"To enable VLAN (802.1Q) support in the kernel, one must load the 8021q "
+"module:"
+msgstr ""
+
+#: ../../source/administration/networking/hm-vlan.rst:39
+msgid ""
+"If the module is not available, please refer to your distribution's "
+"documentation on how to install it. This module, along with the ``vconfig`` "
+"binary which is also required by the script, is generally supplied by the "
+"``vlan`` package."
+msgstr ""
+
+#: ../../source/administration/networking/hm-vlan.rst:42
+msgid "OpenNebula Configuration"
+msgstr ""
+
+#: ../../source/administration/networking/hm-vlan.rst:44
+msgid ""
+"To enable this driver, use **802.1Q** as the Virtual Network Manager driver "
+"parameter when the hosts are created with the :ref:`onehost command "
+"<host_guide>`:"
+msgstr ""
+
+#: ../../source/administration/networking/hm-vlan.rst:51
+msgid "Driver Actions"
+msgstr ""
+
+#: ../../source/administration/networking/hm-vlan.rst:54
+msgid "Action"
+msgstr ""
+
+#: ../../source/administration/networking/hm-vlan.rst:54
+msgid "Description"
+msgstr ""
+
+#: ../../source/administration/networking/hm-vlan.rst:56
+msgid "**Pre**"
+msgstr ""
+
+#: ../../source/administration/networking/hm-vlan.rst:56
+msgid ""
+"Creates a VLAN tagged interface in the Host and a attaches it to a "
+"dynamically created bridge."
+msgstr ""
+
+#: ../../source/administration/networking/hm-vlan.rst:58
+msgid "**Post**"
+msgstr ""
+
+#: ../../source/administration/networking/hm-vlan.rst:58
+msgid "N/A"
+msgstr ""
+
+#: ../../source/administration/networking/hm-vlan.rst:60
+msgid "**Clean**"
+msgstr ""
+
+#: ../../source/administration/networking/hm-vlan.rst:60
+msgid ""
+"It doesn't do anything. The VLAN tagged interface and bridge are kept in the"
+" Host to speed up future VMs"
+msgstr ""
+
+#: ../../source/administration/networking/hm-vlan.rst:64
+msgid "Usage"
+msgstr ""
+
+#: ../../source/administration/networking/hm-vlan.rst:66
+msgid ""
+"The driver will be automatically applied to every Virtual Machine deployed "
+"in the Host. However, this driver requires a special configuration in the "
+":ref:`Virtual Network template <vnet_template>`: only the virtual networks "
+"with the attribute ``VLAN`` set to ``YES`` will be isolated. The attribute "
+"PHYDEV must be also defined, with the name of the physical network device "
+"that will be attached to the bridge. The BRIDGE attribute is not mandatory, "
+"if it isn't defined, OpenNebula will generate one automatically."
+msgstr ""
+
+#: ../../source/administration/networking/hm-vlan.rst:80
+msgid ""
+"In this scenario, the driver will check for the existence of the ``brhm`` "
+"bridge. If it doesn't exist it will be created. ``eth0`` will be tagged "
+"(``eth0.<vlan_id>``) and attached to ``brhm`` (unless it's already "
+"attached)."
+msgstr ""
+
+#: ../../source/administration/networking/hm-vlan.rst:82
+msgid ""
+"Any user with Network creation/modification permissions may force a custom "
+"vlan id with the ``VLAN_ID`` parameter in the network template. In that "
+"scenario, any user may be able to connect to another network with the same "
+"network id. Techniques to avoid this are explained under the Tuning & "
+"Extending section."
+msgstr ""
+
+#: ../../source/administration/networking/hm-vlan.rst:85
+msgid "Tuning & Extending"
+msgstr ""
+
+#: ../../source/administration/networking/hm-vlan.rst:87
+msgid ""
+"Remember that any change in the ``/var/lib/one/remotes`` directory won't be "
+"effective in the Hosts until you execute, as oneadmin:"
+msgstr ""
+
+#: ../../source/administration/networking/hm-vlan.rst:95
+msgid "Calculating VLAN ID"
+msgstr ""
+
+#: ../../source/administration/networking/hm-vlan.rst:97
+msgid ""
+"The vlan id is calculated by adding the network id to a constant defined in "
+"``/var/lib/one/remotes/vnm/OpenNebulaNetwork.rb``. You can customize that "
+"value to your own needs:"
+msgstr ""
+
+#: ../../source/administration/networking/hm-vlan.rst:106
+msgid "Restricting Manually the VLAN ID"
+msgstr ""
+
+#: ../../source/administration/networking/hm-vlan.rst:108
+msgid ""
+"You can either restrict permissions on Network creation with :ref:`ACL rules"
+" <manage_acl>`, or you can entirely disable the possibility to redefine the "
+"VLAN\\_ID by modifying the source code of "
+"``/var/lib/one/remotes/vnm/802.1Q/HostManaged.rb``. Change these lines:"
+msgstr ""
+
+#: ../../source/administration/networking/hm-vlan.rst:118
+msgid "with this one:"
+msgstr ""

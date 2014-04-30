@@ -1,0 +1,353 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/administration/networking/openvswitch.rst:5
+msgid "Open vSwitch"
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:7
+msgid ""
+"This guide describes how to use the `Open vSwitch "
+"<http://openvswitch.org/>`__ network drives. They provide two indepent "
+"functionalities that can be used together: network isolation using VLANs, "
+"and network filtering using OpenFlow. Each Virtual Network interface will "
+"receive a VLAN tag enabling network isolation. Other traffic attributes that"
+" may be configured through Open vSwitch are not modified."
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:9
+msgid ""
+"The VLAN id will be the same for every interface in a given network, "
+"calculated by adding a constant to the network id. It may also be forced by "
+"specifying an VLAN\\_ID parameter in the :ref:`Virtual Network template "
+"<vnet_template>`."
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:11
+msgid ""
+"The network filtering functionality is very similar to the :ref:`Firewall "
+"<firewall>` drivers, with a few limitations discussed below."
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:14
+msgid "Requirements"
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:16
+msgid ""
+"This driver requires Open vSwitch to be installed on each OpenNebula Host. "
+"Follow the resources specified in :ref:`hosts\\_configuration "
+"<openvswitch_hosts_configuration>` to install it."
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:19
+msgid "Considerations & Limitations"
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:21
+msgid ""
+"Integrating OpenNebula with Open vSwitch brings a long list of benefits to "
+"OpenNebula, read `Open vSwitch Features "
+"<http://openvswitch.org/features/>`__ to get a hold on these features."
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:23
+msgid ""
+"This guide will address the usage of VLAN tagging and OpenFlow filtering of "
+"OpenNebula Virtual Machines. On top of that any other Open vSwitch feature "
+"may be used, but that's outside of the scope of this guide."
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:26
+msgid "ovswitch and ovswitch\\_brcompat"
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:28
+msgid ""
+"OpenNebula ships with two sets of drivers that provide the same "
+"functionality: **ovswitch** and **ovsvswitch\\_brcompat**. The following "
+"list details the differences between both drivers:"
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:30
+msgid ""
+"``ovswitch``: Recommended for ``kvm`` hosts. Only works with ``kvm``. "
+"Doesn't require the `Open vSwitch compatibility layer for Linux bridging "
+"<http://openvswitch.org/cgi-"
+"bin/gitweb.cgi?p=openvswitch;a=blob_plain;f=INSTALL.bridge;hb=HEAD>`__."
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:31
+msgid ""
+"``ovswitch_brcompat``: Works with ``kvm`` and ``xen``. This is the only set "
+"that currently works with ``xen``. Not recommended for ``kvm``. Requires "
+"`Open vSwitch compatibility layer for Linux bridging <http://openvswitch.org"
+"/cgi-bin/gitweb.cgi?p=openvswitch;a=blob_plain;f=INSTALL.bridge;hb=HEAD>`__."
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:34
+msgid "Configuration"
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:39
+msgid "Hosts Configuration"
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:41
+msgid ""
+"You need to install Open vSwitch on each OpenNebula Host. Please refer to "
+"the `Open vSwitch documentation <http://openvswitch.org/cgi-"
+"bin/gitweb.cgi?p=openvswitch;a=blob_plain;f=INSTALL.Linux;hb=HEAD>`__ to do "
+"so."
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:42
+msgid ""
+"If using ``ovswitch_brcompat`` it is also necessary to install the `Open "
+"vSwitch compatibility layer for Linux bridging <http://openvswitch.org/cgi-"
+"bin/gitweb.cgi?p=openvswitch;a=blob_plain;f=INSTALL.bridge;hb=HEAD>`__."
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:43
+msgid ""
+"The ``sudoers`` file must be configured so ``oneadmin`` can execute "
+"``ovs_vsctl`` in the hosts."
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:46
+msgid "OpenNebula Configuration"
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:48
+msgid ""
+"To enable this driver, use **ovswitch** or **ovswitch\\_brcompat** as the "
+"Virtual Network Manager driver parameter when the hosts are created with the"
+" :ref:`onehost command <host_guide>`:"
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:59
+msgid "Driver Actions"
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:62
+msgid "Action"
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:62
+msgid "Description"
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:64
+msgid "**Pre**"
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:64
+msgid "N/A"
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:66
+msgid "**Post**"
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:66
+msgid ""
+"Performs the appropriate Open vSwitch commands to tag the virtual tap "
+"interface."
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:68
+msgid "**Clean**"
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:68
+msgid ""
+"It doesn't do anything. The virtual tap interfaces will be automatically "
+"discarded when the VM is shut down."
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:72
+msgid "Multiple VLANs (VLAN trunking)"
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:74
+msgid ""
+"VLAN trunking is also supported by adding the following tag to the ``NIC`` "
+"element in the VM template or to the virtual network template:"
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:76
+msgid ""
+"``VLAN_TAGGED_ID``: Specify a range of VLANs to tag, for example: "
+"``1,10,30,32``."
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:79
+msgid "Usage"
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:82
+msgid "Network Isolation"
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:84
+msgid ""
+"The driver will be automatically applied to every Virtual Machine deployed "
+"in the Host. Only the virtual networks with the attribute ``VLAN`` set to "
+"``YES`` will be isolated. There are no other special attributes required."
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:97
+msgid ""
+"Any user with Network creation/modification permissions may force a custom "
+"vlan id with the ``VLAN_ID`` parameter in the network template. In that "
+"scenario, any user may be able to connect to another network with the same "
+"network id. Techniques to avoid this are explained under the Tuning & "
+"Extending section."
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:100
+msgid "Network Filtering"
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:102
+msgid ""
+"The first rule that is always applied when using the Open vSwitch drivers is"
+" the MAC-spoofing rule, that prevents any traffic coming out of the VM if "
+"the user changes the MAC address."
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:104
+msgid ""
+"The firewall directives must be placed in the :ref:`network section "
+"<template_network_section>` of the Virtual Machine template. These are the "
+"possible attributes:"
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:106
+msgid ""
+"``BLACK_PORTS_TCP = iptables_range``: Doesn't permit access to the VM "
+"through the specified ports in the TCP protocol. Superseded by "
+"WHITE\\_PORTS\\_TCP if defined."
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:107
+msgid ""
+"``BLACK_PORTS_UDP = iptables_range``: Doesn't permit access to the VM "
+"through the specified ports in the UDP protocol. Superseded by "
+"WHITE\\_PORTS\\_UDP if defined."
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:108
+msgid ""
+"``ICMP = drop``: Blocks ICMP connections to the VM. By default it's set to "
+"accept."
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:110
+msgid ""
+"``iptables_range``: a list of ports separated by commas, e.g.: ``80,8080``. "
+"Currently no ranges are supporteg, e.g.: ``5900:6000`` is **not** supported."
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:112
+msgid "Example:"
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:118
+msgid ""
+"Note that WHITE\\_PORTS\\_TCP and BLACK\\_PORTS\\_TCP are mutually "
+"exclusive. In the event where they're both defined the more restrictive will"
+" prevail i.e. WHITE\\_PORTS\\_TCP. The same happens with WHITE\\_PORTS\\_UDP"
+" and BLACK\\_PORTS\\_UDP."
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:121
+msgid "Tuning & Extending"
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:123
+msgid ""
+"Remember that any change in the ``/var/lib/one/remotes`` directory won't be "
+"effective in the Hosts until you execute, as oneadmin:"
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:129
+msgid ""
+"This way in the next monitoring cycle the updated files will be copied again"
+" to the Hosts."
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:132
+msgid "Calculating VLAN ID"
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:134
+msgid ""
+"The vlan id is calculated by adding the network id to a constant defined in "
+"``/var/lib/one/remotes/vnm/OpenNebulaNetwork.rb``. You can customize that "
+"value to your own needs:"
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:143
+msgid "Restricting Manually the VLAN ID"
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:145
+msgid ""
+"You can either restrict permissions on Network creation with :ref:`ACL rules"
+" <manage_acl>`, or you can entirely disable the possibility to redefine the "
+"VLAN\\_ID by modifying the source code of "
+"``/var/lib/one/remotes/vnm/ovswitch/OpenvSwitch.rb``. Change these lines:"
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:155
+msgid "with this one:"
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:162
+msgid "OpenFlow Rules"
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:164
+msgid ""
+"To modify these rules you have to edit: "
+"``/var/lib/one/remotes/vnm/ovswitch/OpenvSwitch.rb``."
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:166
+msgid "**Mac-spoofing**"
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:168
+msgid ""
+"These rules prevent any traffic to come out of the port the MAC address has "
+"changed."
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:175
+msgid "**IP hijacking**"
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:177
+msgid ""
+"These rules prevent any traffic to come out of the port for IPv4 IP's not "
+"configured for a VM"
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:184
+msgid "**Black ports (one rule per port)**"
+msgstr ""
+
+#: ../../source/administration/networking/openvswitch.rst:190
+msgid "**ICMP Drop**"
+msgstr ""

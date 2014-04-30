@@ -1,0 +1,369 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/administration/users_and_groups/manage_users.rst:6
+#: ../../source/administration/users_and_groups/manage_users.rst:186
+msgid "Managing Users"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:8
+msgid ""
+"OpenNebula supports user accounts and groups. This guide shows how to manage"
+" users, groups are explained in :ref:`their own guide <manage_groups>`. To "
+"manage user rights, visit the :ref:`Managing ACL Rules <manage_acl>` guide."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:10
+msgid ""
+"A user in OpenNebula is defined by a username and password. You don't need "
+"to create a new Unix account in the front-end for each OpenNebula user, they"
+" are completely different concepts. OpenNebula users are authenticated using"
+" a session string included in every :ref:`operation <api>`, which is checked"
+" by the OpenNebula core."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:12
+msgid "Each user has a unique ID, and belongs to a group."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:14
+msgid ""
+"After the installation, you will have two administrative accounts, "
+"``oneadmin`` and ``serveradmin``; and two default groups. You can check it "
+"using the ``oneuser list`` and ``onegroup list`` commands."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:16
+msgid "There are different user types in the OpenNebula system:"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:18
+msgid ""
+"**Cloud Administrators**, the **oneadmin** account is created **the first "
+"time** OpenNebula is started using the ONE\\_AUTH data. ``oneadmin`` has "
+"enough privileges to perform any operation on any object. Any other user in "
+"the oneadmin group has the same privileges as ``oneadmin``"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:19
+msgid ""
+"**Infrastructure User** accounts may access most of the functionality "
+"offered by OpenNebula to manage resources."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:20
+msgid ""
+"**vDC Administrators** accounts manage a limited set of resources and users."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:21
+msgid ""
+"**vDC Users** access a simplified Sunstone view with limited actions to "
+"create new VMs, and perform basic life cycle operations."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:22
+msgid ""
+"**Public users** can only access OpenNebula through a public API (e.g. OCCI,"
+" EC2), hence they can only use a limited set of functionality and can not "
+"access the xml-rpc API directly (nor any application using it like the CLI "
+"or SunStone )"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:23
+msgid ""
+"User **serveradmin** is also created the first time OpenNebula is started. "
+"Its password is created randomly, and this account is used by the "
+":ref:`Sunstone <sunstone>`, :ref:`OCCI <occicg>` and :ref:`EC2 <ec2qcg>` "
+"servers to interact with OpenNebula."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:25
+msgid ""
+"The complete OpenNebula approach to user accounts, groups and vDC is "
+"explained in more detain in the :ref:`Understanding OpenNebula <understand>`"
+" guide."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:28
+msgid "Shell Environment"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:30
+msgid ""
+"OpenNebula users should have the following environment variables set, you "
+"may want to place them in the .bashrc of the user's Unix account for "
+"convenience:"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:32
+msgid "**ONE\\_XMLRPC**"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:34
+msgid ""
+"URL where the OpenNebula daemon is listening. If it is not set, CLI tools "
+"will use the default: **http://localhost:2633/RPC2**. See the ``PORT`` "
+"attribute in the :ref:`Daemon configuration file <oned_conf>` for more "
+"information."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:36
+msgid "**ONE\\_AUTH**"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:38
+msgid ""
+"Needs to point to **a file containing just a single line stating "
+"``username:password``**. If ONE\\_AUTH is not defined, $HOME/.one/one\\_auth"
+" will be used instead. If no auth file is present, OpenNebula cannot work "
+"properly, as this is needed by the core, the CLI, and the cloud components "
+"as well."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:40
+msgid "**ONE\\_POOL\\_PAGE\\_SIZE**"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:42
+msgid ""
+"By default the OpenNebula Cloud API (CLI and Sunstone make use of it) "
+"paginates some pool responses. By default this size is 2000 but it can be "
+"changed with this variable. A numeric value greater that 2 is the pool size."
+" To disable it you can use a non numeric value."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:49
+msgid ""
+"For instance, a user named ``regularuser`` may have the following "
+"environment:"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:62
+msgid ""
+"Please note that the example above is intended for a user interacting with "
+"OpenNebula from the front-end, but you can use it from any other computer. "
+"Just set the appropriate hostname and port in the ONE\\_XMLRPC variable."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:64
+msgid ""
+"An alternative method to specify credentials and OpenNebula endpoint is "
+"using command line parameters. Most of the commands can understand the "
+"following parameters:"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:66
+msgid "``--user name``"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:68
+msgid "User name used to connect to OpenNebula"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:70
+msgid "``--password password``"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:72
+msgid "Password to authenticate with OpenNebula"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:74
+msgid "``--endpoint endpoint``"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:76
+msgid "URL of OpenNebula xmlrpc frontend"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:78
+msgid ""
+"If ``user`` is specified but not ``password`` the user will be prompted for "
+"the password. ``endpoint`` has the same meaning and get the same value as "
+"``ONE_XMLRPC``. For example:"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:86
+msgid ""
+"You should better not use ``--password`` parameter in a shared machine. "
+"Process parameters can be seen by any user with the command ``ps`` so it is "
+"highly insecure."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:89
+msgid "Shell Environment for Self-Contained Installations"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:91
+msgid ""
+"If OpenNebula was installed from sources in **self-contained mode** (this is"
+" not the default, and not recommended), these two variables must be also "
+"set. These are not needed if you installed from packages, or performed a "
+"system-wide installation from sources."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:93
+msgid "**ONE\\_LOCATION**"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:95
+msgid "It must point to the installation <destination\\_folder>."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:97
+msgid "**PATH**"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:99
+msgid "The OpenNebula bin files must be added to the path"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:108
+msgid "Adding and Deleting Users"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:110
+msgid ""
+"User accounts within the OpenNebula system are managed by ``oneadmin`` with "
+"the ``oneuser create`` and ``oneuser delete`` commands. This section will "
+"show you how to create the different account types supported in OpenNebula"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:113
+msgid "Administrators"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:115
+msgid "Administrators can be easily added to the system like this:"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:142
+msgid "Regular Users"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:144
+msgid "Simply create the usets with the create command:"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:151
+msgid ""
+"The enabled flag can be ignored as it doesn't provide any functionality. It "
+"may be used in future releases to temporarily disable users instead of "
+"deleting them."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:154
+msgid "Public Users"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:156
+msgid ""
+"Public users needs to define a special authentication method that internally"
+" relies in the core auth method. First create the public user as it was a "
+"regular one:"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:163
+msgid ""
+"and then change its auth method (see below for more info) to the public "
+"authentication method."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:170
+msgid "Server Users"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:172
+msgid ""
+"Server user accounts are used mainly as proxy authentication accounts for "
+"OpenNebula services. Any account that uses the server\\_cipher or "
+"server\\_x509 auth methods are a server user. You will never use this "
+"account directly. To create a user account just create a regular account"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:179
+msgid ""
+"and then change its auth method to ``server_cipher`` (for other auth methods"
+" please refer to the :ref:`External Auth guide <external_auth>`):"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:189
+msgid "User Authentication"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:191
+msgid ""
+"Each user has an authentication driver, ``AUTH_DRIVER``. The default driver,"
+" ``core``, is a simple user-password match mechanism. Read the "
+":ref:`External Auth guide <external_auth>` to improve the security of your "
+"cloud, enabling :ref:`SSH <ssh_auth>` or :ref:`x509 <x509_auth>` "
+"authentication."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:194
+msgid "User Templates"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:196
+msgid ""
+"The ``USER TEMPLATE`` section can hold any arbitrary data. You can use the "
+"``oneuser update`` command to open an editor and add, for instance, the "
+"following ``DEPARTMENT`` and ``EMAIL`` attributes:"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:213
+msgid ""
+"These attributes can be later used in the :ref:`Virtual Machine "
+"Contextualization <template_context>`. For example, using contextualization "
+"the user's public ssh key can be automatically installed in the VM:"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:220
+msgid "Manage your Own User"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:222
+msgid ""
+"Regular users can see their account information, and change their password."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:224
+msgid "For instance, as ``regularuser`` you could do the following:"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:246
+msgid ""
+"As you can see, any user can find out his ID using the ``oneuser show`` "
+"command without any arguments."
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:248
+msgid ""
+"Regular users can retrieve their quota and user information in the settings "
+"section in the top right corner of the main screen: |image1|"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:251
+msgid "Managing Users in Sunstone"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:253
+msgid ""
+"All the described functionality is available graphically using "
+":ref:`Sunstone <sunstone>`:"
+msgstr ""
+
+#: ../../source/administration/users_and_groups/manage_users.rst:255
+msgid "|image2|"
+msgstr ""

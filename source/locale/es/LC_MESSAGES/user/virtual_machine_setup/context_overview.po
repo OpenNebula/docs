@@ -1,0 +1,49 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/user/virtual_machine_setup/context_overview.rst:5
+msgid "Contextualization Overview"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/context_overview.rst:7
+msgid ""
+"OpenNebula provides different methods to pass information to a newly created"
+" Virtual Machine. This information can be the network configuration of the "
+"VM, user credentials, init scripts and free form data."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/context_overview.rst:9
+msgid ""
+":ref:`Basic Contextualization <bcont>`: If you only want to configure "
+"networking and root ssh keys read this guide."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/context_overview.rst:10
+msgid ""
+":ref:`Advanced Contextualization <cong>`: For additional topics in "
+"contextualization like adding custom init scripts and variables also read "
+"this guide."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/context_overview.rst:11
+msgid ""
+":ref:`Cloud-init <cloud-init>`: To know how to use the `cloud-init "
+"<http://cloudinit.readthedocs.org/en/latest/>`__ functionality with "
+"OpenNebula check this guide."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/context_overview.rst:12
+msgid ""
+":ref:`Winwdows Contextualization <windows_context>`: Contextualization guide"
+" specific for Windows guests. From provisioning to contextualization."
+msgstr ""

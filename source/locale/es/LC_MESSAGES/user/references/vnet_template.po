@@ -1,0 +1,431 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/user/references/vnet_template.rst:5
+msgid "Virtual Network Definition File"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:7
+msgid ""
+"This page describes how to define a new Virtual Network template. A Virtual "
+"Network template follows the same syntax as the :ref:`VM template "
+"<template>`."
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:9
+msgid ""
+"If you want to learn more about the Virtual Network management, you can do "
+"so :ref:`here <vgg>`."
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:12
+msgid "Common Attributes"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:14
+msgid ""
+"There are two types of Virtual Networks, ranged and fixed. Their only "
+"difference is how the leases are defined in the template."
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:16
+msgid "These are the common attributes for both types of VNets:"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:19
+#: ../../source/user/references/vnet_template.rst:46
+#: ../../source/user/references/vnet_template.rst:91
+msgid "Attribute"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:19
+#: ../../source/user/references/vnet_template.rst:76
+#: ../../source/user/references/vnet_template.rst:91
+msgid "Value"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:19
+#: ../../source/user/references/vnet_template.rst:46
+#: ../../source/user/references/vnet_template.rst:76
+#: ../../source/user/references/vnet_template.rst:91
+msgid "Description"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:19
+#: ../../source/user/references/vnet_template.rst:76
+msgid "Mandatory"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:21
+msgid "**NAME**"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:21
+#: ../../source/user/references/vnet_template.rst:23
+#: ../../source/user/references/vnet_template.rst:31
+#: ../../source/user/references/vnet_template.rst:33
+#: ../../source/user/references/vnet_template.rst:35
+msgid "String"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:21
+msgid "Name of the Virtual Network"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:21
+#: ../../source/user/references/vnet_template.rst:25
+#: ../../source/user/references/vnet_template.rst:78
+msgid "YES"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:23
+msgid "**BRIDGE**"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:23
+msgid ""
+"Name of the physical bridge in the physical host where the VM should connect"
+" its network interface"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:23
+msgid "YES if PHYDEV is not set"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:25
+msgid "**TYPE**"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:25
+msgid "RANGED/FIXED"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:25
+msgid "Type of this VNet"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:27
+msgid "**VLAN**"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:27
+msgid "YES/NO"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:27
+msgid ""
+"Whether or not to isolate this virtual network using the :ref:`Virtual "
+"Network Manager drivers <nm>`. If omitted, the default value is NO."
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:27
+#: ../../source/user/references/vnet_template.rst:29
+#: ../../source/user/references/vnet_template.rst:80
+msgid "NO"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:29
+msgid "**VLAN\\_ID**"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:29
+msgid "Integer"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:29
+msgid ""
+"Optional VLAN id for the :ref:`802.1Q <hm-vlan>` and :ref:`Open vSwitch "
+"<openvswitch>` networking drivers."
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:31
+msgid "**PHYDEV**"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:31
+msgid ""
+"Name of the physical network device that will be attached to the bridge."
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:31
+msgid "YES for :ref:`802.1Q <hm-vlan>` driver"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:33
+msgid "**SITE\\_PREFIX**"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:33
+msgid "IPv6 unicast local addresses (ULAs). Must be a valid IPv6"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:33
+#: ../../source/user/references/vnet_template.rst:35
+msgid "Optional"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:35
+msgid "**GLOBAL\\_PREFIX**"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:35
+msgid "IPv6 global unicast addresses. Must be a valid IPv6"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:38
+msgid ""
+"Please note that any arbitrary value can be set in the Virtual Network "
+"template, and then used in the :ref:`contextualization <cong>` section of "
+"the VM. For instance, ``NETWORK\\_GATEWAY=\"x.x.x.x\"`` might be used to "
+"define the Virtual Network, and then used in the context section of the VM "
+"to configure its network to connect through the GATEWAY."
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:40
+msgid ""
+"If you need OpenNebula to generate IPv6 addresses, that can be later used in"
+" context or for Virtual Router appliances, you can use the ``GLOBAL_PREFIX``"
+" and ``SITE_PREFIX`` attributes"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:43
+msgid "Attributes Used for Contextualization"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:48
+#: ../../source/user/references/vnet_template.rst:93
+msgid "**NETWORK\\_ADDRESS**"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:48
+msgid "Base network address"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:50
+#: ../../source/user/references/vnet_template.rst:97
+msgid "**NETWORK\\_MASK**"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:50
+msgid "Network mask"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:52
+msgid "**GATEWAY**"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:52
+msgid "Router for this network, do not set when the network is not routable"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:54
+msgid "**DNS**"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:54
+msgid "Specific DNS for this network"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:56
+msgid "**GATEWAY6**"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:56
+msgid "IPv6 router for this network"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:58
+msgid "**CONTEXT\\_FORCE\\_IPV4**"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:58
+msgid ""
+"When a vnet is IPv6 the IPv4 is not configured unless this attribute is set"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:62
+msgid "Leases"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:64
+msgid ""
+"A lease is a definition of an IP-MAC pair. From an IP address, OpenNebula "
+"generates an associated MAC using the following rule: ``MAC = "
+"MAC_PREFFIX:IP``. All Virtual Networks share a default value for the "
+"MAC\\_PREFIX, set in the ``oned.conf`` file."
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:66
+msgid ""
+"So, for example, from IP 10.0.0.1 and MAC\\_PREFFIX 02:00, we get "
+"02:00:0a:00:00:01."
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:68
+msgid ""
+"The available leases for new VNets are defined differently for each type."
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:71
+msgid "Fixed Virtual Networks"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:73
+msgid ""
+"Fixed VNets need a series of ``LEASES`` vector attributes, defined with the "
+"following sub-attributes:"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:76
+msgid "Sub-Attribute"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:78
+msgid "**IP**"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:78
+#: ../../source/user/references/vnet_template.rst:99
+#: ../../source/user/references/vnet_template.rst:101
+msgid "IP address"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:78
+msgid "IP for this lease"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:80
+msgid "**MAC**"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:80
+#: ../../source/user/references/vnet_template.rst:103
+msgid "MAC address"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:80
+msgid "MAC associated to this IP"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:83
+msgid ""
+"The optional MAC attribute will overwrite the default MAC\\_PREFIX:IP rule. "
+"Be aware that this will break the default :ref:`contextualization mechanism "
+"<cong>`."
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:86
+msgid "Ranged Virtual Networks"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:88
+msgid ""
+"Instead of a list of ``LEASES``, ranged Virtual Networks contain a range of "
+"IPs that can be defined in a flexible way using these attributes:"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:93
+msgid "IP address, optionally in CIDR notation"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:93
+msgid "Base network address to generate IP addresses."
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:95
+msgid "**NETWORK\\_SIZE**"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:95
+msgid "``A``, ``B``, ``C``, or Number"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:95
+msgid ""
+"Number of VMs that can be connected using this network. It can be defined "
+"either using a number or a network class (A, B or C). The default value for "
+"the network size can be found in ``oned.conf``."
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:97
+msgid "Mask in dot-decimal notation"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:97
+msgid "Network mask for this network."
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:99
+msgid "**IP\\_START**"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:99
+msgid "First IP of the range."
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:101
+msgid "**IP\\_END**"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:101
+msgid "Last IP of the range."
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:103
+msgid "**MAC\\_START**"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:103
+msgid "First MAC of the range."
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:106
+msgid ""
+"The following examples define the same network range, from 10.10.10.1 to "
+"10.10.10.254:"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:127
+msgid "You can change the first and/or last IP of the range:"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:134
+msgid "Or define the range manually:"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:141
+msgid ""
+"Finally, you can define the network by just specifying the MAC address set "
+"(specially in IPv6). The following is equivalent to the previous examples "
+"but with MACs:"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:148
+msgid ""
+"With either of the above procedures, no matter if you are defining the set "
+"using IPv4 networks, OpenNebula will generate IPv6 addresses if the "
+"GLOBAL\\_PREFIX and/or SITE\\_PREFIX is added to the network template. Note "
+"that the link local IPv6 address will be always generated."
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:151
+msgid "Examples"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:153
+msgid "Sample fixed VNet:"
+msgstr ""
+
+#: ../../source/user/references/vnet_template.rst:174
+msgid "Sample ranged VNet:"
+msgstr ""

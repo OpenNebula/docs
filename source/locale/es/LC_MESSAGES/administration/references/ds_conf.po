@@ -1,0 +1,219 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/administration/references/ds_conf.rst:5
+msgid "Datastore configuration"
+msgstr ""
+
+#: ../../source/administration/references/ds_conf.rst:7
+msgid ""
+"Datastores can be parametrized with several parameters. In the following "
+"list there are the meaning of the different parameters for all the "
+"datastores."
+msgstr ""
+
+#: ../../source/administration/references/ds_conf.rst:9
+msgid "**RESTRICTED\\_DIRS**: Paths not allowed for image importing"
+msgstr ""
+
+#: ../../source/administration/references/ds_conf.rst:10
+msgid "**SAFE\\_DIRS**: Paths allowed for image importing"
+msgstr ""
+
+#: ../../source/administration/references/ds_conf.rst:11
+msgid "**NO\\_DECOMPRESS**: Do not decompress images downloaded"
+msgstr ""
+
+#: ../../source/administration/references/ds_conf.rst:12
+msgid ""
+"**LIMIT\\_TRANSFER\\_BW**: Maximum bandwidth used to download images. By "
+"default is bytes/second but you can use k, m and g for kilo/mega/gigabytes."
+msgstr ""
+
+#: ../../source/administration/references/ds_conf.rst:13
+msgid ""
+"**BRIDGE\\_LIST**: List of hosts used for image actions. Used as a "
+"roundrobin list."
+msgstr ""
+
+#: ../../source/administration/references/ds_conf.rst:14
+msgid "**POOL\\_NAME**: Name of the Ceph pool to use"
+msgstr ""
+
+#: ../../source/administration/references/ds_conf.rst:15
+msgid "**VG\\_NAME**: Volume group to use"
+msgstr ""
+
+#: ../../source/administration/references/ds_conf.rst:16
+msgid "**BASE\\_IQN**: iscsi base identifier"
+msgstr ""
+
+#: ../../source/administration/references/ds_conf.rst:17
+msgid "**STAGING\\_DIR**: Temporary directory where images are downloaded"
+msgstr ""
+
+#: ../../source/administration/references/ds_conf.rst:18
+msgid "**DS\\_TMP\\_DIR**: Temporary directory where images are downloaded"
+msgstr ""
+
+#: ../../source/administration/references/ds_conf.rst:19
+msgid "**CEPH\\_HOST**: Space-separated list of Ceph monitors."
+msgstr ""
+
+#: ../../source/administration/references/ds_conf.rst:20
+msgid "**CEPH\\_SECRET**: A generated UUID for a LibVirt secret."
+msgstr ""
+
+#: ../../source/administration/references/ds_conf.rst:21
+msgid ""
+"**LIMIT\\_MB**: Limit, in MB, of storage that OpenNebula will use for this "
+"datastore"
+msgstr ""
+
+#: ../../source/administration/references/ds_conf.rst:22
+msgid ""
+"**BASE\\_PATH**: Base path is generated automatically with the value in "
+":ref:`oned.conf <oned_conf_datastores>`. If the value is changed in "
+"oned.conf, it won't apply to existing datastores. The administrator can "
+"change it manually for each datastore with this attribute. Please note that "
+"BASE_PATH will only be used for new Images, the SOURCE of existing Images "
+"will still use the previous BASE_PATH."
+msgstr ""
+
+#: ../../source/administration/references/ds_conf.rst:24
+msgid ""
+"Not all these parameters have meaning for all the datastores. Here is the "
+"matrix of parameters accepted by each one:"
+msgstr ""
+
+#: ../../source/administration/references/ds_conf.rst:27
+msgid "Parameter"
+msgstr ""
+
+#: ../../source/administration/references/ds_conf.rst:27
+msgid "ceph"
+msgstr ""
+
+#: ../../source/administration/references/ds_conf.rst:27
+msgid "fs"
+msgstr ""
+
+#: ../../source/administration/references/ds_conf.rst:27
+msgid "iscsi"
+msgstr ""
+
+#: ../../source/administration/references/ds_conf.rst:27
+msgid "lvm"
+msgstr ""
+
+#: ../../source/administration/references/ds_conf.rst:27
+msgid "vmfs"
+msgstr ""
+
+#: ../../source/administration/references/ds_conf.rst:29
+msgid "RESTRICTED\\_DIRS"
+msgstr ""
+
+#: ../../source/administration/references/ds_conf.rst:29
+#: ../../source/administration/references/ds_conf.rst:29
+#: ../../source/administration/references/ds_conf.rst:29
+#: ../../source/administration/references/ds_conf.rst:29
+#: ../../source/administration/references/ds_conf.rst:29
+#: ../../source/administration/references/ds_conf.rst:31
+#: ../../source/administration/references/ds_conf.rst:31
+#: ../../source/administration/references/ds_conf.rst:31
+#: ../../source/administration/references/ds_conf.rst:31
+#: ../../source/administration/references/ds_conf.rst:31
+#: ../../source/administration/references/ds_conf.rst:33
+#: ../../source/administration/references/ds_conf.rst:33
+#: ../../source/administration/references/ds_conf.rst:33
+#: ../../source/administration/references/ds_conf.rst:33
+#: ../../source/administration/references/ds_conf.rst:33
+#: ../../source/administration/references/ds_conf.rst:35
+#: ../../source/administration/references/ds_conf.rst:35
+#: ../../source/administration/references/ds_conf.rst:35
+#: ../../source/administration/references/ds_conf.rst:35
+#: ../../source/administration/references/ds_conf.rst:35
+#: ../../source/administration/references/ds_conf.rst:37
+#: ../../source/administration/references/ds_conf.rst:39
+#: ../../source/administration/references/ds_conf.rst:41
+#: ../../source/administration/references/ds_conf.rst:41
+#: ../../source/administration/references/ds_conf.rst:43
+#: ../../source/administration/references/ds_conf.rst:45
+#: ../../source/administration/references/ds_conf.rst:47
+#: ../../source/administration/references/ds_conf.rst:49
+#: ../../source/administration/references/ds_conf.rst:51
+#: ../../source/administration/references/ds_conf.rst:53
+#: ../../source/administration/references/ds_conf.rst:53
+#: ../../source/administration/references/ds_conf.rst:53
+#: ../../source/administration/references/ds_conf.rst:53
+#: ../../source/administration/references/ds_conf.rst:53
+#: ../../source/administration/references/ds_conf.rst:55
+#: ../../source/administration/references/ds_conf.rst:55
+#: ../../source/administration/references/ds_conf.rst:55
+#: ../../source/administration/references/ds_conf.rst:55
+#: ../../source/administration/references/ds_conf.rst:55
+msgid "yes"
+msgstr ""
+
+#: ../../source/administration/references/ds_conf.rst:31
+msgid "SAFE\\_DIRS"
+msgstr ""
+
+#: ../../source/administration/references/ds_conf.rst:33
+msgid "NO\\_DECOMPRESS"
+msgstr ""
+
+#: ../../source/administration/references/ds_conf.rst:35
+msgid "LIMIT\\_TRANSFER\\_BW"
+msgstr ""
+
+#: ../../source/administration/references/ds_conf.rst:37
+msgid "BRIDGE\\_LIST"
+msgstr ""
+
+#: ../../source/administration/references/ds_conf.rst:39
+msgid "POOL\\_NAME"
+msgstr ""
+
+#: ../../source/administration/references/ds_conf.rst:41
+msgid "VG\\_NAME"
+msgstr ""
+
+#: ../../source/administration/references/ds_conf.rst:43
+msgid "BASE\\_IQN"
+msgstr ""
+
+#: ../../source/administration/references/ds_conf.rst:45
+msgid "STAGING\\_DIR"
+msgstr ""
+
+#: ../../source/administration/references/ds_conf.rst:47
+msgid "DS\\_TMP\\_DIR"
+msgstr ""
+
+#: ../../source/administration/references/ds_conf.rst:49
+msgid "CEPH\\_HOST"
+msgstr ""
+
+#: ../../source/administration/references/ds_conf.rst:51
+msgid "CEPH\\_SECRET"
+msgstr ""
+
+#: ../../source/administration/references/ds_conf.rst:53
+msgid "LIMIT\\_MB"
+msgstr ""
+
+#: ../../source/administration/references/ds_conf.rst:55
+msgid "BASE\\PATH"
+msgstr ""

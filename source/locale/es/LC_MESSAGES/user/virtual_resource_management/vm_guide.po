@@ -1,0 +1,627 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:5
+msgid "Creating Virtual Machines"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:7
+msgid ""
+"In OpenNebula the Virtual Machines are defined with Template files. This "
+"guide explains **how to describe the wanted-to-be-ran Virtual Machine, and "
+"how users typically interact with the system**."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:9
+msgid ""
+"The Template Repository system allows OpenNebula administrators and users to"
+" register Virtual Machine definitions in the system, to be instantiated "
+"later as Virtual Machine instances. These Templates can be instantiated "
+"several times, and also shared with other users."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:12
+msgid "Virtual Machine Model"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:14
+msgid "A Virtual Machine within the OpenNebula system consists of:"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:16
+msgid "A capacity in terms memory and CPU"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:17
+msgid "A set of NICs attached to one or more virtual networks"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:18
+msgid "A set of disk images"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:19
+msgid ""
+"A state file (optional) or recovery file, that contains the memory image of "
+"a running VM plus some hypervisor specific information."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:21
+msgid ""
+"The above items, plus some additional VM attributes like the OS kernel and "
+"context information to be used inside the VM, are specified in a template "
+"file."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:26
+msgid "Defining a VM in 3 Steps"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:28
+msgid ""
+"Virtual Machines are defined in an OpenNebula Template. Templates are stored"
+" in a repository to easily browse and instantiate VMs from them. To create a"
+" new Template you have to define 3 things"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:30
+msgid "**Capacity & Name**, how big will the VM be?"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:33
+#: ../../source/user/virtual_resource_management/vm_guide.rst:53
+#: ../../source/user/virtual_resource_management/vm_guide.rst:65
+#: ../../source/user/virtual_resource_management/vm_guide.rst:77
+msgid "Attribute"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:33
+#: ../../source/user/virtual_resource_management/vm_guide.rst:53
+#: ../../source/user/virtual_resource_management/vm_guide.rst:65
+#: ../../source/user/virtual_resource_management/vm_guide.rst:77
+#: ../../source/user/virtual_resource_management/vm_guide.rst:107
+msgid "Description"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:33
+#: ../../source/user/virtual_resource_management/vm_guide.rst:53
+#: ../../source/user/virtual_resource_management/vm_guide.rst:65
+#: ../../source/user/virtual_resource_management/vm_guide.rst:77
+msgid "Mandatory"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:33
+#: ../../source/user/virtual_resource_management/vm_guide.rst:53
+#: ../../source/user/virtual_resource_management/vm_guide.rst:65
+#: ../../source/user/virtual_resource_management/vm_guide.rst:77
+msgid "Default"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:35
+msgid "``NAME``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:35
+msgid "Name that the VM will get for description purposes."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:35
+#: ../../source/user/virtual_resource_management/vm_guide.rst:37
+#: ../../source/user/virtual_resource_management/vm_guide.rst:39
+#: ../../source/user/virtual_resource_management/vm_guide.rst:55
+#: ../../source/user/virtual_resource_management/vm_guide.rst:67
+#: ../../source/user/virtual_resource_management/vm_guide.rst:69
+#: ../../source/user/virtual_resource_management/vm_guide.rst:71
+#: ../../source/user/virtual_resource_management/vm_guide.rst:79
+msgid "Yes"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:35
+msgid "one-<vmid>"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:37
+msgid "``MEMORY``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:37
+msgid "Amount of RAM required for the VM, in Megabytes."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:39
+msgid "``CPU``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:39
+msgid "CPU ratio (e..g half a physical CPU is 0.5)."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:41
+msgid "``VCPU``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:41
+msgid "Number of virtual cpus."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:41
+#: ../../source/user/virtual_resource_management/vm_guide.rst:57
+#: ../../source/user/virtual_resource_management/vm_guide.rst:59
+#: ../../source/user/virtual_resource_management/vm_guide.rst:81
+#: ../../source/user/virtual_resource_management/vm_guide.rst:83
+msgid "No"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:41
+msgid "1"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:44
+msgid ""
+"**Disks**. Each disk is defined with a DISK attribute. A VM can use three "
+"types of disk:"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:46
+msgid ""
+"**Use a persistent Image** changes to the disk image will persist after the "
+"VM is shutdown."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:47
+msgid ""
+"**Use a non-persistent Image** images are cloned, changes to the image will "
+"be lost."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:48
+msgid ""
+"**Volatile** disks are created on the fly on the target host. After the VM "
+"is shutdown the disk is disposed."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:50
+msgid "**Persistent and Clone Disks**"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:55
+msgid "``IMAGE_ID`` and ``IMAGE``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:55
+#: ../../source/user/virtual_resource_management/vm_guide.rst:79
+msgid "The ID or Name of the image in the datastore"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:57
+msgid "``IMAGE_UID``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:57
+#: ../../source/user/virtual_resource_management/vm_guide.rst:81
+msgid "Select the IMAGE of a given user by her ID"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:57
+#: ../../source/user/virtual_resource_management/vm_guide.rst:59
+#: ../../source/user/virtual_resource_management/vm_guide.rst:81
+#: ../../source/user/virtual_resource_management/vm_guide.rst:83
+msgid "self"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:59
+msgid "``IMAGE_UNAME``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:59
+#: ../../source/user/virtual_resource_management/vm_guide.rst:83
+msgid "Select the IMAGE of a given user by her NAME"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:62
+msgid "**Volatile**"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:67
+msgid "``TYPE``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:67
+msgid ""
+"Type of the disk: ``swap``, ``fs``. ``swap`` type will set the label to "
+"``swap`` so it is easier to mount and the context packages will "
+"automatically mount it."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:69
+msgid "``SIZE``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:69
+msgid "size in MB"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:71
+msgid "``FORMAT``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:71
+msgid ""
+"filesystem for **fs** images: ``ext2``, ``ext3``, etc. ``raw`` will not "
+"format the image. For VMs to run on ``vmfs`` or ``vmware shared`` "
+"configurations, the valid values are: ``vmdk_thin``, ``vmdk_zeroedthick``, "
+"``vmdk_eagerzeroedthick``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:74
+msgid ""
+"**Network Interfaces**. Each network interface of a VM is defined with the "
+"``NIC`` attribute."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:79
+msgid "``NETWORK_ID`` and ``NETWORK``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:81
+msgid "``NETWORK_UID``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:83
+msgid "``NETWORK_UNAME``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:86
+msgid ""
+"The following example shows a VM Template file with a couple of disks and a "
+"network interface, also a VNC section was added."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:104
+msgid ""
+"Simple templates can be also created using the command line instead of "
+"creating a template file. The parameters to do this for ``onetemplate`` are:"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:107
+msgid "Parameter"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:109
+msgid "``-name name``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:109
+msgid "Name for the VM"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:111
+msgid "``-cpu cpu``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:111
+msgid "CPU percentage reserved for the VM (1=100% one CPU)"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:113
+msgid "``-vcpu vcpu``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:113
+msgid "Number of virtualized CPUs"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:115
+msgid "``-arch arch``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:115
+msgid "Architecture of the VM, e.g.: i386 or x86\\_64"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:117
+msgid "``-memory memory``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:117
+msgid "Memory ammount given to the VM"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:119
+msgid "``-disk disk0,disk1``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:119
+msgid "Disks to attach. To use a disk owned by other user use user[disk]"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:121
+msgid "``-nic vnet0,vnet1``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:121
+msgid ""
+"Networks to attach. To use a network owned by other user use user[network]"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:123
+msgid "``-raw string``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:123
+msgid ""
+"Raw string to add to the template. Not to be confused with the RAW "
+"attribute. If you want to provide more than one element, just include an "
+"enter inside quotes, instead of using more than one -raw option"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:125
+msgid "``-vnc``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:125
+msgid "Add VNC server to the VM"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:127
+msgid "``-ssh [file]``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:127
+msgid ""
+"Add an ssh public key to the context. If the file is omited then the user "
+"variable SSH\\_PUBLIC\\_KEY will be used."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:129
+msgid "``-net_context``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:129
+msgid "Add network contextualization parameters"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:131
+msgid "``-context line1,line2``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:131
+msgid "Lines to add to the context section"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:133
+msgid "``-boot device``"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:133
+msgid "Select boot device (``hd``, ``fd``, ``cdrom`` or ``network``)"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:136
+msgid ""
+"A similar template as the previous example can be created with the following"
+" command:"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:142
+msgid ""
+"You may want to add VNC access, input hw or change the default targets of "
+"the disks. Check the :ref:`VM definition file for a complete reference "
+"<template>`"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:144
+msgid ""
+"OpenNebula Templates are designed to be hypervisor-agnostic, but there are "
+"additional attributes that are supported for each hypervisor. Check the "
+":ref:`Xen <xeng>`, :ref:`KVM <kvmg>` and :ref:`VMware <evmwareg>` "
+"configuration guides for more details"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:146
+msgid ""
+"Volatile disks can not be saved as. Pre-register a DataBlock image if you "
+"need to attach arbitrary volumes to the VM"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:149
+msgid "Managing Templates"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:151
+msgid ""
+"Users can manage the Template Repository using the command ``onetemplate``, "
+"or the graphical interface :ref:`Sunstone <sunstone>`. For each user, the "
+"actual list of templates available are determined by the ownership and "
+"permissions of the templates."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:154
+msgid "Listing Available Templates"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:156
+msgid ""
+"You can use the ``onetemplate list`` command to check the available "
+"Templates in the system."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:166
+msgid ""
+"To get complete information about a Template, use ``onetemplate show``."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:168
+msgid "Here is a view of templates tab in Sunstone:"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:170
+msgid "|image1|"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:173
+msgid "Adding and Deleting Templates"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:175
+msgid ""
+"Using ``onetemplate create``, users can create new Templates for private or "
+"shared use. The ``onetemplate delete`` command allows the Template owner -or"
+" the OpenNebula administrator- to delete it from the repository."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:177
+msgid ""
+"For instance, if the previous example template is written in the vm-"
+"example.txt file:"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:184
+msgid ""
+"You can also clone an existing Template, with the ``onetemplate clone`` "
+"command:"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:191
+msgid ""
+"Via Sunstone, you can easily add templates using the provided wizards (or "
+"copy/pasting a template file) and delete them clicking on the delete button:"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:193
+msgid "|image2|"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:196
+msgid "Updating a Template"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:198
+msgid ""
+"It is possible to update a template by using the ``onetemplate update``. "
+"This will launch the editor defined in the variable ``EDITOR`` and let you "
+"edit the template."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:205
+msgid "Publishing Templates"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:207
+msgid ""
+"The users can share their Templates with other users in their group, or with"
+" all the users in OpenNebula. See the :ref:`Managing Permissions "
+"documentation <chmod>` for more information."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:209
+msgid ""
+"Let's see a quick example. To share the Template 0 with users in the group, "
+"the **USE** right bit for **GROUP** must be set with the **chmod** command:"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:229
+msgid ""
+"The following command allows users in the same group **USE** and **MANAGE** "
+"the Template, and the rest of the users **USE** it:"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:242
+msgid ""
+"The commands ``onetemplate publish`` and ``onetemplate unpublish`` are still"
+" present for compatibility with previous versions. These commands set/unset "
+"the ``GROUP USE`` bit."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:245
+msgid "Instantiating Templates"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:247
+msgid ""
+"The ``onetemplate instantiate`` command accepts a Template ID or name, and "
+"creates a VM instance (you can define the number of instances using the "
+"``-multiple num_of_instances`` option) from the given template."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:258
+msgid ""
+"You can also merge another template to the one being instantiated. The new "
+"attributes will be added, or will replace the ones fom the source template. "
+"This can be more convinient that cloning an existing template and updating "
+"it."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:269
+msgid ""
+"The same options to create new templates can be used to be merged with an "
+"existing one. See the above table, or execute 'onetemplate instantiate "
+"-help' for a complete reference."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:277
+msgid "Merge Use Case"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:279
+msgid ""
+"The template merge functionality, combined with the restricted attibutes, "
+"can be used to allow users some degree of customization for predefined "
+"templates."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:281
+msgid ""
+"Let's say the administrator wants to provide base templates that the users "
+"can customize, but with some restrictions. Having the following "
+":ref:`restricted attributes in oned.conf "
+"<oned_conf_restricted_attributes_configuration>`:"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:289
+msgid "And the following template:"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:301
+msgid ""
+"Users can instantiate it customizing anything except the CPU, VCPU and NIC. "
+"To create a VM with different memory and disks:"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:307
+msgid ""
+"The merged attributes replace the existing ones. To add a new disk, the "
+"current one needs to be added also."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:314
+msgid "Deployment"
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:316
+msgid ""
+"The OpenNebula Scheduler will deploy automatically the VMs in one of the "
+"available Hosts, if they meet the requirements. The deployment can be forced"
+" by an administrator using the ``onevm deploy`` command."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:318
+msgid "Use ``onevm shutdown`` to shutdown a running VM."
+msgstr ""
+
+#: ../../source/user/virtual_resource_management/vm_guide.rst:320
+msgid ""
+"Continue to the :ref:`Managing Virtual Machine Instances Guide <vm_guide_2>`"
+" to learn more about the VM Life Cycle, and the available operations that "
+"can be performed."
+msgstr ""

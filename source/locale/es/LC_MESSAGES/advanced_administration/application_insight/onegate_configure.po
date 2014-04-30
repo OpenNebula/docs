@@ -1,0 +1,126 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/advanced_administration/application_insight/onegate_configure.rst:5
+msgid "OneGate Server Configuration"
+msgstr ""
+
+#: ../../source/advanced_administration/application_insight/onegate_configure.rst:7
+msgid ""
+"The OneGate service allows Virtual Machines guests to push monitoring "
+"information to OpenNebula. Althouth it is installed by default, its use is "
+"completely optional."
+msgstr ""
+
+#: ../../source/advanced_administration/application_insight/onegate_configure.rst:10
+msgid "Requirements"
+msgstr ""
+
+#: ../../source/advanced_administration/application_insight/onegate_configure.rst:12
+msgid ""
+"Check the :ref:`Installation guide <ignc>` for details of what package you "
+"have to install depending on your distribution"
+msgstr ""
+
+#: ../../source/advanced_administration/application_insight/onegate_configure.rst:15
+msgid "Configuration"
+msgstr ""
+
+#: ../../source/advanced_administration/application_insight/onegate_configure.rst:17
+msgid ""
+"The OneGate configuration file can be found at ``/etc/one/onegate-"
+"server.conf``. It uses YAML syntax to define the following options:"
+msgstr ""
+
+#: ../../source/advanced_administration/application_insight/onegate_configure.rst:19
+msgid "**Server Configuration**"
+msgstr ""
+
+#: ../../source/advanced_administration/application_insight/onegate_configure.rst:21
+msgid "``one_xmlrpc``: OpenNebula daemon host and port"
+msgstr ""
+
+#: ../../source/advanced_administration/application_insight/onegate_configure.rst:22
+msgid "``host``: Host where OneGate will listen"
+msgstr ""
+
+#: ../../source/advanced_administration/application_insight/onegate_configure.rst:23
+msgid "``port``: Port where OneGate will listen"
+msgstr ""
+
+#: ../../source/advanced_administration/application_insight/onegate_configure.rst:25
+msgid "**Log**"
+msgstr ""
+
+#: ../../source/advanced_administration/application_insight/onegate_configure.rst:27
+msgid ""
+"``debug_level``: Log debug level. 0 = ERROR, 1 = WARNING, 2 = INFO, 3 = "
+"DEBUG"
+msgstr ""
+
+#: ../../source/advanced_administration/application_insight/onegate_configure.rst:29
+msgid "**Auth**"
+msgstr ""
+
+#: ../../source/advanced_administration/application_insight/onegate_configure.rst:31
+msgid ""
+"``auth``: Authentication driver for incomming requests. ``onegate``: based "
+"on token provided in the context"
+msgstr ""
+
+#: ../../source/advanced_administration/application_insight/onegate_configure.rst:32
+msgid ""
+"``core_auth``: Authentication driver to communicate with OpenNebula core, "
+"``cipher`` for symmetric cipher encryption of tokens ``x509`` for x509 "
+"certificate encryption of tokens. For more information, visit the "
+":ref:`OpenNebula Cloud Auth documentation <cloud_auth>`."
+msgstr ""
+
+#: ../../source/advanced_administration/application_insight/onegate_configure.rst:34
+msgid "This is the default file"
+msgstr ""
+
+#: ../../source/advanced_administration/application_insight/onegate_configure.rst:76
+msgid "Start OneGate"
+msgstr ""
+
+#: ../../source/advanced_administration/application_insight/onegate_configure.rst:78
+msgid ""
+"To start and stop the server, use the ``onegate-server start/stop`` command:"
+msgstr ""
+
+#: ../../source/advanced_administration/application_insight/onegate_configure.rst:85
+msgid ""
+"By default, the server will only listen to requests coming from localhost. "
+"Change the ``:host`` attribute in ``/etc/one/onegate-server.conf`` to your "
+"server public IP, or 0.0.0.0 so onegate will listen on any interface."
+msgstr ""
+
+#: ../../source/advanced_administration/application_insight/onegate_configure.rst:87
+msgid "Inside ``/var/log/one/`` you will find new log files for the server:"
+msgstr ""
+
+#: ../../source/advanced_administration/application_insight/onegate_configure.rst:95
+msgid "Use OneGate"
+msgstr ""
+
+#: ../../source/advanced_administration/application_insight/onegate_configure.rst:97
+msgid ""
+"Before your VMs can communicate with OneGate, you need to edit "
+"``/etc/one/oned.conf`` and set the OneGate endpoint. This IP must be "
+"reachable from your VMs."
+msgstr ""
+
+#: ../../source/advanced_administration/application_insight/onegate_configure.rst:103
+msgid "Continue to the :ref:`OneGate usage guide <onegate_usage>`."
+msgstr ""

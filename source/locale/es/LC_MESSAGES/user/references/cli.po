@@ -1,0 +1,275 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/user/references/cli.rst:5
+msgid "Command Line Interface"
+msgstr ""
+
+#: ../../source/user/references/cli.rst:7
+msgid "OpenNebula provides a set commands to interact with the system:"
+msgstr ""
+
+#: ../../source/user/references/cli.rst:10
+msgid "CLI"
+msgstr ""
+
+#: ../../source/user/references/cli.rst:12
+msgid ""
+"`oneacct </doc/4.6/cli/oneacct.1.html>`__: gets accounting data from "
+"OpenNebula"
+msgstr ""
+
+#: ../../source/user/references/cli.rst:13
+msgid "`oneacl </doc/4.6/cli/oneacl.1.html>`__: manages OpenNebula ACLs"
+msgstr ""
+
+#: ../../source/user/references/cli.rst:14
+msgid ""
+"`onecluster </doc/4.6/cli/onecluster.1.html>`__: manages OpenNebula clusters"
+msgstr ""
+
+#: ../../source/user/references/cli.rst:15
+msgid ""
+"`onedatastore </doc/4.6/cli/onedatastore.1.html>`__: manages OpenNebula "
+"datastores"
+msgstr ""
+
+#: ../../source/user/references/cli.rst:16
+msgid ""
+"`onedb </doc/4.6/cli/onedb.1.html>`__: OpenNebula database migration tool"
+msgstr ""
+
+#: ../../source/user/references/cli.rst:17
+msgid "`onegroup </doc/4.6/cli/onegroup.1.html>`__: manages OpenNebula groups"
+msgstr ""
+
+#: ../../source/user/references/cli.rst:18
+msgid "`onehost </doc/4.6/cli/onehost.1.html>`__: manages OpenNebula hosts"
+msgstr ""
+
+#: ../../source/user/references/cli.rst:19
+msgid "`oneimage </doc/4.6/cli/oneimage.1.html>`__: manages OpenNebula images"
+msgstr ""
+
+#: ../../source/user/references/cli.rst:20
+msgid ""
+"`onetemplate </doc/4.6/cli/onetemplate.1.html>`__: manages OpenNebula "
+"templates"
+msgstr ""
+
+#: ../../source/user/references/cli.rst:21
+msgid "`oneuser </doc/4.6/cli/oneuser.1.html>`__: manages OpenNebula users"
+msgstr ""
+
+#: ../../source/user/references/cli.rst:22
+msgid ""
+"`onevdc </doc/4.6/cli/onevdc.1.html>`__: manages OpenNebula Virtual "
+"DataCenters"
+msgstr ""
+
+#: ../../source/user/references/cli.rst:23
+msgid ""
+"`onevm </doc/4.6/cli/onevm.1.html>`__: manages OpenNebula virtual machines"
+msgstr ""
+
+#: ../../source/user/references/cli.rst:24
+msgid "`onevnet </doc/4.6/cli/onevnet.1.html>`__: manages OpenNebula networks"
+msgstr ""
+
+#: ../../source/user/references/cli.rst:25
+msgid "`onezone </doc/4.6/cli/onezone.1.html>`__: manages OpenNebula zones"
+msgstr ""
+
+#: ../../source/user/references/cli.rst:27
+msgid ""
+"The output of these commands can be customized by modifying the "
+"configuration files that can be found in ``/etc/one/cli/``. They also can be"
+" customized on a per-user basis, in this case the configuration files should"
+" be placed in ``$HOME/.one/cli``."
+msgstr ""
+
+#: ../../source/user/references/cli.rst:30
+msgid "OCCI Commands"
+msgstr ""
+
+#: ../../source/user/references/cli.rst:32
+msgid ""
+"`occi-compute </doc/4.6/cli/occi-compute.1.html>`__: manages compute objects"
+msgstr ""
+
+#: ../../source/user/references/cli.rst:33
+msgid ""
+"`occi-network </doc/4.6/cli/occi-network.1.html>`__: manages network objects"
+msgstr ""
+
+#: ../../source/user/references/cli.rst:34
+msgid ""
+"`occi-storage </doc/4.6/cli/occi-storage.1.html>`__: manages storage objects"
+msgstr ""
+
+#: ../../source/user/references/cli.rst:35
+msgid ""
+"`occi-instance-type </doc/4.6/cli/occi-instance-type.1.html>`__: Retrieve "
+"instance types"
+msgstr ""
+
+#: ../../source/user/references/cli.rst:38
+msgid "ECONE Commands"
+msgstr ""
+
+#: ../../source/user/references/cli.rst:40
+msgid ""
+"`econe-upload </doc/4.6/cli/econe-upload.1.html>`__: Uploads an image to "
+"OpenNebula"
+msgstr ""
+
+#: ../../source/user/references/cli.rst:41
+msgid ""
+"`econe-describe-images </doc/4.6/cli/econe-describe-images.1.html>`__: Lists"
+" all registered images belonging to one particular user."
+msgstr ""
+
+#: ../../source/user/references/cli.rst:42
+msgid ""
+"`econe-run-instances </doc/4.6/cli/econe-run-instances.1.html>`__: Runs an "
+"instance of a particular image (that needs to be referenced)."
+msgstr ""
+
+#: ../../source/user/references/cli.rst:43
+msgid ""
+"`econe-describe-instances </doc/4.6/cli/econe-describe-instances.1.html>`__:"
+" Outputs a list of launched images belonging to one particular user."
+msgstr ""
+
+#: ../../source/user/references/cli.rst:44
+msgid ""
+"`econe-terminate-instances </doc/4.6/cli/econe-terminate-"
+"instances.1.html>`__: Shutdowns a set ofvirtual machines (or cancel, "
+"depending on its state)."
+msgstr ""
+
+#: ../../source/user/references/cli.rst:45
+msgid ""
+"`econe-reboot-instances </doc/4.6/cli/econe-reboot-instances.1.html>`__: "
+"Reboots a set ofvirtual machines."
+msgstr ""
+
+#: ../../source/user/references/cli.rst:46
+msgid ""
+"`econe-start-instances </doc/4.6/cli/econe-start-instances.1.html>`__: "
+"Starts a set ofvirtual machines."
+msgstr ""
+
+#: ../../source/user/references/cli.rst:47
+msgid ""
+"`econe-stop-instances </doc/4.6/cli/econe-stop-instances.1.html>`__: Stops a"
+" set ofvirtual machines."
+msgstr ""
+
+#: ../../source/user/references/cli.rst:48
+msgid ""
+"`econe-create-volume </doc/4.6/cli/econe-create-volume.1.html>`__: Creates a"
+" new DATABLOCK in OpenNebula"
+msgstr ""
+
+#: ../../source/user/references/cli.rst:49
+msgid ""
+"`econe-delete-volume </doc/4.6/cli/econe-delete-volume.1.html>`__: Deletes "
+"an existing DATABLOCK."
+msgstr ""
+
+#: ../../source/user/references/cli.rst:50
+msgid ""
+"`econe-describe-volumes </doc/4.6/cli/econe-describe-volumes.1.html>`__: "
+"Describe all available DATABLOCKs for this user"
+msgstr ""
+
+#: ../../source/user/references/cli.rst:51
+msgid ""
+"`econe-attach-volume </doc/4.6/cli/econe-attach-volume.1.html>`__: Attaches "
+"a DATABLOCK to an instance"
+msgstr ""
+
+#: ../../source/user/references/cli.rst:52
+msgid ""
+"`econe-detach-volume </doc/4.6/cli/econe-detach-volume.1.html>`__: Detaches "
+"a DATABLOCK from an instance"
+msgstr ""
+
+#: ../../source/user/references/cli.rst:53
+msgid ""
+"`econe-allocate-address </doc/4.6/cli/econe-allocate-address.1.html>`__: "
+"Allocates a new elastic IP address for the user"
+msgstr ""
+
+#: ../../source/user/references/cli.rst:54
+msgid ""
+"`econe-release-address </doc/4.6/cli/econe-release-address.1.html>`__: "
+"Releases a publicIP of the user"
+msgstr ""
+
+#: ../../source/user/references/cli.rst:55
+msgid ""
+"`econe-describe-addresses </doc/4.6/cli/econe-describe-addresses.1.html>`__:"
+" Lists elastic IP addresses"
+msgstr ""
+
+#: ../../source/user/references/cli.rst:56
+msgid ""
+"`econe-associate-address </doc/4.6/cli/econe-associate-address.1.html>`__: "
+"Associates a publicIP of the user with a given instance"
+msgstr ""
+
+#: ../../source/user/references/cli.rst:57
+msgid ""
+"`econe-disassociate-address </doc/4.6/cli/econe-disassociate-"
+"address.1.html>`__: Disasociate a publicIP of the user currently associated "
+"with an instance"
+msgstr ""
+
+#: ../../source/user/references/cli.rst:58
+msgid ""
+"`econe-create-keypair </doc/4.6/cli/econe-create-keypair.1.html>`__: Creates"
+" the named keypair"
+msgstr ""
+
+#: ../../source/user/references/cli.rst:59
+msgid ""
+"`econe-delete-keypair </doc/4.6/cli/econe-delete-keypair.1.html>`__: Deletes"
+" the named keypair, removes the associated keys"
+msgstr ""
+
+#: ../../source/user/references/cli.rst:60
+msgid ""
+"`econe-describe-keypairs </doc/4.6/cli/econe-describe-keypairs.1.html>`__: "
+"List and describe the key pairs available to the user"
+msgstr ""
+
+#: ../../source/user/references/cli.rst:61
+msgid ""
+"`econe-register </doc/4.6/cli/econe-register.1.html>`__: Registers an image"
+msgstr ""
+
+#: ../../source/user/references/cli.rst:64
+msgid "oneFlow Commands"
+msgstr ""
+
+#: ../../source/user/references/cli.rst:66
+msgid "`oneflow </doc/4.6/cli/oneflow.1.html>`__: oneFlow Service management"
+msgstr ""
+
+#: ../../source/user/references/cli.rst:67
+msgid ""
+"`oneflow-template </doc/4.6/cli/oneflow-template.1.html>`__: oneFlow Service"
+" Template management"
+msgstr ""

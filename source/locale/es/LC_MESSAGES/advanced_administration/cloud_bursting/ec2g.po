@@ -1,0 +1,566 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:5
+msgid "Amazon EC2 Driver"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:8
+msgid "Considerations & Limitations"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:10
+msgid ""
+"You should take into account the following technical considerations when "
+"using the EC2 cloud with OpenNebula:"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:12
+msgid ""
+"There is no direct access to the dom0, so it cannot be monitored (we don't "
+"know where the VM is running on the EC2 cloud)."
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:14
+msgid ""
+"The usual OpenNebula functionality for snapshotting, hot-plugging, or "
+"migration is not available with EC2."
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:16
+msgid ""
+"By default OpenNebula will always launch m1.small instances, unless "
+"otherwise specified."
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:18
+msgid ""
+"Please refer to the EC2 documentation to obtain more information about "
+"Amazon instance types and image management:"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:20
+msgid ""
+"`General information of instances <http://aws.amazon.com/ec2/instance-"
+"types/>`__"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:23
+msgid "Prerequisites"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:25
+msgid ""
+"You must have a working account for `AWS <http://aws.amazon.com/>`__ and "
+"signup for EC2 and S3 services."
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:28
+msgid "OpenNebula Configuration"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:30
+msgid ""
+"Uncomment the EC2 IM and VMM drivers from ``/etc/one/oned.conf`` file in "
+"order to use the driver."
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:45
+msgid "Driver flags are the same as other drivers:"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:48
+msgid "FLAG"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:48
+msgid "SETs"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:50
+msgid "-t"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:50
+msgid "Number of threads"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:52
+msgid "-r"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:52
+msgid "Number of retries"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:55
+msgid ""
+"Additionally you must define the AWS credentials and AWS region to be used "
+"and the maximum capacity that you want OpenNebula to deploy on the EC2, for "
+"this edit the file ``/etc/one/ec2_driver.conf``:"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:69
+msgid ""
+"After OpenNebula is restarted, create a new Host that uses the ec2 drivers:"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:76
+msgid "EC2 Specific Template Attributes"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:78
+msgid ""
+"In order to deploy an instance in EC2 through OpenNebula you must include an"
+" EC2 section in the virtual machine template. This is an example of a "
+"virtual machine template that can be deployed in our local resources or in "
+"EC2."
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:97
+msgid ""
+"These are the attributes that can be used in the EC2 section of the "
+"template:"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:100
+msgid "ATTRIBUTES"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:100
+msgid "DESCRIPTION"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:102
+msgid "``AMI``"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:102
+msgid ""
+"Unique ID of a machine image, returned by a call to ec2-describe-images."
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:104
+msgid "``AKI``"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:104
+msgid "The ID of the kernel with which to launch the instance."
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:106
+msgid "``CLIENTTOKEN``"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:106
+msgid ""
+"Unique, case-sensitive identifier you provide to ensure idempotency of the "
+"request."
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:108
+msgid "``INSTANCETYPE``"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:108
+msgid "Specifies the instance type."
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:110
+msgid "``KEYPAIR``"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:110
+msgid ""
+"The name of the key pair, later will be used to execute commands like *ssh "
+"-i id\\_keypair* or *scp -i id\\_keypair*"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:112
+msgid "``LICENSEPOOL``"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:112
+msgid "–license-pool"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:114
+msgid "``BLOCKDEVICEMAPPING``"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:114
+msgid ""
+"The block device mapping for the instance. More than one can be specified in"
+" a space-separated list. Check the –block-device-mapping option of the `EC2 "
+"CLI Reference <http://docs.aws.amazon.com/AWSEC2/latest/CommandLineReference"
+"/ApiReference-cmd-RunInstances.html>`__ for the syntax"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:116
+msgid "``PLACEMENTGROUP``"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:116
+msgid "Name of the placement group."
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:118
+msgid "``PRIVATEIP``"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:118
+msgid ""
+"If you're using Amazon Virtual Private Cloud, you can optionally use this "
+"parameter to assign the instance a specific available IP address from the "
+"subnet."
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:120
+msgid "``RAMDISK``"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:120
+msgid "The ID of the RAM disk to select."
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:122
+msgid "``SUBNETID``"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:122
+msgid ""
+"If you're using Amazon Virtual Private Cloud, this specifies the ID of the "
+"subnet you want to launch the instance into. This parameter is also passed "
+"to the command *ec2-associate-address -i i-0041230 -a elasticip*."
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:124
+msgid "``TENANCY``"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:124
+msgid "The tenancy of the instance you want to launch."
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:126
+msgid "``USERDATA``"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:126
+msgid ""
+"Specifies Base64-encoded MIME user data to be made available to the "
+"instance(s) in this reservation."
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:128
+msgid "``SECURITYGROUPS``"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:128
+msgid ""
+"Name of the security group. You can specify more than one security group "
+"(comma separated)."
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:130
+msgid "``ELASTICIP``"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:130
+msgid ""
+"EC2 Elastic IP address to assign to the instance. This parameter is passed "
+"to the command *ec2-associate-address -i i-0041230 elasticip*."
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:132
+msgid "``TAGS``"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:132
+msgid ""
+"Key and optional value of the tag, separated by an equals sign ( = ).You can"
+" specify more than one tag (comma separated)."
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:134
+msgid "``AVAILABILITYZONE``"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:134
+msgid "The Availability Zone in which to run the instance."
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:136
+msgid "``HOST``"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:136
+msgid "Defines which OpenNebula host will use this template"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:138
+msgid "``EBS_OPTIMIZED``"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:138
+msgid "Obtain a better I/O throughput for VMs with EBS provisioned volumes"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:141
+msgid ""
+"Default values for all these attributes can be defined in the "
+"``/etc/one/ec2_driver.default`` file."
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:170
+msgid "Multi EC2 Site/Region/Account Support"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:172
+msgid ""
+"It is possible to define various EC2 hosts to allow opennebula the managing "
+"of different EC2 regions or different EC2 accounts."
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:174
+msgid ""
+"When you create a new host the credentials and endpoint for that host are "
+"retrieved from the ``/etc/one/ec2_driver.conf`` file using the host name. "
+"Therefore, if you want to add a new host to manage a different region, i.e. "
+"``eu-west-1``, just add your credentials and the capacity limits to the the "
+"``eu-west-1`` section in the conf file, and specify that name (eu-west-1) "
+"when creating the new host."
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:189
+msgid "After that, create a new Host with the ``eu-west-1`` name:"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:195
+msgid ""
+"If the Host name does not match any regions key, the ``default`` will be "
+"used."
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:197
+msgid ""
+"You can define a different EC2 section in your template for each EC2 host, "
+"so with one template you can define different AMIs depending on which host "
+"it is scheduled, just include a HOST attribute in each EC2 section:"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:206
+msgid ""
+"You will have *ami-0022c769* launched when this VM template is sent to host "
+"*ec2* and *ami-03324cc9* whenever the VM template is sent to host *eu-"
+"west-1*."
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:208
+msgid ""
+"If only one EC2 site is defined, the EC2 driver will deploy all EC2 "
+"templates onto it, not paying attention to the **HOST** attribute."
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:210
+msgid ""
+"The availability zone inside a region, can be specified using the "
+"``AVAILABILITYZONE`` attribute in the EC2 section of the template"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:213
+msgid "Hybrid VM Templates"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:215
+msgid ""
+"A powerful use of cloud bursting in OpenNebula is the ability to use hybrid "
+"templates, defining a VM if OpenNebula decides to launch it locally, and "
+"also defining it if it is going to be outsourced to Amazon EC2. The idea "
+"behind this is to reference the same kind of VM even if it is incarnated by "
+"different images (the local image and the remote AMI)."
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:217
+msgid "An example of a hybrid template:"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:233
+msgid ""
+"OpenNebula will use the first portion (from NAME to NIC) in the above "
+"template when the VM is scheduled to a local virtualization node, and the "
+"EC2 section when the VM is scheduled to an EC2 node (ie, when the VM is "
+"going to be launched in Amazon EC2)."
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:236
+msgid "Testing"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:238
+msgid ""
+"You must create a template file containing the information of the AMIs you "
+"want to launch. Additionally if you have an elastic IP address you want to "
+"use with your EC2 instances, you can specify it as an optional parameter."
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:258
+msgid ""
+"You only can submit and control the template using the OpenNebula interface:"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:265
+msgid "Now you can monitor the state of the VM with"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:273
+msgid ""
+"Also you can see information (like IP address) related to the amazon "
+"instance launched via the command. The attributes available are:"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:275
+msgid "AWS\\_DNS\\_NAME"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:276
+msgid "AWS\\_PRIVATE\\_DNS\\_NAME"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:277
+msgid "AWS\\_KEY\\_NAME"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:278
+msgid "AWS\\_AVAILABILITY\\_ZONE"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:279
+msgid "AWS\\_PLATFORM"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:280
+msgid "AWS\\_VPC\\_ID"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:281
+msgid "AWS\\_PRIVATE\\_IP\\_ADDRESS"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:282
+msgid "AWS\\_IP\\_ADDRESS"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:283
+msgid "AWS\\_SUBNET\\_ID"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:284
+msgid "AWS\\_SECURITY\\_GROUPS"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:285
+msgid "AWS\\_INSTANCE\\_TYPE"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:337
+msgid "Scheduler Configuration"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:339
+msgid ""
+"Since ec2 Hosts are treated by the scheduler like any other host, VMs will "
+"be automatically deployed in them. But you probably want to lower their "
+"priority and start using them only when the local infrastructure is full."
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:342
+msgid "Configure the Priority"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:344
+msgid ""
+"The ec2 drivers return a probe with the value PRIORITY = -1. This can be "
+"used by :ref:`the scheduler <schg>`, configuring the 'fixed' policy in "
+"``sched.conf``:"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:352
+msgid ""
+"The local hosts will have a priority of 0 by default, but you could set any "
+"value manually with the 'onehost/onecluster update' command."
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:354
+msgid ""
+"There are two other parameters that you may want to adjust in sched.conf::"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:359
+msgid ""
+"In a scheduling cycle, when MAX\\_HOST number of VMs have been deployed to a"
+" host, it is discarded for the next pending VMs."
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:361
+msgid "For example, having this configuration:"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:363
+msgid "MAX\\_HOST = 1"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:364
+msgid "MAX\\_DISPATCH = 30"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:365
+msgid "2 Hosts: 1 in the local infrastructure, and 1 using the ec2 drivers"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:366
+msgid "2 pending VMs"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:368
+msgid ""
+"The first VM will be deployed in the local host. The second VM will have "
+"also sort the local host with higher priority, but because 1 VMs was already"
+" deployed, the second VM will be launched in ec2."
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:370
+msgid ""
+"A quick way to ensure that your local infrastructure will be always used "
+"before the ec2 hosts is to **set MAX\\_DISPATH to the number of local "
+"hosts**."
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:373
+msgid "Force a Local or Remote Deployment"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:375
+msgid ""
+"The ec2 drivers report the host attribute PUBLIC\\_CLOUD = YES. Knowing "
+"this, you can use that attribute in your :ref:`VM requirements "
+"<template_placement_section>`."
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:377
+msgid "To force a VM deployment in a local host, use:"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/ec2g.rst:383
+msgid "To force a VM deployment in an ec2 host, use:"
+msgstr ""

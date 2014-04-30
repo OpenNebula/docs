@@ -1,0 +1,94 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/administration/hosts_and_clusters/hostsubsystem.rst:5
+msgid "Hosts & Clusters Overview"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/hostsubsystem.rst:7
+msgid ""
+"A **Host** is a server that has the ability to run Virtual Machines and that"
+" is connected to OpenNebula's Frontend server. OpenNebula can work with "
+"Hosts with a heterogeneous configuration, i.e. you can connect Hosts to the "
+"same OpenNebula with different hypervisors or Linux distributions as long as"
+" these requirements are fulfilled:"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/hostsubsystem.rst:9
+msgid "Every Host need to have a ``oneadmin`` account."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/hostsubsystem.rst:10
+msgid ""
+"OpenNebula's Frontend and all the Hosts need to be able to resolve, either "
+"by DNS or by ``/etc/hosts`` the names of all the other Hosts and Frontend."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/hostsubsystem.rst:11
+msgid ""
+"The ``oneadmin`` account in any Host or the Frontend should be able to ssh "
+"passwordlessly to any other Host or Frontend. This is achieved either by "
+"sharing the ``$HOME`` of ``oneadmin`` accross all the servers with NFS or by"
+" manually copying the ``~/.ssh`` directory."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/hostsubsystem.rst:12
+msgid ""
+"It needs to have a hypervisor supported by OpenNebula installed and properly"
+" configured. The correct way to achieve this is to follow the specific guide"
+" for each hypervisor."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/hostsubsystem.rst:13
+msgid "**ruby** >= 1.8.7"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/hostsubsystem.rst:15
+msgid ""
+"**Clusters** are pools of hosts that share datastores and virtual networks. "
+"Clusters are used for load balancing, high availability, and high "
+"performance computing."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/hostsubsystem.rst:18
+msgid "Overview of Components"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/hostsubsystem.rst:20
+msgid "There are three components regarding Hosts:"
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/hostsubsystem.rst:22
+msgid ""
+"**Host Management**: Host management is achieved through the ``onehost`` CLI"
+" command or through the Sunstone GUI. You can read about Host Management in "
+"more detail in the :ref:`Managing Hosts <host_guide>` guide."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/hostsubsystem.rst:23
+msgid ""
+"**Host Monitorization**: In order to keep track of the available resources "
+"in the Hosts, OpenNebula launches a Host Monitoring driver, called IM "
+"(Information Driver), which gathers all the required information and submits"
+" it to the Core. The default IM driver executes ``ssh`` commands in the "
+"host, but other mechanism are possible. There is further information on this"
+" topic in the :ref:`Monitoring Subsystem <devel-im>` guide."
+msgstr ""
+
+#: ../../source/administration/hosts_and_clusters/hostsubsystem.rst:24
+msgid ""
+"**Cluster Management**: Hosts can be grouped in Clusters. These Clusters are"
+" managed with the ``onecluster`` CLI command, or through the Sunstone GUI. "
+"You can read about Cluster Management in more detail in the :ref:`Managing "
+"Clusters <cluster_guide>` guide.."
+msgstr ""

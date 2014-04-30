@@ -1,0 +1,239 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/advanced_administration/scalability/one_scalability.rst:5
+msgid "Configuring OpenNebula for Large Deployments"
+msgstr ""
+
+#: ../../source/advanced_administration/scalability/one_scalability.rst:8
+msgid "Monitoring"
+msgstr ""
+
+#: ../../source/advanced_administration/scalability/one_scalability.rst:10
+msgid ""
+"OpenNebula supports two native monitoring systems: ``ssh-pull`` and ``udp-"
+"push``. The former one, ``ssh-pull`` is the default monitoring system for "
+"OpenNebula <= 4.2, however from OpenNebula 4.4 onwards, the default "
+"monitoring system is the ``udp-push`` system. This model is highly scalable "
+"and its limit (in terms of number of VMs monitored per second) is bounded to"
+" the performance of the server running oned and the database server. Our "
+"scalability testing achieves the monitoring of tens of thousands of VMs in a"
+" few minutes."
+msgstr ""
+
+#: ../../source/advanced_administration/scalability/one_scalability.rst:12
+msgid "Read more in the :ref:`Monitoring guide <mon>`."
+msgstr ""
+
+#: ../../source/advanced_administration/scalability/one_scalability.rst:15
+msgid "Core Tuning"
+msgstr ""
+
+#: ../../source/advanced_administration/scalability/one_scalability.rst:17
+msgid ""
+"OpenNebula keeps the monitorization history for a defined time in a database"
+" table. These values are then used to draw the plots in Sunstone."
+msgstr ""
+
+#: ../../source/advanced_administration/scalability/one_scalability.rst:19
+msgid ""
+"These monitorization entries can take quite a bit of storage in your "
+"database. The amount of storage used will depend on the size of your cloud, "
+"and the following configuration attributes in oned.conf:"
+msgstr ""
+
+#: ../../source/advanced_administration/scalability/one_scalability.rst:21
+msgid ""
+"``MONITORING_INTERVAL`` (VMware only): Time in seconds between each "
+"monitorization. Default: 60."
+msgstr ""
+
+#: ../../source/advanced_administration/scalability/one_scalability.rst:22
+msgid ""
+"collectd IM\\_MAD ``-i`` argument (KVM & Xen only): Time in seconds of the "
+"monitorization push cycle. Default: 20."
+msgstr ""
+
+#: ../../source/advanced_administration/scalability/one_scalability.rst:23
+msgid ""
+"``HOST_MONITORING_EXPIRATION_TIME``: Time, in seconds, to expire monitoring "
+"information. Default: 12h."
+msgstr ""
+
+#: ../../source/advanced_administration/scalability/one_scalability.rst:24
+msgid ""
+"``VM_MONITORING_EXPIRATION_TIME``: Time, in seconds, to expire monitoring "
+"information. Default: 4h."
+msgstr ""
+
+#: ../../source/advanced_administration/scalability/one_scalability.rst:26
+msgid ""
+"If you don't use Sunstone, you may want to disable the monitoring history, "
+"setting both expiration times to 0."
+msgstr ""
+
+#: ../../source/advanced_administration/scalability/one_scalability.rst:28
+msgid ""
+"Each monitoring entry will be around 2 KB for each Host, and 4 KB for each "
+"VM. To give you an idea of how much database storage you will need to "
+"prepare, these some examples:"
+msgstr ""
+
+#: ../../source/advanced_administration/scalability/one_scalability.rst:31
+#: ../../source/advanced_administration/scalability/one_scalability.rst:39
+msgid "Monitoring interval"
+msgstr ""
+
+#: ../../source/advanced_administration/scalability/one_scalability.rst:31
+msgid "Host expiration"
+msgstr ""
+
+#: ../../source/advanced_administration/scalability/one_scalability.rst:31
+msgid "# Hosts"
+msgstr ""
+
+#: ../../source/advanced_administration/scalability/one_scalability.rst:31
+#: ../../source/advanced_administration/scalability/one_scalability.rst:39
+msgid "Storage"
+msgstr ""
+
+#: ../../source/advanced_administration/scalability/one_scalability.rst:33
+#: ../../source/advanced_administration/scalability/one_scalability.rst:35
+#: ../../source/advanced_administration/scalability/one_scalability.rst:41
+#: ../../source/advanced_administration/scalability/one_scalability.rst:43
+msgid "20s"
+msgstr ""
+
+#: ../../source/advanced_administration/scalability/one_scalability.rst:33
+msgid "12h"
+msgstr ""
+
+#: ../../source/advanced_administration/scalability/one_scalability.rst:33
+msgid "200"
+msgstr ""
+
+#: ../../source/advanced_administration/scalability/one_scalability.rst:33
+msgid "850 MB"
+msgstr ""
+
+#: ../../source/advanced_administration/scalability/one_scalability.rst:35
+#: ../../source/advanced_administration/scalability/one_scalability.rst:43
+msgid "24h"
+msgstr ""
+
+#: ../../source/advanced_administration/scalability/one_scalability.rst:35
+msgid "1000"
+msgstr ""
+
+#: ../../source/advanced_administration/scalability/one_scalability.rst:35
+msgid "8.2 GB"
+msgstr ""
+
+#: ../../source/advanced_administration/scalability/one_scalability.rst:39
+msgid "VM expiration"
+msgstr ""
+
+#: ../../source/advanced_administration/scalability/one_scalability.rst:39
+msgid "# VMs"
+msgstr ""
+
+#: ../../source/advanced_administration/scalability/one_scalability.rst:41
+msgid "4h"
+msgstr ""
+
+#: ../../source/advanced_administration/scalability/one_scalability.rst:41
+msgid "2000"
+msgstr ""
+
+#: ../../source/advanced_administration/scalability/one_scalability.rst:41
+msgid "1.8 GB"
+msgstr ""
+
+#: ../../source/advanced_administration/scalability/one_scalability.rst:43
+msgid "10000"
+msgstr ""
+
+#: ../../source/advanced_administration/scalability/one_scalability.rst:43
+msgid "7 GB"
+msgstr ""
+
+#: ../../source/advanced_administration/scalability/one_scalability.rst:49
+msgid "API Tuning"
+msgstr ""
+
+#: ../../source/advanced_administration/scalability/one_scalability.rst:51
+msgid ""
+"For large deployments with lots of xmlprc calls the default values for the "
+"xmlprc server are too conservative. The values you can modify and its "
+"meaning are explained in the :ref:`oned.conf guide <oned_conf>` and the "
+"`xmlrpc-c library documentation "
+"<http://xmlrpc-c.sourceforge.net/doc/libxmlrpc_server_abyss.html#max_conn>`__."
+" From our experience these values improve the server behaviour with a high "
+"amount of client calls:"
+msgstr ""
+
+#: ../../source/advanced_administration/scalability/one_scalability.rst:58
+msgid ""
+"OpenNebula Cloud API (OCA) is able to use the library `Ox "
+"<https://rubygems.org/gems/ox>`__ for XML parsing. This library is makes the"
+" parsing of pools much faster. It is used by both the CLI and Sunstone so "
+"both will benefit from it."
+msgstr ""
+
+#: ../../source/advanced_administration/scalability/one_scalability.rst:60
+msgid ""
+"The core is able to paginate some pool answers. This makes the memory "
+"consumption decrease and in some cases the parsing faster. By default the "
+"pagination value is 2000 objects but can be changed using the environment "
+"variable ``ONE_POOL_PAGE_SIZE``. It should be bigger that 2. For example, to"
+" list VMs with a page size of 5000 we can use:"
+msgstr ""
+
+#: ../../source/advanced_administration/scalability/one_scalability.rst:66
+msgid "To disable pagination we can use a non numeric value:"
+msgstr ""
+
+#: ../../source/advanced_administration/scalability/one_scalability.rst:72
+msgid "This environment variable can be also used for Sunstone."
+msgstr ""
+
+#: ../../source/advanced_administration/scalability/one_scalability.rst:75
+msgid "Driver Tuning"
+msgstr ""
+
+#: ../../source/advanced_administration/scalability/one_scalability.rst:77
+msgid ""
+"OpenNebula drivers have by default 15 threads. This is the maximum number of"
+" actions a driver can perform at the same time, the next actions will be "
+"queued. You can make this value in oned.conf, the driver parameter is -t."
+msgstr ""
+
+#: ../../source/advanced_administration/scalability/one_scalability.rst:80
+msgid "Database Tuning"
+msgstr ""
+
+#: ../../source/advanced_administration/scalability/one_scalability.rst:82
+msgid ""
+"For non test installations use MySQL database. sqlite is too slow for more "
+"than a couple hosts and a few VMs."
+msgstr ""
+
+#: ../../source/advanced_administration/scalability/one_scalability.rst:85
+msgid "Sunstone Tuning"
+msgstr ""
+
+#: ../../source/advanced_administration/scalability/one_scalability.rst:87
+msgid ""
+"Please refer to guide about :ref:`Configuring Sunstone for Large Deployments"
+" <suns_advance>`."
+msgstr ""

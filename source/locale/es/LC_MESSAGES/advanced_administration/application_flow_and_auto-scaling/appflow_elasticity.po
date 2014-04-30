@@ -1,0 +1,330 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:5
+msgid "Application Auto-scaling"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:7
+msgid ""
+"A role's cardinality can be adjusted manually, based on metrics, or based on"
+" a schedule."
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:10
+msgid "Overview"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:12
+msgid ""
+"When a scaling action starts, the Role and Service enter the ``SCALING`` "
+"state. In this state, the Role will ``instantiate`` or ``shutdown`` a number"
+" of VMs to reach its new cardinality."
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:14
+msgid ""
+"A role with elasticity policies must define a minimum and maximum number of "
+"VMs:"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:28
+msgid ""
+"After the scaling, the Role and Service are in the ``COOLDOWN`` state for "
+"the configured duration. During a scale operation and the cooldown period, "
+"other scaling actions for the same or for other Roles are delayed until the "
+"Service is ``RUNNING`` again."
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:30
+msgid "|image0|"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:33
+msgid "Set the Cardinality of a Role Manually"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:35
+msgid "The command ``oneflow scale`` starts the scalability immediately."
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:41
+msgid ""
+"You can force a cardinality outside the defined range with the ``--force`` "
+"option."
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:44
+msgid "Maintain the Cardinality of a Role"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:46
+msgid ""
+"The 'min\\_vms' attribute is a hard limit, enforced by the elasticity "
+"module. If the cardinality drops below this minimum, a scale-up operation "
+"will be triggered."
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:49
+msgid "Set the Cardinality of a Role Automatically"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:52
+msgid "Auto-scaling Types"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:54
+msgid ""
+"Both elasticity\\_policies and scheduled\\_policies elements define an "
+"automatic adjustment of the Role cardinality. Three different adjustment "
+"types are supported:"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:56
+msgid "**CHANGE**: Add/substract the given number of VMs"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:57
+msgid "**CARDINALITY**: Set the cardinality to the given number"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:58
+msgid ""
+"**PERCENTAGE\\_CHANGE**: Add/substract the given percentage to the current "
+"cardinality"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:61
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:99
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:133
+msgid "Attribute"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:61
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:99
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:133
+msgid "Type"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:61
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:99
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:133
+msgid "Mandatory"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:61
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:99
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:133
+msgid "Description"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:63
+msgid "type"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:63
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:101
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:135
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:137
+msgid "string"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:63
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:65
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:101
+msgid "Yes"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:63
+msgid "Type of adjustment. Values: CHANGE, CARDINALITY, PERCENTAGE\\_CHANGE"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:65
+msgid "adjust"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:65
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:67
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:103
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:105
+msgid "integer"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:65
+msgid "Positive or negative adjustment. Its meaning depends on 'type'"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:67
+msgid "min\\_adjust\\_step"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:67
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:103
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:105
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:135
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:137
+msgid "No"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:67
+msgid ""
+"Optional parameter for PERCENTAGE\\_CHANGE adjustment type. If present, the "
+"policy will change the cardinality by at least the number of VMs set in this"
+" attribute."
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:71
+msgid "Auto-scaling Based on Metrics"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:73
+msgid ""
+"Each role can have an array of ``elasticity_policies``. These policies "
+"define an expression that will trigger a cardinality adjustment."
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:75
+msgid "These expressions can use performance data from"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:77
+msgid ""
+"The VM guest. Using the :ref:`OneGate server <onegate_usage>`, applications "
+"can send custom monitoring metrics to OpenNebula."
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:78
+msgid ""
+"The VM, at hypervisor level. The :ref:`Virtualization Drivers <vmmg>` return"
+" information about the VM, such as CPU, MEMORY, NET\\_TX and NET\\_RX."
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:94
+msgid ""
+"The **expression** can use VM attribute names, float numbers, and logical "
+"operators (!, &, \\|). When an attribute is found, it will take the "
+"**average** value for all the **running VMs** that contain that attribute in"
+" the Role. If none of the VMs contain the attribute, the expression will "
+"evaluate to false."
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:96
+msgid ""
+"The attribute will be looked for in /VM/USER\\_TEMPLATE, /VM, and "
+"/VM/TEMPLATE, in that order. Logical operators have the usual precedence."
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:101
+msgid "expression"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:101
+msgid "Expression to trigger the elasticity"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:103
+msgid "period\\_number"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:103
+msgid ""
+"Number of periods that the expression must be true before the elasticity is "
+"triggered"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:105
+msgid "period"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:105
+msgid "Duration, in seconds, of each period in period\\_number"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:109
+msgid "Auto-scaling Based on a Schedule"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:111
+msgid ""
+"Combined with the elasticity policies, each role can have an array of "
+"``scheduled_policies``. These policies define a time, or a time recurrence, "
+"and a cardinality adjustment."
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:135
+msgid "recurrence"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:135
+msgid ""
+"Time for recurring adjustements. Time is specified with the `Unix cron sytax"
+" <http://en.wikipedia.org/wiki/Cron>`__"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:137
+msgid "start\\_time"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:137
+msgid "Exact time for the adjustement"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:141
+msgid "Visualize in the CLI"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:143
+msgid ""
+"The ``oneflow show / top`` commands show the defined policies. When a "
+"service is scaling, the VMs being created or shutdown can be identified by "
+"an arrow next to their ID:"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:182
+msgid "Interaction with Individual VM Management"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:184
+msgid ""
+"All the VMs created by a Service can be managed as regular VMs. When VMs are"
+" monitored in an unexpected state, this is what OneFlow interprets:"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:186
+msgid ""
+"VMs in a recoverable state ('suspend', 'poweroff', etc.) are considered are "
+"healthy machines. The user will eventually decide to resume these VMs, so "
+"OneFlow will keep monitoring them. For the elasticity module, these VMs are "
+"just like 'running' VMs."
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:187
+msgid ""
+"VMs in the final 'done' state are cleaned from the Role. They do not appear "
+"in the nodes information table, and the cardinality is updated to reflect "
+"the new number of VMs. This can be seen as an manual scale-down action."
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:188
+msgid ""
+"VMs in 'unknown' or 'failed' are in an anomalous state, and the user must be"
+" notified. The Role and Service are set to the 'WARNING' state."
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:190
+msgid "|image1|"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/appflow_elasticity.rst:193
+msgid "Examples"
+msgstr ""

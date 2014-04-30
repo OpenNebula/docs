@@ -1,0 +1,648 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/user/virtual_machine_setup/cong.rst:5
+msgid "Advanced Contextualization"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:7
+msgid ""
+"There are two contextualization mechanisms available in OpenNebula: the "
+"automatic IP assignment, and a more generic way to give any file and "
+"configuration parameters. You can use any of them individually, or both."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:9
+msgid ""
+"You can use already made packages that install context scripts and prepare "
+"udev configuration in your appliances. This is described in "
+":ref:`Contextualization Packages for VM Images "
+"<cong_generating_custom_contextualization_packages>` section."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:12
+msgid "Automatic IP Assignment"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:14
+msgid ""
+"With OpenNebula you can derive the IP address assigned to the VM from the "
+"MAC address using the MAC\\_PREFFIX:IP rule. In order to achieve this we "
+"provide context scripts for Debian, Ubuntu, CentOS and openSUSE based "
+"systems. These scripts can be easily adapted for other distributions, check "
+"`dev.opennebula.org "
+"<http://dev.opennebula.org/projects/opennebula/repository/show/share/scripts>`__."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:16
+msgid "To configure the Virtual Machine follow these steps:"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:18
+msgid ""
+"These actions are to configure the VM, the commands refer to the VMs root "
+"file system"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:20
+msgid ""
+"Copy the script ``$ONE_SRC_CODE_PATH/share/scripts/vmcontext.sh`` into the "
+"``/etc/init.d`` directory in the VM root file system."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:22
+msgid ""
+"Execute the script at boot time before starting any network service, usually"
+" runlevel 2 should work."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:28
+msgid ""
+"Having done so, whenever the VM boots it will execute this script, which in "
+"turn would scan the available network interfaces, extract their MAC "
+"addresses, make the MAC to IP conversion and construct a "
+"``/etc/network/interfaces`` that will ensure the correct IP assignment to "
+"the corresponding interface."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:31
+msgid "Generic Contextualization"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:33
+msgid ""
+"The method we provide to give configuration parameters to a newly started "
+"virtual machine is using an ISO image (OVF recommendation). This method is "
+"network agnostic so it can be used also to configure network interfaces. In "
+"the VM description file you can specify the contents of the iso file (files "
+"and directories), tell the device the ISO image will be accessible and "
+"specify the configuration parameters that will be written to a file for "
+"later use inside the virtual machine."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:35
+msgid "|image1|"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:37
+msgid ""
+"In this example we see a Virtual Machine with two associated disks. The Disk"
+" Image holds the filesystem where the Operating System will run from. The "
+"ISO image has the contextualization for that VM:"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:39
+msgid ""
+"``context.sh``: file that contains configuration variables, filled by "
+"OpenNebula with the parameters specified in the VM description file"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:40
+msgid ""
+"``init.sh``: script called by VM at start that will configure specific "
+"services for this VM instance"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:41
+msgid ""
+"``certificates``: directory that contains certificates for some service"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:42
+msgid "``service.conf``: service configuration"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:44
+msgid ""
+"This is just an example of what a contextualization image may look like. "
+"Only ``context.sh`` is included by default. You have to specify the values "
+"that will be written inside ``context.sh`` and the files that will be "
+"included in the image."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:46
+msgid ""
+"To prevent regular users to copy system/secure files, the ``FILES`` "
+"attribute within ``CONTEXT`` is only allowed to OpenNebula users within the "
+"oneadmin group. ``FILES_DS`` can be used to include arbitrary files from "
+"Files Datastores."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:51
+msgid "Defining Context"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:53
+msgid ""
+"In VM description file you can tell OpenNebula to create a contextualization"
+" image and to fill it with values using ``CONTEXT`` parameter. For example:"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:66
+msgid ""
+"Variables inside CONTEXT section will be added to ``context.sh`` file inside"
+" the contextualization image. These variables can be specified in three "
+"different ways:"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:69
+msgid "Hardcoded variables"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:76
+msgid "Using template variables"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:78
+msgid ""
+"``$<template_variable>``: any single value variable of the VM template, like"
+" for example:"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:84
+msgid ""
+"``$<template_variable>[<attribute>]``: Any single value contained in a "
+"multiple value variable in the VM template, like for example:"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:90
+msgid ""
+"``$<template_variable>[<attribute>, <attribute2>=<value2>]``: Any single "
+"value contained in a multiple value variable in the VM template, setting one"
+" attribute to discern between multiple variables called the same way, like "
+"for example:"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:96
+msgid ""
+"You can use any of the attributes defined in the variable, NIC in the "
+"previous example."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:99
+msgid "Using Virtual Network template variables"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:101
+msgid ""
+"``$NETWORK[<vnet_attribute>, <NETWORK_ID|NETWORK>=<vnet_id|vnet_name>]``: "
+"Any single value variable in the Virtual Network template, like for example:"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:110
+msgid "Using Image template variables"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:112
+msgid ""
+"``$IMAGE[<image_attribute>, <IMAGE_ID|IMAGE>=<img_id|img_name>]``: Any "
+"single value variable in the Image template, like for example:"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:121
+msgid "Using User template variables"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:123
+msgid ""
+"``$USER[<user_attribute>]``: Any single value variable in the user (owner of"
+" the VM) template, like for example:"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:129
+msgid ""
+"The user\\_attribute can be ``TEMPLATE`` to include the whole user template "
+"in XML (base64 encoded)."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:131
+msgid ""
+"**Pre-defined variables**, apart from those defined in the template you can "
+"use:"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:133
+msgid "``$UID``, the uid of the VM owner"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:134
+msgid "``$UNAME``, the VM owner user name"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:135
+msgid "``$GID``, the id of the VM group"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:136
+msgid "``$GNAME``, the VM group name"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:137
+msgid "``$TEMPLATE``, the whole template in XML format and encoded in base64"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:139
+msgid "The file generated will be something like this:"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:152
+msgid ""
+"Some of the variables have special meanings, but none of them are mandatory:"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:155
+#: ../../source/user/virtual_machine_setup/cong.rst:212
+msgid "Attribute"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:155
+#: ../../source/user/virtual_machine_setup/cong.rst:212
+msgid "Description"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:157
+msgid "**files\\_ds**"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:157
+msgid ""
+"Files that will be included in the contextualization image. Each file must "
+"be stored in a FILE\\_DS Datastore and must be of type CONTEXT"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:160
+msgid "**target**"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:160
+msgid ""
+"device where the contextualization image will be available to the VM "
+"instance. Please note that the proper device mapping may depend on the guest"
+" OS, e.g. ubuntu VMs should use hd\\* as the target device"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:164
+msgid "**file**"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:164
+msgid ""
+"Files and directories that will be included in the contextualization image. "
+"Specified as absolute paths, by default this **can be used only by "
+"oneadmin**."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:167
+msgid "**init\\_scripts**"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:167
+msgid ""
+"If you want the VM to execute an script that is not called init.sh (or if "
+"you want to call more than just one script),this list contains the scripts "
+"to run and their order. Ex. ``init.sh users.sh mysql.sh`` will force the VM "
+"to execute init.sh , then users.sh and lastly mysql.sh at boot time'"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:172
+msgid "**TOKEN**"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:172
+msgid ""
+"``YES`` to create a token.txt file for :ref:`OneGate monitorization "
+"<onegate_usage>`"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:174
+msgid "**NETWORK**"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:174
+msgid ""
+"``YES`` to fill automatically the networking parameters for each NIC, used "
+"by the :ref:`Contextualization packages <context_overview>`"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:177
+msgid "**SET_HOSTNAME**"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:177
+msgid "This parameter value will be the hostname of the VM."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:179
+msgid "**DNS_HOSTNAME**"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:179
+msgid ""
+"``YES`` to set the VM hostname to the reverse dns name (from the first IP)"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:182
+msgid ""
+"A default target attribute is :ref:`generated automatically "
+"<template_disks_device_mapping>` by OpenNebula, based on the default device "
+"prefix set at :ref:`oned.conf <oned_conf>`."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:185
+msgid "Contextualization Packages for VM Images"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:187
+msgid ""
+"The VM should be prepared to use the contextualization image. First of all "
+"it needs to mount the contextualization image somewhere at boot time. Also a"
+" script that executes after boot will be useful to make use of the "
+"information provided."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:189
+msgid ""
+"The file ``context.sh`` is compatible with ``bash`` syntax so you can "
+"easilly source it inside a shellscript to get the variables that it "
+"contains."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:191
+msgid ""
+"Contextualization packages are available to several distributions so you can"
+" prepare them to work with OpenNebula without much effort. These are the "
+"changes they do to your VM:"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:193
+msgid "Disables udev net and cd persistent rules"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:194
+msgid "Deletes udev net and cd persistent rules"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:195
+msgid "Unconfigures the network"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:196
+msgid "Adds OpenNebula contextualization scripts to startup"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:198
+msgid ""
+"These packages are destructive. The configuration for networking will be "
+"deleted. Make sure to use this script on copies of your images."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:200
+msgid ""
+"Instructions on how to install the contextualization packages are located in"
+" the :ref:`contextualization overview documentation <context_overview>`."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:202
+msgid ""
+"After the installation of these packages the images on start will configure "
+"the network using the mac address generated by OpenNebula. They will also "
+"try to mount the cdrom context image from ``/dev/cdrom`` and if ``init.sh`` "
+"is found it will be executed."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:207
+msgid "Network Configuration"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:209
+msgid ""
+"These packages also install a generic network configuration script that will"
+" get network information from some contextualization parameters and also "
+"root SSH key. This way we don't have to supply an ``init.sh`` script to do "
+"this work. The parameters that these scripts will use are as follows:"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:214
+msgid "``<DEV>_MAC``"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:214
+msgid "MAC address of the interface"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:216
+msgid "``<DEV>_IP``"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:216
+msgid "IP assigned to the interface"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:218
+msgid "``<DEV>_NETWORK``"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:218
+msgid "Interface network"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:220
+msgid "``<DEV>_MASK``"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:220
+msgid "Interface net mask"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:222
+msgid "``<DEV>_GATEWAY``"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:222
+msgid "Interface gateway"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:224
+msgid "``<DEV>_DNS``"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:224
+msgid "DNS servers for the network"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:226
+msgid "``<DEV>_SEARCH_DOMAIN``"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:226
+msgid "DNS domain search path"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:228
+msgid "``<DEV>_IPV6``"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:228
+msgid "Global IPv6 assigned to the interface"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:230
+msgid "``<DEV>_GATEWAY6``"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:230
+msgid "IPv6 gateway for this interface"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:232
+msgid "``<DEV>_CONTEXT_FORCE_IPV4``"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:232
+msgid "Configure IPv4 even if IPv6 values are present"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:234
+msgid "``DNS``"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:234
+msgid "main DNS server for the machine"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:236
+msgid "``SSH_PUBLIC_KEY``"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:236
+msgid "public ssh key added to root authorized\\_keys"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:239
+msgid ""
+"We can have the networks defined with those parameters and use them to "
+"configure the interfaces. Given these two networks (excerpt):"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:241
+msgid "Public:"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:252
+msgid "Private:"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:261
+msgid "We can configure both networks adding this context to the VM template:"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:274
+msgid ""
+"Please note that SSH\\_PUBLIC\\_KEY was added as a user attribute, this way "
+"the templates can be generic."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:276
+msgid ""
+"When this template is instantiated, the context section will contain all the"
+" relevant networking attributes:"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:300
+msgid "Generating Custom Contextualization Packages"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:302
+msgid ""
+"Network configuration is a script located in ``/etc/one-"
+"context.d/00-network``. Any file located in that directory will be executed "
+"on start, in alphabetical order. This way we can add any script to configure"
+" or start processes on boot. For example, we can have a script that "
+"populates authorized\\_keys file using a variable in the context.sh. "
+"Remember that those variables are exported to the environment and will be "
+"easily accessible by the scripts:"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:309
+msgid ""
+"OpenNebula source code comes with the scripts and the files needed to "
+"generate contextualization packages. This way you can also generate custom "
+"packages tweaking the scripts that will go inside your images or adding new "
+"scripts that will perform other duties."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:311
+msgid "The files are located in ``share/scripts/context-packages``:"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:313
+msgid ""
+"``base``: files that will be in all the packages. Right now it contains "
+"empty ``udev`` rules and the init script that will be executed on startup."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:314
+msgid ""
+"``base_<type>``: files specific for linux distributions. It contains the "
+"contextualization scripts for the network and comes in ``rpm`` and ``deb`` "
+"flavors. You can add here your own contextualization scripts and they will "
+"be added to the package when you run the generation script."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:315
+msgid "``generate.sh``: The script that generates the packages."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:316
+msgid ""
+"``postinstall``: This script will be executed after the package installation"
+" and will clean the network and ``udev`` configuration. It will also add the"
+" init script to the started services on boot."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:318
+msgid "To generate the packages you will need:"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:320
+msgid "Ruby >= 1.8.7"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:321
+msgid "gem fpm"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:322
+msgid "dpkg utils for deb package creation"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:323
+msgid "rpm utils for rpm package creation"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:325
+msgid ""
+"You can also give to the generation script some parameters using env "
+"variables to generate the packages. For example, to generate an ``rpm`` "
+"package you will execute:"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:331
+msgid ""
+"These are the default values of the parameters, but you can change any of "
+"them the same way we did for ``PACKAGE_TYPE``:"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/cong.rst:353
+msgid "For more information check the ``README.md`` file from that directory."
+msgstr ""

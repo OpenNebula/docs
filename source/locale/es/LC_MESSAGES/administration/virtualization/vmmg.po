@@ -1,0 +1,105 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/administration/virtualization/vmmg.rst:5
+msgid "Virtualization Overview"
+msgstr ""
+
+#: ../../source/administration/virtualization/vmmg.rst:7
+msgid ""
+"The Virtualization Subsystem is the component in charge of talking with the "
+"hypervisor installed in the hosts and taking the actions needed for each "
+"step in the VM lifecycle."
+msgstr ""
+
+#: ../../source/administration/virtualization/vmmg.rst:9
+msgid ""
+"Configuration options and specific information for each hypervisor can be "
+"found in these guides:"
+msgstr ""
+
+#: ../../source/administration/virtualization/vmmg.rst:11
+msgid ":ref:`Xen Driver <xeng>`"
+msgstr ""
+
+#: ../../source/administration/virtualization/vmmg.rst:12
+msgid ":ref:`KVM Driver <kvmg>`"
+msgstr ""
+
+#: ../../source/administration/virtualization/vmmg.rst:13
+msgid ":ref:`VMware Driver <evmwareg>`"
+msgstr ""
+
+#: ../../source/administration/virtualization/vmmg.rst:16
+msgid "Common Configuration Options"
+msgstr ""
+
+#: ../../source/administration/virtualization/vmmg.rst:18
+msgid ""
+"Drivers accept a series of parameters that control their execution. The "
+"parameters allowed are:"
+msgstr ""
+
+#: ../../source/administration/virtualization/vmmg.rst:21
+msgid "parameter"
+msgstr ""
+
+#: ../../source/administration/virtualization/vmmg.rst:21
+msgid "description"
+msgstr ""
+
+#: ../../source/administration/virtualization/vmmg.rst:23
+msgid "-r <num>"
+msgstr ""
+
+#: ../../source/administration/virtualization/vmmg.rst:23
+msgid "number of retries when executing an action"
+msgstr ""
+
+#: ../../source/administration/virtualization/vmmg.rst:25
+msgid "-t <num"
+msgstr ""
+
+#: ../../source/administration/virtualization/vmmg.rst:25
+msgid "number of threads, i.e. number of actions done at the same time"
+msgstr ""
+
+#: ../../source/administration/virtualization/vmmg.rst:27
+msgid "-l <actions>"
+msgstr ""
+
+#: ../../source/administration/virtualization/vmmg.rst:27
+msgid "actions executed locally"
+msgstr ""
+
+#: ../../source/administration/virtualization/vmmg.rst:30
+msgid ""
+"See the :ref:`Virtual Machine drivers reference <devel-vmm>` for more "
+"information about these parameters, and how to customize and extend the "
+"drivers."
+msgstr ""
+
+#: ../../source/administration/virtualization/vmmg.rst:33
+msgid "Hypervisor Configuration"
+msgstr ""
+
+#: ../../source/administration/virtualization/vmmg.rst:35
+msgid ""
+"A feature supported by both KVM and Xen Hypervisor drivers is selecting the "
+"timeout for VM Shutdown. This feature is useful when a VM gets stuck in "
+"Shutdown (or simply does not notice the shutdown command). By default, after"
+" the timeout time the VM will return to Running state but is can also be "
+"configured so the VM is destroyed after the grace time. This is configured "
+"in both ``/var/lib/one/remotes/vmm/xen/xenrc`` and "
+"``/var/lib/one/remotes/vmm/kvm/kvmrc``:"
+msgstr ""

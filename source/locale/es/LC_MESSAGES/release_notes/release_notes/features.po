@@ -1,0 +1,776 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/release_notes/release_notes/features.rst:5
+msgid "Features"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:7
+msgid ""
+"This section describes the **detailed features and functionality of "
+"OpenNebula** for the management of private clouds and datacenter "
+"virtualization(\\*). It includes links to the different parts of the "
+"documentation and the web site that provide extended information about each "
+"feature. We also provide a summarized table of `key features "
+"<http://opennebula.org/about/key-features/>`__."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:10
+msgid "Powerful User Security Management"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:12
+msgid ""
+"Secure and efficient :ref:`Users and Groups Subsystem <auth_overview>` for "
+"authentication and authorization of requests with complete functionality for"
+" `user management "
+"<http://docs.opennebula.org/doc/4.6/cli/oneuser.1.html>`__: create, delete, "
+"show..."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:13
+msgid ""
+":ref:`Pluggable authentication and authorization <external_auth>` based on "
+":ref:`passwords <manage_users_users>`, :ref:`ssh rsa keypairs <ssh_auth>`, "
+":ref:`X509 certificates <x509_auth>`, :ref:`LDAP <ldap>` or :ref:`Active "
+"Directory <ldap>`"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:14
+msgid ""
+"Special authentication mechanisms for :ref:`SunStone (OpenNebula GUI) "
+"<sunstone>` and the :ref:`Cloud Services (EC2 and OCCI) <cloud_auth>`"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:15
+msgid ""
+"Authorization framework with :ref:`fine-grained ACLs <manage_acl>` that "
+"allows multiple-role support for different types of users and "
+"administrators, delegated control to authorized users, secure isolated "
+"multi-tenant environments, and easy resource (VM template, VM image, VM "
+"instance, virtual network and host) sharing"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:18
+msgid "Advanced Multi-tenancy with Group Management"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:20
+msgid ""
+"Administrators can :ref:`groups users <manage_users_groups>` into "
+"organizations that can represent different projects, division..."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:21
+msgid ""
+"Each group have :ref:`configurable access to shared resources <manage_acl>` "
+"so enabling a multi-tenant environment with multiple groups sharing the same"
+" infrastructure"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:22
+msgid ""
+"Configuration of special :ref:`users that are restricted to public cloud "
+"APIs <cloud_auth>` (e.g. EC2 or OCCI)"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:23
+msgid ""
+"Complete functionality for management of `groups "
+"<http://docs.opennebula.org/doc/4.6/cli/onegroup.1.html>`__: create, delete,"
+" show..."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:24
+msgid ""
+"Multiple group support, with the ability to define `primary and secondary "
+"groups <http://opennebula.org/manage_users#primary_and_secondary_groups>`__."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:27
+msgid "On-demand Provision of Virtual Data Centers"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:29
+msgid ""
+"A vDC is a fully-isolated virtual infrastructure environment where a Group "
+"of users, optionally under the control of the vDC admin, can create and "
+"manage compute and storage capacity."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:30
+msgid ""
+"User Groups can be assigned one or more resource providers. Resource "
+"providers are defined as a cluster of servers, virtual networs, datastores "
+"and public clouds for cloud bursting in an OpenNebula zone. Read more in the"
+" :ref:`Users and Groups Management Guide <managing-resource-provider-within-"
+"groups>`."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:31
+msgid ""
+"A special administration group can be defined to manage specific aspects of "
+"the group like user management or appliances definition. Read more in the "
+":ref:`Managing Users and Groups <manage_users>` guide."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:32
+msgid ""
+"Sunstone views for new groups can be dynamically defined without the need of"
+" modifying the Sunstone configuration files. More information in the "
+":ref:`Sunstone Views <suns_views>` guide."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:33
+msgid ""
+"Groups can now be tagged with custom attributes. Read more in the "
+":ref:`Managing Users and Groups <manage_users>` guide."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:36
+msgid "Advanced Control and Monitoring of Virtual Infrastructure"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:38
+msgid ""
+":ref:`Image Repository Subsystem <img_guide>` with catalog and complete "
+"functionality for `VM image management "
+"<http://docs.opennebula.org/doc/4.6/cli/oneimage.1.html>`__: list, publish, "
+"unpublish, show, enable, disable, register, update, saveas, delete, clone..."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:39
+msgid ""
+":ref:`Template Repository Subsystem <vm_guide>` with catalog and complete "
+"functionality for `VM template management "
+"<http://docs.opennebula.org/doc/4.6/cli/onetemplate.1.html>`__: add, delete,"
+" list, duplicate..."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:40
+msgid ""
+":ref:`Full control of VM instance life-cycle <vm_guide_2>` and complete "
+"functionality for `VM instance management "
+"<http://docs.opennebula.org/doc/4.6/cli/onevm.1.html>`__: submit, deploy, "
+"migrate, livemigrate, reschedule, stop, save, resume, cancel, shutdown, "
+"restart, reboot, delete, monitor, list, power-on, power-off,..."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:41
+msgid ""
+"Advanced functionality for VM dynamic management like :ref:`system and disk "
+"snapshotting <vm_guide2_snapshotting>`, :ref:`capacity resizing "
+"<vm_guide2_resizing_a_vm>`, or :ref:`NIC hotplugging "
+"<vm_guide2_nic_hotplugging>`"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:42
+msgid ""
+":ref:`Programmable VM operations <vm_guide2_scheduling_actions>`, so "
+"allowing users to schedule actions"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:43
+msgid ""
+"Volume hotplugging to easily hot plug a volatile disk created on-the-fly or "
+"an existing image from a Datastore to a running VM"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:44
+msgid ""
+":ref:`Broad network virtualization capabilities <vgg>` with traffic "
+"isolation, ranged or fixed networks, definition of generic attributes to "
+"define multi-tier services consisting of groups of inter-connected VMs, and "
+"complete functionality for `virtual network management "
+"<http://docs.opennebula.org/doc/4.6/cli/onevnet.1.html>`__ to interconnect "
+"VM instances: create, delete, monitor, list..."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:45
+msgid ""
+":ref:`IPv6 support <vgg_ipv6_networks>` with definition site and global "
+"unicast addresses"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:46
+msgid ""
+"Configurable :ref:`system accounting statistics <accounting>` to visualize "
+"and report resource usage data, to allow their integration with chargeback "
+"and billing platforms, or to guarantee fair share of resources among users"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:47
+msgid ""
+"Tagging of users, VM images and virtual networks with arbitrary metadata "
+"that can be later used by other components"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:48
+msgid ""
+":ref:`User defined VM tags <vm_guide2_user_defined_data>` to simplify VM "
+"management and to store application specific data"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:49
+msgid ""
+":ref:`Plain files datastore <file_ds>` to store kernels, ramdisks and files "
+"to be used in context. The whole set of OpenNebula features applies, e.g. "
+"ACLs, ownership..."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:52
+msgid "Complete Virtual Machine Configuration"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:54
+msgid ""
+"Complete :ref:`definition of VM attributes and requirements <template>`"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:55
+msgid ""
+"Support for automatic configuration of VMs with advanced "
+":ref:`contextualization mechanisms <cong>`"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:56
+msgid ":ref:`Cloud-init <cloud-init>` support"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:57
+msgid ""
+":ref:`Hook Manager <hooks>` to trigger administration scripts upon VM state "
+"change"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:58
+msgid ""
+"Wide range of guest operating system including Microsoft Windows and Linux"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:59
+msgid ":ref:`Flexible network defintion <vnet_template>`"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:60
+msgid ""
+":ref:`Configuration of firewall for VMs <firewall>` to specify a set of "
+"black/white TCP/UDP ports"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:63
+msgid "Advanced Control and Monitoring of Physical Infrastructure"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:65
+msgid ""
+":ref:`Configurable to deploy public, private and hybrid clouds <intro>`"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:66
+msgid ""
+":ref:`Host Management Subsystem <host_guide>` with complete functionality "
+"for management of `physical hosts "
+"<http://docs.opennebula.org/doc/4.6/cli/onehost.1.html>`__: create, delete, "
+"enable, disable, monitor, list..."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:67
+msgid ""
+"Dynamic creation of :ref:`clusters <cluster_guide>` as a logical set of "
+"physical resources, namely: hosts, networks and data stores, within each "
+"zone"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:68
+msgid ""
+"Highly scalable and extensible built-in :ref:`monitoring subsystem <mon>`"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:71
+msgid "Broad Commodity and Enterprise Platform Support"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:73
+msgid ""
+"Hypervisor agnostic :ref:`Virtualization Subsystem <vmmg>` with broad "
+"hypervisor support (:ref:`Xen <xeng>`, :ref:`KVM <kvmg>` and :ref:`VMware "
+"<evmwareg>`), centralized management of environments with multiple "
+"hypervisors, and support for multiple hypervisors within the same physical "
+"box"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:74
+msgid ""
+":ref:`Storage Subsystem <sm>` with support for multiple data stores to "
+"balance I/O operations between storage servers, or to define different SLA "
+"policies (e.g. backup) and performance features for different VM types or "
+"users"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:75
+msgid ""
+":ref:`Storage Subsystem <sm>` supporting any backend configuration with "
+"different datastore types: :ref:`file system datastore <fs_ds>`, to store "
+"disk images in a file form and with image transferring using ssh or shared "
+"file systems (NFS, GlusterFS, Lustre...), :ref:`LVM <lvm_drivers>` to store "
+"disk images in a block device form, :ref:`Ceph <ceph_ds>` for distributed "
+"block device, and :ref:`VMware datastore <vmware_ds>` specialized for the "
+"VMware hypervisor that handle the vmdk format and with support for VMFS"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:76
+msgid ""
+"Flexible :ref:`Network Subsystem <nm>` with integration with :ref:`Ebtable "
+"<ebtables>`, :ref:`Open vSwitch <openvswitch>` and :ref:`802.1Q tagging <hm-"
+"vlan>`"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:77
+msgid ""
+":ref:`Virtual Router <router>` fully integrated with OpenNebula to provide "
+"basic L3 services like NATting, DHCP, DNS..."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:80
+msgid "Distributed Resource Optimization"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:82
+msgid ""
+"Powerful and flexible :ref:`requirement/rank matchmaker scheduler <schg>` "
+"providing automatic initial VM placement for the definition of workload and "
+"resource-aware allocation policies such as packing, striping, load-aware, "
+"affinity-aware..."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:83
+msgid ""
+":ref:`Advanced requirement expressions "
+"<template_requirement_expression_syntax>` with cluster attributes for VM "
+"placement, affinity policies, any host attribute for scheduling expressions,"
+" and scheduler feedback through VM tags"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:84
+msgid ""
+"Powerful and flexible :ref:`requirement/rank matchmaker scheduler "
+"<system_ds_multiple_system_datastore_setups>` for storage load balancing to "
+"distribute efficiently the I/O of the VMs across different disks, LUNs or "
+"several storage backends"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:85
+msgid ""
+":ref:`Resource quota management <quota_auth>` to allocate, track and limit "
+"computing, storage and networking resource utilization"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:86
+msgid ""
+"Support for :ref:`cgroups <kvmg_working_with_cgroups_optional>` on KVM to "
+"enforce VM CPU usage as described in the VM Template"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:89
+msgid "Centralized Management of Multiple Zones"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:91
+msgid ""
+"Federation of multiple OpenNebula zones for scalability, isolation or "
+"multiple-site support"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:92
+msgid ""
+"Users can seamlessly provision virtual machines from multiple zones with an "
+"integrated interface both in Sunstone and CLI."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:93
+msgid ""
+"A new tool set has been developed to upgrade, integrate new zones and import"
+" existing zones into an OpenNebula federation. Read more in the "
+":ref:`Federation Configuration <federationconfig>` guide."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:94
+msgid ""
+"Integrated zone management in OpenNebula core. Read more about this in the "
+":ref:`Data Center Federation <introf>` guide."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:95
+msgid ""
+"Redesigned data model to minimize replication data across zones and to "
+"tolerate large latencies. Read more about this in the :ref:`Data Center "
+"Federation <introf>` guide."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:96
+msgid ""
+"Complete functionality for management of `zones "
+"<http://docs.opennebula.org/doc/4.6/cli/onezone.1.html>`__: create, delete, "
+"show, list..."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:99
+msgid "High Availability"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:101
+msgid ""
+"Persistent database backend with support for high availability "
+"configurations"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:102
+msgid ""
+":ref:`Configurable behavior in the event of host, VM, or OpenNebula instance"
+" failure to provide an easy to use and cost-effective failover solution "
+"<ftguide>`"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:103
+msgid "Support for :ref:`high availability architectures <oneha>`"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:106
+msgid "Community Virtual Appliance Marketplace"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:108
+msgid ""
+"`Marketplace <http://marketplace.c12g.com>`__ with an online catalog where "
+"individuals and organizations can quickly distribute and deploy virtual "
+"appliances ready-to-run on OpenNebula cloud environments"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:109
+msgid ""
+":ref:`Marketplace is fully integrated with OpenNebula <marketplace>` so any "
+"user of an OpenNebula cloud can find and deploy virtual appliances in a "
+"single click through familiar tools like the SunStone GUI or the OpenNebula "
+"CLI"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:110
+msgid ""
+"Support for importing OVAs processed by the AppMarket Worker. Read more "
+"`here <https://github.com/OpenNebula/addon-"
+"appmarket/blob/master/doc/usage.md#importing-an-appliance-from-sunstone>`__."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:114
+msgid "Management of Multi-tier Applications"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:116
+msgid ""
+":ref:`Automatic execution of multi-tiered applications <oneapps_overview>` "
+"with complete `functionality for the management of groups of virtual "
+"machines as a single entity "
+"<http://docs.opennebula.org/doc/4.6/cli/oneflow.1.html>`__: list, delete, "
+"scale up, scale down, shutdown... and the `management of Service Templates "
+"<http://docs.opennebula.org/doc/4.6/cli/oneflow-template.1.html>`__: create,"
+" show, delete, instantiate..."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:117
+msgid ""
+":ref:`Automatic deployment and undeployment of Virtual Machines "
+"<appflow_use_cli>` according to their dependencies in the Service Template"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:118
+msgid "Provide configurable services from a catalog and self-service portal"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:119
+msgid "Enable tight, efficient administrative control"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:120
+msgid ""
+"Complete integration with the OpenNebula's `User Security Management "
+"<http://opennebula.org/documentation:features#powerful_user_security_management>`__"
+" system"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:121
+msgid ""
+"Computing resources can be tracked and limited using OpenNebula's "
+":ref:`Resource Quota Management <quota_auth>`"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:122
+msgid ""
+":ref:`Automatic scaling of multi-tiered applications <appflow_elasticity>` "
+"according to performance metrics and time schedule"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:125
+msgid "Gain Insight into Cloud Applications"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:127
+msgid ""
+":ref:`OneGate allows Virtual Machine guests to push monitoring information "
+"to OpenNebula <onegate_usage>`"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:128
+msgid ""
+"With a security token the VMs can call back home and report guest and/or "
+"application status in a simple way, that can be easily queried through "
+"OpenNebula interfaces (Sunstone, CLI or API)."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:129
+msgid ""
+"Users and administrators can use it to gather metrics, detect problems in "
+"their applications, and trigger :ref:`OneFlow auto-scaling rules "
+"<appflow_elasticity>`"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:132
+msgid "Hybrid Cloud Computing and Cloud Bursting"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:134
+msgid ""
+":ref:`Extension of the local private infrastructure with resources from "
+"remote clouds <introh>`"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:135
+msgid ""
+":ref:`Support for Amazon EC2 <ec2g>` with most of the EC2 features like "
+"tags, security groups or VPC; and simultaneous access to multiple remote "
+"clouds"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:138
+msgid ""
+"Standard Cloud Interfaces and Simple Provisioning Portal for Cloud Consumers"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:140
+msgid ""
+":ref:`Transform your local infrastructure into a public cloud by exposing "
+"REST-based interfaces <introc>`"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:141
+msgid ""
+":ref:`OGF OCCI service <occicg>`, the emerging cloud API standard, and "
+":ref:`client tools <occiug>`"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:142
+msgid ""
+":ref:`AWS EC2 API service <ec2qcg>`, the de facto cloud API standard, with "
+":ref:`compatibility with EC2 ecosystem tools <ec2qec>` and :ref:`client "
+"tools <ec2qug>`"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:143
+msgid "Support for simultaneously exposing multiple cloud APIs"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:144
+msgid ""
+":ref:`Provisioning portal implemented as a user view of Sunstone "
+"<cloud_view>` to allow non-IT end users to easily create, deploy and manage "
+"compute, storage and network resources"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:147
+msgid "Rich Command Line and Web Interfaces for Cloud Administrators"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:149
+msgid ""
+":ref:`Unix-like Command Line Interface <cli>` to manage all resources: "
+"users, VM images, VM templates, VM instances, virtual networks, zones, VDCs,"
+" physical hosts, accounting, authentication, authorization..."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:150
+msgid ""
+":ref:`Easy-to-use Sunstone Graphical Interface <sunstone>` providing usage "
+"graphics and statistics with cloudwatch-like functionality, VNC support, "
+"different system views for different roles, catalog access, multiple-zone "
+"management..."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:151
+msgid ""
+":ref:`Sunstone is easily customizable <suns_views>` to define multiple cloud"
+" views for different user groups"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:154
+msgid "Multiple Deployment Options"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:156
+msgid ""
+":ref:`Easy to install and update <ignc>` with `packages for most common "
+"Linux distributions <http://opennebula.org/software:software>`__"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:157
+msgid ""
+"`Available in most popular Linux distributions "
+"<http://opennebula.org/software:software>`__"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:158
+msgid ":ref:`Optional building from source code <compile>`"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:159
+msgid ":ref:`System features a small footprint <plan>`, less than 10Mb"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:160
+msgid ""
+":ref:`Detailed log files <log_debug>` with :ref:`syslog support "
+"<log_debug_configure_the_logging_system>` for the different components that "
+"maintain a record of significant changes"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:163
+msgid "Easy Extension and Integration"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:165
+msgid ""
+"Modular and extensible architecture to fit into any existing datacenter"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:166
+msgid ""
+"Customizable drivers for the main subsystems to easily leverage existing IT "
+"infrastructure and system management products: :ref:`Virtualization <devel-"
+"vmm>`, :ref:`Storage <sd>`, :ref:`Monitoring <devel-im>`, :ref:`Network "
+"<devel-nm>`, :ref:`Auth <auth_overview>` and :ref:`Hybrid Cloud <devel-vmm>`"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:167
+msgid "New drivers can be easily written in any language"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:168
+msgid ""
+"Plugin support to easily extend SunStone Graphical Interface with additional"
+" tabs to better integrate Cloud and VM management with each site own "
+"operations and tools"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:169
+msgid "Easily customizable self-service portal for cloud consumers"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:170
+msgid ""
+":ref:`Configuration and tuning parameters <oned_conf>` to adjust behavior of"
+" the cloud management instance to the requirements of the environment and "
+"use cases"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:171
+msgid ""
+"`Fully open-source technology available under Apache license "
+"<http://dev.opennebula.org/projects/opennebula/repository>`__"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:172
+msgid ""
+"Powerful and extensible low-level cloud API in :ref:`Ruby <ruby>` and "
+":ref:`JAVA <java>` and :ref:`XMLRPC API <api>`"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:173
+msgid ""
+"`OpenNebula Add-on Catalog <http://opennebula.org/addons:addons>`_ with "
+"components enhancing the functionality provided by OpenNebula"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:176
+msgid "Reliability, Efficiency and Massive Scalability"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:178
+msgid ""
+"`Automated testing process for functionality, scalability, performance, "
+"robustness and stability <http://opennebula.org/software:testing>`_"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:179
+msgid ""
+"`Technology matured through an active and engaged community "
+"<http://opennebula.org/community:community>`_"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:180
+msgid ""
+"Proven on large scale infrastructures consisting of tens of thousands of "
+"cores and VMs"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:181
+msgid ""
+"Highly scalable database back-end with support for :ref:`MySQL <mysql>` and "
+"SQLite"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:182
+msgid "Virtualization drivers adjusted for maximum scalability"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:183
+msgid "Very efficient core developed in C++ language"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:185
+msgid ""
+"(\\*) *Because OpenNebula leverages the functionality exposed by the "
+"underlying platform services, its functionality and performance may be "
+"affected by the limitations imposed by those services.*"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:187
+msgid ""
+"*The list of features may change on the different platform configurations*"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:188
+msgid ""
+"*Not all platform configurations exhibit a similar performance and "
+"stability*"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:189
+msgid ""
+"*The features may change to offer users more features and integration with "
+"other virtualization and cloud components*"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/features.rst:190
+msgid ""
+"*The features may change due to changes in the functionality provided by "
+"underlying virtualization services*"
+msgstr ""

@@ -1,0 +1,299 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/release_notes/release_notes/upgrade_42.rst:4
+msgid "Upgrading from OpenNebula 4.2"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/upgrade_42.rst:6
+msgid ""
+"This guide describes the installation procedure for systems that are already"
+" running a 4.2 OpenNebula. The upgrade will preserve all current users, "
+"hosts, resources and configurations; for both Sqlite and MySQL backends."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/upgrade_42.rst:8
+msgid ""
+"Read the Compatibility Guide `for 4.4 "
+"<http://docs.opennebula.org/4.4/release_notes44/compatibility.html>`_ and "
+":ref:`4.6 <compatibility>`, and the `Release Notes "
+"<http://opennebula.org/software/release/>`_ to know what is new in "
+"OpenNebula 4.6."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/upgrade_42.rst:10
+#: ../../source/release_notes/release_notes/upgrade_42.rst:124
+msgid ""
+"With the new :ref:`multi-system DS "
+"<system_ds_multiple_system_datastore_setups>` functionality, it is now "
+"required that the system DS is also part of the cluster. If you are using "
+"System DS 0 for Hosts inside a Cluster, any VM saved (stop, suspend, "
+"undeploy) **will not be able to be resumed after the upgrade process**."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/upgrade_42.rst:13
+msgid ""
+"Two drivers available in 4.0 are now discontinued: **ganglia** and "
+"**iscsi**."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/upgrade_42.rst:15
+msgid ""
+"**iscsi** drivers have been moved out of the main OpenNebula distribution "
+"and are available (although not supported) as an `addon "
+"<https://github.com/OpenNebula/addon-iscsi>`__."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/upgrade_42.rst:16
+msgid ""
+"**ganglia** drivers have been moved out of the main OpenNebula distribution "
+"and are available (although not supported) as an `addon "
+"<https://github.com/OpenNebula/addon-ganglia>`__."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/upgrade_42.rst:19
+msgid "Preparation"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/upgrade_42.rst:21
+msgid ""
+"Before proceeding, make sure you don't have any VMs in a transient state "
+"(prolog, migr, epil, save). Wait until these VMs get to a final state (runn,"
+" suspended, stopped, done). Check the :ref:`Managing Virtual Machines guide "
+"<vm_guide_2>` for more information on the VM life-cycle."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/upgrade_42.rst:23
+msgid ""
+"Stop OpenNebula and any other related services you may have running: EC2, "
+"OCCI, and Sunstone. As ``oneadmin``, in the front-end:"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/upgrade_42.rst:34
+msgid "Backup"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/upgrade_42.rst:36
+msgid ""
+"Backup the configuration files located in **/etc/one**. You don't need to do"
+" a manual backup of your database, the onedb command will perform one "
+"automatically."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/upgrade_42.rst:39
+msgid "Installation"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/upgrade_42.rst:41
+msgid ""
+"Follow the :ref:`Platform Notes <uspng>` and the :ref:`Installation guide "
+"<ignc>`, taking into account that you will already have configured the "
+"passwordless ssh access for oneadmin."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/upgrade_42.rst:43
+msgid ""
+"It is highly recommended **not to keep** your current ``oned.conf``, and "
+"update the ``oned.conf`` file shipped with OpenNebula 4.6 to your setup. If "
+"for any reason you plan to preserve your current ``oned.conf`` file, read "
+"the :ref:`Compatibility Guide <compatibility>` and the complete oned.conf "
+"reference for `4.2 "
+"<http://opennebula.org/documentation:archives:rel4.2:oned_conf>`__ and "
+":ref:`4.6 <oned_conf>` versions."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/upgrade_42.rst:46
+msgid "Database Upgrade"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/upgrade_42.rst:48
+msgid ""
+"The database schema and contents are incompatible between versions. The "
+"OpenNebula daemon checks the existing DB version, and will fail to start if "
+"the version found is not the one expected, with the message 'Database "
+"version mismatch'."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/upgrade_42.rst:50
+msgid ""
+"You can upgrade the existing DB with the 'onedb' command. You can specify "
+"any Sqlite or MySQL database. Check the :ref:`onedb reference <onedb>` for "
+"more information."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/upgrade_42.rst:52
+msgid ""
+"Make sure at this point that OpenNebula is not running. If you installed "
+"from packages, the service may have been started automatically."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/upgrade_42.rst:54
+msgid ""
+"After you install the latest OpenNebula, and fix any possible conflicts in "
+"oned.conf, you can issue the 'onedb upgrade -v' command. The connection "
+"parameters have to be supplied with the command line options, see the "
+":ref:`onedb manpage <cli>` for more information. Some examples:"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/upgrade_42.rst:64
+msgid "If everything goes well, you should get an output similar to this one:"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/upgrade_42.rst:88
+msgid ""
+"If you receive the message “ATTENTION: manual intervention required”, read "
+"the section :ref:`Manual Intervention Required "
+"<upgrade_42_manual_intervention_required>` below."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/upgrade_42.rst:90
+msgid ""
+"Make sure you keep the backup file. If you face any issues, the onedb "
+"command can restore this backup, but it won't downgrade databases to "
+"previous versions."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/upgrade_42.rst:93
+msgid "Check DB Consistency"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/upgrade_42.rst:95
+msgid ""
+"After the upgrade is completed, you should run the command ``onedb fsck``."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/upgrade_42.rst:97
+msgid ""
+"First, move the 4.2 backup file created by the upgrade command to a safe "
+"place."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/upgrade_42.rst:103
+msgid "Then execute the following command:"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/upgrade_42.rst:115
+msgid "Update the Drivers"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/upgrade_42.rst:117
+msgid ""
+"You should be able now to start OpenNebula as usual, running 'one start' as "
+"oneadmin. At this point, execute ``onehost sync`` to update the new drivers "
+"in the hosts."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/upgrade_42.rst:119
+msgid ""
+"Doing ``onehost sync`` is important. If the monitorization drivers are not "
+"updated, the hosts will behave erratically."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/upgrade_42.rst:122
+msgid "Setting new System DS"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/upgrade_42.rst:126
+msgid ""
+"You will need to have at least one system DS in each cluster. If you don't "
+"already, create new system DS with the same definition as the system DS 0 "
+"(TM\\_MAD driver). Depending on your setup this may or may not require "
+"additional configuration on the hosts."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/upgrade_42.rst:128
+msgid ""
+"You may also try to recover saved VMs (stop, suspend, undeploy) following "
+"the steps described in this `thread of the users mailing list "
+"<http://lists.opennebula.org/pipermail/users-"
+"opennebula.org/2013-December/025727.html>`__."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/upgrade_42.rst:131
+msgid "Testing"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/upgrade_42.rst:133
+msgid ""
+"OpenNebula will continue the monitoring and management of your previous "
+"Hosts and VMs."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/upgrade_42.rst:135
+msgid ""
+"As a measure of caution, look for any error messages in oned.log, and check "
+"that all drivers are loaded successfully. After that, keep an eye on "
+"oned.log while you issue the onevm, onevnet, oneimage, oneuser, onehost "
+"**list** commands. Try also using the **show** subcommand for some "
+"resources."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/upgrade_42.rst:138
+msgid "Restoring the Previous Version"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/upgrade_42.rst:140
+msgid ""
+"If for any reason you need to restore your previous OpenNebula, follow these"
+" steps:"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/upgrade_42.rst:142
+msgid ""
+"With OpenNebula 4.6 still installed, restore the DB backup using 'onedb "
+"restore -f'"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/upgrade_42.rst:143
+msgid "Uninstall OpenNebula 4.6, and install again your previous version."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/upgrade_42.rst:144
+msgid ""
+"Copy back the backup of /etc/one you did to restore your configuration."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/upgrade_42.rst:147
+msgid "Known Issues"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/upgrade_42.rst:149
+msgid ""
+"If the MySQL database password contains specials characters, such as ``@`` "
+"or ``#``, the onedb command will fail to connect to it."
+msgstr ""
+
+#: ../../source/release_notes/release_notes/upgrade_42.rst:151
+msgid ""
+"The workaround is to temporarily change the oneadmin's password to an ASCII "
+"string. The `set password <http://dev.mysql.com/doc/refman/5.6/en/set-"
+"password.html>`__ statement can be used for this:"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/upgrade_42.rst:162
+msgid "Manual Intervention Required"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/upgrade_42.rst:164
+msgid ""
+"If you have a datastore configured to use a tm driver not included in the "
+"OpenNebula distribution, the onedb upgrade command will show you this "
+"message:"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/upgrade_42.rst:175
+msgid ""
+"Since OpenNebula 4.4, each tm\\_mad driver has a TM\\_MAD\\_CONF section in "
+"oned.conf. If you developed the driver, it should be fairly easy to define "
+"the required information looking at the existing ones:"
+msgstr ""

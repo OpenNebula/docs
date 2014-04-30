@@ -1,0 +1,453 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:5
+msgid "Understanding OpenNebula"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:7
+msgid ""
+"This guide is meant for the cloud architect and administrator, to help him "
+"to understand the way OpenNebula categorizes the infrastructure resources, "
+"and how they are consumed by the users."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:9
+msgid ""
+"In a tiny installation with a few hosts, you can use OpenNebula with the two"
+" default groups for the administrator and the users, without giving much "
+"though to the infrastructure partitioning and user organization. But for "
+"medium and big deployments you will probably want to provide some level of "
+"isolation and structure."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:11
+msgid ""
+"Although OpenNebula has been designed and developed to be easy to adapt to "
+"each individual company use case and processes, and perform fine-tuning of "
+"multiple aspects, OpenNebula brings a pre-defined model for cloud "
+"provisioning and consumption."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:13
+msgid ""
+"The OpenNebula model is a result of our collaboration with our user "
+"community during the last years."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:16
+msgid "The Infrastructure Perspective"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:18
+msgid ""
+"Common large IT shops have multiple Data Centers (DCs), each one of them "
+"consisting of several physical Clusters of infrastructure resources (hosts, "
+"networks and storage). These Clusters could present different architectures "
+"and software/hardware execution environments to fulfill the needs of "
+"different workload profiles. Moreover, many organizations have access to "
+"external public clouds to build hybrid cloud scenarios where the private "
+"capacity of the Data Centers is supplemented with resources from external "
+"clouds to address peaks of demand. Sysadmins need a single comprehensive "
+"framework to dynamically allocate all these available resources to the "
+"multiple groups of users."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:20
+msgid ""
+"For example, you could have two Data Centers in different geographic "
+"locations, Europe and USA West Coast, and an agreement for cloudbursting "
+"with a public cloud provider, such as Amazon. Each Data Center runs its own "
+"full OpenNebula deployment. Multiple OpenNebula installations can be "
+"configured as a federation, and in this case they will share the same user "
+"accounts, groups, and permissions across Data Centers."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:22
+msgid "|vDC Resources|"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:25
+msgid "The Organizational Perspective"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:27
+msgid ""
+"Users are organized into Groups (also called Projects, Domains, Tenants...)."
+" A Group is an authorization boundary that can be seen as a business unit if"
+" you are considering it as private cloud or as a complete new company if it "
+"is public cloud."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:29
+msgid ""
+"A Group is simply a boundary, you need to populate resources into the Group "
+"which can then be consumed by the users of that Group. A vDC (Virtual Data "
+"Center) is a Group plus Resource Providers assigned. A Resource Provider is "
+"a Cluster of infrastructure resources (physical hosts, networks, storage and"
+" external clouds) from one of the Data Centers."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:31
+msgid ""
+"Different authorization scenarios can be enabled with the powerful and "
+"configurable ACL system provided, from the definition of vDC Admins to the "
+"privileges of the users that can deploy virtual machines. Each vDC can "
+"execute different types of workload profiles with different performance and "
+"security requirements."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:33
+msgid ""
+"The following are common enterprise use cases in large cloud computing "
+"deployments:"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:35
+msgid ""
+"**On-premise Private Clouds** Serving Multiple Projects, Departments, Units "
+"or Organizations. On-premise private clouds in large organizations require "
+"powerful and flexible mechanisms to manage the access privileges to the "
+"virtual and physical infrastructure and to dynamically allocate the "
+"available resources. In these scenarios, the Cloud Administrator would "
+"define a vDC for each Department, dynamically allocating resources according"
+" to their needs, and delegating the internal administration of the vDC to "
+"the Department IT Administrator."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:36
+msgid ""
+"**Cloud Providers** Offering Virtual Private Cloud Computing. Cloud "
+"providers providing customers with a fully-configurable and isolated "
+"environment where they have full control and capacity to administer its "
+"users and resources. This combines a public cloud with the control usually "
+"seen in a personal private cloud system."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:38
+msgid "|vDC Groups|"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:40
+msgid ""
+"For example, you can think Web Development, Human Resources, and Big Data "
+"Analysis as business units represented by vDCs in a private OpenNebula "
+"cloud."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:42
+msgid ""
+"**BLUE**: Allocation of (ClusterA-DC_West_Coast + Cloudbursting) to Web "
+"Development"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:43
+msgid ""
+"**RED**: Allocation of (ClusterB-DC_West_Coast + ClusterA-DC_Europe + "
+"Cloudbursting) to Human Resources"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:44
+msgid ""
+"**GREEN**: Allocation of (ClusterC-DC_West_Coast + ClusterB-DC_Europe) to "
+"Big Data Analysis"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:46
+msgid "|vDC Organization|"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:49
+msgid "A Cloud Provisioning Model Based on vDCs"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:51
+msgid ""
+"A vDC is a fully-isolated virtual infrastructure environment where a Group "
+"of users, optionally under the control of the vDC admin, can create and "
+"manage compute and storage capacity. The users in the vDC, including the vDC"
+" administrator, would only see the virtual resources and not the underlying "
+"physical infrastructure. The physical resources allocated by the cloud "
+"administrator to the vDC can be completely dedicated to the vDC, providing "
+"isolation at the physical level too."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:53
+msgid ""
+"The privileges of the vDC users and the administrator regarding the "
+"operations over the virtual resources created by other users can be "
+"configured. In a typical scenario the vDC administrator can upload and "
+"create images and virtual machine templates, while the users can only "
+"instantiate virtual machine templates to create their machines. The "
+"administrators of the vDC have full control over other users' resources and "
+"can also create new users in the vDC."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:55
+msgid "|cloud-view|"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:57
+msgid ""
+"Users can then access their vDC through any of the existing OpenNebula "
+"interfaces, such as the CLI, Sunstone Cloud View, OCA, or the OCCI and AWS "
+"APIs. vDC administrators can manage their vDCs through the CLI or the vDC "
+"admin view in Sunstone. Cloud Administrators can manage the vDCs through the"
+" CLI or Sunstone."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:59
+msgid ""
+"The Cloud provisioning model based on vDCs enables an integrated, "
+"comprehensive framework to dynamically provision the infrastructure "
+"resources in large multi-datacenter environments to different customers, "
+"business units or groups. This brings several benefits:"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:61
+msgid "Partitioning of cloud physical resources between Groups of users"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:62
+msgid "Complete isolation of users, organizations or workloads"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:63
+msgid ""
+"Allocation of Clusters with different levels of security, performance or "
+"high availability"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:64
+msgid "Containers for the execution of software-defined data centers"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:65
+msgid "Way of hiding physical resources from Group members"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:66
+msgid ""
+"Simple federation, scalability and cloudbursting of private cloud "
+"infrastructures beyond a single cloud instance and data center"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:69
+msgid "Cloud Usage Models"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:71
+msgid ""
+"OpenNebula has three pre-defined user roles to implement two typical "
+"enterprise cloud scenarios: infrastructure management and infrastructure "
+"provisioning."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:73
+msgid ""
+"In both scenarios, the Cloud Administrator manages the physical "
+"infrastructure, creates users and vDC, and prepares base templates and "
+"images for other users."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:76
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:98
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:117
+msgid "Role"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:76
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:98
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:117
+msgid "Capabilities"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:78
+msgid "**Cloud Admin.**"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:78
+msgid ""
+"Operates the Cloud infrastructure (i.e. computing nodes, networking fabric, "
+"storage servers)"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:79
+msgid ""
+"Creates and manages OpenNebula infrastructure resources: Hosts, Virtual "
+"Networks, Datastores"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:80
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:103
+msgid "Creates and manages :ref:`Application Flows <oneapps_overview>`"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:81
+msgid "Creates new groups for vDCs"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:82
+msgid "Assigns resource providers to a vDC and sets quota limits"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:83
+msgid ""
+"Defines base instance types to be used by the vDCs. These types define the "
+"capacity of the VMs (memory, cpu and additional storage) and connectivity."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:84
+msgid "Prepare VM images to be used by the vDCs"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:85
+msgid "Monitor the status and health of the cloud"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:86
+msgid "Generate activity reports"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:90
+msgid "Infrastructure Management"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:92
+msgid ""
+"In this usage model, users are familiar with virtualization concepts. Except"
+" for the infrastructure resources, the web interface offeres the same "
+"operations available to the Cloud Admin."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:94
+msgid ""
+"End users can use the templates and images pre-defined by the cloud "
+"administrator, but are also allowed to create their own. They are also able "
+"to manage the life-cycle of their resources, including advanced features "
+"that may harm the VM guests, like hot-plugging of new disks, resize of "
+"Virtual Machines, modify boot parameters, etc."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:100
+msgid "**User**"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:100
+msgid "Instantiates VMs using their own templates"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:101
+msgid "Creates new Images"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:102
+msgid "Manages their VMs, including advanced life-cycle features"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:104
+msgid "Check their usage and quotas"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:105
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:136
+msgid "Upload SSH keys to access the VMs"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:110
+msgid "Infrastructure Provisioning"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:112
+msgid ""
+"In a infrastructure provisioning model, the end users access a simplified "
+"web interface that allows them to launch Virtual Machines from pre-defined "
+"Templates and Images. They can access their VMs, and perform basic "
+"operations like shutdown. The changes made to a VM disk can be saved back, "
+"but new Images cannot be created from scratch."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:114
+msgid ""
+"Optionally, each vDC can define one or more users as vDC Admins. These "
+"admins can create new users inside the vDC, and also manage the resources of"
+" the rest of the users. A vDC Admin may, for example, shutdown a VM from "
+"other user to free group quota usage."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:119
+msgid "**vDC Admin.**"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:119
+msgid "Creates new users in the vDC"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:120
+msgid "Operates on vDC virtual machines and disk images"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:121
+msgid "Creates and registers disk images to be used by the vDC users"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:122
+msgid "Checks vDC usage and quotas"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:124
+msgid "**vDC User**"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:124
+msgid ""
+"Instantiates VMs using the templates defined by the Cloud Admins and the "
+"images defined by the Cloud Admins or vDC Admins."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:125
+msgid ""
+"Instantiates VMs using their own Images saved from a previous running VM"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:126
+msgid "Manages their VMs, including"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:128
+msgid "reboot"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:129
+msgid "power off/on (short-term switching-off)"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:130
+msgid "shutdown"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:131
+msgid "make a VM image snapshot"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:132
+msgid "obtain basic monitor information and status (including IP addresses)"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:134
+msgid "Delete any previous disk snapshot"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/understand.rst:135
+msgid "Check user usage and quotas"
+msgstr ""

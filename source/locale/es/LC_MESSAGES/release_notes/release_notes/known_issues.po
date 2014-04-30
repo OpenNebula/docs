@@ -1,0 +1,64 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/release_notes/release_notes/known_issues.rst:5
+msgid "Known Issues"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/known_issues.rst:8
+msgid "Core & System"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/known_issues.rst:10
+msgid ""
+"`#2831 <http://dev.opennebula.org/issues/2831>`_ Monitoring data is added to"
+" the VM even when is not active"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/known_issues.rst:13
+msgid "Packaging"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/known_issues.rst:15
+msgid ""
+"`#2837 <http://dev.opennebula.org/issues/2837>`_ Sunstone start scripts may "
+"leave a running process without writting down the pid"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/known_issues.rst:18
+msgid "Sunstone"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/known_issues.rst:20
+msgid ""
+"`#2814 <http://dev.opennebula.org/issues/2814>`_ If a role name contains < "
+"or >, the extended role view fails to open"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/known_issues.rst:21
+msgid ""
+"`#2813 <http://dev.opennebula.org/issues/2813>`_ Sporadic Uncaught TypeError"
+" in vm list callback"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/known_issues.rst:22
+msgid ""
+"`#2804 <http://dev.opennebula.org/issues/2804>`_ Wizard multple selection "
+"dataTables do not highlight element outside the current page"
+msgstr ""
+
+#: ../../source/release_notes/release_notes/known_issues.rst:23
+msgid ""
+"`#2799 <http://dev.opennebula.org/issues/2799>`_ Template update wizard: "
+"intro calls create, not update"
+msgstr ""

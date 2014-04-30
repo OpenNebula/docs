@@ -1,0 +1,319 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/integration/references/compile.rst:5
+msgid "Building from Source Code"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:7
+msgid ""
+"This page will show you how to compile and install OpenNebula from the "
+"sources."
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:9
+msgid ""
+"If you want to install it from your package manager, visit the `software "
+"menu <http://opennebula.org/software:software>`_ to find out if OpenNebula "
+"is included in your official distribution package repositories."
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:11
+msgid ""
+"Do not forget to check the :ref:`Building Dependecies <build_deps>` for a "
+"list of specific software requirements to build OpenNebula."
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:14
+msgid "Compiling the Software"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:16
+msgid "Follow these simple steps to install the OpenNebula software:"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:18
+msgid "Download and untar the OpenNebula tarball."
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:19
+msgid "Change to the created folder and run scons to compile OpenNebula"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:28
+#: ../../source/integration/references/compile.rst:60
+msgid "OPTION"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:28
+#: ../../source/integration/references/compile.rst:60
+msgid "VALUE"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:30
+msgid "syslog"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:30
+msgid "**yes** to compile syslog support. Needs log4cpp lib"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:32
+msgid "sqlite\\_db"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:32
+msgid "path-to-sqlite-install"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:34
+msgid "sqlite"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:34
+msgid "**no** if you don't want to build sqlite support"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:36
+msgid "mysql"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:36
+msgid "**yes** if you want to build mysql support"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:38
+msgid "xmlrpc"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:38
+msgid "path-to-xmlrpc-install"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:40
+msgid "parsers"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:40
+msgid "**yes** if you want to rebuild flex/bison files"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:42
+msgid "new\\_xmlrpc"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:42
+msgid "**yes** if you have an xmlrpc-c version >= 1.31"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:45
+msgid ""
+"If the following error appears, then you need to remove the option "
+"'new\\_xmlrpc=yes' or install xmlrpc-c version >= 1.31:"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:51
+msgid ""
+"OpenNebula can be installed in two modes: ``system-wide``, or in ``self-"
+"contained`` directory. In either case, you do not need to run OpenNebula as "
+"root. These options can be specified when running the install script:"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:57
+msgid "where *<install\\_options>* can be one or more of:"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:62
+msgid "**-u**"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:62
+msgid "user that will run OpenNebula, defaults to user executing install.sh"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:64
+msgid "**-g**"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:64
+msgid ""
+"group of the user that will run OpenNebula, defaults to user executing "
+"install.sh"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:66
+msgid "**-k**"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:66
+msgid ""
+"keep configuration files of existing OpenNebula installation, useful when "
+"upgrading. This flag should not be set when installing OpenNebula for the "
+"first time"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:68
+msgid "**-d**"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:68
+msgid ""
+"target installation directory. If defined, it will specified the path for "
+"the **self-contained** install. If not defined, the installation will be "
+"performed **system wide**"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:70
+msgid "**-c**"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:70
+msgid ""
+"only install client utilities: OpenNebula cli, occi and ec2 client files"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:72
+msgid "**-r**"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:72
+msgid ""
+"remove Opennebula, only useful if -d was not specified, otherwise ``rm -rf "
+"$ONE_LOCATION`` would do the job"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:74
+msgid "**-h**"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:74
+msgid "prints installer help"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:77
+msgid ""
+"The packages do a ``system-wide`` installation. To create a similar "
+"environment, create a ``oneadmin`` user and group, and execute:"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:90
+msgid "Ruby Dependencies"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:92
+msgid "Ruby version needs to be:"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:94
+msgid "**ruby** >= 1.8.7"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:96
+msgid ""
+"Some OpenNebula components need ruby libraries. Some of these libraries are "
+"interfaces to binary libraries and the development packages should be "
+"installed in your machine. This is the list of the ruby libraries that need "
+"a development package:"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:98
+msgid "**sqlite3**: sqlite3 development library"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:99
+msgid "**mysql**: mysql client development library"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:100
+msgid "**curb**: curl development library"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:101
+msgid "**nokogiri**: expat development librarie"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:102
+msgid "**xmlparse**: libxml2 and libxslt development libraries"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:104
+msgid ""
+"You will also need ruby development package to be able to compile these "
+"gems."
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:106
+msgid ""
+"We provide a script to ease the installation of these gems. it is located in"
+" ``/usr/share/one/install_gems`` (system-wide mode) or "
+"``$ONE_LOCATION/share/install_gems`` (self-contained mode). It can be called"
+" with the components you want the gem dependencies to be installed. Here are"
+" the options:"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:108
+msgid "**optional**: libraries that make CLI and OCA faster"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:109
+msgid "**quota**: quota system"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:110
+msgid "**sunstone**: sunstone graphical interface"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:111
+msgid "**cloud**: ec2 and occi interfaces"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:112
+msgid "**ozones\\_client**: CLI of ozones"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:113
+msgid ""
+"**ozones\\_server**: server part of ozones, both mysql and sqlite support"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:114
+msgid "**ozones\\_server\\_sqlite**: ozones server, only sqlite support"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:115
+msgid "**ozones\\_server\\_mysql**: ozones server, only mysql support"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:116
+msgid "**acct**: accounting collector, both mysql and sqlite support"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:117
+msgid "**acct\\_sqlite**: accounting collector, only sqlite support"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:118
+msgid "**acct\\_mysql**: accounting collector, only mysql support"
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:120
+msgid ""
+"The tool can be also called without parameters and all the packages will be "
+"installed."
+msgstr ""
+
+#: ../../source/integration/references/compile.rst:122
+msgid ""
+"For example, to install only requirements for sunstone, ec2 and occi "
+"interfaces you'll issue:"
+msgstr ""

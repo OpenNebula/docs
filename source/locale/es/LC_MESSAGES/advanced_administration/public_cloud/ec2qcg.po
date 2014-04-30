@@ -1,0 +1,590 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:5
+msgid "EC2 Server Configuration"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:8
+msgid "Overview"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:10
+msgid ""
+"The OpenNebula EC2 Query is a web service that enables you to launch and "
+"manage virtual machines in your OpenNebula installation through the `Amazon "
+"EC2 Query Interface "
+"<http://docs.amazonwebservices.com/AWSEC2/2009-04-04/DeveloperGuide/index.html"
+"?using-query-api.html>`__. In this way, you can use any EC2 Query tool or "
+"utility to access your Private Cloud. The EC2 Query web service is "
+"implemented upon the **OpenNebula Cloud API** (OCA) layer that exposes the "
+"full capabilities of an OpenNebula private cloud; and `Sinatra "
+"<http://www.sinatrarb.com/>`__, a widely used light web framework."
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:12
+msgid "|image0|"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:14
+msgid ""
+"The current implementation includes the basic routines to use a Cloud, "
+"namely: image upload and registration, and the VM run, describe and "
+"terminate operations. The following sections explain you how to install and "
+"configure the EC2 Query web service on top of a running OpenNebula cloud."
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:16
+msgid ""
+"The OpenNebula EC2 Query service provides a Amazon EC2 Query API compatible "
+"interface to your cloud, that can be used alongside the native OpenNebula "
+"CLI or OpenNebula Sunstone."
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:18
+msgid ""
+"The OpenNebula distribution includes the tools needed to use the EC2 Query "
+"service."
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:21
+msgid "Requirements & Installation"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:23
+msgid ""
+"You must have an OpenNebula site properly configured and running , be sure "
+"to check the :ref:`OpenNebula Installation and Configuration Guides "
+"<design_and_installation_guide>` to set up your private cloud first. This "
+"guide also assumes that you are familiar with the configuration and use of "
+"OpenNebula."
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:25
+msgid ""
+"The OpenNebula EC2 Query service was installed during the OpenNebula "
+"installation, and the dependencies of this service are installed when using "
+"the install\\_gems tool as explained in the :ref:`installation guide <ignc>`"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:27
+msgid ""
+"If you installed OpenNebula from source you can install the EC2 Query "
+"dependencias as explained at the end of the :ref:`Building from Source Code "
+"guide <compile>`"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:33
+msgid "Configuration"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:35
+msgid ""
+"The service is configured through the ``/etc/one/econe.conf`` file, where "
+"you can set up the basic operational parameters for the EC2 Query web "
+"service. The following table summarizes the available options:"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:37
+msgid "**Server configuration**"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:39
+msgid "``tmpdir``: Directory to store temp files when uploading images"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:40
+msgid "``one_xmlrpc``: oned xmlrpc service, http://localhost:2633/RPC2"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:41
+msgid "``host``: Host where econe server will run"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:42
+msgid "``port``: Port where econe server will run"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:43
+msgid ""
+"``ssl_server``: URL for the EC2 service endpoint, when configured through a "
+"proxy"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:45
+msgid "**Log**"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:47
+msgid ""
+"``debug_level``: Log debug level, ``0 = ERROR``, ``1 = WARNING``, ``2 = "
+"INFO``, ``3 = DEBUG``."
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:49
+msgid "**Auth**"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:51
+msgid "``auth``: Authentication driver for incomming requests"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:52
+msgid ""
+"``core_auth``: Authentication driver to communicate with OpenNebula core. "
+"Check :ref:`this guide <cloud_auth>` for more information about the "
+"core\\_auth syste"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:54
+msgid "**File based templates**"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:56
+msgid ""
+"``use_file_templates``: Use former file based templates for instance types "
+"instead of OpenNebula templates"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:57
+msgid "``instance_types``: DEPRECATED The VM types for your cloud"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:59
+msgid "**Resources**"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:61
+msgid ""
+"``describe_with_terminated_instances``: Include terminated instances in the "
+"describe\\_instances xml. When this parameter is enabled all the VMs in DONE"
+" state will be retrieved in each descibe\\_instances action and then "
+"filtered. This can cause performance issues when the pool of VMs in DONE "
+"state is huge"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:62
+msgid ""
+"``terminated_instances_expiration_time``: Terminated VMs will be included in"
+" the list till the termination date + "
+"terminated\\_instances\\_expiration\\_time is eached"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:63
+msgid ""
+"``datastore_id``: Datastore in which the Images uploaded through EC2 will be"
+" allocated, by default 1"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:64
+msgid ""
+"``cluster_id``: Cluster associated with the EC2 resources, by default no "
+"Cluster is defined"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:66
+msgid "**Elastic IP**"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:68
+msgid ""
+"``elasticips_vnet_id``: VirtualNetwork containing the elastic ips to be used"
+" with EC2. If no defined the Elastic IP functionality is disabled"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:69
+msgid ""
+"``associate_script``: Script to associate a public IP with a private IP "
+"arguments: elastic\\_ip private\\_ip vnet\\_template(base64\\_encoded)"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:70
+msgid ""
+"``disassociate_script``: Script to disassociate a public IP arguments: "
+"elastic\\_ip"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:72
+msgid "**EBS**"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:74
+msgid ""
+"``ebs_fstype``: FSTYPE that will be used when creating new volumes "
+"(DATABLOCKs)"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:76
+msgid "The ``:host`` **must** be a FQDN, do not use IP's here."
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:78
+msgid "Preserve YAML syntax in the ``econe.conf`` file."
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:83
+msgid "Cloud Users"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:85
+msgid ""
+"The cloud users have to be created in the OpenNebula system by ``oneadmin`` "
+"using the ``oneuser`` utility. Once a user is registered in the system, "
+"using the same procedure as to create private cloud users, they can start "
+"using the system."
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:87
+msgid ""
+"The users will authenticate using the `Amazon EC2 procedure "
+"<http://docs.amazonwebservices.com/AWSEC2/latest/DeveloperGuide/index.html"
+"?using-query-api.html>`__ with ``AWSAccessKeyId`` their OpenNebula's "
+"username and ``AWSSecretAccessKey`` their OpenNebula's hashed password."
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:89
+msgid ""
+"The cloud administrator can limit the interfaces that these users can use to"
+" interact with OpenNebula by setting the driver ``public`` for them. Using "
+"that driver cloud users will not be able to interact with OpenNebula through"
+" Sunstone, CLI nor XML-RPC."
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:96
+msgid "Defining VM Types"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:98
+msgid "You can define as many Virtual Machine types as you want, just:"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:100
+msgid ""
+"Create a new OpenNebula template for the new type and make it available for "
+"the users group. You can use restricted attributes and set permissions like "
+"any other opennebula resource. **You must include the EC2\\_INSTANCE\\_TYPE "
+"parameter inside the template definition**, otherwise the template will not "
+"be available to be used as an instance type in EC2."
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:117
+msgid ""
+"The template must include all the required information to instantiate a new "
+"virtual machine, such as network configuration, capacity, placement "
+"requirements, etc. This information will be used as a base template and will"
+" be merged with the information provided by the user."
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:119
+msgid ""
+"The user will select an instance type along with the ami id, keypair and "
+"user data when creating a new instance. Therefore, **the template should not"
+" include the OS**, since it will be specified by the user with the selected "
+"AMI."
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:121
+msgid ""
+"The templates are processed by the EC2 server to include specific data for "
+"the instance."
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:124
+msgid "Starting the Cloud Service"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:126
+msgid "To start the EC2 Query service just issue the following command"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:132
+msgid ""
+"You can find the econe server log file in ``/var/log/one/econe-server.log``."
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:134
+msgid "To stop the EC2 Query service:"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:141
+msgid "Advanced Configuration"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:144
+msgid "Enabling Keypair"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:146
+msgid ""
+"In order to benefit from the Keypair functionality, the images that will be "
+"used by the econe users must be prepared to read the EC2\\_PUBLIC\\_KEY and "
+"EC2\\_USER\\_DATA from the CONTEXT disk. This can be easliy achieved with "
+"the new `contextualization packages "
+"<http://opennebula.org/documentation:rel3.8:cong#contextualization_packages_for_vm_images>`__,"
+" generating a new custom contextualization package like this one:"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:154
+msgid "Enabling Elastic IP Functionality"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:156
+msgid ""
+"An Elastic IP address is associated with the user, not a particular "
+"instance, and the user controls that address until he chooses to release it."
+" This way the user can programmatically remap his public IP addresses to any"
+" of his instances."
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:158
+msgid ""
+"In order to enable this functionality you have to follow the following "
+"steps:"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:161
+msgid "1. Create a VNET Containing the Elastic IPS"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:163
+msgid ""
+"As oneadmin create a new FIXED VirtualNetwork containing the public IPs that"
+" will be controlled by the EC2 users:"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:188
+msgid ""
+"This VNET will be managed by the oneadmin user, therefore ``USE`` permission"
+" for the ec2 users is not required"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:190
+msgid "Update the econe.conf file with the VNET ID:"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:197
+msgid "Provide associate and disassociate scripts"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:199
+msgid ""
+"The interaction with the infrastructure has been abstracted, therefore two "
+"scripts have to be provided by the cloud administrator in order to interact "
+"with each specific network configuration. This two scripts enable us to "
+"adapt this feature to different configurations and data centers."
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:201
+msgid ""
+"These scripts are language agnostic and their path has to be specified in "
+"the econe configuration file:"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:208
+msgid ""
+"The associate script will receive three arguments: **elastic\\_ip** to be "
+"associated; **private\\_ip** of the instance; **Virtual Network template** "
+"base64 encoded"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:210
+msgid ""
+"The disassociate script will receive three arguments: **elastic\\_ip** to be"
+" disassociated"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:212
+msgid ""
+"Scripts to interact with OpenFlow can be found in the following `ecosystem "
+"project <http://www.opennebula.org/software:ecosystem:onenox>`__"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:215
+msgid "Using a Specific Group for EC2"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:217
+msgid "It is recommended to create a new group to handle the ec2 cloud users:"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:224
+msgid "Create and add the users to the ec2 group (ID:100):"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:232
+msgid ""
+"Also, you will have to create ACL rules so that the cloud users are able to "
+"deploy their VMs in the allowed hosts."
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:242
+msgid ""
+"These rules will allow users inside the ec2 group (ID:100) to deploy VMs in "
+"the hosts kvm01 (ID:0) and kvm03 (ID:3)"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:249
+msgid ""
+"You **have to create a VNet network** using the ``onevnet utility`` with the"
+" IP's you want to lease to the VMs created with the EC2 Query service."
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:256
+msgid ""
+"Remember that you will have to add this VNet (ID:12) to the users group "
+"(ID:100) and give USE (640) permissions to the group in order to get leases "
+"from it."
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:263
+msgid ""
+"You will have to update the NIC template, inside the "
+"``/etc/one/ec2query_templates`` directory, in order to use this VNet ID"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:266
+msgid "Configuring a SSL Proxy"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:268
+msgid ""
+"OpenNebula EC2 Query Service runs natively just on normal HTTP connections. "
+"If the extra security provided by SSL is needed, a proxy can be set up to "
+"handle the SSL connection that forwards the petition to the EC2 Query "
+"Service and takes back the answer to the client."
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:270
+msgid "This set up needs:"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:272
+msgid "A server certificate for the SSL connections"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:273
+msgid "An HTTP proxy that understands SSL"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:274
+msgid "EC2Query Service configuration to accept petitions from the proxy"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:276
+msgid ""
+"If you want to try out the SSL setup easily, you can find in the following "
+"lines an example to set a self-signed certificate to be used by a lighttpd "
+"configured to act as an HTTP proxy to a correctly configured EC2 Query "
+"Service."
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:278
+msgid ""
+"Let's assume the server were the lighttpd proxy is going to be started is "
+"called ``cloudserver.org``. Therefore, the steps are:"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:281
+msgid "1. Snakeoil Server Certificate"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:283
+msgid ""
+"We are going to generate a snakeoil certificate. If using an Ubuntu system "
+"follow the next steps (otherwise your milleage may vary, but not a lot):"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:285
+msgid "Install the ``ssl-cert`` package"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:291
+msgid "Generate the certificate"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:297
+msgid ""
+"As we are using lighttpd, we need to append the private key with the "
+"certificate to obtain a server certificate valid to lighttpd"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:304
+msgid "2. lighttpd as a SSL HTTP Proxy"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:306
+msgid ""
+"You will need to edit the ``/etc/lighttpd/lighttpd.conf`` configuration file"
+" and"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:308
+msgid "Add the following modules (if not present already)"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:310
+msgid "mod\\_access"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:311
+msgid "mod\\_alias"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:312
+msgid "mod\\_proxy"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:313
+msgid "mod\\_accesslog"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:314
+msgid "mod\\_compress"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:316
+msgid ""
+"Change the server port to 443 if you are going to run lighttpd as root, or "
+"any number above 1024 otherwise:"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:322
+msgid "Add the proxy module section:"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:342
+msgid ""
+"The host must be the server hostname of the computer running the EC2Query "
+"Service, and the port the one that the EC2Query Service is running on."
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:345
+msgid "3. EC2Query Service Configuration"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:347
+msgid "The ``econe.conf`` needs to define the following:"
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:358
+msgid ""
+"Once the lighttpd server is started, EC2Query petitions using HTTPS uris can"
+" be directed to ``https://cloudserver.org:8443``, that will then be "
+"unencrypted, passed to localhost, port 4567, satisfied (hopefully), "
+"encrypted again and then passed back to the client."
+msgstr ""
+
+#: ../../source/advanced_administration/public_cloud/ec2qcg.rst:360
+msgid ""
+"Note that ``:ssl_server`` **must** be an URL that may contain a custom path."
+msgstr ""

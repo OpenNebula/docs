@@ -1,0 +1,167 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/administration/sunstone_gui/vdc_admin_view.rst:5
+msgid "vDC Admin View"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/vdc_admin_view.rst:7
+msgid ""
+"The role of a vDC Admin is to manage all the virtual resources of the vDC, "
+"including the creation of new users. When one of these vDC Admin users "
+"access Sunstone, they get a limited view of the cloud, but more complete "
+"than the one end users get with the :ref:`Cloud View <cloud_view>`."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/vdc_admin_view.rst:9
+msgid ""
+"You can read more about OpenNebula's approach to vDC's and the cloud from "
+"the perspective of different user roles in the :ref:`Understanding "
+"OpenNebula <understand>` guide."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/vdc_admin_view.rst:11
+msgid "|vdcadmin_dash|"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/vdc_admin_view.rst:15
+msgid "Manage Users"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/vdc_admin_view.rst:17
+msgid ""
+"The vDC Admin can create new user accounts, that will belong to the same vDC"
+" group. They can also see the current resource usage of other users, and set"
+" quota limits for each one of them."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/vdc_admin_view.rst:19
+msgid "|vdcadmin_users|"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/vdc_admin_view.rst:21
+msgid "|vdcadmin_create_user|"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/vdc_admin_view.rst:23
+msgid "|vdcadmin_quota|"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/vdc_admin_view.rst:25
+msgid "|vdcadmin_edit_quota|"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/vdc_admin_view.rst:28
+msgid "Manage Resources"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/vdc_admin_view.rst:30
+msgid "Admins can manage the VMs and Images of other users in the vDC."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/vdc_admin_view.rst:32
+msgid "|vdcadmin_manage_vm|"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/vdc_admin_view.rst:35
+msgid "Create Machines"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/vdc_admin_view.rst:37
+msgid ""
+"To create new Virtual Machines, the vDC Admin must change his current view "
+"to the 'cloud' view. This can be done in the settings menu, accesible from "
+"the upper username button."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/vdc_admin_view.rst:39
+msgid "|vdcadmin_change_view|"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/vdc_admin_view.rst:41
+msgid "The :ref:`Cloud View <cloud_view>` is self explanatory."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/vdc_admin_view.rst:43
+msgid "|vdcadmin_create_vm|"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/vdc_admin_view.rst:48
+msgid "Prepare Resources for Other Users"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/vdc_admin_view.rst:50
+msgid ""
+"Any user of the Cloud View can save the changes made to a VM back to a new "
+"Template. vDC Admins can for example instantiate a clean VM prepared by the "
+"cloud administrator, install software needed by other users in his vDC, and "
+"make it available for the rest of the group."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/vdc_admin_view.rst:52
+msgid "|vdcadmin_save_vm|"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/vdc_admin_view.rst:54
+msgid ""
+"The save operation from the Cloud View will create a new Template and Image."
+" These can be managed changing back to the 'vdcadmin' view from the "
+"settings."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/vdc_admin_view.rst:56
+msgid "|vdcadmin_change_view_cloud|"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/vdc_admin_view.rst:58
+msgid "|vdcadmin_saved_template|"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/vdc_admin_view.rst:60
+msgid "|vdcadmin_saved_img|"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/vdc_admin_view.rst:62
+msgid ""
+"The admin must change the **Group Use** permission checkbox for *both* the "
+"new Template and Image."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/vdc_admin_view.rst:64
+msgid "|vdcadmin_template_chmod|"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/vdc_admin_view.rst:66
+msgid ""
+"Alternately, the new template & image could be assigned to a specific user. "
+"This can be done changing the owner."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/vdc_admin_view.rst:68
+msgid "|vdcadmin_template_chown|"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/vdc_admin_view.rst:71
+msgid "Manage the Infrastructure"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/vdc_admin_view.rst:73
+msgid ""
+"Although vDC admins can't manage the physical infrastructure, they have a "
+"limited amount of information about the storage and the networks assigned to"
+" the vDC."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/vdc_admin_view.rst:75
+msgid "|vdcadmin_ds| |vdcadmin_vnet|"
+msgstr ""

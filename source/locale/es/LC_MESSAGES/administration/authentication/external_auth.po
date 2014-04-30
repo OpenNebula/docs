@@ -1,0 +1,106 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/administration/authentication/external_auth.rst:5
+msgid "External Auth Overview"
+msgstr ""
+
+#: ../../source/administration/authentication/external_auth.rst:7
+msgid ""
+"OpenNebula comes by default with an internal user/password authentication "
+"system, see the :ref:`Users & Groups Subsystem guide <auth_overview>` for "
+"more information. You can enable an external Authentication driver."
+msgstr ""
+
+#: ../../source/administration/authentication/external_auth.rst:10
+msgid "Authentication"
+msgstr ""
+
+#: ../../source/administration/authentication/external_auth.rst:12
+msgid "|image0|"
+msgstr ""
+
+#: ../../source/administration/authentication/external_auth.rst:14
+msgid ""
+"In the figure to the right of this text you can see three authentication "
+"configurations you can customize in OpenNebula."
+msgstr ""
+
+#: ../../source/administration/authentication/external_auth.rst:17
+msgid "a) CLI Authentication"
+msgstr ""
+
+#: ../../source/administration/authentication/external_auth.rst:19
+msgid ""
+"You can choose from the following authentication drivers to access "
+"OpenNebula from the command line:"
+msgstr ""
+
+#: ../../source/administration/authentication/external_auth.rst:21
+msgid ":ref:`Built-in User/Password <manage_users_adding_and_deleting_users>`"
+msgstr ""
+
+#: ../../source/administration/authentication/external_auth.rst:22
+msgid ":ref:`SSH Authentication <ssh_auth>`"
+msgstr ""
+
+#: ../../source/administration/authentication/external_auth.rst:23
+msgid ":ref:`X509 Authentication <x509_auth>`"
+msgstr ""
+
+#: ../../source/administration/authentication/external_auth.rst:24
+msgid ":ref:`LDAP Authentication <ldap>`"
+msgstr ""
+
+#: ../../source/administration/authentication/external_auth.rst:27
+msgid "b) Sunstone Authentication"
+msgstr ""
+
+#: ../../source/administration/authentication/external_auth.rst:29
+msgid ""
+"By default, users with the “core” authentication driver (user/password) can "
+"login in Sunstone. You can enable users with the “x authentication driver to"
+" login using an external **SSL proxy** (e.g. Apache)."
+msgstr ""
+
+#: ../../source/administration/authentication/external_auth.rst:31
+msgid "Proceed to the Sunstone documentation to configure the x509 access:"
+msgstr ""
+
+#: ../../source/administration/authentication/external_auth.rst:33
+msgid ":ref:`Sunstone Authentication Methods <suns_auth>`"
+msgstr ""
+
+#: ../../source/administration/authentication/external_auth.rst:36
+msgid "c) Servers Authentication"
+msgstr ""
+
+#: ../../source/administration/authentication/external_auth.rst:38
+msgid ""
+"OpenNebula ships with three servers: :ref:`Sunstone <sunstone>`, :ref:`EC2 "
+"<ec2qcg>` and :ref:`OCCI <occicg>`. When a user interacts with one of them, "
+"the server authenticates the request and then forwards the requested "
+"operation to the OpenNebula daemon."
+msgstr ""
+
+#: ../../source/administration/authentication/external_auth.rst:40
+msgid ""
+"The forwarded requests are encrypted by default using a Symmetric Key "
+"mechanism. The following guide shows how to strengthen the security of these"
+" requests using x509 certificates. This is specially relevant if you are "
+"running your server in a machine other than the frontend."
+msgstr ""
+
+#: ../../source/administration/authentication/external_auth.rst:42
+msgid ":ref:`Cloud Servers Authentication <cloud_auth>`"
+msgstr ""

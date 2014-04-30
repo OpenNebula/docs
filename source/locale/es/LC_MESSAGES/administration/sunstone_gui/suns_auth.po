@@ -1,0 +1,311 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:5
+msgid "User Security and Authentication"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:7
+msgid ""
+"By default Sunstone works with the core authentication method (user and "
+"password) although you can configure any authentication mechanism supported "
+"by OpenNebula. In this guide you will learn how to enable other "
+"authentication methods and how to secure the Sunstone connections through "
+"SSL."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:10
+msgid "Authentication Methods"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:12
+msgid "Authentication is two-folded:"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:14
+msgid ""
+"**Web client and Sunstone server**. Authentication is based on the "
+"credentials store in the OpenNebula database for the user. Depending on the "
+"type of this credentials the authentication method can be: basic, x509 and "
+"opennebula (supporting LDAP or other custom methods)."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:16
+msgid ""
+"**Sunstone server and OpenNebula core**. The requests of a user are "
+"forwarded to the core daemon, including the original user name. Each request"
+" is signed with the credentials of an special ``server`` user. This "
+"authentication mechanism is based either in symmetric key cryptography "
+"(default) or x509 certificates. Details on how to configure these methods "
+"can be found in the :ref:`Cloud Authentication guide <cloud_auth>`."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:18
+msgid ""
+"The following sections details the client-to-Sunstone server authentication "
+"methods."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:21
+msgid "Basic Auth"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:23
+msgid ""
+"In the basic mode, username and password are matched to those in "
+"OpenNebula's database in order to authorize the user at the time of login. "
+"Rack cookie-based sessions are then used to authenticate and authorize the "
+"requests."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:25
+msgid ""
+"To enable this login method, set the ``:auth:`` option of ``/etc/one"
+"/sunstone-server.conf`` to ``sunstone``:"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:32
+msgid "OpenNebula Auth"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:34
+msgid ""
+"Using this method the credentials included in the header will be sent to the"
+" OpenNebula core and the authentication will be delegated to the OpenNebula "
+"auth system, using the specified driver for that user. Therefore any "
+"OpenNebula auth driver can be used through this method to authenticate the "
+"user (i.e: LDAP). The sunstone configuration is:"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:41
+msgid "x509 Auth"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:43
+msgid ""
+"This method performs the login to OpenNebula based on a x509 certificate DN "
+"(Distinguished Name). The DN is extracted from the certificate and matched "
+"to the password value in the user database."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:45
+msgid ""
+"The user password has to be changed running one of the following commands:"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:51
+msgid "or the same command using a certificate file:"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:57
+msgid ""
+"New users with this authentication method should be created as follows:"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:63
+msgid "or using a certificate file:"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:69
+msgid ""
+"To enable this login method, set the ``:auth:`` option of ``/etc/one"
+"/sunstone-server.conf`` to ``x509``:"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:75
+msgid ""
+"The login screen will not display the username and password fields anymore, "
+"as all information is fetched from the user certificate:"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:77
+msgid "|image0|"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:79
+msgid ""
+"Note that OpenNebula will not verify that the user is holding a valid "
+"certificate at the time of login: this is expected to be done by the "
+"external container of the Sunstone server (normally Apache), whose job is to"
+" tell the user's browser that the site requires a user certificate and to "
+"check that the certificate is consistently signed by the chosen Certificate "
+"Authority (CA)."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:81
+msgid ""
+"Sunstone x509 auth method only handles the authentication of the user at the"
+" time of login. Authentication of the user certificate is a complementary "
+"setup, which can rely on Apache."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:84
+msgid "Configuring a SSL Proxy"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:86
+msgid ""
+"OpenNebula Sunstone runs natively just on normal HTTP connections. If the "
+"extra security provided by SSL is needed, a proxy can be set up to handle "
+"the SSL connection that forwards the petition to the Sunstone server and "
+"takes back the answer to the client."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:88
+msgid "This set up needs:"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:90
+msgid "A server certificate for the SSL connections"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:91
+msgid "An HTTP proxy that understands SSL"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:92
+msgid "OpenNebula Sunstone configuration to accept petitions from the proxy"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:94
+msgid ""
+"If you want to try out the SSL setup easily, you can find in the following "
+"lines an example to set a self-signed certificate to be used by a web server"
+" configured to act as an HTTP proxy to a correctly configured OpenNebula "
+"Sunstone."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:96
+msgid ""
+"Let's assume the server where the proxy is going to be started is called "
+"``cloudserver.org``. Therefore, the steps are:"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:99
+msgid "Step 1: Server Certificate (Snakeoil)"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:101
+msgid ""
+"We are going to generate a snakeoil certificate. If using an Ubuntu system "
+"follow the next steps (otherwise your milleage may vary, but not a lot):"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:103
+msgid "Install the ``ssl-cert`` package"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:109
+msgid "Generate the certificate"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:115
+msgid ""
+"As we are using lighttpd, we need to append the private key with the "
+"certificate to obtain a server certificate valid to lighttpd"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:122
+msgid "Step 2: SSL HTTP Proxy"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:125
+msgid "lighttpd"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:127
+msgid ""
+"You will need to edit the ``/etc/lighttpd/lighttpd.conf`` configuration file"
+" and"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:129
+msgid "Add the following modules (if not present already)"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:131
+msgid "mod\\_access"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:132
+msgid "mod\\_alias"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:133
+msgid "mod\\_proxy"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:134
+msgid "mod\\_accesslog"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:135
+msgid "mod\\_compress"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:137
+msgid ""
+"Change the server port to 443 if you are going to run lighttpd as root, or "
+"any number above 1024 otherwise:"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:143
+msgid "Add the proxy module section:"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:163
+msgid ""
+"The host must be the server hostname of the computer running the Sunstone "
+"server, and the port the one that the Sunstone Server is running on."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:166
+msgid "nginx"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:168
+msgid ""
+"You will need to configure a new virtual host in nginx. Depending on the "
+"operating system and the method of installation, nginx loads virtual host "
+"configurations from either ``/etc/nginx/conf.d`` or ``/etc/nginx/sites-"
+"enabled``."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:170
+msgid "A sample ``cloudserver.org`` virtual host is presented next:"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:204
+msgid ""
+"The IP address and port number used in ``upstream`` must be the ones of the "
+"server Sunstone is running on. On typical installations the nginx master "
+"process is run as user root so you don't need to modify the HTTPS port."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:207
+msgid "Step 3: Sunstone Configuration"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:209
+msgid ""
+"Start the Sunstone server using the default values, this way the server will"
+" be listening at localhost:9869."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/suns_auth.rst:211
+msgid ""
+"Once the proxy server is started, OpenNebula Sunstone requests using HTTPS "
+"URIs can be directed to ``https://cloudserver.org:8443``, that will then be "
+"unencrypted, passed to localhost, port 9869, satisfied (hopefully), "
+"encrypted again and then passed back to the client."
+msgstr ""

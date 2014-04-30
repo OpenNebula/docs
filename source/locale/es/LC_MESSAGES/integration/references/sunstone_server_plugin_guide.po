@@ -1,0 +1,72 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/integration/references/sunstone_server_plugin_guide.rst:5
+msgid "Custom Routes for Sunstone Server"
+msgstr ""
+
+#: ../../source/integration/references/sunstone_server_plugin_guide.rst:7
+msgid ""
+":ref:`OpenNebula Sunstone <sunstone>` server plugins consist a set files "
+"defining custom routes. Custom routes will have priority over default routes"
+" and allow administrators to integrate their own custom controllers in the "
+"Sunstone Server."
+msgstr ""
+
+#: ../../source/integration/references/sunstone_server_plugin_guide.rst:10
+msgid "Configuring Sunstone Server Plugins"
+msgstr ""
+
+#: ../../source/integration/references/sunstone_server_plugin_guide.rst:12
+msgid "It is very easy to enable custom plugins:"
+msgstr ""
+
+#: ../../source/integration/references/sunstone_server_plugin_guide.rst:14
+msgid ""
+"Place your custom routes in the ``/usr/lib/one/sunstone/routes`` folder."
+msgstr ""
+
+#: ../../source/integration/references/sunstone_server_plugin_guide.rst:15
+msgid ""
+"Modify ``/etc/one/sunstone-server.conf`` to indicate which files should be "
+"loaded, as shown in the following example:"
+msgstr ""
+
+#: ../../source/integration/references/sunstone_server_plugin_guide.rst:25
+msgid "Creating Sunstone Server Plugins"
+msgstr ""
+
+#: ../../source/integration/references/sunstone_server_plugin_guide.rst:27
+msgid ""
+"Sunstone server is a `Sinatra <http://www.sinatrarb.com/>`__ application. A "
+"server plugin is simply a file containing one or several custom routes, as "
+"defined in sinatra applications."
+msgstr ""
+
+#: ../../source/integration/references/sunstone_server_plugin_guide.rst:29
+msgid "The following example defines 4 custom routes:"
+msgstr ""
+
+#: ../../source/integration/references/sunstone_server_plugin_guide.rst:50
+msgid ""
+"Custom routes take preference over Sunstone server routes. In order to easy "
+"debugging and ensure that plugins are not interfering with each others, we "
+"recommend however to place the routes in a custom namespace (``myplugin`` in"
+" the example)."
+msgstr ""
+
+#: ../../source/integration/references/sunstone_server_plugin_guide.rst:52
+msgid ""
+"From the plugin code routes, there is access to all the variables, helpers "
+"etc which are defined in the main sunstone application code. For example:"
+msgstr ""

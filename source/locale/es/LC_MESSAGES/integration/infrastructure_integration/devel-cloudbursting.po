@@ -1,0 +1,251 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/integration/infrastructure_integration/devel-cloudbursting.rst:5
+msgid "Cloud Bursting Driver"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-cloudbursting.rst:7
+msgid ""
+"This guide will show you how to develop a new driver for OpenNebula to "
+"interact with an external cloud provider."
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-cloudbursting.rst:10
+msgid "Overview"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-cloudbursting.rst:12
+msgid ""
+"Cloud bursting is a model in which the local resources of a Private Cloud "
+"are combined with resources from remote Cloud providers. The remote provider"
+" could be a commercial Cloud service, such as Amazon EC2, or a partner "
+"infrastructure running a different OpenNebula instance. Such support for "
+"cloud bursting enables highly scalable hosting environments. For more "
+"information on this model see the :ref:`Cloud Bursting overview <introh>`"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-cloudbursting.rst:14
+msgid ""
+"The remote cloud provider will be included in the OpenNebula host pool like "
+"any other physical host of your infrastructure:"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-cloudbursting.rst:26
+msgid ""
+"When you create a new host in OpenNebula you have to specify the following "
+"parameters:"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-cloudbursting.rst:28
+msgid "Name: remote\\_provider"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-cloudbursting.rst:30
+msgid ""
+"Name of the host, in case of physical hosts it will the ip address or "
+"hostname of the host. In case of remote providers it will be just a name to "
+"identify the provider."
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-cloudbursting.rst:32
+msgid ":ref:`Information Manager <devel-im>`: ``im_provider``"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-cloudbursting.rst:34
+msgid ""
+"IM driver gather information about the physical host and hypervisor status, "
+"so the OpenNebula scheduler knows the available resources and can deploy the"
+" virtual machines accordingly."
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-cloudbursting.rst:36
+msgid ":ref:`VirtualMachine Manager <devel-vmm>`: ``vmm_provider``"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-cloudbursting.rst:38
+msgid ""
+"VMM drivers translate the high-level OpenNebula virtual machine life-cycle "
+"management actions, like deploy, shutdown, etc. into specific hypervisor "
+"operations. For instance, the KVM driver will issue a virsh create command "
+"in the physical host. The EC2 driver translate the actions into Amazon EC2 "
+"API calls."
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-cloudbursting.rst:40
+msgid ":ref:`Transfer Manager <sd>`: ``tm_dummy``"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-cloudbursting.rst:42
+msgid ""
+"TM drivers are used to transfer, clone and remove Virtual Machines Image "
+"files. They take care of the file transfer from the OpenNebula image "
+"repository to the physical hosts. There are specific drivers for different "
+"storage configurations: shared, non-shared, lvm storage, etc."
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-cloudbursting.rst:44
+msgid ":ref:`VirtualNetwork Manager <nm>`: ``dummy``"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-cloudbursting.rst:46
+msgid ""
+"VNM drivers are used to set the network configuration in the host (firewall,"
+" 802.1Q, ebtables, osvswitch)"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-cloudbursting.rst:48
+msgid ""
+"When creating a new host to interact with a remote cloud provider we will "
+"use mock versions for the TM and VNM drivers. Therefore, we will only "
+"implement the functionality required for the IM and VMM driver."
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-cloudbursting.rst:51
+msgid "Adding the Information Manager"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-cloudbursting.rst:54
+#: ../../source/integration/infrastructure_integration/devel-cloudbursting.rst:112
+msgid "Edit oned.conf"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-cloudbursting.rst:56
+msgid "Add a new IM section for the new driver in oned.conf:"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-cloudbursting.rst:88
+msgid "Populating the Probes"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-cloudbursting.rst:90
+msgid ""
+"Create a new directory to store your probes, the name of this folder must "
+"match the name provided in the arguments section of the IM\\_MAD in "
+"oned.conf:"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-cloudbursting.rst:92
+msgid "/var/lib/one/remotes/im/<provider\\_name>.d"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-cloudbursting.rst:94
+msgid "These probes must return:"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-cloudbursting.rst:96
+msgid ""
+":ref:`Information of the host capacity <devel-im_basic_monitoring_scripts>`,"
+" to limit the number of VMs that can be deployed in this hosts."
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-cloudbursting.rst:97
+msgid ""
+":ref:`Information of the VMs <devel-im_vm_information>` running in this "
+"host-"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-cloudbursting.rst:99
+msgid ""
+"You can see an example of these probes in the `ec2 driver "
+"<https://github.com/OpenNebula/one/tree/master/src/im_mad/remotes/ec2.d>`__ "
+"(`code "
+"<https://github.com/OpenNebula/one/blob/master/src/vmm_mad/remotes/ec2/ec2_driver.rb#L300>`__)"
+" included in OpenNebula"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-cloudbursting.rst:101
+msgid ""
+"**You must include the PUBLIC\\_CLOUD and HYPERVISOR attributes** as one of "
+"the values returned by your probes, otherwise OpenNebula will consider this "
+"host as local. The HYPERVISOR attribute will be used by the scheduler and "
+"should match the TYPE value inside the PUBLIC\\_CLOUD section provided in "
+"the VM template."
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-cloudbursting.rst:109
+msgid "Adding the Virtual Machine Manager"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-cloudbursting.rst:146
+msgid "Create the Driver Folder and Implement the Specific Actions"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-cloudbursting.rst:148
+msgid ""
+"Create a new folder inside the remotes dir (/var/lib/one/remotes/vmm). The "
+"new folder should be named “providet\\_name”, the name specified in the "
+"previous VM\\_MAD arguments section."
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-cloudbursting.rst:150
+msgid ""
+"This folder must contain scripts for the supported actions. You can see the "
+"list of available actions in the :ref:`Virtual Machine Driver guide <devel-"
+"vmm_action>`. These scripts are language-agnostic so you can implement them "
+"using python, ruby, bash..."
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-cloudbursting.rst:152
+msgid ""
+"You can see examples on how to implement this in the `ec2 driver "
+"<https://github.com/OpenNebula/one/tree/master/src/vmm_mad/remotes/ec2>`__:"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-cloudbursting.rst:154
+msgid "EC2 Shutdown action:"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-cloudbursting.rst:188
+msgid "Create the New Host"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-cloudbursting.rst:190
+msgid ""
+"After restarting oned we can create the new host that will use this new "
+"driver"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-cloudbursting.rst:197
+msgid "Create a new Virtual Machine"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-cloudbursting.rst:199
+msgid ""
+"Create a new VM using a template with an specific section for this provider."
+" You have to include the required information to start a new VM inside the "
+"PUBLIC\\_CLOUD section, and the TYPE attribute must match the HYPERVISOR "
+"value of the host. For example:"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-cloudbursting.rst:217
+msgid "After this, the deploy script will receive the following arguments:"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-cloudbursting.rst:219
+msgid "The path to the deployment file that contains the following XML:"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-cloudbursting.rst:231
+msgid "The hostname: ``remote_provider``"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-cloudbursting.rst:232
+msgid "The VM ID: ``23``"
+msgstr ""
+
+#: ../../source/integration/infrastructure_integration/devel-cloudbursting.rst:234
+msgid ""
+"The deploy script has to return the ID of the new resource and an "
+"exit\\_code 0:"
+msgstr ""

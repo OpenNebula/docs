@@ -1,0 +1,77 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/oneapps_overview.rst:5
+msgid "OneFlow"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/oneapps_overview.rst:7
+msgid ""
+"OneFlow allows users and administrators to define, execute and manage multi-"
+"tiered applications, or services composed of interconnected Virtual Machines"
+" with deployment dependencies between them. Each group of Virtual Machines "
+"is deployed and managed as a single entity, and is completely integrated "
+"with the advanced :ref:`OpenNebula user and group management "
+"<auth_overview>`."
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/oneapps_overview.rst:10
+msgid "Benefits"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/oneapps_overview.rst:12
+msgid ""
+"Define multi-tiered applications (services) as collection of applications"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/oneapps_overview.rst:13
+msgid "Manage multi-tiered applications as a single entity"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/oneapps_overview.rst:14
+msgid "Automatic execution of services with dependencies"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/oneapps_overview.rst:15
+msgid "Provide configurable services from a catalog and self-service portal"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/oneapps_overview.rst:16
+msgid "Enable tight, efficient administrative control"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/oneapps_overview.rst:17
+msgid ""
+"Fine-grained access control for the secure sharing of services with other "
+"users"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/oneapps_overview.rst:18
+msgid "Auto-scaling policies based on performance metrics and schedule"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/oneapps_overview.rst:21
+msgid "Next Steps"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/oneapps_overview.rst:23
+msgid ":ref:`OneFlow Server Configuration <appflow_configure>`"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/oneapps_overview.rst:24
+msgid ":ref:`Multi-tier Applications <appflow_use_cli>`"
+msgstr ""
+
+#: ../../source/advanced_administration/application_flow_and_auto-scaling/oneapps_overview.rst:25
+msgid ":ref:`Application Auto-scaling <appflow_elasticity>`"
+msgstr ""

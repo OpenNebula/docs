@@ -1,0 +1,138 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/design_and_installation/building_your_cloud/glossary.rst:5
+msgid "Glossary"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/glossary.rst:8
+msgid "OpenNebula Components"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/glossary.rst:10
+msgid "**Front-end**: Machine running the OpenNebula services."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/glossary.rst:11
+msgid ""
+"**Host**: Physical machine running a supported hypervisor. See the "
+":ref:`Host subsystem <hostsubsystem>`."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/glossary.rst:12
+msgid ""
+"**Cluster**: Pool of hosts that share datastores and virtual networks. "
+"Clusters are used for load balancing, high availability, and high "
+"performance computing."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/glossary.rst:13
+msgid ""
+"**Image Repository**: Storage for registered Images. Learn more about the "
+":ref:`Storage subsystem <sm>`."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/glossary.rst:14
+msgid ""
+"**Sunstone**: OpenNebula web interface. Learn more about :ref:`Sunstone "
+"<sunstone>`"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/glossary.rst:15
+msgid ""
+"**OCCI Service**: Server that enables the management of OpenNebula with OCCI"
+" interface. Learn more about :ref:`OCCI Service <occicg>`"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/glossary.rst:16
+msgid ""
+"**Self-Service** OpenNebula web interfaced towards the end user. It is "
+"implemented by configuring a user view of the Sunstone Portal."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/glossary.rst:17
+msgid ""
+"**EC2 Service**: Server that enables the management of OpenNebula with EC2 "
+"interface. Learn more about :ref:`EC2 Service <ec2qcg>`"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/glossary.rst:18
+msgid ""
+"**OCA**: OpenNebula Cloud API. It is a set of libraries that ease the "
+"communication with the XML-RPC management interface. Learn more about "
+":ref:`ruby <ruby>` and :ref:`java <java>` APIs."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/glossary.rst:21
+msgid "OpenNebula Resources"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/glossary.rst:23
+msgid ""
+"**Template**: Virtual Machine definition. These definitions are managed with"
+" the :ref:`onetemplate command <vm_guide>`."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/glossary.rst:24
+msgid ""
+"**Image**: Virtual Machine disk image, created and managed with the "
+":ref:`oneimage command <img_guide>`."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/glossary.rst:25
+msgid ""
+"**Virtual Machine**: Instantiated Template. A Virtual Machine represents one"
+" life-cycle, and several Virtual Machines can be created from a single "
+"Template. Check out the :ref:`VM management guide <vm_guide_2>`."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/glossary.rst:26
+msgid ""
+"**Virtual Network**: A group of IP leases that VMs can use to automatically "
+"obtain IP addresses. See the :ref:`Networking subsystem <nm>`."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/glossary.rst:27
+msgid ""
+"**VDC**: Virtual Data Center, fully-isolated virtual infrastructure "
+"environments where a group of users, under the control of the VDC "
+"administrator."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/glossary.rst:28
+msgid ""
+"**Zone**: A group of interconnected physical hosts with hypervisors "
+"controlled by OpenNebula."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/glossary.rst:31
+msgid "OpenNebula Management"
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/glossary.rst:33
+msgid ""
+"**ACL**: Access Control List. Check :ref:`the managing ACL rules guide "
+"<manage_acl>`."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/glossary.rst:34
+msgid ""
+"**oneadmin**: Special administrative account. See the :ref:`Users and Groups"
+" guide <manage_users>`."
+msgstr ""
+
+#: ../../source/design_and_installation/building_your_cloud/glossary.rst:35
+msgid ""
+"**Federation**: Several OpenNebula instances can be :ref:`configured as "
+"zones <introf>`."
+msgstr ""

@@ -1,0 +1,61 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/advanced_administration/cloud_bursting/introh.rst:5
+msgid "Cloud Bursting"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/introh.rst:7
+msgid ""
+"Cloud bursting is a model in which the local resources of a Private Cloud "
+"are combined with resources from remote Cloud providers. The remote provider"
+" could be a commercial Cloud service, such as Amazon EC2, or a partner "
+"infrastructure running a different OpenNebula instance. Such support for "
+"cloud bursting enables highly scalable hosting environments."
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/introh.rst:9
+msgid "|image0|"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/introh.rst:11
+msgid ""
+"As you may know, OpenNebula’s approach to cloud bursting is quite unique. "
+"The reason behind this uniqueness is the transparency to both end users and "
+"cloud administrators to use and maintain the cloud bursting functionality. "
+"The **transparency to cloud administrators** comes from the fact that a an "
+"AWS EC2 region is modelled as any other host (albeit of potentially a much "
+"bigger capacity), so the scheduler can place VMs in EC2 as it will do in any"
+" other local host."
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/introh.rst:21
+msgid ""
+"On the other hand, the **transparency to end users** is offered through the "
+"hybrid template functionality: the same VM template in OpenNebula can "
+"describe the VM if it is deployed locally and also if it gets deployed in "
+"Amazon EC2. So users just have to instantiate the template, and OpenNebula "
+"will transparently choose if that is executed locally or remotely. A simple "
+"template like the following is enough to launch Virtual Machines in Amazon "
+"EC2:"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/introh.rst:44
+msgid ""
+"For more information on how to configure an Amazon EC2 host see the "
+"following guide:"
+msgstr ""
+
+#: ../../source/advanced_administration/cloud_bursting/introh.rst:46
+msgid ":ref:`Amazon EC2 driver <ec2g>`"
+msgstr ""

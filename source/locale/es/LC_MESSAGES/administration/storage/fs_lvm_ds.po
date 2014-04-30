@@ -1,0 +1,297 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:5
+msgid "The FS LVM Datastore"
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:8
+msgid "Overview"
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:10
+msgid ""
+"The FS LVM datastore driver provides OpenNebula with the possibility of "
+"using LVM volumes instead of plain files to hold the Virtual Images."
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:12
+msgid ""
+"It is assumed that the OpenNebula hosts using this datastore will be "
+"configured with CLVM, therefore modifying the OpenNebula Volume Group in one"
+" host will reflect in the others."
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:14
+msgid "|image0|"
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:17
+msgid "Requirements"
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:20
+msgid "OpenNebula Front-end"
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:22
+msgid "Password-less ssh access to an OpenNebula LVM-enabled host."
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:25
+msgid "OpenNebula LVM Hosts"
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:27
+msgid ""
+"LVM must be available in the Hosts. The ``oneadmin`` user should be able to "
+"execute several LVM related commands with sudo passwordlessly."
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:29
+msgid ""
+"Password-less sudo permission for: ``lvremove``, ``lvcreate``, ``lvs``, "
+"``vgdisplay`` and ``dd``."
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:30
+msgid "LVM2"
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:31
+msgid "``oneadmin`` needs to belong to the ``disk`` group (for KVM)."
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:34
+msgid "Configuration"
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:37
+msgid "Configuring the System Datastore"
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:39
+msgid ""
+"To use LVM drivers, the system datastore **must** be ``shared``. This sytem "
+"datastore will hold only the symbolic links to the block devices, so it will"
+" not take much space. See more details on the :ref:`System Datastore Guide "
+"<system_ds>`"
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:41
+msgid ""
+"It will also be used to hold context images and Disks created on the fly, "
+"they will be created as regular files."
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:43
+msgid ""
+"It is worth noting that running virtual disk images will be created in "
+"Volume Groups that are hardcoded to be ``vg-one-<system_ds_id>``. Therefore "
+"the nodes **must** have those Volume Groups pre-created and available for "
+"**all** possible system datastores."
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:46
+msgid "Configuring LVM Datastores"
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:48
+msgid ""
+"The first step to create a LVM datastore is to set up a template file for "
+"it. In the following table you can see the supported configuration "
+"attributes. The datastore type is set by its drivers, in this case be sure "
+"to add ``DS_MAD=fs`` and ``TM_MAD=fs_lvm`` for the transfer mechanism, see "
+"below."
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:51
+msgid "Attribute"
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:51
+msgid "Description"
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:53
+msgid "``NAME``"
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:53
+msgid "The name of the datastore"
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:55
+msgid "``DS_MAD``"
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:55
+msgid "Must be ``fs``"
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:57
+msgid "``TM_MAD``"
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:57
+msgid "Must be ``fs_lvm``"
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:59
+msgid "``DISK_TYPE``"
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:59
+msgid "Must be ``block``"
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:61
+msgid "``RESTRICTED_DIRS``"
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:61
+msgid ""
+"Paths that can not be used to register images. A space separated list of "
+"paths."
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:63
+msgid "``SAFE_DIRS``"
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:63
+msgid ""
+"If you need to un-block a directory under one of the RESTRICTED\\_DIRS. A "
+"space separated list of paths."
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:65
+msgid "``BRIDGE_LIST``"
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:65
+msgid "**Mandatory** space separated list of LVM frontends."
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:67
+msgid "``NO_DECOMPRESS``"
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:67
+msgid ""
+"Do not try to untar or decompress the file to be registered. Useful for "
+"specialized Transfer Managers"
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:69
+msgid "``LIMIT_TRANSFER_BW``"
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:69
+msgid ""
+"Specify the maximum transfer rate in bytes/second when downloading images "
+"from a http/https URL. Suffixes K, M or G can be used."
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:71
+msgid "``DATASTORE_CAPACITY_CHECK``"
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:71
+msgid ""
+"If “yes”, the available capacity of the datastore is checked before creating"
+" a new image"
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:74
+msgid ""
+"The ``RESTRICTED_DIRS`` directive will prevent users registering important "
+"files as VM images and accessing them through their VMs. OpenNebula will "
+"automatically add its configuration directories: /var/lib/one, /etc/one and "
+"oneadmin's home. If users try to register an image from a restricted "
+"directory, they will get the following error message: **Not allowed to copy "
+"image file**."
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:76
+msgid ""
+"For example, the following examples illustrates the creation of an LVM "
+"datastore using a configuration file. In this case we will use the host "
+"``host01`` as one of our OpenNebula LVM-enabled hosts."
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:94
+msgid ""
+"Datastores are not associated to any cluster by default, and they are "
+"supposed to be accessible by every single host. If you need to configure "
+"datastores for just a subset of the hosts take a look to the :ref:`Cluster "
+"guide <cluster_guide>`."
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:96
+msgid ""
+"After creating a new datastore the LN\\_TARGET and CLONE\\_TARGET parameters"
+" will be added to the template. These values should not be changed since "
+"they define the datastore behaviour. The default values for these parameters"
+" are defined in :ref:`oned.conf <oned_conf_transfer_driver>` for each "
+"driver."
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:99
+msgid "Host Configuration"
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:101
+msgid ""
+"The hosts must have LVM2 and **must** have a Volume-Group for every possible"
+" system-datastore that can run in the host. CLVM must also be installed and "
+"active accross all the hosts that use this datastore."
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:103
+msgid ""
+"It's also required to have password-less sudo permission for: ``lvremove``, "
+"``lvcreate``, ``lvs`` and ``dd``."
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:106
+msgid "Tuning & Extending"
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:108
+msgid ""
+"System administrators and integrators are encouraged to modify these drivers"
+" in order to integrate them with their datacenter:"
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:110
+msgid "Under ``/var/lib/one/remotes/``:"
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:112
+msgid "**tm/fs\\_lvm/ln**: Links to the LVM logical volume."
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:113
+msgid "**tm/fs\\_lvm/clone**: Clones the image by creating a snapshot."
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:114
+msgid "**tm/fs\\_lvm/mvds**: Saves the image in a new LV for SAVE\\_AS."
+msgstr ""
+
+#: ../../source/administration/storage/fs_lvm_ds.rst:115
+msgid ""
+"**tm/fs\\_lvm/cpds**: Saves the image in a new LV for SAVE\\_AS while VM is "
+"running."
+msgstr ""

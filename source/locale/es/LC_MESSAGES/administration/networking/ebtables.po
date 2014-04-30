@@ -1,0 +1,132 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/administration/networking/ebtables.rst:5
+msgid "Ebtables"
+msgstr ""
+
+#: ../../source/administration/networking/ebtables.rst:7
+msgid ""
+"This guide describes how to enable Network isolation provided through "
+"ebtables rules applied on the bridges. This method will only permit "
+"isolation with a mask of 255.255.255.0."
+msgstr ""
+
+#: ../../source/administration/networking/ebtables.rst:10
+msgid "Requirements"
+msgstr ""
+
+#: ../../source/administration/networking/ebtables.rst:12
+msgid ""
+"This hook requires ``ebtables`` to be available in all the OpenNebula Hosts."
+msgstr ""
+
+#: ../../source/administration/networking/ebtables.rst:15
+msgid "Considerations & Limitations"
+msgstr ""
+
+#: ../../source/administration/networking/ebtables.rst:17
+msgid ""
+"Although this is the most easily usable driver, since it doesn't require any"
+" special hardware or any software configuration, it lacks the ability of "
+"sharing IPs amongst different VNETs, that is, if an VNET is using leases of "
+"192.168.0.0/24, another VNET can't be using IPs in the same network."
+msgstr ""
+
+#: ../../source/administration/networking/ebtables.rst:20
+msgid "Configuration"
+msgstr ""
+
+#: ../../source/administration/networking/ebtables.rst:23
+msgid "Hosts Configuration"
+msgstr ""
+
+#: ../../source/administration/networking/ebtables.rst:25
+msgid "The package ``ebtables`` must be installed in the hosts."
+msgstr ""
+
+#: ../../source/administration/networking/ebtables.rst:26
+msgid ""
+"The ``sudoers`` file must be configured so ``oneadmin`` can execute "
+"``ebtables`` in the hosts."
+msgstr ""
+
+#: ../../source/administration/networking/ebtables.rst:29
+msgid "OpenNebula Configuration"
+msgstr ""
+
+#: ../../source/administration/networking/ebtables.rst:31
+msgid ""
+"To enable this driver, use **ebtables** as the Virtual Network Manager "
+"driver parameter when the hosts are created with the :ref:`onehost command "
+"<host_guide>`:"
+msgstr ""
+
+#: ../../source/administration/networking/ebtables.rst:38
+msgid "Driver Actions"
+msgstr ""
+
+#: ../../source/administration/networking/ebtables.rst:41
+msgid "Action"
+msgstr ""
+
+#: ../../source/administration/networking/ebtables.rst:41
+msgid "Description"
+msgstr ""
+
+#: ../../source/administration/networking/ebtables.rst:43
+msgid "**Pre**"
+msgstr ""
+
+#: ../../source/administration/networking/ebtables.rst:43
+msgid "N/A"
+msgstr ""
+
+#: ../../source/administration/networking/ebtables.rst:45
+msgid "**Post**"
+msgstr ""
+
+#: ../../source/administration/networking/ebtables.rst:45
+msgid "Creates EBTABLES rules in the Host where the VM has been placed."
+msgstr ""
+
+#: ../../source/administration/networking/ebtables.rst:47
+msgid "**Clean**"
+msgstr ""
+
+#: ../../source/administration/networking/ebtables.rst:47
+msgid "Removes the EBTABLES rules created during the ``Post`` action."
+msgstr ""
+
+#: ../../source/administration/networking/ebtables.rst:51
+msgid "Usage"
+msgstr ""
+
+#: ../../source/administration/networking/ebtables.rst:53
+msgid ""
+"The driver will be automatically applied to every Virtual Machine deployed "
+"in the Host. Only the virtual networks with the attribute ``VLAN`` set to "
+"``YES`` will be isolated. There are no other special attributes required."
+msgstr ""
+
+#: ../../source/administration/networking/ebtables.rst:66
+msgid "Tuning & Extending"
+msgstr ""
+
+#: ../../source/administration/networking/ebtables.rst:69
+msgid "EBTABLES Rules"
+msgstr ""
+
+#: ../../source/administration/networking/ebtables.rst:71
+msgid "This section lists the EBTABLES rules that are created:"
+msgstr ""

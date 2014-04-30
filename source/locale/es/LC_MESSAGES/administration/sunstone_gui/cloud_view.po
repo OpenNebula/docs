@@ -1,0 +1,72 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/administration/sunstone_gui/cloud_view.rst:5
+msgid "Self-service Cloud View"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/cloud_view.rst:7
+msgid ""
+"This is a simplified view intended for cloud consumers that just require a "
+"portal where they can provision new virtual machines easily. To create new "
+"VMs, they just have to select one of the available templates prepared by the"
+" administrators."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/cloud_view.rst:9
+msgid ""
+"In this scenario the cloud administrator, or the vDC administrator, must "
+"prepare a set of templates and images and make them available to the cloud "
+"users. These Templates must be ready to be instantiated, i.e. they define "
+"all the mandatory attributes. Before using them, users can optinally "
+"customize the VM capacity, and add new network interfaces."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/cloud_view.rst:12
+msgid "|image0|"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/cloud_view.rst:15
+msgid "How to Prepare the Templates"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/cloud_view.rst:17
+msgid ""
+"When launching a new VM, users are required to select a Template. These "
+"templates should be prepared by the cloud or vDC administrator. Make sure "
+"that any Image or Network referenced by the Template can be also used by the"
+" users. Read more about how to prepare resources for end users in the "
+":ref:`Adding Content to Your Cloud <add_content>` guide."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/cloud_view.rst:19
+msgid "|cloud-view-create|"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/cloud_view.rst:22
+msgid "How to Enable"
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/cloud_view.rst:24
+msgid ""
+"The cloud view is enabled by default for all users. If you want to disable "
+"it, or enable just for certain groups, proceed to the :ref:`Sunstone Views "
+"<suns_views>` documentation."
+msgstr ""
+
+#: ../../source/administration/sunstone_gui/cloud_view.rst:26
+msgid ""
+"Any user can change the current view in the Sunstone settings. "
+"Administrators can use this view without any problem if they find it easier "
+"to manage their VMs."
+msgstr ""

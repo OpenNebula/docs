@@ -1,0 +1,255 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/user/virtual_machine_setup/windows_context.rst:5
+msgid "Windows Contextualization"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/windows_context.rst:7
+msgid ""
+"This guide describes the standard process of provisioning and "
+"contextualizing a Windows guest."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/windows_context.rst:9
+msgid ""
+"This guide has been tested for Windows 2008 R2, however it should work with "
+"Windows systems >= Windows 7."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/windows_context.rst:12
+msgid "Provisioning"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/windows_context.rst:15
+msgid "Installation"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/windows_context.rst:17
+msgid "Provisioning a Windows VM is performed the standard way in OpenNebula:"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/windows_context.rst:19
+msgid "Register the Installation media (typically a DVD) into a Datastore"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/windows_context.rst:20
+msgid ""
+"Create an empty datablock with an appropriate size, at least 10GB. Change "
+"the type to ``OS``. If you are using a ``qcow2`` image, don't forget to add "
+"``DRIVER=qcow2`` and ``FORMAT=qcow2``."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/windows_context.rst:21
+msgid ""
+"Create a template that boots from CDROM, enables VNC, and references the "
+"Installation media and the Image created in step 2."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/windows_context.rst:22
+msgid "Follow the typical installation procedure over VNC."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/windows_context.rst:23
+msgid ""
+"Perform a deferred disk-snapshot of the OS disk, which will be saved upon "
+"``shutdown``."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/windows_context.rst:24
+msgid "Shutdown the VM."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/windows_context.rst:26
+msgid ""
+"The resulting image will boot under any OpenNebula cloud that uses KVM or "
+"VMware, and for any storage subsystem. However it hasn't been "
+"contextualized, therefore it will only obtain its IP via DHCP. To apply "
+"contextualization please follow the *Contextualization* section."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/windows_context.rst:29
+msgid "Sysprep"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/windows_context.rst:31
+msgid ""
+"If you are adapting a pre-existing Windows VM to run in an OpenNebula "
+"environment, and you want to remove all the pre-existing senstitive data in "
+"order to be able to clone and deliver it to third party users, it's highly "
+"recommended to run `Sysprep <http://en.wikipedia.org/wiki/Sysprep>`__ on the"
+" image. To do so simply run ``c:\\Windows\\System32\\sysprep\\sysprep.exe``."
+" Select ``OOBE`` and ``Generalize``."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/windows_context.rst:34
+msgid "Contextualization"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/windows_context.rst:37
+msgid "Enabling Contextualization"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/windows_context.rst:39
+msgid ""
+"The official `addon-opennebula-context <https://github.com/OpenNebula/addon-"
+"context-windows>`__ provides all the necessary files to run the "
+"contextualization in Windows 2008 R2."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/windows_context.rst:41
+msgid "The contextualization procedure is as follows:"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/windows_context.rst:43
+msgid ""
+"Download ``startup.vbs`` to the Windows VM (you can also send it via Context"
+" files) and write it to a path under ``C:``."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/windows_context.rst:44
+msgid ""
+"Open the Local Group Policy Dialog by running ``gpedit.msc``. Under: "
+"Computer Configuration -> Windows Settings -> Scripts -> startup (right "
+"click); browse to the ``startup.vbs`` file and enable it as a startup "
+"script."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/windows_context.rst:46
+msgid ""
+"Save the image by performing a deferred disk-snapshot of the OS disk, which "
+"will be saved upon ``shutdown``."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/windows_context.rst:48
+msgid ""
+"To use the Windows contextualization script you need to use the previously "
+"prepared Windows image and include into the CONTEXT files the "
+"``context.ps1`` script available `here <https://github.com/OpenNebula/addon-"
+"context-windows>`__."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/windows_context.rst:50
+msgid "The ``context.ps1`` name matters. If changed, the script will not run."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/windows_context.rst:53
+msgid "Features"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/windows_context.rst:55
+msgid "The ``context.ps1`` script will:"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/windows_context.rst:57
+msgid "Add a new user (using ``USERNAME`` and ``PASSWORD``)."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/windows_context.rst:58
+msgid "Rename the server (using ``SET_HOSTNAME``)."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/windows_context.rst:59
+msgid "Enable Remote Desktop."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/windows_context.rst:60
+msgid "Enable Ping."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/windows_context.rst:61
+msgid ""
+"Configure the Network, using the automatically generated networking "
+"variables in the CONTEXT CD-ROM."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/windows_context.rst:62
+msgid ""
+"Run arbritary PowerShell scripts available in the CONTEXT CD-ROM and "
+"referenced by the ``INIT_SCRIPTS`` variable."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/windows_context.rst:65
+msgid "Variables"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/windows_context.rst:67
+msgid ""
+"The contextualization variables supported by the Windows context script are "
+"very similar to the ones in :ref:`Linux <cong_network_configuration>` except"
+" for a few Windows-specific exceptions."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/windows_context.rst:69
+msgid "This is the list of supported variables:"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/windows_context.rst:71
+msgid "``<DEV>_MAC``: MAC address of the interface."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/windows_context.rst:72
+msgid "``<DEV>_IP``: IP assigned to the interface."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/windows_context.rst:73
+msgid "``<DEV>_NETWORK``: Interface network."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/windows_context.rst:74
+msgid "``<DEV>_MASK``: Interface net mask."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/windows_context.rst:75
+msgid "``<DEV>_GATEWAY``: Interface gateway."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/windows_context.rst:76
+msgid "``<DEV>_DNS``: DNS servers for the network."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/windows_context.rst:77
+msgid "``<DEV>_SEARCH_DOMAIN``: DNS domain search path."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/windows_context.rst:78
+msgid "``DNS``: main DNS server for the machine."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/windows_context.rst:79
+msgid "``SET_HOSTNAME``: Set the hostname of the machine."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/windows_context.rst:80
+msgid ""
+"``INIT_SCRIPTS``: List of PowerShell scripts to be executed. Must be "
+"available in the CONTEXT CD-ROM."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/windows_context.rst:81
+msgid "``USERNAME``: Create a new user."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/windows_context.rst:82
+msgid "``PASSWORD``: Password for the new user."
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/windows_context.rst:85
+msgid "Customization"
+msgstr ""
+
+#: ../../source/user/virtual_machine_setup/windows_context.rst:87
+msgid ""
+"The ``context.ps1`` script has been designed to be easily hacked and "
+"modified. Perform any changes to that script and use it locally."
+msgstr ""

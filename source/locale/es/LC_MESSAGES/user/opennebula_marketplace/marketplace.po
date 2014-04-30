@@ -1,0 +1,81 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenNebula 4.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-30 12:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/user/opennebula_marketplace/marketplace.rst:5
+msgid "Interacting with the OpenNebula Marketplace"
+msgstr ""
+
+#: ../../source/user/opennebula_marketplace/marketplace.rst:7
+msgid ""
+"The OpenNebula Marketplace is a catalog of third party virtual appliances "
+"ready to run in OpenNebula environments. The OpenNebula Marketplace only "
+"contains appliances metadata. The images and files required by an appliance "
+"will not be stored in the Marketplace, but links to them."
+msgstr ""
+
+#: ../../source/user/opennebula_marketplace/marketplace.rst:9
+msgid "|image0|"
+msgstr ""
+
+#: ../../source/user/opennebula_marketplace/marketplace.rst:12
+msgid "Using Sunstone to Interact with the OpenNebula Marketplace"
+msgstr ""
+
+#: ../../source/user/opennebula_marketplace/marketplace.rst:14
+msgid ""
+"Since the release 3.6, Sunstone includes a new tab that allows OpenNebula "
+"users to interact with the OpenNebula Marketplace:"
+msgstr ""
+
+#: ../../source/user/opennebula_marketplace/marketplace.rst:16
+msgid "|image1|"
+msgstr ""
+
+#: ../../source/user/opennebula_marketplace/marketplace.rst:18
+msgid ""
+"If you want to import a new appliance into your local infrastructure, you "
+"just have to select an image and click the button ``import``. A new dialog "
+"box will prompt you to create a new image."
+msgstr ""
+
+#: ../../source/user/opennebula_marketplace/marketplace.rst:20
+msgid "|image2|"
+msgstr ""
+
+#: ../../source/user/opennebula_marketplace/marketplace.rst:22
+msgid ""
+"After that you will be able use that image in a template in order to create "
+"a new instance."
+msgstr ""
+
+#: ../../source/user/opennebula_marketplace/marketplace.rst:25
+msgid "Using the CLI to Interact with the OpenNebula Marketplace"
+msgstr ""
+
+#: ../../source/user/opennebula_marketplace/marketplace.rst:27
+msgid "You can also use the CLI to interact with the OpenNebula Marketplace:"
+msgstr ""
+
+#: ../../source/user/opennebula_marketplace/marketplace.rst:29
+msgid "List appliances:"
+msgstr ""
+
+#: ../../source/user/opennebula_marketplace/marketplace.rst:41
+msgid "Show an appliance:"
+msgstr ""
+
+#: ../../source/user/opennebula_marketplace/marketplace.rst:85
+msgid ""
+"Create a new image: You can use the download link as PATH in a new Image "
+"template to create am Image."
+msgstr ""
