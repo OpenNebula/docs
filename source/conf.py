@@ -96,6 +96,10 @@ pygments_style = 'sphinx'
 github_repo   = "https://github.com/OpenNebula/docs"
 github_branch = "master"
 
+# i18n
+locale_dirs = ['locale/']
+gettext_compact = False
+
 # -- Options for HTML output ---------------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
