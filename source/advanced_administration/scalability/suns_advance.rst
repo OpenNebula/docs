@@ -128,6 +128,8 @@ Next thing we have to do is configure the virtual host that will run our Sunston
       </Directory>
     </VirtualHost>
 
+.. note:: When you're experiencing login problems you might want to set ``PassengerMaxInstancesPerApp 1`` in your passenger configuration or try memcached since Sunstone does not support sessions across multiple server instances.
+
 Now the configuration should be ready, restart -or reload apache configuration- to start the application and point to the virtual host to check if everything is running.
 
 Running Sunstone in Multiple Servers
