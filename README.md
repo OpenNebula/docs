@@ -14,3 +14,24 @@ Install dependencies: ``pip install sphinx sphinx_bootstrap_theme``.
 
 Build the documentation by running ``make html``.
 [More information](http://sphinx-doc.org/).
+
+Translations
+------------
+
+### Bootstrap a new language
+
+    $ make gettext
+    $ sphinx-intl update -c source/conf.py -p build/locale -l <lang>
+
+### Translate
+
+Translate your po files under ``./locale/<lang>/LC_MESSAGES/``.
+
+### Publish the translation
+
+    $ sphinx-intl build -c source/conf.py
+    $ make -e SPHINXOPTS="-D language='<lang>'" html
+
+### More Info
+
+Follow [this guide](http://sphinx-doc.org/intl.html) for more information.
