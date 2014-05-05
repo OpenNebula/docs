@@ -1,91 +1,107 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenNebula 4.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-30 12:52+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2014-05-05 15:16+0100\n"
+"Last-Translator: Jaime Melis <jmelis@opennebula.org>\n"
+"Language-Team: OpenNebula <contact@opennebula.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: es\n"
+"X-Generator: Poedit 1.6.4\n"
 
 #: ../../source/design_and_installation/quick_starts/qs_vdc.rst:5
 msgid "Quickstart: Create Your First vDC"
-msgstr ""
+msgstr "Guía de Inicio Rápido: Creación del primero vDC"
 
 #: ../../source/design_and_installation/quick_starts/qs_vdc.rst:7
 msgid ""
-"This guide will provide a quick example of how to partition your cloud for a"
-" vDC. In short, a vDC is a group of users with part of the physical "
-"resources assigned to them. The :ref:`Understanding OpenNebula<understand>` "
-"guide explains the OpenNebula provisioning model in detail."
+"This guide will provide a quick example of how to partition your cloud for a "
+"vDC. In short, a vDC is a group of users with part of the physical resources "
+"assigned to them. The :ref:`Understanding OpenNebula<understand>` guide "
+"explains the OpenNebula provisioning model in detail."
 msgstr ""
+"El objetivo de esta es el de mostar en un ejemplo rápido cómo particionar un "
+"cloud para obtener un vDC. En resumen, un vDC es un grupo de usuarios al "
+"cuál se le ha asignado una parte de los recursos físicos. La guía :ref:"
+"`Understanding OpenNebula<understand>` explica en más detalle el model de "
+"provisionamiento."
 
 #: ../../source/design_and_installation/quick_starts/qs_vdc.rst:11
 msgid "Step 1. Create a Cluster"
-msgstr ""
+msgstr "Paso 1. Creación de un Cluster"
 
 #: ../../source/design_and_installation/quick_starts/qs_vdc.rst:13
 msgid ""
 "We will first create a :ref:`cluster <cluster_guide>`, 'web-dev', where we "
 "can group hosts, datastores and virtual networks for the new vDC."
 msgstr ""
+"Crearemos en primer lugar un :ref:`cluster <cluster_guide>`, 'web-dev', "
+"donde agruparemos hosts, datastores y redes virtuales para el nuevo vDC."
 
 #: ../../source/design_and_installation/quick_starts/qs_vdc.rst:34
 msgid "|qs_vdc1|"
-msgstr ""
+msgstr "|qs_vdc1|"
 
 #: ../../source/design_and_installation/quick_starts/qs_vdc.rst:37
 msgid "Step 2. Create a vDC Group"
-msgstr ""
+msgstr "Paso 2. Creación de un grupo vDC"
 
 #: ../../source/design_and_installation/quick_starts/qs_vdc.rst:39
 msgid ""
 "We can now create the new :ref:`group <manage_groups>`, named also 'web-"
 "dev'. This group, or vDC, will have a special admin user, 'web-dev-admin'."
 msgstr ""
+"Ahora podremos create un nuevo :ref:`grupo <manage_groups>`, también llamado "
+"'web-dev'. Este grupo, o vDC, tendrá un administrador: 'web-dev-admin'."
 
 #: ../../source/design_and_installation/quick_starts/qs_vdc.rst:48
 msgid "|qs_vdc2|"
-msgstr ""
+msgstr "|qs_vdc2|"
 
 #: ../../source/design_and_installation/quick_starts/qs_vdc.rst:50
 msgid "|qs_vdc3|"
-msgstr ""
+msgstr "|qs_vdc3|"
 
 #: ../../source/design_and_installation/quick_starts/qs_vdc.rst:53
 msgid "Step 3. Optionally, Set Quotas"
-msgstr ""
+msgstr "Paso 3. Opcional. Definición de Cuotas"
 
 #: ../../source/design_and_installation/quick_starts/qs_vdc.rst:55
 msgid ""
 "The cloud administrator can set :ref:`usage quotas <quota_auth>` for the "
 "vDC. In this case, we will put a limit of 10 VMs."
 msgstr ""
+"El administrador cloud puede asingar :ref:`quotas de uso <quota_auth>` para "
+"el vDC. En este caso pondremos un límite de 10 VMs."
 
 #: ../../source/design_and_installation/quick_starts/qs_vdc.rst:82
 msgid "|qs_vdc4|"
-msgstr ""
+msgstr "|qs_vdc4|"
 
 #: ../../source/design_and_installation/quick_starts/qs_vdc.rst:85
 msgid "Step 4. Prepare Virtual Resources for the Users"
-msgstr ""
+msgstr "Paso 4. Preparación de Recursos Virtuales para los Usuarios"
 
 #: ../../source/design_and_installation/quick_starts/qs_vdc.rst:87
 msgid ""
 "At this point, the cloud administrator can also prepare working Templates "
 "and Images for the vDC users."
 msgstr ""
+"En este momento, el administrador del cloud puede preparar Plantillas e "
+"Imágenes para los usuarios vDC."
 
 #: ../../source/design_and_installation/quick_starts/qs_vdc.rst:93
 msgid "|qs_vdc5|"
-msgstr ""
+msgstr "|qs_vdc5|"
 
 #: ../../source/design_and_installation/quick_starts/qs_vdc.rst:96
 msgid "Reference for End Users"
-msgstr ""
+msgstr "Referencia para Usuarios Finales"
 
 #: ../../source/design_and_installation/quick_starts/qs_vdc.rst:98
 msgid ""
@@ -95,26 +111,38 @@ msgid ""
 "Templates for them. The vDC admin can also decide to configure quota limits "
 "for each user."
 msgstr ""
+"El administrador del vDC usa un interfaz similar al portal del administrador "
+"cloud, pero sin información sobre la infraestructura física. Podrá crear "
+"usuarios dentro del vDC, monitorizar los recursos y crear Plantillas "
+"consumibles por los usuarios. El administrador de vDC también podrá "
+"configurar las cuotas para cada usuario."
 
 #: ../../source/design_and_installation/quick_starts/qs_vdc.rst:100
 msgid ""
 "Refer your vDC admin user to the :ref:`vDC Admin View Guide "
 "<vdc_admin_view>`."
 msgstr ""
+"Para más información visite la  :ref:`guía de Vista de Administrador de vDC "
+"<vdc_admin_view>`."
 
 #: ../../source/design_and_installation/quick_starts/qs_vdc.rst:102
 msgid ""
-"End users access OpenNebula through a simplified instantiate, where they can"
-" launch their own VMs from the Templates prepared by the administrator. "
-"Users can also save the changes they make to their machines. This view is "
-"self explanatory, you can read more about it in the :ref:`Cloud View Guide "
+"End users access OpenNebula through a simplified instantiate, where they can "
+"launch their own VMs from the Templates prepared by the administrator. Users "
+"can also save the changes they make to their machines. This view is self "
+"explanatory, you can read more about it in the :ref:`Cloud View Guide "
 "<cloud_view>`."
 msgstr ""
+"Usuarios finales de OpenNebula podrán acceder a través de un interfaz "
+"simplicado, donde podrán instanciar sus propias MVs a partir de las "
+"Plantillas preparadas por el administrador. Los usuarios podrán guardar los "
+"cambios hechos en sus MVs. La vista es auto-explicativa, puede leer más en "
+"le guía de :ref:`Vista Cloud <cloud_view>`."
 
 #: ../../source/design_and_installation/quick_starts/qs_vdc.rst:104
 msgid "|qs_vdc6|"
-msgstr ""
+msgstr "|qs_vdc6|"
 
 #: ../../source/design_and_installation/quick_starts/qs_vdc.rst:106
 msgid "|qs_vdc7|"
-msgstr ""
+msgstr "|qs_vdc7|"

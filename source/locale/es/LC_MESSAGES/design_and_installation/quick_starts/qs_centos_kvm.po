@@ -1,19 +1,24 @@
-# 
+#
+# Jaime Melis <jmelis@opennebula.org>, 2014.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenNebula 4.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-30 12:52+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2014-04-30 16:13+0100\n"
+"Last-Translator: Jaime Melis <jmelis@opennebula.org>\n"
+"Language-Team: OpenNebula <contact@opennebula.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.6.4\n"
+"Language: es\n"
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:5
 msgid "Quickstart: OpenNebula on CentOS 6 and KVM"
-msgstr ""
+msgstr "Guía de Inicio Rápido: OpenNebula en CentOS 6 y KVM"
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:7
 msgid ""
@@ -21,377 +26,460 @@ msgid ""
 "install OpenNebula using CentOS 6 as the operating system and KVM as the "
 "hypervisor."
 msgstr ""
+"El propósito de esta guía es la de proveer a los usuarios con una guía paso "
+"a paso para instalar OpenNebula usando CentOS 6 como el sistema operativo y "
+"KVM como hipervisor."
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:9
 msgid ""
 "After following this guide, users will have a working OpenNebula with "
-"graphical interface (Sunstone), at least one hypervisor (host) and a running"
-" virtual machines. This is useful at the time of setting up pilot clouds, to"
-" quickly test new features and as base deployment to build a large "
+"graphical interface (Sunstone), at least one hypervisor (host) and a running "
+"virtual machines. This is useful at the time of setting up pilot clouds, to "
+"quickly test new features and as base deployment to build a large "
 "infrastructure."
 msgstr ""
+"Tras seguir esta guía, lo usuarios obtendrán un OpenNebula funcional con "
+"interfaz gráfico (Sunstone), al menos un hipervisor (host) y máquinas "
+"virtuales en ejecución. Es útil para desplegar pilotos de Cloud, y para "
+"probar rápidamente las nuevas funcionalidades como punto de partida para "
+"construir una infraestructura más extensa."
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:11
 msgid ""
 "Throughout the installation there are two separate roles: **Frontend** and "
-"**Nodes**. The Frontend server will execute the OpenNebula services, and the"
-" Nodes will be used to execute virtual machines. Please not that **it is "
+"**Nodes**. The Frontend server will execute the OpenNebula services, and the "
+"Nodes will be used to execute virtual machines. Please not that **it is "
 "possible** to follow this guide with just one host combining both the "
 "Frontend and Nodes roles in a single server. However it is recommended "
-"execute virtual machines in hosts with virtualization extensions. To test if"
-" your host supports virtualization extensions, please run:"
+"execute virtual machines in hosts with virtualization extensions. To test if "
+"your host supports virtualization extensions, please run:"
 msgstr ""
+"Durante la instalación habrá dos roles bien definidos: **Frontend** y "
+"**Nodos**. El servidor Frontend ejecutará los servicios de OpenNebula, y los "
+"Nodos servirán para ejecutar máquinas virtuales. Notar que **es posible** "
+"seguir esta guía con tan solo un host, combinando los roles de Frontend y "
+"Nodos en un solo servidor. Sin embargo, es recomendable ejecutar las "
+"máquinas virtuales en hosts con extensiones de virtualización. Para "
+"comprobar que el servidor soporta las extensiones de virtualización ejecute:"
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:17
 msgid ""
 "If you don't get any output you probably don't have virtualization "
 "extensions supported/enabled in your server."
 msgstr ""
+"Si no obtiene ninguna salida probablemente no tienen las extensiones de "
+"virtualización soportadas/activadas en su servidor."
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:20
 msgid "Package Layout"
-msgstr ""
+msgstr "Esquema de Paquetes"
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:22
 msgid "opennebula-server: OpenNebula Daemons"
-msgstr ""
+msgstr "opennebula-server: Demonios de OpenNebula"
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:23
 msgid "opennebula: OpenNebula CLI commands"
-msgstr ""
+msgstr "opennebula: Línea de comandos para OpenNebula"
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:24
 msgid "opennebula-sunstone: OpenNebula's web GUI"
-msgstr ""
+msgstr "opennebula-sunstone: Interfaz Gráfico de OpenNebula"
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:25
 msgid "opennebula-ozones: OpenNebula's web GUI"
-msgstr ""
+msgstr "opennebula-ozones: Servicio de múltiples zonas"
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:26
 msgid "opennebula-java: OpenNebula Java API"
-msgstr ""
+msgstr "opennebula-java: API de Java"
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:27
 msgid ""
 "opennebula-node-kvm: Installs dependencies required by OpenNebula in the "
 "nodes"
 msgstr ""
+"opennebula-node-kvm: Instala las dependecencias requeridas por OpenNebula en "
+"los nodos"
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:28
 msgid "opennebula-gate: Send information from Virtual Machines to OpenNebula"
 msgstr ""
+"opennebula-gate: Componente que permite enviar información de las máquinas "
+"virtuales a OpenNebula"
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:29
 msgid "opennebula-flow: Manage OpenNebula Services"
-msgstr ""
+msgstr "opennebula-flow: Gestión de servicios"
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:30
 msgid "opennebula-context: Package for OpenNebula Guests"
-msgstr ""
+msgstr "opennebula-context: Paquete para huéspedes de OpenNebula"
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:32
 msgid ""
-"Additionally ``opennebula-common`` and ``opennebula-ruby`` exist but they're"
-" intended to be used as dependencies. ``opennebula-occi``, which is RESTful "
+"Additionally ``opennebula-common`` and ``opennebula-ruby`` exist but they're "
+"intended to be used as dependencies. ``opennebula-occi``, which is RESTful "
 "service to manage the cloud, is included in the ``opennebula-sunstone`` "
 "package."
 msgstr ""
+"Adicionalmente ``opennebula-common`` y ``opennebula-ruby`` existes pero se "
+"instalarán como dependencias. ``opennebula-occi``, un servicio REST para "
+"gestionar el cloud está incluido en el paquete ``opennebula-sunstone``."
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:35
 msgid "Step 1. Installation in the Frontend"
-msgstr ""
+msgstr "Paso 1. Instalación en el Frontend"
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:37
 msgid ""
 "Commands prefixed by ``#`` are meant to be run as ``root``. Commands "
 "prefixed by ``$`` must be run as ``oneadmin``."
 msgstr ""
+"Comandos con el prefijo de ``#`` deberán ser ejecutados como ``root``. "
+"Comandos con el prefijo de ``$`` deberán ser ejecutados como ``oneadmin``."
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:40
 msgid "1.1. Install the repo"
-msgstr ""
+msgstr "1.1. Instalar el repositorio"
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:42
 msgid "Enable the `EPEL <https://fedoraproject.org/wiki/EPEL>`__ repo:"
 msgstr ""
+"Activar el repositorio de  `EPEL <https://fedoraproject.org/wiki/EPEL>`__:"
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:48
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:124
 msgid "Add the OpenNebula repository:"
-msgstr ""
+msgstr "Añadir el repositorio de OpenNebula:"
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:61
 msgid "1.2. Install the required packages"
-msgstr ""
+msgstr "1.2. Instalación de los paquetes requeridos"
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:63
 msgid ""
 "A complete install of OpenNebula will have at least both ``opennebula-"
 "server`` and ``opennebula-sunstone`` package:"
 msgstr ""
+"Una instalación completa de OpenNebula tendrá al menos los paquetes "
+"``opennebula-server`` y ``opennebula-sunstone``:"
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:70
 msgid "1.3. Configure and Start the services"
-msgstr ""
+msgstr "1.3. Configuración e Inicio de servicios"
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:72
 msgid ""
 "There are two main processes that must be started, the main OpenNebula "
 "daemon: ``oned``, and the graphical user interface: ``sunstone``."
 msgstr ""
+"Hay dos procesos principales que se han de iniciar, el demonio principal de "
+"OpenNebul: ``oned``, y el interfaz gráfico: ``sunstone``."
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:74
 msgid ""
 "``Sunstone`` listens only in the loopback interface by default for security "
-"reasons. To change it edit ``/etc/one/sunstone-server.conf`` and change "
-"``:host: 127.0.0.1`` to ``:host: 0.0.0.0``."
+"reasons. To change it edit ``/etc/one/sunstone-server.conf`` and change ``:"
+"host: 127.0.0.1`` to ``:host: 0.0.0.0``."
 msgstr ""
+"``Sunstone`` mantiene la escucha en el interfaz loopback for defecto por "
+"cuestiones de seguridad. Para cambiarlo hará falta editar ``/etc/one/"
+"sunstone-server.conf`` y cambiar ``:host: 127.0.0.1`` por ``:host: 0.0.0.0``."
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:76
 msgid "Now we can start the services:"
-msgstr ""
+msgstr "Se pueden iniciar los servicios:"
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:84
 msgid "1.4. Configure NFS"
-msgstr ""
+msgstr "1.4. Configuración de NFS"
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:86
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:201
 msgid ""
-"Skip this section if you are using a single server for both the frontend and"
-" worker node roles."
+"Skip this section if you are using a single server for both the frontend and "
+"worker node roles."
 msgstr ""
+"Pase a la siguiente sección si está utilizando un solo servidor tanto para "
+"el Frontend como para los Nodos."
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:88
 msgid ""
-"Export ``/var/lib/one/`` from the frontend to the worker nodes. To do so add"
-" the following to the ``/etc/exports`` file in the frontend:"
+"Export ``/var/lib/one/`` from the frontend to the worker nodes. To do so add "
+"the following to the ``/etc/exports`` file in the frontend:"
 msgstr ""
+"Exportar ``/var/lib/one`` desde el Frontend a los Nodos. Para hacerlo añadir "
+"la siguiente línea al fichero ``/etc/exports`` en el Frontend:"
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:94
 msgid "Refresh the NFS exports by doing:"
-msgstr ""
+msgstr "Refrescar los puntos de exportación de NFS haciendo:"
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:102
 msgid "1.5. Configure SSH Public Key"
-msgstr ""
+msgstr "1.5. Configuración de la Clave Pública SSH"
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:104
 msgid ""
 "OpenNebula will need to SSH passwordlessly from any node (including the "
 "frontend) to any other node."
 msgstr ""
+"OpenNebula necesitar poder acceder sin password por SSH desde cualquier nodo "
+"(incluyendo el Frontend) a cualquier otro nodo."
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:106
 msgid ""
-"Add the following snippet to ``~/.ssh/config`` as ``oneadmin`` so it doesn't"
-" prompt to add the keys to the ``known_hosts`` file:"
+"Add the following snippet to ``~/.ssh/config`` as ``oneadmin`` so it doesn't "
+"prompt to add the keys to the ``known_hosts`` file:"
 msgstr ""
+"Añadir el siguiente fragmento de código a ``~/.ssh/config`` como el usuario "
+"``oneadmin`` de forma que no aparezca un diálogo para añadir las claves al "
+"fichero ``known_hosts``:"
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:119
 msgid "Step 2. Installation in the Nodes"
-msgstr ""
+msgstr "Paso 2. Instalación en los Nodos"
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:122
 msgid "2.1. Install the repo"
-msgstr ""
+msgstr "2.1. Instalación del Repositorio"
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:137
 msgid "2.2. Install the required packages"
-msgstr ""
+msgstr "2.2. Instalación de los Paquetes Requeridos"
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:143
 msgid "Start the required services:"
-msgstr ""
+msgstr "Inicie los servicios necesarios:"
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:151
 msgid "2.3. Configure the Network"
-msgstr ""
+msgstr "2.3. Configurar la Red"
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:153
 msgid ""
-"Backup all the files that are modified in this section before making changes"
-" to them."
+"Backup all the files that are modified in this section before making changes "
+"to them."
 msgstr ""
+"Realice copias de seguridad de todos aquellos ficheros que se modifiquen en "
+"esta sección antes de modificarlos."
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:155
 msgid ""
 "You will need to have your main interface, typically ``eth0``, connected to "
 "a bridge. The name of the bridge should be the same in all nodes."
 msgstr ""
+"Deberá tener el interfaz principal de red, típicamente ``eth0``, conectado a "
+"un puente de red. El nombre del puente de red deberá ser el mismo en todos "
+"los nodos. "
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:157
 msgid ""
 "To do so, substitute ``/etc/sysconfig/network-scripts/ifcfg-eth0`` with:"
 msgstr ""
+"Para hacerlo sustituya ``/etc/sysconfig/network-scripts/ifcfg-eth0`` con:"
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:168
 msgid "And add a new ``/etc/sysconfig/network-scripts/ifcfg-br0`` file."
-msgstr ""
+msgstr "Y añade un nuevo fichero ``/etc/sysconfig/network-scripts/ifcfg-br0``."
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:170
 msgid "If you were using DHCP for your ``eth0`` interface, use this template:"
-msgstr ""
+msgstr "Si está usando DHCP para su interfaz ``eth0``, utilice este template:"
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:180
 msgid "If you were using a static IP address use this other template:"
-msgstr ""
+msgstr "Si está usando una IP estática use este otro template:"
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:192
 msgid "After these changes, restart the network:"
-msgstr ""
+msgstr "Tras aplicar estos cambios, reinicie la red:"
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:199
 msgid "2.4. Configure NFS"
-msgstr ""
+msgstr "2.4. Configure NFS"
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:203
 msgid "Mount the datastores export. Add the following to your ``/etc/fstab``:"
 msgstr ""
+"Monte el punto de montaje de los datastores. Añada el siguiente fragmento de "
+"cṕdigo a ``/etc/fstab``:"
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:209
 msgid "Replace ``192.168.1.1`` with the IP of the frontend."
-msgstr ""
+msgstr "Reemplace ``192.168.1.1`` con la IP de su Frontend."
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:211
 msgid "Mount the NFS share:"
-msgstr ""
+msgstr "Monte el NFS:"
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:218
 msgid "Step 3. Basic Usage"
-msgstr ""
+msgstr "Paso 3. Uso Básico"
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:220
 msgid ""
-"All the operations in this section can be done using Sunstone instead of the"
-" command line. Point your browser to: ``http://frontend:9869``."
+"All the operations in this section can be done using Sunstone instead of the "
+"command line. Point your browser to: ``http://frontend:9869``."
 msgstr ""
+"Todas las operaciones de esta sección se podrán realizar desde Sunstone en "
+"lugar de desde la línea de comandos. Abra la dirección: ``http://"
+"frontend:9869``."
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:222
 msgid ""
-"The default password for the ``oneadmin`` user can be found in "
-"``~/.one/one_auth`` which is randomly generated on every installation."
+"The default password for the ``oneadmin`` user can be found in ``~/.one/"
+"one_auth`` which is randomly generated on every installation."
 msgstr ""
+"La password por defecto de ``oneadmin`` se puede encontrar en ``~/.one/"
+"one_auth``, siendo generada aleatoriamente en cada instalación."
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:224
 msgid "|image1|"
-msgstr ""
+msgstr "|image1|"
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:226
 msgid ""
-"To interact with OpenNebula, you have to do it from the ``oneadmin`` account"
-" in the frontend. We will assume all the following commands are performed "
+"To interact with OpenNebula, you have to do it from the ``oneadmin`` account "
+"in the frontend. We will assume all the following commands are performed "
 "from that account. To login as ``oneadmin`` execute ``su - oneadmin``."
 msgstr ""
+"Para interactuar con OpenNebula, deberá hacerlo desde la cuenta de "
+"``oneadmin`` en el Frontend. Asumiremos que todos los comandos serán "
+"realizados desde esa cuenta. Para hacer login como ``oneadmin``, ejecute "
+"``su - oneadmin``."
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:229
 msgid "3.1. Adding a Host"
-msgstr ""
+msgstr "3.1. Añadir un Nodo"
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:231
 msgid ""
-"To start running VMs, you should first register a worker node for "
-"OpenNebula."
-msgstr ""
+"To start running VMs, you should first register a worker node for OpenNebula."
+msgstr "Para arrancar las MVs, deberá registrar un Nodo en OpenNebula."
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:233
 msgid ""
 "Issue this command for each one of your nodes. Replace ``localhost`` with "
 "your node's hostname."
 msgstr ""
+"Ejecute el siguiente comando en cada uno de sus nodos. Reemplace "
+"``localhost`` con el nombre del nodo."
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:239
 msgid ""
 "Run ``onehost list`` until it's set to on. If it fails you probably have "
-"something wrong in your ssh configuration. Take a look at "
-"``/var/log/one/oned.log``."
+"something wrong in your ssh configuration. Take a look at ``/var/log/one/"
+"oned.log``."
 msgstr ""
+"Ejecute ``onehost list`` hasta que el host este en ``on``. Si falla "
+"probablemente será debido a la configuración SSH. Mire el contenido de ``/"
+"var/log/one/oned.log``."
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:242
 msgid "3.2. Adding virtual resources"
-msgstr ""
+msgstr "3.2. Añadir Recursos Virtuales"
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:244
 msgid ""
 "Once it's working you need to create a network, an image and a virtual "
 "machine template."
 msgstr ""
+"Una vez que esté funcionando, deberá crear una red, una imagen y una "
+"plantilla de máquina virtual."
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:246
 msgid ""
 "To create networks, we need to create first a network template file "
 "``mynetwork.one`` that contains:"
 msgstr ""
+"Para crear redes, se deberá crear primero un fichero de plantilla de red "
+"``mynetwork.one`` que contendrá:"
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:259
 msgid ""
 "Replace the leases with free IPs in your host's network. You can add any "
 "number of leases."
 msgstr ""
+"Reemplace las direcciones IP con IPs disponibles en la red de su Nodo. Podrá "
+"añadir cualquier número de IPs."
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:261
 msgid "Now we can move ahead and create the resources in OpenNebula:"
-msgstr ""
+msgstr "A continuación se procederá a crear los recursos en OpenNebula:"
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:276
 msgid ""
 "(The image will be downloaded from `http://wiki.centos.org/Cloud/OpenNebula "
 "<http://wiki.centos.org/Cloud/OpenNebula>`__)"
 msgstr ""
+"(La imagen será descargada de `http://wiki.centos.org/Cloud/OpenNebula "
+"<http://wiki.centos.org/Cloud/OpenNebula>`__)"
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:278
 msgid ""
-"You will need to wait until the image is ready to be used. Monitor its state"
-" by running ``oneimage list``."
+"You will need to wait until the image is ready to be used. Monitor its state "
+"by running ``oneimage list``."
 msgstr ""
+"Deberá esperar hasta que la imagen esté lista para ser usada. Monitorice el "
+"estado ejecutando ``oneimage list``."
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:280
 msgid ""
-"In order to dynamically add ssh keys to Virtual Machines we must add our ssh"
-" key to the user template, by editing the user template:"
+"In order to dynamically add ssh keys to Virtual Machines we must add our ssh "
+"key to the user template, by editing the user template:"
 msgstr ""
+"Para añadir las claves SSH dinámicamente a las Máquinas Virtuales, deberemos "
+"añadir la clave SSH a la plantilla de nuestro usuario:"
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:286
 msgid "Add a new line like the following to the template:"
-msgstr ""
+msgstr "Añadir una línea nueva como la siguiente a la plantilla:"
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:292
 msgid ""
 "Substitute the value above with the output of ``cat ~/.ssh/id_dsa.pub``."
 msgstr ""
+"Reemplace el valor mostrado arriba con la salida del comando ``cat ~/.ssh/"
+"id_dsa.pub``."
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:295
 msgid "3.3. Running a Virtual Machine"
-msgstr ""
+msgstr "3.3. Ejecutar una Máquina Virtual"
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:297
 msgid "To run a Virtual Machine, you will need to instantiate a template:"
-msgstr ""
+msgstr "Para ejecutar una Máquina Virtual, deberá instanciar la plantilla:"
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:303
 msgid ""
 "Execute ``onevm list`` and watch the virtual machine going from PENDING to "
-"PROLOG to RUNNING. If the vm fails, check the reason in the log: "
-"``/var/log/one/<VM_ID>/vm.log``."
+"PROLOG to RUNNING. If the vm fails, check the reason in the log: ``/var/log/"
+"one/<VM_ID>/vm.log``."
 msgstr ""
+"Ejecute ``onevm list`` y observe cómo transiciona de PENDING a PROLOGO a "
+"RUNNING. SI la MV falla, podrá averiguar por qué en el log: ``/var/log/one/"
+"<VM_ID>/vm.log``."
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:306
 msgid "Further information"
-msgstr ""
+msgstr "Más Información"
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:308
 msgid ":ref:`Planning the Installation <plan>`"
-msgstr ""
+msgstr ":ref:`Planeando la Instalación <plan>`"
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:309
 msgid ":ref:`Installing the Software <ignc>`"
-msgstr ""
+msgstr ":ref:`Instalación del Software <ignc>`"
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:310
 msgid "`FAQs. Good for troubleshooting <http://wiki.opennebula.org/faq>`__"
 msgstr ""
+"`FAQs. Útiles para depuración de problemas <http://wiki.opennebula.org/"
+"faq>`__"
 
 #: ../../source/design_and_installation/quick_starts/qs_centos_kvm.rst:311
 msgid ":ref:`Main Documentation <entry_point>`"
-msgstr ""
+msgstr ":ref:`Documentación Principal <entry_point>`"

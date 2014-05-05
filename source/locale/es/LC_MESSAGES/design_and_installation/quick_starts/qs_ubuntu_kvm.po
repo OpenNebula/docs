@@ -1,381 +1,462 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenNebula 4.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-30 12:52+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2014-05-05 15:06+0100\n"
+"Last-Translator: Jaime Melis <jmelis@opennebula.org>\n"
+"Language-Team: OpenNebula <contact@opennebula.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: es\n"
+"X-Generator: Poedit 1.6.4\n"
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:5
 msgid "Quickstart: OpenNebula on Ubuntu 12.04 and KVM"
-msgstr ""
+msgstr "Guía de Inicio Rápido: OpenNebula en Ubuntu 12.04  y KVM"
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:7
 msgid ""
 "The purpose of this guide is to provide users with step by step guide to "
-"install OpenNebula using Ubuntu 12.04 as the operating system and KVM as the"
-" hypervisor."
+"install OpenNebula using Ubuntu 12.04 as the operating system and KVM as the "
+"hypervisor."
 msgstr ""
+"El propósito de esta guía es la de proveer a los usuarios con una guía paso "
+"a paso para instalar OpenNebula usando Ubuntu 12.04 como el sistema "
+"operativo y KVM como el hipervisor."
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:9
 msgid ""
 "After following this guide, users will have a working OpenNebula with "
-"graphical interface (Sunstone), at least one hypervisor (host) and a running"
-" virtual machines. This is useful at the time of setting up pilot clouds, to"
-" quickly test new features and as base deployment to build a large "
+"graphical interface (Sunstone), at least one hypervisor (host) and a running "
+"virtual machines. This is useful at the time of setting up pilot clouds, to "
+"quickly test new features and as base deployment to build a large "
 "infrastructure."
 msgstr ""
+"Tras seguir esta guía, lo usuarios obtendrán un OpenNebula funcional con "
+"interfaz gráfico (Sunstone), al menos un hipervisor (host) y máquinas "
+"virtuales en ejecución. Esto resulta útil para desplegar pilotos de Cloud, y "
+"para probar rápidamente las nuevas funcionalidades como punto de partida "
+"para construir una infraestructura más extensa."
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:11
 msgid ""
 "Throughout the installation there are two separate roles: **Frontend** and "
-"**Nodes**. The Frontend server will execute the OpenNebula services, and the"
-" Nodes will be used to execute virtual machines. Please not that **it is "
+"**Nodes**. The Frontend server will execute the OpenNebula services, and the "
+"Nodes will be used to execute virtual machines. Please not that **it is "
 "possible** to follow this guide with just one host combining both the "
 "Frontend and Nodes roles in a single server. However it is recommended "
-"execute virtual machines in hosts with virtualization extensions. To test if"
-" your host supports virtualization extensions, please run:"
+"execute virtual machines in hosts with virtualization extensions. To test if "
+"your host supports virtualization extensions, please run:"
 msgstr ""
+"Durante la instalación habrá dos roles bien definidos: **Frontend** y "
+"**Nodos**. El servidor Frontend ejecutará los servicios de OpenNebula, y los "
+"Nodos servirán para ejecutar máquinas virtuales. Notar que **es posible** "
+"seguir esta guía con tan solo un host, combinando los roles de Frontend y "
+"Nodos en un solo servidor. Sin embargo, es recomendable ejecutar las "
+"máquinas virtuales en hosts con extensiones de virtualización. Para "
+"comprobar que el servidor soporta las extensiones de virtualización ejecute:"
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:17
 msgid ""
 "If you don't get any output you probably don't have virtualization "
 "extensions supported/enabled in your server."
 msgstr ""
+"Si no obtiene ninguna salida probablemente no tienen las extensiones de "
+"virtualización soportadas/activadas en su servidor."
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:20
 msgid "Package Layout"
-msgstr ""
+msgstr "Esquema de Paquetes"
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:22
 msgid "**opennebula-common**: Provides the user and common files"
-msgstr ""
+msgstr "**opennebula-common**: Usuario oneadmin y ficheros comunes"
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:23
 msgid "**libopennebula-ruby**: All ruby libraries"
-msgstr ""
+msgstr "**libopennebula-ruby**: librería ruby de OpenNebula"
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:24
 msgid "**opennebula-node**: Prepares a node as an opennebula-node"
 msgstr ""
+"**opennebula-node**: Instala las dependecencias requeridas por OpenNebula en "
+"los nodos"
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:25
 msgid "**opennebula-sunstone**: OpenNebula Sunstone Web Interface"
-msgstr ""
+msgstr "**opennebula-sunstone**: Interfaz Gráfico de OpenNebula"
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:26
 msgid "**opennebula-tools**: Command Line interface"
-msgstr ""
+msgstr "**opennebula-tools**: Línea de comandos de OpenNebula"
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:27
 msgid ""
 "**opennebula-gate**: Gate server that enables communication between VMs and "
 "OpenNebula"
 msgstr ""
+"**opennebula-gate**: Servidor Gate que habilita la comunicación entre las "
+"MVs y OpenNebula"
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:28
+#, fuzzy
 msgid "**opennebula-flow**: Manages services and elasticity"
-msgstr ""
+msgstr "**opennebula-flow**: Gestión de servicios"
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:29
 msgid "**opennebula**: OpenNebula Daemon"
-msgstr ""
+msgstr "**opennebula**: Demonio de OpenNebula"
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:32
 msgid "Step 1. Installation in the Frontend"
-msgstr ""
+msgstr "Paso 1. Instalación en el Frontend"
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:34
 msgid ""
 "Commands prefixed by ``#`` are meant to be run as ``root``. Commands "
 "prefixed by ``$`` must be run as ``oneadmin``."
 msgstr ""
+"Comandos con el prefijo de ``#`` deberán ser ejecutados como ``root``. "
+"Comandos con el prefijo de ``$`` deberán ser ejecutados como ``oneadmin``."
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:37
 msgid "1.1. Install the repo"
-msgstr ""
+msgstr "1.1. Instalar el repositorio"
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:39
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:114
 msgid "Add the OpenNebula repository:"
-msgstr ""
+msgstr "Añadir el repositorio de OpenNebula:"
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:48
 msgid "1.2. Install the required packages"
-msgstr ""
+msgstr "1.2. Instalación de los paquetes requeridos"
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:56
 msgid "1.3. Configure and Start the services"
-msgstr ""
+msgstr "1.3. Configuración e Inicio de servicios"
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:58
 msgid ""
 "There are two main processes that must be started, the main OpenNebula "
 "daemon: ``oned``, and the graphical user interface: ``sunstone``."
 msgstr ""
+"Hay dos procesos principales que se han de iniciar, el demonio principal de "
+"OpenNebul: ``oned``, y el interfaz gráfico: ``sunstone``."
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:60
 msgid ""
 "``Sunstone`` listens only in the loopback interface by default for security "
-"reasons. To change it edit ``/etc/one/sunstone-server.conf`` and change "
-"``:host: 127.0.0.1`` to ``:host: 0.0.0.0``."
+"reasons. To change it edit ``/etc/one/sunstone-server.conf`` and change ``:"
+"host: 127.0.0.1`` to ``:host: 0.0.0.0``."
 msgstr ""
+"``Sunstone`` mantiene la escucha en el interfaz loopback for defecto por "
+"cuestiones de seguridad. Para cambiarlo hará falta editar ``/etc/one/"
+"sunstone-server.conf`` y cambiar ``:host: 127.0.0.1`` por ``:host: 0.0.0.0``."
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:62
 msgid "Now we must restart the Sunstone:"
-msgstr ""
+msgstr "Ahora deberemos reiniciar el Sunstone:"
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:69
 msgid "1.4. Configure NFS"
-msgstr ""
+msgstr "1.4. Configuración de NFS"
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:71
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:181
 msgid ""
-"Skip this section if you are using a single server for both the frontend and"
-" worker node roles."
+"Skip this section if you are using a single server for both the frontend and "
+"worker node roles."
 msgstr ""
+"Pase a la siguiente sección si está utilizando un solo servidor tanto para "
+"el Frontend como para los Nodos."
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:73
 msgid ""
-"Export ``/var/lib/one/`` from the frontend to the worker nodes. To do so add"
-" the following to the ``/etc/exports`` file in the frontend:"
+"Export ``/var/lib/one/`` from the frontend to the worker nodes. To do so add "
+"the following to the ``/etc/exports`` file in the frontend:"
 msgstr ""
+"Exportar ``/var/lib/one`` desde el Frontend a los Nodos. Para hacerlo añadir "
+"la siguiente línea al fichero ``/etc/exports`` en el Frontend:"
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:79
 msgid "Refresh the NFS exports by doing:"
-msgstr ""
+msgstr "Refrescar los puntos de exportación de NFS haciendo:"
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:86
 msgid "1.5. Configure SSH Public Key"
-msgstr ""
+msgstr "1.5. Configuración de la Clave Pública SSH"
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:88
 msgid ""
 "OpenNebula will need to SSH passwordlessly from any node (including the "
 "frontend) to any other node."
 msgstr ""
+"OpenNebula necesitar poder acceder sin password por SSH desde cualquier nodo "
+"(incluyendo el Frontend) a cualquier otro nodo."
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:90
 msgid "To do so run the following commands:"
-msgstr ""
+msgstr "Para ello se deberá de ejecutar los siguientes comandos:"
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:97
 msgid ""
 "Add the following snippet to ``~/.ssh/config`` so it doesn't prompt to add "
 "the keys to the ``known_hosts`` file:"
 msgstr ""
+"Añadir el siguiente fragmento a ``~/.ssh/config`` de forma que ningún "
+"diálogo solicite las llaves para el fichero ``known_hosts``:"
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:109
 msgid "Step 2. Installation in the Nodes"
-msgstr ""
+msgstr "Paso 2. Instalación en los Nodos"
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:112
 msgid "2.1. Install the repo"
-msgstr ""
+msgstr "2.1. Instalación del Repositorio"
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:123
 msgid "2.2. Install the required packages"
-msgstr ""
+msgstr "2.2. Instalación de los Paquetes Requeridos"
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:131
 msgid "2.3. Configure the Network"
-msgstr ""
+msgstr "2.3. Configurar la Red"
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:133
 msgid ""
-"Backup all the files that are modified in this section before making changes"
-" to them."
+"Backup all the files that are modified in this section before making changes "
+"to them."
 msgstr ""
+"Realice copias de seguridad de todos aquellos ficheros que se modifiquen en "
+"esta sección antes de modificarlos."
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:135
 msgid ""
 "You will need to have your main interface, typically ``eth0``, connected to "
 "a bridge. The name of the bridge should be the same in all nodes."
 msgstr ""
+"Deberá tener el interfaz principal de red, típicamente ``eth0``, conectado a "
+"un puente de red. El nombre del puente de red deberá ser el mismo en todos "
+"los nodos. "
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:137
 msgid ""
-"If you were using DHCP for your ``eth0`` interface, replace "
-"``/etc/network/interfaces`` with:"
+"If you were using DHCP for your ``eth0`` interface, replace ``/etc/network/"
+"interfaces`` with:"
 msgstr ""
+"Si está usando DHCP para el interfaz ``eth0``, reemplace ``/etc/network/"
+"interfaces`` con:"
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:152
 msgid ""
 "If you were using a static IP addresses instead, use this other template:"
-msgstr ""
+msgstr "Si está usando una IP estática use este otro template:"
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:172
 msgid "After these changes, restart the network:"
-msgstr ""
+msgstr "Tras aplicar estos cambios, reinicie la red:"
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:179
 msgid "2.4. Configure NFS"
-msgstr ""
+msgstr "2.4. Configure NFS"
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:183
 msgid "Mount the datastores export. Add the following to your ``/etc/fstab``:"
 msgstr ""
+"Monte el punto de montaje de los datastores. Añada el siguiente fragmento de "
+"cṕdigo a ``/etc/fstab``:"
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:189
 msgid "Replace ``192.168.1.1`` with the IP of the frontend."
-msgstr ""
+msgstr "Reemplace ``192.168.1.1`` con la IP de su Frontend."
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:191
 msgid "Mount the NFS share:"
-msgstr ""
+msgstr "Monte el NFS:"
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:198
 msgid "2.5. Configure Qemu"
-msgstr ""
+msgstr "2.5. Configure Qemu"
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:200
 msgid "The ``oneadmin`` user must be able to manage libvirt as root:"
-msgstr ""
+msgstr "El usuario ``oneadmin`` debe de tener permisos de root sobre libvirt:"
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:210
 msgid "Restart libvirt to capture these changes:"
-msgstr ""
+msgstr "Reinicie libvirt para aplicar estos cambios:"
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:217
 msgid "Step 3. Basic Usage"
-msgstr ""
+msgstr "Paso 3. Uso Básico"
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:219
 msgid ""
-"All the operations in this section can be done using Sunstone instead of the"
-" command line. Point your browser to: ``http://frontend:9869``."
+"All the operations in this section can be done using Sunstone instead of the "
+"command line. Point your browser to: ``http://frontend:9869``."
 msgstr ""
+"Todas las operaciones de esta sección se podrán realizar desde Sunstone en "
+"lugar de desde la línea de comandos. Abra la dirección: ``http://"
+"frontend:9869``."
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:221
 msgid ""
-"The default password for the ``oneadmin`` user can be found in "
-"``~/.one/one_auth`` which is randomly generated on every installation."
+"The default password for the ``oneadmin`` user can be found in ``~/.one/"
+"one_auth`` which is randomly generated on every installation."
 msgstr ""
+"La password por defecto de ``oneadmin`` se puede encontrar en ``~/.one/"
+"one_auth``, siendo generada aleatoriamente en cada instalación."
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:223
 msgid "|image1|"
-msgstr ""
+msgstr "|image1|"
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:225
 msgid ""
-"To interact with OpenNebula, you have to do it from the ``oneadmin`` account"
-" in the frontend. We will assume all the following commands are performed "
+"To interact with OpenNebula, you have to do it from the ``oneadmin`` account "
+"in the frontend. We will assume all the following commands are performed "
 "from that account. To login as ``oneadmin`` execute ``su - oneadmin``."
 msgstr ""
+"Para interactuar con OpenNebula, deberá hacerlo desde la cuenta de "
+"``oneadmin`` en el Frontend. Asumiremos que todos los comandos serán "
+"realizados desde esa cuenta. Para hacer login como ``oneadmin``, ejecute "
+"``su - oneadmin``."
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:228
 msgid "3.1. Adding a Host"
-msgstr ""
+msgstr "3.1. Añadir un Nodo"
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:230
 msgid ""
-"To start running VMs, you should first register a worker node for "
-"OpenNebula."
-msgstr ""
+"To start running VMs, you should first register a worker node for OpenNebula."
+msgstr "Para arrancar las MVs, deberá registrar un Nodo en OpenNebula."
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:232
 msgid ""
 "Issue this command for each one of your nodes. Replace ``localhost`` with "
 "your node's hostname."
 msgstr ""
+"Ejecute el siguiente comando en cada uno de sus nodos. Reemplace "
+"``localhost`` con el nombre del nodo."
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:238
 msgid ""
 "Run ``onehost list`` until it's set to on. If it fails you probably have "
-"something wrong in your ssh configuration. Take a look at "
-"``/var/log/one/oned.log``."
+"something wrong in your ssh configuration. Take a look at ``/var/log/one/"
+"oned.log``."
 msgstr ""
+"Ejecute ``onehost list`` hasta que el host este en ``on``. Si falla "
+"probablemente será debido a la configuración SSH. Mire el contenido de ``/"
+"var/log/one/oned.log``."
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:241
 msgid "3.2. Adding virtual resources"
-msgstr ""
+msgstr "3.2. Añadir Recursos Virtuales"
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:243
 msgid ""
 "Once it's working you need to create a network, an image and a virtual "
 "machine template."
 msgstr ""
+"Una vez que esté funcionando, deberá crear una red, una imagen y una "
+"plantilla de máquina virtual."
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:245
 msgid ""
 "To create networks, we need to create first a network template file "
 "``mynetwork.one`` that contains:"
 msgstr ""
+"Para crear redes, se deberá crear primero un fichero de plantilla de red "
+"``mynetwork.one`` que contendrá:"
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:258
 msgid ""
 "Replace the leases with free IPs in your host's network. You can add any "
 "number of leases."
 msgstr ""
+"Reemplace las direcciones IP con IPs disponibles en la red de su Nodo. Podrá "
+"añadir cualquier número de IPs."
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:260
 msgid "Now we can move ahead and create the resources in OpenNebula:"
-msgstr ""
+msgstr "A continuación se procederá a crear los recursos en OpenNebula:"
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:275
 msgid ""
 "(The image will be downloaded from `http://wiki.centos.org/Cloud/OpenNebula "
 "<http://wiki.centos.org/Cloud/OpenNebula>`__)"
 msgstr ""
+"(La imagen será descargada de `http://wiki.centos.org/Cloud/OpenNebula "
+"<http://wiki.centos.org/Cloud/OpenNebula>`__)"
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:277
 msgid ""
-"You will need to wait until the image is ready to be used. Monitor its state"
-" by running ``oneimage list``."
+"You will need to wait until the image is ready to be used. Monitor its state "
+"by running ``oneimage list``."
 msgstr ""
+"Deberá esperar hasta que la imagen esté lista para ser usada. Monitorice el "
+"estado ejecutando ``oneimage list``."
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:279
 msgid ""
-"In order to dynamically add ssh keys to Virtual Machines we must add our ssh"
-" key to the user template, by editing the user template:"
+"In order to dynamically add ssh keys to Virtual Machines we must add our ssh "
+"key to the user template, by editing the user template:"
 msgstr ""
+"Para añadir las claves SSH dinámicamente a las Máquinas Virtuales, deberemos "
+"añadir la clave SSH a la plantilla de nuestro usuario:"
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:285
 msgid "Add a new line like the following to the template:"
-msgstr ""
+msgstr "Añadir una línea nueva como la siguiente a la plantilla:"
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:291
 msgid ""
 "Substitute the value above with the output of ``cat ~/.ssh/id_dsa.pub``."
 msgstr ""
+"Reemplace el valor mostrado arriba con la salida del comando``cat ~/.ssh/"
+"id_dsa.pub``."
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:294
 msgid "3.3. Running a Virtual Machine"
-msgstr ""
+msgstr "3.3. Ejecutar una Máquina Virtual"
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:296
 msgid "To run a Virtual Machine, you will need to instantiate a template:"
-msgstr ""
+msgstr "Para ejecutar una Máquina Virtual, deberá instanciar la plantilla:"
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:302
 msgid ""
 "Execute ``onevm list`` and watch the virtual machine going from PENDING to "
-"PROLOG to RUNNING. If the vm fails, check the reason in the log: "
-"``/var/log/one/<VM_ID>/vm.log``."
+"PROLOG to RUNNING. If the vm fails, check the reason in the log: ``/var/log/"
+"one/<VM_ID>/vm.log``."
 msgstr ""
+"Ejecute ``onevm list`` y observe cómo transiciona de PENDING a PROLOGO a "
+"RUNNING. SI la MV falla, podrá averiguar por qué en el log: ``/var/log/one/"
+"<VM_ID>/vm.log``."
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:305
 msgid "Further information"
-msgstr ""
+msgstr "Más Información"
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:307
 msgid ":ref:`Planning the Installation <plan>`"
-msgstr ""
+msgstr ":ref:`Planeando la Instalación <plan>`"
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:308
 msgid ":ref:`Installing the Software <ignc>`"
-msgstr ""
+msgstr ":ref:`Instalación del Software <ignc>`"
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:309
 msgid "`FAQs. Good for troubleshooting <http://wiki.opennebula.org/faq>`__"
 msgstr ""
+"`FAQs. Útiles para depuración de problemas <http://wiki.opennebula.org/"
+"faq>`__"
 
 #: ../../source/design_and_installation/quick_starts/qs_ubuntu_kvm.rst:310
 msgid ":ref:`Main Documentation <entry_point>`"
-msgstr ""
+msgstr ":ref:`Documentación Principal <entry_point>`"
