@@ -4,7 +4,9 @@
 Quickstart: OpenNebula on CentOS 6 and ESX 5.x
 ==============================================
 
-This guide aids in the process of quickly get a VMware-based OpenNebula cloud up and running on CentOS. This is useful at the time of setting up pilot clouds, to quickly test new features and as base deployment to build a large infrastructure.
+This guide aids in the process of quickly get a VMware-based OpenNebula cloud up and running on CentOS 6. After following this guide, users will have a working OpenNebula with graphical interface (Sunstone), at least one hypervisor (host) and a running virtual machines. This is useful at the time of setting up pilot clouds, to quickly test new features and as base deployment to build a large infrastructure.
+
+Throughout the installation there are two separate roles: Frontend and Virtualization Nodes. The Frontend server will execute the OpenNebula services, and the Nodes will be used to execute virtual machines.
 
 Package Layout
 ==============
@@ -12,7 +14,6 @@ Package Layout
 -  opennebula-server: OpenNebula Daemons
 -  opennebula: OpenNebula CLI commands
 -  opennebula-sunstone: OpenNebula's web GUI
--  opennebula-ozones: OpenNebula's web GUI
 -  opennebula-java: OpenNebula Java API
 -  opennebula-node-kvm: Installs dependencies required by OpenNebula in the nodes
 -  opennebula-gate: Send information from Virtual Machines to OpenNebula
@@ -38,10 +39,18 @@ In this guide it is assumed that at least two physical servers are available, on
 -  **Required extra repository**: EPEL
 -  **Required packages**: NFS, libvirt
 
-.. code::
+Let's install the repository (as root) and required packages
 
-    $ sudo rpm -Uvh http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-7.noarch.rpm
-    $ sudo yum install nfs-utils nfs-utils-lib libvirt
+     # yum install http://dl.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
+     # cat << EOT > /etc/yum.repos.d/opennebula.repo
+     [opennebula]
+     name=opennebula
+     baseurl=http://downloads.opennebula.org/repo/CentOS/6/stable/x86_64
+     enabled=1
+     gpgcheck=0
+     EOT
+ 
+     # yum install nfs-utils nfs-utils-lib libvirt
 
 **Virtualization node**
 
@@ -56,27 +65,13 @@ Step 2. OpenNebula Front-end Set-up
 
 **2.1 OpenNebula installation**
 
-The first step is to install OpenNebula in the front-end. Please download OpeNebula from `here <http://opennebula.org/software:software>`__, choosing the CentOS package.
-
-Once it is downloaded to the front-end, you need to untar it:
+With the repository added, installing OpenNebula is straightforward (as root):
 
 .. code::
 
-    $ tar xvzf CentOS-6-opennebula-*.tar.gz
-
-And then install all the needed packages:
-
-.. code::
-
-    $ sudo yum localinstall opennebula-*/*.rpm
+    # yum install opennebula-server opennebula-sunstone
 
 .. warning:: Do not start OpenNebula at this point, some pre configuration needs to be done. Starting OpenNebula is not due until :ref:`here <qs_centos_vmware_start_opennebula>`.
-
-Let's install noVNC to gain access to the VMs:
-
-.. code::
-
-    $ sudo /usr/share/one/install_novnc.sh
 
 Find out the uid and gid of oneadmin, we will need it for the next section:
 
@@ -85,25 +80,17 @@ Find out the uid and gid of oneadmin, we will need it for the next section:
     $ id oneadmin
     uid=499(oneadmin) gid=498(oneadmin)
 
-In order to avoid problems, we recommend to disable SELinux for the pilot cloud front-end (sometimes it is the root of all evil). Follow `these instructions <http://www.ehowstuff.com/how-to-check-and-disable-selinux-on-centos-6-3/>`__:
+In order to avoid problems, we recommend to disable SELinux for the pilot cloud front-end (sometimes it is the root of all evil):
 
 .. code::
 
-    $ sudo vi /etc/sysconfig/selinux
-    # This file controls the state of SELinux on the system.
-    # SELINUX= can take one of these three values:
-    #     enforcing - SELinux security policy is enforced.
-    #     permissive - SELinux prints warnings instead of enforcing.
-    #     disabled - No SELinux policy is loaded.
+    # vi /etc/sysconfig/selinux
+    ...
     SELINUX=disabled
-    # SELINUXTYPE= can take one of these two values:
-    #     targeted - Targeted processes are protected,
-    #     mls - Multi Level Security protection.
-    SELINUXTYPE=targeted
+    ...
 
-    $ sudo setenforce 0
-
-    $ sudo getenforce
+    # setenforce 0
+    # getenforce
     Permissive
 
 **2.2 NFS configuration**
