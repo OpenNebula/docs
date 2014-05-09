@@ -46,14 +46,15 @@ To install a CentOS/RHEL OpenNebula front-end with packages from **our repositor
 
 These are the packages available for this distribution:
 
+-  **opennebula**: Command Line Interface
 -  **opennebula-server**: Main OpenNebula daemon, scheduler, etc
 -  **opennebula-sunstone**: OpenNebula Sunstone, EC2, OCCI
--  **opennebula-ozones**: OpenNebula OZones
 -  **opennebula-ruby**: Ruby Bindings
 -  **opennebula-java**: Java Bindings
 -  **opennebula-gate**: Gate server that enables communication between VMs and OpenNebula
 -  **opennebula-flow**: Manages services and elasticity
 -  **opennebula-node-kvm**: Meta-package that installs the oneadmin user, libvirt and kvm
+-  **opennebula-common**: Common files for OpenNebula packages
 
 1.2. Installing on openSUSE
 ---------------------------
@@ -95,13 +96,12 @@ After installation you need to manually create ``/var/lib/one/.one/one_auth`` wi
 
 -  **opennebula**: main OpenNebula binaries
 -  **opennebula-devel**: Examples, manpages and install\_gems (depends on **opennebula**)
--  **opennebula-zones**: OpenNebula OZones (depends on **opennebula**)
 -  **opennebula-sunstone**: OpenNebula Sunstone (depends on **opennebula**)
 
 1.3. Installing on Debian/Ubuntu
 --------------------------------
 
-Also the JSON ruby library packaged with Debian 6 is not compatible with ozones. To make it work a new gem should be installed and the old one disabled. You can do so executing these commands:
+The JSON ruby library packaged with Debian 6 is not compatible with OpenNebula. To make it work a new gem should be installed and the old one disabled. You can do so executing these commands:
 
 .. code::
 
@@ -147,7 +147,9 @@ These are the packages available for these distributions:
 |image0|
 
 -  **opennebula-common**: provides the user and common files
--  **libopennebula-ruby**: all ruby libraries
+-  **ruby-opennebula**: Ruby API
+-  **libopennebula-java**: Java API
+-  **libopennebula-java-doc**: Java API Documentation
 -  **opennebula-node**: prepares a node as an opennebula-node
 -  **opennebula-sunstone**: OpenNebula Sunstone Web Interface
 -  **opennebula-tools**: Command Line interface
@@ -178,18 +180,12 @@ The previous script is prepared to detect common linux distributions and install
 
 If you want to install only a set of gems for an specific component read :ref:`Building from Source Code <compile>` where it is explained in more depth.
 
-For **cloud bursting**, a newer nokogiri gem than the on packed by current distros is required. If you are planning to use cloud bursting, you need to install nokogiri >= 1.4.4 prior to run ``install_gems``
-
-.. code::
-
-    # sudo gem install nokogiri -v 1.4.4
-
 Step 3. Starting OpenNebula
 ===========================
 
 Log in as the ``oneadmin`` user follow these steps:
 
--  If you installed from packages, you should have the '~/.one/one\_auth' file created with a randomly-generated password. Otherwise, set oneadmin's OpenNebula credentials (username and password) adding the following to ``~/.one/one_auth`` (change ``password`` for the desired password):
+-  If you installed from packages, you should have the ``one/one_auth`` file created with a randomly-generated password. Otherwise, set oneadmin's OpenNebula credentials (username and password) adding the following to ``~/.one/one_auth`` (change ``password`` for the desired password):
 
 .. code::
 
@@ -215,7 +211,7 @@ After OpenNebula is started for the first time, you should check that the comman
 .. code::
 
     $ onevm list
-     ID USER     GROUP    NAME         STAT CPU     MEM        HOSTNAME        TIME
+        ID USER     GROUP    NAME            STAT UCPU    UMEM HOST             TIME
 
 If instead of an empty list of VMs you get an error message, then the OpenNebula daemon could not be started properly:
 
@@ -235,7 +231,7 @@ The OpenNebula logs are located in ``/var/log/one``, you should have at least th
     [ONE][E]: (..) error: no such table: user_pool
     [ONE][I]: Bootstraping OpenNebula database.
 
-After installing the opennebula packages in the front-end the following directory structure will be used
+After installing the OpenNebula packages in the front-end the following directory structure will be used
 
 |image2|
 
@@ -245,11 +241,17 @@ Step 5. Node Installation
 5.1. Installing on CentOS/RHEL
 ------------------------------
 
-When the front-end is installed and verified, it is time to install the packages for the nodes if you are using KVM. To install a CentOS/RHEL OpenNebula front-end with packages from our repository, execute the following as root:
+When the front-end is installed and verified, it is time to install the packages for the nodes if you are using KVM. To install a CentOS/RHEL OpenNebula front-end with packages from our repository, add the repo using the snippet from the previous section and execute the following as root:
 
 .. code::
 
-    # sudo yum localinstall opennebula-node-kvm
+    # sudo yum install opennebula-node-kvm
+
+If you are using Xen you can prepare the node with opennebula-common:
+
+.. code::
+
+    # sudo yum install openebula-common
 
 For further configuration and/or installation of other hypervisors, check their specific guides: :ref:`Xen <xeng>`, :ref:`KVM <kvmg>` and :ref:`VMware <evmwareg>`.
 
@@ -272,13 +274,13 @@ For further configuration and/or installation of other hypervisors, check their 
 Step 6. Manual Configuration of Unix Accounts
 =============================================
 
-.. warning:: This step can be skipped if you have installed the kvm node package for CentOS or Ubuntu, as it has already been taken care of.
+.. warning:: This step can be skipped if you have installed the node/common package for CentOS or Ubuntu, as it has already been taken care of.
 
-The OpenNebula package installation creates a new user and group named ``oneadmin`` in the front-end. This account will be used to run the OpenNebula services and to do regular administration and maintenance tasks. That means that you eventually need to login as that user or to use the ”\ ``sudo -u oneadmin``\ ” method.
+The OpenNebula package installation creates a new user and group named ``oneadmin`` in the front-end. This account will be used to run the OpenNebula services and to do regular administration and maintenance tasks. That means that you eventually need to login as that user or to use the ``sudo -u oneadmin`` method.
 
-The hosts need also this user created and configured. Make sure you change the uid and gid by the ones you have in the frontend.
+The hosts need also this user created and configured. Make sure you change the uid and gid by the ones you have in the front-end.
 
--  Get the user and group id of oneadmin. This id will be used later to create users in the hosts with the same id. In the **front-end**, execute as oneadmin:
+-  Get the user and group id of ``oneadmin``. This id will be used later to create users in the hosts with the same id. In the **front-end**, execute as ``oneadmin``:
 
 .. code::
 
@@ -385,7 +387,7 @@ The simplest way to achieve a shared FS backend for OpenNebula datastores is to 
 Step 10. Adding a Node to the OpenNebula Cloud
 ==============================================
 
-To add a node to the cloud, there are four needed parameters: name/IP of the host, virtualization, network and information driver. Using the recommended configuration above, and assuming a KVM hypervisor, you can add your host 'node01' to OpenNebula in the following fashion (as oneadmin, in the front-end):
+To add a node to the cloud, there are four needed parameters: name/IP of the host, virtualization, network and information driver. Using the recommended configuration above, and assuming a KVM hypervisor, you can add your host ``node01`` to OpenNebula in the following fashion (as oneadmin, in the front-end):
 
 .. code::
 

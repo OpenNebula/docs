@@ -1,0 +1,13 @@
+digraph debian_packages {
+    #"bar" -> "baz";
+
+    "opennebula-common" -> "opennebula-node";
+    "opennebula-common" -> "opennebula-sunstone";
+    "opennebula-common" -> "opennebula-zones";
+    "opennebula-common" -> "opennebula-tools";
+    "ruby-opennebula" -> "opennebula-sunstone";
+    "ruby-opennebula" -> "opennebula-tools";
+    "opennebula-tools" -> "opennebula";
+    #"libopennebula-java";
+    #"libopennebula-java-doc";
+}
