@@ -27,7 +27,7 @@ Regarding the OpenNebula updates, we have designed the database in such a way th
 
 To enable users to change zones, Sunstone server is connected to all the oned daemons in the Federation. You can have one Sunstone for all the Federation, or run one Sunstone for each Zone.
 
-Regarding the administrator users, a Federtion will have a unique oneadmin account. That is the Federation Administrator account. In a trusted environment, each Zone Administrator will log in with an account in the 'oneadmin' group. In other scenarios, the Federation Administrator can create a special administrative group with total permissions for one zone only.
+Regarding the administrator users, a Federation will have a unique oneadmin account. That is the Federation Administrator account. In a trusted environment, each Zone Administrator will log in with an account in the 'oneadmin' group. In other scenarios, the Federation Administrator can create a special administrative group with total permissions for one zone only.
 
 The administrators can share appliances across Zones deploying a private :ref:`OpenNebula Marketplace <marketplace>`.
 
