@@ -16,13 +16,25 @@ Throughout the installation there are two separate roles: **Frontend** and **Nod
 
 If you don't get any output you probably don't have virtualization extensions supported/enabled in your server.
 
+.. warning:: In order to avoid problems, we recommend to disable SELinux in all the nodes, **Frontend** and **Nodes**:
+
+    .. code::
+
+        # vi /etc/sysconfig/selinux
+        ...
+        SELINUX=disabled
+        ...
+
+        # setenforce 0
+        # getenforce
+        Permissive
+
 Package Layout
 ==============
 
 -  opennebula-server: OpenNebula Daemons
 -  opennebula: OpenNebula CLI commands
 -  opennebula-sunstone: OpenNebula's web GUI
--  opennebula-ozones: OpenNebula's web GUI
 -  opennebula-java: OpenNebula Java API
 -  opennebula-node-kvm: Installs dependencies required by OpenNebula in the nodes
 -  opennebula-gate: Send information from Virtual Machines to OpenNebula
@@ -146,7 +158,7 @@ Add the OpenNebula repository:
 
 .. code::
 
-    # yum install opennebula-common xen
+    # yum install opennebula-common xen nfs-utils ruby
 
 Enable the Xen kernel by doing:
 
@@ -229,6 +241,8 @@ Mount the NFS share:
 
     # mount /var/lib/one/
 
+If the above command fails or hangs, it could be a firewall issue.
+
 Step 3. Basic Usage
 ===================
 
@@ -279,16 +293,15 @@ Now we can move ahead and create the resources in OpenNebula:
 
     $ onevnet create mynetwork.one
 
-    $ oneimage create --name "CentOS-6.4_x86_64" \
-        --path "http://us.cloud.centos.org/i/one/c6-x86_64-20130910-1.qcow2.bz2" \
+        --path "http://appliances.c12g.com/CentOS-6.5/centos6.5.qcow2.gz" \
+    $ oneimage create --name "CentOS-6.5_x86_64" \
+        --path "http://172.16.77.1/vm-images/CentOS65.qcow2" \
         --driver qcow2 \
         --datastore default
 
-    $ onetemplate create --name "CentOS-6.4" --cpu 1 --vcpu 1 --memory 512 \
-        --arch x86_64 --disk "CentOS-6.4_x86_64" --nic "private" --vnc \
+    $ onetemplate create --name "CentOS-6.5" --cpu 1 --vcpu 1 --memory 512 \
+        --arch x86_64 --disk "CentOS-6.5_x86_64" --nic "private" --vnc \
         --ssh
-
-(The image will be downloaded from `http://wiki.centos.org/Cloud/OpenNebula <http://wiki.centos.org/Cloud/OpenNebula>`__)
 
 You will need to wait until the image is ready to be used. Monitor its state by running ``oneimage list``.
 
@@ -296,7 +309,7 @@ We must specify the desired bootloader to the template we just created. To do so
 
 .. code::
 
-    $ EDITOR=vi onetemplate update CentOS-6.4
+    $ EDITOR=vi onetemplate update CentOS-6.5
 
 Add a new line to the OS section of the template that specifies the bootloader:
 
@@ -327,7 +340,7 @@ To run a Virtual Machine, you will need to instantiate a template:
 
 .. code::
 
-    $ onetemplate instantiate "CentOS-6.4" --name "My Scratch VM"
+    $ onetemplate instantiate "CentOS-6.5" --name "My Scratch VM"
 
 Execute ``onevm list`` and watch the virtual machine going from PENDING to PROLOG to RUNNING. If the vm fails, check the reason in the log: ``/var/log/one/<VM_ID>/vm.log``.
 

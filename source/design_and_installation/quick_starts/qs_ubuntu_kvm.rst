@@ -1,12 +1,12 @@
 .. _qs_ubuntu_kvm:
 
 ==============================================
-Quickstart: OpenNebula on Ubuntu 12.04 and KVM
+Quickstart: OpenNebula on Ubuntu 14.04 and KVM
 ==============================================
 
-The purpose of this guide is to provide users with step by step guide to install OpenNebula using Ubuntu 12.04 as the operating system and KVM as the hypervisor.
+The purpose of this guide is to provide users with step by step guide to install OpenNebula using Ubuntu 14.04 as the operating system and KVM as the hypervisor.
 
-After following this guide, users will have a working OpenNebula with graphical interface (Sunstone), at least one hypervisor (host) and a running virtual machines. This is useful at the time of setting up pilot clouds, to quickly test new features and as base deployment to build a large infrastructure.
+After following this guide, users will have a working OpenNebula with graphical interface (Sunstone), at least one hypervisor (host) and a running virtual machines. This is useful at the time of setting up pilot clouds, to quickly test new features and as base deployment to build a large informationsºstructure.
 
 Throughout the installation there are two separate roles: **Frontend** and **Nodes**. The Frontend server will execute the OpenNebula services, and the Nodes will be used to execute virtual machines. Please not that **it is possible** to follow this guide with just one host combining both the Frontend and Nodes roles in a single server. However it is recommended execute virtual machines in hosts with virtualization extensions. To test if your host supports virtualization extensions, please run:
 
@@ -41,7 +41,7 @@ Add the OpenNebula repository:
 .. code::
 
     # wget -q -O- http://downloads.opennebula.org/repo/Ubuntu/repo.key | apt-key add -
-    # echo "deb http://downloads.opennebula.org/repo/Ubuntu/12.04 stable opennebula"
+    # echo "deb http://downloads.opennebula.org/repo/Ubuntu/14.04 stable opennebula" \
         > /etc/apt/sources.list.d/opennebula.list
 
 1.2. Install the required packages
@@ -116,7 +116,7 @@ Add the OpenNebula repository:
 .. code::
 
     # wget -q -O- http://downloads.opennebula.org/repo/Ubuntu/repo.key | apt-key add -
-    # echo "deb http://downloads.opennebula.org/repo/Ubuntu/12.04 stable opennebula" >
+    # echo "deb http://downloads.opennebula.org/repo/Ubuntu/14.04 stable opennebula" > \
         /etc/apt/sources.list.d/opennebula.list
 
 2.2. Install the required packages
@@ -194,6 +194,8 @@ Mount the NFS share:
 
     # mount /var/lib/one/
 
+If the above command fails or hangs, it could be a firewall issue.
+
 2.5. Configure Qemu
 -------------------
 
@@ -263,16 +265,14 @@ Now we can move ahead and create the resources in OpenNebula:
 
     $ onevnet create mynetwork.one
 
-    $ oneimage create --name "CentOS-6.4_x86_64" \
-        --path "http://us.cloud.centos.org/i/one/c6-x86_64-20130910-1.qcow2.bz2" \
+    $ oneimage create --name "CentOS-6.5_x86_64" \
+        --path "http://appliances.c12g.com/CentOS-6.5/centos6.5.qcow2.gz" \
         --driver qcow2 \
         --datastore default
 
-    $ onetemplate create --name "CentOS-6.4" --cpu 1 --vcpu 1 --memory 512 \
-        --arch x86_64 --disk "CentOS-6.4_x86_64" --nic "private" --vnc \
+    $ onetemplate create --name "CentOS-6.5" --cpu 1 --vcpu 1 --memory 512 \
+        --arch x86_64 --disk "CentOS-6.5_x86_64" --nic "private" --vnc \
         --ssh
-
-(The image will be downloaded from `http://wiki.centos.org/Cloud/OpenNebula <http://wiki.centos.org/Cloud/OpenNebula>`__)
 
 You will need to wait until the image is ready to be used. Monitor its state by running ``oneimage list``.
 
@@ -297,7 +297,7 @@ To run a Virtual Machine, you will need to instantiate a template:
 
 .. code::
 
-    $ onetemplate instantiate "CentOS-6.4" --name "My Scratch VM"
+    $ onetemplate instantiate "CentOS-6.5" --name "My Scratch VM"
 
 Execute ``onevm list`` and watch the virtual machine going from PENDING to PROLOG to RUNNING. If the vm fails, check the reason in the log: ``/var/log/one/<VM_ID>/vm.log``.
 

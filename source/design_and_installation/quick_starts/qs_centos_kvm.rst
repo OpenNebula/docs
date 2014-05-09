@@ -30,6 +30,20 @@ Package Layout
 
 Additionally ``opennebula-common`` and ``opennebula-ruby`` exist but they're intended to be used as dependencies. ``opennebula-occi``, which is RESTful service to manage the cloud, is included in the ``opennebula-sunstone`` package.
 
+
+.. warning:: In order to avoid problems, we recommend to disable SELinux in all the nodes, **Frontend** and **Nodes**:
+
+    .. code::
+
+        # vi /etc/sysconfig/selinux
+        ...
+        SELINUX=disabled
+        ...
+
+        # setenforce 0
+        # getenforce
+        Permissive
+
 Step 1. Installation in the Frontend
 ====================================
 
@@ -273,8 +287,6 @@ Now we can move ahead and create the resources in OpenNebula:
     $ onetemplate create --name "CentOS-6.5" --cpu 1 --vcpu 1 --memory 512 \
         --arch x86_64 --disk "CentOS-6.5_x86_64" --nic "private" --vnc \
         --ssh
-
-(The image will be downloaded from `http://wiki.centos.org/Cloud/OpenNebula <http://wiki.centos.org/Cloud/OpenNebula>`__)
 
 You will need to wait until the image is ready to be used. Monitor its state by running ``oneimage list``.
 
