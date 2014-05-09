@@ -49,7 +49,6 @@ These are the packages available for this distribution:
 -  **opennebula**: Command Line Interface
 -  **opennebula-server**: Main OpenNebula daemon, scheduler, etc
 -  **opennebula-sunstone**: OpenNebula Sunstone, EC2, OCCI
--  **opennebula-ozones**: OpenNebula OZones
 -  **opennebula-ruby**: Ruby Bindings
 -  **opennebula-java**: Java Bindings
 -  **opennebula-gate**: Gate server that enables communication between VMs and OpenNebula
@@ -97,13 +96,12 @@ After installation you need to manually create ``/var/lib/one/.one/one_auth`` wi
 
 -  **opennebula**: main OpenNebula binaries
 -  **opennebula-devel**: Examples, manpages and install\_gems (depends on **opennebula**)
--  **opennebula-zones**: OpenNebula OZones (depends on **opennebula**)
 -  **opennebula-sunstone**: OpenNebula Sunstone (depends on **opennebula**)
 
 1.3. Installing on Debian/Ubuntu
 --------------------------------
 
-The JSON ruby library packaged with Debian 6 is not compatible with ozones. To make it work a new gem should be installed and the old one disabled. You can do so executing these commands:
+The JSON ruby library packaged with Debian 6 is not compatible with OpenNebula. To make it work a new gem should be installed and the old one disabled. You can do so executing these commands:
 
 .. code::
 
