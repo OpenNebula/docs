@@ -182,6 +182,7 @@ Create a file named ``secret.xml`` (using the genereated ``%UUID%`` and distribu
 The following commands must be executed in all the KVM hosts as oneadmin (assuming the ``secret.xml`` and ``client.libvirt.key`` files have been distributed to the hosts):
 
 .. code::
+
     virsh secret-define secret.xml
     # Replace %UUID% with the value generated in the previous step
     virsh secret-set-value --secret %UUID% --base64 $(cat client.libvirt.key)
