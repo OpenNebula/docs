@@ -66,6 +66,12 @@ Additionally you must define the AWS credentials and AWS region to be used and t
                 m1.large: 0
                 m1.xlarge: 0
 
+You can define an http proxy if the OpenNebula Frontend does not have access to the internet, in ``/etc/one/ec2_driver.conf``:
+
+.. code::
+
+    proxy_uri: http://...
+
 After OpenNebula is restarted, create a new Host that uses the ec2 drivers:
 
 .. code::
