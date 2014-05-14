@@ -6,6 +6,11 @@ The System Datastore
 
 The system datastore is a special Datastore class that holds images for running VMs. As opposed to the regular images datastores you cannot register new images into a system datastore.
 
+.. warning::
+    System DS size of 0 is normal for first time installations.
+
+    To accommodate different System Datastore types, they are monitored using the host probes. The System DS size and usage will be reported as 0 till you add to OpenNebula a host configured to use that System DS. You may also need to wait for the first VM to be deployed to get size and usage information reported back.
+
 Types of System Datastore
 =========================
 
@@ -100,7 +105,7 @@ For example to create a system datastore using the shared drivers simply:
 
 .. code::
 
-    $ cat system.ds 
+    $ cat system.ds
     NAME    = nfs_ds
     TM_MAD  = shared
     TYPE    = SYSTEM_DS
