@@ -8,6 +8,7 @@ Release Notes 4.6.1
    :maxdepth: 1
 
    What's New <whats_new>
+   Resolved Issues 4.6.1 <resolved_issues_461>
    Features <features>
    Platform Notes <uspng>
    Compatibility Guide <compatibility>

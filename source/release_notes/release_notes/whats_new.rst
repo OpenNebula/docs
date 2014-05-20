@@ -104,9 +104,3 @@ AppMarket
 
 -  **Native support of the new Marketplace version** by the CLI and Sunstone, which provides the possibility of importing multi-disk virtual machines. Read more in the `<https://github.com/OpenNebula/addon-appmarket>`__.
 -  Support for **importing OVAs** processed by the **AppMarket Worker**. Read more `here <https://github.com/OpenNebula/addon-appmarket/blob/master/doc/usage.md#importing-an-appliance-from-sunstone>`__.
-
-Resolved Issues
----------------
-
-- `Issues in OpenNebula 4.6.0 <http://dev.opennebula.org/projects/opennebula/issues?query_id=50>`__
-- `Issues in OpenNebula 4.6.1 <http://dev.opennebula.org/projects/opennebula/issues?query_id=52>`__
