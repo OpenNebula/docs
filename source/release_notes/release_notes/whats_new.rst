@@ -85,13 +85,13 @@ Virtualization Drivers
 -  **Support for Xen FEATURES parameters**, which includes options like ``PAE``, ``ACPI``, ``APIC``, etc. See the :ref:`Template <template>` guide for more information.
 
 Sunstone
---------
+~~~~~~~~
 
 - New **cloud view with a simpler, clean and intuitive design**.
 - **Accounting data** is now available in Sunstone, providing an overview of the VDC for VDCAdmins and of each user's own resources.
 
 Sunstone: Usability Enhancements
---------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 -  **Updated UI Library** providing a new look.
 -  The **Sunstone View** for each user can be **specified in the User template or in the new Group template**, more info in the :ref:`Sunstone Views <suns_views>` guide.
@@ -100,13 +100,13 @@ Sunstone: Usability Enhancements
 
 
 AppMarket
----------
+~~~~~~~~~
 
 -  **Native support of the new Marketplace version** by the CLI and Sunstone, which provides the possibility of importing multi-disk virtual machines. Read more in the `<https://github.com/OpenNebula/addon-appmarket>`__.
 -  Support for **importing OVAs** processed by the **AppMarket Worker**. Read more `here <https://github.com/OpenNebula/addon-appmarket/blob/master/doc/usage.md#importing-an-appliance-from-sunstone>`__.
 
 Resolved Issues
-===============
+---------------
 
 - `Issues in OpenNebula 4.6.0 <http://dev.opennebula.org/projects/opennebula/issues?query_id=50>`__
 - `Issues in OpenNebula 4.6.1 <http://dev.opennebula.org/projects/opennebula/issues?query_id=52>`__
