@@ -7,8 +7,8 @@ Release Notes 4.6.1
 .. toctree::
    :maxdepth: 1
 
-   What's New <whats_new>
-   Resolved Issues 4.6.1 <resolved_issues_461>
+   What's New in 4.6 <whats_new>
+   Resolved Issues in 4.6.1 <resolved_issues_461>
    Features <features>
    Platform Notes <uspng>
    Compatibility Guide <compatibility>

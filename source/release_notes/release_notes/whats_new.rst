@@ -1,8 +1,8 @@
 .. _whats_new:
 
-==========
-What's New
-==========
+=================
+What's New in 4.6
+=================
 
 OpenNebula 4.6 introduces important improvements in several areas. The
 provisioning model has been greatly simplify by supplementing user groups with
