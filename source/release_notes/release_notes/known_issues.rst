@@ -21,3 +21,6 @@ Sunstone
 * `#2813 <http://dev.opennebula.org/issues/2813>`_ Sporadic Uncaught TypeError in vm list callback
 * `#2804 <http://dev.opennebula.org/issues/2804>`_ Wizard multple selection dataTables do not highlight element outside the current page
 * `#2799 <http://dev.opennebula.org/issues/2799>`_ Template update wizard: intro calls create, not update
+* `#2936 <http://dev.opennebula.org/issues/2936>`_ Template wizard cannot save if some values have quotation marks. To fix simply apply `this patch <http://dev.opennebula.org/projects/opennebula/repository/revisions/8110abdc8578650d344cf8d20254e704a3ef8e06/diff/src/sunstone/public/js/plugins/templates-tab.js>`_ to ``/usr/lib/one/sunstone/public/js/plugins/templates-tab.js``.
+
+
