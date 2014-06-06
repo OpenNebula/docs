@@ -54,7 +54,7 @@ copyright = '2013, OpenNebula Team <contact@opennebula.org>'
 # built documents.
 #
 # The short X.Y version.
-version = '4.6'
+version = '4.8'
 # The full version, including alpha/beta/rc tags.
 release = version
 
