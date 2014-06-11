@@ -39,7 +39,7 @@ Installation
 
 Follow the :ref:`Platform Notes <uspng>` and the :ref:`Installation guide <ignc>`, taking into account that you will already have configured the passwordless ssh access for oneadmin.
 
-There has been no changes in the ``oned.conf`` file from OpenNebula 4.6.0, therefore you can safely continue issue the same configuration file.
+There has been no changes in the ``oned.conf`` file from OpenNebula 4.6.0, therefore you can safely continue using the same configuration file.
 
 Configuration Files Upgrade
 ===========================
