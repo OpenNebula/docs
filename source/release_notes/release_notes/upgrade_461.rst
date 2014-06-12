@@ -24,15 +24,7 @@ Stop OpenNebula and any other related services you may have running: EC2, OCCI, 
 Backup
 ======
 
-Backup the configuration files located in **/etc/one**. You don't need to do a manual backup of your database for this version.
-
-.. code::
-
-    # cp -r /etc/one /etc/one.YYYY-MM-DD
-
-.. note::
-
-    Substitute ``YYYY-MM-DD`` with the date.
+In this version the configuration files have not changed at all from 4.6.1.
 
 Installation
 ============
@@ -45,14 +37,6 @@ Configuration Files Upgrade
 ===========================
 
 If you haven't modified any configuration files, the package managers will replace the configuration files with their newer versions and no manual intervention is required.
-
-If you have customized **any** configuration files under ``/etc/one`` we recommend you to follow these steps regardless of the platform/linux distribution.
-
-#. Backup ``/etc/one`` (already performed)
-#. Install the new packages (already performed)
-#. Compare the old and new configuration files: ``diff -ur /etc/one.YYYY-MM-DD /etc/one``. Or you can use graphical diff-tools like ``meld`` to compare both directories, which are very useful in this step.
-#. Edit the **new** files and port all the customizations from the previous version.
-#. You should **never** overwrite the configuration files with older versions.
 
 Database Upgrade
 ================

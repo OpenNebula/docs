@@ -8,6 +8,4 @@ The OpenNebula project would like to thank the `community members <http://www.op
 
 The new features for VDCs, Federations and OVA support in the Marketplace introduced in OpenNebula 4.6 were funded by `Produban <http://www.produban.com>`__ in the context of the Fund a Feature Program.
 
-A `CSRF vulnerability <http://en.wikipedia.org/wiki/Cross-site_request_forgery>`__ reported by `Dennis Felsch <mailto:dennis.felsch_at_ruhr-uni-bochum.de>`__ and `Mario Heiderich <mailto:mario.heiderich_at_ruhr-uni-bochum.de>`__ from the `Ruhr-Universität Bochum <http://www.ruhr-uni-bochum.de/>`__, making Sunstone vulnerable by malicious CSRF exploits, has been addressed and solved in OpenNebula 4.6.2.
-
 A series of vulnerabilities reported by `Dennis Felsch <mailto:dennis.felsch_at_ruhr-uni-bochum.de>`__ and `Mario Heiderich <mailto:mario.heiderich_at_ruhr-uni-bochum.de>`__ from the `Ruhr-Universität Bochum <http://www.ruhr-uni-bochum.de/>`__, have been addressed and solved in OpenNebula 4.6.2. These vulnerabilites consist on Sunstone being vulnerable to malicious `CSRF exploits <https://www.owasp.org/index.php/CSRF>`__ and vulnerabilities in the core XML sanitization leading to malformed XML exploits, which allowed for DoS attacks.
