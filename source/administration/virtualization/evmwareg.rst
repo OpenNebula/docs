@@ -24,6 +24,8 @@ In order to use the **VMware Drivers**, some software dependencies have to be me
    -  A **datacenter** created in the vCenter server that includes all ESX hosts between which Virtual Machines want to be live migrated (we are going to assume it is called “onecenter” in the rest of this document).
    -  A **user** created in vCenter with the same username and password than the ones in the ESX hosts, with administrator permissions.
 
+.. warning:: When the vCenter is configured all the actions on VMs go through the vCenter. It does not add any feature but vMotion (live migration) compared to direct ESX communication. The storage commands still use ssh connection to the ESX hosts.
+
 .. warning:: Please note that the libvirt version shipped with some linux distribution does not include ESX support. In these cases it may be needed to recompile the libvirt package with the –with-esx option.
 
 Considerations & Limitations
