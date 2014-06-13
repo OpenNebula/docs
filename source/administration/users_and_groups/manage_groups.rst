@@ -88,7 +88,29 @@ An example:
     --admin_user admin_userA --admin_password somestr \
     --resources TEMPLATE+VM --admin_resources TEMPLATE+VM+IMAGE+NET
 
-.. _managing-resource-provider-within-groups:
+.. _add_admin_user_to_group:
+
+Add Admin User to a Existing vDC
+================================================================================
+
+If not defined at creation time, a user can be configured to be Admin of a vDC using ACLs. For instance, to add user "MyVDCAdmin" with ID 4 as admin of group 100  using the default permissions (as presented by the Sunstone interface), the following two ACLs are needed:
+
+.. code::
+
+     $ oneacl create "#4 VM+IMAGE+TEMPLATE+DOCUMENT/@100 USE+MANAGE+CREATE *"
+     $ oneacl create "#4 USER/@100 USE+MANAGE+ADMIN+CREATE *"
+
+
+Also, the group template has to be updated to reflect the new admin:
+
+.. code::
+
+    $ onegroup update 100
+      GROUP_ADMINS="MyVDCAdmin,<other-admins>
+      GROUP_ADMIN_VIEWS="vdcadmin,<other-admin-views"
+
+
+.. _managing_resource_provider_within_groups:
 
 Managing vDC and Resource Providers
 ================================================================================
