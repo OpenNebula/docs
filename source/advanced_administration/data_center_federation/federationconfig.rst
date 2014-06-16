@@ -75,6 +75,15 @@ If the OpenNebula to be added as a Slave is an existing installation, and you ne
 - Stop the slave OpenNebula. Make sure the master OpenNebula is also stopped.
 - Run the ``onedb import-slave`` command. Use ``-h`` to get an explanation of each option.
 
+.. warning::
+
+    There is a known issue (`#2982 <http://dev.opennebula.org/issues/2982>`_) in the import-slave code shipped with OpenNebula 4.6.2. To fix it, download the lastest script from the repo:
+
+    .. code-block:: none
+
+        $ wget https://raw.githubusercontent.com/OpenNebula/one/one-4.6/src/onedb/import_slave.rb -O /usr/lib/one/ruby/onedb/import_slave.rb
+
+
 .. code-block:: none
 
     $ onedb import-slave -h

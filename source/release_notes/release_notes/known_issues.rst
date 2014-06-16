@@ -23,4 +23,11 @@ Sunstone
 * `#2799 <http://dev.opennebula.org/issues/2799>`_ Template update wizard: intro calls create, not update
 * `#2936 <http://dev.opennebula.org/issues/2936>`_ Template wizard cannot save if some values have quotation marks. To fix simply apply `this patch <http://dev.opennebula.org/projects/opennebula/repository/revisions/8110abdc8578650d344cf8d20254e704a3ef8e06/diff/src/sunstone/public/js/plugins/templates-tab.js>`_ to ``/usr/lib/one/sunstone/public/js/plugins/templates-tab.js``.
 
+Federation
+================================================================================
 
+* `#2982 <http://dev.opennebula.org/issues/2982>`_ The command ``onedb import-slave`` will fail if there are "orphan" resources. To fix it, download the lastest script from the repo:
+
+.. code-block:: none
+
+    $ wget https://raw.githubusercontent.com/OpenNebula/one/one-4.6/src/onedb/import_slave.rb -O /usr/lib/one/ruby/onedb/import_slave.rb
