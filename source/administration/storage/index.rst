@@ -14,4 +14,5 @@ Storage
    The Block LVM Datastore <lvm_ds>
    Ceph Datastore <ceph_ds>
    GlusterFS Datastore <gluster_ds>
+   Devices Datastore <dev_ds>
    Kernels and Files Datastore <file_ds>
