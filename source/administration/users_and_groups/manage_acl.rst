@@ -116,7 +116,7 @@ The **Resources** column lists the existing Resource types initials. Each rule f
 -  ``D : DATASTORE``
 -  ``C : CLUSTER``
 -  ``O : DOCUMENT``
--  ``O : ZONE``
+-  ``Z : ZONE``
 
 **RID** stands for Resource ID, it can be an individual object (#), group (@) or cluster (%) id; or all (\*) objects.
 
