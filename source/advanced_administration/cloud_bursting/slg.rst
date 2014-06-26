@@ -18,11 +18,11 @@ You should take into account the following technical considerations when using t
 +--------------+--------------+-----------------+
 |     Name     | CPU Capacity | Memory Capacity |
 +==============+==============+=================+
-| slcci.small  | 1 Core       | 1024 GB         |
+| slcci.small  | 1 Core       | 1024 MB         |
 +--------------+--------------+-----------------+
-| slcci.medium | 2 Cores      | 4096 GB         |
+| slcci.medium | 2 Cores      | 4096 MB         |
 +--------------+--------------+-----------------+
-| slcci.large  | 4 Cores      | 8192 GB         |
+| slcci.large  | 4 Cores      | 8192 MB         |
 +--------------+--------------+-----------------+
 
 Prerequisites
