@@ -13,7 +13,7 @@ You should take into account the following technical considerations when using t
 
 -  The usual OpenNebula functionality for snapshotting, hot-plugging, or migration is not available with SoftLayer (currently).
 
--  By default OpenNebula will always launch slcci.small (1 CPU, 1024GB RAM) instances, unless otherwise specified.
+-  By default OpenNebula will always launch slcci.small (1 CPU, 1024MB RAM) instances, unless otherwise specified.
 
 +--------------+--------------+-----------------+
 |     Name     | CPU Capacity | Memory Capacity |
