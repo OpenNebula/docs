@@ -1,7 +1,7 @@
 .. _dev_ds:
 
 =================
-The DEV Datastore
+The Devices Datastore
 =================
 
 This datastore is used to register already existent block devices in the nodes to be used with virtual machines. It does not do any kind of device discovering or setup. The devices should be already setup and available and, VMs using these devices must be fixed to run in the nodes ready for them.
@@ -65,3 +65,5 @@ New images can be added as any other image specifying the path. If you are using
     NAME=scsi_device
     PATH=/dev/sdb
     PERSISTENT=YES
+
+.. warning:: As this datastore does is just a container for existing devices images does not take any size from it. All devices registered will render size of 0 and the overall devices datastore will show up with 1MB of available space
