@@ -41,6 +41,8 @@ In this guide it is assumed that at least two physical servers are available, on
 
 Let's install the repository (as root) and required packages
 
+.. code::
+
      # yum install http://dl.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
      # cat << EOT > /etc/yum.repos.d/opennebula.repo
      [opennebula]
