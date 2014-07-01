@@ -131,7 +131,7 @@ These are the attributes that can be used in the PUBLIC_CLOUD section of the tem
 +-------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``DOMAIN``                    | Domain for the computing instance                                                                                                                                  |
 +-------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``INSTANCETYPE``              | Specifies the capacity of the VM in terms of CPU and storage. If both STARTCPUS and MAXMEMORY are used, then this parameter is disregarded                         |
+| ``INSTANCE_TYPE``             | Specifies the capacity of the VM in terms of CPU and memory. If both STARTCPUS and MAXMEMORY are used, then this parameter is disregarded                          |
 +-------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``STARTCPUS``                 | The number of CPU cores to allocate to the VM                                                                                                                      |
 +-------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
