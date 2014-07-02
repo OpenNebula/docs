@@ -8,6 +8,15 @@ This guide describes the installation procedure for systems that are already run
 
 Read the :ref:`Compatibility Guide <compatibility>` and `Release Notes <http://opennebula.org/software/release/>`_ to know what is new in OpenNebula 4.6.
 
+.. warning::
+
+    There is a known issue (`#3006 <http://dev.opennebula.org/issues/3006>`_) in the database upgrade scripts shipped with OpenNebula 4.6.2. To fix it, download the lastest code from the repo:
+
+    .. code-block:: none
+
+        sudo wget https://raw.githubusercontent.com/OpenNebula/one/one-4.6/src/onedb/shared/4.4.1_to_4.5.80.rb -O /usr/lib/one/ruby/onedb/shared/4.4.1_to_4.5.80.rb
+
+
 Preparation
 ===========
 

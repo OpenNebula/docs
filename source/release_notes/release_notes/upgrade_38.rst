@@ -20,6 +20,18 @@ Read the Compatibility Guide for `4.0 <http://archives.opennebula.org/documentat
 
     If you want to upgrade and you are using SSH, NFS or VMFS without SSH-mode, you will need to manually migrate your images to a newly created VMFS with SSH-mode datastore. To do so implies powering off all the VMs with images in any of the deprecated datastores, upgrade OpenNebula, create a VMFS datastore and then manually register the images from those deprecated datastores into the new one. `Let us know <http://opennebula.org/community/mailinglists/>`_ if you have doubts or problems with this process.
 
+.. warning::
+
+    There is a known issue (`#3006 <http://dev.opennebula.org/issues/3006>`_) in the database upgrade scripts shipped with OpenNebula 4.6.2. To fix it, download the lastest code from the repo:
+
+    .. code-block:: none
+
+        sudo wget https://raw.githubusercontent.com/OpenNebula/one/one-4.6/src/onedb/shared/3.8.5_to_3.9.80.rb -O /usr/lib/one/ruby/onedb/shared/3.8.5_to_3.9.80.rb
+        sudo wget https://raw.githubusercontent.com/OpenNebula/one/one-4.6/src/onedb/shared/4.0.1_to_4.1.80.rb -O /usr/lib/one/ruby/onedb/shared/4.0.1_to_4.1.80.rb
+        sudo wget https://raw.githubusercontent.com/OpenNebula/one/one-4.6/src/onedb/shared/4.2.0_to_4.3.80.rb -O /usr/lib/one/ruby/onedb/shared/4.2.0_to_4.3.80.rb
+        sudo wget https://raw.githubusercontent.com/OpenNebula/one/one-4.6/src/onedb/shared/4.4.1_to_4.5.80.rb -O /usr/lib/one/ruby/onedb/shared/4.4.1_to_4.5.80.rb
+
+
 Preparation
 ===========
 

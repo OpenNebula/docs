@@ -14,6 +14,18 @@ Packaging
 
 * `#2837 <http://dev.opennebula.org/issues/2837>`_ Sunstone start scripts may leave a running process without writting down the pid
 
+Version Upgrade
+================================================================================
+
+* `#3006 <http://dev.opennebula.org/issues/3006>`_ There is a known issue in the database upgrade scripts shipped with OpenNebula 4.6.2. To fix it, download the lastest code from the repo:
+
+    .. code-block:: none
+
+        sudo wget https://raw.githubusercontent.com/OpenNebula/one/one-4.6/src/onedb/shared/3.8.5_to_3.9.80.rb -O /usr/lib/one/ruby/onedb/shared/3.8.5_to_3.9.80.rb
+        sudo wget https://raw.githubusercontent.com/OpenNebula/one/one-4.6/src/onedb/shared/4.0.1_to_4.1.80.rb -O /usr/lib/one/ruby/onedb/shared/4.0.1_to_4.1.80.rb
+        sudo wget https://raw.githubusercontent.com/OpenNebula/one/one-4.6/src/onedb/shared/4.2.0_to_4.3.80.rb -O /usr/lib/one/ruby/onedb/shared/4.2.0_to_4.3.80.rb
+        sudo wget https://raw.githubusercontent.com/OpenNebula/one/one-4.6/src/onedb/shared/4.4.1_to_4.5.80.rb -O /usr/lib/one/ruby/onedb/shared/4.4.1_to_4.5.80.rb
+
 Sunstone
 ================================================================================
 

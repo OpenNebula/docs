@@ -15,6 +15,16 @@ Read the Compatibility Guide `for 4.4 <http://docs.opennebula.org/4.4/release_no
     -  **iscsi** drivers have been moved out of the main OpenNebula distribution and are available (although not supported) as an `addon <https://github.com/OpenNebula/addon-iscsi>`__.
     -  **ganglia** drivers have been moved out of the main OpenNebula distribution and are available (although not supported) as an `addon <https://github.com/OpenNebula/addon-ganglia>`__.
 
+.. warning::
+
+    There is a known issue (`#3006 <http://dev.opennebula.org/issues/3006>`_) in the database upgrade scripts shipped with OpenNebula 4.6.2. To fix it, download the lastest code from the repo:
+
+    .. code-block:: none
+
+        sudo wget https://raw.githubusercontent.com/OpenNebula/one/one-4.6/src/onedb/shared/4.2.0_to_4.3.80.rb -O /usr/lib/one/ruby/onedb/shared/4.2.0_to_4.3.80.rb
+        sudo wget https://raw.githubusercontent.com/OpenNebula/one/one-4.6/src/onedb/shared/4.4.1_to_4.5.80.rb -O /usr/lib/one/ruby/onedb/shared/4.4.1_to_4.5.80.rb
+
+
 Preparation
 ===========
 
