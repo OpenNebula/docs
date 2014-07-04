@@ -80,8 +80,8 @@ Image Quotas. Attribute name: IMAGE
 
 For each quota, there are two special limits:
 
--  **0** means **unlimited**
 -  **-1** means that the **default quota** will be used
+-  **-2** means **unlimited**
 
 .. warning:: Each quota has an usage counter associated named ``<QUOTA_NAME>_USED``. For example ``MEMORY_USED`` means the total memory used by user/group VMs, and its associated quota is ``MEMORY``.
 
@@ -91,7 +91,7 @@ The following template shows a quota example for a user in plain text. It limits
 
     DATASTORE=[
       ID="1",
-      IMAGES="0",
+      IMAGES="-2",
       SIZE="20480"
     ]
 
@@ -114,7 +114,7 @@ The following template shows a quota example for a user in plain text. It limits
 
     IMAGE=[
       ID="2",
-      RVMS="0"
+      RVMS="-2"
     ]
 
 .. warning:: Note that whenever a network, image, datastore or VM is used the corresponding quota counters are created for the user with an unlimited value. This allows to track the usage of each user/group even when quotas are not used.
