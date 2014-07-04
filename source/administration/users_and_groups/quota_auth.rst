@@ -36,13 +36,15 @@ Usage quotas are set in a traditional template syntax (either plain text or XML)
 Datastore Quotas. Attribute name: DATASTORE
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-+---------------------+-----------------------------------------------------------------------------+
-| DATASTORE Attribute |                                 Description                                 |
-+=====================+=============================================================================+
-| ID                  | ID of the Datastore to set the quota for                                    |
-| SIZE                | Maximum size in MB that can be used in the datastore                        |
-| IMAGE               | Maximum number of images that can be created in the datastore               |
-+---------------------+-----------------------------------------------------------------------------+
++---------------------+---------------------------------------------------------------+
+| DATASTORE Attribute |                          Description                          |
++=====================+===============================================================+
+| ID                  | ID of the Datastore to set the quota for                      |
++---------------------+---------------------------------------------------------------+
+| SIZE                | Maximum size in MB that can be used in the datastore          |
++---------------------+---------------------------------------------------------------+
+| IMAGE               | Maximum number of images that can be created in the datastore |
++---------------------+---------------------------------------------------------------+
 
 Compute Quotas. Attribute name: VM
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -51,8 +53,11 @@ Compute Quotas. Attribute name: VM
 |  VM Attribute |                                 Description                                 |
 +===============+=============================================================================+
 | VMS           | Maximum number of VMs that can be created                                   |
++---------------+-----------------------------------------------------------------------------+
 | MEMORY        | Maximum memory in MB that can be requested by user/group VMs                |
++---------------+-----------------------------------------------------------------------------+
 | CPU           | Maximum CPU capacity that can be requested by user/group VMs                |
++---------------+-----------------------------------------------------------------------------+
 | VOLATILE_SIZE | Maximum volatile disks size (in MB) that can be requested by user/group VMs |
 +---------------+-----------------------------------------------------------------------------+
 
@@ -64,6 +69,7 @@ Network Quotas. Attribute name: NETWORK
 | NETWORK Attribute |                   Description                   |
 +===================+=================================================+
 | ID                | ID of the Network to set the quota for          |
++-------------------+-------------------------------------------------+
 | LEASES            | Maximum IPs that can be leased from the Network |
 +-------------------+-------------------------------------------------+
 
@@ -75,6 +81,7 @@ Image Quotas. Attribute name: IMAGE
 | IMAGE Attribute |                      Description                      |
 +=================+=======================================================+
 | ID              | ID of the Image to set the quota for                  |
++-----------------+-------------------------------------------------------+
 | RVMS            | Maximum VMs that can used this image at the same time |
 +-----------------+-------------------------------------------------------+
 
