@@ -63,14 +63,14 @@ It will also be used to hold context images and volatile disks.
 Configuring GlusterFS Datastore
 -------------------------------
 
-The datastore that holds the images will also be of type ``shared`` but you will need to add the parameters ``DISK_TYPE``, ``GLUSTER_HOST`` and ``GLUSTER_VOLUME`` described ins this table.
+The datastore that holds the images will also be of type ``fs`` but you will need to add the parameters ``DISK_TYPE``, ``GLUSTER_HOST`` and ``GLUSTER_VOLUME`` described ins this table.
 
 +---------------------+---------------------------------------------------------------------------------------------------------+
 |      Attribute      |                                               Description                                               |
 +=====================+=========================================================================================================+
 | ``NAME``            | The name of the datastore                                                                               |
 +---------------------+---------------------------------------------------------------------------------------------------------+
-| ``DS_MAD``          | The DS type, use ``shared`` for the Gluster datastore                                                   |
+| ``DS_MAD``          | The DS type, use ``fs`` for the Gluster datastore                                                       |
 +---------------------+---------------------------------------------------------------------------------------------------------+
 | ``TM_MAD``          | Transfer drivers for the datastore, use ``shared``, see below                                           |
 +---------------------+---------------------------------------------------------------------------------------------------------+
@@ -93,7 +93,7 @@ An example of datastore:
 
     > cat ds.conf
     NAME = "glusterds"
-    DS_MAD = shared
+    DS_MAD = fs
     TM_MAD = shared
 
     # the following line *must* be preset
@@ -111,8 +111,8 @@ An example of datastore:
     > onedatastore list
       ID NAME                SIZE AVAIL CLUSTER      IMAGES TYPE DS       TM
        0 system              9.9G 98%   -                 0 sys  -        shared
-       1 default             9.9G 98%   -                 2 img  shared   shared
+       1 default             9.9G 98%   -                 2 img  fs       shared
        2 files              12.3G 66%   -                 0 fil  fs       ssh
-     101 default             9.9G 98%   -                 0 img  shared   shared
+     101 default             9.9G 98%   -                 0 img  fs       shared
 
 .. warning:: It is recommended to group the Gluster datastore and the Gluster enabled hypervisors in an OpenNebula ref:`cluster<cluster_guide>`.
