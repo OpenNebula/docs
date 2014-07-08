@@ -28,7 +28,7 @@ The resulting image will boot under any OpenNebula cloud that uses KVM or VMware
 Sysprep
 -------
 
-If you are adapting a pre-existing Windows VM to run in an OpenNebula environment, and you want to remove all the pre-existing senstitive data in order to be able to clone and deliver it to third party users, it's highly recommended to run `Sysprep <http://en.wikipedia.org/wiki/Sysprep>`__ on the image. To do so simply run ``c:\Windows\System32\sysprep\sysprep.exe``. Select ``OOBE`` and ``Generalize``.
+If you are adapting a pre-existing Windows VM to run in an OpenNebula environment, and you want to remove all the pre-existing senstitive data in order to be able to clone and deliver it to third party users, it's highly recommended to run `Sysprep <http://en.wikipedia.org/wiki/Sysprep>`__ on the image. To do so execute the installation steps but instead of step 6 run ``c:\Windows\System32\sysprep\sysprep.exe``. Select ``OOBE``, ``Generalize`` and ``Shutdown`` as the action when it finishes. The image generated with this procedure will be able to configure its network and will also be a pristine Windows installation.
 
 Contextualization
 =================
