@@ -34,11 +34,20 @@ Sunstone
 * `#2804 <http://dev.opennebula.org/issues/2804>`_ Wizard multple selection dataTables do not highlight element outside the current page
 * `#2799 <http://dev.opennebula.org/issues/2799>`_ Template update wizard: intro calls create, not update
 * `#2936 <http://dev.opennebula.org/issues/2936>`_ Template wizard cannot save if some values have quotation marks. To fix simply apply `this patch <http://dev.opennebula.org/projects/opennebula/repository/revisions/8110abdc8578650d344cf8d20254e704a3ef8e06/diff/src/sunstone/public/js/plugins/templates-tab.js>`_ to ``/usr/lib/one/sunstone/public/js/plugins/templates-tab.js``.
-* `#2984 <http://dev.opennebula.org/issues/2984>`_ Image upload from sunstone is broken. To fix it, download the this version of the script from the repo as root, restart sunstone and clear the cache of the browser:
+* `#2984 <http://dev.opennebula.org/issues/2984>`_ Image upload from sunstone is broken. To fix it, download this version of the script from the repo as root, restart sunstone and clear the cache of the browser:
 
     .. code-block:: none
 
         # wget https://raw.githubusercontent.com/OpenNebula/one/09524280270cd160410bc035dac6eab6c932e884/src/sunstone/public/js/plugins/images-tab.js -O /usr/lib/one/sunstone/public/js/plugins/images-tab.js
+
+OneFlow
+================================================================================
+
+* `#3024 <http://dev.opennebula.org/issues/3024`_ OneFlow template creation not working with the new csrftoken fioneflow template creation not working with the new csrftoken fix. To fix it, download this version of the script from the repo as root and restart oneflow:
+
+    .. code-block:: none
+
+        # wget https://raw.githubusercontent.com/OpenNebula/one/417a7787f5faaab55c99424073e11aaba8b650a9/src/flow/lib/models/service_template.rb -O /usr/lib/one/oneflow/lib/models/service_template.rb
 
 Federation
 ================================================================================
