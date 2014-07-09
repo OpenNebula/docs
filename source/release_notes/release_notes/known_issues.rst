@@ -43,7 +43,7 @@ Sunstone
 OneFlow
 ================================================================================
 
-* `#3024 <http://dev.opennebula.org/issues/3024`_ OneFlow template creation not working with the new csrftoken fioneflow template creation not working with the new csrftoken fix. To fix it, download this version of the script from the repo as root and restart oneflow:
+* `#3024 <http://dev.opennebula.org/issues/3024>`_ OneFlow template creation not working with the new csrftoken fioneflow template creation not working with the new csrftoken fix. To fix it, download this version of the script from the repo as root and restart oneflow:
 
     .. code-block:: none
 
