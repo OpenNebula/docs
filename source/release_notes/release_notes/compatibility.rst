@@ -20,6 +20,12 @@ You can now define a ``NIC_DEFAULT`` attribute with values that will be copied t
 
     NIC_DEFAULT = [ MODEL = "virtio" ]
 
+
+Virtual Networks
+--------------------------------------------------------------------------------
+
+.. todo::
+
 Usage Quotas
 --------------------------------------------------------------------------------
 
@@ -28,3 +34,23 @@ Up to 4.6, a quota of '0' meant unlimited usage. In 4.8, '0' means a limit of 0,
 
 Developers and Integrators
 ================================================================================
+
+XML-RPC API
+--------------------------------------------------------------------------------
+
+* New api calls:
+
+  * ``one.vn.reserve``: Reserve network addresses
+  * ``one.vn.add_ar``: Adds address ranges to a virtual network
+  * ``one.vn.rm_ar``: Removes an address range from a virtual network
+  * ``one.vn.update_ar``: Updates the attributes of an address range
+  * ``one.vn.free_ar``: Frees a reserved address range from a virtual network
+
+* Deleted api calls:
+
+  * ``one.vn.addleases``: Use ``one.vn.add_ar`` instead
+  * ``one.vn.rmleases``: Use ``one.vn.rm_ar`` instead
+
+* Changed api calls:
+
+  * ``one.vn.update``: Now requires NET:ADMIN rights, instead of MANAGE
