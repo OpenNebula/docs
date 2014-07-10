@@ -9,7 +9,16 @@ This guide is aimed at OpenNebula 4.6 users and administrators who want to upgra
 Visit the :ref:`Features list <features>` and the `Release Notes <http://opennebula.org/software/release/>`_ for a comprehensive list of what's new in OpenNebula 4.8.
 
 OpenNebula Administrators and Users
-===================================
+================================================================================
+
+Virtual Machine Templates
+--------------------------------------------------------------------------------
+
+You can now define a ``NIC_DEFAULT`` attribute with values that will be copied to each new ``NIC``. This is specially useful for an administrator to define configuration parameters, such as ``MODEL``, that final users may not be aware of.
+
+.. code::
+
+    NIC_DEFAULT = [ MODEL = "virtio" ]
 
 Usage Quotas
 --------------------------------------------------------------------------------
@@ -18,4 +27,4 @@ Up to 4.6, a quota of '0' meant unlimited usage. In 4.8, '0' means a limit of 0,
 
 
 Developers and Integrators
-==========================
+================================================================================

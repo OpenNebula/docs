@@ -361,6 +361,16 @@ Example, a VM with two NIC attached to two different networks:
 
 For more information on setting up virtual networks please check the :ref:`Managing Virtual Networks guide <vgg>`.
 
+Network Defaults
+--------------------------------------------------------------------------------
+
+You can define a ``NIC_DEFAULT`` attribute with values that will be copied to each new ``NIC``. This is specially useful for an administrator to define configuration parameters, such as ``MODEL``, that final users may not be aware of.
+
+.. code::
+
+    NIC_DEFAULT = [ MODEL = "virtio" ]
+
+
 I/O Devices Section
 ===================
 
