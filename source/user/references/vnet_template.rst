@@ -4,6 +4,8 @@
 Virtual Network Definition File
 ================================
 
+.. todo:: Redo for AR
+
 This page describes how to define a new Virtual Network template. A Virtual Network template follows the same syntax as the :ref:`VM template <template>`.
 
 If you want to learn more about the Virtual Network management, you can do so :ref:`here <vgg>`.

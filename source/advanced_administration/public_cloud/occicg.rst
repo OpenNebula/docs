@@ -139,27 +139,28 @@ Configuring OCCI Virtual Networks
 
 You have to adapt the ``/etc/one/occi_templates/network.erb`` file to the configuration that the Virtual Networks created through the OCCI interface will use. For more information about the Virtual Network configuration check the following :ref:`guide <vnet_template>`.
 
-.. code::
+.. todo::
+    .. code::
 
-    NAME = "<%= @vnet_info['NAME'] %>"
-    TYPE = RANGED
+        NAME = "<%= @vnet_info['NAME'] %>"
+        TYPE = RANGED
 
-    NETWORK_ADDRESS = <%= @vnet_info['ADDRESS'] %>
-    <% if @vnet_info['SIZE'] != nil %>
-    NETWORK_SIZE    = <%= @vnet_info['SIZE']%>
-    <% end %>
+        NETWORK_ADDRESS = <%= @vnet_info['ADDRESS'] %>
+        <% if @vnet_info['SIZE'] != nil %>
+        NETWORK_SIZE    = <%= @vnet_info['SIZE']%>
+        <% end %>
 
-    <% if @vnet_info['DESCRIPTION'] != nil %>
-    DESCRIPTION = "<%= @vnet_info['DESCRIPTION'] %>"
-    <% end %>
+        <% if @vnet_info['DESCRIPTION'] != nil %>
+        DESCRIPTION = "<%= @vnet_info['DESCRIPTION'] %>"
+        <% end %>
 
-    <% if @vnet_info['PUBLIC'] != nil %>
-    PUBLIC = "<%= @vnet_info['PUBLIC'] %>"
-    <% end %>
+        <% if @vnet_info['PUBLIC'] != nil %>
+        PUBLIC = "<%= @vnet_info['PUBLIC'] %>"
+        <% end %>
 
-    #BRIDGE = NAME_OF_DEFAULT_BRIDGE
-    #PHYDEV = NAME_OF_PHYSICAL_DEVICE
-    #VLAN   = YES|NO
+        #BRIDGE = NAME_OF_DEFAULT_BRIDGE
+        #PHYDEV = NAME_OF_PHYSICAL_DEVICE
+        #VLAN   = YES|NO
 
 Defining Compute Types
 ----------------------

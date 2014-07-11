@@ -41,7 +41,7 @@ Advanced Control and Monitoring of Virtual Infrastructure
 -  Advanced functionality for VM dynamic management like :ref:`system and disk snapshotting <vm_guide2_snapshotting>`, :ref:`capacity resizing <vm_guide2_resizing_a_vm>`, or :ref:`NIC hotplugging <vm_guide2_nic_hotplugging>`
 -  :ref:`Programmable VM operations <vm_guide2_scheduling_actions>`, so allowing users to schedule actions
 -  Volume hotplugging to easily hot plug a volatile disk created on-the-fly or an existing image from a Datastore to a running VM
--  :ref:`Broad network virtualization capabilities <vgg>` with traffic isolation, ranged or fixed networks, definition of generic attributes to define multi-tier services consisting of groups of inter-connected VMs, and complete functionality for `virtual network management <http://docs.opennebula.org/doc/4.6/cli/onevnet.1.html>`__ to interconnect VM instances: create, delete, monitor, list...
+-  :ref:`Broad network virtualization capabilities <vgg>` with traffic isolation, definition of generic attributes to define multi-tier services consisting of groups of inter-connected VMs, and complete functionality for `virtual network management <http://docs.opennebula.org/doc/4.6/cli/onevnet.1.html>`__ to interconnect VM instances: create, delete, monitor, list...
 -  :ref:`IPv6 support <vgg_ipv6_networks>` with definition site and global unicast addresses
 -  Configurable :ref:`system accounting statistics <accounting>` to visualize and report resource usage data, to allow their integration with chargeback and billing platforms, or to guarantee fair share of resources among users
 -  Tagging of users, VM images and virtual networks with arbitrary metadata that can be later used by other components

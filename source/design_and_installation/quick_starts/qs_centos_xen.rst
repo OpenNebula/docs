@@ -277,15 +277,16 @@ To create networks, we need to create first a network template file ``mynetwork.
 .. code::
 
     NAME = "private"
-    TYPE = FIXED
 
     BRIDGE = br0
 
-    LEASES = [ IP=192.168.0.100 ]
-    LEASES = [ IP=192.168.0.101 ]
-    LEASES = [ IP=192.168.0.102 ]
+    AR = [
+        TYPE = IP4,
+        IP = 192.168.0.100,
+        SIZE = 3
+    ]
 
-.. warning:: Replace the leases with free IPs in your host's network. You can add any number of leases.
+.. warning:: Replace the address range with free IPs in your host's network. You can add more than one address range.
 
 Now we can move ahead and create the resources in OpenNebula:
 

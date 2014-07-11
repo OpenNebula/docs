@@ -68,14 +68,13 @@ The driver will be automatically applied to every Virtual Machine deployed in th
 .. code::
 
     NAME    = "hmnet"
-    TYPE    = "fixed"
-     
+         
     PHYDEV  = "eth0"
     VLAN    = "YES"
     VLAN_ID = 50        # optional
     BRIDGE  = "brhm"    # optional
      
-    LEASES = ...
+    ...
 
 In this scenario, the driver will check for the existence of the ``brhm`` bridge. If it doesn't exist it will be created. ``eth0`` will be tagged (``eth0.<vlan_id>``) and attached to ``brhm`` (unless it's already attached).
 

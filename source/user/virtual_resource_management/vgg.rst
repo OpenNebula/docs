@@ -4,6 +4,8 @@
 Managing Virtual Networks
 ==========================
 
+.. todo:: Redo for AR
+
 A host is connected to one or more networks that are available to the virtual machines through the corresponding bridges. OpenNebula allows the creation of Virtual Networks by mapping them on top of the physical ones
 
 Overview

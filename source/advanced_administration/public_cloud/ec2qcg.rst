@@ -160,30 +160,32 @@ In order to enable this functionality you have to follow the following steps:
 1. Create a VNET Containing the Elastic IPS
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
--  As oneadmin create a new FIXED VirtualNetwork containing the public IPs that will be controlled by the EC2 users:
+.. todo::
 
-.. code::
+    -  As oneadmin create a new FIXED VirtualNetwork containing the public IPs that will be controlled by the EC2 users:
 
-    NAME    = "ElasticIPs"
-    TYPE    = FIXED
+    .. code::
 
-    PHYDEV  = "eth0"
-    VLAN    = "YES"
-    VLAN_ID = 50
-    BRIDGE  = "brhm"
+        NAME    = "ElasticIPs"
+        TYPE    = FIXED
 
-    LEASES  = [IP=10.0.0.1]
-    LEASES  = [IP=10.0.0.2]
-    LEASES  = [IP=10.0.0.3]
-    LEASES  = [IP=10.0.0.4]
+        PHYDEV  = "eth0"
+        VLAN    = "YES"
+        VLAN_ID = 50
+        BRIDGE  = "brhm"
 
-    # Custom Attributes to be used in Context
-    GATEWAY = 130.10.0.1
+        LEASES  = [IP=10.0.0.1]
+        LEASES  = [IP=10.0.0.2]
+        LEASES  = [IP=10.0.0.3]
+        LEASES  = [IP=10.0.0.4]
 
-.. code::
+        # Custom Attributes to be used in Context
+        GATEWAY = 130.10.0.1
 
-    $ onevnet create /tmp/fixed.vnet
-    ID: 8
+    .. code::
+
+        $ onevnet create /tmp/fixed.vnet
+        ID: 8
 
 This VNET will be managed by the oneadmin user, therefore ``USE`` permission for the ec2 users is not required
 

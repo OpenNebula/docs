@@ -55,12 +55,9 @@ The driver will be automatically applied to every Virtual Machine deployed in th
 .. code::
 
     NAME    = "ebtables_net"
-    TYPE    = "fixed"
     BRIDGE  = vbr1
-     
-    VLAN    = "YES"
-     
-    LEASES = ...
+    VLAN    = "YES" 
+    ...
 
 Tuning & Extending
 ==================

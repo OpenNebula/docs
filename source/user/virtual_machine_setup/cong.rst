@@ -243,7 +243,6 @@ Public:
 .. code::
 
     NAME = public
-    TYPE = RANGED
     NETWORK_ADDRESS = 130.10.0.0
     NETWORK_MASK = 255.255.255.0
     GATEWAY = 130.10.0.1
@@ -254,7 +253,6 @@ Private:
 .. code::
 
     NAME = private
-    TYPE = RANGED
     NETWORK_ADDRESS = 10.0.0.0
     NETWORK_MASK = 255.255.0.0
 

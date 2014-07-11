@@ -131,19 +131,21 @@ Code Sample: Create a new VirtualNetwork
      
     template = <<-EOT
     NAME    = "Red LAN"
-    TYPE    = RANGED
      
     # Now we'll use the host private network (physical)
     BRIDGE  = vbr0
-     
-    NETWORK_SIZE    = C
-    NETWORK_ADDRESS = 192.168.0.0
      
     # Custom Attributes to be used in Context
     GATEWAY = 192.168.0.1
     DNS     = 192.168.0.1
      
     LOAD_BALANCER = 192.168.0.3
+
+    AR = [
+        TYPE = IP4,
+        IP   = 192.168.0.1,
+        SIZE = 255
+    ]
     EOT
      
     xml = OpenNebula::VirtualNetwork.build_xml

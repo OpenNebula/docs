@@ -55,10 +55,8 @@ The NICs of the VM in this Virtual Network will be attached to the specified por
 .. code::
 
     NAME    = "pre-defined_vmware_net"
-    TYPE    = "fixed"
     BRIDGE  = "VM Network"  # This is the port group  
-     
-    LEASES = ...
+     ...
 
 .. _vmwarenet_using_the_dynamic_network_mode:
 
@@ -72,13 +70,12 @@ Additionally the port groups can be tagged with a vlan\_id. You can set VLAN=“
 .. code::
 
     NAME    = "dynamic_vmware_net"
-    TYPE    = "fixed"
     BRIDGE  = "vSwitch0" # In this mode this is the vSwitch name
      
     VLAN    = "YES"
     VLAN_ID = 50       # optional
      
-    LEASES = ...
+    ...
 
 Tuning & Extending
 ==================

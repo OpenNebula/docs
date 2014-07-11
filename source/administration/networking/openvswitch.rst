@@ -86,13 +86,12 @@ The driver will be automatically applied to every Virtual Machine deployed in th
 .. code::
 
     NAME    = "ovswitch_net"
-    TYPE    = "fixed"
     BRIDGE  = vbr1
      
     VLAN    = "YES"
     VLAN_ID = 50        # optional
      
-    LEASES = ...
+    ...
 
 .. warning:: Any user with Network creation/modification permissions may force a custom vlan id with the ``VLAN_ID`` parameter in the network template. In that scenario, any user may be able to connect to another network with the same network id. Techniques to avoid this are explained under the Tuning & Extending section.
 
