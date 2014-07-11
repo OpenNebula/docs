@@ -5318,3 +5318,4 @@ Schemas for Accounting
 
 .. |FIXME| image:: /images/fixme.gif
 .. |image2| image:: /images/states-complete.png
+    :width: 100 %

@@ -548,6 +548,7 @@ Information for Developers and Integrators
 -  The monitoring information, shown with nice graphs in :ref:`Sunstone <sunstone>`, can be retrieved using the XML-RPC methods :ref:`one.vm.monitoring and one.vmpool.monitoring <api>`.
 
 .. |Virtual Machine States| image:: /images/states-simple.png
+    :width: 100 %
 .. |image2| image:: /images/sunstone_vm_attach.png
 .. |image3| image:: /images/sunstone_vm_attachnic.png
 .. |image4| image:: /images/sunstone_vm_snapshot.png
