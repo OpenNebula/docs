@@ -264,7 +264,7 @@ Now we can move ahead and create the resources in OpenNebula:
     $ onevnet create mynetwork.one
 
     $ oneimage create --name "CentOS-6.4_x86_64" \
-        --path "http://us.cloud.centos.org/i/one/c6-x86_64-20130910-1.qcow2.bz2" \
+        --path "http://mirrors.karan.org/centos-cloud/i/one/c6-x86_64-20130910-1.qcow2.bz2" \
         --driver qcow2 \
         --datastore default
 
