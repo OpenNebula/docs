@@ -169,6 +169,12 @@ To clone an image, execute
 
     $ oneimage clone Ubuntu new_image
 
+You can optionally clone the Image to a different Datastore. The new Datastore must be compatible with the current one, i.e. have the same :ref:`DS_MAD drivers <sm>`.
+
+.. code::
+
+    $ oneimage clone Ubuntu new_image --datastore new_img_ds
+
 Listing Available Images
 ------------------------
 

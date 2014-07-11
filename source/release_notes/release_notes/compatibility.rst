@@ -26,6 +26,15 @@ Virtual Networks
 
 .. todo::
 
+Images
+--------------------------------------------------------------------------------
+
+Images can now be :ref:`cloned to a different Datastore <img_guide>`. The only restriction is that the new Datastore must be compatible with the current one, i.e. have the same DS_MAD.
+
+.. code::
+
+    $ oneimage clone Ubuntu new_image --datastore new_img_ds
+
 Usage Quotas
 --------------------------------------------------------------------------------
 
@@ -54,3 +63,4 @@ XML-RPC API
 * Changed api calls:
 
   * ``one.vn.update``: Now requires NET:ADMIN rights, instead of MANAGE
+  * ``one.image.clone``: New optional parameter to set the target datastore
