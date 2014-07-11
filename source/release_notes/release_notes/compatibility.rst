@@ -20,6 +20,10 @@ You can now define a ``NIC_DEFAULT`` attribute with values that will be copied t
 
     NIC_DEFAULT = [ MODEL = "virtio" ]
 
+Virtual Machines
+--------------------------------------------------------------------------------
+
+When a guest is shutdown, the OpenNebula VM will now move to the ``poweoff`` state, instead of ``unknown``.
 
 Virtual Networks
 --------------------------------------------------------------------------------
@@ -64,3 +68,8 @@ XML-RPC API
 
   * ``one.vn.update``: Now requires NET:ADMIN rights, instead of MANAGE
   * ``one.image.clone``: New optional parameter to set the target datastore
+
+Monitoring Drivers
+--------------------------------------------------------------------------------
+
+.. todo:: VM_POLL=YES in case of hypervisor failure
