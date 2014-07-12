@@ -34,9 +34,27 @@ As stated in the `Libvirt documentation <http://libvirt.org/storage.html#Storage
 
 .. code-block:: none
 
-    # gluster volume set <volume> storage.owner-uid=<oneadmin uid>
-    # gluster volume set <volume> storage.owner-gid=<oneadmin gid>
+    # gluster volume set <volume> storage.owner-uid <oneadmin uid>
+    # gluster volume set <volume> storage.owner-gid <oneadmin gid>
 
+To make Qemu work with Gluster over libgfapi we need to create a file ``/var/lib/glusterd/groups/virt`` with following content
+
+.. code-block:: none
+   quick-read=off
+   read-ahead=off
+   io-cache=off
+   stat-prefetch=on
+   eager-lock=enable
+   remote-dio=enable
+   quorum-type=auto
+   server.allow-insecure=on
+   server-quorum-type=server
+
+Enable the settings on the group
+
+.. code-block:: none
+
+   gluster volume set <volume> group virt
 
 Datastore Mount
 ---------------
