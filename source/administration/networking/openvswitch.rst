@@ -55,6 +55,16 @@ To enable this driver, use **ovswitch** or **ovswitch\_brcompat** as the Virtual
     # for xen hosts
     $ onehost create host02 -i xen -v xen -n ovswitch_brcompat
 
+Open vSwitch Options
+--------------------
+
+It is possible to disable the ARP Cache Poisoning prevention rules by changing this snippet in ``/var/lib/one/remotes/vnm/OpenNebulaNetwork.conf``:
+
+.. code::
+
+    # Enable ARP Cache Poisoning Prevention Rules
+    :arp_cache_poisoning: true
+
 Driver Actions
 --------------
 
@@ -170,7 +180,7 @@ These rules prevent any traffic to come out of the port the MAC address has chan
 
     in_port=<PORT>,dl_src=<MAC>,priority=40000,actions=normal
     in_port=<PORT>,priority=39000,actions=normal
-    
+
 **IP hijacking**
 
 These rules prevent any traffic to come out of the port for IPv4 IP's not configured for a VM

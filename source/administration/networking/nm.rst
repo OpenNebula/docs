@@ -38,6 +38,21 @@ OpenNebula also comes with a :ref:`Virtual Router appliance <router>` that provi
 Tuning & Extending
 ==================
 
+Configuration
+-------------
+
+Some drivers have the ability to customize their behaviour by editing a configuration file. This file is located in ``/var/lib/one/remotes/vnm/OpenNebulaNetwork.conf``.
+
+Currently it supports the following options:
+
++---------------------+------------------+----------------------------------------------------------------+
+|      Parameter      |      Driver      |                          Description                           |
++=====================+==================+================================================================+
+| start_vlan          | 802.1Q, ovswitch | Configure the initial VLAN ID tag (corresponds to vnet ID = 0) |
++---------------------+------------------+----------------------------------------------------------------+
+| arp_cache_poisoning | ovswitch         | Enable ARP Cache Poisoning Prevention Rules                    |
++---------------------+------------------+----------------------------------------------------------------+
+
 Customization of the Drivers
 ----------------------------
 
