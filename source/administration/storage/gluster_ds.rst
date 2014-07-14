@@ -40,6 +40,7 @@ As stated in the `Libvirt documentation <http://libvirt.org/storage.html#Storage
 To make Qemu work with Gluster over libgfapi we need to create a file ``/var/lib/glusterd/groups/virt`` with following content
 
 .. code-block:: none
+
    quick-read=off
    read-ahead=off
    io-cache=off
