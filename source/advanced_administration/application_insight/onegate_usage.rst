@@ -103,6 +103,7 @@ If the Virtual Machine is part of a Service Flow, it can query the OneGate serve
 To access this data you will need to issue a ``GET`` request to the same url as above, sending the token to authenticate:
 
 .. code::
+
     $ curl -X "GET" http://192.168.0.1:5030/vm/0 --header "X-ONEGATE-TOKEN: yCxieDUS7kra7Vn9ILA0+g=="
     {
         "<name_of_the_role>": {
