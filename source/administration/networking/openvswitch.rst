@@ -65,6 +65,8 @@ It is possible to disable the ARP Cache Poisoning prevention rules by changing t
     # Enable ARP Cache Poisoning Prevention Rules
     :arp_cache_poisoning: true
 
+The start VLAN id can also be set in that file.
+
 Driver Actions
 --------------
 
@@ -136,17 +138,6 @@ Tuning & Extending
     oneadmin@frontend $ onehost sync
 
 This way in the next monitoring cycle the updated files will be copied again to the Hosts.
-
-Calculating VLAN ID
--------------------
-
-The vlan id is calculated by adding the network id to a constant defined in ``/var/lib/one/remotes/vnm/OpenNebulaNetwork.rb``. You can customize that value to your own needs:
-
-.. code::
-
-    CONF = {
-        :start_vlan => 2
-    }
 
 Restricting Manually the VLAN ID
 --------------------------------

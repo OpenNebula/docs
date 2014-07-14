@@ -42,6 +42,11 @@ The vSphere hosts can work in two different networking modes, namely:
 
 .. warning:: Dynamic and pre-defined networking modes can be mixed in a datacenter. Just use the desired mode for each host.
 
+VMware Options
+--------------
+
+It is possible specify the start VLAN ID by editing ``/var/lib/one/remotes/vnm/OpenNebulaNetwork.conf``.
+
 Usage
 =====
 
@@ -55,7 +60,7 @@ The NICs of the VM in this Virtual Network will be attached to the specified por
 .. code::
 
     NAME    = "pre-defined_vmware_net"
-    BRIDGE  = "VM Network"  # This is the port group  
+    BRIDGE  = "VM Network"  # This is the port group
      ...
 
 .. _vmwarenet_using_the_dynamic_network_mode:
@@ -93,15 +98,3 @@ The strategy of the dynamic driver is to dynamically create a VMware port group 
 +-------------+--------------------------------------------------------------------+
 | **Clean**   | No operation                                                       |
 +-------------+--------------------------------------------------------------------+
-
-Calculating VLAN ID
--------------------
-
-The vlan id is calculated by adding the network id to a constant defined in ``/var/lib/one/remotes/vnm/OpenNebulaNetwork.rb``. The administrator may customize that value to their own needs:
-
-.. code::
-
-    CONF = {
-        :start_vlan => 2
-    }
-

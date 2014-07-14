@@ -45,13 +45,15 @@ Some drivers have the ability to customize their behaviour by editing a configur
 
 Currently it supports the following options:
 
-+---------------------+------------------+----------------------------------------------------------------+
-|      Parameter      |      Driver      |                          Description                           |
-+=====================+==================+================================================================+
-| start_vlan          | 802.1Q, ovswitch | Configure the initial VLAN ID tag (corresponds to vnet ID = 0) |
-+---------------------+------------------+----------------------------------------------------------------+
-| arp_cache_poisoning | ovswitch         | Enable ARP Cache Poisoning Prevention Rules                    |
-+---------------------+------------------+----------------------------------------------------------------+
++---------------------+--------------------------+----------------------------------------------------------------+
+|      Parameter      |          Driver          |                          Description                           |
++=====================+==========================+================================================================+
+| start_vlan          | 802.1Q, ovswitch, vmware | Configure the initial VLAN ID tag (corresponds to vnet ID = 0) |
++---------------------+--------------------------+----------------------------------------------------------------+
+| arp_cache_poisoning | ovswitch                 | Enable ARP Cache Poisoning Prevention Rules                    |
++---------------------+--------------------------+----------------------------------------------------------------+
+
+.. warning:: If this file is changed, please run ``onehost sync`` to deploy the file to all the nodes.
 
 Customization of the Drivers
 ----------------------------

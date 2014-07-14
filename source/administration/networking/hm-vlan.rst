@@ -47,6 +47,11 @@ To enable this driver, use **802.1Q** as the Virtual Network Manager driver para
 
     $ onehost create host01 -i kvm -v kvm -n 802.1Q
 
+802.1Q Options
+--------------
+
+It is possible specify the start VLAN ID by editing ``/var/lib/one/remotes/vnm/OpenNebulaNetwork.conf``.
+
 Driver Actions
 --------------
 
@@ -89,17 +94,6 @@ Tuning & Extending
 
     oneadmin@frontend $ onehost sync
 
-
-Calculating VLAN ID
--------------------
-
-The vlan id is calculated by adding the network id to a constant defined in ``/var/lib/one/remotes/vnm/OpenNebulaNetwork.rb``. You can customize that value to your own needs:
-
-.. code::
-
-    CONF = {
-        :start_vlan => 2
-    }
 
 Restricting Manually the VLAN ID
 --------------------------------
