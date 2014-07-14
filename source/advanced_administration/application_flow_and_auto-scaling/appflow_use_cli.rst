@@ -20,6 +20,7 @@ This Service can be represented with the following JSON template:
     {
       "name": "my_service",
       "deployment": "straight",
+      "running_status_gate": true|false,
       "roles": [
         {
           "name": "frontend",
@@ -104,6 +105,12 @@ To list the available Service Templates, use ``oneflow-template list/show/top``:
 Templates can be deleted with ``oneflow-template delete``.
 
 |image2|
+
+Flow Options
+------------
+
+.. todo:: Explain running_status_gate
+
 
 Managing Services
 =================

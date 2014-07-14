@@ -6,6 +6,8 @@ Application Monitoring
 
 OneGate allows Virtual Machine guests to push monitoring information to OpenNebula. Users and administrators can use it to gather metrics, detect problems in their applications, and trigger OneFlow elasticity rules.
 
+For Virtual Machines that are part of a Service Flow, they can retried the Service Flow information directly from OneGate.
+
 OneGate Workflow Explained
 ==========================
 
@@ -90,6 +92,41 @@ The new metric is stored in the user template section of the VM:
     ...
     USER TEMPLATE
     APP_LOAD="9.7"
+
+.. _onegate_usage_get_flow_data:
+
+Get Flow Data
+-------------
+
+If the Virtual Machine is part of a Service Flow, it can query the OneGate server in order to retrieve the data of the Flow. This data is return in JSON format and is ready to be parsed.
+
+To access this data you will need to issue a ``GET`` request to the same url as above, sending the token to authenticate:
+
+.. code::
+    $ curl -X "GET" http://192.168.0.1:5030/vm/0 --header "X-ONEGATE-TOKEN: yCxieDUS7kra7Vn9ILA0+g=="
+    {
+        "<name_of_the_role>": {
+            "<vm_id>": {
+                "name": "<name of the vm>",
+                "nic": [
+                    {
+                        "ip": "<ip>",
+                        "network": "<network_name>"
+                    },
+                    // other nic interfaces ...
+                ],
+                "user_template": {
+                    "ROLE_NAME": "<name_of_the_role>",
+                    "SERVICE_ID": "<service_id>",
+                    "USER_INPUTS": {
+                        // ...
+                    }
+                    // other custom data ...
+                }
+            }
+        },
+        // more roles ...
+    }
 
 Sample Script
 =============
