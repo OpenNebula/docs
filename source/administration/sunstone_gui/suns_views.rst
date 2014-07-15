@@ -9,6 +9,8 @@ Using the new OpenNebula Sunstone Views you will be able to provide a simplified
 Default Views
 =============
 
+.. todo:: still applies? is ``user`` the default view?
+
 OpenNebula provides a default ``admin``, ``vdcadmin``, ``user`` and ``cloud`` view that implements four common views. By default, the ``admin`` view is only available to the oneadmin group. New users will be included in the users group and will use the deafault ``user`` view.
 
 Admin View
@@ -20,6 +22,8 @@ This view provides full control of the cloud.
 
 VDCAdmin View
 -------------
+
+.. todo:: needs to be updated
 
 This view provides control of all the resources belonging to a Virtual DataCenter (VDC), but with no access to resources outside that VDC. It is basically and Admin view restricted to the physical and virtual resources of the VDC, with the ability to create new users within the VDC.
 
@@ -173,6 +177,8 @@ The attributes in each of the above sections should be self-explanatory. As an e
 
 Configuring Access to the Views
 -------------------------------
+
+.. todo:: does not apply, update with screenshots of group wizard
 
 Once you have defined and customized the UI views for the different roles, you need to define which user groups or users may access to each view. This information is defined in the ``/etc/one/sunstone-views.yaml``.
 

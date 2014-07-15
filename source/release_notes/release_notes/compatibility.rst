@@ -65,8 +65,11 @@ OneFlow Services
 Sunstone
 --------------------------------------------------------------------------------
 
-.. todo:: #3017 Remove the easy provisioning wizard from sunstone
-.. todo:: #2991 Users should have a default view
+- The easy provisioning wizard has been completely removed from Sunstone. The easy provisioning, or self-service view, was a wizard introduced in 4.4, and replaced in 4.6 by the more complete Cloud view (read more in the `4.6 compatibility guide <http://docs.opennebula.org/4.6/release_notes/release_notes/compatibility.html#sunstone-cloud-view>`_)
+- In 4.6 you could select the available :ref:`sunstone views <>` for new groups. In case you have more than one, you can now also select the default view.
+
+.. todo:: screenshot of group wizard
+
 .. todo:: #2976 Search user table in Sunstone by any attribute in the user template
 .. todo:: #2971 Add acct statistics to user dashboard (there is no user tab)
 .. todo:: #2953 Add hold option to VM template instantiate dialog
