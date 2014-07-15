@@ -71,7 +71,7 @@ Changing your View
 
 If more than one view are available for this user, she can easily change between them in the settings window, along with other settings (e.g. language).
 
-.. warning:: By default users in the oneadmin group have access to all the views; users in the users group can only use the ``users view``. If you want to expose the ``cloud view`` to a given group of users, you have to modify the ``sunstone-views.yaml``. For more information check the `configuring access to views <#configuring-access-to-the-views>`_ section
+.. note:: By default users in the oneadmin group have access to all the views; users in the users group can only use the ``users view``. If you want to expose the ``cloud view`` to a given group of users, you have to modify the ``sunstone-views.yaml``. For more information check the `configuring access to views <#configuring-access-to-the-views>`_ section
 
 Internationalization and Languages
 ----------------------------------
@@ -173,12 +173,14 @@ The attributes in each of the above sections should be self-explanatory. As an e
                 Datastore.chmod: false
                 Datastore.delete: false
 
-.. warning:: The easiest way to create a custom view is to copy the ``admin.yaml`` file to the new view then harden it as needed.
+.. note:: The easiest way to create a custom view is to copy the ``admin.yaml`` file to the new view then harden it as needed.
 
 Configuring Access to the Views
 -------------------------------
 
-.. todo:: does not apply, update with screenshots of group wizard
+.. todo::
+    does not apply, update with screenshots of group wizard
+    |sunstone_group_defview|
 
 Once you have defined and customized the UI views for the different roles, you need to define which user groups or users may access to each view. This information is defined in the ``/etc/one/sunstone-views.yaml``.
 
@@ -252,3 +254,4 @@ You can easily add you logos to the login and main screens by updating the ``log
 .. |image3| image:: /images/cloud-view.png
 .. |image4| image:: /images/views_settings.jpg
 .. |image5| image:: /images/views_conf.jpg
+.. |sunstone_group_defview| image:: /images/sunstone_group_defview.png
