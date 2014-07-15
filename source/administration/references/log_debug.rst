@@ -38,6 +38,8 @@ There are different log resources corresponding to different OpenNebula componen
 Logging Format
 ==============
 
+.. todo:: #2950 zone id in logs
+
 The anatomy of an OpenNebula message for a file based logging system is the following:
 
 .. code::

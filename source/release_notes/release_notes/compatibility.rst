@@ -25,10 +25,15 @@ Virtual Machines
 
 When a guest is shutdown, the OpenNebula VM will now move to the ``poweoff`` state, instead of ``unknown``.
 
+.. todo:: #2530 disk iotune
+
 Virtual Networks
 --------------------------------------------------------------------------------
 
 .. todo::
+
+
+.. todo:: #2318 Block ARP cache poisoning in openvswitch
 
 Images
 --------------------------------------------------------------------------------
@@ -44,9 +49,52 @@ Usage Quotas
 
 Up to 4.6, a quota of '0' meant unlimited usage. In 4.8, '0' means a limit of 0, and '-2' means unlimited. See the :ref:`quotas documentation <quota_auth>` for more information.
 
+Context Packages
+--------------------------------------------------------------------------------
+
+.. todo:: #2927 GATEWAY_IFACE
+
+.. todo:: #2395 windows guest context
+
+
+OneFlow Services
+--------------------------------------------------------------------------------
+
+.. todo:: #2917 Pass information between roles, using onegate facilities
+
+Sunstone
+--------------------------------------------------------------------------------
+
+.. todo:: #3017 Remove the easy provisioning wizard from sunstone
+.. todo:: #2991 Users should have a default view
+.. todo:: #2976 Search user table in Sunstone by any attribute in the user template
+.. todo:: #2971 Add acct statistics to user dashboard (there is no user tab)
+.. todo:: #2953 Add hold option to VM template instantiate dialog
+.. todo:: #2934 Add rename and modify description/logo for templates
+.. todo:: #2860 Create VM wizard should show template owner and group columns - Visible columns are configured in the .yaml file
+.. todo:: #2807 Migrate dialog should show the host's cluster - Visible columns are configured in the .yaml file
+.. todo:: #2787 Add the possibility to show vlan id in virtual network list
+
 
 Developers and Integrators
 ================================================================================
+
+Storage
+--------------------------------------------------------------------------------
+
+.. todo:: #2970 Enable use of devices as disks
+
+.. todo:: #2877 RBD format 2 support for MKFS
+
+Hybrid Clouds
+--------------------------------------------------------------------------------
+
+.. todo:: #2989 Integrate with Microsoft Azure API
+
+Logs
+--------------------------------------------------------------------------------
+
+.. todo:: #2950 zone id in logs
 
 XML-RPC API
 --------------------------------------------------------------------------------
