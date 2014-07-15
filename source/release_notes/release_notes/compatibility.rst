@@ -14,11 +14,16 @@ OpenNebula Administrators and Users
 Virtual Machine Templates
 --------------------------------------------------------------------------------
 
-You can now define a ``NIC_DEFAULT`` attribute with values that will be copied to each new ``NIC``. This is specially useful for an administrator to define configuration parameters, such as ``MODEL``, that final users may not be aware of.
+- You can now define a ``NIC_DEFAULT`` attribute with values that will be copied to each new ``NIC``. This is specially useful for an administrator to define configuration parameters, such as ``MODEL``, that final users may not be aware of.
 
 .. code::
 
     NIC_DEFAULT = [ MODEL = "virtio" ]
+
+- Sunstone now supports multiple boot devices. Although this could be done via CLI, now you can set them also in the Template wizard.
+
+|sunstone_multi_boot|
+
 
 Virtual Machines
 --------------------------------------------------------------------------------
@@ -128,3 +133,4 @@ Monitoring Drivers
 
 
 .. |sunstone_group_defview| image:: /images/sunstone_group_defview.png
+.. |sunstone_multi_boot| image:: /images/sunstone_multi_boot.png
