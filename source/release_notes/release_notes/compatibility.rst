@@ -38,7 +38,7 @@ Virtual Networks
 Images
 --------------------------------------------------------------------------------
 
-Images can now be :ref:`cloned to a different Datastore <img_guide>`. The only restriction is that the new Datastore must be compatible with the current one, i.e. have the same DS_MAD.
+Images can now be :ref:`cloned to a different Datastore <img_guide>`. The only restriction is that the new Datastore must be compatible with the current one, i.e. have the same DS_MAD drivers.
 
 .. code::
 
@@ -79,17 +79,17 @@ Sunstone
 Developers and Integrators
 ================================================================================
 
+Public Clouds APIs
+--------------------------------------------------------------------------------
+
+.. todo:: #3041 Move OCCI from the main repository to an addon
+
 Storage
 --------------------------------------------------------------------------------
 
 .. todo:: #2970 Enable use of devices as disks
 
 .. todo:: #2877 RBD format 2 support for MKFS
-
-Hybrid Clouds
---------------------------------------------------------------------------------
-
-.. todo:: #2989 Integrate with Microsoft Azure API
 
 Logs
 --------------------------------------------------------------------------------
