@@ -31,6 +31,7 @@ Sunstone
 
 .. todo:: New vdcadmin view
 .. todo:: New flow integration in cloud views
+.. todo:: #2977 Customize available actions in cloud/admin views
 
 Virtual Networks
 -------------------------------------

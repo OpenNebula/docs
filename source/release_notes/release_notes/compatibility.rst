@@ -74,6 +74,7 @@ Sunstone
 .. todo:: #2860 Create VM wizard should show template owner and group columns - Visible columns are configured in the .yaml file
 .. todo:: #2807 Migrate dialog should show the host's cluster - Visible columns are configured in the .yaml file
 .. todo:: #2787 Add the possibility to show vlan id in virtual network list
+.. todo:: #2977 Customize available actions in cloud/admin views
 
 
 Developers and Integrators
