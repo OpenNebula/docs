@@ -9,9 +9,7 @@ Using the new OpenNebula Sunstone Views you will be able to provide a simplified
 Default Views
 =============
 
-.. todo:: still applies? is ``user`` the default view?
-
-OpenNebula provides a default ``admin``, ``vdcadmin``, ``user`` and ``cloud`` view that implements four common views. By default, the ``admin`` view is only available to the oneadmin group. New users will be included in the users group and will use the deafault ``user`` view.
+OpenNebula provides a default ``admin``, ``vdcadmin``, ``user`` and ``cloud`` view that implements four common views. By default, the ``admin`` view is only available to the oneadmin group. New users will be included in the users group and will use the default ``user`` view.
 
 Admin View
 ----------
@@ -23,9 +21,7 @@ This view provides full control of the cloud.
 VDCAdmin View
 -------------
 
-.. todo:: needs to be updated
-
-This view provides control of all the resources belonging to a Virtual DataCenter (VDC), but with no access to resources outside that VDC. It is basically and Admin view restricted to the physical and virtual resources of the VDC, with the ability to create new users within the VDC.
+This view provides control of all the resources belonging to a Virtual DataCenter (VDC), but with no access to resources outside that VDC, that is, restricted to the physical and virtual resources of the VDC. This view features the ability to create new users within the VDC, to define flows and templates for user consumption as well as set and keep track of user quotas.
 
 |image1|
 
@@ -69,9 +65,8 @@ This options are saved in the user template. If not defined, defaults from ``sun
 Changing your View
 ------------------
 
-If more than one view are available for this user, she can easily change between them in the settings window, along with other settings (e.g. language).
-
-.. note:: By default users in the oneadmin group have access to all the views; users in the users group can only use the ``users view``. If you want to expose the ``cloud view`` to a given group of users, you have to modify the ``sunstone-views.yaml``. For more information check the `configuring access to views <#configuring-access-to-the-views>`_ section
+If more than one view are available for this user, she can easily change between them in the settings window, along with other settings (e.g. language). See the 
+ <#configuring-access-to-the-views>`_ section to learn how views are calculated per user.
 
 Internationalization and Languages
 ----------------------------------
@@ -92,6 +87,8 @@ There are three basic areas that can be tuned to adapt the default behavior to y
 -  Define views, the set of UI components that will be enabled.
 -  Define the users and groups that may access to each view.
 -  Brand your OpenNebula Sunstone portal.
+
+.. _suns_views_define_new:
 
 Defining a New OpenNebula Sunstone View or Customizing an Existing one
 ----------------------------------------------------------------------
@@ -173,6 +170,35 @@ The attributes in each of the above sections should be self-explanatory. As an e
                 Datastore.chmod: false
                 Datastore.delete: false
 
+The table columns defined in the view.yaml file will apply not only to the main tab, but also to other places where the resources are used. For example, if the admin.yaml file defines only the Name and Running VMs columns for the host table:
+
+.. code::
+
+    hosts-tab:
+        table_columns:
+            #- 0         # Checkbox
+            #- 1         # ID
+            - 2         # Name
+            #- 3         # Cluster
+            - 4         # RVMs
+            #- 5         # Real CPU
+            #- 6         # Allocated CPU
+            #- 7         # Real MEM
+            #- 8         # Allocated MEM
+            #- 9         # Status
+            #- 10        # IM MAD
+            #- 11        # VM MAD
+            #- 12        # Last monitored on
+
+These will be the only visible columns in the main host list:
+
+|sunstone_yaml_columns1|
+
+And also in the dialogs where a host needs to be selected, like the VM deploy action:
+
+|sunstone_yaml_columns2|
+
+
 .. note:: The easiest way to create a custom view is to copy the ``admin.yaml`` file to the new view then harden it as needed.
 
 Configuring Access to the Views
@@ -182,15 +208,18 @@ Configuring Access to the Views
     does not apply, update with screenshots of group wizard
     |sunstone_group_defview|
 
-Once you have defined and customized the UI views for the different roles, you need to define which user groups or users may access to each view. This information is defined in the ``/etc/one/sunstone-views.yaml``.
 
-The views can be defined for:
+Sunstone will calculate the views available to users using:
 
--  Each user (``users:`` section), list each user and the set of views available for her.
--  Each group (``groups:`` section), list the set of views for the group.
--  The default view, if a user is not listed in the ``users:`` section, nor its group in the ``groups:`` section, the default views will be used.
+- From all the groups the user belongs to, the SUNSTONE_VIEWS (comma separated list of views) attributes is pulled. Those views combined would be presented to the user
+- If no views available from users, the defaults would be fetched from ``sunstone-views.yaml``. Here, views can be defined for:
+  -  Each user (``users:`` section), list each user and the set of views available for her.
+  -  Each group (``groups:`` section), list the set of views for the group.
+  -  The default view, if a user is not listed in the ``users:`` section, nor its group in the ``groups:`` section, the default views will be used.
+- By default users in the oneadmin group have access to all views
+- By default users in the users group can use `users view`` and ``coud_view``
 
-For example the following enables the user (user.yaml) and the cloud (cloud.yaml) views for helen and the cloud (cloud.yaml) view for group cloud-users. If more than one view for a given user the first one is the default:
+Regarding ``sunstone-views.yaml``, the following example enables the user (user.yaml) and the cloud (cloud.yaml) views for helen and the cloud (cloud.yaml) view for group cloud-users. If more than one view for a given user the first one is the default.
 
 .. code::
 
@@ -255,3 +284,5 @@ You can easily add you logos to the login and main screens by updating the ``log
 .. |image4| image:: /images/views_settings.jpg
 .. |image5| image:: /images/views_conf.jpg
 .. |sunstone_group_defview| image:: /images/sunstone_group_defview.png
+.. |sunstone_yaml_columns1| image:: /images/sunstone_yaml_columns1.png
+.. |sunstone_yaml_columns2| image:: /images/sunstone_yaml_columns2.png

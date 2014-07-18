@@ -54,7 +54,7 @@ The privileges of the vDC users and the administrator regarding the operations o
 
 |cloud-view|
 
-Users can then access their vDC through any of the existing OpenNebula interfaces, such as the CLI, Sunstone Cloud View, OCA, or the OCCI and AWS APIs. vDC administrators can manage their vDCs through the CLI or the vDC admin view in Sunstone. Cloud Administrators can manage the vDCs through the CLI or Sunstone.
+Users can then access their vDC through any of the existing OpenNebula interfaces, such as the CLI, Sunstone Cloud View, OCA, or the AWS APIs. vDC administrators can manage their vDCs through the CLI or the vDC admin view in Sunstone. Cloud Administrators can manage the vDCs through the CLI or Sunstone.
 
 The Cloud provisioning model based on vDCs enables an integrated, comprehensive framework to dynamically provision the infrastructure resources in large multi-datacenter environments to different customers, business units or groups. This brings several benefits:
 

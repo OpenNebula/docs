@@ -13,14 +13,13 @@ We have classified the interfaces in two categories: end-user cloud and system i
 1. Cloud Interfaces
 ===================
 
-Cloud interfaces enable you to manage virtual machines, networks and images through a simple and easy-to-use REST API. The Cloud interfaces hide most of the complexity of a Cloud and are specially suited for end-users. OpenNebula implements two different interfaces, namely:
+Cloud interfaces enable you to manage virtual machines, networks and images through a simple and easy-to-use REST API. The Cloud interfaces hide most of the complexity of a Cloud and are specially suited for end-users. OpenNebula an EC2 interface:
 
 -  **EC2-Query API**. OpenNebula implements the functionality offered by the `Amazon's EC2 API <http://docs.aws.amazon.com/AWSEC2/latest/APIReference/Welcome.html>`__, mainly those related to virtual machine management. In this way, you can use any EC2 Query tool to access your OpenNebula Cloud.
--  **OCCI-OGF**. The OpenNebula OCCI API is a RESTful service to create, control and monitor cloud resources using an implementation of the `OGF OCCI API specification <http://www.occi-wg.org>`__ based on the `draft 0.8 <http://forge.ogf.org/sf/docman/do/downloadDocument/projects.occi-wg/docman.root.drafts/doc15731/3>`__
 
 *Use the cloud interface if...* you are developing portals, tools or specialized solutions for end-users.
 
-*You can find more information at...* :ref:`EC2-Query reference <ec2qug>`, and :ref:`OCCI reference guides <occidd>`.
+*You can find more information at...* :ref:`EC2-Query reference <ec2qug>`.
 
 2. System Interfaces
 ====================

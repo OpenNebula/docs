@@ -11,13 +11,13 @@ This is the list of the individual platform components that have been through th
 +------------------------------+---------------------------------------+---+---+
 | Certified Platform Component |                Version                |   |   |
 +==============================+=======================================+===+===+
-| RedHat Enterprise Linux      | 6.5                                   |   |   |
+| RedHat Enterprise Linux      | 6.5, 7.0                              |   |   |
 +------------------------------+---------------------------------------+---+---+
 | Ubuntu Server                | 12.04 (LTS) & 14.04 (LTS)             |   |   |
 +------------------------------+---------------------------------------+---+---+
 | SUSE Linux Enterprise        | 12.3                                  |   |   |
 +------------------------------+---------------------------------------+---+---+
-| CentOS                       | 6.5                                   |   |   |
+| CentOS                       | 6.5, 7.0                              |   |   |
 +------------------------------+---------------------------------------+---+---+
 | openSUSE                     | 12.3                                  |   |   |
 +------------------------------+---------------------------------------+---+---+
@@ -101,6 +101,17 @@ CentOS 6.5 Usage Platform Notes
 ===============================
 
 Because home directory of oneadmin is located in ``/var``, it violates SELinux default policy. So in ssh passwordless configuration you should disable SELinux by setting ``SELINUX=disabled`` in ``/etc/selinux/config``.
+
+CentOS 7.0 Platform Notes
+=========================
+
+This distribution lacks some packaged ruby libraries. This makes some components unusable until they are installed. In the frontend, just after package installation these command should be executed as root to install extra dependencies:
+
+.. code::
+
+    # /usr/share/one/install_gems
+
+The package and command ``vconfig`` is no longer available and 802.1Q driver does not work in this distribution. This will be fixed in future releases.
 
 Debian Platform Notes
 =====================

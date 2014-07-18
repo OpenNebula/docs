@@ -17,7 +17,6 @@ The User View
 The following interfaces provide a **simple and remote management of cloud (virtual) resources at a high abstraction level**:
 
 -  :ref:`EC2 Query subset <ec2qcg>`
--  :ref:`OGF OCCI <occicg>`
 
 Users will be able to use commands that\ **clone the functionality of the EC2 Cloud service**. Starting with a working installation of an OS residing on an **.img** file, with three simple steps a user can launch it in the cloud.
 

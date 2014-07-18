@@ -26,14 +26,6 @@ CLI
 
 The output of these commands can be customized by modifying the configuration files that can be found in ``/etc/one/cli/``. They also can be customized on a per-user basis, in this case the configuration files should be placed in ``$HOME/.one/cli``.
 
-OCCI Commands
-=============
-
--  `occi-compute </doc/4.6/cli/occi-compute.1.html>`__: manages compute objects
--  `occi-network </doc/4.6/cli/occi-network.1.html>`__: manages network objects
--  `occi-storage </doc/4.6/cli/occi-storage.1.html>`__: manages storage objects
--  `occi-instance-type </doc/4.6/cli/occi-instance-type.1.html>`__: Retrieve instance types
-
 ECONE Commands
 ==============
 

@@ -11,7 +11,7 @@ Powerful User Security Management
 
 -  Secure and efficient :ref:`Users and Groups Subsystem <auth_overview>` for authentication and authorization of requests with complete functionality for `user management <http://docs.opennebula.org/doc/4.6/cli/oneuser.1.html>`__: create, delete, show...
 -  :ref:`Pluggable authentication and authorization <external_auth>` based on :ref:`passwords <manage_users_users>`, :ref:`ssh rsa keypairs <ssh_auth>`, :ref:`X509 certificates <x509_auth>`, :ref:`LDAP <ldap>` or :ref:`Active Directory <ldap>`
--  Special authentication mechanisms for :ref:`SunStone (OpenNebula GUI) <sunstone>` and the :ref:`Cloud Services (EC2 and OCCI) <cloud_auth>`
+-  Special authentication mechanisms for :ref:`SunStone (OpenNebula GUI) <sunstone>` and the :ref:`Cloud Services (EC2) <cloud_auth>`
 -  Authorization framework with :ref:`fine-grained ACLs <manage_acl>` that allows multiple-role support for different types of users and administrators, delegated control to authorized users, secure isolated multi-tenant environments, and easy resource (VM template, VM image, VM instance, virtual network and host) sharing
 
 Advanced Multi-tenancy with Group Management
@@ -19,7 +19,7 @@ Advanced Multi-tenancy with Group Management
 
 -  Administrators can :ref:`groups users <manage_users_groups>` into organizations that can represent different projects, division...
 -  Each group have :ref:`configurable access to shared resources <manage_acl>` so enabling a multi-tenant environment with multiple groups sharing the same infrastructure
--  Configuration of special :ref:`users that are restricted to public cloud APIs <cloud_auth>` (e.g. EC2 or OCCI)
+-  Configuration of special :ref:`users that are restricted to public cloud APIs <cloud_auth>` (EC2)
 -  Complete functionality for management of `groups <http://docs.opennebula.org/doc/4.6/cli/onegroup.1.html>`__: create, delete, show...
 -  Multiple group support, with the ability to define `primary and secondary groups <http://opennebula.org/manage_users#primary_and_secondary_groups>`__.
 
@@ -138,7 +138,6 @@ Standard Cloud Interfaces and Simple Provisioning Portal for Cloud Consumers
 ============================================================================
 
 -  :ref:`Transform your local infrastructure into a public cloud by exposing REST-based interfaces <introc>`
--  :ref:`OGF OCCI service <occicg>`, the emerging cloud API standard, and :ref:`client tools <occiug>`
 -  :ref:`AWS EC2 API service <ec2qcg>`, the de facto cloud API standard, with :ref:`compatibility with EC2 ecosystem tools <ec2qec>` and :ref:`client tools <ec2qug>`
 -  Support for simultaneously exposing multiple cloud APIs
 -  :ref:`Provisioning portal implemented as a user view of Sunstone <cloud_view>` to allow non-IT end users to easily create, deploy and manage compute, storage and network resources

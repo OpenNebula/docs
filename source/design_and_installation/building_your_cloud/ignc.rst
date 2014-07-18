@@ -29,14 +29,29 @@ Before installing:
 
 There are packages for the front-end, distributed in the various components that conform OpenNebula, and packages for the virtualization host.
 
-To install a CentOS/RHEL OpenNebula front-end with packages from **our repository**, execute the following as root:
+To install a CentOS/RHEL OpenNebula front-end with packages from **our repository**, execute the following as root.
+
+For CentOS 6.5:
 
 .. code::
 
     # cat << EOT > /etc/yum.repos.d/opennebula.repo
     [opennebula]
     name=opennebula
-    baseurl=http://downloads.opennebula.org/repo/CentOS/6/stable/\$basearch
+    baseurl=http://downloads.opennebula.org/repo/4.8/CentOS/6/x86_64
+    enabled=1
+    gpgcheck=0
+    EOT
+    # yum install opennebula-server opennebula-sunstone opennebula-ruby
+
+For CentOS 7:
+
+.. code::
+
+    # cat << EOT > /etc/yum.repos.d/opennebula.repo
+    [opennebula]
+    name=opennebula
+    baseurl=http://downloads.opennebula.org/repo/4.8/CentOS/7/x86_64
     enabled=1
     gpgcheck=0
     EOT
@@ -48,7 +63,7 @@ These are the packages available for this distribution:
 
 -  **opennebula**: Command Line Interface
 -  **opennebula-server**: Main OpenNebula daemon, scheduler, etc
--  **opennebula-sunstone**: OpenNebula Sunstone, EC2, OCCI
+-  **opennebula-sunstone**: OpenNebula Sunstone and EC2
 -  **opennebula-ruby**: Ruby Bindings
 -  **opennebula-java**: Java Bindings
 -  **opennebula-gate**: Gate server that enables communication between VMs and OpenNebula
@@ -71,7 +86,7 @@ To install an openSUSE OpenNebula front-end with packages **from our repository*
 
 .. code::
 
-    # zypper addrepo --no-gpgcheck --refresh -t YUM http://downloads.opennebula.org/repo/openSUSE/12.3/stable/x86_64 opennebula
+    # zypper addrepo --no-gpgcheck --refresh -t YUM http://downloads.opennebula.org/repo/4.8/openSUSE/12.3/x86_64 opennebula
     # zypper refresh
     # zypper install opennebula opennebula-sunstone
 
@@ -119,19 +134,19 @@ To install OpenNebula on a Debian/Ubuntu front-end from packages from **our repo
 
 .. code::
 
-    # echo "deb http://downloads.opennebula.org/repo/Debian/7 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # echo "deb http://downloads.opennebula.org/repo/4.8/Debian/7 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
 
 **Ubuntu 12.04**
 
 .. code::
 
-    # echo "deb http://downloads.opennebula.org/repo/Ubuntu/12.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # echo "deb http://downloads.opennebula.org/repo/4.8/Ubuntu/12.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
 
 **Ubuntu 14.04**
 
 .. code::
 
-    # echo "deb http://downloads.opennebula.org/repo/Ubuntu/14.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # echo "deb http://downloads.opennebula.org/repo/4.8/Ubuntu/14.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
 
 To install the packages on a Debian/Ubuntu front-end:
 
