@@ -247,6 +247,8 @@ As you can see, any user can find out his ID using the ``oneuser show`` command 
 
 Regular users can retrieve their quota and user information in the settings section in the top right corner of the main screen: |image1|
 
+.. _manage_users_sunstone:
+
 Managing Users in Sunstone
 ================================================================================
 

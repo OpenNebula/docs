@@ -34,6 +34,9 @@ Sunstone
 .. todo:: New flow integration in cloud views
 .. todo:: #2977 Customize available actions in cloud/admin views
 
+* :ref:`Accounting information <accounting_sunstone>` is now available in Sunstone.
+* It is possible search by any attribute in the users template in the :ref:`Sunstone Users dialog <manage_users_sunstone>`.
+
 Virtual Networks
 -------------------------------------
 

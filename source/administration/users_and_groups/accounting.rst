@@ -280,6 +280,13 @@ If you execute oneacct with the ``-x`` option, you will get an XML output define
       </xs:element>
     </xs:schema>
 
+Sunstone
+========
+
+Sunstone also displays information about accounting. Information is accessible via the User dialogs for the user and admin views. The cloud view can access the metering information in the dashboard, whereas the vdcadmin user can access them under the users section.
+
+|image1|
+
 Tuning & Extending
 ==================
 
@@ -289,3 +296,5 @@ There are two kinds of monitoring values:
 -  Accumulative values: For example, ``VM/NET_TX`` and ``VM/NET_TX`` show the total network consumption since the history record started.
 
 Developers interacting with OpenNebula using the Ruby bindings can use the `VirtualMachinePool.accounting method <http://docs.opennebula.org/doc/4.6/oca/ruby/OpenNebula/VirtualMachinePool.html#accounting-instance_method>`__ to retrieve accounting information filtering and ordering by multiple parameters.
+
+.. |image1| image:: /images/accounting_admin_view.png
