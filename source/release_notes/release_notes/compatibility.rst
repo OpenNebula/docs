@@ -28,7 +28,7 @@ Virtual Machine Templates
 Virtual Machines
 --------------------------------------------------------------------------------
 
-When a guest is shutdown, the OpenNebula VM will now move to the ``poweoff`` state, instead of ``unknown``.
+When a guest is shutdown, the OpenNebula VM will now move to the ``poweroff`` state, instead of ``unknown``.
 
 .. todo:: #2530 disk iotune
 
