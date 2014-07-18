@@ -20,9 +20,11 @@ In the following list you can check the highlights of OpenNebula 4.8. (`a detail
 <http://dev.opennebula.org/projects/opennebula/issues?query_id=55>`__):
 
 OpenNebula Core :: Virtual Networks
--------------------------------------
+-----------------------------------
 
-- **New virtual network model**, Virtual Networks have undergone an important upgrade in 4.8. The network definition is not longer tied to the traditional FIXED/RANGED model anymore. Networks can now include any combination of ranges to accommodate any address distribution. The new model has been implemented through the address range (AR) abstraction, that decouples the physical implementation of the network (vlan id, bridges or driver), from the logical address map, its map and the associated context variables. The new VNETs preserve the original interface in terms of contextualization, address hold, addition and removal of addresses from the network or usage.
+Virtual Networks have undergone an important upgrade in 4.8. The network definition is not longer tied to the traditional FIXED/RANGED model anymore:
+
+- **New virtual network model**,  virtual networks can now include any combination of ranges to accommodate any address distribution. The new model has been implemented through the address range (AR) abstraction, that decouples the physical implementation of the network (vlan id, bridges or driver), from the logical address map, its map and the associated context variables. The new VNETs preserve the original interface in terms of contextualization, address hold, addition and removal of addresses from the network or usage.
 
 - **New Address Range concept**, the new ARs define the address type being it IPv4, IPv6, dual stack IPv4 - IPv6, or just MAC addresses; this allow you to control the type of address of the network you want to generate and makes it representation more accurate in OpenNebula when an external DHCP service is providing the IP addresses. Address ranges can even overwrite some of the network configuration or context attributes to implement complex use cases that logically groups multiple networks under the same VNET.
 
@@ -39,7 +41,7 @@ OpenNebula Core :: Usage Quotas
 
 Quotas are easier to set than ever:
 
-- **Limiting quotas*+, now you can set a quota of '0' to completely disallow resource usage. Read the :ref:`Quota Management documentation <quota_auth>` for more information.
+- **Limiting quotas**, now you can set a quota of '0' to completely disallow resource usage. Read the :ref:`Quota Management documentation <quota_auth>` for more information.
 
 OpenNebula Core :: Federation
 --------------------------------------------------------------------------------
@@ -137,7 +139,7 @@ Contextualization
 
 Virtual Machine contextualization now supports more guest OS:
 
-- Windows guests contextualization is now supported to several different windows flavours. The process of provisioning and contextualizing a Windows guest context is described :ref:`here <windows_context>`.
+- **Windows guests contextualization**, now supported to several different windows flavours. The process of provisioning and contextualizing a Windows guest context is described :ref:`here <windows_context>`.
 
 - .. todo:: #3008 Move context packages to addon repositories.
 
