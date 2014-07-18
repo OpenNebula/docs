@@ -1,8 +1,8 @@
 .. _rn:
 
-====================
-Release Notes 4.7.80
-====================
+======================
+Release Notes 4.8 Beta
+======================
 
 .. toctree::
    :maxdepth: 1
@@ -18,6 +18,3 @@ Release Notes 4.7.80
    Upgrading from 4.2 <upgrade_42>
    Upgrading from 4.0.x <upgrade_40>
    Upgrading from 3.8.x <upgrade_38>
-
-
-

@@ -4,13 +4,20 @@
 What's New in 4.8
 =================
 
-.. todo:: intro
+OpenNebua 4.8 Lemon Slice brings significant improvements in different aspects. Sticking with our vision of bringing simplicity to cloud management, this release comes with improvements in the recently added Cloud View portal, designed for end users. One significant advantage of the new portal is the ability to control flows, groups of interconnected Virtual Machines that conform a service. Based on this Cloud View, a Virtual Datacenter administrators view has been included (VDCAdmin View), which enables VDC admins to easily manage the VDC users and resources.
 
-In the following list you can check the highlights of OpenNebula 4.8 .. todo:: Carina
-organised by component (`a detailed list of changes can be found here
+An important highlight in this release is a bast improvement to the hybrid model. Support for two new public cloud providers have been added, widening the range of possibilities to offload VMs in case the local infrastructure is saturated. The hybrid model in OpenNebula enables a centralized management of both local and remote resources for the cloud administrator, and a transparent consumption of these resources for the end user. With these two new additions, namely support for Microsoft Azure and IBM SoftLayer, OpenNebula is increasing the possibilities to build powerful, robust, cost and performance efficient cloud infrastructures across administrative domains and public cloud providers.
+
+The OneFlow component also has been improved, specially OneGate, easying the retrieval of metrics to be used in the service elasticity. Flows are now easier than ever to build and consume, since details like the virtual network the flow is going to use is defined later by the user, so the administrator doesn't have to deal with all the possible combinations. We are proud of OneFlow, we believe it is powerful and it can suit most of the services needs, so check it out!
+
+Moreover, Virtual Networks underwent a thorough redesign. Definition of virtual networks are not longer restricted to the fixed and ranged model, but rather they can include any combination of ranges to accommodate any address distribution. Moreover, now it is possible to reserve a range of IP addresses. This was done as usual trying to maintain as much compatibility with older versions of OpenNebula as possible, so the migration path stays smooth.
+
+Finally, several improvements are scattered across every other OpenNebula component: improvements in quotas management, multi boot available through Sunstone, availability of Windows contextualization packages, new raw device mapping datastore, better Ceph drivers, possiblity to clone images across datastores .... ladies and gentlemen, you are in for a treat.
+
+As usual OpenNebula releases are named after a Nebula. The  `Lemon Slice nebula (IC 3568) <http://en.wikipedia.org/wiki/Lemon_slice_nebula>`__ is a planetary nebula that is 1.3 kiloparsecs (4500 ly) away from Earth in the constellation of Camelopardalis. It is a relatively young nebula and has a core diameter of only about 0.4 light years.
+
+In the following list you can check the highlights of OpenNebula 4.8. (`a detailed list of changes can be found here
 <http://dev.opennebula.org/projects/opennebula/issues?query_id=55>`__):
-
-.. todo:: link to redmine release 4.8 is missing the tickets planned for 4.8 beta
 
 
 Hybrid Clouds
