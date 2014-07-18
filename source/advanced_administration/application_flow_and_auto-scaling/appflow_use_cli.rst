@@ -106,6 +106,8 @@ Templates can be deleted with ``oneflow-template delete``.
 
 |image2|
 
+.. _appflow_use_cli_running_state:
+
 Determining when a VM is in Running State
 -----------------------------------------
 
