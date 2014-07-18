@@ -23,8 +23,9 @@ Hybrid Clouds
 OneFlow
 --------------------------------------------------------------------------------
 
-.. todo:: #2917 Pass information between roles, using onegate facilities
+Using the OneGate component users can now request information about the service dynamically allowing therefore to pass information accross nodes in the service. Read the :ref:`OneGate <onegate_usage>` guide for more details.
 
+OneFlow can be configured to wait until a VM contacts OneGate to set it running state. This prevents deploying child roles before the nodes of the parent roles haven't completely booted up. Read more about :ref:`Running State <appflow_use_cli_running_state>`.
 
 Sunstone
 --------------------------------------------------------------------------------
