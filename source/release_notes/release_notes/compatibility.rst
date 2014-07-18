@@ -35,8 +35,11 @@ When a guest is shutdown, the OpenNebula VM will now move to the ``poweoff`` sta
 Virtual Networks
 --------------------------------------------------------------------------------
 
-.. todo::
+Virtual Networks have undergone and important upgrade in 4.8. The VNET data model has been extended to implement a flexible VNET definition along with a whole new set of functionality, like reservations or network groups. Applications dealing directly with the XML representation needs to be updated. Also two XML-RPC methods have been removed: addleases and rmleases; although these methods have been preserved at the OCA and CLI level.
 
+Note also that the definition of a VNET is different in 4.8, so any application that automates VNET creation needs to be ported to the new format.
+
+OpenNebula's upgrade process will automatically migrate your networks to the new format. There is no need to update VM templates or Virtual Machines.
 
 .. todo:: #2318 Block ARP cache poisoning in openvswitch
 
@@ -96,14 +99,14 @@ Public Clouds APIs
 Storage
 --------------------------------------------------------------------------------
 
-.. todo:: #2970 Enable use of devices as disks
+OpenNebula 4.8 includes a new datastore type to support raw device mapping. Together with the datastore a new set of transfer manager drivers has been developed and included in the OpenNebula distribution.
 
-.. todo:: #2877 RBD format 2 support for MKFS
+Support for RBD format 2 has been extended and improved for Ceph datastore using this type.
 
 Logs
 --------------------------------------------------------------------------------
 
-.. todo:: #2950 zone id in logs
+Log format has been extended to include the Zone ID to identify the originating Zone of the log message. Any application parsing directly ``oned.log`` may need to take this into account.
 
 XML-RPC API
 --------------------------------------------------------------------------------
@@ -129,7 +132,9 @@ XML-RPC API
 Monitoring Drivers
 --------------------------------------------------------------------------------
 
-.. todo:: VM_POLL=YES in case of hypervisor failure
+Management of VMs in UNKOWN state has been improved in OpenNebula 4.8. When a
+VM is not running in a hypervisor is moved to the POWEROFF state, while if the
+hypervisor itself cannot be contacted the VMs are put in UNKOWN. Any custom monitoring driver needs to follow this behavior and include ``VM_POLL=YES`` even no VM is in the hypervisor list.
 
 
 .. |sunstone_group_defview| image:: /images/sunstone_group_defview.png

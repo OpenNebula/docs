@@ -36,9 +36,15 @@ Sunstone
 Virtual Networks
 -------------------------------------
 
-- You can now define a ``NIC_DEFAULT`` attribute with values that will be copied to each new ``NIC``. This is specially useful for an administrator to define configuration parameters, such as ``MODEL = "virtio``.
+- Virtual Networks have undergone and important upgrade in 4.8. The network definition is not longer tied to the traditional FIXED/RANGED model anymore. Networks can now include any combination of ranges to accommodate any address distribution. The new model has been implemented through the address range (AR) abstraction, that decouples the physical implementation of the network (vlan id, bridges or driver), from the logical address map, its map and the associated context variables.
 
-.. todo:: New vnet model
+The new ARs define the address type being it IPv4, IPv6, dual stack IPv4 - IPv6, or just MAC addresses; this allow you to control the type of address of the network you want to generate and makes it representation more accurate in OpenNebula when an external DHCP service is providing the IP addresses. Address ranges can even overwrite some of the network configuration or context attributes to implement complex use cases that logically groups multiple networks under the same VNET.
+
+Also a powerful reservation mechanism has been developed on top of the new VNET and ARs. Users can reserve a subset of the address space; this reservation is placed in a new VNET owned by the user so it can be consumed in the same way of a regular VNET.
+
+The new VNETs preserve the original interface in terms of contextualization, address hold, addition and removal of addresses from the network or usage.
+
+- You can now define a ``NIC_DEFAULT`` attribute with values that will be copied to each new ``NIC``. This is specially useful for an administrator to define configuration parameters, such as ``MODEL = "virtio``.
 
 .. todo:: #2927 specify which default gateway to use if there are multiple nics
 
@@ -59,13 +65,14 @@ Usage Quotas
 Images and Storage
 --------------------------------------------------------------------------------
 
+- OpenNebula 4.8 includes a new datastore type to support raw device mapping. The new datastore allows your VMs to access raw physical storage devices exposed to the hosts. Together with the datastore a new set of transfer manager drivers has been developed to map the devices to the VM disk files.
+
 - Images can now be :ref:`cloned to a different Datastore <img_guide>`. The only restriction is that the new Datastore must be compatible with the current one, i.e. have the same DS_MAD drivers.
+
+- Ceph drivers have been also improved in this release, support for RBD format 2 has been included and the use of qemu-img user land tools has been removed to relay only in the rbd tool set. Also CRDOM management in Ceph pools has been added.
 
 .. todo:: #2530 disk iotune
 
-.. todo:: #2970 Enable use of devices as disks
-
-.. todo:: #2877 RBD format 2 support for MKFS
 
 Public Clouds APIs
 --------------------------------------------------------------------------------
@@ -78,9 +85,7 @@ Packaging
 .. todo:: #2429 Compatibility with heartbeat
 
 
+Federation
+--------------------------------------------------------------------------------
 
-
-
-
-
-.. todo:: include? #2950 zone id in logs
+To ease federation management admins usually adopts a centralized syslog service. Each log entry is now labeled with its Zone ID to identify the originating Zone of the log message.
