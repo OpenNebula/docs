@@ -280,6 +280,8 @@ If you execute oneacct with the ``-x`` option, you will get an XML output define
       </xs:element>
     </xs:schema>
 
+.. _accounting_sunstone:
+
 Sunstone
 ========
 
