@@ -78,18 +78,51 @@ Sunstone
 
 |sunstone_group_defview|
 
+- Although templates could be instantiated on hold before from the CLI, now you can also do that from Sunstone:
+
+|sunstone_instantiate_hold|
+
 .. todo:: #2976 Search user table in Sunstone by any attribute in the user template
 .. todo:: #2971 Add acct statistics to user dashboard (there is no user tab)
-.. todo:: #2953 Add hold option to VM template instantiate dialog
 .. todo:: #2934 Add rename and modify description/logo for templates
-.. todo:: #2860 Create VM wizard should show template owner and group columns - Visible columns are configured in the .yaml file
-.. todo:: #2807 Migrate dialog should show the host's cluster - Visible columns are configured in the .yaml file
-.. todo:: #2787 Add the possibility to show vlan id in virtual network list
 .. todo:: #2977 Customize available actions in cloud/admin views
 
 
 Developers and Integrators
 ================================================================================
+
+Sunstone
+--------------------------------------------------------------------------------
+
+- The table columns defined in the :ref:`view.yaml file <suns_views>` now apply not only to the main tab, but also to other places where the resources are used. For example, if the admin.yaml file defines only the Name and Running VMs columns:
+
+.. code::
+
+    hosts-tab:
+        table_columns:
+            #- 0         # Checkbox
+            #- 1         # ID
+            - 2         # Name
+            #- 3         # Cluster
+            - 4         # RVMs
+            #- 5         # Real CPU
+            #- 6         # Allocated CPU
+            #- 7         # Real MEM
+            #- 8         # Allocated MEM
+            #- 9         # Status
+            #- 10        # IM MAD
+            #- 11        # VM MAD
+            #- 12        # Last monitored on
+
+These will be the only visible columns in the main host list:
+
+|sunstone_yaml_columns1|
+
+And also in the dialogs where a host needs to be selected, like the VM deploy action:
+
+|sunstone_yaml_columns2|
+
+- The Virtual Network table has a new column that can be enabled in the :ref:`Sunstone view.yaml files <suns_views>`: VLAN ID
 
 Public Clouds APIs
 --------------------------------------------------------------------------------
@@ -139,3 +172,6 @@ hypervisor itself cannot be contacted the VMs are put in UNKOWN. Any custom moni
 
 .. |sunstone_group_defview| image:: /images/sunstone_group_defview.png
 .. |sunstone_multi_boot| image:: /images/sunstone_multi_boot.png
+.. |sunstone_instantiate_hold| image:: /images/sunstone_instantiate_hold.png
+.. |sunstone_yaml_columns1| image:: /images/sunstone_yaml_columns1.png
+.. |sunstone_yaml_columns2| image:: /images/sunstone_yaml_columns2.png
