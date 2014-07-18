@@ -38,21 +38,19 @@ There are different log resources corresponding to different OpenNebula componen
 Logging Format
 ==============
 
-.. todo:: #2950 zone id in logs
-
 The anatomy of an OpenNebula message for a file based logging system is the following:
 
 .. code::
 
-    date [module][log_level]: message body
+    date [Z<zone_id>][module][log_level]: message body
 
 In the case of syslog it follows the standard:
 
 .. code::
 
-    date hostname process[pid]: [module][log_level]: message body
+    date hostname process[pid]: [Z<zone_id>][module][log_level]: message body
 
-Where module is any of the internal OpenNebula components: ``VMM``, ``ReM``, ``TM``, etc. And the log\_level is a single character indicating the log level: I for info, D for debug, etc.
+Where the zone_id is the ID of the zone in the federation, 0 for single zone set ups, module is any of the internal OpenNebula components: ``VMM``, ``ReM``, ``TM``, etc. And the log\_level is a single character indicating the log level: I for info, D for debug, etc.
 
 For the syslog, OpenNebula will also log the Virtual Machine events like this:
 
