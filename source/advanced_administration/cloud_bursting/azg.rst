@@ -46,8 +46,10 @@ Prerequisites
 
 -  You must have a working account for `Azure <http://azure.microsoft.com/>`__
 -  You need your Azure credentials (Information on how to manage Azure certificates can be found `here <http://azure.microsoft.com/en-us/documentation/articles/linux-use-ssh-key/>`__. ). The information can be obtained from the `Management Azure page <https://manage.windowsazure.com>`__:
+
   * First, the Subscription ID, that can be uploaded and retrieved from Settings -> Subscriptions
   * Second, the Management Certificate file, that can be uploaded and retrieved from Settings -> Management Certificates
+
 -  The following gem is required: ``azure``. Otherwise, run the ``install_gems`` script as root:
 
 .. code::

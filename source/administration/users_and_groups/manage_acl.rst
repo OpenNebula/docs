@@ -8,7 +8,7 @@ The ACL authorization system enables fine-tuning of the allowed operations for a
 
 This allows administrators to tailor the user roles according to their infrastructure needs. For instance, using ACL rules you could create a group of users that can see and use existing virtual resources, but not create any new ones. Or grant permissions to a specific user to manage Virtual Networks for some of the existing groups, but not to perform any other operation in your cloud. Some examples are provided at the end of this guide.
 
-Please note: the ACL rules is an advanced mechanism. For most use cases, you should be able to rely on the built-in :ref:`resource permissions <chmod>` and the ACL Rules created automatically when a :ref:`group is created <manage_groups_permissions>`, and when a :ref:`resource provider is added <managing-resource-provider-within-groups>`.
+Please note: the ACL rules is an advanced mechanism. For most use cases, you should be able to rely on the built-in :ref:`resource permissions <chmod>` and the ACL Rules created automatically when a :ref:`group is created <manage_groups_permissions>`, and when a :ref:`resource provider is added <managing_resource_provider_within_groups>`.
 
 Understanding ACL Rules
 =======================

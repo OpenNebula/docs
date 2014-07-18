@@ -1,8 +1,8 @@
 .. _dev_ds:
 
-=================
+=====================
 The Devices Datastore
-=================
+=====================
 
 This datastore is used to register already existent block devices in the nodes to be used with virtual machines. It does not do any kind of device discovering or setup. The devices should be already setup and available and, VMs using these devices must be fixed to run in the nodes ready for them.
 
