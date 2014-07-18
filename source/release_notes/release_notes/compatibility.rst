@@ -72,8 +72,6 @@ Sunstone
 
 |sunstone_group_defview|
 
-.. todo:: #2976 Search user table in Sunstone by any attribute in the user template
-.. todo:: #2971 Add acct statistics to user dashboard (there is no user tab)
 .. todo:: #2953 Add hold option to VM template instantiate dialog
 .. todo:: #2934 Add rename and modify description/logo for templates
 .. todo:: #2860 Create VM wizard should show template owner and group columns - Visible columns are configured in the .yaml file
