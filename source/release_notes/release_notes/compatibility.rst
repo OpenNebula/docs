@@ -47,10 +47,10 @@ Sunstone
 
 - The easy provisioning wizard has been completely removed from Sunstone. The easy provisioning, or self-service view, was a wizard introduced in 4.4, and replaced in 4.6 by the more complete Cloud view (read more in the `4.6 compatibility guide <http://docs.opennebula.org/4.6/release_notes/release_notes/compatibility.html#sunstone-cloud-view>`_)
 
+- The former vdcadmin view has been deprecated and a new version based on the simplified cloud view is available.
+
 .. todo:: #2976 Search user table in Sunstone by any attribute in the user template
 .. todo:: #2971 Add acct statistics to user dashboard (there is no user tab)
-.. todo:: #2934 Add rename and modify description/logo for templates
-.. todo:: #2977 Customize available actions in cloud/admin views
 
 Developers and Integrators
 ================================================================================

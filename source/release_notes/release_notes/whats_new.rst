@@ -26,6 +26,29 @@ OneFlow
 
 .. todo:: #2917 Pass information between roles, using onegate facilities
 
+- Network configuration can be defined for a service template. The number of network interfaces that will be used are defined for a service and then each role selects what interfaces will use. The network that is attached to each interface is defined by the user when the service template is instantiated.
+
+Virtual Machine Templates
+--------------------------------------------------------------------------------
+
+- You can now define a ``NIC_DEFAULT`` attribute with values that will be copied to each new ``NIC``. This is specially useful for an administrator to define configuration parameters, such as ``MODEL``, that final users may not be aware of.
+
+.. code::
+
+    NIC_DEFAULT = [ MODEL = "virtio" ]
+
+- Sunstone now supports multiple boot devices. Although this could be done via CLI, now you can set them also in the Template wizard.
+
+|sunstone_multi_boot|
+
+- You can define user inputs for a given template. These attributes are provided by the user when the template is instantiated. For example you can define MYSQL_PASSWORD and each user can define a custom value for this variable for the new Virtual Machine. This feature is not available using the CLI.
+
+.. code::
+
+    USER_INPUTS=[
+      ROOT_PASSWORD="M|password|Password for the root user"
+      ROOT_MSG="M|text|Text for the message” ]
+
 Sunstone
 --------------------------------------------------------------------------------
 
@@ -45,11 +68,9 @@ Sunstone
 
 - The Virtual Network table has a new column that can be enabled in the :ref:`Sunstone view.yaml files <suns_views>`: VLAN ID
 
+- A new vdcadmin view based on the brand new cloud view is available. vDC admin will be able to create new users and manage the resources of the vDC
 
-
-.. todo:: New vdcadmin view
-.. todo:: New flow integration in cloud views
-.. todo:: #2977 Customize available actions in cloud/admin views
+- OpenNebula Flow has been integrated in the cloud and vdcadmin views, now users can instantiate new services and monitor groups of Virtual Machines
 
 Virtual Networks
 -------------------------------------
