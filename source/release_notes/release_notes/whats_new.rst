@@ -16,9 +16,10 @@ organised by component (`a detailed list of changes can be found here
 Hybrid Clouds
 --------------------------------------------------------------------------------
 
-.. todo:: #2989 Integrate with Microsoft Azure API
+Support for two new public cloud provider has been added. This opens the possiblity to create templates with representations for VM specified in both local infrastructure, Amazon EC2, Microsoft Azure and IBM SoftLayer:
 
-.. todo:: #2959 Integrate with SoftLayer
+- Support added to outsource Virtual Machine to :ref:`Microsoft Azure cloud provider <azg>`
+- Support added to outsource Virtual Machine to :ref:`IBM SoftLayer cloud provider <slg>`
 
 OneFlow
 --------------------------------------------------------------------------------
@@ -55,7 +56,8 @@ Contextualization
 -------------------------------------
 
 - .. todo:: #3008 Move context packages to addon repositories
-- .. todo:: #2395 windows guest context
+
+- Windows guests contextualization is now supported to several different windows flavours. The process of provisioning and contextualizing a Windows guestwindows guest context is described :ref:`here <windows_context>`.
 
 Usage Quotas
 --------------------------------------------------------------------------------

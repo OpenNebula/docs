@@ -60,9 +60,6 @@ Context Packages
 
 .. todo:: #2927 GATEWAY_IFACE
 
-.. todo:: #2395 windows guest context
-
-
 OneFlow Services
 --------------------------------------------------------------------------------
 
@@ -84,7 +81,6 @@ Sunstone
 .. todo:: #2971 Add acct statistics to user dashboard (there is no user tab)
 .. todo:: #2934 Add rename and modify description/logo for templates
 .. todo:: #2977 Customize available actions in cloud/admin views
-
 
 Developers and Integrators
 ================================================================================
