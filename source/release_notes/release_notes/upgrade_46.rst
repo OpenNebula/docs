@@ -1,11 +1,12 @@
+.. _upgrade:
 
 =================================
-Upgrading from OpenNebula 4.4.x
+Upgrading from OpenNebula 4.6.x
 =================================
 
-This guide describes the installation procedure for systems that are already running a 4.4.x OpenNebula. The upgrade will preserve all current users, hosts, resources and configurations; for both Sqlite and MySQL backends.
+This guide describes the installation procedure for systems that are already running a 4.6.x OpenNebula. The upgrade will preserve all current users, hosts, resources and configurations; for both Sqlite and MySQL backends.
 
-Read the Compatibility Guide for `4.6 <http://docs.opennebula.org/4.6/release_notes44/compatibility.html>`_ and :ref:`4.8 <compatibility>`, and the `Release Notes <http://opennebula.org/software/release/>`_ to know what is new in OpenNebula 4.8.
+Read the :ref:`Compatibility Guide <compatibility>` and `Release Notes <http://opennebula.org/software/release/>`_ to know what is new in OpenNebula 4.8.
 
 Preparation
 ===========
@@ -27,12 +28,33 @@ Backup
 
 Backup the configuration files located in **/etc/one**. You don't need to do a manual backup of your database, the onedb command will perform one automatically.
 
+.. code::
+
+    # cp -r /etc/one /etc/one.YYYY-MM-DD
+
+.. note::
+
+    Substitute ``YYYY-MM-DD`` with the date.
+
 Installation
 ============
 
 Follow the :ref:`Platform Notes <uspng>` and the :ref:`Installation guide <ignc>`, taking into account that you will already have configured the passwordless ssh access for oneadmin.
 
-It is highly recommended **not to keep** your current ``oned.conf``, and update the ``oned.conf`` file shipped with OpenNebula 4.8 to your setup. If for any reason you plan to preserve your current ``oned.conf`` file, read the :ref:`Compatibility Guide <compatibility>` and the complete oned.conf reference for `4.4 <http://docs.opennebula.org/4.4/administration/references/oned_conf.html>`_ and :ref:`4.8 <oned_conf>` versions.
+It is highly recommended **not to keep** your current ``oned.conf``, and update the ``oned.conf`` file shipped with OpenNebula 4.8 to your setup. If for any reason you plan to preserve your current ``oned.conf`` file, read the :ref:`Compatibility Guide <compatibility>` and the complete oned.conf reference for `4.6 <http://docs.opennebula.org/4.6/administration/references/oned_conf.html>`_ and :ref:`4.8 <oned_conf>` versions.
+
+Configuration Files Upgrade
+===========================
+
+If you haven't modified any configuration files, the package managers will replace the configuration files with their newer versions and no manual intervention is required.
+
+If you have customized **any** configuration files under ``/etc/one`` we recommend you to follow these steps regardless of the platform/linux distribution.
+
+#. Backup ``/etc/one`` (already performed)
+#. Install the new packages (already performed)
+#. Compare the old and new configuration files: ``diff -ur /etc/one.YYYY-MM-DD /etc/one``. Or you can use graphical diff-tools like ``meld`` to compare both directories, which are very useful in this step.
+#. Edit the **new** files and port all the customizations from the previous version.
+#. You should **never** overwrite the configuration files with older versions.
 
 Database Upgrade
 ================
@@ -83,7 +105,7 @@ Check DB Consistency
 
 After the upgrade is completed, you should run the command ``onedb fsck``.
 
-First, move the 4.4 backup file created by the upgrade command to a safe place.
+First, move the 4.6 backup file created by the upgrade command to a safe place.
 
 .. code::
 
