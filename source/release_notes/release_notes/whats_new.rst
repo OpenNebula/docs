@@ -26,19 +26,6 @@ OneFlow
 
 .. todo:: #2917 Pass information between roles, using onegate facilities
 
-Virtual Machine Templates
---------------------------------------------------------------------------------
-
-- You can now define a ``NIC_DEFAULT`` attribute with values that will be copied to each new ``NIC``. This is specially useful for an administrator to define configuration parameters, such as ``MODEL``, that final users may not be aware of.
-
-.. code::
-
-    NIC_DEFAULT = [ MODEL = "virtio" ]
-
-- Sunstone now supports multiple boot devices. Although this could be done via CLI, now you can set them also in the Template wizard.
-
-|sunstone_multi_boot|
-
 Sunstone
 --------------------------------------------------------------------------------
 
@@ -50,33 +37,11 @@ Sunstone
 
 |sunstone_instantiate_hold|
 
-- The table columns defined in the :ref:`view.yaml file <suns_views>` now apply not only to the main tab, but also to other places where the resources are used. For example, if the admin.yaml file defines only the Name and Running VMs columns:
+- Sunstone now supports multiple boot devices. Although this could be done via CLI, now you can set them also in the Template wizard.
 
-.. code::
+|sunstone_multi_boot|
 
-    hosts-tab:
-        table_columns:
-            #- 0         # Checkbox
-            #- 1         # ID
-            - 2         # Name
-            #- 3         # Cluster
-            - 4         # RVMs
-            #- 5         # Real CPU
-            #- 6         # Allocated CPU
-            #- 7         # Real MEM
-            #- 8         # Allocated MEM
-            #- 9         # Status
-            #- 10        # IM MAD
-            #- 11        # VM MAD
-            #- 12        # Last monitored on
-
-These will be the only visible columns in the main host list:
-
-|sunstone_yaml_columns1|
-
-And also in the dialogs where a host needs to be selected, like the VM deploy action:
-
-|sunstone_yaml_columns2|
+- The table columns defined in the view.yaml file now apply not only to the main tab, but also to other places where the resources are used. You can see an example in the :ref:`Sunstone views documentation <suns_views_define_new>`.
 
 - The Virtual Network table has a new column that can be enabled in the :ref:`Sunstone view.yaml files <suns_views>`: VLAN ID
 
@@ -97,7 +62,7 @@ Also a powerful reservation mechanism has been developed on top of the new VNET 
 
 The new VNETs preserve the original interface in terms of contextualization, address hold, addition and removal of addresses from the network or usage.
 
-- You can now define a ``NIC_DEFAULT`` attribute with values that will be copied to each new ``NIC``. This is specially useful for an administrator to define configuration parameters, such as ``MODEL = "virtio``.
+- You can now define a ``NIC_DEFAULT`` attribute with values that will be copied to each new ``NIC``. This is specially useful for an administrator to define configuration parameters, such as ``MODEL = "virtio"``.
 
 .. todo:: #2927 specify which default gateway to use if there are multiple nics
 
@@ -127,14 +92,6 @@ Images and Storage
 
 - Disk IO bandwidth can be controlled in KVM using the parameters ``TOTAL_BYTES_SEC``, ``READ_BYTES_SEC``, ``WRITE_BYTES_SEC``, ``TOTAL_IOPS_SEC``, ``READ_IOPS_SEC`` and ``WRITE_IOPS_SEC``. These parameters can be set to a default value in the ``KVM`` driver configuration or per disk in the VM template. By default these parameters can only be set by ``oneadmin`` the administrators.
 
-- Images can now be :ref:`cloned to a different Datastore <img_guide>`. The only restriction is that the new Datastore must be compatible with the current one, i.e. have the same DS_MAD drivers.
-
-.. code::
-
-    $ oneimage clone Ubuntu new_image --datastore new_img_ds
-
-
-
 Public Clouds APIs
 --------------------------------------------------------------------------------
 
@@ -155,5 +112,3 @@ To ease federation management admins usually adopts a centralized syslog service
 .. |sunstone_multi_boot| image:: /images/sunstone_multi_boot.png
 .. |sunstone_group_defview| image:: /images/sunstone_group_defview.png
 .. |sunstone_instantiate_hold| image:: /images/sunstone_instantiate_hold.png
-.. |sunstone_yaml_columns1| image:: /images/sunstone_yaml_columns1.png
-.. |sunstone_yaml_columns2| image:: /images/sunstone_yaml_columns2.png

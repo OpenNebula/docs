@@ -88,6 +88,8 @@ There are three basic areas that can be tuned to adapt the default behavior to y
 -  Define the users and groups that may access to each view.
 -  Brand your OpenNebula Sunstone portal.
 
+.. _suns_views_define_new:
+
 Defining a New OpenNebula Sunstone View or Customizing an Existing one
 ----------------------------------------------------------------------
 
@@ -167,6 +169,35 @@ The attributes in each of the above sections should be self-explanatory. As an e
                 Datastore.chgrp: false
                 Datastore.chmod: false
                 Datastore.delete: false
+
+The table columns defined in the view.yaml file will apply not only to the main tab, but also to other places where the resources are used. For example, if the admin.yaml file defines only the Name and Running VMs columns for the host table:
+
+.. code::
+
+    hosts-tab:
+        table_columns:
+            #- 0         # Checkbox
+            #- 1         # ID
+            - 2         # Name
+            #- 3         # Cluster
+            - 4         # RVMs
+            #- 5         # Real CPU
+            #- 6         # Allocated CPU
+            #- 7         # Real MEM
+            #- 8         # Allocated MEM
+            #- 9         # Status
+            #- 10        # IM MAD
+            #- 11        # VM MAD
+            #- 12        # Last monitored on
+
+These will be the only visible columns in the main host list:
+
+|sunstone_yaml_columns1|
+
+And also in the dialogs where a host needs to be selected, like the VM deploy action:
+
+|sunstone_yaml_columns2|
+
 
 .. note:: The easiest way to create a custom view is to copy the ``admin.yaml`` file to the new view then harden it as needed.
 
@@ -253,3 +284,5 @@ You can easily add you logos to the login and main screens by updating the ``log
 .. |image4| image:: /images/views_settings.jpg
 .. |image5| image:: /images/views_conf.jpg
 .. |sunstone_group_defview| image:: /images/sunstone_group_defview.png
+.. |sunstone_yaml_columns1| image:: /images/sunstone_yaml_columns1.png
+.. |sunstone_yaml_columns2| image:: /images/sunstone_yaml_columns2.png
