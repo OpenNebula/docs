@@ -1,14 +1,13 @@
 .. _rn:
 
-===================
-Release Notes 4.6.1
-===================
+====================
+Release Notes 4.7.80
+====================
 
 .. toctree::
    :maxdepth: 1
 
-   What's New in 4.6 <whats_new>
-   Resolved Issues in 4.6.1 <resolved_issues_461>
+   What's New in 4.8 <whats_new>
    Features <features>
    Platform Notes <uspng>
    Compatibility Guide <compatibility>

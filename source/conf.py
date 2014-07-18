@@ -47,7 +47,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'OpenNebula'
-copyright = '2013, OpenNebula Team <contact@opennebula.org>'
+copyright = '2014, OpenNebula Team <contact@opennebula.org>'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the

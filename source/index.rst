@@ -1,5 +1,5 @@
 ============================
-OpenNebula 4.6 Documentation
+OpenNebula 4.8 Documentation
 ============================
 
 .. _entry_point:
