@@ -30,7 +30,7 @@ Virtual Machines
 
 When a guest is shutdown, the OpenNebula VM will now move to the ``poweoff`` state, instead of ``unknown``.
 
-.. todo:: #2530 disk iotune
+Disk IO bandwidth can be controlled in KVM using the parameters ``TOTAL_BYTES_SEC``, ``READ_BYTES_SEC``, ``WRITE_BYTES_SEC``, ``TOTAL_IOPS_SEC``, ``READ_IOPS_SEC`` and ``WRITE_IOPS_SEC``. These parameters can be set to a default value in the ``KVM`` driver configuration or per disk in the VM template. By default these parameters can only be set by ``oneadmin`` the administrators.
 
 Virtual Networks
 --------------------------------------------------------------------------------
