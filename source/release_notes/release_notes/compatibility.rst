@@ -59,10 +59,10 @@ Context Packages
 .. todo:: #2395 windows guest context
 
 
-OneFlow Services
+Onegate
 --------------------------------------------------------------------------------
 
-.. todo:: #2917 Pass information between roles, using onegate facilities
+The client usage of OneGate has changed. ``ONEGATE_URL``, which used to be of the form ``http://<server>:<port>/vm/<vmid>`` has now been deprectated in favor of ``ONEGATE_ENDPOINT`` of the form ``http://<server>:<port>``. OneGate API now has for possible actions: ``GET /vm``, ``PUT /vm``, ``GET /service``, ``GET /``. Additionally a new header must be sent to authenticate the API requests: ``X_ONEGATE_VMID``. Read the :ref:`OneGate guide <onegate_usage>` for more information.
 
 Sunstone
 --------------------------------------------------------------------------------
