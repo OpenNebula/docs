@@ -48,7 +48,7 @@ These are the packages available for this distribution:
 
 -  **opennebula**: Command Line Interface
 -  **opennebula-server**: Main OpenNebula daemon, scheduler, etc
--  **opennebula-sunstone**: OpenNebula Sunstone, EC2, OCCI
+-  **opennebula-sunstone**: OpenNebula Sunstone and EC2
 -  **opennebula-ruby**: Ruby Bindings
 -  **opennebula-java**: Java Bindings
 -  **opennebula-gate**: Gate server that enables communication between VMs and OpenNebula

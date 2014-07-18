@@ -56,23 +56,23 @@ If the following error appears, then you need to remove the option 'new\_xmlrpc=
 
 where *<install\_options>* can be one or more of:
 
-+----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| OPTION   | VALUE                                                                                                                                                                          |
-+==========+================================================================================================================================================================================+
-| **-u**   | user that will run OpenNebula, defaults to user executing install.sh                                                                                                           |
-+----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **-g**   | group of the user that will run OpenNebula, defaults to user executing install.sh                                                                                              |
-+----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **-k**   | keep configuration files of existing OpenNebula installation, useful when upgrading. This flag should not be set when installing OpenNebula for the first time                 |
-+----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **-d**   | target installation directory. If defined, it will specified the path for the **self-contained** install. If not defined, the installation will be performed **system wide**   |
-+----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **-c**   | only install client utilities: OpenNebula cli, occi and ec2 client files                                                                                                       |
-+----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **-r**   | remove Opennebula, only useful if -d was not specified, otherwise ``rm -rf $ONE_LOCATION`` would do the job                                                                    |
-+----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **-h**   | prints installer help                                                                                                                                                          |
-+----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| OPTION |                                                                                    VALUE                                                                                     |
++========+==============================================================================================================================================================================+
+| **-u** | user that will run OpenNebula, defaults to user executing install.sh                                                                                                         |
++--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **-g** | group of the user that will run OpenNebula, defaults to user executing install.sh                                                                                            |
++--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **-k** | keep configuration files of existing OpenNebula installation, useful when upgrading. This flag should not be set when installing OpenNebula for the first time               |
++--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **-d** | target installation directory. If defined, it will specified the path for the **self-contained** install. If not defined, the installation will be performed **system wide** |
++--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **-c** | only install client utilities: OpenNebula cli and ec2 client files                                                                                                           |
++--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **-r** | remove Opennebula, only useful if -d was not specified, otherwise ``rm -rf $ONE_LOCATION`` would do the job                                                                  |
++--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **-h** | prints installer help                                                                                                                                                        |
++--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 The packages do a ``system-wide`` installation. To create a similar environment, create a ``oneadmin`` user and group, and execute:
 
@@ -119,7 +119,7 @@ We provide a script to ease the installation of these gems. it is located in ``/
 
 The tool can be also called without parameters and all the packages will be installed.
 
-For example, to install only requirements for sunstone, ec2 and occi interfaces you'll issue:
+For example, to install only requirements for sunstone and ec2 interfaces you'll issue:
 
 .. code::
 

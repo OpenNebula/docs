@@ -12,7 +12,7 @@ OpenNebula Components
 -  **Cluster**: Pool of hosts that share datastores and virtual networks. Clusters are used for load balancing, high availability, and high performance computing.
 -  **Image Repository**: Storage for registered Images. Learn more about the :ref:`Storage subsystem <sm>`.
 -  **Sunstone**: OpenNebula web interface. Learn more about :ref:`Sunstone <sunstone>`
--  **OCCI Service**: Server that enables the management of OpenNebula with OCCI interface. Learn more about :ref:`OCCI Service <occicg>`
+-  **OCCI Service**: Server that enables the management of OpenNebula with OCCI interface. You can use `rOCCI server <http://gwdg.github.io/rOCCI-server/>`_ to provide this service.
 -  **Self-Service** OpenNebula web interfaced towards the end user. It is implemented by configuring a user view of the Sunstone Portal.
 -  **EC2 Service**: Server that enables the management of OpenNebula with EC2 interface. Learn more about :ref:`EC2 Service <ec2qcg>`
 -  **OCA**: OpenNebula Cloud API. It is a set of libraries that ease the communication with the XML-RPC management interface. Learn more about :ref:`ruby <ruby>` and :ref:`java <java>` APIs.

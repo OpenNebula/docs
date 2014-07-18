@@ -35,7 +35,7 @@ Proceed to the Sunstone documentation to configure the x509 access:
 c) Servers Authentication
 -------------------------
 
-OpenNebula ships with three servers: :ref:`Sunstone <sunstone>`, :ref:`EC2 <ec2qcg>` and :ref:`OCCI <occicg>`. When a user interacts with one of them, the server authenticates the request and then forwards the requested operation to the OpenNebula daemon.
+OpenNebula ships with two servers: :ref:`Sunstone <sunstone>` and :ref:`EC2 <ec2qcg>`. When a user interacts with one of them, the server authenticates the request and then forwards the requested operation to the OpenNebula daemon.
 
 The forwarded requests are encrypted by default using a Symmetric Key mechanism. The following guide shows how to strengthen the security of these requests using x509 certificates. This is specially relevant if you are running your server in a machine other than the frontend.
 

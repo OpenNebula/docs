@@ -41,7 +41,7 @@ Package Layout
 -  opennebula-flow: Manage OpenNebula Services
 -  opennebula-context: Package for OpenNebula Guests
 
-Additionally ``opennebula-common`` and ``opennebula-ruby`` exist but they're intended to be used as dependencies. ``opennebula-occi``, which is RESTful service to manage the cloud, is included in the ``opennebula-sunstone`` package.
+Additionally ``opennebula-common`` and ``opennebula-ruby`` exist but they're intended to be used as dependencies.
 
 Step 1. Installation in the Frontend
 ====================================

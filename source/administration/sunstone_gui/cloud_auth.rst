@@ -4,7 +4,7 @@
 Cloud Servers Authentication
 =============================
 
-OpenNebula ships with three servers: :ref:`Sunstone <sunstone>`, :ref:`EC2 <ec2qcg>` and :ref:`OCCI <occicg>`. When a user interacts with one of them, the server authenticates the request and then forwards the requested operation to the OpenNebula daemon.
+OpenNebula ships with two servers: :ref:`Sunstone <sunstone>` and :ref:`EC2 <ec2qcg>`. When a user interacts with one of them, the server authenticates the request and then forwards the requested operation to the OpenNebula daemon.
 
 The forwarded requests between the servers and the core daemon include the original user name, and are signed with the credentials of an special ``server`` user.
 
@@ -13,7 +13,7 @@ In this guide this request forwarding mechanism is explained, and how it is secu
 Server Users
 ============
 
-The :ref:`Sunstone <sunstone>`, :ref:`EC2 <ec2qcg>` and :ref:`OCCI <occicg>` services communicate with the core using a ``server`` user. OpenNebula creates the **serveradmin** account at bootstrap, with the authentication driver **server\_cipher** (symmetric key).
+The :ref:`Sunstone <sunstone>` and :ref:`EC2 <ec2qcg>` services communicate with the core using a ``server`` user. OpenNebula creates the **serveradmin** account at bootstrap, with the authentication driver **server\_cipher** (symmetric key).
 
 This ``server`` user uses a special authentication mechanism that allows the servers to perform an operation on behalf of other user.
 
@@ -33,7 +33,6 @@ To use it, you need a user with the driver **server\_cipher**. Enable it in the 
 
 -  :ref:`Sunstone <sunstone>`: ``/etc/one/sunstone-server.conf``
 -  :ref:`EC2 <ec2qcg>`: ``/etc/one/econe.conf``
--  :ref:`OCCI <occicg>`: ``/etc/one/occi-server.conf``
 
 .. code::
 
@@ -48,7 +47,6 @@ You must update the configuration files in ``/var/lib/one/.one`` if you change t
 
     $ ls -1 /var/lib/one/.one
     ec2_auth
-    occi_auth
     sunstone_auth
 
     $ cat /var/lib/one/.one/sunstone_auth
@@ -103,7 +101,6 @@ Then edit the relevant configuration file in ``/etc/one``:
 
 -  :ref:`Sunstone <sunstone>`: ``/etc/one/sunstone-server.conf``
 -  :ref:`EC2 <ec2qcg>`: ``/etc/one/econe.conf``
--  :ref:`OCCI <occicg>`: ``/etc/one/occi-server.conf``
 
 .. code::
 

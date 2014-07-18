@@ -280,7 +280,6 @@ and update oned.conf to use these values:
 
     $ ls -1 /var/lib/one/.one
     ec2_auth
-    occi_auth
     one_auth
     oneflow_auth
     onegate_auth
