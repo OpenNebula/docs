@@ -42,8 +42,7 @@ Virtual Networks
 
 .. todo:: #2927 specify which default gateway to use if there are multiple nics
 
-.. todo:: #2318 Block ARP cache poisoning in openvswitch
-
+- ARP Cache poisoning prevention can be globally disabled in Open vSwitch: :ref:`arp_cache_poisoning <openvswitch_arp_cache_poisoning>`.
 
 Contextualization
 -------------------------------------
