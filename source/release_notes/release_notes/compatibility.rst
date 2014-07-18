@@ -11,20 +11,6 @@ Visit the :ref:`Features list <features>` and the `Release Notes <http://openneb
 OpenNebula Administrators and Users
 ================================================================================
 
-Virtual Machine Templates
---------------------------------------------------------------------------------
-
-- You can now define a ``NIC_DEFAULT`` attribute with values that will be copied to each new ``NIC``. This is specially useful for an administrator to define configuration parameters, such as ``MODEL``, that final users may not be aware of.
-
-.. code::
-
-    NIC_DEFAULT = [ MODEL = "virtio" ]
-
-- Sunstone now supports multiple boot devices. Although this could be done via CLI, now you can set them also in the Template wizard.
-
-|sunstone_multi_boot|
-
-
 Virtual Machines
 --------------------------------------------------------------------------------
 
@@ -40,15 +26,6 @@ Note also that the definition of a VNET is different in 4.8, so any application 
 OpenNebula's upgrade process will automatically migrate your networks to the new format. There is no need to update VM templates or Virtual Machines.
 
 .. todo:: #2318 Block ARP cache poisoning in openvswitch
-
-Images
---------------------------------------------------------------------------------
-
-Images can now be :ref:`cloned to a different Datastore <img_guide>`. The only restriction is that the new Datastore must be compatible with the current one, i.e. have the same DS_MAD drivers.
-
-.. code::
-
-    $ oneimage clone Ubuntu new_image --datastore new_img_ds
 
 Usage Quotas
 --------------------------------------------------------------------------------
@@ -69,13 +46,6 @@ Sunstone
 --------------------------------------------------------------------------------
 
 - The easy provisioning wizard has been completely removed from Sunstone. The easy provisioning, or self-service view, was a wizard introduced in 4.4, and replaced in 4.6 by the more complete Cloud view (read more in the `4.6 compatibility guide <http://docs.opennebula.org/4.6/release_notes/release_notes/compatibility.html#sunstone-cloud-view>`_)
-- In 4.6 you could select the available :ref:`sunstone views <suns_views>` for new groups. In case you have more than one, you can now also select the default view.
-
-|sunstone_group_defview|
-
-- Although templates could be instantiated on hold before from the CLI, now you can also do that from Sunstone:
-
-|sunstone_instantiate_hold|
 
 .. todo:: #2976 Search user table in Sunstone by any attribute in the user template
 .. todo:: #2971 Add acct statistics to user dashboard (there is no user tab)
@@ -84,39 +54,6 @@ Sunstone
 
 Developers and Integrators
 ================================================================================
-
-Sunstone
---------------------------------------------------------------------------------
-
-- The table columns defined in the :ref:`view.yaml file <suns_views>` now apply not only to the main tab, but also to other places where the resources are used. For example, if the admin.yaml file defines only the Name and Running VMs columns:
-
-.. code::
-
-    hosts-tab:
-        table_columns:
-            #- 0         # Checkbox
-            #- 1         # ID
-            - 2         # Name
-            #- 3         # Cluster
-            - 4         # RVMs
-            #- 5         # Real CPU
-            #- 6         # Allocated CPU
-            #- 7         # Real MEM
-            #- 8         # Allocated MEM
-            #- 9         # Status
-            #- 10        # IM MAD
-            #- 11        # VM MAD
-            #- 12        # Last monitored on
-
-These will be the only visible columns in the main host list:
-
-|sunstone_yaml_columns1|
-
-And also in the dialogs where a host needs to be selected, like the VM deploy action:
-
-|sunstone_yaml_columns2|
-
-- The Virtual Network table has a new column that can be enabled in the :ref:`Sunstone view.yaml files <suns_views>`: VLAN ID
 
 Public Clouds APIs
 --------------------------------------------------------------------------------
@@ -164,10 +101,3 @@ Monitoring Drivers
 Management of VMs in UNKOWN state has been improved in OpenNebula 4.8. When a
 VM is not running in a hypervisor is moved to the POWEROFF state, while if the
 hypervisor itself cannot be contacted the VMs are put in UNKOWN. Any custom monitoring driver needs to follow this behavior and include ``VM_POLL=YES`` even no VM is in the hypervisor list.
-
-
-.. |sunstone_group_defview| image:: /images/sunstone_group_defview.png
-.. |sunstone_multi_boot| image:: /images/sunstone_multi_boot.png
-.. |sunstone_instantiate_hold| image:: /images/sunstone_instantiate_hold.png
-.. |sunstone_yaml_columns1| image:: /images/sunstone_yaml_columns1.png
-.. |sunstone_yaml_columns2| image:: /images/sunstone_yaml_columns2.png
