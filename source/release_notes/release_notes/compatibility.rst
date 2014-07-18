@@ -37,9 +37,6 @@ Virtual Networks
 
 .. todo::
 
-
-.. todo:: #2318 Block ARP cache poisoning in openvswitch
-
 Images
 --------------------------------------------------------------------------------
 
