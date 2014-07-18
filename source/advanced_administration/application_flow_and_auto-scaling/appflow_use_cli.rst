@@ -106,11 +106,28 @@ Templates can be deleted with ``oneflow-template delete``.
 
 |image2|
 
-Flow Options
-------------
+Determining when a VM is in Running State
+-----------------------------------------
 
-.. todo:: Explain running_status_gate
+Depending on the deployment strategy, OneFlow will wait until all the VMs in a specific role are all in running state before deploying VMs that belong to a child role. How OneFlow determines the running state of the VMs can be specified with the checkbox ``Running status reported by VM`` available in the service creation dialog in Sunstone, or the attribute in ``running_status_gate`` in the top-level of the service JSON.
 
+If ``running_status_gate`` is set to ``true``, a VM will only be considered to be in running state the following points are true:
+
+* VM is in running state for OpenNebula. Which specifically means that ``LCM_STATE==3`` and ``STATE>=3``
+* The VM has ``RUNNING=YES`` in the user template.
+
+The idea is report via ref:`OneGate <onegate_usage>` from inside the VM that it's running during the boot sequence:
+
+.. code::
+
+  curl -X "PUT" http://<onegate>/vm \
+    --header "X-ONEGATE-TOKEN: ..." \
+    --header "X-ONEGATE-VMID: ..." \
+    -d "RUNNING = YES"
+
+This can also be done directly using OpenNebula's interfaces: CLI, Sunstone or API.
+
+If ``running_status_gate`` is set to ``false``, a VM will be considered to be in running state when it's in running state for OpenNebula (``LCM_STATE==3`` and ``STATE>=3``). Take into account that the VM will be considered RUNNING the very same moment the hypervisor boots the VM (before it loads the OS).
 
 Managing Services
 =================
