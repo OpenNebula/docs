@@ -127,7 +127,9 @@ And also in the dialogs where a host needs to be selected, like the VM deploy ac
 Public Clouds APIs
 --------------------------------------------------------------------------------
 
-.. todo:: #3041 Move OCCI from the main repository to an addon
+The OCCI server is no longer part of the distribution and now resides in an addon repository. If you are searching for an OCCI server you'd better use the `rOCCI Server <http://gwdg.github.io/rOCCI-server/>`_.
+
+.. todo:: add OCCI addon repo URL
 
 Storage
 --------------------------------------------------------------------------------
