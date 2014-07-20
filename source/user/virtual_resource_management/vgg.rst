@@ -38,6 +38,16 @@ A virtual network (VNET) definition consists of three different parts:
   - ``GATEWAY6``
   - ``DNS``
 
+These attributes can be later used in the :ref:`Virtual Machine Contextualization <template_context>`. For example:
+
+.. code::
+
+    CONTEXT = [
+      DNS = "$NETWORK[DNS, NETWORK=Private]"
+    ]
+
+.. note:: You can add any arbitrary data to the VNET to later use it within the VMs or just to tag the VNET with any attribute.
+
 The Address Range (AR)
 ----------------------
 
@@ -225,7 +235,7 @@ Also, ``onevnet`` can be used to query OpenNebula about available VNets:
     0 ruben        oneadmin     Private         -          vbr1          0
     1 ruben        oneadmin     Public          -          vbr0          0
 
-In the output above, ``USER`` is the owner of the network and ``LEASES`` the number of addresses assigned to a VM from each VNET.
+In the output above, ``USER`` is the owner of the network and ``LEASES`` the number of addresses assigned to a VM or reserved from each VNET.
 
 You can also check the IPs leased in a network with the ``onevnet show`` command
 
@@ -269,7 +279,7 @@ Check the ``onevnet`` command help or the :ref:`reference guide <cli>` for more 
 
 VNET Definition Tips
 ---------------------
-- You may have used IPs in a VNET so you do not want them to be assigned. You can add as many ARs as you need to implement these address gaps. Alternatively you can put address on hold to prevent them to be assigned.
+- You may have some used IPs in a VNET so you do not want them to be assigned. You can add as many ARs as you need to implement these address gaps. Alternatively you can put address on hold to prevent them to be assigned.
 
 - ARs can be of SIZE = 1 to define single addresses lease scheme. This set up is equivalent to the previous FIXED VNET type.
 
@@ -282,21 +292,52 @@ VNET Definition Tips
 
 Updating a Virtual Network
 ==========================
-.. todo::
 
-The following attributes can be changed after creating the network:
+The following attributes can be changed after creating the network, using ``onevnet update`` command:
+- Any attribute corresponding to the context or VNET description.
+- Network configuration attributes, in particular: ``PHYDEV``, ``VLAN_ID``, ``VLAN`` and ``BRIDGE``
+
+Also the name of the VNET can be changed with ``onevnet rename`` command.
 
 Managing Address Ranges
 =======================
-.. todo::
+
+Addresses of a VNET are structured in Address Ranges (AR), VNETs are quite flexible in terms of addition and removal of addresses. In this way, you can easily add new addresses to an existing VNET if the current addresses are exhausted.
 
 Adding and Removing Address Ranges
 ----------------------------------
-.. todo::
+
+A new AR can be added to the VNET using exactly the same definition parameters as described above. For example the following command will add a new AR of 20 IP addresses to the VNET:
+
+.. code::
+
+    onevnet addar Private --ip 10.0.0.200 --size 20
+
+In the same way you can remove an AR:
+
+.. code::
+
+    onevnet rmar Private 2
+
+Using Sunstone you can manage ARs (add, remove or update) in the Addresses tab of the VNET information.
+
+|image1|
 
 Updating Address Ranges
 -----------------------
-.. todo::
+
+You can update the following attributes of an AR:
+
+- ``SIZE``, assigned addresses cannot fall outside of the range.
+- IPv6 prefix: ``GLOBAL_PREFIX`` and ``ULA_PREFIX``
+- Any custom attribute that may override the VNET defaults.
+
+The following command shows how to update an AR using the CLI
+
+.. code::
+
+    #Update the AR 0 of VNET "Private"
+    onevnet updatear Private 0
 
 Hold and Release Leases
 -----------------------
@@ -408,23 +449,6 @@ Listing and using Reservations
 ------------------------------
 .. todo::
 
-
-
-Lease Management in Sunstone
-----------------------------
-
-If you are using the Sunstone GUI, you can then easily add, remove, hold and release leases from the dialog of extended information of a Virtual Network. You can open this dialog by clicking the desired element on the Virtual Network table, as you can see in this picture:
-
-|image1|
-
-Update the Virtual Network Template
------------------------------------
-
-The ``TEMPLATE`` section can hold any arbitrary data. You can use the ``onevnet update`` command to open an editor and edit or add new template attributes. These attributes can be later used in the :ref:`Virtual Machine Contextualization <template_context>`. For example:
-
-.. code::
-
-    dns = "$NETWORK[DNS, NETWORK_ID=3]"
 
 
 
