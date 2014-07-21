@@ -28,7 +28,7 @@ A virtual network (VNET) definition consists of three different parts:
 
 .. warning:: The attributes above depend on the networking technology (drivers) used by the hosts when they are created. Please refer to the specific :ref:`networking guide <nm>` for a complete description of each value.
 
-- The **logical address space** available. Addresses associated to a VNET can be IPv4, IPv6, dual stack IPv4-IPv6 or Ethernet; and can define a non-continuous range of addresses structured in one or more Address Ranges (AR), see below
+- The **logical address space** available. Addresses associated to a VNET can be IPv4, IPv6, dual stack IPv4-IPv6 or Ethernet; and can define a non-continuous addresses range  structured in one or more Address Ranges (AR), see below
 
 - **Context attributes**. Apart from the addresses and configuration attributes used to setup the guest network additional information can be injected into the VM at boot time. These contextualization attributes may include for example network masks, DNS servers or gateways. The following values are recognize by the contextualization packages:
 
@@ -51,7 +51,7 @@ These attributes can be later used in the :ref:`Virtual Machine Contextualizatio
 The Address Range (AR)
 ----------------------
 
-The addresses available in a VNET are defined by one or more Address Ranges (AR). Each address range defines a continuous range of address and optionally, configuration attributes (context or configuration) that will override those provided by the VNET.
+The addresses available in a VNET are defined by one or more Address Ranges (AR). Each address range defines a continuous address range and optionally, configuration attributes (context or configuration) that will override those provided by the VNET.
 
 IPv4 Address Range
 ^^^^^^^^^^^^^^^^^^
@@ -173,6 +173,7 @@ should use this AR when an external service is providing the IP addresses, such 
     AR=[
         TYPE = "ETHER",
         SIZE = "25"
+    ]
 
 This guide uses the CLI command ``onevnet``, but you can also manage your virtual networks using :ref:`Sunstone <sunstone>`. Select the Network tab, and there you will be able to create and manage your virtual networks in a user friendly way.
 
@@ -420,9 +421,9 @@ Read more about this feature :ref:`here <firewall>`.
 VNET Self-Provisioning: Reservations
 ====================================================
 
-VNETs implement a simple self-provisioning scheme, that allows users to create their on networks consisting of portions of an existing VNET. Each portion is called a Reservation. To implement this you need to:
+VNETs implement a simple self-provisioning scheme, that allows users to create their own networks consisting of portions of an existing VNET. Each portion is called a Reservation. To implement this you need to:
 
-- Define a VNET with the desired ARs and configuration attributes. These attributes will be inherited by any Reservation made on the VNET. Final users does not need to deal with low-level networking details.
+- **Define a VNET**, with the desired ARs and configuration attributes. These attributes will be inherited by any Reservation made on the VNET. Final users does not need to deal with low-level networking details.
 - **Setting up access**. In order to make a Reservation, users needs USE rights on the VNET, just as if they would use it to directly to provision IPs from it.
 - **Make Reservations**. Users can easily request specific addresses or just a number of addresses from a VNET. Reservations are placed in their own VNET for the user.
 - **Use Reservations**. Reservations offer the same interface as a regular VNET so you can just point your VM templates to the new VNET. The number of addresses and usage stats are shown also in the same way.
