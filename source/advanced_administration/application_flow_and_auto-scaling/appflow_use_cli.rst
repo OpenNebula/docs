@@ -118,7 +118,7 @@ If ``running_status_gate`` is set to ``true``, a VM will only be considered to b
 * VM is in running state for OpenNebula. Which specifically means that ``LCM_STATE==3`` and ``STATE>=3``
 * The VM has ``RUNNING=YES`` in the user template.
 
-The idea is report via ref:`OneGate <onegate_usage>` from inside the VM that it's running during the boot sequence:
+The idea is report via :ref:`OneGate <onegate_usage>` from inside the VM that it's running during the boot sequence:
 
 .. code::
 
