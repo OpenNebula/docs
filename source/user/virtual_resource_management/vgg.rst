@@ -232,8 +232,8 @@ Also, ``onevnet`` can be used to query OpenNebula about available VNets:
 
    $ onevnet list
    ID USER         GROUP        NAME            CLUSTER    BRIDGE   LEASES
-    0 ruben        oneadmin     Private         -          vbr1          0
-    1 ruben        oneadmin     Public          -          vbr0          0
+    0 admin        oneadmin     Private         -          vbr1          0
+    1 admin        oneadmin     Public          -          vbr0          0
 
 In the output above, ``USER`` is the owner of the network and ``LEASES`` the number of addresses assigned to a VM or reserved from each VNET.
 
@@ -245,7 +245,7 @@ You can also check the IPs leased in a network with the ``onevnet show`` command
   VIRTUAL NETWORK 1 INFORMATION
   ID             : 1
   NAME           : Public
-  USER           : ruben
+  USER           : admin
   GROUP          : oneadmin
   CLUSTER        : -
   BRIDGE         : vbr0
@@ -417,12 +417,18 @@ You can apply firewall rules on your VMs, to filter TCP and UDP ports, and to de
 
 Read more about this feature :ref:`here <firewall>`.
 
-
 VNET Self-Provisioning: Reservations
 ====================================================
 
-Publishing Virtual Networks
----------------------------
+VNETs implement a simple self-provisioning scheme, that allows users to create their on networks consisting of portions of an existing VNET. Each portion is called a Reservation. To implement this you need to:
+
+- Define a VNET with the desired ARs and configuration attributes. These attributes will be inherited by any Reservation made on the VNET. Final users does not need to deal with low-level networking details.
+- **Setting up access**. In order to make a Reservation, users needs USE rights on the VNET, just as if they would use it to directly to provision IPs from it.
+- **Make Reservations**. Users can easily request specific addresses or just a number of addresses from a VNET. Reservations are placed in their own VNET for the user.
+- **Use Reservations**. Reservations offer the same interface as a regular VNET so you can just point your VM templates to the new VNET. The number of addresses and usage stats are shown also in the same way.
+
+Setting up access to VNETs
+--------------------------
 
 Once a VNET is setup by a Cloud admin, she needs to make it available to other users in the cloud. See the :ref:`Managing Permissions documentation <chmod>` for more information.
 
@@ -443,16 +449,50 @@ Let's see a quick example. The following command allows users in the same group 
 
 Make and delete Reservations
 ----------------------------
-.. todo::
 
-Listing and using Reservations
+In its simplest form you can make a reservations just by defining the source VNET, the number of addresses and the name of the reservation. For example to reserve 10 addresses from VNET Private and place it on MyVNET just:
+
+.. code::
+
+     $ onevnet reserve Private -n MyVNET -s 10
+
+As a result a new VNET has been created:
+
+.. code::
+
+    $ onevnet list
+    ID USER         GROUP        NAME            CLUSTER    BRIDGE   LEASES
+     0 admin        oneadmin     Private         -          vbr1         10
+     1 helen        users        MyVNET          -          vbr1          0
+
+Note that VNET Private shows 10 address leases in use, and leased to VNET 1. Also note that both VNETs share the same configuration, e.g. BRIDGE vbr1. You can verify this details with ``onevnet show`` command.
+
+Reservations can include advanced options such as:
+
+- The AR where you want to make the reservation from in the source VNET
+- The starting IP or MAC to make the reservation from
+
+A reservation can be remove just as a regular VNET:
+
+.. code::
+
+   $ onevnet delete MyVNET
+
+Using Reservations
 ------------------------------
-.. todo::
 
+To use a reservation you can use it as any other VNET; as they expose the same interface, i.e. you can refer to VNET variables in context, add NICs...
 
+.. code::
 
+   #Use a reservation in a VM
+   NIC = [ NETWORK = "MyVNET"]
 
+A Reservation can be also extended with new addresses. This is, you can add a new reservation to an existing one. This way a user can refer to its own network with a controlled and deterministic address space.
 
+.. note:: Reservation increase leases counters on the user and group, and they can be limited through a quota.
+
+.. note:: The reservation interface is exposed by Sunstone in a very convenient way.
 
 .. |image0| image:: /images/sunstone_vnet_create.png
 .. |image1| image:: /images/sunstone_vnet_leases.png
