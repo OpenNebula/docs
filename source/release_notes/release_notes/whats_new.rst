@@ -6,6 +6,8 @@ What's New in 4.8
 
 OpenNebua 4.8 Lemon Slice brings significant improvements in different aspects. Sticking with our vision of bringing simplicity to cloud management, this release comes with improvements in the recently added Cloud View portal, designed for end users. One significant advantage of the new portal is the ability to control flows, groups of interconnected Virtual Machines that conform a service. Based on this Cloud View, a Virtual Datacenter administrators view has been included (VDCAdmin View), which enables VDC admins to easily manage the VDC users and resources.
 
+|vdcadminview48|
+
 An important highlight in this release is a bast improvement to the hybrid model. Support for two new public cloud providers have been added, widening the range of possibilities to offload VMs in case the local infrastructure is saturated. The hybrid model in OpenNebula enables a centralized management of both local and remote resources for the cloud administrator, and a transparent consumption of these resources for the end user. With these two new additions, namely support for Microsoft Azure and IBM SoftLayer, OpenNebula is increasing the possibilities to build powerful, robust, cost and performance efficient cloud infrastructures across administrative domains and public cloud providers.
 
 The OneFlow component also has been improved, specially OneGate, easying the retrieval of metrics to be used in the service elasticity. Flows are now easier than ever to build and consume, since details like the virtual network the flow is going to use is defined later by the user, so the administrator doesn't have to deal with all the possible combinations. We are proud of OneFlow, we believe it is powerful and it can suit most of the services needs, so check it out!
@@ -53,6 +55,7 @@ Different instances of OpenNebula 4.8 can be easily federated:
 .. |sunstone_multi_boot| image:: /images/sunstone_multi_boot.png
 .. |sunstone_group_defview| image:: /images/sunstone_group_defview.png
 .. |sunstone_instantiate_hold| image:: /images/sunstone_instantiate_hold.png
+.. |vdcadminview48| image:: /images/vdcadminview-48.png
 
 OpenNebula Drivers :: Images and Storage
 --------------------------------------------------------------------------------
