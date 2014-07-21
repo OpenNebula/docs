@@ -56,6 +56,11 @@ Sunstone
 
 - The former vdcadmin view has been deprecated and a new version based on the simplified cloud view is available.
 
+OneFlow
+--------------------------------------------------------------------------------
+
+- Role names in a service template must only contain word characters (letter, number, underscore). Templates containing whitespaces or other special characters should be manually updated.
+
 Developers and Integrators
 ================================================================================
 
