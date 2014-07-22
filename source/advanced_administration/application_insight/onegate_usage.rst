@@ -286,6 +286,10 @@ Sample Script
     # PUT command
     ################################################################################
      
-    curl -X "PUT" --header "X-ONEGATE-TOKEN: `cat $ONEGATE_TOKEN`" $ONEGATE_ENDPOINT \
+    VMID=(source /mnt/context.sh; echo $VMID)
+
+    curl -X "PUT" $ONEGATE_ENDPOINT \
+        --header "X-ONEGATE-TOKEN: `cat $ONEGATE_TOKEN`" \
+        --header "X-ONEGATE-VMID: $VMID" \
         --data-binary @$TMP_DIR/metrics
 
