@@ -47,7 +47,8 @@ Context Packages
 OneGate
 --------------------------------------------------------------------------------
 
-The client usage of OneGate has changed. ``ONEGATE_URL``, which used to be of the form ``http://<server>:<port>/vm/<vmid>`` has now been deprectated in favor of ``ONEGATE_ENDPOINT`` of the form ``http://<server>:<port>``. OneGate API now has for possible actions: ``GET /vm``, ``PUT /vm``, ``GET /service``, ``GET /``. Additionally a new header must be sent to authenticate the API requests: ``X_ONEGATE_VMID``. Read the :ref:`OneGate guide <onegate_usage>` for more information.
+The client usage of OneGate has changed. ``ONEGATE_URL``, which used to be of the form ``http://<server>:<port>/vm/<vmid>`` has now been deprectated in favor of ``ONEGATE_ENDPOINT`` of the form ``http://<server>:<port>``. OneGate API now has for possible actions: ``GET /vm``, ``PUT /vm``, ``GET /service``, ``GET /``. Additionally a new header must be sent to authenticate the API requests: ``X_ONEGATE_VMID``. Read the :ref:`OneGate guide <onegate_usage>` for more information. 
+PUT /vm/:id is still avaiable but it has been deprecated and will be removed in future releases
 
 Sunstone
 --------------------------------------------------------------------------------
