@@ -111,8 +111,6 @@ This distribution lacks some packaged ruby libraries. This makes some components
 
     # /usr/share/one/install_gems
 
-The package and command ``vconfig`` is no longer available and 802.1Q driver does not work in this distribution. This will be fixed in future releases.
-
 Debian Platform Notes
 =====================
 

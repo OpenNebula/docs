@@ -26,8 +26,7 @@ Configuration
 Hosts Configuration
 -------------------
 
--  The ``sudoers`` file must be configured so ``oneadmin`` can execute ``vconfig``, ``brctl`` and ``ip`` in the hosts.
--  The package ``vconfig`` must be installed in the hosts.
+-  The ``sudoers`` file must be configured so ``oneadmin`` can execute ``brctl`` and ``ip`` in the hosts.
 -  Hosts must have the module ``8021q`` loaded.
 
 To enable VLAN (802.1Q) support in the kernel, one must load the 8021q module:
@@ -36,7 +35,7 @@ To enable VLAN (802.1Q) support in the kernel, one must load the 8021q module:
 
     $ modprobe 8021q
 
-If the module is not available, please refer to your distribution's documentation on how to install it. This module, along with the ``vconfig`` binary which is also required by the script, is generally supplied by the ``vlan`` package.
+If the module is not available, please refer to your distribution's documentation on how to install it.
 
 OpenNebula Configuration
 ------------------------

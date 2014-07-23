@@ -80,7 +80,6 @@ The default paths for the binaries/executables used during the network configura
       :iptables => "sudo /sbin/iptables",
       :brctl    => "sudo /sbin/brctl",
       :ip       => "sudo /sbin/ip",
-      :vconfig  => "sudo /sbin/vconfig",
       :virsh    => "virsh -c qemu:///system",
       :xm       => "sudo /usr/sbin/xm",
       :ovs_vsctl=> "sudo /usr/local/bin/ovs-vsctl",
