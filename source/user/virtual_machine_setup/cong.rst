@@ -8,6 +8,8 @@ There are two contextualization mechanisms available in OpenNebula: the automati
 
 You can use already made packages that install context scripts and prepare udev configuration in your appliances. This is described in :ref:`Contextualization Packages for VM Images <cong_generating_custom_contextualization_packages>` section.
 
+Please note that you will need to edit your template file, which you can do via ``onetemplate update TEMPLATE_ID``.
+
 Automatic IP Assignment
 =======================
 
