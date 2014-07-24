@@ -160,7 +160,7 @@ In order to enable this functionality you have to follow the following steps:
 1. Create a VNET Containing the Elastic IPS
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
--  As oneadmin create a new VirtualNetwork containing the public IPs that will be controlled by the EC2 users. Each IP **must be placed in its on AR**:
+-  As oneadmin create a new VirtualNetwork containing the public IPs that will be controlled by the EC2 users. Each IP **must be placed in its own AR**:
 
 .. code::
 
