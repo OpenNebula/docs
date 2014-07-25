@@ -180,6 +180,11 @@ Some of the variables have special meanings, but none of them are mandatory:
 +-------------------+--------------------------------------------------------------------------------------+
 | **DNS_HOSTNAME**  | ``YES`` to set the VM hostname to the reverse dns name (from the first IP)           |
 +-------------------+--------------------------------------------------------------------------------------+
+| **GATEWAY_IFACE** | This variable can be set to the interface number you want to configure the gateway.  |
+|                   | It is useful when several networks have GATEWAY parameter and you want yo choose     |
+|                   | the one that configures it. For example to set the first interface to configure the  |
+|                   | gateway you use ``GATEWAY_IFACE=0``                                                  |
++-------------------+--------------------------------------------------------------------------------------+
 
 .. warning:: A default target attribute is :ref:`generated automatically <template_disks_device_mapping>` by OpenNebula, based on the default device prefix set at :ref:`oned.conf <oned_conf>`.
 
