@@ -112,7 +112,7 @@ Here is a recipe to make the configuration needed for OpenNebula persistent acro
        ## Add this at the bottom of the file
 
     mkdir /etc/ssh/keys-oneadmin
-    cat > /etc/ssh/ssh-oneadmin/authorized_keys << _SSH_HEYS_
+    cat > /etc/ssh/keys-oneadmin/authorized_keys << _SSH_KEYS_
     ssh-rsa <really long string with oneadmin's ssh public key>
     _SSH_KEYS_
     chmod 600 /etc/ssh/keys-oneadmin/authorized_keys
