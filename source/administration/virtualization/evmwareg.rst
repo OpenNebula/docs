@@ -4,7 +4,7 @@
 VMware Drivers
 ===============
 
-The **VMware Drivers** enable the management of an OpenNebula cloud based on VMware ESX and/or VMware Server hypervisors. They use ``libvirt`` and direct API calls using ``RbVmomi`` to invoke the Virtual Infrastructure SOAP API exposed by the VMware hypervisors, and feature a simple configuration process that will leverage the stability, performance and feature set of any existing VMware based OpenNebula cloud.
+The **VMware Drivers** enable the management of an OpenNebula cloud based on VMware ESX 5.1 and/or VMware Server hypervisors. They use ``libvirt`` and direct API calls using ``RbVmomi`` to invoke the Virtual Infrastructure SOAP API exposed by the VMware hypervisors, and feature a simple configuration process that will leverage the stability, performance and feature set of any existing VMware based OpenNebula cloud.
 
 Requirements
 ============
@@ -13,7 +13,7 @@ In order to use the **VMware Drivers**, some software dependencies have to be me
 
 -  **libvirt**: At the OpenNebula front-end, libvirt is used to access the VMware hypervisors , so it needs to be installed with ESX support. We recommend version 0.8.3 or higher, which enables interaction with the vCenter VMware product, required to use vMotion. This will be installed by the OpenNebula package.
 -  **rbvmomi**: Also at the OpenNebula front-end, the `rbvmomi gem <https://github.com/rlane/rbvmomi>`__ needs to be installed. This will be installed by the OpenNebula package or the install\_gems script.
--  **ESX, VMware Server**: At least one VMware hypervisor needs to be installed. Further configuration for the ``DATASTORE`` is needed, and it is explained in the TM part of the Configuration section.
+-  **ESX 5.1, VMware Server**: At least one VMware hypervisor needs to be installed. Further configuration for the ``DATASTORE`` is needed, and it is explained in the TM part of the Configuration section.
 
 **Optional Requirements**. To enable some OpenNebula features you may need:
 
@@ -85,14 +85,14 @@ Tools Setup
      $ su
      $ chmod +s /sbin/vmkfstools
 
--  In order to use the **attach/detach functionality** for VM disks, some extra configuration steps are needed in the ESX hosts. For ESX > 5.0
+-  In order to use the **attach/detach functionality** for VM disks, some extra configuration steps are needed in the ESX hosts.
 
 .. code::
 
      $ su
      $ chmod +s /bin/vim-cmd
 
--  In order to use the :ref:`dynamic network mode <vmwarenet_using_the_dynamic_network_mode>` for VM disks, some extra configuration steps are needed in the ESX hosts. For ESX > 5.0
+-  In order to use the :ref:`dynamic network mode <vmwarenet_using_the_dynamic_network_mode>` for VM disks, some extra configuration steps are needed in the ESX hosts.
 
 .. code::
 
