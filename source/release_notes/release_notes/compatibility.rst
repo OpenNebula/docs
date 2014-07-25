@@ -61,6 +61,7 @@ OneFlow
 --------------------------------------------------------------------------------
 
 - Role names in a service template must only contain word characters (letter, number, underscore). Templates containing whitespaces or other special characters should be manually updated.
+- Delete actions return 204 HTTP code instead of 201
 
 Developers and Integrators
 ================================================================================
