@@ -33,6 +33,11 @@ Regarding the administrator users, a Federation will have a unique oneadmin acco
 
 The administrators can share appliances across Zones deploying a private :ref:`OpenNebula Marketplace <marketplace>`.
 
+Other Services
+================================================================================
+
+Although a single Sunstone server can connect to different Zones, all the other OpenNebula services will only work with the local Zone resources. This includes the :ref:`Scheduler <schg>`, the :ref:`Public Cloud Servers <introc>`, :ref:`OneFlow <oneapps_overview>`, and :ref:`OneGate <onegate_overview>`.
+
 Next Steps
 ================================================================================
 
