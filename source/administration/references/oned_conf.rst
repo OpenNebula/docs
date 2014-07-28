@@ -493,8 +493,12 @@ Sample configuration:
 Restricted Attributes Configuration
 ===================================
 
--  **VM\_RESTRICTED\_ATTR**: Virtual Machine attribute to be restricted for users outside the oneadmin group
--  **IMAGE\_RESTRICTED\_ATTR**: Image attribute to be restricted for users outside the oneadmin group
+Users outside the oneadmin group won't be able to instantiate templates created by users outside the ''onadmin'' group that includes the attributes restricted by:
+
+-  **VM\_RESTRICTED\_ATTR**: Virtual Machine attribute to be restricted for users outside the ''onadmin'' group
+-  **IMAGE\_RESTRICTED\_ATTR**: Image attribute to be restricted for users outside the ''onadmin'' group
+
+If the VM template has been created by admins in the ''onadmin'' group, then users outside the ''onadmin'' group **can** instantiate this templates.
 
 Sample configuration:
 
@@ -511,6 +515,13 @@ Sample configuration:
     #VM_RESTRICTED_ATTR = "SCHED_REQUIREMENTS"
      
     IMAGE_RESTRICTED_ATTR = "SOURCE"
+
+OpenNebula evaluates these attributes:
+
+- on VM template instantiate (onetemplate instantiate)
+- on VM create (onevm create)
+- on VM attach nic (onevm attachnic) (for example to forbid users to use NIC/MAC)
+
 
 Inherited Attributes Configuration
 ==================================
