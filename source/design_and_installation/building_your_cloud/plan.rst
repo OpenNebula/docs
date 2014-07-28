@@ -24,6 +24,19 @@ OpenNebula presents a highly modular architecture that offers broad support for 
 
 |OpenNebula Cloud Platform Support|
 
+Dimensioning the Cloud
+======================
+
+The dimension of a cloud infrastructure can be directly inferred from the expected workload in terms of VM that the cloud infrastructure must sustain. This workload it's also tricky to estimate, but this is a crucial exercise to build an efficient cloud.
+
+The main aspects to take into account at the time of dimensioning the OpenNebula cloud are:
+
+- **CPU**: unless overcommitment is planned the relation is that for each CPU core that one VM wants to use, a physical CPU core must exist. For instance, for a workload of 40 VMs with 2 CPUs the cloud will need 80 physical CPUs. These physical CPUs can be spread among different phyisical servers, for instance 10 servers with 8 cores each, or 5 server of 16 cores each. CPU dimension can be planned ahead with overcommitment, achieved using the CPU abd VCPU attributes (CPU states physical CPUs assigned to this VM, whereas VCPU stated virtual CPUs to be presented to the guest OS)
+
+- **MEMORY**: Planning for memory is straightforward, as there are no overcommitment of memory in OpenNebula. It is always a good practice to count for a 10% overhead of the hypervisor (this is an absolut upper limit, depending on the hypervisor this can be adjusted). So, in order to sustain a VM workload of 45 VMs with 2Gb of RAM each, 90Gb of physical memory is needed. The number of physical servers is important as each one will incur on a 10% overhead due to the hypersors. For instance, 10 hypervisors with 10Gb RAM each will contribute with 9Gb each (10% of 10Gb = 1Gb), so they will be able to sustain the estimated workload.
+
+- **STORAGE**: It is important to understand how OpenNebula uses storage, mainly the difference between system and image datastore. The image datastore is where OpenNebula stores all the images registered that can be used to create VMs, so the rule of thumb is to devote enough space for all the images that OpenNebula will have registered. The system datastore is where the VMs that are currently running store their disks, and it is trickier to estimate correctly since volatile disks come into play with no counterpart in the image datastore (volatile disks are created on the fly in the hypervisor). One valid approach is to limit the storage available to users by defining quotas in the number of maximum VMs and also the Max Volatile Storage a user can demand, and ensuring enough system and image datastore space to comply with the limit set in the quotas. In any case, currently, OpenNebula allows cloud administrators to add more system and images datastores if needed. 
+
 Front-End
 =========
 
