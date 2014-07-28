@@ -8,6 +8,15 @@ This guide describes the installation procedure for systems that are already run
 
 Read the :ref:`Compatibility Guide <compatibility>` and `Release Notes <http://opennebula.org/software/release/>`_ to know what is new in OpenNebula 4.8.
 
+Upgrading a Federation
+================================================================================
+
+If you have two or more 4.6 OpenNebulas working as a :ref:`Federation <introf>`, you can upgrade each one independently. Zones with 4.6 and 4.8 OpenNebulas can be part of the same federation, since the shared portion of the database is compatible.
+
+The only compatibility issue is in the Sunstone web interface. If your users access different Zones from a unique Sunstone server, you will need to upgrade all Zones to 4.8, or enable a local Sunstone server for each Zone to ensure that a 4.6 OpenNebula is only accessed through a 4.6 Sunstone. Read the :ref:`federation architecture documentation <introf_architecture>` for more details.
+
+The rest of the guide applies to both a master or slave Zone. You don't need to stop the federation or the MySQL replication to follow this guide.
+
 Preparation
 ===========
 

@@ -12,6 +12,8 @@ The typical scenario for an OpenNebula Federation is a company with several Data
 
 For the end users, a Federation allows them to use the resources allocated by the Federation Administrators no matter where they are. The integration is seamless, meaning that a user logged into the Sunstone web interface of a Zone will not have to log out and enter the address of the other Zone. Sunstone allows to change the active Zone at any time, and it will automatically redirect the requests to the right OpenNebula at the target Zone.
 
+.. _introf_architecture:
+
 Architecture
 ================================================================================
 
