@@ -71,6 +71,11 @@ These are the packages available for this distribution:
 -  **opennebula-node-kvm**: Meta-package that installs the oneadmin user, libvirt and kvm
 -  **opennebula-common**: Common files for OpenNebula packages
 
+
+.. note::
+
+    The files located in ``/var/lib/one/remotes`` are marked as configuration files.
+
 1.2. Installing on openSUSE
 ---------------------------
 
@@ -171,6 +176,16 @@ These are the packages available for these distributions:
 -  **opennebula-gate**: Gate server that enables communication between VMs and OpenNebula
 -  **opennebula-flow**: Manages services and elasticity
 -  **opennebula**: OpenNebula Daemon
+
+.. note::
+
+    The following files are marked as configuration files:
+
+    - ``/var/lib/one/remotes/datastore/ceph/ceph.conf``
+    - ``/var/lib/one/remotes/datastore/lvm/lvm.conf``
+    - ``/var/lib/one/remotes/datastore/vmfs/vmfs.conf``
+    - ``/var/lib/one/remotes/vnm/OpenNebulaNetwork.conf``
+
 
 Step 2. Ruby Runtime Installation
 =================================
