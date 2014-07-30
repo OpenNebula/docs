@@ -9,7 +9,9 @@ The OneFlow commands do not interact directly with the OpenNebula daemon, there 
 Installation
 ============
 
-Starting with OpenNebula 4.2, OneFlow is included in the default installation. Check the :ref:`Installation guide <ignc>` for details of what package you have to install depending on your distribution
+Starting with OpenNebula 4.2, OneFlow is included in the default installation. Check the :ref:`Installation guide <ignc>` for details of what package you have to install depending on your distribution.
+
+Make sure you execute ``ìnstall_gems`` to install the required gems, in particular: ``treetop``, ``parse-cron``.
 
 Configuration
 =============
