@@ -1,7 +1,7 @@
 .. _data_center_infra_management:
 
 ====================================
-Data Center Infrastructure Managemnt
+Data Center Infrastructure Management
 ====================================
 
 .. todo:: Placeholder
