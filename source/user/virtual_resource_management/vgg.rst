@@ -53,6 +53,8 @@ The Address Range (AR)
 
 The addresses available in a VNET are defined by one or more Address Ranges (AR). Each address range defines a continuous address range and optionally, configuration attributes (context or configuration) that will override those provided by the VNET.
 
+.. _vgg_ipv6_networks:
+
 IPv4 Address Range
 ^^^^^^^^^^^^^^^^^^
 
