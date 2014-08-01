@@ -133,6 +133,8 @@ Hybrid Cloud Computing and Cloud Bursting
 
 -  :ref:`Extension of the local private infrastructure with resources from remote clouds <introh>`
 -  :ref:`Support for Amazon EC2 <ec2g>` with most of the EC2 features like tags, security groups or VPC; and simultaneous access to multiple remote clouds
+- Support to outsource Virtual Machines to :ref:`Microsoft Azure cloud provider <azg>`
+- Support to outsource Virtual Machines to :ref:`IBM SoftLayer cloud provider <slg>`
 
 Standard Cloud Interfaces and Simple Provisioning Portal for Cloud Consumers
 ============================================================================
