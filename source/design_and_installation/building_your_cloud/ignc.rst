@@ -9,9 +9,9 @@ This page shows you how to install OpenNebula from the binary packages.
 Step 1. Front-end Installation
 ==============================
 
-Using the packages provided in our site is the recommended method, to ensure the installation of the latest version and to avoid possible packages divergences of different distributions. There are two alternatives here, to install OpenNebula you can add **our package repositories** to your system, or visit the `software menu <http://opennebula.org/software:software>`__ to **download the latest package** for your Linux distribution.
+Using the packages provided in our site is the recommended method, to ensure the installation of the latest version and to avoid possible packages divergences of different distributions. There are two alternatives here: you can add **our package repositories** to your system, or visit the `software menu <http://opennebula.org/software:software>`__ to **download the latest package** for your Linux distribution.
 
-Do not forget that we offer Quickstart guides for:
+Remember that we offer Quickstart guides for:
 
 -  :ref:`OpenNebula on CentOS and KVM <qs_centos_kvm>`
 -  :ref:`OpenNebula on CentOS and Xen <qs_centos_xen>`
