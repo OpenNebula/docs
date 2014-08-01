@@ -36,7 +36,7 @@ Virtual Networks have undergone an important upgrade in 4.8. The network definit
 
 - **Securing your cloud**, ARP Cache poisoning prevention can be globally disabled in Open vSwitch: :ref:`arp_cache_poisoning <openvswitch_arp_cache_poisoning>`.
 
-.. todo:: #2927 specify which default gateway to use if there are multiple nics.
+- **Specify default gateway for multiple NICs**, now gateway can be defined separately for each NIC.
 
 OpenNebula Core :: Usage Quotas
 --------------------------------------------------------------------------------
@@ -100,7 +100,7 @@ Regarding Virtual Machine templates there has been significant improvements in i
 
     NIC_DEFAULT = [ MODEL = "virtio" ]
 
-- **User inputs**, you can define user inputs for a given template. These attributes are provided by the user when the template is instantiated. For example you can define MYSQL_PASSWORD and each user can define a custom value for this variable for the new Virtual Machine. This feature is not available using the CLI.
+- **User inputs**, you can define user inputs for a given template. These attributes are provided by the user when the template is instantiated. For example you can define MYSQL_PASSWORD and each user can define a custom value for this variable for the new Virtual Machine. This feature is available through Sunstone and the CLI.
 
 .. code::
 
@@ -111,7 +111,7 @@ Regarding Virtual Machine templates there has been significant improvements in i
 Sunstone
 --------------------------------------------------------------------------------
 
-Sunstone, the portal to your OpenNebula cloud, is now 
+Sunstone, the portal to your OpenNebula cloud, has been improved to support flexible provisioning models:
 
 - **VDCAdmin view**, a new view based on the brand new cloud view is available. vDC admin will be able to create new users and manage the resources of the vDC.
 
@@ -144,12 +144,4 @@ Virtual Machine contextualization now supports more guest OS:
 
 - **Windows guests contextualization**, now supported to several different windows flavours. The process of provisioning and contextualizing a Windows guest context is described :ref:`here <windows_context>`.
 
-- .. todo:: #3008 Move context packages to addon repositories.
-
-
-Packaging
---------------------------------------------------------------------------------
-
-You favorite CMP is better packaged now:
-
-.. todo:: #2429 Compatibility with heartbeat.
+- **Context packages moved to addon repositories**, to ease the incorporation from linux distros
