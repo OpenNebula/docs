@@ -38,13 +38,15 @@ All Front-Ends
 
 -  xmlrpc tuning parameters (MAX\_CONN, MAX\_CONN\_BACKLOG, KEEPALIVE\_TIMEOUT, KEEPALIVE\_MAX\_CONN and TIMEOUT) are only available with packages distributed by us as they are compiled with a newer xmlrpc-c library.
 
--  for **cloud bursting**, a newer nokogiri gem than the on packed by current distros is required. If you are planning to use cloud bursting, you need to install nokogiri >= 1.4.4 prior to run ``install_gems``
+-  for **cloud bursting**, a newer nokogiri gem than the one packed by current distros is required. If you are planning to use cloud bursting, you need to install nokogiri >= 1.4.4 prior to run ``install_gems``
 
 .. code::
 
     # sudo gem install nokogiri -v 1.4.4
 
-ESX 5.x as VMware Node
+- also for **coud bursting**, precisely for Microsoft Azure and IBM SoftLayer, those supported distros with ruby versions <= 1.9.3 (like Centos 6.x or Ubuntu 12.04) please update the ruby installation or use `rvm <https://rvm.io/>`__ to run a newer (>= 1.9.3) version (remember to run ``install_gems`` after the ruby upgrade is done to reinstall all gems)
+
+ESX 5.1 as VMware Node
 ----------------------
 
 -  to accomplish disk hotplugging and nic hotplugging (ignore the first bullet for the latter)
