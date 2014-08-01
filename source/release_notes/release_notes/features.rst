@@ -52,6 +52,7 @@ Complete Virtual Machine Configuration
 ======================================
 
 -  Complete :ref:`definition of VM attributes and requirements <template>`
+-  VM attributes can be provided by the user when the template is instantiated
 -  Support for automatic configuration of VMs with advanced :ref:`contextualization mechanisms <cong>`
 -  :ref:`Cloud-init <cloud-init>` support
 -  :ref:`Hook Manager <hooks>` to trigger administration scripts upon VM state change
@@ -120,6 +121,10 @@ Management of Multi-tier Applications
 -  Complete integration with the OpenNebula's `User Security Management <http://opennebula.org/documentation:features#powerful_user_security_management>`__ system
 -  Computing resources can be tracked and limited using OpenNebula's :ref:`Resource Quota Management <quota_auth>`
 -  :ref:`Automatic scaling of multi-tiered applications <appflow_elasticity>` according to performance metrics and time schedule
+- Dynamic information sharing where information can be passed across nodes in the service
+- Network configuration can be defined for a service template
+- OpenNebula Flow has been integrated in the Cloud and VDC Admin Sunstone views, so users can instantiate new services and monitor groups of Virtual Machines
+
 
 Gain Insight into Cloud Applications
 ====================================
@@ -142,7 +147,8 @@ Standard Cloud Interfaces and Simple Provisioning Portal for Cloud Consumers
 -  :ref:`Transform your local infrastructure into a public cloud by exposing REST-based interfaces <introc>`
 -  :ref:`AWS EC2 API service <ec2qcg>`, the de facto cloud API standard, with :ref:`compatibility with EC2 ecosystem tools <ec2qec>` and :ref:`client tools <ec2qug>`
 -  Support for simultaneously exposing multiple cloud APIs
--  :ref:`Provisioning portal implemented as a user view of Sunstone <cloud_view>` to allow non-IT end users to easily create, deploy and manage compute, storage and network resources
+-  :ref:`Provisioning portal implemented as a user Cloud View of Sunstone <cloud_view>` to allow non-IT end users to easily create, deploy and manage compute, storage and network resources
+-  VDCAdmin Sunstone view where vDC admins are able to create new users and manage the resources of the vDC.
 
 Rich Command Line and Web Interfaces for Cloud Administrators
 =============================================================
