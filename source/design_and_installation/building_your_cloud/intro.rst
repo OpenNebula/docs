@@ -92,7 +92,7 @@ OpenNebula offers broad support for commodity and enterprise-grade hypervisor, m
 
 -  **Databases**: Aside from the original sqlite backend, :ref:`mysql <mysql>` is also supported.
 
--  **Cloud Bursting**: Out of the box connectors are shipped to support :ref:`Amazon EC2 <ec2g>` cloudbursting.
+-  **Cloud Bursting**: Out of the box connectors are shipped to support :ref:`Amazon EC2 <ec2g>`, :ref:`IBM SoftLayer <slg>` and :ref:`Microsoft Azure <azg>` cloudbursting.
 
 |OpenNebula Cloud Platform Support|
 

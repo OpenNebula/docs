@@ -9,7 +9,7 @@ This guide will show you how to develop a new driver for OpenNebula to interact 
 Overview
 ========
 
-Cloud bursting is a model in which the local resources of a Private Cloud are combined with resources from remote Cloud providers. The remote provider could be a commercial Cloud service, such as Amazon EC2, or a partner infrastructure running a different OpenNebula instance. Such support for cloud bursting enables highly scalable hosting environments. For more information on this model see the :ref:`Cloud Bursting overview <introh>`
+Cloud bursting is a model in which the local resources of a Private Cloud are combined with resources from remote Cloud providers. The remote provider could be a commercial Cloud service, such as Amazon EC2, IBM SoftLayer or Microsoft Azure, or a partner infrastructure running a different OpenNebula instance. Such support for cloud bursting enables highly scalable hosting environments. For more information on this model see the :ref:`Cloud Bursting overview <introh>`
 
 The remote cloud provider will be included in the OpenNebula host pool like any other physical host of your infrastructure:
 
