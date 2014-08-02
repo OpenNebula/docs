@@ -6,8 +6,6 @@ Understanding OpenNebula
 
 This guide is meant for the cloud architects, builders and administrators, to help them understand the way OpenNebula can manage the infrastructure resources, and how they can be consumed by the users.
 
-In a small installation with a few hosts, you can use OpenNebula with the two default groups for the administrator and the users, without giving much though to the infrastructure partitioning and user organization. But for medium and large deployments you will probably want to provide some level of isolation and structure.
-
 Although OpenNebula has been designed and developed to be easy to adapt to each individual company use case and processes, and perform fine-tuning of multiple aspects, OpenNebula brings a pre-defined model for cloud provisioning and consumption.
 
 The OpenNebula model is a result of our collaboration with our user community during the last years.
