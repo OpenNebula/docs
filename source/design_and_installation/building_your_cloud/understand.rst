@@ -67,14 +67,14 @@ The Cloud provisioning model based on VDCs enables an integrated, comprehensive 
 Cloud Usage Models
 ================================================================================
 
-OpenNebula has three pre-defined user roles to implement three typical enterprise cloud scenarios: 
+OpenNebula has three pre-defined user roles to implement three typical enterprise cloud scenarios:
 * Data center infrastructure management
 * Simple cloud provisioning model
 * Advanced cloud provisioning model
 
 In the three scenarios, the Cloud Administrators manage the physical infrastructure, creates users and VDCs, prepares base templates and images for users, etc
 
-These Cloud Administrators  typically access to the cloud by using the CLI or the Admin View of Sunstone. 
+These Cloud Administrators  typically access to the cloud by using the CLI or the Admin View of Sunstone.
 
 +------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------+
 |       Role       |                                                                       Capabilities                                                                      |
@@ -97,13 +97,13 @@ This model is used to integrate and federate existing IT assets that can be in d
 
 End Users can use the templates and images pre-defined by the cloud administrator, but usually are also allowed to create their own templates and images. They are also able to manage the life-cycle of their resources, including advanced features that may harm the VM guests, like hot-plugging of new disks, resize of Virtual Machines, modify boot parameters, etc.
 
-These Advanced Users typically access to the cloud by using the CLI or the User View of Sunstone. 
+These Advanced Users typically access to the cloud by using the CLI or the User View of Sunstone.
 
 +----------+-------------------------------------------------------------------+
 |   Role   |                            Capabilities                           |
 +==========+===================================================================+
 | **User** | * Instantiates VMs using their own templates                      |
-|          | * Creates new tempaltes and mages                                 |
+|          | * Creates new templates and images                                |
 |          | * Manages their VMs, including advanced life-cycle features       |
 |          | * Creates and manages :ref:`Application Flows <oneapps_overview>` |
 |          | * Check their usage and quotas                                    |
@@ -117,7 +117,7 @@ In the simple infrastructure provisioning model, the Cloud is offering infrastru
 
 VDCs are used by the Cloud Administrator to isolate users and allocate resources but are not offered on-demand.
 
-These VDC Users typically access to the cloud by using the Cloud View of Sunstone. 
+These VDC Users typically access to the cloud by using the Cloud View of Sunstone.
 
 +----------------+------------------------------------------------------------------------------------------------------------------------------+
 |      Role      |                                                         Capabilities                                                         |
@@ -143,9 +143,9 @@ Advanced Cloud Provisioning Model
 
 The advanced provisioning model is an extension of the previous one where the cloud provider offers VDCs on demand to projects, companies, departments or business units. Each VDC can define one or more users as VDC Admins. These admins can create new users inside the VDC, and also manage the resources of the rest of the users. A VDC Admin may, for example, shutdown a VM from other user to free group quota usage.
 
-These VDC Admins typically access to the cloud by using the VDC Admin View of Sunstone. 
+These VDC Admins typically access to the cloud by using the VDC Admin View of Sunstone.
 
-The VDC Users have the capabilities described in the previous scenario and typically access to the cloud by using the Cloud View of Sunstone. 
+The VDC Users have the capabilities described in the previous scenario and typically access to the cloud by using the Cloud View of Sunstone.
 
 +----------------+------------------------------------------------------------------------------------------------------------------------------+
 |      Role      |                                                         Capabilities                                                         |
