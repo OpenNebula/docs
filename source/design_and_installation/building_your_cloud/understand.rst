@@ -93,7 +93,7 @@ These Cloud Administrators  typically access to the cloud by using the CLI or th
 Data Center Infrastructure Management
 -----------------------------------------------------------------------------
 
-In this usage model, Users are familiar with virtualization concepts. Except for the infrastructure resources, the web interface offeres the same operations available to the Cloud Admin. These are "Advanced Users" that could be considered also as "Limited Cloud Administrators".
+This model is used to integrate and federate existing IT assets that can be in different data centers and to manage virtualized resources on top of it. In this usage model, Users are familiar with virtualization concepts. Except for the infrastructure resources, the web interface offeres the same operations available to the Cloud Admin. These are "Advanced Users" that could be considered also as "Limited Cloud Administrators".
 
 End Users can use the templates and images pre-defined by the cloud administrator, but usually are also allowed to create their own templates and images. They are also able to manage the life-cycle of their resources, including advanced features that may harm the VM guests, like hot-plugging of new disks, resize of Virtual Machines, modify boot parameters, etc.
 
@@ -113,7 +113,7 @@ These Advanced Users typically access to the cloud by using the CLI or the User 
 Simple Cloud Provisioning Model
 -----------------------------------------------------------------------------
 
-In the simple infrastructure provisioning model, Users are considered as "Cloud Consumers" and are much more limited in their operations. These VDC Users access a very simple and simplified web interface that allows them to launch Virtual Machines from pre-defined Templates and Images. They can access their VMs, and perform basic operations like shutdown. The changes made to a VM disk can be saved back, but new Images cannot be created from scratch.
+In the simple infrastructure provisioning model, the Cloud is offering infrastructure as a service to individual users. Users are considered as "Cloud Consumers" and are much more limited in their operations.These VDC Users access a very simple and simplified web interface that allows them to launch Virtual Machines from pre-defined Templates and Images. They can access their VMs, and perform basic operations like shutdown. The changes made to a VM disk can be saved back, but new Images cannot be created from scratch.
 
 VDCs are used by the Cloud Administrator to isolate users and allocate resources but are not offered on-demand.
 
@@ -141,7 +141,7 @@ These VDC Users typically access to the cloud by using the Cloud View of Sunston
 Advanced Cloud Provisioning Model
 -----------------------------------------------------------------------------
 
-The advanced provisioning model is an extension of the previous one where the cloud provider offers VDCs on demand. Each VDC can define one or more users as VDC Admins. These admins can create new users inside the VDC, and also manage the resources of the rest of the users. A VDC Admin may, for example, shutdown a VM from other user to free group quota usage.
+The advanced provisioning model is an extension of the previous one where the cloud provider offers VDCs on demand to projects, companies, departments or business units. Each VDC can define one or more users as VDC Admins. These admins can create new users inside the VDC, and also manage the resources of the rest of the users. A VDC Admin may, for example, shutdown a VM from other user to free group quota usage.
 
 These VDC Admins typically access to the cloud by using the VDC Admin View of Sunstone. 
 
