@@ -454,21 +454,21 @@ Context Section
 
 Context information is passed to the Virtual Machine via an ISO mounted as a partition. This information can be defined in the VM template in the optional section called Context, with the following attributes:
 
-+---------------+-------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-|   Attribute   |                                                                   Description                                                                   | Mandatory |
-+===============+=================================================================================================================================================+===========+
-| **VARIABLE**  | Variables that store values related to this virtual machine or others. The name of the variable is arbitrary (in the example, we use hostname). | Optional  |
-+---------------+-------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| **FILES \***  | space-separated list of paths to include in context device.                                                                                     | Optional  |
-+---------------+-------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| **FILES\_DS** | space-separated list of File images to include in context device.                                                                               | Optional  |
-+---------------+-------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| **TARGET**    | device to attach the context ISO.                                                                                                               | Optional  |
-+---------------+-------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| **TOKEN**     | ``YES`` to create a token.txt file for :ref:`OneGate monitorization <onegate_usage>`                                                            | Optional  |
-+---------------+-------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| **NETWORK**   | ``YES`` to fill automatically the networking parameters for each NIC, used by the :ref:`Contextualization packages <context_overview>`          | Optional  |
-+---------------+-------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
++-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+|    Attribute    |                                                                                                                                                      Description                                                                                                                                                       | Mandatory |
++=================+========================================================================================================================================================================================================================================================================================================================+===========+
+| **VARIABLE**    | Variables that store values related to this virtual machine or others. The name of the variable is arbitrary (in the example, we use hostname).                                                                                                                                                                        | Optional  |
++-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| **FILES \***    | space-separated list of paths to include in context device.                                                                                                                                                                                                                                                            | Optional  |
++-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| **FILES\_DS**   | space-separated list of File images to include in context device.                                                                                                                                                                                                                                                      | Optional  |
++-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| **TARGET**      | device to attach the context ISO.                                                                                                                                                                                                                                                                                      | Optional  |
++-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| **TOKEN**       | ``YES`` to create a token.txt file for :ref:`OneGate monitorization <onegate_usage>`                                                                                                                                                                                                                                   | Optional  |
++-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| **NETWORK**     | ``YES`` to fill automatically the networking parameters for each NIC, used by the :ref:`Contextualization packages <context_overview>`                                                                                                                                                                                 | Optional  |
++-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
 
 \* only for users in oneadmin group
 
@@ -532,17 +532,17 @@ The values referred to by **VARIABLE** can be defined :
 
 **Pre-defined variables**, apart from those defined in the template you can use:
 
-   -  ``$UID``, the uid of the VM owner
-   -  ``$UNAME``, the name of the VM owner
-   -  ``$GID``, the id of the VM owner's group
-   -  ``$GNAME``, the name of the VM owner's group
-   -  ``$TEMPLATE``, the whole template in XML format and encoded in base64
+- ``$UID``, the uid of the VM owner
+- ``$UNAME``, the name of the VM owner
+- ``$GID``, the id of the VM owner's group
+- ``$GNAME``, the name of the VM owner's group
+- ``$TEMPLATE``, the whole template in XML format and encoded in base64
 
 **FILES\_DS**, each file must be registered in a FILE\_DS datastore and has to be of type CONTEXT. Use the following to select files from Files Datastores:
 
-   -  ``$FILE[IMAGE=<image name>]``, to select own files
-   -  ``$FILE[IMAGE=<image name>, <IMAGE_UNAME|IMAGE_UID>=<owner name|owner id>]``, to select images owned by other users, by user name or uid.
-   -  ``$FILE[IMAGE_ID=<image id>]``, global file selection
+- ``$FILE[IMAGE=<image name>]``, to select own files
+- ``$FILE[IMAGE=<image name>, <IMAGE_UNAME|IMAGE_UID>=<owner name|owner id>]``, to select images owned by other users, by user name or uid.
+- ``$FILE[IMAGE_ID=<image id>]``, global file selection
 
 Example:
 
@@ -740,3 +740,25 @@ All the **default** restricted attributes to users in the oneadmin group are sum
 
 These attributes can be configured in :ref:`oned.conf <oned_conf>`.
 
+.. _template_user_inputs:
+
+User Inputs
+===========
+
+``USER_INPUTS`` provides the template creator with the possibility to dynamically ask the user instantiating the template for dynamic values that must be defined.
+
+.. code::
+
+    USER_INPUTS = [
+      BLOG_TITLE="M|text|Blog Title",
+      MYSQL_PASSWORD="M|password|MySQL Password",
+      <VAR>="M|<type>|<desc>"
+    ]
+
+    CONTEXT=[
+      BLOG_TITLE="$BLOG_TITLE",
+      MYSQL_PASSWORD="$MYSQL_PASSWORD" ]
+
+Note that the CONTEXT references the variables defined in the USER_INPUTS so the value is injected into the VM.
+
+Valid ``types`` are ``text`` and ``password``.

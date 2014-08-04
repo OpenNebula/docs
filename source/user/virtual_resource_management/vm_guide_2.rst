@@ -80,7 +80,18 @@ Assuming we have a VM Template registered called *vm-example* with ID 6, then we
     $ onetemplate instantiate vm-example --name my_vm
     VM ID: 0
 
-afterwards, the VM can be listed with the ``onevm list`` command. You can also use the ``onevm top`` command to list VMs continuously.
+
+If the template has :ref:`USER INPUTS <vm_guide_context>` defined the CLI will prompt the user for these values:
+
+.. code::
+
+    $ onetemplate instantiate vm-example --name my_vm
+    There are some parameters that require user input.
+      * (BLOG_TITLE) Blog Title: <my_title>
+      * (DB_PASSWORD) Database Password: 
+    VM ID: 0
+
+Afterwards, the VM can be listed with the ``onevm list`` command. You can also use the ``onevm top`` command to list VMs continuously.
 
 .. code::
 
