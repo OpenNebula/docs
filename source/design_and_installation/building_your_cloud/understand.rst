@@ -49,7 +49,7 @@ A Cloud Provisioning Model Based on vDCs
 
 A VDC is a fully-isolated virtual infrastructure environment where a Group of users, optionally under the control of the VDC admin, can create and manage compute and storage capacity. The users in the VDC, including the VDC administrator, would only see the virtual resources and not the underlying physical infrastructure. The physical resources allocated by the cloud administrator to the vDC can be completely dedicated to the vDC, providing isolation at the physical level too.
 
-The privileges of the VDC users and the administrator regarding the operations over the virtual resources created by other users can be configured. In a typical scenario the users can instantiate virtual machine templates to create their machines, while the administrators of the VDC have full control over other users' resources and can also create new users in the VDC.
+The privileges of the VDC users and the administrator regarding the operations over the virtual resources created by other users can be configured. For example, in the Advanced Cloud Provisioning Case, the users can instantiate virtual machine templates to create their machines, while the administrators of the VDC have full control over other users' resources and can also create new users in the VDC.
 
 |cloud-view|
 
@@ -75,7 +75,6 @@ OpenNebula has three pre-defined user roles to implement three typical enterpris
 In the three scenarios, the Cloud Administrators manage the physical infrastructure, creates users and VDCs, prepares base templates and images for users, etc
 
 These Cloud Administrators  typically access to the cloud by using the CLI or the Admin View of Sunstone. 
-
 
 +------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------+
 |       Role       |                                                                       Capabilities                                                                      |
@@ -114,10 +113,16 @@ These Advanced Users typically access to the cloud by using the CLI or the User 
 Simple Cloud Provisioning Model
 -----------------------------------------------------------------------------
 
+In the simple infrastructure provisioning model, Users are considered as "Cloud Consumers" and are much more limited in their operations. These VDC Users access a very simple and simplified web interface that allows them to launch Virtual Machines from pre-defined Templates and Images. They can access their VMs, and perform basic operations like shutdown. The changes made to a VM disk can be saved back, but new Images cannot be created from scratch.
+
+VDCs are used by the Cloud Administrator to isolate users and allocate resources but are not offered on-demand.
+
+These VDC Users typically access to the cloud by using the Cloud View of Sunstone. 
+
 +----------------+------------------------------------------------------------------------------------------------------------------------------+
 |      Role      |                                                         Capabilities                                                         |
 +================+==============================================================================================================================+
-| **vDC User**   | * Instantiates VMs using the templates defined by the Cloud Admins and the images defined by the Cloud Admins or vDC Admins. |
+| **VDC User**   | * Instantiates VMs using the templates defined by the Cloud Admins and the images defined by the Cloud Admins or vDC Admins. |
 |                | * Instantiates VMs using their own Images saved from a previous running VM                                                   |
 |                | * Manages their VMs, including                                                                                               |
 |                |                                                                                                                              |
@@ -136,17 +141,18 @@ Simple Cloud Provisioning Model
 Advanced Cloud Provisioning Model
 -----------------------------------------------------------------------------
 
-In a infrastructure provisioning model, the end users access a simplified web interface that allows them to launch Virtual Machines from pre-defined Templates and Images. They can access their VMs, and perform basic operations like shutdown. The changes made to a VM disk can be saved back, but new Images cannot be created from scratch.
+The advanced provisioning model is an extension of the previous one where the cloud provider offers VDCs on demand. Each VDC can define one or more users as VDC Admins. These admins can create new users inside the VDC, and also manage the resources of the rest of the users. A VDC Admin may, for example, shutdown a VM from other user to free group quota usage.
 
-Optionally, each vDC can define one or more users as vDC Admins. These admins can create new users inside the vDC, and also manage the resources of the rest of the users. A vDC Admin may, for example, shutdown a VM from other user to free group quota usage.
+These VDC Admins typically access to the cloud by using the VDC Admin View of Sunstone. 
+
+The VDC Users have the capabilities described in the previous scenario and typically access to the cloud by using the Cloud View of Sunstone. 
 
 +----------------+------------------------------------------------------------------------------------------------------------------------------+
 |      Role      |                                                         Capabilities                                                         |
 +================+==============================================================================================================================+
-| **vDC Admin.** | * Creates new users in the vDC                                                                                               |
-|                | * Operates on vDC virtual machines and disk images                                                                           |
-|                | * Creates and registers disk images to be used by the vDC users                                                              |
-|                | * Checks vDC usage and quotas                                                                                                |
+| **VDC Admin.** | * Creates new users in the vDC                                                                                               |
+|                | * Operates on VDC virtual machines and disk images                                                                           |
+|                | * Checks VDC usage and quotas                                                                                                |
 +----------------+------------------------------------------------------------------------------------------------------------------------------+
 
 .. |vDC Resources| image:: /images/vdc_resources.png
