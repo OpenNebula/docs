@@ -204,6 +204,16 @@ And each scheduled policy is defined as:
           :type => :array,
           :items => ROLE_SCHEMA,
           :required => true
+        },
+        'custom_attrs' => {
+          :type => :object,
+          :properties => {
+          },
+          :required => false
+        },
+        'ready_status_gate' => {
+          :type => :boolean,
+          :required => false
         }
       }
     }
@@ -228,6 +238,10 @@ Role Schema
         'vm_template' => {
           :type => :integer,
           :required => true
+        },
+        'vm_template_contents' => {
+          :type => :string,
+          :required => false
         },
         'parents' => {
           :type => :array,

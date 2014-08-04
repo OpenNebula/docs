@@ -121,7 +121,16 @@ OneGate supports these actions:
         $ curl -X "PUT" "${ONEGATE_ENDPOINT}/vm" \
             --header "X-ONEGATE-TOKEN: `cat token.txt`" \
             --header "X-ONEGATE-VMID: $VMID" \
-            -d "RUNNING=YES"
+            -d "APP_LOAD = 9.7"
+
+    The new metric is stored in the user template section of the VM:
+
+    .. code::
+
+        $ onevm show 0
+        ...
+        USER TEMPLATE
+        APP_LOAD="9.7"
 
 
 * ``GET ${ONEGATE_ENDPOINT}/service``: To request information about the Virtual Machine. The information is returned in JSON format and is ready for public cloud usage:

@@ -113,12 +113,14 @@ Determining when a VM is READY
 
 Depending on the deployment strategy, OneFlow will wait until all the VMs in a specific role are all in running state before deploying VMs that belong to a child role. How OneFlow determines the running state of the VMs can be specified with the checkbox ``Wait for VMs to report that the are READY`` available in the service creation dialog in Sunstone, or the attribute in ``ready_status_gate`` in the top-level of the service JSON.
 
+|oneflow-ready-status-checkbox|
+
 If ``ready_status_gate`` is set to ``true``, a VM will only be considered to be in running state the following points are true:
 
 * VM is in running state for OpenNebula. Which specifically means that ``LCM_STATE==3`` and ``STATE>=3``
 * The VM has ``READY=YES`` in the user template.
 
-The idea is report via :ref:`OneGate <onegate_usage>` from inside the VM that it's running during the boot sequence:
+The idea is to report via :ref:`OneGate <onegate_usage>` from inside the VM that it's running during the boot sequence:
 
 .. code::
 
@@ -309,6 +311,15 @@ A role's cardinality can be adjusted manually, based on metrics, or based on a s
 
 To define automatic elasticity policies, proceed to the :ref:`elasticity documentation guide <appflow_elasticity>`.
 
+Sharing Information between VMs
+--------------------------------------------------------------------------------
+
+The Virtual Machines of a Service can share information with each other, using the :ref:`OneGate server <onegate_overview>`.  OneGate allows Virtual Machine guests to push information to OpenNebula, and pull information about their own VM or Service.
+
+From any VM, use the ``PUT ${ONEGATE_ENDPOINT}/vm`` action to store any information in the VM user template. This information will be in the form of attribute=vale, e.g. ``ACTIVE_TASK = 13``. Other VMs in the Service can request that information using the ``GET ${ONEGATE_ENDPOINT}/service`` action.
+
+You can read more details in the :ref:`OneGate API documentation <onegate_usage>`.
+
 Managing Permissions
 ====================
 
@@ -482,3 +493,4 @@ Read the :ref:`elasticity policies documentation <appflow_elasticity>` for more 
 .. |image2| image:: /images/oneflow-templates.png
 .. |image3| image:: /images/oneflow-service.png
 .. |image4| image:: /images/flow_lcm.png
+.. |oneflow-ready-status-checkbox| image:: /images/oneflow-ready-status-checkbox.png

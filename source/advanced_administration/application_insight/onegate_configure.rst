@@ -28,8 +28,16 @@ The OneGate configuration file can be found at ``/etc/one/onegate-server.conf``.
 
 **Auth**
 
-* ``auth``: Authentication driver for incomming requests. ``onegate``: based on token provided in the context
-* ``core_auth``: Authentication driver to communicate with OpenNebula core, ``cipher`` for symmetric cipher encryption of tokens ``x509`` for x509 certificate encryption of tokens. For more information, visit the :ref:`OpenNebula Cloud Auth documentation <cloud_auth>`.
+* ``auth``: Authentication driver for incomming requests.
+
+  * ``onegate``: based on token provided in the context
+
+* ``core_auth``: Authentication driver to communicate with OpenNebula core.
+
+  * ``cipher`` for symmetric cipher encryption of tokens
+  * ``x509`` for x509 certificate encryption of tokens. For more information, visit the :ref:`OpenNebula Cloud Auth documentation <cloud_auth>`.
+
+* ``oneflow_server`` Endpoint where the OneFlow server is listening.
 
 This is the default file
 
@@ -38,39 +46,45 @@ This is the default file
     ################################################################################
     # Server Configuration
     ################################################################################
-     
+    
     # OpenNebula sever contact information
     #
     :one_xmlrpc: http://localhost:2633/RPC2
-     
+
     # Server Configuration
     #
     :host: 127.0.0.1
     :port: 5030
-     
+
     ################################################################################
     # Log
     ################################################################################
-     
+
     # Log debug level
     #   0 = ERROR, 1 = WARNING, 2 = INFO, 3 = DEBUG
     #
     :debug_level: 3
-     
+
     ################################################################################
     # Auth
     ################################################################################
-     
+
     # Authentication driver for incomming requests
     #   onegate, based on token provided in the context
     #
     :auth: onegate
-     
+
     # Authentication driver to communicate with OpenNebula core
     #   cipher, for symmetric cipher encryption of tokens
     #   x509, for x509 certificate encryption of tokens
     #
     :core_auth: cipher
+    
+    ################################################################################
+    # OneFlow Endpoint
+    ################################################################################
+    
+    :oneflow_server: http://localhost:2474
 
 Start OneGate
 =============
