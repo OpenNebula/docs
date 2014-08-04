@@ -14,7 +14,7 @@ This guide also illustrates the three main types of cloud infrastructures that a
 The Infrastructure Perspective
 ================================================================================
 
-In a small installation with a few hosts, you can use OpenNebula without giving much though to  infrastructure federation and partitioning. But for medium and large deployments you will probably want to provide some level of isolation and structure. Common large IT shops have multiple Data Centers (DCs), each one of them consisting of several physical Clusters of infrastructure resources (hosts, networks and storage). These Clusters could present different architectures and software/hardware execution environments to fulfill the needs of different workload profiles. Moreover, many organizations have access to external public clouds to build hybrid cloud scenarios where the private capacity of the Data Centers is supplemented with resources from external clouds, like Amazon AWS, IBM SoftLayer or Microsoft Azure to address peaks of demand. OpenNEbula provides Sysadmins with a single comprehensive framework to dynamically allocate all these available resources to the multiple groups of users.
+In a small installation with a few hosts, you can use OpenNebula without giving much though to infrastructure federation and partitioning. But for medium and large deployments you will probably want to provide some level of isolation and structure. Common large IT shops have multiple Data Centers (DCs), each one of them consisting of several physical Clusters of infrastructure resources (hosts, networks and storage). These Clusters could present different architectures and software/hardware execution environments to fulfill the needs of different workload profiles. Moreover, many organizations have access to external public clouds to build hybrid cloud scenarios where the private capacity of the Data Centers is supplemented with resources from external clouds, like Amazon AWS, to address peaks of demand. OpenNebula provides a single comprehensive framework to dynamically allocate all these available resources to the multiple groups of users.
 
 For example, you could have two Data Centers in different geographic locations, Europe and USA West Coast, and an agreement for cloudbursting with a public cloud provider, such as Amazon, SoftLayer and/or Azure. Each Data Center runs its own full OpenNebula deployment. Multiple OpenNebula installations can be configured as a federation, and in this case they will share the same user accounts, groups, and permissions across Data Centers.
 
@@ -25,9 +25,9 @@ The Organizational Perspective
 
 Users are organized into Groups (also called Projects, Domains, Tenants...). A Group is an authorization boundary that can be seen as a business unit if you are considering it as private cloud or as a complete new company if it is public cloud.
 
-A Group is simply a boundary, you need to populate resources into the Group which can then be consumed by the users of that Group. A vDC (Virtual Data Center) is a Group plus Resource Providers assigned. A Resource Provider is a Cluster of infrastructure resources (physical hosts, networks, storage and external clouds) from one of the Data Centers.
+A Group is simply a boundary, you need to populate resources into the Group which can then be consumed by the users of that Group. A VDC (Virtual Data Center) is a Group plus Resource Providers assigned. A Resource Provider is a Cluster of infrastructure resources (physical hosts, networks, storage and external clouds) from one of the Data Centers.
 
-Different authorization scenarios can be enabled with the powerful and configurable ACL system provided, from the definition of vDC Admins to the privileges of the users that can deploy virtual machines. Each vDC can execute different types of workload profiles with different performance and security requirements.
+Different authorization scenarios can be enabled with the powerful and configurable ACL system provided, from the definition of VDC Admins to the privileges of the users that can deploy virtual machines. Each VDC can execute different types of workload profiles with different performance and security requirements.
 
 The following are common enterprise use cases in large cloud computing deployments:
 
@@ -36,7 +36,7 @@ The following are common enterprise use cases in large cloud computing deploymen
 
 |vDC Groups|
 
-For example, you can think Web Development, Human Resources, and Big Data Analysis as business units represented by vDCs in a private OpenNebula cloud.
+For example, you can think Web Development, Human Resources, and Big Data Analysis as business units represented by VDCs in a private OpenNebula cloud.
 
 * **BLUE**: Allocation of (ClusterA-DC_West_Coast + Cloudbursting) to Web Development
 * **RED**: Allocation of (ClusterB-DC_West_Coast + ClusterA-DC_Europe + Cloudbursting) to Human Resources
@@ -47,15 +47,15 @@ For example, you can think Web Development, Human Resources, and Big Data Analys
 A Cloud Provisioning Model Based on vDCs
 ================================================================================
 
-A vDC is a fully-isolated virtual infrastructure environment where a Group of users, optionally under the control of the vDC admin, can create and manage compute and storage capacity. The users in the vDC, including the vDC administrator, would only see the virtual resources and not the underlying physical infrastructure. The physical resources allocated by the cloud administrator to the vDC can be completely dedicated to the vDC, providing isolation at the physical level too.
+A VDC is a fully-isolated virtual infrastructure environment where a Group of users, optionally under the control of the VDC admin, can create and manage compute and storage capacity. The users in the VDC, including the VDC administrator, would only see the virtual resources and not the underlying physical infrastructure. The physical resources allocated by the cloud administrator to the vDC can be completely dedicated to the vDC, providing isolation at the physical level too.
 
-The privileges of the vDC users and the administrator regarding the operations over the virtual resources created by other users can be configured. In a typical scenario the vDC administrator can upload and create images and virtual machine templates, while the users can only instantiate virtual machine templates to create their machines. The administrators of the vDC have full control over other users' resources and can also create new users in the vDC.
+The privileges of the VDC users and the administrator regarding the operations over the virtual resources created by other users can be configured. In a typical scenario the users can instantiate virtual machine templates to create their machines, while the administrators of the VDC have full control over other users' resources and can also create new users in the VDC.
 
 |cloud-view|
 
-Users can then access their vDC through any of the existing OpenNebula interfaces, such as the CLI, Sunstone Cloud View, OCA, or the AWS APIs. vDC administrators can manage their vDCs through the CLI or the vDC admin view in Sunstone. Cloud Administrators can manage the vDCs through the CLI or Sunstone.
+Users can then access their VDC through any of the existing OpenNebula interfaces, such as the CLI, Sunstone Cloud View, OCA, or the AWS APIs. VDC administrators can manage their VDCs through the CLI or the VDC Admin View in Sunstone. Cloud Administrators can manage the VDCs through the CLI or Sunstone.
 
-The Cloud provisioning model based on vDCs enables an integrated, comprehensive framework to dynamically provision the infrastructure resources in large multi-datacenter environments to different customers, business units or groups. This brings several benefits:
+The Cloud provisioning model based on VDCs enables an integrated, comprehensive framework to dynamically provision the infrastructure resources in large multi-datacenter environments to different customers, business units or groups. This brings several benefits:
 
 * Partitioning of cloud physical resources between Groups of users
 * Complete isolation of users, organizations or workloads
