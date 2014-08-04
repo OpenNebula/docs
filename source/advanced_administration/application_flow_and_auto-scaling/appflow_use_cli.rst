@@ -108,7 +108,7 @@ Templates can be deleted with ``oneflow-template delete``.
 
 .. _appflow_use_cli_running_state:
 
-Determining when a VM is REAADY
+Determining when a VM is READY
 -------------------------------
 
 Depending on the deployment strategy, OneFlow will wait until all the VMs in a specific role are all in running state before deploying VMs that belong to a child role. How OneFlow determines the running state of the VMs can be specified with the checkbox ``Wait for VMs to report that the are READY`` available in the service creation dialog in Sunstone, or the attribute in ``ready_status_gate`` in the top-level of the service JSON.

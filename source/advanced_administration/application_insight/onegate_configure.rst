@@ -4,7 +4,7 @@
 OneGate Server Configuration
 =============================
 
-The OneGate service allows Virtual Machines guests to push monitoring information to OpenNebula. Althouth it is installed by default, its use is completely optional.
+The OneGate service allows Virtual Machines guests to push monitoring information to OpenNebula. Although it is installed by default, its use is completely optional.
 
 Requirements
 ============

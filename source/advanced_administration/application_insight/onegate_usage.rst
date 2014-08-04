@@ -82,7 +82,7 @@ With that data, you can obtain the headers required for all the ONEGATE API meth
     * ``X-ONEGATE-TOKEN: token.txt contents``
     * ``X-ONEGATE-VMID: <vmid>``
 
-OneGate supports theses actions:
+OneGate supports these actions:
 
 * ``GET ${ONEGATE_ENDPOINT}/vm``: To request information about the Virtual Machine. The information is returned in JSON format and is ready for public cloud usage:
 
@@ -158,7 +158,7 @@ OneGate supports theses actions:
             }
         }
 
-* ``GET ${ONEGATE_ENDPOINT}``: returns information endoints:
+* ``GET ${ONEGATE_ENDPOINT}``: returns information endpoints:
 
     .. code::
 
