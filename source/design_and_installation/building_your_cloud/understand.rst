@@ -7,7 +7,7 @@ Understanding OpenNebula
 This guide is meant for cloud architects, builders and administrators, to help them understand the OpenNebula model for managing and provisiong virtual resources. This  model is a result of our collaboration with our user community during the last years. Although OpenNebula has been designed and developed to be easy to adapt to individual enterprise use cases and processes, and to perform fine-tuning of multiple aspects, OpenNebula brings a pre-defined model for cloud provisioning and consumption that offers an integrated and comprehensive framework for resource allocation and isolation in federated data centers and hybrid cloud deployments.
 
 This guide also illustrates the three main types of cloud infrastructures that are implemented with OpenNebula:
-* Data center infrastructure managemnt
+* Data center infrastructure management
 * Simple cloud provisioning model
 * Advanced cloud provisioning model
 
@@ -67,9 +67,15 @@ The Cloud provisioning model based on VDCs enables an integrated, comprehensive 
 Cloud Usage Models
 ================================================================================
 
-OpenNebula has three pre-defined user roles to implement two typical enterprise cloud scenarios: infrastructure management and infrastructure provisioning.
+OpenNebula has three pre-defined user roles to implement three typical enterprise cloud scenarios: 
+* Data center infrastructure management
+* Simple cloud provisioning model
+* Advanced cloud provisioning model
 
-In both scenarios, the Cloud Administrator manages the physical infrastructure, creates users and vDC, and prepares base templates and images for other users.
+In the three scenarios, the Cloud Administrators manage the physical infrastructure, creates users and VDCs, prepares base templates and images for users, etc
+
+These Cloud Administrators  typically access to the cloud by using the CLI or the Admin View of Sunstone. 
+
 
 +------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------+
 |       Role       |                                                                       Capabilities                                                                      |
@@ -77,49 +83,40 @@ In both scenarios, the Cloud Administrator manages the physical infrastructure, 
 | **Cloud Admin.** | * Operates the Cloud infrastructure (i.e. computing nodes, networking fabric, storage servers)                                                          |
 |                  | * Creates and manages OpenNebula infrastructure resources: Hosts, Virtual Networks, Datastores                                                          |
 |                  | * Creates and manages :ref:`Application Flows <oneapps_overview>`                                                                                       |
-|                  | * Creates new groups for vDCs                                                                                                                           |
-|                  | * Assigns resource providers to a vDC and sets quota limits                                                                                             |
-|                  | * Defines base instance types to be used by the vDCs. These types define the capacity of the VMs (memory, cpu and additional storage) and connectivity. |
-|                  | * Prepare VM images to be used by the vDCs                                                                                                              |
+|                  | * Creates new groups for VDCs                                                                                                                           |
+|                  | * Assigns resource providers to a VDC and sets quota limits                                                                                             |
+|                  | * Defines base instance types to be used by the VDCs. These types define the capacity of the VMs (memory, cpu and additional storage) and connectivity. |
+|                  | * Prepare VM images to be used by the VDCs                                                                                                              |
 |                  | * Monitor the status and health of the cloud                                                                                                            |
 |                  | * Generate activity reports                                                                                                                             |
 +------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-Infrastructure Management
+Data Center Infrastructure Management
 -----------------------------------------------------------------------------
 
-In this usage model, users are familiar with virtualization concepts. Except for the infrastructure resources, the web interface offeres the same operations available to the Cloud Admin.
+In this usage model, Users are familiar with virtualization concepts. Except for the infrastructure resources, the web interface offeres the same operations available to the Cloud Admin. These are "Advanced Users" that could be considered also as "Limited Cloud Administrators".
 
-End users can use the templates and images pre-defined by the cloud administrator, but are also allowed to create their own. They are also able to manage the life-cycle of their resources, including advanced features that may harm the VM guests, like hot-plugging of new disks, resize of Virtual Machines, modify boot parameters, etc.
+End Users can use the templates and images pre-defined by the cloud administrator, but usually are also allowed to create their own templates and images. They are also able to manage the life-cycle of their resources, including advanced features that may harm the VM guests, like hot-plugging of new disks, resize of Virtual Machines, modify boot parameters, etc.
 
+These Advanced Users typically access to the cloud by using the CLI or the User View of Sunstone. 
 
 +----------+-------------------------------------------------------------------+
 |   Role   |                            Capabilities                           |
 +==========+===================================================================+
 | **User** | * Instantiates VMs using their own templates                      |
-|          | * Creates new Images                                              |
+|          | * Creates new tempaltes and mages                                 |
 |          | * Manages their VMs, including advanced life-cycle features       |
 |          | * Creates and manages :ref:`Application Flows <oneapps_overview>` |
 |          | * Check their usage and quotas                                    |
 |          | * Upload SSH keys to access the VMs                               |
 +----------+-------------------------------------------------------------------+
 
-
-Infrastructure Provisioning
+Simple Cloud Provisioning Model
 -----------------------------------------------------------------------------
-
-In a infrastructure provisioning model, the end users access a simplified web interface that allows them to launch Virtual Machines from pre-defined Templates and Images. They can access their VMs, and perform basic operations like shutdown. The changes made to a VM disk can be saved back, but new Images cannot be created from scratch.
-
-Optionally, each vDC can define one or more users as vDC Admins. These admins can create new users inside the vDC, and also manage the resources of the rest of the users. A vDC Admin may, for example, shutdown a VM from other user to free group quota usage.
 
 +----------------+------------------------------------------------------------------------------------------------------------------------------+
 |      Role      |                                                         Capabilities                                                         |
 +================+==============================================================================================================================+
-| **vDC Admin.** | * Creates new users in the vDC                                                                                               |
-|                | * Operates on vDC virtual machines and disk images                                                                           |
-|                | * Creates and registers disk images to be used by the vDC users                                                              |
-|                | * Checks vDC usage and quotas                                                                                                |
-+----------------+------------------------------------------------------------------------------------------------------------------------------+
 | **vDC User**   | * Instantiates VMs using the templates defined by the Cloud Admins and the images defined by the Cloud Admins or vDC Admins. |
 |                | * Instantiates VMs using their own Images saved from a previous running VM                                                   |
 |                | * Manages their VMs, including                                                                                               |
@@ -133,6 +130,23 @@ Optionally, each vDC can define one or more users as vDC Admins. These admins ca
 |                | * Delete any previous disk snapshot                                                                                          |
 |                | * Check user usage and quotas                                                                                                |
 |                | * Upload SSH keys to access the VMs                                                                                          |
++----------------+------------------------------------------------------------------------------------------------------------------------------+
+
+
+Advanced Cloud Provisioning Model
+-----------------------------------------------------------------------------
+
+In a infrastructure provisioning model, the end users access a simplified web interface that allows them to launch Virtual Machines from pre-defined Templates and Images. They can access their VMs, and perform basic operations like shutdown. The changes made to a VM disk can be saved back, but new Images cannot be created from scratch.
+
+Optionally, each vDC can define one or more users as vDC Admins. These admins can create new users inside the vDC, and also manage the resources of the rest of the users. A vDC Admin may, for example, shutdown a VM from other user to free group quota usage.
+
++----------------+------------------------------------------------------------------------------------------------------------------------------+
+|      Role      |                                                         Capabilities                                                         |
++================+==============================================================================================================================+
+| **vDC Admin.** | * Creates new users in the vDC                                                                                               |
+|                | * Operates on vDC virtual machines and disk images                                                                           |
+|                | * Creates and registers disk images to be used by the vDC users                                                              |
+|                | * Checks vDC usage and quotas                                                                                                |
 +----------------+------------------------------------------------------------------------------------------------------------------------------+
 
 .. |vDC Resources| image:: /images/vdc_resources.png
