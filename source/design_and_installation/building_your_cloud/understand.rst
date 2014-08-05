@@ -102,7 +102,7 @@ These Advanced Users typically access to the cloud by using the CLI or the User 
 +----------+-------------------------------------------------------------------+
 |   Role   |                            Capabilities                           |
 +==========+===================================================================+
-| **User** | * Instantiates VMs using their own templates                      |
+| **Advanced User** | * Instantiates VMs using their own templates                      |
 |          | * Creates new templates and images                                |
 |          | * Manages their VMs, including advanced life-cycle features       |
 |          | * Creates and manages Application Flows                           |
@@ -122,7 +122,7 @@ These VDC Users typically access to the cloud by using the Cloud View of Sunston
 +----------------+------------------------------------------------------------------------------------------------------------------------------+
 |      Role      |                                                         Capabilities                                                         |
 +================+==============================================================================================================================+
-| **VDC User**   | * Instantiates VMs using the templates defined by the Cloud Admins and the images defined by the Cloud Admins or vDC Admins. |
+| **Cloud Consumer**   | * Instantiates VMs using the templates defined by the Cloud Admins and the images defined by the Cloud Admins or vDC Admins. |
 |                | * Instantiates VMs using their own Images saved from a previous running VM                                                   |
 |                | * Manages their VMs, including                                                                                               |
 |                |                                                                                                                              |
