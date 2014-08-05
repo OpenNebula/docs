@@ -81,7 +81,7 @@ These Cloud Administrators  typically access to the cloud by using the CLI or th
 +==================+=========================================================================================================================================================+
 | **Cloud Admin.** | * Operates the Cloud infrastructure (i.e. computing nodes, networking fabric, storage servers)                                                          |
 |                  | * Creates and manages OpenNebula infrastructure resources: Hosts, Virtual Networks, Datastores                                                          |
-|                  | * Creates and manages :ref:`Application Flows <oneapps_overview>`                                                                                       |
+|                  | * Creates and manages application Flows (Services)                                                                                      |
 |                  | * Creates new groups for VDCs                                                                                                                           |
 |                  | * Assigns resource providers to a VDC and sets quota limits                                                                                             |
 |                  | * Defines base instance types to be used by the VDCs. These types define the capacity of the VMs (memory, cpu and additional storage) and connectivity. |
@@ -93,9 +93,9 @@ These Cloud Administrators  typically access to the cloud by using the CLI or th
 Data Center Infrastructure Management
 -----------------------------------------------------------------------------
 
-This model is used to integrate and federate existing IT assets that can be in different data centers and to manage virtualized resources on top of it. In this usage model, Users are familiar with virtualization concepts. Except for the infrastructure resources, the web interface offeres the same operations available to the Cloud Admin. These are "Advanced Users" that could be considered also as "Limited Cloud Administrators".
+This model is used to manage data center virtualziation and to integrate and federate existing IT assets that can be in different data centers. In this usage model, Users are familiar with virtualization concepts. Except for the infrastructure resources, the web interface offeres the same operations available to the Cloud Admin. These are "Advanced Users" that could be considered also as "Limited Cloud Administrators".
 
-End Users can use the templates and images pre-defined by the cloud administrator, but usually are also allowed to create their own templates and images. They are also able to manage the life-cycle of their resources, including advanced features that may harm the VM guests, like hot-plugging of new disks, resize of Virtual Machines, modify boot parameters, etc.
+Users can use the templates and images pre-defined by the cloud administrator, but usually are also allowed to create their own templates and images. They are also able to manage the life-cycle of their resources, including advanced features that may harm the VM guests, like hot-plugging of new disks, resize of Virtual Machines, modify boot parameters, etc.
 
 These Advanced Users typically access to the cloud by using the CLI or the User View of Sunstone.
 
@@ -105,7 +105,7 @@ These Advanced Users typically access to the cloud by using the CLI or the User 
 | **User** | * Instantiates VMs using their own templates                      |
 |          | * Creates new templates and images                                |
 |          | * Manages their VMs, including advanced life-cycle features       |
-|          | * Creates and manages :ref:`Application Flows <oneapps_overview>` |
+|          | * Creates and manages Application Flows                           |
 |          | * Check their usage and quotas                                    |
 |          | * Upload SSH keys to access the VMs                               |
 +----------+-------------------------------------------------------------------+
