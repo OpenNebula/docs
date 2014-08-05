@@ -163,20 +163,11 @@ For more information on how to customize the views based on the user/group inter
 Advanced Setup
 ==============
 
-ACL Rule
---------
+Permission to Create Services
+--------------------------------------------------------------------------------
 
-By default this rule is defined in OpenNebula to enable the creation of new services by any user. If you want to limit this, you will have to delete this rule and generate new ones.
+By default, :ref:`new groups <manage_groups>` are allowed to create Document resources. Documents are a special tool used by OneFlow to store Service Templates and instances. When a new Group is created, you can decide if you want to allow or deny its users to create OneFlow resources (Documents).
 
-.. code::
+|oneflow-config-acl|
 
-    * DOCUMENT/* CREATE
-
-If you only want a specific group to be able to use OneFlow, execute:
-
-.. code::
-
-    $ oneacl create "@1 DOCUMENT/* CREATE"
-
-Read more about the :ref:`ACL Rules system here <manage_acl>`.
-
+.. |oneflow-config-acl| image:: /images/oneflow-config-acl.png
