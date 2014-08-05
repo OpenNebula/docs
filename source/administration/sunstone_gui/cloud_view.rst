@@ -4,12 +4,113 @@
 Self-service Cloud View
 ========================
 
-This is a simplified view intended for cloud consumers that just require a portal where they can provision new virtual machines easily. To create new VMs, they just have to select one of the available templates prepared by the administrators.
+This is a simplified view intended for cloud consumers that just require a portal where they can provision new virtual machines easily. To create new VMs and Services, they just have to select one of the available templates prepared by the administrators.
 
-In this scenario the cloud administrator, or the vDC administrator, must prepare a set of templates and images and make them available to the cloud users. These Templates must be ready to be instantiated, i.e. they define all the mandatory attributes. Before using them, users can optinally customize the VM capacity, and add new network interfaces.
+|cloud_dash|
 
+Using the Cloud
+===============
 
-|image0|
+Create VM
+---------
+
+In this scenario the cloud administrator must prepare a set of templates and images and make them available to the cloud users. These Templates must be ready to be instantiated, i.e. they define all the mandatory attributes. Before using them, users can optinally customize the VM capacity, add new network interfaces and provide values required by the template. Check `How to Prepare the Virtual Machine Templates`_ for more information.
+
+|cloud_create_vm|
+
+Any user of the Cloud View can save the changes made to a VM back to a new Template, and use this Template to instantiate new VMs later. For example the a regular user can instantiate a clean VM prepared by the cloud administrator, install software needed by his application and save it in a new Template to instantiate new VMs. A Saved Template created by a regular user is only available for that user and is listed under the "Saved" tab.
+
+The VDC admin can also share his own Saved Templates with the rest of the group. These shared templates will be listed under the "VDC" tab when trying to create a new VM.
+
+Access to the VM, SSH Keys
+---------------------------
+
+Any user can provide his own ssh public key to be included in the VMs created through this view. Note that the template has to be configured to include it.
+
+|cloud_add_ssh_key|
+
+Manage VMs
+----------
+
+The status of the VMs can be monitored from the VMs tab.
+
+|cloud_vms_list|
+
+Information of the capacity, OS, IPs, creation time and monitoring graphs for an specific VM are available in the detailed view of the VM
+
+|cloud_vm_info|
+
+A user can perform the following actions from this view:
+
+* Access the VNC console, note that the Template has to be configured for this
+* Reboot the VM, the user can send the reboot signal (reboot) or reboot the machine (reboot hard)
+* Power off the VM, the user can send the power off signal (poweroff) or power off the machine (poweroff hard)
+* Delete the VM, all the information will be lost
+* Save the VM into a new Template
+* Power on the VM
+
+|cloud_vm_poweroff|
+
+Save a VM
+---------
+
+Any user of the Cloud View can save the changes made to a VM back to a new Template, and use this Template to instantiate new VMs later.
+
+The user has to power off the VM first and then the save operation will create a new Image and a Template referencing this Image. Note that only the first disk will saved, if the VM has more than one disk, they will not be saved.
+
+|cloud_save_vm|
+
+A Saved Template created by a regular user is only available for that user and is listed under the "Saved" tab.
+
+|cloud_create_vm_select_template|
+
+Saved Templates can be managed from the Templates tab. When deleting a saved template both the Image and the Template will be removed from OpenNebula.
+
+|cloud_templates_list|
+
+Create Service
+--------------
+
+In this scenario the cloud administrator must prepare a set of Service templates and make them available to the cloud users. These Service templates must be ready to be instantiated, i.e. they define all the mandatory attributes and the templates that are referenced ara available for the user. Before using them, users can optinally customize the Service cardinality, define the network interfaces and provide values required by the template. Check `How to Prepare the Service Templates`_ for more information.
+
+|cloud_create_service|
+
+Manage Services
+---------------
+
+The status of the Services can be monitored from the Services tab
+
+|cloud_services_list|
+
+Information of the creation time, cardinality and status for each Role are available in the detailed view of the Service
+
+|cloud_service_info|
+
+A user can perform the following actions from this view:
+
+* Change the cardinality of each Role
+* Retrieve the VMs of each Role
+* Delete the Service
+* Recover the Service from a fail status
+
+Usage & Accounting
+------------------
+
+The user can check his current usage and quotas
+
+|cloud_user_quota|
+
+Also, the user can generate accounting reports for a given range of time
+
+|cloud_user_acct|
+
+User Settings
+-------------
+
+From the user settings tab, the user can change his password, language, ssh key and view
+
+|cloud_user_settings|
+
 
 How to Prepare the Virtual Machine Templates
 ================================================================================
@@ -19,7 +120,7 @@ The dialog to launch new VMs from the Cloud View is a bit different from the sta
 Capacity is Customizable
 --------------------------------------------------------------------------------
 
-You must set a default CPU and Memory for the Template, but users can change these values. The available capacity presets can be customized 
+You must set a default CPU and Memory for the Template, but users can change these values. The available capacity presets can be customized
 
 .. todo:: link to sunstone.conf with instance_types explained
 
@@ -54,14 +155,12 @@ Make the Images Non-Persistent
 
 The Images used by the Cloud View Templates should not be persistent. A :ref:`persistent Image <img_guide_persistent>` can only be used by one VM simultaneously, and the next user will find the changes made by the previous user.
 
-If the users need persistent storage, they can use the
-
-.. todo:: save as functionality
+If the users need persistent storage, they can use the `Save a VM`_ functionality
 
 Prepare the Network Interfaces
 --------------------------------------------------------------------------------
 
-Users can select the VM network interfaces when launching new VMs. You can create templates without any NIC, or set the default ones. If the template contains any NIC, users will still be able to remove them and select new ones. 
+Users can select the VM network interfaces when launching new VMs. You can create templates without any NIC, or set the default ones. If the template contains any NIC, users will still be able to remove them and select new ones.
 
 |prepare-tmpl-network|
 
@@ -107,18 +206,37 @@ To make a Service Template available to other users, you have two options:
 
 Please note that you will need to do the same for any VM Template used by the Roles, and any Image and Virtual Network referenced by those VM Templates, otherwise the Service deployment will fail.
 
+Resource Sharing
+================
+
+When a new group is created the cloud administrator can define if the users of this view will be allowed to view the VMs and Services of other users in the same group. If this option is checked a new ACL rule will be created to give users in this group acces to the VMS and Services in the same group. Users will not able to manage these resources but they will be included in the list views of each resource.
+
+|cloud_resource_sharing|
 
 
 How to Enable
-================
+==============
 
-The cloud view is enabled by default for all users. If you want to disable it, or enable just for certain groups, proceed to the :ref:`Sunstone Views <suns_views>` documentation.
+The cloud view is enabled by default for all users and you can enable/disable it for an specific group in the group creation form.
 
 .. note:: Any user can change the current view in the Sunstone settings. Administrators can use this view without any problem if they find it easier to manage their VMs.
 
-.. |image0| image:: /images/cloud-view.png
-   :width: 100 %
-.. |cloud-view-create| image:: /images/cloud-view-create.png
+.. |cloud_dash| image:: /images/cloud_dash.png
+.. |cloud_create_vm| image:: /images/cloud_create_vm.png
+.. |cloud_add_ssh_key| image:: /images/cloud_add_ssh_key.png
+.. |cloud_vms_list| image:: /images/cloud_vms_list.png
+.. |cloud_vm_info| image:: /images/cloud_vm_info.png
+.. |cloud_vm_poweroff| image:: /images/cloud_vm_poweroff.png
+.. |cloud_save_vm| image:: /images/cloud_save_vm.png
+.. |cloud_create_vm_select_template| image:: /images/cloud_create_vm_select_template.png
+.. |cloud_templates_list| image:: /images/cloud_templates_list.png
+.. |cloud_create_service| image:: /images/cloud_create_service.png
+.. |cloud_services_list| image:: /images/cloud_services_list.png
+.. |cloud_service_info| image:: /images/cloud_service_info.png
+.. |cloud_user_quota| image:: /images/cloud_user_quota.png
+.. |cloud_user_acct| image:: /images/cloud_user_acct.png
+.. |cloud_user_settings| image:: /images/cloud_user_settings.png
+.. |cloud_resource_sharing| image:: /images/cloud_resource_sharing.png
 .. |prepare-tmpl-chgrp| image:: /images/prepare-tmpl-chgrp.png
 .. |prepare-tmpl-network| image:: /images/prepare-tmpl-network.png
 .. |prepare-tmpl-capacity| image:: /images/prepare-tmpl-capacity.png
