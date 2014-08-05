@@ -74,7 +74,7 @@ OpenNebula has three pre-defined user roles to implement three typical enterpris
 
 In the three scenarios, the Cloud Administrators manage the physical infrastructure, creates users and VDCs, prepares base templates and images for users, etc
 
-These Cloud Administrators  typically access to the cloud by using the CLI or the Admin View of Sunstone.
+Cloud Administrators typically access to the cloud by using the CLI or the Admin View of Sunstone.
 
 +------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------+
 |       Role       |                                                                       Capabilities                                                                      |
@@ -97,7 +97,9 @@ This model is used to manage data center virtualziation and to integrate and fed
 
 Users can use the templates and images pre-defined by the cloud administrator, but usually are also allowed to create their own templates and images. They are also able to manage the life-cycle of their resources, including advanced features that may harm the VM guests, like hot-plugging of new disks, resize of Virtual Machines, modify boot parameters, etc.
 
-These Advanced Users typically access to the cloud by using the CLI or the User View of Sunstone.
+VDCs are used by the Cloud Administrator to isolate users and allocate resources but are not offered on-demand.
+
+These "Advanced Users" typically access to the cloud by using the CLI or the User View of Sunstone. This is not the default model configured for the group Users. 
 
 +-------------------+-------------------------------------------------------------------+
 |   Role            |                            Capabilities                           |
@@ -113,16 +115,16 @@ These Advanced Users typically access to the cloud by using the CLI or the User 
 Simple Cloud Provisioning Model
 -----------------------------------------------------------------------------
 
-In the simple infrastructure provisioning model, the Cloud is offering infrastructure as a service to individual users. Users are considered as "Cloud Consumers" and are much more limited in their operations.These VDC Users access a very simple and simplified web interface that allows them to launch Virtual Machines from pre-defined Templates and Images. They can access their VMs, and perform basic operations like shutdown. The changes made to a VM disk can be saved back, but new Images cannot be created from scratch.
+In the simple infrastructure provisioning model, the Cloud is offering infrastructure as a service to individual Users. Users are considered as "Cloud Users" or "Cloud Consumers", being much more limited in their operations.These Users access a very simple and simplified web interface that allows them to launch Virtual Machines from pre-defined Templates and Images. They can access their VMs, and perform basic operations like shutdown. The changes made to a VM disk can be saved back, but new Images cannot be created from scratch.
 
 VDCs are used by the Cloud Administrator to isolate users and allocate resources but are not offered on-demand.
 
-These VDC Users typically access to the cloud by using the Cloud View of Sunstone.
+These "Cloud Users" typically access to the cloud by using the Cloud View of Sunstone. This is the default model configured for the group Users. 
 
 +----------------+------------------------------------------------------------------------------------------------------------------------------+
 |      Role      |                                                         Capabilities                                                         |
 +================+==============================================================================================================================+
-| **Cloud Consumer**   | * Instantiates VMs using the templates defined by the Cloud Admins and the images defined by the Cloud Admins or vDC Admins. |
+| **Cloud User** | * Instantiates VMs using the templates defined by the Cloud Admins and the images defined by the Cloud Admins or vDC Admins. |
 |                | * Instantiates VMs using their own Images saved from a previous running VM                                                   |
 |                | * Manages their VMs, including                                                                                               |
 |                |                                                                                                                              |
