@@ -133,6 +133,26 @@ This can also be done directly using OpenNebula's interfaces: CLI, Sunstone or A
 
 If ``ready_status_gate`` is set to ``false``, a VM will be considered to be in running state when it's in running state for OpenNebula (``LCM_STATE==3`` and ``STATE>=3``). Take into account that the VM will be considered RUNNING the very same moment the hypervisor boots the VM (before it loads the OS).
 
+.. _appflow_use_cli_networks:
+
+Configure Dynamic Networks
+--------------------------------------------------------------------------------
+
+A Service Role has a :ref:`Virtual Machine Template <vm_guide>` assigned. The VM Template will define the capacity, disks, and network interfaces. But instead of using the Virtual Networks set in the VM Template, the Service Template can define a set of dynamic networks.
+
+|oneflow-templates-net-1|
+
+Each Role can be attached to the dynamic networks individually.
+
+|oneflow-templates-net-2|
+
+When a Service Template defines dynamic networks, the instantiate dialog will ask the user to select the networks to use for the new Service.
+
+|oneflow-templates-net-3|
+
+This allows you to create more generic Service Templates. For example, the same Service Template can be used by users of different :ref:`vDC's <manage_groups>` that may have access to different Virtual Networks.
+
+
 Managing Services
 =================
 
@@ -494,3 +514,6 @@ Read the :ref:`elasticity policies documentation <appflow_elasticity>` for more 
 .. |image3| image:: /images/oneflow-service.png
 .. |image4| image:: /images/flow_lcm.png
 .. |oneflow-ready-status-checkbox| image:: /images/oneflow-ready-status-checkbox.png
+.. |oneflow-templates-net-1| image:: /images/oneflow-templates-net-1.png
+.. |oneflow-templates-net-2| image:: /images/oneflow-templates-net-2.png
+.. |oneflow-templates-net-3| image:: /images/oneflow-templates-net-3.png

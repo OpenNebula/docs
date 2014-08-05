@@ -11,8 +11,8 @@ In this scenario the cloud administrator, or the vDC administrator, must prepare
 
 |image0|
 
-How to Prepare the Templates
-=============================
+How to Prepare the Virtual Machine Templates
+================================================================================
 
 The dialog to launch new VMs from the Cloud View is a bit different from the standard "Template instantiate" action. To make a Template available for end users, take into account the following items:
 
@@ -91,6 +91,28 @@ Please note that you will need to do the same for any Image and Virtual Network 
 
 You can read more about OpenNebula permissions in the :ref:`Managing Permissions <chmod>` and :ref:`Managing ACL Rules <manage_acl>` guides.
 
+How to Prepare the Service Templates
+================================================================================
+
+When you prepare a :ref:`OneFlow Service Template <appflow_use_cli>` to be used by the Cloud View users, take into account the following:
+
+* You can define :ref:`dynamic networks <appflow_use_cli_networks>` in the Service Template, to allow users to choose the virtual networks for the new Service instance.
+* If any of the Virtual Machine Templates used by the Roles has User Inputs defined (see the section above), the user will be also asked to fill them when the Service Template is instantiated.
+* Users will also have the option to change the Role cardinality before the Service is created.
+
+|prepare-tmpl-flow-1|
+
+|prepare-tmpl-flow-2|
+
+To make a Service Template available to other users, you have two options:
+
+* Change the Template's group, and give it ``GROUP USE`` permissions. This will make the Service Template only available to users in that group (vDC).
+* Leave the Template in the oneadmin group, and give it ``OTHER USE`` permissions. This will make the Service Template available to every user in OpenNebula.
+
+Please note that you will need to do the same for any VM Template used by the Roles, and any Image and Virtual Network referenced by those VM Templates, otherwise the Service deployment will fail.
+
+
+
 How to Enable
 ================
 
@@ -108,3 +130,6 @@ The cloud view is enabled by default for all users. If you want to disable it, o
 .. |prepare-tmpl-ssh| image:: /images/prepare-tmpl-ssh.png
 .. |prepare-tmpl-user-input-1| image:: /images/prepare-tmpl-user-input-1.png
 .. |prepare-tmpl-user-input-2| image:: /images/prepare-tmpl-user-input-2.png
+.. |prepare-tmpl-flow-1| image:: /images/prepare-tmpl-flow-1.png
+.. |prepare-tmpl-flow-2| image:: /images/prepare-tmpl-flow-2.png
+
