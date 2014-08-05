@@ -99,16 +99,16 @@ Users can use the templates and images pre-defined by the cloud administrator, b
 
 These Advanced Users typically access to the cloud by using the CLI or the User View of Sunstone.
 
-+----------+-------------------------------------------------------------------+
-|   Role   |                            Capabilities                           |
-+==========+===================================================================+
++-------------------+-------------------------------------------------------------------+
+|   Role            |                            Capabilities                           |
++===================+===================================================================+
 | **Advanced User** | * Instantiates VMs using their own templates                      |
-|          | * Creates new templates and images                                |
-|          | * Manages their VMs, including advanced life-cycle features       |
-|          | * Creates and manages Application Flows                           |
-|          | * Check their usage and quotas                                    |
-|          | * Upload SSH keys to access the VMs                               |
-+----------+-------------------------------------------------------------------+
+|                   | * Creates new templates and images                                |
+|                   | * Manages their VMs, including advanced life-cycle features       |
+|                   | * Creates and manages Application Flows                           |
+|                   | * Check their usage and quotas                                    |
+|                   | * Upload SSH keys to access the VMs                               |
++-------------------+-------------------------------------------------------------------+
 
 Simple Cloud Provisioning Model
 -----------------------------------------------------------------------------
