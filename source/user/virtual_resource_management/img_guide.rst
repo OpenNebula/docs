@@ -366,6 +366,8 @@ This command copies disk 1 to the datastore with name *Backup of DB volume*, the
 
     $ onevm disk-snapshot --live ttylinux-11 1 "Backup of DB volume"
 
+.. _img_guide_files:
+
 How to Use File Images in Virtual Machines
 ==========================================
 

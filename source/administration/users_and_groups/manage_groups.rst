@@ -137,6 +137,32 @@ When you assign a Resource Provider to a group, users in that group will be able
 
 If you are familiar with :ref:`ACL rules <manage_acl>`, you can take a look at the rules that are created with ``oneacl list``. These rules are automatically added, and should not be manually edited. They will be removed by the ``onegroup del_provider`` command.
 
+.. _manage_groups_virtual_resources:
+
+Managing vDC and Virtual Resources
+================================================================================
+
+You can make the following virtual resources available to vDC users:
+
+* :ref:`Virtual Machine Templates <vm_guide>`
+* :ref:`Service Templates <appflow_use_cli>`
+* :ref:`Images <img_guide>`
+* :ref:`Files & Kernels <img_guide_files>`
+
+To make a virtual resource owned by oneadmin available to users of the new vDC, you have two options:
+
+* Change the resource's group, and give it ``GROUP USE`` permissions. This will make the resource only available to users in that vDC.
+* Leave the resource in the oneadmin group, and give it ``OTHER USE`` permissions. This will make the resource available to every user in OpenNebula.
+
+|prepare-tmpl-chgrp|
+
+The Virtual Machine and Service Templates are visible to the vDC users when they want to create a new VM or Service. The Images (including File Images) used by those Templates are not visible to the users, but must be also made available, otherwise the VM creation will fail with an error message similar to this one:
+
+.. code::
+
+    [TemplateInstantiate] User [6] : Not authorized to perform USE IMAGE [0].
+
+You can read more about OpenNebula permissions in the :ref:`Managing Permissions <chmod>` and :ref:`Managing ACL Rules <manage_acl>` guides.
 
 .. _manage_users_primary_and_secondary_groups:
 
@@ -155,3 +181,4 @@ All the described functionality is available graphically using :ref:`Sunstone <s
 |image3|
 
 .. |image3| image:: /images/sunstone_group_list.png
+.. |prepare-tmpl-chgrp| image:: /images/prepare-tmpl-chgrp.png
