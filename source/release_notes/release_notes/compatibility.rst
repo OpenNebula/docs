@@ -70,9 +70,7 @@ Developers and Integrators
 Public Clouds APIs
 --------------------------------------------------------------------------------
 
-The OCCI server is no longer part of the distribution and now resides in an addon repository. If you are searching for an OCCI server you'd better use the `rOCCI Server <http://gwdg.github.io/rOCCI-server/>`_.
-
-.. todo:: add OCCI addon repo URL
+The OCCI server is no longer part of the distribution and now resides in an `addon repository <https://github.com/OpenNebula/addon-occi>`_. If you are searching for an OCCI server you'd better use the `rOCCI Server <http://gwdg.github.io/rOCCI-server/>`_.
 
 Storage
 --------------------------------------------------------------------------------
