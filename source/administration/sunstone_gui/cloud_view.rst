@@ -45,11 +45,7 @@ There are a few features of the Cloud View that will work if you configure the T
 Further Contextualize the Instance with User Inputs
 --------------------------------------------------------------------------------
 
-A Template can define :ref:`USER INPUTS <template_user_inputs>`.
-
-|prepare-tmpl-user-input-1|
-
-These inputs will be presented to the Cloud View user when the Template is instantiated. The VM guest needs to be :ref:`contextualized <bcont>` to make use of the values provided by the user.
+A Template can define :ref:`USER INPUTS <vm_guide_user_inputs>`. These inputs will be presented to the Cloud View user when the Template is instantiated. The VM guest needs to be :ref:`contextualized <bcont>` to make use of the values provided by the user.
 
 |prepare-tmpl-user-input-2|
 

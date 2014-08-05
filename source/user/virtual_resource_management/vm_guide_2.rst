@@ -81,7 +81,7 @@ Assuming we have a VM Template registered called *vm-example* with ID 6, then we
     VM ID: 0
 
 
-If the template has :ref:`USER INPUTS <template_user_inputs>` defined the CLI will prompt the user for these values:
+If the template has :ref:`USER INPUTS <vm_guide_user_inputs>` defined the CLI will prompt the user for these values:
 
 .. code::
 

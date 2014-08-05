@@ -273,6 +273,21 @@ The same options to create new templates can be used to be merged with an existi
     $ onetemplate instantiate 6 --cpu 2 --memory 1024
     VM ID: 2
 
+.. _vm_guide_user_inputs:
+
+Ask for User Inputs
+--------------------------------------------------------------------------------
+
+The User Inputs functionality provides the template creator with the possibility to dynamically ask the user instantiating the template for dynamic values that must be defined.
+
+|prepare-tmpl-user-input-1|
+
+These inputs will be presented to the user when the Template is instantiated. The VM guest needs to be :ref:`contextualized <bcont>` to make use of the values provided by the user.
+
+|prepare-tmpl-user-input-2|
+
+If a VM Template with user inputs is used by a :ref:`Service Template Role <appflow_use_cli>`, the user will be also asked for these inputs when the Service is created.
+
 Merge Use Case
 --------------
 
@@ -321,3 +336,5 @@ Continue to the :ref:`Managing Virtual Machine Instances Guide <vm_guide_2>` to 
 
 .. |image1| image:: /images/sunstone_managing_perms.png
 .. |image2| image:: /images/sunstone_template_create.png
+.. |prepare-tmpl-user-input-1| image:: /images/prepare-tmpl-user-input-1.png
+.. |prepare-tmpl-user-input-2| image:: /images/prepare-tmpl-user-input-2.png
