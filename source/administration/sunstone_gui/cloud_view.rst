@@ -14,9 +14,82 @@ In this scenario the cloud administrator, or the vDC administrator, must prepare
 How to Prepare the Templates
 =============================
 
-When launching a new VM, users are required to select a Template. These templates should be prepared by the cloud or vDC administrator. Make sure that any Image or Network referenced by the Template can be also used by the users. Read more about how to prepare resources for end users in the :ref:`Adding Content to Your Cloud <add_content>` guide.
+The dialog to launch new VMs from the Cloud View is a bit different from the standard "Template instantiate" action. To make a Template available for end users, take into account the following items:
+
+Capacity is Customizable
+--------------------------------------------------------------------------------
+
+You must set a default CPU and Memory for the Template, but users can change these values. The available capacity presets can be customized 
+
+.. todo:: link to sunstone.conf with instance_types explained
+
+|prepare-tmpl-capacity|
+
+Enable Cloud View Features
+--------------------------------------------------------------------------------
+
+There are a few features of the Cloud View that will work if you configure the Template to make use of them:
+
+* Users will see the Template logo and description, something that is not so visible in the normal admin view. If needed, more logos can be added...
+
+.. todo:: where to add logos
 
 |cloud-view-create|
+
+* The Cloud View gives access to the VM's VNC, but only if it is configured in the Template.
+
+* End users can upload their public ssh key. This requires the VM guest to be :ref:`contextualized <bcont>`, and the Template must have the ssh contextualization enabled.
+
+|prepare-tmpl-ssh|
+
+Further Contextualize the Instance with User Inputs
+--------------------------------------------------------------------------------
+
+A Template can define :ref:`USER INPUTS <template_user_inputs>`.
+
+|prepare-tmpl-user-input-1|
+
+These inputs will be presented to the Cloud View user when the Template is instantiated. The VM guest needs to be :ref:`contextualized <bcont>` to make use of the values provided by the user.
+
+|prepare-tmpl-user-input-2|
+
+Make the Images Non-Persistent
+--------------------------------------------------------------------------------
+
+The Images used by the Cloud View Templates should not be persistent. A :ref:`persistent Image <img_guide_persistent>` can only be used by one VM simultaneously, and the next user will find the changes made by the previous user.
+
+If the users need persistent storage, they can use the
+
+.. todo:: save as functionality
+
+Prepare the Network Interfaces
+--------------------------------------------------------------------------------
+
+Users can select the VM network interfaces when launching new VMs. You can create templates without any NIC, or set the default ones. If the template contains any NIC, users will still be able to remove them and select new ones. 
+
+|prepare-tmpl-network|
+
+Because users will add network interfaces, you need to define a default NIC model in case the VM guest needs a specific one (e.g. virtio for KVM). This can be done with the :ref:`NIC_DEFAULT <nic_default_template>` attribute, or through the Template wizard. Alternatively, you could change the default value for all VMs in the driver configuration file (see the :ref:`KVM one <kvmg_default_attributes>` for example).
+
+|prepare-tmpl-nic-default|
+
+Change Permissions to Make It Available
+--------------------------------------------------------------------------------
+
+To make a Template available to other users, you have two options:
+
+* Change the Template's group, and give it ``GROUP USE`` permissions. This will make the Template only available to users in that group (vDC).
+* Leave the Template in the oneadmin group, and give it ``OTHER USE`` permissions. This will make the Template available to every user in OpenNebula.
+
+|prepare-tmpl-chgrp|
+
+Please note that you will need to do the same for any Image and Virtual Network referenced by the Template, otherwise the VM creation will fail with an error message similar to this one:
+
+.. code::
+
+    [TemplateInstantiate] User [6] : Not authorized to perform USE IMAGE [0].
+
+You can read more about OpenNebula permissions in the :ref:`Managing Permissions <chmod>` and :ref:`Managing ACL Rules <manage_acl>` guides.
 
 How to Enable
 ================
@@ -28,4 +101,10 @@ The cloud view is enabled by default for all users. If you want to disable it, o
 .. |image0| image:: /images/cloud-view.png
    :width: 100 %
 .. |cloud-view-create| image:: /images/cloud-view-create.png
-   :width: 100 %
+.. |prepare-tmpl-chgrp| image:: /images/prepare-tmpl-chgrp.png
+.. |prepare-tmpl-network| image:: /images/prepare-tmpl-network.png
+.. |prepare-tmpl-capacity| image:: /images/prepare-tmpl-capacity.png
+.. |prepare-tmpl-nic-default| image:: /images/prepare-tmpl-nic-default.png
+.. |prepare-tmpl-ssh| image:: /images/prepare-tmpl-ssh.png
+.. |prepare-tmpl-user-input-1| image:: /images/prepare-tmpl-user-input-1.png
+.. |prepare-tmpl-user-input-2| image:: /images/prepare-tmpl-user-input-2.png

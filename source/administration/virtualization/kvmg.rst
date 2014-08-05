@@ -201,6 +201,8 @@ Usage
 
 The following are template attributes specific to KVM, please refer to the :ref:`template reference documentation <template>` for a complete list of the attributes supported to define a VM.
 
+.. _kvmg_default_attributes:
+
 Default Attributes
 ------------------
 

@@ -400,6 +400,8 @@ Example, a VM with two NIC attached to two different networks:
 
 For more information on setting up virtual networks please check the :ref:`Managing Virtual Networks guide <vgg>`.
 
+.. _nic_default_template:
+
 Network Defaults
 --------------------------------------------------------------------------------
 

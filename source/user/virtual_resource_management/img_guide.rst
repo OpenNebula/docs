@@ -228,6 +228,8 @@ The following command allows users in the same group **USE** and **MANAGE** the 
 
 The commands ``oneimage publish`` and ``oneimage unpublish`` are still present for compatibility with previous versions. These commands set/unset the GROUP USE bit.
 
+.. _img_guide_persistent:
+
 Making Images Persistent
 ------------------------
 
