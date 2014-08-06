@@ -16,21 +16,21 @@ Admin View
 
 This view provides full control of the cloud.
 
-|image0|
+|admin_view|
 
 VDCAdmin View
 -------------
 
-This view provides control of all the resources belonging to a Virtual DataCenter (VDC), but with no access to resources outside that VDC, that is, restricted to the physical and virtual resources of the VDC. This view features the ability to create new users within the VDC, to define flows and templates for user consumption as well as set and keep track of user quotas.
+This view provides control of all the resources belonging to a Virtual DataCenter (VDC), but with no access to resources outside that VDC, that is, restricted to the physical and virtual resources of the VDC. This view features the ability to create new users within the VDC, to define flows and templates for user consumption as well as set and keep track of user quotas. For more information on how to configure this scenario see :ref:`this guide <vdc_admin_view>`
 
-|image1|
+|vdcadmin_dash|
 
 User View
 ---------
 
 In this view users will not be able to manage nor retrieve the hosts and clusters of the cloud. They will be able to see Datastores and Virtual Networks in order to use them when creating a new Image or Virtual Machine, but they will not be able to create new ones. For more information about this view, please check the ``/etc/one/sunstone-views/user.yaml`` file.
 
-|image2|
+|user_view|
 
 Cloud View
 ----------
@@ -39,7 +39,7 @@ This is a simplified view mainly intended for user that just require a portal wh
 
 In this scenario the cloud administrator must prepare a set of templates and images and make them available to the cloud users. These Templates must be ready to be instantiated, i.e. they define all the mandatory attributes. Before using them, users can optinally customize the VM capacity, add new network interfaces and provide values required by the template.  Thereby, the user doesn't have to know any details of the infrastructure such as networking, storage. For more information on how to configure this scenario see :ref:`this guide <cloud_view>`
 
-|image3|
+|cloud_dash|
 
 Requirements
 ============
@@ -49,7 +49,7 @@ OpenNebula Sunstone Views does not require any additional service to run. You ma
 Configuring Access to the Views
 ===============================
 
- By default, the ``admin`` view is only available to the oneadmin group. New users will be included in the users group and will use the default ``cloud`` view. The views assigned to a given group can be defined in the group creation form or updating an existing group.
+By default, the ``admin`` view is only available to the oneadmin group. New users will be included in the users group and will use the default ``cloud`` view. The views assigned to a given group can be defined in the group creation form or updating an existing group to implement different OpenNebula models, for more information on the different OpenNebula models please check the :ref:`Understanding OpenNebula guide <understand>`.
 
 |sunstone_group_defview|
 
@@ -90,15 +90,12 @@ Sunstone users can configure several options from the configuration tab:
 
 This options are saved in the user template. If not defined, defaults from ``sunstone-server.conf`` are taken.
 
-|image4|
-
-|image5|
+|views_settings|
 
 Changing your View
 ------------------
 
-If more than one view are available for this user, she can easily change between them in the settings window, along with other settings (e.g. language). See the
- <#configuring-access-to-the-views>`_ section to learn how views are calculated per user.
+If more than one view are available for this user, she can easily change between them in the settings window, along with other settings (e.g. language). See the `Configuring Access to the Views`_ section to learn how views are calculated per user.
 
 Internationalization and Languages
 ----------------------------------
@@ -276,12 +273,11 @@ You can easily add you logos to the login and main screens by updating the ``log
 -  The login screen is defined in the ``/etc/one/sunstone-views.yaml``.
 -  The logo of the main UI screen is defined for each view in the view file.
 
-.. |image0| image:: /images/admin_view.jpg
-.. |image1| image:: /images/vdcadmin_view.png
-.. |image2| image:: /images/user_view.jpg
-.. |image3| image:: /images/cloud-view.png
-.. |image4| image:: /images/views_settings.jpg
-.. |image5| image:: /images/views_conf.jpg
+.. |admin_view| image:: /images/admin_view.png
+.. |vdcadmin_dash| image:: /images/vdcadmin_dash.png
+.. |user_view| image:: /images/user_view.png
+.. |cloud_dash| image:: /images/cloud_dash.png
+.. |views_settings| image:: /images/views_settings.png
 .. |sunstone_group_defview| image:: /images/sunstone_group_defview.png
 .. |sunstone_yaml_columns1| image:: /images/sunstone_yaml_columns1.png
 .. |sunstone_yaml_columns2| image:: /images/sunstone_yaml_columns2.png
