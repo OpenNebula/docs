@@ -36,7 +36,7 @@ Virtual Networks have undergone an important upgrade in 4.8. The network definit
 
 - **Securing your cloud**, ARP Cache poisoning prevention can be globally disabled in Open vSwitch: :ref:`arp_cache_poisoning <openvswitch_arp_cache_poisoning>`.
 
-- **Specify default gateway for multiple NICs**, now the network gateway can be :ref:`defined separately for each NIC <cong_user_template:>`.
+- **Specify default gateway for multiple NICs**, now the network gateway can be :ref:`defined separately for each NIC <cong_user_template>`.
 
 OpenNebula Core :: Usage Quotas
 --------------------------------------------------------------------------------
@@ -94,7 +94,7 @@ Virtual Machine Templates
 
 Regarding Virtual Machine templates there has been significant improvements in its usability:
 
-- **Default parameters**, you can now :ref:`define a NIC_DEFAULT attribute <nic_default_template>`with values that will be copied to each new ``NIC``. This is specially useful for an administrator to define configuration parameters, such as ``MODEL``, that final users may not be aware of.
+- **Default parameters**, you can now :ref:`define a NIC_DEFAULT attribute <nic_default_template>` with values that will be copied to each new ``NIC``. This is specially useful for an administrator to define configuration parameters, such as ``MODEL``, that final users may not be aware of.
 
 .. code::
 
