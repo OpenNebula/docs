@@ -21,7 +21,7 @@ This view provides full control of the cloud.
 VDCAdmin View
 -------------
 
-This view provides control of all the resources belonging to a Virtual DataCenter (VDC), but with no access to resources outside that VDC, that is, restricted to the physical and virtual resources of the VDC. This view features the ability to create new users within the VDC, to define flows and templates for user consumption as well as set and keep track of user quotas. For more information on how to configure this scenario see :ref:`this guide <vdc_admin_view>`
+This view provides control of all the resources belonging to a Virtual DataCenter (VDC), but with no access to resources outside that VDC, that is, restricted to the physical and virtual resources of the VDC. This view features the ability to create new users within the VDC as well as set and keep track of user quotas. For more information on how to configure this scenario see :ref:`this guide <vdc_admin_view>`
 
 |vdcadmin_dash|
 

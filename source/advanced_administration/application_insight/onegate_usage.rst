@@ -6,7 +6,7 @@ Application Monitoring
 
 OneGate allows Virtual Machine guests to pull and push service and vm information from OpenNebula. Users and administrators can use it to gather metrics, detect problems in their applications, and trigger OneFlow elasticity rules.
 
-For Virtual Machines that are part of a Service Flow, they can also retrieve the Service Flow information directly from OneGate.
+For Virtual Machines that are part of a Multi-VM Application (Service), they can also retrieve the Service information directly from OneGate.
 
 OneGate Workflow Explained
 ==========================

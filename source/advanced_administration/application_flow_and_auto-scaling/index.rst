@@ -1,5 +1,5 @@
 =================================
-Application Flow and Auto-scaling
+Multi-VM Applications and Auto-scaling
 =================================
 
 .. toctree::

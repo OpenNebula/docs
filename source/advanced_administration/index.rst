@@ -5,7 +5,7 @@ Advanced Administration Guide
 .. toctree::
    :maxdepth: 2
 
-   Application Flow and Auto-scaling <application_flow_and_auto-scaling/index>
+   Multi-VM Applications and Auto-scaling <application_flow_and_auto-scaling/index>
    Data Center Federation <data_center_federation/index>
    Scalability <scalability/index>
    High Availability <high_availability/index>

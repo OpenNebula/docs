@@ -82,7 +82,7 @@ Cloud Administrators typically access to the cloud by using the CLI or the Admin
 +==================+=========================================================================================================================================================+
 | **Cloud Admin.** | * Operates the Cloud infrastructure (i.e. computing nodes, networking fabric, storage servers)                                                          |
 |                  | * Creates and manages OpenNebula infrastructure resources: Hosts, Virtual Networks, Datastores                                                          |
-|                  | * Creates and manages application Flows (Services)                                                                                                      |
+|                  | * Creates and manages Multi-VM Applications (Services)                                                                                                  |
 |                  | * Creates new groups for VDCs                                                                                                                           |
 |                  | * Assigns resource providers to a VDC and sets quota limits                                                                                             |
 |                  | * Defines base instance types to be used by the VDCs. These types define the capacity of the VMs (memory, cpu and additional storage) and connectivity. |
@@ -102,16 +102,16 @@ VDCs are used by the Cloud Administrator to isolate users and allocate resources
 
 These "Advanced Users" typically access to the cloud by using the CLI or the User View of Sunstone. This is not the default model configured for the group Users.
 
-+-------------------+-------------------------------------------------------------------+
-|   Role            |                            Capabilities                           |
-+===================+===================================================================+
-| **Advanced User** | * Instantiates VMs using their own templates                      |
-|                   | * Creates new templates and images                                |
-|                   | * Manages their VMs, including advanced life-cycle features       |
-|                   | * Creates and manages Application Flows                           |
-|                   | * Check their usage and quotas                                    |
-|                   | * Upload SSH keys to access the VMs                               |
-+-------------------+-------------------------------------------------------------------+
++-------------------+-------------------------------------------------------------+
+|        Role       |                         Capabilities                        |
++===================+=============================================================+
+| **Advanced User** | * Instantiates VMs using their own templates                |
+|                   | * Creates new templates and images                          |
+|                   | * Manages their VMs, including advanced life-cycle features |
+|                   | * Creates and manages Multi-VM Application (Services)       |
+|                   | * Check their usage and quotas                              |
+|                   | * Upload SSH keys to access the VMs                         |
++-------------------+-------------------------------------------------------------+
 
 Simple Cloud Provisioning Model
 -----------------------------------------------------------------------------
