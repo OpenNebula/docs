@@ -120,9 +120,7 @@ The dialog to launch new VMs from the Cloud View is a bit different from the sta
 Capacity is Customizable
 --------------------------------------------------------------------------------
 
-You must set a default CPU and Memory for the Template, but users can change these values. The available capacity presets can be customized
-
-.. todo:: link to sunstone.conf with instance_types explained
+You must set a default CPU and Memory for the Template, but users can change these values. The available capacity presets can be :ref:`customized <sunstone_instance_types>`
 
 |prepare-tmpl-capacity|
 
@@ -133,9 +131,7 @@ Enable Cloud View Features
 
 There are a few features of the Cloud View that will work if you configure the Template to make use of them:
 
-* Users will see the Template logo and description, something that is not so visible in the normal admin view. If needed, more logos can be added...
-
-.. todo:: where to add logos
+* Users will see the Template logo and description, something that is not so visible in the normal admin view.
 
 * The Cloud View gives access to the VM's VNC, but only if it is configured in the Template.
 

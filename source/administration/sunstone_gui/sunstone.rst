@@ -105,6 +105,8 @@ Available options are:
 +---------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | :routes                   | List of files containing custom routes to be loaded. Check :ref:`server plugins <sunstone_server_plugin_guide>` for more info.                                                                                                                           |
 +---------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| :instance_types           | Default instace types for Cloud View `Instance Types for Cloud View`_                                                                                                                                                                                    |
++---------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 .. warning:: In order to access Sunstone from other place than ``localhost`` you need to set the server's public IP in the ``:host`` option. Otherwise it will not be reachable from the outside.
 
@@ -151,6 +153,53 @@ There can be multiple reasons that may prevent noVNC from correctly connecting t
 -  Doesn't work yet? Try launching Sunstone, killing the websockify proxy and relaunching the proxy manually in a console window with the command that is logged at the beginning of ``/var/log/one/novnc.log``. You must generate a lock file containing the PID of the python process in ``/var/lock/one/.novnc.lock`` Leave it running and click on the VNC icon on Sunstone for the same VM again. You should see some output from the proxy in the console and hopefully the cause of why the connection does not work.
 
 -  Please contact the user list only when you have gone through the suggestion above and provide full sunstone logs, shown errors and any relevant information of your infraestructure (if there are Firewalls etc)
+
+.. _sunstone_instance_types:
+
+Instance Types for Cloud View
+-----------------------------
+
+These are the default instance types for the Cloud View, these types are presented in the cloud view to customize VM Templates and they can be customized to meet your requirements. Each type is defined by:
+
+* name: the name of the type
+* cpu: capacity allocated to the VM for scheduling purposes
+* vcpu: number of cores
+* memory: in MB for the VM
+* description: to help the user pick one, it may include purpose or price.
+
+.. code::
+
+    :instance_types:
+        - :name: small-x1
+          :cpu: 1
+          :vcpu: 1
+          :memory: 128
+          :description: Very small instance for testing purposes
+        - :name: small-x2
+          :cpu: 2
+          :vcpu: 2
+          :memory: 512
+          :description: Small instance for testing multi-core applications
+        - :name: medium-x2
+          :cpu: 2
+          :vcpu: 2
+          :memory: 1024
+          :description: General purpose instance for low-load servers
+        - :name: medium-x4
+          :cpu: 4
+          :vcpu: 4
+          :memory: 2048
+          :description: General purpose instance for medium-load servers
+        - :name: large-x4
+          :cpu: 4
+          :vcpu: 4
+          :memory: 4096
+          :description: General purpose instance for servers
+        - :name: large-x8
+          :cpu: 8
+          :vcpu: 8
+          :memory: 8192
+          :description: General purpose instance for high-load servers
 
 Tuning & Extending
 ==================
