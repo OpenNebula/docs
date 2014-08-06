@@ -42,7 +42,11 @@ Up to 4.6, a quota of '0' meant unlimited usage. In 4.8, '0' means a limit of 0,
 Context Packages
 --------------------------------------------------------------------------------
 
-.. todo:: #2927 GATEWAY_IFACE
+The 4.8 context packages can make use of a new :ref:`context variable <cong_user_template>`, ``GATEWAY_IFACE``:
+
+    This variable can be set to the interface number you want to configure the gateway. It is useful when several networks have GATEWAY parameter and you want yo choose the one that configures it. For example to set the first interface to configure the gateway you use ``GATEWAY_IFACE=0``
+
+If you have guests contextualized with 4.6 packages, this variable will not have any effect until you upgrade them.
 
 OneGate
 --------------------------------------------------------------------------------

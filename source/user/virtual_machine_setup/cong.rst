@@ -119,6 +119,8 @@ Using Image template variables
 
    Note that the image MUST be in used by any of the DISKs defined in the template. The image\_attribute can be ``TEMPLATE`` to include the whole image template in XML (base64 encoded).
 
+.. _cong_user_template:
+
 Using User template variables
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
