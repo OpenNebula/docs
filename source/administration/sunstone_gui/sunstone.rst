@@ -8,7 +8,7 @@ OpenNebula Sunstone is the OpenNebula Cloud Operations Center, a Graphical User 
 
 OpenNebula Sunstone can be adapted to different user roles. For example, it will only show the resources the users have access to. Its behaviour can be customized and extended via :ref:`views <suns_views>`.
 
-|image0|
+|admin_view|
 
 Requirements
 ============
@@ -210,4 +210,4 @@ For more information on how to customize and extend you Sunstone deployment use 
 -  :ref:`Security & Authentication Methods <suns_auth>`, improve security with x509 authentication and SSL
 -  :ref:`Advanced Deployments <suns_advance>`, improving scalability and isolating the server
 
-.. |image0| image:: /images/sunstonedash4.png
+.. |admin_view| image:: /images/admin_view.png

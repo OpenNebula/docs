@@ -104,8 +104,6 @@ To list the available Service Templates, use ``oneflow-template list/show/top``:
 
 Templates can be deleted with ``oneflow-template delete``.
 
-|image2|
-
 .. _appflow_use_cli_running_state:
 
 Determining when a VM is READY
@@ -510,7 +508,6 @@ Read the :ref:`elasticity policies documentation <appflow_elasticity>` for more 
 
 .. |image0| image:: /images/service_sample.png
 .. |image1| image:: /images/oneflow-templates-create.png
-.. |image2| image:: /images/oneflow-templates.png
 .. |image3| image:: /images/oneflow-service.png
 .. |image4| image:: /images/flow_lcm.png
 .. |oneflow-ready-status-checkbox| image:: /images/oneflow-ready-status-checkbox.png

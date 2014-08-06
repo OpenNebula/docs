@@ -242,5 +242,5 @@ And for the group:
 
 This information is also available through Sunstone as part of the user/group information.
 
-.. |image1| image:: /images/sunstone_user_list.png
+.. |image1| image:: /images/sunstone_user_info_quotas.png
 .. |image2| image:: /images/sunstone_update_quota.png

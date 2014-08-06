@@ -334,7 +334,7 @@ Use ``onevm shutdown`` to shutdown a running VM.
 
 Continue to the :ref:`Managing Virtual Machine Instances Guide <vm_guide_2>` to learn more about the VM Life Cycle, and the available operations that can be performed.
 
-.. |image1| image:: /images/sunstone_managing_perms.png
+.. |image1| image:: /images/sunstone_template_list.png
 .. |image2| image:: /images/sunstone_template_create.png
 .. |prepare-tmpl-user-input-1| image:: /images/prepare-tmpl-user-input-1.png
 .. |prepare-tmpl-user-input-2| image:: /images/prepare-tmpl-user-input-2.png
