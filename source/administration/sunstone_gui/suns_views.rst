@@ -233,7 +233,7 @@ And also in the dialogs where a host needs to be selected, like the VM deploy ac
 A Different Endpoint for Each View
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-OpenNebula Sunstone views can be adapted to deploy a different endpoint for each kind of user. For example if you want an endpoint for the admins and a different one for the cloud users. You will just have to deploy a new sunstone server (TODO deploy in a different machine link) and set a default view for each sunstone instance:
+OpenNebula Sunstone views can be adapted to deploy a different endpoint for each kind of user. For example if you want an endpoint for the admins and a different one for the cloud users. You will just have to deploy a :ref:`new sunstone server <suns_advance>` and set a default view for each sunstone instance:
 
 .. code::
 

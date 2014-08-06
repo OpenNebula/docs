@@ -81,7 +81,7 @@ Cloud Administrators typically access to the cloud by using the CLI or the Admin
 +==================+=========================================================================================================================================================+
 | **Cloud Admin.** | * Operates the Cloud infrastructure (i.e. computing nodes, networking fabric, storage servers)                                                          |
 |                  | * Creates and manages OpenNebula infrastructure resources: Hosts, Virtual Networks, Datastores                                                          |
-|                  | * Creates and manages application Flows (Services)                                                                                      |
+|                  | * Creates and manages application Flows (Services)                                                                                                      |
 |                  | * Creates new groups for VDCs                                                                                                                           |
 |                  | * Assigns resource providers to a VDC and sets quota limits                                                                                             |
 |                  | * Defines base instance types to be used by the VDCs. These types define the capacity of the VMs (memory, cpu and additional storage) and connectivity. |
