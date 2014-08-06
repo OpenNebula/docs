@@ -68,6 +68,7 @@ Cloud Usage Models
 ================================================================================
 
 OpenNebula has three pre-defined user roles to implement three typical enterprise cloud scenarios:
+
 * Data center infrastructure management
 * Simple cloud provisioning model
 * Advanced cloud provisioning model
