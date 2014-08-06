@@ -323,4 +323,4 @@ Further information
 -  `FAQs. Good for troubleshooting <http://wiki.opennebula.org/faq>`__
 -  :ref:`Main Documentation <entry_point>`
 
-.. |image1| image:: /images/centos_sunstone_dashboard_44.png
+.. |image1| image:: /images/admin_view.png
