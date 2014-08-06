@@ -9,7 +9,7 @@ Using the new OpenNebula Sunstone Views you will be able to provide a simplified
 Default Views
 =============
 
-OpenNebula provides a default ``admin``, ``vdcadmin``, ``user`` and ``cloud`` view that implements four common views. By default, the ``admin`` view is only available to the oneadmin group. New users will be included in the users group and will use the default ``user`` view.
+OpenNebula provides a default ``admin``, ``vdcadmin``, ``user`` and ``cloud`` view that implements four common views. By default, the ``admin`` view is only available to the oneadmin group. New users will be included in the users group and will use the default ``cloud`` view.
 
 Admin View
 ----------
@@ -35,9 +35,9 @@ In this view users will not be able to manage nor retrieve the hosts and cluster
 Cloud View
 ----------
 
-This is a simplified view mainly intended for user that just require a portal where they can provision new virtual machines easily. They just have to select one of the available templates and the operating system that will run in this virtual machine. For more information about this view, please check the ``/etc/one/sunstone-views/cloud.yaml`` file.
+This is a simplified view mainly intended for user that just require a portal where they can provision new virtual machines easily from pre-defined Templates. For more information about this view, please check the ``/etc/one/sunstone-views/cloud.yaml`` file.
 
-In this scenario the cloud administrator must prepare a set of templates and images and make them available to the cloud users. Templates must define all the required parameters and just leave the DISK section empty, so the user can select any of the available images. New virtual machines will be created merging the information provided by the user (image, vm\_name...) and the base template. Thereby, the user doesn't have to know any details of the infrastructure such as networking, storage. For more information on how to configure this scenario see :ref:`this guide <cloud_view>`
+In this scenario the cloud administrator must prepare a set of templates and images and make them available to the cloud users. These Templates must be ready to be instantiated, i.e. they define all the mandatory attributes. Before using them, users can optinally customize the VM capacity, add new network interfaces and provide values required by the template.  Thereby, the user doesn't have to know any details of the infrastructure such as networking, storage. For more information on how to configure this scenario see :ref:`this guide <cloud_view>`
 
 |image3|
 
@@ -45,6 +45,38 @@ Requirements
 ============
 
 OpenNebula Sunstone Views does not require any additional service to run. You may want to review the Sunstone configuration to deploy advanced setups, to scale the access to the web interface or to use SSL security.
+
+Configuring Access to the Views
+===============================
+
+ By default, the ``admin`` view is only available to the oneadmin group. New users will be included in the users group and will use the default ``cloud`` view. The views assigned to a given group can be defined in the group creation form or updating an existing group.
+
+|sunstone_group_defview|
+
+Sunstone will calculate the views available to users using:
+
+- From all the groups the user belongs to, the SUNSTONE_VIEWS (comma separated list of views) attributes is pulled. Those views combined would be presented to the user
+- If no views available from users, the defaults would be fetched from ``sunstone-views.yaml``. Here, views can be defined for:
+  -  Each user (``users:`` section), list each user and the set of views available for her.
+  -  Each group (``groups:`` section), list the set of views for the group.
+  -  The default view, if a user is not listed in the ``users:`` section, nor its group in the ``groups:`` section, the default views will be used.
+- By default users in the oneadmin group have access to all views
+- By default users in the users group can use ``coud_view``
+
+Regarding ``sunstone-views.yaml``, the following example enables the user (user.yaml) and the cloud (cloud.yaml) views for helen and the cloud (cloud.yaml) view for group cloud-users. If more than one view for a given user the first one is the default.
+
+.. code::
+
+    ...
+    users:
+        helen:
+            - cloud
+            - user
+    groups:
+        cloud-users:
+            - cloud
+    default:
+        - user
 
 Usage
 =====
@@ -65,7 +97,7 @@ This options are saved in the user template. If not defined, defaults from ``sun
 Changing your View
 ------------------
 
-If more than one view are available for this user, she can easily change between them in the settings window, along with other settings (e.g. language). See the 
+If more than one view are available for this user, she can easily change between them in the settings window, along with other settings (e.g. language). See the
  <#configuring-access-to-the-views>`_ section to learn how views are calculated per user.
 
 Internationalization and Languages
@@ -200,39 +232,6 @@ And also in the dialogs where a host needs to be selected, like the VM deploy ac
 
 
 .. note:: The easiest way to create a custom view is to copy the ``admin.yaml`` file to the new view then harden it as needed.
-
-Configuring Access to the Views
--------------------------------
-
-.. todo::
-    does not apply, update with screenshots of group wizard
-    |sunstone_group_defview|
-
-
-Sunstone will calculate the views available to users using:
-
-- From all the groups the user belongs to, the SUNSTONE_VIEWS (comma separated list of views) attributes is pulled. Those views combined would be presented to the user
-- If no views available from users, the defaults would be fetched from ``sunstone-views.yaml``. Here, views can be defined for:
-  -  Each user (``users:`` section), list each user and the set of views available for her.
-  -  Each group (``groups:`` section), list the set of views for the group.
-  -  The default view, if a user is not listed in the ``users:`` section, nor its group in the ``groups:`` section, the default views will be used.
-- By default users in the oneadmin group have access to all views
-- By default users in the users group can use `users view`` and ``coud_view``
-
-Regarding ``sunstone-views.yaml``, the following example enables the user (user.yaml) and the cloud (cloud.yaml) views for helen and the cloud (cloud.yaml) view for group cloud-users. If more than one view for a given user the first one is the default.
-
-.. code::
-
-    ...
-    users:
-        helen:
-            - cloud
-            - user
-    groups:
-        cloud-users:
-            - cloud
-    default:
-        - user
 
 A Different Endpoint for Each View
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
