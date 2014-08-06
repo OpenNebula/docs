@@ -14,11 +14,11 @@ Using the Cloud
 Create VM
 ---------
 
-In this scenario the cloud administrator must prepare a set of templates and images and make them available to the cloud users. These Templates must be ready to be instantiated, i.e. they define all the mandatory attributes. Before using them, users can optinally customize the VM capacity, add new network interfaces and provide values required by the template. Check `How to Prepare the Virtual Machine Templates`_ for more information.
+In this scenario the cloud administrator must prepare a set of templates and images and make them available to the cloud users. These Templates must be ready to be instantiated, i.e. they define all the mandatory attributes. Before using them, users can optionally customize the VM capacity, add new network interfaces and provide values required by the template. Check `How to Prepare the Virtual Machine Templates`_ for more information.
 
 |cloud_create_vm|
 
-Any user of the Cloud View can save the changes made to a VM back to a new Template, and use this Template to instantiate new VMs later. For example the a regular user can instantiate a clean VM prepared by the cloud administrator, install software needed by his application and save it in a new Template to instantiate new VMs. A Saved Template created by a regular user is only available for that user and is listed under the "Saved" tab.
+Any user of the Cloud View can save the changes made to a VM back to a new Template, and use this Template to instantiate new VMs later. For example a regular user can instantiate a clean VM prepared by the cloud administrator, install software needed by his application and save it in a new Template to instantiate new VMs. A Saved Template created by a regular user is only available for that user and is listed under the "Saved" tab.
 
 The VDC admin can also share his own Saved Templates with the rest of the group. These shared templates will be listed under the "VDC" tab when trying to create a new VM.
 
@@ -36,7 +36,7 @@ The status of the VMs can be monitored from the VMs tab.
 
 |cloud_vms_list|
 
-Information of the capacity, OS, IPs, creation time and monitoring graphs for an specific VM are available in the detailed view of the VM
+Information of the capacity, OS, IPs, creation time and monitoring graphs for a specific VM are available in the detailed view of the VM
 
 |cloud_vm_info|
 
@@ -71,7 +71,7 @@ Saved Templates can be managed from the Templates tab. When deleting a saved tem
 Create Service
 --------------
 
-In this scenario the cloud administrator must prepare a set of Service templates and make them available to the cloud users. These Service templates must be ready to be instantiated, i.e. they define all the mandatory attributes and the templates that are referenced ara available for the user. Before using them, users can optinally customize the Service cardinality, define the network interfaces and provide values required by the template. Check `How to Prepare the Service Templates`_ for more information.
+In this scenario the cloud administrator must prepare a set of Service templates and make them available to the cloud users. These Service templates must be ready to be instantiated, i.e. they define all the mandatory attributes and the templates that are referenced are available for the user. Before using them, users can optionally customize the Service cardinality, define the network interfaces and provide values required by the template. Check `How to Prepare the Service Templates`_ for more information.
 
 |cloud_create_service|
 
@@ -219,7 +219,7 @@ When a new group is created the cloud administrator can define if the users of t
 How to Enable
 ==============
 
-The cloud view is enabled by default for all users and you can enable/disable it for an specific group in the group creation form.
+The cloud view is enabled by default for all users and you can enable/disable it for a specific group in the group creation form.
 
 .. note:: Any user can change the current view in the Sunstone settings. Administrators can use this view without any problem if they find it easier to manage their VMs.
 

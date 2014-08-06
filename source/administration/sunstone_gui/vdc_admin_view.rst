@@ -26,7 +26,7 @@ They can also see the current resource usage of all the VDC users, and set quota
 Manage Resources
 ================================================================================
 
-The VDC admin can manage the Services, VMs and Templates of other users in the VDC. The resources of an specific user can be filtered in each of the list views for each resource type or can be listed in the detailed view of the user
+The VDC admin can manage the Services, VMs and Templates of other users in the VDC. The resources of a specific user can be filtered in each of the list views for each resource type or can be listed in the detailed view of the user.
 
 Filtering Resources by User
 ---------------------------
@@ -70,7 +70,7 @@ Accounting
 VDC Accounting
 --------------
 
-The VDC info tab provides information of the usage of the VDC and also accounting reports can be generated. These reports can be configured to report the usage per VM or per user for an specific range of time.
+The VDC info tab provides information of the usage of the VDC and also accounting reports can be generated. These reports can be configured to report the usage per VM or per user for a specific range of time.
 
 |vdcadmin_vdc_acct|
 

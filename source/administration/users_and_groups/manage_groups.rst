@@ -58,7 +58,7 @@ To delete a user from a group, just move it again to the default ``users`` group
 Admin Users and Allowed Resources
 ================================================================================
 
-Upon group creation, an special admin user account can be defined. This admin user will have administrative privileges only for the new group, not for all the resources in the OpenNebula cloud as the 'oneadmin' group users have.
+Upon group creation, a special admin user account can be defined. This admin user will have administrative privileges only for the new group, not for all the resources in the OpenNebula cloud as the 'oneadmin' group users have.
 
 Another aspect that can be controlled on creation time is the type of resources that group users will be alowed to create.
 
