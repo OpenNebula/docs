@@ -99,7 +99,7 @@ Users can use the templates and images pre-defined by the cloud administrator, b
 
 VDCs are used by the Cloud Administrator to isolate users and allocate resources but are not offered on-demand.
 
-These "Advanced Users" typically access to the cloud by using the CLI or the User View of Sunstone. This is not the default model configured for the group Users. 
+These "Advanced Users" typically access to the cloud by using the CLI or the User View of Sunstone. This is not the default model configured for the group Users.
 
 +-------------------+-------------------------------------------------------------------+
 |   Role            |                            Capabilities                           |
@@ -115,11 +115,11 @@ These "Advanced Users" typically access to the cloud by using the CLI or the Use
 Simple Cloud Provisioning Model
 -----------------------------------------------------------------------------
 
-In the simple infrastructure provisioning model, the Cloud is offering infrastructure as a service to individual Users. Users are considered as "Cloud Users" or "Cloud Consumers", being much more limited in their operations.These Users access a very simple and simplified web interface that allows them to launch Virtual Machines from pre-defined Templates and Images. They can access their VMs, and perform basic operations like shutdown. The changes made to a VM disk can be saved back, but new Images cannot be created from scratch.
+In the simple infrastructure provisioning model, the Cloud is offering infrastructure as a service to individual Users. Users are considered as "Cloud Users" or "Cloud Consumers", being much more limited in their operations.These Users access a very simple and simplified web interface that allows them to launch Virtual Machines from pre-defined Templates. They can access their VMs, and perform basic operations like shutdown. The changes made to a VM disk can be saved back, but new Images cannot be created from scratch.
 
 VDCs are used by the Cloud Administrator to isolate users and allocate resources but are not offered on-demand.
 
-These "Cloud Users" typically access to the cloud by using the Cloud View of Sunstone. This is the default model configured for the group Users. 
+These "Cloud Users" typically access to the cloud by using the Cloud View of Sunstone. This is the default model configured for the group Users.
 
 +----------------+------------------------------------------------------------------------------------------------------------------------------+
 |      Role      |                                                         Capabilities                                                         |
@@ -128,13 +128,13 @@ These "Cloud Users" typically access to the cloud by using the Cloud View of Sun
 |                | * Instantiates VMs using their own Images saved from a previous running VM                                                   |
 |                | * Manages their VMs, including                                                                                               |
 |                |                                                                                                                              |
-|                |   * reboot                                                                                                                   |
-|                |   * power off/on (short-term switching-off)                                                                                  |
-|                |   * shutdown                                                                                                                 |
-|                |   * make a VM image snapshot                                                                                                 |
-|                |   * obtain basic monitor information and status (including IP addresses)                                                     |
+|                | * reboot                                                                                                                     |
+|                | * power off/on (short-term switching-off)                                                                                    |
+|                | * delete                                                                                                                     |
+|                | * save a VM into a new Template                                                                                              |
+|                | * obtain basic monitor information and status (including IP addresses)                                                       |
 |                |                                                                                                                              |
-|                | * Delete any previous disk snapshot                                                                                          |
+|                | * Delete any previous VM template and disk snapshot                                                                          |
 |                | * Check user usage and quotas                                                                                                |
 |                | * Upload SSH keys to access the VMs                                                                                          |
 +----------------+------------------------------------------------------------------------------------------------------------------------------+
@@ -149,13 +149,14 @@ These VDC Admins typically access to the cloud by using the VDC Admin View of Su
 
 The VDC Users have the capabilities described in the previous scenario and typically access to the cloud by using the Cloud View of Sunstone.
 
-+----------------+------------------------------------------------------------------------------------------------------------------------------+
-|      Role      |                                                         Capabilities                                                         |
-+================+==============================================================================================================================+
-| **VDC Admin.** | * Creates new users in the vDC                                                                                               |
-|                | * Operates on VDC virtual machines and disk images                                                                           |
-|                | * Checks VDC usage and quotas                                                                                                |
-+----------------+------------------------------------------------------------------------------------------------------------------------------+
++----------------+-----------------------------------------------------+
+|      Role      |                     Capabilities                    |
++================+=====================================================+
+| **VDC Admin.** | * Creates new users in the VDC                      |
+|                | * Operates on VDC virtual machines and disk images  |
+|                | * Share Saved Templates with the members of the VDC |
+|                | * Checks VDC usage and quotas                       |
++----------------+-----------------------------------------------------+
 
 .. |vDC Resources| image:: /images/vdc_resources.png
 .. |vDC Groups| image:: /images/vdc_groups.png
