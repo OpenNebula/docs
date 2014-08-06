@@ -88,7 +88,7 @@ If the template has :ref:`USER INPUTS <vm_guide_user_inputs>` defined the CLI wi
     $ onetemplate instantiate vm-example --name my_vm
     There are some parameters that require user input.
       * (BLOG_TITLE) Blog Title: <my_title>
-      * (DB_PASSWORD) Database Password: 
+      * (DB_PASSWORD) Database Password:
     VM ID: 0
 
 Afterwards, the VM can be listed with the ``onevm list`` command. You can also use the ``onevm top`` command to list VMs continuously.
@@ -566,4 +566,4 @@ Information for Developers and Integrators
 .. |image5| image:: /images/sunstone_vm_resize.png
 .. |image6| image:: /images/sunstone_vm_list.png
 .. |image7| image:: /images/sunstone_vnc.png
-.. |image8| image:: /images/sunstonevnc4.png
+.. |image8| image:: /images/sunstone_vm_list.png
