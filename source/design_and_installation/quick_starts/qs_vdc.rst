@@ -15,18 +15,18 @@ We will first create a :ref:`cluster <cluster_guide>`, 'web-dev', where we can g
 .. code::
 
     $ onehost list
-      ID NAME            CLUSTER   RVM      ALLOCATED_CPU      ALLOCATED_MEM STAT  
-       0 host01          web-dev     0       0 / 200 (0%)     0K / 7.5G (0%) on    
-       1 host02          web-dev     0       0 / 200 (0%)     0K / 7.5G (0%) on    
-       2 host03          -           0       0 / 200 (0%)     0K / 7.5G (0%) on    
-       3 host04          -           0       0 / 200 (0%)     0K / 7.5G (0%) on    
-    
+      ID NAME            CLUSTER   RVM      ALLOCATED_CPU      ALLOCATED_MEM STAT
+       0 host01          web-dev     0       0 / 200 (0%)     0K / 7.5G (0%) on
+       1 host02          web-dev     0       0 / 200 (0%)     0K / 7.5G (0%) on
+       2 host03          -           0       0 / 200 (0%)     0K / 7.5G (0%) on
+       3 host04          -           0       0 / 200 (0%)     0K / 7.5G (0%) on
+
     $ onedatastore list
-      ID NAME                SIZE AVAIL CLUSTER      IMAGES TYPE DS       TM      
+      ID NAME                SIZE AVAIL CLUSTER      IMAGES TYPE DS       TM
        0 system            113.3G 25%   web-dev           0 sys  -        shared
        1 default           113.3G 25%   web-dev           1 img  fs       shared
        2 files             113.3G 25%   -                 0 fil  fs       ssh
-    
+
     $ onevnet list
       ID USER         GROUP        NAME            CLUSTER      TYPE BRIDGE   LEASES
        0 oneadmin     oneadmin     private         web-dev         R virbr0        0
@@ -59,24 +59,24 @@ The cloud administrator can set :ref:`usage quotas <quota_auth>` for the vDC. In
 .. code::
 
     $ onegroup show web-dev
-    GROUP 100 INFORMATION                                                           
-    ID             : 100                 
-    NAME           : web-dev             
+    GROUP 100 INFORMATION
+    ID             : 100
+    NAME           : web-dev
 
-    GROUP TEMPLATE                                                                  
+    GROUP TEMPLATE
     GROUP_ADMINS="web-dev-admin"
     GROUP_ADMIN_VIEWS="vdcadmin"
     SUNSTONE_VIEWS="cloud"
 
-    USERS                                                                           
-    ID             
-    2              
+    USERS
+    ID
+    2
 
-    RESOURCE PROVIDERS                                                              
+    RESOURCE PROVIDERS
        ZONE CLUSTER
           0     100
-    
-    RESOURCE USAGE & QUOTAS                                                         
+
+    RESOURCE USAGE & QUOTAS
 
         NUMBER OF VMS               MEMORY                  CPU        VOLATILE_SIZE
           0 /      10        0M /       0M      0.00 /     0.00        0M /       0M
@@ -102,10 +102,12 @@ Create a basic Service with two roles: master (x1) and slave (x2). Check 'master
 
 |qs_vdc11|
 
-Step 5. Login as the vDC users
+Step 5. Using the Cloud as a VDC Admin
 ================================================================================
 
 If you login as the 'web-dev-admin', you will see a simplified interface, the :ref:`vDC admin view <vdc_admin_view>`. This view hides the physical infrastructure, but allows some administration tasks to be performed.
+
+|vdcadmin_dash|
 
 The VDC admin can create new user accounts, that will belong to the same VDC group. They can also see the current resource usage of all the VDC users, and set quota limits for each one of them.
 
@@ -115,11 +117,24 @@ The VDC admin can manage the Services, VMs and Templates of other users in the V
 
 |vdcadmin_user_info|
 
-Although the cloud administrator is the only one that can create new base Images and Templates, the vDC admin can customize existing Images, and share them with the rest of the vDC users.
+Although the cloud administrator is the only one that can create new base Images and Templates, the vDC admin can customize existing Templates, and share them with the rest of the vDC users.
 
 |vdcadmin_save_vm|
 
-Create a new user, and login again. The regular users of the vDC use the :ref:`Cloud View<cloud_view>`, an even more simplified view of their virtual resources. The end users can provision new VMs and Services from the templates prepared by the administrators. They can also manage their own VMs and Services: see their monitorization, shutdown them, and save the changes made.
+Create a new user, and login again.
+
+Step 6. Using the Cloud as a Regular User
+=========================================
+
+The regular users of the vDC use the :ref:`Cloud View<cloud_view>`, an even more simplified view of their virtual resources.
+
+|cloud_dash|
+
+The end users can provision new VMs and Services from the templates prepared by the administrators.
+
+|cloud_create_vm|
+
+They can also manage their own VMs and Services: see their monitorization, shutdown them, and save the changes made.
 
 |cloud_service_info|
 
@@ -152,10 +167,13 @@ From the user settings tab, the users can also change their password, language, 
    :width: 100 %
 .. |qs_vdc11| image:: /images/qs_vdc11.png
    :width: 100 %
+.. |vdcadmin_dash| image:: /images/vdcadmin_dash.png
 .. |vdcadmin_create_user| image:: /images/vdcadmin_create_user.png
 .. |vdcadmin_user_info| image:: /images/vdcadmin_user_info.png
 .. |vdcadmin_save_vm| image:: /images/vdcadmin_save_vm.png
+.. |cloud_dash| image:: /images/cloud_dash.png
 .. |cloud_service_info| image:: /images/cloud_service_info.png
+.. |cloud_create_vm| image:: /images/cloud_create_vm.png
 .. |cloud_vm_info| image:: /images/cloud_vm_info.png
 .. |cloud_user_acct| image:: /images/cloud_user_acct.png
 .. |cloud_user_settings| image:: /images/cloud_user_settings.png
