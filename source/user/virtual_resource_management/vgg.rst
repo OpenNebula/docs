@@ -6,6 +6,8 @@ Managing Virtual Networks
 
 A host is connected to one or more networks that are available to the virtual machines through the corresponding bridges. OpenNebula allows the creation of Virtual Networks by mapping them on top of the physical ones.
 
+.. _vgg_vn_model:
+
 Virtual Network Model
 =====================
 
@@ -47,6 +49,8 @@ These attributes can be later used in the :ref:`Virtual Machine Contextualizatio
     ]
 
 .. note:: You can add any arbitrary data to the VNET to later use it within the VMs or just to tag the VNET with any attribute.
+
+.. _vgg_vn_ar:
 
 The Address Range (AR)
 ----------------------
@@ -420,8 +424,10 @@ You can apply firewall rules on your VMs, to filter TCP and UDP ports, and to de
 
 Read more about this feature :ref:`here <firewall>`.
 
+.. _vgg_vn_reservations:
+
 VNET Self-Provisioning: Reservations
-====================================================
+====================================
 
 VNETs implement a simple self-provisioning scheme, that allows users to create their own networks consisting of portions of an existing VNET. Each portion is called a Reservation. To implement this you need to:
 
@@ -482,7 +488,7 @@ A reservation can be remove just as a regular VNET:
    $ onevnet delete MyVNET
 
 Using Reservations
-------------------------------
+------------------
 
 To use a reservation you can use it as any other VNET; as they expose the same interface, i.e. you can refer to VNET variables in context, add NICs...
 

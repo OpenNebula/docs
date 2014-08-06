@@ -26,17 +26,17 @@ OpenNebula Core :: Virtual Networks
 
 Virtual Networks have undergone an important upgrade in 4.8. The network definition is not longer tied to the traditional FIXED/RANGED model anymore:
 
-- **New virtual network model**,  virtual networks can now include any combination of ranges to accommodate any address distribution. The new model has been implemented through the address range (AR) abstraction, that decouples the physical implementation of the network (vlan id, bridges or driver), from the logical address map, its map and the associated context variables. The new VNETs preserve the original interface in terms of contextualization, address hold, addition and removal of addresses from the network or usage.
+- **New virtual network model**,  virtual networks can now include any combination of ranges to accommodate any address distribution. The :ref:`new network model <vgg_vn_model>` has been implemented through the address range (AR) abstraction, that decouples the physical implementation of the network (vlan id, bridges or driver), from the logical address map, its map and the associated context variables. The new VNETs preserve the original interface in terms of contextualization, address hold, addition and removal of addresses from the network or usage. 
 
-- **New Address Range concept**, the new ARs define the address type being it IPv4, IPv6, dual stack IPv4 - IPv6, or just MAC addresses; this allow you to control the type of address of the network you want to generate and makes it representation more accurate in OpenNebula when an external DHCP service is providing the IP addresses. Address ranges can even overwrite some of the network configuration or context attributes to implement complex use cases that logically groups multiple networks under the same VNET.
+- **New Address Range concept**, the :ref:`new ARs <vgg_vn_ar>` define the address type being it IPv4, IPv6, dual stack IPv4 - IPv6, or just MAC addresses; this allow you to control the type of address of the network you want to generate and makes it representation more accurate in OpenNebula when an external DHCP service is providing the IP addresses. Address ranges can even overwrite some of the network configuration or context attributes to implement complex use cases that logically groups multiple networks under the same VNET.
 
-- **Address Reservation**, a powerful reservation mechanism has been developed on top of the new VNET and ARs. Users can reserve a subset of the address space; this reservation is placed in a new VNET owned by the user so it can be consumed in the same way of a regular VNET.
+- **Address Reservation**, a powerful reservation mechanism has been developed on top of the new VNET and ARs. Users can :ref:`reserve a subset of the address space <vgg_vn_reservations>`; this reservation is placed in a new VNET owned by the user so it can be consumed in the same way of a regular VNET.
 
-- **Network defaults**, you can now define a ``NIC_DEFAULT`` attribute with values that will be copied to each new ``NIC``. This is specially useful for an administrator to define configuration parameters, such as ``MODEL = "virtio"``.
+- **Network defaults**, you can now define a :ref:`NIC_DEFAULT attribute <nic_default_template>` with values that will be copied to each new ``NIC``. This is specially useful for an administrator to define configuration parameters, such as ``MODEL = "virtio"``.
 
 - **Securing your cloud**, ARP Cache poisoning prevention can be globally disabled in Open vSwitch: :ref:`arp_cache_poisoning <openvswitch_arp_cache_poisoning>`.
 
-- **Specify default gateway for multiple NICs**, now gateway can be defined separately for each NIC.
+- **Specify default gateway for multiple NICs**, now the network gateway can be :ref:`defined separately for each NIC <cong_user_template:>`.
 
 OpenNebula Core :: Usage Quotas
 --------------------------------------------------------------------------------
@@ -50,7 +50,7 @@ OpenNebula Core :: Federation
 
 Different instances of OpenNebula 4.8 can be easily federated:
 
-- **Better management**, to ease federation management admins usually adopts a centralized syslog service. Each log entry is now labeled with its Zone ID to identify the originating Zone of the log message.
+- **Better management**, to ease federation management admins usually adopts a centralized syslog service. Each :ref:`log entry is now labeled with its Zone <log_debug_configure_the_logging_system>` ID to identify the originating Zone of the log message.
 
 .. |sunstone_multi_boot| image:: /images/sunstone_multi_boot.png
 .. |sunstone_group_defview| image:: /images/sunstone_group_defview.png
@@ -62,13 +62,13 @@ OpenNebula Drivers :: Images and Storage
 
 The storage drivers in OpenNebula are always evolving:
 
-- **Raw device mapping datastore**, OpenNebula 4.8 includes a new datastore type to support raw device mapping. The new datastore allows your VMs to access raw physical storage devices exposed to the hosts. Together with the datastore a new set of transfer manager drivers has been developed to map the devices to the VM disk files.
+- **Raw device mapping datastore**, OpenNebula 4.8 includes a :ref:`new datastore type to support raw device mapping <dev_ds>`. The new datastore allows your VMs to access raw physical storage devices exposed to the hosts. Together with the datastore a new set of transfer manager drivers has been developed to map the devices to the VM disk files.
 
 - **Cloning to a different datastore**, images can now be :ref:`cloned to a different Datastore <img_guide>`. The only restriction is that the new Datastore must be compatible with the current one, i.e. have the same DS_MAD drivers.
 
-- **Better Ceph drivers**, these drivers have been also improved in this release, support for RBD format 2 has been included and the use of qemu-img user land tools has been removed to relay only in the rbd tool set. Also CRDOM management in Ceph pools has been added.
+- **Better Ceph drivers**, :ref:`these drivers have been also improved <ceph_ds>` in this release, support for RBD format 2 has been included and the use of qemu-img user land tools has been removed to relay only in the rbd tool set. Also CRDOM management in Ceph pools has been added.
 
-- **Better IO control**, disk IO bandwidth can be controlled in KVM using the parameters ``TOTAL_BYTES_SEC``, ``READ_BYTES_SEC``, ``WRITE_BYTES_SEC``, ``TOTAL_IOPS_SEC``, ``READ_IOPS_SEC`` and ``WRITE_IOPS_SEC``. These parameters can be set to a default value in the ``KVM`` driver configuration or per disk in the VM template. By default these parameters can only be set by ``oneadmin`` the administrators.
+- **Better IO control**, disk IO bandwidth can be :ref:`controlled in KVM using the parameters <template_volatile_disks_section>` ``TOTAL_BYTES_SEC``, ``READ_BYTES_SEC``, ``WRITE_BYTES_SEC``, ``TOTAL_IOPS_SEC``, ``READ_IOPS_SEC`` and ``WRITE_IOPS_SEC``. These parameters can be set to a default value in the ``KVM`` driver configuration or per disk in the VM template. By default these parameters can only be set by administrators belonging to ``oneadmin`` group.
 
 Hybrid Clouds
 --------------------------------------------------------------------------------
@@ -87,20 +87,20 @@ General improvement in the OneFlow and OneGate components:
 
 - **Controlled deployment**, OneFlow can be configured to wait until a VM contacts OneGate to set it running state. This prevents deploying child roles before the nodes of the parent roles haven't completely booted up. Read more about :ref:`Running State <appflow_use_cli_running_state>`.
 
-- **Improved network management**, network configuration can be defined for a service template. The number of network interfaces that will be used are defined for a service and then each role selects what interfaces will use. The network that is attached to each interface is defined by the user when the service template is instantiated.
+- **Improved network management**, network configuration can be defined for a service template. The number of network interfaces that will be used are :ref:`defined for a service <appflow_use_cli_networks>` and then each :ref:`role selects what interfaces will use <cloud_view_select_network>`. The network that is attached to each interface is defined by the user when the service template is instantiated.
 
 Virtual Machine Templates
 --------------------------------------------------------------------------------
 
 Regarding Virtual Machine templates there has been significant improvements in its usability:
 
-- **Default parameters**, you can now define a ``NIC_DEFAULT`` attribute with values that will be copied to each new ``NIC``. This is specially useful for an administrator to define configuration parameters, such as ``MODEL``, that final users may not be aware of.
+- **Default parameters**, you can now :ref:`define a NIC_DEFAULT attribute <nic_default_template>`with values that will be copied to each new ``NIC``. This is specially useful for an administrator to define configuration parameters, such as ``MODEL``, that final users may not be aware of.
 
 .. code::
 
     NIC_DEFAULT = [ MODEL = "virtio" ]
 
-- **User inputs**, you can define user inputs for a given template. These attributes are provided by the user when the template is instantiated. For example you can define MYSQL_PASSWORD and each user can define a custom value for this variable for the new Virtual Machine. This feature is available through Sunstone and the CLI.
+- **User inputs**, you can define :ref:`user inputs for a given template <template_user_inputs>`. These attributes are provided by the user when the template is instantiated. For example you can define MYSQL_PASSWORD and each user can define a custom value for this variable for the new Virtual Machine. This feature is available through Sunstone and the CLI.
 
 .. code::
 
@@ -113,19 +113,19 @@ Sunstone
 
 Sunstone, the portal to your OpenNebula cloud, has been improved to support flexible provisioning models:
 
-- **VDCAdmin view**, a new view based on the brand new cloud view is available. vDC admin will be able to create new users and manage the resources of the vDC.
+- **VDCAdmin view**, a :ref:`new view based on the brand new cloud view <vdc_admin_view>` is available. vDC admin will be able to create new users and manage the resources of the vDC.
 
-- **OneFlow easier to use**, OpenNebula Flow has been integrated in the cloud and vdcadmin views, now users can instantiate new services and monitor groups of Virtual Machines.
+- **OneFlow easier to use**, OpenNebula Flow has been :ref:`integrated in the cloud and vdcadmin views <cloud_view_services>`, now users can instantiate new services and monitor groups of Virtual Machines.
 
 - **Better views management**, in 4.6 you could select the available :ref:`sunstone views <suns_views>` for new groups. In case you have more than one, you can now also select the default view.
 
 |sunstone_group_defview|
 
-- **Instantiate on hold**, although templates could be instantiated on hold before from the CLI, now you can also do that from Sunstone:
+- **Instantiate on hold**, although templates could be `instantiated on hold </doc/4.8/cli/onevm.1.html>`__ before from the CLI, now you can also do that from Sunstone:
 
 |sunstone_instantiate_hold|
 
-- **Multi boot support**, although this could be done via CLI, now you can set multi boot options also in the Template wizard.
+- **Multi boot support**, although :ref:`this could be done via CLI <template_os_and_boot_options_section>`, now you can set multi boot options also in the Template wizard.
 
 |sunstone_multi_boot|
 
@@ -144,4 +144,4 @@ Virtual Machine contextualization now supports more guest OS:
 
 - **Windows guests contextualization**, now supported to several different windows flavours. The process of provisioning and contextualizing a Windows guest context is described :ref:`here <windows_context>`.
 
-- **Context packages moved to addon repositories**, to ease the incorporation from linux distros
+- **New Context repository**, `context packages moved to addon repositories <https://github.com/OpenNebula/addon-context-linux>`__ to ease the incorporation from linux distros

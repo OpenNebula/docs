@@ -153,6 +153,8 @@ The Images used by the Cloud View Templates should not be persistent. A :ref:`pe
 
 If the users need persistent storage, they can use the `Save a VM`_ functionality
 
+.. _cloud_view_select_network:
+
 Prepare the Network Interfaces
 --------------------------------------------------------------------------------
 
@@ -181,6 +183,8 @@ Please note that you will need to do the same for any Image and Virtual Network 
     [TemplateInstantiate] User [6] : Not authorized to perform USE IMAGE [0].
 
 You can read more about OpenNebula permissions in the :ref:`Managing Permissions <chmod>` and :ref:`Managing ACL Rules <manage_acl>` guides.
+
+.. _cloud_view_services:
 
 How to Prepare the Service Templates
 ================================================================================
