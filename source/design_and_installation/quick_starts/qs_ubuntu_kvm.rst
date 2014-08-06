@@ -6,7 +6,7 @@ Quickstart: OpenNebula on Ubuntu 14.04 and KVM
 
 The purpose of this guide is to provide users with step by step guide to install OpenNebula using Ubuntu 14.04 as the operating system and KVM as the hypervisor.
 
-After following this guide, users will have a working OpenNebula with graphical interface (Sunstone), at least one hypervisor (host) and a running virtual machines. This is useful at the time of setting up pilot clouds, to quickly test new features and as base deployment to build a large informationsºstructure.
+After following this guide, users will have a working OpenNebula with graphical interface (Sunstone), at least one hypervisor (host) and a running virtual machines. This is useful at the time of setting up pilot clouds, to quickly test new features and as base deployment to build a large infrastructure.
 
 Throughout the installation there are two separate roles: **Frontend** and **Nodes**. The Frontend server will execute the OpenNebula services, and the Nodes will be used to execute virtual machines. Please not that **it is possible** to follow this guide with just one host combining both the Frontend and Nodes roles in a single server. However it is recommended execute virtual machines in hosts with virtualization extensions. To test if your host supports virtualization extensions, please run:
 
@@ -20,13 +20,15 @@ Package Layout
 ==============
 
 -  **opennebula-common**: Provides the user and common files
--  **libopennebula-ruby**: All ruby libraries
+-  **ruby-opennebula**: All ruby libraries
 -  **opennebula-node**: Prepares a node as an opennebula-node
 -  **opennebula-sunstone**: OpenNebula Sunstone Web Interface
 -  **opennebula-tools**: Command Line interface
 -  **opennebula-gate**: Gate server that enables communication between VMs and OpenNebula
 -  **opennebula-flow**: Manages services and elasticity
+-  **libopennebula-java**: Java Language bindings for OpenNebula API
 -  **opennebula**: OpenNebula Daemon
+-  **libopennebula-java**: Java Language bindings for OpenNebula API
 
 Step 1. Installation in the Frontend
 ====================================
@@ -41,7 +43,7 @@ Add the OpenNebula repository:
 .. code::
 
     # wget -q -O- http://downloads.opennebula.org/repo/Ubuntu/repo.key | apt-key add -
-    # echo "deb http://downloads.opennebula.org/repo/Ubuntu/14.04 stable opennebula" \
+    # echo "deb http://downloads.opennebula.org/repo/4.8/Ubuntu/14.04/ stable opennebula" \
         > /etc/apt/sources.list.d/opennebula.list
 
 1.2. Install the required packages
@@ -59,7 +61,7 @@ There are two main processes that must be started, the main OpenNebula daemon: `
 
 ``Sunstone`` listens only in the loopback interface by default for security reasons. To change it edit ``/etc/one/sunstone-server.conf`` and change ``:host: 127.0.0.1`` to ``:host: 0.0.0.0``.
 
-Now we must restart the Sunstone:
+Now we must restart Sunstone:
 
 .. code::
 

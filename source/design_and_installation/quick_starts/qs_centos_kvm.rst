@@ -30,7 +30,6 @@ Package Layout
 
 Additionally ``opennebula-common`` and ``opennebula-ruby`` exist but they're intended to be used as dependencies.
 
-
 .. warning:: In order to avoid problems, we recommend to disable SELinux in all the nodes, **Frontend** and **Nodes**:
 
     .. code::
@@ -65,7 +64,7 @@ Add the OpenNebula repository:
     # cat << EOT > /etc/yum.repos.d/opennebula.repo
     [opennebula]
     name=opennebula
-    baseurl=http://downloads.opennebula.org/repo/CentOS/6/stable/x86_64
+    baseurl=http://downloads.opennebula.org/repo/4.8/CentOS/6/x86_64/
     enabled=1
     gpgcheck=0
     EOT
@@ -141,7 +140,7 @@ Add the OpenNebula repository:
     # cat << EOT > /etc/yum.repos.d/opennebula.repo
     [opennebula]
     name=opennebula
-    baseurl=http://downloads.opennebula.org/repo/CentOS/6/stable/x86_64
+    baseurl=http://downloads.opennebula.org/repo/4.8/CentOS/6/x86_64/
     enabled=1
     gpgcheck=0
     EOT

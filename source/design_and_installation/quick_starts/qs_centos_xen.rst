@@ -16,19 +16,6 @@ Throughout the installation there are two separate roles: **Frontend** and **Nod
 
 If you don't get any output you probably don't have virtualization extensions supported/enabled in your server.
 
-.. warning:: In order to avoid problems, we recommend to disable SELinux in all the nodes, **Frontend** and **Nodes**:
-
-    .. code::
-
-        # vi /etc/sysconfig/selinux
-        ...
-        SELINUX=disabled
-        ...
-
-        # setenforce 0
-        # getenforce
-        Permissive
-
 Package Layout
 ==============
 
@@ -42,6 +29,19 @@ Package Layout
 -  opennebula-context: Package for OpenNebula Guests
 
 Additionally ``opennebula-common`` and ``opennebula-ruby`` exist but they're intended to be used as dependencies.
+
+.. warning:: In order to avoid problems, we recommend to disable SELinux in all the nodes, **Frontend** and **Nodes**:
+
+    .. code::
+
+        # vi /etc/sysconfig/selinux
+        ...
+        SELINUX=disabled
+        ...
+
+        # setenforce 0
+        # getenforce
+        Permissive
 
 Step 1. Installation in the Frontend
 ====================================
@@ -64,7 +64,7 @@ Add the OpenNebula repository:
     # cat << EOT > /etc/yum.repos.d/opennebula.repo
     [opennebula]
     name=opennebula
-    baseurl=http://downloads.opennebula.org/repo/CentOS/6/stable/x86_64
+    baseurl=http://downloads.opennebula.org/repo/4.8/CentOS/6/x86_64/
     enabled=1
     gpgcheck=0
     EOT
@@ -148,7 +148,7 @@ Add the OpenNebula repository:
     # cat << EOT > /etc/yum.repos.d/opennebula.repo
     [opennebula]
     name=opennebula
-    baseurl=http://downloads.opennebula.org/repo/CentOS/6/stable/x86_64
+    baseurl=http://downloads.opennebula.org/repo/4.8/CentOS/6/x86_64/
     enabled=1
     gpgcheck=0
     EOT
@@ -294,9 +294,8 @@ Now we can move ahead and create the resources in OpenNebula:
 
     $ onevnet create mynetwork.one
 
-        --path "http://appliances.c12g.com/CentOS-6.5/centos6.5.qcow2.gz" \
     $ oneimage create --name "CentOS-6.5_x86_64" \
-        --path "http://172.16.77.1/vm-images/CentOS65.qcow2" \
+        --path "http://appliances.c12g.com/CentOS-6.5/centos6.5.qcow2.gz" \
         --driver qcow2 \
         --datastore default
 
