@@ -26,7 +26,7 @@ They can also see the current resource usage of all the VDC users, and set quota
 Manage Resources
 ================================================================================
 
-The VDC admin can manage the Services, VMs and Templates of other users in the VDC. The resources of a specific user can be filtered in each of the list views for each resource type or can be listed in the detailed view of the user.
+The VDC admin can manage the Services, VMs and Templates of other users in the VDC. The resources of a specific user can be filtered in each of the list views for each resource type or can be listed in the detailed view of the user
 
 Filtering Resources by User
 ---------------------------
