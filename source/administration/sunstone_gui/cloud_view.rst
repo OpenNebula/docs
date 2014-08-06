@@ -126,6 +126,8 @@ You must set a default CPU and Memory for the Template, but users can change the
 
 |prepare-tmpl-capacity|
 
+.. _cloud_view_features:
+
 Enable Cloud View Features
 --------------------------------------------------------------------------------
 
