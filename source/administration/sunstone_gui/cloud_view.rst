@@ -171,7 +171,7 @@ Change Permissions to Make It Available
 
 To make a Template available to other users, you have two options:
 
-* Change the Template's group, and give it ``GROUP USE`` permissions. This will make the Template only available to users in that group (vDC).
+* Change the Template's group, and give it ``GROUP USE`` permissions. This will make the Template only available to users in that group (VDC).
 * Leave the Template in the oneadmin group, and give it ``OTHER USE`` permissions. This will make the Template available to every user in OpenNebula.
 
 |prepare-tmpl-chgrp|
@@ -201,7 +201,7 @@ When you prepare a :ref:`OneFlow Service Template <appflow_use_cli>` to be used 
 
 To make a Service Template available to other users, you have two options:
 
-* Change the Template's group, and give it ``GROUP USE`` permissions. This will make the Service Template only available to users in that group (vDC).
+* Change the Template's group, and give it ``GROUP USE`` permissions. This will make the Service Template only available to users in that group (VDC).
 * Leave the Template in the oneadmin group, and give it ``OTHER USE`` permissions. This will make the Service Template available to every user in OpenNebula.
 
 Please note that you will need to do the same for any VM Template used by the Roles, and any Image and Virtual Network referenced by those VM Templates, otherwise the Service deployment will fail.

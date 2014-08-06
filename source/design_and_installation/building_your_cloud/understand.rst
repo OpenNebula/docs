@@ -18,7 +18,7 @@ In a small installation with a few hosts, you can use OpenNebula without giving 
 
 For example, you could have two Data Centers in different geographic locations, Europe and USA West Coast, and an agreement for cloudbursting with a public cloud provider, such as Amazon, SoftLayer and/or Azure. Each Data Center runs its own full OpenNebula deployment. Multiple OpenNebula installations can be configured as a federation, and in this case they will share the same user accounts, groups, and permissions across Data Centers.
 
-|vDC Resources|
+|VDC Resources|
 
 The Organizational Perspective
 ================================================================================
@@ -31,10 +31,10 @@ Different authorization scenarios can be enabled with the powerful and configura
 
 The following are common enterprise use cases in large cloud computing deployments:
 
-* **On-premise Private Clouds** Serving Multiple Projects, Departments, Units or Organizations. On-premise private clouds in large organizations require powerful and flexible mechanisms to manage the access privileges to the virtual and physical infrastructure and to dynamically allocate the available resources. In these scenarios, the Cloud Administrator would define a vDC for each Department, dynamically allocating resources according to their needs, and delegating the internal administration of the vDC to the Department IT Administrator.
+* **On-premise Private Clouds** Serving Multiple Projects, Departments, Units or Organizations. On-premise private clouds in large organizations require powerful and flexible mechanisms to manage the access privileges to the virtual and physical infrastructure and to dynamically allocate the available resources. In these scenarios, the Cloud Administrator would define a VDC for each Department, dynamically allocating resources according to their needs, and delegating the internal administration of the VDC to the Department IT Administrator.
 * **Cloud Providers** Offering Virtual Private Cloud Computing. Cloud providers providing customers with a fully-configurable and isolated environment where they have full control and capacity to administer its users and resources. This combines a public cloud with the control usually seen in a personal private cloud system.
 
-|vDC Groups|
+|VDC Groups|
 
 For example, you can think Web Development, Human Resources, and Big Data Analysis as business units represented by VDCs in a private OpenNebula cloud.
 
@@ -42,12 +42,12 @@ For example, you can think Web Development, Human Resources, and Big Data Analys
 * **RED**: Allocation of (ClusterB-DC_West_Coast + ClusterA-DC_Europe + Cloudbursting) to Human Resources
 * **GREEN**: Allocation of (ClusterC-DC_West_Coast + ClusterB-DC_Europe) to Big Data Analysis
 
-|vDC Organization|
+|VDC Organization|
 
 A Cloud Provisioning Model Based on vDCs
 ================================================================================
 
-A VDC is a fully-isolated virtual infrastructure environment where a Group of users, optionally under the control of the VDC admin, can create and manage compute and storage capacity. The users in the VDC, including the VDC administrator, would only see the virtual resources and not the underlying physical infrastructure. The physical resources allocated by the cloud administrator to the vDC can be completely dedicated to the vDC, providing isolation at the physical level too.
+A VDC is a fully-isolated virtual infrastructure environment where a Group of users, optionally under the control of the VDC admin, can create and manage compute and storage capacity. The users in the VDC, including the VDC administrator, would only see the virtual resources and not the underlying physical infrastructure. The physical resources allocated by the cloud administrator to the VDC can be completely dedicated to the VDC, providing isolation at the physical level too.
 
 The privileges of the VDC users and the administrator regarding the operations over the virtual resources created by other users can be configured. For example, in the Advanced Cloud Provisioning Case, the users can instantiate virtual machine templates to create their machines, while the administrators of the VDC have full control over other users' resources and can also create new users in the VDC.
 
@@ -125,7 +125,7 @@ These "Cloud Users" typically access to the cloud by using the Cloud View of Sun
 +----------------+------------------------------------------------------------------------------------------------------------------------------+
 |      Role      |                                                         Capabilities                                                         |
 +================+==============================================================================================================================+
-| **Cloud User** | * Instantiates VMs using the templates defined by the Cloud Admins and the images defined by the Cloud Admins or vDC Admins. |
+| **Cloud User** | * Instantiates VMs using the templates defined by the Cloud Admins and the images defined by the Cloud Admins or VDC Admins. |
 |                | * Instantiates VMs using their own Images saved from a previous running VM                                                   |
 |                | * Manages their VMs, including                                                                                               |
 |                |                                                                                                                              |
@@ -159,7 +159,7 @@ The VDC Users have the capabilities described in the previous scenario and typic
 |                | * Checks VDC usage and quotas                       |
 +----------------+-----------------------------------------------------+
 
-.. |vDC Resources| image:: /images/vdc_resources.png
-.. |vDC Groups| image:: /images/vdc_groups.png
-.. |vDC Organization| image:: /images/vdc_organization.png
+.. |VDC Resources| image:: /images/vdc_resources.png
+.. |VDC Groups| image:: /images/vdc_groups.png
+.. |VDC Organization| image:: /images/vdc_organization.png
 .. |cloud-view| image:: /images/cloud-view.png

@@ -13,7 +13,7 @@ OpenNebula includes a complete user & group management system. Users in an OpenN
 
 The resources a user may access in OpenNebula are controlled by a permissions system that resembles the typical UNIX one. By default, only the owner of a resource (e.g. a VM or an image) can use and manage it. Users can easily share the resources by granting use or manage permissions to other users in her group or to any other user in the system.
 
-Upon group creation, an associated admin group can be also spawn, with a admin user belonging to both of them. By default this user will be able to create users in both groups, and manage non owned resources for the regular group, through the CLI and/or a special Sunstone view. This group can also be assigned with different Resource providers, in practice OpenNebula clusters with all the associated resources of said cluster (hosts, datastores and virtual networks). This allows for the management of virtual datacenters using group functionality. 
+Upon group creation, an associated admin group can be also spawn, with a admin user belonging to both of them. By default this user will be able to create users in both groups, and manage non owned resources for the regular group, through the CLI and/or a special Sunstone view. This group can also be assigned with different Resource providers, in practice OpenNebula clusters with all the associated resources of said cluster (hosts, datastores and virtual networks). This allows for the management of virtual datacenters using group functionality.
 
 Along with the users & groups the Auth Subsystem is responsible for the authentication and authorization of user's requests.
 
@@ -26,7 +26,7 @@ OpenNebula comes with a default set of ACL rules that enables a standard usage. 
 Please proceed to the following guides to learn more:
 
 -  :ref:`Managing Users <manage_users>`
--  :ref:`Managing Groups & vDC <manage_groups>`
+-  :ref:`Managing Groups & VDC <manage_groups>`
 -  :ref:`Managing Permissions <chmod>`
 -  :ref:`Managing ACL Rules <manage_acl>`
 -  :ref:`Quota Management <quota_auth>`

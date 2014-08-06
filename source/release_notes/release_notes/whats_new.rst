@@ -26,7 +26,7 @@ OpenNebula Core :: Virtual Networks
 
 Virtual Networks have undergone an important upgrade in 4.8. The network definition is not longer tied to the traditional FIXED/RANGED model anymore:
 
-- **New virtual network model**,  virtual networks can now include any combination of ranges to accommodate any address distribution. The :ref:`new network model <vgg_vn_model>` has been implemented through the address range (AR) abstraction, that decouples the physical implementation of the network (vlan id, bridges or driver), from the logical address map, its map and the associated context variables. The new VNETs preserve the original interface in terms of contextualization, address hold, addition and removal of addresses from the network or usage. 
+- **New virtual network model**,  virtual networks can now include any combination of ranges to accommodate any address distribution. The :ref:`new network model <vgg_vn_model>` has been implemented through the address range (AR) abstraction, that decouples the physical implementation of the network (vlan id, bridges or driver), from the logical address map, its map and the associated context variables. The new VNETs preserve the original interface in terms of contextualization, address hold, addition and removal of addresses from the network or usage.
 
 - **New Address Range concept**, the :ref:`new ARs <vgg_vn_ar>` define the address type being it IPv4, IPv6, dual stack IPv4 - IPv6, or just MAC addresses; this allow you to control the type of address of the network you want to generate and makes it representation more accurate in OpenNebula when an external DHCP service is providing the IP addresses. Address ranges can even overwrite some of the network configuration or context attributes to implement complex use cases that logically groups multiple networks under the same VNET.
 
@@ -113,7 +113,7 @@ Sunstone
 
 Sunstone, the portal to your OpenNebula cloud, has been improved to support flexible provisioning models:
 
-- **VDCAdmin view**, a :ref:`new view based on the brand new cloud view <vdc_admin_view>` is available. vDC admin will be able to create new users and manage the resources of the vDC.
+- **VDCAdmin view**, a :ref:`new view based on the brand new cloud view <vdc_admin_view>` is available. VDC admin will be able to create new users and manage the resources of the VDC.
 
 - **OneFlow easier to use**, OpenNebula Flow has been :ref:`integrated in the cloud and vdcadmin views <cloud_view_services>`, now users can instantiate new services and monitor groups of Virtual Machines.
 

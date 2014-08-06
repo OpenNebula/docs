@@ -9,4 +9,4 @@ Quick Starts
    OpenNebula on CentOS 6 and Xen <qs_centos_xen>
    OpenNebula on CentOS 6 and VMware <qs_centos_vmware>
    OpenNebula on Ubuntu and KVM <qs_ubuntu_kvm>
-   Create Your First vDC <qs_vdc>
+   Create Your First VDC <qs_vdc>

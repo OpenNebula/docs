@@ -26,7 +26,7 @@ Advanced Multi-tenancy with Group Management
 On-demand Provision of Virtual Data Centers
 ===========================================
 
-- A vDC is a fully-isolated virtual infrastructure environment where a Group of users, optionally under the control of the vDC admin, can create and manage compute and storage capacity.
+- A VDC is a fully-isolated virtual infrastructure environment where a Group of users, optionally under the control of the VDC admin, can create and manage compute and storage capacity.
 - User Groups can be assigned one or more resource providers. Resource providers are defined as a cluster of servers, virtual networs, datastores and public clouds for cloud bursting in an OpenNebula zone. Read more in the :ref:`Users and Groups Management Guide <managing_resource_provider_within_groups>`.
 - A special administration group can be defined to manage specific aspects of the group like user management or appliances definition. Read more in the :ref:`Managing Users and Groups <manage_users>` guide.
 - Sunstone views for new groups can be dynamically defined without the need of modifying the Sunstone configuration files. More information in the :ref:`Sunstone Views <suns_views>` guide.
@@ -148,7 +148,7 @@ Standard Cloud Interfaces and Simple Provisioning Portal for Cloud Consumers
 -  :ref:`AWS EC2 API service <ec2qcg>`, the de facto cloud API standard, with :ref:`compatibility with EC2 ecosystem tools <ec2qec>` and :ref:`client tools <ec2qug>`
 -  Support for simultaneously exposing multiple cloud APIs
 -  :ref:`Provisioning portal implemented as a user Cloud View of Sunstone <cloud_view>` to allow non-IT end users to easily create, deploy and manage compute, storage and network resources
--  VDCAdmin Sunstone view where vDC admins are able to create new users and manage the resources of the vDC.
+-  VDCAdmin Sunstone view where VDC admins are able to create new users and manage the resources of the VDC.
 
 Rich Command Line and Web Interfaces for Cloud Administrators
 =============================================================

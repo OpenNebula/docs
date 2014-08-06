@@ -148,7 +148,7 @@ When a Service Template defines dynamic networks, the instantiate dialog will as
 
 |oneflow-templates-net-3|
 
-This allows you to create more generic Service Templates. For example, the same Service Template can be used by users of different :ref:`vDC's <manage_groups>` that may have access to different Virtual Networks.
+This allows you to create more generic Service Templates. For example, the same Service Template can be used by users of different :ref:`VDC's <manage_groups>` that may have access to different Virtual Networks.
 
 
 Managing Services

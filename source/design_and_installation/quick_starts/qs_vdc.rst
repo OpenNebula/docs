@@ -1,16 +1,16 @@
 .. _qs_vdc:
 
 ===================================================
-Quickstart: Create Your First vDC
+Quickstart: Create Your First VDC
 ===================================================
 
-This guide will provide a quick example of how to partition your cloud for a vDC. In short, a vDC is a group of users with part of the physical resources assigned to them. The :ref:`Understanding OpenNebula<understand>` guide explains the OpenNebula provisioning model in detail.
+This guide will provide a quick example of how to partition your cloud for a VDC. In short, a VDC is a group of users with part of the physical resources assigned to them. The :ref:`Understanding OpenNebula<understand>` guide explains the OpenNebula provisioning model in detail.
 
 
 Step 1. Create a Cluster
 ================================================================================
 
-We will first create a :ref:`cluster <cluster_guide>`, 'web-dev', where we can group :ref:`hosts <hostsubsystem>`, :ref:`datastores <sm>` and :ref:`virtual networks <vgg>` for the new vDC.
+We will first create a :ref:`cluster <cluster_guide>`, 'web-dev', where we can group :ref:`hosts <hostsubsystem>`, :ref:`datastores <sm>` and :ref:`virtual networks <vgg>` for the new VDC.
 
 .. code::
 
@@ -33,12 +33,12 @@ We will first create a :ref:`cluster <cluster_guide>`, 'web-dev', where we can g
 
 |qs_vdc1|
 
-Step 2. Create a vDC Group
+Step 2. Create a VDC Group
 ================================================================================
 
-We can now create the new :ref:`group <manage_groups>`, named also 'web-dev'. This group, or vDC, will have a special admin user, 'web-dev-admin'. This admin user will be able to create new users inside the vDC.
+We can now create the new :ref:`group <manage_groups>`, named also 'web-dev'. This group, or VDC, will have a special admin user, 'web-dev-admin'. This admin user will be able to create new users inside the VDC.
 
-When a new group is created, you will also have the opportunity to configure different options, like the available :ref:`Sunstone views <suns_views>`. Another thing that can be configured is if the virtual resources will be shared for all the users of the vDC, or private.
+When a new group is created, you will also have the opportunity to configure different options, like the available :ref:`Sunstone views <suns_views>`. Another thing that can be configured is if the virtual resources will be shared for all the users of the VDC, or private.
 
 .. code::
 
@@ -54,7 +54,7 @@ When a new group is created, you will also have the opportunity to configure dif
 Step 3. Optionally, Set Quotas
 ================================================================================
 
-The cloud administrator can set :ref:`usage quotas <quota_auth>` for the vDC. In this case, we will put a limit of 10 VMs.
+The cloud administrator can set :ref:`usage quotas <quota_auth>` for the VDC. In this case, we will put a limit of 10 VMs.
 
 .. code::
 
@@ -86,13 +86,13 @@ The cloud administrator can set :ref:`usage quotas <quota_auth>` for the vDC. In
 Step 4. Prepare Virtual Resources for the Users
 ================================================================================
 
-The cloud administrator has to create the :ref:`Virtual Machine Templates <vm_guide>` and :ref:`Images <img_guide>` that the vDC users will instantiate. If you don't have any working Image yet, import the ttylinux testing appliance from the :ref:`marketplace <marketplace>`.
+The cloud administrator has to create the :ref:`Virtual Machine Templates <vm_guide>` and :ref:`Images <img_guide>` that the VDC users will instantiate. If you don't have any working Image yet, import the ttylinux testing appliance from the :ref:`marketplace <marketplace>`.
 
 |qs_vdc8|
 
 Now you need to create a VM Template that uses the new Image. Make sure you set the features mentioned in the :ref:`Cloud View guide <cloud_view_features>`, specifically the logo, description, ssh key, and user inputs.
 
-The new Template will be owned by oneadmin. To make it available to all users (including the ones of the new vDC), check the ``OTHER USE`` permission **for both the Template and the Image**. Read more about assigning virtual resources to a vDC in the :ref:`Managing Groups & vDC guide <manage_groups_virtual_resources>`.
+The new Template will be owned by oneadmin. To make it available to all users (including the ones of the new VDC), check the ``OTHER USE`` permission **for both the Template and the Image**. Read more about assigning virtual resources to a VDC in the :ref:`Managing Groups & VDC guide <manage_groups_virtual_resources>`.
 
 |qs_vdc9|
 
@@ -105,7 +105,7 @@ Create a basic Service with two roles: master (x1) and slave (x2). Check 'master
 Step 5. Using the Cloud as a VDC Admin
 ================================================================================
 
-If you login as the 'web-dev-admin', you will see a simplified interface, the :ref:`vDC admin view <vdc_admin_view>`. This view hides the physical infrastructure, but allows some administration tasks to be performed.
+If you login as the 'web-dev-admin', you will see a simplified interface, the :ref:`VDC admin view <vdc_admin_view>`. This view hides the physical infrastructure, but allows some administration tasks to be performed.
 
 |vdcadmin_dash|
 
@@ -117,7 +117,7 @@ The VDC admin can manage the Services, VMs and Templates of other users in the V
 
 |vdcadmin_user_info|
 
-Although the cloud administrator is the only one that can create new base Images and Templates, the vDC admin can customize existing Templates, and share them with the rest of the vDC users.
+Although the cloud administrator is the only one that can create new base Images and Templates, the VDC admin can customize existing Templates, and share them with the rest of the VDC users.
 
 |vdcadmin_save_vm|
 
@@ -126,7 +126,7 @@ Create a new user, and login again.
 Step 6. Using the Cloud as a Regular User
 =========================================
 
-The regular users of the vDC use the :ref:`Cloud View<cloud_view>`, an even more simplified view of their virtual resources.
+The regular users of the VDC use the :ref:`Cloud View<cloud_view>`, an even more simplified view of their virtual resources.
 
 |cloud_dash|
 

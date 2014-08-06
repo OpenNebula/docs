@@ -2,12 +2,12 @@
 .. _manage_users_groups:
 
 ==========================
-Managing Groups & vDC
+Managing Groups & VDC
 ==========================
 
 A group in OpenNebula makes it possible to isolate users and resources. A user can see and use the :ref:`shared resources <chmod>` from other users.
 
-The group is an authorization boundary for the users, but you can also partition your cloud infrastructure and define what resources are available to each group. The vDC (Virtual Data Center) concept is not a different entity in OpenNebula, it is how we call groups that have some resources assigned to them. You can read more about OpenNebula's approach to vDC's and the cloud from the perspective of different user roles in the :ref:`Understanding OpenNebula <understand>` guide.
+The group is an authorization boundary for the users, but you can also partition your cloud infrastructure and define what resources are available to each group. The VDC (Virtual Data Center) concept is not a different entity in OpenNebula, it is how we call groups that have some resources assigned to them. You can read more about OpenNebula's approach to VDC's and the cloud from the perspective of different user roles in the :ref:`Understanding OpenNebula <understand>` guide.
 
 Adding and Deleting Groups
 ================================================================================
@@ -90,10 +90,10 @@ An example:
 
 .. _add_admin_user_to_group:
 
-Add Admin User to a Existing vDC
+Add Admin User to a Existing VDC
 ================================================================================
 
-If not defined at creation time, a user can be configured to be Admin of a vDC using ACLs. For instance, to add user "MyVDCAdmin" with ID 4 as admin of group 100  using the default permissions (as presented by the Sunstone interface), the following two ACLs are needed:
+If not defined at creation time, a user can be configured to be Admin of a VDC using ACLs. For instance, to add user "MyVDCAdmin" with ID 4 as admin of group 100  using the default permissions (as presented by the Sunstone interface), the following two ACLs are needed:
 
 .. code::
 
@@ -112,10 +112,10 @@ Also, the group template has to be updated to reflect the new admin:
 
 .. _managing_resource_provider_within_groups:
 
-Managing vDC and Resource Providers
+Managing VDC and Resource Providers
 ================================================================================
 
-A vDC (Virtual Data Center) is how we call groups that have some resources assigned to them. A resource provider is an OpenNebula :ref:`cluster <cluster_guide>` (set of physical hosts and associated datastores and virtual networks) from a particular zone (an OpenNebula instance). A group can be assigned:
+A VDC (Virtual Data Center) is how we call groups that have some resources assigned to them. A resource provider is an OpenNebula :ref:`cluster <cluster_guide>` (set of physical hosts and associated datastores and virtual networks) from a particular zone (an OpenNebula instance). A group can be assigned:
 
 * A particular resource provider, for instance cluster 7 of Zone 0
 
@@ -139,24 +139,24 @@ If you are familiar with :ref:`ACL rules <manage_acl>`, you can take a look at t
 
 .. _manage_groups_virtual_resources:
 
-Managing vDC and Virtual Resources
+Managing VDC and Virtual Resources
 ================================================================================
 
-You can make the following virtual resources available to vDC users:
+You can make the following virtual resources available to VDC users:
 
 * :ref:`Virtual Machine Templates <vm_guide>`
 * :ref:`Service Templates <appflow_use_cli>`
 * :ref:`Images <img_guide>`
 * :ref:`Files & Kernels <img_guide_files>`
 
-To make a virtual resource owned by oneadmin available to users of the new vDC, you have two options:
+To make a virtual resource owned by oneadmin available to users of the new VDC, you have two options:
 
-* Change the resource's group, and give it ``GROUP USE`` permissions. This will make the resource only available to users in that vDC.
+* Change the resource's group, and give it ``GROUP USE`` permissions. This will make the resource only available to users in that VDC.
 * Leave the resource in the oneadmin group, and give it ``OTHER USE`` permissions. This will make the resource available to every user in OpenNebula.
 
 |prepare-tmpl-chgrp|
 
-The Virtual Machine and Service Templates are visible to the vDC users when they want to create a new VM or Service. The Images (including File Images) used by those Templates are not visible to the users, but must be also made available, otherwise the VM creation will fail with an error message similar to this one:
+The Virtual Machine and Service Templates are visible to the VDC users when they want to create a new VM or Service. The Images (including File Images) used by those Templates are not visible to the users, but must be also made available, otherwise the VM creation will fail with an error message similar to this one:
 
 .. code::
 
