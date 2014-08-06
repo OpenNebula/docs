@@ -137,8 +137,6 @@ There are a few features of the Cloud View that will work if you configure the T
 
 .. todo:: where to add logos
 
-|cloud-view-create|
-
 * The Cloud View gives access to the VM's VNC, but only if it is configured in the Template.
 
 * End users can upload their public ssh key. This requires the VM guest to be :ref:`contextualized <bcont>`, and the Template must have the ssh contextualization enabled.
