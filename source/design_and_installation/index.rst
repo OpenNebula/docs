@@ -9,4 +9,3 @@ Design and Installation Guide
 
    Building your Cloud <building_your_cloud/index>
    Quick Starts <quick_starts/index>
-   Configuring Your Cloud Provisioning Model <provisioning_model/index>
