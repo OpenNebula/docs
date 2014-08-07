@@ -1,10 +1,10 @@
 .. _qs_centos_vmware:
 
 ==============================================
-Quickstart: OpenNebula on CentOS 6 and ESX 5.x
+Quickstart: OpenNebula on CentOS 6 and ESX 5.1
 ==============================================
 
-This guide aids in the process of quickly get a VMware-based OpenNebula cloud up and running on CentOS 6. After following this guide, users will have a working OpenNebula with graphical interface (Sunstone), at least one hypervisor (host) and a running virtual machines. This is useful at the time of setting up pilot clouds, to quickly test new features and as base deployment to build a large infrastructure.
+This guide aids in the process of quickly get a VMware-based OpenNebula cloud up and running on CentOS 6. After following this guide, users will have a working OpenNebula with graphical interface (Sunstone), at least one hypervisor (host) and a running virtual machine. This is useful at the time of setting up pilot clouds, to quickly test new features and as base deployment to build a larger infrastructure.
 
 Throughout the installation there are two separate roles: Frontend and Virtualization Nodes. The Frontend server will execute the OpenNebula services, and the Nodes will be used to execute virtual machines.
 
@@ -27,7 +27,7 @@ Step 1. Infrastructure Set-up
 
 The infrastructure needs to be set up in a similar fashion as the one depicted in the figure.
 
-.. warning:: A ESX version 5.0 was used to create this guide. This guide may be useful for other versions of ESX, although the configuration (and therefore your mileage) may vary.
+.. warning:: A ESX version 5.1 was used to create this guide. This guide may be useful for other versions of ESX, although the configuration (and therefore your mileage) may vary.
 
 |image1|
 
@@ -35,11 +35,11 @@ In this guide it is assumed that at least two physical servers are available, on
 
 **Front-End**
 
--  **Operating System**: Centos 6.4
+-  **Operating System**: Centos 6.x
 -  **Required extra repository**: EPEL
 -  **Required packages**: NFS, libvirt
 
-Let's install the repository (as root) and required packages
+Let's install the repository and required packages. As root in the front-end:
 
 .. code::
 
@@ -47,7 +47,7 @@ Let's install the repository (as root) and required packages
      # cat << EOT > /etc/yum.repos.d/opennebula.repo
      [opennebula]
      name=opennebula
-     baseurl=http://downloads.opennebula.org/repo/CentOS/6/stable/x86_64
+     baseurl=http://downloads.opennebula.org/repo/4.8/CentOS/6/x86_64/
      enabled=1
      gpgcheck=0
      EOT
@@ -56,7 +56,7 @@ Let's install the repository (as root) and required packages
 
 **Virtualization node**
 
--  **Operating System**: ESX 5.0
+-  **Operating System**: ESX 5.1
 
 .. warning:: The ESX hosts needs to be configured. To achieve this, you will need access to a Windows machine with the Virtual Infrastructure Client (vSphere client) install. The VI client can be downloaded from the ESX node, by pointing a browser to its IP.
 
@@ -332,12 +332,12 @@ Edit ``/etc/one/sunstone-server.conf`` with “sudo” and allow incoming connec
 
 **4.3 Start OpenNebula**
 
-Start OpenNebula and Sunstone **as oneadmin**
+Start OpenNebula and Sunstone. As root in the front-end
 
 .. code::
 
-    $ one start
-    $ sunstone-server start
+    # service opennebula start
+    # service opennebula-sunstone start
 
 If no error message is shown, then everything went smooth!
 
@@ -382,15 +382,15 @@ Step 5. Using the Cloud through Sunstone
 
 Ok, so now that everything is in place, let's start using your brand new OpenNebula cloud! Use your browser to access Sunstone. The URL would be ``http://@IP-of-the-front-end@:9869``
 
-Once you introduce the credentials for the “oneuser” user (with the chosen password in the previous section) you will get to see the Sunstone dashboard. You can also log in as “oneadmin”, you will notice the access to more functionality (basically, the administration and physical infrastructure management tasks)
+Introduce the credentials for the “oneuser” user (with the chosen password in the previous section) you will get to see the Cloud View dashboard. Log out and now log in as “oneadmin”, you will notice the access to more functionality (basically, the administration and physical infrastructure management tasks)
 
 |image7|
 
 It is time to launch our first VM. Let's use one of the pre created appliances found in the `marketplace <http://marketplace.c12g.com/>`__.
 
-Log in as “oneuser”, go to the Marketplace tab in Sunstone (in the left menu), and select the “ttylinux-VMware” row. Click on the “Import to local infrastructure” button in the upper right, and set the new image a name (use “ttylinux - VMware”) and place it in the “VMwareImages” datastore. If you go to the Virtual Resources/Image tab, you will see that the new Image will eventually change its status from ``LOCKED`` to ``READY``.
+Logged in as “oneadmin”, go to the Marketplace tab in Sunstone (in the left menu), and select the “ttylinux-VMware” row. Click on the “Import to local infrastructure” button in the upper right, and set the new image a name (use “ttylinux - VMware”) and place it in the “VMwareImages” datastore. If you go to the Virtual Resources/Image tab, you will see that the new Image will eventually change its status from ``LOCKED`` to ``READY``.
 
-Now we need to create a template that uses this image. Go to the Virtual Resources/Templates tab, click on ”+Create” and follow the wizard, or use the “Advanced mode” tab of the wizard to paste the following:
+Now we need to create a template that uses this image. Go to the Virtual Resources/Templates tab, click on ”+” and follow the wizard, or use the “Advanced mode” tab of the wizard to paste the following:
 
 .. code::
 
@@ -410,8 +410,6 @@ Now we need to create a template that uses this image. Go to the Virtual Resourc
 
 Select the newly created template and click on the Instantiate button. You can now proceed to the “Virtual Machines” tab. Once the VM is in state RUNNING you can click on the VNC icon and you should see the ttylinux login (root/password).
 
-|image8|
-
 Please note that the minimal ttylinux VM does not come with the VMware Tools, and cannot be gracefully shutdown. Use the “Cancel” action instead.
 
 And that's it! You have now a fully functional pilot cloud. You can now create your own virtual machines, or import other appliances from the marketplace, like `Centos 6.2 <http://marketplace.c12g.com/appliance/4ff2ce348fb81d4406000003>`__.
@@ -424,6 +422,13 @@ Step 6. Next Steps
 -  Follow the :ref:`VMware Virtualization Driver Guide <evmwareg>` for the complete installation and tuning reference, and how to enable the disk attach/detach functionality, and vMotion live migration.
 -  OpenNebula can use :ref:`VMware native networks <vmwarenet>` to provide network isolation through VLAN tagging.
 
+For your reference:
+
+-  :ref:`Planning the Installation <plan>`
+-  :ref:`Installing the Software <ignc>`
+-  `FAQs. Good for troubleshooting <http://wiki.opennebula.org/faq>`__
+-  :ref:`Main Documentation <entry_point>`
+
 .. warning:: Did we miss something? Please `let us know <mailto:contact@opennebula.org?subject=Feedback-on-OpenNebula-VMware-Sandbox>`_!
 
 .. |image1| image:: /images/quickstart-vmware.png
@@ -432,5 +437,4 @@ Step 6. Next Steps
 .. |image4| image:: /images/sshaccess-1.png
 .. |image5| image:: /images/firewall.png
 .. |image6| image:: /images/adddatastore-1.png
-.. |image7| image:: /images/centos_sunstone_dashboard_44.png
-.. |image8| image:: /images/sunstone_vnc_tty_centos.png
+.. |image7| image:: /images/admin_view.png
