@@ -12,6 +12,7 @@ AMIs
 ----
 
 -  **upload image**: Uploads an image to OpenNebula
+-  **register image**: Register an image into OpenNebula
 -  **describe images**: Lists all registered images belonging to one particular user.
 
 Instances
@@ -91,6 +92,8 @@ Assuming we have a working Gentoo installation residing in an **.img** file, we 
 .. code::
 
     $ econe-upload /images/gentoo.img
+    Success: ImageId ami-00000001
+    $ econe-register ami-00000001
     Success: ImageId ami-00000001
 
 -  **describe\_images**
