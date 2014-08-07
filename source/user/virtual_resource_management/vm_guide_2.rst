@@ -566,4 +566,4 @@ Information for Developers and Integrators
 .. |image5| image:: /images/sunstone_vm_resize.png
 .. |image6| image:: /images/sunstone_vm_list.png
 .. |image7| image:: /images/sunstone_vnc.png
-.. |image8| image:: /images/sunstone_vm_list.png
+.. |image8| image:: /images/sunstonevnc4.png
