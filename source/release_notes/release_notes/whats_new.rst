@@ -18,6 +18,8 @@ Finally, several improvements are scattered across every other OpenNebula compon
 
 As usual OpenNebula releases are named after a Nebula. The  `Lemon Slice nebula (IC 3568) <http://en.wikipedia.org/wiki/Lemon_slice_nebula>`__ is a planetary nebula that is 1.3 kiloparsecs (4500 ly) away from Earth in the constellation of Camelopardalis. It is a relatively young nebula and has a core diameter of only about 0.4 light years.
 
+Want to take OpenNebula 4.8 for a test drive? Use one of the `SandBoxes <http://opennebula.org/tryout/>__` to try out OpenNebula in no time, or proceed to the `Quick Start <http://docs.opennebula.org/4.8/design_and_installation/quick_starts/index.html>`__ guides.
+
 In the following list you can check the highlights of OpenNebula 4.8. (`a detailed list of changes can be found here
 <http://dev.opennebula.org/projects/opennebula/issues?query_id=55>`__):
 
