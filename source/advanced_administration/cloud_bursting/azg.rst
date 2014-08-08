@@ -92,7 +92,7 @@ Additionally you must define your credentials, the Azure location to be used and
         region_name: "West Europe"
         pem_management_cert: <path-to-your-pem-certificate-here>
         subscription_id: <your-subscription-id-here>
-        managment_endpoint:
+        management_endpoint:
         capacity:
             Small: 5
             Medium: 1
@@ -101,7 +101,7 @@ Additionally you must define your credentials, the Azure location to be used and
         region_name:  "West Europe"
         pem_management_cert: <path-to-your-pem-certificate-here>
         subscription_id: <your-subscription-id-here>
-        managment_endpoint:
+        management_endpoint:
         capacity:
             Small: 5
             Medium: 1
