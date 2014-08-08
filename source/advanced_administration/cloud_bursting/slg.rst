@@ -147,7 +147,7 @@ These are the attributes that can be used in the PUBLIC_CLOUD section of the tem
 +-------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``DATACENTER``                | Specifies which datacenter the instance is to be provisioned in                                                                                                    |
 +-------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``OPERATINGSYSTEM``           | An identifier for the operating system to provision the computing instance with. A non exhaustive list of identifiers can be found here                            |
+| ``OPERATINGSYSTEM``           | An identifier for the operating system to provision the computing instance with. A non `exhaustive list of identifiers can be found here <https://github.com/softlayer/softlayer-python/blob/master/docs/cli/vs.rst>`__                            |
 +-------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``BLOCKDEVICETEMPLATE``       | A global identifier for the template to be used to provision the computing instance                                                                                |
 +-------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
