@@ -36,7 +36,7 @@ Prerequisites
 
 .. code::
 
-    # /usr/share/one/install_gems cloud
+    # /usr/share/one/install_gems hybrid
 
 OpenNebula Configuration
 ========================
