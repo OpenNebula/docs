@@ -78,6 +78,21 @@ A complete install of OpenNebula will have at least both ``opennebula-server`` a
 
     # yum install opennebula-server opennebula-sunstone
 
+Now run ``install_gems`` to install all the gem dependencies. Choose the *CentOS/RedHat* if prompted:
+
+.. code::
+
+    # /usr/share/one/install_gems
+    lsb_release command not found. If you are using a RedHat based
+    distribution install redhat-lsb
+
+    Select your distribution or press enter to continue without
+    installing dependencies.
+
+    0. Ubuntu/Debian
+    1. CentOS/RedHat
+    2. SUSE
+
 1.3. Configure and Start the services
 -------------------------------------
 

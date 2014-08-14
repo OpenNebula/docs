@@ -1,10 +1,10 @@
-.. _qs_centos_xen:
+.. _qs_centos7_kvm:
 
 ==========================================
-Quickstart: OpenNebula on CentOS 6 and Xen
+Quickstart: OpenNebula on CentOS 7 and KVM
 ==========================================
 
-The purpose of this guide is to provide users with step by step guide to install OpenNebula using CentOS 6 as the operating system and Xen as the hypervisor.
+The purpose of this guide is to provide users with step by step guide to install OpenNebula using CentOS 7 as the operating system and KVM as the hypervisor.
 
 After following this guide, users will have a working OpenNebula with graphical interface (Sunstone), at least one hypervisor (host) and a running virtual machines. This is useful at the time of setting up pilot clouds, to quickly test new features and as base deployment to build a large infrastructure.
 
@@ -30,7 +30,7 @@ Package Layout
 
 Additionally ``opennebula-common`` and ``opennebula-ruby`` exist but they're intended to be used as dependencies.
 
-.. warning:: In order to avoid problems, we recommend to disable SELinux in all the nodes, **Frontend** and **Nodes**:
+.. warning:: In order to avoid problems, we recommend to disable SELinux in all the nodes, **Frontend** and **Nodes**.
 
     .. code::
 
@@ -42,6 +42,8 @@ Additionally ``opennebula-common`` and ``opennebula-ruby`` exist but they're int
         # setenforce 0
         # getenforce
         Permissive
+
+.. warning:: Some commands may fail depending on your ``iptables/firewalld`` configuration. Disable the firewalls entirely for testing just to rule it out.
 
 Step 1. Installation in the Frontend
 ====================================
@@ -55,7 +57,7 @@ Enable the `EPEL <https://fedoraproject.org/wiki/EPEL>`__ repo:
 
 .. code::
 
-    # yum install http://dl.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
+    # yum install http://dl.fedoraproject.org/pub/epel/beta/7/x86_64/epel-release-7-0.2.noarch.rpm
 
 Add the OpenNebula repository:
 
@@ -64,7 +66,7 @@ Add the OpenNebula repository:
     # cat << EOT > /etc/yum.repos.d/opennebula.repo
     [opennebula]
     name=opennebula
-    baseurl=http://downloads.opennebula.org/repo/4.8/CentOS/6/x86_64/
+    baseurl=http://downloads.opennebula.org/repo/4.8/CentOS/7/x86_64/
     enabled=1
     gpgcheck=0
     EOT
@@ -122,8 +124,7 @@ Refresh the NFS exports by doing:
 
 .. code::
 
-    # service rpcbind restart
-    # service nfs restart
+    # systemctl restart nfs.service
 
 1.5. Configure SSH Public Key
 -----------------------------
@@ -145,16 +146,8 @@ Add the following snippet to ``~/.ssh/config`` as ``oneadmin`` so it doesn't pro
 Step 2. Installation in the Nodes
 =================================
 
-.. warning:: The process to install Xen might change in the future. Please refer to the CentOS documenation on `Xen4 CentOS6 QuickStart <http://wiki.centos.org/HowTos/Xen/Xen4QuickStart>`__ if any of the following steps do not work.
-
 2.1. Install the repo
 ---------------------
-
-Add the CentOS Xen repo:
-
-.. code::
-
-    # yum install centos-release-xen
 
 Add the OpenNebula repository:
 
@@ -163,7 +156,7 @@ Add the OpenNebula repository:
     # cat << EOT > /etc/yum.repos.d/opennebula.repo
     [opennebula]
     name=opennebula
-    baseurl=http://downloads.opennebula.org/repo/4.8/CentOS/6/x86_64/
+    baseurl=http://downloads.opennebula.org/repo/4.8/CentOS/7/x86_64/
     enabled=1
     gpgcheck=0
     EOT
@@ -173,34 +166,29 @@ Add the OpenNebula repository:
 
 .. code::
 
-    # yum install opennebula-common xen nfs-utils ruby
+    # yum install opennebula-node-kvm
 
-Enable the Xen kernel by doing:
-
-.. code::
-
-    # /usr/bin/grub-bootxen.sh
-
-Disable ``xend`` since it is a deprecated interface:
+Start the required services:
 
 .. code::
 
-    # chkconfig xend off
+    # systemctl start messagebus.service
+    # systemctl start libvirtd.service
+    # systemctl start nfs.service
 
-Now you must **reboot** the system in order to start with a Xen kernel.
 
 2.3. Configure the Network
 --------------------------
 
 .. warning:: Backup all the files that are modified in this section before making changes to them.
 
-You will need to have your main interface, typically ``eth0``, connected to a bridge. The name of the bridge should be the same in all nodes.
+You will need to have your main interface connected to a bridge. We will do the following example with ``ens3`` but the name of the interface may vary. An OpenNebula requirements is that the name of the bridge should be the same in all nodes.
 
-To do so, substitute ``/etc/sysconfig/network-scripts/ifcfg-eth0`` with:
+To do so, substitute ``/etc/sysconfig/network-scripts/ifcfg-ens3`` with:
 
 .. code::
 
-    DEVICE=eth0
+    DEVICE=ens3
     BOOTPROTO=none
     NM_CONTROLLED=no
     ONBOOT=yes
@@ -209,7 +197,7 @@ To do so, substitute ``/etc/sysconfig/network-scripts/ifcfg-eth0`` with:
 
 And add a new ``/etc/sysconfig/network-scripts/ifcfg-br0`` file.
 
-If you were using DHCP for your ``eth0`` interface, use this template:
+If you were using DHCP for your ``ens3`` interface, use this template:
 
 .. code::
 
@@ -235,7 +223,7 @@ After these changes, restart the network:
 
 .. code::
 
-    # service network restart
+    # systemctl restart network.service
 
 2.4. Configure NFS
 ------------------
@@ -278,7 +266,7 @@ Issue this command for each one of your nodes. Replace ``localhost`` with your n
 
 .. code::
 
-    $ onehost create localhost -i xen -v xen -n dummy
+    $ onehost create localhost -i kvm -v kvm -n dummy
 
 Run ``onehost list`` until it's set to on. If it fails you probably have something wrong in your ssh configuration. Take a look at ``/var/log/one/oned.log``.
 
@@ -309,30 +297,20 @@ Now we can move ahead and create the resources in OpenNebula:
 
     $ onevnet create mynetwork.one
 
-    $ oneimage create --name "CentOS-6.5_x86_64" \
-        --path "http://appliances.c12g.com/CentOS-6.5/centos6.5.qcow2.gz" \
+    $ oneimage create --name "CentOS-7-one-4.8" \
+        --path http://marketplace.c12g.com/appliance/53e7bf928fb81d6a69000002/download \
         --driver qcow2 \
-        --datastore default
+        -d default
 
-    $ onetemplate create --name "CentOS-6.5" --cpu 1 --vcpu 1 --memory 512 \
-        --arch x86_64 --disk "CentOS-6.5_x86_64" --nic "private" --vnc \
-        --ssh
+    $ onetemplate create --name "CentOS-7" \
+        --cpu 1 --vcpu 1 --memory 512 --arch x86_64 \
+        --disk "CentOS-7-one-4.8" \
+        --nic "private" \
+        --vnc --ssh --net_context
+
+.. warning:: If ``oneimage create`` complains because there's not enough space available in the datastore, you can disable the datastore capacity check in OpenNebula: ``/etc/one/oned.conf:DATASTORE_CAPACITY_CHECK = "no"``. You need to restart OpenNebula after changing this.
 
 You will need to wait until the image is ready to be used. Monitor its state by running ``oneimage list``.
-
-We must specify the desired bootloader to the template we just created. To do so execute the following command:
-
-.. code::
-
-    $ EDITOR=vi onetemplate update CentOS-6.5
-
-Add a new line to the OS section of the template that specifies the bootloader:
-
-.. code::
-
-    OS=[
-      BOOTLOADER = "pygrub",
-      ARCH="x86_64" ]
 
 In order to dynamically add ssh keys to Virtual Machines we must add our ssh key to the user template, by editing the user template:
 
@@ -355,9 +333,11 @@ To run a Virtual Machine, you will need to instantiate a template:
 
 .. code::
 
-    $ onetemplate instantiate "CentOS-6.5" --name "My Scratch VM"
+    $ onetemplate instantiate "CentOS-7"
 
 Execute ``onevm list`` and watch the virtual machine going from PENDING to PROLOG to RUNNING. If the vm fails, check the reason in the log: ``/var/log/one/<VM_ID>/vm.log``.
+
+.. warning:: If it stays too long in ``pend`` status you can check why by doing: ``onevm show <vmid>|grep ^SCHED_MESSAGE``. If it reports that no datastores have enough capacity for the VM, you can force a manual deployment by running: ``onevm deploy <vmid> <hostid>``.
 
 Further information
 ===================
