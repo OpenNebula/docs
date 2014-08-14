@@ -262,6 +262,12 @@ latex_documents = [
     guide_main_title + 'Quickstart Ubuntu 12.04 and KVM',
     latex_author,
     'manual'),
+
+  ( 'design_and_installation/quick_starts/qs_vdc',
+    file_main_title  + 'qs_vdc.tex',
+    guide_main_title + 'Quickstart Create Your First VDC',
+    latex_author,
+    'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
