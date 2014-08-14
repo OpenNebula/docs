@@ -48,7 +48,7 @@ Additionally ``opennebula-common`` and ``opennebula-ruby`` exist but they're int
 Step 1. Installation in the Frontend
 ====================================
 
-.. warning:: Commands prefixed by ``#`` are meant to be run as ``root``. Commands prefixed by ``$`` must be run as ``oneadmin``.
+.. note:: Commands prefixed by ``#`` are meant to be run as ``root``. Commands prefixed by ``$`` must be run as ``oneadmin``.
 
 1.1. Install the repo
 ---------------------
@@ -112,7 +112,7 @@ Now we can start the services:
 1.4. Configure NFS
 ------------------
 
-.. warning:: Skip this section if you are using a single server for both the frontend and worker node roles.
+.. note:: Skip this section if you are using a single server for both the frontend and worker node roles.
 
 Export ``/var/lib/one/`` from the frontend to the worker nodes. To do so add the following to the ``/etc/exports`` file in the frontend:
 
@@ -228,7 +228,7 @@ After these changes, restart the network:
 2.4. Configure NFS
 ------------------
 
-.. warning:: Skip this section if you are using a single server for both the frontend and worker node roles.
+.. note:: Skip this section if you are using a single server for both the frontend and worker node roles.
 
 Mount the datastores export. Add the following to your ``/etc/fstab``:
 
@@ -236,7 +236,7 @@ Mount the datastores export. Add the following to your ``/etc/fstab``:
 
     192.168.1.1:/var/lib/one/  /var/lib/one/  nfs   soft,intr,rsize=8192,wsize=8192,noauto
 
-.. warning:: Replace ``192.168.1.1`` with the IP of the frontend.
+.. note:: Replace ``192.168.1.1`` with the IP of the frontend.
 
 Mount the NFS share:
 
@@ -249,7 +249,7 @@ If the above command fails or hangs, it could be a firewall issue.
 Step 3. Basic Usage
 ===================
 
-.. warning:: All the operations in this section can be done using Sunstone instead of the command line. Point your browser to: ``http://frontend:9869``.
+.. note:: All the operations in this section can be done using Sunstone instead of the command line. Point your browser to: ``http://frontend:9869``.
 
 The default password for the ``oneadmin`` user can be found in ``~/.one/one_auth`` which is randomly generated on every installation.
 
@@ -289,7 +289,7 @@ To create networks, we need to create first a network template file ``mynetwork.
         SIZE = 3
     ]
 
-.. warning:: Replace the address range with free IPs in your host's network. You can add more than one address range.
+.. note:: Replace the address range with free IPs in your host's network. You can add more than one address range.
 
 Now we can move ahead and create the resources in OpenNebula:
 
@@ -308,7 +308,7 @@ Now we can move ahead and create the resources in OpenNebula:
         --nic "private" \
         --vnc --ssh --net_context
 
-.. warning:: If ``oneimage create`` complains because there's not enough space available in the datastore, you can disable the datastore capacity check in OpenNebula: ``/etc/one/oned.conf:DATASTORE_CAPACITY_CHECK = "no"``. You need to restart OpenNebula after changing this.
+.. note:: If ``oneimage create`` complains because there's not enough space available in the datastore, you can disable the datastore capacity check in OpenNebula: ``/etc/one/oned.conf:DATASTORE_CAPACITY_CHECK = "no"``. You need to restart OpenNebula after changing this.
 
 You will need to wait until the image is ready to be used. Monitor its state by running ``oneimage list``.
 
@@ -337,7 +337,7 @@ To run a Virtual Machine, you will need to instantiate a template:
 
 Execute ``onevm list`` and watch the virtual machine going from PENDING to PROLOG to RUNNING. If the vm fails, check the reason in the log: ``/var/log/one/<VM_ID>/vm.log``.
 
-.. warning:: If it stays too long in ``pend`` status you can check why by doing: ``onevm show <vmid>|grep ^SCHED_MESSAGE``. If it reports that no datastores have enough capacity for the VM, you can force a manual deployment by running: ``onevm deploy <vmid> <hostid>``.
+.. note:: If it stays too long in ``pend`` status you can check why by doing: ``onevm show <vmid>|grep ^SCHED_MESSAGE``. If it reports that no datastores have enough capacity for the VM, you can force a manual deployment by running: ``onevm deploy <vmid> <hostid>``.
 
 Further information
 ===================
