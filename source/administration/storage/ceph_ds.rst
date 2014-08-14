@@ -83,7 +83,7 @@ The first step to create a Ceph datastore is to set up a template file for it. I
 +------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``POOL_NAME``                | The OpenNebula Ceph pool name. Defaults to ``one``. **This pool must exist before using the drivers**.                                                                                                                                    |
 +------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``CEPH_USER``                | **Mandatory** The OpenNebula Ceph user name. **This ceph user must exist before using the drivers**.                                                                                                                                    |
+| ``CEPH_USER``                | The OpenNebula Ceph user name. If set it is used by RBD commands. **This ceph user must exist before using the drivers**.                                                                                                                                    |
 +------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``STAGING_DIR``              | Default path for image operations in the OpenNebula Ceph frontend.                                                                                                                                                                        |
 +------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -127,6 +127,8 @@ An example of datastore:
     # the following lines *must* be preset
     DISK_TYPE = RBD
     POOL_NAME = one
+
+    # CEPH_USER is optional
     CEPH_USER = libvirt
 
     BRIDGE_LIST = cephfrontend
