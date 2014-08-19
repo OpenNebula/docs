@@ -113,6 +113,8 @@ This distribution lacks some packaged ruby libraries. This makes some components
 
     # /usr/share/one/install_gems
 
+The ``qemu-kvm`` package does not include support for ``RBD`` therefore it's not possible to use it in combination with Ceph.
+
 Debian Platform Notes
 =====================
 
