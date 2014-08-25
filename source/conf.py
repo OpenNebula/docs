@@ -247,6 +247,12 @@ latex_documents = [
     latex_author,
     'manual'),
 
+  ( 'design_and_installation/quick_starts/qs_centos7_kvm',
+    file_main_title  + 'qs_centos7_kvm_guide.tex',
+    guide_main_title + 'Quickstart CentOS 7 and KVM',
+    latex_author,
+    'manual'),
+
   ( 'design_and_installation/quick_starts/qs_centos_vmware',
     file_main_title  + 'qs_centos_vmware_guide.tex', guide_main_title + 'Quickstart CentOS 6 and ESX 5.x',
     latex_author,
