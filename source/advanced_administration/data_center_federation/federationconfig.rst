@@ -8,6 +8,8 @@ This section will explain how to configure two (or more) OpenNebula zones to wor
 
 MySQL needs to be configured to enable the master-slave replication. Please read `the MySQL documentation for your version <http://dev.mysql.com/doc/refman/5.7/en/replication.html>`_ for complete instructions. The required steps are summarized here, but it may happen that your MySQL version needs a different configuration.
 
+.. warning:: If Sunstone is configured behind a proxy please make sure that the request headers are being :ref:`properly sent <suns_advance_federated>`.
+
 1. Configure the OpenNebula Federation Master
 -------------------------------------------------------------------------------
 

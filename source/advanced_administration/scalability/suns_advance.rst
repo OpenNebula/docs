@@ -36,6 +36,12 @@ Self contained deployment of Sunstone (using ``sunstone-server`` script) is ok f
 
 Sunstone server was modified to be able to run as a ``rack`` server. This makes it suitable to run in any web server that supports this protocol. In ruby world this is the standard supported by most web servers. We now can select web servers that support spawning multiple processes like ``unicorn`` or embedding the service inside ``apache`` or ``nginx`` web servers using the Passenger module. Another benefit will be the ability to run Sunstone in several servers and balance the load between them.
 
+.. _suns_advance_federated:
+
+.. warning:: Deploying Sunstone behind a proxy in a federated environment requires some specific configuration to properly handle the Sunstone headers required by the Federation.
+
+  - **nginx**: enable ``underscores_in_headers on;`` and ``proxy_pass_request_headers on;``
+
 Configuring memcached
 ---------------------
 
