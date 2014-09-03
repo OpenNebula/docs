@@ -50,6 +50,28 @@ Configuration file for auth module is located at ``/etc/one/auth/ldap_auth.conf`
      
         # for Active Directory use this user_field instead
         #:user_field: 'sAMAccountName'
+
+        # field name for group membership, by default it is 'member'
+        #:group_field: 'member'
+
+        # user field that that is in in the group group_field, if not set 'dn' will be used
+        #:user_group_field: 'dn'
+
+        # Generate mapping file from group template info
+        :mapping_generate: true
+
+        # Seconds a mapping file remain untouched until the next regeneration
+        :mapping_timeout: 300
+
+        # Name of the mapping file in OpenNebula var diretory
+        :mapping_filename: server1.yaml
+
+        # Key from the OpenNebula template to map to an AD group
+        :mapping_key: GROUP_DN
+
+        # Default group ID used for users in an AD group not mapped
+        :mapping_default: 1
+
      
     # this example server wont be called as it is not in the :order list
     server 2:
@@ -68,25 +90,47 @@ Configuration file for auth module is located at ``/etc/one/auth/ldap_auth.conf`
 
 The structure is a hash where any key different to ``:order`` will contain the configuration of one ldap server we want to query. The special key ``:order`` holds an array with the order we want to query the configured servers. Any server not listed in ``:order`` wont be queried.
 
-+--------------------+----------------------------------------------------------------------------------------------+
-| VARIABLE           | DESCRIPTION                                                                                  |
-+====================+==============================================================================================+
-| ``:user``          | Name of the user that can query ldap. Do not set it if you can perform queries anonymously   |
-+--------------------+----------------------------------------------------------------------------------------------+
-| ``:password``      | Password for the user defined in ``:user``. Do not set if anonymous access is enabled        |
-+--------------------+----------------------------------------------------------------------------------------------+
-| ``:auth_method``   | Can be set to ``:simple_tls`` if ssl connection is needed                                    |
-+--------------------+----------------------------------------------------------------------------------------------+
-| ``:host``          | Host name of the ldap server                                                                 |
-+--------------------+----------------------------------------------------------------------------------------------+
-| ``:port``          | Port of the ldap server                                                                      |
-+--------------------+----------------------------------------------------------------------------------------------+
-| ``:base``          | Base leaf where to perform user searches                                                     |
-+--------------------+----------------------------------------------------------------------------------------------+
-| ``:group``         | If set the users need to belong to this group                                                |
-+--------------------+----------------------------------------------------------------------------------------------+
-| ``:user_field``    | Field in ldap that holds the user name                                                       |
-+--------------------+----------------------------------------------------------------------------------------------+
++-----------------------+-------------------------------------------------+
+|        VARIABLE       |                   DESCRIPTION                   |
++=======================+=================================================+
+| ``:user``             | Name of the user that can query ldap. Do not    |
+|                       | set it if you can perform queries anonymously   |
++-----------------------+-------------------------------------------------+
+| ``:password``         | Password for the user defined in ``:user``.     |
+|                       | Do not set if anonymous access is enabled       |
++-----------------------+-------------------------------------------------+
+| ``:auth_method``      | Can be set to ``:simple_tls`` if ssl connection |
+|                       | is needed                                       |
++-----------------------+-------------------------------------------------+
+| ``:host``             | Host name of the ldap server                    |
++-----------------------+-------------------------------------------------+
+| ``:port``             | Port of the ldap server                         |
++-----------------------+-------------------------------------------------+
+| ``:base``             | Base leaf where to perform user searches        |
++-----------------------+-------------------------------------------------+
+| ``:group``            | If set the users need to belong to this group   |
++-----------------------+-------------------------------------------------+
+| ``:user_field``       | Field in ldap that holds the user name          |
++-----------------------+-------------------------------------------------+
+| ``:mapping_generate`` | Generate automatically a mapping file. It can   |
+|                       | be disabled in case it needs to be done         |
+|                       | manually                                        |
++-----------------------+-------------------------------------------------+
+| ``:mapping_timeout``  | Number of seconds between automatic mapping     |
+|                       | file generation                                 |
++-----------------------+-------------------------------------------------+
+| ``:mapping_filename`` | Name of the mapping file. Should be different   |
+|                       | for each server                                 |
++-----------------------+-------------------------------------------------+
+| ``:mapping_key``      | Key in the group template used to generate      |
+|                       | the mapping file. It should hold the DN of      |
+|                       | the mapped group                                |
++-----------------------+-------------------------------------------------+
+| ``:mapping_default``  | Default group used when no mapped group is      |
+|                       | found. Set to false in case you don't want the  |
+|                       | user to be authorized if it does not belong     |
+|                       | to a mapped group                               |
++-----------------------+-------------------------------------------------+
 
 To enable ``ldap`` authentication the described parameters should be configured. OpenNebula must be also configured to enable external authentication. Uncomment these lines in ``/etc/one/oned.conf`` and add ``ldap`` and ``default`` (more on this later) as an enabled authentication method.
 
@@ -150,6 +194,43 @@ You will need to change the following values in the configuration file (``/etc/o
 -  ``:user_field``: set it to ``sAMAccountName``
 
 ``:group`` parameter is still not supported for Active Directory, leave it commented.
+
+Group Mapping
+=============
+
+You can make new users belong to an specific group upon creation. To do this a mapping is generated from the LDAP group to an existing OpenNebula group. This system uses a mapping file specified by ``:mapping_file`` parameter and resides in OpenNebula ``var`` directory. The mapping file can be generated automatically using data in the group template that tells which LDAP group maps to that specific group. For example we can add in the group template this line:
+
+.. code:: bash
+
+    GROUP_DN="CN=technicians,CN=Groups,DC=example,DC=com"
+
+And in the ldap configuration file we set the ``:mapping_key`` to ``GROUP_DN``. This tells the driver to look for the group DN in that template parameter. This mapping expires the number of seconds specified by ``:mapping_timeout``. This is done so the authentication is not continually querying OpenNebula.
+
+You can also disable the automatic generation of this file and do the mapping manually. The mapping file is in YAML format and contains a hash where the key is the LDAP's group DN and the value is the ID of the OpenNebula group. For example:
+
+.. code:: yaml
+
+    CN=technicians,CN=Groups,DC=example,DC=com: '100'
+    CN=Domain Admins,CN=Users,DC=example,DC=com: '101'
+
+When several servers are configured you should have different ``:mapping_key`` and ``:mapping_file`` values for each one so they don't collide. For example:
+
+.. code:: yaml
+
+    internal:
+        :mapping_file: internal.yaml
+        :mapping_key: INTERNAL_GROUP_DN
+
+    external:
+        :mapping_file: external.yaml
+        :mapping_key: EXTERNAL_GROUP_DN
+
+And in the OpenNebula group template you can define two mappings, one for each server:
+
+.. code:: bash
+
+    INTERNAL_GROUP_DN="CN=technicians,CN=Groups,DC=internal,DC=com"
+    EXTERNAL_GROUP_DN="CN=staff,DC=other-company,DC=com"
 
 Enabling LDAP auth in Sunstone
 ==============================
