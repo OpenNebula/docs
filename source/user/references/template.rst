@@ -187,7 +187,7 @@ This section configures the features enabled for the VM.
 
 .. code::
 
-    FEATURE = [
+    FEATURES = [
         PAE = "yes",
         ACPI = "yes",
         APIC = "no",
