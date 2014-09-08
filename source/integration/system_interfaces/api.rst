@@ -286,13 +286,13 @@ onevnet
 +-----------------+------------------+--------------------+
 | reserve         | one.vn.reserve   | NET:USE            |
 +-----------------+------------------+--------------------+
-| updatear        | one.vn.update_ar | NET:ADMIN          |
+| updatear        | one.vn.update_ar | NET:MANAGE         |
 +-----------------+------------------+--------------------+
 | hold            | one.vn.hold      | NET:MANAGE         |
 +-----------------+------------------+--------------------+
 | release         | one.vn.release   | NET:MANAGE         |
 +-----------------+------------------+--------------------+
-| update          | one.vn.update    | NET:ADMIN          |
+| update          | one.vn.update    | NET:MANAGE         |
 +-----------------+------------------+--------------------+
 | create          | one.vn.allocate  | NET:CREATE         |
 +-----------------+------------------+--------------------+
