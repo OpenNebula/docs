@@ -297,7 +297,7 @@ Sample Script
      
     VMID=(source /mnt/context.sh; echo $VMID)
 
-    curl -X "PUT" $ONEGATE_ENDPOINT \
+    curl -X "PUT" $ONEGATE_ENDPOINT/vm \
         --header "X-ONEGATE-TOKEN: `cat $ONEGATE_TOKEN`" \
         --header "X-ONEGATE-VMID: $VMID" \
         --data-binary @$TMP_DIR/metrics
