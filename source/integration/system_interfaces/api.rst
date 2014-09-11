@@ -2357,6 +2357,8 @@ one.datastore.allocate
 +------+------------+--------------------------------------------------------------------------------------------------------+
 | IN   | String     | A string containing the template of the datastore. Syntax can be the usual ``attribute=value`` or XML. |
 +------+------------+--------------------------------------------------------------------------------------------------------+
+| IN   | Int        | The cluster ID. If it is -1, this host won't be added to any cluster.                                  |
++------+------------+--------------------------------------------------------------------------------------------------------+
 | OUT  | Boolean    | true or false whenever is successful or not                                                            |
 +------+------------+--------------------------------------------------------------------------------------------------------+
 | OUT  | Int/String | The allocated resource ID / The error string.                                                          |
