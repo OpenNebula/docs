@@ -493,12 +493,13 @@ Sample configuration:
 Restricted Attributes Configuration
 ===================================
 
-Users outside the oneadmin group won't be able to instantiate templates created by users outside the ''onadmin'' group that includes the attributes restricted by:
+Users outside the oneadmin group won't be able to instantiate templates created by users outside the ''oneadmin'' group that include the attributes restricted by:
 
--  **VM\_RESTRICTED\_ATTR**: Virtual Machine attribute to be restricted for users outside the ''onadmin'' group
--  **IMAGE\_RESTRICTED\_ATTR**: Image attribute to be restricted for users outside the ''onadmin'' group
+-  **VM\_RESTRICTED\_ATTR**: Virtual Machine attribute to be restricted for users outside the ''oneadmin'' group
+-  **IMAGE\_RESTRICTED\_ATTR**: Image attribute to be restricted for users outside the ''oneadmin'' group
+-  **VNET\_RESTRICTED\_ATTR**: Virtual Network attribute to be restricted for users outside the ''oneadmin'' group
 
-If the VM template has been created by admins in the ''onadmin'' group, then users outside the ''onadmin'' group **can** instantiate this templates.
+If the VM template has been created by admins in the ''oneadmin'' group, then users outside the ''oneadmin'' group **can** instantiate these templates.
 
 Sample configuration:
 
@@ -515,6 +516,16 @@ Sample configuration:
     #VM_RESTRICTED_ATTR = "SCHED_REQUIREMENTS"
      
     IMAGE_RESTRICTED_ATTR = "SOURCE"
+
+    VNET_RESTRICTED_ATTR = "PHYDEV"
+    VNET_RESTRICTED_ATTR = "VLAN_ID"
+    VNET_RESTRICTED_ATTR = "VLAN"
+    VNET_RESTRICTED_ATTR = "BRIDGE"
+
+    VNET_RESTRICTED_ATTR = "AR/PHYDEV"
+    VNET_RESTRICTED_ATTR = "AR/VLAN_ID"
+    VNET_RESTRICTED_ATTR = "AR/VLAN"
+    VNET_RESTRICTED_ATTR = "AR/BRIDGE"
 
 OpenNebula evaluates these attributes:
 
