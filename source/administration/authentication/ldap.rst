@@ -150,7 +150,11 @@ To be able to use this driver for users that are still not in the user database 
 User Management
 ===============
 
-Using LDAP authentication module the administrator doesn't need to create users with ``oneuser`` command as this will be automatically done. The user should add its credentials to ``$ONE_AUTH`` file (usually ``$HOME/.one/one_auth``) in this fashion:
+Using LDAP authentication module the administrator doesn't need to create users with ``oneuser`` command as this will be automatically done.
+
+
+
+Users can store their credentials into ``$ONE_AUTH`` file (usually ``$HOME/.one/one_auth``) in this fashion:
 
 .. code::
 
@@ -160,6 +164,8 @@ where
 
 -  ``<user_dn>`` the DN of the user in the LDAP service
 -  ``ldap_password`` is the password of the user in the LDAP service
+
+Alternatively a user can generate an authentication token using the ``oneuser login`` command, so there is no need to keep the ldap password in a plain file. Simply input the ldap_password when requested. More information on the management of login tokens and ``$ONE_AUTH`` file can be found in :ref:`Managing Users Guide<manage_users_managing_users>`.
 
 .. _ldap_dn_with_special_characters:
 

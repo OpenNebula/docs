@@ -325,6 +325,8 @@ oneuser
 +-----------------+----------------------+-----------------------------------------+
 | passwd          | one.user.passwd      | USER:MANAGE                             |
 +-----------------+----------------------+-----------------------------------------+
+| login           | one.user.login       | USER:MANAGE                             |
++-----------------+----------------------+-----------------------------------------+
 | update          | one.user.update      | USER:MANAGE                             |
 +-----------------+----------------------+-----------------------------------------+
 | chauth          | one.user.chauth      | USER:ADMIN                              |
@@ -2894,6 +2896,31 @@ one.user.passwd
 | OUT  | Int        | Error code.                                 |
 +------+------------+---------------------------------------------+
 
+one.user.login
+---------------
+
+-  **Description**: Generates or sets a login token.
+-  **Parameters**
+
++------+------------+---------------------------------------------+
+| Type | Data Type  |                 Description                 |
++======+============+=============================================+
+| IN   | String     | The session string.                         |
++------+------------+---------------------------------------------+
+| IN   | String     | The user name to generate the token for     |
++------+------------+---------------------------------------------+
+| IN   | String     | The token, if empty oned will generate one  |
++------+------------+---------------------------------------------+
+| IN   | Int        | Valid period in seconds (0 reset the token).|
++------+------------+---------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not |
++------+------------+---------------------------------------------+
+| OUT  | String     | The new token / The error string.           |
++------+------------+---------------------------------------------+
+| OUT  | Int        | Error code.                                 |
++------+------------+---------------------------------------------+
+
+
 one.user.update
 ---------------
 
@@ -3987,7 +4014,7 @@ Schemas for Group
                     <xs:complexType>
                       <xs:sequence>
                         <xs:element name="CPU" type="xs:string"/>
-                        <xs:element name="CPU_USED" type="xs:string"/>               
+                        <xs:element name="CPU_USED" type="xs:string"/>
                         <xs:element name="MEMORY" type="xs:string"/>
                         <xs:element name="MEMORY_USED" type="xs:string"/>
                         <xs:element name="VMS" type="xs:string"/>
@@ -4057,7 +4084,7 @@ Schemas for Group
                             <xs:complexType>
                               <xs:sequence>
                                 <xs:element name="CPU" type="xs:string"/>
-                                <xs:element name="CPU_USED" type="xs:string"/>               
+                                <xs:element name="CPU_USED" type="xs:string"/>
                                 <xs:element name="MEMORY" type="xs:string"/>
                                 <xs:element name="MEMORY_USED" type="xs:string"/>
                                 <xs:element name="VMS" type="xs:string"/>
@@ -4167,7 +4194,7 @@ Schemas for Group
                             <xs:complexType>
                               <xs:sequence>
                                 <xs:element name="CPU" type="xs:string"/>
-                                <xs:element name="CPU_USED" type="xs:string"/>               
+                                <xs:element name="CPU_USED" type="xs:string"/>
                                 <xs:element name="MEMORY" type="xs:string"/>
                                 <xs:element name="MEMORY_USED" type="xs:string"/>
                                 <xs:element name="VMS" type="xs:string"/>
@@ -4241,7 +4268,7 @@ Schemas for Group
                             <xs:complexType>
                               <xs:sequence>
                                 <xs:element name="CPU" type="xs:string"/>
-                                <xs:element name="CPU_USED" type="xs:string"/>               
+                                <xs:element name="CPU_USED" type="xs:string"/>
                                 <xs:element name="MEMORY" type="xs:string"/>
                                 <xs:element name="MEMORY_USED" type="xs:string"/>
                                 <xs:element name="VMS" type="xs:string"/>
@@ -4288,7 +4315,7 @@ Schemas for Host
             <xs:element name="ID" type="xs:integer"/>
             <xs:element name="NAME" type="xs:string"/>
             <!-- STATE values
-            
+
               INIT                 = 0  Initial state for enabled hosts
               MONITORING_MONITORED = 1  Monitoring the host (from monitored)
               MONITORED            = 2  The host has been successfully monitored
@@ -4533,7 +4560,7 @@ Schemas for User
                     <xs:complexType>
                       <xs:sequence>
                         <xs:element name="CPU" type="xs:string"/>
-                        <xs:element name="CPU_USED" type="xs:string"/>               
+                        <xs:element name="CPU_USED" type="xs:string"/>
                         <xs:element name="MEMORY" type="xs:string"/>
                         <xs:element name="MEMORY_USED" type="xs:string"/>
                         <xs:element name="VMS" type="xs:string"/>
@@ -4603,7 +4630,7 @@ Schemas for User
                             <xs:complexType>
                               <xs:sequence>
                                 <xs:element name="CPU" type="xs:string"/>
-                                <xs:element name="CPU_USED" type="xs:string"/>               
+                                <xs:element name="CPU_USED" type="xs:string"/>
                                 <xs:element name="MEMORY" type="xs:string"/>
                                 <xs:element name="MEMORY_USED" type="xs:string"/>
                                 <xs:element name="VMS" type="xs:string"/>
@@ -4711,7 +4738,7 @@ Schemas for User
                             <xs:complexType>
                               <xs:sequence>
                                 <xs:element name="CPU" type="xs:string"/>
-                                <xs:element name="CPU_USED" type="xs:string"/>               
+                                <xs:element name="CPU_USED" type="xs:string"/>
                                 <xs:element name="MEMORY" type="xs:string"/>
                                 <xs:element name="MEMORY_USED" type="xs:string"/>
                                 <xs:element name="VMS" type="xs:string"/>
@@ -4785,7 +4812,7 @@ Schemas for User
                             <xs:complexType>
                               <xs:sequence>
                                 <xs:element name="CPU" type="xs:string"/>
-                                <xs:element name="CPU_USED" type="xs:string"/>               
+                                <xs:element name="CPU_USED" type="xs:string"/>
                                 <xs:element name="MEMORY" type="xs:string"/>
                                 <xs:element name="MEMORY_USED" type="xs:string"/>
                                 <xs:element name="VMS" type="xs:string"/>

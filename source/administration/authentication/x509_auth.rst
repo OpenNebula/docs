@@ -132,15 +132,12 @@ You can also map multiple certificates to the same OpenNebula account. Just add 
 User Login
 ----------
 
-Users must execute the 'oneuser login' command to generate a login token, and export the new ``ONE_AUTH`` environment variable. The command requires the OpenNebula username, and the authentication method (``–x509`` in this case).
+Users must execute the 'oneuser login' command to generate a login token. The token will be stored in the $ONE\_AUTH environment variable. The command requires the OpenNebula username, and the authentication method (``–x509`` in this case).
 
 .. code::
 
     newuser@frontend $ oneuser login newuser --x509 --cert newcert.pem --key newkey.pem
     Enter PEM pass phrase:
-    export ONE_AUTH=/home/user/.one/one_x509
-
-    newuser@frontend $ export ONE_AUTH=/home/user/.one/one_x509
 
 The generated token has a default **expiration time** of 1 hour. You can change that with the ``–time`` option.
 

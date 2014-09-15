@@ -31,4 +31,4 @@ Please proceed to the following guides to learn more:
 -  :ref:`Managing ACL Rules <manage_acl>`
 -  :ref:`Quota Management <quota_auth>`
 
-By default, the authentication and authorization is handled by the OpenNebula Core as described above. Optionally, you can delegate it to an external module, see the :ref:`External Auth Setup <external_auth>` guide for more information.
+By default, the authentication and authorization is handled by the OpenNebula Core as described above. Optionally, you can delegate it to an external module, see the :ref:`Authentication Guide <external_auth>` for more information.

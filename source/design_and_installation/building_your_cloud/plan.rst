@@ -150,7 +150,7 @@ You can choose from the following authentication models to access OpenNebula:
 
 .. warning:: **Default:** OpenNebula comes by default with an internal built-in user/password authentication.
 
-Please check the :ref:`External Auth guide <external_auth>` to find out more information of the auth technologies supported by OpenNebula.
+Please check the :ref:`Authentication Guide <external_auth>` to find out more information of the auth technologies supported by OpenNebula.
 
 Advanced Components
 ===================

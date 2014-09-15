@@ -91,14 +91,11 @@ As with the ``create`` command, you can specify the public key as the second par
 User Login
 ----------
 
-Users must execute the 'oneuser login' command to generate a login token, and export the new ``ONE_AUTH`` environment variable. The command requires the OpenNebula username, and the authentication method (``–ssh`` in this case).
+Users must execute the 'oneuser login' command to generate a login token. The token will be stored in the $ONE\_AUTH environment variable. The command requires the OpenNebula username, and the authentication method (``–ssh`` in this case).
 
 .. code::
 
     newuser@frontend $ oneuser login newuser --ssh
-    export ONE_AUTH=/home/newuser/.one/one_ssh
-
-    newuser@frontend $ export ONE_AUTH=/home/newuser/.one/one_ssh
 
 The default ssh key is assumed to be in ``~/.ssh/id_rsa``, otherwise the path can be specified with the ``–key`` option.
 

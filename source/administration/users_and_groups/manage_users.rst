@@ -35,7 +35,13 @@ URL where the OpenNebula daemon is listening. If it is not set, CLI tools will u
 
 **ONE\_AUTH**
 
-Needs to point to **a file containing just a single line stating ``username:password``**. If ONE\_AUTH is not defined, $HOME/.one/one\_auth will be used instead. If no auth file is present, OpenNebula cannot work properly, as this is needed by the core, the CLI, and the cloud components as well.
+Needs to point to **a file containing a valid authentication key**, it can be:
+
+* A passord file with just a single line stating **``username:password``**.
+
+* A token file with just a single line with **``username:token``**, where token is a valid token created with the ``oneuser login`` command or API call.
+
+If ONE\_AUTH is not defined, $HOME/.one/one\_auth will be used instead. If no auth file is present, OpenNebula cannot work properly, as this is needed by the core, the CLI, and the cloud components as well.
 
 **ONE\_POOL\_PAGE\_SIZE**
 
@@ -60,6 +66,8 @@ For instance, a user named ``regularuser`` may have the following environment:
     regularuser:password
 
 .. note:: Please note that the example above is intended for a user interacting with OpenNebula from the front-end, but you can use it from any other computer. Just set the appropriate hostname and port in the ONE\_XMLRPC variable.
+
+.. note:: If you do not want passwords to be stored in plain files, protected with basic filesystem permissions, please refer to the token-based authentication mechanism described below.
 
 An alternative method to specify credentials and OpenNebula endpoint is using command line parameters. Most of the commands can understand the following parameters:
 
@@ -176,11 +184,13 @@ Server user accounts are used mainly as proxy authentication accounts for OpenNe
     $ oneuser create serveruser password
     ID: 5
 
-and then change its auth method to ``server_cipher`` (for other auth methods please refer to the :ref:`External Auth guide <external_auth>`):
+and then change its auth method to ``server_cipher`` (for other auth methods please refer to the :ref:`Authentication guide <external_auth>`):
 
 .. code::
 
     $ oneuser chauth serveruser server_cipher
+
+.. _manage_users_managing_users:
 
 Managing Users
 ================================================================================
@@ -188,7 +198,58 @@ Managing Users
 User Authentication
 --------------------------------------------------------------------------------
 
-Each user has an authentication driver, ``AUTH_DRIVER``. The default driver, ``core``, is a simple user-password match mechanism. Read the :ref:`External Auth guide <external_auth>` to improve the security of your cloud, enabling :ref:`SSH <ssh_auth>` or :ref:`x509 <x509_auth>` authentication.
+In order to authenticate with OpenNebula you need a valid password or authentication token. Its meaning depends on the authentication driver, ``AUTH_DRIVER``, set for the user. Note that you will be using this password or token to authenticate within the Sunstone portal or at the CLI/API level.
+
+The default driver, ``core``, is a simple user-password match mechanism. To configure a user account simply add to $HOME/.one/one\_auth a single line with the format ``<username>:<password>``. For example, for user ``oneadmin`` and password ``opennebula`` the file would be:
+
+.. code::
+
+    $ cat $HOME/.one/one_auth
+    oneadmin:opennebula
+
+Once configured you will be able to access the OpenNebula API and use the CLI tools:
+
+.. code::
+
+    $ oneuser show
+    USER 0 INFORMATION
+    ID              : 0
+    NAME            : oneadmin
+    GROUP           : oneadmin
+    PASSWORD        : c24783ba96a35464632a624d9f829136edc0175e
+
+.. note:: OpenNebula does not store the plain password but a hashed version in the database, as show by the oneuser example above.
+
+Note that $HOME/.one/one\_auth is just protected with the standard filesystem permissions. To improve the system security you can use authentication tokens. In this way there is no need to store plain passwords, OpenNebula can generate or use an authentication token with a given expiration time. By default, the tokens are also stored in $HOME/.one/one\_auth.
+
+The following example shows the token generation and usage for the previous ``oneadmin`` user:
+
+.. code::
+
+    $ ls $ONE_AUTH
+    ls: cannot access /home/oneadmin/.one/one_auth: No such file or directory
+
+    $ oneuser login oneadmin
+    Password:
+
+    $cat $HOME/.one/one_auth
+    oneadmin:800481374d8888805dd51dabd36ca50d77e2132e
+
+    $ oneuser show
+    USER 0 INFORMATION
+    ID              : 0
+    NAME            : oneadmin
+    GROUP           : oneadmin
+    PASSWORD        : c24783ba96a35464632a624d9f829136edc0175e
+    AUTH_DRIVER     : core
+    LOGIN_TOKEN     : 800481374d8888805dd51dabd36ca50d77e2132e
+    TOKEN VALIDITY  : not after 2014-09-15 14:27:19 +0200
+
+By default tokens are generated with a valid period of one hour. This can be asjusted when issuing the token with the `oneuser login` command. You can also use this token to authenticate through Sunstone.
+
+Finally, you can configure multiple authentication drivers, read the :ref:`External Auth guide <external_auth>` for more information about, enabling :ref:`LDAP/AD <ldap>`, :ref:`SSH <ssh_auth>` or :ref:`x509 <x509_auth>` authentication.
+
+.. note:: The purpose of the $HOME/.one/one\_auth file and the token generation/usage are valid for any authentication mechanism.
 
 User Templates
 --------------------------------------------------------------------------------
