@@ -99,4 +99,4 @@ Users must execute the 'oneuser login' command to generate a login token. The to
 
 The default ssh key is assumed to be in ``~/.ssh/id_rsa``, otherwise the path can be specified with the ``–key`` option.
 
-The generated token has a default **expiration time** of 1 hour. You can change that with the ``–time`` option.
+The generated token has a default **expiration time** of 10 hour. You can change that with the ``–time`` option.

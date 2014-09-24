@@ -139,7 +139,7 @@ Users must execute the 'oneuser login' command to generate a login token. The to
     newuser@frontend $ oneuser login newuser --x509 --cert newcert.pem --key newkey.pem
     Enter PEM pass phrase:
 
-The generated token has a default **expiration time** of 1 hour. You can change that with the ``–time`` option.
+The generated token has a default **expiration time** of 10 hours. You can change that with the ``–time`` option.
 
 Tuning & Extending
 ==================
