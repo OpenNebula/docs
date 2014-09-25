@@ -4,16 +4,16 @@
 VMware vCenter Drivers
 ======================
 
-OpenNebula seamlessly integrates vCenter virtualized infrastructures leveraging the VMware product features such as vMotion, HA or DRS scheduling. On top of it, OpenNebula exposes a multi-tenancy and cloud like provisioning layer, including advanced features like datacenter federation or hybrid cloud computing to connect in-house vCenter infrastructures with public clouds.
+OpenNebula seamlessly integrates vCenter virtualized infrastructures leveraging the advanced features such as vMotion, HA or DRS scheduling provided by the  VMware vSphere product family. On top of it, OpenNebula exposes a multi-tenant, cloud-like provisioning layer, including features like virtual data centers, datacenter federation or hybrid cloud computing to connect in-house vCenter infrastructures with public clouds.
 
 The OpenNebula - vCenter combination allows you to deploy advanced provisioning infrastructures of virtualized resources. In this guide you'll learn how to configure OpenNebula to access one or more vCenters and set-up VMware-based virtual machines for launch.
 
 Overview and Architecture
 =========================
 
-The VMware vCenter drivers enables OpenNebula to access one or more vCenter servers that manages one or more ESX Clusters. Each ESX Cluster is presented in OpenNebula as an aggregated hypervisor, i.e. as an OpenNebula host. Note that OpenNebula scheduling decisions are therefore made at ESX Cluster level, vCenter uses the DRS component to select the actual ESX host and Datastore to deploy the Virtual Machine.
+The VMware vCenter drivers enable OpenNebula to access one or more vCenter servers that manages one or more ESX Clusters. Each ESX Cluster is presented in OpenNebula as an aggregated hypervisor, i.e. as an OpenNebula host. Note that OpenNebula scheduling decisions are therefore made at ESX Cluster level, vCenter then uses the DRS component to select the actual ESX host and Datastore to deploy the Virtual Machine.
 
-As the figure shows, OpenNebula components see two hosts that each represents a cluster in a vCenter. You can further group these hosts into OpenNebula clusters to build complex resource providers for your user groups in OpenNebula.
+As the figure shows, OpenNebula components see two hosts where each represents a cluster in a vCenter. You can further group these hosts into OpenNebula clusters to build complex resource providers for your user groups and virtual data centers in OpenNebula.
 
 .. note:: Together with the ESX Cluster hosts you can add other hypervisor types or even hybrid cloud instances like Microsoft Azure or Amazon EC2.
 
@@ -25,7 +25,7 @@ Virtual Machines are deployed from VMware VM Templates that **must exist previou
 
 Therefore there is no need to convert your current Virtual Machines or import/export them through any process; once ready just save them as VM Templates in vCenter.
 
-.. note:: After a VM Template is cloned and booted into a vCenter Cluster it can access VMware advanced features and it can be managed through the OpenNebula provisioning portal or through vCenter (e.g. to move the VM to another datastore or migrate it to another ESX). OpenNebula will poll vCenter to detect this changes and update its internal representation accordingly.
+.. note:: After a VM Template is cloned and booted into a vCenter Cluster it can access VMware advanced features and it can be managed through the OpenNebula provisioning portal or through vCenter (e.g. to move the VM to another datastore or migrate it to another ESX). OpenNebula will poll vCenter to detect these changes and update its internal representation accordingly.
 
 Requirements
 ============
@@ -129,7 +129,7 @@ Configuration
 OpenNebula Configuration
 ------------------------
 
-There are two simple steps needed to configure OpenNebula so it can interact with 
+There are two simple steps needed to configure OpenNebula so it can interact with vCenter:
 
 **Step 1: Check connectivity**
 
@@ -168,7 +168,7 @@ In order to configure OpenNebula to work with the vCenter drivers, the following
 
 **Step 3: Importing vCenter Clusters**
 
-OpenNebula ships with a powerful CLI tool to import vCenter clusters and VM Templates. The tools is self-explanatory, just set teh credentials and IP to access the vCenter host and follow on screen instructions. A sample section follows:
+OpenNebula ships with a powerful CLI tool to import vCenter clusters and VM Templates. The tools is self-explanatory, just set the credentials and IP to access the vCenter host and follow on screen instructions. A sample section follows:
 
 .. code::
 
