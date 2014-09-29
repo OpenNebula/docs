@@ -25,7 +25,7 @@ As the figure shows, OpenNebula components see two hosts where each represents a
 
 Virtual Machines are deployed from VMware VM Templates that **must exist previously in vCenter**. There is a one-to-one relationship between each VMware VM Template and the equivalent OpenNebula Template. Users will then instantiate the OpenNebula Templates where you can easily build from any provisioning strategy (e.g. access control, quota...).
 
-Therefore there is no need to convert your current Virtual Machines or import/export them through any process; once ready just save them as VM Templates in vCenter.
+Therefore there is no need to convert your current Virtual Machines or import/export them through any process; once ready just save them as VM Templates in vCenter, following `this procedure <http://pubs.vmware.com/vsphere-55/index.jsp?topic=%2Fcom.vmware.vsphere.vm_admin.doc%2FGUID-FE6DE4DF-FAD0-4BB0-A1FD-AFE9A40F4BFE_copy.html>`__.
 
 .. note:: After a VM Template is cloned and booted into a vCenter Cluster it can access VMware advanced features and it can be managed through the OpenNebula provisioning portal or through vCenter (e.g. to move the VM to another datastore or migrate it to another ESX). OpenNebula will poll vCenter to detect these changes and update its internal representation accordingly.
 
@@ -124,6 +124,7 @@ Considerations & Limitations
 
 - **No Security Groups**: Firewall rules as defined in Security Groups cannot be enforced in vCenter VMs.
 - There is a known issue regarding **VNC ports**, preventing VMs with ID 89 to work correctly through VNC. This is being addressed `here <http://dev.opennebula.org/issues/2980>`__.
+- OpenNebula treats **snapshots** a tad different from VMware. OpenNebula assumes that they are independent, whereas VMware builds them incrementally. This means that OpenNebula will still present snapshots that are no longer valid if one of their parent snapshots are deleted, and thus revert operatoins applied upon them will fail.
 
 Configuration
 =============
@@ -292,8 +293,6 @@ In order to manually create a VM Template definition in OpenNebula that represen
 | SCHED_REQUIREMENTS | NAME="name of the vCenter cluster where this VM Template can instantiated into a VM". See :ref:`VM Scheduling section <vm_scheduling_vcenter>` for more details. |
 +--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-TODO:: Procedure to add new templates in vCenter?
-
 TODO :: Sunstone dialog for VM template creation?
 
 .. _vm_scheduling_vcenter:
@@ -311,7 +310,18 @@ In order to enforce this compulsory match between a vCenter cluster and a OpenNe
 
     SCHED_REQUIREMENTS = "NAME=\"name of the vCenter cluster where this VM Template can instantiated into a VM\""
 
+VM Template Cloning Procedure
+=============================
 
-TODO:: Also describe the cloning proceure:
-- Cloning options diskParent...
-- Default ResourcePool
+OpenNebula uses VMware cloning VM Template procedure to instantiate new Virtual Machines through vCenter. From the VMware documentation:
+
+-- Deploying a virtual machine from a template creates a virtual machine that is a copy of the template. The new virtual machine  
+   has the virtual hardware, installed software, and other properties that are configured for the template.
+
+A VM Template is tied to the host where the VM was running, and also the datastore(s) where the VM disks where placed. Due to shared datastores, vCenter can instantiate a VM Template in any of the hosts beloning to the same cluster as the original one. 
+
+OpenNebula uses several assumptions to instantitate a VM Template in an automatic way:
+
+- **diskMoveType**: OpenNebul instructs vCenter to "move only the child-most disk backing. Any parent disk backings should be left in their current locations.". More information `here <https://www.vmware.com/support/developer/vc-sdk/visdk41pubs/ApiReference/vim.vm.RelocateSpec.DiskMoveOptions.html>`__
+
+- Target **resource pool**: OpenNebula uses the default cluster resource pool to place the VM instantiated from the VM template

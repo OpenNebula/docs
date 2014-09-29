@@ -413,6 +413,8 @@ You can define a ``NIC_DEFAULT`` attribute with values that will be copied to ea
 
     NIC_DEFAULT = [ MODEL = "virtio" ]
 
+.. _io_devices_section:
+
 
 I/O Devices Section
 ===================
