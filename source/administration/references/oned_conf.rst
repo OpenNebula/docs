@@ -497,7 +497,7 @@ Users outside the oneadmin group won't be able to instantiate templates created 
 
 -  **VM\_RESTRICTED\_ATTR**: Virtual Machine attribute to be restricted for users outside the ''oneadmin'' group
 -  **IMAGE\_RESTRICTED\_ATTR**: Image attribute to be restricted for users outside the ''oneadmin'' group
--  **VNET\_RESTRICTED\_ATTR**: Virtual Network attribute to be restricted for users outside the ''oneadmin'' group
+-  **VNET\_RESTRICTED\_ATTR**: Virtual Network attribute to be restricted for users outside the ''oneadmin'' group when updating a reservation. These attributes are not considered for regular VNET creation.
 
 If the VM template has been created by admins in the ''oneadmin'' group, then users outside the ''oneadmin'' group **can** instantiate these templates.
 
