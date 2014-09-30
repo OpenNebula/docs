@@ -214,8 +214,6 @@ The following variables are added to the OpenNebula hosts representing ESX clust
 | VCENTER_PASSWORD | Password of the vCenter user       |
 +------------------+------------------------------------+
 
-TODO :: Sunstone dialog for host creation
-
 **Step 4: Importing vCenter VM Templates**
 
 The same **onevcenter** tool can be used to import existing VM templates from the ESX clusters:
@@ -271,6 +269,12 @@ The same **onevcenter** tool can be used to import existing VM templates from th
     SCHED_REQUIREMENTS="NAME=\"devel\""
     VCPU="1"
 
+The same import mechanism is available graphically through Sunstone.
+
+.. image:: /images/vcenter_create.png
+    :width: 250px
+    :align: center
+
 Usage
 =====
 
@@ -293,8 +297,6 @@ In order to manually create a VM Template definition in OpenNebula that represen
 | SCHED_REQUIREMENTS | NAME="name of the vCenter cluster where this VM Template can instantiated into a VM". See :ref:`VM Scheduling section <vm_scheduling_vcenter>` for more details. |
 +--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-TODO :: Sunstone dialog for VM template creation?
-
 .. _vm_scheduling_vcenter:
 
 VM Scheduling
@@ -309,6 +311,12 @@ In order to enforce this compulsory match between a vCenter cluster and a OpenNe
 .. code::
 
     SCHED_REQUIREMENTS = "NAME=\"name of the vCenter cluster where this VM Template can instantiated into a VM\""
+
+In Sunstone, a host abstracting a vCenter cluster will have an extra tab showing the ESX hosts that conform the cluster.
+
+.. image:: /images/host_esx.png
+    :width: 250px
+    :align: center
 
 VM Template Cloning Procedure
 =============================
