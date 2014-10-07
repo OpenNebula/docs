@@ -1,8 +1,8 @@
 .. _whats_new:
 
-=================
-What's New in 4.8
-=================
+==================
+What's New in 4.10
+==================
 
 OpenNebula 4.8 Lemon Slice brings significant improvements in different aspects. Sticking with our vision of bringing simplicity to cloud management, this release comes with improvements in the recently added Cloud View portal, designed for end users. One significant advantage of the new portal is the ability to control flows, groups of interconnected Virtual Machines that conform a service. Based on this Cloud View, a Virtual Datacenter administrators view has been included (VDCAdmin View), which enables VDC admins to easily manage the VDC users and resources.
 
