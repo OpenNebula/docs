@@ -89,6 +89,23 @@ VLAN trunking is also supported by adding the following tag to the ``NIC`` eleme
 
 -  ``VLAN_TAGGED_ID``: Specify a range of VLANs to tag, for example: ``1,10,30,32``.
 
+.. _openvswitch_different_bridge:
+
+Different Bridge for OpenvSwitch
+--------------------------------
+
+If a template is intended to be instantiated in hosts with ``ovswitch`` vnm driver and also in hosts with a different driver, it's possible to specify what bridge in both sets of hosts by setting the ``BRIDGE_OVS`` parameter in addition to the regular ``BRIDGE`` parameter. ``BRIDGE`` will be used for non ``ovswitch`` hosts and ``BRIDGE_OVS`` for ``ovswitch`` hosts.
+
+For example, consider the following network template:
+
+.. code::
+
+    BRIDGE="br0"
+    BRIDGE_OVS="ovsbr0"
+
+- If instiated in a host with ``vnm=dummy`` the virtual network interface will be connected to the ``br0`` bridge.
+- Whereas if instantiated in a host with ``vnm=ovswitch``, it will be connected to the ``ovsbr0`` ovs switch.
+
 Usage
 =====
 
