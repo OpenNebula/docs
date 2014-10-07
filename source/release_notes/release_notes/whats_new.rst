@@ -123,7 +123,7 @@ Sunstone, the portal to your OpenNebula cloud, has been improved to support flex
 
 |sunstone_group_defview|
 
-- **Instantiate on hold**, although templates could be `instantiated on hold </doc/4.8/cli/onevm.1.html>`__ before from the CLI, now you can also do that from Sunstone:
+- **Instantiate on hold**, although templates could be `instantiated on hold <doc/4.10/cli/onevm.1.html>`__ before from the CLI, now you can also do that from Sunstone:
 
 |sunstone_instantiate_hold|
 
