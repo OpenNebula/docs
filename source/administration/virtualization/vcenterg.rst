@@ -151,10 +151,10 @@ In order to configure OpenNebula to work with the vCenter drivers, the following
     #    -r number of retries when monitoring a host
     #    -t number of threads, i.e. number of hosts monitored at the same time
     #-------------------------------------------------------------------------------
-    #IM_MAD = [
-    #      name       = "vcenter",
-    #      executable = "one_im_sh",
-    #      arguments  = "-c -t 15 -r 0 vcenter" ]
+    IM_MAD = [
+          name       = "vcenter",
+          executable = "one_im_sh",
+          arguments  = "-c -t 15 -r 0 vcenter" ]
     #-------------------------------------------------------------------------------
 
     #-------------------------------------------------------------------------------
@@ -162,11 +162,11 @@ In order to configure OpenNebula to work with the vCenter drivers, the following
     #    -r number of retries when monitoring a host
     #    -t number of threads, i.e. number of hosts monitored at the same time
     #-------------------------------------------------------------------------------
-    #VM_MAD = [
-    #    name       = "vcenter",
-    #    executable = "one_vmm_sh",
-    #    arguments  = "-t 15 -r 0 vcenter -s sh",
-    #    type       = "xml" ]
+    VM_MAD = [
+        name       = "vcenter",
+        executable = "one_vmm_sh",
+        arguments  = "-t 15 -r 0 vcenter -s sh",
+        type       = "xml" ]
     #-------------------------------------------------------------------------------
 
 **Step 3: Importing vCenter Clusters**
@@ -272,7 +272,7 @@ The same **onevcenter** tool can be used to import existing VM templates from th
 The same import mechanism is available graphically through Sunstone.
 
 .. image:: /images/vcenter_create.png
-    :width: 250px
+    :width: 90%
     :align: center
 
 Usage
@@ -315,7 +315,7 @@ In order to enforce this compulsory match between a vCenter cluster and a OpenNe
 In Sunstone, a host abstracting a vCenter cluster will have an extra tab showing the ESX hosts that conform the cluster.
 
 .. image:: /images/host_esx.png
-    :width: 250px
+    :width: 90%
     :align: center
 
 VM Template Cloning Procedure
