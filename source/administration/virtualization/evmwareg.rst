@@ -23,8 +23,8 @@ In order to use the **VMware Drivers**, some software dependencies have to be me
    -  **vCenter Server** installed and configured, details in the `Installation Guide for ESX and vCenter <http://pubs.vmware.com/vsphere-51/index.jsp?topic=%2Fcom.vmware.vsphere.install.doc%2FGUID-BC044F6C-4733-4413-87E6-A00D3BDEDE58.html>`__.
    -  A **datacenter** created in the vCenter server that includes all ESX hosts between which Virtual Machines want to be live migrated (we are going to assume it is called “onecenter” in the rest of this document).
    -  A **user** created in vCenter with the same username and password than the ones in the ESX hosts, with administrator permissions.
+- For VNC to work properly, please install `VMware Tools (for Windows) <https://www.vmware.com/support/ws55/doc/new_guest_tools_ws.html>`__ or `Open Virtual Machine Tools <http://open-vm-tools.sourceforge.net/>`__ (for \*nix).
 
-- For VNC to work properly, please install `VMware Tools (for Windows) <https://www.vmware.com/support/ws55/doc/new_guest_tools_ws.html>`__ or `Open Virtual Machine Tools <http://open-vm-tools.sourceforge.net/>`__ (for *nix).
 
 .. warning:: When the vCenter is configured all the actions on VMs go through the vCenter. It does not add any feature but vMotion (live migration) compared to direct ESX communication. The storage commands still use ssh connection to the ESX hosts.
 
