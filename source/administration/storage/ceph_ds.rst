@@ -26,6 +26,8 @@ Also the ``mon`` daemon must be defined in the ``ceph.conf`` for all the nodes, 
 
 Additionally each OpenNebula datastore is backed by a ceph pool, these pools must be created and configured in the Ceph cluster. The name of the pool by default is ``one`` but can be changed on a per-datastore basis (see below).
 
+``ceph`` cluster admin must include a valid user to be used by ``one`` ``ceph`` datastore (see below). 
+
 This driver can work with either RBD Format 1 or RBD Format 2. To set the default you can specify this option in ``ceph.conf``:
 
 .. code::
@@ -81,6 +83,8 @@ The first step to create a Ceph datastore is to set up a template file for it. I
 +------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``POOL_NAME``                | The OpenNebula Ceph pool name. Defaults to ``one``. **This pool must exist before using the drivers**.                                                                                                                                    |
 +------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``CEPH_USER``                | The OpenNebula Ceph user name. If set it is used by RBD commands. **This ceph user must exist before using the drivers**.                                                                                                                                    |
++------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``STAGING_DIR``              | Default path for image operations in the OpenNebula Ceph frontend.                                                                                                                                                                        |
 +------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``RESTRICTED_DIRS``          | Paths that can not be used to register images. A space separated list of paths.                                                                                                                                                           |
@@ -120,10 +124,13 @@ An example of datastore:
     DS_MAD = ceph
     TM_MAD = ceph
 
-    # the following line *must* be preset
+    # the following lines *must* be preset
     DISK_TYPE = RBD
-
     POOL_NAME = one
+
+    # CEPH_USER is optional
+    CEPH_USER = libvirt
+
     BRIDGE_LIST = cephfrontend
 
     > onedatastore create ds.conf
