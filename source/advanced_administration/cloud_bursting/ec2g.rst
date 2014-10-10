@@ -266,7 +266,7 @@ You only can submit and control the template using the OpenNebula interface:
 .. code::
 
     $ onetemplate create ec2template
-    $ ontemplate instantiate ec2template
+    $ onetemplate instantiate ec2template
 
 Now you can monitor the state of the VM with
 
