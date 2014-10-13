@@ -170,6 +170,8 @@ In order to configure OpenNebula to work with the vCenter drivers, the following
         type       = "xml" ]
     #-------------------------------------------------------------------------------
 
+.. _vcenter_import_tool:
+
 **Step 3: Importing vCenter Clusters**
 
 OpenNebula ships with a powerful CLI tool to import vCenter clusters and VM Templates. The tools is self-explanatory, just set the credentials and IP to access the vCenter host and follow on screen instructions. A sample section follows:

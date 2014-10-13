@@ -201,6 +201,8 @@ You will need to change the following values in the configuration file (``/etc/o
 
 ``:group`` parameter is still not supported for Active Directory, leave it commented.
 
+.. _ldap_group_mapping:
+
 Group Mapping
 =============
 

@@ -144,6 +144,8 @@ To create the previous example image you can do it like this:
 
 .. warning:: You can use **gz** compressed image files (i.e. as specified in path) when registering them in OpenNebula.
 
+.. _sunstone_upload_images:
+
 Uploading Images from Sunstone
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
