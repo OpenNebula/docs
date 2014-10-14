@@ -26,8 +26,8 @@ The OpenNebula team is now set to bug-fixing mode. Note that this is a beta rele
 In the following list you can check the highlights of OpenNebula 4.10. (`a detailed list of changes can be found here
 <http://dev.opennebula.org/projects/opennebula/issues?query_id=57>`__):
 
-OpenNebula Core :: Virtual Networks
------------------------------------
+OpenNebula Core
+---------------
 
 - **Login token functionality**, a requested security update was made to OpenNebula implementing :ref:`login token <manage_users_managing_users>` functionality to password based logins. Storing passwords in the .one_auth file is less than ideal from a security standpoint. This is especially true with ldap/AD when that password may be used across the company for email and other password protected services.
 
