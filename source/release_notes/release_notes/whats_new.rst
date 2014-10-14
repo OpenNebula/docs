@@ -80,6 +80,8 @@ Sunstone, the portal to your OpenNebula cloud, has been improved with usablity f
 
 - **Updated JavaScript libraries**, to ensure the latest security and display fixes.
 
+- **Proffesional Support** from within Sunstone is now possible thanks to the newly introduced :ref:`Zendesk integration <commercial_support_sunstone>`.
+
 OneFlow
 --------------------------------------------------------------------------------
 
