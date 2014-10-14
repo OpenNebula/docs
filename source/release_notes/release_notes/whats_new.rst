@@ -15,12 +15,13 @@ This is the first OpenNebula release that allows to automatically import an exis
 
 A refinement has been performed in the OpenNebula networking system, extended in the previous release in order to allow a flexible management of IP leases, decoupling the host-hypervisor configuration attributes (e.g. BRIDGE, PHYDEV or VLAN_ID) with the IP/L3 configuration attributes. In this refinement, end users are allowed to update their VNET reservations and also the address range of their reservations, so they can introduce attributes to be passed along their VMs through contextualization, customizing their VMs network settings in this manner.
 
+We understand that in production environment, access to proffesional, efficient support is a must, and this is why we have introduced an :ref:`integrated tab in Sunstone to access OpenNebula Systems (the company behind OpenNebula, formerly C12G) proffesional support <commercial_support_sunstone>`. In this way, support tickets management can be performed throiugh Sunstone, avoiding disruption of work and enhacing productivity.
+
 Finally, several improvements are scattered across every other OpenNebula component: improvements in the hybrid drivers, including better Sunstone support, peristency of VM snapshots across their lifecycle (this allows to revert an snapshot after a VM migrate operation, for instance), the ability to change the ISO file attached to a CDROM media dynamically, a solution for the spurious Poweroff state, and many other bugfixes that stabilized features introduced in Lemon Slice. 
 
 As usual OpenNebula releases are named after a Nebula. The `Fox Fur Nebula (IC 3568) <http://en.wikipedia.org/wiki/Fox_Fur_Nebula>`__ is located in Monoceros and included in the NGC 2264 Region.
 
-The OpenNebula team is now set to bug-fixing mode. Note that this is a beta release aimed at testers and developers to try the new
-features, and send a more than welcomed feedback for the final release.
+The OpenNebula team is now set to bug-fixing mode. Note that this is a beta release aimed at testers and developers to try the new features, and send a more than welcomed feedback for the final release.
 
 In the following list you can check the highlights of OpenNebula 4.10. (`a detailed list of changes can be found here
 <http://dev.opennebula.org/projects/opennebula/issues?query_id=57>`__):

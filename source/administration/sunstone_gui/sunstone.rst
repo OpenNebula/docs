@@ -201,6 +201,8 @@ These are the default instance types for the Cloud View, these types are present
           :memory: 8192
           :description: General purpose instance for high-load servers
 
+.. _commercial_support_sunstone:
+
 Commercial Support Integration
 ==============================
 
