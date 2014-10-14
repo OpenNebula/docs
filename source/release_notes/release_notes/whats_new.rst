@@ -1,10 +1,10 @@
 .. _whats_new:
 
-==================
-What's New in 4.10
-==================
+=======================
+What's New in 4.10 Beta
+=======================
 
-OpenNebula 4.10 Fox Fur ships with several improvements in different subsystems and components. But, more importantly, it features a little revolution in shape of vCenter support. 
+OpenNebula 4.10 Beta (Fox Fur) ships with several improvements in different subsystems and components. But, more importantly, it features a little revolution in shape of vCenter support. 
 
 This is the first OpenNebula release that allows to automatically import an existing infrastructure, in this case, a vCenter based virtualization environment, since the new vCenter drivers allow to import Clusters and Virtual Machines from a vCenter installation. This will significantly smooth the set up curve. The concept of the vCenter drivers is akin to the hybrid cloud approach in the sense that OpenNebula will delegate a number of aspects to vCenter, instead of pursuing the management of almost every aspect as it traditionally does with the three supported hypervisors, XEN, KVM and VMware ESX. OpenNebula will use pre defined Virtual Machine Templates existing in the vCenter set up to launch Virtual Machines, very much like it does in its hybrid drivers to access Amazon EC2, IBM SoftLayer and Microsoft Azure, although offering much more features like for instance VNC support and more lifecycle actions supported.
 

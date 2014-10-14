@@ -15,11 +15,7 @@ This is the list of the individual platform components that have been through th
 +------------------------------+---------------------------------------+---+---+
 | Ubuntu Server                | 12.04 (LTS) & 14.04 (LTS)             |   |   |
 +------------------------------+---------------------------------------+---+---+
-| SUSE Linux Enterprise        | 12.3                                  |   |   |
-+------------------------------+---------------------------------------+---+---+
 | CentOS                       | 6.5, 7.0                              |   |   |
-+------------------------------+---------------------------------------+---+---+
-| openSUSE                     | 12.3                                  |   |   |
 +------------------------------+---------------------------------------+---+---+
 | Debian                       | 7.1                                   |   |   |
 +------------------------------+---------------------------------------+---+---+
@@ -44,7 +40,7 @@ All Front-Ends
 
     # sudo gem install nokogiri -v 1.4.4
 
-- also for **coud bursting**, precisely for Microsoft Azure and IBM SoftLayer, those supported distros with ruby versions <= 1.9.3 (like Centos 6.x or Ubuntu 12.04) please update the ruby installation or use `rvm <https://rvm.io/>`__ to run a newer (>= 1.9.3) version (remember to run ``install_gems`` after the ruby upgrade is done to reinstall all gems)
+- also for **cloud bursting**, precisely for Microsoft Azure and IBM SoftLayer, those supported distros with ruby versions <= 1.9.3 (like Centos 6.x or Ubuntu 12.04) please update the ruby installation or use `rvm <https://rvm.io/>`__ to run a newer (>= 1.9.3) version (remember to run ``install_gems`` after the ruby upgrade is done to reinstall all gems)
 
 ESX 5.1 as VMware Node
 ----------------------
@@ -128,11 +124,6 @@ Debian Lenny as Xen 3 Node
     # ln -s /usr/lib/xen-3.2-1/bin/tapdisk /usr/sbin
     # echo xenblktap >> /etc/modules
     # reboot
-
-openSUSE 12.3 Platform Notes
-============================
-
--  Limited startup scripts → only for OpenNebula and Sunstone services
 
 Ubuntu 12.04 Platform Notes
 ===========================

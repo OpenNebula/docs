@@ -1,13 +1,13 @@
 .. _rn:
 
-==================
-Release Notes 4.10
-==================
+=======================
+Release Notes 4.10 Beta 
+=======================
 
 .. toctree::
    :maxdepth: 1
 
-   What's New in 4.10 <whats_new>
+   What's New in 4.10 Beta <whats_new>
    Features <features>
    Platform Notes <uspng>
    Compatibility Guide <compatibility>
