@@ -206,6 +206,37 @@ These are the default instance types for the Cloud View, these types are present
 Commercial Support Integration
 ==============================
 
+We are aware that in production environments, access to professional, efficient support is a must, and this is why we have introduced an integrated tab in Sunstone to access `OpenNebula Systems <http://opennebula.systems>`__ (the company behind OpenNebula, formerly C12G) professional support. In this way, support ticket management can be performed through Sunstone, avoiding disruption of work and enhancing productivity.
+
+|support_home|
+
+This tab requires ruby >= 1.9 and can be disabled in the admin, vcenter and user yaml files inside the sunstone views configuration directory:
+
+.. code::
+
+    enabled_tabs:
+        dashboard-tab: true
+        system-tab: true
+        users-tab: true
+        groups-tab: true
+        acls-tab: true
+        vresources-tab: true
+        vms-tab: true
+        templates-tab: true
+        images-tab: true
+        files-tab: true
+        infra-tab: true
+        clusters-tab: false
+        hosts-tab: true
+        datastores-tab: true
+        vnets-tab: true
+        marketplace-tab: true
+        oneflow-dashboard: tru
+        oneflow-services: true
+        oneflow-templates: true
+        zones-tab: true
+        support-tab: false
+
 Tuning & Extending
 ==================
 
@@ -216,3 +247,4 @@ For more information on how to customize and extend you Sunstone deployment use 
 -  :ref:`Advanced Deployments <suns_advance>`, improving scalability and isolating the server
 
 .. |admin_view| image:: /images/admin_view.png
+.. |support_home| image:: /images/support_home.png
