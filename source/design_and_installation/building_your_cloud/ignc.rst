@@ -38,7 +38,7 @@ For CentOS 6.5:
     # cat << EOT > /etc/yum.repos.d/opennebula.repo
     [opennebula]
     name=opennebula
-    baseurl=http://downloads.opennebula.orgrepo/4.10/CentOS/6/x86_64
+    baseurl=http://downloads.opennebula.org/repo/4.10/CentOS/6/x86_64
     enabled=1
     gpgcheck=0
     EOT
@@ -51,7 +51,7 @@ For CentOS 7:
     # cat << EOT > /etc/yum.repos.d/opennebula.repo
     [opennebula]
     name=opennebula
-    baseurl=http://downloads.opennebula.orgrepo/4.10/CentOS/7/x86_64
+    baseurl=http://downloads.opennebula.org/repo/4.10/CentOS/7/x86_64
     enabled=1
     gpgcheck=0
     EOT
@@ -91,7 +91,7 @@ To install an openSUSE OpenNebula front-end with packages **from our repository*
 
 .. code::
 
-    # zypper addrepo --no-gpgcheck --refresh -t YUM http://downloads.opennebula.orgrepo/4.10/openSUSE/12.3/x86_64 opennebula
+    # zypper addrepo --no-gpgcheck --refresh -t YUM http://downloads.opennebula.org/repo/4.10/openSUSE/12.3/x86_64 opennebula
     # zypper refresh
     # zypper install opennebula opennebula-sunstone
 
@@ -139,19 +139,19 @@ To install OpenNebula on a Debian/Ubuntu front-end from packages from **our repo
 
 .. code::
 
-    # echo "deb http://downloads.opennebula.orgrepo/4.10/Debian/7 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # echo "deb http://downloads.opennebula.org/repo/4.10/Debian/7 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
 
 **Ubuntu 12.04**
 
 .. code::
 
-    # echo "deb http://downloads.opennebula.orgrepo/4.10/Ubuntu/12.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # echo "deb http://downloads.opennebula.org/repo/4.10/Ubuntu/12.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
 
 **Ubuntu 14.04**
 
 .. code::
 
-    # echo "deb http://downloads.opennebula.orgrepo/4.10/Ubuntu/14.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # echo "deb http://downloads.opennebula.org/repo/4.10/Ubuntu/14.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
 
 To install the packages on a Debian/Ubuntu front-end:
 
