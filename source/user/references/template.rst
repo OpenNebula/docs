@@ -244,7 +244,7 @@ Persistent and Clone Disks
 | read or write. Total and read or write can not be used at the same time.         | **WRITE_BYTES_SEC**  |                                    |                                    |                                    |
 | By default these parameters are only allowed to be used by oneadmin.             | **TOTAL_IOPS_SEC**,  |                                    |                                    |                                    |
 |                                                                                  | **READ_IOPS_SEC**,   |                                    |                                    |                                    |
-|                                                                                  | **WRITE_BYTES_SEC**  | -                                  | Optional                           | -                                  |
+|                                                                                  | **WRITE_IOPS_SEC**   | -                                  | Optional                           | -                                  |
 +----------------------------------------------------------------------------------+----------------------+------------------------------------+------------------------------------+------------------------------------+
 
 .. _template_volatile_disks_section:
