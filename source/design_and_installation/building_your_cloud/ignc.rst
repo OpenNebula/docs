@@ -25,7 +25,11 @@ If there are no packages for your distribution, head to the :ref:`Building from 
 
 Before installing:
 
--  Activate the `EPEL <http://fedoraproject.org/wiki/EPEL#How_can_I_use_these_extra_packages.3F>`__ repo.
+-  Activate the `EPEL <http://fedoraproject.org/wiki/EPEL#How_can_I_use_these_extra_packages.3F>`__ repo. In CentOS this can be done with the following commad:
+
+.. code::
+
+    # yum install epel-release
 
 There are packages for the front-end, distributed in the various components that conform OpenNebula, and packages for the virtualization host.
 

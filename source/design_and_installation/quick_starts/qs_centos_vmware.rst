@@ -43,7 +43,7 @@ Let's install the repository and required packages. As root in the front-end:
 
 .. code::
 
-     # yum install http://dl.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
+     # yum install epel-release
      # cat << EOT > /etc/yum.repos.d/opennebula.repo
      [opennebula]
      name=opennebula

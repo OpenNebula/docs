@@ -55,7 +55,7 @@ Enable the `EPEL <https://fedoraproject.org/wiki/EPEL>`__ repo:
 
 .. code::
 
-    # yum install http://dl.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
+    # yum install epel-release
 
 Add the OpenNebula repository:
 
