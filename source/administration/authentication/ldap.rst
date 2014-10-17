@@ -13,11 +13,6 @@ Prerequisites
 
 This Addon will not install any Ldap server or configure it in any way. It will not create, delete or modify any entry in the Ldap server it connects to. The only requirement is the ability to connect to an already running Ldap server and being able to perform a successful **ldapbind** operation and have a user able to perform searches of users, therefore no special attributes or values are required in the LDIF entry of the user authenticating.
 
-Considerations & Limitations
-============================
-
-LDAP auth driver has a bug that does not let it connect to TLS LDAP instances. A patch is available in the `bug issue <http://dev.opennebula.org/issues/1171>`__ to fix this. The fix will be applied in future releases.
-
 Configuration
 =============
 
@@ -38,6 +33,9 @@ Configuration file for auth module is located at ``/etc/one/auth/ldap_auth.conf`
         # Ldap server
         :host: localhost
         :port: 389
+
+        # Uncomment this line for tsl conections
+        #:encryption: :simple_tls
      
         # base hierarchy where to search for users and groups
         :base: 'dc=domain'
@@ -100,6 +98,9 @@ The structure is a hash where any key different to ``:order`` will contain the c
 |                       | Do not set if anonymous access is enabled       |
 +-----------------------+-------------------------------------------------+
 | ``:auth_method``      | Can be set to ``:simple_tls`` if ssl connection |
+|                       | is needed                                       |
++-----------------------+-------------------------------------------------+
+| ``:encryption``       | Can be set to ``:simple_tls`` if ssl connection |
 |                       | is needed                                       |
 +-----------------------+-------------------------------------------------+
 | ``:host``             | Host name of the ldap server                    |
