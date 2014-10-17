@@ -52,6 +52,16 @@ By default the OpenNebula Cloud API (CLI and Sunstone make use of it) paginates 
     $ export ONE_POOL_PAGE_SIZE=5000        # Sets the page size to 5000
     $ export ONE_POOL_PAGE_SIZE=disabled    # Disables pool pagination
 
+**ONE\_CERT\_DIR** and **ONE\_DISABLE\_SSL\_VERIFY**
+
+If OpenNebula XMLRPC endpoint is behind an SSL proxy you can specify an extra trusted certificates directory using **ONE\_CERT\_DIR**. Make sure that the certificate is named ``<hash>.0``. You can get the hash of a certificate with this command:
+
+.. code::
+
+    $ openssl x509 -in <certificate.pem> -hash
+
+Alternatively you can set the environment variable **ONE\_DISABLE\_SSL\_VERIFY** to any value to disable certificate validation. You should only use this parameter for testing as it makes the connection insecure.
+
 For instance, a user named ``regularuser`` may have the following environment:
 
 .. code::
