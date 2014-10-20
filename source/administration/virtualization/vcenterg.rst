@@ -326,8 +326,7 @@ VM Template Cloning Procedure
 
 OpenNebula uses VMware cloning VM Template procedure to instantiate new Virtual Machines through vCenter. From the VMware documentation:
 
--- Deploying a virtual machine from a template creates a virtual machine that is a copy of the template. The new virtual machine  
-   has the virtual hardware, installed software, and other properties that are configured for the template.
+-- Deploying a virtual machine from a template creates a virtual machine that is a copy of the template. The new virtual machine has the virtual hardware, installed software, and other properties that are configured for the template.
 
 A VM Template is tied to the host where the VM was running, and also the datastore(s) where the VM disks where placed. Due to shared datastores, vCenter can instantiate a VM Template in any of the hosts beloning to the same cluster as the original one. 
 
