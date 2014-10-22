@@ -151,6 +151,10 @@ The following is an example of a hook that sends and email to a new register use
         command   = "email2user.rb",
         arguments = "$ID $TEMPLATE"]
 
+.. note::
+
+    In a :ref:`Federation <introf>`, **USER** and **GROUP** hooks can only be defined in the **master** OpenNebula. Because the slaves will rely the user and group actions to the master, they will only be triggered once, in the master. The hooks for any other resource are defined locally for each OpenNebula instance.
+
 Developing your Hooks
 =====================
 
