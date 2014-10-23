@@ -16,7 +16,7 @@ Usage
 
 You can use the Ruby OCA included in the OpenNebula distribution by adding the OpenNebula Ruby library path to the search path:
 
-.. code::
+.. code-block:: ruby
 
     ##############################################################################
     # Environment Configuration
@@ -45,7 +45,7 @@ This is a small code snippet. As you can see, the code flow would be as follows:
 -  Get the VirtualMachine pool that contains the VirtualMachines owned by this User.
 -  You can perform “actions” over these objects right away, like ``myVNet.delete();``. In this example all the VirtualMachines will be shut down.
 
-.. code::
+.. code-block:: ruby
 
     #!/usr/bin/env ruby
      
@@ -98,7 +98,7 @@ This is a small code snippet. As you can see, the code flow would be as follows:
 Code Sample: Create a new VirtualNetwork
 ========================================
 
-.. code::
+.. code-block:: ruby
 
     #!/usr/bin/env ruby
      
@@ -149,11 +149,12 @@ Code Sample: Create a new VirtualNetwork
     EOT
      
     xml = OpenNebula::VirtualNetwork.build_xml
-    vn  = OpenNebula::VirtualNetwork.new(xml, @client)
+    vn  = OpenNebula::VirtualNetwork.new(xml, client)
      
     rc = vn.allocate(template)
     if OpenNebula.is_error?(rc)
-        exit -1, rc.message
+        STDERR.puts rc.message
+        exit(-1)
     else
         puts "ID: #{vn.id.to_s}"
     end
