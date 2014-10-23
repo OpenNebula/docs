@@ -31,7 +31,9 @@ Requirements:
 Considerations & Limitations
 ============================
 
-OpenNebula Sunstone supports Firefox (> 3.5) and Chrome browsers. Internet Explorer, Opera and others are not supported and may not work well.
+OpenNebula Sunstone supports Internet Explorer (>= 9), Firefox (> 3.5) and Chrome browsers. Oher browsers are not supported and may not work well.
+
+The upload option for files and images is limited to Firefox 4+ and Chrome 11+.
 
 Configuration
 =============
