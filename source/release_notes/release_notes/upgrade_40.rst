@@ -156,7 +156,7 @@ If for any reason you need to restore your previous OpenNebula, follow these ste
 Known Issues
 ============
 
-If the MySQL database password contains specials characters, such as ``@`` or ``#``, the onedb command will fail to connect to it.
+If the MySQL database password contains special characters, such as ``@`` or ``#``, the onedb command will fail to connect to it.
 
 The workaround is to temporarily change the oneadmin's password to an ASCII string. The `set password <http://dev.mysql.com/doc/refman/5.6/en/set-password.html>`__ statement can be used for this:
 

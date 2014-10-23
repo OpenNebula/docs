@@ -62,7 +62,7 @@ Use the ``-v`` flag to see the complete version and comment.
     Timestamp: 10/19 16:04:17
     Comment:   Database migrated from 3.7.80 to 3.8.0 (OpenNebula 3.8.0) by onedb command.
 
-If the MySQL database password contains specials characters, such as ``@`` or ``#``, the onedb command will fail to connect to it.
+If the MySQL database password contains special characters, such as ``@`` or ``#``, the onedb command will fail to connect to it.
 
 The workaround is to temporarily change the oneadmin's password to an ASCII string. The `set password <http://dev.mysql.com/doc/refman/5.6/en/set-password.html>`__ statement can be used for this:
 
