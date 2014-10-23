@@ -56,9 +56,9 @@ The Virtual Machine lifecycle management can fail in several points. The followi
     #-------------------------------------------------------------------------------
     VM_HOOK = [
        name      = "on_failure_recreate",
-       on        = "FAILURE",
-       command   = "onevm delete --recreate",
-       arguments = "$VMID" ]
+       on        = "FAILED",
+       command   = "/usr/bin/env onevm delete --recreate",
+       arguments = "$ID" ]
     #-------------------------------------------------------------------------------
 
 -  **VM crash**: This point is concerned with crashes that can happen to a VM **after** it has been successfully booted (note that here boot doesn't refer to the actual VM boot process, but to the OpenNebula boot process, that comprises staging and hypervisor deployment). OpenNebula is able to detect such crashes, and report it as the VM being in an UNKNOWN state. This failure can be recovered from using the ``onevm boot`` functionality.
