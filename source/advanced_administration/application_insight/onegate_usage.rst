@@ -11,7 +11,7 @@ For Virtual Machines that are part of a Multi-VM Application (Service), they can
 OneGate Workflow Explained
 ==========================
 
-OneGate is a server that listens to http connections from the Virtual Machines. OpenNebula assigns an individual token to each VM instance, and Applications running inside the VM use this token to send monitoring metrics to OneGate.
+OneGate is a server that listens to http connections from the Virtual Machines. OpenNebula assigns an individual token to each VM instance, and Applications running inside the VM use this token to send monitoring metrics to OneGate. This token is generated using VM information and signed with the user TOKEN_PASSWORD. This password can be changed updating the user template, but tokens from existing vms will not work anymore.
 
 When OneGate checks the VM ID and the token sent, the new information is placed inside the VM's user template section. This means that the application metrics are visible from the command line, Sunstone, or the APIs.
 
