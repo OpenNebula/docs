@@ -594,6 +594,41 @@ Example:
 
 .. _template_requirement_expression_syntax:
 
+Predefined Host Attributes
+-----------------------------
+
+There are some predefined Host attributes that can be used in the requirements and rank expressions:
+
++-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|    Attribute    |                                                                                       Meaning                                                                                        |
++=================+======================================================================================================================================================================================+
+| **NAME**        | Hostname.                                                                                                                                                                            |
++-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **MAX_CPU**     | Total CPU in the host, in (# cores * 100).                                                                                                                                           |
++-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **CPU_USAGE**   | Allocated used CPU in (# cores * 100). This value is the sum of all the CPU requested by VMs running on the host, and is updated instantly each time a VM is deployed or undeployed. |
++-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **FREE_CPU**    | Real free CPU in (# cores * 100), as returned by the probes. This value is updated each monitorization cycle.                                                                        |
++-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **USED_CPU**    | Real used CPU in (# cores * 100), as returned by the probes. USED_MEM = MAX_CPU - FREE_CPU. This value is updated each monitorization cycle.                                         |
++-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **MAX_MEM**     | Total memory in the host, in KB.                                                                                                                                                     |
++-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **MEM_USAGE**   | Allocated used memory in KB. This value is the sum of all the memory requested by VMs running on the host, and is updated instantly each time a VM is deployed or undeployed.        |
++-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **FREE_MEM**    | Real free memory in KB, as returned by the probes. This value is updated each monitorization cycle.                                                                                  |
++-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **USED_MEM**    | Real used memory in KB, as returned by the probes. USED_MEM = MAX_CPU - FREE_CPU. This value is updated each monitorization cycle.                                                   |
++-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **RUNNING_VMS** | Number of VMs deployed on this host.                                                                                                                                                 |
++-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **HYPERVISOR**  | Hypervisor name.                                                                                                                                                                     |
++-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+You can execute ``onehost show <id> -x`` to see all the attributes and their values.
+
+.. note:: Check the :ref:`Monitoring Subsystem <devel-im>` guide to find out how to extend the information model and add any information probe to the Hosts.
+
 Requirement Expression Syntax
 -----------------------------
 
@@ -620,10 +655,6 @@ Logical operators work as expected ( less '<', greater '>', '&' AND, '\|' OR, '!
 Any variable included in the Host template or its Cluster template can be used in the requirements. You may also use an XPath expression to refer to the attribute.
 
 There is a special variable, ``CURRENT_VMS``, that can be used to deploy VMs in a Host where other VMs are (not) running. It can be used only with the operators '=' and '!='
-
-.. warning:: Check the :ref:`Monitoring Subsystem <devel-im>` guide to find out how to extend the information model and add any information probe to the Hosts.
-
-.. warning:: There are some predefined variables that can be used: ``NAME``, ``MAX_CPU``, ``MAX_MEM``, ``FREE_MEM``, ``FREE_CPU``, ``USED_MEM``, ``USED_CPU``, ``HYPERVISOR``
 
 Examples:
 
