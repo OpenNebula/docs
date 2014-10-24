@@ -37,7 +37,11 @@ Considerations & Limitations
                 "Could not migrate $deploy_id to $dest_host"
 
     and execute ``onehost sync --force``.
+- Modern qemu versions (>= 1.10) have support some extensions of the qcow2 format that are not compatible with older versions. By default the images are generated in this format. To make them work in previous versions they need to be converted:
 
+    .. code-block:: bash
+
+        qemu-img convert -f qcow2 -O qcow2 -o compat=0.10 <source image> <destination image>
 
 Configuration
 =============
