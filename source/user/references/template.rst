@@ -237,14 +237,14 @@ Persistent and Clone Disks
 |                                                                                  |                      | This attribute should only be used | This attribute should only be used | This attribute should only be used |
 |                                                                                  |                      | for special storage configurations | for special storage configurations | for special storage configurations |
 +----------------------------------------------------------------------------------+----------------------+------------------------------------+------------------------------------+------------------------------------+
-| Set IO policy. Values are ``threads``, ``native``                                | **IO**               | -                                  | Optional                           | -                                  |
+| Set IO policy. Values are ``threads``, ``native``                                | **IO**               | -                                  | Optional (Needs qemu 1.1)          | -                                  |
 +----------------------------------------------------------------------------------+----------------------+------------------------------------+------------------------------------+------------------------------------+
 | IO throttling attributes for the disk. They are specified in bytes or IOPS       | **TOTAL_BYTES_SEC**, |                                    |                                    |                                    |
 | (IO Operations) and can be specified for the total (read+write) or specific for  | **READ_BYTES_SEC**,  |                                    |                                    |                                    |
 | read or write. Total and read or write can not be used at the same time.         | **WRITE_BYTES_SEC**  |                                    |                                    |                                    |
 | By default these parameters are only allowed to be used by oneadmin.             | **TOTAL_IOPS_SEC**,  |                                    |                                    |                                    |
 |                                                                                  | **READ_IOPS_SEC**,   |                                    |                                    |                                    |
-|                                                                                  | **WRITE_IOPS_SEC**   | -                                  | Optional                           | -                                  |
+|                                                                                  | **WRITE_IOPS_SEC**   | -                                  | Optional (Needs qemu 1.1)          | -                                  |
 +----------------------------------------------------------------------------------+----------------------+------------------------------------+------------------------------------+------------------------------------+
 
 .. _template_volatile_disks_section:
