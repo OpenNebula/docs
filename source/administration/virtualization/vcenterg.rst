@@ -97,7 +97,7 @@ The following must be met for a functional vCenter environment:
 
 .. note:: For security reasons, you may define different users to access different ESX Clusters. A different user can defined in OpenNebula per ESX cluster, which is encapsulated in OpenNebula as an OpenNebula host.
 
-- All ESX hosts belonging to the same ESXcluster to be exposed to OpenNebula **must** share one datastore among them. A cluster **may** have DRS enanled. and shared storage for the ESX Clusters that are going .
+- All ESX hosts belonging to the same ESX cluster to be exposed to OpenNebula **must** share one datastore among them. The ESX cluster **must** have DRS enabled.
 
 - **Save as VMs Templates those VMs that will be instantiated through the OpenNebula provisioning portal**
 

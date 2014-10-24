@@ -9,7 +9,7 @@ Using the new OpenNebula Sunstone Views you will be able to provide a simplified
 Default Views
 =============
 
-OpenNebula provides a default ``admin``, ``vdcadmin``, ``user`` and ``cloud`` view that implements four common views. By default, the ``admin`` view is only available to the oneadmin group. New users will be included in the users group and will use the default ``cloud`` view.
+OpenNebula provides a default ``admin``, ``vcenter``, ``vdcadmin``, ``user`` and ``cloud`` view that implements five common views. By default, the ``admin`` view is only available to the oneadmin group. New users will be included in the users group and will use the default ``cloud`` view.
 
 Admin View
 ----------
@@ -17,6 +17,13 @@ Admin View
 This view provides full control of the cloud.
 
 |admin_view|
+
+vCenter View
+------------
+
+View designed to present the valid operations agaist a vCenter infrastructure to a cloud administrator.
+
+|vcenter_view|
 
 VDCAdmin View
 -------------
@@ -274,6 +281,7 @@ You can easily add you logos to the login and main screens by updating the ``log
 -  The logo of the main UI screen is defined for each view in the view file.
 
 .. |admin_view| image:: /images/admin_view.png
+.. |vcenter_view| image:: /images/vcenter_view.png
 .. |vdcadmin_dash| image:: /images/vdcadmin_dash.png
 .. |user_view| image:: /images/user_view.png
 .. |cloud_dash| image:: /images/cloud_dash.png
