@@ -156,6 +156,8 @@ There can be multiple reasons that may prevent noVNC from correctly connecting t
 
 -  Please contact the user list only when you have gone through the suggestion above and provide full sunstone logs, shown errors and any relevant information of your infraestructure (if there are Firewalls etc)
 
+- The message "SecurityError: The operation is insecure." is usually related to a Same-Origin-Policy problem.  If you have Sunstone TLS secured and try to connect to an insecure websocket for VNC, Firefox blocks that. For Firefox, you need to have both connections secured to not get this error. And don't use a self-signed certificate for the server, this would raise the error again (you can setup your own little CA, that works, but don't use a self-signed server certificate). The other option would be to go into the Firefox config (about:config) and set "network.websocket.allowInsecureFromHTTPS" to "true".
+
 .. _sunstone_instance_types:
 
 Instance Types for Cloud View
