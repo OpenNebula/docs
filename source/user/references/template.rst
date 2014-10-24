@@ -610,7 +610,7 @@ There are some predefined Host attributes that can be used in the requirements a
 +-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **FREE_CPU**    | Real free CPU in (# cores * 100), as returned by the probes. This value is updated each monitorization cycle.                                                                        |
 +-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **USED_CPU**    | Real used CPU in (# cores * 100), as returned by the probes. USED_MEM = MAX_CPU - FREE_CPU. This value is updated each monitorization cycle.                                         |
+| **USED_CPU**    | Real used CPU in (# cores * 100), as returned by the probes. USED_CPU = MAX_CPU - FREE_CPU. This value is updated each monitorization cycle.                                         |
 +-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **MAX_MEM**     | Total memory in the host, in KB.                                                                                                                                                     |
 +-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -618,7 +618,7 @@ There are some predefined Host attributes that can be used in the requirements a
 +-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **FREE_MEM**    | Real free memory in KB, as returned by the probes. This value is updated each monitorization cycle.                                                                                  |
 +-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **USED_MEM**    | Real used memory in KB, as returned by the probes. USED_MEM = MAX_CPU - FREE_CPU. This value is updated each monitorization cycle.                                                   |
+| **USED_MEM**    | Real used memory in KB, as returned by the probes. USED_MEM = MAX_MEM - FREE_MEM. This value is updated each monitorization cycle.                                                   |
 +-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **RUNNING_VMS** | Number of VMs deployed on this host.                                                                                                                                                 |
 +-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
