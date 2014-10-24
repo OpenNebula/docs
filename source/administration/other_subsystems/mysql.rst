@@ -4,39 +4,9 @@
 MySQL Backend
 ==============
 
-The MySQL backend was introduced in OpenNebula 2.0 as an alternative to the Sqlite backend available in previous releases.
-
-Either of them can be used seamlessly to the upper layers and ecosystem tools. These high level components do not need to be modified or configured.
+The MySQL backend is an alternative to the default Sqlite backend. Either of them can be used seamlessly to the upper layers and ecosystem tools. These high level components do not need to be modified or configured.
 
 The two backends cannot coexist, and you will have to decide which one is going to be used while planning your OpenNebula installation.
-
-Building OpenNebula with MySQL Support
-======================================
-
-This section is only relevant if you are building OpenNebula from source. If you downloaded our compiled packages, you can skip to :ref:`Installation <mysql_installation>`.
-
-Requirements
-------------
-
-An installation of the mysql server database is required. For an Ubuntu distribution, the packages to install are:
-
--  libmysql++-dev
--  libxml2-dev
-
-Also, you will need a working mysql server install. For Ubuntu again, you can install the mysql server with:
-
--  mysql-server-5.1
-
-Compilation
------------
-
-To compile OpenNebula from source with mysql support, you need the following option passed to the scons:
-
-.. code::
-
-    $ scons mysql=yes
-
-Afterwards, installation proceeds normally, configuration needs to take into account the mysql server details, and for users of OpenNebula the DB backend is fully transparent.
 
 .. _mysql_installation:
 
@@ -65,11 +35,20 @@ Assuming you are going to use the default values, log in to your MySQL server an
     mysql> GRANT ALL PRIVILEGES ON opennebula.* TO 'oneadmin' IDENTIFIED BY 'oneadmin';
     Query OK, 0 rows affected (0.00 sec)
 
-.. warning:: Remember to choose different values, at least for the password.
+.. note::
 
-.. warning:: GRANT ALL PRIVILEGES ON <db\_name>.\* TO <user> IDENTIFIED BY <passwd>
+    Remember to choose different values, at least for the password.
+    
+    GRANT ALL PRIVILEGES ON <db\_name>.\* TO <user> IDENTIFIED BY <passwd>
 
-Visit the `MySQL documentation <http://dev.mysql.com/doc/refman/5.5/en/user-account-management.html>`__ to learn how to manage accounts.
+Visit the `MySQL documentation <http://dev.mysql.com/doc/refman/5.7/en/user-account-management.html>`__ to learn how to manage accounts.
+
+Now configure the transcation isolation level:
+
+.. code::
+
+    mysql> SET GLOBAL TRANSACTION ISOLATION LEVEL READ COMMITTED;
+
 
 Configuring OpenNebula
 ----------------------
