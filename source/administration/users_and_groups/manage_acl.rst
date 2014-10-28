@@ -71,13 +71,13 @@ The ACL rules are managed using the :ref:`oneacl command <cli>`. The 'oneacl lis
 .. code::
 
     $ oneacl list
-       ID     USER RES_VHNIUTGDCOZ   RID OPE_UMAC  ZONE
-        0       @1     V-NI-T---O-     *     ---c    #0
-        1        *     ----------Z     *     u---     *
-        2       @1     -H---------     *     -m--    #0
-        3       @1     --N----D---     *     u---    #0
-        4       #5     --NI-T-----  @104     u---    #0
-        5     @106     ---I-------   #31     u---    #0
+       ID     USER RES_VHNIUTGDCOZS   RID OPE_UMAC  ZONE
+        0       @1     V-NI-T---O--     *     ---c    #0
+        1        *     ----------Z-     *     u---     *
+        2       @1     -H----------     *     -m--    #0
+        3       @1     --N----D----     *     u---    #0
+        4       #5     --NI-T------  @104     u---    #0
+        5     @106     ---I--------   #31     u---    #0
 
 The rules shown correspond to the following ones:
 
@@ -117,6 +117,7 @@ The **Resources** column lists the existing Resource types initials. Each rule f
 -  ``C : CLUSTER``
 -  ``O : DOCUMENT``
 -  ``Z : ZONE``
+-  ``S : SECURITY GROUP``
 
 **RID** stands for Resource ID, it can be an individual object (#), group (@) or cluster (%) id; or all (\*) objects.
 
