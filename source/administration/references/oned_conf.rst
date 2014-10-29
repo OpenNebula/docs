@@ -131,6 +131,18 @@ XML-RPC Server Configuration
 -  ``TIMEOUT``: Maximum time in seconds the server will wait for the client to do anything while processing an RPC
 -  ``RPC_LOG``: Create a separated log file for xml-rpc requests, in /var/log/one/one_xmlrpc.log.
 -  ``MESSAGE_SIZE``: Buffer size in bytes for XML-RPC responses. Only relevant for federation slave zones.
+-  ``LOG_CALL_FORMAT``: Format string to log XML-RPC calls. Interpreted strings:
+
+   -  %i -- request id
+   -  %m -- method name
+   -  %u -- user id
+   -  %U -- user name
+   -  %l -- param list
+   -  %p -- user password
+   -  %g -- group id
+   -  %G -- group name
+   -  %a -- auth token
+   -  %% -- %
 
 .. code::
 
@@ -145,6 +157,7 @@ XML-RPC Server Configuration
     #TIMEOUT            = 15
     #RPC_LOG            = NO
     #MESSAGE_SIZE       = 1073741824
+    #LOG_CALL_FORMAT    = "Req:%i UID:%u %m invoked %l"
 
 .. warning:: This functionality is only available when compiled with xmlrpc-c libraires >= 1.32. Currently only the packages distributed by OpenNebula are linked with this library.
 
