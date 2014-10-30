@@ -91,7 +91,6 @@ Now run ``install_gems`` to install all the gem dependencies. Choose the *CentOS
 
     0. Ubuntu/Debian
     1. CentOS/RedHat
-    2. SUSE
 
 1.3. Configure and Start the services
 -------------------------------------

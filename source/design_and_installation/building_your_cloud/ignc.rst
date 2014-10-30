@@ -80,49 +80,7 @@ These are the packages available for this distribution:
 
     The files located in ``/var/lib/one/remotes`` are marked as configuration files.
 
-1.2. Installing on openSUSE
----------------------------
-
-Before installing:
-
--  Activate the `PackMan <http://wiki.links2linux.de/wiki/PackMan:FAQ_(en)>`__ repo.
-
-.. code::
-
-    # zypper ar -f -n packman http://packman.inode.at/suse/openSUSE_12.3 packman
-
-To install an openSUSE OpenNebula front-end with packages **from our repository**, execute the following as root:
-
-.. code::
-
-    # zypper addrepo --no-gpgcheck --refresh -t YUM http://downloads.opennebula.org/repo/4.10/openSUSE/12.3/x86_64 opennebula
-    # zypper refresh
-    # zypper install opennebula opennebula-sunstone
-
-To install an openSUSE OpenNebula front-end with packages from **our repository**, execute the following as root:
-
-.. code::
-
-    # tar xvzf openSUSE-12.3-<OpenNebula version>.tar.gz
-    # zypper install opennebula opennebula-sunstone
-
-After installation you need to manually create ``/var/lib/one/.one/one_auth`` with the following contents:
-
-.. code::
-
-    oneadmin:<password>
-
-**openSUSE Package Description**
-
-.. code::
-
-    These are the packages available for this distribution:
-
--  **opennebula**: main OpenNebula binaries
--  **opennebula-devel**: Examples, manpages and install\_gems (depends on **opennebula**)
--  **opennebula-sunstone**: OpenNebula Sunstone (depends on **opennebula**)
-
-1.3. Installing on Debian/Ubuntu
+1.2. Installing on Debian/Ubuntu
 --------------------------------
 
 The JSON ruby library packaged with Debian 6 is not compatible with OpenNebula. To make it work a new gem should be installed and the old one disabled. You can do so executing these commands:
@@ -289,12 +247,7 @@ If you are using Xen you can prepare the node with opennebula-common:
 
 For further configuration and/or installation of other hypervisors, check their specific guides: :ref:`Xen <xeng>`, :ref:`KVM <kvmg>` and :ref:`VMware <evmwareg>`.
 
-5.2. Installing on openSUSE
----------------------------
-
-When the front-end is installed, it is time to install the virtualization nodes. Depending on the chosen hypervisor, check their specific guides: :ref:`Xen <xeng>`, :ref:`KVM <kvmg>` and :ref:`VMware <evmwareg>`.
-
-5.3. Installing on Debian/Ubuntu
+5.2. Installing on Debian/Ubuntu
 --------------------------------
 
 When the front-end is installed, it is time to install the packages for the nodes if you are using KVM. To install a Debian/Ubuntu OpenNebula front-end with packages from our repository, add the repo as described in the previous section and then install the node package.
