@@ -111,6 +111,13 @@ This distribution lacks some packaged ruby libraries. This makes some components
 
 The ``qemu-kvm`` package does not include support for ``RBD`` therefore it's not possible to use it in combination with Ceph.
 
+RedHat 6.5 & 7.0 Platform Notes
+===============================
+
+In order to install ruby dependencies, the Server Optional channel needs to be enabled. Please refer to `RedHat documentation <https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/>`__ to enable the channel.
+
+Alternatively, use CentOS 6.5 or 7 repositories to install ruby dependencies.
+
 Debian Platform Notes
 =====================
 
