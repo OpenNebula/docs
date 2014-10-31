@@ -15,7 +15,7 @@ This is the first OpenNebula release that allows to automatically import an exis
 
 A refinement has been performed in the OpenNebula networking system, extended in the previous release in order to allow a flexible management of IP leases, decoupling the host-hypervisor configuration attributes (e.g. BRIDGE, PHYDEV or VLAN_ID) with the IP/L3 configuration attributes. In this refinement, end users are allowed to update their VNET reservations and also the address range of their reservations, so they can introduce attributes to be passed along their VMs through contextualization, customizing their VMs network settings in this manner.
 
-We are aware that in production environments, access to professional, efficient support is a must, and this is why we have introduced an :ref:`integrated tab in Sunstone to access OpenNebula Systems (the company behind OpenNebula, formerly C12G) proffesional support <commercial_support_sunstone>`. In this way, support tickets management can be performed through Sunstone, avoiding disruption of work and enhacing productivity.
+We are aware that in production environments, access to professional, efficient support is a must, and this is why we have introduced an :ref:`integrated tab in Sunstone to access OpenNebula Systems (the company behind OpenNebula, formerly C12G)  professional support <commercial_support_sunstone>`. In this way, support tickets management can be performed through Sunstone, avoiding disruption of work and enhacing productivity.
 
 Finally, several improvements are scattered across every other OpenNebula component: improvements in the hybrid drivers, including better Sunstone support, persistency of VM snapshots across their lifecycle (this allows to revert an snapshot after a VM migrate operation, for instance), the ability to change the ISO file attached to a CDROM media dynamically, a solution for the spurious Poweroff state, and many other bugfixes that stabilized features introduced in Lemon Slice. 
 
@@ -44,6 +44,11 @@ Several improvements in the Virtual Machine lifecycle and operations:
 - **Clean state recreate operation**, now it doesn't take into account previous states so a clean start is guaranteed using `onevm delete --recreate <doc/4.10/cli/onevm.1.html>`__.
 
 - **VM Disaster Recovery without resubmit of harddisk images**, this avoids losing volatile disks on host crash for instance (provided there is shared storage between the virtualization hosts. See the :ref:`HA guide <ftguide>` for more details.
+
+OpenNebula Drivers :: Virtualization
+--------------------------------------------------------------------------------
+
+- **vCenter support** :ref:`that allows to automatically import an existing infrastructure <vcenterg>` 
 
 OpenNebula Drivers :: Authorization
 --------------------------------------------------------------------------------
