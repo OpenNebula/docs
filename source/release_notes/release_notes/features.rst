@@ -12,6 +12,7 @@ Powerful User Security Management
 -  Secure and efficient :ref:`Users and Groups Subsystem <auth_overview>` for authentication and authorization of requests with complete functionality for `user management <http://docs.opennebula.orgdoc/4.10/cli/oneuser.1.html>`__: create, delete, show...
 -  :ref:`Pluggable authentication and authorization <external_auth>` based on :ref:`passwords <manage_users_users>`, :ref:`ssh rsa keypairs <ssh_auth>`, :ref:`X509 certificates <x509_auth>`, :ref:`LDAP <ldap>` or :ref:`Active Directory <ldap>`
 -  Special authentication mechanisms for :ref:`SunStone (OpenNebula GUI) <sunstone>` and the :ref:`Cloud Services (EC2) <cloud_auth>`
+- :ref:`Login token <manage_users_managing_users>` functionality to password based logins
 -  Authorization framework with :ref:`fine-grained ACLs <manage_acl>` that allows multiple-role support for different types of users and administrators, delegated control to authorized users, secure isolated multi-tenant environments, and easy resource (VM template, VM image, VM instance, virtual network and host) sharing
 
 Advanced Multi-tenancy with Group Management
@@ -71,7 +72,8 @@ Advanced Control and Monitoring of Physical Infrastructure
 Broad Commodity and Enterprise Platform Support
 ===============================================
 
--  Hypervisor agnostic :ref:`Virtualization Subsystem <vmmg>` with broad hypervisor support (:ref:`Xen <xeng>`, :ref:`KVM <kvmg>` and :ref:`VMware <evmwareg>`), centralized management of environments with multiple hypervisors, and support for multiple hypervisors within the same physical box
+-  Hypervisor agnostic :ref:`Virtualization Subsystem <vmmg>` with broad hypervisor support (:ref:`Xen <xeng>`, :ref:`KVM <kvmg>` and :ref:`VMware :ref:`), centralized management of environments with multiple hypervisors, and support for multiple hypervisors within the same physical box
+- :ref:`vCenter <vcenterg>` support with :ref:`automatic import tool of existing VMware resources<vcenter_import_tool>`, and awareness of the presence of ESX hosts behind vCenter
 -  :ref:`Storage Subsystem <sm>` with support for multiple data stores to balance I/O operations between storage servers, or to define different SLA policies (e.g. backup) and performance features for different VM types or users
 -  :ref:`Storage Subsystem <sm>` supporting any backend configuration with different datastore types: :ref:`file system datastore <fs_ds>`, to store disk images in a file form and with image transferring using ssh or shared file systems (NFS, GlusterFS, Lustre...), :ref:`LVM <lvm_drivers>` to store disk images in a block device form, :ref:`Ceph <ceph_ds>` for distributed block device including RBD format 2, and :ref:`VMware datastore <vmware_ds>` specialized for the VMware hypervisor that handle the vmdk format and with support for VMFS
 -  Flexible :ref:`Network Subsystem <nm>` with integration with :ref:`Ebtable <ebtables>`, :ref:`Open vSwitch <openvswitch>` and :ref:`802.1Q tagging <hm-vlan>`
@@ -156,6 +158,8 @@ Rich Command Line and Web Interfaces for Cloud Administrators
 -  :ref:`Unix-like Command Line Interface <cli>` to manage all resources: users, VM images, VM templates, VM instances, virtual networks, zones, VDCs, physical hosts, accounting, authentication, authorization...
 -  :ref:`Easy-to-use Sunstone Graphical Interface <sunstone>` providing usage graphics and statistics with cloudwatch-like functionality, VNC support, different system views for different roles, catalog access, multiple-zone management...
 -  :ref:`Sunstone is easily customizable <suns_views>` to define multiple cloud views for different user groups
+-  :ref:`Integrated tab in Sunstonee <commercial_support_sunstone>`to access OpenNebula Systems (the company behind OpenNebula, formerly C12G) professional support
+
 
 Multiple Deployment Options
 ===========================
