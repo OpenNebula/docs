@@ -20,6 +20,7 @@ Virtual Machines
 --------------------------------------------------------------------------------
 
 - Feature `#1639 <http://dev.opennebula.org/issues/1639>`_: VMs can now be migrated from the ``UNKNOWN`` state.
+
 - Feature `#3158 <http://dev.opennebula.org/issues/3158>`_: The context is now the last cdrom. This avoids boot problems users were having when the context was automatically assigned the 'hda' target.
 
 Virtual Networks
