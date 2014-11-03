@@ -72,7 +72,7 @@ Advanced Control and Monitoring of Physical Infrastructure
 Broad Commodity and Enterprise Platform Support
 ===============================================
 
--  Hypervisor agnostic :ref:`Virtualization Subsystem <vmmg>` with broad hypervisor support (:ref:`Xen <xeng>`, :ref:`KVM <kvmg>` and :ref:`VMware :ref:`), centralized management of environments with multiple hypervisors, and support for multiple hypervisors within the same physical box
+-  Hypervisor agnostic :ref:`Virtualization Subsystem <vmmg>` with broad hypervisor support (:ref:`Xen <xeng>`, :ref:`KVM <kvmg>` and :ref:`VMware <evmwareg>`), centralized management of environments with multiple hypervisors, and support for multiple hypervisors within the same physical box
 -  :ref:`vCenter <vcenterg>` support with :ref:`automatic import tool of existing VMware resources<vcenter_import_tool>`, and awareness of the presence of ESX hosts behind vCenter
 -  :ref:`Storage Subsystem <sm>` with support for multiple data stores to balance I/O operations between storage servers, or to define different SLA policies (e.g. backup) and performance features for different VM types or users
 -  :ref:`Storage Subsystem <sm>` supporting any backend configuration with different datastore types: :ref:`file system datastore <fs_ds>`, to store disk images in a file form and with image transferring using ssh or shared file systems (NFS, GlusterFS, Lustre...), :ref:`LVM <lvm_drivers>` to store disk images in a block device form, :ref:`Ceph <ceph_ds>` for distributed block device including RBD format 2, and :ref:`VMware datastore <vmware_ds>` specialized for the VMware hypervisor that handle the vmdk format and with support for VMFS
@@ -158,7 +158,7 @@ Rich Command Line and Web Interfaces for Cloud Administrators
 -  :ref:`Unix-like Command Line Interface <cli>` to manage all resources: users, VM images, VM templates, VM instances, virtual networks, zones, VDCs, physical hosts, accounting, authentication, authorization...
 -  :ref:`Easy-to-use Sunstone Graphical Interface <sunstone>` providing usage graphics and statistics with cloudwatch-like functionality, VNC support, different system views for different roles, catalog access, multiple-zone management...
 -  :ref:`Sunstone is easily customizable <suns_views>` to define multiple cloud views for different user groups
--  :ref:`Integrated tab in Sunstonee <commercial_support_sunstone>`to access OpenNebula Systems (the company behind OpenNebula, formerly C12G) professional support
+-  :ref:`Integrated tab in Sunstone <commercial_support_sunstone>` to access OpenNebula Systems (the company behind OpenNebula, formerly C12G) professional support
 
 
 Multiple Deployment Options
