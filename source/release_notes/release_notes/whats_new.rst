@@ -17,7 +17,7 @@ A refinement has been performed in the OpenNebula networking system, extended in
 
 We are aware that in production environments, access to professional, efficient support is a must, and this is why we have introduced an :ref:`integrated tab in Sunstone to access OpenNebula Systems (the company behind OpenNebula, formerly C12G)  professional support <commercial_support_sunstone>`. In this way, support tickets management can be performed through Sunstone, avoiding disruption of work and enhancing productivity.
 
-Finally, several improvements are scattered across every other OpenNebula component: improvements in the hybrid drivers, including better Sunstone support, persistency of VM snapshots across their lifecycle (this allows to revert an snapshot after a VM migrate operation, for instance), the ability to change the ISO file attached to a CDROM media dynamically, a solution for the spurious Poweroff state, and many other bugfixes that stabilized features introduced in Lemon Slice. 
+Finally, several improvements are scattered across every other OpenNebula component: improvements in the hybrid drivers, including better Sunstone support, a solution for the spurious Poweroff state, and many other bugfixes that stabilized features introduced in Lemon Slice. 
 
 As usual OpenNebula releases are named after a Nebula. The `Fox Fur Nebula (IC 3568) <http://en.wikipedia.org/wiki/Fox_Fur_Nebula>`__ is located in Monoceros and included in the NGC 2264 Region.
 
