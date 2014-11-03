@@ -14,9 +14,7 @@ OpenNebula Administrators and Users
 Authentication
 --------------------------------------------------------------------------------
 
-.. todo::
-
-    - Feature `#2796 <http://dev.opennebula.org/issues/2796>`_:
+- ``oneuser login``: This command now generated the tokens in ``.one_auth``. :ref:`Manage Users <manage_users>`.
 
 Virtual Machines
 --------------------------------------------------------------------------------
@@ -39,9 +37,7 @@ XML-RPC API
 
 * New api calls:
 
-.. todo::
-
-  * ``one.user.login``: 
+  * ``one.user.login``: Generates or sets a login token.
 
 * Changed api calls:
 
