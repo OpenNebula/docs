@@ -1,3 +1,5 @@
+.. _qs_guides:
+
 ============
 Quick Starts
 ============

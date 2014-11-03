@@ -29,6 +29,8 @@ Virtual Networks
 
 - Feature `#3167 <http://dev.opennebula.org/issues/3167>`_: Users can now edit their reservations to add context attributes, with the commands ``onevnet update`` and ``onevnet updatear``. Administrators can restrict the allowed attributes with the new ``VNET_RESTRICTED_ATTR`` configuration option in oned.conf.
 
+- Feature `#3156 <http://dev.opennebula.org/issues/3156>`_: Different BRIDGE according to vnet driver, allows for a more heterogenous network support, mixing clusters with different network bridge names.
+
 Developers and Integrators
 ================================================================================
 

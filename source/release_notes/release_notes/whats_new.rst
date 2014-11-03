@@ -1,10 +1,10 @@
 .. _whats_new:
 
-=======================
-What's New in 4.10 Beta
-=======================
+==================
+What's New in 4.10
+==================
 
-OpenNebula 4.10 Beta (Fox Fur) ships with several improvements in different subsystems and components. But, more importantly, it features a little revolution in shape of vCenter support. 
+OpenNebula 4.10 (Fox Fur) ships with several improvements in different subsystems and components. But, more importantly, it features a little revolution in shape of vCenter support. 
 
 This is the first OpenNebula release that allows to automatically import an existing infrastructure, since the new vCenter drivers allow to import Clusters and Virtual Machines from a vCenter installation, significantly smoothing the set up curve. The concept of the vCenter drivers is akin to the hybrid cloud approach in the sense that OpenNebula will delegate a number of aspects to vCenter, instead of pursuing the management of almost every aspect as it traditionally does with the three supported hypervisors: XEN, KVM and VMware ESX. OpenNebula will use pre defined Virtual Machine Templates existing in the vCenter set up to launch Virtual Machines, very much like it does in its hybrid drivers to access Amazon EC2, IBM SoftLayer and Microsoft Azure, although offering extra features like for instance VNC support and more lifecycle actions.
 
@@ -21,10 +21,10 @@ Finally, several improvements are scattered across every other OpenNebula compon
 
 As usual OpenNebula releases are named after a Nebula. The `Fox Fur Nebula (IC 3568) <http://en.wikipedia.org/wiki/Fox_Fur_Nebula>`__ is located in Monoceros and included in the NGC 2264 Region.
 
-The OpenNebula team is now set to bug-fixing mode. Note that this is a beta release aimed at testers and developers to try the new features, and send a more than welcomed feedback for the final release.
+Want to take OpenNebula 4.10 for a test drive? Use one of the `SandBoxes <http://opennebula.org/tryout/>`__ to try out OpenNebula in no time, or proceed to the :ref:`Quick Start guides <qs_guides>`.
 
 In the following list you can check the highlights of OpenNebula 4.10. (`a detailed list of changes can be found here
-<http://dev.opennebula.org/projects/opennebula/issues?query_id=57>`__):
+<http://dev.opennebula.org/projects/opennebula/issues?query_id=59>`__):
 
 OpenNebula Core
 ---------------
