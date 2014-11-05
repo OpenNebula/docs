@@ -35,13 +35,13 @@ Virtual Network improvements include:
 
 - **Leases and reservation visibility** now is subject to :ref:`ACL filters <manage_acl>`.
 
-- **Improvements in the CLI and vnet updates**, with a easier to use `onevnet command <doc/4.10/cli/onevnet.1.html>`__, displaying more information about leases. Moeover, users being able to now update their own leases and reservations.
+- **Improvements in the CLI and vnet updates**, with a easier to use `onevnet command </doc/4.10/cli/onevnet.1.html>`__, displaying more information about leases. Moeover, users being able to now update their own leases and reservations.
 
 - **Different BRIDGE according to vnet driver**, allows for a more heterogenous network support, mixing clusters with different :ref:`network bridge names <openvswitch_different_bridge>`.
 
 Several improvements in the Virtual Machine lifecycle and operations:
 
-- **Clean state recreate operation**, now it doesn't take into account previous states so a clean start is guaranteed using `onevm delete --recreate <doc/4.10/cli/onevm.1.html>`__.
+- **Clean state recreate operation**, now it doesn't take into account previous states so a clean start is guaranteed using `onevm delete --recreate </doc/4.10/cli/onevm.1.html>`__.
 
 - **VM Disaster Recovery without resubmit of harddisk images**, this avoids losing volatile disks on host crash for instance (provided there is shared storage between the virtualization hosts. See the :ref:`HA guide <ftguide>` for more details.
 
