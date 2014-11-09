@@ -110,9 +110,9 @@ You can define as many Virtual Machine types as you want, just:
 
 .. code::
 
-    $ ontemplate create /tmp/m1.small
-    $ ontemplate chgrp m1.small users
-    $ ontemplate chmod m1.small 640
+    $ onetemplate create /tmp/m1.small
+    $ onetemplate chgrp m1.small users
+    $ onetemplate chmod m1.small 640
 
 The template must include all the required information to instantiate a new virtual machine, such as network configuration, capacity, placement requirements, etc. This information will be used as a base template and will be merged with the information provided by the user.
 
