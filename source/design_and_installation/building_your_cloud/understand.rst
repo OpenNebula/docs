@@ -7,6 +7,7 @@ Understanding OpenNebula
 This guide is meant for cloud architects, builders and administrators, to help them understand the OpenNebula model for managing and provisiong virtual resources. This  model is a result of our collaboration with our user community during the last years. Although OpenNebula has been designed and developed to be easy to adapt to individual enterprise use cases and processes, and to perform fine-tuning of multiple aspects, OpenNebula brings a pre-defined model for cloud provisioning and consumption that offers an integrated and comprehensive framework for resource allocation and isolation in federated data centers and hybrid cloud deployments.
 
 This guide also illustrates the three main types of cloud infrastructures that are implemented with OpenNebula:
+
 * Data center infrastructure management
 * Simple cloud provisioning model
 * Advanced cloud provisioning model
