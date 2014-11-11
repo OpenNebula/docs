@@ -43,7 +43,7 @@ Several improvements in the Virtual Machine lifecycle and operations:
 
 - **Clean state recreate operation**, now it doesn't take into account previous states so a clean start is guaranteed using `onevm delete --recreate </doc/4.10/cli/onevm.1.html>`__.
 
-- **VM Disaster Recovery without resubmit of harddisk images**, this avoids losing volatile disks on host crash for instance (provided there is shared storage between the virtualization hosts. See the :ref:`HA guide <ftguide>` for more details.
+- **VM Disaster Recovery without resubmit of harddisk images**, this avoids losing volatile disks on host crash for instance (provided there is shared storage between the virtualization hosts). See the :ref:`HA guide <ftguide>` for more details.
 
 OpenNebula Drivers :: Virtualization
 --------------------------------------------------------------------------------
