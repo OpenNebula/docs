@@ -10,5 +10,6 @@ Users and Groups
    Managing Groups & VDC <manage_groups>
    Managing Permissions <chmod>
    Accounting Tool <accounting>
+   Showback <showback>
    Using ACLs <manage_acl>
    Quota Management <quota_auth>

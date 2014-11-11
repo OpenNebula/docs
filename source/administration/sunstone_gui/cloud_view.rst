@@ -93,8 +93,8 @@ A user can perform the following actions from this view:
 * Delete the Service
 * Recover the Service from a fail status
 
-Usage & Accounting
-------------------
+Usage, Accounting and Showback
+--------------------------------------------------------------------------------
 
 The user can check his current usage and quotas
 
@@ -103,6 +103,8 @@ The user can check his current usage and quotas
 Also, the user can generate accounting reports for a given range of time
 
 |cloud_user_acct|
+
+|cloud_user_showback|
 
 User Settings
 -------------
@@ -123,6 +125,13 @@ Capacity is Customizable
 You must set a default CPU and Memory for the Template, but users can change these values. The available capacity presets can be :ref:`customized <sunstone_instance_types>`
 
 |prepare-tmpl-capacity|
+
+Set a Cost
+--------------------------------------------------------------------------------
+
+Each VM Template can have a cost. This cost is set by CPU and MB, to allow users to change the capacity and see the cost updated accordingly. VMs with a cost will appear in the :ref:`showback reports <showback>`.
+
+|showback_template_wizard|
 
 .. _cloud_view_features:
 
@@ -235,6 +244,7 @@ The cloud view is enabled by default for all users and you can enable/disable it
 .. |cloud_service_info| image:: /images/cloud_service_info.png
 .. |cloud_user_quota| image:: /images/cloud_user_quota.png
 .. |cloud_user_acct| image:: /images/cloud_user_acct.png
+.. |cloud_user_showback| image:: /images/cloud_user_showback.png
 .. |cloud_user_settings| image:: /images/cloud_user_settings.png
 .. |cloud_resource_sharing| image:: /images/cloud_resource_sharing.png
 .. |prepare-tmpl-chgrp| image:: /images/prepare-tmpl-chgrp.png
@@ -246,4 +256,4 @@ The cloud view is enabled by default for all users and you can enable/disable it
 .. |prepare-tmpl-user-input-2| image:: /images/prepare-tmpl-user-input-2.png
 .. |prepare-tmpl-flow-1| image:: /images/prepare-tmpl-flow-1.png
 .. |prepare-tmpl-flow-2| image:: /images/prepare-tmpl-flow-2.png
-
+.. |showback_template_wizard| image:: /images/showback_template_wizard.png

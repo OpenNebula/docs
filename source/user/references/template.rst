@@ -71,7 +71,7 @@ A simple example:
 Capacity Section
 ================
 
-The following attributes can be defined to specified the capacity of a VM.
+The following attributes can be defined to specify the capacity of a VM.
 
 +--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------+
 | Attribute    | Description                                                                                                                                                                                                                                                                                       | Mandatory                                                                                |
@@ -93,6 +93,21 @@ Example:
       NAME   = test-vm
       MEMORY = 128
       CPU    = 1
+
+
+Showback Section
+================================================================================
+
+The following attributes can be defined to set the cost of a VM. Read the :ref:`showback documentation <showback>` for more information.
+
++-----------------+----------------------------------+-----------+
+|    Attribute    |           Description            | Mandatory |
++=================+==================================+===========+
+| **MEMORY_COST** | Cost of each memory MB per hour. | **NO**    |
++-----------------+----------------------------------+-----------+
+| **CPU_COST**    | Cost of each CPU per hour.       | **NO**    |
++-----------------+----------------------------------+-----------+
+
 
 .. _template_os_and_boot_options_section:
 

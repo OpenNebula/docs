@@ -4,9 +4,7 @@
 Accounting Client
 ==================
 
-The accounting toolset visualizes and reports resource usage data, and allows their integration with chargeback and billing platforms. The toolset generates accounting reports using the information retrieved from OpenNebula.
-
-This accounting tool addresses the accounting of the virtual resources. It includes resource consumption of the virtual machines as reported from the hypervisor.
+The accounting toolset visualizes and reports resource usage data. This accounting tool addresses the accounting of the virtual resources. It includes resource consumption of the virtual machines as reported from the hypervisor.
 
 Usage
 =====
@@ -30,7 +28,7 @@ Usage
 
 The time can be written as ``month/day/year hour:minute:second``, or any other similar format, e.g ``month/day hour:minute``.
 
-To integrate this tool with your billing system you can use ``-j``, ``-x`` or ``--csv`` flags to get all the information in an easy computer readable format.
+To integrate this tool with other systems you can use ``-j``, ``-x`` or ``--csv`` flags to get all the information in an easy computer readable format.
 
 Accounting Output
 =================
@@ -79,32 +77,33 @@ Obtaining all the available accounting information:
 
 The columns are:
 
-+---------------+-----------------------------------------------------------------------------------------------+
-| Column        | Meaning                                                                                       |
-+===============+===============================================================================================+
-| VID           | Virtual Machine ID                                                                            |
-+---------------+-----------------------------------------------------------------------------------------------+
-| HOSTNAME      | Host name                                                                                     |
-+---------------+-----------------------------------------------------------------------------------------------+
-| REASON        | VM state change reason:                                                                       |
-|               |  **none**: Normal termination                                                                 |
-|               |  **erro**: The VM ended in error                                                              |
-|               |  **stop**: Stop/resume request                                                                |
-|               |  **user**: Migration request                                                                  |
-|               |  **canc**: Cancel request                                                                     |
-+---------------+-----------------------------------------------------------------------------------------------+
-| START\_TIME   | Start time                                                                                    |
-+---------------+-----------------------------------------------------------------------------------------------+
-| END\_TIME     | End time                                                                                      |
-+---------------+-----------------------------------------------------------------------------------------------+
-| MEMORY        | Assigned memory. This is the requested memory, not the monitored memory consumption           |
-+---------------+-----------------------------------------------------------------------------------------------+
-| CPU           | Number of CPUs. This is the requested number of Host CPU share, not the monitored cpu usage   |
-+---------------+-----------------------------------------------------------------------------------------------+
-| NETRX         | Data received from the network                                                                |
-+---------------+-----------------------------------------------------------------------------------------------+
-| NETTX         | Data sent to the network                                                                      |
-+---------------+-----------------------------------------------------------------------------------------------+
++-------------+---------------------------------------------------------------------------------------------+
+|    Column   |                                           Meaning                                           |
++=============+=============================================================================================+
+| VID         | Virtual Machine ID                                                                          |
++-------------+---------------------------------------------------------------------------------------------+
+| HOSTNAME    | Host name                                                                                   |
++-------------+---------------------------------------------------------------------------------------------+
+| REASON      | VM state change reason:                                                                     |
+|             |                                                                                             |
+|             | - **none**: Normal termination                                                              |
+|             | - **erro**: The VM ended in error                                                           |
+|             | - **stop**: Stop/resume request                                                             |
+|             | - **user**: Migration request                                                               |
+|             | - **canc**: Cancel request                                                                  |
++-------------+---------------------------------------------------------------------------------------------+
+| START\_TIME | Start time                                                                                  |
++-------------+---------------------------------------------------------------------------------------------+
+| END\_TIME   | End time                                                                                    |
++-------------+---------------------------------------------------------------------------------------------+
+| MEMORY      | Assigned memory. This is the requested memory, not the monitored memory consumption         |
++-------------+---------------------------------------------------------------------------------------------+
+| CPU         | Number of CPUs. This is the requested number of Host CPU share, not the monitored cpu usage |
++-------------+---------------------------------------------------------------------------------------------+
+| NETRX       | Data received from the network                                                              |
++-------------+---------------------------------------------------------------------------------------------+
+| NETTX       | Data sent to the network                                                                    |
++-------------+---------------------------------------------------------------------------------------------+
 
 Obtaining the accounting information for a given user
 

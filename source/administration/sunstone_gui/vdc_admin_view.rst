@@ -64,18 +64,20 @@ These shared templates will be listed under the "VDC" tab when trying to create 
 
 When deleting a saved template both the Image and the Template will be removed from OpenNebula.
 
-Accounting
+Accounting & Showback
 ================================================================================
 
-VDC Accounting
---------------
+VDC Accounting & Showback
+--------------------------------------------------------------------------------
 
-The VDC info tab provides information of the usage of the VDC and also accounting reports can be generated. These reports can be configured to report the usage per VM or per user for a specific range of time.
+The VDC info tab provides information of the usage of the VDC and also accounting and showback reports can be generated. These reports can be configured to report the usage per VM or per user for a specific range of time.
 
 |vdcadmin_vdc_acct|
 
-User Accounting
----------------
+|vdcadmin_vdc_showback|
+
+User Accounting & Showback
+--------------------------------------------------------------------------------
 
 The detailed view of the user provides information of the usage of the user, from this view accounting reports can be also genereated for this specific user
 
@@ -101,4 +103,4 @@ By default the VDC Admin account is not created for a new group. It can be enabl
 .. |vdcadmin_create_vm_templates_list| image:: /images/vdcadmin_create_vm_templates_list.png
 .. |vdcadmin_vdc_acct| image:: /images/vdcadmin_vdc_acct.png
 .. |vdcadmin_user_acct| image:: /images/vdcadmin_user_acct.png
-
+.. |vdcadmin_vdc_showback| image:: /images/vdcadmin_vdc_showback.png
