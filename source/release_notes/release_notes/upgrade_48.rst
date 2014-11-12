@@ -137,6 +137,15 @@ You should be able now to start OpenNebula as usual, running 'one start' as onea
 
 .. warning:: Doing ``onehost sync`` is important. If the monitorization drivers are not updated, the hosts will behave erratically.
 
+Default Auth
+============
+
+If you are using :ref:`LDAP as default auth driver <ldap>` you will need to update the directory. To do this execute the command:
+
+.. code::
+
+    $ cp -R /var/lib/one/remotes/auth/ldap /var/lib/one/remotes/auth/default
+
 Testing
 =======
 
