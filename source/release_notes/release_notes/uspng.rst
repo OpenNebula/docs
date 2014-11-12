@@ -28,6 +28,10 @@ This is the list of the individual platform components that have been through th
 +------------------------------+---------------------------------------+---+---+
 | Amazon Web Service           | Current API version                   |   |   |
 +------------------------------+---------------------------------------+---+---+
+| Microsoft Azure              | Current API version                   |   |   |
++------------------------------+---------------------------------------+---+---+
+| IBM SoftLayer                | Current API version                   |   |   |
++------------------------------+---------------------------------------+---+---+
 
 All Front-Ends
 ==============
