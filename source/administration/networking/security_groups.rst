@@ -11,21 +11,21 @@ Definition
 
 A Security Group is composed of several Rules. Each Rule is defined with the following attributes:
 
-+----------------+-------------------------------------------------------------------+
-|   Attribute    |                              Meaning                              |
-+================+===================================================================+
-| **PROTOCOL**   | TCP, UDP, ICMP, IPSEC                                             |
-+----------------+-------------------------------------------------------------------+
-| **RULE_TYPE**  | INBOUND, OUTBOUND                                                 |
-+----------------+-------------------------------------------------------------------+
-| **IP**         | First IP of the address range. Must be used with SIZE             |
-+----------------+-------------------------------------------------------------------+
-| **SIZE**       | Size of the address range. Must be used with IP                   |
-+----------------+-------------------------------------------------------------------+
-| **NETWORK_ID** | ID of an OpenNebula Virtual Network. Cannot be used with IP, SIZE |
-+----------------+-------------------------------------------------------------------+
-| **RANGE**      | Port range (TCP & UDP only)                                       |
-+----------------+-------------------------------------------------------------------+
++---------------+-------------------------------------------------------+
+|   Attribute   |                        Meaning                        |
++===============+=======================================================+
+| **PROTOCOL**  | ALL, TCP, UDP, ICMP, IPSEC                            |
++---------------+-------------------------------------------------------+
+| **RULE_TYPE** | INBOUND, OUTBOUND                                     |
++---------------+-------------------------------------------------------+
+| **IP**        | First IP of the address range. Must be used with SIZE |
++---------------+-------------------------------------------------------+
+| **SIZE**      | Size of the address range. Must be used with IP       |
++---------------+-------------------------------------------------------+
+| **RANGE**     | Port range (TCP & UDP only)                           |
++---------------+-------------------------------------------------------+
+| **ICMP_TYPE** | ICMP Type (ICMP only)                                 |
++---------------+-------------------------------------------------------+
 
 To create a Security Group, use the Sunstone web interface, or create a template file following this example:
 
@@ -34,25 +34,25 @@ To create a Security Group, use the Sunstone web interface, or create a template
     $ cat ./sg.txt
 
     NAME = test
-    
+
     RULE = [
         PROTOCOL = TCP,
         RULE_TYPE = inbound,
         RANGE = 1000:2000
     ]
-    
+
     RULE = [
         PROTOCOL= TCP,
         RULE_TYPE = outbound,
         RANGE = 1000:2000
     ]
-    
+
     RULE = [
         PROTOCOL = ICMP,
         RULE_TYPE = inbound,
         NETWORK_ID = 0
     ]
-    
+
     $ onesecgroup create ./sg.txt
     ID: 102
 
@@ -66,7 +66,7 @@ To apply a Security Group to your Virtual Machines, you can assign them to the V
 .. code::
 
     $ onevnet update 0
-    
+
     SECURITY_GROUPS = "100, 102, 110"
 
 |sg_vnet_assign|
@@ -83,7 +83,7 @@ To accommodate more complex scenarios, you can also set Security Groups to each 
 .. code::
 
     $ onevnet updatear 0 1
-    
+
     SECURITY_GROUPS = "100, 102, 110"
 
 |sg_ar_assign|
