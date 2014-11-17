@@ -107,7 +107,6 @@ The following must be met for a functional vCenter environment:
 
 Considerations & Limitations
 ============================
-- **No context**: Virtual Machines won't have the ability of being contextualized, so CONTEXT sections won't be honored
 - **Unsupported Operations**: The following operations are **NOT** supported on vCenter VMs managed by OpenNebula, although they can be perfomed through vCenter:
 
 +-------------+------------------------------------------------+
@@ -128,6 +127,7 @@ Considerations & Limitations
 - There is a known issue regarding **VNC ports**, preventing VMs with ID 89 to work correctly through VNC. This is being addressed `here <http://dev.opennebula.org/issues/2980>`__.
 - OpenNebula treats **snapshots** a tad different from VMware. OpenNebula assumes that they are independent, whereas VMware builds them incrementally. This means that OpenNebula will still present snapshots that are no longer valid if one of their parent snapshots are deleted, and thus revert operatoins applied upon them will fail.
 - For VNC to work properly, please install `VMware Tools (for Windows) <https://www.vmware.com/support/ws55/doc/new_guest_tools_ws.html>`__ or `Open Virtual Machine Tools <http://open-vm-tools.sourceforge.net/>`__ (for \*nix).
+- **No files in context**: Passing entire files to VMs is not supported, but all the other CONTEXT sections will be honored
 
 Configuration
 =============
@@ -301,6 +301,16 @@ In order to manually create a VM Template definition in OpenNebula that represen
 +--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | SCHED_REQUIREMENTS | NAME="name of the vCenter cluster where this VM Template can instantiated into a VM". See :ref:`VM Scheduling section <vm_scheduling_vcenter>` for more details. |
 +--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| CONTEXT            | All :ref:`sections <template_context>` will be honored except FILES                                                                                              |
++--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
+Context can be retrieved only from VMs with VMware Tools installed. The extraConfig property is named ``guestinfo.opennebula.context``, and its value is encoded in base64. Sample session from a guest Linux VM with Open Virtual Machine Tools installed:
+
+.. code::
+
+   $ vmware-rpctool "info-get guestinfo.opennebula.context"|base64 -d
+   <DISK_ID><![CDATA[0]]></DISK_ID><CUSTOM_TAG><![CDATA[CUSTOM_VALUE]]></HOLA><NETWORK><![CDATA[YES]]></NETWORK><SSH_PUBLIC_KEY><![CDATA[ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDAxGGZB+1KHJXpztH4J81wh8kysHbMVm07LVCwBE0DTu6OIg2Q9Igt4xbrNC/86M5B2XiZ1SUUzNwnRWIH93SbXapC59qqWolN7HXXatZo3CzdA9bqWcusjEQIQ+ZZNdZL9FraSHZE5XmclPBySBc5G7kdQIc7Yx944/kaDfz+yPjAzmg81di2Ya+7jx56XLWl1U8uKfVGghFo3oMWT+TttWHoXfaekeIlE1atb8acYnRXaEWwtjcUaTk6661/xzg1YVhW2xbtqaz4pFuzAwFH804WlJITM+ZltoVugiqCpSAo+DzikTfW5l2CvpsZwu77CxGrFbKQ22PjRYq7nN4v oneadmin@vonecloud]]></SSH_PUBLIC_KEY>
 
 .. _vm_scheduling_vcenter:
 
