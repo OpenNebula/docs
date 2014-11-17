@@ -26,7 +26,7 @@ Also the ``mon`` daemon must be defined in the ``ceph.conf`` for all the nodes, 
 
 Additionally each OpenNebula datastore is backed by a ceph pool, these pools must be created and configured in the Ceph cluster. The name of the pool by default is ``one`` but can be changed on a per-datastore basis (see below).
 
-``ceph`` cluster admin must include a valid user to be used by ``one`` ``ceph`` datastore (see below). 
+``ceph`` cluster admin must include a valid user to be used by ``one`` ``ceph`` datastore (see below).
 
 This driver can work with either RBD Format 1 or RBD Format 2. To set the default you can specify this option in ``ceph.conf``:
 
@@ -83,8 +83,6 @@ The first step to create a Ceph datastore is to set up a template file for it. I
 +------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``POOL_NAME``                | The OpenNebula Ceph pool name. Defaults to ``one``. **This pool must exist before using the drivers**.                                                                                                                                    |
 +------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``CEPH_USER``                | The OpenNebula Ceph user name. If set it is used by RBD commands. **This ceph user must exist before using the drivers**.                                                                                                                 |
-+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``STAGING_DIR``              | Default path for image operations in the OpenNebula Ceph frontend.                                                                                                                                                                        |
 +------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``RESTRICTED_DIRS``          | Paths that can not be used to register images. A space separated list of paths.                                                                                                                                                           |
@@ -98,6 +96,8 @@ The first step to create a Ceph datastore is to set up a template file for it. I
 | ``DATASTORE_CAPACITY_CHECK`` | If ``yes``, the available capacity of the datastore is checked before creating a new image                                                                                                                                                |
 +------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``CEPH_HOST``                | Space-separated list of Ceph monitors. Example: ``host1 host2:port2 host3 host4:port4`` (if no port is specified, the default one is chosen). **Required for Libvirt 1.x when cephx is enabled** .                                        |
++------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``CEPH_USER``                | The OpenNebula Ceph user name. If set it is used by RBD commands. **This ceph user must exist before using the drivers**. **Required for Libvirt 1.x when cephx is enabled** .                                                            |
 +------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``CEPH_SECRET``              | A generated UUID for a LibVirt secret (to hold the CephX authentication key in Libvirt on each hypervisor). This should be generated when creating the Ceph datastore in OpenNebula. **Required for Libvirt 1.x when cephx is enabled** . |
 +------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -128,8 +128,9 @@ An example of datastore:
     DISK_TYPE = RBD
     POOL_NAME = one
 
-    # CEPH_USER is optional
+    # CEPH_USER and CEPH_SECRET are mandatory for cephx
     CEPH_USER = libvirt
+    CEPH_SECRET="6f88b54b-5dae-41fe-a43e-b2763f601cfc"
 
     BRIDGE_LIST = cephfrontend
 
@@ -163,23 +164,22 @@ Create a Ceph user for the OpenNebula hosts. We will use the name ``client.libvi
 .. code::
 
     ceph auth get-or-create client.libvirt mon 'allow r' osd 'allow class-read object_prefix rbd_children, allow rwx pool=one'
+    ceph auth get-key client.libvirt | tee client.libvirt.key
+    ceph auth get client.libvirt -o ceph.client.libvirt.keyring
 
-Extract the ``client.libvirt`` key, save it to a file named ``client.libvirt.key``\ and distribute it to all the KVM hosts:
+Distribute the ``client.libvirt.key`` and ``client.libvirt.keyring`` file to all the KVM hosts:
+- ``client.libvirt.keyring`` must be placed under ``/etc/ceph`` (in all the hypervisors and frontend)
+- ``client.libvirt.key`` must delivered somewhere where oneadmin can read it in order to create the libvirt secret documents.
 
-.. code::
+Generate a UUID, for example running ``uuidgen`` (the generated uuid will referenced as ``$UUID`` from now onwards).
 
-    sudo ceph auth list
-    # save client.libvirt's key to client.libvirt.key
-
-Generate a UUID, for example running ``uuidgen`` (the generated uuid will referenced as ``%UUID%`` from now onwards).
-
-Create a file named ``secret.xml`` (using the genereated ``%UUID%`` and distribute it to all the KVM hosts:
+Create a file named ``secret.xml`` (using the generated ``$UUID`` and distribute it to all the KVM hosts:
 
 .. code::
 
     cat > secret.xml <<EOF
     <secret ephemeral='no' private='no'>
-      <uuid>%UUID%</uuid>
+      <uuid>$UUID</uuid>
       <usage type='ceph'>
               <name>client.libvirt secret</name>
       </usage>
@@ -191,15 +191,15 @@ The following commands must be executed in all the KVM hosts as oneadmin (assumi
 .. code::
 
     virsh secret-define secret.xml
-    # Replace %UUID% with the value generated in the previous step
-    virsh secret-set-value --secret %UUID% --base64 $(cat client.libvirt.key)
+    # Replace $UUID with the value generated in the previous step
+    virsh secret-set-value --secret $UUID --base64 $(cat client.libvirt.key)
 
 Finally, the Ceph datastore must be updated to add the following values:
 
 .. code::
 
     CEPH_USER="libvirt"
-    CEPH_SECRET="%UUID%"
+    CEPH_SECRET="$UUID"
     CEPH_HOST="<list of ceph mon hosts, see table above>"
 
 You can read more information about this in the Ceph guide `Using libvirt with Ceph <http://ceph.com/docs/master/rbd/libvirt/>`__.
