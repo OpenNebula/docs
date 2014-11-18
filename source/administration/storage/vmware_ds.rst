@@ -105,6 +105,8 @@ Apart from DS\_MAD, TM\_MAD and BRIDGE\_LIST; the following attributes can be se
 +------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``NO_DECOMPRESS``            | Do not try to untar or decompress the file to be registered. Useful for specialized Transfer Managers                                                                         |
 +------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``LIMIT_TRANSFER_BW``        | Specify the maximum transfer rate in bytes/second when downloading images from a http/https URL. Suffixes K, M or G can be used.                                              |
++------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``DATASTORE_CAPACITY_CHECK`` | If “yes”, the available capacity of the datastore is checked before creating a new image                                                                                      |
 +------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``BASE_PATH``                | This variable must be set to /vmfs/volumes for VMFS datastores.                                                                                                               |
