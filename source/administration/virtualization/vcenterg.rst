@@ -219,6 +219,10 @@ The following variables are added to the OpenNebula hosts representing ESX clust
 | VCENTER_PASSWORD | Password of the vCenter user       |
 +------------------+------------------------------------+
 
+.. note::
+
+   vOneCloud will create a special key at boot time and save it in /var/lib/one/.one/one_key. This key will be used as a private key to encrypt and decrypt all the passwords for all the vCenters that vOneCloud can access. Thus, the password shown in the vOneCloud host represneting the vCenter is the original password encrypted with this special key.
+
 **Step 4: Importing vCenter VM Templates**
 
 The same **onevcenter** tool can be used to import existing VM templates from the ESX clusters:
