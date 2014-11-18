@@ -82,39 +82,23 @@ The ``image`` datastore needs to be updated to use **vmfs** drivers for the data
      TM_MAD=vmfs
      BRIDGE_LIST=<space-separated list of ESXi host>
 
-Apart from DS\_MAD, TM\_MAD and BRIDGE\_LIST; the following attributes can be set:
+The specific attributes for this datastore driver are listed in the following table, you will also need to complete with the :ref:`common datastore attributes <sm_common_attributes>`:
 
-+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-|          Attribute           |                                                                                  Description                                                                                  |
-+==============================+===============================================================================================================================================================================+
-| ``NAME``                     | The name of the datastore                                                                                                                                                     |
-+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``DS_MAD``                   | The DS type, use ``vmfs``                                                                                                                                                     |
-+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``TM_MAD``                   | Must be ``vmfs``                                                                                                                                                              |
-+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``RESTRICTED_DIRS``          | Paths that can not be used to register images. A space separated list of paths.                                                                                               |
-+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``SAFE_DIRS``                | If you need to un-block a directory under one of the RESTRICTED\_DIRS. A space separated list of paths.                                                                       |
-+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``UMASK``                    | Default mask for the files created in the datastore. Defaults to ``0007``                                                                                                     |
-+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``BRIDGE_LIST``              | Space separated list of ESX servers that are going to be used as proxies to stage images into the datastore (``vmfs`` datastores only)                                        |
-+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``DS_TMP_DIR``               | Path in the OpenNebula front-end to be used as a buffer to stage in files in ``vmfs`` datastores. Defaults to the value in ``/var/lib/one/remotes/datastore/vmfs/vmfs.conf``. |
-+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``NO_DECOMPRESS``            | Do not try to untar or decompress the file to be registered. Useful for specialized Transfer Managers                                                                         |
-+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``LIMIT_TRANSFER_BW``        | Specify the maximum transfer rate in bytes/second when downloading images from a http/https URL. Suffixes K, M or G can be used.                                              |
-+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``DATASTORE_CAPACITY_CHECK`` | If “yes”, the available capacity of the datastore is checked before creating a new image                                                                                      |
-+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``BASE_PATH``                | This variable must be set to /vmfs/volumes for VMFS datastores.                                                                                                               |
-+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|    Attribute    |                                                                                  Description                                                                                  |
++=================+===============================================================================================================================================================================+
+| ``DS_MAD``      | The DS type, use ``vmfs``                                                                                                                                                     |
++-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``TM_MAD``      | Must be ``vmfs``                                                                                                                                                              |
++-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``BRIDGE_LIST`` | Space separated list of ESX servers that are going to be used as proxies to stage images into the datastore (``vmfs`` datastores only)                                        |
++-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``DS_TMP_DIR``  | Path in the OpenNebula front-end to be used as a buffer to stage in files in ``vmfs`` datastores. Defaults to the value in ``/var/lib/one/remotes/datastore/vmfs/vmfs.conf``. |
++-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``BASE_PATH``   | This variable must be set to /vmfs/volumes for VMFS datastores.                                                                                                               |
++-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-.. warning:: ``RESTRICTED_DIRS`` will prevent users registering important files as VM images and accessing them through their VMs. OpenNebula will automatically add its configuration directories: /var/lib/one, /etc/one and oneadmin's home. If users try to register an image from a restricted directory, they will get the following error message: “Not allowed to copy image file”.
-
-After creating a new datastore the LN\_TARGET and CLONE\_TARGET parameters will be added to the template. These values should not be changed since they define the datastore behaviour. The default values for these parameters are defined in :ref:`oned.conf <oned_conf_transfer_driver>` for each driver.
+After creating a new datastore the LN_TARGET and CLONE_TARGET parameters will be added to the template. These values should not be changed since they define the datastore behaviour. The default values for these parameters are defined in :ref:`oned.conf <oned_conf_transfer_driver>` for each driver.
 
 Driver Configuration
 --------------------

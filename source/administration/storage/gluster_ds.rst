@@ -82,32 +82,21 @@ It will also be used to hold context images and volatile disks.
 Configuring GlusterFS Datastore
 -------------------------------
 
-The datastore that holds the images will also be of type ``fs`` but you will need to add the parameters ``DISK_TYPE``, ``GLUSTER_HOST`` and ``GLUSTER_VOLUME`` described ins this table.
+The specific attributes for this datastore driver are listed in the following table, you will also need to complete with the :ref:`common datastore attributes <sm_common_attributes>`:
 
-+-----------------------+----------------------------------------------------------------------------------------------------------------------------------+
-|       Attribute       |                                                           Description                                                            |
-+=======================+==================================================================================================================================+
-| ``NAME``              | The name of the datastore                                                                                                        |
-+-----------------------+----------------------------------------------------------------------------------------------------------------------------------+
-| ``DS_MAD``            | The DS type, use ``fs`` for the Gluster datastore                                                                                |
-+-----------------------+----------------------------------------------------------------------------------------------------------------------------------+
-| ``TM_MAD``            | Transfer drivers for the datastore, use ``shared``, see below                                                                    |
-+-----------------------+----------------------------------------------------------------------------------------------------------------------------------+
-| ``DISK_TYPE``         | The type **must** be ``GLUSTER``                                                                                                 |
-+-----------------------+----------------------------------------------------------------------------------------------------------------------------------+
-| ``RESTRICTED_DIRS``   | Paths that can not be used to register images. A space separated list of paths.                                                  |
-+-----------------------+----------------------------------------------------------------------------------------------------------------------------------+
-| ``SAFE_DIRS``         | If you need to un-block a directory under one of the RESTRICTED\_DIRS. A space separated list of paths.                          |
-+-----------------------+----------------------------------------------------------------------------------------------------------------------------------+
-| ``NO_DECOMPRESS``     | Do not try to untar or decompress the file to be registered. Useful for specialized Transfer Managers                            |
-+-----------------------+----------------------------------------------------------------------------------------------------------------------------------+
-| ``LIMIT_TRANSFER_BW`` | Specify the maximum transfer rate in bytes/second when downloading images from a http/https URL. Suffixes K, M or G can be used. |
-+-----------------------+----------------------------------------------------------------------------------------------------------------------------------+
-| ``GLUSTER_HOST``      | Host and port of one (only one) Gluster server ``host:port``                                                                     |
-+-----------------------+----------------------------------------------------------------------------------------------------------------------------------+
-| ``GLUSTER_VOLUME``    | Gluster volume to use for the datastore                                                                                          |
-+-----------------------+----------------------------------------------------------------------------------------------------------------------------------+
-
++--------------------+---------------------------------------------------------------+
+|     Attribute      |                          Description                          |
++====================+===============================================================+
+| ``DS_MAD``         | The DS type, use ``fs`` for the Gluster datastore             |
++--------------------+---------------------------------------------------------------+
+| ``TM_MAD``         | Transfer drivers for the datastore, use ``shared``, see below |
++--------------------+---------------------------------------------------------------+
+| ``DISK_TYPE``      | The type **must** be ``GLUSTER``                              |
++--------------------+---------------------------------------------------------------+
+| ``GLUSTER_HOST``   | Host and port of one (only one) Gluster server ``host:port``  |
++--------------------+---------------------------------------------------------------+
+| ``GLUSTER_VOLUME`` | Gluster volume to use for the datastore                       |
++--------------------+---------------------------------------------------------------+
 
 An example of datastore:
 

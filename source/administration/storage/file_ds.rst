@@ -14,29 +14,19 @@ There are no special requirements or software dependencies to use the Files Data
 Configuration
 =============
 
-Most of the configuration considerations used for disk images datastores do apply to the Files Datastore (e.g. driver setup, cluster assignment, datastore management...). However, given the special nature of the Files Datastore most of these attributes can be fixed as summarized in the following table:
+Most of the configuration considerations used for disk images datastores do apply to the Files Datastore (e.g. driver setup, cluster assignment, datastore management...).
 
-+------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
-|          Attribute           |                                                           Description                                                            |
-+==============================+==================================================================================================================================+
-| ``NAME``                     | The name of the datastore                                                                                                        |
-+------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
-| ``TYPE``                     | Use ``FILE_DS`` to setup a Files datastore                                                                                       |
-+------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
-| ``DS_MAD``                   | The DS type, use ``fs`` to use the file-based drivers                                                                            |
-+------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
-| ``TM_MAD``                   | Transfer drivers for the datastore, use ``ssh`` to transfer the files                                                            |
-+------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
-| ``RESTRICTED_DIRS``          | Paths that can not be used to register images. A space separated list of paths.                                                  |
-+------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
-| ``SAFE_DIRS``                | If you need to un-block a directory under one of the RESTRICTED\_DIRS. A space separated list of paths.                          |
-+------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
-| ``LIMIT_TRANSFER_BW``        | Specify the maximum transfer rate in bytes/second when downloading images from a http/https URL. Suffixes K, M or G can be used. |
-+------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
-| ``DATASTORE_CAPACITY_CHECK`` | If “yes”, the available capacity of the datastore is checked before creating a new image                                         |
-+------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
+The specific attributes for this datastore driver are listed in the following table, you will also need to complete with the :ref:`common datastore attributes <sm_common_attributes>`:
 
-.. warning:: This will prevent users registering important files as VM images and accessing them thourgh their VMs. OpenNebula will automatically add its configuration directories: /var/lib/one, /etc/one and oneadmin's home. If users try to register an image from a restricted directory, they will get the following error message: “Not allowed to copy image file”.
++------------+-----------------------------------------------------------------------+
+| Attribute  |                              Description                              |
++============+=======================================================================+
+| ``TYPE``   | Use ``FILE_DS`` to setup a Files datastore                            |
++------------+-----------------------------------------------------------------------+
+| ``DS_MAD`` | The DS type, use ``fs`` to use the file-based drivers                 |
++------------+-----------------------------------------------------------------------+
+| ``TM_MAD`` | Transfer drivers for the datastore, use ``ssh`` to transfer the files |
++------------+-----------------------------------------------------------------------+
 
 For example, the following illustrates the creation of File Datastore.
 
@@ -53,11 +43,11 @@ For example, the following illustrates the creation of File Datastore.
     ID: 100
 
     > onedatastore list
-      ID NAME                      CLUSTER         IMAGES TYPE DS       TM      
-       0 system                    -                    0 sys  -        dummy   
-       1 default                   -                    0 img  dummy    dummy   
-       2 files                     -                    0 fil  fs       ssh   
-     100 kernels                   -                    0 fil  fs       ssh   
+      ID NAME                      CLUSTER         IMAGES TYPE DS       TM
+       0 system                    -                    0 sys  -        dummy
+       1 default                   -                    0 img  dummy    dummy
+       2 files                     -                    0 fil  fs       ssh
+     100 kernels                   -                    0 fil  fs       ssh
 
 The DS and TM MAD can be changed later using the ``onedatastore update`` command. You can check more details of the datastore by issuing the ``onedatastore show`` command.
 

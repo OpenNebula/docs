@@ -32,7 +32,27 @@ The system datastore can be of type ``shared`` or ``ssh``. See more details on t
 Configuring DEV Datastore
 -------------------------
 
-The datastore needs to have both ``DS_MAD`` and ``TM_MAD`` set to ``dev`` and ``DISK_TYPE`` to ``BLOCK``.
+The datastore needs to have: ``DS_MAD`` and ``TM_MAD`` set to ``dev`` and ``DISK_TYPE`` to ``BLOCK``.
+
++---------------+-------------------------------------------------+
+|   Attribute   |                   Description                   |
++===============+=================================================+
+| ``NAME``      | The name of the datastore                       |
++---------------+-------------------------------------------------+
+| ``DS_MAD``    | The DS type, use ``dev``                        |
++---------------+-------------------------------------------------+
+| ``TM_MAD``    | Transfer drivers for the datastore, use ``dev`` |
++---------------+-------------------------------------------------+
+| ``DISK_TYPE`` | The type **must** be ``BLOCK``                  |
++---------------+-------------------------------------------------+
+
+Note that for this datastore some of the :ref:`common datastore attributes <sm_common_attributes>` do **not** apply, in particular:
+- ``BASE_PATH``: does **NOT** apply
+- ``RESTRICTED_DIRS``: does **NOT** apply
+- ``SAFE_DIRS``: does **NOT** apply
+- ``NO_DECOMPRESS``: does **NOT** apply
+- ``LIMIT_TRANSFER_BW``: does **NOT** apply
+- ``DATASTORE_CAPACITY_CHECK``: does **NOT** apply
 
 An example of datastore:
 

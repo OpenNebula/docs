@@ -45,33 +45,19 @@ It is worth noting that running virtual disk images will be created in Volume Gr
 Configuring LVM Datastores
 --------------------------
 
-The first step to create a LVM datastore is to set up a template file for it. In the following table you can see the supported configuration attributes. The datastore type is set by its drivers, in this case be sure to add ``DS_MAD=fs`` and ``TM_MAD=fs_lvm`` for the transfer mechanism, see below.
+The first step to create a LVM datastore is to set up a template file for it.
 
-+--------------------------------+------------------------------------------------------------------------------------------------------------------------------------+
-| Attribute                      | Description                                                                                                                        |
-+================================+====================================================================================================================================+
-| ``NAME``                       | The name of the datastore                                                                                                          |
-+--------------------------------+------------------------------------------------------------------------------------------------------------------------------------+
-| ``DS_MAD``                     | Must be ``fs``                                                                                                                     |
-+--------------------------------+------------------------------------------------------------------------------------------------------------------------------------+
-| ``TM_MAD``                     | Must be ``fs_lvm``                                                                                                                 |
-+--------------------------------+------------------------------------------------------------------------------------------------------------------------------------+
-| ``DISK_TYPE``                  | Must be ``block``                                                                                                                  |
-+--------------------------------+------------------------------------------------------------------------------------------------------------------------------------+
-| ``RESTRICTED_DIRS``            | Paths that can not be used to register images. A space separated list of paths.                                                    |
-+--------------------------------+------------------------------------------------------------------------------------------------------------------------------------+
-| ``SAFE_DIRS``                  | If you need to un-block a directory under one of the RESTRICTED\_DIRS. A space separated list of paths.                            |
-+--------------------------------+------------------------------------------------------------------------------------------------------------------------------------+
-| ``BRIDGE_LIST``                | **Mandatory** space separated list of LVM frontends.                                                                               |
-+--------------------------------+------------------------------------------------------------------------------------------------------------------------------------+
-| ``NO_DECOMPRESS``              | Do not try to untar or decompress the file to be registered. Useful for specialized Transfer Managers                              |
-+--------------------------------+------------------------------------------------------------------------------------------------------------------------------------+
-| ``LIMIT_TRANSFER_BW``          | Specify the maximum transfer rate in bytes/second when downloading images from a http/https URL. Suffixes K, M or G can be used.   |
-+--------------------------------+------------------------------------------------------------------------------------------------------------------------------------+
-| ``DATASTORE_CAPACITY_CHECK``   | If “yes”, the available capacity of the datastore is checked before creating a new image                                           |
-+--------------------------------+------------------------------------------------------------------------------------------------------------------------------------+
+The specific attributes for this datastore driver are listed in the following table, you will also need to complete with the :ref:`common datastore attributes <sm_common_attributes>`:
 
-.. note:: The ``RESTRICTED_DIRS`` directive will prevent users registering important files as VM images and accessing them through their VMs. OpenNebula will automatically add its configuration directories: /var/lib/one, /etc/one and oneadmin's home. If users try to register an image from a restricted directory, they will get the following error message: **Not allowed to copy image file**.
++-----------------+------------------------------------------------------+
+|    Attribute    |                     Description                      |
++=================+======================================================+
+| ``DS_MAD``      | Must be ``fs``                                       |
++-----------------+------------------------------------------------------+
+| ``TM_MAD``      | Must be ``fs_lvm``                                   |
++-----------------+------------------------------------------------------+
+| ``DISK_TYPE``   | Must be ``block``                                    |
++-----------------+------------------------------------------------------+
 
 For example, the following examples illustrates the creation of an LVM datastore using a configuration file. In this case we will use the host ``host01`` as one of our OpenNebula LVM-enabled hosts.
 

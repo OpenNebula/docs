@@ -39,29 +39,15 @@ The first step to create a filesystem datastore is to set up a template file for
 
 The other important attribute to configure the datastore is the transfer drivers. These drivers determine how the images are accessed in the hosts. The Filesystem datastore can use shared, ssh and qcow2. See below for more details.
 
-+------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
-|          Attribute           |                                                                    Description                                                                     |       Values       |
-+==============================+====================================================================================================================================================+====================+
-| ``NAME``                     | The name of the datastore                                                                                                                          | N/A                |
-+------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
-| ``DS_MAD``                   | The DS type, use ``fs`` for the Filesystem datastore                                                                                               | fs                 |
-+------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
-| ``TM_MAD``                   | Transfer drivers for the datastore: ``shared``, ``ssh`` or ``qcow2``, see below                                                                    | shared, ssh, qcow2 |
-+------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
-| ``RESTRICTED_DIRS``          | Paths that can not be used to register images. A space separated list of paths.                                                                    | N/A                |
-+------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
-| ``SAFE_DIRS``                | If you need to un-block a directory under one of the RESTRICTED\_DIRS. A space separated list of paths.                                            | N/A                |
-+------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
-| ``NO_DECOMPRESS``            | Do not try to untar or decompress the file to be registered. Useful for specialized Transfer Managers. Use value ``yes`` to disable decompression. | yes                |
-+------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
-| ``LIMIT_TRANSFER_BW``        | Specify the maximum transfer rate in bytes/second when downloading images from a http/https URL. Suffixes K, M or G can be used.                   | N/A                |
-+------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
-| ``DATASTORE_CAPACITY_CHECK`` | If ``yes``, the available capacity of the datastore is checked before creating a new image                                                         | yes                |
-+------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
-| ``BASE_PATH``                | Base path to build the path of the Datastore Images. This path is used to store the images when they are created in the datastore                  | N/A                |
-+------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
+The specific attributes for this datastore driver are listed in the following table, you will also need to complete with the :ref:`common datastore attributes <sm_common_attributes>`:
 
-.. note:: The ``RESTRICTED_DIRS`` directive will prevent users registering important files as VM images and accessing them thourgh their VMs. OpenNebula will automatically add its configuration directories: /var/lib/one, /etc/one and oneadmin's home. If users try to register an image from a restricted directory, they will get the following error message: ``Not allowed to copy image file``.
++---------------+-----------------------------------------------------------------------------------------------------------------------------------+
+|   Attribute   |                                                            Description                                                            |
++===============+===================================================================================================================================+
+| ``DS_MAD``    | The DS type, use ``fs`` for the Filesystem datastore                                                                              |
++---------------+-----------------------------------------------------------------------------------------------------------------------------------+
+| ``TM_MAD``    | Transfer drivers for the datastore: ``shared``, ``ssh`` or ``qcow2``, see below                                                   |
++---------------+-----------------------------------------------------------------------------------------------------------------------------------+
 
 For example, the following illustrates the creation of a filesystem datastore using the shared transfer drivers.
 

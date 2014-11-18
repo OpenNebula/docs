@@ -31,6 +31,8 @@ Image datastores can be of different type depending on the underlying storage te
 
 -  :ref:`Ceph <ceph_ds>`, to store disk images using Ceph block devices.
 
+-  :ref:`Dev <dev_ds>`, to attach already existent block devices in the nodes in the virtual machines
+
 As usual in OpenNebula the system has been architected to be highly modular, so you can easily adapt the base types to your deployment.
 
 How Are the Images Transferred to the Hosts?
@@ -42,12 +44,14 @@ The transfer mechanism is defined for each datastore. In this way a single host 
 
 OpenNebula includes 6 different ways to distribute datastore images to the hosts:
 
--  **shared**, the datastore is exported in a shared filesystem to the hosts.
--  **ssh**, datastore images are copied to the remote hosts using the ssh protocol
--  **vmfs**, image copies are done using the vmkfstools (VMware filesystem tools)
--  **qcow**, a driver specialized to handle qemu-qcow format and take advantage of its snapshoting capabilities
--  **ceph**, a driver that delegates to libvirt/KVM the management of Ceph RBDs.
--  **lvm**, images are stored as LVs in a cLVM volume.
+- **shared**, the datastore is exported in a shared filesystem to the hosts.
+- **ssh**, datastore images are copied to the remote hosts using the ssh protocol
+- **qcow2**, a driver specialized to handle qemu-qcow format and take advantage of its snapshoting capabilities
+- **vmfs**, image copies are done using the vmkfstools (VMware filesystem tools)
+- **ceph**, a driver that delegates to libvirt/KVM the management of Ceph RBDs.
+- **lvm**, images are stored as LVs in a cLVM volume.
+- **fs_lvm**, images are in a file system and are dumped to a new LV in a cLVM volume.
+- **dev**, attaches existing block devices directly to the VMs
 
 Planning your Storage
 =====================
@@ -61,19 +65,52 @@ You can take advantage of the multiple datastore features of OpenNebula to bette
 
 There are some limitations and features depending on the transfer mechanism you choose for your system and image datastores (check each datastore guide for more information). The following table summarizes the valid combinations of Datastore and transfer drivers:
 
-+-------------+--------+-----+-------+------+------+-----+---------+
-|  Datastore  | shared | ssh | qcow2 | vmfs | ceph | lvm | fs\_lvm |
-+=============+========+=====+=======+======+======+=====+=========+
-| System      | x      | x   |       | x    |      |     |         |
-+-------------+--------+-----+-------+------+------+-----+---------+
-| File-System | x      | x   | x     |      |      |     | x       |
-+-------------+--------+-----+-------+------+------+-----+---------+
-| vmfs        |        |     |       | x    |      |     |         |
-+-------------+--------+-----+-------+------+------+-----+---------+
-| ceph        |        |     |       |      | x    |     |         |
-+-------------+--------+-----+-------+------+------+-----+---------+
-| lvm         |        |     |       |      |      | x   |         |
-+-------------+--------+-----+-------+------+------+-----+---------+
++-------------+--------+-----+-------+------+------+-----+--------+-----+
+|  Datastore  | shared | ssh | qcow2 | vmfs | ceph | lvm | fs_lvm | dev |
++=============+========+=====+=======+======+======+=====+========+=====+
+| System      | x      | x   |       | x    |      |     |        |     |
++-------------+--------+-----+-------+------+------+-----+--------+-----+
+| File-System | x      | x   | x     |      |      |     | x      |     |
++-------------+--------+-----+-------+------+------+-----+--------+-----+
+| vmfs        |        |     |       | x    |      |     |        |     |
++-------------+--------+-----+-------+------+------+-----+--------+-----+
+| ceph        |        |     |       |      | x    |     |        |     |
++-------------+--------+-----+-------+------+------+-----+--------+-----+
+| lvm         |        |     |       |      |      | x   |        |     |
++-------------+--------+-----+-------+------+------+-----+--------+-----+
+| dev         |        |     |       |      |      |     |        | x   |
++-------------+--------+-----+-------+------+------+-----+--------+-----+
+
+Datastore Attributes
+====================
+
+When defining a datastore there are a set of global attributes that can be used in any datastore. Please note that this list **must** be extended with the specific attributes for each datastore type, which can be found in the specific guide for each datastore driver.
+
+Common attributes:
+
+.. _sm_common_attributes:
+
++------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|          Attribute           |                                                                                 Description                                                                                  |
++------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``Name`` (**mandatory**)     | The name of the datastore                                                                                                                                                    |
++------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``DS_MAD`` (**mandatory**)   | The DS type. Possible values: ``fs``, ``lvm``, ``vmfs``, ``ceph``, ``dev``                                                                                                   |
++------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``TM_MAD`` (**mandatory**)   | Transfer drivers for the datastore. Possible values: ``shared``, ``ssh``, ``qcow2``, ``lvm``, ``fs_lvm``, ``vmfs``, ``ceph``, ``dev``                                        |
++------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``BASE_PATH``                | Base path to build the path of the Datastore Images. This path is used to store the images when they are created in the datastores. Defaults to ``/var/lib/one/datastores``. |
++------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``RESTRICTED_DIRS``          | Paths that can not be used to register images. A space separated list of paths.                                                                                              |
++------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``SAFE_DIRS``                | If you need to un-block a directory under one of the RESTRICTED\_DIRS. A space separated list of paths.                                                                      |
++------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``NO_DECOMPRESS``            | Do not try to untar or decompress the file to be registered. Useful for specialized Transfer Managers                                                                        |
++------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``LIMIT_TRANSFER_BW``        | Specify the maximum transfer rate in bytes/second when downloading images from a http/https URL. Suffixes K, M or G can be used.                                             |
++------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``DATASTORE_CAPACITY_CHECK`` | If ``yes``, the available capacity of the datastore is checked before creating a new image                                                                                   |
++------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 Tuning and Extending
 ====================
