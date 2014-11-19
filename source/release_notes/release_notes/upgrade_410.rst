@@ -1,17 +1,17 @@
+.. _upgrade:
+
 =================================
-Upgrading from OpenNebula 4.8.x
+Upgrading from OpenNebula 4.10.0
 =================================
 
-This guide describes the installation procedure for systems that are already running a 4.8.x OpenNebula. The upgrade will preserve all current users, hosts, resources and configurations; for both Sqlite and MySQL backends.
+This guide describes the installation procedure for systems that are already running a 4.10.0 OpenNebula. The upgrade will preserve all current users, hosts, resources and configurations; for both Sqlite and MySQL backends.
 
-Read the :ref:`Compatibility Guide <compatibility>` and `Release Notes <http://opennebula.org/software/release/>`_ to know what is new in OpenNebula 4.10.
+Read the :ref:`Compatibility Guide <compatibility>` and `Release Notes <http://opennebula.org/software/release/>`_ to know what is new in OpenNebula 4.10.1.
 
 Upgrading a Federation
 ================================================================================
 
-If you have two or more 4.8 OpenNebulas working as a :ref:`Federation <introf>`, you can upgrade each one independently. Zones with 4.8 and 4.10 OpenNebulas can be part of the same federation, since the shared portion of the database is compatible.
-
-The only compatibility issue is in the Sunstone web interface. If your users access different Zones from a unique Sunstone server, you will need to upgrade all Zones to 4.10, or enable a local Sunstone server for each Zone to ensure that a 4.8 OpenNebula is only accessed through a 4.8 Sunstone. Read the :ref:`federation architecture documentation <introf_architecture>` for more details.
+If you have two or more 4.10.0 OpenNebulas working as a :ref:`Federation <introf>`, you can upgrade each one independently. Zones with 4.10.0 and 4.10.1 OpenNebulas can be part of the same federation, since the shared portion of the database is compatible.
 
 The rest of the guide applies to both a master or slave Zone. You don't need to stop the federation or the MySQL replication to follow this guide.
 
@@ -47,7 +47,7 @@ Installation
 
 Follow the :ref:`Platform Notes <uspng>` and the :ref:`Installation guide <ignc>`, taking into account that you will already have configured the passwordless ssh access for oneadmin.
 
-It is highly recommended **not to keep** your current ``oned.conf``, and update the ``oned.conf`` file shipped with OpenNebula 4.10 to your setup. If for any reason you plan to preserve your current ``oned.conf`` file, read the :ref:`Compatibility Guide <compatibility>` and the complete oned.conf reference for `4.8 <http://docs.opennebula.org/4.8/administration/references/oned_conf.html>`_ and :ref:`4.10 <oned_conf>` versions.
+It is highly recommended **not to keep** your current ``oned.conf``, and update the ``oned.conf`` file shipped with OpenNebula 4.10.1 to your setup. If for any reason you plan to preserve your current ``oned.conf`` file, read the :ref:`Compatibility Guide <compatibility>` and the complete oned.conf reference for :ref:`4.10 <oned_conf>` version.
 
 Configuration Files Upgrade
 ===========================
@@ -65,59 +65,12 @@ If you have customized **any** configuration files under ``/etc/one`` we recomme
 Database Upgrade
 ================
 
-The database schema and contents are incompatible between versions. The OpenNebula daemon checks the existing DB version, and will fail to start if the version found is not the one expected, with the message 'Database version mismatch'.
-
-You can upgrade the existing DB with the 'onedb' command. You can specify any Sqlite or MySQL database. Check the :ref:`onedb reference <onedb>` for more information.
-
-.. warning:: Make sure at this point that OpenNebula is not running. If you installed from packages, the service may have been started automatically.
-
-After you install the latest OpenNebula, and fix any possible conflicts in oned.conf, you can issue the 'onedb upgrade -v' command. The connection parameters have to be supplied with the command line options, see the :ref:`onedb manpage <cli>` for more information. Some examples:
-
-.. code::
-
-    $ onedb upgrade -v --sqlite /var/lib/one/one.db
-
-.. code::
-
-    $ onedb upgrade -v -S localhost -u oneadmin -p oneadmin -d opennebula
-
-If everything goes well, you should get an output similar to this one:
-
-.. code::
-
-    $ onedb upgrade -v -u oneadmin -d opennebula
-    MySQL Password:
-    Version read:
-    Shared tables 4.4.0 : OpenNebula 4.4.0 daemon bootstrap
-    Local tables  4.4.0 : OpenNebula 4.4.0 daemon bootstrap
-
-    >>> Running migrators for shared tables
-      > Running migrator /usr/lib/one/ruby/onedb/shared/4.4.0_to_4.4.1.rb
-      > Done in 0.00s
-
-      > Running migrator /usr/lib/one/ruby/onedb/shared/4.4.1_to_4.5.80.rb
-      > Done in 0.75s
-
-    Database migrated from 4.4.0 to 4.5.80 (OpenNebula 4.5.80) by onedb command.
-
-    >>> Running migrators for local tables
-    Database already uses version 4.5.80
-    Total time: 0.77s
-
-.. note:: Make sure you keep the backup file. If you face any issues, the onedb command can restore this backup, but it won't downgrade databases to previous versions.
+The upgrade from 4.10.0 does not require a database upgrade, the database schema is compatible.
 
 Check DB Consistency
 ====================
 
-After the upgrade is completed, you should run the command ``onedb fsck``.
-
-First, move the 4.8 backup file created by the upgrade command to a safe place.
-
-.. code::
-
-    $ mv /var/lib/one/mysql_localhost_opennebula.sql /path/for/one-backups/
-
-Then execute the following command:
+After the upgrade is completed, you should run the command ``onedb fsck``. Execute the following command:
 
 .. code::
 
@@ -156,8 +109,7 @@ Restoring the Previous Version
 
 If for any reason you need to restore your previous OpenNebula, follow these steps:
 
--  With OpenNebula 4.10 still installed, restore the DB backup using 'onedb restore -f'
--  Uninstall OpenNebula 4.10, and install again your previous version.
+-  Uninstall OpenNebula 4.10.1, and install again your previous version.
 -  Copy back the backup of /etc/one you did to restore your configuration.
 
 Known Issues

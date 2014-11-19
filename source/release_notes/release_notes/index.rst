@@ -13,6 +13,7 @@ Release Notes 4.10
    Compatibility Guide <compatibility>
    Known Issues <known_issues>
    Acknowledgements <acknowledgements>
+   Upgrading from 4.10.0 <upgrade_410>
    Upgrading from 4.8.x <upgrade_48>
    Upgrading from 4.6.x <upgrade_46>
    Upgrading from 4.4.x <upgrade_44>
