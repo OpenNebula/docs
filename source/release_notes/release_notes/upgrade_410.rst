@@ -97,6 +97,11 @@ If you are using :ref:`LDAP as default auth driver <ldap>` you will need to upda
 
     $ cp -R /var/lib/one/remotes/auth/ldap /var/lib/one/remotes/auth/default
 
+vCenter Password
+================
+
+If you already have a host with vCenter drivers you need to update the password as version 4.10.1 expects it to be encrypted. To do so, proceed to Sunstone -> Infrastructure -> Hosts, click on the vCenter host(s) and change the value in ``VCENTER_PASSWORD`` field. It will be automatically encrypted.
+
 Testing
 =======
 
