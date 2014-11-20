@@ -51,7 +51,9 @@ Sunstone
 
 * `#2292 <http://dev.opennebula.org/issues/2292>`_ sunstone novnc send ctrl-alt-del not working in Firefox
 * `#1877 <http://dev.opennebula.org/issues/1877>`_ if syslog enabled disable the logs tab in the VM detailed view
-* `#3135 <http://dev.opennebula.org/issues/3135>`_ In the Cloud View, the "change cardinality" button applies the action, but it does not refresh the view automatically
 * `#3272 <http://dev.opennebula.org/issues/3272>`_ The vCenter host creation dialog will fail with the enter key. The "import vCenter clusters" button needs to be pressed instead
-* `#3274 <http://dev.opennebula.org/issues/3274>`_ In Firefox, the default value set for date inputs has a wrong format
 
+Issues Solved in 4.10.1
+================================================================================
+
+For a complete list of issues solved in the 4.10.1 release, visit the `project's tracker <http://dev.opennebula.org/versions/70>`_.
