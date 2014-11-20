@@ -1,13 +1,14 @@
 .. _rn:
 
-==================
-Release Notes 4.10
-==================
+====================
+Release Notes 4.10.1
+====================
 
 .. toctree::
    :maxdepth: 1
 
    What's New in 4.10 <whats_new>
+   Resolved Issues in 4.10.1 <resolved_issues_4101>
    Features <features>
    Platform Notes <uspng>
    Compatibility Guide <compatibility>
