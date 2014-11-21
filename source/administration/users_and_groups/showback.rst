@@ -29,7 +29,7 @@ Before the cost reports can be seen by the users, the administrator has to gener
         -s, --start TIME                 First month of the data
         -e, --end TIME                   Last month of the data
 
-When this command is executed, the OpenNebula core reads all the accounting records, and calculates the total cost for each month. The records include the total cost of the month, and basic information about the VM and its owner. This information is then stored in the database, to be consumed with the ``oneshowback list`` command. 
+When this command is executed, the OpenNebula core reads all the accounting records, and calculates the total cost for each month. The records include the total cost of the month, and basic information about the VM and its owner. This information is then stored in the database, to be consumed with the ``oneshowback list`` command.
 
 The monthly cost of each VM is calculated as the sum of:
 
@@ -73,7 +73,7 @@ Any user or administrator can see their monthly showback reports from the CLI or
 
     $ oneshowback list -h
     ## USAGE
-    list 
+    list
             Returns the showback records
 
     ## OPTIONS
@@ -86,6 +86,18 @@ Any user or administrator can see their monthly showback reports from the CLI or
          --describe                Describe list columns
          -l, --list x,y,z          Selects columns to display with list command
          --csv                     Write table in csv format
+
+
+Disable Showback in Sunstone
+================================================================================
+
+Showback reports can be disabled in any of the Sunstone views modifying the yaml file of those views. These files can be found in ``/etc/one/sunstone-views``
+
+.. code::
+
+    ...
+    features:
+        showback: false
 
 Tuning & Extending
 ================================================================================
