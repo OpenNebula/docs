@@ -276,7 +276,7 @@ and update oned.conf to use these values:
     ]
 
 
-- Copy the directory ``/var/lib/one/.one`` from the **master** front-end to the **slave**. This directory should contain these files:
+- Copy the directory ``/var/lib/one/.one`` from the **master** front-end to the **slave**. This directory and its contents must have **oneadmin as owner**. The directory should contain these files:
 
 .. code-block:: none
 
