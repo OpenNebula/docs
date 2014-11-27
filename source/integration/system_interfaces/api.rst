@@ -466,7 +466,7 @@ oneshowback
 +===========+==============================+========================+
 | list      | one.vmpool.showback          | VM:USE                 |
 +-----------+------------------------------+------------------------+
-| calculate | one.vmpool.calculateshowback | Only for oneadmin user |
+| calculate | one.vmpool.calculateshowback | Only for oneadmin group|
 +-----------+------------------------------+------------------------+
 
 documents

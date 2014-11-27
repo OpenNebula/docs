@@ -9,7 +9,7 @@ The showback toolset reports resource usage cost, and allows the integration wit
 Set the VM Cost
 ================================================================================
 
-Each VM Template can optionally define a cost. The cost is defined as **cost per cpu per hour**, and **cost per memory MB per hour**.
+Each VM Template can optionally define a cost. The cost is defined as **cost per cpu per hour**, and **cost per memory MB per hour**. The cost units are abstract and their equivalent to monetary or other cost metrics have to be defined in each deployment.
 
 |showback_template_wizard|
 
@@ -36,7 +36,7 @@ The monthly cost of each VM is calculated as the sum of:
   - CPU_COST * CPU * HOURS
   - MEMORY_COST * MEMORY * HOURS
 
-If the time range includes the current month, OpenNebula will calculate the cost up to today's date. It is up to the administrators to leave the current month out of the showback records, to update it daily, or hourly. In any case, it is important to re-calculate it when the month ends.
+If the time range includes the current month, OpenNebula will calculate the cost up to today's date. It is up to the administrators to leave the current month out of the showback records, to update it daily, or hourly. In any case, it is important to re-calculate it when the month ends. This operation can be easily automated by a cron job.
 
 The ``oneshowback`` command can only be executed by the oneadmin user.
 
