@@ -1,25 +1,36 @@
+.. _upgrade:
 
 =================================
-Upgrading from OpenNebula 4.4.x
+Upgrading from OpenNebula 4.12.x
 =================================
 
-This guide describes the installation procedure for systems that are already running a 4.4.x OpenNebula. The upgrade will preserve all current users, hosts, resources and configurations; for both Sqlite and MySQL backends.
+This guide describes the installation procedure for systems that are already running a 4.10.x OpenNebula. The upgrade will preserve all current users, hosts, resources and configurations; for both Sqlite and MySQL backends.
 
-Read the Compatibility Guide for `4.6 <http://docs.opennebula.org/4.6/release_notes44/compatibility.html>`_, `4.8 <http://docs.opennebula.org/4.8/release_notes/release_notes/compatibility.html>`_, `4.10 <http://docs.opennebula.org/4.10/reLease_noTes/release_notes/compatibility.html>`_ and :ref:`4.12 <compatibility>`, and the `Release Notes <http://opennebula.org/software/release/>`_ to know what is new in OpenNebula 4.12.
+Read the :ref:`Compatibility Guide <compatibility>` and `Release Notes <http://opennebula.org/software/release/>`_ to know what is new in OpenNebula 4.12.
+
+Upgrading a Federation
+================================================================================
+
+If you have two or more 4.10.x OpenNebulas working as a :ref:`Federation <introf>`, you can upgrade each one independently. Zones with 4.10.x and 4.12 OpenNebulas can be part of the same federation, with a caveat: Security Groups.
+
+.. note:: Security Groups can be managed in a 4.12 zone by the administrators, but users will only be able to administer their own Security Groups if the master zone is upgraded to 4.12.
+
+The other compatibility issue is in the Sunstone web interface. If your users access different Zones from a unique Sunstone server, you will need to upgrade all Zones to 4.12, or enable a local Sunstone server for each Zone to ensure that a 4.12 OpenNebula is only accessed through a 4.12 Sunstone. Read the :ref:`federation architecture documentation <introf_architecture>` for more details.
+
+The rest of the guide applies to both a master or slave Zone. You don't need to stop the federation or the MySQL replication to follow this guide.
 
 Preparation
 ===========
 
 Before proceeding, make sure you don't have any VMs in a transient state (prolog, migr, epil, save). Wait until these VMs get to a final state (runn, suspended, stopped, done). Check the :ref:`Managing Virtual Machines guide <vm_guide_2>` for more information on the VM life-cycle.
 
-Stop OpenNebula and any other related services you may have running: EC2, OCCI, and Sunstone. As ``oneadmin``, in the front-end:
+Stop OpenNebula and any other related services you may have running: OneFlow, EC2, and Sunstone. As ``oneadmin``, in the front-end:
 
 .. code::
 
     $ sunstone-server stop
     $ oneflow-server stop
     $ econe-server stop
-    $ occi-server stop
     $ one stop
 
 Backup
@@ -27,12 +38,33 @@ Backup
 
 Backup the configuration files located in **/etc/one**. You don't need to do a manual backup of your database, the onedb command will perform one automatically.
 
+.. code::
+
+    # cp -r /etc/one /etc/one.YYYY-MM-DD
+
+.. note::
+
+    Substitute ``YYYY-MM-DD`` with the date.
+
 Installation
 ============
 
 Follow the :ref:`Platform Notes <uspng>` and the :ref:`Installation guide <ignc>`, taking into account that you will already have configured the passwordless ssh access for oneadmin.
 
-It is highly recommended **not to keep** your current ``oned.conf``, and update the ``oned.conf`` file shipped with OpenNebula 4.12 to your setup. If for any reason you plan to preserve your current ``oned.conf`` file, read the :ref:`Compatibility Guide <compatibility>` and the complete oned.conf reference for `4.4 <http://docs.opennebula.org/4.4/administration/references/oned_conf.html>`_ and :ref:`4.12 <oned_conf>` versions.
+It is highly recommended **not to keep** your current ``oned.conf``, and update the ``oned.conf`` file shipped with OpenNebula 4.12 to your setup. If for any reason you plan to preserve your current ``oned.conf`` file, read the :ref:`Compatibility Guide <compatibility>` and the complete oned.conf reference for `4.10 <http://docs.opennebula.org/4.10/administration/references/oned_conf.html>`_ and :ref:`4.12 <oned_conf>` versions.
+
+Configuration Files Upgrade
+===========================
+
+If you haven't modified any configuration files, the package managers will replace the configuration files with their newer versions and no manual intervention is required.
+
+If you have customized **any** configuration files under ``/etc/one`` we recommend you to follow these steps regardless of the platform/linux distribution.
+
+#. Backup ``/etc/one`` (already performed)
+#. Install the new packages (already performed)
+#. Compare the old and new configuration files: ``diff -ur /etc/one.YYYY-MM-DD /etc/one``. Or you can use graphical diff-tools like ``meld`` to compare both directories, which are very useful in this step.
+#. Edit the **new** files and port all the customizations from the previous version.
+#. You should **never** overwrite the configuration files with older versions.
 
 Database Upgrade
 ================
@@ -42,11 +74,6 @@ The database schema and contents are incompatible between versions. The OpenNebu
 You can upgrade the existing DB with the 'onedb' command. You can specify any Sqlite or MySQL database. Check the :ref:`onedb reference <onedb>` for more information.
 
 .. warning:: Make sure at this point that OpenNebula is not running. If you installed from packages, the service may have been started automatically.
-
-.. note::
-
-    If you have a MAC_PREFIX in :ref:`oned.conf <oned_conf>` different than the default ``02:00``, open 
-    ``/usr/lib/one/ruby/onedb/local/4.5.80_to_4.7.80.rb`` and change the value of the ``ONEDCONF_MAC_PREFIX`` constant.
 
 After you install the latest OpenNebula, and fix any possible conflicts in oned.conf, you can issue the 'onedb upgrade -v' command. The connection parameters have to be supplied with the command line options, see the :ref:`onedb manpage <cli>` for more information. Some examples:
 
@@ -88,7 +115,7 @@ Check DB Consistency
 
 After the upgrade is completed, you should run the command ``onedb fsck``.
 
-First, move the 4.4 backup file created by the upgrade command to a safe place.
+First, move the 4.10 backup file created by the upgrade command to a safe place.
 
 .. code::
 
@@ -112,6 +139,7 @@ You should be able now to start OpenNebula as usual, running 'one start' as onea
 
 .. warning:: Doing ``onehost sync`` is important. If the monitorization drivers are not updated, the hosts will behave erratically.
 
+
 Create the Security Group ACL Rule
 ================================================================================
 
@@ -120,6 +148,8 @@ There is a new kind of resource introduced in 4.12: :ref:`Security Groups <secur
 .. code::
 
     $ oneacl create "* SECGROUP/* CREATE *"
+
+.. note:: For environments in a Federation: This command needs to be executed only once in the master zone, after it is upgraded to 4.12.
 
 Testing
 =======

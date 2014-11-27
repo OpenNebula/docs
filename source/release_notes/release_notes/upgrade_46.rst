@@ -4,14 +4,16 @@ Upgrading from OpenNebula 4.6.x
 
 This guide describes the installation procedure for systems that are already running a 4.6.x OpenNebula. The upgrade will preserve all current users, hosts, resources and configurations; for both Sqlite and MySQL backends.
 
-Read the Compatibility Guide for `4.8 <http://docs.opennebula.org/4.8/release_notes/release_notes/compatibility.html>`_ and :ref:`4.10 <compatibility>`, and the `Release Notes <http://opennebula.org/software/release/>`_ to know what is new in OpenNebula 4.10.
+Read the Compatibility Guide for `4.8 <http://docs.opennebula.org/4.8/release_notes/release_notes/compatibility.html>`_, `4.10 <http://docs.opennebula.org/4.10/reLease_noTes/release_notes/compatibility.html>`_ and :ref:`4.12 <compatibility>`, and the `Release Notes <http://opennebula.org/software/release/>`_ to know what is new in OpenNebula 4.12.
 
 Upgrading a Federation
 ================================================================================
 
-If you have two or more 4.6 OpenNebulas working as a :ref:`Federation <introf>`, you can upgrade each one independently. Zones with 4.6 and 4.10 OpenNebulas can be part of the same federation, since the shared portion of the database is compatible.
+If you have two or more 4.6 OpenNebulas working as a :ref:`Federation <introf>`, you can upgrade each one independently. Zones with 4.6 and 4.12 OpenNebulas can be part of the same federation, with a caveat: Security Groups.
 
-The only compatibility issue is in the Sunstone web interface. If your users access different Zones from a unique Sunstone server, you will need to upgrade all Zones to 4.10, or enable a local Sunstone server for each Zone to ensure that a 4.6 OpenNebula is only accessed through a 4.6 Sunstone. Read the :ref:`federation architecture documentation <introf_architecture>` for more details.
+.. note:: Security Groups can be managed in a 4.12 zone by the administrators, but users will only be able to administer their own Security Groups if the master zone is upgraded to 4.12.
+
+The other compatibility issue is in the Sunstone web interface. If your users access different Zones from a unique Sunstone server, you will need to upgrade all Zones to 4.12, or enable a local Sunstone server for each Zone to ensure that a 4.12 OpenNebula is only accessed through a 4.12 Sunstone. Read the :ref:`federation architecture documentation <introf_architecture>` for more details.
 
 The rest of the guide applies to both a master or slave Zone. You don't need to stop the federation or the MySQL replication to follow this guide.
 
@@ -48,7 +50,7 @@ Installation
 
 Follow the :ref:`Platform Notes <uspng>` and the :ref:`Installation guide <ignc>`, taking into account that you will already have configured the passwordless ssh access for oneadmin.
 
-It is highly recommended **not to keep** your current ``oned.conf``, and update the ``oned.conf`` file shipped with OpenNebula 4.10 to your setup. If for any reason you plan to preserve your current ``oned.conf`` file, read the :ref:`Compatibility Guide <compatibility>` and the complete oned.conf reference for `4.6 <http://docs.opennebula.org/4.6/administration/references/oned_conf.html>`_ and :ref:`4.10 <oned_conf>` versions.
+It is highly recommended **not to keep** your current ``oned.conf``, and update the ``oned.conf`` file shipped with OpenNebula 4.12 to your setup. If for any reason you plan to preserve your current ``oned.conf`` file, read the :ref:`Compatibility Guide <compatibility>` and the complete oned.conf reference for `4.6 <http://docs.opennebula.org/4.6/administration/references/oned_conf.html>`_ and :ref:`4.12 <oned_conf>` versions.
 
 Configuration Files Upgrade
 ===========================
@@ -141,6 +143,17 @@ You should be able now to start OpenNebula as usual, running 'one start' as onea
 
 .. warning:: Doing ``onehost sync`` is important. If the monitorization drivers are not updated, the hosts will behave erratically.
 
+Create the Security Group ACL Rule
+================================================================================
+
+There is a new kind of resource introduced in 4.12: :ref:`Security Groups <security_groups>`. If you want your existing users to be able to create their own Security Groups, create the following :ref:`ACL Rule <manage_acl>`:
+
+.. code::
+
+    $ oneacl create "* SECGROUP/* CREATE *"
+
+.. note:: For environments in a Federation: This command needs to be executed only once in the master zone, after it is upgraded to 4.12.
+
 Testing
 =======
 
@@ -153,8 +166,8 @@ Restoring the Previous Version
 
 If for any reason you need to restore your previous OpenNebula, follow these steps:
 
--  With OpenNebula 4.10 still installed, restore the DB backup using 'onedb restore -f'
--  Uninstall OpenNebula 4.10, and install again your previous version.
+-  With OpenNebula 4.12 still installed, restore the DB backup using 'onedb restore -f'
+-  Uninstall OpenNebula 4.12, and install again your previous version.
 -  Copy back the backup of /etc/one you did to restore your configuration.
 
 Known Issues
