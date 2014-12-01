@@ -100,14 +100,17 @@ Moreover, each Virtual Machine Template NIC can define a list of Security Groups
 
 If the Address Range or the Template NIC define SECURITY_GROUPS, the IDs do not overwrite the ones defined in the Virtual Network. All the Security Group IDs are combined, and applied to the Virtual Machine instance.
 
+Default Security Group
+================================================================================
+
+There is a default Security Group with ID 0. At bootstrap, it contains only a rule to allow all outbound traffic. You can update it to add any default rules that may suit your infrastructure.
+
+This special Security Group is added to all the Virtual Networks when they are created, but you can remove it later updating the network's properties.
 
 Considerations and Limitations
 ================================================================================
 
-.. todo:: If you update a SG, new rules will only apply to new VMs.
-
-.. todo:: By default, all connections to/from the VM are disabled.
-
+The Security Groups can be updated to edit or add new rules. Bear in mind that the new rules will not be applied to any existing Virtual Machine. You can see the actual rules applied to each VM in the output of the ``onevm show <id>`` command, or in the individual VM panel in Sunstone.
 
 Configuration
 ================================================================================
