@@ -1,7 +1,7 @@
 .. _upgrade:
 
 =================================
-Upgrading from OpenNebula 4.12.x
+Upgrading from OpenNebula 4.10.x
 =================================
 
 This guide describes the installation procedure for systems that are already running a 4.10.x OpenNebula. The upgrade will preserve all current users, hosts, resources and configurations; for both Sqlite and MySQL backends.
