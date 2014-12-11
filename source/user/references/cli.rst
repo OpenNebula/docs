@@ -23,6 +23,7 @@ CLI
 -  `onevm </doc/4.10/cli/onevm.1.html>`__: manages OpenNebula virtual machines
 -  `onevnet </doc/4.10/cli/onevnet.1.html>`__: manages OpenNebula networks
 -  `onezone </doc/4.10/cli/onezone.1.html>`__: manages OpenNebula zones
+-  `onesecgroup </doc/4.10/cli/onesecgroup.1.html>`__: manages OpenNebula security groups
 
 The output of these commands can be customized by modifying the configuration files that can be found in ``/etc/one/cli/``. They also can be customized on a per-user basis, in this case the configuration files should be placed in ``$HOME/.one/cli``.
 
