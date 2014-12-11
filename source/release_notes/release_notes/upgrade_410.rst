@@ -151,7 +151,9 @@ If you are using :ref:`LDAP as default auth driver <ldap>` you will need to upda
 vCenter Password
 ================
 
-If you already have a host with vCenter drivers you need to update the password as version 4.10.1 expects it to be encrypted. To do so, proceed to Sunstone -> Infrastructure -> Hosts, click on the vCenter host(s) and change the value in ``VCENTER_PASSWORD`` field. It will be automatically encrypted.
+.. note:: This step only applies if you are upgrading from OpenNebula **4.10.0**. If you are already using 4.10.1 or 4.10.2 you can skip this step.
+
+If you already have a host with vCenter drivers you need to update the password as version >4.10.0 expects it to be encrypted. To do so, proceed to Sunstone -> Infrastructure -> Hosts, click on the vCenter host(s) and change the value in ``VCENTER_PASSWORD`` field. It will be automatically encrypted.
 
 Create the Security Group ACL Rule
 ================================================================================
