@@ -25,6 +25,8 @@ As the figure shows, OpenNebula components see two hosts where each represents a
 
 Virtual Machines are deployed from VMware VM Templates that **must exist previously in vCenter**. There is a one-to-one relationship between each VMware VM Template and the equivalent OpenNebula Template. Users will then instantiate the OpenNebula Templates where you can easily build from any provisioning strategy (e.g. access control, quota...).
 
+Networking is handled by creating Virtual Network representations of the vCenter networks. OpenNebula additionaly can handle on top of these networks three types of Address Ranges: Ethernet, IPv4 and IPv6. This networking information can be passed to the VMs through the contextualization process. VM Templates can define their own NICs, which OpenNebula cannot manage. However, any NIC added in the OpenNebula VM Template, or through the attach_nic operation, will be handled by OpenNebula, and as such it is subject to be detached and its informatin (IP, MAC, etc) is known by OpenNebula. Networks can be created
+
 Therefore there is no need to convert your current Virtual Machines or import/export them through any process; once ready just save them as VM Templates in vCenter, following `this procedure <http://pubs.vmware.com/vsphere-55/index.jsp?topic=%2Fcom.vmware.vsphere.vm_admin.doc%2FGUID-FE6DE4DF-FAD0-4BB0-A1FD-AFE9A40F4BFE_copy.html>`__.
 
 .. note:: After a VM Template is cloned and booted into a vCenter Cluster it can access VMware advanced features and it can be managed through the OpenNebula provisioning portal or through vCenter (e.g. to move the VM to another datastore or migrate it to another ESX). OpenNebula will poll vCenter to detect these changes and update its internal representation accordingly.
@@ -176,7 +178,7 @@ In order to configure OpenNebula to work with the vCenter drivers, the following
 
 **Step 3: Importing vCenter Clusters**
 
-OpenNebula ships with a powerful CLI tool to import vCenter clusters and VM Templates. The tools is self-explanatory, just set the credentials and IP to access the vCenter host and follow on screen instructions. A sample section follows:
+OpenNebula ships with a powerful CLI tool to import vCenter clusters, VM Templates and Networks. The tools is self-explanatory, just set the credentials and IP to access the vCenter host and follow on screen instructions. A sample section follows:
 
 .. code::
 
@@ -278,6 +280,61 @@ The same **onevcenter** tool can be used to import existing VM templates from th
     SCHED_REQUIREMENTS="NAME=\"devel\""
     VCPU="1"
 
+Moreover The same **onevcenter** tool can be used to import existing Networks from the ESX clusters:
+
+.. code::
+
+    $ .onevcenter networks --vuser Administrator@vsphere.local --vpass Pantufl4. --vcenter cloud09.dacya.ucm.es
+
+Connecting to vCenter: cloud09.dacya.ucm.es...done!
+
+Looking for vCenter networks...done!
+
+Do you want to process datacenter vOneDatacenter [y/n]? y
+
+  * Network found:
+      - Name    : MyvCenterNetwork
+      - Type    : Port Group
+    Import this Network [y/n]? y
+    How many VMs are you planning to fit into this network [255]? 45
+    What type of Virtual Network do you want to create (IPv[4],IPv[6],[E]thernet) ? E
+    Please input the first MAC in the range [Enter for default]:
+    OpenNebula virtual network 29 created with size 45!
+
+    $ onevnet list
+      ID USER            GROUP        NAME                CLUSTER    BRIDGE   LEASES
+      29 oneadmin        oneadmin     MyvCenterNetwork    -          MyFakeNe      0
+
+    $ onevnet show 29
+    VIRTUAL NETWORK 29 INFORMATION
+    ID             : 29
+    NAME           : MyvCenterNetwork
+    USER           : oneadmin
+    GROUP          : oneadmin
+    CLUSTER        : -
+    BRIDGE         : MyvCenterNetwork
+    VLAN           : No
+    USED LEASES    : 0
+
+    PERMISSIONS
+    OWNER          : um-
+    GROUP          : ---
+    OTHER          : ---
+
+    VIRTUAL NETWORK TEMPLATE
+    BRIDGE="MyvCenterNetwork"
+    PHYDEV=""
+    VCENTER_TYPE="Port Group"
+    VLAN="NO"
+    VLAN_ID=""
+
+    ADDRESS RANGE POOL
+     AR TYPE    SIZE LEASES               MAC              IP          GLOBAL_PREFIX
+      0 ETHER     45      0 02:00:97:7f:f0:87               -                      -
+
+    LEASES
+    AR  OWNER                    MAC              IP                      IP6_GLOBAL
+
 The same import mechanism is available graphically through Sunstone.
 
 .. image:: /images/vcenter_create.png
@@ -309,6 +366,11 @@ In order to manually create a VM Template definition in OpenNebula that represen
 +--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 You can find more information about contextualization in the :ref:`vcenter Contextualization <vcenter_context>` section.
+
+Virtual Network definition
+--------------------------
+
+Virtual Networks can be created using OpenNebula standard networks, taking into account that the BRIDGE of the Virtual Network needs to match the name of the Network defined in vCenter. OpenNebula supports both "Port Groups" and "Distributed Port Groups".
 
 .. _vm_scheduling_vcenter:
 
