@@ -25,7 +25,7 @@ As the figure shows, OpenNebula components see two hosts where each represents a
 
 Virtual Machines are deployed from VMware VM Templates that **must exist previously in vCenter**. There is a one-to-one relationship between each VMware VM Template and the equivalent OpenNebula Template. Users will then instantiate the OpenNebula Templates where you can easily build from any provisioning strategy (e.g. access control, quota...).
 
-Networking is handled by creating Virtual Network representations of the vCenter networks. OpenNebula additionaly can handle on top of these networks three types of Address Ranges: Ethernet, IPv4 and IPv6. This networking information can be passed to the VMs through the contextualization process. VM Templates can define their own NICs, which OpenNebula cannot manage. However, any NIC added in the OpenNebula VM Template, or through the attach_nic operation, will be handled by OpenNebula, and as such it is subject to be detached and its informatin (IP, MAC, etc) is known by OpenNebula. Networks can be created
+Networking is handled by creating Virtual Network representations of the vCenter networks. OpenNebula additionaly can handle on top of these networks three types of Address Ranges: Ethernet, IPv4 and IPv6. This networking information can be passed to the VMs through the contextualization process.
 
 Therefore there is no need to convert your current Virtual Machines or import/export them through any process; once ready just save them as VM Templates in vCenter, following `this procedure <http://pubs.vmware.com/vsphere-55/index.jsp?topic=%2Fcom.vmware.vsphere.vm_admin.doc%2FGUID-FE6DE4DF-FAD0-4BB0-A1FD-AFE9A40F4BFE_copy.html>`__.
 
@@ -284,58 +284,58 @@ Moreover The same **onevcenter** tool can be used to import existing Networks fr
 
 .. code::
 
-    $ .onevcenter networks --vuser Administrator@vsphere.local --vpass Pantufl4. --vcenter cloud09.dacya.ucm.es
+    $ .onevcenter networks --vcenter <vcenter-host> --vuser <vcenter-username> --vpass <vcenter-password>
 
-Connecting to vCenter: cloud09.dacya.ucm.es...done!
+    Connecting to vCenter: <vcenter-host>...done!
 
-Looking for vCenter networks...done!
+    Looking for vCenter networks...done!
 
-Do you want to process datacenter vOneDatacenter [y/n]? y
+    Do you want to process datacenter vOneDatacenter [y/n]? y
 
-  * Network found:
-      - Name    : MyvCenterNetwork
-      - Type    : Port Group
-    Import this Network [y/n]? y
-    How many VMs are you planning to fit into this network [255]? 45
-    What type of Virtual Network do you want to create (IPv[4],IPv[6],[E]thernet) ? E
-    Please input the first MAC in the range [Enter for default]:
-    OpenNebula virtual network 29 created with size 45!
+      * Network found:
+          - Name    : MyvCenterNetwork
+          - Type    : Port Group
+        Import this Network [y/n]? y
+        How many VMs are you planning to fit into this network [255]? 45
+        What type of Virtual Network do you want to create (IPv[4],IPv[6],[E]thernet) ? E
+        Please input the first MAC in the range [Enter for default]:
+        OpenNebula virtual network 29 created with size 45!
 
-    $ onevnet list
-      ID USER            GROUP        NAME                CLUSTER    BRIDGE   LEASES
-      29 oneadmin        oneadmin     MyvCenterNetwork    -          MyFakeNe      0
+        $ onevnet list
+          ID USER            GROUP        NAME                CLUSTER    BRIDGE   LEASES
+          29 oneadmin        oneadmin     MyvCenterNetwork    -          MyFakeNe      0
 
-    $ onevnet show 29
-    VIRTUAL NETWORK 29 INFORMATION
-    ID             : 29
-    NAME           : MyvCenterNetwork
-    USER           : oneadmin
-    GROUP          : oneadmin
-    CLUSTER        : -
-    BRIDGE         : MyvCenterNetwork
-    VLAN           : No
-    USED LEASES    : 0
+        $ onevnet show 29
+        VIRTUAL NETWORK 29 INFORMATION
+        ID             : 29
+        NAME           : MyvCenterNetwork
+        USER           : oneadmin
+        GROUP          : oneadmin
+        CLUSTER        : -
+        BRIDGE         : MyvCenterNetwork
+        VLAN           : No
+        USED LEASES    : 0
 
-    PERMISSIONS
-    OWNER          : um-
-    GROUP          : ---
-    OTHER          : ---
+        PERMISSIONS
+        OWNER          : um-
+        GROUP          : ---
+        OTHER          : ---
 
-    VIRTUAL NETWORK TEMPLATE
-    BRIDGE="MyvCenterNetwork"
-    PHYDEV=""
-    VCENTER_TYPE="Port Group"
-    VLAN="NO"
-    VLAN_ID=""
+        VIRTUAL NETWORK TEMPLATE
+        BRIDGE="MyvCenterNetwork"
+        PHYDEV=""
+        VCENTER_TYPE="Port Group"
+        VLAN="NO"
+        VLAN_ID=""
 
-    ADDRESS RANGE POOL
-     AR TYPE    SIZE LEASES               MAC              IP          GLOBAL_PREFIX
-      0 ETHER     45      0 02:00:97:7f:f0:87               -                      -
+        ADDRESS RANGE POOL
+         AR TYPE    SIZE LEASES               MAC              IP          GLOBAL_PREFIX
+          0 ETHER     45      0 02:00:97:7f:f0:87               -                      -
 
-    LEASES
-    AR  OWNER                    MAC              IP                      IP6_GLOBAL
+        LEASES
+        AR  OWNER                    MAC              IP                      IP6_GLOBAL
 
-The same import mechanism is available graphically through Sunstone.
+The same import mechanism is available graphically through Sunstone for hosts, networks and templates.
 
 .. image:: /images/vcenter_create.png
     :width: 90%
@@ -370,7 +370,11 @@ You can find more information about contextualization in the :ref:`vcenter Conte
 Virtual Network definition
 --------------------------
 
-Virtual Networks can be created using OpenNebula standard networks, taking into account that the BRIDGE of the Virtual Network needs to match the name of the Network defined in vCenter. OpenNebula supports both "Port Groups" and "Distributed Port Groups".
+Virtual Networks from vCenter can be represented using OpenNebula standard networks, taking into account that the BRIDGE of the Virtual Network needs to match the name of the Network defined in vCenter. OpenNebula supports both "Port Groups" and "Distributed Port Groups".
+
+Virtual Networks in vCenter can be created using the vCenter web client, with any specific configuration like for instance VLANs. OpenNebula will use these networks with the defined characteristics, but it cannot create new Virtual Networks in vCenter, but rather only OpenNebula vnet representations of such Virtual Networks.
+
+vCenter VM Templates can define their own NICs, which OpenNebula cannot manage. However, any NIC added in the OpenNebula VM Template, or through the attach_nic operation, will be handled by OpenNebula, and as such it is subject to be detached and its informatin (IP, MAC, etc) is known by OpenNebula.
 
 .. _vm_scheduling_vcenter:
 
