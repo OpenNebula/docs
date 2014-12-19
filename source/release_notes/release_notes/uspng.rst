@@ -158,7 +158,11 @@ OpenNebula is available at the Arch User Repository (AUR), `please check the ope
 Installing on Gentoo
 --------------------
 
-You need to compile the xmlrpc-c package with threads support, as:
+There is an ebuild contributed by Thomas Stein in the following repository:
+
+https://github.com/himbeere/opennebula
+
+Still, if you want to compile it manually you need to install the xmlrpc-c package with threads support, as:
 
 .. code::
 
