@@ -4,12 +4,42 @@
 Sunstone Views
 ===============
 
-Using the new OpenNebula Sunstone Views you will be able to provide a simplified UI aimed at end-users of an OpenNebula cloud. The OpenNebula Sunstone Views are fully customizable, so you can easily enable or disable specific information tabs or action buttons. You can define multiple cloud views for different user groups. Each view defines a set of UI components so each user just access and view the relevant parts of the cloud for her role.
+Using the OpenNebula Sunstone Views you will be able to provide a simplified UI aimed at end-users of an OpenNebula cloud. The OpenNebula Sunstone Views are fully customizable, so you can easily enable or disable specific information tabs or action buttons. You can define multiple  views for different user groups. Each view defines a set of UI components so each user just access and view the relevant parts of the cloud for her role.
+
+The OpenNebula Sunstone Views can be grouped in two different layouts. On one hand, the classic Sunstone layout exposes a complete view of the cloud, allowing administrators and advanced users to have full control of any physical or virtual resource of the cloud. On the other hand, the newer cloud layout exposes a simplified version of the cloud where VDC administrators and cloud end-users will be able to manage any virtual resource of the cloud, without taking care of the physical resources management.
 
 Default Views
 =============
 
-OpenNebula provides a default ``admin``, ``vcenter``, ``vdcadmin``, ``user`` and ``cloud`` view that implements five common views. By default, the ``admin`` view is only available to the oneadmin group. New users will be included in the users group and will use the default ``cloud`` view.
+OpenNebula provides three default advanced views, ``admin``, ``vcenter`` and ``user`` and three simplified cloud view ``vdcadmin``, ``vcenter`` and ``cloud`` that implements six common views. By default, the ``admin`` view is only available to the oneadmin group. New users will be included in the users group and will use the default ``cloud`` view.
+
++-------------+-------+--------+------+-------+----------+------------+-------+-------+-----+--------+-----------+----------+
+|  Advanced view layout                                                                                          |          |
++=============+=======+========+======+=======+==========+============+=======+=======+=====+========+===========+==========+
+|             | System                | Infrastructure                                | Virtual Resources                   |
++-------------+-------+--------+------+-------+----------+------------+-------+-------+-----+--------+-----------+----------+
+|             | Users | Groups | ACLs | Hosts | Clusters | Datastores | VNets | Zones | VMs | Images | Templates | Services |
++-------------+-------+--------+------+-------+----------+------------+-------+-------+-----+--------+-----------+----------+
+| Admin       | x     | x      | x    | x     | x        | x          | x     | x     | x   | x      | x         | x        |
++-------------+-------+--------+------+-------+----------+------------+-------+-------+-----+--------+-----------+----------+
+| vCenter     | x     | x      | x    | x     | x        | x          | x     | x     | x   |        | x         | x        |
++-------------+-------+--------+------+-------+----------+------------+-------+-------+-----+--------+-----------+----------+
+| User        |       |        |      |       |          | x          | x     |       | x   | x      | x         | x        |
++-------------+-------+--------+------+-------+----------+------------+-------+-------+-----+--------+-----------+----------+
+
++---------------+--------+-----+-----------------+----------+
+|  Cloud view layout                                        |
++===============+========+=====+=================+==========+
+|               | System | Virtual Resources                | 
++---------------+--------+-----+-----------------+----------+
+|               | Users  | VMs | Saved Templates | Services | 
++---------------+--------+-----+-----------------+----------+
+| VDC Admin     | x      | x   | x               | x        | 
++---------------+--------+-----+-----------------+----------+
+| vCenter Cloud |        | x   |                 | x        | 
++---------------+--------+-----+-----------------+----------+
+| Cloud         |        | x   | x               | x        | 
++---------------+--------+-----+-----------------+----------+
 
 Admin View
 ----------
@@ -25,19 +55,19 @@ View designed to present the valid operations agaist a vCenter infrastructure to
 
 |vcenter_view|
 
-VDCAdmin View
--------------
-
-This view provides control of all the resources belonging to a Virtual DataCenter (VDC), but with no access to resources outside that VDC, that is, restricted to the physical and virtual resources of the VDC. This view features the ability to create new users within the VDC as well as set and keep track of user quotas. For more information on how to configure this scenario see :ref:`this guide <vdc_admin_view>`
-
-|vdcadmin_dash|
-
 User View
 ---------
 
 In this view users will not be able to manage nor retrieve the hosts and clusters of the cloud. They will be able to see Datastores and Virtual Networks in order to use them when creating a new Image or Virtual Machine, but they will not be able to create new ones. For more information about this view, please check the ``/etc/one/sunstone-views/user.yaml`` file.
 
 |user_view|
+
+VDCAdmin View
+-------------
+
+This view provides control of all the resources belonging to a Virtual DataCenter (VDC), but with no access to resources outside that VDC, that is, restricted to the physical and virtual resources of the VDC. This view features the ability to create new users within the VDC as well as set and keep track of user quotas. For more information on how to configure this scenario see :ref:`this guide <vdc_admin_view>`
+
+|vdcadmin_dash|
 
 Cloud View
 ----------
@@ -47,6 +77,11 @@ This is a simplified view mainly intended for user that just require a portal wh
 In this scenario the cloud administrator must prepare a set of templates and images and make them available to the cloud users. These Templates must be ready to be instantiated, i.e. they define all the mandatory attributes. Before using them, users can optinally customize the VM capacity, add new network interfaces and provide values required by the template.  Thereby, the user doesn't have to know any details of the infrastructure such as networking, storage. For more information on how to configure this scenario see :ref:`this guide <cloud_view>`
 
 |cloud_dash|
+
+vCenter Cloud View
+------------------
+
+View designed to present the valid operations agaist a vCenter infrastructure to a cloud consumer.
 
 Requirements
 ============
@@ -234,6 +269,29 @@ And also in the dialogs where a host needs to be selected, like the VM deploy ac
 
 |sunstone_yaml_columns2|
 
+The cloud layout can also be customized by changing the following section of the yaml files:
+
+.. code::
+
+    provision-tab:
+        panel_tabs:
+            users: false
+            flows: true
+            templates: true
+        actions:
+            Template.chmod: false
+            Template.delete: true
+        dashboard:
+            quotas: true
+            vms: true
+            vdcquotas: false
+            vdcvms: false
+            users:  false
+        create_vm:
+            capacity_select: true
+            network_select: true
+
+In this section you can customize the options available when instantiating a new template, the dashboard setup or the resources available for cloud users.
 
 .. note:: The easiest way to create a custom view is to copy the ``admin.yaml`` file to the new view then harden it as needed.
 
