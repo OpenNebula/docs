@@ -126,6 +126,16 @@ You must set a default CPU and Memory for the Template, but users can change the
 
 |prepare-tmpl-capacity|
 
+You can disable this option for the whole cloud modifying the cloud.yaml or vdcadmin.yaml view files or per template in the template creation wizard
+
+.. code::
+
+    provision-tab:
+        ...
+        create_vm:
+            capacity_select: true
+            network_select: true
+
 Set a Cost
 --------------------------------------------------------------------------------
 
@@ -174,6 +184,16 @@ Users can select the VM network interfaces when launching new VMs. You can creat
 Because users will add network interfaces, you need to define a default NIC model in case the VM guest needs a specific one (e.g. virtio for KVM). This can be done with the :ref:`NIC_DEFAULT <nic_default_template>` attribute, or through the Template wizard. Alternatively, you could change the default value for all VMs in the driver configuration file (see the :ref:`KVM one <kvmg_default_attributes>` for example).
 
 |prepare-tmpl-nic-default|
+
+You can disable this option for the whole cloud modifying the cloud.yaml or vdcadmin.yaml view files or per template in the template creation wizard
+
+.. code::
+
+    provision-tab:
+        ...
+        create_vm:
+            capacity_select: true
+            network_select: true
 
 Change Permissions to Make It Available
 --------------------------------------------------------------------------------
