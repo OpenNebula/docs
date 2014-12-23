@@ -4,7 +4,7 @@
 Sunstone Views
 ===============
 
-Using the OpenNebula Sunstone Views you will be able to provide a simplified UI aimed at end-users of an OpenNebula cloud. The OpenNebula Sunstone Views are fully customizable, so you can easily enable or disable specific information tabs or action buttons. You can define multiple  views for different user groups. Each view defines a set of UI components so each user just access and view the relevant parts of the cloud for her role.
+Using the OpenNebula Sunstone Views you will be able to provide a customized UI for each user role in an OpenNebula cloud, for example a simplified provisioning portal for cloud users or a limited administration portal for advanced users. The OpenNebula Sunstone Views are fully customizable, so you can easily enable or disable specific information tabs or action buttons. You can define multiple views for different user groups. Each view defines a set of UI components so each user just access and view the relevant parts of the cloud for her role.
 
 The OpenNebula Sunstone Views can be grouped in two different layouts. On one hand, the classic Sunstone layout exposes a complete view of the cloud, allowing administrators and advanced users to have full control of any physical or virtual resource of the cloud. On the other hand, the newer cloud layout exposes a simplified version of the cloud where VDC administrators and cloud end-users will be able to manage any virtual resource of the cloud, without taking care of the physical resources management.
 
@@ -14,7 +14,7 @@ Default Views
 OpenNebula provides three default advanced views, ``admin``, ``vcenter`` and ``user`` and three simplified cloud view ``vdcadmin``, ``vcenter`` and ``cloud`` that implements six common views. By default, the ``admin`` view is only available to the oneadmin group. New users will be included in the users group and will use the default ``cloud`` view.
 
 +-------------+-------+--------+------+-------+----------+------------+-------+-------+-----+--------+-----------+----------+
-|  Advanced view layout                                                                                          |          |
+|  Advanced View Layout                                                                                          |          |
 +=============+=======+========+======+=======+==========+============+=======+=======+=====+========+===========+==========+
 |             | System                | Infrastructure                                | Virtual Resources                   |
 +-------------+-------+--------+------+-------+----------+------------+-------+-------+-----+--------+-----------+----------+
@@ -28,7 +28,7 @@ OpenNebula provides three default advanced views, ``admin``, ``vcenter`` and ``u
 +-------------+-------+--------+------+-------+----------+------------+-------+-------+-----+--------+-----------+----------+
 
 +---------------+--------+-----+-----------------+----------+
-|  Cloud view layout                                        |
+|  Cloud View Layout                                        |
 +===============+========+=====+=================+==========+
 |               | System | Virtual Resources                | 
 +---------------+--------+-----+-----------------+----------+
@@ -51,28 +51,28 @@ This view provides full control of the cloud.
 vCenter View
 ------------
 
-View designed to present the valid operations agaist a vCenter infrastructure to a cloud administrator.
+View designed to present the valid administration operations agaist a vCenter infrastructure. This view should be used if you are using vCenter as only hypervisor platform in your cloud.
 
 |vcenter_view|
 
 User View
 ---------
 
-In this view users will not be able to manage nor retrieve the hosts and clusters of the cloud. They will be able to see Datastores and Virtual Networks in order to use them when creating a new Image or Virtual Machine, but they will not be able to create new ones. For more information about this view, please check the ``/etc/one/sunstone-views/user.yaml`` file.
+View designed for advanced users or limited administrators of the cloud. In this view users will not be able to manage nor retrieve the hosts and clusters of the cloud. They will be able to see Datastores and Virtual Networks in order to use them when creating a new Image or Virtual Machine, but they will not be able to create new ones. For more information about this view, please check the ``/etc/one/sunstone-views/user.yaml`` file.
 
 |user_view|
 
 VDCAdmin View
 -------------
 
-This view provides control of all the resources belonging to a Virtual DataCenter (VDC), but with no access to resources outside that VDC, that is, restricted to the physical and virtual resources of the VDC. This view features the ability to create new users within the VDC as well as set and keep track of user quotas. For more information on how to configure this scenario see :ref:`this guide <vdc_admin_view>`
+This view provides control of all the virtual resources belonging to a Virtual DataCenter (VDC). This view features the ability to create new users within the VDC as well as set and keep track of user quotas. For more information on how to configure this scenario see :ref:`this guide <vdc_admin_view>`
 
 |vdcadmin_dash|
 
 Cloud View
 ----------
 
-This is a simplified view mainly intended for user that just require a portal where they can provision new virtual machines easily from pre-defined Templates. For more information about this view, please check the ``/etc/one/sunstone-views/cloud.yaml`` file.
+This is a simplified view mainly intended for user that just require a self-service portal where they can provision new virtual machines easily from pre-defined Templates. For more information about this view, please check the ``/etc/one/sunstone-views/cloud.yaml`` file.
 
 In this scenario the cloud administrator must prepare a set of templates and images and make them available to the cloud users. These Templates must be ready to be instantiated, i.e. they define all the mandatory attributes. Before using them, users can optinally customize the VM capacity, add new network interfaces and provide values required by the template.  Thereby, the user doesn't have to know any details of the infrastructure such as networking, storage. For more information on how to configure this scenario see :ref:`this guide <cloud_view>`
 
@@ -81,7 +81,7 @@ In this scenario the cloud administrator must prepare a set of templates and ima
 vCenter Cloud View
 ------------------
 
-View designed to present the valid operations agaist a vCenter infrastructure to a cloud consumer.
+View designed to present the valid operations agaist a vCenter infrastructure for a cloud consumer. This view should be used if you are using vCenter as only hypervisor platform in your cloud.
 
 Requirements
 ============
@@ -161,7 +161,7 @@ There are three basic areas that can be tuned to adapt the default behavior to y
 
 .. _suns_views_define_new:
 
-Defining a New OpenNebula Sunstone View or Customizing an Existing one
+Defining a New View or Customizing an Existing one
 ----------------------------------------------------------------------
 
 View definitions are placed in the ``/etc/one/sunstone-views`` directory. Each view is defined by a configuration file, in the form:
