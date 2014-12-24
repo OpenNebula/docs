@@ -388,7 +388,7 @@ Introduce the credentials for the “oneuser” user (with the chosen password i
 
 It is time to launch our first VM. Let's use one of the pre created appliances found in the `marketplace <http://marketplace.c12g.com/>`__.
 
-Logged in as “oneadmin”, go to the Marketplace tab in Sunstone (in the left menu), and select the “ttylinux-VMware” row. Click on the “Import to local infrastructure” button in the upper right, and set the new image a name (use “ttylinux - VMware”) and place it in the “VMwareImages” datastore. If you go to the Virtual Resources/Image tab, you will see that the new Image will eventually change its status from ``LOCKED`` to ``READY``.
+Logged in as “oneadmin”, go to the Marketplace tab in Sunstone (in the left menu), and select the “ttylinux-VMware” row. Click on the “Import to local infrastructure” button in the upper right, and set the new image a name (use “ttylinux - VMware”) and place it in the “default” datastore. If you go to the Virtual Resources/Image tab, you will see that the new Image will eventually change its status from ``LOCKED`` to ``READY``.
 
 Now we need to create a template that uses this image. Go to the Virtual Resources/Templates tab, click on ”+” and follow the wizard, or use the “Advanced mode” tab of the wizard to paste the following:
 
