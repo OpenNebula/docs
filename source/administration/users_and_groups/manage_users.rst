@@ -255,7 +255,7 @@ The following example shows the token generation and usage for the previous ``on
     LOGIN_TOKEN     : 800481374d8888805dd51dabd36ca50d77e2132e
     TOKEN VALIDITY  : not after 2014-09-15 14:27:19 +0200
 
-By default tokens are generated with a valid period of one hour. This can be asjusted when issuing the token with the `oneuser login` command. You can also use this token to authenticate through Sunstone.
+By default tokens are generated with a valid period of ten hours. This can be asjusted when issuing the token with the `oneuser login` command. You can also use this token to authenticate through Sunstone.
 
 Finally, you can configure multiple authentication drivers, read the :ref:`External Auth guide <external_auth>` for more information about, enabling :ref:`LDAP/AD <ldap>`, :ref:`SSH <ssh_auth>` or :ref:`x509 <x509_auth>` authentication.
 
