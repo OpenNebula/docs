@@ -1,17 +1,17 @@
 .. _upgrade:
 
 =================================
-Upgrading from OpenNebula 4.10.0
+Upgrading from OpenNebula 4.10.x
 =================================
 
-This guide describes the installation procedure for systems that are already running a 4.10.0 OpenNebula. The upgrade will preserve all current users, hosts, resources and configurations; for both Sqlite and MySQL backends.
+This guide describes the installation procedure for systems that are already running a 4.10 OpenNebula. The upgrade will preserve all current users, hosts, resources and configurations; for both Sqlite and MySQL backends.
 
-Read the :ref:`Compatibility Guide <compatibility>` and `Release Notes <http://opennebula.org/software/release/>`_ to know what is new in OpenNebula 4.10.1.
+Read the :ref:`Compatibility Guide <compatibility>` and `Release Notes <http://opennebula.org/software/release/>`_ to know what is new in OpenNebula 4.10.2.
 
 Upgrading a Federation
 ================================================================================
 
-If you have two or more 4.10.0 OpenNebulas working as a :ref:`Federation <introf>`, you can upgrade each one independently. Zones with 4.10.0 and 4.10.1 OpenNebulas can be part of the same federation, since the shared portion of the database is compatible.
+If you have two or more 4.10 OpenNebulas working as a :ref:`Federation <introf>`, you can upgrade each one independently. Zones with an OpenNebula from the 4.10.x series can be part of the same federation, since the shared portion of the database is compatible.
 
 The rest of the guide applies to both a master or slave Zone. You don't need to stop the federation or the MySQL replication to follow this guide.
 
@@ -47,25 +47,21 @@ Installation
 
 Follow the :ref:`Platform Notes <uspng>` and the :ref:`Installation guide <ignc>`, taking into account that you will already have configured the passwordless ssh access for oneadmin.
 
-It is highly recommended **not to keep** your current ``oned.conf``, and update the ``oned.conf`` file shipped with OpenNebula 4.10.1 to your setup. If for any reason you plan to preserve your current ``oned.conf`` file, read the :ref:`Compatibility Guide <compatibility>` and the complete oned.conf reference for :ref:`4.10 <oned_conf>` version.
-
 Configuration Files Upgrade
 ===========================
 
-If you haven't modified any configuration files, the package managers will replace the configuration files with their newer versions and no manual intervention is required.
+There has no been any changes in configuration files, so you can keep the existing configuration from your previous 4.10.x version, including ``oned.conf``. However note that:
 
-If you have customized **any** configuration files under ``/etc/one`` we recommend you to follow these steps regardless of the platform/linux distribution.
+- ``vmm_exec_vcenter.conf`` was added in 4.10.2 to support a default NIC model
+- ``sl.conf`` removes duplicated instance type names for each SoftLayer zones.
+- ``cloud.yaml``, ``cloud_vcenter.yaml``, ``vcenter.yaml``, ``vdcadmin.yaml`` includes changes to better support vCenter based clouds.
 
-#. Backup ``/etc/one`` (already performed)
-#. Install the new packages (already performed)
-#. Compare the old and new configuration files: ``diff -ur /etc/one.YYYY-MM-DD /etc/one``. Or you can use graphical diff-tools like ``meld`` to compare both directories, which are very useful in this step.
-#. Edit the **new** files and port all the customizations from the previous version.
-#. You should **never** overwrite the configuration files with older versions.
+After the update, simply restore any modification to the original configuration files from the ``/etc/one.YYYY-MM-DD`` backup you have made. 
 
 Database Upgrade
 ================
 
-The upgrade from 4.10.0 does not require a database upgrade, the database schema is compatible.
+The upgrade from any previous 4.10.x version does not require a database upgrade, the database schema is compatible.
 
 Check DB Consistency
 ====================
@@ -100,7 +96,11 @@ If you are using :ref:`LDAP as default auth driver <ldap>` you will need to upda
 vCenter Password
 ================
 
-If you already have a host with vCenter drivers you need to update the password as version 4.10.1 expects it to be encrypted. To do so, proceed to Sunstone -> Infrastructure -> Hosts, click on the vCenter host(s) and change the value in ``VCENTER_PASSWORD`` field. It will be automatically encrypted.
+If you are upgrading from 4.10.0 and already have a host with vCenter drivers you need to update the password as any version > 4.10.0 expects it to be encrypted. 
+
+To do so, proceed to Sunstone -> Infrastructure -> Hosts, click on the vCenter host(s) and change the value in ``VCENTER_PASSWORD`` field. It will be automatically encrypted.
+
+No change is needed for versions > 4.10.0.
 
 Testing
 =======
@@ -114,7 +114,7 @@ Restoring the Previous Version
 
 If for any reason you need to restore your previous OpenNebula, follow these steps:
 
--  Uninstall OpenNebula 4.10.1, and install again your previous version.
+-  Uninstall OpenNebula 4.10.2, and install again your previous version.
 -  Copy back the backup of /etc/one you did to restore your configuration.
 
 Known Issues
