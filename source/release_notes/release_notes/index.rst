@@ -8,8 +8,8 @@ Release Notes 4.10.2
    :maxdepth: 1
 
    What's New in 4.10 <whats_new>
-   Resolved Issues in 4.10.2 <resolved_issues_4102>
    Resolved Issues in 4.10.1 <resolved_issues_4101>
+   Resolved Issues in 4.10.2 <resolved_issues_4102>
    Features <features>
    Platform Notes <uspng>
    Compatibility Guide <compatibility>
