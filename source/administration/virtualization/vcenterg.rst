@@ -25,6 +25,8 @@ As the figure shows, OpenNebula components see two hosts where each represents a
 
 Virtual Machines are deployed from VMware VM Templates that **must exist previously in vCenter**. There is a one-to-one relationship between each VMware VM Template and the equivalent OpenNebula Template. Users will then instantiate the OpenNebula Templates where you can easily build from any provisioning strategy (e.g. access control, quota...).
 
+Networking is handled by creating Virtual Network representations of the vCenter networks. OpenNebula additionaly can handle on top of these networks three types of Address Ranges: Ethernet, IPv4 and IPv6. This networking information can be passed to the VMs through the contextualization process.
+
 Therefore there is no need to convert your current Virtual Machines or import/export them through any process; once ready just save them as VM Templates in vCenter, following `this procedure <http://pubs.vmware.com/vsphere-55/index.jsp?topic=%2Fcom.vmware.vsphere.vm_admin.doc%2FGUID-FE6DE4DF-FAD0-4BB0-A1FD-AFE9A40F4BFE_copy.html>`__.
 
 .. note:: After a VM Template is cloned and booted into a vCenter Cluster it can access VMware advanced features and it can be managed through the OpenNebula provisioning portal or through vCenter (e.g. to move the VM to another datastore or migrate it to another ESX). OpenNebula will poll vCenter to detect these changes and update its internal representation accordingly.
@@ -176,7 +178,7 @@ In order to configure OpenNebula to work with the vCenter drivers, the following
 
 **Step 3: Importing vCenter Clusters**
 
-OpenNebula ships with a powerful CLI tool to import vCenter clusters and VM Templates. The tools is self-explanatory, just set the credentials and IP to access the vCenter host and follow on screen instructions. A sample section follows:
+OpenNebula ships with a powerful CLI tool to import vCenter clusters, VM Templates and Networks. The tools is self-explanatory, just set the credentials and IP to access the vCenter host and follow on screen instructions. A sample section follows:
 
 .. code::
 
@@ -278,7 +280,62 @@ The same **onevcenter** tool can be used to import existing VM templates from th
     SCHED_REQUIREMENTS="NAME=\"devel\""
     VCPU="1"
 
-The same import mechanism is available graphically through Sunstone.
+Moreover The same **onevcenter** tool can be used to import existing Networks from the ESX clusters:
+
+.. code::
+
+    $ .onevcenter networks --vcenter <vcenter-host> --vuser <vcenter-username> --vpass <vcenter-password>
+
+    Connecting to vCenter: <vcenter-host>...done!
+
+    Looking for vCenter networks...done!
+
+    Do you want to process datacenter vOneDatacenter [y/n]? y
+
+      * Network found:
+          - Name    : MyvCenterNetwork
+          - Type    : Port Group
+        Import this Network [y/n]? y
+        How many VMs are you planning to fit into this network [255]? 45
+        What type of Virtual Network do you want to create (IPv[4],IPv[6],[E]thernet) ? E
+        Please input the first MAC in the range [Enter for default]:
+        OpenNebula virtual network 29 created with size 45!
+
+        $ onevnet list
+          ID USER            GROUP        NAME                CLUSTER    BRIDGE   LEASES
+          29 oneadmin        oneadmin     MyvCenterNetwork    -          MyFakeNe      0
+
+        $ onevnet show 29
+        VIRTUAL NETWORK 29 INFORMATION
+        ID             : 29
+        NAME           : MyvCenterNetwork
+        USER           : oneadmin
+        GROUP          : oneadmin
+        CLUSTER        : -
+        BRIDGE         : MyvCenterNetwork
+        VLAN           : No
+        USED LEASES    : 0
+
+        PERMISSIONS
+        OWNER          : um-
+        GROUP          : ---
+        OTHER          : ---
+
+        VIRTUAL NETWORK TEMPLATE
+        BRIDGE="MyvCenterNetwork"
+        PHYDEV=""
+        VCENTER_TYPE="Port Group"
+        VLAN="NO"
+        VLAN_ID=""
+
+        ADDRESS RANGE POOL
+         AR TYPE    SIZE LEASES               MAC              IP          GLOBAL_PREFIX
+          0 ETHER     45      0 02:00:97:7f:f0:87               -                      -
+
+        LEASES
+        AR  OWNER                    MAC              IP                      IP6_GLOBAL
+
+The same import mechanism is available graphically through Sunstone for hosts, networks and templates.
 
 .. image:: /images/vcenter_create.png
     :width: 90%
@@ -292,21 +349,23 @@ VM Template definition
 
 In order to manually create a VM Template definition in OpenNebula that represents a vCenter VM Template, the following attributes are needed:
 
-+--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-|     Operation      |                                                                               Note                                                                               |
-+--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| CPU                | Physical CPUs to be used by the VM. This **must** relate to the CPUs used by the vCenter VM Template                                                             |
-+--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| MEMORY             | Physical CPUs to be used by the VM. This **must** relate to the CPUs used by the vCenter VM Template                                                             |
-+--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| GRAPHICS           | Multi-value - Only VNC supported, check the  :ref:`VM template reference <io_devices_section>`.                                                                  |
-+--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| PUBLIC_CLOUD       | Multi-value. TYPE must be set to vcenter, and VM_TEMPLATE must point to the uuid of the vCenter VM that is being represented                                     |
-+--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| SCHED_REQUIREMENTS | NAME="name of the vCenter cluster where this VM Template can instantiated into a VM". See :ref:`VM Scheduling section <vm_scheduling_vcenter>` for more details. |
-+--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| CONTEXT            | All :ref:`sections <template_context>` will be honored except FILES                                                                                              |
-+--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++--------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|     Operation      |                                                                                                   Note                                                                                                  |
++--------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| CPU                | Physical CPUs to be used by the VM. This **must** relate to the CPUs used by the vCenter VM Template                                                                                                    |
++--------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| MEMORY             | Physical CPUs to be used by the VM. This **must** relate to the CPUs used by the vCenter VM Template                                                                                                    |
++--------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| NIC                | Check :ref:`VM template reference <template_network_section>`. Valid MODELs are: virtuale1000, virtuale1000e, virtualpcnet32, virtualsriovethernetcard, virtualvmxnetm, virtualvmxnet2, virtualvmxnet3. |
++--------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| GRAPHICS           | Multi-value - Only VNC supported, check the  :ref:`VM template reference <io_devices_section>`.                                                                                                         |
++--------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| PUBLIC_CLOUD       | Multi-value. TYPE must be set to vcenter, and VM_TEMPLATE must point to the uuid of the vCenter VM that is being represented                                                                            |
++--------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| SCHED_REQUIREMENTS | NAME="name of the vCenter cluster where this VM Template can instantiated into a VM". See :ref:`VM Scheduling section <vm_scheduling_vcenter>` for more details.                                        |
++--------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| CONTEXT            | All :ref:`sections <template_context>` will be honored except FILES                                                                                                                                     |
++--------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
 Context can be retrieved only from VMs with VMware Tools installed. The extraConfig property is named ``guestinfo.opennebula.context``, and its value is encoded in base64. Sample session from a guest Linux VM with Open Virtual Machine Tools installed:
@@ -315,6 +374,17 @@ Context can be retrieved only from VMs with VMware Tools installed. The extraCon
 
    $ vmware-rpctool "info-get guestinfo.opennebula.context"|base64 -d
    <DISK_ID><![CDATA[0]]></DISK_ID><CUSTOM_TAG><![CDATA[CUSTOM_VALUE]]></HOLA><NETWORK><![CDATA[YES]]></NETWORK><SSH_PUBLIC_KEY><![CDATA[ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDAxGGZB+1KHJXpztH4J81wh8kysHbMVm07LVCwBE0DTu6OIg2Q9Igt4xbrNC/86M5B2XiZ1SUUzNwnRWIH93SbXapC59qqWolN7HXXatZo3CzdA9bqWcusjEQIQ+ZZNdZL9FraSHZE5XmclPBySBc5G7kdQIc7Yx944/kaDfz+yPjAzmg81di2Ya+7jx56XLWl1U8uKfVGghFo3oMWT+TttWHoXfaekeIlE1atb8acYnRXaEWwtjcUaTk6661/xzg1YVhW2xbtqaz4pFuzAwFH804WlJITM+ZltoVugiqCpSAo+DzikTfW5l2CvpsZwu77CxGrFbKQ22PjRYq7nN4v oneadmin@vonecloud]]></SSH_PUBLIC_KEY>
+
+Virtual Network definition
+--------------------------
+
+Virtual Networks from vCenter can be represented using OpenNebula standard networks, taking into account that the BRIDGE of the Virtual Network needs to match the name of the Network defined in vCenter. OpenNebula supports both "Port Groups" and "Distributed Port Groups".
+
+Virtual Networks in vCenter can be created using the vCenter web client, with any specific configuration like for instance VLANs. OpenNebula will use these networks with the defined characteristics, but it cannot create new Virtual Networks in vCenter, but rather only OpenNebula vnet representations of such Virtual Networks. OpenNebula additionaly can handle on top of these networks three types of :ref:`Address Ranges: Ethernet, IPv4 and IPv6 <vgg_vn_ar>`.
+
+vCenter VM Templates can define their own NICs, which OpenNebula cannot manage. However, any NIC added in the OpenNebula VM Template, or through the attach_nic operation, will be handled by OpenNebula, and as such it is subject to be detached and its informatin (IP, MAC, etc) is known by OpenNebula.
+
+
 
 .. _vm_scheduling_vcenter:
 

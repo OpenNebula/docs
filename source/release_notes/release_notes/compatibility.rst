@@ -30,6 +30,11 @@ Virtual Networks
 
 - Feature `#3156 <http://dev.opennebula.org/issues/3156>`_: Different BRIDGE according to vnet driver, allows for a more heterogenous network support, mixing clusters with different network bridge names.
 
+Images
+--------------------------------------------------------------------------------
+
+- Bug `#3494 <http://dev.opennebula.org/issues/3494>`_: Persistent images can now have use permission for group and others. Access control is still limited to one VM using the image at a time.
+
 Developers and Integrators
 ================================================================================
 
