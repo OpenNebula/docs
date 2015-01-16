@@ -1,22 +1,29 @@
-.. _hm-vlan:
+.. _vxlan:
 
 ============
-802.1Q VLAN
+VXLAN
 ============
 
-This guide describes how to enable Network isolation provided through host-managed VLANs. This driver will create a bridge for each OpenNebula Virtual Network and attach an VLAN tagged network interface to the bridge. This mechanism is compliant with `IEEE 802.1Q <http://en.wikipedia.org/wiki/IEEE_802.1Q>`__.
+This guide describes how to enable Network isolation provided through the VXLAN
+encapsulation protocol. This driver will create a bridge for each OpenNebula Virtual Network and attach a VXLAN tagged network interface to the bridge.
 
 The VLAN id will be the same for every interface in a given network, calculated by adding a constant to the network id. It may also be forced by specifying an VLAN\_ID parameter in the :ref:`Virtual Network template <vnet_template>`.
+
+Additionally each VLAN has associated a multicast address to encapsulate L2 broadcast and multicast traffic. This address is assigned by default to the 239.0.0.0/8 range as defined by RFC 2365 (Administratively Scoped IP Multicast). In particular the multicast address is obtained by adding the VLAN\_ID to the 239.0.0.0/8 base address. 
 
 Requirements
 ============
 
-A network switch capable of forwarding VLAN tagged traffic. The physical switch ports should be VLAN trunks.
+The hypervisors must run a Linux kernel (>3.7.0) that natively supports the VXLAN protocol and the associated iproute2 package.
+
+When all the hypervisors are connected to the same broadcasting domain just be sure that the multicast traffic is not filtered by any iptable rule in the hypervisors. However if the multicast traffic needs to traverse routers a multicast protocol like IGMP needs to be configured in your network.
 
 Considerations & Limitations
 ============================
 
-This driver requires some previous work on the network components, namely the switches, to enable VLAN trunking in the network interfaces connected to the OpenNebula hosts. If this is not activated the VLAN tags will not get trough and the network will behave erratically.
+This driver works with the default UDP server port 8472. 
+
+VXLAN traffic is forwarded to a physical device, this device can be configured to be a VLAN tagged interface. The current version of the driver does not automatically create the 802.1Q interface, so you need to configured it in the hypervisors in case you need them. 
 
 Configuration
 =============
@@ -25,29 +32,20 @@ Hosts Configuration
 -------------------
 
 -  The ``sudoers`` file must be configured so ``oneadmin`` can execute ``brctl`` and ``ip`` in the hosts.
--  Hosts must have the module ``8021q`` loaded.
-
-To enable VLAN (802.1Q) support in the kernel, one must load the 8021q module:
-
-.. code::
-
-    $ modprobe 8021q
-
-If the module is not available, please refer to your distribution's documentation on how to install it.
 
 OpenNebula Configuration
 ------------------------
 
-To enable this driver, use **802.1Q** as the Virtual Network Manager driver parameter when the hosts are created with the :ref:`onehost command <host_guide>`:
+To enable this driver, use **vxlan** as the Virtual Network Manager driver parameter when the hosts are created with the :ref:`onehost command <host_guide>`:
 
 .. code::
 
-    $ onehost create host01 -i kvm -v kvm -n 802.1Q
+    $ onehost create host01 -i kvm -v kvm -n vxlan
 
-802.1Q Options
+VXLAN Options
 --------------
 
-It is possible specify the start VLAN ID by editing ``/var/lib/one/remotes/vnm/OpenNebulaNetwork.conf``.
+It is possible specify the start VLAN ID and the base multicast address by editing ``/var/lib/one/remotes/vnm/OpenNebulaNetwork.conf``.
 
 Driver Actions
 --------------
@@ -55,11 +53,11 @@ Driver Actions
 +-----------+----------------------------------------------------------------------------------------------------------+
 |   Action  |                                               Description                                                |
 +===========+==========================================================================================================+
-| **Pre**   | Creates a VAN interface through PHYDEV, creates a bridge (if needed) and attaches the vxlan device.      |
+| **Pre**   | Creates a VXLAN interface through PHYDEV, creates a bridge (if needed) and attaches the vxlan device.    |
 +-----------+----------------------------------------------------------------------------------------------------------+
 | **Post**  | When the VM is associated to a security group, the corresponding iptables rules are applied.             |
 +-----------+----------------------------------------------------------------------------------------------------------+
-| **Clean** | It doesn't do anything. The VLAN tagged interface and bridge are kept in the Host to speed up future VMs |
+| **Clean** | It doesn't do anything. The VXLAN interface and bridge are kept in the Host to speed up future VMs       |
 +-----------+----------------------------------------------------------------------------------------------------------+
 
 Usage
@@ -69,16 +67,16 @@ The driver will be automatically applied to every Virtual Machine deployed in th
 
 .. code::
 
-    NAME    = "hmnet"
+    NAME    = "vxlan_net"
          
     PHYDEV  = "eth0"
     VLAN    = "YES"
     VLAN_ID = 50        # optional
-    BRIDGE  = "brhm"    # optional
+    BRIDGE  = "vxlan50" # optional
      
     ...
 
-In this scenario, the driver will check for the existence of the ``brhm`` bridge. If it doesn't exist it will be created. ``eth0`` will be tagged (``eth0.<vlan_id>``) and attached to ``brhm`` (unless it's already attached).
+In this scenario, the driver will check for the existence of the ``vxlan50`` bridge. If it doesn't exist it will be created. ``eth0`` will be tagged (``eth0.<vlan_id>``) and attached to ``vxlan`` (unless it's already attached). Note that eth0 can be a 802.1Q tagged interface if you want to isolate the OpenNebula VXLAN traffic.
 
 .. warning:: Any user with Network creation/modification permissions may force a custom vlan id with the ``VLAN_ID`` parameter in the network template. You **MUST** restrict permissions on Network creation to admin groups with :ref:`ACL rules <manage_acl>`. Regular uses will then be able to safely make address reservations on the Networks.
 
@@ -90,3 +88,4 @@ Tuning & Extending
 .. code::
 
     oneadmin@frontend $ onehost sync
+
