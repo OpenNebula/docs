@@ -7,7 +7,7 @@ Resolved Issues in 4.10.2
 
 * A XML parser vulnerability affecting the XML-RPC server has been addressed in this version.
 
-* Apart from the bug fixes listed above, 4.10.2 inbcludes several improvements:
+* Apart from the bug fixes listed above, 4.10.2 includes several improvements:
 
   * **Sunstone** `Show/Hide accounting tables <http://dev.opennebula.org/issues/3422>`__
   * **Sunstone** `Easily add SSH keys to a user <http://dev.opennebula.org/issues/2761>`__
