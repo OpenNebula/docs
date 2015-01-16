@@ -55,6 +55,7 @@ Currently it supports the following options:
 +---------------------+---------------------------------+----------------------------------------------------------------------------------+
 | vxlan_mc            | vxlan                           | Base multicast address for each VLAN. The multicas sddress is vxlan_mc + vlan_id |
 +---------------------+---------------------------------+----------------------------------------------------------------------------------+
+
 .. warning:: If this file is changed, please run ``onehost sync`` to deploy the file to all the nodes.
 
 Customization of the Drivers
