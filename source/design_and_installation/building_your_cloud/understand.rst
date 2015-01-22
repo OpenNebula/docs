@@ -4,7 +4,7 @@
 Understanding OpenNebula
 ================================================================================
 
-This guide is meant for cloud architects, builders and administrators, to help them understand the OpenNebula model for managing and provisioning virtual resources. This  model is a result of our collaboration with our user community during the last years. Although OpenNebula has been designed and developed to be easy to adapt to individual enterprise use cases and processes, and to perform fine-tuning of multiple aspects, OpenNebula brings a pre-defined model for cloud provisioning and consumption that offers an integrated and comprehensive framework for resource allocation and isolation in federated data centers and hybrid cloud deployments.
+This guide is meant for cloud architects, builders and administrators, to help them understand the OpenNebula model for managing and provisioning virtual resources. This model is a result of our collaboration with our user community during the last years. Although OpenNebula has been designed and developed to be easy to adapt to individual enterprise use cases and processes, and to perform fine-tuning of multiple aspects, OpenNebula brings a pre-defined model for cloud provisioning and consumption that offers an integrated and comprehensive framework for resource allocation and isolation in federated data centers and hybrid cloud deployments.
 
 This guide also illustrates the three main types of cloud infrastructures that are implemented with OpenNebula:
 
@@ -17,14 +17,15 @@ Definitions
 
 To make it easier to follow this guide, here is a list of the main resources and how we refer to them in OpenNebula:
 
-* Physical resources
+* Physical Resources
 
   * **Host**: A physical machine with a hypervisor installed.
-  * **Virtual Network**: Describes a physical network, and a set of IPs.
-  * **Datastore**: Storage for the Images and Virtual Machines.
-  * **Cluster**: Group of physical resources (hosts, virtual networks and datastores) that share common characteristics or configurations. For example, you can have the "kvm" and "vmware" clusters, or "kvm-ceph" and "kvm-gluster".
+  * **Virtual Network**: Describes a Physical Network, and a set of IPs.
+  * **Datastore**: Storage medium used as disk images repository or to hold images for running VMs 
+  * **Cluster**: Group of physical resources (Hosts, Virtual Networks and Datastores) that share common characteristics or configurations. For example, you can have the "kvm" and "vmware" Clusters, the "kvm-ceph" and "kvm-gluster" Clusters, the "Dev" and "Production" Clusters, or the "infiniband" and "ehternet" Clusters.
+  * **Zone**: A single OpenNebula instance consisting of one or several Clusters. A single Data Center (DC) can hold one or several Zones. Several Zones can be federeated within a single Cloud.
 
-* Organization resources
+* Organization Resources
 
   * **User**: An OpenNebula user account.
   * **Group**: A group of Users.
@@ -34,9 +35,9 @@ To make it easier to follow this guide, here is a list of the main resources and
 The Infrastructure Perspective
 ================================================================================
 
-In a small installation with a few hosts, you can use OpenNebula without giving much thought to infrastructure federation and partitioning. But for medium and large deployments you will probably want to provide some level of isolation and structure. Common large IT shops have multiple Data Centers (DCs), each one of them consisting of several physical Clusters of infrastructure resources (hosts, networks and storage). These Clusters could present different architectures and software/hardware execution environments to fulfill the needs of different workload profiles. Moreover, many organizations have access to external public clouds to build hybrid cloud scenarios where the private capacity of the Data Centers is supplemented with resources from external clouds, like Amazon AWS, to address peaks of demand. OpenNebula provides a single comprehensive framework to dynamically allocate all these available resources to the multiple groups of users.
+In a small installation with a few hosts, you can use OpenNebula without giving much thought to infrastructure federation and partitioning. But for medium and large deployments you will probably want to provide some level of isolation and structure. Common large IT shops have multiple Data Centers (DCs), each one of them consisting of several physical Clusters of infrastructure resources (Hosts, Networks and Datastores). These Clusters could present different architectures and software/hardware execution environments to fulfill the needs of different workload profiles. Moreover, many organizations have access to external public clouds to build hybrid cloud scenarios where the private capacity of the Data Centers is supplemented with resources from external clouds, like Amazon AWS, to address peaks of demand. OpenNebula provides a single comprehensive framework to dynamically allocate all these available resources to the multiple groups of users.
 
-For example, you could have two Data Centers in different geographic locations, Europe and USA West Coast, and an agreement for cloudbursting with a public cloud provider, such as Amazon, SoftLayer and/or Azure. Each Data Center runs its own full OpenNebula deployment. Multiple OpenNebula installations can be configured as a federation, and in this case they will share the same user accounts, groups, and permissions across Data Centers.
+For example, you could have two Data Centers in different geographic locations, Europe and USA West Coast, and an agreement for cloudbursting with a public cloud provider, such as Amazon, SoftLayer and/or Azure. Each Data Center runs its own zone or full OpenNebula deployment. Multiple OpenNebula zones can be configured as a federation, and in this case they will share the same user accounts, groups, and permissions across Data Centers.
 
 |VDC Resources|
 
@@ -45,7 +46,7 @@ The Organizational Perspective
 
 Users are organized into Groups (similar to what other environments call Projects, Domains, Tenants...). A Group is an authorization boundary that can be seen as a business unit if you are considering it as private cloud or as a complete new company if it is public cloud.
 
-While Clusters are used to group physical resources according to common characteristics such as networking topology, or physical location, Virtual Data Centers (VDCs) allow to create "logical" clusters of physical resources. A VDC also associates the physical resources to user Groups, enabling their consumption.
+While Clusters are used to group Physical Resources according to common characteristics such as networking topology, or physical location, Virtual Data Centers (VDCs) allow to create "logical" clusters of physical resources. A VDC also associates the physical resources to user Groups, enabling their consumption.
 
 Different authorization scenarios can be enabled with the powerful and configurable ACL system provided, from the definition of Group Admins to the privileges of the users that can deploy virtual machines. Each Group can execute different types of workload profiles with different performance and security requirements.
 
