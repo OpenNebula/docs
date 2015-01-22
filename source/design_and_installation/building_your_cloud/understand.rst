@@ -29,7 +29,7 @@ To make it easier to follow this guide, here is a list of the main resources and
 
   * **User**: An OpenNebula user account.
   * **Group**: A group of Users.
-  * **Virtual Data Center (VDC)**: Defines which physical resources can be used by which group. This is a logical assignment, so the physical resources can be totally unrelated. They may be part of different Clusters, i.e. have different hypervisors or CPU architecture.
+  * **Virtual Data Center (VDC)**: Defines a logical assignment of one or several Groups to physical resources. The physical resources within a VDC can be totally unrelated. They may be part of different Clusters and Zones, i.e. have different hypervisors or CPU architecture, and may even include allocated resources from public external clouds for hybrid clodu computing.
 
 
 The Infrastructure Perspective
