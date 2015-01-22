@@ -29,8 +29,7 @@ To make it easier to follow this guide, here is a list of the main resources and
 
   * **User**: An OpenNebula user account.
   * **Group**: A group of Users.
-  * **Virtual Data Center (VDC)**: Defines a logical assignment of one or several Groups to a pool of Physical Resources. Typically this pool of Physical Resources consists of one or several Clusters from different Zones, and resources from public external clouds for hybrid cloud computing. However, the pool could also include independent Physical Resources and not a complete Cluster.
-
+  * **Virtual Data Center (VDC)**: Defines a assignment of one or several Groups to a pool of Physical Resources. Typically this pool of Physical Resources consists of resources from one or several Clusters that could belong to different Zones or public external clouds for hybrid cloud computing. 
 
 The Infrastructure Perspective
 ================================================================================
@@ -46,7 +45,7 @@ The Organizational Perspective
 
 Users are organized into Groups (similar to what other environments call Projects, Domains, Tenants...). A Group is an authorization boundary that can be seen as a business unit if you are considering it as private cloud or as a complete new company if it is public cloud.
 
-While Clusters are used to group Physical Resources according to common characteristics such as networking topology, or physical location, Virtual Data Centers (VDCs) allow to create "logical" pools of Physical Resources (typically one or several Clusters that could be in different Zones) and allocate them to user Groups, so enabling their consumption.
+While Clusters are used to group Physical Resources according to common characteristics such as networking topology, or physical location, Virtual Data Centers (VDCs) allow to create "logical" pools of Physical Resources (which could belong to  different Clusters and Zones) and allocate them to user Groups, so enabling their consumption.
 
 Different authorization scenarios can be enabled with the powerful and configurable ACL system provided, from the definition of Group Admins to the privileges of the users that can deploy virtual machines. Each Group can execute different types of workload profiles with different performance and security requirements.
 
@@ -57,7 +56,7 @@ The following are common enterprise use cases in large cloud computing deploymen
 
 |VDC Groups|
 
-For example, you can think Web Development, Human Resources, and Big Data Analysis as business units represented by Groups in a private OpenNebula cloud, and allocate them resources from your DCs and public clouds in order to crete three different VDCs.
+For example, you can think Web Development, Human Resources, and Big Data Analysis as business units represented by Groups in a private OpenNebula cloud, and allocate them resources from your DCs and public clouds in order to create three different VDCs.
 
 * **VDC BLUE**: VDC that allocates (ClusterA-DC_West_Coast + Cloudbursting) to Web Development
 * **VDC RED**: VDC that allocates (ClusterB-DC_West_Coast + ClusterA-DC_Europe + Cloudbursting) to Human Resources
@@ -68,7 +67,7 @@ For example, you can think Web Development, Human Resources, and Big Data Analys
 A Cloud Provisioning Model Based on VDCs
 ================================================================================
 
-A VDC is a fully-isolated virtual infrastructure environment where a Group of users (or optionally several Groups of users), optionally under the control of the Group admin, can create and manage compute and storage capacity. The users in the Group, including the Group admin, would only see the virtual resources and not the underlying physical infrastructure. The Physical Resources allocated to the Group are managed by the cloud administrator through a VDC. These resources grouped in the VDC can be dedicated exclusively to the Group, providing isolation at the physical level too.
+A VDC is a fully-isolated virtual infrastructure environment where a Group of users (or optionally several Groups of users), under the control of the Group admin, can create and manage compute and storage capacity. The users in the Group, including the Group admin, would only see the virtual resources and not the underlying physical infrastructure. The Physical Resources allocated to the Group are managed by the cloud administrator through a VDC. These resources grouped in the VDC can be dedicated exclusively to the Group, providing isolation at the physical level too.
 
 The privileges of the Group users and the admin regarding the operations over the virtual resources created by other users can be configured. For example, in the Advanced Cloud Provisioning Case, the users can instantiate virtual machine templates to create their machines, while the admins of the Group have full control over other users' resources and can also create new users in the Group.
 
@@ -187,9 +186,9 @@ In OpenNebula 4.6 the terms **Virtual Data Center (VDC)** and **Resource Provide
 
 Starting with OpenNebula 4.12, **VDCs** are a new kind of OpenNebula resource with its own ID, name, etc. and the term Resource Provider disappears. Making VDCs a first-class citizen has several advantages over the previous Group/VDC concept.
 
-Now that VDCs are a separate entity, they can have one or more groups added to them. This gives the Cloud Admin greater resource assignment flexibility. For example, you may have the group Web Development added to the 'low-performance' VDC, and during a few days this Group can also be added to the 'high-performance' VDC. In previous versions, this single operation would require you to write down which resources were added to the group, to undo it later.
+Now that VDCs are a separate entity, they can have one or more Groups added to them. This gives the Cloud Admin greater resource assignment flexibility. For example, you may have the Group Web Development added to the 'low-performance' VDC, and Big Data to the 'high-performance' VDC. After a few days, Web Development can be additionally added to the 'high-performance' VDC. In previous versions, this single operation would require you to write down which resources were added to the Group, to undo it later.
 
-From the resource assignment perspective, the new VDC approach allows to create more advanced scenarios. In previous versions, the Group's Resource Providers were whole Clusters. This had some limitations, since Clusters define the topology of your physical infrastructure in a fixed way. The Admin could not assign arbitrary resources to a Group, he had to choose from those fixed Clusters.
+From the resource assignment perspective, the new VDC approach allows to create more advanced scenarios. In previous versions, the Group's Resource Providers were whole Clusters. This had some limitations, since Clusters define the topology of your physical infrastructure in a fixed way. The Admin could not assign arbitrary resources to a Group, he had to choose from those fixed Clusters. 
 
 The new VDCs contain a list of Clusters, just like before, but they can also have individual Hosts, Virtual Networks, and Datastores. This means that a VDC can create logical groups of physical resources, that don't have to resemble the real configuration of the physical infrastructure.
 
