@@ -12,6 +12,25 @@ This guide also illustrates the three main types of cloud infrastructures that a
 * Simple cloud provisioning model
 * Advanced cloud provisioning model
 
+Definitions
+================================================================================
+
+To make it easier to follow this guide, here is a list of the main resources and how we refer to them in OpenNebula:
+
+* Physical resources
+
+  * **Host**: A physical machine with a hypervisor installed.
+  * **Virtual Network**: Describes a physical network, and a set of IPs.
+  * **Datastore**: Storage for the Images and Virtual Machines.
+  * **Cluster**: Group of physical resources (hosts, virtual networks and datastores) that share common characteristics or configurations. For example, you can have the "kvm" and "vmware" clusters, or "kvm-ceph" and "kvm-gluster".
+
+* Organization resources
+
+  * **User**: An OpenNebula user account.
+  * **Group**: A group of Users.
+  * **Virtual Data Center (VDC)**: Defines which physical resources can be used by which group. This is a logical assignment, so the physical resources can be totally unrelated. They may be part of different Clusters, i.e. have different hypervisors or CPU architecture.
+
+
 The Infrastructure Perspective
 ================================================================================
 
@@ -159,6 +178,20 @@ The Group Users have the capabilities described in the previous scenario and typ
 |                  | * Share Saved Templates with the members of the Group      |
 |                  | * Checks Group usage and quotas                            |
 +------------------+------------------------------------------------------------+
+
+Differences with Previous Versions
+================================================================================
+
+In OpenNebula 4.6 the terms **Virtual Data Center (VDC)** and **Resource Providers** were introduced. A **Resource Provider** was not a separate entity, it was the way we called a Cluster assigned to a Group. The term **VDC** was used to name a Group with Resource Providers (Clusters) assigned, but was not a separate entity either.
+
+Starting with OpenNebula 4.12, **VDCs** are a new kind of OpenNebula resource with its own ID, name, etc. and the term Resource Provider disappears. Making VDCs a first-class citizen has several advantages over the previous Group/VDC concept.
+
+Now that VDCs are a separate entity, they can have one or more groups added to them. This gives the Cloud Admin greater resource assignment flexibility. For example, you may have the group Web Development added to the 'low-performance' VDC, and during a few days this Group can also be added to the 'high-performance' VDC. In previous versions, this single operation would require you to write down which resources were added to the group, to undo it later.
+
+From the resource assignment perspective, the new VDC approach allows to create more advanced scenarios. In previous versions, the Group's Resource Providers were whole Clusters. This had some limitations, since Clusters define the topology of your physical infrastructure in a fixed way. The Admin could not assign arbitrary resources to a Group, he had to choose from those fixed Clusters.
+
+The new VDCs contain a list of Clusters, just like before, but they can also have individual Hosts, Virtual Networks, and Datastores. This means that a VDC can create logical groups of physical resources, that don't have to resemble the real configuration of the physical infrastructure.
+
 
 .. |VDC Resources| image:: /images/vdc_resources.png
 .. |VDC Groups| image:: /images/vdc_groups.png
