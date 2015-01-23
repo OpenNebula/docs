@@ -21,11 +21,12 @@ OpenNebula Sunstone was installed during the OpenNebula installation. If you fol
 
     # /usr/share/one/install_gems sunstone
 
-The Sunstone Operation Center offers the possibility of starting a VNC session to a Virtual Machine. This is done by using a VNC websocket-based client (noVNC) on the client side and a VNC proxy translating and redirecting the connections on the server-side.
+The Sunstone Operation Center offers the possibility of starting a VNC/SPICE session to a Virtual Machine. This is done by using a VNC/SPICE websocket-based client (noVNC) on the client side and a VNC proxy translating and redirecting the connections on the server-side.
 
 Requirements:
 
 -  Websockets-enabled browser (optional): Firefox and Chrome support websockets. In some versions of Firefox manual activation is required. If websockets are not enabled, flash emulation will be used.
+-  Start the novnc-server included with OpenNebula, both VNC and SPICE use this server as they have no built in support for the WebSocket protocol.
 -  Installing the python-numpy package is recommended for a better vnc performance.
 
 Considerations & Limitations
