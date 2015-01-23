@@ -26,7 +26,8 @@ OpenNebula comes with a default set of ACL rules that enables a standard usage. 
 Please proceed to the following guides to learn more:
 
 -  :ref:`Managing Users <manage_users>`
--  :ref:`Managing Groups & VDC <manage_groups>`
+-  :ref:`Managing Groups <manage_groups>`
+-  :ref:`Managing VDCs <manage_vdcs>`
 -  :ref:`Managing Permissions <chmod>`
 -  :ref:`Managing ACL Rules <manage_acl>`
 -  :ref:`Quota Management <quota_auth>`
