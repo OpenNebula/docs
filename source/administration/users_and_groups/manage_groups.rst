@@ -2,7 +2,7 @@
 .. _manage_users_groups:
 
 ==========================
-Managing Groups & VDC
+Managing Groups
 ==========================
 
 A group in OpenNebula makes it possible to isolate users and resources. A user can see and use the :ref:`shared resources <chmod>` from other users.
