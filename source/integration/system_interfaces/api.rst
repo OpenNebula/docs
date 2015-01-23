@@ -31,7 +31,7 @@ The Error Code will contain one of the following values:
 +--------+----------------+-----------------------------------------------------------------------+
 | 0x0200 | AUTHORIZATION  | User is not authorized to perform the requested action.               |
 +--------+----------------+-----------------------------------------------------------------------+
-| 0x0400 | NO\_EXISTS     | The requested resource delhost not exist.                             |
+| 0x0400 | NO\_EXISTS     | The requested resource does not exist.                                |
 +--------+----------------+-----------------------------------------------------------------------+
 | 0x0800 | ACTION         | Wrong state to perform action.                                        |
 +--------+----------------+-----------------------------------------------------------------------+
@@ -5061,14 +5061,6 @@ Schemas for Group
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
-            <xs:element name="RESOURCE_PROVIDER" minOccurs="0" maxOccurs="unbounded">
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="ZONE_ID" type="xs:integer"/>
-                  <xs:element name="CLUSTER_ID" type="xs:integer"/>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
             <xs:element name="DATASTORE_QUOTA" minOccurs="0" maxOccurs="1">
               <xs:complexType>
                 <xs:sequence>
@@ -5234,14 +5226,6 @@ Schemas for Group
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="RESOURCE_PROVIDER" minOccurs="0" maxOccurs="unbounded">
-                      <xs:complexType>
-                        <xs:sequence>
-                          <xs:element name="ZONE_ID" type="xs:integer"/>
-                          <xs:element name="CLUSTER_ID" type="xs:integer"/>
-                        </xs:sequence>
-                      </xs:complexType>
-                    </xs:element>
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>
@@ -5391,6 +5375,104 @@ Schemas for Group
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+
+
+Schemas for VDC
+-----------------
+
+.. code:: xml
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+      targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
+      <xs:element name="VDC">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="ID" type="xs:integer"/>
+            <xs:element name="NAME" type="xs:string"/>
+            <xs:element name="GROUPS">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="ID" type="xs:integer" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="CLUSTERS">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="CLUSTER" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="ZONE_ID" type="xs:integer"/>
+                        <xs:element name="CLUSTER_ID" type="xs:integer"/>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="HOSTS">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="HOST" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="ZONE_ID" type="xs:integer"/>
+                        <xs:element name="HOST_ID" type="xs:integer"/>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="DATASTORES">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="DATASTORE" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="ZONE_ID" type="xs:integer"/>
+                        <xs:element name="DATASTORE_ID" type="xs:integer"/>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="VNETS">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="VNET" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="ZONE_ID" type="xs:integer"/>
+                        <xs:element name="VNET_ID" type="xs:integer"/>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="TEMPLATE" type="xs:anyType"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+
+.. code:: xml
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+      targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
+      <xs:include schemaLocation="vdc.xsd"/>
+      <xs:element name="VDC_POOL">
+        <xs:complexType>
+          <xs:sequence maxOccurs="1" minOccurs="1">
+            <xs:element ref="VDC" maxOccurs="unbounded" minOccurs="0"/>
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -5614,6 +5696,7 @@ Schemas for User
             <xs:element name="PASSWORD" type="xs:string"/>
             <xs:element name="AUTH_DRIVER" type="xs:string"/>
             <xs:element name="ENABLED" type="xs:integer"/>
+            <xs:element name="LOGIN_TOKEN" type="xs:string"/>
             <xs:element name="TEMPLATE" type="xs:anyType"/>
             <xs:element name="DATASTORE_QUOTA" minOccurs="0" maxOccurs="1">
               <xs:complexType>
@@ -5785,6 +5868,7 @@ Schemas for User
                     <xs:element name="PASSWORD" type="xs:string"/>
                     <xs:element name="AUTH_DRIVER" type="xs:string"/>
                     <xs:element name="ENABLED" type="xs:integer"/>
+                    <xs:element name="LOGIN_TOKEN" type="xs:string"/>
                     <xs:element name="TEMPLATE" type="xs:anyType"/>
                   </xs:sequence>
                 </xs:complexType>
