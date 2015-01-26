@@ -7,7 +7,7 @@ Managing Groups
 
 A group in OpenNebula makes it possible to isolate users and resources. A user can see and use the :ref:`shared resources <chmod>` from other users.
 
-The group is an authorization boundary for the users, but you can also partition your cloud infrastructure and define what resources are available to each group using :ref`Virtual Data Centers (VDC) <manage_vdcs>`. You can read more about OpenNebula's approach to VDCs and the cloud from the perspective of different user roles in the :ref:`Understanding OpenNebula <understand>` guide.
+The group is an authorization boundary for the users, but you can also partition your cloud infrastructure and define what resources are available to each group using :ref:`Virtual Data Centers (VDC) <manage_vdcs>`. You can read more about OpenNebula's approach to VDCs and the cloud from the perspective of different user roles in the :ref:`Understanding OpenNebula <understand>` guide.
 
 Adding and Deleting Groups
 ================================================================================

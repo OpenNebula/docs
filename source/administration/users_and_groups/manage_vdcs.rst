@@ -7,10 +7,19 @@ Managing VDCs
 
 A VDC (Virtual Data Center) defines an assignment of one or several :ref:`groups <manage_groups>` to a pool of physical resources. This pool of Physical Resources consists of resources from one or several Clusters that could belong to different Zones or public external clouds for hybrid cloud computing. You can read more about OpenNebula's approach to VDCs and the cloud from the perspective of different user roles in the :ref:`Understanding OpenNebula <understand>` guide.
 
-Adding and Deleting VDCs
+The Default VDC
 ================================================================================
 
-There is a special ``default`` VDC created during the installation. The ``users`` group belongs to this VDC, and it already allows the use of ``ALL`` the physical resources.
+There is a special ``default`` VDC created during the installation that allows the use of ``ALL`` the physical resources.
+
+The ``users`` group belongs to this VDC, and any new group is automatically added to the ``default`` VDC. You can modify the VDC physical resources, even remove all of them, but it can't be deleted.
+
+.. note::
+
+    Before adding a new group to a specific VDC, you may want to remove it from the ``default`` one, since it allows the use of ``ALL`` the physical resources.
+
+Adding and Deleting VDCs
+================================================================================
 
 Your can use the ``onevdc`` command line tool to manage VDCs in OpenNebula.
 

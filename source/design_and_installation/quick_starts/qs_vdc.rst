@@ -50,7 +50,13 @@ When a new group is created, you will also have the opportunity to configure dif
 Create the VDC
 ================================================================================
 
-The VDC will be called 'web-dev'. In the creation wizard, select the group and the cluster created in the previous steps.
+New groups are added to the 'default' VDC. If you didn't modify this VDC, it will allow the users in the new group to access all physical resources. So the first step is to remove this group from its current VDC:
+
+.. code::
+
+    $ onevdc delgroup default web-dev
+
+The new VDC will be called 'web-dev'. In the creation wizard, select the group and the cluster created in the previous steps.
 
 .. code::
 
