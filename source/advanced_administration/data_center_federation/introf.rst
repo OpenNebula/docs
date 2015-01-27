@@ -17,7 +17,7 @@ For the end users, a Federation allows them to use the resources allocated by th
 Architecture
 ================================================================================
 
-In a Federation, there is a master OpenNebula zone and several slaves sharing the database tables for users, groups, ACL rules, and zones. The master OpenNebula is the only one that writes in the shared tables, while the slaves keep a read-only local copy, and proxy any writing actions to the master. This allows us to guarantee data consistency, without any impact on the speed of read-only actions.
+In a Federation, there is a master OpenNebula zone and several slaves sharing the database tables for users, groups, VDCs, ACL rules, and zones. The master OpenNebula is the only one that writes in the shared tables, while the slaves keep a read-only local copy, and proxy any writing actions to the master. This allows us to guarantee data consistency, without any impact on the speed of read-only actions.
 
 The synchronization is achieved configuring MySQL to replicate certain tables only. MySQL's replication is able to perform over long-distance or unstable connections. Even if the master zone crashes and takes a long time to reboot, the slaves will be able to continue working normally except for a few actions such as new user creation or password updates.
 
