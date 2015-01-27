@@ -179,6 +179,8 @@ The Group Users have the capabilities described in the previous scenario and typ
 |                  | * Checks Group usage and quotas                            |
 +------------------+------------------------------------------------------------+
 
+.. _understand_compatibility:
+
 Differences with Previous Versions
 ================================================================================
 
