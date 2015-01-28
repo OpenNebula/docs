@@ -45,10 +45,30 @@ Prerequisites
 .. warning:: ruby >= 1.9.3 is required, and it is not packaged in all distros supported by OpenNebula. If you are running on an older supported distro (like Centos 6.x or Ubuntu 12.04) please update ruby or use `rvm <https://rvm.io/>`__ to run a newer (>= 1.9.3) version (remember to run ``install_gems`` after the ruby upgrade is done to reinstall all gems)
 
 -  You must have a working account for `Azure <http://azure.microsoft.com/>`__
--  You need your Azure credentials (Information on how to manage Azure certificates can be found `here <http://azure.microsoft.com/en-us/documentation/articles/linux-use-ssh-key/>`__. ). The information can be obtained from the `Management Azure page <https://manage.windowsazure.com>`__:
+-  You need your Azure credentials (Information on how to manage Azure certificates can be found `here <http://azure.microsoft.com/en-us/documentation/articles/linux-use-ssh-key/>`__. ). The information can be obtained from the `Management Azure page <https://manage.windowsazure.com>`__
 
-  * First, the Subscription ID, that can be uploaded and retrieved from Settings -> Subscriptions
-  * Second, the Management Certificate file, that can be uploaded and retrieved from Settings -> Management Certificates
+- First, the Subscription ID, that can be uploaded and retrieved from Settings -> Subscriptions
+- Second, the Management Certificate file, that can be created with the following steps- We need the .pem file (for the ruby gem) and the .cer file (to upload to Azure):
+
+.. code::
+
+    ## Install openssl
+    ## CentOS
+    $ sudo yum install openssl
+    ## Ubuntu
+    $ sudo apt-get install openssl
+
+    ## Create certificate
+    $ openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout myPrivateKey.key -out myCert.pem
+    $ chmod 600 myPrivateKey.key
+
+    ## Concatenate key and pem certificate
+    $ cat myCert.pem myPrivateKey.key > vOneCloud.pem
+
+    ## Generate .cer file for Azure
+    $ openssl  x509 -outform der -in myCert.pem -out myCert.cer
+
+- Third, the certificate file (.cer) has to be uploaded to Settings -> Management Certificates
 
 -  The following gem is required: ``azure``. Otherwise, run the ``install_gems`` script as root:
 
@@ -90,7 +110,7 @@ Additionally you must define your credentials, the Azure location to be used and
 
     default:
         region_name: "West Europe"
-        pem_management_cert: <path-to-your-pem-certificate-here>
+        pem_management_cert: <path-to-your-vonecloud-pem-certificate-here>
         subscription_id: <your-subscription-id-here>
         management_endpoint:
         capacity:
@@ -99,7 +119,7 @@ Additionally you must define your credentials, the Azure location to be used and
             Large: 0
     west-europe:
         region_name:  "West Europe"
-        pem_management_cert: <path-to-your-pem-certificate-here>
+        pem_management_cert: <path-to-your-vonecloud-pem-certificate-here>
         subscription_id: <your-subscription-id-here>
         management_endpoint:
         capacity:
@@ -237,7 +257,7 @@ When you create a new host the credentials and endpoint for that host are retrie
         ...
         west-europe:
             region_name: "West Europe"
-            pem_management_cert: "<path-to-pem-certificate>"
+            pem_management_cert: "<path-to-your-vonecloud-pem-certificate-here>"
             subscription_id: "your-subscription-id"
             management_endpoint:
             capacity:
