@@ -6,12 +6,12 @@ Sunstone Views
 
 Using the OpenNebula Sunstone Views you will be able to provide a simplified UI aimed at end-users of an OpenNebula cloud. The OpenNebula Sunstone Views are fully customizable, so you can easily enable or disable specific information tabs or action buttons. You can define multiple  views for different user groups. Each view defines a set of UI components so each user just access and view the relevant parts of the cloud for her role.
 
-The OpenNebula Sunstone Views can be grouped in two different layouts. On one hand, the classic Sunstone layout exposes a complete view of the cloud, allowing administrators and advanced users to have full control of any physical or virtual resource of the cloud. On the other hand, the newer cloud layout exposes a simplified version of the cloud where VDC administrators and cloud end-users will be able to manage any virtual resource of the cloud, without taking care of the physical resources management.
+The OpenNebula Sunstone Views can be grouped in two different layouts. On one hand, the classic Sunstone layout exposes a complete view of the cloud, allowing administrators and advanced users to have full control of any physical or virtual resource of the cloud. On the other hand, the newer cloud layout exposes a simplified version of the cloud where group administrators and cloud end-users will be able to manage any virtual resource of the cloud, without taking care of the physical resources management.
 
 Default Views
 =============
 
-OpenNebula provides three default advanced views, ``admin``, ``vcenter`` and ``user`` and three simplified cloud view ``vdcadmin``, ``vcenter`` and ``cloud`` that implements six common views. By default, the ``admin`` view is only available to the oneadmin group. New users will be included in the users group and will use the default ``cloud`` view.
+OpenNebula provides three default advanced views, ``admin``, ``vcenter`` and ``user`` and three simplified cloud view ``groupadmin``, ``vcenter`` and ``cloud`` that implements six common views. By default, the ``admin`` view is only available to the oneadmin group. New users will be included in the users group and will use the default ``cloud`` view.
 
 +-------------+-------+--------+------+-------+----------+------------+-------+-------+-----+--------+-----------+----------+
 |  Advanced view layout                                                                                          |          |
@@ -27,19 +27,19 @@ OpenNebula provides three default advanced views, ``admin``, ``vcenter`` and ``u
 | User        |       |        |      |       |          | x          | x     |       | x   | x      | x         | x        |
 +-------------+-------+--------+------+-------+----------+------------+-------+-------+-----+--------+-----------+----------+
 
-+---------------+--------+-----+-----------------+----------+
-|  Cloud view layout                                        |
-+===============+========+=====+=================+==========+
-|               | System | Virtual Resources                | 
-+---------------+--------+-----+-----------------+----------+
-|               | Users  | VMs | Saved Templates | Services | 
-+---------------+--------+-----+-----------------+----------+
-| VDC Admin     | x      | x   | x               | x        | 
-+---------------+--------+-----+-----------------+----------+
-| vCenter Cloud |        | x   |                 | x        | 
-+---------------+--------+-----+-----------------+----------+
-| Cloud         |        | x   | x               | x        | 
-+---------------+--------+-----+-----------------+----------+
++-------------------+--------+-------------------+-----------------+----------+
+| Cloud view layout |        |                   |                 |          |
++===================+========+===================+=================+==========+
+|                   | System | Virtual Resources |                 |          |
++-------------------+--------+-------------------+-----------------+----------+
+|                   | Users  | VMs               | Saved Templates | Services |
++-------------------+--------+-------------------+-----------------+----------+
+| Group Admin       | x      | x                 | x               | x        |
++-------------------+--------+-------------------+-----------------+----------+
+| vCenter Cloud     |        | x                 |                 | x        |
++-------------------+--------+-------------------+-----------------+----------+
+| Cloud             |        | x                 | x               | x        |
++-------------------+--------+-------------------+-----------------+----------+
 
 Admin View
 ----------
@@ -62,12 +62,12 @@ In this view users will not be able to manage nor retrieve the hosts and cluster
 
 |user_view|
 
-VDCAdmin View
--------------
+Group Admin View
+--------------------------------------------------------------------------------
 
-This view provides control of all the resources belonging to a Virtual DataCenter (VDC), but with no access to resources outside that VDC, that is, restricted to the physical and virtual resources of the VDC. This view features the ability to create new users within the VDC as well as set and keep track of user quotas. For more information on how to configure this scenario see :ref:`this guide <vdc_admin_view>`
+This view provides control of all the resources belonging to a group, but with no access to resources outside that group, that is, restricted to the physical and virtual resources of the group. This view features the ability to create new users within the group as well as set and keep track of user quotas. For more information on how to configure this scenario see :ref:`this guide <group_admin_view>`
 
-|vdcadmin_dash|
+|groupadmin_dash|
 
 Cloud View
 ----------
@@ -284,8 +284,8 @@ The cloud layout can also be customized by changing the following section of the
         dashboard:
             quotas: true
             vms: true
-            vdcquotas: false
-            vdcvms: false
+            groupquotas: false
+            groupvms: false
             users:  false
         create_vm:
             capacity_select: true
@@ -340,7 +340,7 @@ You can easily add you logos to the login and main screens by updating the ``log
 
 .. |admin_view| image:: /images/admin_view.png
 .. |vcenter_view| image:: /images/vcenter_view.png
-.. |vdcadmin_dash| image:: /images/vdcadmin_dash.png
+.. |groupadmin_dash| image:: /images/vdcadmin_dash.png
 .. |user_view| image:: /images/user_view.png
 .. |cloud_dash| image:: /images/cloud_dash.png
 .. |views_settings| image:: /images/views_settings.png

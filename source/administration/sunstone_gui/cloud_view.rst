@@ -20,7 +20,7 @@ In this scenario the cloud administrator must prepare a set of templates and ima
 
 Any user of the Cloud View can save the changes made to a VM back to a new Template, and use this Template to instantiate new VMs later. For example a regular user can instantiate a clean VM prepared by the cloud administrator, install software needed by his application and save it in a new Template to instantiate new VMs. A Saved Template created by a regular user is only available for that user and is listed under the "Saved" tab.
 
-The VDC admin can also share his own Saved Templates with the rest of the group. These shared templates will be listed under the "VDC" tab when trying to create a new VM.
+The Group admin can also share his own Saved Templates with the rest of the group. These shared templates will be listed under the "Group" tab when trying to create a new VM.
 
 Access to the VM, SSH Keys
 ---------------------------
@@ -126,7 +126,7 @@ You must set a default CPU and Memory for the Template, but users can change the
 
 |prepare-tmpl-capacity|
 
-You can disable this option for the whole cloud modifying the cloud.yaml or vdcadmin.yaml view files or per template in the template creation wizard
+You can disable this option for the whole cloud modifying the ``cloud.yaml`` or ``groupadmin.yaml`` view files or per template in the template creation wizard
 
 .. code::
 
@@ -185,7 +185,7 @@ Because users will add network interfaces, you need to define a default NIC mode
 
 |prepare-tmpl-nic-default|
 
-You can disable this option for the whole cloud modifying the cloud.yaml or vdcadmin.yaml view files or per template in the template creation wizard
+You can disable this option for the whole cloud modifying the ``cloud.yaml`` or ``groupadmin.yaml`` view files or per template in the template creation wizard
 
 .. code::
 
@@ -200,7 +200,7 @@ Change Permissions to Make It Available
 
 To make a Template available to other users, you have two options:
 
-* Change the Template's group, and give it ``GROUP USE`` permissions. This will make the Template only available to users in that group (VDC).
+* Change the Template's group, and give it ``GROUP USE`` permissions. This will make the Template only available to users in that group.
 * Leave the Template in the oneadmin group, and give it ``OTHER USE`` permissions. This will make the Template available to every user in OpenNebula.
 
 |prepare-tmpl-chgrp|
@@ -230,7 +230,7 @@ When you prepare a :ref:`OneFlow Service Template <appflow_use_cli>` to be used 
 
 To make a Service Template available to other users, you have two options:
 
-* Change the Template's group, and give it ``GROUP USE`` permissions. This will make the Service Template only available to users in that group (VDC).
+* Change the Template's group, and give it ``GROUP USE`` permissions. This will make the Service Template only available to users in that group.
 * Leave the Template in the oneadmin group, and give it ``OTHER USE`` permissions. This will make the Service Template available to every user in OpenNebula.
 
 Please note that you will need to do the same for any VM Template used by the Roles, and any Image and Virtual Network referenced by those VM Templates, otherwise the Service deployment will fail.

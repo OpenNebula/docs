@@ -284,7 +284,7 @@ If you execute oneacct with the ``-x`` option, you will get an XML output define
 Sunstone
 ========
 
-Sunstone also displays information about accounting. Information is accessible via the User dialogs for the user and admin views. The cloud view can access the metering information in the dashboard, whereas the vdcadmin user can access them under the users section.
+Sunstone also displays information about accounting. Information is accessible via the User dialogs for the user and admin views. The cloud view can access the metering information in the dashboard, whereas the group admin user can access them under the users section.
 
 |image1|
 

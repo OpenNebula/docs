@@ -2,12 +2,12 @@
 .. _manage_users_groups:
 
 ==========================
-Managing Groups & VDC
+Managing Groups
 ==========================
 
 A group in OpenNebula makes it possible to isolate users and resources. A user can see and use the :ref:`shared resources <chmod>` from other users.
 
-The group is an authorization boundary for the users, but you can also partition your cloud infrastructure and define what resources are available to each group. The VDC (Virtual Data Center) concept is not a different entity in OpenNebula, it is how we call groups that have some resources assigned to them. You can read more about OpenNebula's approach to VDC's and the cloud from the perspective of different user roles in the :ref:`Understanding OpenNebula <understand>` guide.
+The group is an authorization boundary for the users, but you can also partition your cloud infrastructure and define what resources are available to each group using :ref:`Virtual Data Centers (VDC) <manage_vdcs>`. You can read more about OpenNebula's approach to VDCs and the cloud from the perspective of different user roles in the :ref:`Understanding OpenNebula <understand>` guide.
 
 Adding and Deleting Groups
 ================================================================================
@@ -28,7 +28,7 @@ To create new groups:
     $ onegroup create "new group"
     ID: 100
 
-The new group has ID 100 to differentiate the special groups to the user-defined ones.
+The new group has ID 100 to differentiate the special groups from the user-defined ones.
 
 .. note:: When a new group is created, an ACL rule is also created to provide the default behaviour, allowing users to create basic resources. You can learn more about ACL rules in :ref:`this guide <manage_acl>`; but you don't need any further configuration to start using the new group.
 
@@ -90,10 +90,10 @@ An example:
 
 .. _add_admin_user_to_group:
 
-Add Admin User to a Existing VDC
+Add Admin User to a Existing Group
 ================================================================================
 
-If not defined at creation time, a user can be configured to be Admin of a VDC using ACLs. For instance, to add user "MyVDCAdmin" with ID 4 as admin of group 100  using the default permissions (as presented by the Sunstone interface), the following two ACLs are needed:
+If not defined at creation time, a user can be configured to be Admin of a group using ACLs. For instance, to add user "MyGroupAdmin" with ID 4 as admin of group 100  using the default permissions (as presented by the Sunstone interface), the following two ACLs are needed:
 
 .. code::
 
@@ -106,57 +106,29 @@ Also, the group template has to be updated to reflect the new admin:
 .. code::
 
     $ onegroup update 100
-      GROUP_ADMINS="MyVDCAdmin,<other-admins>
-      GROUP_ADMIN_VIEWS="vdcadmin,<other-admin-views"
-
-
-.. _managing_resource_provider_within_groups:
-
-Managing VDC and Resource Providers
-================================================================================
-
-A VDC (Virtual Data Center) is how we call groups that have some resources assigned to them. A resource provider is an OpenNebula :ref:`cluster <cluster_guide>` (set of physical hosts and associated datastores and virtual networks) from a particular zone (an OpenNebula instance). A group can be assigned:
-
-* A particular resource provider, for instance cluster 7 of Zone 0
-
-.. code::
-
-    $ onegroup add_provider <group_id> 0 7
-
-* All resources from a particular zone (special cluster id ``ALL``)
-
-.. code::
-
-    $ onegroup add_provider <group_id> 0 ALL
-
-To remove resource providers within a group, use the symmetric operation ``del_provider``.
-
-.. note:: By default a group doesn't have any resource provider, so users won't be entitled to use any resource until explicitly added a resource provider.
-
-When you assign a Resource Provider to a group, users in that group will be able to use the Datastores and Virtual Networks of that Cluster. The scheduler will also deploy VMs from that group into any of the Cluster Hosts.
-
-If you are familiar with :ref:`ACL rules <manage_acl>`, you can take a look at the rules that are created with ``oneacl list``. These rules are automatically added, and should not be manually edited. They will be removed by the ``onegroup del_provider`` command.
+      GROUP_ADMINS="MyGroupAdmin,<other-admins>
+      GROUP_ADMIN_VIEWS="groupadmin,<other-admin-views"
 
 .. _manage_groups_virtual_resources:
 
-Managing VDC and Virtual Resources
+Managing Groups and Virtual Resources
 ================================================================================
 
-You can make the following virtual resources available to VDC users:
+You can make the following virtual resources available to group users:
 
 * :ref:`Virtual Machine Templates <vm_guide>`
 * :ref:`Service Templates <appflow_use_cli>`
 * :ref:`Images <img_guide>`
 * :ref:`Files & Kernels <img_guide_files>`
 
-To make a virtual resource owned by oneadmin available to users of the new VDC, you have two options:
+To make a virtual resource owned by oneadmin available to users of the new group, you have two options:
 
-* Change the resource's group, and give it ``GROUP USE`` permissions. This will make the resource only available to users in that VDC.
+* Change the resource's group, and give it ``GROUP USE`` permissions. This will make the resource only available to users in that group.
 * Leave the resource in the oneadmin group, and give it ``OTHER USE`` permissions. This will make the resource available to every user in OpenNebula.
 
 |prepare-tmpl-chgrp|
 
-The Virtual Machine and Service Templates are visible to the VDC users when they want to create a new VM or Service. The Images (including File Images) used by those Templates are not visible to the users, but must be also made available, otherwise the VM creation will fail with an error message similar to this one:
+The Virtual Machine and Service Templates are visible to the group users when they want to create a new VM or Service. The Images (including File Images) used by those Templates are not visible to the users, but must be also made available, otherwise the VM creation will fail with an error message similar to this one:
 
 .. code::
 

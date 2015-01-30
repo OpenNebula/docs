@@ -100,7 +100,7 @@ The tool will ask for the Zone ID you created in step 1.
     Please enter the Zone ID that you created to represent the new Slave OpenNebula:
     Zone ID:
 
-You will also need to decide if the users and groups will be merged.
+You will also need to decide if the users, groups and VDCs will be merged.
 
 If you had different people using the master and slave OpenNebula instances, then choose not to merge users. In case of name collision, the slave account will be renamed to ``username-1``.
 
@@ -171,7 +171,7 @@ Then you can safetly execute the mysqldump command in another terminal. Please n
 
 .. code-block:: none
 
-    mysqldump -u root -p --master-data opennebula user_pool group_pool zone_pool db_versioning acl > dump.sql
+    mysqldump -u root -p --master-data opennebula user_pool group_pool vdc_pool zone_pool db_versioning acl > dump.sql
 
 Once you get the dump you can unlock the DB tables again.
 
@@ -197,6 +197,7 @@ For each one of the slaves, configure the MySQL server as a replication slave. P
     server-id           = 100
     replicate-do-table  = opennebula.user_pool
     replicate-do-table  = opennebula.group_pool
+    replicate-do-table  = opennebula.vdc_pool
     replicate-do-table  = opennebula.zone_pool
     replicate-do-table  = opennebula.db_versioning
     replicate-do-table  = opennebula.acl

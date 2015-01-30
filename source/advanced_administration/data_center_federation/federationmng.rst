@@ -6,7 +6,7 @@ OpenNebula Federation Management
 
 The administrator of a federation has the ability to add or remove Zones from the federation. See this guide for details on how to configure the federation in both the master and the slave of the OpenNebula federation.
 
-A user will have access to all the Zones where at least one of her groups has Resource Providers in. This access can done through Sunstone or through the CLI 
+A user will have access to all the Zones where at least one of her groups has VDC resources in. This access can done through Sunstone or through the CLI 
 
 Adding a Zone
 =============

@@ -7,7 +7,8 @@ Users and Groups
 
    Overview <auth_overview>
    Managing Users <manage_users>
-   Managing Groups & VDC <manage_groups>
+   Managing Groups <manage_groups>
+   Managing VDCs <manage_vdcs>
    Managing Permissions <chmod>
    Accounting Tool <accounting>
    Showback <showback>
