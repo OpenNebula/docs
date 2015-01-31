@@ -65,7 +65,7 @@ The GlusterFS volume must be mounted in all the virtualization nodes and the hea
 .. code-block:: none
 
     # mkdir -p /var/lib/one/datastores/0
-    # mount -t gluster server:/volume /var/lib/one/datastores/0
+    # mount -t glusterfs server:/volume /var/lib/one/datastores/0
     # chown oneadmin:oneadmin /var/lib/one/datastores/0
     # ln -s /var/lib/one/datastores/0 /var/lib/one/datastores/1
 
