@@ -77,8 +77,6 @@ This can be managed visually in Sunstone, and can also be managed through the CL
 +-------------------------+-----------+--------------------+---------------------------------------------------------------------------------+
 | `-r, --resources`       | Optional  | "+" separated list | Which resources can be created by group users (VM+IMAGE+TEMPLATE by default)    |
 +-------------------------+-----------+--------------------+---------------------------------------------------------------------------------+
-| `-o, --admin_resources` | Optional  | "+" separated list | Which resources can be created by the admin user (VM+IMAGE+TEMPLATE by default) |
-+-------------------------+-----------+--------------------+---------------------------------------------------------------------------------+
 
 An example:
 
@@ -86,28 +84,18 @@ An example:
 
     $ onegroup create --name groupA \
     --admin_user admin_userA --admin_password somestr \
-    --resources TEMPLATE+VM --admin_resources TEMPLATE+VM+IMAGE+NET
+    --resources TEMPLATE+VM
+
+|manage_groups_1|
 
 .. _add_admin_user_to_group:
 
-Add Admin User to a Existing Group
+Add Admin Users to an Existing Group
 ================================================================================
 
-If not defined at creation time, a user can be configured to be Admin of a group using ACLs. For instance, to add user "MyGroupAdmin" with ID 4 as admin of group 100  using the default permissions (as presented by the Sunstone interface), the following two ACLs are needed:
+Any user can be configured to be Admin of a group with the commands ``onegroup addadmin`` and ``deladmin``.
 
-.. code::
-
-     $ oneacl create "#4 VM+IMAGE+TEMPLATE+DOCUMENT/@100 USE+MANAGE+CREATE *"
-     $ oneacl create "#4 USER/@100 USE+MANAGE+ADMIN+CREATE *"
-
-
-Also, the group template has to be updated to reflect the new admin:
-
-.. code::
-
-    $ onegroup update 100
-      GROUP_ADMINS="MyGroupAdmin,<other-admins>
-      GROUP_ADMIN_VIEWS="groupadmin,<other-admin-views"
+|manage_groups_2|
 
 .. _manage_groups_virtual_resources:
 
@@ -154,3 +142,5 @@ All the described functionality is available graphically using :ref:`Sunstone <s
 
 .. |image3| image:: /images/sunstone_group_list.png
 .. |prepare-tmpl-chgrp| image:: /images/prepare-tmpl-chgrp.png
+.. |manage_groups_1| image:: /images/manage_groups_1.png
+.. |manage_groups_2| image:: /images/manage_groups_2.png
