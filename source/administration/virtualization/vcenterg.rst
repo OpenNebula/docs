@@ -36,7 +36,7 @@ Requirements
 
 The following must be met for a functional vCenter environment:
 
-- vCenter 5.1+, with at least one cluster aggregating at least one ESX 5.1+ host.
+- vCenter 5.5+, with at least one cluster aggregating at least one ESX 5.5+ host.
 
 - Define a vCenter user for OpenNebula. This vCenter user (let's call her oneadmin) needs to have access to the ESX clusters that OpenNebula will manage. In order to avoid problems, the hassle free approach is to declare this oneadmin user as Administrator. In production environments though, it may be needed to perform a more fine grained permission assigment (please note that the following permissions related to operations are related to the use that OpenNebula does with this operations):
 
