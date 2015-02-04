@@ -21,13 +21,18 @@ Security Groups
 
 .. todo:: previous FW drivers and new security groups
 
+Group Administrators
+--------------------------------------------------------------------------------
+
+Previous versions allowed to create one special group administrator when the group was created. Now any user can be made an administrator at any moment. The main difference with the previous mechanism is that now the administrators don't have a separate set of resources they are allowed to create, i.e. the ``--admin_resources`` option is not present in the ``onegroup create`` command.
+
 Developers and Integrators
 ================================================================================
 
-This section lists all the changes in the API. Visit the :ref:`complete reference <api>` for more information.
-
 XML-RPC API
 --------------------------------------------------------------------------------
+
+This section lists all the changes in the API. Visit the :ref:`complete reference <api>` for more information.
 
 * New api calls:
 
@@ -58,6 +63,8 @@ XML-RPC API
   * ``one.secgrouppool.info``
   * ``one.vmpool.showback``
   * ``one.vmpool.calculateshowback``
+  * ``one.group.addadmin``
+  * ``one.group.deladmin``
 
 * Deleted api calls:
 
