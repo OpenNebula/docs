@@ -1564,7 +1564,7 @@ The XML output will be similar to this one:
         <MONTH>11</MONTH>
         <CPU_COST>13</CPU_COST>
         <MEMORY_COST>21</MEMORY_COST>
-        <COST>34</COST>
+        <TOTAL_COST>34</TOTAL_COST>
         <HOURS>10</HOURS>
       </SHOWBACK>
       
