@@ -17,6 +17,8 @@ Using this cost schema allows the users to resize the Virtual Machine instances.
 
 |showback_instantiate|
 
+There is a default cost that will be applied to VM Templates without a cost defined. It can be set in the :ref:`oned.conf file <oned_conf_default_showback>`. 
+
 Calculate Monthly Reports
 ================================================================================
 

@@ -119,6 +119,24 @@ Control the :ref:`federation capabilities of oned <introf>`. Operation in a fede
         MASTER_ONED = ""
     ]
 
+.. _oned_conf_default_showback:
+
+Default Showback Cost
+================================================================================
+
+The following attributes define the default cost for Virtual Machines that don't have a CPU or MEMORY cost. This is used by the :ref:`oneshowback calculate method <showback>`.
+
+.. code::
+    
+    #*******************************************************************************
+    # Default showback cost
+    #*******************************************************************************
+
+    DEFAULT_COST = [
+        CPU_COST    = 0,
+        MEMORY_COST = 0
+    ]
+
 .. _oned_conf_xml_rpc_server_configuration:
 
 XML-RPC Server Configuration
