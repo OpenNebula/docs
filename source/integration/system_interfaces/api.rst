@@ -1562,8 +1562,10 @@ The XML output will be similar to this one:
         <GNAME>vdc-test</GNAME>
         <YEAR>2014</YEAR>
         <MONTH>11</MONTH>
-        <COST>19665070</COST>
-        <HOURS>256.89</HOURS>
+        <CPU_COST>13</CPU_COST>
+        <MEMORY_COST>21</MEMORY_COST>
+        <COST>34</COST>
+        <HOURS>10</HOURS>
       </SHOWBACK>
       
       <SHOWBACK>
