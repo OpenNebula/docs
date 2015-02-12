@@ -38,7 +38,7 @@ Configuration
 Hosts Configuration
 -------------------
 
--  You need to install Open vSwitch on each OpenNebula Host. Please refer to the `Open vSwitch documentation <http://openvswitch.org/cgi-bin/gitweb.cgi?p=openvswitch;a=blob_plain;f=INSTALL.Linux;hb=HEAD>`__ to do so.
+-  You need to install Open vSwitch on each OpenNebula Host. Please refer to the `Open vSwitch documentation <https://github.com/openvswitch/ovs/blob/master/INSTALL.md>`__ to do so.
 -  If using ``ovswitch_brcompat`` it is also necessary to install the `Open vSwitch compatibility layer for Linux bridging <http://openvswitch.org/cgi-bin/gitweb.cgi?p=openvswitch;a=blob_plain;f=INSTALL.bridge;hb=HEAD>`__.
 -  The ``sudoers`` file must be configured so ``oneadmin`` can execute ``ovs_vsctl`` in the hosts.
 
