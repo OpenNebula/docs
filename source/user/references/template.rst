@@ -453,6 +453,7 @@ The following I/O interfaces can be defined for a VM:
 |              | * **PORT**: port for the VNC server                                                  |             |     |        |
 |              | * **PASSWD**: password for the VNC server                                            |             |     |        |
 |              | * **KEYMAP**: keyboard configuration locale to use in the VNC display                |             |     |        |
+|              | * **RANDOM_PASSWD**: if "YES", generate a random password for each VM                |             |     |        |
 +--------------+--------------------------------------------------------------------------------------+-------------+-----+--------+
 
 Example:
