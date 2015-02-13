@@ -439,10 +439,16 @@ onedatastore
 | rename           | one.datastore.rename   | DATASTORE:MANAGE           |
 +------------------+------------------------+----------------------------+
 | chown            | one.datastore.chown    | DATASTORE:MANAGE           |
-| chgrp            |                        | [USER:MANAGE]              |
-|                  |                        | [GROUP:USE]                |
+|                  |                        |                            |
+|                  |                        | [USER:MANAGE]              |
+|                  |                        |                            |
+| chgrp            |                        | [GROUP:USE]                |
 +------------------+------------------------+----------------------------+
 | chmod            | one.datastore.chmod    | DATASTORE:<MANAGE \ ADMIN> |
++------------------+------------------------+----------------------------+
+| enable           | one.datastore.enable   | DATASTORE:MANAGE           |
+|                  |                        |                            |
+| disable          |                        |                            |
 +------------------+------------------------+----------------------------+
 | list             | one.datastorepool.info | DATASTORE:USE              |
 +------------------+------------------------+----------------------------+
@@ -457,6 +463,7 @@ oneimage
 | nonpersistent    |                      |                        |
 +------------------+----------------------+------------------------+
 | enable           | one.image.enable     | IMAGE:MANAGE           |
+|                  |                      |                        |
 | disable          |                      |                        |
 +------------------+----------------------+------------------------+
 | chtype           | one.image.chtype     | IMAGE:MANAGE           |
@@ -2909,10 +2916,34 @@ one.datastore.rename
 +------+------------+---------------------------------------------+
 | OUT  | Boolean    | true or false whenever is successful or not |
 +------+------------+---------------------------------------------+
-| OUT  | Int/String | The VM ID / The error string.               |
+| OUT  | Int/String | The resource ID / The error string.         |
 +------+------------+---------------------------------------------+
 | OUT  | Int        | Error code.                                 |
 +------+------------+---------------------------------------------+
+
+
+one.datastore.enable
+--------------------------------------------------------------------------------
+
+-  **Description**: Enables or disables a datastore.
+-  **Parameters**
+
++------+------------+----------------------------------------------+
+| Type | Data Type  |                 Description                  |
++======+============+==============================================+
+| IN   | String     | The session string.                          |
++------+------------+----------------------------------------------+
+| IN   | Int        | The object ID.                               |
++------+------------+----------------------------------------------+
+| IN   | Boolean    | True for enabling, false for disabling.      |
++------+------------+----------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not. |
++------+------------+----------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.          |
++------+------------+----------------------------------------------+
+| OUT  | Int        | Error code.                                  |
++------+------------+----------------------------------------------+
+
 
 one.datastore.info
 ------------------
@@ -5059,6 +5090,7 @@ Schemas for Datastore
             <xs:element name="BASE_PATH" type="xs:string"/>
             <xs:element name="TYPE" type="xs:integer"/>
             <xs:element name="DISK_TYPE" type="xs:integer"/>
+            <xs:element name="STATE" type="xs:integer"/>
             <xs:element name="CLUSTER_ID" type="xs:integer"/>
             <xs:element name="CLUSTER" type="xs:string"/>
             <xs:element name="TOTAL_MB" type="xs:integer"/>

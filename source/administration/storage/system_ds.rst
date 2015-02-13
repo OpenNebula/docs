@@ -206,6 +206,23 @@ This control can be exerted within the VM template, with two attributes:
 
 .. warning:: Admins and user with admins rights can force the deployment to a certain datastore, using 'onevm deploy' command.
 
+Disable a System Datastore
+================================
+
+System Datastores can be disabled to prevent the scheduler from deploying new Virtual Machines in them. Datastores in the ``disabled`` state and monitored as usual, and the existing VMs will continue to run in them.
+
+.. code::
+
+    $ onedatastore disable system -v
+    DATASTORE 0: disabled
+
+    $ onedatastore show system
+    DATASTORE 0 INFORMATION
+    ID             : 0
+    NAME           : system
+    ...
+    STATE          : DISABLED
+
 Tuning and Extending
 ====================
 

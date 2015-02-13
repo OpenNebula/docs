@@ -65,6 +65,7 @@ This section lists all the changes in the API. Visit the :ref:`complete referenc
   * ``one.vmpool.calculateshowback``
   * ``one.group.addadmin``
   * ``one.group.deladmin``
+  * ``one.datastore.enable``
 
 * Deleted api calls:
 
