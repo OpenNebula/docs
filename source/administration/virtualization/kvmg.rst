@@ -22,21 +22,12 @@ Considerations & Limitations
 -  KVM currently only supports 4 IDE devices, for more disk devices you should better use SCSI or virtio. You have to take this into account when adding disks. See the :ref:`Virtual Machine Template documentation <template_disks_device_mapping>` for an explanation on how OpenNebula assigns disk targets.
 -  By default live migrations are started from the host the VM is currently running. If this is a problem in your setup you can activate local live migration adding ``-l migrate=migrate_local`` to ``vmm_mad`` arguments.
 -  If you get error messages similar to ``error: cannot close file: Bad file descriptor`` upgrade libvirt version. Version 0.8.7 has a  `bug related to file closing operations. <https://bugzilla.redhat.com/show_bug.cgi?format=multiple&id=672725>`__
--   In case you are using disks with a cache setting different to none may may have problems with live migration depending on the libvirt version. You can enable the migration adding the ``--unsafe`` parameter to the virsh command. The file to change is ``/var/lib/one/remotes/vmm/kvm/migrate``, change this:
+-  In case you are using disks with a cache setting different to ``none`` you may have problems with live migration depending on the libvirt version. You can enable the migration adding the ``--unsafe`` parameter to the virsh command. The file to change is ``/var/lib/one/remotes/vmm/kvm/kvmrc``. Uncomment the following line, and execute ``onehost sync --force`` afterwards:
 
     .. code-block:: bash
 
-            exec_and_log "virsh --connect $LIBVIRT_URI migrate --live $deploy_id $QEMU_PROTOCOL://$dest_host/system" \
-                "Could not migrate $deploy_id to $dest_host"
+        MIGRATE_OPTIONS=--unsafe
 
-    to this:
-
-    .. code-block:: bash
-
-            exec_and_log "virsh --connect $LIBVIRT_URI migrate --live --unsafe $deploy_id $QEMU_PROTOCOL://$dest_host/system" \
-                "Could not migrate $deploy_id to $dest_host"
-
-    and execute ``onehost sync --force``.
 - Modern qemu versions (>= 1.10) have support some extensions of the qcow2 format that are not compatible with older versions. By default the images are generated in this format. To make them work in previous versions they need to be converted:
 
     .. code-block:: bash
@@ -344,21 +335,23 @@ It is generally a good idea to place defaults for the KVM-specific attributes, t
 
 The parameters that can be changed here are as follows:
 
-+--------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Parameter                | Description                                                                                                                                                                                                       |
-+==========================+===================================================================================================================================================================================================================+
-| LIBVIRT\_URI             | Connection string to libvirtd                                                                                                                                                                                     |
-+--------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| QEMU\_PROTOCOL           | Protocol used for live migrations                                                                                                                                                                                 |
-+--------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| SHUTDOWN\_TIMEOUT        | Seconds to wait after shutdown until timeout                                                                                                                                                                      |
-+--------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| FORCE\_DESTROY           | Force VM cancellation after shutdown timeout                                                                                                                                                                      |
-+--------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| CANCEL\_NO\_ACPI         | Force VM's without ACPI enabled to be destroyed on shutdown                                                                                                                                                       |
-+--------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| DEFAULT\_ATTACH\_CACHE   | This parameter will set the default cache type for new attached disks. It will be used in case the attached disk does not have an specific cache method set (can be set using templates when attaching a disk).   |
-+--------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|       Parameter        |                                                                                                   Description                                                                                                   |
++========================+=================================================================================================================================================================================================================+
+| LIBVIRT\_URI           | Connection string to libvirtd                                                                                                                                                                                   |
++------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| QEMU\_PROTOCOL         | Protocol used for live migrations                                                                                                                                                                               |
++------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| SHUTDOWN\_TIMEOUT      | Seconds to wait after shutdown until timeout                                                                                                                                                                    |
++------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| FORCE\_DESTROY         | Force VM cancellation after shutdown timeout                                                                                                                                                                    |
++------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| CANCEL\_NO\_ACPI       | Force VM's without ACPI enabled to be destroyed on shutdown                                                                                                                                                     |
++------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| DEFAULT\_ATTACH\_CACHE | This parameter will set the default cache type for new attached disks. It will be used in case the attached disk does not have an specific cache method set (can be set using templates when attaching a disk). |
++------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| MIGRATE\_OPTIONS       | Set options for the virsh migrate command                                                                                                                                                                       |
++------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 See the :ref:`Virtual Machine drivers reference <devel-vmm>` for more information.
 
