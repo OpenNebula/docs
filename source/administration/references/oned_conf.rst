@@ -148,7 +148,7 @@ XML-RPC Server Configuration
 -  ``KEEPALIVE_MAX_CONN``: Maximum number of RPCs that the server will execute on a single connection
 -  ``TIMEOUT``: Maximum time in seconds the server will wait for the client to do anything while processing an RPC
 -  ``RPC_LOG``: Create a separated log file for xml-rpc requests, in /var/log/one/one_xmlrpc.log.
--  ``MESSAGE_SIZE``: Buffer size in bytes for XML-RPC responses. Only relevant for federation slave zones.
+-  ``MESSAGE_SIZE``: Buffer size in bytes for XML-RPC responses.
 -  ``LOG_CALL_FORMAT``: Format string to log XML-RPC calls. Interpreted strings:
 
    -  %i -- request id
