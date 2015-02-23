@@ -163,7 +163,7 @@ Virtual Machines using resources from image Datastores or Virtual Networks in th
 
 Hosts in the Cluster 'none' will only run VMs using resources without a Cluster.
 
-.. warning:: System Datastores are not shared across clusters and can only be used by hosts in the default cluster.
+.. warning:: System Datastores in cluster default are not shared across clusters and can only be used by hosts in the default cluster.
 
 Scheduling and Clusters
 =======================

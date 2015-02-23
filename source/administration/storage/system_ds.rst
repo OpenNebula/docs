@@ -186,7 +186,7 @@ To activate for instance the Stripping storage policy, ``/etc/one/sched.conf`` m
 
 .. warning:: Any host belonging to a given cluster **must** be able to access any system or image datastore defined in that cluster.
 
-.. warning:: System Datastores are not shared across clusters and can only be used by hosts in the default cluster.
+.. warning:: System Datastores in cluster default are not shared across clusters and can only be used by hosts in the default cluster.
 
 User Perspective
 ----------------
