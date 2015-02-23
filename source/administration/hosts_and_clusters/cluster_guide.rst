@@ -159,9 +159,11 @@ The Default Cluster 'None'
 
 Hosts, Datastores and Virtual Networks can be grouped into clusters, but this is optional. By default, these resources are created outside of any Cluster, what can be seen as a special Cluster named 'none' in Sunstone. In the CLI, this Cluster name is shown as '-'.
 
-Virtual Machines using resources from Datastores or Virtual Networks in the Cluster 'none' can be deployed in any Host, which must be properly configured.
+Virtual Machines using resources from image Datastores or Virtual Networks in the Cluster 'none' can be deployed in any Host, which must be properly configured.
 
 Hosts in the Cluster 'none' will only run VMs using resources without a Cluster.
+
+.. warning:: System Datastores are not shared across clusters and can only be used by hosts in the default cluster.
 
 Scheduling and Clusters
 =======================
