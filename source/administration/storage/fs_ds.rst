@@ -75,6 +75,21 @@ After creating a new datastore the LN\_TARGET and CLONE\_TARGET parameters will 
 
 .. warning:: Note that datastores are not associated to any cluster by default, and their are supposed to be accessible by every single host. If you need to configure datastores for just a subset of the hosts take a look to the :ref:`Cluster guide <cluster_guide>`.
 
+Frontend Access to the Storage
+--------------------------------------------------------------------------------
+
+By default, it is implied that the Frontend has direct access to the storage. Let's say we are configuring datastore `DS_ID = 100`. It is implied that the frontend can write directly to `/var/lib/one/datastores/100`. When an image is first downloaded and registered into the datastore, only the frontend is involved in this operation.
+
+However, in some scenarios this not ideal, and therefore it can be configured. If the underlying storage is *GlusterFS*, *GFS2* or any other shared storage system, and we do **not** want the frontend to be part of this storage cluster we can use these attributes to configure the behaviour:
+
++-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|    Attribute    |                                                                                                                                               Description                                                                                                                                               |
++=================+=========================================================================================================================================================================================================================================================================================================+
+| ``BRIDGE_LIST`` | **(Optional)** Space separated list of hosts that have access to the storage. This can be all the hosts in the storage cluster, or a subset of them, which will carry out the write operations to the datastore. For each operation only one of the host will be chosen, using a round-robin algorithm. |
++-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``STAGING_DIR`` | **(Optional)** Images are first downloaded to the frontend and then scp'd over to the chosen host from the ``BRIDGE_LIST`` list. They are scp'd to the ``STAGING_DIR``, and then moved to the final destination. If empty, it defaults to ``/var/tmp``.                                                 |
++-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
 .. _fs_ds_using_the_shared_transfer_driver:
 
 Using the Shared Transfer Driver
