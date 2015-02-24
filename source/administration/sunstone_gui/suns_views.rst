@@ -11,21 +11,21 @@ The OpenNebula Sunstone Views can be grouped in two different layouts. On one ha
 Default Views
 =============
 
-OpenNebula provides three default advanced views, ``admin``, ``vcenter`` and ``user`` and three simplified cloud view ``groupadmin``, ``vcenter`` and ``cloud`` that implements six common views. By default, the ``admin`` view is only available to the oneadmin group. New users will be included in the users group and will use the default ``cloud`` view.
+OpenNebula provides three default advanced views, ``admin``, ``admin_vcenter`` and ``user`` and three simplified cloud view ``groupadmin``, ``cloud_vcenter`` and ``cloud`` that implements six common views. By default, the ``admin`` view is only available to the oneadmin group. New users will be included in the users group and will use the default ``cloud`` view.
 
-+-------------+-------+--------+------+-------+----------+------------+-------+-------+-----+--------+-----------+----------+
-|  Advanced view layout                                                                                          |          |
-+=============+=======+========+======+=======+==========+============+=======+=======+=====+========+===========+==========+
-|             | System                | Infrastructure                                | Virtual Resources                   |
-+-------------+-------+--------+------+-------+----------+------------+-------+-------+-----+--------+-----------+----------+
-|             | Users | Groups | ACLs | Hosts | Clusters | Datastores | VNets | Zones | VMs | Images | Templates | Services |
-+-------------+-------+--------+------+-------+----------+------------+-------+-------+-----+--------+-----------+----------+
-| Admin       | x     | x      | x    | x     | x        | x          | x     | x     | x   | x      | x         | x        |
-+-------------+-------+--------+------+-------+----------+------------+-------+-------+-----+--------+-----------+----------+
-| vCenter     | x     | x      | x    | x     | x        | x          | x     | x     | x   |        | x         | x        |
-+-------------+-------+--------+------+-------+----------+------------+-------+-------+-----+--------+-----------+----------+
-| User        |       |        |      |       |          | x          | x     |       | x   | x      | x         | x        |
-+-------------+-------+--------+------+-------+----------+------------+-------+-------+-----+--------+-----------+----------+
++----------------------+--------+----------------+-------------------+-------+----------+------------+-------+-------+-----+--------+-----------+----------+
+| Advanced view layout |        |                |                   |       |          |            |       |       |     |        |           |          |
++======================+========+================+===================+=======+==========+============+=======+=======+=====+========+===========+==========+
+|                      | System | Infrastructure | Virtual Resources |       |          |            |       |       |     |        |           |          |
++----------------------+--------+----------------+-------------------+-------+----------+------------+-------+-------+-----+--------+-----------+----------+
+|                      | Users  | Groups         | ACLs              | Hosts | Clusters | Datastores | VNets | Zones | VMs | Images | Templates | Services |
++----------------------+--------+----------------+-------------------+-------+----------+------------+-------+-------+-----+--------+-----------+----------+
+| Admin                | x      | x              | x                 | x     | x        | x          | x     | x     | x   | x      | x         | x        |
++----------------------+--------+----------------+-------------------+-------+----------+------------+-------+-------+-----+--------+-----------+----------+
+| Admin vCenter        | x      | x              | x                 | x     | x        | x          | x     | x     | x   |        | x         | x        |
++----------------------+--------+----------------+-------------------+-------+----------+------------+-------+-------+-----+--------+-----------+----------+
+| User                 |        |                |                   |       |          | x          | x     |       | x   | x      | x         | x        |
++----------------------+--------+----------------+-------------------+-------+----------+------------+-------+-------+-----+--------+-----------+----------+
 
 +-------------------+--------+-------------------+-----------------+----------+
 | Cloud view layout |        |                   |                 |          |
@@ -36,7 +36,7 @@ OpenNebula provides three default advanced views, ``admin``, ``vcenter`` and ``u
 +-------------------+--------+-------------------+-----------------+----------+
 | Group Admin       | x      | x                 | x               | x        |
 +-------------------+--------+-------------------+-----------------+----------+
-| vCenter Cloud     |        | x                 |                 | x        |
+| Cloud vCenter     |        | x                 |                 | x        |
 +-------------------+--------+-------------------+-----------------+----------+
 | Cloud             |        | x                 | x               | x        |
 +-------------------+--------+-------------------+-----------------+----------+
@@ -48,8 +48,8 @@ This view provides full control of the cloud.
 
 |admin_view|
 
-vCenter View
-------------
+Admin vCenter View
+--------------------------------------------------------------------------------
 
 View designed to present the valid operations agaist a vCenter infrastructure to a cloud administrator.
 
@@ -99,9 +99,11 @@ Sunstone will calculate the views available to users using:
 
 - From all the groups the user belongs to, the SUNSTONE_VIEWS (comma separated list of views) attributes is pulled. Those views combined would be presented to the user
 - If no views available from users, the defaults would be fetched from ``sunstone-views.yaml``. Here, views can be defined for:
+
   -  Each user (``users:`` section), list each user and the set of views available for her.
   -  Each group (``groups:`` section), list the set of views for the group.
   -  The default view, if a user is not listed in the ``users:`` section, nor its group in the ``groups:`` section, the default views will be used.
+
 - By default users in the oneadmin group have access to all views
 - By default users in the users group can use ``coud_view``
 

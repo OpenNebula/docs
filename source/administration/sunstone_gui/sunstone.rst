@@ -215,7 +215,7 @@ We are aware that in production environments, access to professional, efficient 
 
 |support_home|
 
-This tab and can be disabled in the admin, vcenter and user yaml files inside the sunstone views configuration directory:
+This tab and can be disabled in the ``admin``, ``admin_vcenter`` and ``user`` yaml files inside the sunstone views configuration directory:
 
 .. code::
 
