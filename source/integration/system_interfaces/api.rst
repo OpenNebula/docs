@@ -6422,6 +6422,12 @@ Schemas for Virtual Network
                         <xs:element name="TYPE" type="xs:string"/>
                         <xs:element name="ULA_PREFIX" type="xs:string" minOccurs="0"/>
                         <xs:element name="VLAN" type="xs:string"  minOccurs="0"/>
+                        <xs:element name="MAC_END" type="xs:string" minOccurs="0"/>
+                        <xs:element name="IP_END" type="xs:string" minOccurs="0"/>
+                        <xs:element name="IP6_ULA" type="xs:string" minOccurs="0"/>
+                        <xs:element name="IP6_ULA_END" type="xs:string" minOccurs="0"/>
+                        <xs:element name="IP6_GLOBAL" type="xs:string" minOccurs="0"/>
+                        <xs:element name="IP6_GLOBAL_END" type="xs:string" minOccurs="0"/>
                         <xs:element name="USED_LEASES" type="xs:string"/>
                         <xs:element name="LEASES" minOccurs="0" maxOccurs="1">
                           <xs:complexType>
@@ -6677,6 +6683,8 @@ Schemas for Accounting
                     BOOT_UNDEPLOY       = 32
                   -->
                   <xs:element name="LCM_STATE" type="xs:integer"/>
+                  <xs:element name="PREV_STATE" type="xs:integer"/>
+                  <xs:element name="PREV_LCM_STATE" type="xs:integer"/>
                   <xs:element name="RESCHED" type="xs:integer"/>
                   <xs:element name="STIME" type="xs:integer"/>
                   <xs:element name="ETIME" type="xs:integer"/>
