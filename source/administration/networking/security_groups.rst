@@ -1,4 +1,5 @@
 .. _security_groups:
+.. _fw:
 
 ================================================================================
 Security Groups
@@ -117,7 +118,11 @@ Configuration
 
 .. todo:: To enable Security Groups...
 
+.. todo:: Talk about deprecated drivers
+
 .. |sg_wizard_create| image:: /images/sg_wizard_create.png
 .. |sg_vnet_assign| image:: /images/sg_vnet_assign.png
 .. |sg_ar_assign| image:: /images/sg_ar_assign.png
 .. |sg_vm_view| image:: /images/sg_vm_view.png
+
+
