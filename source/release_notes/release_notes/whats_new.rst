@@ -4,7 +4,7 @@
 What's New in 4.10
 ==================
 
-OpenNebula 4.10 (Fox Fur) ships with several improvements in different subsystems and components. But, more importantly, it features a little revolution in shape of vCenter support. 
+OpenNebula 4.10 (Fox Fur) ships with several improvements in different subsystems and components. But, more importantly, it features a little revolution in shape of vCenter support.
 
 This is the first OpenNebula release that allows to automatically import an existing infrastructure, since the new vCenter drivers allow to import Clusters and Virtual Machines from a vCenter installation, significantly smoothing the set up curve. The concept of the vCenter drivers is akin to the hybrid cloud approach in the sense that OpenNebula will delegate a number of aspects to vCenter, instead of pursuing the management of almost every aspect as it traditionally does with the three supported hypervisors: XEN, KVM and VMware ESX. OpenNebula will use pre defined Virtual Machine Templates existing in the vCenter set up to launch Virtual Machines, very much like it does in its hybrid drivers to access Amazon EC2, IBM SoftLayer and Microsoft Azure, although offering extra features like for instance VNC support and more lifecycle actions.
 
@@ -17,7 +17,7 @@ A refinement has been performed in the OpenNebula networking system, extended in
 
 We are aware that in production environments, access to professional, efficient support is a must, and this is why we have introduced an :ref:`integrated tab in Sunstone to access OpenNebula Systems (the company behind OpenNebula, formerly C12G)  professional support <commercial_support_sunstone>`. In this way, support tickets management can be performed through Sunstone, avoiding disruption of work and enhancing productivity.
 
-Finally, several improvements are scattered across every other OpenNebula component: improvements in the hybrid drivers, including better Sunstone support, improved auth mechanisms (login token functionality), a solution for the spurious Poweroff state, and many other bugfixes that stabilized features introduced in Lemon Slice. 
+Finally, several improvements are scattered across every other OpenNebula component: improvements in the hybrid drivers, including better Sunstone support, improved auth mechanisms (login token functionality), a solution for the spurious Poweroff state, and many other bugfixes that stabilized features introduced in Lemon Slice.
 
 As usual OpenNebula releases are named after a Nebula. The `Fox Fur Nebula (IC 3568) <http://en.wikipedia.org/wiki/Fox_Fur_Nebula>`__ is located in Monoceros and included in the NGC 2264 Region.
 
@@ -48,7 +48,7 @@ Several improvements in the Virtual Machine lifecycle and operations:
 OpenNebula Drivers :: Virtualization
 --------------------------------------------------------------------------------
 
-- **vCenter support** :ref:`that allows to automatically import an existing infrastructure <vcenterg>` 
+- **vCenter support** :ref:`that allows to automatically import an existing infrastructure <vcenterg>`
 
 OpenNebula Drivers :: Authorization
 --------------------------------------------------------------------------------

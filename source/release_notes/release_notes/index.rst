@@ -1,14 +1,14 @@
 .. _rn:
 
-====================
-Release Notes 4.10.1
-====================
+================================================================================
+Release Notes 4.11.80
+================================================================================
 
 .. toctree::
    :maxdepth: 1
 
-   What's New in 4.10 <whats_new>
-   Resolved Issues in 4.10.1 <resolved_issues_4101>
+   What's New in 4.12 <whats_new>
+   Resolved Issues in 4.11.80 <resolved_issues_4101>
    Features <features>
    Platform Notes <uspng>
    Compatibility Guide <compatibility>
@@ -21,3 +21,5 @@ Release Notes 4.10.1
    Upgrading from 4.2 <upgrade_42>
    Upgrading from 4.0.x <upgrade_40>
    Upgrading from 3.8.x <upgrade_38>
+
+.. todo:: Fix Resolved Issues link

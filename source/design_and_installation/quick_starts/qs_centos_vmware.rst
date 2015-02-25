@@ -47,7 +47,7 @@ Let's install the repository and required packages. As root in the front-end:
      # cat << EOT > /etc/yum.repos.d/opennebula.repo
      [opennebula]
      name=opennebula
-     baseurl=http://downloads.opennebula.org/repo/4.10/CentOS/6/x86_64/
+     baseurl=http://downloads.opennebula.org/repo/4.12/CentOS/6/x86_64/
      enabled=1
      gpgcheck=0
      EOT
