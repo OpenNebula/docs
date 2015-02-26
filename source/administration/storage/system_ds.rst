@@ -208,6 +208,8 @@ This control can be exerted within the VM template, with two attributes:
 
 .. warning:: Admins and user with admins rights can force the deployment to a certain datastore, using 'onevm deploy' command.
 
+.. _disable_system_ds:
+
 Disable a System Datastore
 ================================
 

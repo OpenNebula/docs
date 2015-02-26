@@ -21,6 +21,8 @@ OpenNebula Sunstone was installed during the OpenNebula installation. If you fol
 
     # /usr/share/one/install_gems sunstone
 
+.. _remote_access_sunstone:
+
 The Sunstone Operation Center offers the possibility of starting a VNC/SPICE session to a Virtual Machine. This is done by using a VNC/SPICE websocket-based client (noVNC) on the client side and a VNC proxy translating and redirecting the connections on the server-side.
 
 Requirements:

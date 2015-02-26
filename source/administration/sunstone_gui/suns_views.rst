@@ -78,6 +78,8 @@ In this scenario the cloud administrator must prepare a set of templates and ima
 
 |cloud_dash|
 
+.. _vcenter_cloud_view:
+
 vCenter Cloud View
 ------------------
 

@@ -118,10 +118,6 @@ Considerations & Limitations
 +-------------+------------------------------------------------+
 | detach_disk | Action of detaching a new disk to a running VM |
 +-------------+------------------------------------------------+
-| attach_nic  | Action of attaching a new NIC to a running VM  |
-+-------------+------------------------------------------------+
-| detach_nic  | Action of detaching a new NIC to a running VM  |
-+-------------+------------------------------------------------+
 | migrate     | VMs cannot be migrated between ESX clusters    |
 +-------------+------------------------------------------------+
 
@@ -226,7 +222,9 @@ The following variables are added to the OpenNebula hosts representing ESX clust
 
    vOneCloud will create a special key at boot time and save it in /var/lib/one/.one/one_key. This key will be used as a private key to encrypt and decrypt all the passwords for all the vCenters that vOneCloud can access. Thus, the password shown in the vOneCloud host represneting the vCenter is the original password encrypted with this special key.
 
-**Step 4: Importing vCenter VM Templates**
+.. _import_vcenter_resources:
+
+**Step 4: Importing vCenter VM Templates, Networks and running VMs**
 
 The same **onevcenter** tool can be used to import existing VM templates from the ESX clusters:
 
@@ -281,7 +279,7 @@ The same **onevcenter** tool can be used to import existing VM templates from th
     SCHED_REQUIREMENTS="NAME=\"devel\""
     VCPU="1"
 
-Moreover The same **onevcenter** tool can be used to import existing Networks from the ESX clusters:
+Moreover the same **onevcenter** tool can be used to import existing Networks and distributed vSwitches from the ESX clusters:
 
 .. code::
 
@@ -336,16 +334,41 @@ Moreover The same **onevcenter** tool can be used to import existing Networks fr
         LEASES
         AR  OWNER                    MAC              IP                      IP6_GLOBAL
 
-The same import mechanism is available graphically through Sunstone for hosts, networks and templates.
+Also, the **onevcenter** tool can be used to import existing running VMs:
+
+.. code::
+
+    $ .onevcenter vms --vcenter <vcenter-host> --vuser <vcenter-username> --vpass <vcenter-password>
+
+    Connecting to vCenter: <vcenter-host>...done!
+
+    Looking for running Virtual Machines...done!
+
+    Do you want to process datacenter Testing [y/n]? y
+
+      * Running Virtual Machine found:
+          - Name   : vCenterTesting
+          - UUID   : 42246fa6-340e-5801-4598-c65672dfda64
+          - Cluster: Testing
+        Import this Virtual Machine [y/n]? y
+        OpenNebula VM 11 created!
+
+.. _reacquire_vcenter_resources:
+
+The same import mechanism is available graphically through Sunstone for hosts, networks, templates and running VMs, using the vCenter host create dialog, and they can be used to reacquire resources after the host has been created.
 
 .. image:: /images/vcenter_create.png
     :width: 90%
     :align: center
 
+.. note:: running VMS can only be imported after the vCenter host has been successfuly acquired.
+
 .. note:: If you are running Sunstone using nginx/apache you will have to forward the following headers to be able to interact with vCenter, HTTP_X_VCENTER_USER, HTTP_X_VCENTER_PASSWORD and HTTP_X_VCENTER_HOST. For example in nginx you have to add the following attrs to the server section of your nginx file (underscores_in_headers on; proxy_pass_request_headers on;)
 
 Usage
 =====
+
+.. _vm_template_definition_vcenter:
 
 VM Template definition
 ----------------------
@@ -371,6 +394,8 @@ In order to manually create a VM Template definition in OpenNebula that represen
 +--------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 You can find more information about contextualization in the :ref:`vcenter Contextualization <vcenter_context>` section.
+
+.. _virtual_network_vcenter_usage:
 
 Virtual Network definition
 --------------------------
