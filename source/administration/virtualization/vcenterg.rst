@@ -353,6 +353,8 @@ Also, the **onevcenter** tool can be used to import existing running VMs:
         Import this Virtual Machine [y/n]? y
         OpenNebula VM 11 created!
 
+After a Virtual Machine is imported, all their lifecycle (including creation of snapshots) can be controlled through OpenNebula. Also, network management operations are present like the ability to attach/detach network interfaces.
+
 .. _reacquire_vcenter_resources:
 
 The same import mechanism is available graphically through Sunstone for hosts, networks, templates and running VMs, using the vCenter host create dialog, and they can be used to reacquire resources after the host has been created.
@@ -395,6 +397,8 @@ In order to manually create a VM Template definition in OpenNebula that represen
 
 You can find more information about contextualization in the :ref:`vcenter Contextualization <vcenter_context>` section.
 
+After a VM Template is instantiated, the lifecycle of the resulting virtual machine (including creation of snapshots) can be controlled through OpenNebula. Also, network management operations are present like the ability to attach/detach network interfaces.
+
 .. _virtual_network_vcenter_usage:
 
 Virtual Network definition
@@ -405,8 +409,6 @@ Virtual Networks from vCenter can be represented using OpenNebula standard netwo
 Virtual Networks in vCenter can be created using the vCenter web client, with any specific configuration like for instance VLANs. OpenNebula will use these networks with the defined characteristics, but it cannot create new Virtual Networks in vCenter, but rather only OpenNebula vnet representations of such Virtual Networks. OpenNebula additionaly can handle on top of these networks three types of :ref:`Address Ranges: Ethernet, IPv4 and IPv6 <vgg_vn_ar>`.
 
 vCenter VM Templates can define their own NICs, which OpenNebula cannot manage. However, any NIC added in the OpenNebula VM Template, or through the attach_nic operation, will be handled by OpenNebula, and as such it is subject to be detached and its informatin (IP, MAC, etc) is known by OpenNebula.
-
-
 
 .. _vm_scheduling_vcenter:
 
