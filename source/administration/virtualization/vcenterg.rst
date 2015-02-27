@@ -29,14 +29,14 @@ Networking is handled by creating Virtual Network representations of the vCenter
 
 Therefore there is no need to convert your current Virtual Machines or import/export them through any process; once ready just save them as VM Templates in vCenter, following `this procedure <http://pubs.vmware.com/vsphere-55/index.jsp?topic=%2Fcom.vmware.vsphere.vm_admin.doc%2FGUID-FE6DE4DF-FAD0-4BB0-A1FD-AFE9A40F4BFE_copy.html>`__.
 
-.. note:: After a VM Template is cloned and booted into a vCenter Cluster it can access VMware advanced features and it can be managed through the OpenNebula provisioning portal or through vCenter (e.g. to move the VM to another datastore or migrate it to another ESX). OpenNebula will poll vCenter to detect these changes and update its internal representation accordingly.
+.. note:: After a VM Template is cloned and booted into a vCenter Cluster it can access VMware advanced features and it can be managed through the OpenNebula provisioning portal -to control the lifecycle, add/remove NICs, make snapshots- or through vCenter (e.g. to move the VM to another datastore or migrate it to another ESX). OpenNebula will poll vCenter to detect these changes and update its internal representation accordingly.
 
 Requirements
 ============
 
 The following must be met for a functional vCenter environment:
 
-- vCenter 5.5+, with at least one cluster aggregating at least one ESX 5.5+ host.
+- vCenter 5.5, with at least one cluster aggregating at least one ESX 5.5 host.
 
 - Define a vCenter user for OpenNebula. This vCenter user (let's call her oneadmin) needs to have access to the ESX clusters that OpenNebula will manage. In order to avoid problems, the hassle free approach is to declare this oneadmin user as Administrator. In production environments though, it may be needed to perform a more fine grained permission assigment (please note that the following permissions related to operations are related to the use that OpenNebula does with this operations):
 
@@ -123,7 +123,7 @@ Considerations & Limitations
 
 - **No Security Groups**: Firewall rules as defined in Security Groups cannot be enforced in vCenter VMs.
 - There is a known issue regarding **VNC ports**, preventing VMs with ID 89 to work correctly through VNC. This is being addressed `here <http://dev.opennebula.org/issues/2980>`__.
-- OpenNebula treats **snapshots** a tad different from VMware. OpenNebula assumes that they are independent, whereas VMware builds them incrementally. This means that OpenNebula will still present snapshots that are no longer valid if one of their parent snapshots are deleted, and thus revert operatoins applied upon them will fail.
+- OpenNebula treats **snapshots** a tad different from VMware. OpenNebula assumes that they are independent, whereas VMware builds them incrementally. This means that OpenNebula will still present snapshots that are no longer valid if one of their parent snapshots are deleted, and thus revert operations applied upon them will fail.
 - For VNC to work properly, please install `VMware Tools (for Windows) <https://www.vmware.com/support/ws55/doc/new_guest_tools_ws.html>`__ or `Open Virtual Machine Tools <http://open-vm-tools.sourceforge.net/>`__ (for \*nix).
 - **No files in context**: Passing entire files to VMs is not supported, but all the other CONTEXT sections will be honored
 - Cluster name cannot contain spaces
@@ -175,7 +175,7 @@ In order to configure OpenNebula to work with the vCenter drivers, the following
 
 **Step 3: Importing vCenter Clusters**
 
-OpenNebula ships with a powerful CLI tool to import vCenter clusters, VM Templates and Networks. The tools is self-explanatory, just set the credentials and IP to access the vCenter host and follow on screen instructions. A sample section follows:
+OpenNebula ships with a powerful CLI tool to import vCenter clusters, VM Templates, Networks and running VMs. The tools is self-explanatory, just set the credentials and IP to access the vCenter host and follow on screen instructions. A sample section follows:
 
 .. code::
 
@@ -220,7 +220,7 @@ The following variables are added to the OpenNebula hosts representing ESX clust
 
 .. note::
 
-   vOneCloud will create a special key at boot time and save it in /var/lib/one/.one/one_key. This key will be used as a private key to encrypt and decrypt all the passwords for all the vCenters that vOneCloud can access. Thus, the password shown in the vOneCloud host represneting the vCenter is the original password encrypted with this special key.
+   OpenNebula will create a special key at boot time and save it in /var/lib/one/.one/one_key. This key will be used as a private key to encrypt and decrypt all the passwords for all the vCenters that OpenNebula can access. Thus, the password shown in the OpenNebula host representing the vCenter is the original password encrypted with this special key.
 
 .. _import_vcenter_resources:
 
