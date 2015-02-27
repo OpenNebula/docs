@@ -52,9 +52,4 @@ Sunstone
 
 * `#2292 <http://dev.opennebula.org/issues/2292>`_ sunstone novnc send ctrl-alt-del not working in Firefox
 * `#1877 <http://dev.opennebula.org/issues/1877>`_ if syslog enabled disable the logs tab in the VM detailed view
-* `#3272 <http://dev.opennebula.org/issues/3272>`_ The vCenter host creation dialog will fail with the enter key. The "import vCenter clusters" button needs to be pressed instead
-
-Issues Solved in 4.10.1
-================================================================================
-
-For a complete list of issues solved in the 4.10.1 release, visit the `project's tracker <http://dev.opennebula.org/versions/70>`_.
+* `#3376 <http://dev.opennebula.org/issues/3376>`_ If a federation zone is not reachable, the zone list is not populated and the user cannot switch to other working zone

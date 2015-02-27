@@ -8,7 +8,6 @@ Release Notes 4.11.80
    :maxdepth: 1
 
    What's New in 4.12 <whats_new>
-   Resolved Issues in 4.11.80 <resolved_issues_4101>
    Features <features>
    Platform Notes <uspng>
    Compatibility Guide <compatibility>
