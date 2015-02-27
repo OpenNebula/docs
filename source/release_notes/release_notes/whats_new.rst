@@ -31,7 +31,7 @@ In the following list you can check the highlights of OpenNebula 4.12. (`a detai
 OpenNebula Core
 ---------------
 
-New features are:
+New features include:
 
 - **Showback support**, the core maintains the cost schema defined as **cost per cpu per hour**, and **cost per memory MB per hour** in order to provide :ref:`showback functionality <showback>`.
 - **Datastore maintenance feature**, the :ref:`system datastore can now be disabled <disable_system_ds>` so OpenNebula won't schedule VMs in it.
