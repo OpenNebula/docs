@@ -15,6 +15,11 @@ Starting with Cotton Candy, Virtual Datacenters are a new kind of OpenNebula res
 
 In addition to the well known VNC support in Sunstone, OpenNebula 4.12 will include support to interact with Virtual Machines using the SPICE protocol. This feature can be enabled for any Virtual Machine just checking the option in the input/output section of the Template creation form.
 
+.. image:: /images/spice1.gif
+    :width: 80%
+    :scale: 80%
+    :align: center
+
 Networking has been vastly improved in 4.12, with the addition of Security Groups, allowing administrators to define the firewall rules and apply them to the Virtual Machines. Also, Virtual Extensible LAN (VXLAN) is a network virtualization technology aimed to solve large cloud deployments problems, encapsulating Ethernet frames within UDP packets, and thus solving the 4096 VLAN limit problem. Cotton Candy is fully capable of managing VXLANs using the linux kernel integration.
 
 Important new features related to the newly introduced vCenter support are available in OpenNebula 4.12: the ability to import running VMs and networks, including the attach/detach NIC functionality, a new cloud view tailored for vCenter, VM contextualization support and reacquire VM Templates with their logo and description.
@@ -84,17 +89,18 @@ Sunstone is the all encompasing access to OpenNebula, so it reflects all the imp
 
 - **Support for SPICE protocol**, access your :ref:`VMs through the powerful remote access protocol <remote_access_sunstone>`, as well as using VNC.
 - **Cloud vCenter View**, tailored to :ref:`provision resources to end user from vCenter based infrastructures <vcenter_cloud_view>`.
-- **Improvements in networking informatoin**, for :ref:`hybrid <introh>` and :ref:`vcenter <vcenterg>` based VMs.
+- **Improvements in networking information**, for :ref:`hybrid <introh>` and :ref:`vcenter <vcenterg>` based VMs.
 - **Support for VXLAN**, in the :ref:`network tab <vxlan>`.
 - **Support for Showback** capabilities, for :ref:`both users and cloud administrators <showback>`.
 - **Search for any attribute in the VM template**, useful to searh for organization specific attributes. 
 - **Proxy capabilities** for the :ref:`commercial support integration with Zendesk <commercial_support_sunstone>`. (TODO documentation?)
+- **Suport IO Tune parameters for templates**
 
 
 Contextualization
 -------------------------------------
 
-Contextualizatoin improvements are related to the vCenter support:
+Contextualization improvements are related to the vCenter support:
 
 - **vCenter VM contextualization support**, with the ability to :ref:`contextualize both windows and linux VMs <vm_template_definition_vcenter>`
 
