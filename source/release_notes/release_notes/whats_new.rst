@@ -75,8 +75,7 @@ OpenNebula Drivers :: Storage
 As usual, storage drivers were improved for the different supported backends:
 
 - **Better Ceph support**, :ref:`ceph drivers <ceph_ds>` now come with the ability to use the CEPH "MAX AVAIL" attribute.
-- **Support for BRIDGE_LIST**, in :ref:`fs/share and fs/ssh drivers <fs_ds>`. 
-- **Automatic deletion of disks after detach**, new configuation option to prevent disk space ocupation by unused detached disks (TODO documentation?)
+- **Support for BRIDGE_LIST**, in :ref:`fs/share and fs/ssh drivers <fs_ds>`.
 
 Sunstone
 --------------------------------------------------------------------------------
