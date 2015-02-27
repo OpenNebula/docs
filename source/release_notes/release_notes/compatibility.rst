@@ -26,6 +26,11 @@ Group Administrators
 
 Previous versions allowed to create one special group administrator when the group was created. Now any user can be made an administrator at any moment. The main difference with the previous mechanism is that now the administrators don't have a separate set of resources they are allowed to create, i.e. the ``--admin_resources`` option is not present in the ``onegroup create`` command.
 
+Virtual Networks
+--------------------------------------------------------------------------------
+
+When a Virtual Network is shown to a user, it only includes the leases to his objects. This way, they can see the IPs given to their VMs, but not to other user's VMs. For 4.12, all the leases are included (leases on hold and other user's VMs) if the user requesting the Virtual Network is the owner (has ``MANAGE`` rights).
+
 Developers and Integrators
 ================================================================================
 
