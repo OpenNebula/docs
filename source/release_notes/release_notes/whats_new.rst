@@ -19,9 +19,9 @@ Networking has been vastly improved in 4.12, with the addition of Security Group
 
 Important new features related to the newly introduced vCenter support are available in OpenNebula 4.12: the ability to import running VMs and networks, including the attach/detach NIC functionality, a new cloud view tailored for vCenter, VM contextualization support and reacquire VM Templates with their logo and description.
 
-Finally, several improvements are scattered across every other OpenNebula component: the possibility to flush and disable a system datastore, improvements in Sunstone for better user workflow, configuation option to enable the automatic deletion of disks after detach, and many other bugfixes that stabilized features introduced in Fox Furce.
+Finally, several improvements are scattered across every other OpenNebula component: the possibility to disable a system datastore, improvements in Sunstone for better user workflow, configuation option to enable the automatic deletion of disks after detach, and many other bugfixes that stabilized features introduced in Fox Furce.
 
-As usual OpenNebula releases are named after a Nebula. The `Cotton Candy Nebula (IRAS 17150-3224) <http://en.wikipedia.org/wiki/Fox_Fur_Nebula>`__ is located in the constellation of Ara.
+As usual OpenNebula releases are named after a Nebula. The `Cotton Candy Nebula (IRAS 17150-3224) <http://en.wikipedia.org/wiki/Cotton_Candy_Nebula>`__ is located in the constellation of Ara.
 
 The OpenNebula team is now set to bug-fixing mode. Note that this is a beta release aimed at testers and developers to try the new features, and send a more than welcomed feedback for the final release.
 
