@@ -5,7 +5,19 @@
 Security Groups
 ================================================================================
 
-Using Security Groups, administrators can define the firewall rules and apply them to the Virtual Machines.
+Using Security Groups, administrators can define the firewall rules and apply
+them to the Virtual Machines.
+
+By default, the `default` security group is applied to new VMs, which allows all
+OUTBOUND traffic but blocks any INBOUND traffic. Modify the `default` security
+group to allow all INBOUND connections or to define any rules you might want.
+
+.. warning::
+
+    These drivers deprecate the old `firewall` drivers. However, it will respect
+    backwards compatibility and if old rules such `WHITE_PORTS_TCP`, etc are
+    defined, the old drivers will be used and it will completely ignore the new
+    security drivers mechanism.
 
 Definition
 ================================================================================
@@ -116,9 +128,25 @@ The Security Groups can be updated to edit or add new rules. Bear in mind that t
 Configuration
 ================================================================================
 
-.. todo:: To enable Security Groups...
+Security groups is only supported and automatically enabled when using the
+following drivers:
 
-.. todo:: Talk about deprecated drivers
+* ``802.1Q``
+* ``ebtables``
+* ``fw``
+* ``vxlan``
+
+.. note:: Openvswitch and vmware do not support Security Groups.
+
+Due to backwards compatibility reasons, if the old firewall rules exist in the
+template, security groups will be ignored and the deprecated way will be
+honored:
+
+* ``WHITE_PORTS_TCP = <iptables_range>``: Permits access to the VM only through the specified ports in the TCP protocol. Supersedes BLACK\_PORTS\_TCP if defined.
+* ``BLACK_PORTS_TCP = <iptables_range>``: Doesn't permit access to the VM through the specified ports in the TCP protocol. Superseded by WHITE\_PORTS\_TCP if defined.
+* ``WHITE_PORTS_UDP = <iptables_range>``: Permits access to the VM only through the specified ports in the UDP protocol. Supersedes BLACK\_PORTS\_UDP if defined.
+* ``BLACK_PORTS_UDP = <iptables_range>``: Doesn't permit access to the VM through the specified ports in the UDP protocol. Superseded by WHITE\_PORTS\_UDP if defined.
+* ``ICMP = drop``: Blocks ICMP connections to the VM. By default it's set to accept.
 
 .. |sg_wizard_create| image:: /images/sg_wizard_create.png
 .. |sg_vnet_assign| image:: /images/sg_vnet_assign.png

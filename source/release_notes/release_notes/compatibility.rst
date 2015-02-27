@@ -19,7 +19,24 @@ Virtual Data Centers
 Security Groups
 --------------------------------------------------------------------------------
 
-.. todo:: previous FW drivers and new security groups
+Previous versions supported firewall management through special attributes in the VM templates `WHITE_PORTS_TCP`, etc. This has been deprecated in favour of the the new :ref:`Security Groups <security_groups>`, which are a new entity in OpenNebula. Security Groups can be created and updated, consisting of one or more rules, where each rule is either INBOUND or OUTBOUND, global or for a specific protocol, within each protocol it can be global or for specific subtype of the protocol or ports. Furthermore, the rule can be adjusted to be applied only for a specific source or target, custom defined or an OpenNebula Network.
+
+Backwards compatibility will be kept. If a Virtual Machine template contains one of the following attributes it will ignore security groups and continue to work as before:
+
+* ``WHITE_PORTS_TCP``
+* ``BLACK_PORTS_TCP``
+* ``WHITE_PORTS_UDP``
+* ``BLACK_PORTS_UDP``
+* ``ICMP``
+
+Note that Open vSwitch is **not** affected by this change, as it still works with the old firewall management style. In particular, only these network drivers are affected:
+
+* ``802.1Q``
+* ``ebtables``
+* ``fw``
+* ``vxlan``
+
+It is also worth noting that new networks will be assigned the default security group, which allows all outbound traffic but **blocks all inbound traffic**. Change the ``default`` security group for your infrastructure if you want it to be different.
 
 Group Administrators
 --------------------------------------------------------------------------------
