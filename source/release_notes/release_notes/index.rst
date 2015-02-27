@@ -20,5 +20,3 @@ Release Notes 4.11.80
    Upgrading from 4.2 <upgrade_42>
    Upgrading from 4.0.x <upgrade_40>
    Upgrading from 3.8.x <upgrade_38>
-
-.. todo:: Fix Resolved Issues link
