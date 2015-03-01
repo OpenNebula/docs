@@ -8,4 +8,4 @@ The OpenNebula project would like to thank the `community members <http://openne
 
 Security Groups were funded by `BlackBerry <http://global.blackberry.com>`__ in the context of the Fund a Feature Program.
 
-Network extensions to the vCenter driver were funded by `Echelon <http://echelon.nl/>` in the context of the Fund a Feature Program.
+Network extensions to the vCenter driver were funded by `Echelon <http://echelon.nl/>`__ in the context of the Fund a Feature Program.
