@@ -103,10 +103,10 @@ There are two main processes that must be started, the main OpenNebula daemon: `
 
 Now we can start the services:
 
-.. code::
+.. code-block:: none
 
-    # service opennebula start
-    # service opennebula-sunstone start
+    # systemctl start opennebula
+    # systemctl start opennebula-sunstone
 
 1.4. Configure NFS
 ------------------

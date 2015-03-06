@@ -194,6 +194,17 @@ The ``SHOW SLAVE STATUS`` output will provide detailed information, but to confi
      Slave_IO_Running: Yes
     Slave_SQL_Running: Yes
 
+Enable Start Scripts in CentOS 7
+================================
+
+CentOS 7 packages now come with systemd scripts instead of the old systemV ones. You will need to enable the services again so they are started on system boot. The names of the services are the same as the previous one. For example, to enable ``opennebula``, ``opennebula-sunstone``, ``opennebula-flow`` and ``opennebula-gate`` you can issue these commands:
+
+.. code-block:: none
+
+    # systemctl enable opennebula
+    # systemctl enable opennebula-sunstone
+    # systemctl enable opennebula-flow
+    # systemctl enable opennebula-gate
 
 Update the Drivers
 ==================
