@@ -11,6 +11,8 @@ You should take into account the following technical considerations when using t
 
 -  There is no direct access to the hypervisor, so it cannot be monitored (we don't know where the VM is running on the SoftLayer cloud).
 
+-  This driver does not support proxy to connect to SoftLayer server.
+
 -  The usual OpenNebula functionality for snapshotting, hot-plugging, or migration is not available with SoftLayer (currently).
 
 -  By default OpenNebula will always launch slcci.small (1 CPU, 1024MB RAM) instances, unless otherwise specified.
