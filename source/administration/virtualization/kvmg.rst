@@ -53,6 +53,13 @@ OpenNebula uses the libvirt interface to interact with KVM, so the following ste
 
 .. warning:: Note that oneadmin's group may be other than oneadmin. Some distributions adds oneadmin to the cloud group. Use group = “cloud” above in that case.
 
+-  VMs can not be migrated from hosts wirh SElinux active to machines with it inactive. To make it work in an infrastructure with mixed SElinux configuration you can disable VM labeling. This is done adding the following lines to ``/etc/libvirt/qemu.conf``:
+
+.. code::
+
+    security_driver = "none"
+    security_default_confined = 0
+
 -  The remote hosts must have the libvirt daemon running.
 -  The user with access to these remotes hosts on behalf of OpenNebula (typically ``<oneadmin>``) has to pertain to the <libvirtd> and <kvm> groups in order to use the deaemon and be able to launch VMs.
 
