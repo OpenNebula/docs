@@ -115,6 +115,12 @@ Host Configuration
 
 Each host has to mount the datastore under ``$DATASTORE_LOCATION/<datastore_id>``. You also have to mount the datastore in the front-end in ``/var/lib/one/datastores/<datastore_id>``.
 
+If you are using NFS to share the filesystem between nodes some sensible mount options are ``soft,intr,rsize=32768,wsize=32768``. For example:
+
+.. code::
+
+    server:/storage/datastore0 /var/lib/one/datastores/0 nfs soft,intr,rsize=32768,wsize=32768,rw 0 0
+
 .. warning:: DATASTORE\_LOCATION defines the path to access the datastores in the hosts. It can be defined for each cluster, or if not defined for the cluster the default in oned.conf will be used.
 
 .. warning:: When needed, the front-end will access the datastores using BASE\_PATH (defaults to ``/var/lib/one/datastores``). You can set the BASE\_PATH for the datastore at creation time.
