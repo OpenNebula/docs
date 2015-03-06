@@ -111,7 +111,7 @@ You can make the following virtual resources available to group users:
 
 To make a virtual resource owned by oneadmin available to users of the new group, you have two options:
 
-* Change the resource's group, and give it ``GROUP USE`` permissions. This will make the resource only available to users in that group.
+* Change the resource's group, and give it ``GROUP USE`` permissions. This will make the resource only available to users in that group. This is the recommended option, in order to assign golden resources the best practice is to first clone the resource and then assign it to the desired group for their users consumption.
 * Leave the resource in the oneadmin group, and give it ``OTHER USE`` permissions. This will make the resource available to every user in OpenNebula.
 
 |prepare-tmpl-chgrp|
