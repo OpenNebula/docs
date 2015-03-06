@@ -25,6 +25,8 @@ OpenNebula Sunstone was installed during the OpenNebula installation. If you fol
 
 The Sunstone Operation Center offers the possibility of starting a VNC/SPICE session to a Virtual Machine. This is done by using a VNC/SPICE websocket-based client (noVNC) on the client side and a VNC proxy translating and redirecting the connections on the server-side.
 
+.. warning:: The SPICE Web client is a prototype and is limited in function. More information of this component can be found in the following `link <http://www.spice-space.org/page/Html5>`__
+
 Requirements:
 
 -  Websockets-enabled browser (optional): Firefox and Chrome support websockets. In some versions of Firefox manual activation is required. If websockets are not enabled, flash emulation will be used.
