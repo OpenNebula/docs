@@ -121,6 +121,8 @@ If you are using NFS to share the filesystem between nodes some sensible mount o
 
     server:/storage/datastore0 /var/lib/one/datastores/0 nfs soft,intr,rsize=32768,wsize=32768,rw 0 0
 
+With the documented configuration of libvirt/kvm the image files are accessed as ``oneadmin`` user. In case the files must be read by ``root`` the option ``no_root_squash`` must be added.
+
 .. warning:: DATASTORE\_LOCATION defines the path to access the datastores in the hosts. It can be defined for each cluster, or if not defined for the cluster the default in oned.conf will be used.
 
 .. warning:: When needed, the front-end will access the datastores using BASE\_PATH (defaults to ``/var/lib/one/datastores``). You can set the BASE\_PATH for the datastore at creation time.
