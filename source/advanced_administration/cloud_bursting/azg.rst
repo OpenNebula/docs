@@ -130,6 +130,12 @@ Additionally you must define your credentials, the Azure location to be used and
 
 In the above file, each region represents an `Azure datacenter <http://matthew.sorvaag.net/2011/06/windows-azure-data-centre-locations/>`__ (Microsoft doesn't provide an official list). (see the :ref:`multi site region account section <azg_multi_az_site_region_account_support>` for more information.
 
+If the OpenNebula frontend needs to use a proxy to connect to internet you also need to configure the proxy in that file. The parameter is called ``proxy_uri``. Authenticated proxies are not supported, that is, the ones that require user name and password. For example, if the proxy is in ``10.0.0.1`` and its port is ``8080`` the configuration line should read:
+
+.. code::
+
+    proxy_uri: http://10.0.0.1:8080
+
 Once the file is saved, OpenNebula needs to be restarted (as ``oneadmin``, do a 'onevm restart'), create a new Host that uses the AZ drivers:
 
 .. code::
