@@ -232,16 +232,7 @@ That will restrict the Virtual Machine to be deployed in ``TYPE=production`` hos
 Sync
 ----
 
-When OpenNebula monitors a ``KVM`` or ``Xen`` host, it copies a certain amount of files to ``/var/tmp/one``. When the administrator changes these files, they can be copied again to the hosts with the ``sync`` command. When executed this command will copy the probes to the nodes and will return the prompt after it has finished telling which nodes it could not update.
-
-Although by default it will only copy the probes to ``KVM`` or ``Xen`` hosts, the administrator can force OpenNebula to copy the probes to any host whatsoever as long as it has the ``REMOTE_REMOTES=YES`` in the template:
-
-.. code::
-
-  $ onehost update <ID>
-  [...]
-  REMOTE_REMOTES=YES
-  [...]
+When OpenNebula monitors a host, it copies a certain amount of files to ``/var/tmp/one``. When the administrator changes these files, they can be copied again to the hosts with the ``sync`` command. When executed this command will copy the probes to the nodes and will return the prompt after it has finished telling which nodes it could not update.
 
 To keep track of the probes version there's a new file in ``/var/lib/one/remotes/VERSION``. By default this holds the OpenNebula version (ex. '4.4.0'). This version can be seen in he hosts with a ``onehost show <host>``:
 
@@ -270,7 +261,7 @@ You can also select which hosts you want to upgrade naming them or selecting a c
     $ onehost sync host01,host02,host03
     $ onehost sync -c myCluster
 
-``onehost sync`` command can alternatively use ``rsync`` as the method of upgrade. To do this you need to have installed ``rsync`` command in the frontend and the nodes. This method is faster that the standard one and also has the benefit of deleting remote files no longer existing in the frontend. To use it add the parameter ``--sync``:
+``onehost sync`` command can alternatively use ``rsync`` as the method of upgrade. To do this you need to have installed ``rsync`` command in the frontend and the nodes. This method is faster that the standard one and also has the benefit of deleting remote files no longer existing in the frontend. To use it add the parameter ``--rsync``:
 
 .. code::
 
