@@ -1,10 +1,10 @@
 .. _whats_new:
 
-=======================
-What's New in 4.12 Beta
-=======================
+==================
+What's New in 4.12
+==================
 
-OpenNebula 4.12 Beta (Cotton Candy) ships with several improvements in different subsystems and components. For the first time, OpenNebula will be able to generate cost reports that can be integrated with chargeback and billing platforms, and also presented to both the administrators and the end users. Each VM Template defined by the Cloud administrator can define a cost per cpu and per memory per hour.
+OpenNebula 4.12 (Cotton Candy) ships with several improvements in different subsystems and components. For the first time, OpenNebula will be able to generate cost reports that can be integrated with chargeback and billing platforms, and also presented to both the administrators and the end users. Each VM Template defined by the Cloud administrator can define a cost per cpu and per memory per hour.
 
 .. image:: /images/vdcadmin_vdc_showback.png
     :width: 80%
@@ -28,7 +28,7 @@ Finally, several improvements are scattered across every other OpenNebula compon
 
 As usual OpenNebula releases are named after a Nebula. The `Cotton Candy Nebula (IRAS 17150-3224) <http://en.wikipedia.org/wiki/Cotton_Candy_Nebula>`__ is located in the constellation of Ara.
 
-The OpenNebula team is now set to bug-fixing mode. Note that this is a beta release aimed at testers and developers to try the new features, and send a more than welcomed feedback for the final release.
+Want to take OpenNebula 4.12 for a test drive? Use one of the `SandBoxes <http://opennebula.org/tryout/>`__ to try out OpenNebula in no time, or proceed to the :ref:`Quick Start guides <qs_guides>`.
 
 In the following list you can check the highlights of OpenNebula 4.12. (`a detailed list of changes can be found here
 <http://dev.opennebula.org/projects/opennebula/issues?query_id=64>`__):

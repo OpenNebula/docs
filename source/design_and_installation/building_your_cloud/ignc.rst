@@ -13,9 +13,7 @@ Using the packages provided in our site is the recommended method, to ensure the
 
 Remember that we offer Quickstart guides for:
 
--  :ref:`OpenNebula on CentOS and KVM <qs_centos_kvm>`
--  :ref:`OpenNebula on CentOS and Xen <qs_centos_xen>`
--  :ref:`OpenNebula on CentOS and VMware <qs_centos_vmware>`
+-  :ref:`OpenNebula on CentOS and KVM <qs_centos7_kvm>`
 -  :ref:`OpenNebula on Ubuntu and KVM <qs_ubuntu_kvm>`
 
 If there are no packages for your distribution, head to the :ref:`Building from Source Code guide <compile>`.
