@@ -1,13 +1,13 @@
 .. _rn:
 
 ================================================================================
-Release Notes 4.11.80
+Release Notes 4.12
 ================================================================================
 
 .. toctree::
    :maxdepth: 1
 
-   What's New in 4.12 Beta <whats_new>
+   What's New in 4.12 <whats_new>
    Features <features>
    Platform Notes <uspng>
    Compatibility Guide <compatibility>
