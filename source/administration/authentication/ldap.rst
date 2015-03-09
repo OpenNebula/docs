@@ -184,6 +184,8 @@ Users can easily create escaped $ONE\_AUTH tokens with the command ``oneuser enc
 
 The output of this command should be put in the ``$ONE_AUTH`` file.
 
+.. _active_directory:
+
 Active Directory
 ================
 

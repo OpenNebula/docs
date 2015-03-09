@@ -10,7 +10,7 @@ Powerful User Security Management
 =================================
 
 -  Secure and efficient :ref:`Users and Groups Subsystem <auth_overview>` for authentication and authorization of requests with complete functionality for `user management <http://docs.opennebula.org/doc/4.10/cli/oneuser.1.html>`__: create, delete, show...
--  :ref:`Pluggable authentication and authorization <external_auth>` based on :ref:`passwords <manage_users_users>`, :ref:`ssh rsa keypairs <ssh_auth>`, :ref:`X509 certificates <x509_auth>`, :ref:`LDAP <ldap>` or :ref:`Active Directory <ldap>`
+-  :ref:`Pluggable authentication and authorization <external_auth>` based on :ref:`passwords <manage_users_users>`, :ref:`ssh rsa keypairs <ssh_auth>`, :ref:`X509 certificates <x509_auth>`, :ref:`LDAP <ldap>` or :ref:`Active Directory <active_directory>`
 -  Special authentication mechanisms for :ref:`SunStone (OpenNebula GUI) <sunstone>` and the :ref:`Cloud Services (EC2) <cloud_auth>`
 - :ref:`Login token <manage_users_managing_users>` functionality to password based logins
 -  Authorization framework with :ref:`fine-grained ACLs <manage_acl>` that allows multiple-role support for different types of users and administrators, delegated control to authorized users, secure isolated multi-tenant environments, and easy resource (VM template, VM image, VM instance, virtual network and host) sharing
@@ -22,13 +22,13 @@ Advanced Multi-tenancy with Group Management
 -  Each group have :ref:`configurable access to shared resources <manage_acl>` so enabling a multi-tenant environment with multiple groups sharing the same infrastructure
 -  Configuration of special :ref:`users that are restricted to public cloud APIs <cloud_auth>` (EC2)
 -  Complete functionality for management of `groups <http://docs.opennebula.org/doc/4.10/cli/onegroup.1.html>`__: create, delete, show...
--  Multiple group support, with the ability to define `primary and secondary groups <http://opennebula.org/manage_users#primary_and_secondary_groups>`__.
+-  Multiple group support, with the ability to define :ref:`primary and secondary groups <manage_users_primary_and_secondary_groups>`.
 
 On-demand Provision of Virtual Data Centers
 ===========================================
 
 - A VDC is a fully-isolated virtual infrastructure environment where a Group of users, optionally under the control of the VDC admin, can create and manage compute and storage capacity.
-- User Groups can be assigned one or more resource providers. Resource providers are defined as a cluster of servers, virtual networs, datastores and public clouds for cloud bursting in an OpenNebula zone. Read more in the :ref:`Users and Groups Management Guide <managing_resource_provider_within_groups>`.
+- User Groups can be assigned one or more resource providers. Resource providers are defined as a cluster of servers, virtual networks, datastores and public clouds for cloud bursting in an OpenNebula zone. Read more in the :ref:`Users and Groups Management Guide <managing_resource_provider_within_groups>`.
 - A special administration group can be defined to manage specific aspects of the group like user management or appliances definition. Read more in the :ref:`Managing Users and Groups <manage_users>` guide.
 - Sunstone views for new groups can be dynamically defined without the need of modifying the Sunstone configuration files. More information in the :ref:`Sunstone Views <suns_views>` guide.
 - Groups can now be tagged with custom attributes. Read more in the :ref:`Managing Users and Groups <manage_users>` guide.
@@ -45,6 +45,7 @@ Advanced Control and Monitoring of Virtual Infrastructure
 -  :ref:`Advanced network virtualization capabilities <vgg>` with traffic isolation, address reservation, flexible defintion of address ranges to accommodate any address distribution, definition of generic attributes to define multi-tier services consisting of groups of inter-connected VMs, and complete functionality for `virtual network management <http://docs.opennebula.org/doc/4.10/cli/onevnet.1.html>`__ to interconnect VM instances: create, delete, monitor, list...
 -  :ref:`IPv6 support <vgg_ipv6_networks>` with definition site and global unicast addresses
 -  Configurable :ref:`system accounting statistics <accounting>` to visualize and report resource usage data, to allow their integration with chargeback and billing platforms, or to guarantee fair share of resources among users
+-  :ref:`Showback <showback>` capabilities to define cost associated to CPU/hours and MEMORY/hours per VM Template.
 -  Tagging of users, VM images and virtual networks with arbitrary metadata that can be later used by other components
 -  :ref:`User defined VM tags <vm_guide2_user_defined_data>` to simplify VM management and to store application specific data
 -  :ref:`Plain files datastore <file_ds>` to store kernels, ramdisks and files to be used in context. The whole set of OpenNebula features applies, e.g. ACLs, ownership...
@@ -59,7 +60,7 @@ Complete Virtual Machine Configuration
 -  :ref:`Hook Manager <hooks>` to trigger administration scripts upon VM state change
 -  Wide range of guest operating system including Microsoft Windows and Linux
 -  :ref:`Flexible network defintion <vnet_template>`
--  :ref:`Configuration of firewall for VMs <firewall>` to specify a set of black/white TCP/UDP ports
+-  :ref:`Security Groups <security_groups>` to define firewall rules and apply them to Virtual Machines
 
 Advanced Control and Monitoring of Physical Infrastructure
 ==========================================================
@@ -72,12 +73,12 @@ Advanced Control and Monitoring of Physical Infrastructure
 Broad Commodity and Enterprise Platform Support
 ===============================================
 
--  Hypervisor agnostic :ref:`Virtualization Subsystem <vmmg>` with broad hypervisor support (:ref:`Xen <xeng>`, :ref:`KVM <kvmg>` and :ref:`VMware <evmwareg>`), centralized management of environments with multiple hypervisors, and support for multiple hypervisors within the same physical box
--  :ref:`vCenter <vcenterg>` support with :ref:`automatic import tool of existing VMware resources<vcenter_import_tool>`, and awareness of the presence of ESX hosts behind vCenter
+-  Hypervisor agnostic :ref:`Virtualization Subsystem <vmmg>` with broad hypervisor support (:ref:`Xen <xeng>`, :ref:`KVM <kvmg>`, :ref:`VMware ESX <evmwareg>` and :ref:`VMware vCenter <vcenterg>`), centralized management of environments with multiple hypervisors, and support for multiple hypervisors within the same physical box
+-  :ref:`vCenter <vcenterg>` support with :ref:`automatic import tool of existing VMware resources <vcenter_import_tool>`, including existing running VMs, network management and awareness of the presence of ESX hosts behind vCenter
 -  :ref:`Storage Subsystem <sm>` with support for multiple data stores to balance I/O operations between storage servers, or to define different SLA policies (e.g. backup) and performance features for different VM types or users
 -  :ref:`Storage Subsystem <sm>` supporting any backend configuration with different datastore types: :ref:`file system datastore <fs_ds>`, to store disk images in a file form and with image transferring using ssh or shared file systems (NFS, GlusterFS, Lustre...), :ref:`LVM <lvm_drivers>` to store disk images in a block device form, :ref:`Ceph <ceph_ds>` for distributed block device including RBD format 2, and :ref:`VMware datastore <vmware_ds>` specialized for the VMware hypervisor that handle the vmdk format and with support for VMFS
--  Flexible :ref:`Network Subsystem <nm>` with integration with :ref:`Ebtable <ebtables>`, :ref:`Open vSwitch <openvswitch>` and :ref:`802.1Q tagging <hm-vlan>`
--  :ref:`Virtual Router <router>` fully integrated with OpenNebula to provide basic L3 services like NATting, DHCP, DNS...
+-  Flexible :ref:`Network Subsystem <nm>` with integration with :ref:`Ebtable <ebtables>`, :ref:`Open vSwitch <openvswitch>`, :ref:`802.1Q tagging <hm-vlan>` and :ref:`VXLAN <vxlan>`
+-  :ref:`Virtual Router <router>` fully integrated with OpenNebula to provide basic L3 services like NATing, DHCP, DNS...
 
 Distributed Resource Optimization
 =================================
@@ -91,7 +92,7 @@ Distributed Resource Optimization
 Centralized Management of Multiple Zones
 ========================================
 
-- Federation of multiple OpenNebula zones for scalability, isolation or multiple-site support
+- :ref:`Federation <federationconfig>` of multiple OpenNebula zones for scalability, isolation or multiple-site support
 - Users can seamlessly provision virtual machines from multiple zones with an integrated interface both in Sunstone and CLI.
 - A new tool set has been developed to upgrade, integrate new zones and import existing zones into an OpenNebula federation. Read more in the :ref:`Federation Configuration <federationconfig>` guide.
 - Integrated zone management in OpenNebula core. Read more about this in the :ref:`Data Center Federation <introf>` guide.
@@ -156,7 +157,7 @@ Rich Command Line and Web Interfaces for Cloud Administrators
 =============================================================
 
 -  :ref:`Unix-like Command Line Interface <cli>` to manage all resources: users, VM images, VM templates, VM instances, virtual networks, zones, VDCs, physical hosts, accounting, authentication, authorization...
--  :ref:`Easy-to-use Sunstone Graphical Interface <sunstone>` providing usage graphics and statistics with cloudwatch-like functionality, VNC support, different system views for different roles, catalog access, multiple-zone management...
+-  :ref:`Easy-to-use Sunstone Graphical Interface <sunstone>` providing usage graphics and statistics with cloudwatch-like functionality, :ref:`remote acccess through VNC or SPICE <remote_access_sunstone>`, different system views for different roles, catalog access, multiple-zone management...
 -  :ref:`Sunstone is easily customizable <suns_views>` to define multiple cloud views for different user groups
 -  :ref:`Integrated tab in Sunstone <commercial_support_sunstone>` to access OpenNebula Systems (the company behind OpenNebula, formerly C12G) professional support
 
