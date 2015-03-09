@@ -30,7 +30,7 @@ You should take into account the following technical considerations when using t
 Prerequisites
 =============
 
-.. warning:: ruby >= 1.9.3 is required, and it is not packaged in all distros supported by OpenNebula. If you are running on an older supported distro (like Centos 6.x or Ubuntu 12.04) please update ruby or use `rvm <https://rvm.io/>`__ to run a newer (>= 1.9.3) version (remember to run ``install_gems`` after the ruby upgrade is done to reinstall all gems)
+.. warning:: ruby >= 1.9.3 is required, and it is not packaged in all distros supported by OpenNebula. If you are running on an older supported distro (like Centos 6.x) please update ruby or use `rvm <https://rvm.io/>`__ to run a newer (>= 1.9.3) version (remember to run ``install_gems`` after the ruby upgrade is done to reinstall all gems)
 
 -  You must have a working account for `SoftLayer <http://www.softlayer.com/>`__
 -  You need your username and API authentication key, that can be achieved in the `user profile page <https://control.softlayer.com/account/user/profile/>`__

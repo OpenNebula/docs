@@ -42,7 +42,7 @@ You should take into account the following technical considerations when using t
 Prerequisites
 =============
 
-.. warning:: ruby >= 1.9.3 is required, and it is not packaged in all distros supported by OpenNebula. If you are running on an older supported distro (like Centos 6.x or Ubuntu 12.04) please update ruby or use `rvm <https://rvm.io/>`__ to run a newer (>= 1.9.3) version (remember to run ``install_gems`` after the ruby upgrade is done to reinstall all gems)
+.. warning:: ruby >= 1.9.3 is required, and it is not packaged in all distros supported by OpenNebula. If you are running on an older supported distro (like Centos 6.x) please update ruby or use `rvm <https://rvm.io/>`__ to run a newer (>= 1.9.3) version (remember to run ``install_gems`` after the ruby upgrade is done to reinstall all gems)
 
 -  You must have a working account for `Azure <http://azure.microsoft.com/>`__
 -  You need your Azure credentials (Information on how to manage Azure certificates can be found `here <http://azure.microsoft.com/en-us/documentation/articles/linux-use-ssh-key/>`__. ). The information can be obtained from the `Management Azure page <https://manage.windowsazure.com>`__
