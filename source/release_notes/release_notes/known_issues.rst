@@ -39,7 +39,6 @@ Drivers - VM
 OneFlow
 ================================================================================
 
-* `#2101 <http://dev.opennebula.org/issues/2101>`_ Validator schema is not correctly shown in the CLI after a parsing error
 * `#3134 <http://dev.opennebula.org/issues/3134>`_ Service Templates with dynamic networks cannot be instantiated from the CLI, unless the a template file with the required attributes is merged
 
 Scheduler
@@ -52,4 +51,3 @@ Sunstone
 
 * `#2292 <http://dev.opennebula.org/issues/2292>`_ sunstone novnc send ctrl-alt-del not working in Firefox
 * `#1877 <http://dev.opennebula.org/issues/1877>`_ if syslog enabled disable the logs tab in the VM detailed view
-* `#3376 <http://dev.opennebula.org/issues/3376>`_ If a federation zone is not reachable, the zone list is not populated and the user cannot switch to other working zone
