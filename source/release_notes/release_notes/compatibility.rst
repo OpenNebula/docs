@@ -48,6 +48,11 @@ Virtual Networks
 
 When a Virtual Network is shown to a user, it only includes the leases to his objects. This way, they can see the IPs given to their VMs, but not to other user's VMs. For 4.12, all the leases are included (leases on hold and other user's VMs) if the user requesting the Virtual Network is the owner (has ``MANAGE`` rights).
 
+Restricted Attributes for VMs
+--------------------------------------------------------------------------------
+
+The :ref:`VM restricted attributes <template_restricted_attributes>` are now checked when a VM Template is created (or updated), as opposed to when it is instantiated. This means that users will know inmediately if they are creating a restricted template. It also enables administrators to create VM Templates with restributed attributes and later change the owner to a normal user, that will be able to instantiate it without problems.
+
 Developers and Integrators
 ================================================================================
 

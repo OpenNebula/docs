@@ -785,11 +785,21 @@ Restricted Attributes
 
 All the **default** restricted attributes to users in the oneadmin group are summarized in the following list:
 
--  CONTEXT/FILES
--  DISK/SOURCE
--  NIC/MAC
--  NIC/VLAN\_ID
--  SCHED\_RANK
+- ``CONTEXT/FILES``
+- ``NIC/MAC``
+- ``NIC/VLAN_ID``
+- ``NIC/BRIDGE``
+- ``NIC_DEFAULT/MAC``
+- ``NIC_DEFAULT/VLAN_ID``
+- ``NIC_DEFAULT/BRIDGE``
+- ``DISK/TOTAL_BYTES_SEC``
+- ``DISK/READ_BYTES_SEC``
+- ``DISK/WRITE_BYTES_SEC``
+- ``DISK/TOTAL_IOPS_SEC``
+- ``DISK/READ_IOPS_SEC``
+- ``DISK/WRITE_IOPS_SEC``
+- ``CPU_COST``
+- ``MEMORY_COST``
 
 These attributes can be configured in :ref:`oned.conf <oned_conf>`.
 
