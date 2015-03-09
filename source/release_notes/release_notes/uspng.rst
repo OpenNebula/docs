@@ -44,9 +44,9 @@ All Front-Ends
 
     # sudo gem install nokogiri -v 1.4.4
 
-- also for **cloud bursting**, precisely for Microsoft Azure and IBM SoftLayer, those supported distros with ruby versions <= 1.9.3 (like Centos 6.x or Ubuntu 12.04) please update the ruby installation or use `rvm <https://rvm.io/>`__ to run a newer (>= 1.9.3) version (remember to run ``install_gems`` after the ruby upgrade is done to reinstall all gems)
+- also for **cloud bursting**, precisely for Microsoft Azure and IBM SoftLayer, those supported distros with ruby versions <= 1.9.3 (like Centos 6.x) please update the ruby installation or use `rvm <https://rvm.io/>`__ to run a newer (>= 1.9.3) version (remember to run ``install_gems`` after the ruby upgrade is done to reinstall all gems)
 
-ESX 5.1 as VMware Node
+ESX 5.5 as VMware Node
 ----------------------
 
 -  to accomplish disk hotplugging and nic hotplugging (ignore the first bullet for the latter)
@@ -81,11 +81,6 @@ CentOS 6.5 as KVM Node
 
     RAW=[TYPE = "kvm",
          DATA = "<devices><controller type='scsi' index='0' model='virtio-scsi'></controller></devices>"]
-
--  due to libvirt version < = 0.10.2, there is a `bug in libvrit/qemu attac/detach nic functionality <https://bugzilla.redhat.com/show_bug.cgi?id=813748>`__ that prevents the reuse of net IDs. This means that after a successful attach/detach NIC, a new attach will fail.
-
-Ubuntu 12.04 as KVM Node
-------------------------
 
 -  due to libvirt version < = 0.10.2, there is a `bug in libvrit/qemu attac/detach nic functionality <https://bugzilla.redhat.com/show_bug.cgi?id=813748>`__ that prevents the reuse of net IDs. This means that after a successful attach/detach NIC, a new attach will fail.
 
@@ -135,12 +130,6 @@ Debian Lenny as Xen 3 Node
     # ln -s /usr/lib/xen-3.2-1/bin/tapdisk /usr/sbin
     # echo xenblktap >> /etc/modules
     # reboot
-
-Ubuntu 12.04 Platform Notes
-===========================
-
--  Limited startup scripts → only for OpenNebula service
--  Ubuntu12.04 presents libvirt 0.9.8. We recommend updating (manually, there are no packages) to 0.10.2 to use the AttachNic and DetachNic functionality.
 
 Ubuntu 14.04 Platform Notes
 ===========================
