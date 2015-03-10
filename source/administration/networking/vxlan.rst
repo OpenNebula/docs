@@ -9,7 +9,7 @@ encapsulation protocol. This driver will create a bridge for each OpenNebula Vir
 
 The VLAN id will be the same for every interface in a given network, calculated by adding a constant to the network id. It may also be forced by specifying an VLAN\_ID parameter in the :ref:`Virtual Network template <vnet_template>`.
 
-Additionally each VLAN has associated a multicast address to encapsulate L2 broadcast and multicast traffic. This address is assigned by default to the 239.0.0.0/8 range as defined by RFC 2365 (Administratively Scoped IP Multicast). In particular the multicast address is obtained by adding the VLAN\_ID to the 239.0.0.0/8 base address. 
+Additionally each VLAN has associated a multicast address to encapsulate L2 broadcast and multicast traffic. This address is assigned by default to the 239.0.0.0/8 range as defined by RFC 2365 (Administratively Scoped IP Multicast). In particular the multicast address is obtained by adding the VLAN\_ID to the 239.0.0.0/8 base address.
 
 Requirements
 ============
@@ -21,9 +21,9 @@ When all the hypervisors are connected to the same broadcasting domain just be s
 Considerations & Limitations
 ============================
 
-This driver works with the default UDP server port 8472. 
+This driver works with the default UDP server port 8472.
 
-VXLAN traffic is forwarded to a physical device, this device can be configured to be a VLAN tagged interface. The current version of the driver does not automatically create the 802.1Q interface, so you need to configured it in the hypervisors in case you need them. 
+VXLAN traffic is forwarded to a physical device, this device can be configured to be a VLAN tagged interface. The current version of the driver does not automatically create the 802.1Q interface, so you need to configured it in the hypervisors in case you need them.
 
 Configuration
 =============
@@ -85,7 +85,16 @@ Tuning & Extending
 
 .. warning:: Remember that any change in the ``/var/lib/one/remotes`` directory won't be effective in the Hosts until you execute, as oneadmin:
 
+The code can be enhanced and modified, by chaning the following files in the
+frontend:
+
+* /var/lib/one/remotes/vnm/vxlan/vxlan_driver.rb
+* /var/lib/one/remotes/vnm/vxlan/post
+* /var/lib/one/remotes/vnm/vxlan/clean
+* /var/lib/one/remotes/vnm/vxlan/pre
+
+Remember to sync any changes to the notes and to backup the changes in order to re-apply them after upgrading to a new release of OpenNebula:
+
 .. code::
 
     oneadmin@frontend $ onehost sync
-

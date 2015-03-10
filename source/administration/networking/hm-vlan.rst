@@ -87,6 +87,16 @@ Tuning & Extending
 
 .. warning:: Remember that any change in the ``/var/lib/one/remotes`` directory won't be effective in the Hosts until you execute, as oneadmin:
 
+The code can be enhanced and modified, by chaning the following files in the
+frontend:
+
+* /var/lib/one/remotes/vnm/802.1Q/post
+* /var/lib/one/remotes/vnm/802.1Q/vlan_tag_driver.rb
+* /var/lib/one/remotes/vnm/802.1Q/clean
+* /var/lib/one/remotes/vnm/802.1Q/pre
+
+Remember to sync any changes to the notes and to backup the changes in order to re-apply them after upgrading to a new release of OpenNebula:
+
 .. code::
 
     oneadmin@frontend $ onehost sync
