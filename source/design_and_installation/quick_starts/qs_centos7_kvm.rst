@@ -105,7 +105,9 @@ Now we can start the services:
 
 .. code-block:: none
 
+    # systemctl enable opennebula
     # systemctl start opennebula
+    # systemctl enable opennebula-sunstone
     # systemctl start opennebula-sunstone
 
 1.4. Configure NFS
@@ -171,8 +173,11 @@ Start the required services:
 
 .. code::
 
+    # systemctl enable messagebus.service
     # systemctl start messagebus.service
+    # systemctl enable libvirtd.service
     # systemctl start libvirtd.service
+    # systemctl enable nfs.service
     # systemctl start nfs.service
 
 
