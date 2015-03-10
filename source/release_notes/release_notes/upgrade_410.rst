@@ -42,14 +42,7 @@ Preparation
 
 Before proceeding, make sure you don't have any VMs in a transient state (prolog, migr, epil, save). Wait until these VMs get to a final state (runn, suspended, stopped, done). Check the :ref:`Managing Virtual Machines guide <vm_guide_2>` for more information on the VM life-cycle.
 
-Stop OpenNebula and any other related services you may have running: OneFlow, EC2, and Sunstone. As ``oneadmin``, in the front-end:
-
-.. code::
-
-    $ sunstone-server stop
-    $ oneflow-server stop
-    $ econe-server stop
-    $ one stop
+Stop OpenNebula and any other related services you may have running: OneFlow, EC2, and Sunstone. Use preferably the system tools, like `systemctl` or `service` as `root` in order to stop the services.
 
 Backup
 ======
@@ -58,11 +51,7 @@ Backup the configuration files located in **/etc/one**. You don't need to do a m
 
 .. code::
 
-    # cp -r /etc/one /etc/one.YYYY-MM-DD
-
-.. note::
-
-    Substitute ``YYYY-MM-DD`` with the date.
+    # cp -r /etc/one /etc/one.$(date +'%Y-%m-%d')
 
 Installation
 ============
@@ -193,6 +182,17 @@ The ``SHOW SLAVE STATUS`` output will provide detailed information, but to confi
        Slave_IO_State: Waiting for master to send event
      Slave_IO_Running: Yes
     Slave_SQL_Running: Yes
+
+
+Reload Start Scripts in CentOS 7
+================================
+
+In order for the system to re-read the configuration files you should issue the following command after the installation of the new packages:
+
+.. code-block:: none
+
+    # systemctl daemon-reload
+
 
 Enable Start Scripts in CentOS 7
 ================================
