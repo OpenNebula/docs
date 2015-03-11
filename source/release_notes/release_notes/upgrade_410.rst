@@ -259,6 +259,19 @@ If for any reason you need to restore your previous OpenNebula, follow these ste
 Known Issues
 ============
 
+If you have ruby version 1.9 and your database contains non-ascii characters, the upgrade may fail with the following message:
+
+.. code::
+
+    ArgumentError: invalid byte sequence in US-ASCII
+
+To fix this, download an updated version of the upgrade files:
+
+.. code::
+
+    sudo wget https://gist.githubusercontent.com/carlosms/643d12f2b91c709e7e86/raw/281bcf626121e5b16642522191925892d9b5773f/gistfile1.txt -O /usr/lib/one/ruby/onedb/local/4.10.3_to_4.11.80.rb
+    sudo wget https://gist.githubusercontent.com/carlosms/00c5e09bde47a20edc7d/raw/07f0de0592d31f88e3ffbe620ec583600a31fac9/gistfile1.txt -O /usr/lib/one/ruby/onedb/shared/4.6.0_to_4.11.80.rb
+
 If the MySQL database password contains special characters, such as ``@`` or ``#``, the onedb command will fail to connect to it.
 
 The workaround is to temporarily change the oneadmin's password to an ASCII string. The `set password <http://dev.mysql.com/doc/refman/5.6/en/set-password.html>`__ statement can be used for this:
