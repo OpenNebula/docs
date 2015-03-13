@@ -39,8 +39,10 @@ When this command is executed, the OpenNebula core reads all the accounting reco
 
 The monthly cost of each VM is calculated as the sum of:
 
-  - CPU_COST * CPU * HOURS
-  - MEMORY_COST * MEMORY * HOURS
+- CPU_COST * CPU * HOURS
+- MEMORY_COST * MEMORY * HOURS
+
+The number of hours is calculated as the total number of hours that a VM has been ``running``. The time a VM is in other states, such as ``pending``, ``poweroff``, or ``stopped`` does not count towards the cost.
 
 If the time range includes the current month, OpenNebula will calculate the cost up to today's date. It is up to the administrators to leave the current month out of the showback records, to update it daily, or hourly. In any case, it is important to re-calculate it when the month ends. This operation can be easily automated by a cron job.
 
