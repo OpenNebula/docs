@@ -127,6 +127,7 @@ Considerations & Limitations
 - For VNC to work properly, please install `VMware Tools (for Windows) <https://www.vmware.com/support/ws55/doc/new_guest_tools_ws.html>`__ or `Open Virtual Machine Tools <http://open-vm-tools.sourceforge.net/>`__ (for \*nix).
 - **No files in context**: Passing entire files to VMs is not supported, but all the other CONTEXT sections will be honored
 - Cluster name cannot contain spaces
+- Imported VMs do not support VNC from Sunstone even if the VNC port is open in vCenter/vSphere
 
 Configuration
 =============
