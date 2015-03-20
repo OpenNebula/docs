@@ -101,12 +101,6 @@ To install OpenNebula on a Debian/Ubuntu front-end from packages from **our repo
 
     # echo "deb http://downloads.opennebula.org/repo/4.12/Debian/7 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
 
-**Ubuntu 12.04**
-
-.. code::
-
-    # echo "deb http://downloads.opennebula.org/repo/4.12/Ubuntu/12.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
-
 **Ubuntu 14.04**
 
 .. code::
