@@ -49,6 +49,8 @@ To enable this driver, use **802.1Q** as the Virtual Network Manager driver para
 
 It is possible specify the start VLAN ID by editing ``/var/lib/one/remotes/vnm/OpenNebulaNetwork.conf``.
 
+This driver accepts an ``MTU`` attribute that will be used when creating the tagged interface and bridge.
+
 Driver Actions
 --------------
 
