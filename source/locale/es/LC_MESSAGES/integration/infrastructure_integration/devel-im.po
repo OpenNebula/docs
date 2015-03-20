@@ -59,7 +59,7 @@ msgstr ""
 
 #: ../../source/integration/infrastructure_integration/devel-im.rst:24
 msgid ""
-"An IM diver is composed of one or several scripts that write to ``stdout`` "
+"An IM driver is composed of one or several scripts that write to ``stdout`` "
 "information in this form:"
 msgstr ""
 
