@@ -113,6 +113,9 @@ Linux Packages
 
 The linux packages can be downloaded from its `project page <https://github.com/OpenNebula/addon-context-linux/releases/tag/v4.8.1>`__ and installed in the guest OS. There is one rpm file for Debian and Ubuntu and an rpm for RHEL and CentOS. After installing the package shutdown the machine and create a new template.
 
+Alternative Linux packages:
+
+* **Arch Linux**: AUR package `one-context <https://aur.archlinux.org/packages/one-context/>`__
 
 Windows Package
 ---------------
