@@ -21,7 +21,7 @@ In the case of ``KVM`` and ``Xen``, the probes are distributed to the hosts, the
 General Probe Structure
 =======================
 
-An IM diver is composed of one or several scripts that write to ``stdout`` information in this form:
+An IM driver is composed of one or several scripts that write to ``stdout`` information in this form:
 
 .. code::
 
