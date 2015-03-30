@@ -233,6 +233,7 @@ Note: By default, the above operations do not check the target host capacity. Yo
 
 -  ``boot``: Forces the hypervisor boot action of a VM stuck in UNKNOWN or BOOT state.
 -  ``recover``: If the VM is stuck in any other state (or the boot operation does not work), you can recover the VM by simulating the failure or success of the missing action. You **have to check the VM state on the host** to decide if the missing action was successful or not.
+-  ``migrate`` or ``resched``: A VM in the UNKNOWN state can be booted in a different host manually (``migrate``) or automatically by the scheduler (``resched``). This action must be performed only if the storage is shared, or manually transfered by the administrator. OpenNebula will not perform any action on the storage for this migration.
 
 Disk Snapshoting
 ----------------
