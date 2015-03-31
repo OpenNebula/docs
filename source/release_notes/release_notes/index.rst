@@ -8,7 +8,7 @@ Release Notes 4.12.1
    :maxdepth: 1
 
    What's New in 4.12 <whats_new>
-   Resolved Issues in 4.12.1 <release_notes_4121>
+   Resolved Issues in 4.12.1 <resolved_issues_4121>
    Features <features>
    Platform Notes <uspng>
    Compatibility Guide <compatibility>
