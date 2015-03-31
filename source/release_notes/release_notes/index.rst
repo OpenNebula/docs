@@ -14,6 +14,7 @@ Release Notes 4.12.1
    Compatibility Guide <compatibility>
    Known Issues <known_issues>
    Acknowledgements <acknowledgements>
+   Upgrading from 4.12.0 <upgrade_412>
    Upgrading from 4.10.x <upgrade_410>
    Upgrading from 4.8.x <upgrade_48>
    Upgrading from 4.6.x <upgrade_46>
