@@ -227,6 +227,14 @@ Which can be used at a later time for scheduling purposes by adding the followin
 
 That will restrict the Virtual Machine to be deployed in ``TYPE=production`` hosts.
 
+The host drivers can be also changed with the host template attributes ``_MAD``. Please note that this change will only apply to new deployments. If the ``im_mad`` is changed, make sure to run the ``onehost sync`` command explained below.
+
+.. code::
+
+    IM_MAD="kvm"
+    VM_MAD="kvm"
+    VN_MAD="dummy"
+
 .. _host_guide_sync:
 
 Sync
