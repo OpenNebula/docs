@@ -1,19 +1,19 @@
 .. _onegate_usage:
 
 =======================
-Application Monitoring
+OneGate Usage
 =======================
 
-OneGate allows Virtual Machine guests to pull and push service and vm information from OpenNebula. Users and administrators can use it to gather metrics, detect problems in their applications, and trigger OneFlow elasticity rules.
+OneGate allows Virtual Machine guests to pull and push VM information from OpenNebula. Users and administrators can use it to gather metrics, detect problems in their applications, and trigger OneFlow elasticity rules from inside the VM.
 
-For Virtual Machines that are part of a Multi-VM Application (Service), they can also retrieve the Service information directly from OneGate.
+For Virtual Machines that are part of a Multi-VM Application (Service), they can also retrieve the Service information directly from OneGate and trigger actions to reconfigure the service or pass information among different VMs.
+
+|onegate_arch|
 
 OneGate Workflow Explained
 ==========================
 
-OneGate is a server that listens to http connections from the Virtual Machines. OpenNebula assigns an individual token to each VM instance, and Applications running inside the VM use this token to send monitoring metrics to OneGate. This token is generated using VM information and signed with the user TOKEN_PASSWORD. This password can be changed updating the user template, but tokens from existing vms will not work anymore.
-
-When OneGate checks the VM ID and the token sent, the new information is placed inside the VM's user template section. This means that the application metrics are visible from the command line, Sunstone, or the APIs.
+OneGate is a server that listens to http connections from the Virtual Machines. OpenNebula assigns an individual token to each VM instance, and Applications running inside the VM use this token to interact with the OneGate API. This token is generated using VM information and signed with the user TOKEN_PASSWORD. This password can be changed updating the user template, but tokens from existing vms will not work anymore.
 
 OneGate Usage
 =============
@@ -37,6 +37,10 @@ Your VM Template must set the CONTEXT/TOKEN attribute to ``yes``.
      
     CONTEXT = [
       TOKEN = "YES" ]
+
+or check the OneGate checkbox in Sunstone:
+
+|onegate_context|
 
 When this Template is instantiated, OpenNebula will automatically add the ONEGATE_ENDPOINT context variable, and a token.txt will be placed in the context cdrom. This token.txt file is only accessible from inside the VM.
 
@@ -84,7 +88,11 @@ With that data, you can obtain the headers required for all the ONEGATE API meth
 
 OneGate supports these actions:
 
-* ``GET ${ONEGATE_ENDPOINT}/vm``: To request information about the Virtual Machine. The information is returned in JSON format and is ready for public cloud usage:
+Self-awareness
+^^^^^^^^^^^^^^
+
+* ``GET ${ONEGATE_ENDPOINT}/vm``: To request information about the current Virtual Machine. 
+* ``GET ${ONEGATE_ENDPOINT}/vms/${VM_ID}``: To request information about a specific Virtual Machine of the Service. The information is returned in JSON format and is ready for public cloud usage:
 
     .. code::
 
@@ -114,7 +122,8 @@ OneGate supports these actions:
             }
         }
 
-* ``PUT ${ONEGATE_ENDPOINT}/vm``: To add information to the VM template:
+* ``PUT ${ONEGATE_ENDPOINT}/vm``: To add information to the template of the current VM. The new information is placed inside the VM's user template section. This means that the application metrics are visible from the command line, Sunstone, or the APIs, and can be used to trigger OneFlow elasticity rules.
+* ``PUT ${ONEGATE_ENDPOINT}/vms/${VM_ID}``: To add information to the template of a specific VM of the Service. 
 
     .. code::
 
@@ -133,7 +142,7 @@ OneGate supports these actions:
         APP_LOAD="9.7"
 
 
-* ``GET ${ONEGATE_ENDPOINT}/service``: To request information about the Virtual Machine. The information is returned in JSON format and is ready for public cloud usage:
+* ``GET ${ONEGATE_ENDPOINT}/service``: To request information about the Service. The information is returned in JSON format and is ready for public cloud usage. By pushing data ``PUT /vm`` from one VM and pulling the service data from another VM ``GET /service``, nodes that are part of a OneFlow service can pass values from one to another.
 
     .. code::
 
@@ -180,10 +189,253 @@ OneGate supports these actions:
             "service_info": "http://<onegate_endpoint>/service"
         }
 
-By pushing data ``PUT /VM`` from one VM and pulling the service data from another VM ``GET /service``, nodes that are part of a OneFlow service can pass values from one to another.
 
-Sample Script
-=============
+Self-configuration
+^^^^^^^^^^^^^^^^^^
+
+* ``PUT ${ONEGATE_ENDPOINT}/service/role/${ROLE_NAME}``: To change the cardinality of a specific role of the Service:
+
+    .. code::
+
+        $ curl -X "PUT" "${ONEGATE_ENDPOINT}/service/role/worker" \
+            --header "X-ONEGATE-TOKEN: `cat token.txt`" \
+            --header "X-ONEGATE-VMID: $VMID" \
+            -d "{'cardinality' : 10}"
+
+* ``POST ${ONEGATE_ENDPOINT}/vms/${VM_ID}/action``: To perform an action on a specific VM of the Service. Supported actions (resume, stop, suspend, delete, shutdown, reboot, poweroff, resubmit, resched, unresched, hold, release)
+
+    .. code::
+
+        $ curl -X "POST" "${ONEGATE_ENDPOINT}/vms/18/action" \
+            --header "X-ONEGATE-TOKEN: `cat token.txt`" \
+            --header "X-ONEGATE-VMID: $VMID" \
+            -d "{'action' : {'perform': 'resched'}}"
+
+Using the OneGate Client in the Guest VM
+========================================
+
+A ruby client that implements the OneGate API is included in the share folder of the OpenNebula repository. This is a simple command line interface to interact with the OneGate server, it will handle the authentication and requests complexity.
+
+Preparing the VM Template to Use the Client
+-------------------------------------------
+
+In the ``/usr/share/one/onegate`` directory you can find two files. The onegate script contains the command line interface to easily interact with the OneGate server, while the init.sh script initializes the environment variables that will be used by the onegate command.
+
+These files have to be imported into OpenNebula using the Files tab of the Sunstone interface or running the following commands from the CLI:
+
+.. warning:: This files will be included for the root user of the Virtual Machine, if the onegate command is going to be used as another user, you may want to modify the init.sh script before importing. The init.sh script has been tested with Ubuntu 14.04
+
+.. code::
+
+    $ oneimage create --type CONTEXT --path $ONEGATE_REPO/share/onegate/onegate --name onegate -d files
+    $ oneimage create --type CONTEXT --path $ONEGATE_REPO/share/onegate/init.sh --name init.sh -d files
+
+    $ oneimage chmod onegate 644
+    $ oneimage chmod init.sh 644
+
+    $ oneimage list
+      ID USER       GROUP      NAME            DATASTORE     SIZE TYPE PER STAT RVMS
+       0 oneadmin   oneadmin   ttylinux        default        40M OS    No used    2
+       3 oneadmin   oneadmin   Ubuntu-14.04    default        10G OS    No used    2
+       8 oneadmin   oneadmin   Ubuntu 14.04 +  default        10G OS    No used    1
+      11 oneadmin   oneadmin   init.sh         files           1M CX    No rdy     0
+      12 oneadmin   oneadmin   onegate         files           1M CX    No rdy     0
+
+After that, we have to include these files in the VM Template, this can be achieved by updating the template and clicking in the Context tab. Therefore, these files will be included in the CDROM context of the Virtual Machine and will be available inside the Virtual Machine.
+
+|files_context|
+
+OneGate Client Usage
+--------------------
+
+After [preparing the Virtual Machines and Services](https://github.com/dsa-research/onegate-panacea/wiki/Preparing-VMs-and-Services), Virtual Machines belonging to one of these services will be able to interact with the OneGate server using a simple command line interface.
+
+Available commands and usage are shown with `onegate -h`:
+
+.. code::
+
+    $ onegate -h
+    Available commands
+        $ onegate vm show [VMID] [--json]
+
+        $ onegate vm update [VMID] --data KEY=VALUE[\nKEY2=VALUE2]
+
+        $ onegate vm ACTION VMID
+            $ onegate vm resume [VMID]
+            $ onegate vm stop [VMID]
+            $ onegate vm suspend [VMID]
+            $ onegate vm delete [VMID] [--hard]
+            $ onegate vm shutdown [VMID] [--hard]
+            $ onegate vm reboot [VMID] [--hard]
+            $ onegate vm poweroff [VMID] [--hard]
+            $ onegate vm resubmit [VMID]
+            $ onegate vm resched [VMID]
+            $ onegate vm unresched [VMID]
+            $ onegate vm hold [VMID]
+            $ onegate vm release [VMID]
+
+        $ onegate service show [--json]
+
+        $ onegate service scale --role ROLE --cardinality CARDINALITY
+
+With the appropriate policies implemented in the service, these mechanisms allow services to be self-managed, enabling self-configuration, self-healing, self-optimization and self-protection.
+
+Self-Awareness
+^^^^^^^^^^^^^^
+
+There are several actions available to retrieve information of the Virtual Machine and the Service it belongs to. A Virtual Machine can also retrieve information of other Virtual Machines that are part of the Service.
+
+Retrieving information of the VM
+""""""""""""""""""""""""""""""""
+
+Using the `onegate vm show` command the information of the Virtual Machine will be retrieved. For a detailed version use the `--json` option and all the information will be returned in JSON format.
+
+If no argument is provided, the information of the current Virtual Machine will be retrieved. Alternatively, a VM ID can be provided to retrieve the information of a specific Virtual Machine.
+
+.. code::
+    $ onegate vm show
+    VM 8
+    NAME                : master_0_(service_1)
+    STATE               : RUNNING
+    IP                  : 192.168.122.23
+
+Retrieving information of the Service
+"""""""""""""""""""""""""""""""""""""
+
+Using the `onegate service show` command the information of the Service will be retrieved. For a detailed version use the `--json` option and all the information will be returned in JSON format.
+
+.. code::
+    $ onegate service show
+    SERVICE 1
+    NAME                : PANACEA service
+    STATE               : RUNNING
+
+    ROLE master
+    VM 8
+    NAME                : master_0_(service_1)
+    STATE               : RUNNING
+    IP                  : 192.168.122.23
+
+    ROLE slave
+    VM 9
+    NAME                : slave_0_(service_1)
+    STATE               : RUNNING
+
+
+Updating the VM Information
+"""""""""""""""""""""""""""
+
+The Virtual Machine can update the information of itself or other Virtual Machine of the Service. This information can be retrieved from any of the Virtual Machines. 
+
+For example, the master Virtual Machine can change the `ACTIVE` attribute from one Virtual Machine to another one. Then, this information can be used to trigger any kind of action in the other Virtual Machine.
+
+.. code::
+    $ onegate vm update 9 --data ACTIVE=YES
+    $ onegate vm show 9 --json
+    {
+      "VM": {
+        "NAME": "slave_0_(service_1)",
+        "ID": "9",
+        "STATE": "3",
+        "LCM_STATE": "3",
+        "USER_TEMPLATE": {
+          "ACTIVE": "YES",
+          "FROM_APP": "4fc76a938fb81d3517000003",
+          "FROM_APP_NAME": "ttylinux - kvm",
+          "LOGO": "images/logos/linux.png",
+          "ROLE_NAME": "slave",
+          "SERVICE_ID": "1"
+        },
+        "TEMPLATE": {
+          "NIC": [
+
+          ]
+        }
+      }
+    }
+
+
+Self-Configuration
+^^^^^^^^^^^^^^^^^^
+
+There are several actions to adapt the Service to a given situation. Actions on any of the Virtual Machines can be performed individually. Also, the size of the service can be customized just specifying a cardinality for each of the roles.
+
+Performing actions on a VM
+""""""""""""""""""""""""""
+
+One of the following actions can be performed in any of the Virtual Machines of the Service. Again, if no VM ID is provided as argument, the action will be performed on the current Virtual Machine.
+
+* `onegate vm resume`: Resumes the execution of the a saved VM.
+ 
+    Valid states: STOPPED, SUSPENDED, UNDEPLOYED, POWEROFF
+* `onegate vm stop`: Stops a running VM. The VM state is saved and transferred back to the front-end along with the disk files. 
+
+    Valid states: RUNNING
+* `onegate vm suspend`:  Saves a running VM. It is the same as `onegate vm stop`, but the files are left in the remote machine to later restart the VM there (i.e. the resources are not freed and there is no need to re-schedule the VM).
+
+    Valid states: RUNNING
+* `onegate vm delete`: Deletes the given VM. Using --recreate resubmits the VM. With --hard it unplugs the VM.
+
+    Valid states: ANY
+* `onegate vm shutdown`: Shuts down the given VM. The VM life cycle will end. With --hard it unplugs the VM.
+
+    Valid states: RUNNING, UNKNOWN (with --hard)
+* `onegate vm reboot`: Reboots the given VM, this is equivalent to execute the reboot command from the VM console. The VM will be ungracefully rebooted if --hard is used.
+
+    Valid states: RUNNING
+* `onegate vm poweroff`: Powers off the given VM. The VM will remain in the poweroff state, and can be powered on with the `onegate vm resume` command.
+
+    Valid states: RUNNING
+* `onegate vm resubmit`: Resubmits the VM to PENDING state to re-deploy a fresh copy of the same VM.
+
+    Valid states: ANY
+* `onegate vm resched`: Sets the rescheduling flag for the VM. The VM will be moved to a different host based on the scheduling policies.
+
+    Valid states: RUNNING
+* `onegate vm unresched`:  Unsets the rescheduling flag for the VM.
+
+    Valid states: RUNNING
+* `onegate vm hold`: Sets the given VM on hold. A VM on hold is not scheduled until it is released.
+
+    Valid states: PENDING
+* `onegate vm release`: Releases a VM on hold. See `onegate vm hold`
+
+    Valid states: HOLD
+
+.. code::
+    $ onegate vm shutdown --hard 9
+
+
+Change Service cardinality
+""""""""""""""""""""""""""
+
+The number of Virtual Machines of a Service can be also modified from any of the Virtual Machines that have access to the OneGate Server. The Virtual Machines of Services are grouped in roles and each role has a cardinality (number of Virtual Machines). This cardinality can be increased or decreased, in case the given cardinality is lower than the current one, Virtual Machines will be shut down to meet the given number. If the cardinality is greater than the current one, new Virtual Machines will be instantiated using the template associated to the role.
+
+.. code::
+
+    $ onegate service scale --role slave --cardinality 2
+    $ onegate service show
+    SERVICE 1
+    NAME                : PANACEA service
+    STATE               : SCALING
+
+    ROLE master
+    VM 8
+    NAME                : master_0_(service_1)
+    STATE               : RUNNING
+    IP                  : 192.168.122.23
+
+    ROLE slave
+    VM 9
+    NAME                : slave_0_(service_1)
+    STATE               : RUNNING
+    VM 10
+    NAME                : slave_1_(service_1)
+    STATE               : PENDING
+
+
+Sample Application Monitoring Script
+====================================
 
 .. code::
 
@@ -302,3 +554,8 @@ Sample Script
         --header "X-ONEGATE-VMID: $VMID" \
         --data-binary @$TMP_DIR/metrics
 
+
+
+.. |onegate_arch| image:: /images/onegate_arch.png
+.. |onegate_context| image:: /images/onegate_context.png
+.. |files_context| image:: /images/files_context.png
