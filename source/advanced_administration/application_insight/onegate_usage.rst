@@ -82,9 +82,9 @@ The contextualization cdrom should contain the ``context.sh`` and ``token.txt`` 
 With that data, you can obtain the headers required for all the ONEGATE API methods:
 
 * **Headers**:
-
-    * ``X-ONEGATE-TOKEN: token.txt contents``
-    * ``X-ONEGATE-VMID: <vmid>``
+  
+  * ``X-ONEGATE-TOKEN: token.txt contents``
+  * ``X-ONEGATE-VMID: <vmid>``
 
 OneGate supports these actions:
 
@@ -94,100 +94,100 @@ Self-awareness
 * ``GET ${ONEGATE_ENDPOINT}/vm``: To request information about the current Virtual Machine. 
 * ``GET ${ONEGATE_ENDPOINT}/vms/${VM_ID}``: To request information about a specific Virtual Machine of the Service. The information is returned in JSON format and is ready for public cloud usage:
 
-    .. code::
-
-        $ curl -X "GET" "${ONEGATE_ENDPOINT}/vm" \
-            --header "X-ONEGATE-TOKEN: `cat token.txt`" \
-            --header "X-ONEGATE-VMID: $VMID"
-        {
-            "VM": {
-                "ID": ...,
-                "NAME": ...,
-                "TEMPLATE": {
-                    "NIC": [
-                        {
-                            "IP": ...,
-                            "IP6_LINK": ...,
-                            "MAC": ...,
-                            "NETWORK": ...,
-                        },
-                        // more nics ...
-                    ]
-                },
-                "USER_TEMPLATE": {
-                    "ROLE_NAME": ...,
-                    "SERVICE_ID": ...,
-                    // more user template attributes
-                }
-            }
-        }
+  .. code::
+  
+      $ curl -X "GET" "${ONEGATE_ENDPOINT}/vm" \
+          --header "X-ONEGATE-TOKEN: `cat token.txt`" \
+          --header "X-ONEGATE-VMID: $VMID"
+      {
+          "VM": {
+              "ID": ...,
+              "NAME": ...,
+              "TEMPLATE": {
+                  "NIC": [
+                      {
+                          "IP": ...,
+                          "IP6_LINK": ...,
+                          "MAC": ...,
+                          "NETWORK": ...,
+                      },
+                      // more nics ...
+                  ]
+              },
+              "USER_TEMPLATE": {
+                  "ROLE_NAME": ...,
+                  "SERVICE_ID": ...,
+                  // more user template attributes
+              }
+          }
+      }
 
 * ``PUT ${ONEGATE_ENDPOINT}/vm``: To add information to the template of the current VM. The new information is placed inside the VM's user template section. This means that the application metrics are visible from the command line, Sunstone, or the APIs, and can be used to trigger OneFlow elasticity rules.
 * ``PUT ${ONEGATE_ENDPOINT}/vms/${VM_ID}``: To add information to the template of a specific VM of the Service. 
 
-    .. code::
+  .. code::
+  
+      $ curl -X "PUT" "${ONEGATE_ENDPOINT}/vm" \
+          --header "X-ONEGATE-TOKEN: `cat token.txt`" \
+          --header "X-ONEGATE-VMID: $VMID" \
+          -d "APP_LOAD = 9.7"
 
-        $ curl -X "PUT" "${ONEGATE_ENDPOINT}/vm" \
-            --header "X-ONEGATE-TOKEN: `cat token.txt`" \
-            --header "X-ONEGATE-VMID: $VMID" \
-            -d "APP_LOAD = 9.7"
-
-    The new metric is stored in the user template section of the VM:
-
-    .. code::
-
-        $ onevm show 0
-        ...
-        USER TEMPLATE
-        APP_LOAD="9.7"
+  The new metric is stored in the user template section of the VM:
+  
+  .. code::
+  
+      $ onevm show 0
+      ...
+      USER TEMPLATE
+      APP_LOAD="9.7"
 
 
 * ``GET ${ONEGATE_ENDPOINT}/service``: To request information about the Service. The information is returned in JSON format and is ready for public cloud usage. By pushing data ``PUT /vm`` from one VM and pulling the service data from another VM ``GET /service``, nodes that are part of a OneFlow service can pass values from one to another.
 
-    .. code::
-
-        $ curl -X "GET" "${ONEGATE_ENDPOINT}/service" \
-            --header "X-ONEGATE-TOKEN: `cat token.txt`" \
-            --header "X-ONEGATE-VMID: $VMID"
-
-        {
-            "SERVICE": {
-                "id": ...,
-                "name": ...,
-                "roles": [
-                    {
-                        "name": ...,
-                        "cardinality": ...,
-                        "state": ...,
-                        "nodes": [
-                            {
-                                "deploy_id": ...,
-                                "running": true|false,
-                                "vm_info": {
-                                    // VM template as return by GET /VM
-                                }
-
-                            },
-                            // more nodes ...
-                        ]
-                    },
-                    // more roles ...
-                ]
-            }
-        }
+  .. code::
+  
+      $ curl -X "GET" "${ONEGATE_ENDPOINT}/service" \
+          --header "X-ONEGATE-TOKEN: `cat token.txt`" \
+          --header "X-ONEGATE-VMID: $VMID"
+  
+      {
+          "SERVICE": {
+              "id": ...,
+              "name": ...,
+              "roles": [
+                  {
+                      "name": ...,
+                      "cardinality": ...,
+                      "state": ...,
+                      "nodes": [
+                          {
+                              "deploy_id": ...,
+                              "running": true|false,
+                              "vm_info": {
+                                  // VM template as return by GET /VM
+                              }
+  
+                          },
+                          // more nodes ...
+                      ]
+                  },
+                  // more roles ...
+              ]
+          }
+      }
 
 * ``GET ${ONEGATE_ENDPOINT}``: returns information endpoints:
 
-    .. code::
-
-        $ curl -X "GET" "${ONEGATE_ENDPOINT}/service" \
-            --header "X-ONEGATE-TOKEN: `cat token.txt`" \
-            --header "X-ONEGATE-VMID: $VMID"
-
-        {
-            "vm_info": "http://<onegate_endpoint>/vm",
-            "service_info": "http://<onegate_endpoint>/service"
-        }
+  .. code::
+  
+      $ curl -X "GET" "${ONEGATE_ENDPOINT}/service" \
+          --header "X-ONEGATE-TOKEN: `cat token.txt`" \
+          --header "X-ONEGATE-VMID: $VMID"
+  
+      {
+          "vm_info": "http://<onegate_endpoint>/vm",
+          "service_info": "http://<onegate_endpoint>/service"
+      }
 
 
 Self-configuration
@@ -195,21 +195,21 @@ Self-configuration
 
 * ``PUT ${ONEGATE_ENDPOINT}/service/role/${ROLE_NAME}``: To change the cardinality of a specific role of the Service:
 
-    .. code::
-
-        $ curl -X "PUT" "${ONEGATE_ENDPOINT}/service/role/worker" \
-            --header "X-ONEGATE-TOKEN: `cat token.txt`" \
-            --header "X-ONEGATE-VMID: $VMID" \
-            -d "{'cardinality' : 10}"
+  .. code::
+  
+      $ curl -X "PUT" "${ONEGATE_ENDPOINT}/service/role/worker" \
+          --header "X-ONEGATE-TOKEN: `cat token.txt`" \
+          --header "X-ONEGATE-VMID: $VMID" \
+          -d "{'cardinality' : 10}"
 
 * ``POST ${ONEGATE_ENDPOINT}/vms/${VM_ID}/action``: To perform an action on a specific VM of the Service. Supported actions (resume, stop, suspend, delete, shutdown, reboot, poweroff, resubmit, resched, unresched, hold, release)
 
-    .. code::
+  .. code::  
 
-        $ curl -X "POST" "${ONEGATE_ENDPOINT}/vms/18/action" \
-            --header "X-ONEGATE-TOKEN: `cat token.txt`" \
-            --header "X-ONEGATE-VMID: $VMID" \
-            -d "{'action' : {'perform': 'resched'}}"
+      $ curl -X "POST" "${ONEGATE_ENDPOINT}/vms/18/action" \
+          --header "X-ONEGATE-TOKEN: `cat token.txt`" \
+          --header "X-ONEGATE-VMID: $VMID" \
+          -d "{'action' : {'perform': 'resched'}}"
 
 Using the OneGate Client in the Guest VM
 ========================================
@@ -280,19 +280,19 @@ Available commands and usage are shown with `onegate -h`:
 
 With the appropriate policies implemented in the service, these mechanisms allow services to be self-managed, enabling self-configuration, self-healing, self-optimization and self-protection.
 
-Self-Awareness
-^^^^^^^^^^^^^^
+* **Self-Awareness**
 
 There are several actions available to retrieve information of the Virtual Machine and the Service it belongs to. A Virtual Machine can also retrieve information of other Virtual Machines that are part of the Service.
 
 Retrieving information of the VM
-""""""""""""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Using the `onegate vm show` command the information of the Virtual Machine will be retrieved. For a detailed version use the `--json` option and all the information will be returned in JSON format.
 
 If no argument is provided, the information of the current Virtual Machine will be retrieved. Alternatively, a VM ID can be provided to retrieve the information of a specific Virtual Machine.
 
 .. code::
+
     $ onegate vm show
     VM 8
     NAME                : master_0_(service_1)
@@ -300,11 +300,12 @@ If no argument is provided, the information of the current Virtual Machine will 
     IP                  : 192.168.122.23
 
 Retrieving information of the Service
-"""""""""""""""""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Using the `onegate service show` command the information of the Service will be retrieved. For a detailed version use the `--json` option and all the information will be returned in JSON format.
 
 .. code::
+
     $ onegate service show
     SERVICE 1
     NAME                : PANACEA service
@@ -323,13 +324,14 @@ Using the `onegate service show` command the information of the Service will be 
 
 
 Updating the VM Information
-"""""""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The Virtual Machine can update the information of itself or other Virtual Machine of the Service. This information can be retrieved from any of the Virtual Machines. 
 
 For example, the master Virtual Machine can change the `ACTIVE` attribute from one Virtual Machine to another one. Then, this information can be used to trigger any kind of action in the other Virtual Machine.
 
 .. code::
+
     $ onegate vm update 9 --data ACTIVE=YES
     $ onegate vm show 9 --json
     {
@@ -355,59 +357,36 @@ For example, the master Virtual Machine can change the `ACTIVE` attribute from o
     }
 
 
-Self-Configuration
-^^^^^^^^^^^^^^^^^^
+* **Self-Configuration**
+
 
 There are several actions to adapt the Service to a given situation. Actions on any of the Virtual Machines can be performed individually. Also, the size of the service can be customized just specifying a cardinality for each of the roles.
 
 Performing actions on a VM
-""""""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 One of the following actions can be performed in any of the Virtual Machines of the Service. Again, if no VM ID is provided as argument, the action will be performed on the current Virtual Machine.
 
-* `onegate vm resume`: Resumes the execution of the a saved VM.
- 
-    Valid states: STOPPED, SUSPENDED, UNDEPLOYED, POWEROFF
-* `onegate vm stop`: Stops a running VM. The VM state is saved and transferred back to the front-end along with the disk files. 
-
-    Valid states: RUNNING
-* `onegate vm suspend`:  Saves a running VM. It is the same as `onegate vm stop`, but the files are left in the remote machine to later restart the VM there (i.e. the resources are not freed and there is no need to re-schedule the VM).
-
-    Valid states: RUNNING
-* `onegate vm delete`: Deletes the given VM. Using --recreate resubmits the VM. With --hard it unplugs the VM.
-
-    Valid states: ANY
-* `onegate vm shutdown`: Shuts down the given VM. The VM life cycle will end. With --hard it unplugs the VM.
-
-    Valid states: RUNNING, UNKNOWN (with --hard)
-* `onegate vm reboot`: Reboots the given VM, this is equivalent to execute the reboot command from the VM console. The VM will be ungracefully rebooted if --hard is used.
-
-    Valid states: RUNNING
-* `onegate vm poweroff`: Powers off the given VM. The VM will remain in the poweroff state, and can be powered on with the `onegate vm resume` command.
-
-    Valid states: RUNNING
-* `onegate vm resubmit`: Resubmits the VM to PENDING state to re-deploy a fresh copy of the same VM.
-
-    Valid states: ANY
-* `onegate vm resched`: Sets the rescheduling flag for the VM. The VM will be moved to a different host based on the scheduling policies.
-
-    Valid states: RUNNING
-* `onegate vm unresched`:  Unsets the rescheduling flag for the VM.
-
-    Valid states: RUNNING
-* `onegate vm hold`: Sets the given VM on hold. A VM on hold is not scheduled until it is released.
-
-    Valid states: PENDING
-* `onegate vm release`: Releases a VM on hold. See `onegate vm hold`
-
-    Valid states: HOLD
+* ``onegate vm resume``: Resumes the execution of the a saved VM. Valid states: STOPPED, SUSPENDED, UNDEPLOYED, POWEROFF
+* ``onegate vm stop``: Stops a running VM. The VM state is saved and transferred back to the front-end along with the disk files. Valid states: RUNNING
+* ``onegate vm suspend``:  Saves a running VM. It is the same as ``onegate vm stop``, but the files are left in the remote machine to later restart the VM there (i.e. the resources are not freed and there is no need to re-schedule the VM). Valid states: RUNNING
+* ``onegate vm delete``: Deletes the given VM. Using --recreate resubmits the VM. With --hard it unplugs the VM. Valid states: ANY
+* ``onegate vm shutdown``: Shuts down the given VM. The VM life cycle will end. With --hard it unplugs the VM. Valid states: RUNNING, UNKNOWN (with --hard)
+* ``onegate vm reboot``: Reboots the given VM, this is equivalent to execute the reboot command from the VM console. The VM will be ungracefully rebooted if --hard is used. Valid states: RUNNING
+* ``onegate vm poweroff``: Powers off the given VM. The VM will remain in the poweroff state, and can be powered on with the ``onegate vm resume`` command. Valid states: RUNNING
+* ``onegate vm resubmit``: Resubmits the VM to PENDING state to re-deploy a fresh copy of the same VM. Valid states: ANY
+* ``onegate vm resched``: Sets the rescheduling flag for the VM. The VM will be moved to a different host based on the scheduling policies. Valid states: RUNNING
+* ``onegate vm unresched``:  Unsets the rescheduling flag for the VM. Valid states: RUNNING
+* ``onegate vm hold``: Sets the given VM on hold. A VM on hold is not scheduled until it is released. Valid states: PENDING
+* ``onegate vm release``: Releases a VM on hold. See `onegate vm hold` Valid states: HOLD
 
 .. code::
+
     $ onegate vm shutdown --hard 9
 
 
 Change Service cardinality
-""""""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The number of Virtual Machines of a Service can be also modified from any of the Virtual Machines that have access to the OneGate Server. The Virtual Machines of Services are grouped in roles and each role has a cardinality (number of Virtual Machines). This cardinality can be increased or decreased, in case the given cardinality is lower than the current one, Virtual Machines will be shut down to meet the given number. If the cardinality is greater than the current one, new Virtual Machines will be instantiated using the template associated to the role.
 
