@@ -39,6 +39,8 @@ The OneGate configuration file can be found at ``/etc/one/onegate-server.conf``.
 
 * ``oneflow_server`` Endpoint where the OneFlow server is listening.
 
+* ``permissions`` By default OneGate exposes all the available API calls, each of the actions can be enabled/disabled in the server configuration.
+
 This is the default file
 
 .. code::
@@ -85,6 +87,21 @@ This is the default file
     ################################################################################
     
     :oneflow_server: http://localhost:2474
+
+    ################################################################################
+    # Permissions
+    ################################################################################
+
+    :permissions:
+      :vm:
+        :show: true
+        :show_by_id: true
+        :update: true
+        :update_by_id: true
+        :action_by_id: true
+      :service:
+        :show: true
+        :change_cardinality: true
 
 Start OneGate
 =============
