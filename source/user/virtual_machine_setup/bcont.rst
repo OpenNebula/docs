@@ -18,10 +18,7 @@ You can use the images available in the Marketplace, that are already prepared, 
 The contextualization package will also mount any partition labeled ``swap`` as swap. OpenNebula sets this label for volatile swap disks.
 
 -  Start a image (or finish its installation)
--  Install context packages with one of these methods:
-
-   -  Install from our repositories package **one-context** in Ubuntu/Debian or **opennebula-context** in CentOS/RedHat. Instructions to add the repository at the :ref:`installation guide <ignc>`.
-   -  Download and install the package for your distribution:
+-  Download and install the package for your distribution:
 
       -  `DEB <https://github.com/OpenNebula/addon-context-linux/releases/download/v4.10.0/one-context_4.10.0.deb>`__: Compatible with Ubuntu 11.10 to 14.04 and Debian 6/7
       -  `RPM <https://github.com/OpenNebula/addon-context-linux/releases/download/v4.10.0/one-context_4.10.0.rpm>`__: Compatible with CentOS and RHEL 6/7
