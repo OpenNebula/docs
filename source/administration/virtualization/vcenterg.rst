@@ -369,7 +369,7 @@ The same import mechanism is available graphically through Sunstone for hosts, n
     :width: 90%
     :align: center
 
-.. note:: running VMS can only be imported after the vCenter host has been successfuly acquired.
+.. note:: running VMS can only be imported after the vCenter host has been successfuly acquired. VMs will appear in the Pending state in vOneCloud until the scheduler automatically passes them to Running, there is no need to force the deployment.
 
 .. note:: If you are running Sunstone using nginx/apache you will have to forward the following headers to be able to interact with vCenter, HTTP_X_VCENTER_USER, HTTP_X_VCENTER_PASSWORD and HTTP_X_VCENTER_HOST. For example in nginx you have to add the following attrs to the server section of your nginx file (underscores_in_headers on; proxy_pass_request_headers on;)
 
