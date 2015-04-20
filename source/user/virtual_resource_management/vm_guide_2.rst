@@ -243,7 +243,7 @@ You can take a snapshot of a VM disk to preserve or backup its state at a given 
 -  **Deferred snapshots**, changes to a disk will be saved as a new Image in the associated datastore when the VM is shutdown. The new image will be locked till the VM is properly shutdown and the transferred from the host to the datastore.
 -  **Live snapshots**, just as the deferred snapshots, but the disk is copied to the datastore the moment the operation is triggered. Therefore, you must guarantee that the disk is in a consistent state during the copy operation (e.g. by umounting the disk from the VM). While the disk is copied to the datastore the VM will be in the HOTPLUG state.
 
-The ``onevm disk-snapshot`` command can be run while the VM is RUNNING, POWEROFF or SUSPENDED. See the :ref:`Image guide <img_guide_save_changes>` for specific examples of the disk-snapshot command.
+The ``onevm disk-snapshot`` command can be run while the VM is RUNNING, POWEROFF or SUSPENDED. A deferred disk snapshot can be canceled with the ``onevm disk-snapshot-cancel`` command. See the :ref:`Image guide <img_guide_save_changes>` for specific examples of the disk-snapshot command.
 
 Disk Hotpluging
 ---------------

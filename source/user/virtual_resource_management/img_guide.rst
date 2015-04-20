@@ -302,7 +302,7 @@ Once the VM is deployed you can snapshot a disk, i.e. save the changes made to t
 -  **Deferred snapshots** (disk-snapshot), changes to a disk will be saved as a new Image in the associated datastore when the VM is shutdown.
 -  **Hot snapshots** (hot disk-snapshot), just as the deferred snapshots, but the disk is copied to the datastore the moment the operation is triggered. Therefore, you must guarantee that the disk is in a consistent state during the save\_as operation (e.g. by umounting the disk from the VM).
 
-To save a disk, use the ``onevm disk-snapshot`` command. This command takes three arguments: The VM name (or ID), the disk ID to save and the name of the new image to register. And optionally the --live argument to not defer the disk-snapshot operation.
+To save a disk, use the ``onevm disk-snapshot`` command. This command takes three arguments: The VM name (or ID), the disk ID to save and the name of the new image to register. And optionally the --live argument to not defer the disk-snapshot operation. A deferred snapshot can be canceled with the ``onevm disk-snapshot-cancel`` command.
 
 To know the ID of the disk you want to save, just take a look at the ``onevm show`` output for your VM, you are interested in the ID column in the VM DISK section.
 
@@ -321,16 +321,7 @@ To know the ID of the disk you want to save, just take a look at the ``onevm sho
     END TIME            : -
     DEPLOY ID           : -
 
-    VIRTUAL MACHINE MONITORING
-    USED MEMORY         : 0K
-    USED CPU            : 0
-    NET_TX              : 0K
-    NET_RX              : 0K
-
-    PERMISSIONS
-    OWNER               : um-
-    GROUP               : ---
-    OTHER               : ---
+    [..]
 
     VM DISKS
      ID TARGET IMAGE                               TYPE SAVE SAVE_AS
@@ -342,21 +333,10 @@ To know the ID of the disk you want to save, just take a look at the ``onevm sho
      0 net_172        no vbr0     172.16.0.201    02:00:ac:10:00:c9
                                   fe80::400:acff:fe10:c9
 
-    VIRTUAL MACHINE TEMPLATE
-    CPU="1"
-    GRAPHICS=[
-      LISTEN="0.0.0.0",
-      PORT="5911",
-      TYPE="vnc" ]
-    MEMORY="512"
-    OS=[
-      ARCH="x86_64" ]
-    TEMPLATE_ID="0"
-    VCPU="1"
 
 The IDs are assigned in the same order the disks were defined in the :ref:`VM template <template>`.
 
-The next command will register a new image called *SO upgrade*, that will be ready as soon as the VM is shut down. Till then the image will be locked, and so you cannot use it.
+The next command will register a new image called "SO upgraded", that will be ready as soon as the VM is shut down. Till then the image will be locked, and so you cannot use it.
 
 .. code::
 

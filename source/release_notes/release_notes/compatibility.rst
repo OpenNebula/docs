@@ -21,6 +21,10 @@ Virtual Data Centers
 --------------------------------------------------------------------------------
 Check the previous issue about System DS; you may need to add one or more System DS to your VDCs. 
 
+Virtual Machines
+--------------------------------------------------------------------------------
+
+* onevm disk-snapshot-cancel
 
 Developers and Integrators
 ================================================================================
@@ -28,4 +32,8 @@ Developers and Integrators
 XML-RPC API
 --------------------------------------------------------------------------------
 
+This section lists all the changes in the API. Visit the :ref:`complete reference <api>` for more information.
 
+* New api calls:
+
+  * ``one.vm.savediskcancel``
