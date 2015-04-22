@@ -94,6 +94,7 @@ Example:
       MEMORY = 128
       CPU    = 1
 
+.. _template_showback_section:
 
 Showback Section
 ================================================================================

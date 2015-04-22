@@ -9,7 +9,7 @@ The showback toolset reports resource usage cost, and allows the integration wit
 Set the VM Cost
 ================================================================================
 
-Each VM Template can optionally define a cost. The cost is defined as **cost per cpu per hour**, and **cost per memory MB per hour**. The cost units are abstract and their equivalent to monetary or other cost metrics have to be defined in each deployment.
+Each VM Template can optionally define a cost (see the :ref:`syntax here <template_showback_section>`). The cost is defined as **cost per cpu per hour**, and **cost per memory MB per hour**. The cost units are abstract and their equivalent to monetary or other cost metrics have to be defined in each deployment.
 
 |showback_template_wizard|
 
