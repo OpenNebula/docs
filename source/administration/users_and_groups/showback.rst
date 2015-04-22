@@ -51,12 +51,14 @@ The ``oneshowback`` command can only be executed by the oneadmin user.
 Some examples:
 
 To calculate all records, starting from March up to today:
+
 .. code::
 
     $ oneshowback calculate --start "03/2014"
 
 
 To calculate only September:
+
 .. code::
 
     $ oneshowback calculate --start "09/2014" --end "09/2014"
