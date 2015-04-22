@@ -93,7 +93,7 @@ Sunstone is the all encompasing access to OpenNebula, so it reflects all the imp
 - **Support for VXLAN**, in the :ref:`network tab <vxlan>`.
 - **Support for Showback** capabilities, for :ref:`both users and cloud administrators <showback>`.
 - **Search for any attribute in the VM template**, useful to searh for organization specific attributes. 
-- **Proxy capabilities** for the :ref:`commercial support integration with Zendesk <commercial_support_sunstone>`. (TODO documentation?)
+- **Proxy capabilities** for the :ref:`commercial support integration with Zendesk <commercial_support_sunstone>`.
 - **Suport IO Tune parameters for templates**
 
 
