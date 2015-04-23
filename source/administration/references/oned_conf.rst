@@ -573,7 +573,7 @@ OpenNebula evaluates these attributes:
 
 - on VM template instantiate (onetemplate instantiate)
 - on VM create (onevm create)
-- on VM attach nic (onevm attachnic) (for example to forbid users to use NIC/MAC)
+- on VM attach nic (onevm nic-attach) (for example to forbid users to use NIC/MAC)
 
 
 Inherited Attributes Configuration
