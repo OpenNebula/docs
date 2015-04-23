@@ -275,7 +275,7 @@ To detach a disk from a running VM, find the disk ID of the Image you want to de
 NIC Hotpluging
 --------------
 
-You can also hotplug network interfaces to a RUNNING VM. Simply, specify the network where the new interface should be attach to, for example:
+You can hotplug network interfaces to VMs in the ``RUNNING`` or ``POWEROFF`` states. Simply specify the network where the new interface should be attach to, for example:
 
 .. code::
 
@@ -304,7 +304,7 @@ You can also hotplug network interfaces to a RUNNING VM. Simply, specify the net
 
     $ onevm attachnic 2 --network net_172
 
-After the operation you should see two NICs 0 and 1:
+After the operation you should see two NICs, 0 and 1:
 
 .. code::
 
@@ -326,7 +326,7 @@ After the operation you should see two NICs 0 and 1:
                                   fe80::400:acff:fe10:ca
     ...
 
-Also, you can detach a NIC by its ID. If you want to detach interface 1 (MAC=02:00:ac:10:00:ca), just:
+Also, you can detach a NIC by its ID. If you want to detach interface 1 (MAC=02:00:ac:10:00:ca), just execute:
 
 .. code::
 

@@ -24,6 +24,7 @@ Check the previous issue about System DS; you may need to add one or more System
 Virtual Machines
 --------------------------------------------------------------------------------
 
+* Disks and NIC :ref:`attach/detach actions <vm_guide_2>` are now available for VMs in the ``POWEROFF`` state. They were previously restricted to VMs in ``RUNNING`` only.
 * onevm disk-snapshot-cancel
 
 Developers and Integrators
