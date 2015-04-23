@@ -302,7 +302,7 @@ You can hotplug network interfaces to VMs in the ``RUNNING`` or ``POWEROFF`` sta
        0 cloud01         none    03/07 11:37:40    0d 00h02m14s    0d 00h00m00s
     ...
 
-    $ onevm attachnic 2 --network net_172
+    $ onevm nic-attach 2 --network net_172
 
 After the operation you should see two NICs, 0 and 1:
 
@@ -330,7 +330,7 @@ Also, you can detach a NIC by its ID. If you want to detach interface 1 (MAC=02:
 
 .. code::
 
-    > onevm detachnic 2 1
+    $ onevm nic-detach 2 1
 
 |image3|
 
