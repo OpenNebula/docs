@@ -32,8 +32,7 @@ Developers and Integrators
 VM History Actions
 --------------------------------------------------------------------------------
 
-.. todo::
-    *  Feature #3496: Track hotplugging in accounting
+The :ref:`accounting records <accounting>` are individual Virtual Machine history records. A new record is created when a VM is stopped, suspended, migrated, etc. Starting in 4.14 a new record is also created when the Virtual Machine has a disk/nic attached or detached. Since the history record contains a copy of the Virtual Machine contents, this helps developers to keep track of the changes made to the disks and network interfaces of a Virtual Machine.
 
 XML-RPC API
 --------------------------------------------------------------------------------

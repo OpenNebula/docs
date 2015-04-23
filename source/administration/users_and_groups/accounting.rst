@@ -33,7 +33,7 @@ To integrate this tool with other systems you can use ``-j``, ``-x`` or ``--csv`
 Accounting Output
 =================
 
-The oneacct command shows individual Virtual Machine history records. This means that for a single VM you may get several accounting entries, one for each migration or stop/suspend action.
+The oneacct command shows individual Virtual Machine history records. This means that for a single VM you may get several accounting entries, one for each migration or stop/suspend action. A resize or disk/nic attachement will also create a new entry.
 
 Each entry contains the complete information of the Virtual Machine, including the Virtual Machine monitoring information. By default, only network consumption is reported, see the `Tuning & Extending <#tuning-extending>`__ section for more information.
 
