@@ -31,7 +31,6 @@ In the case of VirtualMachine hooks, the following can be defined:
    -  **STOP**, after the VM is stopped (including VM image transfers)
    -  **DONE**, after the VM is destroyed or shutdown
    -  **UNKNOWN**, when the VM enters the unknown state
-   -  **FAILED**, when the VM enters the failed state
    -  **CUSTOM**, user defined specific STATE and LCM\_STATE combination of states to trigger the hook.
 
 -  **command** : path can be absolute or relative to ``/var/lib/one/remotes/hooks``

@@ -219,7 +219,6 @@ If you execute oneacct with the ``-x`` option, you will get an XML output define
                     STOPPED   = 4
                     SUSPENDED = 5
                     DONE      = 6
-                    FAILED    = 7
                     POWEROFF  = 8
                   -->
                   <xs:element name="STATE" type="xs:integer"/>

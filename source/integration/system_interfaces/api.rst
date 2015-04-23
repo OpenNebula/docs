@@ -1349,7 +1349,7 @@ one.vm.recover
 +------+------------+---------------------------------------------------------------------------+
 | IN   | Int        | The object ID.                                                            |
 +------+------------+---------------------------------------------------------------------------+
-| IN   | Boolean    | Recover the VM by succeeding (true) of failing (false) the pending action |
+| IN   | Int        | Recover operation: success (1), failure (0) or retry (2)                  |
 +------+------------+---------------------------------------------------------------------------+
 | OUT  | Boolean    | true or false whenever is successful or not                               |
 +------+------------+---------------------------------------------------------------------------+
@@ -1475,8 +1475,6 @@ The state filter can be one of the following:
 |     5 | SUSPENDED                 |
 +-------+---------------------------+
 |     6 | DONE                      |
-+-------+---------------------------+
-|     7 | FAILED                    |
 +-------+---------------------------+
 
 one.vmpool.monitoring

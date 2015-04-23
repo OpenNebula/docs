@@ -342,13 +342,13 @@ The poll action can give back any information and it will be added to the VM inf
 +=======+============================================================================================+
 | N/A   | Detecting state error. The monitoring could be done, but it returned an unexpected output. |
 +-------+--------------------------------------------------------------------------------------------+
-| a     | Active. The VM is alive, but not necessary running. Could be blocked, booting, etc.        |
+| a     | Active. The VM alive (running, blocked, booting...). The VM will be set to ``RUNNING``     |
 +-------+--------------------------------------------------------------------------------------------+
-| p     | Paused. Self-explanatory.                                                                  |
+| p     | Paused. The VM will be set to ``SUSPENDED``                                                |
 +-------+--------------------------------------------------------------------------------------------+
-| e     | Error. The VM crashed or somehow its deployment failed.                                    |
+| e     | Error. The VM crashed or somehow its deployment failed. The VM will be set to ``UNKNOWN``  |
 +-------+--------------------------------------------------------------------------------------------+
-| d     | Disappeared. The VM is not known by the hypervisor anymore.                                |
+| d     | Disappeared. VM not known by the hypervisor anymore. The VM will be set to ``POWEROFF``    |
 +-------+--------------------------------------------------------------------------------------------+
 
 Deployment File

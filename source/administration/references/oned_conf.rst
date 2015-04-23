@@ -436,7 +436,6 @@ Virtual Machine Hooks (VM\_HOOK) defined by:
    -  **SHUTDOWN**, after the VM is shutdown
    -  **STOP**, after the VM is stopped (including VM image transfers)
    -  **DONE**, after the VM is deleted or shutdown
-   -  **FAILED**, when the VM enters the failed state
    -  **CUSTOM**, user defined specific STATE and LCM\_STATE combination of states to trigger the hook
 
 -  **command**: path can be absolute or relative to /usr/share/one/hooks
@@ -476,12 +475,6 @@ Host Hooks (HOST\_HOOK) defined by:
 Sample configuration:
 
 .. code::
-
-    VM_HOOK = [
-       name      = "on_failure_recreate",
-       on        = "FAILED",
-       command   = "/usr/bin/env onevm delete --recreate",
-       arguments = "$ID" ]
      
     VM_HOOK = [
       name      = "advanced_hook",

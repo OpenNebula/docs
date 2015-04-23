@@ -21,6 +21,21 @@ Virtual Data Centers
 --------------------------------------------------------------------------------
 Check the previous issue about System DS; you may need to add one or more System DS to your VDCs. 
 
+Virtual Machine Recovery Process
+--------------------------------------------------------------------------------
+The recover process of VMs has been redesign in 4.14. When a VM is in ``fail`` state it can be:
+
+- recover with success, to move on to the next state.
+- recover with retry, to retry the last driver operation.
+- (*only for failed migrations*) recover with failure, to cancel the migration and go back to the previous host.
+
+As a result the pre-4.14 final, and *un-recoverable*, FAILED state has been removed; and split for each point of failure. Any application checking for FAILED state needs to be upgraded for the new functionality.
+
+Virtual Machine Hooks
+--------------------------------------------------------------------------------
+Hooks on ``FAILED`` states are no longer needed; any automatic recovery action needs to be hooked on the new ``LCM_STATES``.
+
+
 Virtual Machines
 --------------------------------------------------------------------------------
 
@@ -35,11 +50,21 @@ VM History Actions
 
 The :ref:`accounting records <accounting>` are individual Virtual Machine history records. A new record is created when a VM is stopped, suspended, migrated, etc. Starting in 4.14 a new record is also created when the Virtual Machine has a disk/nic attached or detached. Since the history record contains a copy of the Virtual Machine contents, this helps developers to keep track of the changes made to the disks and network interfaces of a Virtual Machine.
 
+Virtual Machine Monitor Probes
+--------------------------------------------------------------------------------
+.. todo::
+    * Add templates to probes for import
+* When the monitor probe returns state 'e' for a Virtual Machine now it is moved to UNKNOWN state; instead of FAILED state, now removed. 
+
 XML-RPC API
 --------------------------------------------------------------------------------
 
 This section lists all the changes in the API. Visit the :ref:`complete reference <api>` for more information.
 
-* New api calls:
+* New API calls:
 
   * ``one.vm.savediskcancel``
+
+* API upgrades:
+
+  * ``one.vm.recover`` now takes an integer as argument: 0 for failure, 1 for success and 2 for retries. Applications using the pre-4.14 interface may work because of the casting of the boolean recovery operation to the new integer value. However, given the extended functionality of the new recover implementation it is recommended to review the logic of any application using this API call.
