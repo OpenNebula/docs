@@ -73,15 +73,15 @@ Virtual Machines are defined in an OpenNebula Template. Templates are stored in 
 
 -  **Network Interfaces**. Each network interface of a VM is defined with the ``NIC`` attribute.
 
-+--------------------------------+----------------------------------------------+-----------+---------+
-|           Attribute            |                 Description                  | Mandatory | Default |
-+================================+==============================================+===========+=========+
-| ``NETWORK_ID`` and ``NETWORK`` | The ID or Name of the image in the datastore | Yes       |         |
-+--------------------------------+----------------------------------------------+-----------+---------+
-| ``NETWORK_UID``                | Select the IMAGE of a given user by her ID   | No        | self    |
-+--------------------------------+----------------------------------------------+-----------+---------+
-| ``NETWORK_UNAME``              | Select the IMAGE of a given user by her NAME | No        | self    |
-+--------------------------------+----------------------------------------------+-----------+---------+
++--------------------------------+------------------------------------------------+-----------+---------+
+|           Attribute            |                  Description                   | Mandatory | Default |
++================================+================================================+===========+=========+
+| ``NETWORK_ID`` and ``NETWORK`` | The ID or Name of the image in the datastore   | Yes       |         |
++--------------------------------+------------------------------------------------+-----------+---------+
+| ``NETWORK_UID``                | Select the NETWORK of a given user by her ID   | No        | self    |
++--------------------------------+------------------------------------------------+-----------+---------+
+| ``NETWORK_UNAME``              | Select the NETWORK of a given user by her NAME | No        | self    |
++--------------------------------+------------------------------------------------+-----------+---------+
 
 The following example shows a VM Template file with a couple of disks and a network interface, also a VNC section was added.
 
