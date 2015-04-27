@@ -76,7 +76,7 @@ Virtual Machines are defined in an OpenNebula Template. Templates are stored in 
 +--------------------------------+------------------------------------------------+-----------+---------+
 |           Attribute            |                  Description                   | Mandatory | Default |
 +================================+================================================+===========+=========+
-| ``NETWORK_ID`` and ``NETWORK`` | The ID or Name of the image in the datastore   | Yes       |         |
+| ``NETWORK_ID`` and ``NETWORK`` | The ID or Name of the network                  | Yes       |         |
 +--------------------------------+------------------------------------------------+-----------+---------+
 | ``NETWORK_UID``                | Select the NETWORK of a given user by her ID   | No        | self    |
 +--------------------------------+------------------------------------------------+-----------+---------+
