@@ -64,7 +64,7 @@ The ``context.ps1`` script will:
 Variables
 ---------
 
-The contextualization variables supported by the Windows context script are very similar to the ones in :ref:`Linux <cong_network_configuration>` except for a few Windows-specific exceptions.
+The contextualization variables supported by the Windows context script are very similar to the ones in :ref:`Linux <bcont_network_configuration>` except for a few Windows-specific exceptions.
 
 This is the list of supported variables:
 

@@ -28,7 +28,21 @@ The contextualization package will also mount any partition labeled ``swap`` as 
 Preparing the Template
 ======================
 
-We will also need to add the gateway information to the Virtual Networks that need it. This is an example of a Virtual Network with gateway information:
+.. _bcont_network_configuration:
+
+Network Configuration
+---------------------
+
+These packages install a generic network configuration script that will set network parameters extracted from the virtual networks, the VM Template NIC section and the Context section. We can use NETWORK="yes" in the CONTEXT section of a VM Template to get OpenNebula to pull these parameters and calculate their final value. The precedence is the following, from weaker to stronger priority:
+
+- Virtual Network Template
+- Address Range Template
+- Virtual Machine NIC section
+- Virtual Machine Context section
+
+Following that, setting a Gateway in the NIC section will override the Virtual Network default Gateway, and writing a DNS in the Context section for a particular NIC will override the Address Range the NIC is pulling it's IP from.
+
+Let's see an example. We define a Virtual Network like the following:
 
 .. code::
 
@@ -59,15 +73,72 @@ When the template is instantiated, those parameters for ``eth0`` are automatical
       NETWORK="YES",
       TARGET="hda" ]
 
+We can override some of the parameters, for instance let's set a different Gateway and DNS for eth0 in the NIC section, and a different DNS in the Context section. So, in the VM Template
+
+.. code::
+
+     NIC=[GATEWAY="80.0.0.27", DNS="80.0.0.26"]
+
+    CONTEXT=[
+      ETH0_DNS="80.0.0.80"
+      NETWORK=YES ]
+
+When the template is instantiated, the values that will be setting the final network configuration are:
+
+.. code::
+
+    CONTEXT=[
+      DISK_ID="0",
+      ETH0_DNS="80.0.0.80",
+      ETH0_GATEWAY="80.0.0.27",
+      ETH0_IP="80.0.0.2",
+      ETH0_MASK="255.255.255.0",
+      ETH0_NETWORK="80.0.0.0",
+      NETWORK="YES",
+      TARGET="hda" ]
+
 If you add more that one interface to a Virtual Machine you will end with same parameters changing ETH0 to ETH1, ETH2, etc.
 
-You can also add ``SSH_PUBLIC_KEY`` parameter to the context to add a SSH public key to the ``authorized_keys`` file of root.
+A complete list of parameters that can be used for network contextualization are:
+
++--------------------------------+--------------------------------------------------+
+| Attribute                      | Description                                      |
++================================+==================================================+
+| ``<DEV>_MAC``                  | MAC address of the interface                     |
++--------------------------------+--------------------------------------------------+
+| ``<DEV>_IP``                   | IP assigned to the interface                     |
++--------------------------------+--------------------------------------------------+
+| ``<DEV>_NETWORK``              | Interface network                                |
++--------------------------------+--------------------------------------------------+
+| ``<DEV>_MASK``                 | Interface net mask                               |
++--------------------------------+--------------------------------------------------+
+| ``<DEV>_GATEWAY``              | Interface gateway                                |
++--------------------------------+--------------------------------------------------+
+| ``<DEV>_DNS``                  | DNS servers for the network                      |
++--------------------------------+--------------------------------------------------+
+| ``<DEV>_SEARCH_DOMAIN``        | DNS domain search path                           |
++--------------------------------+--------------------------------------------------+
+| ``<DEV>_IPV6``                 | Global IPv6 assigned to the interface            |
++--------------------------------+--------------------------------------------------+
+| ``<DEV>_GATEWAY6``             | IPv6 gateway for this interface                  |
++--------------------------------+--------------------------------------------------+
+| ``<DEV>_CONTEXT_FORCE_IPV4``   | Configure IPv4 even if IPv6 values are present   |
++--------------------------------+--------------------------------------------------+
+| ``DNS``                        | main DNS server for the machine                  |
++--------------------------------+--------------------------------------------------+
+
+SSH Configuration
+-----------------
+
+You can add ``SSH_PUBLIC_KEY`` parameter to the context to add a SSH public key to the ``authorized_keys`` file of the root user.
 
 .. code::
 
     CONTEXT=[
       SSH_PUBLIC_KEY = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC+vPFFwem49zcepQxsyO51YMSpuywwt6GazgpJe9vQzw3BA97tFrU5zABDLV6GHnI0/ARqsXRX1mWGwOlZkVBl4yhGSK9xSnzBPXqmKdb4TluVgV5u7R5ZjmVGjCYyYVaK7BtIEx3ZQGMbLQ6Av3IFND+EEzf04NeSJYcg9LA3lKIueLHNED1x/6e7uoNW2/VvNhKK5Ajt56yupRS9mnWTjZUM9cTvlhp/Ss1T10iQ51XEVTQfS2VM2y0ZLdfY5nivIIvj5ooGLaYfv8L4VY57zTKBafyWyRZk1PugMdGHxycEh8ek8VZ3wUgltnK+US3rYUTkX9jj+Km/VGhDRehp user@host"
     ]
+
+If the SSH\_PUBLIC\_KEY exists as a User Template attribute, and the template is instantiated in Sunstone, this value will be used to populate SSH\_PUBLIC\_KEY value of the CONTEXT section. This way templates can be made generic.
 
 If you want to known more in deep the contextualization options head to the :ref:`Advanced Contextualization guide <cong>`.
 
