@@ -184,6 +184,8 @@ To activate for instance the Stripping storage policy, ``/etc/one/sched.conf`` m
        policy = 1
     ]
 
+After a VM is deployed in a system datastore, the admin can migrate it to another system datastore. To do that, the VM must be first :ref:`powered-off <vm_guide_2>`. The command ``onevm migrate`` accepts both a new host and datastore id, that must have the same TM_MAD drivers as the source datastore.
+
 .. warning:: Any host belonging to a given cluster **must** be able to access any system or image datastore defined in that cluster.
 
 .. warning:: System Datastores in cluster default are not shared across clusters and can only be used by hosts in the default cluster.

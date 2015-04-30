@@ -988,6 +988,8 @@ one.vm.migrate
 +------+------------+------------------------------------------------------------------------+
 | IN   | Boolean    | true to enforce the Host capacity is not overcommitted.                |
 +------+------------+------------------------------------------------------------------------+
+| IN   | Int        | the target system DS id where we want to migrate the vm.               |
++------+------------+------------------------------------------------------------------------+
 | OUT  | Boolean    | true or false whenever is successful or not                            |
 +------+------------+------------------------------------------------------------------------+
 | OUT  | Int/String | The VM ID / The error string.                                          |

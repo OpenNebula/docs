@@ -225,7 +225,7 @@ There are some ``onevm`` commands operations meant for the cloud administrators:
 
 -  ``deploy``: Starts an existing VM in a specific Host.
 -  ``migrate --live``: The Virtual Machine is transferred between Hosts with no noticeable downtime. This action requires a :ref:`shared file system storage <sm>`.
--  ``migrate``: The VM gets stopped and resumed in the target host.
+-  ``migrate``: The VM gets stopped and resumed in the target host. In an infrastructure with :ref:`multiple system datastores <system_ds_multiple_system_datastore_setups>`, the VM storage can be also migrated.
 
 Note: By default, the above operations do not check the target host capacity. You can use the -e (-enforce) option to be sure that the host capacity is not overcommitted.
 
