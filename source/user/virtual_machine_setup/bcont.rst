@@ -20,8 +20,8 @@ The contextualization package will also mount any partition labeled ``swap`` as 
 -  Start a image (or finish its installation)
 -  Download and install the package for your distribution:
 
-      -  `DEB <https://github.com/OpenNebula/addon-context-linux/releases/download/v4.10.0/one-context_4.10.0.deb>`__: Compatible with Ubuntu 11.10 to 14.04 and Debian 6/7
-      -  `RPM <https://github.com/OpenNebula/addon-context-linux/releases/download/v4.10.0/one-context_4.10.0.rpm>`__: Compatible with CentOS and RHEL 6/7
+  -  `DEB <https://github.com/OpenNebula/addon-context-linux/releases/download/v4.10.0/one-context_4.10.0.deb>`__: Compatible with Ubuntu 11.10 to 14.04 and Debian 6/7
+  -  `RPM <https://github.com/OpenNebula/addon-context-linux/releases/download/v4.10.0/one-context_4.10.0.rpm>`__: Compatible with CentOS and RHEL 6/7
 
 -  Shutdown the VM
 
@@ -33,7 +33,9 @@ Preparing the Template
 Network Configuration
 ---------------------
 
-These packages install a generic network configuration script that will set network parameters extracted from the virtual networks, the VM Template NIC section and the Context section. We can use NETWORK="yes" in the CONTEXT section of a VM Template to get OpenNebula to pull these parameters and calculate their final value. The precedence is the following, from weaker to stronger priority:
+These packages install a generic network configuration script that will set network parameters extracted from the virtual networks, the VM Template NIC section and the Context section. OpenNebula will automatically generate network configuration information for the configuration script if ``NETWORK="yes"`` is added to the ``CONTEXT`` attribute, or alternatevely the Network Context checkbox is set in the Context tab of the VM Template creation dialog.
+
+The precedence is the following, from weaker to stronger priority:
 
 - Virtual Network Template
 - Address Range Template
@@ -52,7 +54,7 @@ Let's see an example. We define a Virtual Network like the following:
     GATEWAY=80.0.0.1
     DNS="8.8.8.8 8.8.4.4"
 
-And then in the VM template contextualization we set NETWORK to ``yes``:
+And then in the VM template contextualization we set:
 
 .. code::
 
