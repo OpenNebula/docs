@@ -71,8 +71,8 @@ Virtual Machine errors can be checked by the owner or an administrator using the
     NAME                : one-0
     USER                : oneadmin
     GROUP               : oneadmin
-    STATE               : FAILED
-    LCM_STATE           : LCM_INIT
+    STATE               : ACTIVE
+    LCM_STATE           : PROLOG_FAILED
     START TIME          : 07/19 17:44:20
     END TIME            : 07/19 17:44:31
     DEPLOY ID           : -
@@ -96,12 +96,16 @@ Virtual Machine errors can be checked by the owner or an administrator using the
     VMID=0
 
     VIRTUAL MACHINE HISTORY
-     SEQ        HOSTNAME REASON           START        TIME       PTIME
-       0          host01   erro  07/19 17:44:31 00 00:00:00 00 00:00:00
+     SEQ        HOSTNAME ACTION           START        TIME       PTIME
+       0          host01   none  07/19 17:44:31 00 00:00:00 00 00:00:00
 
 Here the error tells that it could not copy a file, most probably it does not exist.
 
 Alternatively you can also check the log files for the VM at ``/var/log/one/<vmid>.log``.
+
+.. warning::
+
+   Check the :ref:`Virtual Machines High Availability Guide<ftguide>`, to learn how to recover a VM in ``fail`` state.
 
 Host Errors
 ===========

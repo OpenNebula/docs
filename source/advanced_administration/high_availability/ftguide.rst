@@ -42,24 +42,51 @@ We are defining a host hook, named ``error``, that will execute the script 'host
 
 More information on hooks :ref:`here <hooks>`.
 
-Additionally, there is a corner case that in critical production environments should be taken into account. OpenNebula also has become tolerant to network errors (up to a limit). This means that a spurious network error won't trigger the hook. But if this network error stretches in time, the hook may be triggered and the VMs deleted and recreated. When (and if) the network comes back, there will be a potential clash between the old and the reincarnated VMs. In order to prevent this, a script can be placed in the cron of every host, that will detect the network error and shutdown the host completely (or delete the VMs).
+.. warning:: Note that spurious network errors may lead to a VM started twice in different hosts and possibly contend on shared resources. The previous script needs to fence the error host to prevent split brain VMs. You may use any fencing mechanism for the host and invoke it within the error hook.
 
 Virtual Machine Failures
 ========================
 
-The Virtual Machine lifecycle management can fail in several points. The following two cases should cover them:
+The overall state of a virtual machine in a failure condition will show as ``failure`` (or ``fail`` in the CLI). To find out the specific failure situation you need to check the ``LCM_STATE`` of the VM in the VM info tab (or ``onevm show`` in the CLI.). Moreover, a VM can be stuck in a transition (e.g. boot or save) because of a host or network failure. Typically these operations will eventually timeout and lead to a VM failure state.
 
--  **VM fails**: This may be due to a network error that prevents the image to be staged into the node, a hypervisor related issue, a migration problem, etc. The common symptom is that the VM enters the FAILED state. In order to deal with these errors, a Virtual Machine hook can be set to ``recreate`` the failed VM (or, depending the production scenario, delete it). This can be achieved by uncommenting the following (for recreating, the deletion hook is also present in the same file) in ``/etc/one/oned.conf`` (and restarting ``oned``):
+Independent from the nature of the failure or if the VM is stuck, there are 3 recovery operations:
 
-.. code::
+- **Success**, the operation has been confirmed to succeed (e.g. the VM has actually booted on the hyper visor). OpenNebula will update the VM status accordingly.
 
-    #-------------------------------------------------------------------------------
-    VM_HOOK = [
-       name      = "on_failure_recreate",
-       on        = "FAILED",
-       command   = "/usr/bin/env onevm delete --recreate",
-       arguments = "$ID" ]
-    #-------------------------------------------------------------------------------
+- **Retry**, the operation can be re-tried after a problem has been manually recovered (e.g. send again the boot order after bringing up a host again).
 
--  **VM crash**: This point is concerned with crashes that can happen to a VM **after** it has been successfully booted (note that here boot doesn't refer to the actual VM boot process, but to the OpenNebula boot process, that comprises staging and hypervisor deployment). OpenNebula is able to detect such crashes, and report it as the VM being in an UNKNOWN state. This failure can be recovered from using the ``onevm boot`` functionality.
+- **Fail**, will set the VM on failure to manually fix the infrastructure. Once the problem is fixed the VM can be recovered with any of the two previous operations.
 
+Note also that OpenNebula will try to automatically recover some failure situations using the monitor information.
+
+The following list details the specific failure conditions and steps needed to recover a VM in each case.
+
+- ``BOOT_FAILURE``, The VM failed to boot but all the files needed by the VM are already in the host. Check the hypervisor logs to find out the problem, and once fixed recover the VM with the retry option.
+
+- ``BOOT_MIGRATE_FAILURE``, same as above but during a migration. Check the target hypervisor and retry the operation.
+
+- ``BOOT_UNDEPLOY_FAILURE``
+
+- ``BOOT_STOPPED_FAILURE``
+
+.. todo::
+
+- ``PROLOG_FAILURE``, there was a problem setting up the disk images needed by the VM. Check the vm.log for the specific error (disk space, permissions, mis-configured datastore...). You can retry the operation once the problem is fixed. Note that you may need to manually rollback some operations.
+
+- ``PROLOG_MIGRATE_FAILURE``
+
+- ``PROLOG_MIGRATE_POWEROFF``
+
+- ``EPILOG_FAILURE``
+
+- ``EPILOG_FAILURE``
+
+- ``EPILOG_STOP_FAILURE``
+
+- ``EPILOG_UNDEPLOY_FAILURE``
+
+- ``PROLOG_MIGRATE_POWEROFF_FAILURE``
+
+- ``PROLOG_MIGRATE_SUSPEND``
+
+- ``PROLOG_MIGRATE_SUSPEND_FAILURE``

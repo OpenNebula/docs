@@ -31,6 +31,9 @@ The recover process of VMs has been redesign in 4.14. When a VM is in ``fail`` s
 
 As a result the pre-4.14 final, and *un-recoverable*, FAILED state has been removed; and split for each point of failure. Any application checking for FAILED state needs to be upgraded for the new functionality.
 
+.. todo::
+    Update xsd files in the documentation. Add note in upgrade guide to remove FAILED VMs before upgrade. 
+
 Virtual Machine Hooks
 --------------------------------------------------------------------------------
 Hooks on ``FAILED`` states are no longer needed; any automatic recovery action needs to be hooked on the new ``LCM_STATES``.

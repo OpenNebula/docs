@@ -1478,6 +1478,14 @@ The state filter can be one of the following:
 +-------+---------------------------+
 |     6 | DONE                      |
 +-------+---------------------------+
+|     8 | POWEROFF                  |
++-------+---------------------------+
+|     9 | UNDEPLOYED                |
++-------+---------------------------+
+
+.. warning::
+
+  Value 7 is reserved for FAILED VMs for compatibility reasons.
 
 one.vmpool.monitoring
 ---------------------
