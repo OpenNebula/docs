@@ -359,7 +359,14 @@ Also, the **onevcenter** tool can be used to import existing running VMs:
         Import this Virtual Machine [y/n]? y
         OpenNebula VM 11 created!
 
-After a Virtual Machine is imported, all their lifecycle (including creation of snapshots) can be controlled through OpenNebula. Also, network management operations are present like the ability to attach/detach network interfaces.
+After a Virtual Machine is imported, their lifecycle (including creation of snapshots) can be controlled through OpenNebula. The following operations *cannot* be performed on an imported VM:
+
+- Delete --recreate
+- Undeploy (and Undeploy --hard)
+- Migrate (and Migrate --live)
+- Stop
+
+Also, network management operations are present like the ability to attach/detach network interfaces.
 
 .. _reacquire_vcenter_resources:
 
