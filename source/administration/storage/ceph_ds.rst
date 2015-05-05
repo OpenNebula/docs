@@ -10,8 +10,6 @@ The Ceph datastore driver provides OpenNebula users with the possibility of usin
 
 .. warning:: This driver requires that the OpenNebula nodes using the Ceph driver must be Ceph clients of a running Ceph cluster. More information in `Ceph documentation <http://ceph.com/docs/master/>`__.
 
-.. warning:: The hypervisor nodes need to be part of a working Ceph cluster and the Libvirt and QEMU packages need to be recent enough to have support for Ceph. For Ubuntu systems this is available out of the box, however for CentOS systems you will need to manually install `this version <http://ceph.com/packages/qemu-kvm/>`__ of qemu-kvm.
-
 Requirements
 ============
 
