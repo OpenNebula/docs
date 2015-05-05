@@ -20,15 +20,13 @@ Ceph Cluster Configuration
 
 The hosts where Ceph datastores based images will be deployed must be part of a running Ceph cluster. To do so refer to the `Ceph documentation <http://ceph.com/docs/master/>`__.
 
-The Ceph cluster must be configured in such a way that no specific authentication is required, which means that for ``cephx`` authentication the keyring must be in the expected path so that ``rbd`` and ``ceph`` commands work without specifying explicitely the keyring's location.
-
 Also the ``mon`` daemon must be defined in the ``ceph.conf`` for all the nodes, so ``hostname`` and ``port`` doesn't need to be specified explicitely in any Ceph command.
 
 Additionally each OpenNebula datastore is backed by a ceph pool, these pools must be created and configured in the Ceph cluster. The name of the pool by default is ``one`` but can be changed on a per-datastore basis (see below).
 
-``ceph`` cluster admin must include a valid user to be used by ``one`` ``ceph`` datastore (see below).
+``ceph`` cluster admin must include a valid user to be used by ``one`` ``ceph`` datastore (see below). This user should be configured in the ``CEPH_USER`` variable in the datastore template (see below). OpenNebula will issue commands from the ``oneadmin`` account in the nodes and in the frontend, using ``--id $CEPH_USER`` as a parameter, for example ``rbd --id $CEPH_USER``. Ceph authentication must be configured in a way that issuing commands these commands does worl.
 
-This driver can work with either RBD Format 1 or RBD Format 2. To set the default you can specify this option in ``ceph.conf``:
+This driver can work with either RBD Format 1 or RBD Format 2 (default). To set the default you can specify this option in ``ceph.conf``:
 
 .. code::
 
