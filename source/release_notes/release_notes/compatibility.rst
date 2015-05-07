@@ -43,7 +43,10 @@ Virtual Machines
 --------------------------------------------------------------------------------
 
 * Disks and NIC :ref:`attach/detach actions <vm_guide_2>` are now available for VMs in the ``POWEROFF`` state. They were previously restricted to VMs in ``RUNNING`` only.
-* onevm disk-snapshot-cancel
+* Previous versions had a "save VM" functionality available through the Cloud View. This action has been redone to improve it, and make it available from other interfaces. Read more about it in the :ref:`Managing Virtual Machines guide <vm_guide2_clone_vm>`.
+
+.. todo:: onevm disk-snapshot-cancel
+
 
 Developers and Integrators
 ================================================================================
@@ -71,3 +74,4 @@ This section lists all the changes in the API. Visit the :ref:`complete referenc
 * API upgrades:
 
   * ``one.vm.recover`` now takes an integer as argument: 0 for failure, 1 for success and 2 for retries. Applications using the pre-4.14 interface may work because of the casting of the boolean recovery operation to the new integer value. However, given the extended functionality of the new recover implementation it is recommended to review the logic of any application using this API call.
+  * ``one.vm.savedisk`` has one parameter less. The last boolean parameter was used to create a clone of the VM's source Template, replacing the first disk with the new snapshot. A new improved method was created in the :ref:`oca ruby <ruby>`. See the ``save_as_template`` `method for VirtualMachines </doc/stable/oca/ruby/OpenNebula/VirtualMachine.html>`_

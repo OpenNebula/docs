@@ -56,7 +56,7 @@ Save a VM
 
 Any user of the Cloud View can save the changes made to a VM back to a new Template, and use this Template to instantiate new VMs later.
 
-The user has to power off the VM first and then the save operation will create a new Image and a Template referencing this Image. Note that only the first disk will saved, if the VM has more than one disk, they will not be saved.
+The user has to power off the VM first and then the save operation will create a new Image and a Template referencing this Image.
 
 |cloud_save_vm|
 
@@ -67,6 +67,8 @@ A Saved Template created by a regular user is only available for that user and i
 Saved Templates can be managed from the Templates tab. When deleting a saved template both the Image and the Template will be removed from OpenNebula.
 
 |cloud_templates_list|
+
+For more details about the limitations of saved VM, continue to the :ref:`Managing Virtual Machines guide <vm_guide2_clone_vm>`.
 
 Create Service
 --------------

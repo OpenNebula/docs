@@ -393,6 +393,28 @@ From Sunstone:
 
 |image5|
 
+.. _vm_guide2_clone_vm:
+
+Cloning a VM
+--------------------------------------------------------------------------------
+
+A VM instance can be saved back to a new VM Template. To do that, ``poweroff`` the VM and then use the ``onevm save`` command:
+
+.. code::
+
+    $ onevm save web_vm copy_of_web_vm
+    Template ID: 26
+
+The clone takes into account the customization available to end users through Sunstone. This action clones the VM source Template, replacing the disks with snapshots of the current disks (see the disk-snapshot action). If the VM instance was resized, the current capacity is also used. NIC interfaces are also overwritten with the ones from the VM instance, to preserve any attach/detach action.
+
+Please bear in mind the following limitations:
+
+- The VM's source Template will be used. If this Template was updated since the VM was instantiated, the new contents will be used.
+- Volatile disks cannot be saved, and the current contents will be lost. The cloned VM Template will contain the definition for an empty volatile disk.
+- Disks and NICs will only contain the target Image/Network ID. If your Template requires extra configuration (such as DISK/DEV_PREFIX), you will need to update the new Template.
+
+.. todo:: command in Sunstone
+
 .. _vm_guide2_scheduling_actions:
 
 Scheduling Actions
