@@ -100,7 +100,7 @@ You can use any of the attributes defined in the variable, NIC in the previous e
 Using Virtual Network template variables
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-``$NETWORK[<vnet_attribute>, <NETWORK_ID|NETWORK>=<vnet_id|vnet_name>]``: Any single value variable in the Virtual Network template, like for example:
+``$NETWORK[<vnet_attribute>, <NETWORK_ID|NETWORK|NIC_ID>=<vnet_id|vnet_name|nic_id>]``: Any single value variable in the Virtual Network template, like for example:
 
 .. code::
 
