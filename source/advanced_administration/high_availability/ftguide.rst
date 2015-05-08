@@ -44,6 +44,8 @@ More information on hooks :ref:`here <hooks>`.
 
 .. warning:: Note that spurious network errors may lead to a VM started twice in different hosts and possibly contend on shared resources. The previous script needs to fence the error host to prevent split brain VMs. You may use any fencing mechanism for the host and invoke it within the error hook.
 
+.. _ftguide_virtual_machine_failures:
+
 Virtual Machine Failures
 ========================
 
@@ -52,41 +54,97 @@ The overall state of a virtual machine in a failure condition will show as ``fai
 Independent from the nature of the failure or if the VM is stuck, there are 3 recovery operations:
 
 - **Success**, the operation has been confirmed to succeed (e.g. the VM has actually booted on the hyper visor). OpenNebula will update the VM status accordingly.
-
 - **Retry**, the operation can be re-tried after a problem has been manually recovered (e.g. send again the boot order after bringing up a host again).
-
+- **Interactive Retry**, In some scenarios where the failure was caused by an error in the Transfer Manager actions, each action can be rerun and debugged until it works. Once the commands are successful, a **success** should be sent.
 - **Fail**, will set the VM on failure to manually fix the infrastructure. Once the problem is fixed the VM can be recovered with any of the two previous operations.
 
 Note also that OpenNebula will try to automatically recover some failure situations using the monitor information.
 
-The following list details the specific failure conditions and steps needed to recover a VM in each case.
+Hypervisor Problems
+-------------------
+
+The following list details failures states caused by errors related to the hypervisor.
 
 - ``BOOT_FAILURE``, The VM failed to boot but all the files needed by the VM are already in the host. Check the hypervisor logs to find out the problem, and once fixed recover the VM with the retry option.
-
 - ``BOOT_MIGRATE_FAILURE``, same as above but during a migration. Check the target hypervisor and retry the operation.
+- ``BOOT_UNDEPLOY_FAILURE``, same as above but during an undeploy. Check the target hypervisor and retry the operation.
+- ``BOOT_STOPPED_FAILURE``, same as above but during a resume after a stop. Check the target hypervisor and retry the operation.
 
-- ``BOOT_UNDEPLOY_FAILURE``
+Transfer Manager / Storage Problems
+-----------------------------------
 
-- ``BOOT_STOPPED_FAILURE``
+The following list details failure states caused by errors in the Transfer Manager driver. These states can be recovered by checking the vm.log and looking for the specific error (disk space, permissions, mis-configured datastore, etc). You can execute ``--retry`` to relaunch the Transfer Manager actions after fixing the problem (freeing disk space, etc). You can execute ``--retry --interactive`` to launch a Transfer Manager Interactive Debug environment that will allow you to: (1) see all the TM actions in detail (2) relaunch each action until its successful (3) skip TM actions.
 
-.. todo::
+- ``PROLOG_FAILURE``, there was a problem setting up the disk images needed by the VM.
+- ``PROLOG_MIGRATE_FAILURE``, problem setting up the disks in the target host.
+- ``EPILOG_FAILURE``, there was a problem processing the disk images (may be discard or save) after the VM execution.
+- ``EPILOG_STOP_FAILURE``, there was a problem moving the disk images after a stop.
+- ``EPILOG_UNDEPLOY_FAILURE``, there was a problem moving the disk images after an undeploy.
+- ``PROLOG_MIGRATE_POWEROFF_FAILURE``, problem restoring the disk images after a migration in a poweroff state.
+- ``PROLOG_MIGRATE_SUSPEND_FAILURE``, problem restoring the disk images after a migration in a suspend state.
+- ``PROLOG_RESUME_FAILURE``, problem restoring the disk images after a stop.
+- ``PROLOG_UNDEPLOY_FAILURE``, problem restoring the disk images after an undeploy.
 
-- ``PROLOG_FAILURE``, there was a problem setting up the disk images needed by the VM. Check the vm.log for the specific error (disk space, permissions, mis-configured datastore...). You can retry the operation once the problem is fixed. Note that you may need to manually rollback some operations.
+Example of a Transfer Manager Interactive Debug environment (``onevm recover <id> --retry --interactive``):
 
-- ``PROLOG_MIGRATE_FAILURE``
+.. code::
 
-- ``PROLOG_MIGRATE_POWEROFF``
+    $ onevm show 2|grep LCM_STATE
+    LCM_STATE           : PROLOG_UNDEPLOY_FAILURE
 
-- ``EPILOG_FAILURE``
+    $ onevm recover 2 --retry --interactive
+    TM Debug Interactive Environment.
 
-- ``EPILOG_FAILURE``
+    TM Action list:
+    (1) MV shared haddock:/var/lib/one//datastores/0/2/disk.0 localhost:/var/lib/one//datastores/0/2/disk.0 2 1
+    (2) MV shared haddock:/var/lib/one//datastores/0/2 localhost:/var/lib/one//datastores/0/2 2 0
 
-- ``EPILOG_STOP_FAILURE``
+    Current action (1):
+    MV shared haddock:/var/lib/one//datastores/0/2/disk.0 localhost:/var/lib/one//datastores/0/2/disk.0 2 1
 
-- ``EPILOG_UNDEPLOY_FAILURE``
+    Choose action:
+    (r) Run action
+    (n) Skip to next action
+    (a) Show all actions
+    (q) Quit
+    > r
 
-- ``PROLOG_MIGRATE_POWEROFF_FAILURE``
+    LOG I  Command execution fail: /var/lib/one/remotes/tm/shared/mv haddock:/var/lib/one//datastores/0/2/disk.0 localhost:/var/lib/one//datastores/0/2/disk.0 2 1
+    LOG I  ExitCode: 1
 
-- ``PROLOG_MIGRATE_SUSPEND``
+    FAILURE. Repeat command.
 
-- ``PROLOG_MIGRATE_SUSPEND_FAILURE``
+    Current action (1):
+    MV shared haddock:/var/lib/one//datastores/0/2/disk.0 localhost:/var/lib/one//datastores/0/2/disk.0 2 1
+
+    Choose action:
+    (r) Run action
+    (n) Skip to next action
+    (a) Show all actions
+    (q) Quit
+    > # FIX THE PROBLEM...
+
+    > r
+
+    SUCCESS
+
+    Current action (2):
+    MV shared haddock:/var/lib/one//datastores/0/2 localhost:/var/lib/one//datastores/0/2 2 0
+
+    Choose action:
+    (r) Run action
+    (n) Skip to next action
+    (a) Show all actions
+    (q) Quit
+    > r
+
+    SUCCESS
+
+    If all the TM actions have been successful and you want to
+    recover the Virtual Machine to the RUNNING state execute this command:
+    $ onevm recover 2 --success
+
+    $ onevm recover 2 --success
+
+    $ onevm show 2|grep LCM_STATE
+    LCM_STATE           : RUNNING
