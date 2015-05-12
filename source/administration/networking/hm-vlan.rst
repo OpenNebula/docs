@@ -24,7 +24,12 @@ Configuration
 Hosts Configuration
 -------------------
 
--  The ``sudoers`` file must be configured so ``oneadmin`` can execute ``brctl`` and ``ip`` in the hosts.
+-  The ``sudoers`` file must be configured so ``oneadmin`` can execute ``brctl``, ``ip`` and ``ipset`` in the hosts.
+
+.. code::
+
+    oneadmin ALL=(ALL)      NOPASSWD: /usr/sbin/brctl,/sbin/ip,/usr/sbin/ipset
+
 -  Hosts must have the module ``8021q`` loaded.
 
 To enable VLAN (802.1Q) support in the kernel, one must load the 8021q module:
