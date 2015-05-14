@@ -70,7 +70,7 @@ For example, the following examples illustrates the creation of an LVM datastore
     DS_MAD = lvm
     TM_MAD = lvm
     VG_NAME = vg-one
-    HOST = host01
+    BRIDGE_LIST = "host01 host02"
 
     > onedatastore create ds.conf
     ID: 100
@@ -103,8 +103,8 @@ Under ``/var/lib/one/remotes/``:
 
 -  **datastore/lvm/lvm.conf**: Default values for LVM parameters
 
-   -  HOST: Default LVM target host
    -  VG\_NAME: Default volume group
+   -  DEFAULT_SIZE: Default size of the snapshots
 
 -  **datastore/lvm/cp**: Registers a new image. Creates a new logical volume in LVM.
 -  **datastore/lvm/mkfs**: Makes a new empty image. Creates a new logical volume in LVM.
