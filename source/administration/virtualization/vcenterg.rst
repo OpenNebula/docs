@@ -38,6 +38,8 @@ The following must be met for a functional vCenter environment:
 
 - vCenter 5.5 and/or 6.0, with at least one cluster aggregating at least one ESX 5.5 and/or 5.5 host.
 
+- VMware tools are needed in the guestOS to enable several features (contextualization and networking feedback). Please install `VMware Tools (for Windows) <https://www.vmware.com/support/ws55/doc/new_guest_tools_ws.html>`__ or `Open Virtual Machine Tools <http://open-vm-tools.sourceforge.net/>`__ (for \*nix) in the guestOS.
+
 - Define a vCenter user for OpenNebula. This vCenter user (let's call her oneadmin) needs to have access to the ESX clusters that OpenNebula will manage. In order to avoid problems, the hassle free approach is to declare this oneadmin user as Administrator. In production environments though, it may be needed to perform a more fine grained permission assigment (please note that the following permissions related to operations are related to the use that OpenNebula does with this operations):
 
 +-----------------------+------------------------------------------+--------------------------------------------------+
@@ -130,7 +132,7 @@ Considerations & Limitations
 - **No Security Groups**: Firewall rules as defined in Security Groups cannot be enforced in vCenter VMs.
 - There is a known issue regarding **VNC ports**, preventing VMs with ID 89 to work correctly through VNC. This is being addressed `here <http://dev.opennebula.org/issues/2980>`__.
 - OpenNebula treats **snapshots** a tad different from VMware. OpenNebula assumes that they are independent, whereas VMware builds them incrementally. This means that OpenNebula will still present snapshots that are no longer valid if one of their parent snapshots are deleted, and thus revert operations applied upon them will fail.
-- For VNC to work properly, please install `VMware Tools (for Windows) <https://www.vmware.com/support/ws55/doc/new_guest_tools_ws.html>`__ or `Open Virtual Machine Tools <http://open-vm-tools.sourceforge.net/>`__ (for \*nix).
+
 - **No files in context**: Passing entire files to VMs is not supported, but all the other CONTEXT sections will be honored
 - Cluster name cannot contain spaces
 
@@ -340,24 +342,24 @@ Moreover the same **onevcenter** tool can be used to import existing Networks an
         LEASES
         AR  OWNER                    MAC              IP                      IP6_GLOBAL
 
-Also, the **onevcenter** tool can be used to import existing running VMs:
+To import existing VMs, the 'onehost importvm" command can be used. VMs in running state can be imported, and also VMs defined in vCenter that are not in power.on state (this will import the VMs in OpenNebula as in the poweroff state).
 
 .. code::
 
-    $ .onevcenter vms --vcenter <vcenter-host> --vuser <vcenter-username> --vpass <vcenter-password>
+    $ onehost show 0
+      HOST 0 INFORMATION
+      ID                    : 0
+      NAME                  : MyvCenterHost
+      CLUSTER               : -
+      [....]
 
-    Connecting to vCenter: <vcenter-host>...done!
+      WILD VIRTUAL MACHINES
 
-    Looking for running Virtual Machines...done!
+                        NAME                            IMPORT_ID  CPU     MEMORY
+                  RunningVM  4223cbb1-34a3-6a58-5ec7-a55db235ac64    1       1024
+      [....]
 
-    Do you want to process datacenter Testing [y/n]? y
-
-      * Running Virtual Machine found:
-          - Name   : vCenterTesting
-          - UUID   : 42246fa6-340e-5801-4598-c65672dfda64
-          - Cluster: Testing
-        Import this Virtual Machine [y/n]? y
-        OpenNebula VM 11 created!
+    $ onehost importvm 0
 
 After a Virtual Machine is imported, their lifecycle (including creation of snapshots) can be controlled through OpenNebula. The following operations *cannot* be performed on an imported VM:
 
