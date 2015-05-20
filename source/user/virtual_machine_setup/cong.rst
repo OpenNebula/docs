@@ -155,38 +155,43 @@ The file generated will be something like this:
 
 Some of the variables have special meanings, but none of them are mandatory:
 
-+-------------------+--------------------------------------------------------------------------------------+
-|     Attribute     |                                     Description                                      |
-+===================+======================================================================================+
-| **files\_ds**     | Files that will be included in the contextualization image. Each file must be        |
-|                   | stored in a FILE\_DS Datastore and must be of type CONTEXT                           |
-+-------------------+--------------------------------------------------------------------------------------+
-| **target**        | device where the contextualization image will be available to the VM instance.       |
-|                   | Please note that the proper device mapping may depend on the guest OS,               |
-|                   | e.g. ubuntu VMs should use hd\* as the target device                                 |
-+-------------------+--------------------------------------------------------------------------------------+
-| **file**          | Files and directories that will be included in the contextualization image.          |
-|                   | Specified as absolute paths, by default this **can be used only by oneadmin**.       |
-+-------------------+--------------------------------------------------------------------------------------+
-| **init\_scripts** | If you want the VM to execute an script that is not called init.sh (or if you        |
-|                   | want to call more than just one script),this list contains the scripts to run        |
-|                   | and their order. Ex. ``init.sh users.sh mysql.sh`` will force the VM to              |
-|                   | execute init.sh , then users.sh and lastly mysql.sh at boot time'                    |
-+-------------------+--------------------------------------------------------------------------------------+
-| **TOKEN**         | ``YES`` to create a token.txt file for :ref:`OneGate monitorization <onegate_usage>` |
-+-------------------+--------------------------------------------------------------------------------------+
-| **NETWORK**       | ``YES`` to fill automatically the networking parameters for each NIC,                |
-|                   | used by the :ref:`Contextualization packages <context_overview>`                     |
-+-------------------+--------------------------------------------------------------------------------------+
-| **SET_HOSTNAME**  | This parameter value will be the hostname of the VM.                                 |
-+-------------------+--------------------------------------------------------------------------------------+
-| **DNS_HOSTNAME**  | ``YES`` to set the VM hostname to the reverse dns name (from the first IP)           |
-+-------------------+--------------------------------------------------------------------------------------+
-| **GATEWAY_IFACE** | This variable can be set to the interface number you want to configure the gateway.  |
-|                   | It is useful when several networks have GATEWAY parameter and you want yo choose     |
-|                   | the one that configures it. For example to set the first interface to configure the  |
-|                   | gateway you use ``GATEWAY_IFACE=0``                                                  |
-+-------------------+--------------------------------------------------------------------------------------+
++-------------------------+--------------------------------------------------------------------------------------+
+|        Attribute        |                                     Description                                      |
++=========================+======================================================================================+
+| **files\_ds**           | Files that will be included in the contextualization image. Each file must be        |
+|                         | stored in a FILE\_DS Datastore and must be of type CONTEXT                           |
++-------------------------+--------------------------------------------------------------------------------------+
+| **target**              | device where the contextualization image will be available to the VM instance.       |
+|                         | Please note that the proper device mapping may depend on the guest OS,               |
+|                         | e.g. ubuntu VMs should use hd\* as the target device                                 |
++-------------------------+--------------------------------------------------------------------------------------+
+| **file**                | Files and directories that will be included in the contextualization image.          |
+|                         | Specified as absolute paths, by default this **can be used only by oneadmin**.       |
++-------------------------+--------------------------------------------------------------------------------------+
+| **init\_scripts**       | If you want the VM to execute an script that is not called init.sh (or if you        |
+|                         | want to call more than just one script),this list contains the scripts to run        |
+|                         | and their order. Ex. ``init.sh users.sh mysql.sh`` will force the VM to              |
+|                         | execute init.sh , then users.sh and lastly mysql.sh at boot time'                    |
++-------------------------+--------------------------------------------------------------------------------------+
+| **START_SCRIPT**        | Text of the script executed when the machine starts up. It can contain shebang       |
+|                         | in case it is not shell script. For example ``START_SCRIPT="yum upgrade"``           |
++-------------------------+--------------------------------------------------------------------------------------+
+| **START_SCRIPT_BASE64** | The same as ``START_SCRIPT`` but encoded in Base64                                   |
++-------------------------+--------------------------------------------------------------------------------------+
+| **TOKEN**               | ``YES`` to create a token.txt file for :ref:`OneGate monitorization <onegate_usage>` |
++-------------------------+--------------------------------------------------------------------------------------+
+| **NETWORK**             | ``YES`` to fill automatically the networking parameters for each NIC,                |
+|                         | used by the :ref:`Contextualization packages <context_overview>`                     |
++-------------------------+--------------------------------------------------------------------------------------+
+| **SET_HOSTNAME**        | This parameter value will be the hostname of the VM.                                 |
++-------------------------+--------------------------------------------------------------------------------------+
+| **DNS_HOSTNAME**        | ``YES`` to set the VM hostname to the reverse dns name (from the first IP)           |
++-------------------------+--------------------------------------------------------------------------------------+
+| **GATEWAY_IFACE**       | This variable can be set to the interface number you want to configure the gateway.  |
+|                         | It is useful when several networks have GATEWAY parameter and you want yo choose     |
+|                         | the one that configures it. For example to set the first interface to configure the  |
+|                         | gateway you use ``GATEWAY_IFACE=0``                                                  |
++-------------------------+--------------------------------------------------------------------------------------+
 
 .. warning:: A default target attribute is :ref:`generated automatically <template_disks_device_mapping>` by OpenNebula, based on the default device prefix set at :ref:`oned.conf <oned_conf>`.
 
