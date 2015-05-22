@@ -356,10 +356,13 @@ To import existing VMs, the 'onehost importvm" command can be used. VMs in runni
       WILD VIRTUAL MACHINES
 
                         NAME                            IMPORT_ID  CPU     MEMORY
-                  RunningVM  4223cbb1-34a3-6a58-5ec7-a55db235ac64    1       1024
+                   RunningVM 4223cbb1-34a3-6a58-5ec7-a55db235ac64    1       1024
       [....]
 
-    $ onehost importvm 0
+    $ onehost importvm 0 RunningVM
+    $ onevm list
+    ID USER     GROUP    NAME            STAT UCPU    UMEM HOST               TIME
+     3 oneadmin oneadmin RunningVM       runn    0    590M MyvCenterHost  0d 01h02
 
 After a Virtual Machine is imported, their lifecycle (including creation of snapshots) can be controlled through OpenNebula. The following operations *cannot* be performed on an imported VM:
 
