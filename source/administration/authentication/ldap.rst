@@ -133,20 +133,11 @@ The structure is a hash where any key different to ``:order`` will contain the c
 |                       | to a mapped group                               |
 +-----------------------+-------------------------------------------------+
 
-To enable ``ldap`` authentication the described parameters should be configured. OpenNebula must be also configured to enable external authentication. Uncomment these lines in ``/etc/one/oned.conf`` and add ``ldap`` and ``default`` (more on this later) as an enabled authentication method.
+To enable ``ldap`` authentication the described parameters should be configured. OpenNebula must be also configured to enable external authentication. Add this line in ``/etc/one/oned.conf``
 
 .. code::
 
-    AUTH_MAD = [
-        executable = "one_auth_mad",
-        authn = "default,ssh,x509,ldap,server_cipher,server_x509"
-    ]
-
-To be able to use this driver for users that are still not in the user database you must set it to the ``default`` driver. To do this go to the auth drivers directory and copy the directory ``ldap`` to ``default``. In system-wide installations you can do this using this command:
-
-.. code::
-
-    $ cp -R /var/lib/one/remotes/auth/ldap /var/lib/one/remotes/auth/default
+    DEFAULT_AUTH = "ldap"
 
 User Management
 ===============
