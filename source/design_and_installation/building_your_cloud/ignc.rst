@@ -92,8 +92,7 @@ To install OpenNebula on a Debian/Ubuntu front-end from packages from **our repo
 
 .. code::
 
-    # wget http://downloads.opennebula.org/repo/Debian/repo.key
-    # apt-key add repo.key
+    # wget -q -O- http://downloads.opennebula.org/repo/Debian/repo.key | apt-key add -
 
 **Debian**
 
