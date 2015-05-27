@@ -19,7 +19,7 @@ You may need to update the permissions on your System DS in order to make them a
 
 Virtual Data Centers
 --------------------------------------------------------------------------------
-Check the previous issue about System DS; you may need to add one or more System DS to your VDCs. 
+Check the previous issue about System DS; you may need to add one or more System DS to your VDCs.
 
 Virtual Machine Recovery Process
 --------------------------------------------------------------------------------
@@ -32,11 +32,16 @@ The recover process of VMs has been redesign in 4.14. When a VM is in ``fail`` s
 As a result the pre-4.14 final, and *un-recoverable*, FAILED state has been removed; and split for each point of failure. Any application checking for FAILED state needs to be upgraded for the new functionality.
 
 .. todo::
-    Update xsd files in the documentation. Add note in upgrade guide to remove FAILED VMs before upgrade. 
+    Update xsd files in the documentation. Add note in upgrade guide to remove FAILED VMs before upgrade.
 
 Virtual Machine Hooks
 --------------------------------------------------------------------------------
 Hooks on ``FAILED`` states are no longer needed; any automatic recovery action needs to be hooked on the new ``LCM_STATES``.
+
+Default Authentication Driver
+-----------------------------
+
+You can now specify ``DEFAULT_AUTH`` in ``oned.conf``, meaning that it is not necessary any more to create a link called ``default`` pointing to the desired default authentication driver, for example ``ldap``, in ``/var/lib/one/remotes/auth`` and it's not necessary any more to add ``default`` to the ``authn`` parameter in the ``AUTH_MAD`` section. However, for backwards compatibility it will continue to work, but we strongly recommed to specify directly the default auth in ``oned.conf``, for example: ``DEFAULT_AUTH = "ldap"``.
 
 
 Virtual Machines
@@ -60,7 +65,7 @@ Virtual Machine Monitor Probes
 --------------------------------------------------------------------------------
 .. todo::
     * Add templates to probes for import
-* When the monitor probe returns state 'e' for a Virtual Machine now it is moved to UNKNOWN state; instead of FAILED state, now removed. 
+* When the monitor probe returns state 'e' for a Virtual Machine now it is moved to UNKNOWN state; instead of FAILED state, now removed.
 
 XML-RPC API
 --------------------------------------------------------------------------------
