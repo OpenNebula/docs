@@ -375,13 +375,13 @@ Also, network management operations are present like the ability to attach/detac
 
 .. _reacquire_vcenter_resources:
 
-The same import mechanism is available graphically through Sunstone for hosts, networks, templates and running VMs, using the vCenter host create dialog, and they can be used to reacquire resources after the host has been created.
+The same import mechanism is available graphically through Sunstone for hosts, networks, templates and running VMs. vCenter hosts can be imported using the vCenter host create dialog, and Networks and VM Templates through the Import button in the Virtual Networks and Templates tab respectively. Running and Powered Off VMs can be imported through the WILDS tab in the Host info tab.
 
 .. image:: /images/vcenter_create.png
     :width: 90%
     :align: center
 
-.. note:: running VMS can only be imported after the vCenter host has been successfuly acquired. VMs will appear in the Pending state in vOneCloud until the scheduler automatically passes them to Running, there is no need to force the deployment.
+.. note:: running VMS can only be imported after the vCenter host has been successfuly acquired.
 
 .. note:: If you are running Sunstone using nginx/apache you will have to forward the following headers to be able to interact with vCenter, HTTP_X_VCENTER_USER, HTTP_X_VCENTER_PASSWORD and HTTP_X_VCENTER_HOST. For example in nginx you have to add the following attrs to the server section of your nginx file (underscores_in_headers on; proxy_pass_request_headers on;)
 
