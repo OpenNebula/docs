@@ -142,7 +142,7 @@ Configuration
 OpenNebula Configuration
 ------------------------
 
-There are two simple steps needed to configure OpenNebula so it can interact with vCenter:
+There are a few simple steps needed to configure OpenNebula so it can interact with vCenter:
 
 **Step 1: Check connectivity**
 
@@ -229,6 +229,21 @@ The following variables are added to the OpenNebula hosts representing ESX clust
 .. note::
 
    OpenNebula will create a special key at boot time and save it in /var/lib/one/.one/one_key. This key will be used as a private key to encrypt and decrypt all the passwords for all the vCenters that OpenNebula can access. Thus, the password shown in the OpenNebula host representing the vCenter is the original password encrypted with this special key.
+
+.. _vcenter_resource_pool:
+
+The vCenter credentials that OpenNebula can be confined into a Resource Pool, to allow only a fraction of the vCenter infrastructure to be used by OpenNebula users. The steps to confine OpenNebula users into a Resource Pool are:
+
+ - Create a new vCenter user
+ - Create a Resource Pool in vCenter and assign the subset of Datacenter hardware resources wanted to be exposed through OpenNebula
+ - Give vCenter user Resource Pool Administration rights over the Resource Pool
+ - Give vCenter user Resource Pool Administration (or equivalent) over the Datastores the VMs are going to be running on
+
+ Afterwards, these credentials can be used to add to OpenNebula the host representing the ESX cluster. Add a new tag called VCENTER_RESOURCE_POOL to the host template representing the vCenter cluster (for instance, in the info tab of the host, or in the CLI), with the name of the resource pool.
+
+ .. image:: /images/vcenter_rp.png
+    :width: 90%
+    :align: center
 
 .. _import_vcenter_resources:
 
@@ -466,4 +481,4 @@ OpenNebula uses several assumptions to instantitate a VM Template in an automati
 
 - **diskMoveType**: OpenNebul instructs vCenter to "move only the child-most disk backing. Any parent disk backings should be left in their current locations.". More information `here <https://www.vmware.com/support/developer/vc-sdk/visdk41pubs/ApiReference/vim.vm.RelocateSpec.DiskMoveOptions.html>`__
 
-- Target **resource pool**: OpenNebula uses the default cluster resource pool to place the VM instantiated from the VM template
+- Target **resource pool**: OpenNebula uses the default cluster resource pool to place the VM instantiated from the VM template, unless VCENTER_RESOURCE_POOL variable defined in the OpenNebula host template
