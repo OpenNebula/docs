@@ -48,6 +48,8 @@ This view provides full control of the cloud.
 
 |admin_view|
 
+.. _vcenter_view:
+
 Admin vCenter View
 --------------------------------------------------------------------------------
 

@@ -371,7 +371,7 @@ After a Virtual Machine is imported, their lifecycle (including creation of snap
 - Migrate (and Migrate --live)
 - Stop
 
-Also, network management operations are present like the ability to attach/detach network interfaces.
+Also, network management operations are present like the ability to attach/detach network interfaces, as well as capacity (CPU and MEMORY) resizing operations and VNC connections if the ports are opened before hand.
 
 .. _reacquire_vcenter_resources:
 
@@ -398,9 +398,9 @@ In order to manually create a VM Template definition in OpenNebula that represen
 +--------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 |     Operation      |                                                                                                   Note                                                                                                  |
 +--------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| CPU                | Physical CPUs to be used by the VM. This **must** relate to the CPUs used by the vCenter VM Template                                                                                                    |
+| CPU                | Physical CPUs to be used by the VM. This does not have to relate to the CPUs used by the vCenter VM Template, OpenNebula will change the value accordingly                                              |
 +--------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| MEMORY             | Physical CPUs to be used by the VM. This **must** relate to the CPUs used by the vCenter VM Template                                                                                                    |
+| MEMORY             | Physical Memory in MB to be used by the VM. This does not have to relate to the CPUs used by the vCenter VM Template, OpenNebula will change the value accordingly                                      |
 +--------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | NIC                | Check :ref:`VM template reference <template_network_section>`. Valid MODELs are: virtuale1000, virtuale1000e, virtualpcnet32, virtualsriovethernetcard, virtualvmxnetm, virtualvmxnet2, virtualvmxnet3. |
 +--------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -415,7 +415,11 @@ In order to manually create a VM Template definition in OpenNebula that represen
 
 You can find more information about contextualization in the :ref:`vcenter Contextualization <vcenter_context>` section.
 
-After a VM Template is instantiated, the lifecycle of the resulting virtual machine (including creation of snapshots) can be controlled through OpenNebula. Also, network management operations are present like the ability to attach/detach network interfaces.
+After a VM Template is instantiated, the lifecycle of the resulting virtual machine (including creation of snapshots) can be controlled through OpenNebula. Also, all the operations available in the :ref:`vCenter Admin view <vcenter_view>` can be performed, including:
+
+     - network management operations like the ability to attach/detach network interfaces
+     - capacity (CPU and MEMORY) resizing
+     - VNC connectivity
 
 .. _virtual_network_vcenter_usage:
 
