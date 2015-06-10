@@ -232,14 +232,14 @@ The following variables are added to the OpenNebula hosts representing ESX clust
 
 .. _vcenter_resource_pool:
 
-The vCenter credentials that OpenNebula can be confined into a Resource Pool, to allow only a fraction of the vCenter infrastructure to be used by OpenNebula users. The steps to confine OpenNebula users into a Resource Pool are:
+The vCenter credentials that OpenNebula use can be confined into a Resource Pool, to allow only a fraction of the vCenter infrastructure to be used by OpenNebula users. The steps to confine OpenNebula users into a Resource Pool are:
 
  - Create a new vCenter user
  - Create a Resource Pool in vCenter and assign the subset of Datacenter hardware resources wanted to be exposed through OpenNebula
  - Give vCenter user Resource Pool Administration rights over the Resource Pool
  - Give vCenter user Resource Pool Administration (or equivalent) over the Datastores the VMs are going to be running on
 
- Afterwards, these credentials can be used to add to OpenNebula the host representing the ESX cluster. Add a new tag called VCENTER_RESOURCE_POOL to the host template representing the vCenter cluster (for instance, in the info tab of the host, or in the CLI), with the name of the resource pool.
+ Afterwards, these credentials can be used to add to OpenNebula the host representing the vCenter cluster. Add a new tag called VCENTER_RESOURCE_POOL to the host template representing the vCenter cluster (for instance, in the info tab of the host, or in the CLI), with the name of the resource pool.
 
  .. image:: /images/vcenter_rp.png
     :width: 90%

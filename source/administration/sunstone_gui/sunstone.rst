@@ -153,8 +153,6 @@ There can be multiple reasons that may prevent noVNC from correctly connecting t
 
 -  When using secure websockets, make sure that your certificate and key (if not included in certificate), are correctly set in Sunstone configuration files. Note that your certificate must be valid and trusted for the wss connection to work. If you are working with a certicificate that it is not accepted by the browser, you can manually add it to the browser trust-list visiting ``https://sunstone.server.address:vnc_proxy_port``. The browser will warn that the certificate is not secure and prompt you to manually trust it.
 
--  Make sure that you have not checked the ``Secure websockets connection`` in the Configuration dialog if your proxy has not been configured to support them. Connection will fail if so.
-
 -  If your connection is very, very, very slow, there might be a token expiration issue. Please try the manual proxy launch as described below to check it.
 
 -  Doesn't work yet? Try launching Sunstone, killing the websockify proxy and relaunching the proxy manually in a console window with the command that is logged at the beginning of ``/var/log/one/novnc.log``. You must generate a lock file containing the PID of the python process in ``/var/lock/one/.novnc.lock`` Leave it running and click on the VNC icon on Sunstone for the same VM again. You should see some output from the proxy in the console and hopefully the cause of why the connection does not work.
