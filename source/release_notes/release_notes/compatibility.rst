@@ -49,9 +49,12 @@ Virtual Machines
 
 * Disks and NIC :ref:`attach/detach actions <vm_guide_2>` are now available for VMs in the ``POWEROFF`` state. They were previously restricted to VMs in ``RUNNING`` only.
 * Previous versions had a "save VM" functionality available through the Cloud View. This action has been redone to improve it, and make it available from other interfaces. Read more about it in the :ref:`Managing Virtual Machines guide <vm_guide2_clone_vm>`.
+* The ``onevm disk-snapshot`` action has now been deprecated and is no longer available. See the :ref:`Disk Snapshots <vm_guide_2_disk_snapshots>` guide for more info. This command been substituted by:
+
+  * ``onevm disk-snapshot`` (deferred), can now be accomplished by running ``onevm poweroff`` and once it's in that state, any disk can be saved by doing a new operation called ``onevm disk-saveas``. Note that now you can directly run ``onevm shutdown`` on a machine that is in ``POWEROFF`` state (i.e. you don't need to resume the VM).
+  * ``onevm disk-snapshot --live`` is now called ``onevm disk-saveas``
 
 .. todo:: onevm disk-snapshot-cancel
-
 
 Developers and Integrators
 ================================================================================
@@ -64,8 +67,32 @@ The :ref:`accounting records <accounting>` are individual Virtual Machine histor
 Virtual Machine Monitor Probes
 --------------------------------------------------------------------------------
 .. todo::
+
     * Add templates to probes for import
+
 * When the monitor probe returns state 'e' for a Virtual Machine now it is moved to UNKNOWN state; instead of FAILED state, now removed.
+
+Datastore Drivers
+--------------------------------------------------------------------------------
+
+* There are 3 new Datastore Driver actions. The interface is documented in the :ref:`Storage Driver <sd>` guide. The end-user functionality is documented in the :ref:`Images <img_guide_snapshots>` guide.
+
+  * ``snap_revert``: Overwrite the current image state with a snapshot. This operation discards any unsaved data in the current image state.
+  * ``snap_flatten``: Reverts the current image state to a snapshot and removes all the snapshots.
+  * ``snap_delete``: Deletes a snapshot.
+
+Transfer Manager
+--------------------------------------------------------------------------------
+
+* There are 3 new TM actions. The interface is documented in the :ref:`Storage Driver <sd>` guide. The end-user functionality is documented in the :ref:`Virtual Machines <vm_guide_2_disk_snapshots_managing>` guide.
+
+  * ``snap_create``: Handles the creation of a new disk-snapshot.
+  * ``snap_revert``: Overwrite the current disk state with a disk-snapshot.
+  * ``snap_delete``: Deletes a snapshot.
+
+* The ``mvds`` now only manages saving persistent images back to the system datastore. For shared system datastores it will be a simple ``exit 0``. In previous OpenNebula versions this script also served the purpose saving disk marked withed ``SAVEAS`` at the end of the VM lifecycle (what used to be called a deferred disk-snapshot). Since this action is no longer possible (has been replaced with ``onevm disk-saveas`` -- see above) the ``mvds`` action has been largely simplified.
+
+* The ``cpds`` action now accepts a ``snap_id`` argument. This is documented in the :ref:`Storage Driver <sd>` guide.
 
 XML-RPC API
 --------------------------------------------------------------------------------

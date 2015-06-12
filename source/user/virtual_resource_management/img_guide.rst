@@ -70,7 +70,7 @@ You can also manage your images using :ref:`Sunstone <sunstone>`. Select the Ima
 Create Images
 -------------
 
-.. warning:: For VMWare images, please read **also** the :ref:`VMware Drivers guide <evmwareg_usage>`.
+.. note:: For VMWare images, please read **also** the :ref:`VMware Drivers guide <evmwareg_usage>`.
 
 The three types of images can be created from an existing file, but for **datablock** images you can specify a size and filesystem type and let OpenNebula create an empty image in the datastore.
 
@@ -110,29 +110,29 @@ You can also create images using just parameters in the ``oneimage create`` call
 +--------------------------------+---------------------------------------------------------------------------------------+
 | Parameter                      | Description                                                                           |
 +================================+=======================================================================================+
-| ``-name name``                 | Name of the new image                                                                 |
+| ``--name name``                | Name of the new image                                                                 |
 +--------------------------------+---------------------------------------------------------------------------------------+
-| ``-description description``   | Description for the new Image                                                         |
+| ``--description description``  | Description for the new Image                                                         |
 +--------------------------------+---------------------------------------------------------------------------------------+
-| ``-type type``                 | Type of the new Image: OS, CDROM or DATABLOCK, FILE                                   |
+| ``--type type``                | Type of the new Image: OS, CDROM or DATABLOCK, FILE                                   |
 +--------------------------------+---------------------------------------------------------------------------------------+
-| ``-persistent``                | Tells if the image will be persistent                                                 |
+| ``--persistent``               | Tells if the image will be persistent                                                 |
 +--------------------------------+---------------------------------------------------------------------------------------+
-| ``-prefix prefix``             | Device prefix for the disk (eg. hd, sd, xvd or vd)                                    |
+| ``--prefix prefix``            | Device prefix for the disk (eg. hd, sd, xvd or vd)                                    |
 +--------------------------------+---------------------------------------------------------------------------------------+
-| ``-target target``             | Device the disk will be attached to                                                   |
+| ``--target target``            | Device the disk will be attached to                                                   |
 +--------------------------------+---------------------------------------------------------------------------------------+
-| ``-path path``                 | Path of the image file                                                                |
+| ``--path path``                | Path of the image file                                                                |
 +--------------------------------+---------------------------------------------------------------------------------------+
-| ``-driver driver``             | Driver to use image (raw, qcow2, tap:aio:...)                                         |
+| ``--driver driver``            | Driver to use image (raw, qcow2, tap:aio:...)                                         |
 +--------------------------------+---------------------------------------------------------------------------------------+
-| ``-disk_type disk_type``       | Type of the image (BLOCK, CDROM or FILE)                                              |
+| ``--disk_type disk_type``      | Type of the image (BLOCK, CDROM or FILE)                                              |
 +--------------------------------+---------------------------------------------------------------------------------------+
-| ``-source source``             | Source to be used. Useful for not file-based images                                   |
+| ``--source source``            | Source to be used. Useful for not file-based images                                   |
 +--------------------------------+---------------------------------------------------------------------------------------+
-| ``-size size``                 | Size in MB. Used for DATABLOCK type                                                   |
+| ``--size size``                | Size in MB. Used for DATABLOCK type                                                   |
 +--------------------------------+---------------------------------------------------------------------------------------+
-| ``-fstype fstype``             | Type of file system to be built: ext2, ext3, ext4, ntfs, reiserfs, jfs, swap, qcow2   |
+| ``--fstype fstype``            | Type of file system to be built: ext2, ext3, ext4, ntfs, reiserfs, jfs, swap, qcow2   |
 +--------------------------------+---------------------------------------------------------------------------------------+
 
 To create the previous example image you can do it like this:
@@ -142,7 +142,7 @@ To create the previous example image you can do it like this:
     $ oneimage create --datastore default --name Ubuntu --path /home/cloud/images/ubuntu-desktop/disk.0 \
       --description "Ubuntu 10.04 desktop for students."
 
-.. warning:: You can use **gz** compressed image files (i.e. as specified in path) when registering them in OpenNebula.
+.. note:: You can use **gz** compressed image files (i.e. as specified in path) when registering them in OpenNebula.
 
 .. _sunstone_upload_images:
 
@@ -163,7 +163,7 @@ As of Firefox 11 and previous versions, uploads seem to be limited to 2GB. Chrom
 Clone Images
 ------------
 
-Existing images can be cloned to a new one. This is useful to make a backup of an Image before you modify it, or to get a private persistent copy of an image shared by other user.
+Existing images can be cloned to a new one. This is useful to make a backup of an Image before you modify it, or to get a private persistent copy of an image shared by other user. Note that persistent images with snapshots cannot be cloned. In order to do so, the user would need to flatten it first, see the :ref:`snapshots <img_guide_snapshots>` section for more information.
 
 To clone an image, execute
 
@@ -254,6 +254,22 @@ A persistent image saves back to the datastore the changes made inside the VM af
        0 oneadmin oneadmin Ubuntu       default        10G   OS  No  rdy     0
 
 .. warning:: When images are public (GROUP or OTHER USE bit set) they are always cloned, and persistent images are never cloned. Therefore, an image cannot be public and persistent at the same time. To manage a public image that won't be cloned, unpublish it first and make it persistent.
+
+Note that persistent images with snapshots cannot be made nonpersistent. In order to do so, the user would need to flatten it first, see the :ref:`snapshots <img_guide_snapshots>` section for more information.
+
+.. _img_guide_snapshots:
+
+Managing Snapshots in Persistent Images
+---------------------------------------
+
+Persistent images can have associated snapshots if the user :ref:`created them <vm_guide_2_disk_snapshots_managing>` during the life-cycle of VM that used the persistent image. The following are operations that allow the user to manage these snapshots directly:
+
+
+* ``oneimage snapshot-revert <image_id> <snapshot_id>``: The active state of the image is overwritten by the specified snapshot. Note that this operation discards any unsaved data of the disk state.
+* ``oneimage snapshot-delete <image_id> <snapshot_id>``: Deletes a snapshot. This operation is only allowed if the snapshot is not the active snapshot and if it has no children.
+* ``oneimage snapshot-flatten <image_id> <snapshot_id>``: This operation effectively converts the image to an image without snapshots. The saved disk state of the image is the state of the specified snapshot. It's an operation similar to running ``snapshot-revert`` and then deleting all the snapshots.
+
+Images with snapshots **cannot** be cloned or made non-persistent. To run either of these operations the user would need to flatten the image first.
 
 How to Use Images in Virtual Machines
 =====================================

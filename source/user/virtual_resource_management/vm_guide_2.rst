@@ -211,39 +211,55 @@ Then you can resume it with:
 
 -  ``release``: Releases a VM from hold state, setting it to pending. Note that you can automatically release a VM by scheduling the operation as explained below
 
-Life-Cycle Operations for Administrators
-----------------------------------------
+.. _vm_guide_2_disk_snapshots:
 
-There are some ``onevm`` commands operations meant for the cloud administrators:
+Disk Snapshots
+--------------
 
-**Scheduling:**
+There are two kinds of operations related to disk snapshots:
 
--  ``resched``: Sets the reschedule flag for the VM. The Scheduler will migrate (or migrate --live, depending on the :ref:`Scheduler configuration <schg_configuration>`) the VM in the next monitorization cycle to a Host that better matches the requirements and rank restrictions. Read more in the :ref:`Scheduler documentation <schg_re-scheduling_virtual_machines>`.
--  ``unresched``: Clears the reschedule flag for the VM, canceling the rescheduling operation.
+- ``disk-snapshot-create``, ``disk-snapshot-revert``, ``disk-snapshot-delete``: Allows the user to take snapshots of the disk states and return to them during the VM life-cycle. It is also possible to delete snapshots.
+- ``disk-saveas``: To export a VM disk to an image. This is a live action.
 
-**Deployment:**
+.. _vm_guide_2_disk_snapshots_managing:
 
--  ``deploy``: Starts an existing VM in a specific Host.
--  ``migrate --live``: The Virtual Machine is transferred between Hosts with no noticeable downtime. This action requires a :ref:`shared file system storage <sm>`.
--  ``migrate``: The VM gets stopped and resumed in the target host. In an infrastructure with :ref:`multiple system datastores <system_ds_multiple_system_datastore_setups>`, the VM storage can be also migrated.
+Managing disk snapshots
+^^^^^^^^^^^^^^^^^^^^^^^
 
-Note: By default, the above operations do not check the target host capacity. You can use the -e (-enforce) option to be sure that the host capacity is not overcommitted.
+A user can take snapshots of the disk states at any moment in time (if the VM is in ``RUNNING``, ``POWEROFF`` or ``SUSPENDED`` states). These snapshots are organized in a tree-like structure, meaning that every snapshot has a parent, except for the first snapshot whose parent is ``-1``. At any given time a user can revert the disk state to a previously taken snapshot. The active snapshot, the one the user has last reverted to, or taken, will act as the parent of the next snapshot. In addition, it's possible to delete snapshots that are not active and that have no children.
 
-**Troubleshooting:**
+- ``disk-snapshot-create <vmid> <diskid> <tag>``: Creates a new snapshot of the specified disk.
+- ``disk-snapshot-revert <vmid> <diskid> <snapshot_id>``: Reverts to the specified snapshot. The snapshots are immutable, therefore the user can revert to the same snapshot one and again, the disk will return always to the state of the snapshot at the time it was taken.
+- ``disk-snapshot-delete <vmid> <diskid> <snapshot_id>``: Deletes a snapshot if it has no children and is not active.
 
--  ``boot``: Forces the hypervisor boot action of a VM stuck in UNKNOWN or BOOT state.
--  ``recover``: If the VM is stuck in any other state (or the boot operation does not work), you can recover the VM by simulating the failure or success of the missing action, or you can launch it with the ``--retry`` flag (and optionally the ``--interactive`` if its a Transfer Manager problem) to replay the driver actions. Read the :ref:`Virtual Machine Failures guide <ftguide_virtual_machine_failures>` for more information.
--  ``migrate`` or ``resched``: A VM in the UNKNOWN state can be booted in a different host manually (``migrate``) or automatically by the scheduler (``resched``). This action must be performed only if the storage is shared, or manually transfered by the administrator. OpenNebula will not perform any action on the storage for this migration.
 
-Disk Snapshoting
-----------------
+These actions are available for both persistent and non-persistent images. In the case of persistent images the snapshots **will** be preserved upon VM termination and will be able to be used by other VMs using that image. See the :ref:`snapshots <img_guide_snapshots>` section in the Images guide for more information.
 
-You can take a snapshot of a VM disk to preserve or backup its state at a given point of time. There are two types of disk snapshots in OpenNebula:
+.. warning::
 
--  **Deferred snapshots**, changes to a disk will be saved as a new Image in the associated datastore when the VM is shutdown. The new image will be locked till the VM is properly shutdown and the transferred from the host to the datastore.
--  **Live snapshots**, just as the deferred snapshots, but the disk is copied to the datastore the moment the operation is triggered. Therefore, you must guarantee that the disk is in a consistent state during the copy operation (e.g. by umounting the disk from the VM). While the disk is copied to the datastore the VM will be in the HOTPLUG state.
+  These actions are not in sync with the hypervisor. If the VM is in ``RUNNING`` state make sure the disk is unmounted (preferred), synced or quiesced in some way or another before taking the snapshot.
 
-The ``onevm disk-snapshot`` command can be run while the VM is RUNNING, POWEROFF or SUSPENDED. A deferred disk snapshot can be canceled with the ``onevm disk-snapshot-cancel`` command. See the :ref:`Image guide <img_guide_save_changes>` for specific examples of the disk-snapshot command.
+.. todo::
+
+  Review the following list. QCow2, etc...
+
+The snapshots are implemented differently depending on the storage backend:
+
+- **Ceph**: They are actual protected snapshots. When a revert is performed a clone of the snapshot is issued. It requires RBD format 2.
+- others: Not implemented.
+
+Exporting disk images with ``disk-saveas``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Any VM disk can be exported to a new image (if the VM is in ``RUNNING``, ``POWEROFF`` or ``SUSPENDED`` states). This is a live operation that happens immediately. This operation accepts ``--snapshot <snapshot_id>`` as an optional argument, which specifies a disk snapshot to use as the source of the clone, instead of the current disk state (value by default).
+
+.. note::
+
+  This action is called ``onevm disk-snapshot --live`` in OpenNebula <= 4.12 but has been renamed to ``onevm disk-saveas``
+
+.. warning::
+
+  This action is not in sync with the hypervisor. If the VM is in ``RUNNING`` state make sure the disk is unmounted (preferred), synced or quiesced in some way or another before taking the snapshot.
 
 Disk Hotpluging
 ---------------
@@ -275,7 +291,7 @@ To detach a disk from a running VM, find the disk ID of the Image you want to de
 NIC Hotpluging
 --------------
 
-You can hotplug network interfaces to VMs in the ``RUNNING`` or ``POWEROFF`` states. Simply specify the network where the new interface should be attach to, for example:
+You can hotplug network interfaces to VMs in the ``RUNNING``, ``POWEROFF`` or ``SUSPENDED`` states. Simply specify the network where the new interface should be attach to, for example:
 
 .. code::
 
@@ -534,6 +550,30 @@ OpenNebula comes with an advanced :ref:`ACL rules permission mechanism <manage_a
     OTHER          : ---
 
 Administrators can also change the VM's group and owner with the ``chgrp`` and ``chown`` commands.
+
+Life-Cycle Operations for Administrators
+----------------------------------------
+
+There are some ``onevm`` commands operations meant for the cloud administrators:
+
+**Scheduling:**
+
+-  ``resched``: Sets the reschedule flag for the VM. The Scheduler will migrate (or migrate --live, depending on the :ref:`Scheduler configuration <schg_configuration>`) the VM in the next monitorization cycle to a Host that better matches the requirements and rank restrictions. Read more in the :ref:`Scheduler documentation <schg_re-scheduling_virtual_machines>`.
+-  ``unresched``: Clears the reschedule flag for the VM, canceling the rescheduling operation.
+
+**Deployment:**
+
+-  ``deploy``: Starts an existing VM in a specific Host.
+-  ``migrate --live``: The Virtual Machine is transferred between Hosts with no noticeable downtime. This action requires a :ref:`shared file system storage <sm>`.
+-  ``migrate``: The VM gets stopped and resumed in the target host. In an infrastructure with :ref:`multiple system datastores <system_ds_multiple_system_datastore_setups>`, the VM storage can be also migrated.
+
+Note: By default, the above operations do not check the target host capacity. You can use the -e (-enforce) option to be sure that the host capacity is not overcommitted.
+
+**Troubleshooting:**
+
+-  ``boot``: Forces the hypervisor boot action of a VM stuck in UNKNOWN or BOOT state.
+-  ``recover``: If the VM is stuck in any other state (or the boot operation does not work), you can recover the VM by simulating the failure or success of the missing action, or you can launch it with the ``--retry`` flag (and optionally the ``--interactive`` if its a Transfer Manager problem) to replay the driver actions. Read the :ref:`Virtual Machine Failures guide <ftguide_virtual_machine_failures>` for more information.
+-  ``migrate`` or ``resched``: A VM in the UNKNOWN state can be booted in a different host manually (``migrate``) or automatically by the scheduler (``resched``). This action must be performed only if the storage is shared, or manually transfered by the administrator. OpenNebula will not perform any action on the storage for this migration.
 
 Sunstone
 ========
