@@ -71,10 +71,16 @@ h4 {
     margin-bottom: 40px;
 }
 
-.admonition-todo {
+.alert-warning {
     color: #b94a48;
     background-color: #f2dede;
     border-color: #eed3d7;
+}
+
+.admonition-todo {
+  background-color: #fcf8e3;
+  border-color: #fbeed5;
+  color: #c09853;
 }
 
 .bs-sidenav.affix {
