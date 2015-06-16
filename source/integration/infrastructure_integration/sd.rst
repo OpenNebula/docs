@@ -114,7 +114,7 @@ Action scripts for generic image datastores:
    -  ``vm_id`` is the id of the VM
    -  ``ds_id`` is the target datastore (the original datastore for the image)
 
--  **cpds**: moves an image back to its datastore (executed for life disk snapshots)
+-  **cpds**: copies an image back to its datastore (executed for the saveas operation)
 
    -  **ARGUMENTS**: ``host:remote_system_ds/disk.i fe:SOURCE snap_id vm_id ds_id``
    -  ``fe`` is the front-end hostname
@@ -153,20 +153,21 @@ Action scripts for generic image datastores:
 
 -  **snap_create**: Creates a disk snapshot of the selected disk
 
-   -  **ARGUMENTS**: ``source snapshot_id vm_id datastore_id``
-   -  ``source``: path to the disk
+   -  **ARGUMENTS**: ``host:remote_system_ds/disk.i snapshot_id vm_id ds_id``
+   -  ``remote_system_ds_dir`` is the path for the VM directory in the system datastore in the host
+   -  ``host`` is the target host where the VM is running
    -  ``snapshot_id`` the id of the snapshot to be created/reverted to/deleted
    -  ``vm_id`` is the id of the VM
    -  ``ds_id`` is the target datastore (the system datastore)
 
 -  **snap_delete**: Deletes a disk snapshot
 
-   -  **ARGUMENTS**: ``source snapshot_id vm_id datastore_id``
+   -  **ARGUMENTS**: ``host:remote_system_ds/disk.i snapshot_id vm_id ds_id``
    -  see ``snap_create`` description.
 
--  **snap_revert**: It is executed after a livemigration operation. Note that **only the postmigrate script from the system datastore will be used**. Any customization must be done for the postmigrate script of the system datastore, although you will probably add operations for other backends than that used by the system datastore.
+-  **snap_revert**: Reverts to the selected snapshot (and discards any changes to the current disk)
 
-   -  **ARGUMENTS**: Reverts to the selected snapshot (and discards any changes to the current disk)
+   -  **ARGUMENTS**:  ``host:remote_system_ds/disk.i snapshot_id vm_id ds_id``
    -  see ``snap_create`` description.
 
 Action scripts needed when the TM is used for the system datastore:

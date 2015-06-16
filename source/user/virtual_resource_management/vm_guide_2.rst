@@ -226,6 +226,10 @@ There are two kinds of operations related to disk snapshots:
 Managing disk snapshots
 ^^^^^^^^^^^^^^^^^^^^^^^
 
+.. todo::
+
+  Check VM states
+
 A user can take snapshots of the disk states at any moment in time (if the VM is in ``RUNNING``, ``POWEROFF`` or ``SUSPENDED`` states). These snapshots are organized in a tree-like structure, meaning that every snapshot has a parent, except for the first snapshot whose parent is ``-1``. At any given time a user can revert the disk state to a previously taken snapshot. The active snapshot, the one the user has last reverted to, or taken, will act as the parent of the next snapshot. In addition, it's possible to delete snapshots that are not active and that have no children.
 
 - ``disk-snapshot-create <vmid> <diskid> <tag>``: Creates a new snapshot of the specified disk.

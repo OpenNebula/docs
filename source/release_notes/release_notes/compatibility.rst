@@ -34,6 +34,9 @@ As a result the pre-4.14 final, and *un-recoverable*, FAILED state has been remo
 .. todo::
     Update xsd files in the documentation. Add note in upgrade guide to remove FAILED VMs before upgrade.
 
+.. todo::
+    New failure states
+
 Virtual Machine Hooks
 --------------------------------------------------------------------------------
 Hooks on ``FAILED`` states are no longer needed; any automatic recovery action needs to be hooked on the new ``LCM_STATES``.
@@ -55,6 +58,10 @@ Virtual Machines
   * ``onevm disk-snapshot --live`` is now called ``onevm disk-saveas``
 
 .. todo:: onevm disk-snapshot-cancel
+
+
+.. todo::
+    Disk snapshots states
 
 Developers and Integrators
 ================================================================================
@@ -101,11 +108,22 @@ This section lists all the changes in the API. Visit the :ref:`complete referenc
 
 * New API calls:
 
-  * ``one.vm.savediskcancel``
+  * ``one.vm.disksnapshotcreate``
+  * ``one.vm.disksnapshotrevert``
+  * ``one.vm.disksnapshotdelete``
+
+  * ``one.vm.disksaveas``
+
+  * ``one.image.snapshotdelete``
+  * ``one.image.snapshotrevert``
+  * ``one.image.snapshotflatten``
+
+  * ``one.document.lock``: New method to lock the document at the API level. The lock automatically expires after 2 minutes.
+  * ``one.document.unlock``: New method to unlock the document at the API level.
+
+* API method name changes:
+  * ``one.vm.saveasdisk``
 
 * API upgrades:
 
   * ``one.vm.recover`` now takes an integer as argument: 0 for failure, 1 for success and 2 for retries. Applications using the pre-4.14 interface may work because of the casting of the boolean recovery operation to the new integer value. However, given the extended functionality of the new recover implementation it is recommended to review the logic of any application using this API call.
-  * ``one.vm.savedisk`` has one parameter less. The last boolean parameter was used to create a clone of the VM's source Template, replacing the first disk with the new snapshot. A new improved method was created in the :ref:`oca ruby <ruby>`. See the ``save_as_template`` `method for VirtualMachines </doc/stable/oca/ruby/OpenNebula/VirtualMachine.html>`_
-  * ``one.document.lock``: New method to lock the document at the API level. The lock automatically expires after 2 minutes.
-  * ``one.document.unlock``: New method to unlock the document at the API level.
