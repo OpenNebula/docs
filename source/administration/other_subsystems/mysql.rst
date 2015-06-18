@@ -8,6 +8,8 @@ The MySQL backend is an alternative to the default Sqlite backend. Either of the
 
 The two backends cannot coexist, and you will have to decide which one is going to be used while planning your OpenNebula installation.
 
+.. note:: If you are planning to install OpenNebula with MySQL backend, pleae follow this guide *prior* to start OpenNebula the first time to avoid problems with oneadmin and serveradmin credentials.
+
 .. _mysql_installation:
 
 Installation
