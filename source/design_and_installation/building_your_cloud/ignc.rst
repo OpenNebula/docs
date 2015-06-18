@@ -234,7 +234,7 @@ If you are using Xen you can prepare the node with opennebula-common:
 
 .. code::
 
-    # sudo yum install openebula-common
+    # sudo yum install opennebula-common
 
 For further configuration and/or installation of other hypervisors, check their specific guides: :ref:`Xen <xeng>`, :ref:`KVM <kvmg>` and :ref:`VMware <evmwareg>`.
 
