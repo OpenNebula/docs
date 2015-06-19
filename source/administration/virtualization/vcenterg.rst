@@ -135,6 +135,7 @@ Considerations & Limitations
 
 - **No files in context**: Passing entire files to VMs is not supported, but all the other CONTEXT sections will be honored
 - Cluster name cannot contain spaces
+- vCenter credential password cannot have more than 22 characters
 
 Configuration
 =============
