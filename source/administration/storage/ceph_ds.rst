@@ -107,6 +107,7 @@ An example of datastore:
     NAME = "cephds"
     DS_MAD = ceph
     TM_MAD = ceph
+    CEPH_HOST = host1 host2:port2 
 
     # the following lines *must* be preset
     DISK_TYPE = RBD
