@@ -152,8 +152,8 @@ Create a Ceph user for the OpenNebula hosts. We will use the name ``client.libvi
     ceph auth get-key client.libvirt | tee client.libvirt.key
     ceph auth get client.libvirt -o ceph.client.libvirt.keyring
 
-Distribute the ``client.libvirt.key`` and ``client.libvirt.keyring`` file to all the KVM hosts:
-- ``client.libvirt.keyring`` must be placed under ``/etc/ceph`` (in all the hypervisors and frontend)
+Distribute the ``client.libvirt.key`` and ``ceph.client.libvirt.keyring`` file to all the KVM hosts:
+- ``ceph.client.libvirt.keyring`` must be placed under ``/etc/ceph`` (in all the hypervisors and frontend)
 - ``client.libvirt.key`` must delivered somewhere where oneadmin can read it in order to create the libvirt secret documents.
 
 Generate a UUID, for example running ``uuidgen`` (the generated uuid will referenced as ``$UUID`` from now onwards).
