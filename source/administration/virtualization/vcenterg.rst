@@ -6,7 +6,7 @@ VMware vCenter Drivers
 
 OpenNebula seamlessly integrates vCenter virtualized infrastructures so leveraging the advanced features such as vMotion, HA or DRS scheduling provided by the VMware vSphere product family. On top of it, OpenNebula exposes a multi-tenant, cloud-like provisioning layer, including features like virtual data centers, datacenter federation or hybrid cloud computing to connect in-house vCenter infrastructures with public clouds. You also take a step toward liberating your stack from vendor lock-in.
 
-These drivers are for companies that want to keep VMware management tools, procedures and workflows. For these companies, throwing away VMware and retooling the entire stack is not the answer. However, as they consider moving beyond virtualization toward a private cloud, they can choose to either invest more in VMware, or proceed on a tactically challenging but strategically rewarding path of open. 
+These drivers are for companies that want to keep VMware management tools, procedures and workflows. For these companies, throwing away VMware and retooling the entire stack is not the answer. However, as they consider moving beyond virtualization toward a private cloud, they can choose to either invest more in VMware, or proceed on a tactically challenging but strategically rewarding path of open.
 
 The OpenNebula - vCenter combination allows you to deploy advanced provisioning infrastructures of virtualized resources. In this guide you'll learn how to configure OpenNebula to access one or more vCenters and set-up VMware-based virtual machines.
 
@@ -101,7 +101,7 @@ The following must be met for a functional vCenter environment:
 
 .. note:: For security reasons, you may define different users to access different ESX Clusters. A different user can defined in OpenNebula per ESX cluster, which is encapsulated in OpenNebula as an OpenNebula host.
 
-- All ESX hosts belonging to the same ESX cluster to be exposed to OpenNebula **must** share one datastore among them. 
+- All ESX hosts belonging to the same ESX cluster to be exposed to OpenNebula **must** share one datastore among them.
 
 - The ESX cluster **should** have DRS enabled. DRS is not required but it is recommended. OpenNebula does not schedule to the granularity of ESX hosts, DRS is needed to select the actual ESX host within the cluster, otherwise the VM will be launched in the ESX where the VM template has been created.
 
@@ -113,7 +113,7 @@ The following must be met for a functional vCenter environment:
    - Select the ESX host, Configuration tab and select Security Profile in the Software category.
    - In the Firewall section, select Edit. Enable GDB Server, then click OK.
 
-.. important:: OpenNebula will **NOT** modify any vCenter configuration or manage any existing Virtual Machine.
+.. important:: OpenNebula will **NOT** modify any vCenter configuration.
 
 Considerations & Limitations
 ============================
@@ -189,8 +189,8 @@ OpenNebula ships with a powerful CLI tool to import vCenter clusters, VM Templat
 .. code::
 
     $ onehost list
-      ID NAME            CLUSTER   RVM      ALLOCATED_CPU      ALLOCATED_MEM STAT   
-                                                                                    
+      ID NAME            CLUSTER   RVM      ALLOCATED_CPU      ALLOCATED_MEM STAT
+
     $ onevcenter hosts --vcenter <vcenter-host> --vuser <vcenter-username> --vpass <vcenter-password>
     Connecting to vCenter: <vcenter-host>...done!
     Exploring vCenter resources...done!
@@ -476,7 +476,7 @@ OpenNebula uses VMware cloning VM Template procedure to instantiate new Virtual 
 
 -- Deploying a virtual machine from a template creates a virtual machine that is a copy of the template. The new virtual machine has the virtual hardware, installed software, and other properties that are configured for the template.
 
-A VM Template is tied to the host where the VM was running, and also the datastore(s) where the VM disks where placed. Due to shared datastores, vCenter can instantiate a VM Template in any of the hosts beloning to the same cluster as the original one. 
+A VM Template is tied to the host where the VM was running, and also the datastore(s) where the VM disks where placed. Due to shared datastores, vCenter can instantiate a VM Template in any of the hosts beloning to the same cluster as the original one.
 
 OpenNebula uses several assumptions to instantitate a VM Template in an automatic way:
 
