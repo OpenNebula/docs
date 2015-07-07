@@ -75,7 +75,7 @@ Each role can have an array of ``elasticity_policies``. These policies define an
 These expressions can use performance data from
 
 -  The VM guest. Using the :ref:`OneGate server <onegate_usage>`, applications can send custom monitoring metrics to OpenNebula.
--  The VM, at hypervisor level. The :ref:`Virtualization Drivers <vmmg>` return information about the VM, such as CPU, MEMORY, NET\_TX and NET\_RX.
+-  The VM, at hypervisor level. The :ref:`Virtualization Drivers <vmmg>` return information about the VM, such as ``CPU``, ``MEMORY``, ``NETTX`` and ``NETRX``.
 
 .. code::
 
@@ -93,7 +93,7 @@ These expressions can use performance data from
 
 The **expression** can use VM attribute names, float numbers, and logical operators (!, &, \|). When an attribute is found, it will take the **average** value for all the **running VMs** that contain that attribute in the Role. If none of the VMs contain the attribute, the expression will evaluate to false.
 
-The attribute will be looked for in /VM/USER\_TEMPLATE, /VM, and /VM/TEMPLATE, in that order. Logical operators have the usual precedence.
+The attribute will be looked for in ``/VM/USER_TEMPLATE``, ``/VM/MONITORING``, ``/VM/TEMPLATE`` and ``/VM``, in that order. Logical operators have the usual precedence.
 
 +------------------+-----------+-------------+-----------------------------------------------------------------------------------------+
 | Attribute        | Type      | Mandatory   | Description                                                                             |
