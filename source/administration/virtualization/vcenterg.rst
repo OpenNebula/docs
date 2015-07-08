@@ -437,6 +437,16 @@ After a VM Template is instantiated, the lifecycle of the resulting virtual mach
      - capacity (CPU and MEMORY) resizing
      - VNC connectivity
 
+The monitoring attributes retrieved from a vCenter VM are:
+
+
+- ESX_HOST
+- GUEST_IP
+- GUEST_STATE
+- VMWARETOOLS_RUNNING_STATUS
+- VMWARETOOLS_VERSION
+- VMWARETOOLS_VERSION_STATUS
+
 .. _virtual_network_vcenter_usage:
 
 Virtual Network definition
