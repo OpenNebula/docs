@@ -6,7 +6,7 @@ Scalable Architecture and APIs
 
 OpenNebula has been designed to be easily adapted to any infrastructure and easily extended with new components. The result is a modular system that can implement a variety of Cloud architectures and can interface with multiple datacenter services. In this Guide we review the main interfaces of OpenNebula, their use and give pointers to additional documentation for each one.
 
-We have classified the interfaces in two categories: end-user cloud and system interfaces. Cloud interfaces are primary used to develop tools targeted to the end-user, and they provide a high level abstraction of the functionality provided by the Cloud. On the other hand, the system interfaces expose the full functionality of OpenNebula and are mainly used to adapt and tune the behavior of OpenNebula to the target infrastructure.
+We have classified the interfaces in two categories: end-user cloud and system interfaces. Cloud interfaces are primarily used to develop tools targeted to the end-user, and they provide a high level abstraction of the functionality provided by the Cloud. On the other hand, the system interfaces expose the full functionality of OpenNebula and are mainly used to adapt and tune the behavior of OpenNebula to the target infrastructure.
 
 |image0|
 
@@ -45,13 +45,13 @@ The OpenNebula Cloud API provides a simplified and convenient way to interface t
 2.3. The OpenNebula Drivers Interfaces
 --------------------------------------
 
-The interactions between OpenNebula and the Cloud infrastructure are performed by specific drivers each one addressing a particular area:
+The interactions between OpenNebula and the Cloud infrastructure are performed by specific drivers. Each one addresses a particular area:
 
--  **Storage**. The OpenNebula core issue abstract storage operations (e.g. clone or delete) that are implemented by specific programs that can be replaced or modified to interface special storage backends and file-systems.
+-  **Storage**. The OpenNebula core issue abstracts storage operations (e.g. clone or delete) that are implemented by specific programs that can be replaced or modified to interface special storage backends and file-systems.
 -  **Virtualization**. The interaction with the hypervisors are also implemented with custom programs to boot, stop or migrate a virtual machine. This allows you to specialize each VM operation so to perform custom operations.
--  **Monitoring**. Monitoring information is also gathered by external probes. You can add additional probes to include custom monitoring metrics that can be later used to allocate virtual machines or for accounting purposes
+-  **Monitoring**. Monitoring information is also gathered by external probes. You can add additional probes to include custom monitoring metrics that can later be used to allocate virtual machines or for accounting purposes.
 -  **Authorization**. OpenNebula can be also configured to use an external program to authorize and authenticate user requests. In this way, you can implement any access policy to Cloud resources.
--  **Networking** the hypervisor is also prepared with the network configuration for each Virtual Machine.
+-  **Networking**. The hypervisor is also prepared with the network configuration for each Virtual Machine.
 
 *Use the driver interfaces if...* you need OpenNebula to interface any specific storage, virtualization, monitoring or authorization system already deployed in your datacenter or to tune the behavior of the standard OpenNebula drivers.
 
@@ -60,7 +60,7 @@ The interactions between OpenNebula and the Cloud infrastructure are performed b
 2.4. The OpenNebula DataBase
 ----------------------------
 
-OpenNebula saves its state and lots of accounting information in a persistent data-base. OpenNebula can use MySQL or SQLite database that can be easily interfaced with any of DB tool.
+OpenNebula saves its state and lots of accounting information in a persistent data-base. OpenNebula can use MySQL or SQLite and can be easily interfaced with any database tool.
 
 *Use the OpenNebula DB if...* you need to generate custom accounting or billing reports.
 
