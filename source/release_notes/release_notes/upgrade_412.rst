@@ -6,7 +6,7 @@ Upgrading from OpenNebula 4.12.x
 
 This guide describes the installation procedure for systems that are already running a 4.12.x OpenNebula. The upgrade will preserve all current users, hosts, resources and configurations; for both Sqlite and MySQL backends.
 
-Read the Compatibility Guide for `4.12 <http://docs.opennebula.org/4.12/release_notes/release_notes/compatibility.html>`_ and :ref:`4.14 <compatibility>`, and the `Release Notes <http://opennebula.org/software/release/>`_ to know what is new in OpenNebula 4.14.
+Read the :ref:`Compatibility Guide <compatibility>` and `Release Notes <http://opennebula.org/software/release/>`_ to know what is new in OpenNebula 4.14.
 
 Upgrading a Federation
 ================================================================================
