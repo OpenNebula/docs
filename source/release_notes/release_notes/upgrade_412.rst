@@ -1,41 +1,21 @@
 .. _upgrade:
 
 =================================
-Upgrading from OpenNebula 4.10.x
+Upgrading from OpenNebula 4.12.x
 =================================
 
-This guide describes the installation procedure for systems that are already running a 4.10.x OpenNebula. The upgrade will preserve all current users, hosts, resources and configurations; for both Sqlite and MySQL backends.
+This guide describes the installation procedure for systems that are already running a 4.12.x OpenNebula. The upgrade will preserve all current users, hosts, resources and configurations; for both Sqlite and MySQL backends.
 
 Read the Compatibility Guide for `4.12 <http://docs.opennebula.org/4.12/release_notes/release_notes/compatibility.html>`_ and :ref:`4.14 <compatibility>`, and the `Release Notes <http://opennebula.org/software/release/>`_ to know what is new in OpenNebula 4.14.
 
 Upgrading a Federation
 ================================================================================
 
-If you have two or more 4.10.x OpenNebulas working as a :ref:`Federation <introf>`, you need to upgrade all of them. The upgrade does not have to be simultaneous, the slaves can be kept running while the master is upgraded.
+If you have two or more 4.12 OpenNebulas working as a :ref:`Federation <introf>`, you can upgrade each one independently. Zones with 4.12 and 4.14 OpenNebulas can be part of the same federation, since the shared portion of the database is compatible.
 
-The steps to follow are:
+The only compatibility issue is in the Sunstone web interface. If your users access different Zones from a unique Sunstone server, you will need to upgrade all Zones to 4.14, or enable a local Sunstone server for each Zone to ensure that a 4.12 OpenNebula is only accessed through a 4.12 Sunstone. Read the :ref:`federation architecture documentation <introf_architecture>` for more details.
 
-- 1. Stop the MySQL replication in all the slaves
-- 2. Upgrade the **master** OpenNebula
-- 3. Upgrade each **slave**
-- 4. Resume the replication
-
-During the time between steps 1 and 4 the slave OpenNebulas can be running, and users can keep accessing them if each zone has a local Sunstone instance. There is however an important limitation to note: all the shared database tables will not be updated in the slaves zones. This means that new user accounts, password changes, new ACL rules, etc. will not have any effect in the slaves. Read the :ref:`federation architecture documentation <introf_architecture>` for more details.
-
-It is recommended to upgrade all the slave zones as soon as possible.
-
-To perform the first step, `pause the replication <http://dev.mysql.com/doc/refman/5.7/en/replication-administration-pausing.html>`_ in each **slave MySQL**:
-
-.. code::
-
-    mysql> STOP SLAVE;
-
-    mysql> SHOW SLAVE STATUS\G
-
-     Slave_IO_Running: No
-    Slave_SQL_Running: No
-
-Then follow this guide for the **master zone**. After the master has been updated to 4.14, upgrade each **slave zone** following this same guide.
+The rest of the guide applies to both a master or slave Zone. You don't need to stop the federation or the MySQL replication to follow this guide.
 
 Preparation
 ===========
@@ -58,7 +38,7 @@ Installation
 
 Follow the :ref:`Platform Notes <uspng>` and the :ref:`Installation guide <ignc>`, taking into account that you will already have configured the passwordless ssh access for oneadmin.
 
-It is highly recommended **not to keep** your current ``oned.conf``, and update the ``oned.conf`` file shipped with OpenNebula 4.14 to your setup. If for any reason you plan to preserve your current ``oned.conf`` file, read the :ref:`Compatibility Guide <compatibility>` and the complete oned.conf reference for `4.10 <http://docs.opennebula.org/4.10/administration/references/oned_conf.html>`_ and :ref:`4.14 <oned_conf>` versions.
+It is highly recommended **not to keep** your current ``oned.conf``, and update the ``oned.conf`` file shipped with OpenNebula 4.14 to your setup. If for any reason you plan to preserve your current ``oned.conf`` file, read the :ref:`Compatibility Guide <compatibility>` and the complete oned.conf reference for `4.12 <http://docs.opennebula.org/4.12/administration/references/oned_conf.html>`_ and :ref:`4.14 <oned_conf>` versions.
 
 Configuration Files Upgrade
 ===========================
@@ -81,8 +61,6 @@ The database schema and contents are incompatible between versions. The OpenNebu
 You can upgrade the existing DB with the 'onedb' command. You can specify any Sqlite or MySQL database. Check the :ref:`onedb reference <onedb>` for more information.
 
 .. warning:: Make sure at this point that OpenNebula is not running. If you installed from packages, the service may have been started automatically.
-
-.. warning:: For environments in a Federation: Before upgrading the **master**, make sure that all the slaves have the MySQL replication paused.
 
 After you install the latest OpenNebula, and fix any possible conflicts in oned.conf, you can issue the 'onedb upgrade -v' command. The connection parameters have to be supplied with the command line options, see the :ref:`onedb manpage <cli>` for more information. Some examples:
 
@@ -140,7 +118,7 @@ Check DB Consistency
 
 After the upgrade is completed, you should run the command ``onedb fsck``.
 
-First, move the 4.10 backup file created by the upgrade command to a safe place.
+First, move the 4.12 backup file created by the upgrade command to a safe place.
 
 .. code::
 
@@ -157,49 +135,6 @@ Then execute the following command:
 
     Total errors found: 0
 
-Resume the Federation
-================================================================================
-
-This section applies only to environments working in a Federation.
-
-For the **master zone**: This step is not necessary.
-
-For a **slave zone**: The MySQL replication must be resumed now.
-
-- First, add a new table, ``vdc_pool``, to the replication configuration.
-
-.. warning:: Do not copy the server-id from this example, each slave should already have a unique ID.
-
-.. code-block:: none
-
-    # vi /etc/my.cnf
-    [mysqld]
-    server-id           = 100
-    replicate-do-table  = opennebula.user_pool
-    replicate-do-table  = opennebula.group_pool
-    replicate-do-table  = opennebula.vdc_pool
-    replicate-do-table  = opennebula.zone_pool
-    replicate-do-table  = opennebula.db_versioning
-    replicate-do-table  = opennebula.acl
-
-    # service mysqld restart
-
-- Start the **slave MySQL** process and check its status. It may take a while to copy and apply all the pending commands.
-
-.. code-block:: none
-
-    mysql> START SLAVE;
-    mysql> SHOW SLAVE STATUS\G
-
-The ``SHOW SLAVE STATUS`` output will provide detailed information, but to confirm that the slave is connected to the master MySQL, take a look at these columns:
-
-.. code-block:: none
-
-       Slave_IO_State: Waiting for master to send event
-     Slave_IO_Running: Yes
-    Slave_SQL_Running: Yes
-
-
 Reload Start Scripts in CentOS 7
 ================================
 
@@ -208,19 +143,6 @@ In order for the system to re-read the configuration files you should issue the 
 .. code-block:: none
 
     # systemctl daemon-reload
-
-
-Enable Start Scripts in CentOS 7
-================================
-
-CentOS 7 packages now come with systemd scripts instead of the old systemV ones. You will need to enable the services again so they are started on system boot. The names of the services are the same as the previous one. For example, to enable ``opennebula``, ``opennebula-sunstone``, ``opennebula-flow`` and ``opennebula-gate`` you can issue these commands:
-
-.. code-block:: none
-
-    # systemctl enable opennebula
-    # systemctl enable opennebula-sunstone
-    # systemctl enable opennebula-flow
-    # systemctl enable opennebula-gate
 
 Update the Drivers
 ==================
@@ -237,24 +159,6 @@ If you are using :ref:`LDAP as default auth driver <ldap>` you will need to upda
 .. code::
 
     $ cp -R /var/lib/one/remotes/auth/ldap /var/lib/one/remotes/auth/default
-
-vCenter Password
-================
-
-.. note:: This step only applies if you are upgrading from OpenNebula **4.10.0**. If you are already using 4.10.1 or 4.10.2 you can skip this step.
-
-If you already have a host with vCenter drivers you need to update the password as version >4.10.0 expects it to be encrypted. To do so, proceed to Sunstone -> Infrastructure -> Hosts, click on the vCenter host(s) and change the value in ``VCENTER_PASSWORD`` field. It will be automatically encrypted.
-
-Create the Security Group ACL Rule
-================================================================================
-
-There is a new kind of resource introduced in 4.12: :ref:`Security Groups <security_groups>`. If you want your existing users to be able to create their own Security Groups, create the following :ref:`ACL Rule <manage_acl>`:
-
-.. code::
-
-    $ oneacl create "* SECGROUP/* CREATE *"
-
-.. note:: For environments in a Federation: This command needs to be executed only once in the master zone, after it is upgraded to 4.14.
 
 Testing
 =======

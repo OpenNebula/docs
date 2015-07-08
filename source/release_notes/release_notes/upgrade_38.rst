@@ -5,7 +5,7 @@ Upgrading from OpenNebula 3.8.x
 
 This guide describes the installation procedure for systems that are already running a 3.8.x OpenNebula. The upgrade will preserve all current users, hosts, resources and configurations; for both Sqlite and MySQL backends.
 
-Read the Compatibility Guide for `4.0 <http://archives.opennebula.org/documentation:archives:rel4.0:compatibility>`_, `4.2 <http://archives.opennebula.org/documentation:archives:rel4.2:compatibility>`_, `4.4 <http://docs.opennebula.org/4.4/release_notes44/compatibility.html>`_, `4.6 <http://docs.opennebula.org/4.6/release_notes44/compatibility.html>`_, `4.8 <http://docs.opennebula.org/4.8/release_notes/release_notes/compatibility.html>`_, `4.10 <http://docs.opennebula.org/4.10/reLease_noTes/release_notes/compatibility.html>`_ and :ref:`4.12 <compatibility>`, and the `Release Notes <http://opennebula.org/software/release/>`_ to know what is new in OpenNebula 4.12.
+Read the Compatibility Guide for `4.0 <http://archives.opennebula.org/documentation:archives:rel4.0:compatibility>`_, `4.2 <http://archives.opennebula.org/documentation:archives:rel4.2:compatibility>`_, `4.4 <http://docs.opennebula.org/4.4/release_notes44/compatibility.html>`_, `4.6 <http://docs.opennebula.org/4.6/release_notes/release_notes/compatibility.html>`_, `4.8 <http://docs.opennebula.org/4.8/release_notes/release_notes/compatibility.html>`_, `4.10 <http://docs.opennebula.org/4.10/release_notes/release_notes/compatibility.html>`_, `4.12 <http://docs.opennebula.org/4.12/release_notes/release_notes/compatibility.html>`_ and :ref:`4.14 <compatibility>`, and the `Release Notes <http://opennebula.org/software/release/>`_ to know what is new in OpenNebula 4.14.
 
 .. warning:: With the new :ref:`multi-system DS <system_ds_multiple_system_datastore_setups>` functionality, it is now required that the system DS is also part of the cluster. If you are using System DS 0 for Hosts inside a Cluster, any VM saved (stop, suspend, undeploy) **will not be able to be resumed after the upgrade process**.
 
@@ -45,7 +45,7 @@ Installation
 
 Follow the :ref:`Platform Notes <uspng>` and the :ref:`Installation guide <ignc>`, taking into account that you will already have configured the passwordless ssh access for oneadmin.
 
-It is highly recommended **not to keep** your current ``oned.conf``, and update the ``oned.conf`` file shipped with OpenNebula 4.12 to your setup. If for any reason you plan to preserve your current ``oned.conf`` file, read the :ref:`Compatibility Guide <compatibility>` and the complete oned.conf reference for `3.8 <http://opennebula.org/documentation:archives:rel3.8:oned_conf>`__ and :ref:`4.12 <oned_conf>` versions.
+It is highly recommended **not to keep** your current ``oned.conf``, and update the ``oned.conf`` file shipped with OpenNebula 4.14 to your setup. If for any reason you plan to preserve your current ``oned.conf`` file, read the :ref:`Compatibility Guide <compatibility>` and the complete oned.conf reference for `3.8 <http://opennebula.org/documentation:archives:rel3.8:oned_conf>`__ and :ref:`4.14 <oned_conf>` versions.
 
 Database Upgrade
 ================
@@ -185,6 +185,22 @@ If everything goes well, you should get an output similar to this one:
     Database already uses version 4.5.80
 
     Total time: 3.60s
+
+Now execute the following DB patch:
+
+.. code::
+
+    $ onedb patch -v -u oneadmin -d opennebula /usr/lib/one/ruby/onedb/patches/4.14_monitoring.rb
+    Version read:
+    Shared tables 4.11.80 : OpenNebula 4.12.1 daemon bootstrap
+    Local tables  4.13.80 : Database migrated from 4.11.80 to 4.13.80 (OpenNebula 4.13.80) by onedb command.
+
+      > Running patch /usr/lib/one/ruby/onedb/patches/4.14_monitoring.rb
+      > Done
+
+      > Total time: 0.05s
+
+.. warning:: This DB upgrade is expected to take a long time to complete in large infrastructures. If you have an `OpenNebula Systems support subscription <http://opennebula.systems/>`_, please contact them to study your case and perform the upgrade with the minimum downtime possible.
 
 .. note:: Make sure you keep the backup file. If you face any issues, the onedb command can restore this backup, but it won't downgrade databases to previous versions.
 
@@ -350,8 +366,8 @@ Restoring the Previous Version
 
 If for any reason you need to restore your previous OpenNebula, follow these steps:
 
--  With OpenNebula 4.12 still installed, restore the DB backup using 'onedb restore -f'
--  Uninstall OpenNebula 4.12, and install again your previous version.
+-  With OpenNebula 4.14 still installed, restore the DB backup using 'onedb restore -f'
+-  Uninstall OpenNebula 4.14, and install again your previous version.
 -  Copy back the backup of /etc/one you did to restore your configuration.
 
 Known Issues
