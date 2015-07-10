@@ -282,7 +282,7 @@ VMM actions, they are the same as the names of the scripts:
 
 .. code::
 
-    /VMM_DRIVER_ACTION_DATA/VM/TEMPLATE/DISK[ATTACH='YES']/READONLY 
+    /VMM_DRIVER_ACTION_DATA/VM/TEMPLATE/DISK[ATTACH='YES']/READONLY
 
 When using shell script there is a handy script that gets parameters for given XPATH in that XML. Example:
 
@@ -313,27 +313,31 @@ When using shell script there is a handy script that gets parameters for given X
 Poll Information
 ================
 
-``POLL`` is the action that gets monitoring info from the running VMs. The format it is supposed to give back information is a line with ``KEY=VALUE`` pairs separated by spaces. Like this:
+``POLL`` is the action that gets monitoring info from the running VMs. The format it is supposed to give back information is a line with ``KEY=VALUE`` pairs separated by spaces. It also supports vector values ``KEY = [ SK1=VAL1, SK2=VAL2 ]``. An example monitoring output looks like this:
 
 .. code::
 
-    STATE=a USEDMEMORY=554632
+    STATE=a USEDMEMORY=554632 DISK_SIZE=[ ID=0, SIZE=24 ] DISK_SIZE=[ ID=1, SIZE=242 ] SNAPSHOT_SIZE=[ ID=0, DISK_ID=0, SIZE=24 ]
 
 The poll action can give back any information and it will be added to the VM information hold but there are some variables that should be given back as they are meaningful to OpenNebula:
 
-+--------------+----------------------------------------------------------------+
-| Variable     | Description                                                    |
-+==============+================================================================+
-| STATE        | State of the VM (explained later)                              |
-+--------------+----------------------------------------------------------------+
-| USEDCPU      | Percentage of 1 CPU consumed (two fully consumed cpu is 200)   |
-+--------------+----------------------------------------------------------------+
-| USEDMEMORY   | Memory consumption in kilobytes                                |
-+--------------+----------------------------------------------------------------+
-| NETRX        | Received bytes from the network                                |
-+--------------+----------------------------------------------------------------+
-| NETTX        | Sent bytes to the network                                      |
-+--------------+----------------------------------------------------------------+
++---------------+------------------------------------------------------------------------------------------------------------------------------------------+
+|    Variable   |                                                               Description                                                                |
++===============+==========================================================================================================================================+
+| STATE         | State of the VM (explained later)                                                                                                        |
++---------------+------------------------------------------------------------------------------------------------------------------------------------------+
+| USEDCPU       | Percentage of 1 CPU consumed (two fully consumed cpu is 200)                                                                             |
++---------------+------------------------------------------------------------------------------------------------------------------------------------------+
+| USEDMEMORY    | Memory consumption in kilobytes                                                                                                          |
++---------------+------------------------------------------------------------------------------------------------------------------------------------------+
+| NETRX         | Received bytes from the network                                                                                                          |
++---------------+------------------------------------------------------------------------------------------------------------------------------------------+
+| NETTX         | Sent bytes to the network                                                                                                                |
++---------------+------------------------------------------------------------------------------------------------------------------------------------------+
+| DISK_SIZE     | Vector attribute two sub-attributes: ``ID`` id of the disk, and ``SIZE`` real size of the disk in MB                                     |
++---------------+------------------------------------------------------------------------------------------------------------------------------------------+
+| SNAPSHOT_SIZE | Vector attribute two sub-attributes: ``ID`` id of the snapshot, ``DISK_ID`` id of the disk, and ``SIZE`` real size of the snapshot in MB |
++---------------+------------------------------------------------------------------------------------------------------------------------------------------+
 
 ``STATE`` is a single character that tells OpenNebula the status of the VM, the states are the ones in this table:
 

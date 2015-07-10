@@ -124,25 +124,26 @@ The scripts should also provide information about the VMs running in the host. T
 
     VM_POLL=YES
     VM=[
-      ID=86,
-      DEPLOY_ID=one-86,
-      POLL="USEDMEMORY=918723 USEDCPU=23 NETTX=19283 NETRX=914 STATE=a" ]
+      ID=115,
+      DEPLOY_ID=one-115,
+      POLL="STATE=a CPU=100.0 MEMORY=73232 NETRX=1518 NETTX=0 DISK_SIZE=[ ID=0, SIZE=24 ] DISK_SIZE=[ ID=1, SIZE=0 ]  SNAPSHOT_SIZE=[ ID=1, DISK_ID=0, SIZE=24 ] SNAPSHOT_SIZE=[ ID=0, DISK_ID=0, SIZE=24 ] " ]
     VM=[
-      ID=645,
-      DEPLOY_ID=one-645,
-      POLL="USEDMEMORY=563865 USEDCPU=74 NETTX=2039847 NETRX=2349923 STATE=a" ]
+      ID=116,
+      DEPLOY_ID=one-116,
+      POLL="STATE=a CPU=100.5 MEMORY=77824 NETRX=1392 NETTX=0 DISK_SIZE=[ ID=0, SIZE=24 ] DISK_SIZE=[ ID=1, SIZE=0 ]  " ]
+
 
 The first line (``VM_POLL=YES``) is used to indicate OpenNebula that VM information will follow. Then the information about the VMs is output in that form.
 
-+------------+------------------------------------------------------------------------------+
-|    Key     |                                 Description                                  |
-+============+==============================================================================+
-| ID         | OpenNebula VM id. It can be -1 in case this VM was not created by OpenNebula |
-+------------+------------------------------------------------------------------------------+
-| DEPLOY\_ID | Hypervisor name or identifier of the VM                                      |
-+------------+------------------------------------------------------------------------------+
-| POLL       | VM monitoring info, in the same format as :ref:`VMM driver <devel-vmm>` poll |
-+------------+------------------------------------------------------------------------------+
++-----------+------------------------------------------------------------------------------+
+|    Key    |                                 Description                                  |
++===========+==============================================================================+
+| ID        | OpenNebula VM id. It can be -1 in case this VM was not created by OpenNebula |
++-----------+------------------------------------------------------------------------------+
+| DEPLOY_ID | Hypervisor name or identifier of the VM                                      |
++-----------+------------------------------------------------------------------------------+
+| POLL      | VM monitoring info, in the same format as :ref:`VMM driver <devel-vmm>` poll |
++-----------+------------------------------------------------------------------------------+
 
 For example here is a simple script to get qemu/kvm VMs status from libvirt. As before, check the scripts from OpenNebula for a complete example:
 
