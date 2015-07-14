@@ -184,7 +184,7 @@ These are the attributes that can be used in the PUBLIC_CLOUD section of the tem
 +--------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``VM_PASSWORD``          | Password for VM_USER                                                                                                                                                                                |
 +--------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``LOCATION``             | Azure datacenter where the VM will be sent. See /etc/one/az_driver.conf for possible values (under region_name)                                                                                     |
+| ``LOCATION``             | Azure datacenter where the VM will be sent. See /etc/one/az_driver.conf for possible values (use the name of the section, not the region names). Spaces are not supported in this value.            |
 +--------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``STORAGE_ACCOUNT``      | Specify the storage account where this VM will belong                                                                                                                                               |
 +--------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -213,8 +213,8 @@ Default values for all these attributes can be defined in the ``/etc/one/az_driv
     <!--
      Default configuration attributes for the Azure driver
      (all domains will use these values as defaults)
-     Valid attributes are: INSTANCE_TYPE, IMAGE, VM_USER, VM_PASSWORD, LOCATION, 
-     STORAGE_ACCOUNT, WIN_RM, CLOUD_SERVICE, TCP_ENDPOINTS, SSHPORT, AFFINITY_GROUP, 
+     Valid attributes are: INSTANCE_TYPE, IMAGE, VM_USER, VM_PASSWORD, LOCATION,
+     STORAGE_ACCOUNT, WIN_RM, CLOUD_SERVICE, TCP_ENDPOINTS, SSHPORT, AFFINITY_GROUP,
      VIRTUAL_NETWORK_NAME, SUBNET and AVAILABILITY_SET
      Use XML syntax to specify defaults, note elements are UPCASE
      Example:
