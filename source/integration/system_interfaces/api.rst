@@ -99,8 +99,10 @@ onevm
 |                      |                           | IMAGE:CREATE      |
 +----------------------+---------------------------+-------------------+
 | disk-snapshot-create | one.vm.disksnapshotcreate | VM:MANAGE         |
+|                      |                           | IMAGE:MANAGE      |
 +----------------------+---------------------------+-------------------+
 | disk-snapshot-delete | one.vm.disksnapshotdelete | VM:MANAGE         |
+|                      |                           | IMAGE:MANAGE      |
 +----------------------+---------------------------+-------------------+
 | disk-snapshot-revert | one.vm.disksnapshotrevert | VM:MANAGE         |
 +----------------------+---------------------------+-------------------+
@@ -435,33 +437,33 @@ oneuser
 onedatastore
 ------------
 
-+------------------+------------------------+----------------------------+
-| oneimage command |     XML-RPC Method     |       Auth. Request        |
-+==================+========================+============================+
-| create           | one.datastore.allocate | DATASTORE:CREATE           |
-+------------------+------------------------+----------------------------+
-| delete           | one.datastore.delete   | DATASTORE:ADMIN            |
-+------------------+------------------------+----------------------------+
-| show             | one.datastore.info     | DATASTORE:USE              |
-+------------------+------------------------+----------------------------+
-| update           | one.datastore.update   | DATASTORE:MANAGE           |
-+------------------+------------------------+----------------------------+
-| rename           | one.datastore.rename   | DATASTORE:MANAGE           |
-+------------------+------------------------+----------------------------+
-| chown            | one.datastore.chown    | DATASTORE:MANAGE           |
-|                  |                        |                            |
-|                  |                        | [USER:MANAGE]              |
-|                  |                        |                            |
-| chgrp            |                        | [GROUP:USE]                |
-+------------------+------------------------+----------------------------+
-| chmod            | one.datastore.chmod    | DATASTORE:<MANAGE \ ADMIN> |
-+------------------+------------------------+----------------------------+
-| enable           | one.datastore.enable   | DATASTORE:MANAGE           |
-|                  |                        |                            |
-| disable          |                        |                            |
-+------------------+------------------------+----------------------------+
-| list             | one.datastorepool.info | DATASTORE:USE              |
-+------------------+------------------------+----------------------------+
++----------------------+------------------------+----------------------------+
+| onedatastore command |     XML-RPC Method     |       Auth. Request        |
++======================+========================+============================+
+| create               | one.datastore.allocate | DATASTORE:CREATE           |
++----------------------+------------------------+----------------------------+
+| delete               | one.datastore.delete   | DATASTORE:ADMIN            |
++----------------------+------------------------+----------------------------+
+| show                 | one.datastore.info     | DATASTORE:USE              |
++----------------------+------------------------+----------------------------+
+| update               | one.datastore.update   | DATASTORE:MANAGE           |
++----------------------+------------------------+----------------------------+
+| rename               | one.datastore.rename   | DATASTORE:MANAGE           |
++----------------------+------------------------+----------------------------+
+| chown                | one.datastore.chown    | DATASTORE:MANAGE           |
+|                      |                        |                            |
+|                      |                        | [USER:MANAGE]              |
+|                      |                        |                            |
+| chgrp                |                        | [GROUP:USE]                |
++----------------------+------------------------+----------------------------+
+| chmod                | one.datastore.chmod    | DATASTORE:<MANAGE \ ADMIN> |
++----------------------+------------------------+----------------------------+
+| enable               | one.datastore.enable   | DATASTORE:MANAGE           |
+|                      |                        |                            |
+| disable              |                        |                            |
++----------------------+------------------------+----------------------------+
+| list                 | one.datastorepool.info | DATASTORE:USE              |
++----------------------+------------------------+----------------------------+
 
 oneimage
 --------
