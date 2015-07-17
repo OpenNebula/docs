@@ -107,11 +107,12 @@ The following must be met for a functional vCenter environment:
 
 - **Save as VMs Templates those VMs that will be instantiated through the OpenNebula provisioning portal**
 
-- To enable VNC functionality for vOneCloud, repeat the following procedure for each ESX:
+- To enable VNC functionality, repeat the following procedure for each ESX:
 
    - In the vSphere client proceed to Home -> Inventory -> Hosts and Clusters
-   - Select the ESX host, Configuration tab and select Security Profile in the Software category.
-   - In the Firewall section, select Edit. Enable GDB Server, then click OK.
+   - Select the ESX host, Configuration tab and select Security Profile in the Software category
+   - In the Firewall section, select Edit. Enable GDB Server, then click OK
+   - Make sure that the ESX hosts are reachable from the OpenNebula front-end
 
 .. important:: OpenNebula will **NOT** modify any vCenter configuration.
 

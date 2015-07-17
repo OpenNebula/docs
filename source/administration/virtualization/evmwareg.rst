@@ -23,8 +23,14 @@ In order to use the **VMware Drivers**, some software dependencies have to be me
    -  **vCenter Server** installed and configured, details in the `Installation Guide for ESX and vCenter <http://pubs.vmware.com/vsphere-51/index.jsp?topic=%2Fcom.vmware.vsphere.install.doc%2FGUID-BC044F6C-4733-4413-87E6-A00D3BDEDE58.html>`__.
    -  A **datacenter** created in the vCenter server that includes all ESX hosts between which Virtual Machines want to be live migrated (we are going to assume it is called “onecenter” in the rest of this document).
    -  A **user** created in vCenter with the same username and password than the ones in the ESX hosts, with administrator permissions.
-- For VNC to work properly, please install `VMware Tools (for Windows) <https://www.vmware.com/support/ws55/doc/new_guest_tools_ws.html>`__ or `Open Virtual Machine Tools <http://open-vm-tools.sourceforge.net/>`__ (for \*nix).
+- For VNC to work properly:
+   - Please install `VMware Tools (for Windows) <https://www.vmware.com/support/ws55/doc/new_guest_tools_ws.html>`__ or `Open Virtual Machine Tools <http://open-vm-tools.sourceforge.net/>`__ (for \*nix) in the guest OS.
+   - To enable VNC functionality, repeat the following procedure for each ESX:
 
+     - In the vSphere client proceed to Home -> Inventory -> Hosts and Clusters
+     - Select the ESX host, Configuration tab and select Security Profile in the Software category
+     - In the Firewall section, select Edit. Enable GDB Server, then click OK
+     - Make sure that the ESX hosts are reachable from the OpenNebula front-end
 
 .. warning:: When the vCenter is configured all the actions on VMs go through the vCenter. It does not add any feature but vMotion (live migration) compared to direct ESX communication. The storage commands still use ssh connection to the ESX hosts.
 
@@ -135,11 +141,6 @@ Networking
 ----------
 
 Networking can be used in two different modes: **pre-defined** (to use pre-defined port groups) or **dynamic** (to dynamically create port groups and VLAN tagging). Please refer to the :ref:`VMware Networking guide for more details <vmwarenet>`.
-
-VNC
----
-
-In order to access running VMs through VNC, the ESX host needs to be configured beforehand, basically to allow VNC inbound connections via their firewall. To do so, please follow this `guide <http://t3chnot3s.blogspot.com.es/2012/03/how-to-enable-vnc-access-to-vms-on.html>`__.
 
 OpenNebula Configuration
 ========================
