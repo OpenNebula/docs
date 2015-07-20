@@ -37,6 +37,9 @@ As a result the pre-4.14 final, and *un-recoverable*, FAILED state has been remo
 .. todo::
     New failure states
 
+.. todo::
+    onevm boot command
+
 Virtual Machine Hooks
 --------------------------------------------------------------------------------
 Hooks on ``FAILED`` states are no longer needed; any automatic recovery action needs to be hooked on the new ``LCM_STATES``.
