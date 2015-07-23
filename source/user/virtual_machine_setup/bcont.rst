@@ -66,6 +66,27 @@ Like CentOS 7 it needs a recent version of ``util-linux`` (version 2.23) and ``c
 
     # apt-get install -y cloud-utils
 
+Manual Disk Resizing
+====================
+
+If your images don't have context packages that support image resizing (version 4.14.1) or you want to resize a partition that is not the root filesystem you can follow the instructions from the previous section to install needed tools and use these commands:
+
+.. code::
+
+    # growpart <disk> <partition number>
+
+For example to resize ``sdb3`` the command is:
+
+.. code::
+
+    # growpart /dev/sdb 3
+
+This command changes the partition parameters. Make sure that the partition is the last one or the command won't succeed. The next step is growing the filesystem with the FS tools. For example, for `ext4` you'll use this command:
+
+.. code::
+
+    # resize2fs /dev/sdb3
+
 
 Preparing the Template
 ======================
