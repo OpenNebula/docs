@@ -55,7 +55,7 @@ This distribution comes with a recent kernel that supports online partition tabl
     # yum install -y epel-release
     # yum install -y cloud-utils-growpart
 
-You also need an updated version of ``utils-linux`` packages as old versions of ``partx`` can not update partitions when they are in use.
+You also need an updated version of ``util-linux`` packages as old versions of ``partx`` can not update partitions when they are in use.
 
 Debian and Ubuntu
 -----------------
