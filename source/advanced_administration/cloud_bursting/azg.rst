@@ -365,7 +365,7 @@ You can submit and control the template using the OpenNebula interface:
 .. code::
 
     $ onetemplate create aztemplate
-    $ ontemplate instantiate aztemplate
+    $ onetemplate instantiate aztemplate
 
 Now you can monitor the state of the VM with
 
