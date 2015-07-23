@@ -40,6 +40,7 @@ CentOS 6
 With kernels < 3.8 partitions can not be changed online and they must be modified in initrd. To do this there is a ``dracut`` module that resizes the root partition. The package is in ``epel`` repository so it must be configured in the machine. After installing it ``dracut`` must be run so ``initrd`` is rebuilt.
 
 .. code::
+
     # yum install -y epel-release
     # yum install -i dracut-modules-growroot
     # dracut -f
@@ -50,6 +51,7 @@ CentOS 7
 This distribution comes with a recent kernel that supports online partition table modification so no ``initrd`` modification is needed. The package needed is in ``epel`` repository and must be configured before attempting to install ``growpart`` package:
 
 .. code::
+
     # yum install -y epel-release
     # yum install -y cloud-utils-growpart
 
@@ -61,6 +63,7 @@ Debian and Ubuntu
 Like CentOS 7 it needs a recent version of ``util-linux`` (version 2.23) and ``cloud-utils`` package:
 
 .. code::
+
     # apt-get install -y cloud-utils
 
 
