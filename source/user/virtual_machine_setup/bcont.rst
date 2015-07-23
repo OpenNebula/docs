@@ -25,6 +25,45 @@ The contextualization package will also mount any partition labeled ``swap`` as 
 
 -  Shutdown the VM
 
+Automatic Image Resizing
+========================
+
+OpenNebula supports image resizing on clone. This only makes the disks bigger not the partitions and filesystems it contains. The context packages can automate the resizing of the root filesystem of your linux images but some extra considerations must be taken into account.
+
+The root filesystem must be the last partition as the grow script can not shuffle the other partitions around.
+
+Here are specific needs for some Linux distributions:
+
+CentOS 6
+--------
+
+With kernels < 3.8 partitions can not be changed online and they must be modified in initrd. To do this there is a ``dracut`` module that resizes the root partition. The package is in ``epel`` repository so it must be configured in the machine. After installing it ``dracut`` must be run so ``initrd`` is rebuilt.
+
+.. code::
+    # yum install -y epel-release
+    # yum install -i dracut-modules-growroot
+    # dracut -f
+
+CentOS 7
+--------
+
+This distribution comes with a recent kernel that supports online partition table modification so no ``initrd`` modification is needed. The package needed is in ``epel`` repository and must be configured before attempting to install ``growpart`` package:
+
+.. code::
+    # yum install -y epel-release
+    # yum install -y cloud-utils-growpart
+
+You also need an updated version of ``utils-linux`` packages as old versions of ``partx`` can not update partitions when they are in use.
+
+Debian and Ubuntu
+-----------------
+
+Like CentOS 7 it needs a recent version of ``util-linux`` (version 2.23) and ``cloud-utils`` package:
+
+.. code::
+    # apt-get install -y cloud-utils
+
+
 Preparing the Template
 ======================
 
