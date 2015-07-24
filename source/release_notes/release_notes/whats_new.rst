@@ -87,8 +87,8 @@ Sunstone
 
 Sunstone has been completely refactored, in order to make it easier to maintain and to improve its performance. We hope you like the subtle look and feel changes as well. In addition:
 
-- **Improvements in view selector**, now :ref:`views <suns_views>` can be selected easier and names can be customized
-- **Better user preferences support**, the number of elements displayed in the datatables are remembered per user (TODO documentation)
+- **Improvements in view selector**, now :ref:`views <suns_views>` can be selected easier and names can be customized.
+- **Better user preferences support**, the :ref:`number of elements displayed in the datatables <sunstone_settings>` are remembered per user.
 - **Improvements in usability**, to avoid errors, :ref:`Sunstone <sunstone>` now disables VM actions depending on the current state.
 
 

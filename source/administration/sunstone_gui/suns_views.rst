@@ -126,6 +126,8 @@ Regarding ``sunstone-views.yaml``, the following example enables the user (user.
     default:
         - user
 
+.. _sunstone_settings:
+
 Usage
 =====
 
@@ -136,14 +138,14 @@ Sunstone users can configure several options from the configuration tab:
 -  Views: change between the different available views for the given user/group
 -  Display Name: If the user wishes to customize the username that is shown in Sunstone it is possible to so by adding a special parameter named ``SUNSTONE_DISPLAY_NAME`` with the desired value. It is worth noting that Cloud Administrators may want to automate this with a hook on user create in order to fetch the user name from outside OpenNebula.
 
-This options are saved in the user template. If not defined, defaults from ``sunstone-server.conf`` are taken.
+These options are saved in the user template, as well as other hidden settings like for instance the attribute that lets Sunstone remember the number of items displayer in the datatables per user. If not defined, defaults from ``sunstone-server.conf`` are taken.
 
 |views_settings|
 
 Changing your View
 ------------------
 
-If more than one view are available for this user, she can easily change between them in the settings window, along with other settings (e.g. language). See the `Configuring Access to the Views`_ section to learn how views are calculated per user.
+If more than one view are available for this user, she can easily change between them in the settings window, along with other settings (e.g. language). See the `Configuring Access to the Views`_ (TODO?) section to learn how views are calculated per user.
 
 Internationalization and Languages
 ----------------------------------
