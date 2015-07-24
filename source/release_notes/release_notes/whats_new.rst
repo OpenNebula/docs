@@ -1,107 +1,112 @@
 .. _whats_new:
 
-==================
-What's New in 4.12
-==================
+=======================
+What's New in 4.14 Beta
+=======================
 
-OpenNebula 4.12 (Cotton Candy) ships with several improvements in different subsystems and components. For the first time, OpenNebula will be able to generate cost reports that can be integrated with chargeback and billing platforms, and also presented to both the administrators and the end users. Each VM Template defined by the Cloud administrator can define a cost per cpu and per memory per hour.
+OpenNebula 4.14 Beta (Great A'Tuin) ships with several improvements in different subsystems and components. The Sunstone interface has been completely refactor, for maintenance and performance reasons. Expect major improvements in Sunstone from now on. Also, we are sure you will like the subtle changes in the look and feel.
 
-.. image:: /images/vdcadmin_vdc_showback.png
-    :width: 80%
-    :scale: 80%
+.. image:: /images/sunsdash414.png
+    :width: 90%
     :align: center
 
-Starting with Cotton Candy, Virtual Datacenters are a new kind of OpenNebula resource with its own ID, name, etc. and the term Resource Provider disappears. Making VDCs a separate resource has several advantages over the previous Group/VDC concept, since they can have one or more Groups added to them. This gives the Cloud Admin greater resource assignment flexibility.
+Several major features has been introduced in Great A'Tuin. One of the most interesting for cloud users and administrators si the ability to create and maintain a tree of snapshots of VM disks. Now VM disks can be reverted to a previous state at any given time, and they are preserved in the image is persistant in the image datastore. For instance, you can attach a disk to a VM, create an snapshot, detach it and attach it to a new VM, and revert to a previous state. Very handy, for instance, to keep a working history of datablocks that can contain dockerized applications.
 
-In addition to the well known VNC support in Sunstone, OpenNebula 4.12 will include support to interact with Virtual Machines using the SPICE protocol. This feature can be enabled for any Virtual Machine just checking the option in the input/output section of the Template creation form.
-
-.. image:: /images/spice1.gif
-    :width: 80%
-    :scale: 80%
+.. image:: /images/snaptree414.png
+    :width: 90%
     :align: center
 
-Networking has been vastly improved in 4.12, with the addition of Security Groups, allowing administrators to define the firewall rules and apply them to the Virtual Machines. Also, Virtual Extensible LAN (VXLAN) is a network virtualization technology aimed to solve large cloud deployments problems, encapsulating Ethernet frames within UDP packets, and thus solving the 4096 VLAN limit problem. Cotton Candy is fully capable of managing VXLANs using the linux kernel integration.
+Another major feature is the ability to resize an existing disk, for all the supported OpenNebula backends. You VM is running out of space in its root filesystem? Not a problem anymore. Just poweroff your VM, resize it through your OpenNebula interface of choice, and start the VM again. The disk space is not an issue anymore.
 
-Important new features related to the newly introduced vCenter support are available in OpenNebula 4.12: the ability to import running VMs and networks, including the attach/detach NIC functionality, a new cloud view tailored for vCenter, VM contextualization support and reacquire VM Templates with their logo and description.
+These two features (snapshot + resizing) are taken into account for quotas, accouting and showback, so cloud admins can keep track of disk usage in their infrastructure.
 
-Finally, several improvements are scattered across every other OpenNebula component: the possibility to flush and disable a system datastore, improvements in Sunstone for better user workflow, and many other bugfixes that stabilized features introduced in Fox Fur.
+The ability to save VMs into VM Templates for later use is another feature that must be highlighted in this release. This new operation is accessible both from the cloud view and the admin Sunstone view. Of course, also from the command line interface.
 
-As usual OpenNebula releases are named after a Nebula. The `Cotton Candy Nebula (IRAS 17150-3224) <http://en.wikipedia.org/wiki/Cotton_Candy_Nebula>`__ is located in the constellation of Ara.
+One great improvement for cloud admins is a much better state management of VMs. It is now possible to recover VMs from failed state instructing OpenNebula to take the last action as success, to retry it or to make it fail gracefully, to recover for instance from failed migrations.
 
-Want to take OpenNebula 4.12 for a test drive? Use one of the `SandBoxes <http://opennebula.org/tryout/>`__ to try out OpenNebula in no time, or proceed to the :ref:`Quick Start guides <qs_guides>`.
+There many other improvements in 4.14, like the ability to import running VMs not launched by OpenNebula from all the supported hypervisors (including the hybrid ones, for instance now it is possible to manage through OpenNebula Azure, SoftLayer and EC2 VMs launched through their respective management portals); the possibility to cold attach disks and network interfaces to powered off machines (which complement the hot attach functionality), improvements in accounting to keep track of disk usage, better logging in several areas, the ability to pass scripts to VMs for guest OS customization, and many others. A great effort was put in this release to help build and maintain robust private, hybrid and public clouds with OpenNebula.
 
-In the following list you can check the highlights of OpenNebula 4.12. (`a detailed list of changes can be found here
-<http://dev.opennebula.org/projects/opennebula/issues?query_id=64>`__):
+This OpenNebula release is named after `Great A'Tuin <https://en.wikipedia.org/wiki/Discworld_(world)#Great_A.27Tuin>`__, the Giant Star Turtle (of the fictional species Chelys galactica) who travels through the Discworld universe's space, carrying four giant elephants who in turn carry the Discworld. Allegedly, it is "the only turtle ever to feature on the Hertzsprung–Russell diagram."
+
+The OpenNebula team is now set to bug-fixing mode. Note that this is a beta release aimed at testers and developers to try the new features, and send a more than welcomed feedback for the final release.
+
+In the following list you can check the highlights of OpenNebula 4.14 Beta. (`a detailed list of changes can be found here
+<http://dev.opennebula.org/projects/opennebula/issues?query_id=73>`__):
 
 OpenNebula Core
 ---------------
 
-New features include:
+The OpenNebula Core handles the abstractions that allows to orchestrate the DC resources. In this release, the following additions and improvements are present:
 
-- **Showback support**, the core maintains the cost schema defined as **cost per cpu per hour**, and **cost per memory MB per hour** in order to provide :ref:`showback functionality <showback>`.
-- **Datastore maintenance feature**, the :ref:`system datastore can now be disabled <disable_system_ds>` so OpenNebula won't schedule VMs in it.
+- **Better logging of error messages**, more information now present :ref:`in the logs <log_debug>` to better debug errors.
+- **Improved VM recovery and lifecycle flexibility**, thanks to new :ref:`state transitions <vm_life_cycle_and_states>`, like for instance recover failed VMs back to running state, cancel deferred snapshots.
+- **New maintenance operations**, using cold migration between system datastores (TODO documentation?)
+- **Running VMs can now be imported in all hypervisors**, not only in vcenter. This operation is available through a new :ref:`WILDS tab in the hosts <reacquire_vcenter_resources>`.
+- **Better support for poweroff state**, with for instance the ability of cold :ref:`disk and NIC <vm_guide_2>` attaching.
+- **Saving VMs for latter use**, introducing the ability to :ref:`clone a VM <vm_guide2_clone_vm>` in the poweroff state into a VM template that can be instantiated latter on.
+- **More administration flexibility**, with the ability to update :ref:`host <host_guide>` drivers.
+- **Improved history logging**, :ref:`accounting records <accounting>` are also created when the Virtual Machine has a disk/nic attached or detached.
+- **Flexible default auth driver definition**, now it can be set in the core :ref:`configuration file <oned_conf>`. (TODO documentation)
 
-Virtual Network improvements include:
+New perks also for developers:
 
-- **Leases visibility**, users with manage rights on a :ref:`network and address ranges <nm>` should see leases on HOLD.
-
-VDC management improvements also in the core:
-
-- **VDC are now first class citizens**, with a :ref:`VDC core pool <manage_vdcs>` and their own ID.
-- **Management of groups administrators** using the group template, to be able to add and remove :ref:`group administrators <manage_groups_permissions>` dynamically.
-
-
-OpenNebula Drivers :: Virtualization
---------------------------------------------------------------------------------
-
-Several improvements in the vCenter drivers:
-
-- **Running VMs support** , ability to import :ref:`that allows to automatically import an existing infrastructure <vcenterg>`
-- **Reacquire VM templates**, after the :ref:`vCenter host has been created <reacquire_vcenter_resources>`, with their logo and description.
+- **More robust API**, with the addition of :ref:`locks <document_api>` at the core level in the document pools, now you can use the core to sincronize operations.
 
 OpenNebula Drivers :: Networking
 --------------------------------------------------------------------------------
 
-Important new features in Networking, including:
+OpenNebula networking is getting better and better:
 
-- **Ability to define Security Groups** to :ref:`define access to Virtual Machines <security_groups>` (inbound and outbound)
-
-- **Enable Network isolation provided through the VXLAN**, create a :ref:`bridge for each OpenNebula Virtual Network and attach a VXLAN tagged network interface to the bridge <vxlan>`
-
-Improvements specific to vCenter networking:
-
-- **Manage vCenter networks**, including the ability to :ref:`import them <import_vcenter_resources>` as well as distributed vSwitches.
-- **Attach/detach NIC** to :ref:`running Virtual Machines <virtual_network_vcenter_usage>` in vCenter
-
+- **Host housekeeping**, cleaning :ref:`VXLAN devices <vxlan>` when no VMs are running in the hypervisor.
+- **Set Maximum Transmission Unit**, from the network templates in the hypervisor through the :ref:`802.1q drivers <hm-vlan>`.
 
 OpenNebula Drivers :: Storage
 --------------------------------------------------------------------------------
 
-As usual, storage drivers were improved for the different supported backends:
+Exciting new features in the storage subsystem:
 
-- **Better Ceph support**, :ref:`ceph drivers <ceph_ds>` now come with the ability to use the CEPH "MAX AVAIL" attribute.
-- **Support for BRIDGE_LIST**, in :ref:`fs/share and fs/ssh drivers <fs_ds>`.
+- **New disk snapshot capabilities**, now it is possible to :ref:`snapshot <vm_guide2_snapshotting>` a disk from within OpenNebula and keep a tree of snapshots in the VM and back in the image datastore, reverting (or flattening) at any moment to any snapshot in the tree. :ref:`Different backends <storage_snapshot_compatilibity>` (like ceph and qcow2) are supported.
+- **Disk resizing**, grow a disk on your VM while conforming with your quotas and being noted down for accoutning. (TODO documentation)
+
+OpenNebula Drivers :: Virtualization
+--------------------------------------------------------------------------------
+
+- **Get the real and virtual usage for disks**, file based storage not always use the maximum virtual size of the disk. (for example qcow2 or sparse raw files). Improvements in :ref:`monitoring <mon>` take now care of this reporting.
+- **Running VMs support** , ability to import VMs running in hypervisors (all of them now supported, even the hybrids) that have not being launched by OpenNebula (TODO document in VM guide)
+- **Spice support for more hypervisors**, now supported as well in :ref:`XEN <xeng>`.
+
+Scheduler
+--------------------------------------------------------------------------------
+
+- **Better logging**, now is easier to understand what is going on in the :ref:`scheduler <schg>`
+- **Control System DS deployment with ACL rules**, the scheduler (and core) has been update to enforce :ref:`access rights <manage_acl>` on system datastores, cheking that the user can access the System DS. This is useful to implement different allocation policies and VDC-based provision schemes.
+
 
 Sunstone
 --------------------------------------------------------------------------------
 
-Sunstone is the all encompasing access to OpenNebula, so it reflects all the improvements and some of its own:
+Sunstone has been completely refactored, in order to make it easier to maintain and to improve its performance. We hope you like the sublte look and feel changes as well. In addition:
 
-- **Support for SPICE protocol**, access your :ref:`VMs through the powerful remote access protocol <remote_access_sunstone>`, as well as using VNC.
-- **Cloud vCenter View**, tailored to :ref:`provision resources to end user from vCenter based infrastructures <vcenter_cloud_view>`.
-- **Improvements in networking information**, for :ref:`hybrid <introh>` and :ref:`vcenter <vcenterg>` based VMs.
-- **Support for VXLAN**, in the :ref:`network tab <vxlan>`.
-- **Support for Showback** capabilities, for :ref:`both users and cloud administrators <showback>`.
-- **Search for any attribute in the VM template**, useful to searh for organization specific attributes. 
-- **Proxy capabilities** for the :ref:`commercial support integration with Zendesk <commercial_support_sunstone>`. (TODO documentation?)
-- **Suport IO Tune parameters for templates**
+- **Improvements in view selector**, now :ref:`views <suns_views>` can be selected easier and names can be customized
+- **Better user preferences support**, the number of elements displayed in the datatables are remembered per user (TODO documentation)
+- **Improvements in usability**, to avoid errors, :ref:`Sunstone <sunstone>` now disables VM actions depending on the current state.
 
 
 Contextualization
 -------------------------------------
 
-Contextualization improvements are related to the vCenter support:
+Contextualization improvements are also present:
 
-- **vCenter VM contextualization support**, with the ability to :ref:`contextualize both windows and linux VMs <vm_template_definition_vcenter>`
+- **Added ability to run arbitrary script**, to help customize guest OS using the START_SCRIPTS and START_SCRIPTS_BASE64 new :ref:`attributes <cong_user_template>`.
+
+Command Line Interface
+--------------------------------------------------------------------------------
+
+The CLI has not been neglected in this release, to offer all the functionality developed and also to improve several aspects:
+
+- **Default columns for the output reviewed**, to maximize the usefulness of the :ref:`cli <cli>` output. For instance, now the IP is shown in the output of onevm list, and the output of the leases table in the onevnet show command has been improved to fit in the owner information.
+- **Context shown as another image**, so the target for instance of the :ref:`context CDROM <context_overview>` can be easily found.
+- **Better logging and feedback**, for instance for the `onedb fsck </doc/4.12/cli/onedb.1.html>`__ tool and in `onevm </doc/4.12/cli/onevm.1.html>`__ help message. Moreover, the onedb upgrade + fsck now save the version of the DB when it backs it up.
+- **Ability to import wild VMs**, using the the new `onehost importvm </doc/4.12/cli/onehost.1.html>`__ command. Also, now onehost sync is disallowed from root accounts to avoid permissions problems.
 
 

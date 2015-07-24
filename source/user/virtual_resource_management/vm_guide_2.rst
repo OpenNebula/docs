@@ -6,6 +6,8 @@ Managing Virtual Machines
 
 This guide follows the :ref:`Creating Virtual Machines guide <vm_guide>`. Once a Template is instantiated to a Virtual Machine, there are a number of operations that can be performed using the ``onevm`` command.
 
+.. _vm_life_cycle_and_states:
+
 Virtual Machine Life-cycle
 ==========================
 
@@ -245,12 +247,13 @@ These actions are available for both persistent and non-persistent images. In th
 
 .. todo::
 
-  Review the following list. QCow2, etc...
+  Review the following list. QCow2, etc. Extend info on Filesystem DS snapshots
 
 The snapshots are implemented differently depending on the storage backend:
 
 - **Ceph**: They are actual protected snapshots. When a revert is performed a clone of the snapshot is issued. It requires RBD format 2.
-- others: Not implemented.
+- **Filesystem**: Being ssh, raw, shared and Qcow2.
+- **Others**: Not implemented.
 
 Exporting disk images with ``disk-saveas``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

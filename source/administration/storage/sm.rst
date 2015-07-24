@@ -81,6 +81,12 @@ There are some limitations and features depending on the transfer mechanism you 
 | dev         |        |     |       |      |      |     |        | x   |
 +-------------+--------+-----+-------+------+------+-----+--------+-----+
 
+.. _storage_snapshot_compatilibity:
+
+.. todo::
+
+  Add another table or extend the previous one with snapshot compatiblity
+
 Datastore Attributes
 ====================
 

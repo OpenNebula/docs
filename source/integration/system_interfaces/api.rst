@@ -593,6 +593,8 @@ oneshowback
 | calculate | one.vmpool.calculateshowback | Only for oneadmin group|
 +-----------+------------------------------+------------------------+
 
+.. _document_api:
+
 documents
 ---------
 
@@ -1682,11 +1684,11 @@ The XML output will be similar to this one:
         <TOTAL_COST>34</TOTAL_COST>
         <HOURS>10</HOURS>
       </SHOWBACK>
-      
+
       <SHOWBACK>
         ...
       </SHOWBACK>
-      
+
       ...
     </SHOWBACK_RECORDS>
 
