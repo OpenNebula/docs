@@ -4,21 +4,21 @@
 What's New in 4.14 Beta
 =======================
 
-OpenNebula 4.14 Beta (Great A'Tuin) ships with several improvements in different subsystems and components. The Sunstone interface has been completely refactor, for maintenance and performance reasons. Expect major improvements in Sunstone from now on. Also, we are sure you will like the subtle changes in the look and feel.
+OpenNebula 4.14 Beta (Great A'Tuin) ships with several improvements in different subsystems and components. The Sunstone interface has been completely refactored, for maintenance and performance reasons. Expect major improvements in Sunstone from now on. Also, we are sure you will like the subtle changes in the look and feel.
 
 .. image:: /images/sunsdash414.png
     :width: 90%
     :align: center
 
-Several major features has been introduced in Great A'Tuin. One of the most interesting for cloud users and administrators si the ability to create and maintain a tree of snapshots of VM disks. Now VM disks can be reverted to a previous state at any given time, and they are preserved in the image is persistant in the image datastore. For instance, you can attach a disk to a VM, create an snapshot, detach it and attach it to a new VM, and revert to a previous state. Very handy, for instance, to keep a working history of datablocks that can contain dockerized applications.
+Several major features have been introduced in Great A'Tuin. One of the most interesting for cloud users and administrators is the ability to create and maintain a tree of snapshots of VM disks. Now VM disks can be reverted to a previous state at any given time, and they are preserved in the image if it is persistent in the image datastore. For instance, you can attach a disk to a VM, create a snapshot, detach it and attach it to a new VM, and revert to a previous state. Very handy, for instance, to keep a working history of datablocks that can contain dockerized applications.
 
 .. image:: /images/snaptree414.png
     :width: 90%
     :align: center
 
-Another major feature is the ability to resize an existing disk, for all the supported OpenNebula backends. You VM is running out of space in its root filesystem? Not a problem anymore. Just poweroff your VM, resize it through your OpenNebula interface of choice, and start the VM again. The disk space is not an issue anymore.
+Another major feature is the ability to resize an existing disk, for all the supported OpenNebula backends. Your VM is running out of space in its root filesystem? Not a problem anymore. Just poweroff your VM, resize it through your OpenNebula interface of choice, and start the VM again. The disk space is not an issue anymore.
 
-These two features (snapshot + resizing) are taken into account for quotas, accouting and showback, so cloud admins can keep track of disk usage in their infrastructure.
+These two features (snapshot + resizing) are taken into account for quotas, accounting and showback, so cloud admins can keep track of disk usage in their infrastructure.
 
 The ability to save VMs into VM Templates for later use is another feature that must be highlighted in this release. This new operation is accessible both from the cloud view and the admin Sunstone view. Of course, also from the command line interface.
 
@@ -50,7 +50,7 @@ The OpenNebula Core handles the abstractions that allows to orchestrate the DC r
 
 New perks also for developers:
 
-- **More robust API**, with the addition of :ref:`locks <document_api>` at the core level in the document pools, now you can use the core to sincronize operations.
+- **More robust API**, with the addition of :ref:`locks <document_api>` at the core level in the document pools, now you can use the core to synchronize operations.
 
 OpenNebula Drivers :: Networking
 --------------------------------------------------------------------------------
@@ -66,7 +66,7 @@ OpenNebula Drivers :: Storage
 Exciting new features in the storage subsystem:
 
 - **New disk snapshot capabilities**, now it is possible to :ref:`snapshot <vm_guide2_snapshotting>` a disk from within OpenNebula and keep a tree of snapshots in the VM and back in the image datastore, reverting (or flattening) at any moment to any snapshot in the tree. :ref:`Different backends <storage_snapshot_compatilibity>` (like ceph and qcow2) are supported.
-- **Disk resizing**, grow a disk on your VM while conforming with your quotas and being noted down for accoutning. (TODO documentation)
+- **Disk resizing**, grow a disk on your VM while conforming with your quotas and being noted down for accounting. (TODO documentation)
 
 OpenNebula Drivers :: Virtualization
 --------------------------------------------------------------------------------
@@ -79,13 +79,13 @@ Scheduler
 --------------------------------------------------------------------------------
 
 - **Better logging**, now is easier to understand what is going on in the :ref:`scheduler <schg>`
-- **Control System DS deployment with ACL rules**, the scheduler (and core) has been update to enforce :ref:`access rights <manage_acl>` on system datastores, cheking that the user can access the System DS. This is useful to implement different allocation policies and VDC-based provision schemes.
+- **Control System DS deployment with ACL rules**, the scheduler (and core) has been update to enforce :ref:`access rights <manage_acl>` on system datastores, checking that the user can access the System DS. This is useful to implement different allocation policies and VDC-based provision schemes.
 
 
 Sunstone
 --------------------------------------------------------------------------------
 
-Sunstone has been completely refactored, in order to make it easier to maintain and to improve its performance. We hope you like the sublte look and feel changes as well. In addition:
+Sunstone has been completely refactored, in order to make it easier to maintain and to improve its performance. We hope you like the subtle look and feel changes as well. In addition:
 
 - **Improvements in view selector**, now :ref:`views <suns_views>` can be selected easier and names can be customized
 - **Better user preferences support**, the number of elements displayed in the datatables are remembered per user (TODO documentation)
