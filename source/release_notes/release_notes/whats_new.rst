@@ -72,7 +72,7 @@ OpenNebula Drivers :: Virtualization
 --------------------------------------------------------------------------------
 
 - **Get the real and virtual usage for disks**, file based storage not always use the maximum virtual size of the disk. (for example qcow2 or sparse raw files). Improvements in :ref:`monitoring <mon>` take now care of this reporting.
-- **Running VMs support** , ability to import VMs running in hypervisors (all of them now supported, even the hybrids) that have not being launched by OpenNebula (TODO document in VM guide)
+- **Running VMs support** , ability to :ref:`import VMs <import_wild_vms>` running in hypervisors (all of them now supported, even the hybrids) that have not being launched by OpenNebula .
 - **Spice support for more hypervisors**, now supported as well in :ref:`XEN <xeng>`.
 
 Scheduler
