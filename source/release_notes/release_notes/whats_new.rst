@@ -16,7 +16,7 @@ Several major features have been introduced in Great A'Tuin. One of the most int
     :width: 90%
     :align: center
 
-Another major feature is the ability to resize an existing disk, for all the supported OpenNebula backends. Your VM is running out of space in its root filesystem? Not a problem anymore. Just poweroff your VM, resize it through your OpenNebula interface of choice, and start the VM again. The disk space is not an issue anymore.
+Another major feature is the ability to resize an existing disk, for all the supported OpenNebula backends. If your VM needs more disk space than the one provided by the images used for its disk, you can now set a new size prior to instantiate the VM, OpenNebula will grow the disk and the guest OS will adapt the filesystem to the now bigger disk at boot time. The disk space is not an issue anymore.
 
 These two features (snapshot + resizing) are taken into account for quotas, accounting and showback, so cloud admins can keep track of disk usage in their infrastructure.
 
@@ -66,7 +66,7 @@ OpenNebula Drivers :: Storage
 Exciting new features in the storage subsystem:
 
 - **New disk snapshot capabilities**, now it is possible to :ref:`snapshot <vm_guide2_snapshotting>` a disk from within OpenNebula and keep a tree of snapshots in the VM and back in the image datastore, reverting (or flattening) at any moment to any snapshot in the tree. :ref:`Different backends <storage_snapshot_compatilibity>` (like ceph and qcow2) are supported.
-- **Disk resizing**, grow a disk on your VM while conforming with your quotas and being noted down for accounting. (TODO documentation)
+- **Disk resizing**, grow a disk at boot time on your VM while conforming with your quotas and being noted down for accounting. (TODO documentation)
 
 OpenNebula Drivers :: Virtualization
 --------------------------------------------------------------------------------
