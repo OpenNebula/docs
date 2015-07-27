@@ -15,7 +15,6 @@ Core & System
 * `#3020 <http://dev.opennebula.org/issues/3020>`_ OpenNebula should check the available space in the frontend before doing an undeploy
 * `#2880 <http://dev.opennebula.org/issues/2880>`_ Unicode chars in VM name are truncated
 * `#2502 <http://dev.opennebula.org/issues/2502>`_ deleting image in locked state leaves current operation in progress and files not cleaned
-* `#2488 <http://dev.opennebula.org/issues/2488>`_ A failed resume action will destroy and recreate the VM on the next resume
 * `#3139 <http://dev.opennebula.org/issues/3139>`_ Drivers do not work with rbenv
 
 Drivers - Network
@@ -34,7 +33,7 @@ Drivers - Storage
 Drivers - VM
 ================================================================================
 
-* `#2511 <http://dev.opennebula.org/issues/2511>`_ EC2 Tags are not correctly formatted before sending them to EC2
+* `#3590 <http://dev.opennebula.org/issues/3590>`_ Delete operation leaves a poweroff instance registered in vCenter
 
 OneFlow
 ================================================================================
