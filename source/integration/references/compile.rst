@@ -41,6 +41,8 @@ Follow these simple steps to install the OpenNebula software:
 +---------------+--------------------------------------------------------+
 | new\_xmlrpc   | **yes** if you have an xmlrpc-c version >= 1.31        |
 +---------------+--------------------------------------------------------+
+| sunstone      | **yes** if you want to build sunstone minified files   |
++---------------+--------------------------------------------------------+
 
 If the following error appears, then you need to remove the option 'new\_xmlrpc=yes' or install xmlrpc-c version >= 1.31:
 
@@ -70,6 +72,8 @@ where *<install\_options>* can be one or more of:
 | **-c** | only install client utilities: OpenNebula cli and ec2 client files                                                                                                           |
 +--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **-r** | remove Opennebula, only useful if -d was not specified, otherwise ``rm -rf $ONE_LOCATION`` would do the job                                                                  |
++--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **-p** | do not install OpenNebula Sunstone non-minified files                                                                                                                        |
 +--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **-h** | prints installer help                                                                                                                                                        |
 +--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -125,3 +129,71 @@ For example, to install only requirements for sunstone and ec2 interfaces you'll
 
     oneadmin@frontend: $> ./install_gems sunstone cloud
 
+Building Sunstone from Source
+=============================
+
+Sunstone can be run in two different environment:
+- Production, using the minified version fo the libraries. Check the next sections for the detailed process of building the minified JS and CSS files
+- Develoment, using the non minified files. 
+
+If you want to do modification to the code you should run Sunstone in development mode. For this, you have to install the following dependencies and set the ``env`` parameter in sunstone-server.conf to ``dev``.
+
+Sunstone dependencies
+---------------------
+
+1. Install nodejs and npm
+2. Install the following npm packages:
+
+.. code::
+
+    sudo npm install -g bower
+    sudo npm install -g grunt
+    sudo npm install -g grunt-cli
+
+
+3. Move to the Sunstone public folder and run:
+
+.. code::
+
+    npm install
+    bower install
+
+Building minified JS and CSS files
+----------------------------------
+
+Scons includes an option to build the minified JS and CSS files. Steps 1, 2 and 3 have to be performed before running this command
+
+.. code::
+
+    scons sunstone=yes
+
+Or you can do this process manually by running the follwoing commands:
+
+4. Run the following command to generate the app.css file in the css folder:
+
+.. code::
+
+    grunt sass
+
+5. Run the following command to generate the minified js files in the dist foler
+and the app.min.css in the css folder:
+
+.. code::
+
+    grunt requirejs
+
+These are the files generate by the grunt requirejs command:
+
+.. code::
+
+    css
+        app.min.css
+    dist
+        login.js, login.js.map main.js main.js.map
+    console
+        spice.js spice.js.map vnc.js vnc.js.map
+
+Install.sh
+----------
+
+By default the install.sh script will install all the files, including the non-minified ones. Providing the -p option, only the minified files will be installed.
