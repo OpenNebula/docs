@@ -978,7 +978,6 @@ The action String must be one of the following:
 * **stop**
 * **suspend**
 * **resume**
-* **boot**
 * **delete**
 * **delete-recreate**
 * **reboot**

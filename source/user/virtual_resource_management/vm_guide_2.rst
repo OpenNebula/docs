@@ -493,7 +493,6 @@ These are the commands that can be scheduled:
 -  ``stop``
 -  ``suspend``
 -  ``resume``
--  ``boot``
 -  ``delete``
 -  ``delete-recreate``
 -  ``reboot``
@@ -578,7 +577,6 @@ Note: By default, the above operations do not check the target host capacity. Yo
 
 **Troubleshooting:**
 
--  ``boot``: Forces the hypervisor boot action of a VM stuck in UNKNOWN or BOOT state.
 -  ``recover``: If the VM is stuck in any other state (or the boot operation does not work), you can recover the VM by simulating the failure or success of the missing action, or you can launch it with the ``--retry`` flag (and optionally the ``--interactive`` if its a Transfer Manager problem) to replay the driver actions. Read the :ref:`Virtual Machine Failures guide <ftguide_virtual_machine_failures>` for more information.
 -  ``migrate`` or ``resched``: A VM in the UNKNOWN state can be booted in a different host manually (``migrate``) or automatically by the scheduler (``resched``). This action must be performed only if the storage is shared, or manually transfered by the administrator. OpenNebula will not perform any action on the storage for this migration.
 

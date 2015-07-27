@@ -8,7 +8,7 @@ This guide is aimed at OpenNebula 4.12.x users and administrators who want to up
 
 Visit the :ref:`Features list <features>` and the `Release Notes <http://opennebula.org/software/release/>`_ for a comprehensive list of what's new in OpenNebula 4.14.
 
-OpenNebula Administrators
+OpenNebula Administrators and Users
 ================================================================================
 
 System Datastores
@@ -23,22 +23,31 @@ Check the previous issue about System DS; you may need to add one or more System
 
 Virtual Machine Recovery Process
 --------------------------------------------------------------------------------
-The recover process of VMs has been redesign in 4.14. When a VM is in ``fail`` state it can be:
+The recover process of VMs has been redesigned in 4.14. When a VM is in ``fail`` state the admin has 3 choices:
 
 - recover with success, to move on to the next state.
 - recover with retry, to retry the last driver operation.
 - (*only for failed migrations*) recover with failure, to cancel the migration and go back to the previous host.
 
-As a result the pre-4.14 final, and *un-recoverable*, FAILED state has been removed; and split for each point of failure. Any application checking for FAILED state needs to be upgraded for the new functionality.
+As a result the previous ``FAILED`` state, that was final and un-recoverable, has been removed from the VM life-cycle. New states for each point of failure have been added instead.
 
-.. todo::
-    Update xsd files in the documentation. Add note in upgrade guide to remove FAILED VMs before upgrade.
+The ``onevm boot`` command is deprecated. To recover a boot failure, use ``onevm recover --retry`` instead. Read the :ref:`Virtual Machine Failures guide <ftguide_virtual_machine_failures>` for more information.
 
-.. todo::
-    New failure states
+Any application checking for that ``FAILED`` state need to be upgraded for the new LCM states:
 
-.. todo::
-    onevm boot command
+* BOOT_FAILURE
+* BOOT_MIGRATE_FAILURE
+* PROLOG_MIGRATE_FAILURE
+* PROLOG_FAILURE
+* EPILOG_FAILURE
+* EPILOG_STOP_FAILURE
+* EPILOG_UNDEPLOY_FAILURE
+* PROLOG_MIGRATE_POWEROFF_FAILURE
+* PROLOG_MIGRATE_SUSPEND_FAILURE
+* BOOT_UNDEPLOY_FAILURE
+* BOOT_STOPPED_FAILURE
+* PROLOG_RESUME_FAILURE
+* PROLOG_UNDEPLOY_FAILURE
 
 Virtual Machine Hooks
 --------------------------------------------------------------------------------
@@ -47,24 +56,26 @@ Hooks on ``FAILED`` states are no longer needed; any automatic recovery action n
 Default Authentication Driver
 -----------------------------
 
-You can now specify ``DEFAULT_AUTH`` in ``oned.conf``, meaning that it is not necessary any more to create a link called ``default`` pointing to the desired default authentication driver, for example ``ldap``, in ``/var/lib/one/remotes/auth`` and it's not necessary any more to add ``default`` to the ``authn`` parameter in the ``AUTH_MAD`` section. However, for backwards compatibility it will continue to work, but we strongly recommed to specify directly the default auth in ``oned.conf``, for example: ``DEFAULT_AUTH = "ldap"``.
+You can now specify ``DEFAULT_AUTH`` in ``oned.conf``, meaning that it is not necessary any more to create a link called ``default`` pointing to the desired default authentication driver, for example ``ldap``, in ``/var/lib/one/remotes/auth`` and it's not necessary any more to add ``default`` to the ``authn`` parameter in the ``AUTH_MAD`` section. However, for backwards compatibility it will continue to work, but we strongly recommend to specify directly the default auth in ``oned.conf``, for example: ``DEFAULT_AUTH = "ldap"``.
 
 
-Virtual Machines
+Virtual Machine Management
 --------------------------------------------------------------------------------
 
-* Disks and NIC :ref:`attach/detach actions <vm_guide_2>` are now available for VMs in the ``POWEROFF`` state. They were previously restricted to VMs in ``RUNNING`` only.
-* Previous versions had a "save VM" functionality available through the Cloud View. This action has been redone to improve it, and make it available from other interfaces. Read more about it in the :ref:`Managing Virtual Machines guide <vm_guide2_clone_vm>`.
-* The ``onevm disk-snapshot`` action has now been deprecated and is no longer available. See the :ref:`Disk Snapshots <vm_guide_2_disk_snapshots>` guide for more info. This command been substituted by:
+Disks and NIC :ref:`attach/detach actions <vm_guide_2>` are now available for VMs in the ``POWEROFF`` state. They were previously restricted to VMs in ``RUNNING`` only.
 
-  * ``onevm disk-snapshot`` (deferred), can now be accomplished by running ``onevm poweroff`` and once it's in that state, any disk can be saved by doing a new operation called ``onevm disk-saveas``. Note that now you can directly run ``onevm shutdown`` on a machine that is in ``POWEROFF`` state (i.e. you don't need to resume the VM).
-  * ``onevm disk-snapshot --live`` is now called ``onevm disk-saveas``
+Previous versions had a "save VM" functionality available through the Cloud View. This action has been redone to improve it, and make it available from other interfaces. Read more about it in the :ref:`Managing Virtual Machines guide <vm_guide2_clone_vm>`.
 
-.. todo:: onevm disk-snapshot-cancel
+There are 3 ``disk-snapshot`` actions in **4.14**. These disk-snapshots are not related to the **4.12** action. While in 4.12 a disk-snapshot was a new image saved in the datastore, in 4.14 disk-snaphosts are similar to system snapshots. A disk has many different snapshots, and the user can revert a single disk to a previous state at any time. See the :ref:`Disk Snapshots <vm_guide_2_disk_snapshots>` guide for more info.
 
+- ``disk-snapshot-create <vmid> <diskid> <tag>``: Creates a new snapshot of the specified disk.
+- ``disk-snapshot-revert <vmid> <diskid> <snapshot_id>``: Reverts to the specified snapshot. The snapshots are immutable, therefore the user can revert to the same snapshot one and again, the disk will return always to the state of the snapshot at the time it was taken.
+- ``disk-snapshot-delete <vmid> <diskid> <snapshot_id>``: Deletes a snapshot if it has no children and is not active.
 
-.. todo::
-    Disk snapshots states
+The 4.12 ``onevm disk-snapshot`` action has now been renamed to ``onevm disk-saveas``.
+
+* ``onevm disk-snapshot`` (deferred), can now be accomplished by running ``onevm poweroff`` and once it's in that state, any disk can be saved by doing a new operation called ``onevm disk-saveas``. Note that now you can directly run ``onevm shutdown`` on a machine that is in ``POWEROFF`` state (i.e. you don't need to resume the VM).
+* ``onevm disk-snapshot --live`` is now called ``onevm disk-saveas``
 
 Developers and Integrators
 ================================================================================
@@ -80,7 +91,7 @@ Virtual Machine Monitor Probes
 
     * Add templates to probes for import
 
-* When the monitor probe returns state 'e' for a Virtual Machine now it is moved to UNKNOWN state; instead of FAILED state, now removed.
+* When the monitor probe returns state 'e' for a Virtual Machine now it is moved to the ``UNKNOWN`` state. In previous versions VMs went to the ``FAILED`` state, now removed.
 
 Datastore Drivers
 --------------------------------------------------------------------------------
@@ -124,9 +135,11 @@ This section lists all the changes in the API. Visit the :ref:`complete referenc
   * ``one.document.lock``: New method to lock the document at the API level. The lock automatically expires after 2 minutes.
   * ``one.document.unlock``: New method to unlock the document at the API level.
 
-* API method name changes:
+* Deleted API methods:
+
   * ``one.vm.saveasdisk``
 
-* API upgrades:
+* Changed api calls:
 
   * ``one.vm.recover`` now takes an integer as argument: 0 for failure, 1 for success and 2 for retries. Applications using the pre-4.14 interface may work because of the casting of the boolean recovery operation to the new integer value. However, given the extended functionality of the new recover implementation it is recommended to review the logic of any application using this API call.
+  * ``one.vm.action``: The action string "boot" is not available anymore.
