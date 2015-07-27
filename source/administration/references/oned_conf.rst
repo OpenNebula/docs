@@ -127,7 +127,7 @@ Default Showback Cost
 The following attributes define the default cost for Virtual Machines that don't have a CPU or MEMORY cost. This is used by the :ref:`oneshowback calculate method <showback>`.
 
 .. code::
-    
+
     #*******************************************************************************
     # Default showback cost
     #*******************************************************************************
@@ -484,6 +484,9 @@ Sample configuration:
       command   = "log.rb",
       arguments = "$ID $PREV_STATE $PREV_LCM_STATE" ]
 
+
+.. _oned_auth_manager_conf:
+
 Auth Manager Configuration
 ==========================
 
@@ -511,6 +514,13 @@ Sample configuration:
     #ENABLE_OTHER_PERMISSIONS = "YES"
      
     DEFAULT_UMASK = 177
+
+
+The ``DEFAULT_AUTH`` can be used to point to the desired default authentication driver, for example ``ldap``:
+
+.. code::
+
+    DEFAULT_AUTH = "ldap"
 
 .. _oned_conf_restricted_attributes_configuration:
 

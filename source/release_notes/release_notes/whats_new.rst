@@ -1,22 +1,24 @@
 .. _whats_new:
 
-=======================
-What's New in 4.14 Beta
-=======================
+=========================
+What's New in 4.14 Beta 1
+=========================
 
-OpenNebula 4.14 Beta (Great A'Tuin) ships with several improvements in different subsystems and components. The Sunstone interface has been completely refactored, for maintenance and performance reasons. Expect major improvements in Sunstone from now on. Also, we are sure you will like the subtle changes in the look and feel.
+OpenNebula 4.14 Beta 1 (Great A'Tuin) ships with several improvements in different subsystems and components. The Sunstone interface has been completely refactored, for maintenance and performance reasons. Expect major improvements in Sunstone from now on. Also, we are sure you will like the subtle changes in the look and feel.
 
 .. image:: /images/sunsdash414.png
     :width: 90%
     :align: center
 
-Several major features have been introduced in Great A'Tuin. One of the most interesting for cloud users and administrators is the ability to create and maintain a tree of snapshots of VM disks. Now VM disks can be reverted to a previous state at any given time, and they are preserved in the image if it is persistent in the image datastore. For instance, you can attach a disk to a VM, create a snapshot, detach it and attach it to a new VM, and revert to a previous state. Very handy, for instance, to keep a working history of datablocks that can contain dockerized applications.
+Several major features have been introduced in Great A'Tuin. One of the most interesting for cloud users and administrators is the ability to create and maintain a tree of VM disks snapshots. Now VM disks can be reverted to a previous state at any given time, and they are preserved in the image if it is persistent in the image datastore. For instance, you can attach a disk to a VM, create a snapshot, detach it and attach it to a new VM, and revert to a previous state. Very handy, for instance, to keep a working history of datablocks that can contain dockerized applications.
 
 .. image:: /images/snaptree414.png
     :width: 90%
     :align: center
 
-Another major feature is the ability to resize an existing disk, for all the supported OpenNebula backends. If your VM needs more disk space than the one provided by the images used for its disk, you can now set a new size prior to instantiate the VM, OpenNebula will grow the disk and the guest OS will adapt the filesystem to the now bigger disk at boot time. The disk space is not an issue anymore.
+Another major feature is the ability to resize an existing disk, for all the supported OpenNebula backends. If your VM needs more disk space than the one provided by the images used for its disk, you can now set a new size prior to instantiate the VM, OpenNebula will grow the disk and the guest OS will adapt the filesystem to the now bigger disk at boot time. The disk space is not an issue anymore [Not in Beta 1].
+
+To support HPC oriented infrastructures based on OpenNebula, 4.14 also enables the consumption of raw GPU devices existing on a physical host from a Virtual Machine. There is no overcommitment possible nor sharing of GPU devices among different Virtual Machines, so a new type of consumable has been defined in OpenNebula and taken into account by the scheduler. VMs can now request a GPU, and if OpenNebula finds one free resource of type GPU available, it will set up the VM with PCI passtgrough access to the GPU resource [Not in Beta 1].
 
 These two features (snapshot + resizing) are taken into account for quotas, accounting and showback, so cloud admins can keep track of disk usage in their infrastructure.
 
@@ -30,7 +32,7 @@ This OpenNebula release is named after `Great A'Tuin <https://en.wikipedia.org/w
 
 The OpenNebula team is now set to bug-fixing mode. Note that this is a beta release aimed at testers and developers to try the new features, and send a more than welcomed feedback for the final release.
 
-In the following list you can check the highlights of OpenNebula 4.14 Beta. (`a detailed list of changes can be found here
+In the following list you can check the highlights of OpenNebula 4.14 Beta 1. (`a detailed list of changes can be found here
 <http://dev.opennebula.org/projects/opennebula/issues?query_id=73>`__):
 
 OpenNebula Core
@@ -39,14 +41,15 @@ OpenNebula Core
 The OpenNebula Core handles the abstractions that allows to orchestrate the DC resources. In this release, the following additions and improvements are present:
 
 - **Better logging of error messages**, more information now present :ref:`in the logs <log_debug>` to better debug errors.
+- **Support for GPU consumables**, giving the ability to give exlcusive PCI passthrough access to VMs to GPU cards, for HPC computing [Not in Beta 1]
 - **Improved VM recovery and lifecycle flexibility**, thanks to new :ref:`state transitions <vm_life_cycle_and_states>`, like for instance recover failed VMs back to running state, cancel deferred snapshots.
-- **New maintenance operations**, using cold migration between system datastores (TODO documentation?)
+- **New maintenance operations**, using :ref:`cold migration now also lets switch between system datastores <life_cycle_ops_for_admins>`. This can be achived both from the CLI and Sunstone.
 - **Running VMs can now be imported in all hypervisors**, not only in vcenter. This operation is available through a new :ref:`WILDS tab in the hosts <reacquire_vcenter_resources>`.
 - **Better support for poweroff state**, with for instance the ability of cold :ref:`disk and NIC <vm_guide_2>` attaching.
 - **Saving VMs for latter use**, introducing the ability to :ref:`clone a VM <vm_guide2_clone_vm>` in the poweroff state into a VM template that can be instantiated latter on.
 - **More administration flexibility**, with the ability to update :ref:`host <host_guide>` drivers.
 - **Improved history logging**, :ref:`accounting records <accounting>` are also created when the Virtual Machine has a disk/nic attached or detached.
-- **Flexible default auth driver definition**, now it can be set in the core :ref:`configuration file <oned_conf>`. (TODO documentation)
+- **Flexible default auth driver definition**, now it can be set in the core :ref:`configuration file <oned_auth_manager_conf>`.
 
 New perks also for developers:
 
@@ -65,14 +68,15 @@ OpenNebula Drivers :: Storage
 
 Exciting new features in the storage subsystem:
 
-- **New disk snapshot capabilities**, now it is possible to :ref:`snapshot <vm_guide2_snapshotting>` a disk from within OpenNebula and keep a tree of snapshots in the VM and back in the image datastore, reverting (or flattening) at any moment to any snapshot in the tree. :ref:`Different backends <storage_snapshot_compatilibity>` (like ceph and qcow2) are supported.
-- **Disk resizing**, grow a disk at boot time on your VM while conforming with your quotas and being noted down for accounting. (TODO documentation)
+- **New disk snapshot capabilities**, now it is possible to :ref:`snapshot <vm_guide_2_disk_snapshots> a disk` from within OpenNebula and keep a tree of snapshots in the VM and back in the image datastore, reverting (or flattening) at any moment to any snapshot in the tree. If the VM disk where the snapshot is taken is a persistent image, the `snapshots will be persisted back into the image datastore <img_guide_snapshots>`. :ref:`Different backends <storage_snapshot_compatilibity>` (like ceph and qcow2) are supported.
+- **Disk snapshots in VM running state**, for qcow2 backends [Not in Beta 1]
+- **Disk resizing**, :ref:`grow a VM disk at instantiation time <vm_guide2_resize_disk>` on your VM while conforming with your quotas and being noted down for accounting. [Not in Beta 1]
 
 OpenNebula Drivers :: Virtualization
 --------------------------------------------------------------------------------
 
 - **Get the real and virtual usage for disks**, file based storage not always use the maximum virtual size of the disk. (for example qcow2 or sparse raw files). Improvements in :ref:`monitoring <mon>` take now care of this reporting.
-- **Running VMs support** , ability to :ref:`import VMs <import_wild_vms>` running in hypervisors (all of them now supported, even the hybrids) that have not being launched by OpenNebula .
+- **Running VMs support** , ability to :ref:`import VMs <import_wild_vms>` running in hypervisors (all of them now supported, even the hybrids) that have not being launched by OpenNebula.
 - **Spice support for more hypervisors**, now supported as well in :ref:`XEN <xeng>`.
 
 Scheduler

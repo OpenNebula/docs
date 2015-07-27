@@ -390,8 +390,8 @@ Please take into consideration the following limitations:
 
 .. _vm_guide2_resizing_a_vm:
 
-Resizing a VM
--------------
+Resizing a VM Capacity
+----------------------
 
 You may re-size the capacity assigned to a Virtual Machine in terms of the virtual CPUs, memory and CPU allocated. VM re-sizing can be done when the VM is not ACTIVE, an so in any of the following states: PENDING, HOLD, FAILED and specially in POWEROFF.
 
@@ -415,6 +415,28 @@ The following is an example of the previous procedure from the command line (the
 From Sunstone:
 
 |image5|
+
+.. _vm_guide2_resize_disk:
+
+Resizing a VM Disks
+-------------------
+
+If the disks assigned to a Virtual Machine need more size, this can achieved at instantiation time of the VM. The SIZE parameter of the disk can be adjusted and, if it is bigger than the original size of the image, OpenNebula will:
+
+- Increase the size of the disk container prior to launching the VM
+- Using the :ref:`contextualization packages <bcont>`, at boot time the VM will grow the filesystem to adjust to the new size.
+
+This can be
+
+.. code::
+
+   DISK=[IMAGE_ID=4,
+         SIZE=2000]   # If Image 4 is 1 GB, OpenNebula will resize it to 2 GB
+
+This can also be achieved from Sunstone, both in Cloud and Admin View, at the time of instantiating a VM Template:
+
+|image9|
+
 
 .. _vm_guide2_clone_vm:
 
@@ -557,6 +579,8 @@ OpenNebula comes with an advanced :ref:`ACL rules permission mechanism <manage_a
 
 Administrators can also change the VM's group and owner with the ``chgrp`` and ``chown`` commands.
 
+.. _life_cycle_ops_for_admins:
+
 Life-Cycle Operations for Administrators
 ----------------------------------------
 
@@ -571,7 +595,7 @@ There are some ``onevm`` commands operations meant for the cloud administrators:
 
 -  ``deploy``: Starts an existing VM in a specific Host.
 -  ``migrate --live``: The Virtual Machine is transferred between Hosts with no noticeable downtime. This action requires a :ref:`shared file system storage <sm>`.
--  ``migrate``: The VM gets stopped and resumed in the target host. In an infrastructure with :ref:`multiple system datastores <system_ds_multiple_system_datastore_setups>`, the VM storage can be also migrated.
+-  ``migrate``: The VM gets stopped and resumed in the target host. In an infrastructure with :ref:`multiple system datastores <system_ds_multiple_system_datastore_setups>`, the VM storage can be also migrated (the datastore id can be specified).
 
 Note: By default, the above operations do not check the target host capacity. You can use the -e (-enforce) option to be sure that the host capacity is not overcommitted.
 
@@ -635,3 +659,4 @@ Information for Developers and Integrators
 .. |image6| image:: /images/sunstone_vm_list.png
 .. |image7| image:: /images/sunstone_vnc.png
 .. |image8| image:: /images/sunstonevnc4.png
+.. |image9| image:: /images/sunstone_vm_resize.png

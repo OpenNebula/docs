@@ -39,7 +39,7 @@ Advanced Control and Monitoring of Virtual Infrastructure
 -  :ref:`Image Repository Subsystem <img_guide>` with catalog and complete functionality for `VM image management <http://docs.opennebula.org/doc/4.10/cli/oneimage.1.html>`__: list, publish, unpublish, show, enable, disable, register, update, saveas, delete, clone...
 -  :ref:`Template Repository Subsystem <vm_guide>` with catalog and complete functionality for `VM template management <http://docs.opennebula.org/doc/4.10/cli/onetemplate.1.html>`__: add, delete, list, duplicate...
 -  :ref:`Full control of VM instance life-cycle <vm_guide_2>` and complete functionality for `VM instance management <http://docs.opennebula.org/doc/4.10/cli/onevm.1.html>`__: submit, deploy, migrate, livemigrate, reschedule, stop, save, resume, cancel, shutdown, restart, reboot, delete, monitor, list, power-on, power-off,...
--  Advanced functionality for VM dynamic management like :ref:`system and disk snapshotting <vm_guide2_snapshotting>`, :ref:`capacity resizing <vm_guide2_resizing_a_vm>`, or :ref:`NIC hotplugging <vm_guide2_nic_hotplugging>`
+-  Advanced functionality for VM dynamic management like :ref:`system and disk snapshotting <vm_guide2_snapshotting>` (including :ref:`hot disk snapshotting <vm_guide_2_disk_snapshots>`, :ref:`preserving them back into the image datastore <img_guide_snapshots>` if the image is persistent), :ref:`capacity resizing <vm_guide2_resizing_a_vm>`, or :ref:`NIC hotplugging <vm_guide2_nic_hotplugging>`
 -  :ref:`Programmable VM operations <vm_guide2_scheduling_actions>`, so allowing users to schedule actions
 -  Volume hotplugging to easily hot plug a volatile disk created on-the-fly or an existing image from a Datastore to a running VM
 -  :ref:`Advanced network virtualization capabilities <vgg>` with traffic isolation, address reservation, flexible defintion of address ranges to accommodate any address distribution, definition of generic attributes to define multi-tier services consisting of groups of inter-connected VMs, and complete functionality for `virtual network management <http://docs.opennebula.org/doc/4.10/cli/onevnet.1.html>`__ to interconnect VM instances: create, delete, monitor, list...
@@ -49,6 +49,9 @@ Advanced Control and Monitoring of Virtual Infrastructure
 -  Tagging of users, VM images and virtual networks with arbitrary metadata that can be later used by other components
 -  :ref:`User defined VM tags <vm_guide2_user_defined_data>` to simplify VM management and to store application specific data
 -  :ref:`Plain files datastore <file_ds>` to store kernels, ramdisks and files to be used in context. The whole set of OpenNebula features applies, e.g. ACLs, ownership...
+- Consumption of raw GPU devices existing on a physical host from a Virtual Machine [Not in Beta 1, TODO documentation]
+- Disk resizing, :ref:`grow a VM disk at instantiation time <vm_guide2_resize_disk>` on your VM while conforming with your quotas and being noted down for accounting. [Not in Beta 1]
+- Ability to :ref:`import VMs <import_wild_vms>` running in hypervisors (even the hybrids) that have not being launched by OpenNebula.
 
 Complete Virtual Machine Configuration
 ======================================
