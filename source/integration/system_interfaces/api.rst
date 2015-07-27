@@ -5801,7 +5801,7 @@ Schemas for Host
             <xs:element name="ID" type="xs:integer"/>
             <xs:element name="NAME" type="xs:string"/>
             <!-- STATE values
-
+            
               INIT                 = 0  Initial state for enabled hosts
               MONITORING_MONITORED = 1  Monitoring the host (from monitored)
               MONITORED            = 2  The host has been successfully monitored
@@ -5944,6 +5944,7 @@ Schemas for Image
             <xs:element name="RUNNING_VMS" type="xs:integer"/>
             <xs:element name="CLONING_OPS" type="xs:integer"/>
             <xs:element name="CLONING_ID" type="xs:integer"/>
+            <xs:element name="TARGET_SNAPSHOT" type="xs:integer"/>
             <xs:element name="DATASTORE_ID" type="xs:integer"/>
             <xs:element name="DATASTORE" type="xs:string"/>
             <xs:element name="VMS">
@@ -5961,6 +5962,25 @@ Schemas for Image
                   </xs:complexType>
             </xs:element>
             <xs:element name="TEMPLATE" type="xs:anyType"/>
+            <xs:element name="SNAPSHOTS">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="SNAPSHOT" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="CHILDREN" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                        <xs:element name="ACTIVE" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                        <xs:element name="DATE" type="xs:integer"/>
+                        <xs:element name="ID" type="xs:integer"/>
+                        <xs:element name="NAME" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                        <xs:element name="PARENT" type="xs:integer"/>
+                        <xs:element name="SIZE" type="xs:integer"/>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -6419,7 +6439,34 @@ Schemas for Virtual Machine
               SHUTDOWN_UNDEPLOY   = 29,
               EPILOG_UNDEPLOY     = 30,
               PROLOG_UNDEPLOY     = 31,
-              BOOT_UNDEPLOY       = 32
+              BOOT_UNDEPLOY       = 32,
+              HOTPLUG_PROLOG_POWEROFF = 33,
+              HOTPLUG_EPILOG_POWEROFF = 34,
+              BOOT_MIGRATE            = 35,
+              BOOT_FAILURE            = 36,
+              BOOT_MIGRATE_FAILURE    = 37,
+              PROLOG_MIGRATE_FAILURE  = 38,
+              PROLOG_FAILURE          = 39,
+              EPILOG_FAILURE          = 40,
+              EPILOG_STOP_FAILURE     = 41,
+              EPILOG_UNDEPLOY_FAILURE = 42,
+              PROLOG_MIGRATE_POWEROFF = 43,
+              PROLOG_MIGRATE_POWEROFF_FAILURE = 44,
+              PROLOG_MIGRATE_SUSPEND          = 45,
+              PROLOG_MIGRATE_SUSPEND_FAILURE  = 46
+              BOOT_UNDEPLOY_FAILURE   = 47,
+              BOOT_STOPPED_FAILURE    = 48,
+              PROLOG_RESUME_FAILURE   = 49,
+              PROLOG_UNDEPLOY_FAILURE = 50,
+              DISK_SNAPSHOT_POWEROFF         = 51,
+              DISK_SNAPSHOT_REVERT_POWEROFF  = 52,
+              DISK_SNAPSHOT_DELETE_POWEROFF  = 53,
+              DISK_SNAPSHOT_SUSPENDED        = 54,
+              DISK_SNAPSHOT_REVERT_SUSPENDED = 55,
+              DISK_SNAPSHOT_DELETE_SUSPENDED = 56,
+              DISK_SNAPSHOT        = 57,
+              DISK_SNAPSHOT_REVERT = 58,
+              DISK_SNAPSHOT_DELETE = 59
             -->
             <xs:element name="LCM_STATE" type="xs:integer"/>
             <xs:element name="PREV_STATE" type="xs:integer"/>
@@ -6428,18 +6475,25 @@ Schemas for Virtual Machine
             <xs:element name="STIME" type="xs:integer"/>
             <xs:element name="ETIME" type="xs:integer"/>
             <xs:element name="DEPLOY_ID" type="xs:string"/>
+            <xs:element name="MONITORING">
+            <!--
+              <xs:complexType>
+                <xs:all>
+                  <- Percentage of 1 CPU consumed (two fully consumed cpu is 200) ->
+                  <xs:element name="CPU" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
 
-            <!-- MEMORY consumption in kilobytes -->
-            <xs:element name="MEMORY" type="xs:integer"/>
+                  <- MEMORY consumption in kilobytes ->
+                  <xs:element name="MEMORY" type="xs:integer" minOccurs="0" maxOccurs="1"/>
 
-            <!-- Percentage of 1 CPU consumed (two fully consumed cpu is 200) -->
-            <xs:element name="CPU" type="xs:integer"/>
+                  <- NETTX: Sent bytes to the network ->
+                  <xs:element name="NETTX" type="xs:integer" minOccurs="0" maxOccurs="1"/>
 
-            <!-- NET_TX: Sent bytes to the network -->
-            <xs:element name="NET_TX" type="xs:integer"/>
-
-            <!-- NET_RX: Received bytes from the network -->
-            <xs:element name="NET_RX" type="xs:integer"/>
+                  <- NETRX: Received bytes from the network ->
+                  <xs:element name="NETRX" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+                </xs:all>
+              </xs:complexType>
+            -->
+            </xs:element>
             <xs:element name="TEMPLATE" type="xs:anyType"/>
             <xs:element name="USER_TEMPLATE" type="xs:anyType"/>
             <xs:element name="HISTORY_RECORDS">
@@ -6496,8 +6550,34 @@ Schemas for Virtual Machine
                           UNRESCHED_ACTION        = 18
                           POWEROFF_ACTION         = 19
                           POWEROFF_HARD_ACTION    = 20
+                          DISK_ATTACH_ACTION      = 21
+                          DISK_DETACH_ACTION      = 22
+                          NIC_ATTACH_ACTION       = 23
+                          NIC_DETACH_ACTION       = 24
+                          DISK_SNAPSHOT_CREATE_ACTION = 25
+                          DISK_SNAPSHOT_DELETE_ACTION = 26
                         -->
                         <xs:element name="ACTION" type="xs:integer"/>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="SNAPSHOTS" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="DISK_ID" type="xs:integer"/>
+                  <xs:element name="SNAPSHOT" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="ACTIVE" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                        <xs:element name="CHILDREN" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                        <xs:element name="DATE" type="xs:integer"/>
+                        <xs:element name="ID" type="xs:integer"/>
+                        <xs:element name="NAME" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                        <xs:element name="PARENT" type="xs:integer"/>
+                        <xs:element name="SIZE" type="xs:integer"/>
                       </xs:sequence>
                     </xs:complexType>
                   </xs:element>
@@ -6812,6 +6892,12 @@ Schemas for Accounting
               UNRESCHED_ACTION        = 18
               POWEROFF_ACTION         = 19
               POWEROFF_HARD_ACTION    = 20
+              DISK_ATTACH_ACTION      = 21
+              DISK_DETACH_ACTION      = 22
+              NIC_ATTACH_ACTION       = 23
+              NIC_DETACH_ACTION       = 24
+              DISK_SNAPSHOT_CREATE_ACTION = 25
+              DISK_SNAPSHOT_DELETE_ACTION = 26
             -->
             <xs:element name="ACTION" type="xs:integer"/>
 
@@ -6892,7 +6978,34 @@ Schemas for Accounting
                     SHUTDOWN_UNDEPLOY   = 29,
                     EPILOG_UNDEPLOY     = 30,
                     PROLOG_UNDEPLOY     = 31,
-                    BOOT_UNDEPLOY       = 32
+                    BOOT_UNDEPLOY       = 32,
+                    HOTPLUG_PROLOG_POWEROFF = 33,
+                    HOTPLUG_EPILOG_POWEROFF = 34,
+                    BOOT_MIGRATE            = 35,
+                    BOOT_FAILURE            = 36,
+                    BOOT_MIGRATE_FAILURE    = 37,
+                    PROLOG_MIGRATE_FAILURE  = 38,
+                    PROLOG_FAILURE          = 39,
+                    EPILOG_FAILURE          = 40,
+                    EPILOG_STOP_FAILURE     = 41,
+                    EPILOG_UNDEPLOY_FAILURE = 42,
+                    PROLOG_MIGRATE_POWEROFF = 43,
+                    PROLOG_MIGRATE_POWEROFF_FAILURE = 44,
+                    PROLOG_MIGRATE_SUSPEND          = 45,
+                    PROLOG_MIGRATE_SUSPEND_FAILURE  = 46
+                    BOOT_UNDEPLOY_FAILURE   = 47,
+                    BOOT_STOPPED_FAILURE    = 48,
+                    PROLOG_RESUME_FAILURE   = 49,
+                    PROLOG_UNDEPLOY_FAILURE = 50,
+                    DISK_SNAPSHOT_POWEROFF         = 51,
+                    DISK_SNAPSHOT_REVERT_POWEROFF  = 52,
+                    DISK_SNAPSHOT_DELETE_POWEROFF  = 53,
+                    DISK_SNAPSHOT_SUSPENDED        = 54,
+                    DISK_SNAPSHOT_REVERT_SUSPENDED = 55,
+                    DISK_SNAPSHOT_DELETE_SUSPENDED = 56,
+                    DISK_SNAPSHOT        = 57,
+                    DISK_SNAPSHOT_REVERT = 58,
+                    DISK_SNAPSHOT_DELETE = 59
                   -->
                   <xs:element name="LCM_STATE" type="xs:integer"/>
                   <xs:element name="PREV_STATE" type="xs:integer"/>
@@ -6901,21 +7014,48 @@ Schemas for Accounting
                   <xs:element name="STIME" type="xs:integer"/>
                   <xs:element name="ETIME" type="xs:integer"/>
                   <xs:element name="DEPLOY_ID" type="xs:string"/>
+                  <xs:element name="MONITORING">
+                  <!--
+                    <xs:complexType>
+                      <xs:all>
+                        <- Percentage of 1 CPU consumed (two fully consumed cpu is 200) ->
+                        <xs:element name="CPU" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
 
-                  <!-- MEMORY consumption in kilobytes -->
-                  <xs:element name="MEMORY" type="xs:integer"/>
+                        <- MEMORY consumption in kilobytes ->
+                        <xs:element name="MEMORY" type="xs:integer" minOccurs="0" maxOccurs="1"/>
 
-                  <!-- Percentage of 1 CPU consumed (two fully consumed cpu is 200) -->
-                  <xs:element name="CPU" type="xs:integer"/>
+                        <- NETTX: Sent bytes to the network ->
+                        <xs:element name="NETTX" type="xs:integer" minOccurs="0" maxOccurs="1"/>
 
-                  <!-- NET_TX: Sent bytes to the network -->
-                  <xs:element name="NET_TX" type="xs:integer"/>
-
-                  <!-- NET_RX: Received bytes from the network -->
-                  <xs:element name="NET_RX" type="xs:integer"/>
+                        <- NETRX: Received bytes from the network ->
+                        <xs:element name="NETRX" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+                      </xs:all>
+                    </xs:complexType>
+                  -->
+                  </xs:element>
                   <xs:element name="TEMPLATE" type="xs:anyType"/>
                   <xs:element name="USER_TEMPLATE" type="xs:anyType"/>
                   <xs:element name="HISTORY_RECORDS">
+                  </xs:element>
+                  <xs:element name="SNAPSHOTS" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="DISK_ID" type="xs:integer"/>
+                        <xs:element name="SNAPSHOT" minOccurs="0" maxOccurs="unbounded">
+                          <xs:complexType>
+                            <xs:sequence>
+                              <xs:element name="ACTIVE" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                              <xs:element name="CHILDREN" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                              <xs:element name="DATE" type="xs:integer"/>
+                              <xs:element name="ID" type="xs:integer"/>
+                              <xs:element name="NAME" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                              <xs:element name="PARENT" type="xs:integer"/>
+                              <xs:element name="SIZE" type="xs:integer"/>
+                            </xs:sequence>
+                          </xs:complexType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
                   </xs:element>
                 </xs:sequence>
               </xs:complexType>
