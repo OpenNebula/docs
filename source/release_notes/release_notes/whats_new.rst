@@ -68,7 +68,7 @@ OpenNebula Drivers :: Storage
 
 Exciting new features in the storage subsystem:
 
-- **New disk snapshot capabilities**, now it is possible to :ref:`snapshot <vm_guide_2_disk_snapshots> a disk` from within OpenNebula and keep a tree of snapshots in the VM and back in the image datastore, reverting (or flattening) at any moment to any snapshot in the tree. If the VM disk where the snapshot is taken is a persistent image, the `snapshots will be persisted back into the image datastore <img_guide_snapshots>`. :ref:`Different backends <storage_snapshot_compatilibity>` (like ceph and qcow2) are supported.
+- **New disk snapshot capabilities**, now it is possible to :ref:`snapshot a disk <vm_guide_2_disk_snapshots>` from within OpenNebula and keep a tree of snapshots in the VM and back in the image datastore, reverting (or flattening) at any moment to any snapshot in the tree. If the VM disk where the snapshot is taken is a persistent image, the `snapshots will be persisted back into the image datastore <img_guide_snapshots>`. :ref:`Different backends <storage_snapshot_compatilibity>` (like ceph and qcow2) are supported.
 - **Disk snapshots in VM running state**, for qcow2 backends [Not in Beta 1]
 - **Disk resizing**, :ref:`grow a VM disk at instantiation time <vm_guide2_resize_disk>` on your VM while conforming with your quotas and being noted down for accounting. [Not in Beta 1]
 
