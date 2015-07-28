@@ -143,3 +143,4 @@ This section lists all the changes in the API. Visit the :ref:`complete referenc
 
   * ``one.vm.recover`` now takes an integer as argument: 0 for failure, 1 for success and 2 for retries. Applications using the pre-4.14 interface may work because of the casting of the boolean recovery operation to the new integer value. However, given the extended functionality of the new recover implementation it is recommended to review the logic of any application using this API call.
   * ``one.vm.action``: The action string "boot" is not available anymore.
+  * ``one.template.info``: New parameter, "extended", to process the template and include extended information such as the SIZE for each DISK.
