@@ -110,6 +110,8 @@ This distribution lacks some packaged ruby libraries. This makes some components
 
 The ``qemu-kvm`` package does not include support for ``RBD`` therefore it's not possible to use it in combination with Ceph.
 
+TODO Add note about Apache+sunstone and PrivateTMP=yes
+
 RedHat 6.5 & 7.0 Platform Notes
 ===============================
 

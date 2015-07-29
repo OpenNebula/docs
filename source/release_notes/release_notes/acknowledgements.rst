@@ -11,3 +11,5 @@ Disk snapshots with Ceph backend was funded by `Unity <https://unity3d.com/>`__ 
 Qcow2 snapshots implementation was funded by `BIT.nl <https://www.bit.nl>`__ in the context of the Fund a Feature Program.
 
 GPU devices support was funded by `SURFsara <https://www.surfsara.nl>`__ in the context of the Fund a Feature Program.
+
+Flexible network attributes definition in contextualization was funded by `Université Catholique de Louvain <https://www.uclouvain.be>` in the context of the Fund a Feaature Program.

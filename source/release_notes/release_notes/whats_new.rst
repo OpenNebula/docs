@@ -26,7 +26,7 @@ The ability to save VMs into VM Templates for later use is another feature that 
 
 One great improvement for cloud admins is a much better state management of VMs. It is now possible to recover VMs from failed state instructing OpenNebula to take the last action as success, to retry it or to make it fail gracefully, to recover for instance from failed migrations.
 
-There are many other improvements in 4.14, like the ability to import running VMs not launched by OpenNebula from all the supported hypervisors (including the hybrid ones, for instance now it is possible to manage through OpenNebula Azure, SoftLayer and EC2 VMs launched through their respective management portals); the possibility to cold attach disks and network interfaces to powered off machines (which complements the hot attach functionality), improvements in accounting to keep track of disk usage, better logging in several areas, the ability to pass scripts to VMs for guest OS customization, and many others. A great effort was put in this release to help build and maintain robust private, hybrid and public clouds with OpenNebula.
+There are many other improvements in 4.14, like a more flexible context definition of network attributes, the ability to import running VMs not launched by OpenNebula from all the supported hypervisors (including the hybrid ones, for instance now it is possible to manage through OpenNebula Azure, SoftLayer and EC2 VMs launched through their respective management portals); the possibility to cold attach disks and network interfaces to powered off machines (which complements the hot attach functionality), improvements in accounting to keep track of disk usage, better logging in several areas, the ability to pass scripts to VMs for guest OS customization, and many others. A great effort was put in this release to help build and maintain robust private, hybrid and public clouds with OpenNebula.
 
 This OpenNebula release is named after `Great A'Tuin <https://en.wikipedia.org/wiki/Discworld_(world)#Great_A.27Tuin>`__, the Giant Star Turtle (of the fictional species Chelys galactica) who travels through the Discworld universe's space, carrying four giant elephants who in turn carry the Discworld. Allegedly, it is "the only turtle ever to feature on the Hertzsprung–Russell diagram."
 
@@ -102,6 +102,7 @@ Contextualization
 Contextualization improvements are also present:
 
 - **Added ability to run arbitrary script**, to help customize guest OS using the START_SCRIPTS and START_SCRIPTS_BASE64 new :ref:`attributes <cong_user_template>`.
+- **More flexible network attributes contextualization**, with the ability of overriding parameters from the network in the :ref:`Context section <bcont>`.
 
 Command Line Interface
 --------------------------------------------------------------------------------
