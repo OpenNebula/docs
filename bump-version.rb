@@ -4,6 +4,8 @@ require 'colored'
 
 if ARGV.length != 2
     STDERR.puts "Usage: #{$0} <old_version> <new_version>"
+    STDERR.puts "Example: #{$0} 4.10 4.12"
+    exit 1
 end
 
 old_version, new_version = ARGV

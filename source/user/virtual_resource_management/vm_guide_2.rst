@@ -262,7 +262,7 @@ Any VM disk can be exported to a new image (if the VM is in ``RUNNING``, ``POWER
 
 .. note::
 
-  This action is called ``onevm disk-snapshot --live`` in OpenNebula <= 4.12 but has been renamed to ``onevm disk-saveas``
+  This action is called ``onevm disk-snapshot --live`` in OpenNebula <= 4.14 but has been renamed to ``onevm disk-saveas``
 
 .. warning::
 
