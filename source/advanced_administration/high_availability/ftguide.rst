@@ -51,14 +51,14 @@ Virtual Machine Failures
 
 The overall state of a virtual machine in a failure condition will show as ``failure`` (or ``fail`` in the CLI). To find out the specific failure situation you need to check the ``LCM_STATE`` of the VM in the VM info tab (or ``onevm show`` in the CLI.). Moreover, a VM can be stuck in a transition (e.g. boot or save) because of a host or network failure. Typically these operations will eventually timeout and lead to a VM failure state.
 
-Independent from the nature of the failure or if the VM is stuck, there are 3 recovery operations:
+The administrator has the ability to force a recovery action from Sunstone or from the CLI, with the ``onevm recover`` command. This command has the following options:
 
-- **Success**, the operation has been confirmed to succeed (e.g. the VM has actually booted on the hyper visor). OpenNebula will update the VM status accordingly.
-- **Retry**, the operation can be re-tried after a problem has been manually recovered (e.g. send again the boot order after bringing up a host again).
-- **Interactive Retry**, In some scenarios where the failure was caused by an error in the Transfer Manager actions, each action can be rerun and debugged until it works. Once the commands are successful, a **success** should be sent.
-- **Fail**, will set the VM on failure to manually fix the infrastructure. Once the problem is fixed the VM can be recovered with any of the two previous operations.
+- ``--success``: If the operation has been confirmed to succeed. For example, the administrator can see the VM properly running in the hypervisor, but the driver failed to inform OpenNebula of the successful boot.
+- ``--failure``: This will have the same effect as a driver reporting a failure. It is intended for VMs that get stuck in transient states. As an example, if a storage problem occurs and the administrator knows that a VM stuck in ``prolog`` is not going to finish the pending transfer, this action will manually move the VM to ``prolog_failure``.
+- ``--retry``: To retry the previously failed action. Can be used, for instance, in case a VM is in ``boot_failure`` because the hypervisor crashed. The administrator can tell OpenNebula to retry the boot after the hypervisor is started again.
+- ``--retry --interactive``: In some scenarios where the failure was caused by an error in the Transfer Manager actions, each action can be rerun and debugged until it works. Once the commands are successful, a ``success`` should be sent. See the specific section below for more details.
 
-Note also that OpenNebula will try to automatically recover some failure situations using the monitor information.
+Note also that OpenNebula will try to automatically recover some failure situations using the monitor information. A specific example is that a VM in the ``boot_failure`` state will become ``running`` if the monitoring reports that the VM was found running in the hypervisor.
 
 Hypervisor Problems
 -------------------
