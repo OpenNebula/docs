@@ -19,6 +19,7 @@ Daemon Configuration Attributes
 -  ``VM_MONITORING_EXPIRATION_TIME``: Time, in seconds, to expire monitoring information. Use 0 to disable VM monitoring recording.
 -  ``SCRIPTS_REMOTE_DIR``: Remote path to store the monitoring and VM management script.
 -  ``PORT`` : Port where oned will listen for xml-rpc calls.
+-  ``LISTEN_ADDRESS``: Host IP to listen on for xmlrpc calls (default: all IPs).
 -  ``DB`` : Vector of configuration attributes for the database backend.
 
    -  ``backend`` : Set to ``sqlite`` or ``mysql``. Please visit the :ref:`MySQL configuration guide <mysql>` for more information.
@@ -74,6 +75,7 @@ Example of this section:
     SCRIPTS_REMOTE_DIR=/var/tmp/one
      
     PORT = 2633
+    LISTEN_ADDRESS = "0.0.0.0"
      
     DB = [ backend = "sqlite" ]
      
@@ -124,7 +126,7 @@ Control the :ref:`federation capabilities of oned <introf>`. Operation in a fede
 Default Showback Cost
 ================================================================================
 
-The following attributes define the default cost for Virtual Machines that don't have a CPU or MEMORY cost. This is used by the :ref:`oneshowback calculate method <showback>`.
+The following attributes define the default cost for Virtual Machines that don't have a CPU, MEMORY or DISK cost. This is used by the :ref:`oneshowback calculate method <showback>`.
 
 .. code::
 
@@ -134,7 +136,8 @@ The following attributes define the default cost for Virtual Machines that don't
 
     DEFAULT_COST = [
         CPU_COST    = 0,
-        MEMORY_COST = 0
+        MEMORY_COST = 0,
+        DISK_COST   = 0
     ]
 
 .. _oned_conf_xml_rpc_server_configuration:
@@ -552,8 +555,11 @@ Sample configuration:
     VM_RESTRICTED_ATTR = "DISK/TOTAL_IOPS_SEC"
     VM_RESTRICTED_ATTR = "DISK/READ_IOPS_SEC"
     VM_RESTRICTED_ATTR = "DISK/WRITE_IOPS_SEC"
+    #VM_RESTRICTED_ATTR = "DISK/SIZE"
+    VM_RESTRICTED_ATTR = "DISK/ORIGINAL_SIZE"
     VM_RESTRICTED_ATTR = "CPU_COST"
     VM_RESTRICTED_ATTR = "MEMORY_COST"
+    VM_RESTRICTED_ATTR = "DISK_COST"
      
     #VM_RESTRICTED_ATTR = "RANK"
     #VM_RESTRICTED_ATTR = "SCHED_RANK"
@@ -596,12 +602,19 @@ Sample configuration:
     #INHERIT_IMAGE_ATTR     = "SECOND_EXAMPLE"
     #INHERIT_DATASTORE_ATTR = "COLOR"
     #INHERIT_VNET_ATTR      = "BANDWIDTH_THROTTLING"
-     
+
     INHERIT_DATASTORE_ATTR  = "CEPH_HOST"
     INHERIT_DATASTORE_ATTR  = "CEPH_SECRET"
     INHERIT_DATASTORE_ATTR  = "CEPH_USER"
-     
+
+    INHERIT_DATASTORE_ATTR  = "GLUSTER_HOST"
+    INHERIT_DATASTORE_ATTR  = "GLUSTER_VOLUME"
+
     INHERIT_VNET_ATTR       = "VLAN_TAGGED_ID"
+    INHERIT_VNET_ATTR       = "BRIDGE_OVS"
+    INHERIT_VNET_ATTR       = "FILTER_IP_SPOOFING"
+    INHERIT_VNET_ATTR       = "FILTER_MAC_SPOOFING"
+    INHERIT_VNET_ATTR       = "MTU"
 
 OneGate Configuration
 =====================
