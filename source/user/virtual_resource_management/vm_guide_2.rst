@@ -433,6 +433,12 @@ This can be
    DISK=[IMAGE_ID=4,
          SIZE=2000]   # If Image 4 is 1 GB, OpenNebula will resize it to 2 GB
 
+Alternatively, the resize can be created directly using the CLI as follows:
+
+.. code::
+
+  onetemplate instantiate <template> --disk image0:size=20000
+
 This can also be achieved from Sunstone, both in Cloud and Admin View, at the time of instantiating a VM Template:
 
 |image9|
