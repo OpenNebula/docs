@@ -218,7 +218,7 @@ For each one of the slaves, configure the MySQL server as a replication slave. P
 
 .. code-block:: none
 
-    mysql> CREATE DATABASE opennebula;
+    mysql> CREATE DATABASE IF NOT EXISTS opennebula;
     mysql> USE opennebula;
     mysql> SOURCE /path/to/dump.sql;
 
