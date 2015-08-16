@@ -221,39 +221,59 @@ Disk Snapshots
 There are two kinds of operations related to disk snapshots:
 
 - ``disk-snapshot-create``, ``disk-snapshot-revert``, ``disk-snapshot-delete``: Allows the user to take snapshots of the disk states and return to them during the VM life-cycle. It is also possible to delete snapshots.
-- ``disk-saveas``: To export a VM disk to an image. This is a live action.
+- ``disk-saveas``: Exports VM disk (or a previusly created snapshot) to an image. This is a live action.
 
 .. _vm_guide_2_disk_snapshots_managing:
 
 Managing disk snapshots
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-.. todo::
-
-  Check VM states
-
 A user can take snapshots of the disk states at any moment in time (if the VM is in ``RUNNING``, ``POWEROFF`` or ``SUSPENDED`` states). These snapshots are organized in a tree-like structure, meaning that every snapshot has a parent, except for the first snapshot whose parent is ``-1``. At any given time a user can revert the disk state to a previously taken snapshot. The active snapshot, the one the user has last reverted to, or taken, will act as the parent of the next snapshot. In addition, it's possible to delete snapshots that are not active and that have no children.
 
-- ``disk-snapshot-create <vmid> <diskid> <tag>``: Creates a new snapshot of the specified disk.
-- ``disk-snapshot-revert <vmid> <diskid> <snapshot_id>``: Reverts to the specified snapshot. The snapshots are immutable, therefore the user can revert to the same snapshot one and again, the disk will return always to the state of the snapshot at the time it was taken.
+- ``disk-snapshot-create <vmid> <diskid> <name>``: Creates a new snapshot of the specified disk.
+- ``disk-snapshot-revert <vmid> <diskid> <snapshot_id>``: Reverts to the specified snapshot. The snapshots are immutable, therefore the user can revert to the same snapshot as many times as he wants, the disk will return always to the state of the snapshot at the time it was taken.
 - ``disk-snapshot-delete <vmid> <diskid> <snapshot_id>``: Deletes a snapshot if it has no children and is not active.
-
-
-These actions are available for both persistent and non-persistent images. In the case of persistent images the snapshots **will** be preserved upon VM termination and will be able to be used by other VMs using that image. See the :ref:`snapshots <img_guide_snapshots>` section in the Images guide for more information.
 
 .. warning::
 
-  These actions are not in sync with the hypervisor. If the VM is in ``RUNNING`` state make sure the disk is unmounted (preferred), synced or quiesced in some way or another before taking the snapshot.
+  ``disk-snapshot-create`` and ``disk-snapshot-revert`` actions are not in sync with the hypervisor. If the VM is in ``RUNNING`` state make sure the disk is unmounted (preferred), synced or quiesced in some way before taking the snapshot.
 
-.. todo::
+``disk-snapshot-create`` and ``disk-snapshot-revert`` can take place when the VM is in ``RUNNING`` state. The way OpenNebula handles this operation varies depending on the configuration and on the backend used. When configuring the ``VM_MAD`` in ``/etc/one/oned.conf``, depending on the arguments passed, the administrator can decide what strategy to use when creating and reverting snapshots in ``RUNNING`` state:
 
-  Review the following list. QCow2, etc. Extend info on Filesystem DS snapshots
+- ``-d suspend`` (default): The VM is suspended (the memory state is written to the system datastore), the snapshot operation takes place (create or revert). This is the safest strategy but implies some downtime (the time it takes for the memory state to be written and to be re-read again).
+- ``-d detach``: the disk is detached while the VM is kept active and running. The snapshot operation takes place, and the disk is re-attached. This is a dangerous operation as if the OS has active file descriptors opening the disk, the OS will not be able to release the target (e.g. ``sbd``) and when it is re-attached the OS will place it in a new target instead (e.g. ``sdc``). This is problematic as there will be a discrepancy between the target defined by OpenNebula and the real target inside the guest VM, which could make future disk-attach operations fail. In order to avoid this, the disk must be fully unmounted with no active file descriptors in use. On the other hand, this technique is the fastest as it requires no down-time.
 
-The snapshots are implemented differently depending on the storage backend:
+Additionally, one can activate the live snapshots option (``-i``), which is only supported for some drivers. If this option is enabled **and** if the driver that will create the snapshot supports it, it will use hypervisor operations to create the snapshot while running. This strategy is as robust as ``suspend`` but has the benefit of not implying any downtime. However it is only supported for:
 
-- **Ceph**: They are actual protected snapshots. When a revert is performed a clone of the snapshot is issued. It requires RBD format 2.
-- **Filesystem**: Being ssh, raw, shared and Qcow2.
-- **Others**: Not implemented.
+- Hypervisor ``VM_MAD=kvm``, System Datastore ``TM_MAD=shared``, Image datastore ``DS_MAD=fs`` and ``TM_MAD=qcow2``. In this case OpenNebula will request that the hypervisor executes ``virsh snapshot-create``.
+
+Note that the live disk snapshot calls a diferent TM action than the regular one, as documented by the :ref:`Storage Driver <sd_tm>` guide.
+
+Persistent image snapshots
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+These actions are available for both persistent and non-persistent images. In the case of persistent images the snapshots **will** be preserved upon VM termination and will be able to be used by other VMs using that image. See the :ref:`snapshots <img_guide_snapshots>` section in the Images guide for more information.
+
+Backend implementations
+^^^^^^^^^^^^^^^^^^^^^^^
+
+The snapshot operations are implemented differently depending on the storage backend:
+
++----------------------+-----------------------------------------------------------------------------------------+---------------------------------------------------+---------------------------------------------------------------------------+------------------------------+
+| **Operation/TM_MAD** |                                           Ceph                                          |                  Shared  and SSH                  |                                   Qcow2                                   | Dev,  FS_LVM,  LVM and  vmfs |
++======================+=========================================================================================+===================================================+===========================================================================+==============================+
+| Snap Create          | Creates a protected snapshot                                                            | Copies the file.                                  | Creates a new qcow2 image with the previous disk as the backing file.     | *Not Supported*              |
++----------------------+-----------------------------------------------------------------------------------------+---------------------------------------------------+---------------------------------------------------------------------------+------------------------------+
+| Snap Create (live)   | *Not Supported*                                                                         | *Not Supported*                                   | (For KVM only) Launches ``virsh snapshot-create``.                        | *Not Supported*              |
++----------------------+-----------------------------------------------------------------------------------------+---------------------------------------------------+---------------------------------------------------------------------------+------------------------------+
+| Snap Revert          | Overwrites the active disk by creating a new snapshot of an existing protected snapshot | Overwrites the file with a previously copied one. | Creates a new qcow2 image with the selected snapshot as the backing file. | *Not Supported*              |
++----------------------+-----------------------------------------------------------------------------------------+---------------------------------------------------+---------------------------------------------------------------------------+------------------------------+
+| Snap Delete          | Deletes a protected snapshot                                                            | Deletes the file.                                 | Delestes the selected qcow2 snapshot.                                     | *Not Supported*              |
++----------------------+-----------------------------------------------------------------------------------------+---------------------------------------------------+---------------------------------------------------------------------------+------------------------------+
+
+.. warning::
+
+  Depending on the ``CACHE`` the live snapshot may or may not work correctly. For more security use ``CACHE=writethrough`` although this delivers the slowest performance.
 
 Exporting disk images with ``disk-saveas``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
