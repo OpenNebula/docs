@@ -188,6 +188,10 @@ and the cpu shares for each VM:
     > cat /mnt/cgroups/cpu/sysdefault/libvirt/qemu/one-74/cpu.shares
     1024
 
+VCPUs are not pinned so most probably the virtual process will be changing the core it is using. In an ideal case where the VM is alone in the physical host the total amount of CPU consumed will be equal to VCPU plus any overhead of virtualization (for example networking). In case there are more VMs in that physical node and is heavily used then the VMs will compete for physical CPU time. In this case cgroups will do a fair share of CPU time between VMs (a VM with CPU=2 will get double the time as a VM with CPU=1).
+
+In case you are not overcommiting (CPU=VCPU) all the virtual CPUs will have one physical CPU (even if it's not pinned) so they could consume the number of VCPU assigned minus the virtualization overhead and any process running in the host OS.
+
 Udev Rules
 ----------
 
