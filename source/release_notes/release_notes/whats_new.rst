@@ -20,7 +20,7 @@ Another major feature is the ability to resize an existing disk [Not in Beta1], 
 
 These two features (snapshot + resizing) are taken into account for quotas, accounting and showback, so cloud admins can keep track of disk usage in their infrastructure.
 
-To support HPC oriented infrastructures based on OpenNebula, 4.14 also enables the consumption of raw GPU devices existing on a physical host from a Virtual Machine [Not in Beta1]. There is no overcommitment possible nor sharing of GPU devices among different Virtual Machines, so a new type of consumable has been defined in OpenNebula and taken into account by the scheduler. VMs can now request a GPU, and if OpenNebula finds one free resource of type GPU available, it will set up the VM with PCI passtgrough access to the GPU resource.
+To support HPC oriented infrastructures based on OpenNebula, 4.14 also enables the consumption of raw GPU devices existing on a physical host from a Virtual Machine [Not in Beta1]. There is no overcommitment possible nor sharing of GPU devices among different Virtual Machines, so a new type of consumable has been defined in OpenNebula and taken into account by the scheduler. VMs can now request a GPU, and if OpenNebula finds one free resource of type GPU available, it will set up the VM with PCI passthrough access to the GPU resource.
 
 The ability to save VMs into VM Templates for later use is another feature that must be highlighted in this release. This new operation is accessible both from the cloud view and the admin Sunstone view. Of course, also from the command line interface.
 
@@ -33,7 +33,7 @@ This OpenNebula release is named after `Great A'Tuin <https://en.wikipedia.org/w
 The OpenNebula team is now set to bug-fixing mode. Note that this is a beta release aimed at testers and developers to try the new features, and send a more than welcomed feedback for the final release.
 
 In the following list you can check the highlights of OpenNebula 4.14 Beta1. (`a detailed list of changes can be found here
-<http://dev.opennebula.org/projects/opennebula/issues?query_id=73>`__):
+<http://tinyurl.com/qd7esk5>`__):
 
 OpenNebula Core
 ---------------
