@@ -81,21 +81,42 @@ If everything goes well, you should get an output similar to this one:
     $ onedb upgrade -v -u oneadmin -d opennebula
     MySQL Password:
     Version read:
-    Shared tables 4.4.0 : OpenNebula 4.4.0 daemon bootstrap
-    Local tables  4.4.0 : OpenNebula 4.4.0 daemon bootstrap
+    Shared tables 4.11.80 : OpenNebula 4.12.1 daemon bootstrap
+    Local tables  4.11.80 : OpenNebula 4.12.1 daemon bootstrap
+
+    MySQL dump stored in /var/lib/one/mysql_localhost_opennebula.sql
+    Use 'onedb restore' or restore the DB using the mysql command:
+    mysql -u user -h server -P port db_name < backup_file
+
 
     >>> Running migrators for shared tables
-      > Running migrator /usr/lib/one/ruby/onedb/shared/4.4.0_to_4.4.1.rb
-      > Done in 0.00s
-
-      > Running migrator /usr/lib/one/ruby/onedb/shared/4.4.1_to_4.5.80.rb
-      > Done in 0.75s
-
-    Database migrated from 4.4.0 to 4.5.80 (OpenNebula 4.5.80) by onedb command.
+    Database already uses version 4.11.80
 
     >>> Running migrators for local tables
-    Database already uses version 4.5.80
-    Total time: 0.77s
+      > Running migrator /usr/lib/one/ruby/onedb/local/4.11.80_to_4.13.80.rb
+    **************************************************************
+    *  WARNING  WARNING WARNING WARNING WARNING WARNING WARNING  *
+    **************************************************************
+
+    OpenNebula 4.13.80 improves the management of FAILED VMs
+    Please remove (onevm delete) any FAILED VM before continuing.
+
+    **************************************************************
+    *  WARNING  WARNING WARNING WARNING WARNING WARNING WARNING  *
+    **************************************************************
+
+
+    The scheduler (and oned) has been update to enforce access
+    rights on system datastores. This new version also checks that
+    the user can access the System DS.
+    This *may require* to update system DS rights of your cloud
+
+    Do you want to proceed ? [y/N]y
+      > Done in 41.93s
+
+    Database migrated from 4.11.80 to 4.13.80 (OpenNebula 4.13.80) by onedb command.
+
+    Total time: 41.93s
 
 Now execute the following DB patch:
 
