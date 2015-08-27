@@ -429,6 +429,8 @@ In order to manually create a VM Template definition in OpenNebula that represen
 +--------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | CONTEXT            | All :ref:`sections <template_context>` will be honored except FILES                                                                                                                                     |
 +--------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| KEEP_DISKS_ON_DONE | (Optional) Prevent OpenNebula from erasing the VM disks upon reaching the done state (either via shutdown or cancel)                                                                                     |
++--------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 You can find more information about contextualization in the :ref:`vcenter Contextualization <vcenter_context>` section.
 
