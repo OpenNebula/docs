@@ -158,4 +158,54 @@ The only configuration that is needed is the filter for the monitoring probe tha
     # FILTER = '10de:11bf:0300' # only GK104GL [GRID K2]
     # FILTER = '8086::0300,::0106' # all Intel VGA cards and any SATA controller
 
+Usage
+=====
+
+A new table in ``onehost show`` command gives us the list of PCI devices per host. For example:
+
+.. code::
+
+    PCI DEVICES
+
+       VM ADDR    TYPE           NAME
+          00:00.0 8086:0a04:0600 Haswell-ULT DRAM Controller
+          00:02.0 8086:0a16:0300 Haswell-ULT Integrated Graphics Controller
+      123 00:03.0 8086:0a0c:0403 Haswell-ULT HD Audio Controller
+          00:14.0 8086:9c31:0c03 8 Series USB xHCI HC
+          00:16.0 8086:9c3a:0780 8 Series HECI #0
+          00:1b.0 8086:9c20:0403 8 Series HD Audio Controller
+          00:1c.0 8086:9c10:0604 8 Series PCI Express Root Port 1
+          00:1c.2 8086:9c14:0604 8 Series PCI Express Root Port 3
+          00:1d.0 8086:9c26:0c03 8 Series USB EHCI #1
+          00:1f.0 8086:9c43:0601 8 Series LPC Controller
+          00:1f.2 8086:9c03:0106 8 Series SATA Controller 1 [AHCI mode]
+          00:1f.3 8086:9c22:0c05 8 Series SMBus Controller
+          02:00.0 8086:08b1:0280 Wireless 7260
+
+- **VM**: The VM ID using that specific device. Empty if no VMs are using that device.
+- **ADDR**: PCI Address.
+- **TYPE**: Values describing the device. These are VENDOR:DEVICE:CLASS. These values are used when selecting a PCI device do to passthrough.
+- **NAME**: Name of the PCI device.
+
+To make use of one of the PCI devices in a VM a new option can be added selecting which device to use. For example this will ask for a ``Haswell-ULT HD Audio Controller``:
+
+.. code::
+
+    PCI = [
+        VENDOR = "8086",
+        DEVICE = "0a0c",
+        CLASS = "0403"
+    ]
+
+The device can be also specified without all the type values. For example, to get any PCI Express Root Ports this can be added to a VM tmplate:
+
+.. code::
+
+    PCI = [
+        CLASS = "0604"
+    ]
+
+More than one ``PCI`` options can be added to attach more than one PCI device to the VM.
+
+
 
