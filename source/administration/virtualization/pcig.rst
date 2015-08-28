@@ -16,6 +16,7 @@ Requirements
 
 - kernel >= 3.12
 - libvirt >= 1.1.3
+- kvm hypervisor
 
 Machine Configuration
 =====================
@@ -71,7 +72,7 @@ Alongside this configuration vfio driver should be loaded passing the id of the 
 
     options vfio-pci ids=10de:11bf
 
-vfio device binding
+vfio Device Binding
 -------------------
 
 I/O MMU separates PCI cards into groups to isolate memory operation between devices and VMs. To add the cards to vfio and assign a group to them we can use the scripts shared in the aforementioned web page.
@@ -114,7 +115,7 @@ Here is a systemd script that executes the script. It can be written to ``/etc/s
     [Install]
     WantedBy=multi-user.target
 
-qemu configuration
+qemu Configuration
 ------------------
 
 Now we need to give qemu access to the vfio devices for the groups assigned to the PCI cards. We can get a list of PCI cards and its I/O MMU group using this command:
