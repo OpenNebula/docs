@@ -144,18 +144,18 @@ The only configuration that is needed is the filter for the monitoring probe tha
 
 .. code::
 
-	# This variable contains the filters for PCI card monitoring. The format
-	# is the same as lspci and several filters can be added separated by commas.
-	# A nil filter will retrieve all PCI cards.
-	#
-	# From lspci help:
-	#     -d [<vendor>]:[<device>][:<class>]
-	#
-	# For example
-	#
-	# FILTER = '::0300' # all VGA cards
-	# FILTER = '10de::0300' # all NVIDIA VGA cards
-	# FILTER = '10de:11bf:0300' # only GK104GL [GRID K2]
-	# FILTER = '8086::0300,::0106' # all Intel VGA cards and any SATA controller
+    # This variable contains the filters for PCI card monitoring. The format
+    # is the same as lspci and several filters can be added separated by commas.
+    # A nil filter will retrieve all PCI cards.
+    #
+    # From lspci help:
+    #     -d [<vendor>]:[<device>][:<class>]
+    #
+    # For example
+    #
+    # FILTER = '::0300' # all VGA cards
+    # FILTER = '10de::0300' # all NVIDIA VGA cards
+    # FILTER = '10de:11bf:0300' # only GK104GL [GRID K2]
+    # FILTER = '8086::0300,::0106' # all Intel VGA cards and any SATA controller
 
 
