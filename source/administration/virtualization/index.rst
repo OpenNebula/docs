@@ -10,4 +10,3 @@ Virtualization
    KVM Driver <kvmg>
    VMware Driver <evmwareg>
    vCenter Driver <vcenterg>
-   PCI Passthrough <pcig>
