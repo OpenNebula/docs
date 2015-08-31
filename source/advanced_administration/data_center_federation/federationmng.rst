@@ -6,7 +6,7 @@ OpenNebula Federation Management
 
 The administrator of a federation has the ability to add or remove Zones from the federation. See this guide for details on how to configure the federation in both the master and the slave of the OpenNebula federation.
 
-A user will have access to all the Zones where at least one of her groups has VDC resources in. This access can done through Sunstone or through the CLI 
+A user will have access to all the Zones where at least one of her groups has VDC resources in. This access can done through Sunstone or through the CLI
 
 Adding a Zone
 =============
@@ -46,6 +46,9 @@ What's happening behind the scenes is that the Sunstone server you are connectin
 
 .. |zoneswitchsunstone| image:: /images/zoneswitchsunstone.jpg
 
+.. note:: Uploading an image functionality is limited to the zone where the Sunstone instance the user is connecting to, even if it can switch to other federated zones.
+
+
 Through CLI
 -----------
 
@@ -66,9 +69,9 @@ We can see in the above command output that the user has access to both "OpenNeb
     Endpoint changed to "http://ultron.c12g.com:2634/RPC2" in /home/<username>/.one/one_endpoint
 
     $ onezone list
-    C    ID NAME                      ENDPOINT    
+    C    ID NAME                      ENDPOINT
           0 OpenNebula                http://localhost:2633/RPC2
-    *   104 ZoneB                     http://ultron.c12g.com:2634/RPC2    
+    *   104 ZoneB                     http://ultron.c12g.com:2634/RPC2
 
 All the subsequent CLI commands executed would connect to the OpenNebula listening at "http://zoneb.opennebula.front-end.server:2633/RPC2".
 
