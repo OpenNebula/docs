@@ -35,7 +35,7 @@ This command enables Host management. Actions offered are:
 Create and Delete
 -----------------
 
-Hosts, also known as physical nodes, are the serves managed by OpenNebula responsible for Virtual Machine execution. To use these hosts in OpenNebula you need to register them so they are monitored and well-known to the scheduler.
+Hosts, also known as physical nodes, are the servers managed by OpenNebula responsible for Virtual Machine execution. To use these hosts in OpenNebula you need to register them so they are monitored and well-known to the scheduler.
 
 Creating a host:
 
