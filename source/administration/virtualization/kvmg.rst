@@ -366,25 +366,26 @@ The parameters that can be changed here are as follows:
 
 See the :ref:`Virtual Machine drivers reference <devel-vmm>` for more information.
 
-
 PCI Passthrough
 ===============
 
-Most of the information is taken from http://www.firewing1.com/howtos/fedora-20/create-gaming-virtual-machine-using-vfio-pci-passthrough-kvm. The VGA parts are not needed for devices that are not graphic cards or if you don't want to output video signal from them.
+It is possible to discover PCI devices in the hypervisors and assign them to Virtual Machines for the KVM hypervisor.
 
-.. warning:: The overall setup state was extracted from a preconfigured Fedora 22 machine. Configuration for your distro may be different.
+The setup and environment information is taken from http://www.firewing1.com/howtos/fedora-20/create-gaming-virtual-machine-using-vfio-pci-passthrough-kvm. You can safely ignore all the VGA related sections, for PCI devices that are not graphic cards, or if you don't want to output video signal from them.
+
+.. warning:: The overall setup state was extracted from a preconfigured Fedora 22 machine. **Configuration for your distro may be different.**
 
 Requirements
 ------------
 
-- The host that is going to be used for virtualization needs to support I/O MMU. For Intel processors this is called VT-d and for AMD processors is called AMD-Vi. The instructions are made for Intel branded processors but the process should be very similar for AMD.
+- The host that is going to be used for virtualization needs to support `I/O MMU <https://en.wikipedia.org/wiki/IOMMU>`__. For Intel processors this is called VT-d and for AMD processors is called AMD-Vi. The instructions are made for Intel branded processors but the process should be very similar for AMD.
 
 - kernel >= 3.12
 - libvirt >= 1.1.3
 - kvm hypervisor
 
-Machine Configuration
----------------------
+Machine Configuration (Hypervisor)
+----------------------------------
 
 Kernel Configuration
 ~~~~~~~~~~~~~~~~~~~~
@@ -441,7 +442,7 @@ Alongside this configuration vfio driver should be loaded passing the id of the 
 vfio Device Binding
 ~~~~~~~~~~~~~~~~~~~
 
-I/O MMU separates PCI cards into groups to isolate memory operation between devices and VMs. To add the cards to vfio and assign a group to them we can use the scripts shared in the aforementioned web page.
+I/O MMU separates PCI cards into groups to isolate memory operation between devices and VMs. To add the cards to vfio and assign a group to them we can use the scripts shared in the `aforementioned web page <http://www.firewing1.com/howtos/fedora-20/create-gaming-virtual-machine-using-vfio-pci-passthrough-kvm>`__.
 
 This script binds a card to vfio. It goes into ``/usr/local/bin/vfio-bind``:
 
@@ -504,7 +505,6 @@ In our example our cards have the groups 45, 46, 58 and 59 so we add this config
         "/dev/vfio/59"
     ]
 
-
 Driver Configuration
 --------------------
 
@@ -526,9 +526,13 @@ The only configuration that is needed is the filter for the monitoring probe tha
     # FILTER = '10de:11bf:0300' # only GK104GL [GRID K2]
     # FILTER = '8086::0300,::0106' # all Intel VGA cards and any SATA controller
 
-
 Usage
 -----
+
+The basic workflow is to inspect the host information, either in the CLI or in Sunstone, to find out the available PCI devices, and to add the desired device to the template. PCI devices can be added by specifying VENDOR, DEVICE and CLASS, or simply CLASS. Note that OpenNebula will only deploy the VM in a host with the available PCI device. If no hosts match, an error message will appear in the Scheduler log.
+
+CLI
+~~~
 
 A new table in ``onehost show`` command gives us the list of PCI devices per host. For example:
 
@@ -563,7 +567,7 @@ To make use of one of the PCI devices in a VM a new option can be added selectin
     PCI = [
         VENDOR = "8086",
         DEVICE = "0a0c",
-        CLASS = "0403"
+        CLASS  = "0403"
     ]
 
 The device can be also specified without all the type values. For example, to get any PCI Express Root Ports this can be added to a VM tmplate:
@@ -575,4 +579,18 @@ The device can be also specified without all the type values. For example, to ge
     ]
 
 More than one ``PCI`` options can be added to attach more than one PCI device to the VM.
+
+Sunstone
+~~~~~~~~
+
+In Sunstone the information is displayed in the **PCI** tab:
+
+|image1|
+
+To add a PCI device to a template, select the **Other** tab:
+
+|image2|
+
+.. |image1| image:: /images/sunstone_host_pci.png
+.. |image2| image:: /images/sunstone_template_pci.png
 
