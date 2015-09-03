@@ -222,7 +222,7 @@ msgstr ""
 #: ../../source/administration/sunstone_gui/sunstone.rst:80
 msgid ""
 "Authentication driver for incoming requests. Possible values are "
-"``sunstone``, ``opennebula`` and ``x509``. Check :ref:`authentication "
+"``sunstone``, ``opennebula``, ``remote`` and ``x509``. Check :ref:`authentication "
 "methods <authentication>` for more info"
 msgstr ""
 
