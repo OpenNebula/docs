@@ -49,9 +49,10 @@ Advanced Control and Monitoring of Virtual Infrastructure
 -  Tagging of users, VM images and virtual networks with arbitrary metadata that can be later used by other components
 -  :ref:`User defined VM tags <vm_guide2_user_defined_data>` to simplify VM management and to store application specific data
 -  :ref:`Plain files datastore <file_ds>` to store kernels, ramdisks and files to be used in context. The whole set of OpenNebula features applies, e.g. ACLs, ownership...
-- Consumption of raw GPU devices existing on a physical host from a Virtual Machine [Not in Beta 1, TODO documentation]
-- Disk resizing, :ref:`grow a VM disk at instantiation time <vm_guide2_resize_disk>` on your VM while conforming with your quotas and being noted down for accounting. [Not in Beta 1]
+- :ref:`PCI passthrough <kvm_pci_passthrough>` available for VMs that need consumption of raw GPU devices existing on a physical host.
+- Disk resizing, :ref:`grow a VM disk at instantiation time <vm_guide2_resize_disk>` on your VM while conforming with your quotas and being noted down for accounting.
 - Ability to :ref:`import VMs <import_wild_vms>` running in hypervisors (even the hybrids) that have not being launched by OpenNebula.
+- :ref:`Save arbitrarily complex VMs as templates <save_vm_as_template_cloudview>` for later use.
 
 Complete Virtual Machine Configuration
 ======================================

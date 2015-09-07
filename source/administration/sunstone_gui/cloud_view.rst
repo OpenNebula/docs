@@ -51,6 +51,8 @@ A user can perform the following actions from this view:
 
 |cloud_vm_poweroff|
 
+.. _save_vm_as_template_cloudview:
+
 Save a VM
 ---------
 

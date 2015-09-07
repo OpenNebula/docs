@@ -366,6 +366,8 @@ The parameters that can be changed here are as follows:
 
 See the :ref:`Virtual Machine drivers reference <devel-vmm>` for more information.
 
+.. _kvm_pci_passthrough:
+
 PCI Passthrough
 ===============
 
