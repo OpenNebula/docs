@@ -1,13 +1,13 @@
 .. _rn:
 
 ================================================================================
-Release Notes 4.14 Beta1
+Release Notes 4.14 Beta2
 ================================================================================
 
 .. toctree::
    :maxdepth: 1
 
-   What's New in 4.14 Beta1 <whats_new>
+   What's New in 4.14 Beta2 <whats_new>
    Features <features>
    Platform Notes <uspng>
    Compatibility Guide <compatibility>
