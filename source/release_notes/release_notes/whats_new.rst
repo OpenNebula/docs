@@ -18,7 +18,7 @@ Several major features have been introduced in Great A'Tuin. One of the most int
 
 Another major feature is the ability to resize an existing disk, for all the supported OpenNebula backends. If your VM needs more disk space than the one provided by the images used for its disk, you can now set a new size prior to instantiate the VM, OpenNebula will grow the disk and the guest OS will adapt the filesystem to the now bigger disk at boot time. The disk space is not an issue anymore.These two features (snapshot + resizing) are taken into account for quotas, accounting and showback, so cloud admins can keep track of disk usage in their infrastructure.
 
-To support HPC oriented infrastructures based on OpenNebula, 4.14 also enables the consumption of raw GPU devices existing on a physical host from a Virtual Machine. There is no overcommitment possible nor sharing of GPU devices among different Virtual Machines, so a new type of consumable has been defined in OpenNebula and taken into account by the scheduler. VMs can now request a GPU, and if OpenNebula finds one free resource of type GPU available, it will set up the VM with PCI passthrough access to the GPU resource, enabling applications to get the performance boot of the direct access to a GPU card.
+To support HPC oriented infrastructures based on OpenNebula, 4.14 also enables the consumption of raw GPU devices existing on a physical host from a Virtual Machine. There is no overcommitment possible nor sharing of GPU devices among different Virtual Machines, so a new type of consumable has been defined in OpenNebula and taken into account by the scheduler. VMs can now request a GPU, and if OpenNebula finds one free resource of type GPU available, it will set up the VM with PCI passthrough access to the GPU resource, enabling applications to get the performance boost of the direct access to a GPU card.
 
 .. image:: /images/gpupcilist.png
     :width: 90%
@@ -80,6 +80,7 @@ OpenNebula Drivers :: Virtualization
 - **Get the real and virtual usage for disks**, file based storage not always use the maximum virtual size of the disk. (for example qcow2 or sparse raw files). Improvements in :ref:`monitoring <mon>` take now care of this reporting.
 - **Running VMs support** , ability to :ref:`import VMs <import_wild_vms>` running in hypervisors (all of them now supported, even the hybrids) that have not being launched by OpenNebula.
 - **Spice support for more hypervisors**, now supported as well in :ref:`XEN <xeng>`.
+- **Control how disks are managed in vCenter**, through :ref:`a new VM template variable <vm_template_definition_vcenter>`. Protect users data against accidental deletions.
 
 Scheduler
 --------------------------------------------------------------------------------
