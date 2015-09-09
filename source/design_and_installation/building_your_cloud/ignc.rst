@@ -33,7 +33,7 @@ There are packages for the front-end, distributed in the various components that
 
 To install a CentOS/RHEL OpenNebula front-end with packages from **our repository**, execute the following as root.
 
-For CentOS 6.5:
+For CentOS 6:
 
 .. code::
 
@@ -94,17 +94,23 @@ To install OpenNebula on a Debian/Ubuntu front-end from packages from **our repo
 
     # wget -q -O- http://downloads.opennebula.org/repo/Debian/repo.key | apt-key add -
 
-**Debian**
+**Debian 8**
 
 .. code::
 
-    # echo "deb http://downloads.opennebula.org/repo/4.14/Debian/7 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # echo "deb http://downloads.opennebula.org/repo/4.14/Debian/8 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
 
 **Ubuntu 14.04**
 
 .. code::
 
     # echo "deb http://downloads.opennebula.org/repo/4.14/Ubuntu/14.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+
+**Ubuntu 15.04**
+
+.. code::
+
+    # echo "deb http://downloads.opennebula.org/repo/4.14/Ubuntu/15.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
 
 To install the packages on a Debian/Ubuntu front-end:
 
