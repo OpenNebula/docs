@@ -47,6 +47,8 @@ Installation
 
 Follow the :ref:`Platform Notes <uspng>` and the :ref:`Installation guide <ignc>`, taking into account that you will already have configured the passwordless ssh access for oneadmin.
 
+Make sure to run the ``install_gems`` tool, as the new OpenNebula version may have different gem requirements.
+
 It is highly recommended **not to keep** your current ``oned.conf``, and update the ``oned.conf`` file shipped with OpenNebula 4.14 to your setup. If for any reason you plan to preserve your current ``oned.conf`` file, read the :ref:`Compatibility Guide <compatibility>` and the complete oned.conf reference for `3.8 <http://opennebula.org/documentation:archives:rel3.8:oned_conf>`__ and :ref:`4.14 <oned_conf>` versions.
 
 Database Upgrade
