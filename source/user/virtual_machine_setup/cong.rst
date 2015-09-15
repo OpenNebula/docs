@@ -158,17 +158,17 @@ Some of the variables have special meanings, but none of them are mandatory:
 +-------------------------+--------------------------------------------------------------------------------------+
 |        Attribute        |                                     Description                                      |
 +=========================+======================================================================================+
-| **files\_ds**           | Files that will be included in the contextualization image. Each file must be        |
+| **FILES\_DS**           | Files that will be included in the contextualization image. Each file must be        |
 |                         | stored in a FILE\_DS Datastore and must be of type CONTEXT                           |
 +-------------------------+--------------------------------------------------------------------------------------+
-| **target**              | device where the contextualization image will be available to the VM instance.       |
+| **TARGET**              | device where the contextualization image will be available to the VM instance.       |
 |                         | Please note that the proper device mapping may depend on the guest OS,               |
 |                         | e.g. ubuntu VMs should use hd\* as the target device                                 |
 +-------------------------+--------------------------------------------------------------------------------------+
-| **file**                | Files and directories that will be included in the contextualization image.          |
+| **FILES**               | Files and directories that will be included in the contextualization image.          |
 |                         | Specified as absolute paths, by default this **can be used only by oneadmin**.       |
 +-------------------------+--------------------------------------------------------------------------------------+
-| **init\_scripts**       | If you want the VM to execute an script that is not called init.sh (or if you        |
+| **INIT\_SCRIPTS**       | If you want the VM to execute an script that is not called init.sh (or if you        |
 |                         | want to call more than just one script),this list contains the scripts to run        |
 |                         | and their order. Ex. ``init.sh users.sh mysql.sh`` will force the VM to              |
 |                         | execute init.sh , then users.sh and lastly mysql.sh at boot time'                    |
