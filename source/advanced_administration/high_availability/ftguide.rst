@@ -67,7 +67,7 @@ The following list details failures states caused by errors related to the hyper
 
 - ``BOOT_FAILURE``, The VM failed to boot but all the files needed by the VM are already in the host. Check the hypervisor logs to find out the problem, and once fixed recover the VM with the retry option.
 - ``BOOT_MIGRATE_FAILURE``, same as above but during a migration. Check the target hypervisor and retry the operation.
-- ``BOOT_UNDEPLOY_FAILURE``, same as above but during an undeploy. Check the target hypervisor and retry the operation.
+- ``BOOT_UNDEPLOY_FAILURE``, same as above but during a resume after an undeploy. Check the target hypervisor and retry the operation.
 - ``BOOT_STOPPED_FAILURE``, same as above but during a resume after a stop. Check the target hypervisor and retry the operation.
 
 Transfer Manager / Storage Problems
