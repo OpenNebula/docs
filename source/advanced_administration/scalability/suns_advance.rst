@@ -22,7 +22,7 @@ By default the Sunstone server is configured to run in the frontend, but you are
 
 -  Provide the serveradmin credentials in the following file ``/var/lib/one/.one/sunstone_auth``. If you changed the serveradmin password please check the :ref:`Cloud Servers Authentication guide <cloud_auth>`.
 
--  If you want to upload files to OpenNebula, you will have to share the upload directory (``/var/tmp by default``) between sunstone and oned
+-  If you want to upload files to OpenNebula, you will have to share the upload directory (``/var/tmp by default``) between sunstone and oned. Some server do not take into account the TMPDIR env var and this directory must be defined in the configuration file, for example in Passenger (client_body_temp_path)
 
 .. code::
 
