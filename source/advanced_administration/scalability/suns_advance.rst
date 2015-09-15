@@ -140,6 +140,50 @@ Next thing we have to do is configure the virtual host that will run our Sunston
 
 Now the configuration should be ready, restart -or reload apache configuration- to start the application and point to the virtual host to check if everything is running.
 
+
+Running Sunstone behind nginx SSL Proxy
+---------------------------------------
+
+How to set things up with nginx ssl proxy for sunstone and encrypted vnc. 
+
+.. code::
+
+    # No squealing.
+    server_tokens off;
+
+    # OpenNebula Sunstone upstream
+    upstream sunstone {
+      server 127.0.0.1:9869;
+    }
+
+    # HTTP virtual host, redirect to HTTPS
+    server {
+      listen 80 default_server;
+      return 301 https://$server_name:443;
+    }
+
+    # HTTPS virtual host, proxy to Sunstone
+    server {
+      listen 443 ssl default_server;
+      ssl_certificate /etc/ssl/certs/opennebula-certchain.pem;
+      ssl_certificate_key /etc/ssl/private/opennebula-key.pem;
+      ssl_stapling on;
+    }
+
+And this is the changes that have to be made to sunstone-server.conf:
+
+.. code::
+
+    UI Settings
+
+    :vnc_proxy_port: 29876
+    :vnc_proxy_support_wss: only
+    :vnc_proxy_cert: /etc/one/ssl/opennebula-certchain.pem
+    :vnc_proxy_key: /etc/one/ssl/opennebula-key.pem
+    :vnc_proxy_ipv6: false
+
+If using a selfsigned cert, the connection to VNC window in Sunstone will fail, either get a real cert, or manually accept the selfsigned cert in your browser before trying it with Sunstone.  Now, VNC sessions should show "encrypted" in the title.
+
 Running Sunstone in Multiple Servers
 ------------------------------------
 
