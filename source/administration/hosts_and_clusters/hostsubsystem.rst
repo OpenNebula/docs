@@ -11,6 +11,7 @@ A **Host** is a server that has the ability to run Virtual Machines and that is 
 -  The ``oneadmin`` account in any Host or the Frontend should be able to ssh passwordlessly to any other Host or Frontend. This is achieved either by sharing the ``$HOME`` of ``oneadmin`` accross all the servers with NFS or by manually copying the ``~/.ssh`` directory.
 -  It needs to have a hypervisor supported by OpenNebula installed and properly configured. The correct way to achieve this is to follow the specific guide for each hypervisor.
 -  **ruby** >= 1.8.7
+-  OpenNebula node packages installed. For CentOS/RHEL these are ``opennebula-node-kvm`` or ``opennebula-common`` for ``kvm`` or ``xen``. For Debian based distros install ``opennebula-node``.
 
 **Clusters** are pools of hosts that share datastores and virtual networks. Clusters are used for load balancing, high availability, and high performance computing.
 
