@@ -39,6 +39,9 @@ A virtual network (VNET) definition consists of three different parts:
   - ``GATEWAY``
   - ``GATEWAY6``
   - ``DNS``
+  - ``GUEST_MTU``
+
+The value of ``GUEST_MTU`` will be used to configure the VM's interface MTU.
 
 These attributes can be later used in the :ref:`Virtual Machine Contextualization <template_context>`. For example:
 
