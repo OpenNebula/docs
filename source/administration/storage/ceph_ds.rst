@@ -107,7 +107,7 @@ An example of datastore:
     NAME = "cephds"
     DS_MAD = ceph
     TM_MAD = ceph
-    CEPH_HOST = host1 host2:port2 
+    CEPH_HOST = host1 host2:port2
 
     # the following lines *must* be preset
     DISK_TYPE = RBD
@@ -175,9 +175,9 @@ The following commands must be executed in all the KVM hosts as oneadmin (assumi
 
 .. code::
 
-    virsh secret-define secret.xml
+    virsh -c qemu:///system secret-define secret.xml
     # Replace $UUID with the value generated in the previous step
-    virsh secret-set-value --secret $UUID --base64 $(cat client.libvirt.key)
+    virsh -c qemu:///system  secret-set-value --secret $UUID --base64 $(cat client.libvirt.key)
 
 Finally, the Ceph datastore must be updated to add the following values:
 
