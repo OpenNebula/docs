@@ -504,7 +504,7 @@ Context information is passed to the Virtual Machine via an ISO mounted as a par
 +---------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
 | **GATEWAY\_IFACE**        | This variable can be set to the interface number you want to configure the gateway. It is useful when several networks have GATEWAY parameter and you want yo choose the one that configures it. For example to set the first interface to configure the gateway you use ``GATEWAY_IFACE=0`` | Optional  |
 +---------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-""
+
 \* only for users in oneadmin group
 
 The values referred to by **VARIABLE** can be defined :
