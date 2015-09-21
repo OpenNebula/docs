@@ -82,7 +82,7 @@ OpenNebula uses the libvirt interface to interact with KVM, so the following ste
     ResultInactive=yes
     ResultActive=yes
 
-OpenNebula uses libvirt's migration capabilities. More precisely, it uses the TCP protocol offered by libvirt. In order to configure the physical hosts, the following files have to be modified:
+OpenNebula uses libvirt's migration capabilities. More precisely, it uses the ``qemu+ssh`` protocol offered by libvirt. In order to configure the physical hosts, the following files have to be modified:
 
 -  ``/etc/libvirt/libvirtd.conf`` : Uncomment “listen\_tcp = 1”. Security configuration is left to the admin's choice, file is full of useful comments to achieve a correct configuration. As a tip, if you don't want to use TLS for connections set ``listen_tls = 0``.
 -  Add the listen option to libvirt init script:
