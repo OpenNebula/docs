@@ -146,6 +146,8 @@ These are the packages available for these distributions:
     - ``/var/lib/one/remotes/vnm/OpenNebulaNetwork.conf``
 
 
+.. _ruby_runtime:
+
 Step 2. Ruby Runtime Installation
 =================================
 
