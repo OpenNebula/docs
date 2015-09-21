@@ -108,9 +108,10 @@ This distribution lacks some packaged ruby libraries. This makes some components
 
     # /usr/share/one/install_gems
 
-The ``qemu-kvm`` package does not include support for ``RBD`` therefore it's not possible to use it in combination with Ceph.
+When using Apache to serve Sunstone, it is required that you disable or comment the ``PrivateTMP=yes`` directive in ``/usr/lib/systemd/system/httpd.service``.
 
-TODO Add note about Apache+sunstone and PrivateTMP=yes
+There is an automatic job that removes all data from ``/var/tmp/``, in order to disable this, please edit the ``/usr/lib/tmpfiles.d/tmp.conf`` and re ove the line that removes ``/var/tmp``.
+
 
 RedHat 6.5 & 7.0 Platform Notes
 ===============================
