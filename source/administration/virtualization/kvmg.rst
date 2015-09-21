@@ -596,3 +596,8 @@ To add a PCI device to a template, select the **Other** tab:
 .. |image1| image:: /images/sunstone_host_pci.png
 .. |image2| image:: /images/sunstone_template_pci.png
 
+Importing VMs
+=============
+
+VMs running on KVM hypervisors that were not launched through OpenNebula can be :ref:`imported in OpenNebula <import_wild_vms>`. It is important to highlight that, besides the limitations explained in the host guide, the "Poweroff" operation is not available for these imported VMs in KVM.
+

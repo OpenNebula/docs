@@ -394,3 +394,8 @@ To force a VM deployment in an ec2 host, use:
 
     SCHED_REQUIREMENTS = "PUBLIC_CLOUD = YES"
 
+Importing VMs
+=============
+
+VMs running on EC2 that were not launched through OpenNebula can be :ref:`imported in OpenNebula <import_wild_vms>`.
+

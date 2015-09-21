@@ -505,3 +505,8 @@ To force a VM deployment in a Azure host, use:
 
     SCHED_REQUIREMENTS = "PUBLIC_CLOUD = YES"
 
+Importing VMs
+=============
+
+VMs running on Azure that were not launched through OpenNebula can be :ref:`imported in OpenNebula <import_wild_vms>`.
+

@@ -92,7 +92,7 @@ Additionally you must define your credentials, the SoftLayer datacenter to be us
                     m1.xlarge: 0
 
 
-In the above file, each region represents a `SoftLayer datacenter <http://www.softlayer.com/data-centers>`__. (see the :ref:`multi site region account section <slg_multi_sl_site_region_account_support>` for more information.  
+In the above file, each region represents a `SoftLayer datacenter <http://www.softlayer.com/data-centers>`__. (see the :ref:`multi site region account section <slg_multi_sl_site_region_account_support>` for more information.
 
 Once the file is saved, OpenNebula needs to be restarted (as ``oenadmin``, do a 'onevm restart'), create a new Host that uses the SL drivers:
 
@@ -177,7 +177,7 @@ Default values for all these attributes can be defined in the ``/etc/one/sl_driv
     <!--
      Default configuration attributes for the SoftLayer driver
      (all domains will use these values as defaults)
-     
+
      Use XML syntax to specify defaults, note elements are UPPERCASE
      Example:
      <TEMPLATE>
@@ -437,3 +437,7 @@ To force a VM deployment in a SoftLayer host, use:
 
     SCHED_REQUIREMENTS = "PUBLIC_CLOUD = YES"
 
+Importing VMs
+=============
+
+VMs running on SfotLayer that were not launched through OpenNebula can be :ref:`imported in OpenNebula <import_wild_vms>`.

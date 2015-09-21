@@ -166,3 +166,8 @@ Xen comes with a credit scheduler. The credit scheduler is a proportional fair s
 
 Xen drivers come preconfigured to use this credit scheduler and uses the scale “1 OpenNebula CPU” = “256 xen scheduler credits”. A VM created with CPU=2.0 will have 512 xen scheduler credits. If you need to change this scaling parameter it can be configured in ``/etc/one/vmm_exec/vmm_exec_xen[3/4].conf``. The variable name is called ``CREDIT``.
 
+Importing VMs
+=============
+
+VMs running on XEN hypervisors that were not launched through OpenNebula can be :ref:`imported in OpenNebula <import_wild_vms>`. It is important to highlight that, besides the limitations explained in the host guide, the "Poweroff" operation is not available for these imported VMs in XEN.
+
