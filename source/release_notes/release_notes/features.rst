@@ -79,8 +79,10 @@ Broad Commodity and Enterprise Platform Support
 
 -  Hypervisor agnostic :ref:`Virtualization Subsystem <vmmg>` with broad hypervisor support (:ref:`Xen <xeng>`, :ref:`KVM <kvmg>`, :ref:`VMware ESX <evmwareg>` and :ref:`VMware vCenter <vcenterg>`), centralized management of environments with multiple hypervisors, and support for multiple hypervisors within the same physical box
 -  :ref:`vCenter <vcenterg>` support with :ref:`automatic import tool of existing VMware resources <vcenter_import_tool>`, including existing running VMs, network management and awareness of the presence of ESX hosts behind vCenter
+- Support for GPU consumables*, giving the ability to give exlcusive :ref:`PCI passthrough access to VMs to GPU cards <kvm_pci_passthrough>`, for HPC computing.
 -  :ref:`Storage Subsystem <sm>` with support for multiple data stores to balance I/O operations between storage servers, or to define different SLA policies (e.g. backup) and performance features for different VM types or users
 -  :ref:`Storage Subsystem <sm>` supporting any backend configuration with different datastore types: :ref:`file system datastore <fs_ds>`, to store disk images in a file form and with image transferring using ssh or shared file systems (NFS, GlusterFS, Lustre...), :ref:`LVM <lvm_drivers>` to store disk images in a block device form, :ref:`Ceph <ceph_ds>` for distributed block device including RBD format 2, and :ref:`VMware datastore <vmware_ds>` specialized for the VMware hypervisor that handle the vmdk format and with support for VMFS
+- :ref:`Advanced disk snapshot capabilities <vm_guide_2_disk_snapshots>` with :ref:`different backends <storage_snapshot_compatilibity>`
 -  Flexible :ref:`Network Subsystem <nm>` with integration with :ref:`Ebtable <ebtables>`, :ref:`Open vSwitch <openvswitch>`, :ref:`802.1Q tagging <hm-vlan>` and :ref:`VXLAN <vxlan>`
 -  :ref:`Virtual Router <router>` fully integrated with OpenNebula to provide basic L3 services like NATing, DHCP, DNS...
 
@@ -165,7 +167,6 @@ Rich Command Line and Web Interfaces for Cloud Administrators
 -  :ref:`Sunstone is easily customizable <suns_views>` to define multiple cloud views for different user groups
 -  :ref:`Integrated tab in Sunstone <commercial_support_sunstone>` to access OpenNebula Systems (the company behind OpenNebula, formerly C12G) professional support
 
-
 Multiple Deployment Options
 ===========================
 
@@ -174,6 +175,7 @@ Multiple Deployment Options
 -  :ref:`Optional building from source code <compile>`
 -  :ref:`System features a small footprint <plan>`, less than 10Mb
 -  :ref:`Detailed log files <log_debug>` with :ref:`syslog support <log_debug_configure_the_logging_system>` for the different components that maintain a record of significant changes
+-  Ability to :ref:`import VMs <import_wild_vms>` running in hypervisors (all of them now supported, even the hybrids) that have not being launched by OpenNebula.
 
 Easy Extension and Integration
 ==============================
