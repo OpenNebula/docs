@@ -19,8 +19,8 @@ The contextualization package will also mount any partition labeled ``swap`` as 
 
 - Start a image (or finish its installation)
 - Download and install the package for your distribution:
-   - `DEB <https://github.com/OpenNebula/addon-context-linux/releases/download/v4.10.0/one-context_4.10.0.deb>`__: Compatible with Ubuntu 11.10 to 15.04 and Debian 6/7/8
-   - `RPM <https://github.com/OpenNebula/addon-context-linux/releases/download/v4.10.0/one-context_4.10.0.rpm>`__: Compatible with CentOS and RHEL 6/7
+   - `DEB <https://github.com/OpenNebula/addon-context-linux/releases/download/v4.14.2/one-context_4.14.2.deb>`__: Compatible with Ubuntu 11.10 to 15.04 and Debian 6/7/8
+   - `RPM <https://github.com/OpenNebula/addon-context-linux/releases/download/v4.14.2/one-context_4.14.2.rpm>`__: Compatible with CentOS and RHEL 6/7
 - If you want to use the bundled ``onegate`` tool make sure that ruby >= 1.8.7 is installed in the image
 - Shutdown the VM
 
