@@ -21,24 +21,30 @@ Let's see how to configure ``/etc/one/oned.conf`` to set up this Host hook, to b
     HOST_HOOK = [
         name      = "error",
         on        = "ERROR",
-        command   = "host_error.rb",
-        arguments = "$HID -r",
-        remote    = no ]
+        command   = "ft/host_error.rb",
+        arguments = "$ID -m -p 5",
+        remote    = "no" ]
     #-------------------------------------------------------------------------------
 
-We are defining a host hook, named ``error``, that will execute the script 'host\_error.rb' locally with the following arguments:
+We are defining a host hook, named ``error``, that will execute the script 'ft/host_error.rb' locally with the following arguments:
 
-+--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-|      Argument      |                                                                                      Description                                                                                       |
-+====================+========================================================================================================================================================================================+
-| **Host ID**        | ID of the host containing the VMs to treat. It is compulsory and better left to **$HID**, that will be automatically filled by OpenNebula with the Host ID of the host that went down. |
-+--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **Action**         | This defined the action to be performed upon the VMs that were running in the host that went down. This can be **-r** (recreate) or **-d** (delete).                                   |
-+--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **ForceSuspended** | [-f] force resubmission of suspended VMs                                                                                                                                               |
-+--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **AvoidTransient** | [-p <n>] avoid resubmission if host comes back after <n> monitoring cycles                                                                                                             |
-+--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++--------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|      Argument      |                                                                                      Description                                                                                      |
++====================+=======================================================================================================================================================================================+
+| **Host ID**        | ID of the host containing the VMs to treat. It is compulsory and better left to **$ID**, that will be automatically filled by OpenNebula with the Host ID of the host that went down. |
++--------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Action**         | This defines the action to be performed upon the VMs that were running in the host that went down.                                                                                    |
+|                    |                                                                                                                                                                                       |
+|                    | This can be:                                                                                                                                                                          |
+|                    |                                                                                                                                                                                       |
+|                    | - **-m** migrate VMs to another host. Only for images in shared storage                                                                                                               |
+|                    | - **-r** delete+recreate VMs running in the host. State will be lost.                                                                                                                 |
+|                    | - **-d** delete VMs running in the host                                                                                                                                               |
++--------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **ForceSuspended** | [-f] force resubmission of suspended VMs                                                                                                                                              |
++--------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **AvoidTransient** | [-p <n>] avoid resubmission if host comes back after <n> monitoring cycles                                                                                                            |
++--------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 More information on hooks :ref:`here <hooks>`.
 
