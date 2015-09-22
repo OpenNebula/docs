@@ -96,23 +96,26 @@ The following is an example of a hook tied to the ERROR state of a Host:
 
 .. code::
 
-    #-------------------------------- Host Hook -----------------------------------
+    #*******************************************************************************
+    # Fault Tolerance Hooks
+    #*******************************************************************************
     # This hook is used to perform recovery actions when a host fails.
     # Script to implement host failure tolerance
     #   It can be set to
-    #           -r recreate VMs running in the host
+    #           -m migrate VMs to another host. Only for images in shared storage
+    #           -r recreate VMs running in the host. State will be lost.
     #           -d delete VMs running in the host
     #   Additional flags
     #           -f force resubmission of suspended VMs
     #           -p <n> avoid resubmission if host comes
     #                  back after n monitoring cycles
-    #------------------------------------------------------------------------------
+    #*******************************************************************************
     #
     #HOST_HOOK = [
     #    name      = "error",
     #    on        = "ERROR",
     #    command   = "ft/host_error.rb",
-    #    arguments = "$ID -r",
+    #    arguments = "$ID -m -p 5",
     #    remote    = "no" ]
     #-------------------------------------------------------------------------------
 
