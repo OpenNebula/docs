@@ -35,7 +35,7 @@ Drivers - VM
 ================================================================================
 
 * `#3590 <http://dev.opennebula.org/issues/3590>`_ Delete operation leaves a poweroff instance registered in vCenter
-* `#3750 <http://dev.opennebula.org/issues/3750>_ Xen (live) migration/suspend/resume is incompatible with disk/nic attach/detach
+* `#3750 <http://dev.opennebula.org/issues/3750>`_ Xen (live) migration/suspend/resume is incompatible with disk/nic attach/detach
 
 OneFlow
 ================================================================================
