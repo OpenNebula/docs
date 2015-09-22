@@ -16,6 +16,7 @@ Core & System
 * `#2880 <http://dev.opennebula.org/issues/2880>`_ Unicode chars in VM name are truncated
 * `#2502 <http://dev.opennebula.org/issues/2502>`_ deleting image in locked state leaves current operation in progress and files not cleaned
 * `#3139 <http://dev.opennebula.org/issues/3139>`_ Drivers do not work with rbenv
+* `#3888 <http://dev.opennebula.org/issues/3888>`_ An image can be used twice by a VM, but this breaks the used/ready logic
 
 Drivers - Network
 ================================================================================
@@ -34,11 +35,13 @@ Drivers - VM
 ================================================================================
 
 * `#3590 <http://dev.opennebula.org/issues/3590>`_ Delete operation leaves a poweroff instance registered in vCenter
+* `#3750 <http://dev.opennebula.org/issues/3750>_ Xen (live) migration/suspend/resume is incompatible with disk/nic attach/detach
 
 OneFlow
 ================================================================================
 
 * `#3134 <http://dev.opennebula.org/issues/3134>`_ Service Templates with dynamic networks cannot be instantiated from the CLI, unless the a template file with the required attributes is merged
+* `#3797 <http://dev.opennebula.org/issues/3797>`_ oneflow and oneflow-template ignore the no_proxy environment variable
 
 Scheduler
 ================================================================================
@@ -50,3 +53,4 @@ Sunstone
 
 * `#2292 <http://dev.opennebula.org/issues/2292>`_ sunstone novnc send ctrl-alt-del not working in Firefox
 * `#1877 <http://dev.opennebula.org/issues/1877>`_ if syslog enabled disable the logs tab in the VM detailed view
+* `#3796 <http://dev.opennebula.org/issues/3796>`_ sunstone ignores the no_proxy environment variable
