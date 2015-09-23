@@ -84,7 +84,6 @@ Broad Commodity and Enterprise Platform Support
 -  :ref:`Storage Subsystem <sm>` supporting any backend configuration with different datastore types: :ref:`file system datastore <fs_ds>`, to store disk images in a file form and with image transferring using ssh or shared file systems (NFS, GlusterFS, Lustre...), :ref:`LVM <lvm_drivers>` to store disk images in a block device form, :ref:`Ceph <ceph_ds>` for distributed block device including RBD format 2, and :ref:`VMware datastore <vmware_ds>` specialized for the VMware hypervisor that handle the vmdk format and with support for VMFS
 - :ref:`Advanced disk snapshot capabilities <vm_guide_2_disk_snapshots>` with :ref:`different backends <storage_snapshot_compatilibity>`
 -  Flexible :ref:`Network Subsystem <nm>` with integration with :ref:`Ebtable <ebtables>`, :ref:`Open vSwitch <openvswitch>`, :ref:`802.1Q tagging <hm-vlan>` and :ref:`VXLAN <vxlan>`
--  :ref:`Virtual Router <router>` fully integrated with OpenNebula to provide basic L3 services like NATing, DHCP, DNS...
 
 Distributed Resource Optimization
 =================================

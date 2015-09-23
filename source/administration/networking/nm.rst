@@ -34,8 +34,6 @@ The administrator must take into account the following matrix that shows the com
 
 The Virtual Network isolation is enabled with any of the 801.1Q, vxlan, ebtables, vmware or ovswitch drivers. Additionally the drivers based on Linux bridges (vxlan, 802.1Q and ebtables) can be combined with security groups driver to allow a regular OpenNebula user to filter TCP, UDP or ICMP traffic.
 
-OpenNebula also comes with a :ref:`Virtual Router appliance <router>` that provides networking services like DHCP, DNS, etc.
-
 Tuning & Extending
 ==================
 

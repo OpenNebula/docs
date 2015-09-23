@@ -24,7 +24,6 @@ Drivers - Network
 * `#3093 <http://dev.opennebula.org/issues/3093>`_ Review the Open vSwitch flows
 * `#2961 <http://dev.opennebula.org/issues/2961>`_ review nic attach with 802.1Q
 * `#3250 <http://dev.opennebula.org/issues/3250>`_ WHITE_PORTS_TCP Network Filtering with Open vSwitch does not work
-* `#3349 <http://dev.opennebula.org/issues/3349>`_ The Virtual Router is not working
 
 Drivers - Storage
 ================================================================================

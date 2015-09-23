@@ -12,5 +12,4 @@ Networking
    Open vSwitch <openvswitch>
    Ebtables <ebtables>   
    VMware Networking <vmwarenet>
-   Virtual Router <router>
    

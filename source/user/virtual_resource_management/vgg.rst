@@ -414,8 +414,6 @@ Using the address within the VM
 
 Hypervisors can set the MAC address of a virtual NIC, but VMs need to obtain an IP address for it. In order to configure the IP inside the guest, you need to use one of the two available methods:
 
--  Instantiate a :ref:`Virtual Router <router>` inside each Virtual Network. The Virtual Router appliance contains a DHCP server that knows the IP assigned to each VM.
-
 -  Contextualize the VM. Please visit the :ref:`contextualization guide <cong>` to learn how to configure your Virtual Machines to automatically obtain an IP derived from the MAC.
 
 -  Use an custom external service (e.g. your own DHCP server)
