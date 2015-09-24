@@ -87,9 +87,8 @@ The :ref:`accounting records <accounting>` are individual Virtual Machine histor
 
 Virtual Machine Monitor Probes
 --------------------------------------------------------------------------------
-.. todo::
 
-    * Add templates to probes for import
+* Monitor probes return :ref:`two additional attributes (IMPORT_TEMPLATE and VM_NAME) <devel-im_vm_information>` for each found VM, to aid the import workflow.
 
 * When the monitor probe returns state 'e' for a Virtual Machine now it is moved to the ``UNKNOWN`` state. In previous versions VMs went to the ``FAILED`` state, now removed.
 
