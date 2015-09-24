@@ -1,10 +1,10 @@
 .. _whats_new:
 
-========================
-What's New in 4.14 Beta2
-========================
+==================
+What's New in 4.14
+==================
 
-OpenNebula 4.14 Beta2 (Great A'Tuin) ships with several improvements in different subsystems and components. The Sunstone interface has been completely refactored, for maintenance and performance reasons. Expect major improvements in Sunstone from now on. Also, we are sure you will like the subtle changes in the look and feel.
+OpenNebula 4.14 (Great A'Tuin) ships with several improvements in different subsystems and components. The Sunstone interface has been completely refactored, for maintenance and performance reasons. Expect major improvements in Sunstone from now on. Also, we are sure you will like the subtle changes in the look and feel.
 
 .. image:: /images/sunsdash414.png
     :width: 90%
@@ -16,7 +16,7 @@ Several major features have been introduced in Great A'Tuin. One of the most int
     :width: 90%
     :align: center
 
-Another major feature is the ability to resize an existing disk, for all the supported OpenNebula backends. If your VM needs more disk space than the one provided by the images used for its disk, you can now set a new size prior to instantiate the VM, OpenNebula will grow the disk and the guest OS will adapt the filesystem to the now bigger disk at boot time. The disk space is not an issue anymore.These two features (snapshot + resizing) are taken into account for quotas, accounting and showback, so cloud admins can keep track of disk usage in their infrastructure.
+Another major feature is the ability to resize an existing disk, for all the supported OpenNebula backends. If your VM needs more disk space than the one provided by the images used for its disk, you can now set a new size prior to instantiate the VM, OpenNebula will grow the disk and the guest OS will adapt the filesystem to the now bigger disk at boot time. The disk space is not an issue anymore. Moreover, cloud admins can now keep track of disk usage in their infrastructure since now disk consumption is taken into account for quotas, accounting and showback; and this calculations includes these two features (snapshot + resizing).
 
 To support HPC oriented infrastructures based on OpenNebula, 4.14 also enables the consumption of raw GPU devices existing on a physical host from a Virtual Machine. There is no overcommitment possible nor sharing of GPU devices among different Virtual Machines, so a new type of consumable has been defined in OpenNebula and taken into account by the scheduler. VMs can now request a GPU, and if OpenNebula finds one free resource of type GPU available, it will set up the VM with PCI passthrough access to the GPU resource, enabling applications to get the performance boost of the direct access to a GPU card.
 
@@ -24,17 +24,17 @@ To support HPC oriented infrastructures based on OpenNebula, 4.14 also enables t
     :width: 90%
     :align: center
 
-The ability to save VMs into VM Templates for later use is another feature that must be highlighted in this release. This new operation is accessible both from the cloud view and the admin Sunstone view, as well as from the command line interface.
+The ability to save VMs into VM Templates for later use is another feature that must be highlighted in this release. This new operation is accessible both from the cloud view and the admin Sunstone view, as well as from the command line interface. Another great improvement for cloud admins is a much better state management of VMs. It is now possible to recover VMs from failed state instructing OpenNebula to take the last action as success, to retry it or to make it fail gracefully, to recover for instance from failed migrations.
 
-One great improvement for cloud admins is a much better state management of VMs. It is now possible to recover VMs from failed state instructing OpenNebula to take the last action as success, to retry it or to make it fail gracefully, to recover for instance from failed migrations.
+OpenNebula users managing vCenter infrastructures will also benefit from this new versoin. VM importing workflow has been greatly improved through Sunstone, making it easier to import your existing workload into OpenNebula. Moreover, 4.14 adds the possibility to instruct OpenNebula whether or not it should save the disks and a very important contextualisation improvement now allows to directly pass scripts to be executed in boot time to vCenter VMs, increasing the flexibility in VM customisation from OpenNebula in vCenter.
 
-There are many other improvements in 4.14, like a more flexible definition of context network attributes, the ability to import running VMs not launched by OpenNebula from all the supported hypervisors (including the hybrid ones, for instance now it is possible to manage through OpenNebula Azure, SoftLayer and EC2 VMs launched through their respective management portals); the possibility to cold attach disks and network interfaces to powered off machines (which complements the hot attach functionality), improvements in accounting to keep track of disk usage, better logging in several areas, the ability to pass scripts to VMs for guest OS customization, and many others. A great effort was put in this release to help build and maintain robust private, hybrid and public clouds with OpenNebula.
+There are many other improvements in 4.14, like a more flexible definition of context network attributes, the ability to import running VMs not launched by OpenNebula from all the supported hypervisors (including the hybrid ones, for instance now it is possible to manage through OpenNebula Azure, SoftLayer and EC2 VMs launched through their respective management portals); the possibility to cold attach disks and network interfaces to powered off machines (which complements the hot attach functionality), improvements in accounting and showback to keep track of disk usage, better logging in several areas, the ability to pass scripts to VMs for guest OS customization, and many others. A great effort was put in this release to help build and maintain robust private, hybrid and public clouds with OpenNebula.
 
 This OpenNebula release is named after `Great A'Tuin <https://en.wikipedia.org/wiki/Discworld_(world)#Great_A.27Tuin>`__, the Giant Star Turtle (of the fictional species Chelys galactica) who travels through the Discworld universe's space, carrying four giant elephants who in turn carry the Discworld. Allegedly, it is "the only turtle ever to feature on the Hertzsprung–Russell diagram."
 
-The OpenNebula team is now set to bug-fixing mode. Note that this is a beta release aimed at testers and developers to try the new features, and send a more than welcomed feedback for the final release.
+Want to take OpenNebula 4.14 for a test drive? Use one of the `SandBoxes <http://opennebula.org/tryout/>`__ to try out OpenNebula in no time, or proceed to the :ref:`Quick Start guides <qs_guides>`. Great A'Tuin is considered to be a stable release and as such, and update is available in production environments.
 
-In the following list you can check the highlights of OpenNebula 4.14 Beta2. (`a detailed list of changes can be found here
+In the following list you can check the highlights of OpenNebula 4.14. (`a detailed list of changes can be found here
 <http://tinyurl.com/qd7esk5>`__):
 
 OpenNebula Core
