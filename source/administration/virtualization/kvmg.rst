@@ -63,7 +63,7 @@ OpenNebula uses the libvirt interface to interact with KVM, so the following ste
 -  The remote hosts must have the libvirt daemon running.
 -  The user with access to these remotes hosts on behalf of OpenNebula (typically ``<oneadmin>``) has to pertain to the <libvirtd> and <kvm> groups in order to use the deaemon and be able to launch VMs.
 
-.. warning:: If apparmor is active (by default in Ubuntu it is), you should add /var/lib/one to the end of /etc/apparmor.d/libvirt-qemu
+.. warning:: If apparmor is active (by default in Ubuntu it is), you should add ``/var/lib/one`` to the end of ``/etc/apparmor.d/abstractions/libvirt-qemu``
 
 .. code::
 
