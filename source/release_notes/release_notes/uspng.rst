@@ -81,6 +81,8 @@ Alternatively, use CentOS 6.5 or 7 repositories to install ruby dependencies.
 Nodes Platform Notes
 ====================
 
+-  Since OpenNebula 4.14 there is a new monitoring probe that gets information about PCI devices. By default it retrieves all the PCI devices in a host. To limit the PCI devices that it gets info and appear in ``onehost show`` refer to :ref:`kvm_pci_passthrough`.
+
 ESX 5.5 as VMware Node
 ======================
 
