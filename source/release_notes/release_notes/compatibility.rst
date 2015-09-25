@@ -77,6 +77,11 @@ The 4.12 ``onevm disk-snapshot`` action has now been renamed to ``onevm disk-sav
 * ``onevm disk-snapshot`` (deferred), can now be accomplished by running ``onevm poweroff`` and once it's in that state, any disk can be saved by doing a new operation called ``onevm disk-saveas``. Note that now you can directly run ``onevm shutdown`` on a machine that is in ``POWEROFF`` state (i.e. you don't need to resume the VM).
 * ``onevm disk-snapshot --live`` is now called ``onevm disk-saveas``
 
+Sunstone
+--------
+
+* The ``marketplace_url`` param in sunstone-server.conf should not include the /appliance path since it will be automatically included in order to support proxy configurations
+
 Developers and Integrators
 ================================================================================
 
@@ -143,3 +148,9 @@ This section lists all the changes in the API. Visit the :ref:`complete referenc
   * ``one.vm.recover`` now takes an integer as argument: 0 for failure, 1 for success and 2 for retries. Applications using the pre-4.14 interface may work because of the casting of the boolean recovery operation to the new integer value. However, given the extended functionality of the new recover implementation it is recommended to review the logic of any application using this API call.
   * ``one.vm.action``: The action string "boot" is not available anymore.
   * ``one.template.info``: New parameter, "extended", to process the template and include extended information such as the SIZE for each DISK.
+
+Sunstone
+--------
+
+* The Sunstone code base has been refactored and existing plugins develovep for OpenNebula < 4.14 will not work and should be adapted to the new module oriented implentation.
+
