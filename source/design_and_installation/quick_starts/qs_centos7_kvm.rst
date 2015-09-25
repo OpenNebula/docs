@@ -348,7 +348,6 @@ Further information
 
 -  :ref:`Planning the Installation <plan>`
 -  :ref:`Installing the Software <ignc>`
--  `FAQs. Good for troubleshooting <http://wiki.opennebula.org/faq>`__
 -  :ref:`Main Documentation <entry_point>`
 
 .. |image1| image:: /images/admin_view.png
