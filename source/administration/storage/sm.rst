@@ -83,9 +83,15 @@ There are some limitations and features depending on the transfer mechanism you 
 
 .. _storage_snapshot_compatilibity:
 
-.. todo::
+The following stable reflects the compatiblity of disk snapshotting and disk live snapshotting (ie, snapshotting with the VM in running state) for the different transfer manager drivers. This only applies for the kvm hypervisor.
 
-  Add another table or extend the previous one with snapshot compatiblity
++-------------------+--------+-----+-------+------+------+-----+--------+-----+
+|     Datastore     | shared | ssh | qcow2 | vmfs | ceph | lvm | fs_lvm | dev |
++===================+========+=====+=======+======+======+=====+========+=====+
+| Snapshotting      | x      | x   | x     |      | x    |     |        |     |
++-------------------+--------+-----+-------+------+------+-----+--------+-----+
+| Live Snapshotting |        |     | x     |      |      |     |        |     |
++-------------------+--------+-----+-------+------+------+-----+--------+-----+
 
 Datastore Attributes
 ====================
