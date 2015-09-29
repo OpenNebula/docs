@@ -35,6 +35,7 @@ Drivers - VM
 
 * `#3590 <http://dev.opennebula.org/issues/3590>`_ Delete operation leaves a poweroff instance registered in vCenter
 * `#3750 <http://dev.opennebula.org/issues/3750>`_ Xen (live) migration/suspend/resume is incompatible with disk/nic attach/detach
+* `#4007 <http://dev.opennebula.org/issues/4007>`_ New generation EC2 instance types have been included and the ec2_driver.conf must be updated to include them. https://raw.githubusercontent.com/OpenNebula/one/master/src/vmm_mad/remotes/ec2/ec2_driver.conf
 
 OneFlow
 ================================================================================
