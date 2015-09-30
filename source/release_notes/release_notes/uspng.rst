@@ -60,10 +60,11 @@ Because home directory of oneadmin is located in ``/var``, it violates SELinux d
 CentOS 7.0 Platform Notes
 -------------------------
 
-This distribution lacks some packaged ruby libraries. This makes some components unusable until they are installed. In the frontend, just after package installation these command should be executed as root to install extra dependencies:
+This distribution lacks some packaged ruby libraries. This makes some components unusable until they are installed. In the frontend, just after package installation these commands should be executed as root to install extra dependencies:
 
 .. code::
 
+    # yum install openssl-devel
     # /usr/share/one/install_gems
 
 When using Apache to serve Sunstone, it is required that you disable or comment the ``PrivateTMP=yes`` directive in ``/usr/lib/systemd/system/httpd.service``.
