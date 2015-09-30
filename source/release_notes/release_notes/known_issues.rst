@@ -52,6 +52,7 @@ Scheduler
 Sunstone
 ================================================================================
 
+* `#4011 <http://dev.opennebula.org/issues/4011>`_ Zone selector does not change zones
 * `#2292 <http://dev.opennebula.org/issues/2292>`_ sunstone novnc send ctrl-alt-del not working in Firefox
 * `#1877 <http://dev.opennebula.org/issues/1877>`_ if syslog enabled disable the logs tab in the VM detailed view
 * `#3796 <http://dev.opennebula.org/issues/3796>`_ sunstone ignores the no_proxy environment variable
