@@ -11,7 +11,7 @@ There are a couple of things to take into account:
 * It only works with ``vcenter`` drivers.
 * This system is not compatible with OpenNebula contextualization as this customization overwrites the networking changes made by context scripts.
 * VM network configuration must be done externaly to OpenNebula. Either with a DHCP server or manually setting IPs for each interface.
-* This system has been tested only with Windows 2008 R2. No tests with Linux distributions have been made.
+* This method can be used in all the `Guest OSs supported by vCenter <https://pubs.vmware.com/vsphere-60/index.jsp?topic=%2Fcom.vmware.vsphere.vm_admin.doc%2FGUID-E63B6FAA-8D35-428D-B40C-744769845906.html>`__.
 
 
 Getting the Available Customizations per Cluster
