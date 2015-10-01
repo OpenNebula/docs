@@ -42,6 +42,11 @@ The contextualization procedure is as follows:
 
 1. Download ``startup.vbs`` to the Windows VM (you can also send it via Context files) and write it to a path under ``C:``.
 2. Open the Local Group Policy Dialog by running ``gpedit.msc``. Under: Computer Configuration -> Windows Settings -> Scripts -> startup (right click); browse to the ``startup.vbs`` file and enable it as a startup script.
+3. Enable execution of scripts with the command:
+
+.. code::
+
+    C:\> Set-ExecutionPolicy Unrestricted
 
 Save the image by performing a deferred disk-snapshot of the OS disk, which will be saved upon ``shutdown``.
 
