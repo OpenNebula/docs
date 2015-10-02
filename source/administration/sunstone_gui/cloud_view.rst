@@ -254,6 +254,59 @@ The cloud view is enabled by default for all users and you can enable/disable it
 
 .. note:: Any user can change the current view in the Sunstone settings. Administrators can use this view without any problem if they find it easier to manage their VMs.
 
+
+Customizing the View
+====================
+
+The action availables for a given VM can be customized and extended by modifying the ``cloud.yaml`` file. You can even insert VM panels from the admin view into this view, for example to use the disk snapshots or scheduled actions.
+
+* Hiding the delete button
+
+.. code::
+
+    tabs:
+        provision-tab:
+            ...
+            actions: &provisionactions
+                ...
+                VM.shutdown_hard: false
+                VM.delete: false
+
+
+* Using undeploy instead of power off
+
+.. code::
+
+    tabs:
+        provision-tab:
+            ...
+            actions: &provisionactions
+                ...
+                VM.poweroff: false
+                VM.poweroff_hard: false
+                VM.undeploy: true
+                VM.undeploy_hard: true
+
+
+* Adding panels from the admin view, for example the disk snapshots tab
+
+.. code::
+
+    tabs:
+        provision-tab:
+            panel_tabs:
+                ...
+                vm_snapshot_tab: true
+                ...
+            ...
+            actions: &provisionactions
+                ...
+                VM.disk_snapshot_create: true
+                VM.disk_snapshot_revert: true
+                VM.disk_snapshot_delete: true
+
+|customizecloudview|
+
 .. |cloud_dash| image:: /images/cloud_dash.png
 .. |cloud_create_vm| image:: /images/cloud_create_vm.png
 .. |cloud_add_ssh_key| image:: /images/cloud_add_ssh_key.png
@@ -281,3 +334,4 @@ The cloud view is enabled by default for all users and you can enable/disable it
 .. |prepare-tmpl-flow-1| image:: /images/prepare-tmpl-flow-1.png
 .. |prepare-tmpl-flow-2| image:: /images/prepare-tmpl-flow-2.png
 .. |showback_template_wizard| image:: /images/showback_template_wizard.png
+.. |customizecloudview| image:: /images/customizecloudview.png
