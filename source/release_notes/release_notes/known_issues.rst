@@ -38,6 +38,11 @@ Drivers - VM
 * `#4007 <http://dev.opennebula.org/issues/4007>`_ New generation EC2 instance types have been included and the ec2_driver.conf must be updated to include them. https://raw.githubusercontent.com/OpenNebula/one/master/src/vmm_mad/remotes/ec2/ec2_driver.conf
 * `#4009 <http://dev.opennebula.org/issues/4009>`_ Importing vms from EC2 provides a wrong CPU value
 
+Drivers - IM
+================================================================================
+
+* `#4020 <http://dev.opennebula.org/issues/4020>`_ Monitoring fails for VMs that do not use CEPH or plain files for disk images (fix in the ticket)
+
 OneFlow
 ================================================================================
 
