@@ -17,6 +17,7 @@ Core & System
 * `#2502 <http://dev.opennebula.org/issues/2502>`_ deleting image in locked state leaves current operation in progress and files not cleaned
 * `#2488 <http://dev.opennebula.org/issues/2488>`_ A failed resume action will destroy and recreate the VM on the next resume
 * `#3139 <http://dev.opennebula.org/issues/3139>`_ Drivers do not work with rbenv
+* `#4000 <http://dev.opennebula.org/issues/4000>`_ History etime is not set if a onevm delete is executed while the VM is in state shutdown_undeploy
 
 Drivers - Network
 ================================================================================
