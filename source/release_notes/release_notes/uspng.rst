@@ -48,6 +48,8 @@ The following applies to all Front-Ends:
 
 - older ruby versions are not supported for **cloud bursting** (precisely for Microsoft Azure and IBM SoftLayer) and the :ref:`Sunstone commercial support integration <commercial_support_sunstone>`. For those supported distros with ruby versions <= 1.9.3 (like Centos 6.x) please update the ruby installation or use `rvm <https://rvm.io/>`__ to run a newer (>= 1.9.3) version (remember to run ``install_gems`` after the ruby upgrade is done to reinstall all gems)
 
+- **OneFlow** requires a version >= 1.6.3 for treetop, packages distributed with Debian 8 includes an older version (1.4.5) and must be removed
+
 
 CentOS Platform Notes
 =====================
