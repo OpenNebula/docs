@@ -218,10 +218,7 @@ Under ``/var/lib/one/remotes/``:
 -  **tm/ceph/ln**: Does nothing since it's handled by libvirt.
 -  **tm/ceph/clone**: Copies the image to a new image.
 -  **tm/ceph/mvds**: Saves the image in a Ceph block device for SAVE\_AS.
--  **tm/ceph/delete**: Removes non-persistent image volumes and files.
--  **tm/ceph/snap_create**: Creates a disk snapshot.
--  **tm/ceph/snap_delete**: Deletes a disk snapshot.
--  **tm/ceph/snap_revert**: Reverts to an exisiting disk snapshot.
+-  **tm/ceph/delete**: Removes a non-persistent image from the Virtual Machine directory if it hasn't been subject to a ``disk-snapshot`` operation.
 
 Using SSH System Datastore
 --------------------------
