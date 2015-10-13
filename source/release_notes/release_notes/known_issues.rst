@@ -18,6 +18,13 @@ Core & System
 * `#3139 <http://dev.opennebula.org/issues/3139>`_ Drivers do not work with rbenv
 * `#3888 <http://dev.opennebula.org/issues/3888>`_ An image can be used twice by a VM, but this breaks the used/ready logic
 
+Federation
+================================================================================
+
+* `#4030 <http://dev.opennebula.org/issues/4030>`_ onedb fsck will drop the group_pool table in the slave databases.
+
+To fix #4030, replace your ``/usr/lib/one/ruby/onedb/fsck.rb`` with the `latest file in the repositoty <http://dev.opennebula.org/projects/opennebula/repository/revisions/one-4.14/entry/src/onedb/fsck.rb>`_.
+
 Drivers - Network
 ================================================================================
 
