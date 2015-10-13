@@ -35,9 +35,6 @@ To perform the first step, `pause the replication <http://dev.mysql.com/doc/refm
 
 Then follow this guide for the **master zone**. After the master has been updated to 4.14, upgrade each **slave zone** following this same guide.
 
-.. warning::
-    There is a bug in the fsck code shipped with OpenNebula 4.14.0 that will delete the group_pool table in the **slave databases** of a federation. Please go to the known issues page to fix bug #4030 in the fsck tool.
-
 Preparation
 ===========
 
