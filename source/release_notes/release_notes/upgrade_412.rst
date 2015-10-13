@@ -17,9 +17,6 @@ The only compatibility issue is in the Sunstone web interface. If your users acc
 
 The rest of the guide applies to both a master or slave Zone. You don't need to stop the federation or the MySQL replication to follow this guide.
 
-.. warning::
-    There is a bug in the fsck code shipped with OpenNebula 4.14.0 that will delete the group_pool table in the **slave databases** of a federation. Please go to the known issues page to fix bug #4030 in the fsck tool.
-
 Preparation
 ===========
 
