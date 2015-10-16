@@ -33,6 +33,8 @@ This is the list of the individual platform components that have been through th
 | IBM SoftLayer                | Current API version                   |   |   |
 +------------------------------+---------------------------------------+---+---+
 
+.. note:: Generally for all Linux platforms, it is worth noting that gems should be installed with the :ref:`install_gems <ruby_runtime>`, avoiding the platform's package version.
+
 Front-End Platform Notes
 ========================
 
@@ -73,6 +75,10 @@ When using Apache to serve Sunstone, it is required that you disable or comment 
 
 There is an automatic job that removes all data from ``/var/tmp/``, in order to disable this, please edit the ``/usr/lib/tmpfiles.d/tmp.conf`` and re ove the line that removes ``/var/tmp``.
 
+Ubuntu 14.04 Platform Notes
+===========================
+
+Package ruby-ox shouldn't be installed as it cointains a version of the gem incompatible with the CLI
 
 RedHat 6.5 & 7.0 Platform Notes
 ===============================
