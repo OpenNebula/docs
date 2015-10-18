@@ -22,7 +22,7 @@ There are different user types in the OpenNebula system:
 -  **Public users** can only access OpenNebula through a public API (EC2), hence they can only use a limited set of functionality and can not access the xml-rpc API directly (nor any application using it like the CLI or SunStone )
 -  User **serveradmin** is also created the first time OpenNebula is started. Its password is created randomly, and this account is used by the :ref:`Sunstone <sunstone>` and :ref:`EC2 <ec2qcg>` servers to interact with OpenNebula.
 
-.. note:: The complete OpenNebula approach to user accounts, groups and VDC is explained in more detain in the :ref:`Understanding OpenNebula <understand>` guide.
+.. note:: The complete OpenNebula approach to user accounts, groups and VDC is explained in more detail in the :ref:`Understanding OpenNebula <understand>` guide.
 
 Shell Environment
 ================================================================================
