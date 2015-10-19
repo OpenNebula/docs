@@ -64,3 +64,4 @@ Sunstone
 * `#1877 <http://dev.opennebula.org/issues/1877>`_ if syslog enabled disable the logs tab in the VM detailed view
 * `#3796 <http://dev.opennebula.org/issues/3796>`_ sunstone ignores the no_proxy environment variable
 * `#4049 <http://dev.opennebula.org/issues/4049>`_ VM Template wizard input INIT_SCRIPTS is not working. Values from this input are inserted instead as FILES_DS.
+* `#4053 <http://dev.opennebula.org/issues/4053>`_ Service Templates using virtual networks cannot be instantiated from the cloud view
