@@ -80,7 +80,7 @@ Note that OpenNebula will not verify that the user is holding a valid certificat
 
 .. warning:: Sunstone x509 auth method only handles the authentication of the user at the time of login. Authentication of the user certificate is a complementary setup, which can rely on Apache.
 
-Remote Auth
+remote Auth
 ---------
 
 This method is similar to x509 auth. It performs the login to OpenNebula based on a Kerberos ``REMOTE_USER``. The ``USER@DOMAIN`` is extracted from ``REMOTE_USER`` variable and matched to the password value in the user database.
@@ -103,11 +103,11 @@ To enable this login method, set the ``:auth:`` option of ``/etc/one/sunstone-se
 
         :auth: remote
 
-The login screen will not display the username and password fields anymore, as all information is fetched from Kerberos/freeIPA
+The login screen will not display the username and password fields anymore, as all information is fetched from Kerberos server or a remote authentication service.
 
-Note that OpenNebula will not verify that the user is holding a valid Kerberos ticket at the time of login: this is expected to be done by the external container of the Sunstone server (normally Apache), whose job is to tell the user's browser that the site requires a valid Kerberos ticket to login.
+Note that OpenNebula will not verify that the user is holding a valid Kerberos ticket at the time of login: this is expected to be done by the external container of the Sunstone server (normally Apache), whose job is to tell the user's browser that the site requires a valid ticket to login.
 
-.. warning:: Sunstone remote auth method only handles the authentication of the user at the time of login. Authentication of the Kerberos ticket is a complementary setup, which can rely on Apache.
+.. warning:: Sunstone remote auth method only handles the authentication of the user at the time of login. Authentication of the remote ticket is a complementary setup, which can rely on Apache.
 
 Configuring a SSL Proxy
 =======================
