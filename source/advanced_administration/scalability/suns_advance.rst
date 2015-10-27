@@ -140,7 +140,6 @@ Next thing we have to do is configure the virtual host that will run our Sunston
 
 Now the configuration should be ready, restart -or reload apache configuration- to start the application and point to the virtual host to check if everything is running.
 
-
 Running Sunstone behind nginx SSL Proxy
 ---------------------------------------
 
@@ -183,6 +182,40 @@ And this is the changes that have to be made to sunstone-server.conf:
     :vnc_proxy_ipv6: false
 
 If using a selfsigned cert, the connection to VNC window in Sunstone will fail, either get a real cert, or manually accept the selfsigned cert in your browser before trying it with Sunstone.  Now, VNC sessions should show "encrypted" in the title.
+
+Running Sunstone with Passenger using FreeIPA/Kerberos auth in Apache
+---------------------------------------------------------------------
+
+It is also possible to use Sunstone ``remote`` authentication with Apache and Passenger. The configuration in this case is quite similar to Passenger configuration but we must include the Apache auth module line. How to configure freeIPA server and Kerberos is outside of the scope of this document, you can get more info in `FreeIPA Apache setup example <http://www.freeipa.org/page/Web_App_Authentication/Example_setup>`__
+
+As example to include Kerberos authentication we can use two different modules: ``mod_auth_gssapi`` or ``mod_authnz_pam``
+And generate the keytab for http service, here is an example with Passenger:
+
+.. code::
+
+    LoadModule auth_gssapi_module modules/mod_auth_gssapi.so
+
+    <VirtualHost *:80>
+      ServerName sunstone-server
+      PassengerUser oneadmin
+      # !!! Be sure to point DocumentRoot to 'public'!
+      DocumentRoot /usr/lib/one/sunstone/public
+      <Directory /usr/lib/one/sunstone/public>
+         # Only is possible to access to this dir using a valid ticket
+         AuthType GSSAPI
+         AuthName "EXAMPLE.COM login"
+         GssapiCredStore keytab:/etc/http.keytab
+         Require valid-user
+         ErrorDocument 401 '<html><meta http-equiv="refresh" content="0; URL=https://yourdomain"><body>Kerberos authentication did not pass.</body></html>'
+         AllowOverride all
+         # MultiViews must be turned off.
+         Options -MultiViews
+      </Directory>
+    </VirtualHost>
+
+.. note:: User must generate a valid ticket running ``kinit`` to get acces to Sunstone service. You can also set a custom 401 document to warn users about any authentication failure.
+
+Now our configuration is ready to use Passenger and Kerberos, restart -or reload apache configuration- and point to the virtual host using a valid ticket to check if everything is running.
 
 Running Sunstone in Multiple Servers
 ------------------------------------

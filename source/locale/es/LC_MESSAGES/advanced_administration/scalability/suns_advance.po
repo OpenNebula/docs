@@ -250,10 +250,40 @@ msgid ""
 msgstr ""
 
 #: ../../source/advanced_administration/scalability/suns_advance.rst:134
-msgid "Running Sunstone in Multiple Servers"
+msgid "Running Sunstone with Passenger using FreeIPA/Kerberos auth in Apache"
 msgstr ""
 
 #: ../../source/advanced_administration/scalability/suns_advance.rst:136
+msgid ""
+"It is also possible to use Sunstone ``remote`` authentication with Apache "
+"and Passenger. The configuration in this case is quite similar to Passenger "
+"configuration but we must include the Apache auth module line. How to "
+"configure freeIPA server and Kerberos is outside of the scope of this "
+"document, you can get more info in `FreeIPA Apache setup example "
+"<http://www.freeipa.org/page/Web_App_Authentication/Example_setup>`__"
+msgstr ""
+
+#: ../../source/advanced_administration/scalability/suns_advance.rst:142
+msgid ""
+"As example to include Kerberos authentication we can use two different "
+"modules: ``mod_auth_gssapi`` or ``mod_authnz_pam``."
+"And generate the keytab for http service, here is an example with Passenger:"
+msgstr ""
+
+#: ../../source/advanced_administration/scalability/suns_advance.rst:166
+msgid ""
+"Now our configuration is ready to use Passenger and Kerberos, restart -or "
+"reload apache configuration- and point to the virtual host using a valid "
+"ticket to check if everything is running."
+msgstr ""
+
+
+
+#: ../../source/advanced_administration/scalability/suns_advance.rst:169
+msgid "Running Sunstone in Multiple Servers"
+msgstr ""
+
+#: ../../source/advanced_administration/scalability/suns_advance.rst:171
 msgid ""
 "You can run Sunstone in several servers and use a load balancer that "
 "connects to them. Make sure you are using ``memcache`` for sessions and both"
