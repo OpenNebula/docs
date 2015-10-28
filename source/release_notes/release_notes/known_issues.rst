@@ -70,3 +70,5 @@ Sunstone
 * `#3796 <http://dev.opennebula.org/issues/3796>`_ sunstone ignores the no_proxy environment variable
 * `#4049 <http://dev.opennebula.org/issues/4049>`_ VM Template wizard input INIT_SCRIPTS is not working. Values from this input are inserted instead as FILES_DS.
 * `#4053 <http://dev.opennebula.org/issues/4053>`_ Service Templates using virtual networks cannot be instantiated from the cloud view
+* `#4100 <http://dev.opennebula.org/issues/4100>`_ Cloud view wizard for new user : inputs for quotas cannot be edited
+* `#4104 <http://dev.opennebula.org/issues/4104>`_ Cloud view: When updating quotas, sliders do not change the input values
