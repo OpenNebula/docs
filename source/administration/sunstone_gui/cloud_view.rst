@@ -258,7 +258,7 @@ The cloud view is enabled by default for all users and you can enable/disable it
 Customizing the View
 ====================
 
-The action availables for a given VM can be customized and extended by modifying the ``cloud.yaml`` file. You can even insert VM panels from the admin view into this view, for example to use the disk snapshots or scheduled actions.
+The actions available for a given VM can be customized and extended by modifying the ``cloud.yaml`` file. You can even insert VM panels from the admin view into this view, for example to use the disk snapshots or scheduled actions.
 
 * Hiding the delete button
 
