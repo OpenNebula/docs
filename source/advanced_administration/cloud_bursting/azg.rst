@@ -205,6 +205,8 @@ These are the attributes that can be used in the PUBLIC_CLOUD section of the tem
 | ``AFFINITY_GROUP``       | Affinity groups allow you to group your Azure services to optimize performance. All services and VMs within an affinity group will be located in the same region belong                             |
 +--------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
+.. note:: The PUBLIC_CLOUD sections allow for substitions from template and virtual network variables, the same way as the :ref:`CONTEXT section allows <cong_defining_context>`.
+
 
 Default values for all these attributes can be defined in the ``/etc/one/az_driver.default`` file.
 
