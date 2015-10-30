@@ -280,6 +280,8 @@ Ask for User Inputs
 
 The User Inputs functionality provides the template creator with the possibility to dynamically ask the user instantiating the template for dynamic values that must be defined.
 
+User input can be of type text, password or text64, the latter will be encoded in base64 before they passed to the VM.
+
 |prepare-tmpl-user-input-1|
 
 These inputs will be presented to the user when the Template is instantiated. The VM guest needs to be :ref:`contextualized <bcont>` to make use of the values provided by the user.

@@ -174,6 +174,15 @@ Default values for all these attributes can be defined in the ``/etc/one/ec2_dri
       </EC2>
     </TEMPLATE>
 
+This values can furthermore be asked to the user using :ref:`user inputs <vm_guide_user_inputs>`. A common scenario is to delegate the User Data to the end user. For that, a new User Input named USERDATA can be created of text64 (the User Data needs to be encoded on base64) and a placeholder added to the EC2 section:
+
+.. code::
+    
+    EC2 = [ AMI="ami-00bafcb5",
+            KEYPAIR="gsg-keypair",
+            INSTANCETYPE=m1.small,
+            USERDATA="$USERDATA"]
+
 .. _ec2g_multi_ec2_site_region_account_support:
 
 Multi EC2 Site/Region/Account Support
