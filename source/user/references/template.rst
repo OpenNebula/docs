@@ -828,6 +828,7 @@ User Inputs
     USER_INPUTS = [
       BLOG_TITLE="M|text|Blog Title",
       MYSQL_PASSWORD="M|password|MySQL Password",
+      INIT_HOOK="M|text64|You can write a script that will be run on startup",
       <VAR>="M|<type>|<desc>"
     ]
 
@@ -837,4 +838,4 @@ User Inputs
 
 Note that the CONTEXT references the variables defined in the USER_INPUTS so the value is injected into the VM.
 
-Valid ``types`` are ``text`` and ``password``.
+Valid ``types`` are ``text``, ``text64`` and ``password``. The type ``text64`` will encode the user's response in Base64.
