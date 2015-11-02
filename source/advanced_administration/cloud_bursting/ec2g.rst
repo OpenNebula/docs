@@ -15,6 +15,8 @@ You should take into account the following technical considerations when using t
 
 -  By default OpenNebula will always launch m1.small instances, unless otherwise specified.
 
+-  Monitoring of VMs in EC2 is done through CloudWatch. Only information related to the consumption of CPU and Networking (both inbound and outbound) is collected, since CloudWatch does not offer information of guest memory consumption.
+
 Please refer to the EC2 documentation to obtain more information about Amazon instance types and image management:
 
 -  `General information of instances <http://aws.amazon.com/ec2/instance-types/>`__
@@ -324,9 +326,9 @@ Also you can see information (like IP address) related to the amazon instance la
 
     VIRTUAL MACHINE MONITORING
     USED MEMORY         : 0K
-    NET_RX              : 0K
-    NET_TX              : 0K
-    USED CPU            : 0
+    NET_RX              : 208K
+    NET_TX              : 4K
+    USED CPU            : 0.2
 
     PERMISSIONS
     OWNER               : um-
