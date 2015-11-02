@@ -72,3 +72,4 @@ Sunstone
 * `#4053 <http://dev.opennebula.org/issues/4053>`_ Service Templates using virtual networks cannot be instantiated from the cloud view
 * `#4100 <http://dev.opennebula.org/issues/4100>`_ Cloud view wizard for new user : inputs for quotas cannot be edited
 * `#4104 <http://dev.opennebula.org/issues/4104>`_ Cloud view: When updating quotas, sliders do not change the input values
+* `#4122 <http://dev.opennebula.org/issues/4122>`_ When a template with DISK_COST is instantiated, the value shown as disk cost is not the actual value. The cost is multiplied as GB/hour instead of the correct MB/hour
