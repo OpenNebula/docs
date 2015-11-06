@@ -371,6 +371,8 @@ The configuration for each driver is defined in the TM\_MAD\_CONF section. These
 
 -  **shared** : determines if the storage holding the system datastore is shared among the different hosts or not. Valid values: *yes* or *no*.
 
+- **ds_migrate**: set if system datastore migrations are allowed for this TM. Only useful for system datastore TMs.
+
 Sample configuration:
 
 .. code::
@@ -386,7 +388,8 @@ Sample configuration:
         name        = "shared",
         ln_target   = "NONE",
         clone_target= "SYSTEM",
-        shared      = "yes"
+        shared      = "yes",
+        ds_migrate  = "yes"
     ]
 
 Datastore Driver
