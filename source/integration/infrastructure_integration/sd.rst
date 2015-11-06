@@ -218,6 +218,12 @@ Action scripts needed when the TM is used for the system datastore:
    -  ``vm_id`` is the id of the VM
    -  ``ds_id`` is the target datastore (the system datastore)
 
+-  **monitor**: monitors a **shared** system datastore. Distributed system datastores are monitored through the monitor probes.
+
+   -  **ARGUMENTS**: ``datastore_action_dump image_id``
+   -  **RETURNS**: ``monitor data``
+   -  ``datastore_image_dump`` is an XML dump of the driver action encoded in Base 64. See a decoded :ref:`example <sd_dump>`.
+   -  ``monitor data`` The monitoring information of the datastore, namely “USED\_MB=...\\nTOTAL\_MB=...\\nFREE\_MB=...” which are respectively the used size of the datastore in MB, the total capacity of the datastore in MB and the available space in the datastore in MB.
 
 .. note:: If the TM is only for regular images you only need to implement the first group.
 
