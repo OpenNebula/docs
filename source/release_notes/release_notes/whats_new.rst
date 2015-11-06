@@ -81,6 +81,13 @@ OpenNebula Drivers :: Virtualization
 - **Running VMs support** , ability to :ref:`import VMs <import_wild_vms>` running in hypervisors (all of them now supported, even the hybrids) that have not being launched by OpenNebula.
 - **Spice support for more hypervisors**, now supported as well in :ref:`XEN <xeng>`.
 - **Control how disks are managed in vCenter**, through :ref:`a new VM template variable <vm_template_definition_vcenter>`. Protect users data against accidental deletions.
+- **PUBLIC_CLOUD sections allow for substitions** from template and virtual network variables, the same way as the :ref:`CONTEXT section allows <cong_defining_context>`.
+-	 **OneGate token now available in vCenter**. Now is possible to access the :ref:`OneGate server <onegate_overview>` from vCenter VMs since the onegate token is passed through to the VM.
+
+
+OpenNebula Drivers :: Monitor Information
+--------------------------------------------------------------------------------
+* **EC2 cpu and network monitoring**, using :ref:`Amazon CloudWatch service <ec2g>`.
 
 Scheduler
 --------------------------------------------------------------------------------

@@ -49,6 +49,11 @@ Any application checking for that ``FAILED`` state need to be upgraded for the n
 * PROLOG_RESUME_FAILURE
 * PROLOG_UNDEPLOY_FAILURE
 
+Template Substitutions
+----------------------
+
+Now available in the PUBLIC_CLOUD tag the same way as the :ref:`CONTEXT section allows <cong_defining_context>`.
+
 Virtual Machine Hooks
 --------------------------------------------------------------------------------
 Hooks on ``FAILED`` states are no longer needed; any automatic recovery action needs to be hooked on the new ``LCM_STATES``.
@@ -153,4 +158,3 @@ Sunstone
 --------
 
 * The Sunstone code base has been refactored and existing plugins develovep for OpenNebula < 4.14 will not work and should be adapted to the new module oriented implentation.
-
