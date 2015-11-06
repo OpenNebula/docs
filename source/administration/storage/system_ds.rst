@@ -34,6 +34,9 @@ There are three system datastore types, based on the TM\_MAD driver used:
 -  ``shared``, the storage area for the system datastore is a shared directory across the hosts.
 -  ``vmfs``, a specialized version of the shared one to use the vmfs file system. The infrastructure notes explained here for 'shared' apply to vmfs. Then please follow to the specific :ref:`VMFS storage guide here <vmware_ds>`.
 -  ``ssh``, uses a local storage area from each host for the system datastore
+-  ``ceph``, uses Ceph to store volatile and swap disks, and checkpoint files, but the context and deployment files are still stored locally
+
+.. _system_ds_shared:
 
 The Shared System Datastore
 ---------------------------
@@ -54,6 +57,37 @@ The SSH System Datastore
 In this case the system datastore is distributed among the hosts. The ssh transfer driver uses the hosts' local storage to place the images of running VMs (as opposed to a shared FS in the shared driver). All the operations are then performed locally but images have to be copied always to the hosts, which in turn can be a very resource demanding operation. Also this driver prevents the use of live-migrations between hosts.
 
 |image1|
+
+.. _system_ds_ceph:
+
+The Ceph System Datastore
+-------------------------
+
+The :ref:`Ceph Image Datastore <ceph_ds>` works **both** with the Shared System datastores, and with the specific Ceph System datastore. The Ceph System datatastore has the advantage that it does not require the set-up of a shared file-system and everything is stored in the Ceph backend.
+
+The Ceph System Datastore is created with the :ref:`same attributes as the Ceph Image Datastore <ceph_ds_configuring>`, **with the exception that DS_MAD is not specified**.
+
+The following table summarizes the behaviour of both system datastores:
+
++---------------------+-------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------+
+|                     |                            Shared                           |                                                            Ceph                                                           |
++=====================+=============================================================+===========================================================================================================================+
+| Volatile and Swap   | Stored in the shared fs                                     | Stored in the Ceph System Datastore                                                                                       |
++---------------------+-------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------+
+| Checkpoint          | Stored in the shared fs                                     | Saved temporarily to the local hypervisor filesystem and then dumped to the Ceph System Datastore                         |
++---------------------+-------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------+
+| Deployment file     | Stored in the shared fs                                     | Stored locally in the hypervisor                                                                                          |
++---------------------+-------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------+
+| Context             | Stored in the shared fs                                     | Stored locally in the hypervisor                                                                                          |
++---------------------+-------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------+
+| Live-Migration      | Allowed. Files are already avaiable in the destination host | Allowed. Local files (context and deployment) are scp'd to the target host, and removed from the source host upon success |
++---------------------+-------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------+
+| System DS Migration | Allowed. Does not affect the Ceph images                    | Not allowed                                                                                                               |
++---------------------+-------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------+
+
+.. warning::
+
+    As the checkpoint file is temporarily first saved to the hypervisor local filessystem, it needs to have enough scratch space to store it. The path where the checkpoint file will be written to is `$DATASTORE_LOCATION/<ds_id>/<vm_id>`, which is the same as with the other system datastores.
 
 The System and Image Datastores
 -------------------------------

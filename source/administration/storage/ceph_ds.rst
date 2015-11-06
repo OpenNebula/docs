@@ -55,9 +55,21 @@ Configuration
 Configuring the System Datastore
 --------------------------------
 
-To use ceph drivers, the system datastore will work both with ``shared`` or as ``ssh``. This sytem datastore will hold only the symbolic links to the block devices, so it will not take much space. See more details on the :ref:`System Datastore Guide <system_ds>`
+To use Ceph drivers the system datastore must be either :ref:`Shared <system_ds_shared>` or :ref:`Ceph <system_ds_ceph>`. Make sure to read both guides to understand the differences of using either one. A short summary:
 
-It will also be used to hold context images and Disks created on the fly, they will be created as regular files.
++------------------------------------------------------------------------+---------------------------------------------------------------------------------+
+|                                 Shared                                 |                                       Ceph                                      |
++========================================================================+=================================================================================+
+| Volatile and swap disks are created as regular files in the hypervisor | Volatile and swap disks are created as rbd volumes in the Ceph system datastore |
++------------------------------------------------------------------------+---------------------------------------------------------------------------------+
+| Requires setting up NFS, CephFS or another shared filesystem solution  | Only requires the Ceph backend                                                  |
++------------------------------------------------------------------------+---------------------------------------------------------------------------------+
+| Supports System DS Migration                                           | Does not support System DS Migration                                            |
++------------------------------------------------------------------------+---------------------------------------------------------------------------------+
+| Supports Live Migration                                                | Supports Live Migration                                                         |
++------------------------------------------------------------------------+---------------------------------------------------------------------------------+
+
+.. _ceph_ds_configuring:
 
 Configuring Ceph Datastores
 ---------------------------
@@ -221,9 +233,3 @@ Under ``/var/lib/one/remotes/``:
 -  **tm/ceph/clone**: Copies the image to a new image.
 -  **tm/ceph/mvds**: Saves the image in a Ceph block device for SAVE\_AS.
 -  **tm/ceph/delete**: Removes a non-persistent image from the Virtual Machine directory if it hasn't been subject to a ``disk-snapshot`` operation.
-
-Using SSH System Datastore
---------------------------
-
-Another option would be to manually patch the post and pre-migrate scripts for the **ssh** system datastore to ``scp`` the files residing in the system datastore before the live-migration. `Read more <http://lists.opennebula.org/pipermail/users-opennebula.org/2013-April/022705.html>`__.
-
