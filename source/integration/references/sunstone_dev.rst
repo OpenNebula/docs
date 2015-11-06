@@ -4,7 +4,7 @@
 Sunstone Development
 ====================
 
-In OpenNebula 4.14 the graphical interface code, aka Sunstone, was redesigned and modularized to improve the code readibility and ease the task of adding new components. Now, each component (tab, panel, form...) is defined in a separated module using `requirejs <http://requirejs.org/>`__ and HTML code is now defined in separated files using `Handlebars <http://handlebarsjs.com/>`__ templates. External libraries are handled using `Bower <http://bower.io/>`__ a Javascript package manager. `Zurb Foundation <http://foundation.zurb.com/>`__ is used for the styles and layout of the web and additional CSS styles are added using `SASS <http://sass-lang.com/>`__. `Grunt <http://gruntjs.com/>`__ is used as a tasker to automate the different processes to generate the optimized files.
+In OpenNebula 4.14 the graphical interface code, Sunstone, was redesigned and modularized to improve the code readibility and ease the task of adding new components. Now, each component (tab, panel, form...) is defined in a separate module using `requirejs <http://requirejs.org/>`__ and HTML code is now defined in separate files using `Handlebars <http://handlebarsjs.com/>`__ templates. External libraries are handled using `Bower <http://bower.io/>`__, a Javascript package manager. `Zurb Foundation <http://foundation.zurb.com/>`__ is used for the styles and layout of the web and additional CSS styles are added using `SASS <http://sass-lang.com/>`__. `Grunt <http://gruntjs.com/>`__ is used as a tasker to automate the different processes to generate the optimized files.
 
 RequireJS
 =========
@@ -27,7 +27,7 @@ This is an example of the images-tab files layout:
 
 And how the different modules are used in the images-tab file:
 
-.. code::
+.. code-block:: javascript
   
   /* images-tab.js content */
 
@@ -54,7 +54,7 @@ Handlebars
 
 `Handlebars <http://handlebarsjs.com/>`__ provides the power necessary to let you build semantic templates and is largely compatible with Mustache templates. 
 
-.. code::
+.. code-block:: html+handlebars
 
   <div id="comments">
     {{#each comments}}
@@ -65,7 +65,7 @@ Handlebars
 
 The integration between `Handlebars <http://handlebarsjs.com/>`__  and `requirejs <http://requirejs.org/>`__ is done using the `Handlebars plugin for requirejs <https://github.com/SlexAxton/require-handlebars-plugin>`__, that allows you to use the templates just adding a prefix to the require call
 
-.. code::
+.. code-block:: javascript
 
   var TemplateHTML = require('hbs!./auth-driver/html');
   return TemplateHTML({
@@ -73,9 +73,9 @@ The integration between `Handlebars <http://handlebarsjs.com/>`__  and `requirej
     'userCreationHTML': this.userCreation.html()
   });
 
-Additional helpers can be defined just creating a new file inside the ''app/templates/helpers'' folder. These helpers will be available for any template of the app.
+Additional helpers can be defined just creating a new file inside the ``app/templates/helpers`` folder. These helpers will be available for any template of the app.
 
-.. code::
+.. code-block:: html+handlebars
 
   {{#isTabActionEnabled "vms-tab" "VM.attachdisk"}}
   <span class="right">
@@ -96,10 +96,10 @@ The Zurb Foundation configuration parameters are defined in the ``app/scss/setti
 Modifying JS & CSS files
 ========================
 
-Sunstone can be run in two different environment:
+Sunstone can be run in two different environments:
 
 - Production, using the minified css ``css/app.min.css`` and javascript ``dist/main.js`` files. 
-- Development, using the non minified css ``css/app.css`` and javascript files ``app/main.js`. Note that each file/module will be retrieved in a different HTTP request and the app will take longer to start, therefore it is not recommended for production environments
+- Development, using the non minified css ``css/app.css`` and javascript files ``app/main.js``. Note that each file/module will be retrieved in a different HTTP request and the app will take longer to start, therefore it is not recommended for production environments
 
 By default Sunstone is configured to use the minified files, therefore any change in the source code will not apply until the minified files are generated again. But you can set the ``env`` parameter in sunstone-server.conf to ``dev`` to use the non minified files and test your changes.
 
@@ -188,7 +188,7 @@ New tabs can be included following these steps:
 * Add your code inside the ``app`` folder. The tab must be provided as a module.
 * Include the new tab as a dependency in the ``app/main.js`` file for the ``app`` module.
 
-.. code::
+.. code-block:: javascript
 
   shim: {
     'app': {
@@ -203,7 +203,7 @@ New tabs can be included following these steps:
 
 * Include the tab configuration inside the different Sunstone views ``/etc/one/sunstone-views/(admin|user|...).yaml``
 
-.. code::
+.. code-block:: yaml
 
   enabled_tabs:
     dashboard-tab: true
@@ -224,12 +224,12 @@ New tabs can be included following these steps:
 
 * Generate the minified files including the new tab by running the ``grunt requirejs`` command.
 
-You can see an example of external tabs and custom routes for AppMarket in its own ``Github repository <https://github.com/OpenNebula/addon-appmarket/tree/master/src/sunstone>``
+You can see an example of external tabs and custom routes for AppMarket in its own `Github repository <https://github.com/OpenNebula/addon-appmarket/tree/master/src/sunstone>`_
  
 Custom Routes for Sunstone Server
 =================================
 
-:ref:`OpenNebula Sunstone <sunstone>` server plugins consist a set files defining custom routes. Custom routes will have priority over default routes and allow administrators to integrate their own custom controllers in the Sunstone Server.
+:ref:`OpenNebula Sunstone <sunstone>` server plugins consist of a set files defining custom routes. Custom routes will have priority over default routes and allow administrators to integrate their own custom controllers in the Sunstone Server.
 
 Configuring Sunstone Server Plugins
 ------------------------------------
@@ -239,7 +239,7 @@ It is very easy to enable custom plugins:
 #. Place your custom routes in the ``/usr/lib/one/sunstone/routes`` folder.
 #. Modify ``/etc/one/sunstone-server.conf`` to indicate which files should be loaded, as shown in the following example:
 
-.. code::
+.. code-block:: yaml
 
     # This will load ''custom.rb'' and ''other.rb'' plugin files.
     :routes:
@@ -253,7 +253,7 @@ Sunstone server is a `Sinatra <http://www.sinatrarb.com/>`__ application. A serv
 
 The following example defines 4 custom routes:
 
-.. code::
+.. code-block:: ruby
 
     get '/myplugin/myresource/:id' do
         resource_id = params[:id]
@@ -272,11 +272,11 @@ The following example defines 4 custom routes:
         # code
     end
 
-Custom routes take preference over Sunstone server routes. In order to easy debugging and ensure that plugins are not interfering with each others, we recommend however to place the routes in a custom namespace (``myplugin`` in the example).
+Custom routes take preference over Sunstone server routes. In order to ease debugging and ensure that plugins are not interfering with each other, we recommend however to place the routes in a custom namespace (``myplugin`` in the example).
 
-From the plugin code routes, there is access to all the variables, helpers etc which are defined in the main sunstone application code. For example:
+From the plugin code routes, there is access to all the variables, helpers, etc. which are defined in the main sunstone application code. For example:
 
-.. code::
+.. code-block:: ruby
 
     opennebula_client = $cloud_auth.client(session[:user])
     sunstone_config = $conf
