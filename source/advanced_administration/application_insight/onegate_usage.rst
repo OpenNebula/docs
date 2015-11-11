@@ -54,6 +54,8 @@ When this Template is instantiated, OpenNebula will automatically add the ONEGAT
       TARGET="hdb",
       TOKEN="YES" ]
 
+In vCenter this information is available in the extraConfig section of the VM metadata, available in the guest OS through the VMware tools as explained in the :ref:`contextualization guide <vcenter_context>`.
+
 OneGate API
 -----------
 
@@ -82,7 +84,7 @@ The contextualization cdrom should contain the ``context.sh`` and ``token.txt`` 
 With that data, you can obtain the headers required for all the ONEGATE API methods:
 
 * **Headers**:
-  
+
   * ``X-ONEGATE-TOKEN: token.txt contents``
   * ``X-ONEGATE-VMID: <vmid>``
 
@@ -91,11 +93,11 @@ OneGate supports these actions:
 Self-awareness
 ^^^^^^^^^^^^^^
 
-* ``GET ${ONEGATE_ENDPOINT}/vm``: To request information about the current Virtual Machine. 
+* ``GET ${ONEGATE_ENDPOINT}/vm``: To request information about the current Virtual Machine.
 * ``GET ${ONEGATE_ENDPOINT}/vms/${VM_ID}``: To request information about a specific Virtual Machine of the Service. The information is returned in JSON format and is ready for public cloud usage:
 
   .. code::
-  
+
       $ curl -X "GET" "${ONEGATE_ENDPOINT}/vm" \
           --header "X-ONEGATE-TOKEN: `cat token.txt`" \
           --header "X-ONEGATE-VMID: $VMID"
@@ -123,19 +125,19 @@ Self-awareness
       }
 
 * ``PUT ${ONEGATE_ENDPOINT}/vm``: To add information to the template of the current VM. The new information is placed inside the VM's user template section. This means that the application metrics are visible from the command line, Sunstone, or the APIs, and can be used to trigger OneFlow elasticity rules.
-* ``PUT ${ONEGATE_ENDPOINT}/vms/${VM_ID}``: To add information to the template of a specific VM of the Service. 
+* ``PUT ${ONEGATE_ENDPOINT}/vms/${VM_ID}``: To add information to the template of a specific VM of the Service.
 
   .. code::
-  
+
       $ curl -X "PUT" "${ONEGATE_ENDPOINT}/vm" \
           --header "X-ONEGATE-TOKEN: `cat token.txt`" \
           --header "X-ONEGATE-VMID: $VMID" \
           -d "APP_LOAD = 9.7"
 
   The new metric is stored in the user template section of the VM:
-  
+
   .. code::
-  
+
       $ onevm show 0
       ...
       USER TEMPLATE
@@ -145,11 +147,11 @@ Self-awareness
 * ``GET ${ONEGATE_ENDPOINT}/service``: To request information about the Service. The information is returned in JSON format and is ready for public cloud usage. By pushing data ``PUT /vm`` from one VM and pulling the service data from another VM ``GET /service``, nodes that are part of a OneFlow service can pass values from one to another.
 
   .. code::
-  
+
       $ curl -X "GET" "${ONEGATE_ENDPOINT}/service" \
           --header "X-ONEGATE-TOKEN: `cat token.txt`" \
           --header "X-ONEGATE-VMID: $VMID"
-  
+
       {
           "SERVICE": {
               "id": ...,
@@ -166,7 +168,7 @@ Self-awareness
                               "vm_info": {
                                   // VM template as return by GET /VM
                               }
-  
+
                           },
                           // more nodes ...
                       ]
@@ -179,11 +181,11 @@ Self-awareness
 * ``GET ${ONEGATE_ENDPOINT}``: returns information endpoints:
 
   .. code::
-  
+
       $ curl -X "GET" "${ONEGATE_ENDPOINT}/service" \
           --header "X-ONEGATE-TOKEN: `cat token.txt`" \
           --header "X-ONEGATE-VMID: $VMID"
-  
+
       {
           "vm_info": "http://<onegate_endpoint>/vm",
           "service_info": "http://<onegate_endpoint>/service"
@@ -196,7 +198,7 @@ Self-configuration
 * ``PUT ${ONEGATE_ENDPOINT}/service/role/${ROLE_NAME}``: To change the cardinality of a specific role of the Service:
 
   .. code::
-  
+
       $ curl -X "PUT" "${ONEGATE_ENDPOINT}/service/role/worker" \
           --header "X-ONEGATE-TOKEN: `cat token.txt`" \
           --header "X-ONEGATE-VMID: $VMID" \
@@ -204,7 +206,7 @@ Self-configuration
 
 * ``POST ${ONEGATE_ENDPOINT}/vms/${VM_ID}/action``: To perform an action on a specific VM of the Service. Supported actions (resume, stop, suspend, delete, shutdown, reboot, poweroff, resubmit, resched, unresched, hold, release)
 
-  .. code::  
+  .. code::
 
       $ curl -X "POST" "${ONEGATE_ENDPOINT}/vms/18/action" \
           --header "X-ONEGATE-TOKEN: `cat token.txt`" \
@@ -326,7 +328,7 @@ Using the `onegate service show` command the information of the Service will be 
 Updating the VM Information
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The Virtual Machine can update the information of itself or other Virtual Machine of the Service. This information can be retrieved from any of the Virtual Machines. 
+The Virtual Machine can update the information of itself or other Virtual Machine of the Service. This information can be retrieved from any of the Virtual Machines.
 
 For example, the master Virtual Machine can change the `ACTIVE` attribute from one Virtual Machine to another one. Then, this information can be used to trigger any kind of action in the other Virtual Machine.
 

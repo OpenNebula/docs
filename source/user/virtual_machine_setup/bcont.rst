@@ -233,6 +233,9 @@ Contextualization with vcenter does not have all the features available for ``kv
 | ``DNS``            | Add DNS entries to ``resolv.conf`` file. Only for Linux |
 |                    | guests.                                                 |
 +--------------------+---------------------------------------------------------+
+| ``ONEGATE_TOKEN``  | Token to validate information passed to OneGate         |
+|                    | from within the VM                                      |
++--------------------+---------------------------------------------------------+
 
 In Linux guests, the information can be consumed using the following command (and acted accordingly):
 
