@@ -208,6 +208,14 @@ If the SSH\_PUBLIC\_KEY exists as a User Template attribute, and the template is
 
 If you want to known more in deep the contextualization options head to the :ref:`Advanced Contextualization guide <cong>`.
 
+
+OneGate self-awareness & self-configuration
+-------------------------------------------
+
+The OneGate service allows Virtual Machines guests to pull and push VM information from OpenNebula. You can add ``TOKEN=YES`` parameter to the context to enable this functionality.
+
+If you want to know mor in deep how to configure and use OneGate head to the :ref:`Configuration <onegate_configure>` and :ref:`Usage guides <onegate_usage>`.
+
 .. _vcenter_context:
 
 vcenter Contextualization
