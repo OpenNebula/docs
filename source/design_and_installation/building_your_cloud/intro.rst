@@ -106,7 +106,7 @@ OpenNebula is fully platform independent and offers many tools for cloud integra
 
 -  **API for integration** with higher level tools such as billing, self-service portals... that offers all the rich functionality of the OpenNebula core, with bindings for :ref:`ruby <ruby>` and :ref:`java <java>`.
 
--  **Sunstone Server custom routes** to extend the :ref:`sunstone server <sunstone_server_plugin_guide>`.
+-  **Sunstone custom routes and tabs** to extend the :ref:`sunstone server <sunstone_dev>`.
 
 -  **OneFlow API** to create, control and monitor :ref:`multi-tier applications or services composed of interconnected Virtual Machines <appflow_api>`.
 

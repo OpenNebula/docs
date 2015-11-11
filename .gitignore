@@ -2,4 +2,5 @@ build
 *pyc
 source/toc.html
 *.mo
+.DS_Store
 
