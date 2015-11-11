@@ -68,7 +68,6 @@ This distribution lacks some packaged ruby libraries. This makes some components
 
 .. code::
 
-    # yum install openssl-devel
     # /usr/share/one/install_gems
 
 When using Apache to serve Sunstone, it is required that you disable or comment the ``PrivateTMP=yes`` directive in ``/usr/lib/systemd/system/httpd.service``.
