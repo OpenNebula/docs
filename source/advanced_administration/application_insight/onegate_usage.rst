@@ -263,7 +263,7 @@ With that data, you can obtain the headers required for all the ONEGATE API meth
 OneGate supports these actions:
 
 Self-awareness
-^^^^^^^^^^^^^^
+--------------
 
 * ``GET ${ONEGATE_ENDPOINT}/vm``: To request information about the current Virtual Machine.
 * ``GET ${ONEGATE_ENDPOINT}/vms/${VM_ID}``: To request information about a specific Virtual Machine of the Service. The information is returned in JSON format and is ready for public cloud usage:
@@ -365,7 +365,7 @@ Self-awareness
 
 
 Self-configuration
-^^^^^^^^^^^^^^^^^^
+------------------
 
 * ``PUT ${ONEGATE_ENDPOINT}/service/role/${ROLE_NAME}``: To change the cardinality of a specific role of the Service:
 
