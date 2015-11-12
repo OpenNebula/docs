@@ -85,7 +85,7 @@ In **both** cluster servers install the cluster components:
 
 Maybe the versions listed above do not coincide with the ``sinatra*`` and ``rack*`` gems vendorized in the ``/usr/lib/pcsd/vendor/bundle/ruby/gems/`` path (owned by the ``pcsd`` package). If they don't update the previous commands with the appropriate versions.
 
-Finally start/enable the cluster services:
+Start/enable the cluster services:
 
 .. code:: bash
 
@@ -100,6 +100,7 @@ At this point make sure the firewall allows the necessary ports for the cluster 
 
   $ firewall-cmd --permanent --add-service=high-availability
   $ firewall-cmd --reload
+
 
 Step 3: Create the Cluster and Failover Domain
 ----------------------------------------------
@@ -187,7 +188,11 @@ We are now ready to add the OpenNebula resources:
   $ pcs resource create opennebula-gate systemd:opennebula-gate
   $ pcs resource create opennebula-flow systemd:opennebula-flow
 
-You will note that at this point, the services are not started in the same host. If you want them to be in the same host, you can configure the colocation:
+.. warning::
+
+  Make sure you run ``systemtl disable <service>`` for all the systemd services you add to the cluster.
+
+You will notice that at this point the services are not started in the same host. If you want them to be in the same host, you can configure the colocation:
 
 .. code:: bash
 
