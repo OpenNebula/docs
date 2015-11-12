@@ -17,6 +17,21 @@ The only compatibility issue is in the Sunstone web interface. If your users acc
 
 The rest of the guide applies to both a master or slave Zone. You don't need to stop the federation or the MySQL replication to follow this guide.
 
+Upgrading from a High Availability deployment
+================================================================================
+
+The recommended procedure to upgrade two OpenNebulas configured in HA is to follow the upgrade procedure in a specific order. Some steps need to be executed in both servers, and others in just the active node. For the purpose of this guide, we will still refer to the *active node* as such even after stopping the cluster, so we run the single node steps always in the same node:
+
+* *Preparation* in the active node.
+* *Backup* in the active node.
+* Stop the cluster in the active node: ``pcs cluster stop``.
+* *Installation* in both nodes. Before running ``install_gems``, run ``gem list > previous_gems.txt`` so we can go back to those specific ``sinatra`` and ``rack`` gems if the ``pcsd`` refuses to start.
+* *Configuration Files Upgrade* in the active node.
+* *Database Upgrade* in the active node.
+* *Check DB Consistency* in the active node.
+* *Reload Start Scripts in CentOS 7* in both nodes.
+* Start the cluster in the active node.
+
 Preparation
 ===========
 
