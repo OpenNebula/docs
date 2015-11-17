@@ -217,6 +217,13 @@ VMM actions, they are the same as the names of the scripts:
       -  Success: -
       -  Failure: Error message
 
+-  **restore.<SYSTEM_TM>**: *[Only for KVM drivers]* If this script exists, the ``restore`` script will execute it right at the beginning to extract the checkpoint from the system datastore. For example, for the ``ceph`` system datastore the ``restore.ceph`` script is defined.
+
+   -  Arguments:
+
+      -  **FILE**: VM save file
+      -  **HOST**: Host where to restore the VM
+
 -  **save**: Saves a VM
 
    -  Arguments:
@@ -229,6 +236,14 @@ VMM actions, they are the same as the names of the scripts:
 
       -  Success: -
       -  Failure: Error message
+
+-  **save.<SYSTEM_TM>**: *[Only for KVM drivers]* If this script exists, the ``save`` script will execute it right at the end to store the checkpoint in the system datastore. For example, for the ``ceph`` system datastore the ``save.ceph`` script is defined.
+
+   -  Arguments:
+
+      -  **DOMAIN**: Domain name: one-286
+      -  **FILE**: VM save file
+      -  **HOST**: Host where the VM is running
 
 -  **shutdown**: Orderly shutdowns a VM
 
