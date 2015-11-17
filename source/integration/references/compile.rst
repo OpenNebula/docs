@@ -128,4 +128,9 @@ For example, to install only requirements for sunstone and ec2 interfaces you'll
 .. code::
 
     oneadmin@frontend: $> ./install_gems sunstone cloud
+
+Building Sunstone from Source
+=============================
+
+Please check the :ref:`Sunstone Development guide <sunstone_dev>` for detailed information
     

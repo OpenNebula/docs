@@ -140,6 +140,8 @@ Sunstone Develompent Dependencies
     npm install     # Dependencies defined in package.json
     bower install   # Dependenciees define in bower.json
 
+.. warning:: In order to run npm and bower commands ``git`` is required
+
 
 Building minified JS and CSS files
 ----------------------------------
