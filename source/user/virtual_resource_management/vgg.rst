@@ -299,7 +299,6 @@ VNET Definition Tips
 
 - There are no need to plan all your IP assignment plan beforehand, ARs can be added and modified after the VNET is created, see below.
 
-
 Updating a Virtual Network
 ==========================
 
@@ -425,6 +424,17 @@ You can apply firewall rules on your VMs, to filter TCP and UDP ports, and to de
 
 Read more about this feature :ref:`here <firewall>`.
 
+Setting up access to VNETs
+--------------------------
+
+Once a VNET is setup by a Cloud admin, she may need to make it available to other users in the cloud. The preferred way to do so is asigning it to the needed :ref:`Virtual Data Centers <manage_vdcs>`.
+
+If the default VDC is used, new Virtual Networks are automatically available to all users.
+
+.. note:: Users can only attach VMs or make reservations from VNETs with **USE** rights on the VNET. See the :ref:`Managing Permissions documentation <chmod>` for more information.
+
+.. note:: The ACL rules do not apply to VNET reserveations in the same way as they do to normal VNETs and other objects. Read more in the :ref:`ACL documentation guide <manage_acl_vnet_reservations>`.
+
 .. _vgg_vn_reservations:
 
 VNET Self-Provisioning: Reservations
@@ -436,28 +446,6 @@ VNETs implement a simple self-provisioning scheme, that allows users to create t
 - **Setting up access**. In order to make a Reservation, users needs USE rights on the VNET, just as if they would use it to directly to provision IPs from it.
 - **Make Reservations**. Users can easily request specific addresses or just a number of addresses from a VNET. Reservations are placed in their own VNET for the user.
 - **Use Reservations**. Reservations offer the same interface as a regular VNET so you can just point your VM templates to the new VNET. The number of addresses and usage stats are shown also in the same way.
-
-Setting up access to VNETs
---------------------------
-
-Once a VNET is setup by a Cloud admin, she needs to make it available to other users in the cloud. See the :ref:`Managing Permissions documentation <chmod>` for more information.
-
-Let's see a quick example. The following command allows users in the same group **USE** and **MANAGE** the virtual network, and the rest of the users **USE** it:
-
-.. code::
-
-    $ onevnet chmod 0 664
-
-    $ onevnet show 0
-    ...
-    PERMISSIONS
-    OWNER          : um-
-    GROUP          : um-
-    OTHER          : u--
-
-.. note:: Users can only attach VMs or make reservations from VNETs with **USE** rights on the VNET
-
-.. note:: The ACL rules do not apply to VNET reserveations in the same way as they do to normal VNETs and other objects. Read more in the :ref:`ACL documentation guide <manage_acl_vnet_reservations>`.
 
 Make and delete Reservations
 ----------------------------
