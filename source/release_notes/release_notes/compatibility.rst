@@ -87,7 +87,7 @@ Sunstone
 
 * The ``marketplace_url`` param in sunstone-server.conf should not include the /appliance path since it will be automatically included in order to support proxy configurations
 
-* A new option ``vnc_request_password` has been included in sunstone-server.conf to choose if the password for the VNC session should be requested when opened in an external window
+* A new option ``vnc_request_password`` has been included in sunstone-server.conf to choose if the password for the VNC session should be requested when opened in an external window
 
 Developers and Integrators
 ================================================================================
