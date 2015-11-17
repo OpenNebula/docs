@@ -186,5 +186,17 @@ Then the following rule won't have any effect:
 
     #7 IMAGE/#45 USE
 
+.. _manage_acl_vnet_reservations:
+
+Special Authorization for Virtual Network Reservations
+--------------------------------------------------------------------------------
+
+There is a special sub-type of Virtual Network: :ref:`reservations <vgg_vn_reservations>`. For these virtual networks the ACL system makes the following exceptions:
+
+- ACL rules that apply to ALL (*) are ignored
+- ACL rules that apply to a cluster (%) are ignored
+
+The other ACL rules are enforced: individual (#) and group (@). The Virtual Network object's permissions are also enforced as usual.
+
 .. |image1| image:: /images/sunstone_acl_list.png
 .. |image2| image:: /images/sunstone_acl_create.png
