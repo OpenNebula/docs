@@ -2611,6 +2611,8 @@ one.vn.info
 | OUT  | Int       | Error code.                                 |
 +------+-----------+---------------------------------------------+
 
+.. note:: The ACL rules do not apply to VNET reserveations in the same way as they do to normal VNETs and other objects. Read more in the :ref:`ACL documentation guide <manage_acl_vnet_reservations>`.
+
 one.vnpool.info
 ---------------
 
@@ -2643,6 +2645,7 @@ one.vnpool.info
 
 The range can be used to retrieve a subset of the pool, from the 'start' to the 'end' ID. To retrieve the complete pool, use ``(-1, -1)``; to retrieve all the pool from a specific ID to the last one, use ``(<id>, -1)``, and to retrieve the first elements up to an ID, use ``(0, <id>)``.
 
+.. note:: The ACL rules do not apply to VNET reserveations in the same way as they do to normal VNETs and other objects. Read more in the :ref:`ACL documentation guide <manage_acl_vnet_reservations>`.
 
 Actions for Security Group Management
 ================================================================================

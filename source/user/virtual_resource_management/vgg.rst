@@ -457,6 +457,8 @@ Let's see a quick example. The following command allows users in the same group 
 
 .. note:: Users can only attach VMs or make reservations from VNETs with **USE** rights on the VNET
 
+.. note:: The ACL rules do not apply to VNET reserveations in the same way as they do to normal VNETs and other objects. Read more in the :ref:`ACL documentation guide <manage_acl_vnet_reservations>`.
+
 Make and delete Reservations
 ----------------------------
 
