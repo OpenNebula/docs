@@ -234,11 +234,16 @@ A user can take snapshots of the disk states at any moment in time (if the VM is
 - ``disk-snapshot-revert <vmid> <diskid> <snapshot_id>``: Reverts to the specified snapshot. The snapshots are immutable, therefore the user can revert to the same snapshot as many times as he wants, the disk will return always to the state of the snapshot at the time it was taken.
 - ``disk-snapshot-delete <vmid> <diskid> <snapshot_id>``: Deletes a snapshot if it has no children and is not active.
 
-.. warning::
-
-  ``disk-snapshot-create`` and ``disk-snapshot-revert`` actions are not in sync with the hypervisor. If the VM is in ``RUNNING`` state make sure the disk is unmounted (preferred), synced or quiesced in some way before taking the snapshot.
 
 ``disk-snapshot-create`` and ``disk-snapshot-revert`` can take place when the VM is in ``RUNNING`` state. The way OpenNebula handles this operation varies depending on the configuration and on the backend used. When configuring the ``VM_MAD`` in ``/etc/one/oned.conf``, depending on the arguments passed, the administrator can decide what strategy to use when creating and reverting snapshots in ``RUNNING`` state:
+
+By default, oned will try to issue live snapshots (option ``-i`` of ``VM_MAD``), which is only supported for some drivers. If this option is enabled **and** if the driver that will create the snapshot supports it, snapshots can be taken without any downtime. Live snapshots are  supported for:
+
+- Hypervisor ``VM_MAD=kvm`` combined with ``TM_MAD=qcow2`` datastores. In this case OpenNebula will request that the hypervisor executes ``virsh snapshot-create``.
+
+- Hypervisor ``VM_MAD=kvm`` with Ceph datastores (``TM_MAD=ceph``). In this case OpenNebula will initially create the snapshots as Ceph snapshots in the current volume.
+
+OpenNebula will handle non-live ``disk-snapshot-create`` and ``disk-snapshot-revert`` operations for VMs in ``RUNNING`` state depending on the configuration of the ``VM_MAD`` driver in ``/etc/one/oned.conf``, in particular:
 
 - ``-d suspend`` (default): The VM is suspended (the memory state is written to the system datastore), the snapshot operation takes place (create or revert). This is the safest strategy but implies some downtime (the time it takes for the memory state to be written and to be re-read again).
 - ``-d detach``: the disk is detached while the VM is kept active and running. The snapshot operation takes place, and the disk is re-attached. This is a dangerous operation as if the OS has active file descriptors opening the disk, the OS will not be able to release the target (e.g. ``sbd``) and when it is re-attached the OS will place it in a new target instead (e.g. ``sdc``). This is problematic as there will be a discrepancy between the target defined by OpenNebula and the real target inside the guest VM, which could make future disk-attach operations fail. In order to avoid this, the disk must be fully unmounted with no active file descriptors in use. On the other hand, this technique is the fastest as it requires no down-time.
