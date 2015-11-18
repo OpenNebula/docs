@@ -90,6 +90,7 @@ OpenNebula uses libvirt's migration capabilities. More precisely, it uses the ``
    -  ``/etc/default/libvirt-bin`` : add **-l** option to ``libvirtd_opts``
    -  For RHEL based distributions, edit this file instead: ``/etc/sysconfig/libvirtd`` : uncomment ``LIBVIRTD_ARGS="--listen"``
 
+
 OpenNebula Configuration
 ------------------------
 
@@ -601,3 +602,20 @@ Importing VMs
 
 VMs running on KVM hypervisors that were not launched through OpenNebula can be :ref:`imported in OpenNebula <import_wild_vms>`. It is important to highlight that, besides the limitations explained in the host guide, the "Poweroff" operation is not available for these imported VMs in KVM.
 
+Troubleshooting
+===============
+
+image magic is incorrect
+------------------------
+
+When trying to restore the VM from a suspended state this error is returned:
+
+``libvirtd1021: operation failed: image magic is incorrect``
+
+It can be fixed by applying:
+
+.. code::
+
+    options kvm_intel nested=0
+    options kvm_intel emulate_invalid_guest_state=0
+    options kvm ignore_msrs=1
