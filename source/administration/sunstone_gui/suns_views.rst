@@ -92,6 +92,8 @@ Requirements
 
 OpenNebula Sunstone Views does not require any additional service to run. You may want to review the Sunstone configuration to deploy advanced setups, to scale the access to the web interface or to use SSL security.
 
+.. _suns_views_configuring_access:
+
 Configuring Access to the Views
 ===============================
 
@@ -145,7 +147,7 @@ These options are saved in the user template, as well as other hidden settings l
 Changing your View
 ------------------
 
-If more than one view are available for this user, she can easily change between them in the settings window, along with other settings (e.g. language). See the `Configuring Access to the Views`_ (TODO?) section to learn how views are calculated per user.
+If more than one view are available for this user, she can easily change between them in the settings window, along with other settings (e.g. language). See the :ref:`Configuring Access to the Views <suns_views_configuring_access>` section to learn how views are calculated per user.
 
 Internationalization and Languages
 ----------------------------------
