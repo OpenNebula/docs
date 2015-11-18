@@ -17,7 +17,7 @@ Using this cost schema allows the users to resize the Virtual Machine instances.
 
 |showback_instantiate|
 
-There is a default cost that will be applied to VM Templates without a cost defined. It can be set in the :ref:`oned.conf file <oned_conf_default_showback>`. 
+There is a default cost that will be applied to VM Templates without a cost defined. It can be set in the :ref:`oned.conf file <oned_conf_default_showback>`.
 
 .. warning::
 
@@ -41,6 +41,7 @@ The monthly cost of each VM is calculated as the sum of:
 
 - CPU_COST * CPU * HOURS
 - MEMORY_COST * MEMORY * HOURS
+- DISK_COST * DISK_SIZE * HOURS
 
 The number of hours is calculated as the total number of hours that a VM has been ``running``. The time a VM is in other states, such as ``pending``, ``poweroff``, or ``stopped`` does not count towards the cost.
 

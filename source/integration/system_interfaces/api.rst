@@ -1682,7 +1682,8 @@ The XML output will be similar to this one:
         <MONTH>11</MONTH>
         <CPU_COST>13</CPU_COST>
         <MEMORY_COST>21</MEMORY_COST>
-        <TOTAL_COST>34</TOTAL_COST>
+        <DISK_COST>7</DISK_COST>
+        <TOTAL_COST>41</TOTAL_COST>
         <HOURS>10</HOURS>
       </SHOWBACK>
 
@@ -5412,8 +5413,8 @@ Schemas for Group
                         <xs:element name="MEMORY_USED" type="xs:string"/>
                         <xs:element name="VMS" type="xs:string"/>
                         <xs:element name="VMS_USED" type="xs:string"/>
-                        <xs:element name="VOLATILE_SIZE" type="xs:string"/>
-                        <xs:element name="VOLATILE_SIZE_USED" type="xs:string"/>
+                        <xs:element name="SYSTEM_DISK_SIZE" type="xs:string"/>
+                        <xs:element name="SYSTEM_DISK_SIZE_USED" type="xs:string"/>
                       </xs:sequence>
                     </xs:complexType>
                   </xs:element>
@@ -5591,8 +5592,8 @@ Schemas for Group
                                 <xs:element name="MEMORY_USED" type="xs:string"/>
                                 <xs:element name="VMS" type="xs:string"/>
                                 <xs:element name="VMS_USED" type="xs:string"/>
-                                <xs:element name="VOLATILE_SIZE" type="xs:string"/>
-                                <xs:element name="VOLATILE_SIZE_USED" type="xs:string"/>
+                                <xs:element name="SYSTEM_DISK_SIZE" type="xs:string"/>
+                                <xs:element name="SYSTEM_DISK_SIZE_USED" type="xs:string"/>
                               </xs:sequence>
                             </xs:complexType>
                           </xs:element>
@@ -5805,7 +5806,7 @@ Schemas for Host
             <xs:element name="ID" type="xs:integer"/>
             <xs:element name="NAME" type="xs:string"/>
             <!-- STATE values
-            
+
               INIT                 = 0  Initial state for enabled hosts
               MONITORING_MONITORED = 1  Monitoring the host (from monitored)
               MONITORED            = 2  The host has been successfully monitored
@@ -6083,8 +6084,8 @@ Schemas for User
                         <xs:element name="MEMORY_USED" type="xs:string"/>
                         <xs:element name="VMS" type="xs:string"/>
                         <xs:element name="VMS_USED" type="xs:string"/>
-                        <xs:element name="VOLATILE_SIZE" type="xs:string"/>
-                        <xs:element name="VOLATILE_SIZE_USED" type="xs:string"/>
+                        <xs:element name="SYSTEM_DISK_SIZE" type="xs:string"/>
+                        <xs:element name="SYSTEM_DISK_SIZE_USED" type="xs:string"/>
                       </xs:sequence>
                     </xs:complexType>
                   </xs:element>
@@ -6261,8 +6262,8 @@ Schemas for User
                                 <xs:element name="MEMORY_USED" type="xs:string"/>
                                 <xs:element name="VMS" type="xs:string"/>
                                 <xs:element name="VMS_USED" type="xs:string"/>
-                                <xs:element name="VOLATILE_SIZE" type="xs:string"/>
-                                <xs:element name="VOLATILE_SIZE_USED" type="xs:string"/>
+                                <xs:element name="SYSTEM_DISK_SIZE" type="xs:string"/>
+                                <xs:element name="SYSTEM_DISK_SIZE_USED" type="xs:string"/>
                               </xs:sequence>
                             </xs:complexType>
                           </xs:element>
