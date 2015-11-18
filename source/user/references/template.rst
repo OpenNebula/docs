@@ -108,7 +108,8 @@ The following attributes can be defined to set the cost of a VM. Read the :ref:`
 +-----------------+----------------------------------+-----------+
 | **CPU_COST**    | Cost of each CPU per hour.       | **NO**    |
 +-----------------+----------------------------------+-----------+
-
+| **DISK_COST**   | Cost of each disk MB per hour.   | **NO**    |
++-----------------+----------------------------------+-----------+
 
 .. _template_os_and_boot_options_section:
 
@@ -813,6 +814,7 @@ All the **default** restricted attributes to users in the oneadmin group are sum
 - ``DISK/WRITE_IOPS_SEC``
 - ``CPU_COST``
 - ``MEMORY_COST``
+- ``DISK_COST``
 
 These attributes can be configured in :ref:`oned.conf <oned_conf>`.
 
