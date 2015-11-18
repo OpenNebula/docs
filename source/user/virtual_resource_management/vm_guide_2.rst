@@ -487,7 +487,14 @@ Please bear in mind the following limitations:
 - Volatile disks cannot be saved, and the current contents will be lost. The cloned VM Template will contain the definition for an empty volatile disk.
 - Disks and NICs will only contain the target Image/Network ID. If your Template requires extra configuration (such as DISK/DEV_PREFIX), you will need to update the new Template.
 
-.. todo:: command in Sunstone
+This can also be achieved from Sunstone when the VM is in poweroff state:
+
+|image10|
+|image11|
+
+From the Cloud View
+
+|image12|
 
 .. _vm_guide2_scheduling_actions:
 
@@ -689,3 +696,6 @@ Information for Developers and Integrators
 .. |image7| image:: /images/sunstone_vnc.png
 .. |image8| image:: /images/sunstonevnc4.png
 .. |image9| image:: /images/sunstone_vm_resize.png
+.. |image10| image:: /images/sunstone_save_button.png
+.. |image11| image:: /images/sunstone_save_dialog.png
+.. |image12| image:: /images/sunstone_cloud_save_button.png
