@@ -187,6 +187,19 @@ These values can furthermore be asked to the user using :ref:`user inputs <vm_gu
             INSTANCETYPE=m1.small,
             USERDATA="$USERDATA"]
 
+Context Support
+---------------
+
+If a CONTEXT section is defined in the template, it will be available as USERDATA inside the VM and can be retrieved by running the following command_
+
+.. code::
+
+    $ curl http://169.254.169.254/latest/user-data
+    ONEGATE_ENDPOINT="https://onegate...
+    SSH_PUBLIC_KEY="ssh-rsa ABAABeqzaC1y...
+
+.. note:: If a value for the USERDATA attribute is provided in the EC2 section of the template, the CONTEXT section will be ignored and the value provided as USERDATA will be available instead of the CONTEXT information.
+
 .. _ec2g_multi_ec2_site_region_account_support:
 
 Multi EC2 Site/Region/Account Support
