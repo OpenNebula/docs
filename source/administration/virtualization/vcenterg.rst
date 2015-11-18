@@ -109,10 +109,10 @@ The following must be met for a functional vCenter environment:
 
 - To enable VNC functionality, repeat the following procedure for each ESX:
 
-   - In the vSphere client proceed to Home -> Inventory -> Hosts and Clusters
-   - Select the ESX host, Configuration tab and select Security Profile in the Software category
-   - In the Firewall section, select Edit. Enable GDB Server, then click OK
-   - Make sure that the ESX hosts are reachable from the OpenNebula front-end
+  - In the vSphere client proceed to Home -> Inventory -> Hosts and Clusters
+  - Select the ESX host, Configuration tab and select Security Profile in the Software category
+  - In the Firewall section, select Edit. Enable GDB Server, then click OK
+  - Make sure that the ESX hosts are reachable from the OpenNebula front-end
 
 .. important:: OpenNebula will **NOT** modify any vCenter configuration.
 
@@ -235,17 +235,16 @@ The following variables are added to the OpenNebula hosts representing ESX clust
 .. _vcenter_resource_pool:
 
 The vCenter credentials that OpenNebula use can be confined into a Resource Pool, to allow only a fraction of the vCenter infrastructure to be used by OpenNebula users. The steps to confine OpenNebula users into a Resource Pool are:
+- Create a new vCenter user
+- Create a Resource Pool in vCenter and assign the subset of Datacenter hardware resources wanted to be exposed through OpenNebula
+- Give vCenter user Resource Pool Administration rights over the Resource Pool
+- Give vCenter user Resource Pool Administration (or equivalent) over the Datastores the VMs are going to be running on
 
- - Create a new vCenter user
- - Create a Resource Pool in vCenter and assign the subset of Datacenter hardware resources wanted to be exposed through OpenNebula
- - Give vCenter user Resource Pool Administration rights over the Resource Pool
- - Give vCenter user Resource Pool Administration (or equivalent) over the Datastores the VMs are going to be running on
+Afterwards, these credentials can be used to add to OpenNebula the host representing the vCenter cluster. Add a new tag called VCENTER_RESOURCE_POOL to the host template representing the vCenter cluster (for instance, in the info tab of the host, or in the CLI), with the name of the resource pool.
 
- Afterwards, these credentials can be used to add to OpenNebula the host representing the vCenter cluster. Add a new tag called VCENTER_RESOURCE_POOL to the host template representing the vCenter cluster (for instance, in the info tab of the host, or in the CLI), with the name of the resource pool.
-
- .. image:: /images/vcenter_rp.png
-    :width: 90%
-    :align: center
+.. image:: /images/vcenter_rp.png
+   :width: 90%
+   :align: center
 
 .. _import_vcenter_resources:
 
@@ -436,9 +435,9 @@ You can find more information about contextualization in the :ref:`vcenter Conte
 
 After a VM Template is instantiated, the lifecycle of the resulting virtual machine (including creation of snapshots) can be controlled through OpenNebula. Also, all the operations available in the :ref:`vCenter Admin view <vcenter_view>` can be performed, including:
 
-     - network management operations like the ability to attach/detach network interfaces
-     - capacity (CPU and MEMORY) resizing
-     - VNC connectivity
+- network management operations like the ability to attach/detach network interfaces
+- capacity (CPU and MEMORY) resizing
+- VNC connectivity
 
 The monitoring attributes retrieved from a vCenter VM are:
 
@@ -493,6 +492,6 @@ A VM Template is tied to the host where the VM was running, and also the datasto
 
 OpenNebula uses several assumptions to instantitate a VM Template in an automatic way:
 
-- **diskMoveType**: OpenNebul instructs vCenter to "move only the child-most disk backing. Any parent disk backings should be left in their current locations.". More information `here <https://www.vmware.com/support/developer/vc-sdk/visdk41pubs/ApiReference/vim.vm.RelocateSpec.DiskMoveOptions.html>`__
+- **diskMoveType**: OpenNebuls instructs vCenter to "move only the child-most disk backing. Any parent disk backings should be left in their current locations.". More information `here <https://www.vmware.com/support/developer/vc-sdk/visdk41pubs/ApiReference/vim.vm.RelocateSpec.DiskMoveOptions.html>`__
 
 - Target **resource pool**: OpenNebula uses the default cluster resource pool to place the VM instantiated from the VM template, unless VCENTER_RESOURCE_POOL variable defined in the OpenNebula host template
