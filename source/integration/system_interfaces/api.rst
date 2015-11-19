@@ -891,14 +891,6 @@ The range can be used to retrieve a subset of the pool, from the 'start' to the 
 Actions for Virtual Machine Management
 ======================================
 
-The VM Life Cycle is explained in this diagram:.
-
-|image2|
-
-It contains all the LifeCycleManager states, and the transitions triggered by the onevm commands. It is intended to be consulted by developers.
-
-The simplified diagram used in the :ref:`Virtual Machine Instances documentation <vm_guide_2>` uses a smaller number of state names. These names are the ones used by onevm list, e.g. prolog, prolog\_migrate and prolog\_resume are all presented as ``prol``. It is intended as a reference for end-users.
-
 one.vm.allocate
 ---------------
 
@@ -6400,7 +6392,7 @@ Schemas for Virtual Machine
             <xs:element name="LAST_POLL" type="xs:integer"/>
 
             <!-- STATE values,
-            see http://opennebula.org/_media/documentation:rel3.6:states-complete.png
+            see http://docs.opennebula.org/stable/user/references/vm_states.html
 
               INIT      = 0
               PENDING   = 1
@@ -7077,5 +7069,3 @@ Schemas for Accounting
     </xs:schema>
 
 .. |FIXME| image:: /images/fixme.gif
-.. |image2| image:: /images/states-complete.png
-    :width: 100 %
