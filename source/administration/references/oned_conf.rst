@@ -305,33 +305,6 @@ The virtualization drivers are used to create, control and monitor VMs on the ho
 -  **arguments**: for the driver executable
 -  **type**: driver type, supported drivers: xen, kvm or xml
 -  **default**: default values and configuration parameters for the driver, can be an absolute path or relative to ``/etc/one/``
--  **imported_vms_actions** : comma-separated list of actions supported for imported vms. The available actions are:
-
-   - migrate
-   - live-migrate
-   - shutdown
-   - shutdown-hard
-   - undeploy
-   - undeploy-hard
-   - hold
-   - release
-   - stop
-   - suspend
-   - resume
-   - delete
-   - delete-recreate
-   - reboot
-   - reboot-hard
-   - resched
-   - unresched
-   - poweroff
-   - poweroff-hard
-   - disk-attach
-   - disk-detach
-   - nic-attach
-   - nic-detach
-   - snap-create
-   - snap-delete
 
 For more information on configuring and setting up the virtualizer please check the guide that suits you:
 
@@ -349,12 +322,10 @@ Sample configuration:
      
     VM_MAD = [
         name       = "kvm",
-        executable = "one_vmm_exec",
-        arguments  = "-t 15 -r 0 -i kvm",
-        default    = "vmm_exec/vmm_exec_kvm.conf",
-        type       = "kvm",
-        imported_vms_actions = "shutdown,shutdown-hard,hold,release,suspend,resume,delete,reboot,reboot-hard,resched,unresched,disk-attach,disk-detach,nic-attach,nic-detach,snap-create,snap-delete"
-    ]
+        executable = "one_vmm_ssh",
+        arguments  = "-t 15 -r 0 kvm",
+        default    = "vmm_ssh/vmm_ssh_kvm.conf",
+        type       = "kvm" ]
 
 .. _oned_conf_transfer_driver:
 

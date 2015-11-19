@@ -61,48 +61,7 @@ These arguments are specified in the :ref:`oned.conf file <oned_conf>`, ``argume
         executable = "one_vmm_exec",
         arguments  = "-t 15 -r 0 -l migrate,save kvm",
         default    = "vmm_exec/vmm_exec_kvm.conf",
-        ...
-
-Each driver can define a list of supported actions for :ref:`imported VMs <import_wild_vms>`. Please note that in order to import VMs, your monitoring drivers should report the :ref:`IMPORT_TEMPLATE variable <devel-im_vm_information>`. The complete list of actions is:
-
-- migrate
-- live-migrate
-- shutdown
-- shutdown-hard
-- undeploy
-- undeploy-hard
-- hold
-- release
-- stop
-- suspend
-- resume
-- delete
-- delete-recreate
-- reboot
-- reboot-hard
-- resched
-- unresched
-- poweroff
-- poweroff-hard
-- disk-attach
-- disk-detach
-- nic-attach
-- nic-detach
-- snap-create
-- snap-delete
-
-These supported action are specified in the :ref:`oned.conf file <oned_conf>`, ``imported_vms_actions`` variable:
-
-.. code::
-
-    VM_MAD = [
-        name       = "kvm",
-        executable = "one_vmm_exec",
-        arguments  = "-t 15 -r 0 -i kvm",
-        default    = "vmm_exec/vmm_exec_kvm.conf",
-        type       = "kvm",
-        imported_vms_actions = "shutdown,shutdown-hard,hold,release,suspend,resume,delete,reboot,reboot-hard,resched,unresched,disk-attach,disk-detach,nic-attach,nic-detach,snap-create,snap-delete"
-    ]
+        type       = "kvm" ]
 
 .. _devel-vmm_action:
 
