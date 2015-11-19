@@ -501,12 +501,14 @@ And imported through the ``onehost importvm`` command:
       ID USER     GROUP    NAME            STAT UCPU    UMEM HOST               TIME
        3 oneadmin oneadmin CentOS7         runn    0    590M MyvCenterHost  0d 01h02
 
-After a Virtual Machine is imported, their lifecycle (including creation of snapshots) can be controlled through OpenNebula. The following operations *cannot* be performed on an imported VM:
+After a Virtual Machine is imported, their lifecycle (including creation of snapshots) can be controlled through OpenNebula. The following operations **cannot** be performed on an imported VM:
 
 - Delete --recreate
 - Undeploy (and Undeploy --hard)
 - Migrate (and Migrate --live)
 - Stop
+
+.. note:: For kvm and xen hosts the poweroff action will leave VMs in a state that cannot be resumed through OpenNebula. Those VMs need to be resumed manually with the same method they were created in the first place.
 
 The same import mechanism is available graphically through Sunstone. Running and Powered Off VMs can be imported through the WILDS tab in the Host info tab.
 

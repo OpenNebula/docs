@@ -44,6 +44,7 @@ Drivers - VM
 * `#3750 <http://dev.opennebula.org/issues/3750>`_ Xen (live) migration/suspend/resume is incompatible with disk/nic attach/detach
 * `#4007 <http://dev.opennebula.org/issues/4007>`_ New generation EC2 instance types have been included and the ec2_driver.conf must be updated to include them. https://raw.githubusercontent.com/OpenNebula/one/master/src/vmm_mad/remotes/ec2/ec2_driver.conf
 * `#4009 <http://dev.opennebula.org/issues/4009>`_ Importing vms from EC2 provides a wrong CPU value
+* `#4164 <http://dev.opennebula.org/issues/4164>`_ Imported VMs in KVM and Xen cannot be properly resumed after a poweroff action
 
 OneFlow
 ================================================================================
