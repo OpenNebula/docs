@@ -21,10 +21,6 @@ Core & System
 Federation
 ================================================================================
 
-* `#4030 <http://dev.opennebula.org/issues/4030>`_ onedb fsck will drop the group_pool table in the slave databases.
-
-To fix #4030, replace your ``/usr/lib/one/ruby/onedb/fsck.rb`` with the `latest file in the repositoty <http://dev.opennebula.org/projects/opennebula/repository/revisions/one-4.14/entry/src/onedb/fsck.rb>`_.
-
 Drivers - Network
 ================================================================================
 
@@ -42,8 +38,6 @@ Drivers - VM
 
 * `#3590 <http://dev.opennebula.org/issues/3590>`_ Delete operation leaves a poweroff instance registered in vCenter
 * `#3750 <http://dev.opennebula.org/issues/3750>`_ Xen (live) migration/suspend/resume is incompatible with disk/nic attach/detach
-* `#4007 <http://dev.opennebula.org/issues/4007>`_ New generation EC2 instance types have been included and the ec2_driver.conf must be updated to include them. https://raw.githubusercontent.com/OpenNebula/one/master/src/vmm_mad/remotes/ec2/ec2_driver.conf
-* `#4009 <http://dev.opennebula.org/issues/4009>`_ Importing vms from EC2 provides a wrong CPU value
 * `#4164 <http://dev.opennebula.org/issues/4164>`_ Imported VMs in KVM and Xen cannot be properly resumed after a poweroff action
 
 OneFlow
@@ -60,12 +54,6 @@ Scheduler
 Sunstone
 ================================================================================
 
-* `#4011 <http://dev.opennebula.org/issues/4011>`_ Zone selector does not change zones
 * `#2292 <http://dev.opennebula.org/issues/2292>`_ sunstone novnc send ctrl-alt-del not working in Firefox
 * `#1877 <http://dev.opennebula.org/issues/1877>`_ if syslog enabled disable the logs tab in the VM detailed view
 * `#3796 <http://dev.opennebula.org/issues/3796>`_ sunstone ignores the no_proxy environment variable
-* `#4049 <http://dev.opennebula.org/issues/4049>`_ VM Template wizard input INIT_SCRIPTS is not working. Values from this input are inserted instead as FILES_DS.
-* `#4053 <http://dev.opennebula.org/issues/4053>`_ Service Templates using virtual networks cannot be instantiated from the cloud view
-* `#4100 <http://dev.opennebula.org/issues/4100>`_ Cloud view wizard for new user : inputs for quotas cannot be edited
-* `#4104 <http://dev.opennebula.org/issues/4104>`_ Cloud view: When updating quotas, sliders do not change the input values
-* `#4122 <http://dev.opennebula.org/issues/4122>`_ When a template with DISK_COST is instantiated, the value shown as disk cost is not the actual value. The cost is multiplied as GB/hour instead of the correct MB/hour

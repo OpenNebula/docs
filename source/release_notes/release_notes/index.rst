@@ -8,6 +8,7 @@ Release Notes 4.14
    :maxdepth: 1
 
    What's New in 4.14 <whats_new>
+   Resolved Issues in 4.14.2 <resolved_issues_4142>
    Features <features>
    Platform Notes <uspng>
    Compatibility Guide <compatibility>
