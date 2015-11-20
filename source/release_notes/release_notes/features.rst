@@ -155,7 +155,7 @@ Standard Cloud Interfaces and Simple Provisioning Portal for Cloud Consumers
 -  :ref:`Transform your local infrastructure into a public cloud by exposing REST-based interfaces <introc>`
 -  :ref:`AWS EC2 API service <ec2qcg>`, the de facto cloud API standard, with :ref:`compatibility with EC2 ecosystem tools <ec2qec>` and :ref:`client tools <ec2qug>`
 -  Support for simultaneously exposing multiple cloud APIs
--  :ref:`Provisioning portal implemented as a user Cloud View of Sunstone <cloud_view>` to allow non-IT end users to easily create, deploy and manage compute, storage and network resources
+-  :ref:`Provisioning portal implemented as a user Cloud View of Sunstone <cloud_view>` to allow non-IT end users to easily create, deploy and manage compute, storage and network resources with a configurable interface.
 -  VDCAdmin Sunstone view where VDC admins are able to create new users and manage the resources of the VDC.
 
 Rich Command Line and Web Interfaces for Cloud Administrators
