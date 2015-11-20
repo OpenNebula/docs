@@ -321,12 +321,13 @@ When prompted for password press enter so the private key is not encrypted.
     $ chmod 600 ~/.ssh/id_dsa
     $ chmod 600 ~/.ssh/authorized_keys
 
--  Tell ssh client to not ask before adding hosts to ``known_hosts`` file. Also it is a good idea to reduced the connection timeout in case of network problems. This is configured into ``~/.ssh/config``, see ``man ssh_config`` for a complete reference.:
+-  Tell ssh client to not ask before adding hosts to ``known_hosts`` file. Also it is a good idea to reduced the connection timeout in case of network problems. This is configured into ``~/.ssh/config``, see ``man ssh_config`` for a complete reference. Note also that the configuration for ssh **must** be propagated to the hosts:
 
 .. code::
 
     $ cat ~/.ssh/config
     ConnectTimeout 5
+    ConnectionAttemts 1
     Host *
         StrictHostKeyChecking no
 
