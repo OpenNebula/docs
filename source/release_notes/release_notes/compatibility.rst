@@ -11,6 +11,14 @@ Visit the :ref:`Features list <features>` and the `Release Notes <http://openneb
 OpenNebula Administrators and Users
 ================================================================================
 
+Virtual Network
+--------------------------------------------------------------------------------
+The VXLAN and 802.1Q  drivers clean the interfaces on the hosts once there is no VM left
+using it. This way the number of interfaces and multicast addresses are kept under  control.
+Please note that any other service coallocated with a VM network may be affected.
+
+Also recent versions of the network drivers relay on new tools (e.g. ipset) so be sure to update the host packages as well.
+
 System Datastores
 --------------------------------------------------------------------------------
 For OpenNebula < 4.14 access control to System Datastores is not checked by the scheduler or oned. In OpenNebula 4.12, the scheduler enforces access rights for hosts, but once a host is selected the scheduler deploys the VM in the highest ranked System DS compatible with the that host. This behavior has been changed in 4.14 and now USE rights on the System DS is required to deploy a VM in it.
