@@ -18,9 +18,6 @@ Core & System
 * `#3139 <http://dev.opennebula.org/issues/3139>`_ Drivers do not work with rbenv
 * `#3888 <http://dev.opennebula.org/issues/3888>`_ An image can be used twice by a VM, but this breaks the used/ready logic
 
-Federation
-================================================================================
-
 Drivers - Network
 ================================================================================
 
