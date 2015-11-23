@@ -208,10 +208,10 @@ New tabs can be included following these steps:
 .. code-block:: yaml
 
   enabled_tabs:
-    dashboard-tab: true
-    system-tab: true
+    - dashboard-tab
+    - system-tab
     ...
-    mycustom-tab: true
+    - mycustom-tab
   tabs:
     mycustom-apps-tab:
         panel_tabs:

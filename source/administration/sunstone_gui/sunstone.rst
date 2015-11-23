@@ -224,30 +224,30 @@ We are aware that in production environments, access to professional, efficient 
 
 This tab and can be disabled in the ``admin``, ``admin_vcenter`` and ``user`` yaml files inside the sunstone views configuration directory:
 
-.. code::
+.. code-block:: yaml
 
     enabled_tabs:
-        dashboard-tab: true
-        system-tab: true
-        users-tab: true
-        groups-tab: true
-        acls-tab: true
-        vresources-tab: true
-        vms-tab: true
-        templates-tab: true
-        images-tab: true
-        files-tab: true
-        infra-tab: true
-        clusters-tab: false
-        hosts-tab: true
-        datastores-tab: true
-        vnets-tab: true
-        marketplace-tab: true
-        oneflow-dashboard: tru
-        oneflow-services: true
-        oneflow-templates: true
-        zones-tab: true
-        support-tab: false
+        - dashboard-tab
+        - system-tab
+        - users-tab
+        - groups-tab
+        - acls-tab
+        - vresources-tab
+        - vms-tab
+        - templates-tab
+        - images-tab
+        - files-tab
+        - infra-tab
+        #- clusters-tab
+        - hosts-tab
+        - datastores-tab
+        - vnets-tab
+        - marketplace-tab
+        - oneflow-dashboard
+        - oneflow-services
+        - oneflow-templates
+        - zones-tab
+        #- support-tab
 
 Tuning & Extending
 ==================
