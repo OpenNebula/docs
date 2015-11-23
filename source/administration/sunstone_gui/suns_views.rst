@@ -192,30 +192,30 @@ The name of the view is the the filename without the yaml extension. The default
     `-- sunstone-views.yaml
     ...
 
-The content of a view file specifies the tabs available in the view (note: tab is on of the main sections of the UI, those in the left-side menu). Each tab can be enabled or disabled by updating the ``enabled_tabs:`` attribute. For example to disable the Clusters tab, just set ``clusters-tab`` value to ``false``:
+The content of a view file specifies the tabs available in the view (note: tab is on of the main sections of the UI, those in the left-side menu). Each tab can be enabled or disabled by updating the ``enabled_tabs:`` attribute. For example to disable the Clusters tab, comment the ``clusters-tab`` entry:
 
-.. code::
+.. code-block:: yaml
 
     enabled_tabs:
-        dashboard-tab: true
-        system-tab: true
-        users-tab: true
-        groups-tab: true
-        acls-tab: true
-        vresources-tab: true
-        vms-tab: true
-        templates-tab: true
-        images-tab: true
-        files-tab: true
-        infra-tab: true
-        clusters-tab: false
-        hosts-tab: true
-        datastores-tab: true
-        vnets-tab: true
-        marketplace-tab: true
-        oneflow-dashboard: tru
-        oneflow-services: true
-        oneflow-templates: true
+        - dashboard-tab
+        - system-tab
+        - users-tab
+        - groups-tab
+        - acls-tab
+        - vresources-tab
+        - vms-tab
+        - templates-tab
+        - images-tab
+        - files-tab
+        - infra-tab
+        # - clusters-tab
+        - hosts-tab
+        - datastores-tab
+        - vnets-tab
+        - marketplace-tab
+        - oneflow-dashboard
+        - oneflow-services
+        - oneflow-templates
 
 Each tab, can be tuned by selecting:
 
