@@ -76,8 +76,6 @@ After the upgrade is completed, you should run the command ``onedb fsck``. Execu
 Reload Start Scripts in CentOS 7
 ================================
 
-.. todo:: check if this step is needed when updating from 4.14.0 to 4.14.2
-
 In order for the system to re-read the configuration files you should issue the following command after the installation of the new packages:
 
 .. code-block:: none
@@ -94,9 +92,9 @@ You should be able now to start OpenNebula as usual, running 'one start' as onea
 Default Auth
 ============
 
-.. todo:: check if this step is needed when updating from 4.14.0 to 4.14.2
+.. note:: If you are upgrading from 4.14.0 you probably have already done this. If that's the case, you don't need to do anything in this section.
 
-If you are using :ref:`LDAP as default auth driver <ldap>`, you will need to update ``/etc/one/oned.conf`` and set the new ``DEFAULT_AUTH`` variable:
+If you are using :ref:`LDAP as default auth driver <ldap>`, you will need to update ``/etc/one/oned.conf`` and set the new ``DEFAULT_AUTH`` variable, if you haven't done:
 
 .. code::
 
