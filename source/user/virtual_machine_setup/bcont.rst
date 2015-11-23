@@ -223,27 +223,33 @@ vcenter Contextualization
 
 Contextualization with vcenter does not have all the features available for ``kvm``, ``xen`` or ``vmware`` drivers. Here is a table with the parameters supported:
 
-+--------------------+---------------------------------------------------------+
-|     Parameter      |                       Description                       |
-+====================+=========================================================+
-| ``SET_HOST``       | Change the hostname of the VM. In Windows the machine   |
-|                    | needs to be restarted.                                  |
-+--------------------+---------------------------------------------------------+
-| ``SSH_PUBLIC_KEY`` | SSH public keys to add to authorized_keys file.         |
-|                    | This parameter only works with Linux guests.            |
-+--------------------+---------------------------------------------------------+
-| ``USERNAME``       | Create a new administrator user with the given          |
-|                    | user name. Only for Windows guests.                     |
-+--------------------+---------------------------------------------------------+
-| ``PASSWORD``       | Password for the new administrator user. Used with      |
-|                    | ``USERNAME`` and only for Windows guests.               |
-+--------------------+---------------------------------------------------------+
-| ``DNS``            | Add DNS entries to ``resolv.conf`` file. Only for Linux |
-|                    | guests.                                                 |
-+--------------------+---------------------------------------------------------+
-| ``ONEGATE_TOKEN``  | Token to validate information passed to OneGate         |
-|                    | from within the VM                                      |
-+--------------------+---------------------------------------------------------+
++-------------------------+---------------------------------------------------------+
+|        Parameter        |                       Description                       |
++=========================+=========================================================+
+| ``SET_HOST``            | Change the hostname of the VM. In Windows the machine   |
+|                         | needs to be restarted.                                  |
++-------------------------+---------------------------------------------------------+
+| ``SSH_PUBLIC_KEY``      | SSH public keys to add to authorized_keys file.         |
+|                         | This parameter only works with Linux guests.            |
++-------------------------+---------------------------------------------------------+
+| ``USERNAME``            | Create a new administrator user with the given          |
+|                         | user name. Only for Windows guests.                     |
++-------------------------+---------------------------------------------------------+
+| ``PASSWORD``            | Password for the new administrator user. Used with      |
+|                         | ``USERNAME`` and only for Windows guests.               |
++-------------------------+---------------------------------------------------------+
+| ``DNS``                 | Add DNS entries to ``resolv.conf`` file. Only for Linux |
+|                         | guests.                                                 |
++-------------------------+---------------------------------------------------------+
+| ``ONEGATE_TOKEN``       | Token to validate information passed to OneGate         |
+|                         | from within the VM                                      |
++-------------------------+---------------------------------------------------------+
+| ``START_SCRIPT``        | Text of the script executed when the machine starts up. |
+|                         | It can contain shebang in case it is not shell script.  |
+|                         | For example ``START_SCRIPT="yum upgrade"``              |
++-------------------------+---------------------------------------------------------+
+| ``START_SCRIPT_BASE64`` | The same as ``START_SCRIPT`` but encoded in Base64      |
++-------------------------+---------------------------------------------------------+
 
 In Linux guests, the information can be consumed using the following command (and acted accordingly):
 
