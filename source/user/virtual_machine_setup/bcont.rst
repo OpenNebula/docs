@@ -218,7 +218,7 @@ If you want to know mor in deep how to configure and use OneGate head to the :re
 
 .. _vcenter_context:
 
-vcenter Contextualization
+vCenter Contextualization
 =========================
 
 Contextualization with vcenter does not have all the features available for ``kvm``, ``xen`` or ``vmware`` drivers. Here is a table with the parameters supported:
@@ -241,8 +241,9 @@ Contextualization with vcenter does not have all the features available for ``kv
 | ``DNS``                 | Add DNS entries to ``resolv.conf`` file. Only for Linux |
 |                         | guests.                                                 |
 +-------------------------+---------------------------------------------------------+
-| ``ONEGATE_TOKEN``       | Token to validate information passed to OneGate         |
-|                         | from within the VM                                      |
+| ``TOKEN``               | If set to "YES" a  variable ONEGATE_TOKEN will be       |
+|                         | passed to the VM with a token to set information to     |
+|                         | OneGate                                                 |
 +-------------------------+---------------------------------------------------------+
 | ``START_SCRIPT``        | Text of the script executed when the machine starts up. |
 |                         | It can contain shebang in case it is not shell script.  |
@@ -250,6 +251,7 @@ Contextualization with vcenter does not have all the features available for ``kv
 +-------------------------+---------------------------------------------------------+
 | ``START_SCRIPT_BASE64`` | The same as ``START_SCRIPT`` but encoded in Base64      |
 +-------------------------+---------------------------------------------------------+
+
 
 In Linux guests, the information can be consumed using the following command (and acted accordingly):
 
