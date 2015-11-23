@@ -129,6 +129,11 @@ CentOS 6.5 as KVM Node
 
 -  due to libvirt version < = 0.10.2, there is a `bug in libvrit/qemu attac/detach nic functionality <https://bugzilla.redhat.com/show_bug.cgi?id=813748>`__ that prevents the reuse of net IDs. This means that after a successful attach/detach NIC, a new attach will fail.
 
+Debian 8
+========
+
+Make sure that the packages ``ruby-treetop`` and ``treetop`` are not installed before running ``ìnstall_gems``. The version of ``treetop`` that comes packaged in debian is incompatible with OpenNebula.
+
 Unsupported Platforms Notes
 ===========================
 
