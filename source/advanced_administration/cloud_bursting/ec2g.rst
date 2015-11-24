@@ -190,13 +190,17 @@ These values can furthermore be asked to the user using :ref:`user inputs <vm_gu
 Context Support
 ---------------
 
-If a CONTEXT section is defined in the template, it will be available as USERDATA inside the VM and can be retrieved by running the following command_
+If a CONTEXT section is defined in the template, it will be available as USERDATA inside the VM and can be retrieved by running the following command:
 
 .. code::
 
     $ curl http://169.254.169.254/latest/user-data
     ONEGATE_ENDPOINT="https://onegate...
     SSH_PUBLIC_KEY="ssh-rsa ABAABeqzaC1y...
+
+If the :ref:`linux context packages for EC2 <linux_packages>` are installed in the VM, these parameters will be used to configure the VM. These is the :ref:`list of the supported parameters for EC2 <ec2_context>`.
+
+For example, if you want to enable SSH access to the VM, an existing EC2 keypair name can be provided in the EC2 template section or the :ref:`SSH public key of the user <vcenter_context>` can be included in the CONTEXT section of the template.
 
 .. note:: If a value for the USERDATA attribute is provided in the EC2 section of the template, the CONTEXT section will be ignored and the value provided as USERDATA will be available instead of the CONTEXT information.
 
