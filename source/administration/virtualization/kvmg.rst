@@ -597,6 +597,25 @@ To add a PCI device to a template, select the **Other** tab:
 .. |image1| image:: /images/sunstone_host_pci.png
 .. |image2| image:: /images/sunstone_template_pci.png
 
+.. _enabling_qemu_guest_agent:
+
+Enabling QEMU Guest Agent
+=========================
+
+QEMU Guest Agent allows the communication of some actions with the guest OS. This agent uses a virtio serial connection to send and receive commands. One of the interesting actions is that it allows to freeze the filesystem before doing an snapshot. This way the snapshot won't contain half written data. Filesystem freeze will only be used  with ``CEPH`` and ``qcow2`` storage drivers.
+
+The agent package needed in the Guest OS is available in most distributions. Is called ``qemu-guest-agent`` in most of them. If you need more information you can follow these links:
+
+* https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Virtualization_Deployment_and_Administration_Guide/chap-QEMU_Guest_Agent.html
+* http://wiki.libvirt.org/page/Qemu_guest_agent
+* http://wiki.qemu.org/Features/QAPI/GuestAgent
+
+To enable the communication channel with the guest agent this line must be present in ``/etc/one/vmm_exec/vmm_exec_kvm.conf``:
+
+.. code::
+
+    RAW = "<devices><channel type='unix'><source mode='bind'/><target type='virtio' name='org.qemu.guest_agent.0'/></channel></devices>"
+
 Importing VMs
 =============
 

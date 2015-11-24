@@ -236,7 +236,7 @@ A user can take snapshots of the disk states at any moment in time (if the VM is
 
 .. warning::
 
-  ``disk-snapshot-create`` and ``disk-snapshot-revert`` actions are not in sync with the hypervisor. If the VM is in ``RUNNING`` state make sure the disk is unmounted (preferred), synced or quiesced in some way before taking the snapshot.
+  ``disk-snapshot-create`` and ``disk-snapshot-revert`` actions are not in sync with the hypervisor. If the VM is in ``RUNNING`` state make sure the disk is unmounted (preferred), synced or quiesced in some way before taking the snapshot. With CEPH and qcow2 datastores and KVM hypervisor you can :ref:`enable QEMU Guest Agent <enabling_qemu_guest_agent>`.
 
 By default, oned will try to issue live snapshots (option ``-i`` of ``VM_MAD``), which is only supported for some drivers. If this option is enabled **and** if the driver that will create the snapshot supports it, snapshots can be taken without any downtime. Live snapshots are  supported for:
 
