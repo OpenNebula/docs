@@ -11,7 +11,7 @@ Requirements
 
 Check the :ref:`Installation guide <ignc>` for details of what package you have to install depending on your distribution
 
-Currently, OneGate is not supported for VMs instantiated in EC2, Softlayer and Azure, since the authentication token is not available inside these VMs. OneGate support for these drivers will be include in upcoming releases.
+Currently, OneGate is not supported for VMs instantiated in Softlayer and Azure, since the authentication token is not available inside these VMs. OneGate support for these drivers will be include in upcoming releases. Since OpenNebula 4.14.2 the authentication token is available for :ref:` instances deployed in EC2 <context_ec2>`.
 
 .. _onegate_configuration:
 
