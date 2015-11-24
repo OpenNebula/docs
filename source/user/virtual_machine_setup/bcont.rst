@@ -229,7 +229,7 @@ If you want to know mor in deep how to configure and use OneGate head to the :re
 vCenter Contextualization
 =========================
 
-Contextualization with vcenter does not have all the features available for ``kvm``, ``xen`` or ``vmware`` drivers. Here is a table with the parameters supported:
+Contextualization with vCenter does not have all the features available for ``kvm``, ``xen`` or ``vmware`` drivers. Here is a table with the parameters supported:
 
 +-------------------------+---------------------------------------------------------+
 |        Parameter        |                       Description                       |

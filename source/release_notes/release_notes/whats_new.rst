@@ -62,8 +62,9 @@ OpenNebula Drivers :: Networking
 
 OpenNebula networking is getting better and better:
 
-- **Host housekeeping**, cleaning :ref:`VXLAN devices <vxlan>` when no VMs are running in the hypervisor.
+- **Host housekeeping**, cleaning :ref:`VXLAN devices <vxlan>` when no VMs are running in the hypervisor. Also, new options :ref:`(MTU and TTL) available for VXLAN configuration <vxlan_options>`.
 - **Set Maximum Transmission Unit**, from the network templates in the hypervisor through the :ref:`802.1q drivers <hm-vlan>`.
+- **Better network information in vCenter** shown in both `sunstone <sunstone>` and the `cli <cli>`.
 
 OpenNebula Drivers :: Storage
 --------------------------------------------------------------------------------
@@ -73,6 +74,7 @@ Exciting new features in the storage subsystem:
 - **New disk snapshot capabilities**, now it is possible to :ref:`snapshot a disk <vm_guide_2_disk_snapshots>` from within OpenNebula and keep a tree of snapshots in the VM and back in the image datastore, reverting (or flattening) at any moment to any snapshot in the tree. If the VM disk where the snapshot is taken is a persistent image, the `snapshots will be persisted back into the image datastore <img_guide_snapshots>`. :ref:`Different backends <storage_snapshot_compatilibity>` (like ceph and qcow2) are supported.
 - **Disk snapshots in VM running state**, for qcow2 backends.
 - **Disk resizing**, :ref:`grow a VM disk at instantiation time <vm_guide2_resize_disk>` on your VM while conforming with your quotas and being noted down for accounting.
+- **Quoesce support**, for qcow2 disks :ref:`enabling QEMU Guest Agent <enabling_qemu_guest_agent>`.
 
 OpenNebula Drivers :: Virtualization
 --------------------------------------------------------------------------------
@@ -82,8 +84,15 @@ OpenNebula Drivers :: Virtualization
 - **Spice support for more hypervisors**, now supported as well in :ref:`XEN <xeng>`.
 - **Control how disks are managed in vCenter**, through :ref:`a new VM template variable <vm_template_definition_vcenter>`. Protect users data against accidental deletions.
 - **PUBLIC_CLOUD sections allow for substitions** from template and virtual network variables, the same way as the :ref:`CONTEXT section allows <cong_defining_context>`.
--	 **OneGate token now available in vCenter**. Now is possible to access the :ref:`OneGate server <onegate_overview>` from vCenter VMs since the onegate token is passed through to the VM.
-
+- **OneGate token now available in vCenter**. Now is possible to access the :ref:`OneGate server <onegate_overview>` from vCenter VMs since the onegate token is passed through to the VM.
+- **Improved dialogs for vCenter**, allowing a smoother :ref:`resource import <reacquire_vcenter_resources>`.
+- **Updated EC2 instance types**, to be used on the :ref:`EC2 templates <ec2_specific_template_attributes>`.
+- **UserData for EC2** now available as a :ref:`User Input <user_data_as_user_input>`.
+- **FQDN for SoftLayer VMs** whenever they are :ref:`imported <import_sl_vms>`.
+- **Support for vCenter customization**, as a :ref:`complementary alternative <vcenter_customization>` to contextualization.
+- **More human readable VM names in vCenter**, stating :ref:`their given name <vcenter_vms_name_note>` as well as the id.
+- **Suffix resouces with cluster names**, when :ref:`importing from vCenter <vcenter_import_name_with_cluster_note>`.
+- **Multi vCenter cluster** can be now defined in a :ref:`single VM Template definition <vm_template_definition_vcenter>`.
 
 OpenNebula Drivers :: Monitor Information
 --------------------------------------------------------------------------------
@@ -92,9 +101,13 @@ OpenNebula Drivers :: Monitor Information
 Scheduler
 --------------------------------------------------------------------------------
 
-- **Better logging**, now is easier to understand what is going on in the :ref:`scheduler <schg>`
+- **Better logging**, now is easier to understand what is going on in the :ref:`scheduler <schg>`.
 - **Control System DS deployment with ACL rules**, the scheduler (and core) has been update to enforce :ref:`access rights <manage_acl>` on system datastores, checking that the user can access the System DS. This is useful to implement different allocation policies and VDC-based provision schemes.
 
+Econe Server
+--------------------------------------------------------------------------------
+
+- **Better compatiblity**, the :ref:`server <ec2qcg_configuration>` now supports for Signature Version 4. :ref:`Ecosystem tools <ec2qec>` like fog (ruby), aws-sdk-ruby, aws-sdk-java and euca2ool work against the server in their latest versions.
 
 Sunstone
 --------------------------------------------------------------------------------
@@ -103,9 +116,27 @@ Sunstone has been completely refactored, in order to make it easier to maintain 
 
 - **Improvements in view selector**, now :ref:`views <suns_views>` can be selected easier and names can be customized.
 - **Better user preferences support**, the :ref:`number of elements displayed in the datatables <sunstone_settings>` are remembered per user.
-- **Improvements in usability**, to avoid errors, :ref:`Sunstone <sunstone>` now disables VM actions depending on the current state.
+- **Improvements in usability and performance**, to avoid errors, :ref:`Sunstone <sunstone>` now disables VM actions depending on the current state.
 - **Ability to save VMs as templates**, for later use. :ref:`Saved VMs <save_vm_as_template_cloudview>` can have now more than one disk.
+- **Better third party support**, with a new :ref:`framework to add Sunstone custome tabs <reacquire_vcenter_resources>`.
+- **Versioning to avoid cache issues**, when upgrading to a new :ref:`Sunstone version <sunstone>`.
+- **New auth support**, integration with :ref:`Kerberos <sunstone_kerberos_remote_auth>`.
+- **Security improvements** in :ref:`remote VNC connections <remote_access_sunstone>`.
 
+Cloud View
+--------------------------------------------------------------------------------
+
+Cloud View has been extended and flexibilize to offer a wider set of operations to end users.
+
+- **Extended list of Cloud View operations**, like for instance the ability to offer :ref:`snapshots and scheduled actions to end users <cloud_view>`.
+- **Customizable operation availability**, cloud admins now can decide which :ref:`operations are available for end users <customize_cloud_view>`.
+
+OneGate
+-------------------------------------
+
+More secure OneGate service
+
+- **Secure your cloud** adding :ref:`SSL interface to OneGate <onegate_configuration>`.
 
 Contextualization
 -------------------------------------
@@ -114,6 +145,7 @@ Contextualization improvements are also present:
 
 - **Added ability to run arbitrary script**, to help customize guest OS using the START_SCRIPTS and START_SCRIPTS_BASE64 new :ref:`attributes <cong_user_template>`.
 - **More flexible network attributes contextualization**, with the ability of overriding parameters from the network in the :ref:`Context section <bcont>`.
+- **Context support**, for :ref:`EC2 instances <context_ec2>`.
 
 Command Line Interface
 --------------------------------------------------------------------------------

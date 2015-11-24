@@ -1,4 +1,4 @@
-.. _release_notes_4142:
+fcloud .. _release_notes_4142:
 
 Resolved Issues in 4.14.2
 --------------------------------------------------------------------------------
@@ -7,8 +7,7 @@ A complete list of solved issues for 4.14.2 `can be found in the project develop
 
 Apart from the bug fixes listed above, 4.14.2 includes several improvements:
 
-- `Extend list of Cloud View available operations <http://dev.opennebula.org/issues/3414>`__, to include snapshots, nic and disk hotplugging, schedule actions and `rename <http://dev.opennebula.org/issues/4126>`__.
-- `New parameter to control XML message size <http://dev.opennebula.org/issues/4081>`__.
+- `Extend list of Cloud View available operations <http://dev.opennebula.org/issues/3414>`__, to include snapshots, nic and disk hotplugging, schedule actions and `rename <http://dev.opennebula.org/issues/4126>`__. Additionally, make the list of available operations `customizable <http://dev.opennebula.org/issues/2977>`__.
 - `Allow template substitutions in PUBLIC_CLOUD sections <http://dev.opennebula.org/issues/4084>`__.
 - `Monitoring through CloudWatch for EC2 VMs <http://dev.opennebula.org/issues/4083>`__.
 - `Improvements in VXLAN support <http://dev.opennebula.org/issues/4043>`__.
@@ -24,7 +23,6 @@ Apart from the bug fixes listed above, 4.14.2 includes several improvements:
 - `Improved Sunstone update avoiding cache issues <http://dev.opennebula.org/issues/4101>`__.
 - `Sunstone kerberos support <http://dev.opennebula.org/issues/4111>`__.
 - `VNC security improvement <http://dev.opennebula.org/issues/4145>`__.
-- `Configurable actions presence in cloud/admin views <http://dev.opennebula.org/issues/2977>`__.
 - `Performance improvements in Sunstone <http://dev.opennebula.org/issues/3451>`__.
 - `Support for VMware customization specs in vCenter <http://dev.opennebula.org/issues/4012>`__.
 - `Better network information display for vCenter <http://dev.opennebula.org/issues/4014>`__.

@@ -28,7 +28,7 @@ This is an example of the images-tab files layout:
 And how the different modules are used in the images-tab file:
 
 .. code-block:: javascript
-  
+
   /* images-tab.js content */
 
   define(function(require) {
@@ -52,7 +52,7 @@ The `optimization tool <http://requirejs.org/docs/optimization.html>`__ provided
 Handlebars
 ==========
 
-`Handlebars <http://handlebarsjs.com/>`__ provides the power necessary to let you build semantic templates and is largely compatible with Mustache templates. 
+`Handlebars <http://handlebarsjs.com/>`__ provides the power necessary to let you build semantic templates and is largely compatible with Mustache templates.
 
 .. code-block:: html+handlebars
 
@@ -83,12 +83,12 @@ Additional helpers can be defined just creating a new file inside the ``app/temp
       {{tr "Attach disk"}}
     </button>
   </span>
-  {{/isTabActionEnabled}}  
+  {{/isTabActionEnabled}}
 
 SASS & Foundation
 =================
 
-The `Zurb Foundation <http://foundation.zurb.com/>`__ framkework is used for the layout of the app. It provides a powerful grid system and different nifty widgets such as tabs, sliders, dialogs... 
+The `Zurb Foundation <http://foundation.zurb.com/>`__ framkework is used for the layout of the app. It provides a powerful grid system and different nifty widgets such as tabs, sliders, dialogs...
 
 The Zurb Foundation configuration parameters are defined in the ``app/scss/settings.scss`` file and new styles for the app can be added in the ``app/scss/app.scss`` file. After modifying these files, the app.css and app.min.css files must be generated as explained in the following section.
 
@@ -98,7 +98,7 @@ Modifying JS & CSS files
 
 Sunstone can be run in two different environments:
 
-- Production, using the minified css ``css/app.min.css`` and javascript ``dist/main.js`` files. 
+- Production, using the minified css ``css/app.min.css`` and javascript ``dist/main.js`` files.
 - Development, using the non minified css ``css/app.css`` and javascript files ``app/main.js``. Note that each file/module will be retrieved in a different HTTP request and the app will take longer to start, therefore it is not recommended for production environments
 
 By default Sunstone is configured to use the minified files, therefore any change in the source code will not apply until the minified files are generated again. But you can set the ``env`` parameter in sunstone-server.conf to ``dev`` to use the non minified files and test your changes.
@@ -182,6 +182,8 @@ Install.sh
 
 By default the install.sh script will install all the files, including the non-minified ones. Providing the -p option, only the minified files will be installed.
 
+.. _sunstone_custom_tabs:
+
 Adding Custom Tabs
 ==================
 
@@ -227,7 +229,7 @@ New tabs can be included following these steps:
 * Generate the minified files including the new tab by running the ``grunt requirejs`` command.
 
 You can see an example of external tabs and custom routes for AppMarket in its own `Github repository <https://github.com/OpenNebula/addon-appmarket/tree/master/src/sunstone>`_
- 
+
 Custom Routes for Sunstone Server
 =================================
 

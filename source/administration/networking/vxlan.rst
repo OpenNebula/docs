@@ -42,6 +42,8 @@ To enable this driver, use **vxlan** as the Virtual Network Manager driver param
 
     $ onehost create host01 -i kvm -v kvm -n vxlan
 
+.. _vxlan_options:
+
 VXLAN Options
 --------------
 

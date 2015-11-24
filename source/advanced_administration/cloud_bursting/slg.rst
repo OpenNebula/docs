@@ -439,7 +439,9 @@ To force a VM deployment in a SoftLayer host, use:
 
     SCHED_REQUIREMENTS = "PUBLIC_CLOUD = YES"
 
+.. _import_sl_vms:
+
 Importing VMs
 =============
 
-VMs running on SfotLayer that were not launched through OpenNebula can be :ref:`imported in OpenNebula <import_wild_vms>`.
+VMs running on SoftLayer that were not launched through OpenNebula can be :ref:`imported in OpenNebula <import_wild_vms>`.

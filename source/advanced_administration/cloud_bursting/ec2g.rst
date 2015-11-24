@@ -82,6 +82,8 @@ After OpenNebula is restarted, create a new Host that uses the ec2 drivers:
 
     $ onehost create ec2 --im ec2 --vm ec2 --net dummy
 
+.. _ec2_specific_template_attributes:
+
 EC2 Specific Template Attributes
 ================================
 
@@ -178,6 +180,8 @@ Default values for all these attributes can be defined in the ``/etc/one/ec2_dri
 
 .. note:: The EC2 and PUBLIC_CLOUD sections allow for substitions from template and virtual network variables, the same way as the :ref:`CONTEXT section allows <cong_defining_context>`.
 
+.. _user_data_as_user_input:
+
 These values can furthermore be asked to the user using :ref:`user inputs <vm_guide_user_inputs>`. A common scenario is to delegate the User Data to the end user. For that, a new User Input named USERDATA can be created of text64 (the User Data needs to be encoded on base64) and a placeholder added to the EC2 section:
 
 .. code::
@@ -186,6 +190,8 @@ These values can furthermore be asked to the user using :ref:`user inputs <vm_gu
             KEYPAIR="gsg-keypair",
             INSTANCETYPE=m1.small,
             USERDATA="$USERDATA"]
+
+.. _context_ec2:
 
 Context Support
 ---------------

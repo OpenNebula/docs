@@ -254,6 +254,7 @@ The cloud view is enabled by default for all users and you can enable/disable it
 
 .. note:: Any user can change the current view in the Sunstone settings. Administrators can use this view without any problem if they find it easier to manage their VMs.
 
+.. _customize_cloud_view:
 
 Customizing the View
 ====================

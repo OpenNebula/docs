@@ -306,6 +306,8 @@ The same **onevcenter** tool can be used to import existing VM templates from th
     SCHED_REQUIREMENTS="NAME=\"devel\""
     VCPU="1"
 
+.. _vcenter_import_name_with_cluster_note:
+
 .. note:: VM Templates imported from vCenter will have their names appended with a the name of the cluster where this resources belong in vCenter, to ease their identification within OpenNebula.
 
 Moreover the same **onevcenter** tool can be used to import existing Networks and distributed vSwitches from the ESX clusters:
@@ -456,6 +458,7 @@ The monitoring attributes retrieved from a vCenter VM are:
 - VMWARETOOLS_VERSION
 - VMWARETOOLS_VERSION_STATUS
 
+.. _vcenter_vms_name_note:
 
 .. note:: VMs will be named in vCenter as 'one-<vid>-<VM Name>', where <vid> is the id of the VM and VM Name is the name given to the VM in OpenNebula.
 

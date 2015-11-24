@@ -13,6 +13,8 @@ Check the :ref:`Installation guide <ignc>` for details of what package you have 
 
 Currently, OneGate is not supported for VMs instantiated in EC2, Softlayer and Azure, since the authentication token is not available inside these VMs. OneGate support for these drivers will be include in upcoming releases.
 
+.. _onegate_configuration:
+
 Configuration
 =============
 
@@ -51,7 +53,7 @@ This is the default file
     ################################################################################
     # Server Configuration
     ################################################################################
-    
+
     # OpenNebula sever contact information
     #
     :one_xmlrpc: http://localhost:2633/RPC2
@@ -87,11 +89,11 @@ This is the default file
     #   x509, for x509 certificate encryption of tokens
     #
     :core_auth: cipher
-    
+
     ################################################################################
     # OneFlow Endpoint
     ################################################################################
-    
+
     :oneflow_server: http://localhost:2474
 
     ################################################################################
@@ -154,7 +156,7 @@ Update your package lists and install Nginx:
 You should get an official signed certificate, but for the purpose of this example we will generate a self-signed SSL certificate:
 
 .. code::
-    
+
     cd /etc/one
     sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/one/cert.key -out /etc/one/cert.crt
 

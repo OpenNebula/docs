@@ -80,6 +80,8 @@ Note that OpenNebula will not verify that the user is holding a valid certificat
 
 .. warning:: Sunstone x509 auth method only handles the authentication of the user at the time of login. Authentication of the user certificate is a complementary setup, which can rely on Apache.
 
+.. _sunstone_kerberos_remote_auth:
+
 remote Auth
 -----------
 
