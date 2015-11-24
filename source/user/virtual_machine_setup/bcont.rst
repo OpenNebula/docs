@@ -259,6 +259,10 @@ Contextualization with vcenter does not have all the features available for ``kv
 +-------------------------+---------------------------------------------------------+
 | ``START_SCRIPT_BASE64`` | The same as ``START_SCRIPT`` but encoded in Base64      |
 +-------------------------+---------------------------------------------------------+
+| ``USERNAME``            | In linux specifies the user where the SSH public key    |
+|                         | will be installed. In Windows is the administrator user |
+|                         | that will be created.                                   |
++-------------------------+---------------------------------------------------------+
 
 
 In Linux guests, the information can be consumed using the following command (and acted accordingly):
