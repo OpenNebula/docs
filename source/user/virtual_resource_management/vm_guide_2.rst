@@ -243,6 +243,8 @@ By default, oned will try to issue live snapshots (option ``-i`` of ``VM_MAD``),
 
 - Hypervisor ``VM_MAD=kvm`` with Ceph datastores (``TM_MAD=ceph``). In this case OpenNebula will initially create the snapshots as Ceph snapshots in the current volume.
 
+With CEPH and qcow2 datastores and  KVM hypervisor you can :ref:`enable QEMU Guest Agent <enabling_qemu_guest_agent>`. With this agent enabled the filesystem will be frozen while the snapshot is being done.
+
 OpenNebula will handle non-live ``disk-snapshot-create`` and ``disk-snapshot-revert`` operations for VMs in ``RUNNING`` state depending on the configuration of the ``VM_MAD`` driver in ``/etc/one/oned.conf``, in particular:
 
 - ``-d suspend`` (default): The VM is suspended (the memory state is written to the system datastore), the snapshot operation takes place (create or revert). This is the safest strategy but implies some downtime (the time it takes for the memory state to be written and to be re-read again).
