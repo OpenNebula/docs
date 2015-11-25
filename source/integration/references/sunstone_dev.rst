@@ -54,7 +54,7 @@ Handlebars
 
 `Handlebars <http://handlebarsjs.com/>`__ provides the power necessary to let you build semantic templates and is largely compatible with Mustache templates.
 
-.. code-block:: html+handlebars
+.. code-block:: html
 
   <div id="comments">
     {{#each comments}}
@@ -75,7 +75,7 @@ The integration between `Handlebars <http://handlebarsjs.com/>`__  and `requirej
 
 Additional helpers can be defined just creating a new file inside the ``app/templates/helpers`` folder. These helpers will be available for any template of the app.
 
-.. code-block:: html+handlebars
+.. code-block:: html
 
   {{#isTabActionEnabled "vms-tab" "VM.attachdisk"}}
   <span class="right">
