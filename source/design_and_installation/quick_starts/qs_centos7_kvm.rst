@@ -99,8 +99,6 @@ Now run ``install_gems`` to install all the gem dependencies. Choose the *CentOS
 
 There are two main processes that must be started, the main OpenNebula daemon: ``oned``, and the graphical user interface: ``sunstone``.
 
-``Sunstone`` listens only in the loopback interface by default for security reasons. To change it edit ``/etc/one/sunstone-server.conf`` and change ``:host: 127.0.0.1`` to ``:host: 0.0.0.0``.
-
 Now we can start the services:
 
 .. code-block:: none
