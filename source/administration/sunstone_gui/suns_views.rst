@@ -348,6 +348,25 @@ You can easily add you logos to the login and main screens by updating the ``log
 -  The login screen is defined in the ``/etc/one/sunstone-views.yaml``.
 -  The logo of the main UI screen is defined for each view in the view file.
 
+Customize the VM Logos
+--------------------------------------------------------------------------------
+
+The VM Templates have an image logo to identify the guest OS. To modify the list of available logos, or to add new ones, edit ``/etc/one/sunstone-logos.yaml``.
+
+.. code-block:: yaml
+
+    - { 'name': "Arch Linux",         'path': "images/logos/arch.png"}
+    - { 'name': "CentOS",             'path': "images/logos/centos.png"}
+    - { 'name': "Debian",             'path': "images/logos/debian.png"}
+    - { 'name': "Fedora",             'path': "images/logos/fedora.png"}
+    - { 'name': "Linux",              'path': "images/logos/linux.png"}
+    - { 'name': "Redhat",             'path': "images/logos/redhat.png"}
+    - { 'name': "Ubuntu",             'path': "images/logos/ubuntu.png"}
+    - { 'name': "Windows XP/2003",    'path': "images/logos/windowsxp.png"}
+    - { 'name': "Windows 8",          'path': "images/logos/windows8.png"}
+
+|sunstone_vm_logo|
+
 .. |admin_view| image:: /images/admin_view.png
 .. |vcenter_view| image:: /images/vcenter_view.png
 .. |groupadmin_dash| image:: /images/vdcadmin_dash.png
@@ -357,3 +376,4 @@ You can easily add you logos to the login and main screens by updating the ``log
 .. |sunstone_group_defview| image:: /images/sunstone_group_defview.png
 .. |sunstone_yaml_columns1| image:: /images/sunstone_yaml_columns1.png
 .. |sunstone_yaml_columns2| image:: /images/sunstone_yaml_columns2.png
+.. |sunstone_vm_logo| image:: /images/sunstone_vm_logo.png
