@@ -192,6 +192,12 @@ Some of the variables have special meanings, but none of them are mandatory:
 |                         | the one that configures it. For example to set the first interface to configure the  |
 |                         | gateway you use ``GATEWAY_IFACE=0``                                                  |
 +-------------------------+--------------------------------------------------------------------------------------+
+| **USERNAME**            | In linux specifies the user where the SSH public key will be installed. In Windows   |
+|                         | is the administrator user that will be created.                                      |
++-------------------------+--------------------------------------------------------------------------------------+
+| **SSH_PUBLIC_KEY**      | Public key that will be installed in ``root`` or **USERNAME** user's                 |
+|                         | ``authorized_keys``.                                                                 |
++-------------------------+--------------------------------------------------------------------------------------+
 
 .. warning:: A default target attribute is :ref:`generated automatically <template_disks_device_mapping>` by OpenNebula, based on the default device prefix set at :ref:`oned.conf <oned_conf>`.
 

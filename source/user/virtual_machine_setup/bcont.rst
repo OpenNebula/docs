@@ -19,8 +19,8 @@ The contextualization package will also mount any partition labeled ``swap`` as 
 
 - Start a image (or finish its installation)
 - Download and install the package for your distribution:
-   - `DEB <https://github.com/OpenNebula/addon-context-linux/releases/download/v4.14.2/one-context_4.14.2.deb>`__: Compatible with Ubuntu 11.10 to 15.04 and Debian 6/7/8
-   - `RPM <https://github.com/OpenNebula/addon-context-linux/releases/download/v4.14.2/one-context_4.14.2.rpm>`__: Compatible with CentOS and RHEL 6/7
+   - `DEB <https://github.com/OpenNebula/addon-context-linux/releases/download/v4.14.3/one-context_4.14.3.deb>`__: Compatible with Ubuntu 11.10 to 15.04 and Debian 6/7/8
+   - `RPM <https://github.com/OpenNebula/addon-context-linux/releases/download/v4.14.3/one-context_4.14.3.rpm>`__: Compatible with CentOS and RHEL 6/7
 - If you want to use the bundled ``onegate`` tool make sure that ruby >= 1.8.7 is installed in the image
 - Shutdown the VM
 
@@ -193,6 +193,8 @@ A complete list of parameters that can be used for network contextualization are
 | ``DNS``                      | main DNS server for the machine                |
 +------------------------------+------------------------------------------------+
 
+.. _ssh_configuration:
+
 SSH Configuration
 -----------------
 
@@ -206,33 +208,62 @@ You can add ``SSH_PUBLIC_KEY`` parameter to the context to add a SSH public key 
 
 If the SSH\_PUBLIC\_KEY exists as a User Template attribute, and the template is instantiated in Sunstone, this value will be used to populate SSH\_PUBLIC\_KEY value of the CONTEXT section. This way templates can be made generic.
 
+.. code::
+
+    CONTEXT=[
+      SSH_PUBLIC_KEY="$USER[SSH_PUBLIC_KEY]"
+    ]
+
 If you want to known more in deep the contextualization options head to the :ref:`Advanced Contextualization guide <cong>`.
+
+
+OneGate self-awareness & self-configuration
+-------------------------------------------
+
+The OneGate service allows Virtual Machines guests to pull and push VM information from OpenNebula. You can add ``TOKEN=YES`` parameter to the context to enable this functionality.
+
+If you want to know mor in deep how to configure and use OneGate head to the :ref:`Configuration <onegate_configure>` and :ref:`Usage guides <onegate_usage>`.
 
 .. _vcenter_context:
 
-vcenter Contextualization
+vCenter Contextualization
 =========================
 
-Contextualization with vcenter does not have all the features available for ``kvm``, ``xen`` or ``vmware`` drivers. Here is a table with the parameters supported:
+Contextualization with vCenter does not have all the features available for ``kvm``, ``xen`` or ``vmware`` drivers. Here is a table with the parameters supported:
 
-+--------------------+---------------------------------------------------------+
-|     Parameter      |                       Description                       |
-+====================+=========================================================+
-| ``SET_HOST``       | Change the hostname of the VM. In Windows the machine   |
-|                    | needs to be restarted.                                  |
-+--------------------+---------------------------------------------------------+
-| ``SSH_PUBLIC_KEY`` | SSH public keys to add to authorized_keys file.         |
-|                    | This parameter only works with Linux guests.            |
-+--------------------+---------------------------------------------------------+
-| ``USERNAME``       | Create a new administrator user with the given          |
-|                    | user name. Only for Windows guests.                     |
-+--------------------+---------------------------------------------------------+
-| ``PASSWORD``       | Password for the new administrator user. Used with      |
-|                    | ``USERNAME`` and only for Windows guests.               |
-+--------------------+---------------------------------------------------------+
-| ``DNS``            | Add DNS entries to ``resolv.conf`` file. Only for Linux |
-|                    | guests.                                                 |
-+--------------------+---------------------------------------------------------+
++-------------------------+---------------------------------------------------------+
+|        Parameter        |                       Description                       |
++=========================+=========================================================+
+| ``SET_HOST``            | Change the hostname of the VM. In Windows the machine   |
+|                         | needs to be restarted.                                  |
++-------------------------+---------------------------------------------------------+
+| ``SSH_PUBLIC_KEY``      | SSH public keys to add to authorized_keys file.         |
+|                         | This parameter only works with Linux guests.            |
++-------------------------+---------------------------------------------------------+
+| ``USERNAME``            | Create a new administrator user with the given          |
+|                         | user name. Only for Windows guests.                     |
++-------------------------+---------------------------------------------------------+
+| ``PASSWORD``            | Password for the new administrator user. Used with      |
+|                         | ``USERNAME`` and only for Windows guests.               |
++-------------------------+---------------------------------------------------------+
+| ``DNS``                 | Add DNS entries to ``resolv.conf`` file. Only for Linux |
+|                         | guests.                                                 |
++-------------------------+---------------------------------------------------------+
+| ``TOKEN``               | If set to "YES" a  variable ONEGATE_TOKEN will be       |
+|                         | passed to the VM with a token to set information to     |
+|                         | OneGate                                                 |
++-------------------------+---------------------------------------------------------+
+| ``START_SCRIPT``        | Text of the script executed when the machine starts up. |
+|                         | It can contain shebang in case it is not shell script.  |
+|                         | For example ``START_SCRIPT="yum upgrade"``              |
++-------------------------+---------------------------------------------------------+
+| ``START_SCRIPT_BASE64`` | The same as ``START_SCRIPT`` but encoded in Base64      |
++-------------------------+---------------------------------------------------------+
+| ``USERNAME``            | In linux specifies the user where the SSH public key    |
+|                         | will be installed. In Windows is the administrator user |
+|                         | that will be created.                                   |
++-------------------------+---------------------------------------------------------+
+
 
 In Linux guests, the information can be consumed using the following command (and acted accordingly):
 
@@ -242,17 +273,52 @@ In Linux guests, the information can be consumed using the following command (an
    MYSQLPASSWORD = 'MyPassword'
    ENABLEWORDPRESS = 'YES'
 
-Linux Packages
---------------
+.. _ec2_context:
 
-The linux packages can be downloaded from its `project page <https://github.com/OpenNebula/addon-context-linux/releases/tag/v4.8.1>`__ and installed in the guest OS. There is one rpm file for Debian and Ubuntu and an rpm for RHEL and CentOS. After installing the package shutdown the machine and create a new template.
+EC2 Contextualization
+=========================
+
+Contextualization with EC2 does not have all the features available for ``kvm``, ``xen`` or ``vmware`` drivers. Here is a table with the parameters supported:
+
++-------------------------+---------------------------------------------------------+
+|        Parameter        |                       Description                       |
++=========================+=========================================================+
+| ``SSH_PUBLIC_KEY``      | SSH public keys to add to authorized_keys file.         |
+|                         | This parameter only works with Linux guests.            |
++-------------------------+---------------------------------------------------------+
+| ``TOKEN``               | If set to "YES" a  variable ONEGATE_TOKEN will be       |
+|                         | passed to the VM with a token to set information to     |
+|                         | OneGate                                                 |
++-------------------------+---------------------------------------------------------+
+| ``START_SCRIPT``        | Text of the script executed when the machine starts up. |
+|                         | It can contain shebang in case it is not shell script.  |
+|                         | For example ``START_SCRIPT="yum upgrade"``              |
++-------------------------+---------------------------------------------------------+
+| ``START_SCRIPT_BASE64`` | The same as ``START_SCRIPT`` but encoded in Base64      |
++-------------------------+---------------------------------------------------------+
+
+
+In Linux guests, the information can be consumed using the following command (and acted accordingly):
+
+.. code::
+
+    $ curl http://169.254.169.254/latest/user-data
+    ONEGATE_ENDPOINT="https://onegate...
+    SSH_PUBLIC_KEY="ssh-rsa ABAABeqzaC1y...
+
+.. _linux_packages:
+
+Linux Packages
+==============
+
+The linux packages can be downloaded from its `project page <https://github.com/OpenNebula/addon-context-linux/releases/latest>`__ and installed in the guest OS. There is one rpm file for Debian and Ubuntu and an rpm for RHEL and CentOS. After installing the package shutdown the machine and create a new template.
 
 Alternative Linux packages:
 
 * **Arch Linux**: AUR package `one-context <https://aur.archlinux.org/packages/one-context/>`__
 
 Windows Package
----------------
+===============
 
 The official `addon-opennebula-context <https://github.com/OpenNebula/addon-context-windows>`__ provides all the necessary files to run the contextualization in Windows 2008 R2.
 

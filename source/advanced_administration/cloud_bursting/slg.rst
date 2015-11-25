@@ -170,6 +170,8 @@ These are the attributes that can be used in the PUBLIC_CLOUD section of the tem
 | ``POSTSCRIPT``                | Specifies the uri location of the script to be downloaded and run after installation is complete                                                                                                                        |
 +-------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
+.. note:: PUBLIC_CLOUD section allows for substitions from template and virtual network variables, the same way as the :ref:`CONTEXT section allows <cong_defining_context>`.
+
 Default values for all these attributes can be defined in the ``/etc/one/sl_driver.default`` file.
 
 .. code::
@@ -437,7 +439,9 @@ To force a VM deployment in a SoftLayer host, use:
 
     SCHED_REQUIREMENTS = "PUBLIC_CLOUD = YES"
 
+.. _import_sl_vms:
+
 Importing VMs
 =============
 
-VMs running on SfotLayer that were not launched through OpenNebula can be :ref:`imported in OpenNebula <import_wild_vms>`.
+VMs running on SoftLayer that were not launched through OpenNebula can be :ref:`imported in OpenNebula <import_wild_vms>`.

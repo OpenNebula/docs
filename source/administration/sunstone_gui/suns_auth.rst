@@ -80,6 +80,37 @@ Note that OpenNebula will not verify that the user is holding a valid certificat
 
 .. warning:: Sunstone x509 auth method only handles the authentication of the user at the time of login. Authentication of the user certificate is a complementary setup, which can rely on Apache.
 
+.. _sunstone_kerberos_remote_auth:
+
+remote Auth
+-----------
+
+This method is similar to x509 auth. It performs the login to OpenNebula based on a Kerberos ``REMOTE_USER``. The ``USER@DOMAIN`` is extracted from ``REMOTE_USER`` variable and matched to the password value in the user database. To use Kerberos authentication users needs to be configured with the public driver. Note that this will prevent users to authenticate through the XML-RPC interface, only Sunstone access will be granted to these users.
+
+To update exisiting users to use the Kerberos authentication change the driver to public and update the password as follows:
+
+.. code::
+
+    oneuser chauth new_user public "new_user@DOMAIN"
+
+New users with this authentication method should be created as follows:
+
+.. code::
+
+    oneuser create new_user "new_user@DOMAIN" --driver public
+
+To enable this login method, set the ``:auth:`` option of ``/etc/one/sunstone-server.conf`` to ``remote``:
+
+.. code::
+
+        :auth: remote
+
+The login screen will not display the username and password fields anymore, as all information is fetched from Kerberos server or a remote authentication service.
+
+Note that OpenNebula will not verify that the user is holding a valid Kerberos ticket at the time of login: this is expected to be done by the external container of the Sunstone server (normally Apache), whose job is to tell the user's browser that the site requires a valid ticket to login.
+
+.. warning:: Sunstone remote auth method only handles the authentication of the user at the time of login. Authentication of the remote ticket is a complementary setup, which can rely on Apache.
+
 Configuring a SSL Proxy
 =======================
 
@@ -180,7 +211,7 @@ You will need to configure a new virtual host in nginx. Depending on the operati
     server {
             listen 80;
             server_name cloudserver.org;
-            
+
             ### Permanent redirect to HTTPS (optional)
             return 301 https://$server_name:8443;
     }
@@ -189,7 +220,7 @@ You will need to configure a new virtual host in nginx. Depending on the operati
     server {
             listen 8443;
             server_name cloudserver.org;
-            
+
             ### SSL Parameters
             ssl on;
             ssl_certificate /etc/ssl/certs/ssl-cert-snakeoil.pem;

@@ -10,4 +10,5 @@ OpenNebula provides different methods to pass information to a newly created Vir
 -  :ref:`Advanced Contextualization <cong>`: For additional topics in contextualization like adding custom init scripts and variables also read this guide.
 -  :ref:`Cloud-init <cloud-init>`: To know how to use the `cloud-init <http://cloudinit.readthedocs.org/en/latest/>`__ functionality with OpenNebula check this guide.
 -  :ref:`Windows Contextualization <windows_context>`: Contextualization guide specific for Windows guests. From provisioning to contextualization.
+-  :ref:`vCenter Customization <vcenter_customization>`: vCenter Customization Specification support
 

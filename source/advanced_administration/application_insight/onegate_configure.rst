@@ -4,12 +4,16 @@
 OneGate Server Configuration
 =============================
 
-The OneGate service allows Virtual Machines guests to push monitoring information to OpenNebula. Although it is installed by default, its use is completely optional.
+The OneGate service allows Virtual Machines guests to pull and push VM information from OpenNebula. Although it is installed by default, its use is completely optional.
 
 Requirements
 ============
 
 Check the :ref:`Installation guide <ignc>` for details of what package you have to install depending on your distribution
+
+Currently, OneGate is not supported for VMs instantiated in Softlayer and Azure, since the authentication token is not available inside these VMs. OneGate support for these drivers will be include in upcoming releases. Since OpenNebula 4.14.2 the authentication token is available for :ref:` instances deployed in EC2 <context_ec2>`.
+
+.. _onegate_configuration:
 
 Configuration
 =============
@@ -21,6 +25,7 @@ The OneGate configuration file can be found at ``/etc/one/onegate-server.conf``.
 * ``one_xmlrpc``: OpenNebula daemon host and port
 * ``host``: Host where OneGate will listen
 * ``port``: Port where OneGate will listen
+* ``ssl_server``: SSL proxy URL that serves the API (set if is being used)
 
 **Log**
 
@@ -48,7 +53,7 @@ This is the default file
     ################################################################################
     # Server Configuration
     ################################################################################
-    
+
     # OpenNebula sever contact information
     #
     :one_xmlrpc: http://localhost:2633/RPC2
@@ -57,6 +62,9 @@ This is the default file
     #
     :host: 127.0.0.1
     :port: 5030
+
+    # SSL proxy URL that serves the API (set if is being used)
+    #:ssl_server: https://service.endpoint.fqdn:port/
 
     ################################################################################
     # Log
@@ -81,11 +89,11 @@ This is the default file
     #   x509, for x509 certificate encryption of tokens
     #
     :core_auth: cipher
-    
+
     ################################################################################
     # OneFlow Endpoint
     ################################################################################
-    
+
     :oneflow_server: http://localhost:2474
 
     ################################################################################
@@ -133,3 +141,81 @@ Before your VMs can communicate with OneGate, you need to edit ``/etc/one/oned.c
 
 Continue to the :ref:`OneGate usage guide <onegate_usage>`.
 
+Configuring a SSL Proxy
+=======================
+
+This is an example on how to configure Nginx as a ssl proxy for Onegate in Ubuntu.
+
+Update your package lists and install Nginx:
+
+.. code::
+
+    sudo apt-get update
+    sudo apt-get install nginx
+
+You should get an official signed certificate, but for the purpose of this example we will generate a self-signed SSL certificate:
+
+.. code::
+
+    cd /etc/one
+    sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/one/cert.key -out /etc/one/cert.crt
+
+Next you will need to edit the default Nginx configuration file or generate a new one. Change the ONEGATE_ENDPOINT variable with your own domain name.
+
+.. code::
+
+    server {
+      listen 80;
+      return 301 https://$host$request_uri;
+    }
+
+    server {
+      listen 443;
+      server_name ONEGATE_ENDPOINT;
+
+      ssl_certificate           /etc/one/cert.crt;
+      ssl_certificate_key       /etc/one/cert.key;
+
+      ssl on;
+      ssl_session_cache  builtin:1000  shared:SSL:10m;
+      ssl_protocols  TLSv1 TLSv1.1 TLSv1.2;
+      ssl_ciphers HIGH:!aNULL:!eNULL:!EXPORT:!CAMELLIA:!DES:!MD5:!PSK:!RC4;
+      ssl_prefer_server_ciphers on;
+
+      access_log            /var/log/nginx/onegate.access.log;
+
+      location / {
+
+        proxy_set_header        Host $host;
+        proxy_set_header        X-Real-IP $remote_addr;
+        proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header        X-Forwarded-Proto $scheme;
+
+        # Fix the “It appears that your reverse proxy set up is broken" error.
+        proxy_pass          http://localhost:5030;
+        proxy_read_timeout  90;
+
+        proxy_redirect      http://localhost:5030 https://ONEGATE_ENDPOINT;
+      }
+    }
+
+Update ``/etc/one/oned.conf`` with the new OneGate endpoint
+
+.. code::
+
+    ONEGATE_ENDPOINT = "https://ONEGATE_ENDPOINT"
+
+
+Update ``/etc/one/onegate-server.conf`` with the new OneGate endpoint and uncomment the ``ssl_server`` parameter
+
+.. code::
+
+    :ssl_server: https://ONEGATE_ENDPOINT
+
+Then restart oned, onegate-server and Nginx:
+
+.. code::
+
+    sudo service nginx restart
+    sudo service opennebula restart
+    sudo service opennebula-gate restart

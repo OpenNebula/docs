@@ -22,7 +22,7 @@ Also the ``mon`` daemon must be defined in the ``ceph.conf`` for all the nodes, 
 
 Additionally each OpenNebula datastore is backed by a ceph pool, these pools must be created and configured in the Ceph cluster. The name of the pool by default is ``one`` but can be changed on a per-datastore basis (see below).
 
-``ceph`` cluster admin must include a valid user to be used by ``one`` ``ceph`` datastore (see below). This user should be configured in the ``CEPH_USER`` variable in the datastore template (see below). OpenNebula will issue commands from the ``oneadmin`` account in the nodes and in the frontend, using ``--id $CEPH_USER`` as a parameter, for example ``rbd --id $CEPH_USER``. Ceph authentication must be configured in a way that issuing commands these commands does worl.
+``ceph`` cluster admin must include a valid user to be used by ``one`` ``ceph`` datastore (see below). This user should be configured in the ``CEPH_USER`` variable in the datastore template (see below). OpenNebula will issue commands from the ``oneadmin`` account in the nodes and in the frontend, using ``--id $CEPH_USER`` as a parameter, for example ``rbd --id $CEPH_USER``. If a non-default configuration file needs to be used, it can be passed along with the ``CEPH_CONF`` tag: when set, ``rbd`` and``rados`` commands will called with: ``rbd --conf=$CEPH_CONF``. Ceph authentication must be configured in a way that issuing commands these commands does work.
 
 This driver can work with either RBD Format 1 or RBD Format 2 (default). To set the default you can specify this option in ``ceph.conf``:
 
@@ -84,6 +84,8 @@ The specific attributes for this datastore driver are listed in the following ta
 | ``CEPH_HOST``   | Space-separated list of Ceph monitors. Example: ``host1 host2:port2 host3 host4:port4`` (if no port is specified, the default one is chosen). **Required for Libvirt 1.x when cephx is enabled** .                                        |
 +-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``CEPH_USER``   | The OpenNebula Ceph user name. If set it is used by RBD commands. **This ceph user must exist before using the drivers**. **Required for Libvirt 1.x when cephx is enabled** .                                                            |
++-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``CEPH_CONF``   | The non default ceph configuration file. If set it is used by RBD commands: ``rbd`` and ``rados``.                                                                                                                                        |
 +-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``CEPH_SECRET`` | A generated UUID for a LibVirt secret (to hold the CephX authentication key in Libvirt on each hypervisor). This should be generated when creating the Ceph datastore in OpenNebula. **Required for Libvirt 1.x when cephx is enabled** . |
 +-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -218,7 +220,10 @@ Under ``/var/lib/one/remotes/``:
 -  **tm/ceph/ln**: Does nothing since it's handled by libvirt.
 -  **tm/ceph/clone**: Copies the image to a new image.
 -  **tm/ceph/mvds**: Saves the image in a Ceph block device for SAVE\_AS.
--  **tm/ceph/delete**: Removes a non-persistent image from the Virtual Machine directory if it hasn't been subject to a ``disk-snapshot`` operation.
+-  **tm/ceph/delete**: Removes non-persistent image volumes and files.
+-  **tm/ceph/snap_create**: Creates a disk snapshot.
+-  **tm/ceph/snap_delete**: Deletes a disk snapshot.
+-  **tm/ceph/snap_revert**: Reverts to an exisiting disk snapshot.
 
 Using SSH System Datastore
 --------------------------

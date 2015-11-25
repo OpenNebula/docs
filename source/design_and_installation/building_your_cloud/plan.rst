@@ -37,6 +37,13 @@ The main aspects to take into account at the time of dimensioning the OpenNebula
 
 - **STORAGE**: It is important to understand how OpenNebula uses storage, mainly the difference between system and image datastore. The image datastore is where OpenNebula stores all the images registered that can be used to create VMs, so the rule of thumb is to devote enough space for all the images that OpenNebula will have registered. The system datastore is where the VMs that are currently running store their disks, and it is trickier to estimate correctly since volatile disks come into play with no counterpart in the image datastore (volatile disks are created on the fly in the hypervisor). One valid approach is to limit the storage available to users by defining quotas in the number of maximum VMs and also the Max Volatile Storage a user can demand, and ensuring enough system and image datastore space to comply with the limit set in the quotas. In any case, currently, OpenNebula allows cloud administrators to add more system and images datastores if needed.
 
+Importing Existing VMs
+======================
+
+As soon as a new hypervisor server or public cloud is added to OpenNebula, the monitoring subsystem will extract all the Virtual Machines running in that particular server or public cloud region and label them as Wild VMs. Wild VMs are therefore Virtual Machines running in a hypervisor controlled by OpenNebula that have not been launched through it.
+
+OpenNebula allows to import these Wild VMs to be able to control its lifecycle as any other VM launched by OpenNebula. Proceed to this :ref:`host guide section <import_wild_vms>` for more details.
+
 Front-End
 =========
 

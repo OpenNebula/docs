@@ -42,12 +42,14 @@ To enable this driver, use **vxlan** as the Virtual Network Manager driver param
 
     $ onehost create host01 -i kvm -v kvm -n vxlan
 
+.. _vxlan_options:
+
 VXLAN Options
 --------------
 
 It is possible specify the start VLAN ID and the base multicast address by editing ``/var/lib/one/remotes/vnm/OpenNebulaNetwork.conf``.
 
-This driver accepts an ``MTU`` attribute that will be used when creating the tagged interface and bridge.
+This driver accepts an ``MTU`` attribute that will be used when creating the tagged interface and bridge. Also ``TTL`` can be adjusted for routed multicast networks (IGMP).
 
 Driver Actions
 --------------

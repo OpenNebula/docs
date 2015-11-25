@@ -90,7 +90,7 @@ The cloud administrator can set :ref:`usage quotas <quota_auth>` for the group. 
 
     RESOURCE USAGE & QUOTAS
 
-        NUMBER OF VMS               MEMORY                  CPU        VOLATILE_SIZE
+        NUMBER OF VMS               MEMORY                  CPU        SYSTEM_DISK_SIZE
           0 /      10        0M /       0M      0.00 /     0.00        0M /       0M
 
 |qs_vdc4|

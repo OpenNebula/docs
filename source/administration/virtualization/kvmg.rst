@@ -90,6 +90,7 @@ OpenNebula uses libvirt's migration capabilities. More precisely, it uses the ``
    -  ``/etc/default/libvirt-bin`` : add **-l** option to ``libvirtd_opts``
    -  For RHEL based distributions, edit this file instead: ``/etc/sysconfig/libvirtd`` : uncomment ``LIBVIRTD_ARGS="--listen"``
 
+
 OpenNebula Configuration
 ------------------------
 
@@ -596,8 +597,113 @@ To add a PCI device to a template, select the **Other** tab:
 .. |image1| image:: /images/sunstone_host_pci.png
 .. |image2| image:: /images/sunstone_template_pci.png
 
+.. _enabling_qemu_guest_agent:
+
+Enabling QEMU Guest Agent
+=========================
+
+QEMU Guest Agent allows the communication of some actions with the guest OS. This agent uses a virtio serial connection to send and receive commands. One of the interesting actions is that it allows to freeze the filesystem before doing an snapshot. This way the snapshot won't contain half written data. Filesystem freeze will only be used  with ``CEPH`` and ``qcow2`` storage drivers.
+
+The agent package needed in the Guest OS is available in most distributions. Is called ``qemu-guest-agent`` in most of them. If you need more information you can follow these links:
+
+* https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Virtualization_Deployment_and_Administration_Guide/chap-QEMU_Guest_Agent.html
+* http://wiki.libvirt.org/page/Qemu_guest_agent
+* http://wiki.qemu.org/Features/QAPI/GuestAgent
+
+To enable the communication channel with the guest agent this line must be present in ``/etc/one/vmm_exec/vmm_exec_kvm.conf``:
+
+.. code::
+
+    RAW = "<devices><channel type='unix'><source mode='bind'/><target type='virtio' name='org.qemu.guest_agent.0'/></channel></devices>"
+
 Importing VMs
 =============
 
 VMs running on KVM hypervisors that were not launched through OpenNebula can be :ref:`imported in OpenNebula <import_wild_vms>`. It is important to highlight that, besides the limitations explained in the host guide, the "Poweroff" operation is not available for these imported VMs in KVM.
 
+Multiple Actions per Host
+=========================
+
+.. warning:: This feature is experimental. Some modifications to the code must be done before this is a recommended setup.
+
+By default the drivers use a unix socket to communicate with the libvirt daemon. This method can only be safely used by one process at a time. To make sure this happens the drivers are configured to send only one action per host at a time. For example, there will be only one deployment done per host at a given time.
+
+This limitation can be solved configuring libvirt to accept TCP connections  and OpenNebula to use this communication method.
+
+Libvirt configuration
+---------------------
+
+Here is described how to configure libvirtd to accept unencrypted and unauthenticated TCP connections in a CentOS 7 machine. For other setup check your distribution and libvirt documentation.
+
+Change the file ``/etc/libvirt/libvirtd-conf`` in each of the hypervisors and make sure that these parameters are set and have the following values:
+
+.. code::
+
+    listen_tls = 0
+    listen_tcp = 1
+    tcp_port = "16509"
+    auth_tcp = "none"
+
+You will also need to modify ``/etc/sysconfig/libvirtd`` and uncomment this line:
+
+.. code::
+
+    LIBVIRTD_ARGS="--listen"
+
+After modifying these files the libvirt daemon must be restarted:
+
+.. code::
+
+    $ sudo systemctl restart libvirtd
+
+OpenNebula configuration
+------------------------
+
+The VMM driver must be configured so it allows more than one action to be executed per host. This can be done adding the parameter ``-p`` to the driver executable. This is done in ``/etc/one/oned.conf`` in the VM_MAD configuration section:
+
+.. code::
+
+    VM_MAD = [
+        name       = "kvm",
+        executable = "one_vmm_exec",
+        arguments  = "-t 15 -r 0 kvm -p",
+        default    = "vmm_exec/vmm_exec_kvm.conf",
+        type       = "kvm" ]
+
+Change the file ``/var/lib/one/remotes/vmm/kvm/kvmrc`` so set a TCP endpoint for libvirt communication:
+
+.. code::
+
+    export LIBVIRT_URI=qemu+tcp://localhost/system
+
+The scheduler configuration should also be changed to let it deploy more than one VM per host. The file is located at ``/etc/one/sched.conf`` and the value to change is ``MAX_HOST`` For example, to let the scheduler submit 10 VMs per host use this line:
+
+.. code::
+
+    MAX_HOST = 10
+
+After this update the remote files in the nodes and restart opennebula:
+
+.. code::
+
+    $ onehost sync --force
+    $ sudo systemctl restart opennebula
+
+
+Troubleshooting
+===============
+
+image magic is incorrect
+------------------------
+
+When trying to restore the VM from a suspended state this error is returned:
+
+``libvirtd1021: operation failed: image magic is incorrect``
+
+It can be fixed by applying:
+
+.. code::
+
+    options kvm_intel nested=0
+    options kvm_intel emulate_invalid_guest_state=0
+    options kvm ignore_msrs=1

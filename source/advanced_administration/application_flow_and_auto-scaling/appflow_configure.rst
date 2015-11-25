@@ -143,18 +143,18 @@ Inside ``/var/log/one/`` you will find new log files for the server, and individ
 Enable the Sunstone Tabs
 ========================
 
-The OneFlow tabs are enabled by default. To enable or disable them, edit ``/etc/one/sunstone-views/admin.yaml`` and ``user.yaml`` and set oneflow tabs inside ``enabled_tabs`` to ``true`` or ``false``:
+The OneFlow tabs are enabled by default. To enable or disable them, edit ``/etc/one/sunstone-views/admin.yaml`` and ``user.yaml`` and comment out the oneflow tabs lines inside ``enabled_tabs``:
 
-.. code::
+.. code-block:: yaml
 
     enabled_tabs:
-        dashboard-tab: true
+        - dashboard-tab
      
         ...
      
-        oneflow-dashboard: true
-        oneflow-services: true
-        oneflow-templates: true
+        - oneflow-dashboard
+        - oneflow-services
+        - oneflow-templates
 
 Be sure to restart Sunstone for the changes to take effect.
 

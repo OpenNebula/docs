@@ -1,4 +1,3 @@
-.. _upgrade:
 
 =================================
 Upgrading from OpenNebula 4.12.x

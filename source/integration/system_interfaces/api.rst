@@ -891,14 +891,6 @@ The range can be used to retrieve a subset of the pool, from the 'start' to the 
 Actions for Virtual Machine Management
 ======================================
 
-The VM Life Cycle is explained in this diagram:.
-
-|image2|
-
-It contains all the LifeCycleManager states, and the transitions triggered by the onevm commands. It is intended to be consulted by developers.
-
-The simplified diagram used in the :ref:`Virtual Machine Instances documentation <vm_guide_2>` uses a smaller number of state names. These names are the ones used by onevm list, e.g. prolog, prolog\_migrate and prolog\_resume are all presented as ``prol``. It is intended as a reference for end-users.
-
 one.vm.allocate
 ---------------
 
@@ -1682,7 +1674,8 @@ The XML output will be similar to this one:
         <MONTH>11</MONTH>
         <CPU_COST>13</CPU_COST>
         <MEMORY_COST>21</MEMORY_COST>
-        <TOTAL_COST>34</TOTAL_COST>
+        <DISK_COST>7</DISK_COST>
+        <TOTAL_COST>41</TOTAL_COST>
         <HOURS>10</HOURS>
       </SHOWBACK>
 
@@ -5412,8 +5405,8 @@ Schemas for Group
                         <xs:element name="MEMORY_USED" type="xs:string"/>
                         <xs:element name="VMS" type="xs:string"/>
                         <xs:element name="VMS_USED" type="xs:string"/>
-                        <xs:element name="VOLATILE_SIZE" type="xs:string"/>
-                        <xs:element name="VOLATILE_SIZE_USED" type="xs:string"/>
+                        <xs:element name="SYSTEM_DISK_SIZE" type="xs:string"/>
+                        <xs:element name="SYSTEM_DISK_SIZE_USED" type="xs:string"/>
                       </xs:sequence>
                     </xs:complexType>
                   </xs:element>
@@ -5591,8 +5584,8 @@ Schemas for Group
                                 <xs:element name="MEMORY_USED" type="xs:string"/>
                                 <xs:element name="VMS" type="xs:string"/>
                                 <xs:element name="VMS_USED" type="xs:string"/>
-                                <xs:element name="VOLATILE_SIZE" type="xs:string"/>
-                                <xs:element name="VOLATILE_SIZE_USED" type="xs:string"/>
+                                <xs:element name="SYSTEM_DISK_SIZE" type="xs:string"/>
+                                <xs:element name="SYSTEM_DISK_SIZE_USED" type="xs:string"/>
                               </xs:sequence>
                             </xs:complexType>
                           </xs:element>
@@ -5805,7 +5798,7 @@ Schemas for Host
             <xs:element name="ID" type="xs:integer"/>
             <xs:element name="NAME" type="xs:string"/>
             <!-- STATE values
-            
+
               INIT                 = 0  Initial state for enabled hosts
               MONITORING_MONITORED = 1  Monitoring the host (from monitored)
               MONITORED            = 2  The host has been successfully monitored
@@ -6083,8 +6076,8 @@ Schemas for User
                         <xs:element name="MEMORY_USED" type="xs:string"/>
                         <xs:element name="VMS" type="xs:string"/>
                         <xs:element name="VMS_USED" type="xs:string"/>
-                        <xs:element name="VOLATILE_SIZE" type="xs:string"/>
-                        <xs:element name="VOLATILE_SIZE_USED" type="xs:string"/>
+                        <xs:element name="SYSTEM_DISK_SIZE" type="xs:string"/>
+                        <xs:element name="SYSTEM_DISK_SIZE_USED" type="xs:string"/>
                       </xs:sequence>
                     </xs:complexType>
                   </xs:element>
@@ -6261,8 +6254,8 @@ Schemas for User
                                 <xs:element name="MEMORY_USED" type="xs:string"/>
                                 <xs:element name="VMS" type="xs:string"/>
                                 <xs:element name="VMS_USED" type="xs:string"/>
-                                <xs:element name="VOLATILE_SIZE" type="xs:string"/>
-                                <xs:element name="VOLATILE_SIZE_USED" type="xs:string"/>
+                                <xs:element name="SYSTEM_DISK_SIZE" type="xs:string"/>
+                                <xs:element name="SYSTEM_DISK_SIZE_USED" type="xs:string"/>
                               </xs:sequence>
                             </xs:complexType>
                           </xs:element>
@@ -6399,7 +6392,7 @@ Schemas for Virtual Machine
             <xs:element name="LAST_POLL" type="xs:integer"/>
 
             <!-- STATE values,
-            see http://opennebula.org/_media/documentation:rel3.6:states-complete.png
+            see http://docs.opennebula.org/stable/user/references/vm_states.html
 
               INIT      = 0
               PENDING   = 1
@@ -7076,5 +7069,3 @@ Schemas for Accounting
     </xs:schema>
 
 .. |FIXME| image:: /images/fixme.gif
-.. |image2| image:: /images/states-complete.png
-    :width: 100 %

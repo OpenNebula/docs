@@ -15,6 +15,8 @@ You should take into account the following technical considerations when using t
 
 -  By default OpenNebula will always launch m1.small instances, unless otherwise specified.
 
+-  Monitoring of VMs in EC2 is done through CloudWatch. Only information related to the consumption of CPU and Networking (both inbound and outbound) is collected, since CloudWatch does not offer information of guest memory consumption.
+
 Please refer to the EC2 documentation to obtain more information about Amazon instance types and image management:
 
 -  `General information of instances <http://aws.amazon.com/ec2/instance-types/>`__
@@ -79,6 +81,8 @@ After OpenNebula is restarted, create a new Host that uses the ec2 drivers:
 .. code::
 
     $ onehost create ec2 --im ec2 --vm ec2 --net dummy
+
+.. _ec2_specific_template_attributes:
 
 EC2 Specific Template Attributes
 ================================
@@ -173,6 +177,38 @@ Default values for all these attributes can be defined in the ``/etc/one/ec2_dri
         <INSTANCETYPE>m1.small</INSTANCETYPE>
       </EC2>
     </TEMPLATE>
+
+.. note:: The EC2 and PUBLIC_CLOUD sections allow for substitions from template and virtual network variables, the same way as the :ref:`CONTEXT section allows <cong_defining_context>`.
+
+.. _user_data_as_user_input:
+
+These values can furthermore be asked to the user using :ref:`user inputs <vm_guide_user_inputs>`. A common scenario is to delegate the User Data to the end user. For that, a new User Input named USERDATA can be created of text64 (the User Data needs to be encoded on base64) and a placeholder added to the EC2 section:
+
+.. code::
+    
+    EC2 = [ AMI="ami-00bafcb5",
+            KEYPAIR="gsg-keypair",
+            INSTANCETYPE=m1.small,
+            USERDATA="$USERDATA"]
+
+.. _context_ec2:
+
+Context Support
+---------------
+
+If a CONTEXT section is defined in the template, it will be available as USERDATA inside the VM and can be retrieved by running the following command:
+
+.. code::
+
+    $ curl http://169.254.169.254/latest/user-data
+    ONEGATE_ENDPOINT="https://onegate...
+    SSH_PUBLIC_KEY="ssh-rsa ABAABeqzaC1y...
+
+If the :ref:`linux context packages for EC2 <linux_packages>` are installed in the VM, these parameters will be used to configure the VM. These is the :ref:`list of the supported parameters for EC2 <ec2_context>`.
+
+For example, if you want to enable SSH access to the VM, an existing EC2 keypair name can be provided in the EC2 template section or the :ref:`SSH public key of the user <vcenter_context>` can be included in the CONTEXT section of the template.
+
+.. note:: If a value for the USERDATA attribute is provided in the EC2 section of the template, the CONTEXT section will be ignored and the value provided as USERDATA will be available instead of the CONTEXT information.
 
 .. _ec2g_multi_ec2_site_region_account_support:
 
@@ -313,9 +349,9 @@ Also you can see information (like IP address) related to the amazon instance la
 
     VIRTUAL MACHINE MONITORING
     USED MEMORY         : 0K
-    NET_RX              : 0K
-    NET_TX              : 0K
-    USED CPU            : 0
+    NET_RX              : 208K
+    NET_TX              : 4K
+    USED CPU            : 0.2
 
     PERMISSIONS
     OWNER               : um-

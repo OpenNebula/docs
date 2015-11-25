@@ -49,18 +49,17 @@ Datastore Quotas. Attribute name: DATASTORE
 Compute Quotas. Attribute name: VM
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-+---------------+-----------------------------------------------------------------------------+
-|  VM Attribute |                                 Description                                 |
-+===============+=============================================================================+
-| VMS           | Maximum number of VMs that can be created                                   |
-+---------------+-----------------------------------------------------------------------------+
-| MEMORY        | Maximum memory in MB that can be requested by user/group VMs                |
-+---------------+-----------------------------------------------------------------------------+
-| CPU           | Maximum CPU capacity that can be requested by user/group VMs                |
-+---------------+-----------------------------------------------------------------------------+
-| VOLATILE_SIZE | Maximum volatile disks size (in MB) that can be requested by user/group VMs |
-+---------------+-----------------------------------------------------------------------------+
-
++------------------+------------------------------------------------------------------------------+
+|   VM Attribute   |                                 Description                                  |
++==================+==============================================================================+
+| VMS              | Maximum number of VMs that can be created                                    |
++------------------+------------------------------------------------------------------------------+
+| MEMORY           | Maximum memory in MB that can be requested by user/group VMs                 |
++------------------+------------------------------------------------------------------------------+
+| CPU              | Maximum CPU capacity that can be requested by user/group VMs                 |
++------------------+------------------------------------------------------------------------------+
+| SYSTEM_DISK_SIZE | Maximum size (in MB) of system disks that can be requested by user/group VMs |
++------------------+------------------------------------------------------------------------------+
 
 Network Quotas. Attribute name: NETWORK
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -106,7 +105,7 @@ The following template shows a quota example for a user in plain text. It limits
       CPU="5",
       MEMORY="2048",
       VMS="4",
-      VOLATILE_SIZE="-1"
+      SYSTEM_DISK_SIZE="-1"
     ]
 
     NETWORK=[

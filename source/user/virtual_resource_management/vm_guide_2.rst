@@ -13,7 +13,7 @@ Virtual Machine Life-cycle
 
 The life-cycle of a Virtual Machine within OpenNebula includes the following stages:
 
-.. warning:: Note that this is a simplified version. If you are a developer you may want to take a look at the complete diagram referenced in the :ref:`xml-rpc api page <api>`):
+.. warning:: Note that this is a simplified version. If you are a developer you may want to take a look at the complete diagram referenced in the :ref:`Virtual Machines States Reference guide <vm_states>`):
 
 +-------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Short state |     State      |                                                                                                                                                 Meaning                                                                                                                                                  |
@@ -236,18 +236,21 @@ A user can take snapshots of the disk states at any moment in time (if the VM is
 
 .. warning::
 
-  ``disk-snapshot-create`` and ``disk-snapshot-revert`` actions are not in sync with the hypervisor. If the VM is in ``RUNNING`` state make sure the disk is unmounted (preferred), synced or quiesced in some way before taking the snapshot.
+  ``disk-snapshot-create`` and ``disk-snapshot-revert`` actions are not in sync with the hypervisor. If the VM is in ``RUNNING`` state make sure the disk is unmounted (preferred), synced or quiesced in some way before taking the snapshot. With CEPH and qcow2 datastores and KVM hypervisor you can :ref:`enable QEMU Guest Agent <enabling_qemu_guest_agent>`.
 
-``disk-snapshot-create`` and ``disk-snapshot-revert`` can take place when the VM is in ``RUNNING`` state. The way OpenNebula handles this operation varies depending on the configuration and on the backend used. When configuring the ``VM_MAD`` in ``/etc/one/oned.conf``, depending on the arguments passed, the administrator can decide what strategy to use when creating and reverting snapshots in ``RUNNING`` state:
+By default, oned will try to issue live snapshots (option ``-i`` of ``VM_MAD``), which is only supported for some drivers. If this option is enabled **and** if the driver that will create the snapshot supports it, snapshots can be taken without any downtime. Live snapshots are  supported for:
+
+- Hypervisor ``VM_MAD=kvm`` combined with ``TM_MAD=qcow2`` datastores. In this case OpenNebula will request that the hypervisor executes ``virsh snapshot-create``.
+
+- Hypervisor ``VM_MAD=kvm`` with Ceph datastores (``TM_MAD=ceph``). In this case OpenNebula will initially create the snapshots as Ceph snapshots in the current volume.
+
+OpenNebula will handle non-live ``disk-snapshot-create`` and ``disk-snapshot-revert`` operations for VMs in ``RUNNING`` state depending on the configuration of the ``VM_MAD`` driver in ``/etc/one/oned.conf``, in particular:
 
 - ``-d suspend`` (default): The VM is suspended (the memory state is written to the system datastore), the snapshot operation takes place (create or revert). This is the safest strategy but implies some downtime (the time it takes for the memory state to be written and to be re-read again).
+
 - ``-d detach``: the disk is detached while the VM is kept active and running. The snapshot operation takes place, and the disk is re-attached. This is a dangerous operation as if the OS has active file descriptors opening the disk, the OS will not be able to release the target (e.g. ``sbd``) and when it is re-attached the OS will place it in a new target instead (e.g. ``sdc``). This is problematic as there will be a discrepancy between the target defined by OpenNebula and the real target inside the guest VM, which could make future disk-attach operations fail. In order to avoid this, the disk must be fully unmounted with no active file descriptors in use. On the other hand, this technique is the fastest as it requires no down-time.
 
-Additionally, one can activate the live snapshots option (``-i``), which is only supported for some drivers. If this option is enabled **and** if the driver that will create the snapshot supports it, it will use hypervisor operations to create the snapshot while running. This strategy is as robust as ``suspend`` but has the benefit of not implying any downtime. However it is only supported for:
-
-- Hypervisor ``VM_MAD=kvm``, System Datastore ``TM_MAD=shared``, Image datastore ``DS_MAD=fs`` and ``TM_MAD=qcow2``. In this case OpenNebula will request that the hypervisor executes ``virsh snapshot-create``.
-
-Note that the live disk snapshot calls a diferent TM action than the regular one, as documented by the :ref:`Storage Driver <sd_tm>` guide.
+.. note:: Live disk snapshot calls a diferent TM action than the regular one, as documented by the :ref:`Storage Driver <sd_tm>` guide.
 
 Persistent image snapshots
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -484,7 +487,14 @@ Please bear in mind the following limitations:
 - Volatile disks cannot be saved, and the current contents will be lost. The cloned VM Template will contain the definition for an empty volatile disk.
 - Disks and NICs will only contain the target Image/Network ID. If your Template requires extra configuration (such as DISK/DEV_PREFIX), you will need to update the new Template.
 
-.. todo:: command in Sunstone
+This can also be achieved from Sunstone when the VM is in poweroff state:
+
+|image10|
+|image11|
+
+From the Cloud View
+
+|image12|
 
 .. _vm_guide2_scheduling_actions:
 
@@ -686,3 +696,6 @@ Information for Developers and Integrators
 .. |image7| image:: /images/sunstone_vnc.png
 .. |image8| image:: /images/sunstonevnc4.png
 .. |image9| image:: /images/sunstone_vm_resize.png
+.. |image10| image:: /images/sunstone_save_button.png
+.. |image11| image:: /images/sunstone_save_dialog.png
+.. |image12| image:: /images/sunstone_cloud_save_button.png

@@ -92,6 +92,8 @@ Requirements
 
 OpenNebula Sunstone Views does not require any additional service to run. You may want to review the Sunstone configuration to deploy advanced setups, to scale the access to the web interface or to use SSL security.
 
+.. _suns_views_configuring_access:
+
 Configuring Access to the Views
 ===============================
 
@@ -145,7 +147,7 @@ These options are saved in the user template, as well as other hidden settings l
 Changing your View
 ------------------
 
-If more than one view are available for this user, she can easily change between them in the settings window, along with other settings (e.g. language). See the `Configuring Access to the Views`_ (TODO?) section to learn how views are calculated per user.
+If more than one view are available for this user, she can easily change between them in the settings window, along with other settings (e.g. language). See the :ref:`Configuring Access to the Views <suns_views_configuring_access>` section to learn how views are calculated per user.
 
 Internationalization and Languages
 ----------------------------------
@@ -190,30 +192,30 @@ The name of the view is the the filename without the yaml extension. The default
     `-- sunstone-views.yaml
     ...
 
-The content of a view file specifies the tabs available in the view (note: tab is on of the main sections of the UI, those in the left-side menu). Each tab can be enabled or disabled by updating the ``enabled_tabs:`` attribute. For example to disable the Clusters tab, just set ``clusters-tab`` value to ``false``:
+The content of a view file specifies the tabs available in the view (note: tab is on of the main sections of the UI, those in the left-side menu). Each tab can be enabled or disabled by updating the ``enabled_tabs:`` attribute. For example to disable the Clusters tab, comment the ``clusters-tab`` entry:
 
-.. code::
+.. code-block:: yaml
 
     enabled_tabs:
-        dashboard-tab: true
-        system-tab: true
-        users-tab: true
-        groups-tab: true
-        acls-tab: true
-        vresources-tab: true
-        vms-tab: true
-        templates-tab: true
-        images-tab: true
-        files-tab: true
-        infra-tab: true
-        clusters-tab: false
-        hosts-tab: true
-        datastores-tab: true
-        vnets-tab: true
-        marketplace-tab: true
-        oneflow-dashboard: tru
-        oneflow-services: true
-        oneflow-templates: true
+        - dashboard-tab
+        - system-tab
+        - users-tab
+        - groups-tab
+        - acls-tab
+        - vresources-tab
+        - vms-tab
+        - templates-tab
+        - images-tab
+        - files-tab
+        - infra-tab
+        # - clusters-tab
+        - hosts-tab
+        - datastores-tab
+        - vnets-tab
+        - marketplace-tab
+        - oneflow-dashboard
+        - oneflow-services
+        - oneflow-templates
 
 Each tab, can be tuned by selecting:
 

@@ -42,8 +42,8 @@ Drivers - VM
 
 * `#3590 <http://dev.opennebula.org/issues/3590>`_ Delete operation leaves a poweroff instance registered in vCenter
 * `#3750 <http://dev.opennebula.org/issues/3750>`_ Xen (live) migration/suspend/resume is incompatible with disk/nic attach/detach
-* `#4007 <http://dev.opennebula.org/issues/4007>`_ New generation EC2 instance types have been included and the ec2_driver.conf must be updated to include them. https://raw.githubusercontent.com/OpenNebula/one/master/src/vmm_mad/remotes/ec2/ec2_driver.conf
-* `#4009 <http://dev.opennebula.org/issues/4009>`_ Importing vms from EC2 provides a wrong CPU value
+* `#4164 <http://dev.opennebula.org/issues/4164>`_ Imported VMs in KVM and Xen cannot be properly resumed after a poweroff action
+* `#3060 <http://dev.opennebula.org/issues/3060>`_ Trim/discard. In order to use this functionality, KVM requires the virtio-scsi controller. This controller is not (yet) supported. In order to add it, you need to add this RAW snippet to your template: ``<controller type='scsi' index='0' model='virtio-scsi'></controller>``.
 
 Drivers - IM
 ================================================================================
@@ -64,12 +64,13 @@ Scheduler
 Sunstone
 ================================================================================
 
-* `#4011 <http://dev.opennebula.org/issues/4011>`_ Zone selector does not change zones
 * `#2292 <http://dev.opennebula.org/issues/2292>`_ sunstone novnc send ctrl-alt-del not working in Firefox
 * `#1877 <http://dev.opennebula.org/issues/1877>`_ if syslog enabled disable the logs tab in the VM detailed view
 * `#3796 <http://dev.opennebula.org/issues/3796>`_ sunstone ignores the no_proxy environment variable
-* `#4049 <http://dev.opennebula.org/issues/4049>`_ VM Template wizard input INIT_SCRIPTS is not working. Values from this input are inserted instead as FILES_DS.
-* `#4053 <http://dev.opennebula.org/issues/4053>`_ Service Templates using virtual networks cannot be instantiated from the cloud view
-* `#4100 <http://dev.opennebula.org/issues/4100>`_ Cloud view wizard for new user : inputs for quotas cannot be edited
-* `#4104 <http://dev.opennebula.org/issues/4104>`_ Cloud view: When updating quotas, sliders do not change the input values
-* `#4122 <http://dev.opennebula.org/issues/4122>`_ When a template with DISK_COST is instantiated, the value shown as disk cost is not the actual value. The cost is multiplied as GB/hour instead of the correct MB/hour
+* `#4192 <http://dev.opennebula.org/issues/4192>`_ VNET relase IP action fails for ipv6 networks
+* `#4175 <http://dev.opennebula.org/issues/4175>`_ HTML entities in columns and buttons lables
+
+Sunstone - Cloud View
+================================================================================
+
+* `#4197 <http://dev.opennebula.org/issues/4197>`_ Password change button in settings does not give any feedback

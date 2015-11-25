@@ -6,6 +6,8 @@ Installing the Software
 
 This page shows you how to install OpenNebula from the binary packages.
 
+.. note:: OpenNebula allows to import Wild VMs (ie VMs not launched through OpenNebula). OpenNebula can be installed and then import existing VMs (proceed to this :ref:`host guide section <import_wild_vms>` for more details) to control their lifecycle.
+
 Step 1. Front-end Installation
 ==============================
 

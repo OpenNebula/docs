@@ -108,7 +108,8 @@ The following attributes can be defined to set the cost of a VM. Read the :ref:`
 +-----------------+----------------------------------+-----------+
 | **CPU_COST**    | Cost of each CPU per hour.       | **NO**    |
 +-----------------+----------------------------------+-----------+
-
+| **DISK_COST**   | Cost of each disk MB per hour.   | **NO**    |
++-----------------+----------------------------------+-----------+
 
 .. _template_os_and_boot_options_section:
 
@@ -813,6 +814,7 @@ All the **default** restricted attributes to users in the oneadmin group are sum
 - ``DISK/WRITE_IOPS_SEC``
 - ``CPU_COST``
 - ``MEMORY_COST``
+- ``DISK_COST``
 
 These attributes can be configured in :ref:`oned.conf <oned_conf>`.
 
@@ -828,6 +830,7 @@ User Inputs
     USER_INPUTS = [
       BLOG_TITLE="M|text|Blog Title",
       MYSQL_PASSWORD="M|password|MySQL Password",
+      INIT_HOOK="M|text64|You can write a script that will be run on startup",
       <VAR>="M|<type>|<desc>"
     ]
 
@@ -837,4 +840,4 @@ User Inputs
 
 Note that the CONTEXT references the variables defined in the USER_INPUTS so the value is injected into the VM.
 
-Valid ``types`` are ``text`` and ``password``.
+Valid ``types`` are ``text``, ``text64`` and ``password``. The type ``text64`` will encode the user's response in Base64.

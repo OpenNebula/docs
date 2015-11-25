@@ -8,11 +8,13 @@ Release Notes 4.14
    :maxdepth: 1
 
    What's New in 4.14 <whats_new>
+   Resolved Issues in 4.14.2 <resolved_issues_4142>
    Features <features>
    Platform Notes <uspng>
    Compatibility Guide <compatibility>
    Known Issues <known_issues>
    Acknowledgements <acknowledgements>
+   Upgrading from 4.14.0 <upgrade_414>
    Upgrading from 4.12.x <upgrade_412>
    Upgrading from 4.10.x <upgrade_410>
    Upgrading from 4.8.x <upgrade_48>
