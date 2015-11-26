@@ -635,7 +635,7 @@ Libvirt configuration
 
 Here is described how to configure libvirtd to accept unencrypted and unauthenticated TCP connections in a CentOS 7 machine. For other setup check your distribution and libvirt documentation.
 
-Change the file ``/etc/libvirt/libvirtd-conf`` in each of the hypervisors and make sure that these parameters are set and have the following values:
+Change the file ``/etc/libvirt/libvirtd.conf`` in each of the hypervisors and make sure that these parameters are set and have the following values:
 
 .. code::
 
