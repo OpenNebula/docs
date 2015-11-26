@@ -84,7 +84,6 @@ OpenNebula Drivers :: Virtualization
 - **Spice support for more hypervisors**, now supported as well in :ref:`XEN <xeng>`.
 - **Control how disks are managed in vCenter**, through :ref:`a new VM template variable <vm_template_definition_vcenter>`. Protect users data against accidental deletions.
 - **PUBLIC_CLOUD sections allow for substitions** from template and virtual network variables, the same way as the :ref:`CONTEXT section allows <cong_defining_context>`.
-- **OneGate token now available in vCenter**. Now is possible to access the :ref:`OneGate server <onegate_overview>` from vCenter VMs since the onegate token is passed through to the VM.
 - **Improved dialogs for vCenter**, allowing a smoother :ref:`resource import <reacquire_vcenter_resources>`.
 - **Updated EC2 instance types**, to be used on the :ref:`EC2 templates <ec2_specific_template_attributes>`.
 - **UserData for EC2** now available as a :ref:`User Input <user_data_as_user_input>`.
@@ -118,7 +117,7 @@ Sunstone has been completely refactored, in order to make it easier to maintain 
 - **Better user preferences support**, the :ref:`number of elements displayed in the datatables <sunstone_settings>` are remembered per user.
 - **Improvements in usability and performance**, to avoid errors, :ref:`Sunstone <sunstone>` now disables VM actions depending on the current state.
 - **Ability to save VMs as templates**, for later use. :ref:`Saved VMs <save_vm_as_template_cloudview>` can have now more than one disk.
-- **Better third party support**, with a new :ref:`framework to add Sunstone custome tabs <reacquire_vcenter_resources>`.
+- **Better third party support**, with a new :ref:`framework to add Sunstone custome tabs <sunstone_custom_tabs>`.
 - **Versioning to avoid cache issues**, when upgrading to a new :ref:`Sunstone version <sunstone>`.
 - **New auth support**, integration with :ref:`Kerberos <sunstone_kerberos_remote_auth>`.
 - **Security improvements** in :ref:`remote VNC connections <remote_access_sunstone>`.
@@ -137,6 +136,8 @@ OneGate
 More secure OneGate service
 
 - **Secure your cloud** adding :ref:`SSL interface to OneGate <onegate_configuration>`.
+- **OneGate token now available in vCenter**. Now is possible to access the :ref:`OneGate server <onegate_overview>` from vCenter VMs since the onegate token is passed through to the VM.
+- **OneGate support for EC2 instance**, as part of the :ref:`new context support for EC2 <context_ec2>`.
 
 Contextualization
 -------------------------------------
