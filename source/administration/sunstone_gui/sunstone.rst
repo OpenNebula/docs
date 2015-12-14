@@ -38,6 +38,8 @@ Considerations & Limitations
 
 OpenNebula Sunstone supports Internet Explorer (>= 9), Firefox (> 3.5) and Chrome browsers. Oher browsers are not supported and may not work well.
 
+.. warning:: Internet Explorer is **not** supported with the Compatibility Mode enabled, since it emulates IE7 which is not supported.
+
 The upload option for files and images is limited to Firefox 4+ and Chrome 11+.
 
 Configuration
