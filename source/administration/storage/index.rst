@@ -15,4 +15,5 @@ Storage
    Ceph Datastore <ceph_ds>
    GlusterFS Datastore <gluster_ds>
    Devices Datastore <dev_ds>
+   iSCSI Datastore <iscsi_ds>
    Kernels and Files Datastore <file_ds>
