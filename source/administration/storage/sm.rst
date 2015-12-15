@@ -90,7 +90,7 @@ The following stable reflects the compatiblity of disk snapshotting and disk liv
 +===================+========+=====+=======+======+======+=====+========+=====+
 | Snapshotting      | x      | x   | x     |      | x    |     |        |     |
 +-------------------+--------+-----+-------+------+------+-----+--------+-----+
-| Live Snapshotting |        |     | x     |      |      |     |        |     |
+| Live Snapshotting |        |     | x     |      | x    |     |        |     |
 +-------------------+--------+-----+-------+------+------+-----+--------+-----+
 
 Datastore Attributes
