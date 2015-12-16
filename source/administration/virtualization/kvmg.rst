@@ -139,6 +139,10 @@ The following outlines the steps need to configure cgroups, this should be **per
     mount {
             cpu     = /mnt/cgroups/cpu;
             memory  = /mnt/cgroups/memory;
+            cpuset  = /mnt/cgroups/cpuset;
+            devices = /mnt/cgroups/devices;
+            blkio   = /mnt/cgroups/blkio;
+            cpuacct = /mnt/cgroups/cpuacct;
     }
 
 .. code::
@@ -147,7 +151,21 @@ The following outlines the steps need to configure cgroups, this should be **per
 
     *:libvirtd       memory          virt/
 
--  After configuring the hosts start/restart the cgroups service.
+- Enable cgroups support in libvirt by adding this configuration to ``/etc/libvirt/qemu.conf``:
+
+.. code::
+
+    # /etc/libvirt/qemu.conf
+
+    cgroup_controllers = [ "cpu", "devices", "memory", "blkio", "cpuset", "cpuacct" ]
+    cgroup_device_acl = [
+        "/dev/null", "/dev/full", "/dev/zero",
+        "/dev/random", "/dev/urandom",
+        "/dev/ptmx", "/dev/kvm", "/dev/kqemu",
+        "/dev/rtc","/dev/hpet", "/dev/vfio/vfio"
+    ]
+
+-  After configuring the hosts start/restart the cgroups service then restart the libvirtd service.
 -  (Optional) If you have limited the amount of memory for VMs, you may want to set ``RESERVED_MEM`` parameter in host or cluster templates.
 
 That's it. OpenNebula automatically generates a number of CPU shares proportional to the CPU attribute in the VM template. For example, consider a host running 2 VMs (73 and 74, with CPU=0.5 and CPU=1) respectively. If everything is properly configured you should see:
