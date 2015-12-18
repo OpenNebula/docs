@@ -73,10 +73,4 @@ Sunstone
 * `#2292 <http://dev.opennebula.org/issues/2292>`_ sunstone novnc send ctrl-alt-del not working in Firefox
 * `#1877 <http://dev.opennebula.org/issues/1877>`_ if syslog enabled disable the logs tab in the VM detailed view
 * `#3796 <http://dev.opennebula.org/issues/3796>`_ sunstone ignores the no_proxy environment variable
-* `#4192 <http://dev.opennebula.org/issues/4192>`_ VNET relase IP action fails for ipv6 networks
 * `#4175 <http://dev.opennebula.org/issues/4175>`_ HTML entities in columns and buttons lables
-
-Sunstone - Cloud View
-================================================================================
-
-* `#4197 <http://dev.opennebula.org/issues/4197>`_ Password change button in settings does not give any feedback
