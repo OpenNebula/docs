@@ -329,7 +329,7 @@ When prompted for password press enter so the private key is not encrypted.
 
     $ cat ~/.ssh/config
     ConnectTimeout 5
-    ConnectionAttemts 1
+    ConnectionAttempts 1
     Host *
         StrictHostKeyChecking no
 
