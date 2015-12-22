@@ -167,7 +167,13 @@ To get complete information about a Template, use ``onetemplate show``.
 
 Here is a view of templates tab in Sunstone:
 
-|image1|
+|labels_edit|
+
+Labels can be defined for most of the OpenNebula resources from the admin view. Each resource will store the labels information in its own template, thus it can be easily edited from the CLI or Sunstone. This feature enables the possibility to group the different resources under a given label and filter them in the admin and cloud views. The user will be able to easily find the template she wants to instantiate or select a set of resources to apply a given action.
+
+|labels_filter|
+
+The list of labels defined for each pool will be shown in the left navigation menu. After clicking on one of these labels only the resources with this label will be shown in the table. This filter is also available in the cloud view inside the virtual machine creation form to easily select a specific template.
 
 Adding and Deleting Templates
 -----------------------------
@@ -336,7 +342,8 @@ Use ``onevm shutdown`` to shutdown a running VM.
 
 Continue to the :ref:`Managing Virtual Machine Instances Guide <vm_guide_2>` to learn more about the VM Life Cycle, and the available operations that can be performed.
 
-.. |image1| image:: /images/sunstone_template_list.png
+.. |labels_edit| image:: /images/labels_edit.png
+.. |labels_filter| image:: /images/labels_filter.png
 .. |image2| image:: /images/sunstone_template_create.png
 .. |prepare-tmpl-user-input-1| image:: /images/prepare-tmpl-user-input-1.png
 .. |prepare-tmpl-user-input-2| image:: /images/prepare-tmpl-user-input-2.png
