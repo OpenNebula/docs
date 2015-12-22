@@ -56,12 +56,6 @@ OneFlow
 * `#3134 <http://dev.opennebula.org/issues/3134>`_ Service Templates with dynamic networks cannot be instantiated from the CLI, unless the a template file with the required attributes is merged
 * `#3797 <http://dev.opennebula.org/issues/3797>`_ oneflow and oneflow-template ignore the no_proxy environment variable
 
-OneGate
-================================================================================
-
-* `#3819 <http://dev.opennebula.org/issues/3819>`_ Missing commits for secure configuration.
-* `#4209 <http://dev.opennebula.org/issues/4209>`_ EC2 IPs are not shown in the VM information
-
 Scheduler
 ================================================================================
 
