@@ -9,6 +9,7 @@ Release Notes 4.14
 
    What's New in 4.14 <whats_new>
    Resolved Issues in 4.14.2 <resolved_issues_4142>
+   Resolved Issues in 4.14.3 <resolved_issues_4143>
    Features <features>
    Platform Notes <uspng>
    Compatibility Guide <compatibility>
