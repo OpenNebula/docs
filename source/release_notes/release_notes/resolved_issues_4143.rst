@@ -5,8 +5,13 @@ Resolved Issues in 4.14.3
 
 A complete list of solved issues for 4.14.3 follows:
 
-- `Resource confinment fails <http://dev.opennebula.org/issues/4253>`__
+- `#4253 <http://dev.opennebula.org/issues/4253>`__ Resource confinment fails
 - `#4192 <http://dev.opennebula.org/issues/4192>`_ VNET relase IP action fails for ipv6 networks
+
+Drivers - Storage
+================================================================================
+
+- `#4235 <http://dev.opennebula.org/issues/4236>`__ SSH transfer drivers fail on epilogs with persistent images.
 
 OneGate
 ================================================================================
