@@ -27,7 +27,7 @@ Scheduler
 Sunstone
 --------------------------------------------------------------------------------
 
-
+`#4184 <http://dev.opennebula.org/issues/4184>`_ Labels Support
 
 Contextualization
 -------------------------------------
