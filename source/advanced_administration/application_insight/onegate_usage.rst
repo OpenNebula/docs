@@ -76,18 +76,18 @@ Available commands and usage are shown with `onegate -h`:
         $ onegate vm update [VMID] --data KEY=VALUE[\nKEY2=VALUE2]
 
         $ onegate vm ACTION VMID
-            $ onegate vm resume [VMID]
-            $ onegate vm stop [VMID]
-            $ onegate vm suspend [VMID]
-            $ onegate vm delete [VMID] [--hard]
-            $ onegate vm shutdown [VMID] [--hard]
-            $ onegate vm reboot [VMID] [--hard]
-            $ onegate vm poweroff [VMID] [--hard]
-            $ onegate vm resubmit [VMID]
-            $ onegate vm resched [VMID]
-            $ onegate vm unresched [VMID]
-            $ onegate vm hold [VMID]
-            $ onegate vm release [VMID]
+            $ onegate vm resume VMID
+            $ onegate vm stop VMID
+            $ onegate vm suspend VMID
+            $ onegate vm delete VMID [--hard]
+            $ onegate vm shutdown VMID [--hard]
+            $ onegate vm reboot VMID [--hard]
+            $ onegate vm poweroff VMID [--hard]
+            $ onegate vm resubmit VMID
+            $ onegate vm resched VMID
+            $ onegate vm unresched VMID
+            $ onegate vm hold VMID
+            $ onegate vm release VMID
 
         $ onegate service show [--json]
 
@@ -180,7 +180,7 @@ There are several actions to adapt the Service to a given situation. Actions on 
 Performing actions on a VM
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-One of the following actions can be performed in any of the Virtual Machines of the Service. Again, if no VM ID is provided as argument, the action will be performed on the current Virtual Machine.
+One of the following actions can be performed in any of the Virtual Machines of the Service. 
 
 * ``onegate vm resume``: Resumes the execution of the a saved VM. Valid states: STOPPED, SUSPENDED, UNDEPLOYED, POWEROFF
 * ``onegate vm stop``: Stops a running VM. The VM state is saved and transferred back to the front-end along with the disk files. Valid states: RUNNING
