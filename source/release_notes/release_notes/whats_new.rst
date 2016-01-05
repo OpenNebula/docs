@@ -29,6 +29,11 @@ Sunstone
 
 `#4184 <http://dev.opennebula.org/issues/4184>`_ Labels Support
 
+OneGate
+--------------------------------------------------------------------------------
+
+`#4264 <http://dev.opennebula.org/issues/4264>`_ Restricted attrs and actions
+
 Contextualization
 -------------------------------------
 

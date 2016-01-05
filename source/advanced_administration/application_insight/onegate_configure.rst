@@ -44,6 +44,10 @@ The OneGate configuration file can be found at ``/etc/one/onegate-server.conf``.
 
 * ``permissions`` By default OneGate exposes all the available API calls, each of the actions can be enabled/disabled in the server configuration.
 
+* ``restricted_attrs`` Attrs that cannot be modified when updating a VM template
+
+* ``restricted_actions`` Actions that cannot be performed on a VM
+
 This is the default file
 
 .. code::
@@ -108,6 +112,19 @@ This is the default file
       :service:
         :show: true
         :change_cardinality: true
+
+    # Attrs that cannot be modified when updating a VM template
+    :restricted_attrs
+      - SCHED_REQUIREMENTS
+      - SERVICE_ID
+      - ROLE_NAME
+
+    # Actions that cannot be performed on a VM
+    :restricted_actions
+      #- deploy
+      #- delete
+      #- hold
+      ...
 
 Start OneGate
 =============
