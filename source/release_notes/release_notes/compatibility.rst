@@ -10,7 +10,12 @@ Visit the :ref:`Features list <features>` and the `Release Notes <http://openneb
 
 OpenNebula Administrators and Users
 ================================================================================
-
+Scheduler
+--------------------------------------------------------------------------------
+The scheduler now considers secondary groups to schedule VMs for both hosts and
+datastores (see `feature #4156 <http://dev.opennebula.org/issues/4156>`_). This 
+feature enable users to effictevly use multiple VDCs. This may **only** affect
+to installation using multiple groups per user.
 
 Developers and Integrators
 ================================================================================
