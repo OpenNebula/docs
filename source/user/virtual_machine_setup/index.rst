@@ -11,3 +11,4 @@ Virtual Machine Setup
    Advanced Contextualization <cong>
    Windows Contextualization <windows_context>
    Cloud-init <cloud-init>
+   vCenter Customization <vcenter_customization>
