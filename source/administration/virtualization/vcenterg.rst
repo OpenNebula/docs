@@ -36,7 +36,7 @@ Requirements
 
 The following must be met for a functional vCenter environment:
 
-- vCenter 5.5 and/or 6.0, with at least one cluster aggregating at least one ESX 5.5 and/or 5.5 host.
+- vCenter 5.5 and/or 6.0, with at least one cluster aggregating at least one ESX 5.5 and/or 6.0 host.
 
 - VMware tools are needed in the guestOS to enable several features (contextualization and networking feedback). Please install `VMware Tools (for Windows) <https://www.vmware.com/support/ws55/doc/new_guest_tools_ws.html>`__ or `Open Virtual Machine Tools <http://open-vm-tools.sourceforge.net/>`__ (for \*nix) in the guestOS.
 
