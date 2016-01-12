@@ -12,6 +12,7 @@ Drivers - Hybrid
 ================================================================================
 - `#4267 <http://dev.opennebula.org/issues/4267>`__ ec2 polling not working for non oneadmin VMs
 - `#4279 <http://dev.opennebula.org/issues/4279>`__ ebs_optimized attribute not properly rendered in EC2 templates
+- `#4285 <http://dev.opennebula.org/issues/4285>`__ Elastic IP fails spuriously due to wrong state
 
 Drivers - Storage
 ================================================================================
