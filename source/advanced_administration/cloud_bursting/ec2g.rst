@@ -76,6 +76,12 @@ You can define an http proxy if the OpenNebula Frontend does not have access to 
 
     proxy_uri: http://...
 
+Also, you can modify in the same file the default 300 seconds timeout that is waited for the VM to be in the EC2 running state in case you also want to attach to the instance a elastic ip:
+
+.. code::
+
+    state_wait_timeout_seconds: 300
+
 After OpenNebula is restarted, create a new Host that uses the ec2 drivers:
 
 .. code::
