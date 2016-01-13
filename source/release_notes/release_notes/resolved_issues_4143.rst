@@ -7,6 +7,7 @@ A complete list of solved issues for 4.14.3 follows:
 
 - `#4253 <http://dev.opennebula.org/issues/4253>`__ Resource confinment fails
 - `#4192 <http://dev.opennebula.org/issues/4192>`__ VNET relase IP action fails for ipv6 networks
+- `#4263 <http://dev.opennebula.org/issues/4263>`__ Do not require ONE_AUTH to extract ssh keys in oneuser command.
 
 Drivers - Hybrid
 ================================================================================
