@@ -27,8 +27,9 @@ OneGate
 - `#3819 <http://dev.opennebula.org/issues/3819>`__ Missing commits for secure configuration.
 - `#4209 <http://dev.opennebula.org/issues/4209>`__ EC2 IPs are not shown in the VM information
 
-Sunstone - Cloud View
+Sunstone
 ================================================================================
 
 - `#4197 <http://dev.opennebula.org/issues/4197>`__ Password change button in settings does not give any feedback
+- `#4220 <http://dev.opennebula.org/issues/4220>`__ Update group does not remember selected views
 
