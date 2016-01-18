@@ -32,4 +32,5 @@ Sunstone
 
 - `#4197 <http://dev.opennebula.org/issues/4197>`__ Password change button in settings does not give any feedback
 - `#4220 <http://dev.opennebula.org/issues/4220>`__ Update group does not remember selected views
+- `#4275 <http://dev.opennebula.org/issues/4275>`__ Sched requirements defined through sunstone don't work
 
