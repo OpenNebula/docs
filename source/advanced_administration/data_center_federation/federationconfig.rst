@@ -150,6 +150,8 @@ When the import process finishes, onedb will write in ``/var/log/one/onedb-impor
 
 - **Master MySQL**: You also need to create a special user that will be used by the MySQL replication slaves.
 
+.. _federationconfig_create_user:
+
 .. code-block:: none
 
     # mysql -u root -p
@@ -291,3 +293,155 @@ and update oned.conf to use these values:
 Make sure ``one_auth`` (the oneadmin credentials) is present. If it's not, copy it from **master** oneadmin's ``$HOME/.one`` to the **slave** oneadmin's ``$HOME/.one``. For most configurations, oneadmin's home is ``/var/lib/one`` and this won't be necessary.
 
 - Start the slave OpenNebula.
+
+.. _federationconfig_ha:
+
+High-Availability and Federation
+--------------------------------------------------------------------------------
+
+In order to add :ref:`federation <federationconfig>` to an HA set-up you will need to use `MariaDB <https://mariadb.org/>`__ >= 10.0.2. If this version is not available in your distribution, please use the `repositories provided by MariaDB <https://downloads.mariadb.org/mariadb/repositories/#mirror=tedeco>`__.
+
+The procedure to enable both HA and Federation uses the `multi source replication <https://mariadb.com/kb/en/mariadb/multi-source-replication/>`__ capabilities of MariaDB.
+
+* Every zone must have a 2-node master-master MariaDB cluster.
+* Every zone except for the master zone should configure DB replcation for the federated tables from **both** MariaDB nodes of the master zone.
+
+This is illustrated by the following diagram:
+
+|image0|
+
+The **HA** arrows represent a full master-master replication of all the OpenNebula tables. The **Fed** arrows represent a replication of only the federation tables.
+
+Each replication arrow is implemented in MariaDB by a slave configured with the `CHANGE MASTER <https://mariadb.com/kb/en/mariadb/change-master-to/>`__ directive. Note that we will be using a `connection_name` in order to identify each slave.
+
+Configuration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To set-up the HA replication in each cluster enable the following in the MariaDB configuration file, e.g. `/etc/my.cnf.d/server.cnf` of both nodes:
+
+.. code-block:: none
+
+    [mysqld]
+    server-id    = 1 # Use a different ID for all the servers
+    log-bin      = mysql-bin
+    binlog-do-db = opennebula
+
+Additionally, in all the zones but the master zone, configure the federation replication. This is how `/etc/my.cnf.d/server.cnf` looks like for these nodes
+
+.. code-block:: none
+
+    [mysqld]
+    server-id    = 100 # Use a different ID for all the servers
+    log-bin      = mysql-bin
+    binlog-do-db = opennebula
+
+    zone0-master1.replicate-do-table  = opennebula.user_pool
+    zone0-master1.replicate-do-table  = opennebula.group_pool
+    zone0-master1.replicate-do-table  = opennebula.vdc_pool
+    zone0-master1.replicate-do-table  = opennebula.zone_pool
+    zone0-master1.replicate-do-table  = opennebula.db_versioning
+    zone0-master1.replicate-do-table  = opennebula.acl
+
+    zone0-master2.replicate-do-table  = opennebula.user_pool
+    zone0-master2.replicate-do-table  = opennebula.group_pool
+    zone0-master2.replicate-do-table  = opennebula.vdc_pool
+    zone0-master2.replicate-do-table  = opennebula.zone_pool
+    zone0-master2.replicate-do-table  = opennebula.db_versioning
+    zone0-master2.replicate-do-table  = opennebula.acl
+
+Restart the MariaDB service in all the nodes, e.g.:
+
+.. code-block:: none
+
+    /etc/init.d/mysql restart
+
+Create the replication users as explained in :ref:`this section <federationconfig_create_user>`.
+
+HA Replication
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Follow these steps in all the zones, including the master zone.
+
+Obtain the master position in the first node:
+
+.. code-block:: none
+
+    > SHOW MASTER STATUS;
+    +------------------+-----------+--------------+------------------+
+    | File             | Position  | Binlog_Do_DB | Binlog_Ignore_DB |
+    +------------------+-----------+--------------+------------------+
+    | <LOG_FILE>       | <LOG_POS> | opennebula   |                  |
+    +------------------+-----------+--------------+------------------+
+
+Configure the second node to replicate using this data:
+
+.. code-block:: none
+
+    CHANGE MASTER 'zone<ZONE_ID>-master' TO  MASTER_HOST='<NODE1>', \
+                                    MASTER_USER='<REPLICATION_USER>', \
+                                    MASTER_PASSWORD='<REPLICATION_PASS>', \
+                                    MASTER_LOG_FILE = '<LOG_FILE>', \
+                                    MASTER_LOG_POS = <LOG_POS>;
+    START SLAVE 'zone<ZONE_ID>-master';
+
+Repeat the reverse process by running `SHOW MASTER STATUS` in the second node, and establishing it as the master in the first node:
+
+.. code-block:: none
+
+    CHANGE MASTER 'zone<ZONE_ID>-slave' TO  MASTER_HOST = '<NODE2>', \
+                                    MASTER_USER = '<REPLICATION_USER>', \
+                                    MASTER_PASSWORD ='<REPLICATION_PASS>', \
+                                    MASTER_LOG_FILE = '<LOG_FILE>', \
+                                    MASTER_LOG_POS = <LOG_POS>;
+    START SLAVE 'zone<ZONE_ID>-slave';
+
+Federation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In all the nodes, except the nodes in the master zone, you will to set up the replication of the federated tables from both nodes in the master zone.
+
+Repeat the following commands in both nodes of each zone:
+
+.. code-block:: none
+
+    CHANGE MASTER 'zone0-master1' TO    MASTER_HOST = '<ZONE0_MASTER1_IP>', \
+                                        MASTER_USER = '<REPLICATION_USER>', \
+                                        MASTER_PASSWORD = '<REPLICATION_PASS>';
+    START SLAVE 'zone0-master1';
+
+    CHANGE MASTER 'zone0-master2' TO    MASTER_HOST = '<ZONE0_MASTER2_IP>', \
+                                        MASTER_USER = '<REPLICATION_USER>', \
+                                        MASTER_PASSWORD = '<REPLICATION_PASS>';
+    START SLAVE 'zone0-master2';
+
+
+Verify
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Verify in all the nodes that the replication is up and running both for HA and for Federation:
+
+.. code-block:: none
+
+    $ mysql -u root -p -e "SHOW ALL SLAVES STATUS \G" | grep -E 'Connection_name|_Running'
+                  Connection_name: zone0-master1
+                 Slave_IO_Running: Yes
+                Slave_SQL_Running: Yes
+                  Connection_name: zone0-master2
+                 Slave_IO_Running: Yes
+                Slave_SQL_Running: Yes
+                  Connection_name: zone<ZONE_ID>-<master|slave>
+                 Slave_IO_Running: Yes
+                Slave_SQL_Running: Yes
+
+If `Slave_IO_Running` or `Slave_SQL_Running` is not `Yes`, then the replication is not running.
+
+Failover Scenario
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Should a failover event take place, the OpenNebula service will balance normally and everything will work. However, when the fenced node is brought up again, it should **not** be configured to enter the cluster automatically. It is very important that the node only enters the cluster again only if the replication is up to date, that is, only if `Slave_IO_Running` or `Slave_SQL_Running` are set to `Yes`.
+
+.. |image0| image:: /images/ha_fed_opennebula.png
+
+
+
+
