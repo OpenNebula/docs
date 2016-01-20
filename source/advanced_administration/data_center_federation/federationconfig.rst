@@ -306,6 +306,7 @@ The procedure to enable both HA and Federation uses the `multi source replicatio
 * Every zone must have a 2-node master-master MariaDB cluster.
 * Every zone except for the master zone should configure DB replcation for the federated tables from **both** MariaDB nodes of the master zone.
 
+
 This is illustrated by the following diagram:
 
 |image0|
@@ -313,6 +314,8 @@ This is illustrated by the following diagram:
 The **HA** arrows represent a full master-master replication of all the OpenNebula tables. The **Fed** arrows represent a replication of only the federation tables.
 
 Each replication arrow is implemented in MariaDB by a slave configured with the `CHANGE MASTER <https://mariadb.com/kb/en/mariadb/change-master-to/>`__ directive. Note that we will be using a `connection_name` in order to identify each slave.
+
+.. note:: The HA cluster can must be composed of at least 2 nodes, but you can scale up to as many nodes as you need. In order to so, you should set up a circular replication for HA: A->B->C->...->A and pull the federated tables from all the nodes of the master zone in the rest of the zones.
 
 Configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
