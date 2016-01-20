@@ -19,6 +19,25 @@ group to allow all INBOUND connections or to define any rules you might want.
     defined, the old drivers will be used and it will completely ignore the new
     security drivers mechanism.
 
+.. _security_groups_requirements:
+
+Requirements
+============
+
+These kernel features must be enabled for the security groups to work properly:
+
+.. code::
+
+    net.bridge.bridge-nf-call-arptables = 1
+    net.bridge.bridge-nf-call-ip6tables = 1
+    net.bridge.bridge-nf-call-iptables = 1
+
+You will probably need to load the ``bridge`` module for CentOS/RHEL 7 or ``br_netfiler`` for other OSs in order to enable those kernel features.
+
+.. note::
+
+    In CentOS 7.2, these directives are being explicitely disabled by ``/usr/lib/sysctl.d/00-system.conf``. You must add a file in ``/etc/sysctl.d/`` enabling them.
+
 Definition
 ================================================================================
 

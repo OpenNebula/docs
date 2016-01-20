@@ -13,6 +13,8 @@ Requirements
 
 A network switch capable of forwarding VLAN tagged traffic. The physical switch ports should be VLAN trunks.
 
+As this driver enables the security groups, make sure the :ref:`security groups requirements <security_groups_requirements>` are also met.
+
 Considerations & Limitations
 ============================
 
