@@ -18,6 +18,8 @@ The hypervisors must run a Linux kernel (>3.7.0) that natively supports the VXLA
 
 When all the hypervisors are connected to the same broadcasting domain just be sure that the multicast traffic is not filtered by any iptable rule in the hypervisors. However if the multicast traffic needs to traverse routers a multicast protocol like IGMP needs to be configured in your network.
 
+As this driver enables the security groups, make sure the :ref:`security groups requirements <security_groups_requirements>` are also met.
+
 Considerations & Limitations
 ============================
 
