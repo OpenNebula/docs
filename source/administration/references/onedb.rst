@@ -53,6 +53,7 @@ This is due to `bug #4000 <http://dev.opennebula.org/issues/4000>`_. It means th
 
 .. code::
 
+
     $ onedb patch -v --sqlite /var/lib/one/one.db /usr/lib/one/ruby/onedb/patches/history_times.rb
     Version read:
     Shared tables 4.11.80 : OpenNebula 4.14.1 daemon bootstrap
@@ -66,33 +67,33 @@ This is due to `bug #4000 <http://dev.opennebula.org/issues/4000>`_. It means th
     VM ID: 1
     History sequence number: 0
 
-    STIME   Start time          : 2015-10-08 15:24:06 UTC  
-    PSTIME  Prolog start time   : 2015-10-08 15:24:06 UTC  
-    PETIME  Prolog end time     : 2015-10-08 15:24:29 UTC  
-    RSTIME  Running start time  : 2015-10-08 15:24:29 UTC  
-    RETIME  Running end time    : 2015-10-08 15:42:35 UTC  
-    ESTIME  Epilog start time   : 2015-10-08 15:42:35 UTC  
-    EETIME  Epilog end time     : 2015-10-08 15:42:36 UTC  
-    ETIME   End time            : 2015-10-08 15:42:36 UTC  
+    STIME   Start time          : 2015-10-08 15:24:06 UTC
+    PSTIME  Prolog start time   : 2015-10-08 15:24:06 UTC
+    PETIME  Prolog end time     : 2015-10-08 15:24:29 UTC
+    RSTIME  Running start time  : 2015-10-08 15:24:29 UTC
+    RETIME  Running end time    : 2015-10-08 15:42:35 UTC
+    ESTIME  Epilog start time   : 2015-10-08 15:42:35 UTC
+    EETIME  Epilog end time     : 2015-10-08 15:42:36 UTC
+    ETIME   End time            : 2015-10-08 15:42:36 UTC
 
     To set new values:
       empty to use current value; <YYYY-MM-DD HH:MM:SS> in UTC; or 0 to leave unset (open history record).
-    STIME   Start time          : 2015-10-08 15:24:06 UTC  
-    New value                   : 
+    STIME   Start time          : 2015-10-08 15:24:06 UTC
+    New value                   :
 
-    ETIME   End time            : 2015-10-08 15:42:36 UTC  
-    New value                   : 
+    ETIME   End time            : 2015-10-08 15:42:36 UTC
+    New value                   :
 
 
     The history record # 0 for VM 1 will be updated with these new values:
-    STIME   Start time          : 2015-10-08 15:24:06 UTC  
-    PSTIME  Prolog start time   : 2015-10-08 15:24:06 UTC  
-    PETIME  Prolog end time     : 2015-10-08 15:24:29 UTC  
-    RSTIME  Running start time  : 2015-10-08 15:24:29 UTC  
-    RETIME  Running end time    : 2015-10-08 15:42:35 UTC  
-    ESTIME  Epilog start time   : 2015-10-08 15:42:35 UTC  
-    EETIME  Epilog end time     : 2015-10-08 15:42:36 UTC  
-    ETIME   End time            : 2015-10-08 15:42:36 UTC  
+    STIME   Start time          : 2015-10-08 15:24:06 UTC
+    PSTIME  Prolog start time   : 2015-10-08 15:24:06 UTC
+    PETIME  Prolog end time     : 2015-10-08 15:24:29 UTC
+    RSTIME  Running start time  : 2015-10-08 15:24:29 UTC
+    RETIME  Running end time    : 2015-10-08 15:42:35 UTC
+    ESTIME  Epilog start time   : 2015-10-08 15:42:35 UTC
+    EETIME  Epilog end time     : 2015-10-08 15:42:36 UTC
+    ETIME   End time            : 2015-10-08 15:42:36 UTC
 
     Confirm to write to the database [Y/n]: y
       > Done
@@ -171,3 +172,14 @@ onedb restore
 =============
 
 Restores the DB from a backup file. Please not that this tool will only restore backups generated from the same backend, i.e. you cannot backup a SQLite database and then try to populate a MySQL one.
+
+onedb sqlite2mysql
+==================
+
+This command migrates from a sqlite database to a mysql database. The procedure to follow is:
+
+* Stop OpenNebula
+* Change the DB directive in ``/etc/one/oned.conf`` to use MySQL instead of SQLite
+* Bootstrap the MySQL Database: ``oned -i``
+* Migrate the Database: ``onedb sqlite2mysql -s <SQLITE_PATH> -u <MYSQL_USER> -p <MYSQL_PASS> -d <MYSQL_DB>``
+* Start OpenNebula
