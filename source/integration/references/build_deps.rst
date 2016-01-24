@@ -31,8 +31,7 @@ Debian/Ubuntu
 -  **liblog4cpp5-dev**
 -  **ruby**
 
-Note: With Ubuntu 14.04, libxmlrpc-c3-dev no longer exists. Instead, install these packages
-libxmlrpc-c++8-dev, libxmlrpc-core-c3-dev.
+Note: In Ubuntu 14.04 libxmlrpc-c3-dev no longer exists. Instead, install these packages libxmlrpc-c++8-dev, libxmlrpc-core-c3-dev.
 
 CentOS 6
 ========
