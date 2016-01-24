@@ -17,7 +17,7 @@ You can use the images available in the Marketplace, that are already prepared, 
 
 The contextualization package will also mount any partition labeled ``swap`` as swap. OpenNebula sets this label for volatile swap disks.
 
-- Start a image (or finish its installation)
+- Start an image (or finish its installation)
 - Download and install the package for your distribution:
    - `DEB <https://github.com/OpenNebula/addon-context-linux/releases/download/v4.14.3/one-context_4.14.3.deb>`__: Compatible with Ubuntu 11.10 to 15.04 and Debian 6/7/8
    - `RPM <https://github.com/OpenNebula/addon-context-linux/releases/download/v4.14.3/one-context_4.14.3.rpm>`__: Compatible with CentOS and RHEL 6/7
@@ -27,7 +27,7 @@ The contextualization package will also mount any partition labeled ``swap`` as 
 Automatic Image Resizing
 ========================
 
-OpenNebula supports image resizing on clone. This only makes the disks bigger not the partitions and filesystems it contains. The context packages can automate the resizing of the root filesystem of your linux images but some extra considerations must be taken into account.
+OpenNebula supports image resizing on clones. This only makes the disks bigger, not the partitions and filesystems it contains. The context packages can automate the resizing of the root filesystem of your linux images but some extra considerations must be taken into account.
 
 The root filesystem must be the last partition as the grow script can not shuffle the other partitions around.
 
