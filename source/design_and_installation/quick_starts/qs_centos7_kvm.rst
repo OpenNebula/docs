@@ -123,7 +123,14 @@ Refresh the NFS exports by doing:
 
 .. code::
 
-    # systemctl restart nfs.service
+    # systemctl start nfs-server
+    # systemctl enable nfs-server 
+
+Check our NFS exports list by doing:
+
+.. code::
+
+    # showmount -e 0.0.0.0
 
 1.5. Configure SSH Public Key
 -----------------------------
@@ -232,6 +239,12 @@ After these changes, restart the network:
 
 .. note:: Skip this section if you are using a single server for both the frontend and worker node roles.
 
+Check if your worker node can list the frontend's NFS export by doing:
+
+.. code::
+
+    # showmount -e yourfrontendname_or_ip
+
 Mount the datastores export. Add the following to your ``/etc/fstab``:
 
 .. code::
@@ -246,7 +259,7 @@ Mount the NFS share:
 
     # mount /var/lib/one/
 
-If the above command fails or hangs, it could be a firewall issue.
+If the above command fails or hangs, it could be a firewall or network issue. As stated before, disable the firewall entirely for testing just to rule it out. If the firewall is the issue start allowing the rpc-bind, nfs and mountd services in your firewall (111/tcp, 111/udp, 2049/tcp, 2049/udp, 20048/tcp, 20048/udp respectively).
 
 Step 3. Basic Usage
 ===================
