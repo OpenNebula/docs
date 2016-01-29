@@ -42,61 +42,62 @@ The following must be met for a functional vCenter environment:
 
 - Define a vCenter user for OpenNebula. This vCenter user (let's call her oneadmin) needs to have access to the ESX clusters that OpenNebula will manage. In order to avoid problems, the hassle free approach is to declare this oneadmin user as Administrator. In production environments though, it may be needed to perform a more fine grained permission assigment (please note that the following permissions related to operations are related to the use that OpenNebula does with this operations):
 
-+-----------------------+------------------------------------------+--------------------------------------------------+
-|   vCenter Operation   |                Privileges                |                      Notes                       |
-+-----------------------+------------------------------------------+--------------------------------------------------+
-| CloneVM_Task          | None                                     | Creates a clone of a particular VM               |
-+-----------------------+------------------------------------------+--------------------------------------------------+
-| ReconfigVM_Task       | VirtualMachine.Interact.DeviceConnection | Reconfigures a particular virtual machine.       |
-|                       | VirtualMachine.Interact.SetCDMedia       |                                                  |
-|                       | VirtualMachine.Interact.SetFloppyMedia   |                                                  |
-|                       | VirtualMachine.Config.Rename             |                                                  |
-|                       | VirtualMachine.Config.Annotation         |                                                  |
-|                       | VirtualMachine.Config.AddExistingDisk    |                                                  |
-|                       | VirtualMachine.Config.AddNewDisk         |                                                  |
-|                       | VirtualMachine.Config.RemoveDisk         |                                                  |
-|                       | VirtualMachine.Config.CPUCount           |                                                  |
-|                       | VirtualMachine.Config.Memory             |                                                  |
-|                       | VirtualMachine.Config.RawDevice          |                                                  |
-|                       | VirtualMachine.Config.AddRemoveDevice    |                                                  |
-|                       | VirtualMachine.Config.EditDevice         |                                                  |
-|                       | VirtualMachine.Config.Settings           |                                                  |
-|                       | VirtualMachine.Config.Resource           |                                                  |
-|                       | VirtualMachine.Config.AdvancedConfig     |                                                  |
-|                       | VirtualMachine.Config.SwapPlacement      |                                                  |
-|                       | VirtualMachine.Config.HostUSBDevice      |                                                  |
-|                       | VirtualMachine.Config.DiskExtend         |                                                  |
-|                       | VirtualMachine.Config.ChangeTracking     |                                                  |
-|                       | VirtualMachine.Config.MksControl         |                                                  |
-|                       | DVSwitch.CanUse                          |                                                  |
-|                       | DVPortgroup.CanUse                       |                                                  |
-|                       | VirtualMachine.Config.RawDevice          |                                                  |
-|                       | VirtualMachine.Config.AddExistingDisk    |                                                  |
-|                       | VirtualMachine.Config.AddNewDisk         |                                                  |
-|                       | VirtualMachine.Config.HostUSBDevice      |                                                  |
-|                       | Datastore.AllocateSpace                  |                                                  |
-|                       | Network.Assign                           |                                                  |
-+-----------------------+------------------------------------------+--------------------------------------------------+
-| PowerOnVM_Task        | VirtualMachine.Interact.PowerOn          | Powers on a virtual machine                      |
-+-----------------------+------------------------------------------+--------------------------------------------------+
-| PowerOffVM_Task       | VirtualMachine.Interact.PowerOff         | Powers off a virtual machine                     |
-+-----------------------+------------------------------------------+--------------------------------------------------+
-| Destroy_Task          | VirtualMachine.Inventory.Delete          | Deletes a VM (including disks)                   |
-+-----------------------+------------------------------------------+--------------------------------------------------+
-| SuspendVM_Task        | VirtualMachine.Interact.Suspend          | Suspends a VM                                    |
-+-----------------------+------------------------------------------+--------------------------------------------------+
-| RebootGuest           | VirtualMachine.Interact.Reset            | Reboots VM's guest Operating System              |
-+-----------------------+------------------------------------------+--------------------------------------------------+
-| ResetVM_Task          | VirtualMachine.Interact.Reset            | Resets power on a virtual machine                |
-+-----------------------+------------------------------------------+--------------------------------------------------+
-| ShutdownGuest         | VirtualMachine.Interact.PowerOff         | Shutdown guest Operating System                  |
-+-----------------------+------------------------------------------+--------------------------------------------------+
-| CreateSnapshot_Task   | VirtualMachine.State.CreateSnapshot      | Creates a new snapshot of a virtual machine.     |
-+-----------------------+------------------------------------------+--------------------------------------------------+
-| RemoveSnapshot_Task   | VirtualMachine.State.RemoveSnapshot      | Removes a snapshot form a virtual machine        |
-+-----------------------+------------------------------------------+--------------------------------------------------+
-| RevertToSnapshot_Task | VirtualMachine.State.RevertToSnapshot    | Rever a virtual machine to a particular snapshot |
-+-----------------------+------------------------------------------+--------------------------------------------------+
++-----------------------+-------------------------------------------+--------------------------------------------------+
+|   vCenter Operation   |                 Privileges                |                      Notes                       |
++-----------------------+-------------------------------------------+--------------------------------------------------+
+| CloneVM_Task          | None                                      | Creates a clone of a particular VM               |
++-----------------------+-------------------------------------------+--------------------------------------------------+
+| ReconfigVM_Task       | VirtualMachine.Interact.DeviceConnection  | Reconfigures a particular virtual machine.       |
+|                       | VirtualMachine.Interact.SetCDMedia        |                                                  |
+|                       | VirtualMachine.Interact.SetFloppyMedia    |                                                  |
+|                       | VirtualMachine.Config.Rename              |                                                  |
+|                       | VirtualMachine.Config.Annotation          |                                                  |
+|                       | VirtualMachine.Config.AddExistingDisk     |                                                  |
+|                       | VirtualMachine.Config.AddNewDisk          |                                                  |
+|                       | VirtualMachine.Config.RemoveDisk          |                                                  |
+|                       | VirtualMachine.Config.CPUCount            |                                                  |
+|                       | VirtualMachine.Config.Memory              |                                                  |
+|                       | VirtualMachine.Config.RawDevice           |                                                  |
+|                       | VirtualMachine.Config.AddRemoveDevice     |                                                  |
+|                       | VirtualMachine.Config.EditDevice          |                                                  |
+|                       | VirtualMachine.Config.Settings            |                                                  |
+|                       | VirtualMachine.Config.Resource            |                                                  |
+|                       | VirtualMachine.Config.AdvancedConfig      |                                                  |
+|                       | VirtualMachine.Config.SwapPlacement       |                                                  |
+|                       | VirtualMachine.Config.HostUSBDevice       |                                                  |
+|                       | VirtualMachine.Config.DiskExtend          |                                                  |
+|                       | VirtualMachine.Config.ChangeTracking      |                                                  |
+|                       | VirtualMachine.Config.MksControl          |                                                  |
+|                       | VirtualMachine.Provisioning.ReadCustSpecs |                                                  |
+|                       | DVSwitch.CanUse                           |                                                  |
+|                       | DVPortgroup.CanUse                        |                                                  |
+|                       | VirtualMachine.Config.RawDevice           |                                                  |
+|                       | VirtualMachine.Config.AddExistingDisk     |                                                  |
+|                       | VirtualMachine.Config.AddNewDisk          |                                                  |
+|                       | VirtualMachine.Config.HostUSBDevice       |                                                  |
+|                       | Datastore.AllocateSpace                   |                                                  |
+|                       | Network.Assign                            |                                                  |
++-----------------------+-------------------------------------------+--------------------------------------------------+
+| PowerOnVM_Task        | VirtualMachine.Interact.PowerOn           | Powers on a virtual machine                      |
++-----------------------+-------------------------------------------+--------------------------------------------------+
+| PowerOffVM_Task       | VirtualMachine.Interact.PowerOff          | Powers off a virtual machine                     |
++-----------------------+-------------------------------------------+--------------------------------------------------+
+| Destroy_Task          | VirtualMachine.Inventory.Delete           | Deletes a VM (including disks)                   |
++-----------------------+-------------------------------------------+--------------------------------------------------+
+| SuspendVM_Task        | VirtualMachine.Interact.Suspend           | Suspends a VM                                    |
++-----------------------+-------------------------------------------+--------------------------------------------------+
+| RebootGuest           | VirtualMachine.Interact.Reset             | Reboots VM's guest Operating System              |
++-----------------------+-------------------------------------------+--------------------------------------------------+
+| ResetVM_Task          | VirtualMachine.Interact.Reset             | Resets power on a virtual machine                |
++-----------------------+-------------------------------------------+--------------------------------------------------+
+| ShutdownGuest         | VirtualMachine.Interact.PowerOff          | Shutdown guest Operating System                  |
++-----------------------+-------------------------------------------+--------------------------------------------------+
+| CreateSnapshot_Task   | VirtualMachine.State.CreateSnapshot       | Creates a new snapshot of a virtual machine.     |
++-----------------------+-------------------------------------------+--------------------------------------------------+
+| RemoveSnapshot_Task   | VirtualMachine.State.RemoveSnapshot       | Removes a snapshot form a virtual machine        |
++-----------------------+-------------------------------------------+--------------------------------------------------+
+| RevertToSnapshot_Task | VirtualMachine.State.RevertToSnapshot     | Rever a virtual machine to a particular snapshot |
++-----------------------+-------------------------------------------+--------------------------------------------------+
 
 
 .. note:: For security reasons, you may define different users to access different ESX Clusters. A different user can defined in OpenNebula per ESX cluster, which is encapsulated in OpenNebula as an OpenNebula host.
