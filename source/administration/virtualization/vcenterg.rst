@@ -13,7 +13,7 @@ The OpenNebula - vCenter combination allows you to deploy advanced provisioning 
 Overview and Architecture
 =========================
 
-The VMware vCenter drivers enable OpenNebula to access one or more vCenter servers that manages one or more ESX Clusters. Each ESX Cluster is presented in OpenNebula as an aggregated hypervisor, i.e. as an OpenNebula host. Note that OpenNebula scheduling decisions are therefore made at ESX Cluster level, vCenter then uses the DRS component to select the actual ESX host and Datastore to deploy the Virtual Machine.
+The VMware vCenter drivers enable OpenNebula to access one or more vCenter servers that manages one or more ESX Clusters. Each ESX Cluster is presented in OpenNebula as an aggregated hypervisor, i.e. as an OpenNebula host. Note that OpenNebula scheduling decisions are therefore made at ESX Cluster level, vCenter then uses the DRS component to select the actual ESX host and Datastore to deploy the Virtual Machine, although the datastore can be explicitly selected from OpenNebula.
 
 As the figure shows, OpenNebula components see two hosts where each represents a cluster in a vCenter. You can further group these hosts into OpenNebula clusters to build complex virtual data centers for your user groups in OpenNebula.
 
@@ -42,66 +42,72 @@ The following must be met for a functional vCenter environment:
 
 - Define a vCenter user for OpenNebula. This vCenter user (let's call her oneadmin) needs to have access to the ESX clusters that OpenNebula will manage. In order to avoid problems, the hassle free approach is to declare this oneadmin user as Administrator. In production environments though, it may be needed to perform a more fine grained permission assigment (please note that the following permissions related to operations are related to the use that OpenNebula does with this operations):
 
-+-----------------------+------------------------------------------+--------------------------------------------------+
-|   vCenter Operation   |                Privileges                |                      Notes                       |
-+-----------------------+------------------------------------------+--------------------------------------------------+
-| CloneVM_Task          | None                                     | Creates a clone of a particular VM               |
-+-----------------------+------------------------------------------+--------------------------------------------------+
-| ReconfigVM_Task       | VirtualMachine.Interact.DeviceConnection | Reconfigures a particular virtual machine.       |
-|                       | VirtualMachine.Interact.SetCDMedia       |                                                  |
-|                       | VirtualMachine.Interact.SetFloppyMedia   |                                                  |
-|                       | VirtualMachine.Config.Rename             |                                                  |
-|                       | VirtualMachine.Config.Annotation         |                                                  |
-|                       | VirtualMachine.Config.AddExistingDisk    |                                                  |
-|                       | VirtualMachine.Config.AddNewDisk         |                                                  |
-|                       | VirtualMachine.Config.RemoveDisk         |                                                  |
-|                       | VirtualMachine.Config.CPUCount           |                                                  |
-|                       | VirtualMachine.Config.Memory             |                                                  |
-|                       | VirtualMachine.Config.RawDevice          |                                                  |
-|                       | VirtualMachine.Config.AddRemoveDevice    |                                                  |
-|                       | VirtualMachine.Config.EditDevice         |                                                  |
-|                       | VirtualMachine.Config.Settings           |                                                  |
-|                       | VirtualMachine.Config.Resource           |                                                  |
-|                       | VirtualMachine.Config.AdvancedConfig     |                                                  |
-|                       | VirtualMachine.Config.SwapPlacement      |                                                  |
-|                       | VirtualMachine.Config.HostUSBDevice      |                                                  |
-|                       | VirtualMachine.Config.DiskExtend         |                                                  |
-|                       | VirtualMachine.Config.ChangeTracking     |                                                  |
-|                       | VirtualMachine.Config.MksControl         |                                                  |
-|                       | DVSwitch.CanUse                          |                                                  |
-|                       | DVPortgroup.CanUse                       |                                                  |
-|                       | VirtualMachine.Config.RawDevice          |                                                  |
-|                       | VirtualMachine.Config.AddExistingDisk    |                                                  |
-|                       | VirtualMachine.Config.AddNewDisk         |                                                  |
-|                       | VirtualMachine.Config.HostUSBDevice      |                                                  |
-|                       | Datastore.AllocateSpace                  |                                                  |
-|                       | Network.Assign                           |                                                  |
-+-----------------------+------------------------------------------+--------------------------------------------------+
-| PowerOnVM_Task        | VirtualMachine.Interact.PowerOn          | Powers on a virtual machine                      |
-+-----------------------+------------------------------------------+--------------------------------------------------+
-| PowerOffVM_Task       | VirtualMachine.Interact.PowerOff         | Powers off a virtual machine                     |
-+-----------------------+------------------------------------------+--------------------------------------------------+
-| Destroy_Task          | VirtualMachine.Inventory.Delete          | Deletes a VM (including disks)                   |
-+-----------------------+------------------------------------------+--------------------------------------------------+
-| SuspendVM_Task        | VirtualMachine.Interact.Suspend          | Suspends a VM                                    |
-+-----------------------+------------------------------------------+--------------------------------------------------+
-| RebootGuest           | VirtualMachine.Interact.Reset            | Reboots VM's guest Operating System              |
-+-----------------------+------------------------------------------+--------------------------------------------------+
-| ResetVM_Task          | VirtualMachine.Interact.Reset            | Resets power on a virtual machine                |
-+-----------------------+------------------------------------------+--------------------------------------------------+
-| ShutdownGuest         | VirtualMachine.Interact.PowerOff         | Shutdown guest Operating System                  |
-+-----------------------+------------------------------------------+--------------------------------------------------+
-| CreateSnapshot_Task   | VirtualMachine.State.CreateSnapshot      | Creates a new snapshot of a virtual machine.     |
-+-----------------------+------------------------------------------+--------------------------------------------------+
-| RemoveSnapshot_Task   | VirtualMachine.State.RemoveSnapshot      | Removes a snapshot form a virtual machine        |
-+-----------------------+------------------------------------------+--------------------------------------------------+
-| RevertToSnapshot_Task | VirtualMachine.State.RevertToSnapshot    | Rever a virtual machine to a particular snapshot |
-+-----------------------+------------------------------------------+--------------------------------------------------+
-
++------------------------+-------------------------------------------+---------------------------------------------------+
+|   vCenter Operation    |                 Privileges                |                       Notes                       |
++------------------------+-------------------------------------------+---------------------------------------------------+
+| CloneVM_Task           | None                                      | Creates a clone of a particular VM                |
++------------------------+-------------------------------------------+---------------------------------------------------+
+| ReconfigVM_Task        | VirtualMachine.Interact.DeviceConnection  | Reconfigures a particular virtual machine.        |
+|                        | VirtualMachine.Interact.SetCDMedia        |                                                   |
+|                        | VirtualMachine.Interact.SetFloppyMedia    |                                                   |
+|                        | VirtualMachine.Config.Rename              |                                                   |
+|                        | VirtualMachine.Config.Annotation          |                                                   |
+|                        | VirtualMachine.Config.AddExistingDisk     |                                                   |
+|                        | VirtualMachine.Config.AddNewDisk          |                                                   |
+|                        | VirtualMachine.Config.RemoveDisk          |                                                   |
+|                        | VirtualMachine.Config.CPUCount            |                                                   |
+|                        | VirtualMachine.Config.Memory              |                                                   |
+|                        | VirtualMachine.Config.RawDevice           |                                                   |
+|                        | VirtualMachine.Config.AddRemoveDevice     |                                                   |
+|                        | VirtualMachine.Config.EditDevice          |                                                   |
+|                        | VirtualMachine.Config.Settings            |                                                   |
+|                        | VirtualMachine.Config.Resource            |                                                   |
+|                        | VirtualMachine.Config.AdvancedConfig      |                                                   |
+|                        | VirtualMachine.Config.SwapPlacement       |                                                   |
+|                        | VirtualMachine.Config.HostUSBDevice       |                                                   |
+|                        | VirtualMachine.Config.DiskExtend          |                                                   |
+|                        | VirtualMachine.Config.ChangeTracking      |                                                   |
+|                        | VirtualMachine.Config.MksControl          |                                                   |
+|                        | VirtualMachine.Provisioning.ReadCustSpecs |                                                   |
+|                        | DVSwitch.CanUse                           |                                                   |
+|                        | DVPortgroup.CanUse                        |                                                   |
+|                        | VirtualMachine.Config.RawDevice           |                                                   |
+|                        | VirtualMachine.Config.AddExistingDisk     |                                                   |
+|                        | VirtualMachine.Config.AddNewDisk          |                                                   |
+|                        | VirtualMachine.Config.HostUSBDevice       |                                                   |
+|                        | Datastore.AllocateSpace                   |                                                   |
+|                        | Network.Assign                            |                                                   |
++------------------------+-------------------------------------------+---------------------------------------------------+
+| PowerOnVM_Task         | VirtualMachine.Interact.PowerOn           | Powers on a virtual machine                       |
++------------------------+-------------------------------------------+---------------------------------------------------+
+| PowerOffVM_Task        | VirtualMachine.Interact.PowerOff          | Powers off a virtual machine                      |
++------------------------+-------------------------------------------+---------------------------------------------------+
+| Destroy_Task           | VirtualMachine.Inventory.Delete           | Deletes a VM (including disks)                    |
++------------------------+-------------------------------------------+---------------------------------------------------+
+| SuspendVM_Task         | VirtualMachine.Interact.Suspend           | Suspends a VM                                     |
++------------------------+-------------------------------------------+---------------------------------------------------+
+| RebootGuest            | VirtualMachine.Interact.Reset             | Reboots VM's guest Operating System               |
++------------------------+-------------------------------------------+---------------------------------------------------+
+| ResetVM_Task           | VirtualMachine.Interact.Reset             | Resets power on a virtual machine                 |
++------------------------+-------------------------------------------+---------------------------------------------------+
+| ShutdownGuest          | VirtualMachine.Interact.PowerOff          | Shutdown guest Operating System                   |
++------------------------+-------------------------------------------+---------------------------------------------------+
+| CreateSnapshot_Task    | VirtualMachine.State.CreateSnapshot       | Creates a new snapshot of a virtual machine.      |
++------------------------+-------------------------------------------+---------------------------------------------------+
+| RemoveSnapshot_Task    | VirtualMachine.State.RemoveSnapshot       | Removes a snapshot form a virtual machine         |
++------------------------+-------------------------------------------+---------------------------------------------------+
+| RevertToSnapshot_Task  | VirtualMachine.State.RevertToSnapshot     | Revert a virtual machine to a particular snapshot |
++------------------------+-------------------------------------------+---------------------------------------------------+
+| CreateVirtualDisk_Task | Datastore.FileManagement                  | On all VMFS datastores represented by OpenNebula  |
++------------------------+-------------------------------------------+---------------------------------------------------+
+| CopyVirtualDisk_Task   | Datastore.FileManagement                  | On all VMFS datastores represented by OpenNebula  |
++------------------------+-------------------------------------------+---------------------------------------------------+
+| DeleteVirtualDisk_Task | Datastore.FileManagement                  | On all VMFS datastores represented by OpenNebula  |
++------------------------+-------------------------------------------+---------------------------------------------------+
 
 .. note:: For security reasons, you may define different users to access different ESX Clusters. A different user can defined in OpenNebula per ESX cluster, which is encapsulated in OpenNebula as an OpenNebula host.
 
-- All ESX hosts belonging to the same ESX cluster to be exposed to OpenNebula **must** share one datastore among them.
+- All ESX hosts belonging to the same ESX cluster to be exposed to OpenNebula **must** share at least one datastore among them.
 
 - The ESX cluster **should** have DRS enabled. DRS is not required but it is recommended. OpenNebula does not schedule to the granularity of ESX hosts, DRS is needed to select the actual ESX host within the cluster, otherwise the VM will be launched in the ESX where the VM template has been created.
 
@@ -120,15 +126,13 @@ Considerations & Limitations
 ============================
 - **Unsupported Operations**: The following operations are **NOT** supported on vCenter VMs managed by OpenNebula, although they can be perfomed through vCenter:
 
-+-------------+------------------------------------------------+
-|  Operation  |                      Note                      |
-+-------------+------------------------------------------------+
-| attach_disk | Action of attaching a new disk to a running VM |
-+-------------+------------------------------------------------+
-| detach_disk | Action of detaching a new disk to a running VM |
-+-------------+------------------------------------------------+
-| migrate     | VMs cannot be migrated between ESX clusters    |
-+-------------+------------------------------------------------+
++----------------+-----------------------------------------------------+
+|   Operation    |                         Note                        |
++----------------+-----------------------------------------------------+
+| migrate        | VMs cannot be migrated between ESX clusters         |
++----------------+-----------------------------------------------------+
+| disk snapshots | Only system snapshots are available for vCenter VMs |
++----------------+-----------------------------------------------------+
 
 - **No Security Groups**: Firewall rules as defined in Security Groups cannot be enforced in vCenter VMs.
 - There is a known issue regarding **VNC ports**, preventing VMs with ID 89 to work correctly through VNC. This is being addressed `here <http://dev.opennebula.org/issues/2980>`__.
@@ -401,6 +405,14 @@ The same import mechanism is available graphically through Sunstone for hosts, n
 
 .. note:: If you are running Sunstone using nginx/apache you will have to forward the following headers to be able to interact with vCenter, HTTP_X_VCENTER_USER, HTTP_X_VCENTER_PASSWORD and HTTP_X_VCENTER_HOST. For example in nginx you have to add the following attrs to the server section of your nginx file (underscores_in_headers on; proxy_pass_request_headers on;)
 
+**Step 5: Defining vCenter datastores**
+
+vCenter datastores can be represented in OpenNebula to achieve the following VM operations:
+
+  - Choose a different
+
+For more information on how to create the OpenNebula representations of vCenter datastores, please check the :ref:`vCenter datastore guide <vcenter_ds>`.
+
 Usage
 =====
 
@@ -411,25 +423,27 @@ VM Template definition
 
 In order to manually create a VM Template definition in OpenNebula that represents a vCenter VM Template, the following attributes are needed:
 
-+--------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-|     Operation      |                                                                                                   Note                                                                                                  |
-+--------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| CPU                | Physical CPUs to be used by the VM. This does not have to relate to the CPUs used by the vCenter VM Template, OpenNebula will change the value accordingly                                              |
-+--------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| MEMORY             | Physical Memory in MB to be used by the VM. This does not have to relate to the CPUs used by the vCenter VM Template, OpenNebula will change the value accordingly                                      |
-+--------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| NIC                | Check :ref:`VM template reference <template_network_section>`. Valid MODELs are: virtuale1000, virtuale1000e, virtualpcnet32, virtualsriovethernetcard, virtualvmxnetm, virtualvmxnet2, virtualvmxnet3. |
-+--------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| GRAPHICS           | Multi-value - Only VNC supported, check the  :ref:`VM template reference <io_devices_section>`.                                                                                                         |
-+--------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| PUBLIC_CLOUD       | Multi-value. TYPE must be set to vcenter, and VM_TEMPLATE must point to the uuid of the vCenter VM that is being represented                                                                            |
-+--------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| SCHED_REQUIREMENTS | NAME="name of the vCenter cluster where this VM Template can instantiated into a VM". See :ref:`VM Scheduling section <vm_scheduling_vcenter>` for more details.                                        |
-+--------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| CONTEXT            | All :ref:`sections <template_context>` will be honored except FILES                                                                                                                                     |
-+--------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| KEEP_DISKS_ON_DONE | (Optional) Prevent OpenNebula from erasing the VM disks upon reaching the done state (either via shutdown or cancel)                                                                                    |
-+--------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++--------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|     Operation      |                                                                                                                               Note                                                                                                                              |
++--------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| CPU                | Physical CPUs to be used by the VM. This does not have to relate to the CPUs used by the vCenter VM Template, OpenNebula will change the value accordingly                                                                                                      |
++--------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| MEMORY             | Physical Memory in MB to be used by the VM. This does not have to relate to the CPUs used by the vCenter VM Template, OpenNebula will change the value accordingly                                                                                              |
++--------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| NIC                | Check :ref:`VM template reference <template_network_section>`. Valid MODELs are: virtuale1000, virtuale1000e, virtualpcnet32, virtualsriovethernetcard, virtualvmxnetm, virtualvmxnet2, virtualvmxnet3.                                                         |
++--------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| GRAPHICS           | Multi-value - Only VNC supported, check the  :ref:`VM template reference <io_devices_section>`.                                                                                                                                                                 |
++--------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| PUBLIC_CLOUD       | Multi-value. TYPE must be set to vcenter, and VM_TEMPLATE must point to the uuid of the vCenter VM that is being represented                                                                                                                                    |
++--------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| SCHED_REQUIREMENTS | NAME="name of the vCenter cluster where this VM Template can instantiated into a VM". See :ref:`VM Scheduling section <vm_scheduling_vcenter>` for more details.                                                                                                |
++--------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| CONTEXT            | All :ref:`sections <template_context>` will be honored except FILES                                                                                                                                                                                             |
++--------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| KEEP_DISKS_ON_DONE | (Optional) Prevent OpenNebula from erasing the VM disks upon reaching the done state (either via shutdown or cancel)                                                                                                                                            |
++--------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| VCENTER_DATASTORE  | By default, the VM will be deployed to the datastore where the VM Template is bound to.. This attribute allows to set the name of the datastore where this VM will be deployed.  This can be overwritten explicitly at deployment time from the CLI or Sunstone |
++--------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 You can find more information about contextualization in the :ref:`vcenter Contextualization <vcenter_context>` section.
 
@@ -438,9 +452,9 @@ After a VM Template is instantiated, the lifecycle of the resulting virtual mach
 - network management operations like the ability to attach/detach network interfaces
 - capacity (CPU and MEMORY) resizing
 - VNC connectivity
+- Attach/detach VMDK images as disks
 
 The monitoring attributes retrieved from a vCenter VM are:
-
 
 - ESX_HOST
 - GUEST_IP
@@ -488,7 +502,7 @@ OpenNebula uses VMware cloning VM Template procedure to instantiate new Virtual 
 
 -- Deploying a virtual machine from a template creates a virtual machine that is a copy of the template. The new virtual machine has the virtual hardware, installed software, and other properties that are configured for the template.
 
-A VM Template is tied to the host where the VM was running, and also the datastore(s) where the VM disks where placed. Due to shared datastores, vCenter can instantiate a VM Template in any of the hosts beloning to the same cluster as the original one.
+A VM Template is tied to the host where the VM was running, and also the datastore(s) where the VM disks where placed. By default, the VM will be deployed in that datastore where the VM Template is bound to, athough another datastore can be selected at deployment time. Due to shared datastores, vCenter can instantiate a VM Template in any of the hosts beloning to the same cluster as the original one.
 
 OpenNebula uses several assumptions to instantitate a VM Template in an automatic way:
 
