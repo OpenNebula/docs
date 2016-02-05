@@ -71,10 +71,6 @@ The following must be met for a functional vCenter environment:
 |                       | VirtualMachine.Provisioning.ReadCustSpecs |                                                  |
 |                       | DVSwitch.CanUse                           |                                                  |
 |                       | DVPortgroup.CanUse                        |                                                  |
-|                       | VirtualMachine.Config.RawDevice           |                                                  |
-|                       | VirtualMachine.Config.AddExistingDisk     |                                                  |
-|                       | VirtualMachine.Config.AddNewDisk          |                                                  |
-|                       | VirtualMachine.Config.HostUSBDevice       |                                                  |
 |                       | Datastore.AllocateSpace                   |                                                  |
 |                       | Network.Assign                            |                                                  |
 +-----------------------+-------------------------------------------+--------------------------------------------------+
