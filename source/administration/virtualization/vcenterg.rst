@@ -75,7 +75,11 @@ The following must be met for a functional vCenter environment:
 |                        | DVSwitch.CanUse                             |                                                   |
 |                        | DVPortgroup.CanUse                          |                                                   |
 |                        | Datastore.AllocateSpace                     |                                                   |
+|                        | Datastore.BrowseDatastore                   |                                                   |
+|                        | Datastore.LowLevelFileOperations            |                                                   |
+|                        | Datastore.RemoveFile                        |                                                   |
 |                        | Network.Assign                              |                                                   |
+|                        | Resource.AssignVirtualMachineToResourcePool |                                                   |
 +------------------------+---------------------------------------------+---------------------------------------------------+
 | PowerOnVM_Task         | VirtualMachine.Interact.PowerOn             | Powers on a virtual machine                       |
 +------------------------+---------------------------------------------+---------------------------------------------------+
