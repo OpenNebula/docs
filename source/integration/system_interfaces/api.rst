@@ -1011,8 +1011,8 @@ one.vm.migrate
 | OUT  | Int        | Error code.                                                            |
 +------+------------+------------------------------------------------------------------------+
 
-one.vm.disksave
----------------
+one.vm.disksaveas
+-----------------
 
 -  **Description**: Sets the disk to be saved in the given image.
 -  **Parameters**
