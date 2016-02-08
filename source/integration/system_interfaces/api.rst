@@ -1135,6 +1135,12 @@ one.vm.attach
 | OUT  | Int        | Error code.                                                                                             |
 +------+------------+---------------------------------------------------------------------------------------------------------+
 
+Sample DISK vector attribute:
+
+.. code::
+
+    DISK=[IMAGE_ID=42, TYPE=RBD, DEV_PREFIX=vd, SIZE=123456, TARGET=vdc]
+
 one.vm.detach
 -------------
 
