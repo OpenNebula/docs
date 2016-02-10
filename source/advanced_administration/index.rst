@@ -12,3 +12,4 @@ Advanced Administration Guide
    Cloud Bursting <cloud_bursting/index>
    Application Insight <application_insight/index>
    Public Cloud <public_cloud/index>
+   MarketPlace <marketplace/index>

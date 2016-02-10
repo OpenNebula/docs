@@ -12,3 +12,4 @@ Infrastructure Integration
    Networking Driver <devel-nm>
    Authentication Driver <devel-auth>
    Cloud Bursting Driver <devel-cloudbursting>
+   Market Driver <devel-market>
