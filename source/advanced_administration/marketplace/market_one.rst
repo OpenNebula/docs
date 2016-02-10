@@ -33,19 +33,15 @@ Therefore it does not require any additional action from the administrator.
 
 However, to connect to `OpenNebula Add-on AppMarkets <https://github.com/OpenNebula/addon-appmarket>`__, it is possible to do so by creating a new MarketPlace template with the following attributes:
 
-+---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
-|         Attribute         |                                                                   Description                                                                   |
-+===========================+=================================================================================================================================================+
-| ``NAME``                  | Required                                                                                                                                        |
-+---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``MARKET_MAD``            | Must be ``one``                                                                                                                                 |
-+---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``ENDPOINT``              | (**Required**) The address of MarketPlace.                                                                                                      |
-+---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``MARKET_ADMIN_USER``     | (Optional) The AppMarket admin username. If not supplied, it will connect as the anonymous user, granting access only to the Public appliances. |
-+---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``MARKET_ADMIN_PASSWORD`` | (Optional) The AppMarket admin password.                                                                                                        |
-+---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
++----------------+------------------------------------------------------------------+
+|   Attribute    |                           Description                            |
++================+==================================================================+
+| ``NAME``       | Required                                                         |
++----------------+------------------------------------------------------------------+
+| ``MARKET_MAD`` | Must be ``one``                                                  |
++----------------+------------------------------------------------------------------+
+| ``ENDPOINT``   | (**Required to connect to AppMarket**) The address of AppMarket. |
++----------------+------------------------------------------------------------------+
 
 For example, the following examples illustrates the creation of an MarketPlace:
 
@@ -55,8 +51,6 @@ For example, the following examples illustrates the creation of an MarketPlace:
     NAME = PrivateMarket
     MARKET_MAD = one
     ENDPOINT = "http://privatemarket.opennebula.org"
-    MARKET_ADMIN_USER = "admin"
-    MARKET_ADMIN_PASSWORD = "opennebula"
 
     > onemarket create market.conf
     ID: 100
