@@ -33,15 +33,15 @@ Therefore it does not require any additional action from the administrator.
 
 However, to connect to `OpenNebula Add-on AppMarkets <https://github.com/OpenNebula/addon-appmarket>`__, it is possible to do so by creating a new MarketPlace template with the following attributes:
 
-+----------------+------------------------------------------------------------------+
-|   Attribute    |                           Description                            |
-+================+==================================================================+
-| ``NAME``       | Required                                                         |
-+----------------+------------------------------------------------------------------+
-| ``MARKET_MAD`` | Must be ``one``                                                  |
-+----------------+------------------------------------------------------------------+
-| ``ENDPOINT``   | (**Required to connect to AppMarket**) The address of AppMarket. |
-+----------------+------------------------------------------------------------------+
++----------------+--------------------------------------------------------------+
+|   Attribute    |                         Description                          |
++================+==============================================================+
+| ``NAME``       | Required                                                     |
++----------------+--------------------------------------------------------------+
+| ``MARKET_MAD`` | Must be ``one``.                                             |
++----------------+--------------------------------------------------------------+
+| ``ENDPOINT``   | (**Required to connect to AppMarket**) The URL of AppMarket. |
++----------------+--------------------------------------------------------------+
 
 For example, the following examples illustrates the creation of an MarketPlace:
 
