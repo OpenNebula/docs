@@ -19,17 +19,18 @@ Using the CLI:
 .. code::
 
     $ onemarketapp list
-    ID NAME            VERSION  SIZE STAT TYPE     DATE MARKET PUBLISHER
-     0 ttylinux - kvm      1.0   40M  rdy  img 06/08/46      0 OpenNebula.org
-     1 ttylinux - VMwa     1.1  102M  rdy  img 02/08/16      0 OpenNebula Systems
-     2 Carina Environm     1.0  1.2G  rdy  img 02/08/16      0 Research In Motion
-     3 Testing gUSE in     1.0   16G  rdy  img 02/08/16      0 MTA SZTAKI LPDS
-     4 gUse v3.5.2       3.5.2   16G  rdy  img 04/17/70      0 MTA SZTAKI LPDS
-     5 Vyatta Core 6.5     1.0    2G  rdy  img 02/08/16      0 MACTO
-     6 gUSE CloudBroke     1.0   16G  rdy  img 02/08/16      0 MTA SZTAKI LPDS
-     7 debian-7.1-amd6     1.3    5G  rdy  img 02/08/16      0 Demo-TIC
-     8 Hadoop 1.2 Mast     1.0  1.3G  rdy  img 02/08/16      0 OpenNebula Systems
-     9 Hadoop 1.2 Slav     1.0  1.3G  rdy  img 04/17/70      0 OpenNebula Systems
+     ID NAME                         VERSION  SIZE STAT TYPE  REGTIME               MARKET
+      0 ttylinux - kvm                   1.0   40M  rdy  img 06/08/46    OpenNebula Public
+      1 ttylinux - VMware                1.1  102M  rdy  img 08/08/16    OpenNebula Public
+      2 Carina Environment Manage        1.0  1.2G  rdy  img 05/14/26    OpenNebula Public
+      3 Testing gUSE installation        1.0   16G  rdy  img 07/22/86    OpenNebula Public
+      4 gUse v3.5.2                    3.5.2   16G  rdy  img 04/02/43    OpenNebula Public
+      5 Vyatta Core 6.5R1 - kvm          1.0    2G  rdy  img 07/22/86    OpenNebula Public
+      6 gUSE CloudBroker Wrapper         1.0   16G  rdy  img 04/08/43    OpenNebula Public
+      7 debian-7.1-amd64-kvm             1.3    5G  rdy  img 07/22/86    OpenNebula Public
+      8 Hadoop 1.2 Master                1.0  1.3G  rdy  img 04/07/43    OpenNebula Public
+      9 Hadoop 1.2 Slave                 1.0  1.3G  rdy  img 05/18/14    OpenNebula Public
+
 
 .. todo:: Sunstone
 
@@ -98,29 +99,29 @@ Create a New MarketPlaceApp
 
 In order to create a MarketPlaceApp you will need to prepare a new template file with the following attributes:
 
-+-----------------------+------------------------------------------------------------------------------------------------------------------------------------+
-|       Attribute       |                                                            Description                                                             |
-+=======================+====================================================================================================================================+
-| ``NAME``              | Required                                                                                                                           |
-+-----------------------+------------------------------------------------------------------------------------------------------------------------------------+
-| ``ORIGIN_ID``         | (**Required**) The ID of the source image. It must reference an available image and it must be in one of the supported datastores. |
-+-----------------------+------------------------------------------------------------------------------------------------------------------------------------+
-| ``TYPE``              | (**Required**) Must be ``IMAGE``, ``VMTEMPLATE`` (``FLOW`` is currently not implemented.)                                          |
-+-----------------------+------------------------------------------------------------------------------------------------------------------------------------+
-| ``MARKETPLACE_ID``    | (**Required**) The target marketplace ID. Alternatively you can specify the ``MARKETPLACE`` name.                                  |
-+-----------------------+------------------------------------------------------------------------------------------------------------------------------------+
-| ``MARKETPLACE``       | (**Required**) The target marketplace name. Alternatively you can specify the ``MARKETPLACE_ID`` name.                             |
-+-----------------------+------------------------------------------------------------------------------------------------------------------------------------+
-| ``DESCRIPTION``       | (Optional) Text description of the MarketPlaceApp.                                                                                 |
-+-----------------------+------------------------------------------------------------------------------------------------------------------------------------+
-| ``PUBLISHER``         | (Optional) If not provided, the username will be used.                                                                             |
-+-----------------------+------------------------------------------------------------------------------------------------------------------------------------+
-| ``VERSION``           | (Optional) A string indicating the MarketPlaceApp version.                                                                         |
-+-----------------------+------------------------------------------------------------------------------------------------------------------------------------+
-| ``VMTEMPLATE64``      | (Optional) Creates this template (encoded in base64) pointing to the base image.                                                   |
-+-----------------------+------------------------------------------------------------------------------------------------------------------------------------+
-| ``APPTEMPLATE64``     | (Optional) Template to recreate the app in OpenNebula. This may contain IMAGE specific values.                                     |
-+-----------------------+------------------------------------------------------------------------------------------------------------------------------------+
++--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|     Attribute      |                                                                                 Description                                                                                  |
++====================+==============================================================================================================================================================================+
+| ``NAME``           | Required                                                                                                                                                                     |
++--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``ORIGIN_ID``      | (**Required**) The ID of the source image. It must reference an available image and it must be in one of the supported datastores.                                           |
++--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``TYPE``           | (**Required**) Must be ``IMAGE``.                                                                                                                                            |
++--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``MARKETPLACE_ID`` | (**Required**) The target marketplace ID. Alternatively you can specify the ``MARKETPLACE`` name.                                                                            |
++--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``MARKETPLACE``    | (**Required**) The target marketplace name. Alternatively you can specify the ``MARKETPLACE_ID`` name.                                                                       |
++--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``DESCRIPTION``    | (Optional) Text description of the MarketPlaceApp.                                                                                                                           |
++--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``PUBLISHER``      | (Optional) If not provided, the username will be used.                                                                                                                       |
++--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``VERSION``        | (Optional) A string indicating the MarketPlaceApp version.                                                                                                                   |
++--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``VMTEMPLATE64``   | (Optional) Creates this template (encoded in base64) pointing to the base image.                                                                                             |
++--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``APPTEMPLATE64``  | (Optional) This is the image template (encoded in base64) that will be added to the registered image. It is useful to include parameteres like ``DRIVER`` or ``DEV_PREFIX``. |
++--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 Example:
 
