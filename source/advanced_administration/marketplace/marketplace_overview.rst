@@ -4,7 +4,9 @@
 MarketPlace Overview
 ====================
 
-Sharing, provisioning and consuming cloud images is one of the main concerns when using Cloud. OpenNebula provides a simple way to create and integrate with a cloud image provider, called MarketPlaces. A MarketPlace can be either Public, accessible universally by all OpenNebula's, or Private: specific for a single OpenNebula (a single zone) or shared by a federation (a collection of zones).
+Sharing, provisioning and consuming cloud images is one of the main concerns when using Cloud. OpenNebula provides a simple way to create and integrate with a cloud image provider, called MarketPlaces. 
+
+A MarketPlace can be either Public, accessible universally by all OpenNebula's, or Private: local within an organziation and specific for a single OpenNebula (a single zone) or shared by a federation (a collection of zones).
 
 A MarketPlace is a repository of MarketPlaceApps. A MarketPlaceApp can be of the following types:
 
