@@ -107,8 +107,6 @@ In order to create a MarketPlaceApp you will need to prepare a new template file
 +-----------------------+------------------------------------------------------------------------------------------------------------------------------------+
 | ``TYPE``              | (**Required**) Must be ``IMAGE``, ``VMTEMPLATE`` (``FLOW`` is currently not implemented.)                                          |
 +-----------------------+------------------------------------------------------------------------------------------------------------------------------------+
-| ``SECRET_ACCESS_KEY`` | (**Required**) The password of the S3 user.                                                                                        |
-+-----------------------+------------------------------------------------------------------------------------------------------------------------------------+
 | ``MARKETPLACE_ID``    | (**Required**) The target marketplace ID. Alternatively you can specify the ``MARKETPLACE`` name.                                  |
 +-----------------------+------------------------------------------------------------------------------------------------------------------------------------+
 | ``MARKETPLACE``       | (**Required**) The target marketplace name. Alternatively you can specify the ``MARKETPLACE_ID`` name.                             |
