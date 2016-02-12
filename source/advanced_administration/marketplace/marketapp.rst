@@ -93,7 +93,7 @@ Which demonstrates the capability of including a template into the appliance's d
 
 .. todo:: sunstone
 
-Create a new MarketPlaceApp
+Create a New MarketPlaceApp
 --------------------------------------------------------------------------------
 
 In order to create a MarketPlaceApp you will need to prepare a new template file with the following attributes:
