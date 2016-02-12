@@ -81,7 +81,7 @@ Use Cases
 
 Using the MarketPlace is recommended in many scenarios, to name a few:
 
-* When starting with an empty OpenNebula, the `OpenNebula Systems Marketplace <http://marketplace.opennebula.systems>`__ contains a catalog of :ref:`OpenNebula-ready <bcont>` cloud images.
+* When starting with an empty OpenNebula, the public `OpenNebula Systems Marketplace <http://marketplace.opennebula.systems>`__ contains a catalog of :ref:`OpenNebula-ready <bcont>` cloud images.
 * If a private MarketPlace is available (MarketPlaces with **one** driver do not count as they are generally public), it is possible to upload a local image from a Datastore to the MarketPlace, and downloading it to another local Datastore even if the source and target Datastores are of a different type, thus enabling image cloning to from any datastore to any other datastore.
 * In a federation, it is almost essential to have a shared MarketPlace in order to share MarketPlaceApps accross zones.
 * In a single OpenNebula Zone, MarketPlaces are a great way to provide images to all the VDCs from a single point.
