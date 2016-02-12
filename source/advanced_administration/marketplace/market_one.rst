@@ -43,7 +43,7 @@ However, to connect to `OpenNebula Add-on AppMarkets <https://github.com/OpenNeb
 | ``ENDPOINT``   | (**Required to connect to AppMarket**) The URL of AppMarket. |
 +----------------+--------------------------------------------------------------+
 
-For example, the following examples illustrates the creation of an MarketPlace:
+For example, the following examples illustrates the creation of a MarketPlace:
 
 .. code::
 
