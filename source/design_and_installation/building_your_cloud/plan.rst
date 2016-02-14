@@ -27,27 +27,37 @@ OpenNebula presents a highly modular architecture that offers broad support for 
 Dimensioning the Cloud
 ======================
 
-The dimension of a cloud infrastructure can be directly inferred from the expected workload in terms of VM that the cloud infrastructure must sustain. This workload is also tricky to estimate, but this is a crucial exercise to build an efficient cloud.
+The dimension of a cloud infrastructure can be directly inferred from the expected workload in terms of VMs that the cloud infrastructure must sustain. This workload is also tricky to estimate, but this is a crucial exercise to build an efficient cloud.
 
 The main aspects to take into account at the time of dimensioning the OpenNebula cloud are:
 
-- **CPU**: unless overcommitment is planned the relation is that for each CPU core that one VM wants to use, a physical CPU core must exist. For instance, for a workload of 40 VMs with 2 CPUs the cloud will need 80 physical CPUs. These physical CPUs can be spread among different phyisical servers, for instance 10 servers with 8 cores each, or 5 server of 16 cores each. CPU dimension can be planned ahead with overcommitment, achieved using the CPU and VCPU attributes (CPU states physical CPUs assigned to this VM, whereas VCPU stated virtual CPUs to be presented to the guest OS)
+- **CPU**:
 
-- **MEMORY**: Planning for memory is straightforward, as there are no overcommitment of memory in OpenNebula. It is always a good practice to count for a 10% overhead of the hypervisor (this is an absolut upper limit, depending on the hypervisor this can be adjusted). So, in order to sustain a VM workload of 45 VMs with 2Gb of RAM each, 90Gb of physical memory is needed. The number of physical servers is important as each one will incur on a 10% overhead due to the hypersors. For instance, 10 hypervisors with 10Gb RAM each will contribute with 9Gb each (10% of 10Gb = 1Gb), so they will be able to sustain the estimated workload.
+  - *without* overcommitment, each CPU core assigned to a VM must exists as a physical CPU core. By example, for a workload of 40 VMs with 2 CPUs, the cloud will need 80 physical CPUs. These 80 physical CPUs can be spread among different hosts: 10 servers with 8 cores each, or 5 server of 16 cores each;
 
-- **STORAGE**: It is important to understand how OpenNebula uses storage, mainly the difference between system and image datastore. The image datastore is where OpenNebula stores all the images registered that can be used to create VMs, so the rule of thumb is to devote enough space for all the images that OpenNebula will have registered. The system datastore is where the VMs that are currently running store their disks, and it is trickier to estimate correctly since volatile disks come into play with no counterpart in the image datastore (volatile disks are created on the fly in the hypervisor). One valid approach is to limit the storage available to users by defining quotas in the number of maximum VMs and also the Max Volatile Storage a user can demand, and ensuring enough system and image datastore space to comply with the limit set in the quotas. In any case, currently, OpenNebula allows cloud administrators to add more system and images datastores if needed.
+  - *with* overcommitment, however, CPU dimension can be planned ahead, using the ``CPU`` and ``VCPU`` attributes: ``CPU`` states physical CPUs assigned to the VM, while ``VCPU`` states virtual CPUs to be presented to the guest OS.
+
+- **MEMORY**: Planning for memory is straightforward, as *there is no overcommitment of memory* in OpenNebula. It is always a good practice to count 10% of overhead by the hypervisor (this is not an absolut upper limit, it depends on the hypervisor). So, in order to sustain a VM workload of 45 VMs with 2GB of RAM each, 90GB of physical memory is needed. The number of hosts is important, as each one will incur a 10% overhead due to the hypervisors. For instance, 10 hypervisors with 10GB RAM each will contribute with 9GB each (10% of 10GB = 1GB), so they will be able to sustain the estimated workload.
+
+- **STORAGE**: It is important to understand how OpenNebula uses storage, mainly the difference between system and image datastore.
+
+  - The **image datastore** is where OpenNebula stores all the images registered that can be used to create VMs, so the rule of thumb is to devote enough space for all the images that OpenNebula will have registered.
+
+  - The **system datastore** is where the VMs that are currently running store their disks. It is trickier to estimate correctly since volatile disks come into play with no counterpart in the image datastore (volatile disks are created on the fly in the hypervisor).
+
+  - One valid approach is to limit the storage available to users by defining quotas in the number of maximum VMs and also the Max Volatile Storage a user can demand, and ensuring enough system and image datastore space to comply with the limit set in the quotas. In any case, OpenNebula allows cloud administrators to add more system and images datastores if needed.
 
 Importing Existing VMs
 ======================
 
-As soon as a new hypervisor server or public cloud is added to OpenNebula, the monitoring subsystem will extract all the Virtual Machines running in that particular server or public cloud region and label them as Wild VMs. Wild VMs are therefore Virtual Machines running in a hypervisor controlled by OpenNebula that have not been launched through it.
+As soon as a new hypervisor server or public cloud is added to OpenNebula, the monitoring subsystem will extract all the Virtual Machines running in that particular server or public cloud region and label them as *Wild VMs*. Wild VMs are therefore VMs running in an hypervisor controlled by OpenNebula that have not been launched through OpenNebula.
 
-OpenNebula allows to import these Wild VMs to be able to control its lifecycle as any other VM launched by OpenNebula. Proceed to this :ref:`host guide section <import_wild_vms>` for more details.
+OpenNebula allows to import these Wild VMs in order to control their lifecycle just like any other VM launched by OpenNebula. Proceed to this :ref:`host guide section <import_wild_vms>` for more details.
 
 Front-End
 =========
 
-The machine that holds the OpenNebula installation is called the front-end. This machine needs network connectivity to each host, and possibly access to the storage Datastores (either by direct mount or network). The base installation of OpenNebula takes less than 50MB.
+The machine that holds the OpenNebula installation is called the front-end. This machine needs network connectivity to all the hosts, and possibly access to the storage Datastores (either by direct mount or network). The base installation of OpenNebula takes less than 50MB.
 
 OpenNebula services include:
 
@@ -70,7 +80,7 @@ Monitoring
 The monitoring subsystem gathers information relative to the hosts and the virtual machines, such as the host status, basic performance indicators, as well as VM status and capacity consumption. This information is collected by executing a set of static probes provided by OpenNebula. The output of these probes is sent to OpenNebula in two different ways:
 
 -  **UDP-push Model**: Each host periodically sends monitoring data via UDP to the frontend which collects it and processes it in a dedicated module. This model is highly scalable and its limit (in terms of number of VMs monitored per second) is bounded to the performance of the server running oned and the database server. Please read the :ref:`UDP-push guide <imudppushg>` for more information.
--  **Pull Model**: OpenNebula periodically actively queries each host and executes the probes via ``ssh``. This mode is limited by the number of active connections that can be made concurrently, as hosts are queried sequentially. Please read the :ref:`KVM and Xen SSH-pull guide <imsshpullg>` or the :ref:`ESX-pull guide <imesxpullg>` for more information.
+-  **SSH-pull Model**: OpenNebula periodically actively queries each host and executes the probes via ``ssh``. This mode is limited by the number of active connections that can be made concurrently, as hosts are queried sequentially. Please read the :ref:`KVM and Xen SSH-pull guide <imsshpullg>` or the :ref:`ESX-pull guide <imesxpullg>` for more information.
 
 .. warning:: **Default**: UDP-push Model is the default IM for KVM and Xen in OpenNebula >= 4.4.
 
@@ -96,29 +106,29 @@ If you are interested in failover protection against hardware and operating syst
 Storage
 =======
 
-OpenNebula uses Datastores to handle the VM disk Images. A Datastore is any storage medium used to store disk images for VMs, previous versions of OpenNebula refer to this concept as Image Repository. Typically, a datastore will be backed by SAN/NAS servers. In general, each Datastore has to be accessible through the front-end using any suitable technology NAS, SAN or direct attached storage.
+OpenNebula uses *Datastores* to store VMs' disk images (previous versions of OpenNebula refer to this concept as *Image Repository*). A datastore is any storage medium, typically backed by SAN/NAS servers. In general, each datastore has to be accessible through the front-end using any suitable technology NAS, SAN or direct attached storage.
 
 |image3|
 
-When a VM is deployed the Images are *transferred* from the Datastore to the hosts. Depending on the actual storage technology used it can mean a real transfer, a symbolic link or setting up an LVM volume.
+When a VM is deployed, its images are *transferred* from the datastore to the hosts. Depending on the actual storage technology used, it can mean a real transfer, a symbolic link or setting up an LVM volume.
 
 OpenNebula is shipped with 3 different datastore classes:
 
--  :ref:`System Datastores <system_ds>` to hold images for running VMs, depending on the storage technology used these temporal images can be complete copies of the original image, qcow deltas or simple filesystem links.
+-  :ref:`System Datastores <system_ds>`: to hold images for running VMs. Depending on the storage technology used, these temporal images can be complete copies of the original image, qcow deltas or simple filesystem links.
 
--  **Image Datastores** store the disk images repository. Disk images are moved, or cloned to/from the System datastore when the VMs are deployed or shutdown; or when disks are attached or snapshoted.
+-  **Image Datastores**: to store the disk images repository. Disk images are moved, or cloned to/from the System Datastore when the VMs are deployed or shutdown, or when disks are attached or snapshoted.
 
--  :ref:`File Datastore <file_ds>` is a special datastore used to store plain files and not disk images. The plain files can be used as kernels, ramdisks or context files.
+-  :ref:`File Datastore <file_ds>`: a special datastore used to store plain files, not disk images. These files can be used as kernels, ramdisks or context files.
 
-Image datastores can be of different type depending on the underlying storage technology:
+Image datastores can be of different types, depending on the underlying storage technology:
 
--  :ref:`File-system <fs_ds>`, to store disk images in a file form. The files are stored in a directory mounted from a SAN/NAS server.
+-  :ref:`File-system <fs_ds>`: to store disk images in a file form. The files are stored in a shared filesystem mounted from a SAN/NAS server.
 
--  :ref:`vmfs <vmware_ds_datastore_configuration>`, a datastore specialized in VMFS format to be used with VMware hypervisors. Cannot be mounted in the OpenNebula front-end since VMFS is not \*nix compatible.
+-  :ref:`vmfs <vmware_ds_datastore_configuration>`: a datastore specialized in VMFS format to be used with VMware hypervisors. Cannot be mounted in the OpenNebula front-end since VMFS is not \*nix compatible.
 
--  :ref:`LVM <lvm_drivers>`, The LVM datastore driver provides OpenNebula with the possibility of using LVM volumes instead of plain files to hold the Virtual Images. This reduces the overhead of having a file-system in place and thus increases performance..
+-  :ref:`LVM <lvm_drivers>`: to use LVM volumes instead of plain files to hold the Virtual Images. This reduces the overhead of having a file-system in place and thus increases performance.
 
--  :ref:`Ceph <ceph_ds>`, to store disk images using Ceph block devices.
+-  :ref:`Ceph <ceph_ds>`: to store disk images using Ceph block devices.
 
 .. warning:: **Default:** The system and images datastores are configured to use a shared filesystem.
 
@@ -127,37 +137,37 @@ Please check the :ref:`Storage Guide <sm>` for more details.
 Networking
 ==========
 
-OpenNebula provides an easily adaptable and customizable network subsystem in order to better integrate with the specific network requirements of existing datacenters. At least two different physical networks are needed:
+OpenNebula provides an easily adaptable and customizable network subsystem in order to integrate the specific network requirements of existing datacenters. **At least two different physical networks are needed**:
 
--  A **service network** is needed by the OpenNebula front-end daemons to access the hosts in order to manage and monitor the hypervisors, and move image files. It is highly recommended to install a dedicated network for this purpose.
--  A **instance network** is needed to offer network connectivity to the VMs across the different hosts. To make an effective use of your VM deployments you'll probably need to make one or more physical networks accessible to them.
+-  **Service Network**: used by the OpenNebula front-end daemons to access the hosts in order to manage and monitor the hypervisors, and move image files. It is highly recommended to install a dedicated network for this purpose;
+-  **Instance Network**: offers network connectivity to the VMs across the different hosts. To make an effective use of your VM deployments, you will probably need to make one or more physical networks accessible to them.
 
 The OpenNebula administrator may associate one of the following drivers to each Host:
 
--  **dummy**: Default driver that doesn't perform any network operation. Firewalling rules are also ignored.
--  :ref:`fw <firewall>`: Firewall rules are applied, but networking isolation is ignored.
--  :ref:`802.1Q <hm-vlan>`: restrict network access through VLAN tagging, which also requires support from the hardware switches.
+-  **dummy** (default): doesn't perform any network operation, and firewalling rules are also ignored.
+-  :ref:`fw <firewall>`: firewalling rules are applied, but networking isolation is ignored.
+-  :ref:`802.1Q <hm-vlan>`: restrict network access through VLAN tagging, which requires support by the hardware switches.
 -  :ref:`ebtables <ebtables>`: restrict network access through Ebtables rules. No special hardware configuration required.
 -  :ref:`ovswitch <openvswitch>`: restrict network access with `Open vSwitch Virtual Switch <http://openvswitch.org/>`__.
--  :ref:`VMware <vmwarenet>`: uses the VMware networking infrastructure to provide an isolated and 802.1Q compatible network for VMs launched with the VMware hypervisor.
+-  :ref:`VMware <vmwarenet>`: uses the VMware networking infrastructure to provide an isolated and 802.1Q compatible network for VMs launched by VMware hypervisors.
 
-.. warning:: **Default:** The default configuration connects the virtual machine network interface to a bridge in the physical host.
+.. warning:: **Default:** The default configuration connects the VM network interface to a bridge in the physical host.
 
-Please check the :ref:`Networking Guide <nm>` to find out more information of the networking technologies supported by OpenNebula.
+Please check the :ref:`Networking Guide <nm>` to find out more information about the networking technologies supported by OpenNebula.
 
 Authentication
 ==============
 
-You can choose from the following authentication models to access OpenNebula:
+The following authentication methods are supported to access OpenNebula:
 
 -  :ref:`Built-in User/Password <manage_users_adding_and_deleting_users>`
 -  :ref:`SSH Authentication <ssh_auth>`
 -  :ref:`X509 Authentication <x509_auth>`
--  :ref:`LDAP Authentication <ldap>`
+-  :ref:`LDAP Authentication <ldap>` (and Active Directory)
 
 .. warning:: **Default:** OpenNebula comes by default with an internal built-in user/password authentication.
 
-Please check the :ref:`Authentication Guide <external_auth>` to find out more information of the auth technologies supported by OpenNebula.
+Please check the :ref:`Authentication Guide <external_auth>` to find out more information about the authentication technologies supported by OpenNebula.
 
 Advanced Components
 ===================
