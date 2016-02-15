@@ -726,6 +726,14 @@ one.template.instantiate
 | OUT  | Int        | Error code.                                                                                                                                              |
 +------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
 
+Sample template string:
+
+.. code::
+
+    MEMORY=4096\nCPU=4\nVCPU=4
+
+Note that declaring a field overwrites the template. Thus, declaring ``DISK=[...]`` overwrites the template ``DISK`` attribute and as such, must contain the entire ``DISK`` definition.
+
 one.template.update
 -------------------
 
