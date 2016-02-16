@@ -49,6 +49,7 @@ Drivers - IM
 ================================================================================
 
 * `#4020 <http://dev.opennebula.org/issues/4020>`_ Monitoring fails for VMs that do not use CEPH or plain files for disk images (fix in the ticket)
+* `#4267 <http://dev.opennebula.org/issues/4267>`_ EC2 polling not working for non oneadmin VM
 
 OneFlow
 ================================================================================
