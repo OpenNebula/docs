@@ -175,8 +175,11 @@ already libiscsi-enabled, so these steps are unnecessary for Centos Hypervisors)
   make
   sudo make install
 
-Working with iSCSI LUN image
-----------------------------
+Working with iSCSI LUN images
+-----------------------------
+
+**Specifying LUN IDs**
+
 Here is an example of an iSCSI LUN template that uses the iSCSI transfer manager.
 
 .. code::
@@ -189,6 +192,7 @@ Here is an example of an iSCSI LUN template that uses the iSCSI transfer manager
 
 Note the explicit "/0" at the end of the IQN target path. This is the iSCSI LUN ID.
 
+**Err state post-VM delete**
 
 Another characteristic of the persistent iSCSI LUNs is that after a VM is deleted, the iSCSI LUN will go into a "err" state; the iSCSI LUN needs to be "re-enabled" before re-using the LUN. Here is an example:
 
@@ -214,6 +218,8 @@ Another characteristic of the persistent iSCSI LUNs is that after a VM is delete
   oneadmin@onedv:~/exampletemplates$ 
 
 Please refer to this issue (http://dev.opennebula.org/issues/3989) for further information.
+
+**Live-migration**
 
 The iSCSI LUNs are live-migrated when the VMs are live-migrated.
 
