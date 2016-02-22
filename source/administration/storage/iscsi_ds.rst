@@ -140,6 +140,7 @@ Ubuntu 14.04's  qemu package  does not have libiscsi support built into it (Note
 already libiscsi-enabled, so these steps are unnecessary for Centos Hypervisors). The stock Ubuntu 14.04 Qemu needs to be replaced with a qemu binary that has libiscsi support.  This writeup assumes "opennebula-node" has been installed previously: therefore qemu (without libiscsi)  and libvirt are available on the system.
 
 .. code:: bash
+
   #On the hypervisor - first install the stock hypervisor software.
    sudo apt-get install opennebula-node
 
@@ -177,7 +178,9 @@ already libiscsi-enabled, so these steps are unnecessary for Centos Hypervisors)
 Working with iSCSI LUN image
 ----------------------------
 Here is an example of an iSCSI LUN template that uses the iSCSI transfer manager.
+
 .. code::
+
   oneadmin@onedv:~/exampletemplates$ more iscsiimage.tpl
   NAME=iscsi_device_with_lun
   PATH=iqn.2014.01.192.168.50.61:test:7cd2cc1e/0
@@ -190,6 +193,7 @@ Note the explicit "/0" at the end of the IQN target path. This is the iSCSI LUN 
 Another characteristic of the persistent iSCSI LUNs is that after a VM is deleted, the iSCSI LUN will go into a "err" state; the iSCSI LUN needs to be "re-enabled" before re-using the LUN. Here is an exdample:
 
 .. code::
+
   oneadmin@onedv:~/exampletemplates$ onevm list 
       ID USER     GROUP    NAME            STAT UCPU    UMEM HOST             TIME
       16 oneadmin oneadmin testvm20        runn  0.5  263.9M 192.168.50   0d 00h49
@@ -209,10 +213,12 @@ Another characteristic of the persistent iSCSI LUNs is that after a VM is delete
      4 oneadmin   oneadmin   iscsi_device_wi iscsi           0M OS   Yes rdy     0
   oneadmin@onedv:~/exampletemplates$ 
 
-Please refer to this issue (http://dev.opennebula.org/issues/3989)
+Please refer to this issue (http://dev.opennebula.org/issues/3989) for further information.
 
 The iSCSI LUNs are live-migrated when the VMs are live-migrated.
+
 .. code::
+
   oneadmin@onedv:~/exampletemplates$ onetemplate instantiate 0 --name testvm
   VM ID: 17
   oneadmin@onedv:~/exampletemplates$ onevm list
