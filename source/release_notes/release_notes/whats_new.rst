@@ -20,6 +20,9 @@ OpenNebula Drivers :: Storage
 OpenNebula Drivers :: Virtualization
 --------------------------------------------------------------------------------
 
+`#4342 <http://dev.opennebula.org/issues/4342>`__ Make :ref:`prefix "one-" in vCenter <vcenter_suffix_note>` for VMs a configuration option
+
+
 Scheduler
 --------------------------------------------------------------------------------
 
