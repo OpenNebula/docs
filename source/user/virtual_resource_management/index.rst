@@ -7,6 +7,7 @@ Virtual Resource Management
 
    Overview <intropr>
    Virtual Networks <vgg>
+   Virtual Routers <vrouter>
    Virtual Machine Images <img_guide>
    Virtual Machine Templates <vm_guide>
    Virtual Machine Instances <vm_guide_2>
