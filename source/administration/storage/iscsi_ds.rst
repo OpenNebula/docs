@@ -190,7 +190,7 @@ Here is an example of an iSCSI LUN template that uses the iSCSI transfer manager
 Note the explicit "/0" at the end of the IQN target path. This is the iSCSI LUN ID.
 
 
-Another characteristic of the persistent iSCSI LUNs is that after a VM is deleted, the iSCSI LUN will go into a "err" state; the iSCSI LUN needs to be "re-enabled" before re-using the LUN. Here is an exdample:
+Another characteristic of the persistent iSCSI LUNs is that after a VM is deleted, the iSCSI LUN will go into a "err" state; the iSCSI LUN needs to be "re-enabled" before re-using the LUN. Here is an example:
 
 .. code::
 
