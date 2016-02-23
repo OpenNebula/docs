@@ -127,3 +127,123 @@ In order to use CHAP authentication, you will need to create a libvirt secret in
 - ``incominguser`` field on the iSCSI authentication file should match the Datastore's ``ISCSI_USER`` parameter.
 - ``<target>`` field in the secret XML document will contain the ``ISCSI_USAGE`` paremeter.
 - Do this in all the hypervisors.
+
+
+Further notes on Installation and Usage 
+========================================
+
+Ubuntu Hypervisors
+------------------
+Libiscsi is needed for OpenNebula to present the iSCSI LUN to the (KVM) VM running off the qemu hypervisor.
+
+Ubuntu 14.04's  qemu package  does not have libiscsi support built into it (Note: the stock qemu package with Centos is
+already libiscsi-enabled, so these steps are unnecessary for Centos Hypervisors). The stock Ubuntu 14.04 Qemu needs to be replaced with a qemu binary that has libiscsi support.  This writeup assumes "opennebula-node" has been installed previously: therefore qemu (without libiscsi)  and libvirt are available on the system.
+
+.. code:: bash
+
+  #On the hypervisor - first install the stock hypervisor software.
+   sudo apt-get install opennebula-node
+
+  #installing some packages needed for compiling libiscsi and qemu
+   sudo apt-get install -y libvdeplug2 libvdeplug2-dev libaio1 libaio-dev \
+   libcap-dev libattr1-dev libsdl-dev libxml2-dev dh-autoreconf 
+
+  #Obtaining the libiscsi and qemu source packages 
+  
+  #libiscsi (make sure you do not install libiscsi packages via apt)
+  git clone https://github.com/sahlberg/libiscsi.git
+  cd libiscsi
+  ./autogen.sh
+  ./configure --prefix=/usr
+  make
+  sudo make install
+
+  #qemu
+  wget http://wiki.qemu-project.org/download/qemu-2.5.0.tar.bz2
+  #(This is the current version as of this writing, you may want to get the another version if you want)
+  cd qemu-2.5.0/
+  ./configure --prefix=/usr \
+  --sysconfdir=/etc \
+  --enable-kvm \
+  --enable-vde \
+  --enable-virtfs \
+  --enable-linux-aio \
+  --enable-libiscsi \
+  --enable-sdl \
+  --target-list=i386-softmmu,x86_64-softmmu,i386-linux-user,x86_64-linux-user \
+  --audio-drv-list=alsa
+  make
+  sudo make install
+
+Working with iSCSI LUN images
+-----------------------------
+
+**Specifying LUN IDs**
+
+Here is an example of an iSCSI LUN template that uses the iSCSI transfer manager.
+
+.. code::
+
+  oneadmin@onedv:~/exampletemplates$ more iscsiimage.tpl
+  NAME=iscsi_device_with_lun
+  PATH=iqn.2014.01.192.168.50.61:test:7cd2cc1e/0
+  ISCSI_HOST=192.168.50.61
+  PERSISTENT=YES
+
+Note the explicit "/0" at the end of the IQN target path. This is the iSCSI LUN ID.
+
+**Err state post-VM delete**
+
+Another characteristic of the persistent iSCSI LUNs is that after a VM is deleted, the iSCSI LUN will go into a "err" state; the iSCSI LUN needs to be "re-enabled" before re-using the LUN. Here is an example:
+
+.. code::
+
+  oneadmin@onedv:~/exampletemplates$ onevm list 
+      ID USER     GROUP    NAME            STAT UCPU    UMEM HOST             TIME
+      16 oneadmin oneadmin testvm20        runn  0.5  263.9M 192.168.50   0d 00h49
+  oneadmin@onedv:~/exampletemplates$ oneimage list
+    ID USER       GROUP      NAME            DATASTORE     SIZE TYPE PER STAT RVMS
+     2 oneadmin   oneadmin   Ubuntu 1404, 64 default        10G OS    No used    1
+     4 oneadmin   oneadmin   iscsi_device_wi iscsi           0M OS   Yes used    1
+  oneadmin@onedv:~/exampletemplates$ onevm delete 16
+  oneadmin@onedv:~/exampletemplates$ oneimage list
+    ID USER       GROUP      NAME            DATASTORE     SIZE TYPE PER STAT RVMS
+     2 oneadmin   oneadmin   Ubuntu 1404, 64 default        10G OS    No rdy     0
+     4 oneadmin   oneadmin   iscsi_device_wi iscsi           0M OS   Yes err     0
+  oneadmin@onedv:~/exampletemplates$ oneimage enable 4
+  oneadmin@onedv:~/exampletemplates$ oneimage list 
+    ID USER       GROUP      NAME            DATASTORE     SIZE TYPE PER STAT RVMS
+     2 oneadmin   oneadmin   Ubuntu 1404, 64 default        10G OS    No rdy     0
+     4 oneadmin   oneadmin   iscsi_device_wi iscsi           0M OS   Yes rdy     0
+  oneadmin@onedv:~/exampletemplates$ 
+
+Please refer to this issue (http://dev.opennebula.org/issues/3989) for further information.
+
+**Live-migration**
+
+The iSCSI LUNs are live-migrated when the VMs are live-migrated.
+
+.. code::
+
+  oneadmin@onedv:~/exampletemplates$ onetemplate instantiate 0 --name testvm
+  VM ID: 17
+  oneadmin@onedv:~/exampletemplates$ onevm list
+      ID USER     GROUP    NAME            STAT UCPU    UMEM HOST             TIME
+      17 oneadmin oneadmin testvm          runn 51.5    256M 192.168.50   0d 00h00
+  oneadmin@onedv:~/exampletemplates$ onehost list
+    ID NAME            CLUSTER   RVM      ALLOCATED_CPU      ALLOCATED_MEM STAT  
+     1 192.168.50.232  -           0       0 / 200 (0%)   0K / 993.9M (0%) on    
+     6 192.168.50.231  -           1    100 / 200 (50%) 256M / 993.9M (25% on    
+  oneadmin@onedv:~/exampletemplates$ oneimage list
+    ID USER       GROUP      NAME            DATASTORE     SIZE TYPE PER STAT RVMS
+     2 oneadmin   oneadmin   Ubuntu 1404, 64 default        10G OS    No used    1
+     4 oneadmin   oneadmin   iscsi_device_wi iscsi           0M OS   Yes used    1
+  oneadmin@onedv:~/exampletemplates$ onevm migrate  17 192.168.50.232 --live
+  oneadmin@onedv:~/exampletemplates$ onehost list 
+    ID NAME            CLUSTER   RVM      ALLOCATED_CPU      ALLOCATED_MEM STAT  
+     1 192.168.50.232  -           1    100 / 200 (50%) 256M / 993.9M (25% on    
+     6 192.168.50.231  -           0       0 / 200 (0%)   0K / 993.9M (0%) on    
+  oneadmin@onedv:~/exampletemplates$ 
+
+
+
