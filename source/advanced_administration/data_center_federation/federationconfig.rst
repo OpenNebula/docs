@@ -173,7 +173,7 @@ Then you can safetly execute the mysqldump command in another terminal. Please n
 
 .. code-block:: none
 
-    mysqldump -u root -p --master-data opennebula user_pool group_pool vdc_pool zone_pool db_versioning acl > dump.sql
+    mysqldump -u root -p --master-data opennebula user_pool group_pool marketplace_pool marketplaceapp_pool vdc_pool zone_pool db_versioning acl > dump.sql
 
 Once you get the dump you can unlock the DB tables again.
 
@@ -199,6 +199,8 @@ For each one of the slaves, configure the MySQL server as a replication slave. P
     server-id           = 100
     replicate-do-table  = opennebula.user_pool
     replicate-do-table  = opennebula.group_pool
+    replicate-do-table  = opennebula.marketplace_pool
+    replicate-do-table  = opennebula.marketplaceapp_pool
     replicate-do-table  = opennebula.vdc_pool
     replicate-do-table  = opennebula.zone_pool
     replicate-do-table  = opennebula.db_versioning
@@ -340,6 +342,8 @@ Additionally, in all the zones but the master zone, configure the federation rep
 
     zone0-master1.replicate-do-table  = opennebula.user_pool
     zone0-master1.replicate-do-table  = opennebula.group_pool
+    zone0-master1.replicate-do-table  = opennebula.marketplace_pool
+    zone0-master1.replicate-do-table  = opennebula.marketplaceapp_pool
     zone0-master1.replicate-do-table  = opennebula.vdc_pool
     zone0-master1.replicate-do-table  = opennebula.zone_pool
     zone0-master1.replicate-do-table  = opennebula.db_versioning
@@ -347,6 +351,8 @@ Additionally, in all the zones but the master zone, configure the federation rep
 
     zone0-master2.replicate-do-table  = opennebula.user_pool
     zone0-master2.replicate-do-table  = opennebula.group_pool
+    zone0-master2.replicate-do-table  = opennebula.marketplace_pool
+    zone0-master2.replicate-do-table  = opennebula.marketplaceapp_pool
     zone0-master2.replicate-do-table  = opennebula.vdc_pool
     zone0-master2.replicate-do-table  = opennebula.zone_pool
     zone0-master2.replicate-do-table  = opennebula.db_versioning
