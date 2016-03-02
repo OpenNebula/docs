@@ -27,8 +27,6 @@ Follow these simple steps to install the OpenNebula software:
 +---------------+--------------------------------------------------------+
 | OPTION        | VALUE                                                  |
 +===============+========================================================+
-| syslog        | **yes** to compile syslog support. Needs log4cpp lib   |
-+---------------+--------------------------------------------------------+
 | sqlite\_db    | path-to-sqlite-install                                 |
 +---------------+--------------------------------------------------------+
 | sqlite        | **no** if you don't want to build sqlite support       |

@@ -13,7 +13,6 @@ If you want to install it from your package manager, visit the `software menu <h
 -  **scons** build tool (>= 0.98)
 -  **sqlite3** development libraries (if compiling with sqlite support) (>= 3.6)
 -  **mysql** client development libraries (if compiling with mysql support) (>= 5.1)
--  **log4cpp** flexible logging library (if compiling with syslog support) (>=1.0)
 -  **libxml2** development libraries (>= 2.7)
 -  **openssl** development libraries (>= 0.9.8)
 -  **ruby** interpreter (>= 1.8.7)
@@ -28,7 +27,6 @@ Debian/Ubuntu
 -  **libmysqlclient-dev**
 -  **libxml2-dev**
 -  **libssl-dev**
--  **liblog4cpp5-dev**
 -  **ruby**
 
 Note: In Ubuntu 14.04 libxmlrpc-c3-dev no longer exists. Instead, install these packages libxmlrpc-c++8-dev, libxmlrpc-core-c3-dev.
@@ -42,7 +40,6 @@ CentOS 6
 -  **xmlrpc-c-devel**
 -  **openssl-devel**
 -  **mysql-devel**
--  **log4cpp-devel**
 -  **openssh**
 -  **pkgconfig**
 -  **ruby**
