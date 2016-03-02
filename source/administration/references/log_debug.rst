@@ -4,18 +4,18 @@
 Logging & Debugging
 ====================
 
-OpenNebula provides logs for many resources. It supports two logging systems: file based logging systems and syslog logging.
+OpenNebula provides logs for many resources. It supports three logging systems: file based logging systems, syslog logging and logging to standard error stream.
 
 In the case of file based logging, OpenNebula keeps separate log files for each active component, all of them stored in ``/var/log/one``. To help users and administrators find and solve problems, they can also access some of the error messages from the :ref:`CLI <cli>` or the :ref:`Sunstone GUI <sunstone>`.
 
-With syslog the logging strategy is almost identical, except that the logging message change slightly their format following syslog logging conventions.
+With syslog or standard error the logging strategy is almost identical, except that the logging message change slightly their format following syslog logging conventions, and resource information.
 
 .. _log_debug_configure_the_logging_system:
 
 Configure the Logging System
 ============================
 
-The Logging system can be changed in ``/etc/one/oned.conf``, specifically under the ``LOG`` section. Two parameters can be changed: ``SYSTEM``, which is either 'syslog' or 'file' (default), and the ``DEBUG_LEVEL`` is the logging verbosity.
+The Logging system can be changed in ``/etc/one/oned.conf``, specifically under the ``LOG`` section. Two parameters can be changed: ``SYSTEM``, which is 'syslog', 'file' (default) or 'std', and the ``DEBUG_LEVEL`` is the logging verbosity.
 
 For the scheduler the logging system can be changed in the exact same way. In this case the configuration is in ``/etc/one/sched.conf``.
 
@@ -28,7 +28,7 @@ There are different log resources corresponding to different OpenNebula componen
 
 -  **Scheduler**: All the scheduler information is collected into the /var/log/one/sched.log file. This resource can also be logged to the syslog.
 
--  **Virtual Machines**: The information specific of the VM will be dumped in the log file ``/var/log/one/<vmid>.log``. All VMs controlled by OpenNebula have their folder, ``/var/lib/one/vms/<VID>``, or to the syslog if enabled. You can find the following information in it:
+-  **Virtual Machines**: The information specific of the VM will be dumped in the log file ``/var/log/one/<vmid>.log``. All VMs controlled by OpenNebula have their folder, ``/var/lib/one/vms/<VID>``, or to the syslog/stderr if enabled. You can find the following information in it:
 
    -  **Deployment description files** : Stored in ``deployment.<EXECUTION>``, where ``<EXECUTION>`` is the sequence number in the execution history of the VM (deployment.0 for the first host, deployment.1 for the second and so on).
    -  **Transfer description files** : Stored in ``transfer.<EXECUTION>.<OPERATION>``, where ``<EXECUTION>`` is the sequence number in the execution history of the VM, ``<OPERATION>`` is the stage where the script was used, e.g. transfer.0.prolog, transfer.0.epilog, or transfer.1.cleanup.
@@ -38,7 +38,7 @@ There are different log resources corresponding to different OpenNebula componen
 Logging Format
 ==============
 
-The anatomy of an OpenNebula message for a file based logging system is the following:
+The structure of an OpenNebula message for a file based logging system is the following:
 
 .. code::
 
@@ -48,7 +48,7 @@ In the case of syslog it follows the standard:
 
 .. code::
 
-    date hostname process[pid]: [Z<zone_id>][module][log_level]: message body
+    date hostname process[pid]: [Z<zone_id>][module][log_level]: message 
 
 Where the zone_id is the ID of the zone in the federation, 0 for single zone set ups, module is any of the internal OpenNebula components: ``VMM``, ``ReM``, ``TM``, etc. And the log\_level is a single character indicating the log level: I for info, D for debug, etc.
 
@@ -56,7 +56,15 @@ For the syslog, OpenNebula will also log the Virtual Machine events like this:
 
 .. code::
 
-    date hostname process[pid]: [VM id][module][log_level]: message body
+    date hostname process[pid]: [VM id][Z<zone_id>][module][log_level]: message
+
+And similarly for the stderr logging, for oned and VM events the format are:
+
+.. code::
+
+    date [Z<zone_id>][module][log_level]: message
+    date [VM id][Z<zone_id>][module][log_level]: message
+
 
 Virtual Machine Errors
 ======================

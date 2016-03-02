@@ -32,7 +32,7 @@ Daemon Configuration Attributes
 -  ``VM_SUBMIT_ON_HOLD`` : Forces VMs to be created on hold state instead of pending. Values: YES or NO.
 -  ``LOG`` : Configure the logging system
 
-   -  ``SYSTEM`` : Can be either ``file`` (default) or ``syslog``.
+   -  ``SYSTEM`` : Can be either ``file`` (default), ``syslog`` or ``std``
    -  ``DEBUG_LEVEL`` : Sets the level of verbosity of the log messages. Possible values are:
 
 +----------------+---------------+

@@ -11,6 +11,14 @@ Visit the :ref:`Features list <features>` and the `Release Notes <http://openneb
 OpenNebula Administrators and Users
 ================================================================================
 
+OpenNebula Daemon
+--------------------------------------------------------------------------------
+
+The logging facilities has been updated to get rid of the log4cpp dependencies.
+Although the format of the messages has been preserved you may need to double
+check any tool parsing directly syslog messages. Also a new log facility has been
+included (std) that uses the stderr stream. 
+
 Scheduler
 --------------------------------------------------------------------------------
 
