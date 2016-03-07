@@ -4,7 +4,7 @@ Upgrading from OpenNebula 4.10.x
 
 This guide describes the installation procedure for systems that are already running a 4.10.x OpenNebula. The upgrade will preserve all current users, hosts, resources and configurations; for both Sqlite and MySQL backends.
 
-Read the Compatibility Guide for `4.12 <http://docs.opennebula.org/4.12/release_notes/release_notes/compatibility.html>`_ and :ref:`4.14 <compatibility>`, and the `Release Notes <http://opennebula.org/software/release/>`_ to know what is new in OpenNebula 4.14.
+Read the Compatibility Guide for `4.12 <http://docs.opennebula.org/4.12/release_notes/release_notes/compatibility.html>`_, `4.14 <http://docs.opennebula.org/4.14/release_notes/release_notes/compatibility.html>`_ and :ref:`5.0 <compatibility>`, and the `Release Notes <http://opennebula.org/software/release/>`_ to know what is new in OpenNebula 5.0.
 
 Upgrading a Federation
 ================================================================================
@@ -33,7 +33,7 @@ To perform the first step, `pause the replication <http://dev.mysql.com/doc/refm
      Slave_IO_Running: No
     Slave_SQL_Running: No
 
-Then follow this guide for the **master zone**. After the master has been updated to 4.14, upgrade each **slave zone** following this same guide.
+Then follow this guide for the **master zone**. After the master has been updated to 5.0, upgrade each **slave zone** following this same guide.
 
 Preparation
 ===========
@@ -60,7 +60,7 @@ Follow the :ref:`Platform Notes <uspng>` and the :ref:`Installation guide <ignc>
 
 Make sure to run the ``install_gems`` tool, as the new OpenNebula version may have different gem requirements.
 
-It is highly recommended **not to keep** your current ``oned.conf``, and update the ``oned.conf`` file shipped with OpenNebula 4.14 to your setup. If for any reason you plan to preserve your current ``oned.conf`` file, read the :ref:`Compatibility Guide <compatibility>` and the complete oned.conf reference for `4.10 <http://docs.opennebula.org/4.10/administration/references/oned_conf.html>`_ and :ref:`4.14 <oned_conf>` versions.
+It is highly recommended **not to keep** your current ``oned.conf``, and update the ``oned.conf`` file shipped with OpenNebula 5.0 to your setup. If for any reason you plan to preserve your current ``oned.conf`` file, read the :ref:`Compatibility Guide <compatibility>` and the complete oned.conf reference for `4.10 <http://docs.opennebula.org/4.10/administration/references/oned_conf.html>`_ and :ref:`5.0 <oned_conf>` versions.
 
 Configuration Files Upgrade
 ===========================
@@ -256,7 +256,7 @@ There is a new kind of resource introduced in 4.12: :ref:`Security Groups <secur
 
     $ oneacl create "* SECGROUP/* CREATE *"
 
-.. note:: For environments in a Federation: This command needs to be executed only once in the master zone, after it is upgraded to 4.14.
+.. note:: For environments in a Federation: This command needs to be executed only once in the master zone, after it is upgraded to 5.0.
 
 Testing
 =======
@@ -270,8 +270,8 @@ Restoring the Previous Version
 
 If for any reason you need to restore your previous OpenNebula, follow these steps:
 
--  With OpenNebula 4.14 still installed, restore the DB backup using 'onedb restore -f'
--  Uninstall OpenNebula 4.14, and install again your previous version.
+-  With OpenNebula 5.0 still installed, restore the DB backup using 'onedb restore -f'
+-  Uninstall OpenNebula 5.0, and install again your previous version.
 -  Copy back the backup of /etc/one you did to restore your configuration.
 
 Known Issues

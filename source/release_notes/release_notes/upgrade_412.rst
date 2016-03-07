@@ -1,21 +1,39 @@
-.. _upgrade:
-
 =================================
 Upgrading from OpenNebula 4.12.x
 =================================
 
 This guide describes the installation procedure for systems that are already running a 4.12.x OpenNebula. The upgrade will preserve all current users, hosts, resources and configurations; for both Sqlite and MySQL backends.
 
-Read the :ref:`Compatibility Guide <compatibility>` and `Release Notes <http://opennebula.org/software/release/>`_ to know what is new in OpenNebula 4.14.
+Read the Compatibility Guide for `4.14 <http://docs.opennebula.org/4.14/release_notes/release_notes/compatibility.html>`_ and :ref:`5.0 <compatibility>`, and the `Release Notes <http://opennebula.org/software/release/>`_ to know what is new in OpenNebula 5.0.
 
 Upgrading a Federation
 ================================================================================
 
-If you have two or more 4.12 OpenNebulas working as a :ref:`Federation <introf>`, you can upgrade each one independently. Zones with 4.12 and 4.14 OpenNebulas can be part of the same federation, since the shared portion of the database is compatible.
+If you have two or more 4.12.x OpenNebulas working as a :ref:`Federation <introf>`, you need to upgrade all of them. The upgrade does not have to be simultaneous, the slaves can be kept running while the master is upgraded.
 
-The only compatibility issue is in the Sunstone web interface. If your users access different Zones from a unique Sunstone server, you will need to upgrade all Zones to 4.14, or enable a local Sunstone server for each Zone to ensure that a 4.12 OpenNebula is only accessed through a 4.12 Sunstone. Read the :ref:`federation architecture documentation <introf_architecture>` for more details.
+The steps to follow are:
 
-The rest of the guide applies to both a master or slave Zone. You don't need to stop the federation or the MySQL replication to follow this guide.
+- 1. Stop the MySQL replication in all the slaves
+- 2. Upgrade the **master** OpenNebula
+- 3. Upgrade each **slave**
+- 4. Resume the replication
+
+During the time between steps 1 and 4 the slave OpenNebulas can be running, and users can keep accessing them if each zone has a local Sunstone instance. There is however an important limitation to note: all the shared database tables will not be updated in the slaves zones. This means that new user accounts, password changes, new ACL rules, etc. will not have any effect in the slaves. Read the :ref:`federation architecture documentation <introf_architecture>` for more details.
+
+It is recommended to upgrade all the slave zones as soon as possible.
+
+To perform the first step, `pause the replication <http://dev.mysql.com/doc/refman/5.7/en/replication-administration-pausing.html>`_ in each **slave MySQL**:
+
+.. code::
+
+    mysql> STOP SLAVE;
+
+    mysql> SHOW SLAVE STATUS\G
+
+     Slave_IO_Running: No
+    Slave_SQL_Running: No
+
+Then follow this guide for the **master zone**. After the master has been updated to 5.0, upgrade each **slave zone** following this same guide.
 
 Upgrading from a High Availability deployment
 ================================================================================
@@ -57,7 +75,7 @@ Follow the :ref:`Platform Notes <uspng>` and the :ref:`Installation guide <ignc>
 
 Make sure to run the ``install_gems`` tool, as the new OpenNebula version may have different gem requirements.
 
-It is highly recommended **not to keep** your current ``oned.conf``, and update the ``oned.conf`` file shipped with OpenNebula 4.14 to your setup. If for any reason you plan to preserve your current ``oned.conf`` file, read the :ref:`Compatibility Guide <compatibility>` and the complete oned.conf reference for `4.12 <http://docs.opennebula.org/4.12/administration/references/oned_conf.html>`_ and :ref:`4.14 <oned_conf>` versions.
+It is highly recommended **not to keep** your current ``oned.conf``, and update the ``oned.conf`` file shipped with OpenNebula 5.0 to your setup. If for any reason you plan to preserve your current ``oned.conf`` file, read the :ref:`Compatibility Guide <compatibility>` and the complete oned.conf reference for `4.12 <http://docs.opennebula.org/4.12/administration/references/oned_conf.html>`_ and :ref:`5.0 <oned_conf>` versions.
 
 Configuration Files Upgrade
 ===========================
@@ -80,6 +98,8 @@ The database schema and contents are incompatible between versions. The OpenNebu
 You can upgrade the existing DB with the 'onedb' command. You can specify any Sqlite or MySQL database. Check the :ref:`onedb reference <onedb>` for more information.
 
 .. warning:: Make sure at this point that OpenNebula is not running. If you installed from packages, the service may have been started automatically.
+
+.. warning:: For environments in a Federation: Before upgrading the **master**, make sure that all the slaves have the MySQL replication paused.
 
 After you install the latest OpenNebula, and fix any possible conflicts in oned.conf, you can issue the 'onedb upgrade -v' command. The connection parameters have to be supplied with the command line options, see the :ref:`onedb manpage <cli>` for more information. Some examples:
 
@@ -175,6 +195,29 @@ Then execute the following command:
 
     Total errors found: 0
 
+Resume the Federation
+================================================================================
+
+This section applies only to environments working in a Federation.
+
+For the **master zone**: This step is not necessary.
+
+For a **slave zone**: The MySQL replication must be resumed now. Start the **slave MySQL** process and check its status. It may take a while to copy and apply all the pending commands.
+
+.. code-block:: none
+
+    mysql> START SLAVE;
+    mysql> SHOW SLAVE STATUS\G
+
+The ``SHOW SLAVE STATUS`` output will provide detailed information, but to confirm that the slave is connected to the master MySQL, take a look at these columns:
+
+.. code-block:: none
+
+       Slave_IO_State: Waiting for master to send event
+     Slave_IO_Running: Yes
+    Slave_SQL_Running: Yes
+
+
 Reload Start Scripts in CentOS 7
 ================================
 
@@ -212,8 +255,8 @@ Restoring the Previous Version
 
 If for any reason you need to restore your previous OpenNebula, follow these steps:
 
--  With OpenNebula 4.14 still installed, restore the DB backup using 'onedb restore -f'
--  Uninstall OpenNebula 4.14, and install again your previous version.
+-  With OpenNebula 5.0 still installed, restore the DB backup using 'onedb restore -f'
+-  Uninstall OpenNebula 5.0, and install again your previous version.
 -  Copy back the backup of /etc/one you did to restore your configuration.
 
 Known Issues
