@@ -141,6 +141,17 @@ There is a new kind of resource introduced in 4.12: :ref:`Security Groups <secur
 
     $ oneacl create "* SECGROUP/* CREATE *"
 
+Create the Virtual Router ACL Rule
+================================================================================
+
+There is a new kind of resource introduced in 5.0: :ref:`Virtual Routers <vrouter>`. If you want your existing users to be able to create their own Virtual Routers, create the following :ref:`ACL Rule <manage_acl>`:
+
+.. code::
+
+    $ oneacl create "* VROUTER/* CREATE *"
+
+.. note:: For environments in a Federation: This command needs to be executed only once in the master zone, after it is upgraded to 5.0.
+
 Testing
 =======
 
