@@ -21,7 +21,7 @@ OpenNebula Drivers :: Virtualization
 --------------------------------------------------------------------------------
 
 `#4342 <http://dev.opennebula.org/issues/4342>`__ Make :ref:`prefix "one-" in vCenter <vcenter_suffix_note>` for VMs a configuration option
-
+`#4222 <http://dev.opennebula.org/issues/4222>`_ Extend :ref:`vCenter Resource Pool <vceter_resource_pool>` usage, introducing a more flexible, VM Template based method
 
 Scheduler
 --------------------------------------------------------------------------------

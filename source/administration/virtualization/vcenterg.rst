@@ -247,17 +247,32 @@ The following variables are added to the OpenNebula hosts representing ESX clust
 
 .. _vcenter_resource_pool:
 
-The vCenter credentials that OpenNebula use can be confined into a Resource Pool, to allow only a fraction of the vCenter infrastructure to be used by OpenNebula users. The steps to confine OpenNebula users into a Resource Pool are:
+OpenNebula can place VMs in different Resource Pools. There are two approachs to achieve this, fixed per Cluster basis or flexible per VM Template basis.
+
+In the fixed per Cluster basis approach, the vCenter credentials that OpenNebula use can be confined into a Resource Pool, to allow only a fraction of the vCenter infrastructure to be used by OpenNebula users. The steps to confine OpenNebula users into a Resource Pool are:
+
 - Create a new vCenter user
 - Create a Resource Pool in vCenter and assign the subset of Datacenter hardware resources wanted to be exposed through OpenNebula
 - Give vCenter user Resource Pool Administration rights over the Resource Pool
 - Give vCenter user Resource Pool Administration (or equivalent) over the Datastores the VMs are going to be running on
 
-Afterwards, these credentials can be used to add to OpenNebula the host representing the vCenter cluster. Add a new tag called VCENTER_RESOURCE_POOL to the host template representing the vCenter cluster (for instance, in the info tab of the host, or in the CLI), with the name of the resource pool.
+Afterwards, these credentials can be used to add to OpenNebula the host representing the vCenter cluster. Add a new tag called VCENTER_RESOURCE_POOL to the host template representing the vCenter cluster (for instance, in the info tab of the host, or in the CLI), with the name of the Resource Pool.
 
 .. image:: /images/vcenter_rp.png
    :width: 90%
    :align: center
+
+The second approach is more flexible in the sense that all Resource Pools defined in vCenter can be used, and the mechanism to select which one the VM is going to reside into can be defined using the attribute RESOURCE_POOL in the PUBLIC_CLOUD section of OpenNebula VM Template:
+
+Nested Resource Pools can be represented using '/'. For instance, a Resource Pool "RPChild" nested under "RPAncestor" can be represented both in VCENTER_RESOURCE_POOL and RESOURCE_POOL attributes as "RPAncestor/RPChild".
+
+.. code::
+
+    PUBLIC_CLOUD=[
+      HOST="Cluster",
+      RESOURCE_POOL="RPAncestor/RPChild",
+      TYPE="vcenter",
+      VM_TEMPLATE="4223067b-ed9b-8f73-82ba-b1a98c3ff96e" ]
 
 .. _import_vcenter_resources:
 
@@ -517,4 +532,4 @@ OpenNebula uses several assumptions to instantitate a VM Template in an automati
 
 - **diskMoveType**: OpenNebuls instructs vCenter to "move only the child-most disk backing. Any parent disk backings should be left in their current locations.". More information `here <https://www.vmware.com/support/developer/vc-sdk/visdk41pubs/ApiReference/vim.vm.RelocateSpec.DiskMoveOptions.html>`__
 
-- Target **resource pool**: OpenNebula uses the default cluster resource pool to place the VM instantiated from the VM template, unless VCENTER_RESOURCE_POOL variable defined in the OpenNebula host template
+- Target **resource pool**: OpenNebula uses the default cluster resource pool to place the VM instantiated from the VM template, unless VCENTER_RESOURCE_POOL variable defined in the OpenNebula host template, or the tag RESOURCE_POOL is present in the VM Template inside the PUBLIC_CLOUD section.
