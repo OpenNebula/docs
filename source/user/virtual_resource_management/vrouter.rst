@@ -12,12 +12,37 @@ Creating a new Virtual Router
 
 New Virtual Routers are created from a special type of VM Template. The installation will create a default Template that can be later customized.
 
+Virtual Router Appliance Images
+-------------------------------
+
+There are two already prepared images with the needed configuration to act as a Virtual Router instance. These are for KVM and vcenter hypervisors.
+
+KVM
+~~~
+
+You can download the image from the `OpenNebula Marketplace <http://marketplace.opennebula.systems/>`__ and its name is "`alpine-vrouter (KVM) <http://marketplace.opennebula.systems/appliance/56e156618fb81d0768000001>`__". The image only needs 256 Mb of RAM to run and supports SSH contextualization. This is the configuration needed in the template:
+
+* Enable network contextualization.
+* Use ``vd`` as disk prefix and ``virtio`` as default network model, this can be set in the template wizzard at the bottom of networks tab.
+* Do not add any network to the template as these will be added when the Virtual Router is created.
+* Mark the template as Virtual Router at the bottom of the General tab. The button is labeled "Make this template available for Virtual Router machines only".
+
+vcenter
+~~~~~~~
+
+An ova with the preconfigured image can be imported from the following URL:
+
+.. code::
+
+    https://s3-eu-west-1.amazonaws.com/opennebula-marketplace/alpine-vrouter.ova
+
+After that you'll only need to import new templates from vcenter and set the template as Virtual Router at the bottom of the General tab of the template update wizzard.
+
+
 Sunstone
 --------------------------------------------------------------------------------
 
 To create a new Virtual Router from Sunstone, follow the wizard to select the Virtual Networks that will get logically linked to it. This connection takes effect when the Virtual Machine containing the VR Appliance is automatically deployed, with a network interface attached to each Virtual Network.
-
-.. todo:: image for vr create wizard
 
 For each Virtual Network, the following options can be defined:
 
@@ -25,9 +50,7 @@ For each Virtual Network, the following options can be defined:
 * **Force IPv4**. You can force the IP assigned to the network interface. When the VR is not configured in High Availability, this will be the IP requested for the Virtual Machine appliance.
 * **Management interface**. If checked, this network interface will be a Virtual Router management interface. Traffic will not be forwarded.
 
-The Virtual Router needs a VM Template from which to create the VM containing the routing appliance. You should at least have the default one created during the installation.
-
-.. todo:: image for bottom part of vr create wizard, with template selection
+The Virtual Router needs a VM Template from which to create the VM containing the routing appliance. You should at least have the default one created following the instructions from "Virtual Router Appliance Images" section.
 
 In here you can also define a name for the VM, if it should be created on hold, and the number of instances. If more than one VM instance is required, they will work in High Availability mode (see bellow).
 
@@ -71,7 +94,7 @@ Using the Virtual Routers tab in Sunstone, or the ``onevrouter show`` command, y
 
 .. todo:: sunstone screenshots
 
-The Virtual Networks connected to the VR machines can be modified with the attach/detach actions. 
+The Virtual Networks connected to the VR machines can be modified with the attach/detach actions.
 
 In Sunstone the actions can be found in the Virtual Router's main information panel, in the networks table. The options to add a new Virtual Network are the same that were explained for the creation wizard, see previous section.
 
@@ -120,3 +143,10 @@ Customization
 ================================================================================
 
 .. todo:: customization options, how to create new VR Templates.
+
+You can provide two optional parameters in the context to configure the keepalived service started in the Virtual Router VM:
+
+* ``VROUTER_KEEPALIVED_PASSWORD``: Password used for the service to protect the service from packages of rogue machines. By default the service is configured without password.
+* ``VROUTER_KEEPALIVED_ID``: Number identifier of the service (0-255). This is useful when you have several virtual routers or other keepalived services in the same network. By default it is generated from the Virtual Router ID (``$vrouter_id & 255``) but you can specify it manually if needed.
+
+These parameters can also be provided in the Virtual Router creation wizzard of sunstone.
