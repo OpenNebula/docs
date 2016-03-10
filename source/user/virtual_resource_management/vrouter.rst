@@ -150,3 +150,16 @@ You can provide two optional parameters in the context to configure the keepaliv
 * ``VROUTER_KEEPALIVED_ID``: Number identifier of the service (0-255). This is useful when you have several virtual routers or other keepalived services in the same network. By default it is generated from the Virtual Router ID (``$vrouter_id & 255``) but you can specify it manually if needed.
 
 These parameters can also be provided in the Virtual Router creation wizzard of sunstone.
+
+Create Your Own Images
+----------------------
+
+A virtual router appliance does routing between interfaces and has `keepalived` service to manage the floating IP. In case one of the VRouter crashes the other configures that floating IP to continue doing the routing. The extra information we add to contextualization is as follows:
+
+* ``ETHX_VROUTER_IP``: the floating IP
+* ``ETHX_VROUTER_MANAGEMENT``: if this variable is set to ``true`` the interface is used for management and is not routed
+* ``VROUTER_ID``: Virtual Router identifier. This number will increase for each new set of Virtual Routers.
+* ``VROUTER_KEEPALIVED_ID``: Identifier to be used by ``keepalived``
+* ``VROUTER_KEEPALIVED_PASSWORD``: ``keepalived`` service password
+
+Another thing the VRouter machine must do is to react to cdrom or network interface change. Virtual Routers support reconfiguration to add or take out networks they route. When this happens the contextualization data is regenerated and it must be reconfigured. The provided image has a ``udev`` rule that triggers reconfiguration on network interface hot plug.
