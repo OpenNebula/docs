@@ -103,6 +103,11 @@ If ``user`` is specified but not ``password`` the user will be prompted for the 
 
 .. warning:: You should better not use ``--password`` parameter in a shared machine. Process parameters can be seen by any user with the command ``ps`` so it is highly insecure.
 
+**ONE\_SUNSTONE**
+
+URL of the Sunstone portal, used for downloading MarketPlaceApps streamed through Sunstone. If this is not specified, it will be inferred from ``ONE\_XMLRPC`` (by changing the port to 9869), and if that env variable is undefined as well, it will default to ``http://localhost:9869``.
+
+
 Shell Environment for Self-Contained Installations
 --------------------------------------------------------------------------------
 
