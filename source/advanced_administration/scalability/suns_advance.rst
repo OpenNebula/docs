@@ -133,6 +133,8 @@ Next thing we have to do is configure the virtual host that will run our Sunston
          AllowOverride all
          # MultiViews must be turned off.
          Options -MultiViews
+         # Uncomment this if you're on Apache >= 2.4:
+         #Require all granted
       </Directory>
     </VirtualHost>
 
@@ -143,7 +145,7 @@ Now the configuration should be ready, restart -or reload apache configuration- 
 Running Sunstone behind nginx SSL Proxy
 ---------------------------------------
 
-How to set things up with nginx ssl proxy for sunstone and encrypted vnc. 
+How to set things up with nginx ssl proxy for sunstone and encrypted vnc.
 
 .. code::
 
