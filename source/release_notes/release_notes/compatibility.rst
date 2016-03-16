@@ -17,7 +17,7 @@ OpenNebula Daemon
 The logging facilities has been updated to get rid of the log4cpp dependencies.
 Although the format of the messages has been preserved you may need to double
 check any tool parsing directly syslog messages. Also a new log facility has been
-included (std) that uses the stderr stream. 
+included (std) that uses the stderr stream.
 
 Scheduler
 --------------------------------------------------------------------------------
@@ -35,6 +35,11 @@ Any attribute defined explicitly in the ``DISK`` section of a Template or of a V
 - ``DISK`` section of the Template
 - Image template
 - Datastore template
+
+Virtual Networks
+--------------------------------------------------------------------------------
+
+Before OpenNebula 5.0, when doing reservations of Virtual Networks with VLAN isolation, but without the VLAN_ID parameter, the VLAN_ID of the reservation and of the parent network where not the space, meaning that they were isolated from one another. This behaviour has been fixed in OpenNebula >= 5.0: the reservation will inherit the same VLAN_ID as the parent. Note that this will affect only newly created Virtual Machines, the old ones will exhibit the old behaviour.
 
 Sunstone
 --------------------------------------------------------------------------------
