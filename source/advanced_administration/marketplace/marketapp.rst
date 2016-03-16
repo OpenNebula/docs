@@ -154,6 +154,22 @@ The command that exports the MarketPlaceApp is `onemarketapp export` which will 
 
 .. todo:: Sunstone
 
+.. _marketapp_download:
+
+Downloading a MarketPlaceApp
+--------------------------------------------------------------------------------
+
+To downloadd a MarketPlaceApp to a file:
+
+.. code::
+
+    $ onemarketapp download 40 /path/to/app
+
+.. warning:: This command requires that the `ONE_SUNSTONE` environment variable is set. Read :ref:`here <manage_users_shell>` for more information.
+
+.. warning:: Make sure the Sunstone is properly deployed to handle this feature. Read :ref:`here <suns_advance_marketplace>` for more information.
+
+
 Additional Commands
 --------------------------------------------------------------------------------
 

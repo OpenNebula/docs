@@ -223,3 +223,18 @@ Running Sunstone in Multiple Servers
 ------------------------------------
 
 You can run Sunstone in several servers and use a load balancer that connects to them. Make sure you are using ``memcache`` for sessions and both Sunstone servers connect to the same ``memcached`` server. To do this change the parameter ``:memcache_host`` in the configuration file. Also make sure that both Sunstone instances connect to the same OpenNebula server.
+
+.. _suns_advance_marketplace:
+
+MarketPlace
+--------------------------------------------------------------------------------
+
+If you plan on using the :ref:`MarketPlaceApp download <marketapp_download>` functionality the Sunstone server(s) will need access to the MarketPlace backends.
+
+If you are using `Phusion Passenger <https://www.phusionpassenger.com/>`__, take the following recommendations into account:
+
+* Set `PassengerResponseBufferHighWatermark <https://www.phusionpassenger.com/library/config/apache/reference/#passengerresponsebufferhighwatermark>`__ to `0`.
+* Increase `PassengerMaxPoolSize <https://www.phusionpassenger.com/library/config/apache/reference/#passengermaxpoolsize>`__. Each MarketPlaceApp download will take one of this application processes.
+* If `Passenger Enterprise <https://www.phusionpassenger.com/enterprise>`__ is available, set `PassengerConcurrencyModel <https://www.phusionpassenger.com/library/config/apache/reference/#passengerconcurrencymodel>`__ to `thread`.
+
+If you are using another backend than Passenger, please port these recommendations to your backend.

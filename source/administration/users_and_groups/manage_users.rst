@@ -24,6 +24,8 @@ There are different user types in the OpenNebula system:
 
 .. note:: The complete OpenNebula approach to user accounts, groups and VDC is explained in more detail in the :ref:`Understanding OpenNebula <understand>` guide.
 
+.. _manage_users_shell:
+
 Shell Environment
 ================================================================================
 
