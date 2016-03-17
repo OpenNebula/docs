@@ -19,6 +19,8 @@ Although the format of the messages has been preserved you may need to double
 check any tool parsing directly syslog messages. Also a new log facility has been
 included (std) that uses the stderr stream.
 
+Context is now generated whenever a VirtualMachine is started in a host, i.e. when the deploy or restore action is invoked or when a NIC is attached/detached from tthe VM. This should be transparent for users, driver integrators may want to implement the reconfigure VMM driver action. This new action notifies a running VM that the context has changed and needs to reconfigure its NICs.
+
 Scheduler
 --------------------------------------------------------------------------------
 
