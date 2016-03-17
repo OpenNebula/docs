@@ -43,6 +43,8 @@ Virtual Networks
 
 Before OpenNebula 5.0, when doing reservations of Virtual Networks with VLAN isolation, but without the VLAN_ID parameter, the VLAN_ID of the reservation and of the parent network where not the space, meaning that they were isolated from one another. This behaviour has been fixed in OpenNebula >= 5.0: the reservation will inherit the same VLAN_ID as the parent. Note that this will affect only newly created Virtual Machines, the old ones will exhibit the old behaviour.
 
+The old ``fw`` driver has been removed from OpenNebula (it was deprecated in OpenNebual 4.12). If you are still using it, we recommended that you remove those VMs. After the upgrade to 5.0, OpenNebula will not create/modify/remove any of the iptables rules related to the ``fw`` driver. The database migration utility ``onedb`` will detect if you still have any VMs using this functionality. In any case, please switch to :ref:`Security Groups <security_groups>` which deliver more functionality than the old ``fw`` driver.
+
 Sunstone
 --------------------------------------------------------------------------------
 
