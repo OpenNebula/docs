@@ -21,6 +21,10 @@ included (std) that uses the stderr stream.
 
 Context is now generated whenever a VirtualMachine is started in a host, i.e. when the deploy or restore action is invoked or when a NIC is attached/detached from tthe VM. This should be transparent for users, driver integrators may want to implement the reconfigure VMM driver action. This new action notifies a running VM that the context has changed and needs to reconfigure its NICs.
 
+Virutal Machine Management
+--------------------------------------------------------------------------------
+Virtual Machines in RUNNING state can take disk snapshots if the drivers support it (kvm with ceph or qcow2) otherwise the VM needs to be manually powered off or suspended. Similarly, disk snapshot revert operation requires the VM to be powered off or suspended. The strategy option has been removed from the VMM drivers, as well as the DISK_SNAPSHOT_REVERT state (for VMs doing a snapshot operation while RUNNING).
+
 Scheduler
 --------------------------------------------------------------------------------
 
@@ -28,6 +32,11 @@ The scheduler now considers secondary groups to schedule VMs for both hosts and
 datastores (see `feature #4156 <http://dev.opennebula.org/issues/4156>`_). This
 feature enable users to effectively use multiple VDCs. This may **only** affect
 to installation using multiple groups per user.
+
+Clusters
+--------------------------------------------------------------------------------
+TODO: New cluster default vs current none. Explain 5.0 automatic requirement compared to the old ones e.g. a vnet in cluster -1 is shared across the installation...
+
 
 Disk Templates
 --------------------------------------------------------------------------------
@@ -78,4 +87,4 @@ Developers and Integrators
 Transfer Manager
 --------------------------------------------------------------------------------
 
-**TODO** New monitor script para system datastores
+**TODO** New monitor script for system datastores

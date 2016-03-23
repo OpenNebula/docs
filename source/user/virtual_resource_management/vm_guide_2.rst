@@ -235,9 +235,7 @@ A user can take snapshots of the disk states at any moment in time (if the VM is
 - ``disk-snapshot-delete <vmid> <diskid> <snapshot_id>``: Deletes a snapshot if it has no children and is not active.
 
 
-``disk-snapshot-create`` and ``disk-snapshot-revert`` can take place when the VM is in ``RUNNING`` state. The way OpenNebula handles this operation varies depending on the configuration and on the backend used. When configuring the ``VM_MAD`` in ``/etc/one/oned.conf``, depending on the arguments passed, the administrator can decide what strategy to use when creating and reverting snapshots in ``RUNNING`` state:
-
-By default, oned will try to issue live snapshots (option ``-i`` of ``VM_MAD``), which is only supported for some drivers. If this option is enabled **and** if the driver that will create the snapshot supports it, snapshots can be taken without any downtime. Live snapshots are  supported for:
+``disk-snapshot-create`` can take place when the VM is in ``RUNNING`` state, provided that the drivers support it, while ``disk-snapshot-revert`` requires the VM to be ``POWEROFF`` or ``SUSPENDED``. Live snapshots is only supported for some drivers:
 
 - Hypervisor ``VM_MAD=kvm`` combined with ``TM_MAD=qcow2`` datastores. In this case OpenNebula will request that the hypervisor executes ``virsh snapshot-create``.
 
@@ -245,16 +243,9 @@ By default, oned will try to issue live snapshots (option ``-i`` of ``VM_MAD``),
 
 With CEPH and qcow2 datastores and  KVM hypervisor you can :ref:`enable QEMU Guest Agent <enabling_qemu_guest_agent>`. With this agent enabled the filesystem will be frozen while the snapshot is being done.
 
-OpenNebula will handle non-live ``disk-snapshot-create`` and ``disk-snapshot-revert`` operations for VMs in ``RUNNING`` state depending on the configuration of the ``VM_MAD`` driver in ``/etc/one/oned.conf``, in particular:
+OpenNebula will not automatically handle non-live ``disk-snapshot-create`` and ``disk-snapshot-revert`` operations for VMs in ``RUNNING`` if the drivers does not support it. In this case the user needs to suspend or poweroff the VM before creating the snapshot.
 
-- ``-d suspend`` (default): The VM is suspended (the memory state is written to the system datastore), the snapshot operation takes place (create or revert). This is the safest strategy but implies some downtime (the time it takes for the memory state to be written and to be re-read again).
-- ``-d detach``: the disk is detached while the VM is kept active and running. The snapshot operation takes place, and the disk is re-attached. This is a dangerous operation as if the OS has active file descriptors opening the disk, the OS will not be able to release the target (e.g. ``sbd``) and when it is re-attached the OS will place it in a new target instead (e.g. ``sdc``). This is problematic as there will be a discrepancy between the target defined by OpenNebula and the real target inside the guest VM, which could make future disk-attach operations fail. In order to avoid this, the disk must be fully unmounted with no active file descriptors in use. On the other hand, this technique is the fastest as it requires no down-time.
-
-Additionally, one can activate the live snapshots option (``-i``), which is only supported for some drivers. If this option is enabled **and** if the driver that will create the snapshot supports it, it will use hypervisor operations to create the snapshot while running. This strategy is as robust as ``suspend`` but has the benefit of not implying any downtime. However it is only supported for:
-
-- Hypervisor ``VM_MAD=kvm``, System Datastore ``TM_MAD=shared``, Image datastore ``DS_MAD=fs`` and ``TM_MAD=qcow2``. In this case OpenNebula will request that the hypervisor executes ``virsh snapshot-create``.
-
-Note that the live disk snapshot calls a diferent TM action than the regular one, as documented by the :ref:`Storage Driver <sd_tm>` guide.
+See the :ref:`Storage Driver <sd_tm>` guide for a reference on the driver actions invoked to perform live and non-live snapshost.
 
 Persistent image snapshots
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -275,7 +266,7 @@ The snapshot operations are implemented differently depending on the storage bac
 +----------------------+-----------------------------------------------------------------------------------------+---------------------------------------------------+---------------------------------------------------------------------------+------------------------------+
 | Snap Revert          | Overwrites the active disk by creating a new snapshot of an existing protected snapshot | Overwrites the file with a previously copied one. | Creates a new qcow2 image with the selected snapshot as the backing file. | *Not Supported*              |
 +----------------------+-----------------------------------------------------------------------------------------+---------------------------------------------------+---------------------------------------------------------------------------+------------------------------+
-| Snap Delete          | Deletes a protected snapshot                                                            | Deletes the file.                                 | Delestes the selected qcow2 snapshot.                                     | *Not Supported*              |
+| Snap Delete          | Deletes a protected snapshot                                                            | Deletes the file.                                 | Deletes the selected qcow2 snapshot.                                     | *Not Supported*              |
 +----------------------+-----------------------------------------------------------------------------------------+---------------------------------------------------+---------------------------------------------------------------------------+------------------------------+
 
 .. warning::
