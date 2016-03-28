@@ -234,7 +234,7 @@ Contextualization with vCenter does not have all the features available for ``kv
 +-------------------------+---------------------------------------------------------+
 |        Parameter        |                       Description                       |
 +=========================+=========================================================+
-| ``SET_HOST``            | Change the hostname of the VM. In Windows the machine   |
+| ``SET_HOSTNAME``        | Change the hostname of the VM. In Windows the machine   |
 |                         | needs to be restarted.                                  |
 +-------------------------+---------------------------------------------------------+
 | ``SSH_PUBLIC_KEY``      | SSH public keys to add to authorized_keys file.         |
