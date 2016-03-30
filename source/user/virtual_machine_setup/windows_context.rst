@@ -6,7 +6,7 @@ Windows Contextualization
 
 This guide describes the standard process of provisioning and contextualizing a Windows guest.
 
-.. note:: This guide has been tested for Windows 2008 R2, however it should work with Windows systems >= Windows 7.
+.. note:: This guide has been tested for Windows 2008 R2, however it should work with Windows systems >= Windows 7. This guide applies to Windows guests running on KVM/XEN hypervisors.
 
 Provisioning
 ============
