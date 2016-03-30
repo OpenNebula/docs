@@ -10,6 +10,11 @@ A complete list of solved issues for 4.14.3 follows:
 - `#4263 <http://dev.opennebula.org/issues/4263>`__ Do not require ONE_AUTH to extract ssh keys in oneuser command.
 - `#4291 <http://dev.opennebula.org/issues/4291>`__ Add missing MIGRATE_OPTIONS for migrate_live command
 
+Drivers - Virtualization
+================================================================================
+
+- `#4385 <http://dev.opennebula.org/issues/4385>`__ Instantiation in VCenter takes a lot of time when there are many VMs
+
 Drivers - Hybrid
 ================================================================================
 - `#4267 <http://dev.opennebula.org/issues/4267>`__ ec2 polling not working for non oneadmin VMs
@@ -20,6 +25,8 @@ Drivers - Storage
 ================================================================================
 
 - `#4235 <http://dev.opennebula.org/issues/4236>`__ SSH transfer drivers fail on epilogs with persistent images.
+- `#4384 <http://dev.opennebula.org/issues/4384>`__ Non live qcow2 disk snapshots do no resolve the correct parent path
+- `#4386 <http://dev.opennebula.org/issues/4386>`__ AppMarket header retrieval should be case insensitive
 
 OneGate
 ================================================================================
