@@ -9,6 +9,7 @@ A complete list of solved issues for 4.14.3 follows:
 - `#4192 <http://dev.opennebula.org/issues/4192>`__ VNET relase IP action fails for ipv6 networks
 - `#4263 <http://dev.opennebula.org/issues/4263>`__ Do not require ONE_AUTH to extract ssh keys in oneuser command.
 - `#4291 <http://dev.opennebula.org/issues/4291>`__ Add missing MIGRATE_OPTIONS for migrate_live command
+- `#4387 <http://dev.opennebula.org/issues/4387>`__ Make OpenNebula driver more resilient to malformed messages
 
 Drivers - Virtualization
 ================================================================================
