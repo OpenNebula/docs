@@ -92,6 +92,11 @@ Nodes Platform Notes
 ====================
 
 -  Since OpenNebula 4.14 there is a new monitoring probe that gets information about PCI devices. By default it retrieves all the PCI devices in a host. To limit the PCI devices that it gets info and appear in ``onehost show`` refer to :ref:`kvm_pci_passthrough`.
+-  When using qcow2 storage drivers you can make sure that the data is written to disk when doing snapshots setting its ``cache`` parameter to ``writethrough``. This change will make writes slower than other cache modes but safer. To do this edit the file ``/etc/one/vmm_exec/vmm_exec_kvm.conf`` and change the line for ``DISK``:
+
+.. code::
+
+    DISK     = [ driver = "qcow2", cache = "writethrough" ]
 
 ESX 5.5 as VMware Node
 ======================
