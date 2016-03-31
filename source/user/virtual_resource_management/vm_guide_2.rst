@@ -266,7 +266,7 @@ The snapshot operations are implemented differently depending on the storage bac
 +----------------------+-----------------------------------------------------------------------------------------+---------------------------------------------------+---------------------------------------------------------------------------+------------------------------+
 | Snap Revert          | Overwrites the active disk by creating a new snapshot of an existing protected snapshot | Overwrites the file with a previously copied one. | Creates a new qcow2 image with the selected snapshot as the backing file. | *Not Supported*              |
 +----------------------+-----------------------------------------------------------------------------------------+---------------------------------------------------+---------------------------------------------------------------------------+------------------------------+
-| Snap Delete          | Deletes a protected snapshot                                                            | Deletes the file.                                 | Deletes the selected qcow2 snapshot.                                     | *Not Supported*              |
+| Snap Delete          | Deletes a protected snapshot                                                            | Deletes the file.                                 | Deletes the selected qcow2 snapshot.                                      | *Not Supported*              |
 +----------------------+-----------------------------------------------------------------------------------------+---------------------------------------------------+---------------------------------------------------------------------------+------------------------------+
 
 .. warning::
