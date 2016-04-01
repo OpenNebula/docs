@@ -8,9 +8,12 @@ Security Groups
 Using Security Groups, administrators can define the firewall rules and apply
 them to the Virtual Machines.
 
-By default, the `default` security group is applied to new VMs, which allows all
-OUTBOUND traffic but blocks any INBOUND traffic. Modify the `default` security
-group to allow all INBOUND connections or to define any rules you might want.
+.. note::
+
+    By default, the `default` security group is applied to new VMs, which allows
+    all OUTBOUND traffic and all INBOUND traffic. You **must** Modify the
+    `default` security group to make it more restrictive, if you leave as is
+    everything will be always allowed.
 
 .. warning::
 
@@ -135,9 +138,19 @@ If the Address Range or the Template NIC define SECURITY_GROUPS, the IDs do not 
 Default Security Group
 ================================================================================
 
-There is a default Security Group with ID 0. At bootstrap, it contains only a rule to allow all outbound traffic. You can update it to add any default rules that may suit your infrastructure.
+.. warning::
 
-This special Security Group is added to all the Virtual Networks when they are created, but you can remove it later updating the network's properties.
+    If you don't modify the default Security Group you will not be able to filter any connections.
+
+There is a default Security Group with ID 0. This Security Group, unless
+modified, will allow all traffic, both outbound and inbound. You **must** modify
+this `default` Security Group if you want to restrict connections. Consider this
+Security Group to be the bare minimum for all VMs. For example, it may make
+sense to define it as TCP port 22 inbound for SSH, and port 80 and 443 outbout
+to be able to install packages.
+
+This special Security Group is added to all the Virtual Networks when they are
+created, but you can remove it later updating the network's properties.
 
 Considerations and Limitations
 ================================================================================
