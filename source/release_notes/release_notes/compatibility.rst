@@ -35,8 +35,10 @@ to installation using multiple groups per user.
 
 Clusters
 --------------------------------------------------------------------------------
-TODO: New cluster default vs current none. Explain 5.0 automatic requirement compared to the old ones e.g. a vnet in cluster -1 is shared across the installation...
 
+In 5.0 we have introduced to possibility to add Datastores and VNets to more than one cluster. At the same time, we have elimitated the 'none' (-1) cluster.
+
+In OpenNebula 4.14 this special cluster none was used to share Datastores and VNets across all clusters. In 5.0 the resources outside of any cluster are "disabled for new deployments" from the scheduler's point of view. You will need to explicity add your resources to all the clusters that are configured to use those Datastores and VNets.
 
 Disk Templates
 --------------------------------------------------------------------------------

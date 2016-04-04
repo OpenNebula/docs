@@ -39,7 +39,7 @@ Add Hosts to Clusters
 
 Hosts can be created directly in a Cluster, using the ``–cluster`` option of ``onehost create``, or be added at any moment using the command ``onecluster addhost``. Hosts can be in only one Cluster at a time.
 
-To delete a Host from a Cluster, the command ``onecluster delhost`` must be used. When a Host is removed from a Cluster, it is seen as part of the Cluster 'none', more about this below.
+To delete a Host from a Cluster, the command ``onecluster delhost`` must be used. A Host needs to belong to a Cluster, so it will be moved to the ``default`` cluster.
 
 In the following example, we will add Host 0 to the Cluster we created before. You will notice that the ``onecluster show`` command will list the Host ID 0 as part of the Cluster.
 
@@ -70,7 +70,7 @@ In the following example, we will add Host 0 to the Cluster we created before. Y
 Add Resources to Clusters
 -------------------------
 
-Datastores and Virtual Networks can be added to one Cluster. This means that any Host in that Cluster is properly configured to run VMs using Images from the Datastores, or is using leases from the Virtual Networks.
+Datastores and Virtual Networks can be added to multiple Clusters. This means that any Host in those Clusters is properly configured to run VMs using Images from the Datastores, or is using leases from the Virtual Networks.
 
 For instance, if you have several Hosts configured to use :ref:`Open vSwitch networks <openvswitch>`, you would group them in the same Cluster. The :ref:`Scheduler <schg>` will know that VMs using these resources can be deployed in any of the Hosts of the Cluster.
 
@@ -105,7 +105,9 @@ These operations can be done with the ``onecluster`` ``addvnet/delvnet`` and ``a
 The System Datastore for a Cluster
 ----------------------------------
 
-You can associate an specific System DS to a cluster to improve its performance (e.g. balance VM I/O between different servers) or to use different system DS types (e.g. shared and ssh).
+In order to create a complete environment where the scheduler can deploy VMs, your Clusters need to have at least one System DS.
+
+You can add the default System DS (ID: 0), or create a new one to improve its performance (e.g. balance VM I/O between different servers) or to use different system DS types (e.g. shared and ssh).
 
 To use a specific System DS with your cluster, instead of the default one, just create it (with TYPE=SYSTEM\_DS in its template), and associate it just like any other datastore (onecluster adddatastore). Check the :ref:`System DS guide for more information <system_ds>`.
 
@@ -118,6 +120,10 @@ Each cluster includes a generic template where cluster configuration properties 
 | Attribute                | Description                                                                                                                                                                                                                                |
 +==========================+============================================================================================================================================================================================================================================+
 | ``DATASTORE_LOCATION``   | \*Default\* path for datastores in the cluster hosts. It **is** the same for all the hosts in the cluster. Note that DATASTORE\_LOCATION is only for the cluster hosts and not for the front-end. It defaults to /var/lib/one/datastores   |
++--------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``RESERVED_CPU``         | In percentage. Applies to all the Hosts in this cluster. It will be substracted from the TOTAL CPU. See :ref:`scheduler <schg_limit>`.                                                                                                     |
++--------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``RESERVED_MEM``         | In KB. Applies to all the Hosts in this cluster. It will be substracted from the TOTAL MEM. See :ref:`scheduler <schg_limit>`.                                                                                                             |
 +--------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 You can easily update this values with the ``onecluster`` command:
@@ -154,17 +160,6 @@ You can easily update this values with the ``onecluster`` command:
 
 You can add as many variables as you want, following the standard template syntax. These variables will be used for now only for informational purposes.
 
-The Default Cluster 'None'
-==========================
-
-Hosts, Datastores and Virtual Networks can be grouped into clusters, but this is optional. By default, these resources are created outside of any Cluster, what can be seen as a special Cluster named 'none' in Sunstone. In the CLI, this Cluster name is shown as '-'.
-
-Virtual Machines using resources from image Datastores or Virtual Networks in the Cluster 'none' can be deployed in any Host, which must be properly configured.
-
-Hosts in the Cluster 'none' will only run VMs using resources without a Cluster.
-
-.. warning:: System Datastores in cluster default are not shared across clusters and can only be used by hosts in the default cluster.
-
 Scheduling and Clusters
 =======================
 
@@ -179,7 +174,7 @@ When a Virtual Machine uses resources (Images or Virtual Networks) from a Cluste
     [...]
     AUTOMATIC_REQUIREMENTS="CLUSTER_ID = 100"
 
-Because of this, if you try to use resources from more than one Cluster, the Virtual Machine creation will fail with a message similar to this one:
+Because of this, if you try to use resources that do not belong to the same Cluster, the Virtual Machine creation will fail with a message similar to this one:
 
 .. code::
 
@@ -216,11 +211,6 @@ You can use these expressions:
     SCHED_REQUIREMENTS = "QOS = GOLD"
      
     SCHED_REQUIREMENTS = "QOS != GOLD & HYPERVISOR = kvm"
-
-System Storage
-==============
-
-The system datastore holds files for running VMs. Each cluster can use a different system datastore, read more in :ref:`the system datastore guide <system_ds>`.
 
 Managing Clusters in Sunstone
 =============================
