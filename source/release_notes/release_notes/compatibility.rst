@@ -58,6 +58,9 @@ Before OpenNebula 5.0, when doing reservations of Virtual Networks with VLAN iso
 
 The old ``fw`` driver has been removed from OpenNebula (it was deprecated in OpenNebual 4.12). If you are still using it, we recommended that you remove those VMs. After the upgrade to 5.0, OpenNebula will not create/modify/remove any of the iptables rules related to the ``fw`` driver. The database migration utility ``onedb`` will detect if you still have any VMs using this functionality. In any case, please switch to :ref:`Security Groups <security_groups>` which deliver more functionality than the old ``fw`` driver.
 
+The Security Group update action now automatically triggers the update of all 
+VMs in the security group. This operation can be reset with the ``onesecgroup --commit`` command.
+
 Sunstone
 --------------------------------------------------------------------------------
 

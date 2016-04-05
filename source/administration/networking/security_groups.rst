@@ -152,10 +152,15 @@ to be able to install packages.
 This special Security Group is added to all the Virtual Networks when they are
 created, but you can remove it later updating the network's properties.
 
-Considerations and Limitations
+Security Group Update
 ================================================================================
 
-The Security Groups can be updated to edit or add new rules. Bear in mind that the new rules will not be applied to any existing Virtual Machine. You can see the actual rules applied to each VM in the output of the ``onevm show <id>`` command, or in the individual VM panel in Sunstone.
+Security Groups can be updated to edit or add new rules. These changes are
+propagated to all VMs in the security group, so it may take some time till the
+changes are applied. The particular status of a VM can be checked in the security
+group properties, where outdated and up-to-date VMs are listed.
+
+If the update process needs to be reset, i.e. apply again the SG rules, you can use the ``onesecgroup commit`` command.
 
 Configuration
 ================================================================================
@@ -168,17 +173,7 @@ following drivers:
 * ``fw``
 * ``vxlan``
 
-.. note:: Openvswitch and vmware do not support Security Groups.
-
-Due to backwards compatibility reasons, if the old firewall rules exist in the
-template, security groups will be ignored and the deprecated way will be
-honored:
-
-* ``WHITE_PORTS_TCP = <iptables_range>``: Permits access to the VM only through the specified ports in the TCP protocol. Supersedes BLACK\_PORTS\_TCP if defined.
-* ``BLACK_PORTS_TCP = <iptables_range>``: Doesn't permit access to the VM through the specified ports in the TCP protocol. Superseded by WHITE\_PORTS\_TCP if defined.
-* ``WHITE_PORTS_UDP = <iptables_range>``: Permits access to the VM only through the specified ports in the UDP protocol. Supersedes BLACK\_PORTS\_UDP if defined.
-* ``BLACK_PORTS_UDP = <iptables_range>``: Doesn't permit access to the VM through the specified ports in the UDP protocol. Superseded by WHITE\_PORTS\_UDP if defined.
-* ``ICMP = drop``: Blocks ICMP connections to the VM. By default it's set to accept.
+.. note:: Openvswitch do not support Security Groups.
 
 .. |sg_wizard_create| image:: /images/sg_wizard_create.png
 .. |sg_vnet_assign| image:: /images/sg_vnet_assign.png
