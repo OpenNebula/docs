@@ -465,11 +465,11 @@ Example:
     GRAPHICS = [
       TYPE    = "vnc",
       LISTEN  = "0.0.0.0",
-      PORT    = "5"]
+      PORT    = "5905"]
 
 .. warning:: For KVM hypervisor the port number is a real one, not the VNC port. So for VNC port 0 you should specify 5900, for port 1 is 5901 and so on.
 
-.. warning:: If the user does not specify the port variable, OpenNebula will automatically assign ``$VNC_BASE_PORT + $VMID``, allowing to generate different ports for VMs so they do not collide. The ``VNC_BASE_PORT`` is specified inside the ``oned.conf`` file.
+.. warning:: OpenNebula will prevent VNC port collision within a cluster to ensure that a VM can be deployed or migrated to any host in the selected cluster. If the selected port is in use the VM deployment will fail. If the user does not specify the port variable, OpenNebula will try to assign ``VNC_PORTS[START] + VMID``, or the first lower available port. The ``VNC_PORTS[START]`` is specified inside the ``oned.conf`` file.
 
 .. _template_context:
 
