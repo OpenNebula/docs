@@ -34,16 +34,15 @@ If you are adapting a pre-existing Windows VM to run in an OpenNebula environmen
 
     C:\Windows\System32\sysprep\sysprep.exe /oobe /generalize /shutdown
 
-If you are using vCenter, after shutting down, you can convert the Virtual Machine to vCenter Template and import it with OpenNebula.
+If you are using vCenter, after shutting down, you shuld convert the Virtual Machine to a vCenter Template and import it with OpenNebula.
 
-You may want to configure sysprep to automatically accept the EULA terms, set the language options, and login into the administrator account, on the first boot of the Template/Golden Image. If that case then you will need to create an ``unattend.xml``, place it in a well known path and reference it in the ``sysprep.exe`` command.
+You may want to configure sysprep to automatically accept the EULA terms and set the language options, on the first boot of the Template/Golden Image. If that case then you will need to create an ``unattend.xml``, place it in a well known path and reference it in the ``sysprep.exe`` command.
 
 .. code::
 
     C:\Windows\System32\sysprep\sysprep.exe /oobe /generalize /shutdown /unattend:C:\unattend.xml
 
-If you need a starting point for the ``unattend.xml`` you can download this one: `unattend.xml <https://raw.githubusercontent.com/OpenNebula/addon-context-windows/master/unattend.xml>`__. Note that this specific version has a hardcoded administrator password which you may want to change, firewall configuration, etc.
-
+If you need a starting point for the ``unattend.xml`` you can download this one: `unattend.xml <https://raw.githubusercontent.com/OpenNebula/addon-context-windows/master/unattend.xml>`__.
 
 Contextualization
 =================
