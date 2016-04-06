@@ -28,7 +28,22 @@ The resulting image will boot under any OpenNebula cloud that uses KVM or VMware
 Sysprep
 -------
 
-If you are adapting a pre-existing Windows VM to run in an OpenNebula environment, and you want to remove all the pre-existing senstitive data in order to be able to clone and deliver it to third party users, it's highly recommended to run `Sysprep <http://en.wikipedia.org/wiki/Sysprep>`__ on the image. To do so execute the installation steps but instead of step 6 run ``c:\Windows\System32\sysprep\sysprep.exe``. Select ``OOBE``, ``Generalize`` and ``Shutdown`` as the action when it finishes. The image generated with this procedure will be able to configure its network and will also be a pristine Windows installation.
+If you are adapting a pre-existing Windows VM to run in an OpenNebula environment, and you want to remove all the pre-existing senstitive data in order to be able to clone and deliver it to third party users, it's highly recommended to run `Sysprep <http://en.wikipedia.org/wiki/Sysprep>`__ on the image. To do so execute the installation steps but instead of step 6 run ``c:\Windows\System32\sysprep\sysprep.exe``. Select ``OOBE``, ``Generalize`` and ``Shutdown`` as the action when it finishes:
+
+.. code::
+
+    C:\Windows\System32\sysprep\sysprep.exe /oobe /generalize /shutdown
+
+If you are using vCenter, after shutting down, you can convert the Virtual Machine to vCenter Template and import it with OpenNebula.
+
+You may want to configure sysprep to automatically accept the EULA terms, set the language options, and login into the administrator account, on the first boot of the Template/Golden Image. If that case then you will need to create an ``unattend.xml``, place it in a well known path and reference it in the ``sysprep.exe`` command.
+
+.. code::
+
+    C:\Windows\System32\sysprep\sysprep.exe /oobe /generalize /shutdown /unattend:C:\unattend.xml
+
+If you need a starting point for the ``unattend.xml`` you can download this one: `unattend.xml <https://raw.githubusercontent.com/OpenNebula/addon-context-windows/master/unattend.xml>`__. Note that this specific version has a hardcoded administrator password which you may want to change, firewall configuration, etc.
+
 
 Contextualization
 =================
