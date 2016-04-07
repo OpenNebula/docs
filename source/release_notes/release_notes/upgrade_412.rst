@@ -202,7 +202,29 @@ This section applies only to environments working in a Federation.
 
 For the **master zone**: This step is not necessary.
 
-For a **slave zone**: The MySQL replication must be resumed now. Start the **slave MySQL** process and check its status. It may take a while to copy and apply all the pending commands.
+For a **slave zone**: The MySQL replication must be resumed now.
+
+- First, add two new tables, ``marketplace_pool`` and ``marketplaceapp_pool``, to the replication configuration.
+
+.. warning:: Do not copy the server-id from this example, each slave should already have a unique ID.
+
+.. code-block:: none
+
+    # vi /etc/my.cnf
+    [mysqld]
+    server-id           = 100
+    replicate-do-table  = opennebula.user_pool
+    replicate-do-table  = opennebula.group_pool
+    replicate-do-table  = opennebula.vdc_pool
+    replicate-do-table  = opennebula.zone_pool
+    replicate-do-table  = opennebula.db_versioning
+    replicate-do-table  = opennebula.acl
+    replicate-do-table  = opennebula.marketplace_pool
+    replicate-do-table  = opennebula.marketplaceapp_pool
+
+    # service mysqld restart
+
+- Start the **slave MySQL** process and check its status. It may take a while to copy and apply all the pending commands.
 
 .. code-block:: none
 

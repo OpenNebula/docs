@@ -168,7 +168,7 @@ For the **master zone**: This step is not necessary.
 
 For a **slave zone**: The MySQL replication must be resumed now.
 
-- First, add a new table, ``vdc_pool``, to the replication configuration.
+- First, add 3 new tables, ``vdc_pool``, ``marketplace_pool`` and ``marketplaceapp_pool`` to the replication configuration.
 
 .. warning:: Do not copy the server-id from this example, each slave should already have a unique ID.
 
@@ -183,6 +183,8 @@ For a **slave zone**: The MySQL replication must be resumed now.
     replicate-do-table  = opennebula.zone_pool
     replicate-do-table  = opennebula.db_versioning
     replicate-do-table  = opennebula.acl
+    replicate-do-table  = opennebula.marketplace_pool
+    replicate-do-table  = opennebula.marketplaceapp_pool
 
     # service mysqld restart
 
