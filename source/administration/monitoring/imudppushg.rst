@@ -1,10 +1,10 @@
 .. _imudppushg:
 
 ================================
-KVM and Xen UDP-push Monitoring
+KVM UDP-push Monitoring
 ================================
 
-KVM and Xen can be monitored with this ``UDP`` based monitoring system.
+KVM can be monitored with this ``UDP`` based monitoring system.
 
 Monitorization data is sent from each host to the frontend periodically via ``UDP`` by an agent. This agent is started by the initial bootstrap system of the monitoring system which is performed via ``ssh`` like with the SSH-pull system.
 
@@ -14,7 +14,6 @@ Requirements
 -  ``ssh`` access from the frontends to the hosts as ``oneadmin`` without password has to be possible.
 -  ``ruby`` is required in the hosts.
 -  KVM hosts: ``libvirt`` must be enabled.
--  Xen hosts: ``sudo`` access to run ``xl`` or ``xm`` and ``xentop`` as ``oneadmin``.
 -  The firewall of the frontend (if enabled) must allow UDP packages incoming from the hosts on port 4124.
 
 Overview
@@ -34,7 +33,7 @@ Enabling the Drivers
 
 To enable this monitoring system ``/etc/one/oned.conf`` must be configured with the following snippets:
 
-``collectd`` must be enabled both for KVM and Xen:
+``collectd`` must be enabled both for KVM:
 
 .. code::
 
@@ -59,24 +58,6 @@ Valid arguments for this driver are:
           name       = "kvm",
           executable = "one_im_ssh",
           arguments  = "-r 3 -t 15 kvm" ]
-
-**Xen 3**:
-
-.. code::
-
-    IM_MAD = [
-        name       = "xen",
-        executable = "one_im_ssh",
-        arguments  = "-r 3 -t 15 xen3" ]
-
-**Xen 4**:
-
-.. code::
-
-    IM_MAD = [
-        name       = "xen",
-        executable = "one_im_ssh",
-        arguments  = "-r 3 -t 15 xen4" ]
 
 The arguments passed to this driver are:
 
@@ -145,7 +126,7 @@ If the system is not working healthily it will be due to the database throughput
 Driver Files
 ------------
 
-The probes are specialized programs that obtain the monitor metrics. Probes are defined for each hypervisor, and are located at ``/var/lib/one/remotes/im/<hypervisor>-probes.d`` for Xen and KVM.
+The probes are specialized programs that obtain the monitor metrics. Probes are defined for each hypervisor, and are located at ``/var/lib/one/remotes/im/kvm-probes.d`` for KVM.
 
 You can easily write your own probes or modify existing ones, please see the :ref:`Information Manager Drivers <devel-im>` guide. Remember to synchronize the monitor probes in the hosts using ``onehost sync`` as described in the :ref:`Managing Hosts <host_guide_sync>` guide.
 

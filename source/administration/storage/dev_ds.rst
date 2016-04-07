@@ -6,15 +6,12 @@ The Devices Datastore
 
 This datastore is used to register already existent block devices in the nodes to be used with virtual machines. It does not do any kind of device discovering or setup. The devices should be already setup and available and, VMs using these devices must be fixed to run in the nodes ready for them.
 
-.. warning:: This driver **only** works with KVM and Xen drivers. VMware is not supported.
+.. warning:: This driver **only** works with KVM drivers.
 
 Requirements
 ============
 
-The devices you want to attach to a VM should be accessible by the hypervisor:
-
-* Xen runs as root so this user should be able to access it.
-* KVM usually runs as oneadmin. Make sure this user is in a group with access to the disk (like disk) and has read write permissions for the group.
+The devices you want to attach to a VM should be accessible by the hypervisor. As KVM usually runs as oneadmin, make sure this user is in a group with access to the disk (like disk) and has read write permissions for the group.
 
 Images created in this datastore should be persistent. Making the images non persistent allows more than one VM use this device and will probably cause problems and data corruption.
 

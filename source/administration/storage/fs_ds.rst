@@ -8,7 +8,7 @@ The Filesystem datastore lets you store VM images in a file form. The datastore 
 
 Usually it is a good idea to have multiple filesystem datastores to:
 
--  Group images of the same type, so you can have a qcow datastore for KVM hosts and a raw one for Xen
+-  Group images of the same type, so you can have a qcow2 datastore for another one for raw images.
 -  Balance I/O operations, as the datastores can be in different servers
 -  Use different datastores for different cluster hosts
 -  Apply different QoS policies to different images

@@ -9,7 +9,7 @@ This guide provides an overview of the OpenNebula monitoring subsystem. The moni
 The UDP-push Model
 ==================
 
-.. warning:: **Default**. This is the default IM for KVM and Xen in OpenNebula >= 4.4.
+.. warning:: **Default**. This is the default IM for KVM in OpenNebula >= 4.4.
 
 In this model, each host periodically sends monitoring data via UDP to the frontend which collects it and processes it in a dedicated module. This distributed monitoring system resembles the architecture of dedicated monitoring systems, using a lightweight communication protocol, and a push model.
 
@@ -20,11 +20,11 @@ Please read the :ref:`UDP-push guide <imudppushg>` for more information.
 When to Use the UDP-push Model
 ------------------------------
 
-This mode can be used only with Xen and KVM (VMware only supports the SSH-pull mode).
+This mode can be used only with KVM.
 
 This monitoring model is adequate when:
 
--  You are using KVM or Xen (VMware is not supported in this mode)
+-  You are using KVM
 -  Your infrastructure has a medium-to-high number of hosts (e.g. more than 50)
 -  You need a high responsive system
 -  You need a high frequently updated monitor information
@@ -33,16 +33,16 @@ This monitoring model is adequate when:
 The Pull Model
 ==============
 
-When using this mode OpenNebula periodically actively queries each host and executes the probes via ``ssh``. In KVM and Xen this means establishing an ssh connection to each host and executing several scripts to retrieve this information. Note that VMware uses the VI API for this, instead of a ``ssh`` connection.
+When using this mode OpenNebula periodically actively queries each host and executes the probes via ``ssh``. In KVM this means establishing an ssh connection to each host and executing several scripts to retrieve this information.
 
 This mode is limited by the number of active connections that can be made concurrently, as hosts are queried sequentially.
 
-Please read the :ref:`KVM and Xen SSH-pull guide <imsshpullg>` or the :ref:`ESX-pull guide <imesxpullg>` for more information.
+Please read the :ref:`KVM SSH-pull guide <imsshpullg>`.
 
 When to Use the SSH-pull Model
 ------------------------------
 
-This mode can be used with VMware, Xen and KVM.
+This mode can be used with KVM.
 
 This monitoring model is adequate when:
 

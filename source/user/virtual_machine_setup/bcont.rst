@@ -229,7 +229,7 @@ If you want to know mor in deep how to configure and use OneGate head to the :re
 vCenter Contextualization
 =========================
 
-Contextualization with vcenter does not have all the features available for ``kvm``, ``xen`` or ``vmware`` drivers. Here is a table with the parameters supported:
+Contextualization with vcenter does not have all the features available for THE ``kvm`` drivers. Here is a table with the parameters supported:
 
 +-------------------------+---------------------------------------------------------+
 |        Parameter        |                       Description                       |
@@ -278,7 +278,7 @@ In Linux guests, the information can be consumed using the following command (an
 EC2 Contextualization
 =========================
 
-Contextualization with EC2 does not have all the features available for ``kvm``, ``xen`` or ``vmware`` drivers. Here is a table with the parameters supported:
+Contextualization with EC2 does not have all the features available for ``kvm`` drivers. Here is a table with the parameters supported:
 
 +-------------------------+---------------------------------------------------------+
 |        Parameter        |                       Description                       |

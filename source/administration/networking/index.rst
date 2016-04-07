@@ -10,6 +10,5 @@ Networking
    VXLAN <vxlan>
    Security Groups <security_groups>
    Open vSwitch <openvswitch>
-   Ebtables <ebtables>   
-   VMware Networking <vmwarenet>
-   
+   Ebtables <ebtables>
+

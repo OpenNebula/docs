@@ -8,7 +8,6 @@ Storage
    Overview <sm>
    System Datastore <system_ds>
    Filesystem Datastore <fs_ds>
-   VMFS Datastore <vmware_ds>
    vCenter Datastore <vcenter_ds>
    LVM Datastore <lvm_drivers>
    The FS LVM Datastore <fs_lvm_ds>

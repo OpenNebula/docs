@@ -80,9 +80,9 @@ Monitoring
 The monitoring subsystem gathers information relative to the hosts and the virtual machines, such as the host status, basic performance indicators, as well as VM status and capacity consumption. This information is collected by executing a set of static probes provided by OpenNebula. The output of these probes is sent to OpenNebula in two different ways:
 
 -  **UDP-push Model**: Each host periodically sends monitoring data via UDP to the frontend which collects it and processes it in a dedicated module. This model is highly scalable and its limit (in terms of number of VMs monitored per second) is bounded to the performance of the server running oned and the database server. Please read the :ref:`UDP-push guide <imudppushg>` for more information.
--  **SSH-pull Model**: OpenNebula periodically actively queries each host and executes the probes via ``ssh``. This mode is limited by the number of active connections that can be made concurrently, as hosts are queried sequentially. Please read the :ref:`KVM and Xen SSH-pull guide <imsshpullg>` or the :ref:`ESX-pull guide <imesxpullg>` for more information.
+-  **SSH-pull Model**: OpenNebula periodically actively queries each host and executes the probes via ``ssh``. This mode is limited by the number of active connections that can be made concurrently, as hosts are queried sequentially. Please read the :ref:`KVM SSH-pull guide <imsshpullg>` .
 
-.. warning:: **Default**: UDP-push Model is the default IM for KVM and Xen in OpenNebula >= 4.4.
+.. warning:: **Default**: UDP-push Model is the default IM for KVM in OpenNebula >= 4.4.
 
 Please check the :ref:`the Monitoring Guide <mon>` for more details.
 
@@ -93,9 +93,7 @@ The hosts are the physical machines that will run the VMs. There are several cer
 
 OpenNebula natively supports three hypervisors:
 
--  :ref:`Xen <xeng>`
 -  :ref:`KVM <kvmg>`
--  :ref:`VMware <evmwareg>`
 
 .. warning:: **Default**: OpenNebula is configured to interact with hosts running KVM.
 
@@ -124,8 +122,6 @@ Image datastores can be of different types, depending on the underlying storage 
 
 -  :ref:`File-system <fs_ds>`: to store disk images in a file form. The files are stored in a shared filesystem mounted from a SAN/NAS server.
 
--  :ref:`vmfs <vmware_ds_datastore_configuration>`: a datastore specialized in VMFS format to be used with VMware hypervisors. Cannot be mounted in the OpenNebula front-end since VMFS is not \*nix compatible.
-
 -  :ref:`LVM <lvm_drivers>`: to use LVM volumes instead of plain files to hold the Virtual Images. This reduces the overhead of having a file-system in place and thus increases performance.
 
 -  :ref:`Ceph <ceph_ds>`: to store disk images using Ceph block devices.
@@ -149,7 +145,6 @@ The OpenNebula administrator may associate one of the following drivers to each 
 -  :ref:`802.1Q <hm-vlan>`: restrict network access through VLAN tagging, which requires support by the hardware switches.
 -  :ref:`ebtables <ebtables>`: restrict network access through Ebtables rules. No special hardware configuration required.
 -  :ref:`ovswitch <openvswitch>`: restrict network access with `Open vSwitch Virtual Switch <http://openvswitch.org/>`__.
--  :ref:`VMware <vmwarenet>`: uses the VMware networking infrastructure to provide an isolated and 802.1Q compatible network for VMs launched by VMware hypervisors.
 
 .. warning:: **Default:** The default configuration connects the VM network interface to a bridge in the physical host.
 

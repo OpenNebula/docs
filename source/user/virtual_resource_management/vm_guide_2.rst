@@ -257,17 +257,17 @@ Backend implementations
 
 The snapshot operations are implemented differently depending on the storage backend:
 
-+----------------------+-----------------------------------------------------------------------------------------+---------------------------------------------------+---------------------------------------------------------------------------+------------------------------+
-| **Operation/TM_MAD** |                                           Ceph                                          |                  Shared  and SSH                  |                                   Qcow2                                   | Dev,  FS_LVM,  LVM and  vmfs |
-+======================+=========================================================================================+===================================================+===========================================================================+==============================+
-| Snap Create          | Creates a protected snapshot                                                            | Copies the file.                                  | Creates a new qcow2 image with the previous disk as the backing file.     | *Not Supported*              |
-+----------------------+-----------------------------------------------------------------------------------------+---------------------------------------------------+---------------------------------------------------------------------------+------------------------------+
-| Snap Create (live)   | *Not Supported*                                                                         | *Not Supported*                                   | (For KVM only) Launches ``virsh snapshot-create``.                        | *Not Supported*              |
-+----------------------+-----------------------------------------------------------------------------------------+---------------------------------------------------+---------------------------------------------------------------------------+------------------------------+
-| Snap Revert          | Overwrites the active disk by creating a new snapshot of an existing protected snapshot | Overwrites the file with a previously copied one. | Creates a new qcow2 image with the selected snapshot as the backing file. | *Not Supported*              |
-+----------------------+-----------------------------------------------------------------------------------------+---------------------------------------------------+---------------------------------------------------------------------------+------------------------------+
-| Snap Delete          | Deletes a protected snapshot                                                            | Deletes the file.                                 | Deletes the selected qcow2 snapshot.                                      | *Not Supported*              |
-+----------------------+-----------------------------------------------------------------------------------------+---------------------------------------------------+---------------------------------------------------------------------------+------------------------------+
++----------------------+-----------------------------------------------------------------------------------------+---------------------------------------------------+---------------------------------------------------------------------------+------------------+
+| **Operation/TM_MAD** |                                           Ceph                                          |                  Shared  and SSH                  |                                   Qcow2                                   | Dev, FS_LVM, LVM |
++======================+=========================================================================================+===================================================+===========================================================================+==================+
+| Snap Create          | Creates a protected snapshot                                                            | Copies the file.                                  | Creates a new qcow2 image with the previous disk as the backing file.     | *Not Supported*  |
++----------------------+-----------------------------------------------------------------------------------------+---------------------------------------------------+---------------------------------------------------------------------------+------------------+
+| Snap Create (live)   | *Not Supported*                                                                         | *Not Supported*                                   | (For KVM only) Launches ``virsh snapshot-create``.                        | *Not Supported*  |
++----------------------+-----------------------------------------------------------------------------------------+---------------------------------------------------+---------------------------------------------------------------------------+------------------+
+| Snap Revert          | Overwrites the active disk by creating a new snapshot of an existing protected snapshot | Overwrites the file with a previously copied one. | Creates a new qcow2 image with the selected snapshot as the backing file. | *Not Supported*  |
++----------------------+-----------------------------------------------------------------------------------------+---------------------------------------------------+---------------------------------------------------------------------------+------------------+
+| Snap Delete          | Deletes a protected snapshot                                                            | Deletes the file.                                 | Deletes the selected qcow2 snapshot.                                      | *Not Supported*  |
++----------------------+-----------------------------------------------------------------------------------------+---------------------------------------------------+---------------------------------------------------------------------------+------------------+
 
 .. warning::
 
@@ -401,8 +401,6 @@ Please take into consideration the following limitations:
 
 -  **The snapshots are lost if any life-cycle operation is performed, e.g. a suspend, migrate, delete request.**
 -  KVM: Snapshots are only available if all the VM disks use the :ref:`qcow2 driver <img_template>`.
--  VMware: the snapshots will persist in the hypervisor after any life-cycle operation is performed, but they will not be available to be used with OpenNebula.
--  Xen: does not support snapshotting
 
 |image4|
 

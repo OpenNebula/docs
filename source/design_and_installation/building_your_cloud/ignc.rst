@@ -144,7 +144,6 @@ These are the packages available for these distributions:
 
     - ``/var/lib/one/remotes/datastore/ceph/ceph.conf``
     - ``/var/lib/one/remotes/datastore/lvm/lvm.conf``
-    - ``/var/lib/one/remotes/datastore/vmfs/vmfs.conf``
     - ``/var/lib/one/remotes/vnm/OpenNebulaNetwork.conf``
 
 
@@ -240,13 +239,7 @@ When the front-end is installed and verified, it is time to install the packages
 
     # sudo yum install opennebula-node-kvm
 
-If you are using Xen you can prepare the node with opennebula-common:
-
-.. code::
-
-    # sudo yum install opennebula-common
-
-For further configuration and/or installation of other hypervisors, check their specific guides: :ref:`Xen <xeng>`, :ref:`KVM <kvmg>` and :ref:`VMware <evmwareg>`.
+For further configuration, check the specific guide: :ref:`KVM <kvmg>`.
 
 5.2. Installing on Debian/Ubuntu
 --------------------------------
@@ -257,7 +250,7 @@ When the front-end is installed, it is time to install the packages for the node
 
     $ sudo apt-get install opennebula-node
 
-For further configuration and/or installation of other hypervisors, check their specific guides: :ref:`Xen <xeng>`, :ref:`KVM <kvmg>` and :ref:`VMware <evmwareg>`.
+For further configuration check the specific guide: :ref:`KVM <kvmg>`.
 
 Step 6. Manual Configuration of Unix Accounts
 =============================================

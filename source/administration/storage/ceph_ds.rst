@@ -6,8 +6,6 @@ The Ceph Datastore
 
 The Ceph datastore driver provides OpenNebula users with the possibility of using Ceph block devices as their Virtual Images.
 
-.. warning:: This driver **only** works with libvirt/KVM drivers. Xen is not (yet) supported.
-
 .. warning:: This driver requires that the OpenNebula nodes using the Ceph driver must be Ceph clients of a running Ceph cluster. More information in `Ceph documentation <http://ceph.com/docs/master/>`__.
 
 Requirements
@@ -47,7 +45,7 @@ All the nodes listed in the ``BRIDGE_LIST`` variable must have\ ``qemu-img`` ins
 OpenNebula Hosts
 ----------------
 
-There are no specific requirements for the host, besides being libvirt/kvm nodes, since xen is not (yet) supported for the Ceph drivers.
+There are no specific requirements for the host.
 
 Configuration
 =============

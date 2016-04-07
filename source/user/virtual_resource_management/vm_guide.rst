@@ -61,15 +61,15 @@ Virtual Machines are defined in an OpenNebula Template. Templates are stored in 
 
 -  **Volatile**
 
-+------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+---------+
-| Attribute  |                                                                                                                  Description                                                                                                                   | Mandatory | Default |
-+============+================================================================================================================================================================================================================================================+===========+=========+
-| ``TYPE``   | Type of the disk: ``swap``, ``fs``. ``swap`` type will set the label to ``swap`` so it is easier to mount and the context packages will automatically mount it.                                                                                | Yes       |         |
-+------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+---------+
-| ``SIZE``   | size in MB                                                                                                                                                                                                                                     | Yes       |         |
-+------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+---------+
-| ``FORMAT`` | filesystem for **fs** images: ``ext2``, ``ext3``, etc. ``raw`` will not format the image. For VMs to run on ``vmfs`` or ``vmware shared`` configurations, the valid values are: ``vmdk_thin``, ``vmdk_zeroedthick``, ``vmdk_eagerzeroedthick`` | Yes       |         |
-+------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+---------+
++------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+---------+
+| Attribute  |                                                                           Description                                                                           | Mandatory | Default |
++============+=================================================================================================================================================================+===========+=========+
+| ``TYPE``   | Type of the disk: ``swap``, ``fs``. ``swap`` type will set the label to ``swap`` so it is easier to mount and the context packages will automatically mount it. | Yes       |         |
++------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+---------+
+| ``SIZE``   | size in MB                                                                                                                                                      | Yes       |         |
++------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+---------+
+| ``FORMAT`` | filesystem for **fs** images: ``ext2``, ``ext3``, etc. ``raw`` will not format the image.                                                                       | Yes       |         |
++------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+---------+
 
 -  **Network Interfaces**. Each network interface of a VM is defined with the ``NIC`` attribute.
 
@@ -141,7 +141,7 @@ A similar template as the previous example can be created with the following com
 
 .. warning:: You may want to add VNC access, input hw or change the default targets of the disks. Check the :ref:`VM definition file for a complete reference <template>`
 
-.. warning:: OpenNebula Templates are designed to be hypervisor-agnostic, but there are additional attributes that are supported for each hypervisor. Check the :ref:`Xen <xeng>`, :ref:`KVM <kvmg>` and :ref:`VMware <evmwareg>` configuration guides for more details
+.. warning:: OpenNebula Templates are designed to be hypervisor-agnostic, but there are additional attributes that are supported for each hypervisor. Check the :ref:`KVM <kvmg>` configuration guide for more details
 
 .. warning:: Volatile disks can not be saved as. Pre-register a DataBlock image if you need to attach arbitrary volumes to the VM
 

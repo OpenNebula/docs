@@ -21,8 +21,6 @@ This is the list of the individual platform components that have been through th
 +------------------------------+---------------------------------------+
 | VMware                       | ESX 5.5/6.0 & vCenter 5.5/6.0         |
 +------------------------------+---------------------------------------+
-| XEN                          | 3.2 & 4.2                             |
-+------------------------------+---------------------------------------+
 | KVM                          | Support for version included in       |
 |                              | the kernel for the Linux distribution |
 +------------------------------+---------------------------------------+

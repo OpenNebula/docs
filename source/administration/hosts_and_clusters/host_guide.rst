@@ -46,9 +46,9 @@ Creating a host:
 
 The parameters are:
 
--  ``--im/-i``: Information Manager driver. Valid options: ``kvm``, ``xen``, ``vmware``, ``ec2``, ``ganglia``, ``dummy``.
--  ``--vm/-v``: Virtual Machine Manager driver. Valid options: ``kvm``, ``xen``, ``vmware``, ``ec2``, ``dummy``.
--  ``--net/-n``: Network manager driver. Valid options: ``802.1Q``,\ ``dummy``,\ ``ebtables``,\ ``fw``,\ ``ovswitch``,\ ``vmware``.
+-  ``--im/-i``: Information Manager driver. Valid options: ``kvm``, ``ec2``, ``ganglia``, ``dummy``.
+-  ``--vm/-v``: Virtual Machine Manager driver. Valid options: ``kvm``, ``ec2``, ``dummy``.
+-  ``--net/-n``: Network manager driver. Valid options: ``802.1Q``,\ ``dummy``,\ ``ebtables``,\ ``fw``,\ ``ovswitch``
 
 To remove a host, just like with other OpenNebula commands, you can either specify it by ID or by name. The following commands are equivalent:
 

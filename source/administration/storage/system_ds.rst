@@ -32,7 +32,6 @@ For each running VM in the datastore there is a directory containing the disk im
 There are three system datastore types, based on the TM\_MAD driver used:
 
 -  ``shared``, the storage area for the system datastore is a shared directory across the hosts.
--  ``vmfs``, a specialized version of the shared one to use the vmfs file system. The infrastructure notes explained here for 'shared' apply to vmfs. Then please follow to the specific :ref:`VMFS storage guide here <vmware_ds>`.
 -  ``ssh``, uses a local storage area from each host for the system datastore
 -  ``ceph``, uses Ceph to store volatile and swap disks, and checkpoint files, but the context and deployment files are still stored locally
 
@@ -94,15 +93,15 @@ The System and Image Datastores
 
 OpenNebula will automatically transfer VM disk images to/from the system datastore when a VM is booted or shutdown. The actual transfer operations and the space taken from the system datastore depends on both the image configuration (persistent vs non-persistent) as well as the drivers used by the images datastore. The following table summarizes the actions performed by each transfer manager driver type.
 
-+----------------+--------+------+----------+------+-----------+----------+------------+------+
-|   Image Type   | shared | ssh  |  qcow2   | vmfs |    ceph   |   lvm    | shared lvm | dev  |
-+================+========+======+==========+======+===========+==========+============+======+
-| Persistent     | link   | copy | link     | link | link      | link     | lv copy    | -    |
-+----------------+--------+------+----------+------+-----------+----------+------------+------+
-| Non-persistent | copy   | copy | snapshot | cp   | rdb copy+ | lv copy+ | lv copy    | link |
-+----------------+--------+------+----------+------+-----------+----------+------------+------+
-| Volatile       | new    | new  | new      | new  | new       | new      | new        | new  |
-+----------------+--------+------+----------+------+-----------+----------+------------+------+
++----------------+--------+------+----------+-----------+----------+------------+------+
+|   Image Type   | shared | ssh  |  qcow2   |    ceph   |   lvm    | shared lvm | dev  |
++================+========+======+==========+===========+==========+============+======+
+| Persistent     | link   | copy | link     | link      | link     | lv copy    | -    |
++----------------+--------+------+----------+-----------+----------+------------+------+
+| Non-persistent | copy   | copy | snapshot | rdb copy+ | lv copy+ | lv copy    | link |
++----------------+--------+------+----------+-----------+----------+------------+------+
+| Volatile       | new    | new  | new      | new       | new      | new        | new  |
++----------------+--------+------+----------+-----------+----------+------------+------+
 
 In the table above:
 
@@ -132,7 +131,7 @@ To configure the system datastores for your OpenNebula cloud you need to:
 Step 1. Create a New System Datastore
 =====================================
 
-To create a new system datastore you need to specify its type as system either in Sunstone (system) or through the CLI (adding TYPE = SYSTEM\_DS to the datastore template). And you need to select the system datastore drivers, as discussed above: ``shared``, ``vmfs`` and ``ssh``.
+To create a new system datastore you need to specify its type as system either in Sunstone (system) or through the CLI (adding TYPE = SYSTEM\_DS to the datastore template). And you need to select the system datastore drivers, as discussed above: ``shared``, and ``ssh``.
 
 For example to create a system datastore using the shared drivers simply:
 

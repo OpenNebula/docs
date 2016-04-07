@@ -21,15 +21,15 @@ To make it easier to follow this guide, here is a list of the main resources and
 
   * **Host**: A physical machine with a hypervisor installed.
   * **Virtual Network**: Describes a Physical Network, and a set of IPs.
-  * **Datastore**: Storage medium used as disk images repository or to hold images for running VMs 
-  * **Cluster**: Group of physical resources (Hosts, Virtual Networks and Datastores) that share common characteristics or configurations. For example, you can have the "kvm" and "vmware" Clusters, the "kvm-ceph" and "kvm-gluster" Clusters, the "Dev" and "Production" Clusters, or the "infiniband" and "ehternet" Clusters.
+  * **Datastore**: Storage medium used as disk images repository or to hold images for running VMs
+  * **Cluster**: Group of physical resources (Hosts, Virtual Networks and Datastores) that share common characteristics or configurations. For example, you can have the "kvm" and "vcenter" Clusters, the "kvm-ceph" and "kvm-gluster" Clusters, the "Dev" and "Production" Clusters, or the "infiniband" and "ehternet" Clusters.
   * **Zone**: A single OpenNebula instance consisting of one or several Clusters. A single Data Center (DC) can hold one or several Zones. Several Zones can be federeated within a single Cloud.
 
 * Organization Resources
 
   * **User**: An OpenNebula user account.
   * **Group**: A group of Users.
-  * **Virtual Data Center (VDC)**: Defines an assignment of one or several Groups to a pool of Physical Resources. Typically this pool of Physical Resources consists of resources from one or several Clusters that could belong to different Zones or public external clouds for hybrid cloud computing. 
+  * **Virtual Data Center (VDC)**: Defines an assignment of one or several Groups to a pool of Physical Resources. Typically this pool of Physical Resources consists of resources from one or several Clusters that could belong to different Zones or public external clouds for hybrid cloud computing.
 
 The Infrastructure Perspective
 ================================================================================
@@ -190,7 +190,7 @@ Starting with OpenNebula 4.14, **VDCs** are a new kind of OpenNebula resource wi
 
 Now that VDCs are a separate entity, they can have one or more Groups added to them. This gives the Cloud Admin greater resource assignment flexibility. For example, you may have the Group Web Development added to the 'low-performance' VDC, and Big Data to the 'high-performance' VDC. After a few days, Web Development can be additionally added to the 'high-performance' VDC. In previous versions, this single operation would require you to write down which resources were added to the Group, to undo it later.
 
-From the resource assignment perspective, the new VDC approach allows to create more advanced scenarios. In previous versions, the Group's Resource Providers were whole Clusters. This had some limitations, since Clusters define the topology of your physical infrastructure in a fixed way. The Admin could not assign arbitrary resources to a Group, he had to choose from those fixed Clusters. 
+From the resource assignment perspective, the new VDC approach allows to create more advanced scenarios. In previous versions, the Group's Resource Providers were whole Clusters. This had some limitations, since Clusters define the topology of your physical infrastructure in a fixed way. The Admin could not assign arbitrary resources to a Group, he had to choose from those fixed Clusters.
 
 The new VDCs contain a list of Clusters, just like before, but they can also have individual Hosts, Virtual Networks, and Datastores. This means that a VDC can create logical groups of physical resources, that don't have to resemble the real configuration of the physical infrastructure.
 

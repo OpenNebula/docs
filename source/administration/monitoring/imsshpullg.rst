@@ -1,10 +1,10 @@
 .. _imsshpullg:
 
 ================================
-KVM and Xen SSH-pull Monitoring
+KVM SSH-pull Monitoring
 ================================
 
-KVM and Xen can be monitored with this ``ssh`` based monitoring system. The OpenNebula frontend starts a driver which triggers ``ssh`` connections to the hosts which return the monitoring information of the host and of all the virtual machines running within.
+KVM can be monitored with this ``ssh`` based monitoring system. The OpenNebula frontend starts a driver which triggers ``ssh`` connections to the hosts which return the monitoring information of the host and of all the virtual machines running within.
 
 Requirements
 ============
@@ -12,7 +12,6 @@ Requirements
 -  ``ssh`` access from the frontends to the hosts as ``oneadmin`` without password has to be possible.
 -  ``ruby`` is required in the hosts.
 -  KVM hosts: ``libvirt`` must be enabled.
--  Xen hosts: ``sudo`` access to run ``xl`` or ``xm`` and ``xentop`` as ``oneadmin``.
 
 OpenNebula Configuration
 ========================
@@ -30,24 +29,6 @@ To enable this monitoring system ``/etc/one/oned.conf`` must be configured with 
           name       = "kvm",
           executable = "one_im_ssh",
           arguments  = "-r 0 -t 15 kvm-probes" ]
-
-**Xen 3.x**:
-
-.. code::
-
-    IM_MAD = [
-        name       = "xen",
-        executable = "one_im_ssh",
-        arguments  = "-r 0 -t 15  xen3-probes" ]
-
-**Xen 4.x**:
-
-.. code::
-
-    IM_MAD = [
-        name       = "xen",
-        executable = "one_im_ssh",
-        arguments  = "-r 0 -t 15 xen4-probes" ]
 
 The arguments passed to this driver are:
 
@@ -90,7 +71,7 @@ In order to test the driver, add a host to OpenNebula using **onehost**, specify
 
 .. code::
 
-    $ onehost create ursa06 --im xen --vm xen --net dummy
+    $ onehost create ursa06 --im kvm --vm kvm --net dummy
 
 Now give it time to monitor the host (this time is determined by the value of MONITORING\_INTERVAL in ``/etc/one/oned.conf``). After one interval, check the output of **onehost list**, it should look like the following:
 
@@ -144,7 +125,7 @@ In this case the node ``ursa06`` could not be found in the DNS or ``/etc/hosts``
 Tuning & Extending
 ==================
 
-The probes are specialized programs that obtain the monitor metrics. Probes are defined for each hypervisor, and are located at ``/var/lib/one/remotes/im/<hypervisor>-probes.d`` for Xen and KVM.
+The probes are specialized programs that obtain the monitor metrics. Probes are defined for each hypervisor, for KVM they are located at ``/var/lib/one/remotes/im/kvm-probes.d``.
 
 You can easily write your own probes or modify existing ones, please see the :ref:`Information Manager Drivers <devel-im>` guide. Remember to synchronize the monitor probes in the hosts using ``onehost sync`` as described in the :ref:`Managing Hosts <host_guide_sync>` guide.
 

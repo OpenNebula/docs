@@ -25,8 +25,6 @@ Image datastores can be of different type depending on the underlying storage te
 
 -  :ref:`File-system <fs_ds>`, to store disk images in a file form. The files are stored in a directory mounted from a SAN/NAS server.
 
--  :ref:`vmfs <vmware_ds_datastore_configuration>`, a datastore specialized in VMFS format to be used with VMware hypervisors. Cannot be mounted in the OpenNebula front-end since VMFS is not \*nix compatible.
-
 -  :ref:`LVM <lvm_drivers>`, The LVM datastore driver provides OpenNebula with the possibility of using LVM volumes instead of plain files to hold the Virtual Images. This reduces the overhead of having a file-system in place and thus increases performance..
 
 -  :ref:`Ceph <ceph_ds>`, to store disk images using Ceph block devices.
@@ -47,7 +45,6 @@ OpenNebula includes 6 different ways to distribute datastore images to the hosts
 - **shared**, the datastore is exported in a shared filesystem to the hosts.
 - **ssh**, datastore images are copied to the remote hosts using the ssh protocol
 - **qcow2**, a driver specialized to handle qemu-qcow format and take advantage of its snapshoting capabilities
-- **vmfs**, image copies are done using the vmkfstools (VMware filesystem tools)
 - **ceph**, a driver that delegates to libvirt/KVM the management of Ceph RBDs.
 - **lvm**, images are stored as LVs in a cLVM volume.
 - **fs_lvm**, images are in a file system and are dumped to a new LV in a cLVM volume.
@@ -65,33 +62,31 @@ You can take advantage of the multiple datastore features of OpenNebula to bette
 
 There are some limitations and features depending on the transfer mechanism you choose for your system and image datastores (check each datastore guide for more information). The following table summarizes the valid combinations of Datastore and transfer drivers:
 
-+-------------+--------+-----+-------+------+------+-----+--------+-----+
-|  Datastore  | shared | ssh | qcow2 | vmfs | ceph | lvm | fs_lvm | dev |
-+=============+========+=====+=======+======+======+=====+========+=====+
-| System      | x      | x   |       | x    |      |     |        |     |
-+-------------+--------+-----+-------+------+------+-----+--------+-----+
-| File-System | x      | x   | x     |      |      |     | x      |     |
-+-------------+--------+-----+-------+------+------+-----+--------+-----+
-| vmfs        |        |     |       | x    |      |     |        |     |
-+-------------+--------+-----+-------+------+------+-----+--------+-----+
-| ceph        |        |     |       |      | x    |     |        |     |
-+-------------+--------+-----+-------+------+------+-----+--------+-----+
-| lvm         |        |     |       |      |      | x   |        |     |
-+-------------+--------+-----+-------+------+------+-----+--------+-----+
-| dev         |        |     |       |      |      |     |        | x   |
-+-------------+--------+-----+-------+------+------+-----+--------+-----+
++-------------+--------+-----+-------+------+-----+--------+-----+
+|  Datastore  | shared | ssh | qcow2 | ceph | lvm | fs_lvm | dev |
++=============+========+=====+=======+======+=====+========+=====+
+| System      | x      | x   |       |      |     |        |     |
++-------------+--------+-----+-------+------+-----+--------+-----+
+| File-System | x      | x   | x     |      |     | x      |     |
++-------------+--------+-----+-------+------+-----+--------+-----+
+| ceph        |        |     |       | x    |     |        |     |
++-------------+--------+-----+-------+------+-----+--------+-----+
+| lvm         |        |     |       |      | x   |        |     |
++-------------+--------+-----+-------+------+-----+--------+-----+
+| dev         |        |     |       |      |     |        | x   |
++-------------+--------+-----+-------+------+-----+--------+-----+
 
 .. _storage_snapshot_compatilibity:
 
 The following table reflects the compatiblity of disk snapshotting and disk live snapshotting (ie, snapshotting with the VM in running state) for the different transfer manager drivers. This only applies for the kvm hypervisor.
 
-+-------------------+--------+-----+-------+------+------+-----+--------+-----+
-|     Datastore     | shared | ssh | qcow2 | vmfs | ceph | lvm | fs_lvm | dev |
-+===================+========+=====+=======+======+======+=====+========+=====+
-| Snapshotting      | x      | x   | x     |      | x    |     |        |     |
-+-------------------+--------+-----+-------+------+------+-----+--------+-----+
-| Live Snapshotting |        |     | x     |      | x    |     |        |     |
-+-------------------+--------+-----+-------+------+------+-----+--------+-----+
++-------------------+--------+-----+-------+------+-----+--------+-----+
+|     Datastore     | shared | ssh | qcow2 | ceph | lvm | fs_lvm | dev |
++===================+========+=====+=======+======+=====+========+=====+
+| Snapshotting      | x      | x   | x     | x    |     |        |     |
++-------------------+--------+-----+-------+------+-----+--------+-----+
+| Live Snapshotting |        |     | x     | x    |     |        |     |
++-------------------+--------+-----+-------+------+-----+--------+-----+
 
 Datastore Attributes
 ====================
@@ -107,9 +102,9 @@ Common attributes:
 +------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``Name`` (**mandatory**)     | The name of the datastore                                                                                                                                                    |
 +------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``DS_MAD`` (**mandatory**)   | The DS type. Possible values: ``fs``, ``lvm``, ``vmfs``, ``ceph``, ``dev``                                                                                                   |
+| ``DS_MAD`` (**mandatory**)   | The DS type. Possible values: ``fs``, ``lvm``, ``ceph``, ``dev``                                                                                                             |
 +------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``TM_MAD`` (**mandatory**)   | Transfer drivers for the datastore. Possible values: ``shared``, ``ssh``, ``qcow2``, ``lvm``, ``fs_lvm``, ``vmfs``, ``ceph``, ``dev``                                        |
+| ``TM_MAD`` (**mandatory**)   | Transfer drivers for the datastore. Possible values: ``shared``, ``ssh``, ``qcow2``, ``lvm``, ``fs_lvm``, ``ceph``, ``dev``                                                  |
 +------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``BASE_PATH``                | Base path to build the path of the Datastore Images. This path is used to store the images when they are created in the datastores. Defaults to ``/var/lib/one/datastores``. |
 +------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+

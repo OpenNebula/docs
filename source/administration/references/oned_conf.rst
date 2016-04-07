@@ -31,7 +31,7 @@ Daemon Configuration Attributes
 -  ``VNC_PORTS`` : VNC port pool fot automatic VNC port assigment, if possible
   the port will be set to ``START`` + ``VMID``. Refer to the :ref:`VM template reference <template>` for further information:
 
-   - ``start``: first port to assgin                                                   - ``reserved``: comma separated list of reserved ports 
+   - ``start``: first port to assgin                                                   - ``reserved``: comma separated list of reserved ports
 
 -  ``VM_SUBMIT_ON_HOLD`` : Forces VMs to be created on hold state instead of pending. Values: YES or NO.
 -  ``LOG`` : Configure the logging system
@@ -225,8 +225,6 @@ Here you can configure the default values for the Datastores and Image templates
 +----------+--------------------+
 | sd       | SCSI               |
 +----------+--------------------+
-| xvd      | XEN Virtual Disk   |
-+----------+--------------------+
 | vd       | KVM virtual disk   |
 +----------+--------------------+
 
@@ -255,7 +253,7 @@ Sample configuration:
 Information Collector
 =====================
 
-This driver CANNOT BE ASSIGNED TO A HOST, and needs to be used with KVM or Xen drivers Options that can be set:
+This driver CANNOT BE ASSIGNED TO A HOST, and needs to be used with KVM drivers Options that can be set:
 
 -  ``-a``: Address to bind the collectd sockect (defults 0.0.0.0)
 -  ``-p``: UDP port to listen for monitor information (default 4124)
@@ -337,11 +335,9 @@ The virtualization drivers are used to create, control and monitor VMs on the ho
    - snap-create
    - snap-delete
 
-For more information on configuring and setting up the virtualizer please check the guide that suits you:
+For more information on configuring and setting up the Vitual Machine Manager Driver please check the guide that suits you:
 
--  :ref:`Xen Adaptor <xeng>`
 -  :ref:`KVM Adaptor <kvmg>`
--  :ref:`VMware Adaptor <evmwareg>`
 
 Sample configuration:
 
@@ -385,7 +381,7 @@ Sample configuration:
      
     TM_MAD = [
         executable = "one_tm",
-        arguments  = "-t 15 -d dummy,lvm,shared,fs_lvm,qcow2,ssh,vmfs,ceph" ]
+        arguments  = "-t 15 -d dummy,lvm,shared,fs_lvm,qcow2,ssh,ceph" ]
 
 The configuration for each driver is defined in the TM\_MAD\_CONF section. These values are used when creating a new datastore and should not be modified since they define the datastore behaviour.
 
@@ -442,7 +438,7 @@ Sample configuration:
 
     DATASTORE_MAD = [
         executable = "one_datastore",
-        arguments  = "-t 15 -d dummy,fs,vmfs,lvm,ceph"
+        arguments  = "-t 15 -d dummy,fs,lvm,ceph"
     ]
 
 For more information on this Driver and how to customize it, please visit :ref:`its reference guide <sm>`.

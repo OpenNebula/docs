@@ -16,23 +16,18 @@ The OpenNebula administrator must take into account that although this is a powe
 -  :ref:`VXLAN <vxlan>`: implements VLANs using the VXLAN protocol that relies on a UDP encapsulation and IP multicast.
 -  :ref:`ebtables <ebtables>`: restrict network access through Ebtables rules. No special hardware configuration is required.
 -  :ref:`ovswitch <openvswitch>`: restrict network access with `Open vSwitch Virtual Switch <http://openvswitch.org/>`__.
--  :ref:`VMware <vmwarenet>`: uses the VMware networking infrastructure to provide an isolated and 802.1Q compatible network for VMs launched with the VMware hypervisor.
 
 Note that some of these drivers also create the bridging device in the hosts if needed.
 
 The administrator must take into account the following matrix that shows the compatibility of the hypervisors with each networking driver:
 
-+--------+-----------------+--------------+--------+-------+---------+--------+
-|        | Security Groups | Open vSwitch | 802.1Q | VXLAN |ebtables | VMware |
-+========+=================+==============+========+=======+=========+========+
-| KVM    | Yes             | Yes          | Yes    | Yes   |Yes      | No     |
-+--------+-----------------+--------------+--------+-------+---------+--------+
-| Xen    | Yes             | Yes          | Yes    | Yes   |Yes      | No     |
-+--------+-----------------+--------------+--------+-------+---------+--------+
-| VMware | No              | No           | No     | No    |No       | Yes    |
-+--------+-----------------+--------------+--------+-------+---------+--------+
++--------+-----------------+--------------+--------+-------+---------+
+|        | Security Groups | Open vSwitch | 802.1Q | VXLAN |ebtables |
++========+=================+==============+========+=======+=========+
+| KVM    | Yes             | Yes          | Yes    | Yes   |Yes      |
++--------+-----------------+--------------+--------+-------+---------+
 
-The Virtual Network isolation is enabled with any of the 801.1Q, vxlan, ebtables, vmware or ovswitch drivers. Additionally the drivers based on Linux bridges (vxlan, 802.1Q and ebtables) can be combined with security groups driver to allow a regular OpenNebula user to filter TCP, UDP or ICMP traffic.
+The Virtual Network isolation is enabled with any of the 801.1Q, vxlan, ebtables, or ovswitch drivers. Additionally the drivers based on Linux bridges (vxlan, 802.1Q and ebtables) can be combined with security groups driver to allow a regular OpenNebula user to filter TCP, UDP or ICMP traffic.
 
 Tuning & Extending
 ==================
@@ -44,15 +39,15 @@ Some drivers have the ability to customize their behaviour by editing a configur
 
 Currently it supports the following options:
 
-+---------------------+---------------------------------+----------------------------------------------------------------------------------+
-|      Parameter      |          Driver                 |                          Description                                             |
-+=====================+=================================+==================================================================================+
-| start_vlan          | 802.1Q, vxlan, ovswitch, vmware | Configure the initial VLAN ID tag (corresponds to vnet ID = 0)                   |
-+---------------------+---------------------------------+----------------------------------------------------------------------------------+
-| arp_cache_poisoning | ovswitch                        | Enable ARP Cache Poisoning Prevention Rules.                                     |
-+---------------------+---------------------------------+----------------------------------------------------------------------------------+
-| vxlan_mc            | vxlan                           | Base multicast address for each VLAN. The multicas sddress is vxlan_mc + vlan_id |
-+---------------------+---------------------------------+----------------------------------------------------------------------------------+
++---------------------+----------------------------+----------------------------------------------------------------------------------+
+|      Parameter      |           Driver           |                                   Description                                    |
++=====================+============================+==================================================================================+
+| start_vlan          | 802.1Q, vxlan, openvswitch | Configure the initial VLAN ID tag (corresponds to vnet ID = 0)                   |
++---------------------+----------------------------+----------------------------------------------------------------------------------+
+| arp_cache_poisoning | ovswitch                   | Enable ARP Cache Poisoning Prevention Rules.                                     |
++---------------------+----------------------------+----------------------------------------------------------------------------------+
+| vxlan_mc            | vxlan                      | Base multicast address for each VLAN. The multicas sddress is vxlan_mc + vlan_id |
++---------------------+----------------------------+----------------------------------------------------------------------------------+
 
 .. warning:: If this file is changed, please run ``onehost sync`` to deploy the file to all the nodes.
 
@@ -85,7 +80,6 @@ The default paths for the binaries/executables used during the network configura
       :brctl    => "sudo brctl",
       :ip       => "sudo ip",
       :virsh    => "virsh -c qemu:///system",
-      :xm       => Configuration::get_xen_command,
       :ovs_vsctl=> "sudo ovs-vsctl",
       :ovs_ofctl=> "sudo ovs-ofctl",
       :lsmod    => "lsmod",

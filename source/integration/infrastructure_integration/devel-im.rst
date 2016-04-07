@@ -13,10 +13,10 @@ Probe Location
 
 The default probes are installed in the frontend in the following path:
 
--  **KVM and Xen**: ``/var/lib/one/remotes/im/<hypervisor>-probes.d``
--  **VMware and EC2**: ``/var/lib/one/remotes/im/<hypervisor>.d``
+-  **KVM**: ``/var/lib/one/remotes/im/kvm-probes.d``
+-  **vCenter and EC2**: ``/var/lib/one/remotes/im/<hypervisor>.d``
 
-In the case of ``KVM`` and ``Xen``, the probes are distributed to the hosts, therefore if the probes are changed, they **must** be distributed to the hosts by running ``onehost sync``.
+In the case of ``KVM``, the probes are distributed to the hosts, therefore if the probes are changed, they **must** be distributed to the hosts by running ``onehost sync``.
 
 General Probe Structure
 =======================
@@ -33,7 +33,7 @@ The drivers receive the following parameters:
 +------------+-------------------------------------------------------------------------------------------------+
 | Position   | Description                                                                                     |
 +============+=================================================================================================+
-| 1          | **hypervisor**: The name of the hypervisor: ``kvm``, ``xen``, etc...                            |
+| 1          | **hypervisor**: The name of the hypervisor: ``kvm``, etc...                                     |
 +------------+-------------------------------------------------------------------------------------------------+
 | 2          | **datastore location**: path of the datastores directory in the host                            |
 +------------+-------------------------------------------------------------------------------------------------+
@@ -257,14 +257,12 @@ Creating a New IM Driver
 Choosing the Execution Engine
 -----------------------------
 
-OpenNebula provides two IM probe execution engines: ``one_im_sh`` and ``one_im_ssh``. ``one_im_sh`` is used to execute probes in the frontend, for example ``vmware`` uses this engine as it collects data via an API call executed in the frontend. On the other hand, ``one_im_ssh`` is used when probes need to be run remotely in the hosts, which is the case for ``Xen`` and ``KVM``.
+OpenNebula provides two IM probe execution engines: ``one_im_sh`` and ``one_im_ssh``. ``one_im_sh`` is used to execute probes in the frontend, for example ``vcenter`` uses this engine as it collects data via an API call executed in the frontend. On the other hand, ``one_im_ssh`` is used when probes need to be run remotely in the hosts, which is the case for ``KVM``.
 
 Populating the Probes
 ---------------------
 
 Both ``one_im_sh`` and ``one_im_ssh`` require an argument which indicates the directory that contains the probes. This argument is appended with ”.d”.
-
-**Example**: For ``VMware`` the execution engine is ``one_im_sh`` (local execution) and the argument is ``vmware``, therefore the probes that will be executed in the hosts are located in ``/var/lib/one/remotes/im/vmware.d``
 
 Making Use of Colllectd
 -----------------------
@@ -272,7 +270,7 @@ Making Use of Colllectd
 If the new IM driver wishes to use the ``collectd`` component, it needs to:
 
 -  Use ``one_im_ssh``
--  The ``/var/lib/one/remotes/im/<im_name>.d`` should **only** contain 2 files, the sames that are provided by default inside ``kvm.d`` and ``xen.d``, which are: ``collectd-client_control.sh`` and ``collectd-client.rb``.
+-  The ``/var/lib/one/remotes/im/<im_name>.d`` should **only** contain 2 files, the sames that are provided by default inside ``kvm.d``, which are: ``collectd-client_control.sh`` and ``collectd-client.rb``.
 -  The probes should be actually placed in the ``/var/lib/one/remotes/im/<im_name>-probes.d`` folder.
 
 Enabling the Driver

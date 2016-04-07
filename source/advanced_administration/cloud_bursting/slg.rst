@@ -110,7 +110,7 @@ In order to deploy an instance in SoftLayer through OpenNebula you must include 
     CPU      = 0.5
     MEMORY   = 128
      
-    # Xen or KVM template machine, this will be use when submitting this VM to local resources
+    # KVM template machine, this will be use when submitting this VM to local resources
     DISK     = [ IMAGE_ID = 3 ]
     NIC      = [ NETWORK_ID = 7 ]
      
@@ -285,7 +285,7 @@ You must create a template file containing the information of the VMs you want t
     CPU      = 1
     MEMORY   = 1700
      
-    #Xen or KVM template machine, this will be use when submitting this VM to local resources
+    # KVM template machine, this will be use when submitting this VM to local resources
     DISK     = [ IMAGE_ID = 3 ]
     NIC      = [ NETWORK_ID = 7 ]
      

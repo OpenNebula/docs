@@ -416,7 +416,6 @@ Deployment File
 
 The deployment file is a text file written by OpenNebula core that holds the information of a VM. It is used when deploying a new VM. OpenNebula is able to generate three formats of deployment files:
 
--  **xen**: deployment file suitable to be used with xen tools
 -  **kvm**: libvirt format used to create kvm VMs
 -  **xml**: xml representation of the VM
 

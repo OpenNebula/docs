@@ -70,8 +70,6 @@ You can also manage your images using :ref:`Sunstone <sunstone>`. Select the Ima
 Create Images
 -------------
 
-.. note:: For VMWare images, please read **also** the :ref:`VMware Drivers guide <evmwareg_usage>`.
-
 The three types of images can be created from an existing file, but for **datablock** images you can specify a size and filesystem type and let OpenNebula create an empty image in the datastore.
 
 If you want to create an **OS image**, you need to prepare a contextualized virtual machine, and extract its disk.
@@ -383,7 +381,7 @@ Example:
     OS = [ KERNEL_DS  = "$FILE[IMAGE=kernel3.6]",
            INITRD_DS  = "$FILE[IMAGE_ID=23]",
            ROOT       = "sda1",
-           KERNEL_CMD = "ro xencons=tty console=tty1" ]
+           KERNEL_CMD = "ro console=tty1" ]
 
 CONTEXT
 -------

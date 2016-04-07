@@ -22,14 +22,6 @@ Integrating OpenNebula with Open vSwitch brings a long list of benefits to OpenN
 
 This guide will address the usage of VLAN tagging and OpenFlow filtering of OpenNebula Virtual Machines. On top of that any other Open vSwitch feature may be used, but that's outside of the scope of this guide.
 
-ovswitch and ovswitch\_brcompat
--------------------------------
-
-OpenNebula ships with two sets of drivers that provide the same functionality: **ovswitch** and **ovsvswitch\_brcompat**. The following list details the differences between both drivers:
-
--  ``ovswitch``: Recommended for ``kvm`` hosts. Only works with ``kvm``. Doesn't require the `Open vSwitch compatibility layer for Linux bridging <http://openvswitch.org/cgi-bin/gitweb.cgi?p=openvswitch;a=blob_plain;f=INSTALL.bridge;hb=HEAD>`__.
--  ``ovswitch_brcompat``: Works with ``kvm`` and ``xen``. This is the only set that currently works with ``xen``. Not recommended for ``kvm``. Requires `Open vSwitch compatibility layer for Linux bridging <http://openvswitch.org/cgi-bin/gitweb.cgi?p=openvswitch;a=blob_plain;f=INSTALL.bridge;hb=HEAD>`__.
-
 Configuration
 =============
 
@@ -39,21 +31,18 @@ Hosts Configuration
 -------------------
 
 -  You need to install Open vSwitch on each OpenNebula Host. Please refer to the `Open vSwitch documentation <https://github.com/openvswitch/ovs/blob/master/INSTALL.md>`__ to do so.
--  If using ``ovswitch_brcompat`` it is also necessary to install the `Open vSwitch compatibility layer for Linux bridging <http://openvswitch.org/cgi-bin/gitweb.cgi?p=openvswitch;a=blob_plain;f=INSTALL.bridge;hb=HEAD>`__.
 -  The ``sudoers`` file must be configured so ``oneadmin`` can execute ``ovs-vsctl`` in the hosts.
 
 OpenNebula Configuration
 ------------------------
 
-To enable this driver, use **ovswitch** or **ovswitch\_brcompat** as the Virtual Network Manager driver parameter when the hosts are created with the :ref:`onehost command <host_guide>`:
+To enable this driver, use **ovswitch** as the Virtual Network Manager driver parameter when the hosts are created with the :ref:`onehost command <host_guide>`:
 
 .. code::
 
     # for kvm hosts
     $ onehost create host01 -i kvm -v kvm -n ovswitch
 
-    # for xen hosts
-    $ onehost create host02 -i xen -v xen -n ovswitch_brcompat
 
 Open vSwitch Options
 --------------------

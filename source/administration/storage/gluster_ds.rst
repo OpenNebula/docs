@@ -6,8 +6,6 @@ The GlusterFS Datastore
 
 GlusterFS driver allows KVM machines access VM images using native GlusterFS API. This datastores uses the :ref:`Shared Transfer Manager <fs_ds_using_the_shared_transfer_driver>` and the :ref:`Filesystem Datastore <fs_ds>`  to access a Gluster fuse filesystem to manage images.
 
-.. warning:: This driver **only** works with libvirt/KVM drivers. Xen is not (yet) supported.
-
 .. warning:: All virtualization nodes and the head need to mount the GlusterFS volume used to store images.
 
 .. warning:: The hypervisor nodes need to be part of a working GlusterFS cluster and the Libvirt and QEMU packages need to be recent enough to have support for GlusterFS.

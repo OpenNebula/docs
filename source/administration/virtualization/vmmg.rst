@@ -8,9 +8,8 @@ The Virtualization Subsystem is the component in charge of talking with the hype
 
 Configuration options and specific information for each hypervisor can be found in these guides:
 
--  :ref:`Xen Driver <xeng>`
--  :ref:`KVM Driver <kvmg>`
--  :ref:`VMware Driver <evmwareg>`
+- :ref:`KVM Driver <kvmg>`
+- :ref:`vCenter Driver <vcenterg>`
 
 Common Configuration Options
 ============================
@@ -32,7 +31,7 @@ See the :ref:`Virtual Machine drivers reference <devel-vmm>` for more informatio
 Hypervisor Configuration
 ========================
 
-A feature supported by both KVM and Xen Hypervisor drivers is selecting the timeout for VM Shutdown. This feature is useful when a VM gets stuck in Shutdown (or simply does not notice the shutdown command). By default, after the timeout time the VM will return to Running state but is can also be configured so the VM is destroyed after the grace time. This is configured in both ``/var/lib/one/remotes/vmm/xen/xenrc`` and ``/var/lib/one/remotes/vmm/kvm/kvmrc``:
+A timeout for the VM Shutdown operation can be set up. This feature is useful when a VM gets stuck in Shutdown (or simply does not notice the shutdown command). By default, after the timeout time the VM will return to Running state but is can also be configured so the VM is destroyed after the grace time. This is configured in ``/var/lib/one/remotes/vmm/kvm/kvmrc``:
 
 .. code::
 
