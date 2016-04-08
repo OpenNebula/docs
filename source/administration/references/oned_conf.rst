@@ -28,8 +28,7 @@ Daemon Configuration Attributes
    -  ``passwd`` (MySQL only): MySQL user's password.
    -  ``db_name`` (MySQL only): MySQL database name.
 
--  ``VNC_PORTS`` : VNC port pool fot automatic VNC port assigment, if possible
-  the port will be set to ``START`` + ``VMID``. Refer to the :ref:`VM template reference <template>` for further information:
+-  ``VNC_PORTS`` : VNC port pool fot automatic VNC port assigment, if possible the port will be set to ``START`` + ``VMID``. Refer to the :ref:`VM template reference <template>` for further information:
 
    - ``start``: first port to assgin                                                   - ``reserved``: comma separated list of reserved ports
 
