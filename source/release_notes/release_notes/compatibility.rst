@@ -58,7 +58,7 @@ Before OpenNebula 5.0, when doing reservations of Virtual Networks with VLAN iso
 
 The old ``fw`` driver has been removed from OpenNebula (it was deprecated in OpenNebual 4.12). If you are still using it, we recommended that you remove those VMs. After the upgrade to 5.0, OpenNebula will not create/modify/remove any of the iptables rules related to the ``fw`` driver. The database migration utility ``onedb`` will detect if you still have any VMs using this functionality. In any case, please switch to :ref:`Security Groups <security_groups>` which deliver more functionality than the old ``fw`` driver.
 
-The Security Group update action now automatically triggers the update of all 
+The Security Group update action now automatically triggers the update of all
 VMs in the security group. This operation can be reset with the ``onesecgroup --commit`` command.
 
 Sunstone
@@ -87,6 +87,12 @@ TEMPLATE/GROUP_ADMIN_DEFAULT_VIEW > TEMPLATE/SUNSTONE/GROUP_ADMIN_DEFAULT_VIEW
 TEMPLATE/SUNSTONE_CAPACITY_SELECT > TEMPLATE/SUNSTONE/CAPACITY_SELECT
 TEMPLATE/SUNSTONE_NETWORK_SELECT > TEMPLATE/SUNSTONE/NETWORK_SELECT
 
+Deprecated Components
+--------------------------------------------------------------------------------
+
+The Xen hypervisor is no longer included in the main distribution. It can be however manually installed through the `Xen Add-on <https://github.com/OpenNebula/addon-xen`__.
+
+The VMware hypervisor is no longer included in the main distribution. Users are encourage to migrate to the more roboust and enterprise-ready :ref:`VMware vCenter Drivers <vcenterg>`.
 
 Developers and Integrators
 ================================================================================

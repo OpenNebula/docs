@@ -41,3 +41,8 @@ A timeout for the VM Shutdown operation can be set up. This feature is useful wh
     # Uncomment this line to force VM cancellation after shutdown timeout
     #export FORCE_DESTROY=yes
 
+
+Other Hypervisors
+=================
+
+Support for Xen 4 is provided through the `Xen Add-on <https://github.com/OpenNebula/addon-xen`__.
