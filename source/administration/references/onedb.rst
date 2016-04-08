@@ -56,8 +56,8 @@ This is due to `bug #4000 <http://dev.opennebula.org/issues/4000>`_. It means th
 
     $ onedb patch -v --sqlite /var/lib/one/one.db /usr/lib/one/ruby/onedb/patches/history_times.rb
     Version read:
-    Shared tables 4.11.80 : OpenNebula 4.14.1 daemon bootstrap
-    Local tables  4.13.85 : OpenNebula 4.14.1 daemon bootstrap
+    Shared tables 4.11.80 : OpenNebula 5.0.1 daemon bootstrap
+    Local tables  4.13.85 : OpenNebula 5.0.1 daemon bootstrap
 
     Sqlite database backup stored in /var/lib/one/one.db_2015-10-13_12:40:2.bck
     Use 'onedb restore' or copy the file back to restore the DB.

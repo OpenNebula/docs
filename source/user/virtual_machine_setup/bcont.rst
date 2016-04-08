@@ -19,8 +19,8 @@ The contextualization package will also mount any partition labeled ``swap`` as 
 
 - Start an image (or finish its installation)
 - Download and install the package for your distribution:
-   - `DEB <https://github.com/OpenNebula/addon-context-linux/releases/download/v4.14.3/one-context_4.14.3.deb>`__: Compatible with Ubuntu 11.10 to 15.04 and Debian 6/7/8
-   - `RPM <https://github.com/OpenNebula/addon-context-linux/releases/download/v4.14.3/one-context_4.14.3.rpm>`__: Compatible with CentOS and RHEL 6/7
+   - `DEB <https://github.com/OpenNebula/addon-context-linux/releases/download/v5.0.3/one-context_5.0.3.deb>`__: Compatible with Ubuntu 11.10 to 15.04 and Debian 6/7/8
+   - `RPM <https://github.com/OpenNebula/addon-context-linux/releases/download/v5.0.3/one-context_5.0.3.rpm>`__: Compatible with CentOS and RHEL 6/7
 - If you want to use the bundled ``onegate`` tool make sure that ruby >= 1.8.7 is installed in the image
 - Shutdown the VM
 
@@ -68,7 +68,7 @@ Like CentOS 7 it needs a recent version of ``util-linux`` (version 2.23) and ``c
 Manual Disk Resizing
 ====================
 
-If your images don't have context packages that support image resizing (version 4.14.1) or you want to resize a partition that is not the root filesystem you can follow the instructions from the previous section to install needed tools and use these commands:
+If your images don't have context packages that support image resizing (version 5.0.1) or you want to resize a partition that is not the root filesystem you can follow the instructions from the previous section to install needed tools and use these commands:
 
 .. code::
 

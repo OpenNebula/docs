@@ -410,7 +410,7 @@ For more information on setting up virtual networks please check the :ref:`Manag
 Deprecated Attributes
 --------------------------------------------------------------------------------
 
-Deprecated in OpenNebula 4.14:
+Deprecated in OpenNebula 5.0:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * **WHITE\_PORTS\_TCP**, **BLACK\_PORTS\_TCP**, **WHITE\_PORTS\_UDP**, **BLACK\_PORTS\_UDP**, **ICMP**: Use Security Groups instead. Note that for backwards compatibility reasons these attributes will still be honored, however users should deprecate them.

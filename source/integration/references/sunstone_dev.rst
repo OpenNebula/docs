@@ -4,7 +4,7 @@
 Sunstone Development
 ====================
 
-In OpenNebula 4.14 the graphical interface code, Sunstone, was redesigned and modularized to improve the code readibility and ease the task of adding new components. Now, each component (tab, panel, form...) is defined in a separate module using `requirejs <http://requirejs.org/>`__ and HTML code is now defined in separate files using `Handlebars <http://handlebarsjs.com/>`__ templates. External libraries are handled using `Bower <http://bower.io/>`__, a Javascript package manager. `Zurb Foundation <http://foundation.zurb.com/>`__ is used for the styles and layout of the web and additional CSS styles are added using `SASS <http://sass-lang.com/>`__. `Grunt <http://gruntjs.com/>`__ is used as a tasker to automate the different processes to generate the optimized files.
+In OpenNebula 5.0 the graphical interface code, Sunstone, was redesigned and modularized to improve the code readibility and ease the task of adding new components. Now, each component (tab, panel, form...) is defined in a separate module using `requirejs <http://requirejs.org/>`__ and HTML code is now defined in separate files using `Handlebars <http://handlebarsjs.com/>`__ templates. External libraries are handled using `Bower <http://bower.io/>`__, a Javascript package manager. `Zurb Foundation <http://foundation.zurb.com/>`__ is used for the styles and layout of the web and additional CSS styles are added using `SASS <http://sass-lang.com/>`__. `Grunt <http://gruntjs.com/>`__ is used as a tasker to automate the different processes to generate the optimized files.
 
 RequireJS
 =========

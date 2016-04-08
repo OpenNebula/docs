@@ -66,7 +66,7 @@ Add the OpenNebula repository:
     # cat << EOT > /etc/yum.repos.d/opennebula.repo
     [opennebula]
     name=opennebula
-    baseurl=http://downloads.opennebula.org/repo/4.14/CentOS/7/x86_64/
+    baseurl=http://downloads.opennebula.org/repo/5.0/CentOS/7/x86_64/
     enabled=1
     gpgcheck=0
     EOT
@@ -162,7 +162,7 @@ Add the OpenNebula repository:
     # cat << EOT > /etc/yum.repos.d/opennebula.repo
     [opennebula]
     name=opennebula
-    baseurl=http://downloads.opennebula.org/repo/4.14/CentOS/7/x86_64/
+    baseurl=http://downloads.opennebula.org/repo/5.0/CentOS/7/x86_64/
     enabled=1
     gpgcheck=0
     EOT

@@ -186,7 +186,7 @@ Differences with Previous Versions
 
 In OpenNebula 4.6 the terms **Virtual Data Center (VDC)** and **Resource Providers** were introduced. A **Resource Provider** was not a separate entity, it was the way we called a Cluster assigned to a Group. The term **VDC** was used to name a Group with Resource Providers (Clusters) assigned, but was not a separate entity either.
 
-Starting with OpenNebula 4.14, **VDCs** are a new kind of OpenNebula resource with its own ID, name, etc. and the term Resource Provider disappears. Making VDCs a first-class citizen has several advantages over the previous Group/VDC concept.
+Starting with OpenNebula 5.0, **VDCs** are a new kind of OpenNebula resource with its own ID, name, etc. and the term Resource Provider disappears. Making VDCs a first-class citizen has several advantages over the previous Group/VDC concept.
 
 Now that VDCs are a separate entity, they can have one or more Groups added to them. This gives the Cloud Admin greater resource assignment flexibility. For example, you may have the Group Web Development added to the 'low-performance' VDC, and Big Data to the 'high-performance' VDC. After a few days, Web Development can be additionally added to the 'high-performance' VDC. In previous versions, this single operation would require you to write down which resources were added to the Group, to undo it later.
 
