@@ -16,7 +16,7 @@ Read the Compatibility Guide `for 4.2 <http://archives.opennebula.org/documentat
     -  **ganglia** drivers have been moved out of the main OpenNebula distribution and are available (although not supported) as an `addon <https://github.com/OpenNebula/addon-ganglia>`__.
 
 .. warning::
-    There are combinations of **VMware storage** no longer supported (see :ref:`the VMFS Datastore guide<vmware_ds>` for the supported configurations).
+    There are combinations of **VMware storage** no longer supported (see the VMFS Datastore guide for the supported configurations).
 
     If you want to upgrade and you are using SSH, NFS or VMFS without SSH-mode, you will need to manually migrate your images to a newly created VMFS with SSH-mode datastore. To do so implies powering off all the VMs with images in any of the deprecated datastores, upgrade OpenNebula, create a VMFS datastore and then manually register the images from those deprecated datastores into the new one. `Let us know <http://opennebula.org/community/mailinglists/>`_ if you have doubts or problems with this process.
 

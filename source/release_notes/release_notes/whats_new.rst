@@ -18,6 +18,7 @@ OpenNebula Drivers :: Networking
 OpenNebula Drivers :: Storage
 --------------------------------------------------------------------------------
 **TODO** Ceph System DS
+`#4110 <http://dev.opennebula.org/issues/4110>`__ :ref:`fs_lvm <fs_lvm_ds>` does not need cLVM configured in the cluster
 
 OpenNebula Drivers :: Virtualization
 --------------------------------------------------------------------------------

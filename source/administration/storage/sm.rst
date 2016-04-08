@@ -47,7 +47,7 @@ OpenNebula includes 6 different ways to distribute datastore images to the hosts
 - **qcow2**, a driver specialized to handle qemu-qcow format and take advantage of its snapshoting capabilities
 - **ceph**, a driver that delegates to libvirt/KVM the management of Ceph RBDs.
 - **lvm**, images are stored as LVs in a cLVM volume.
-- **fs_lvm**, images are in a file system and are dumped to a new LV in a cLVM volume.
+- **fs_lvm**, images are in a file system and are dumped to a new LV in a LVM volume.
 - **dev**, attaches existing block devices directly to the VMs
 
 Planning your Storage
@@ -65,7 +65,7 @@ There are some limitations and features depending on the transfer mechanism you 
 +-------------+--------+-----+-------+------+-----+--------+-----+
 |  Datastore  | shared | ssh | qcow2 | ceph | lvm | fs_lvm | dev |
 +=============+========+=====+=======+======+=====+========+=====+
-| System      | x      | x   |       |      |     |        |     |
+| System      | x      | x   |       |      |     | x      |     |
 +-------------+--------+-----+-------+------+-----+--------+-----+
 | File-System | x      | x   | x     |      |     | x      |     |
 +-------------+--------+-----+-------+------+-----+--------+-----+
@@ -102,7 +102,7 @@ Common attributes:
 +------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``Name`` (**mandatory**)     | The name of the datastore                                                                                                                                                    |
 +------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``DS_MAD`` (**mandatory**)   | The DS type. Possible values: ``fs``, ``lvm``, ``ceph``, ``dev``                                                                                                             |
+| ``DS_MAD`` (**mandatory**)   | The DS type. Possible values: ``fs``, ``lvm``, ``fs_lvm``, ``ceph``, ``dev``                                                                                                 |
 +------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``TM_MAD`` (**mandatory**)   | Transfer drivers for the datastore. Possible values: ``shared``, ``ssh``, ``qcow2``, ``lvm``, ``fs_lvm``, ``ceph``, ``dev``                                                  |
 +------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+

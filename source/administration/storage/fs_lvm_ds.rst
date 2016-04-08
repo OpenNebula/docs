@@ -9,7 +9,7 @@ Overview
 
 The FS LVM datastore driver provides OpenNebula with the possibility of using LVM volumes instead of plain files to hold the Virtual Images.
 
-It is assumed that the OpenNebula hosts using this datastore will be configured with CLVM, therefore modifying the OpenNebula Volume Group in one host will reflect in the others.
+A difference from previous versions and ``lvm`` drivers is that this datastore does **not** need CLVM configured in your cluster. The drivers refresh LVM metadata each time an image is needed in another host.
 
 |image0|
 
@@ -26,8 +26,9 @@ OpenNebula LVM Hosts
 
 LVM must be available in the Hosts. The ``oneadmin`` user should be able to execute several LVM related commands with sudo passwordlessly.
 
--  Password-less sudo permission for: ``lvremove``, ``lvcreate``, ``lvs``, ``vgdisplay`` and ``dd``.
+-  Password-less sudo permission for: ``lvremove``, ``lvcreate``, ``lvs``, ``lvscan``, ``lvchange``, ``vgdisplay`` and ``dd``.
 -  LVM2
+-  lvmetad disabled
 -  ``oneadmin`` needs to belong to the ``disk`` group (for KVM).
 
 Configuration
@@ -36,7 +37,7 @@ Configuration
 Configuring the System Datastore
 --------------------------------
 
-To use LVM drivers, the system datastore **must** be ``shared``. This sytem datastore will hold only the symbolic links to the block devices, so it will not take much space. See more details on the :ref:`System Datastore Guide <system_ds>`
+To use LVM drivers, the system datastore **must** be ``fs_lvm``. This sytem datastore will hold only the symbolic links to the block devices, so it will not take much space. See more details on the :ref:`System Datastore Guide <system_ds>`
 
 It will also be used to hold context images and Disks created on the fly, they will be created as regular files.
 
@@ -73,7 +74,7 @@ For example, the following examples illustrates the creation of an LVM datastore
 
     > onedatastore list
       ID NAME            CLUSTER  IMAGES TYPE   TM
-       0 system          none     0      fs     shared
+       0 system          none     0      fs     fs_lvm
        1 default         none     3      fs     shared
      100 production      none     0      fs     fs_lvm
 
@@ -86,7 +87,7 @@ Host Configuration
 
 The hosts must have LVM2 and **must** have a Volume-Group for every possible system-datastore that can run in the host. CLVM must also be installed and active accross all the hosts that use this datastore.
 
-It's also required to have password-less sudo permission for: ``lvremove``, ``lvcreate``, ``lvs`` and ``dd``.
+It's also required to have password-less sudo permission for: ``lvremove``, ``lvcreate``, ``lvs``, ``lvscan``, ``lvchange`` and ``dd``.
 
 Tuning & Extending
 ==================
