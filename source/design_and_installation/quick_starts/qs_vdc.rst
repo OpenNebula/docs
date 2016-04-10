@@ -54,6 +54,7 @@ New groups are added to the 'default' VDC. If you didn't modify this VDC, it wil
 
 .. code::
 
+    $ onevdc create web-dev
     $ onevdc delgroup default web-dev
 
 The new VDC will be called 'web-dev'. In the creation wizard, select the group and the cluster created in the previous steps.
