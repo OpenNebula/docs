@@ -56,7 +56,7 @@ Configuration
 The behavior of the scheduler can be tuned to adapt it to your infrastructure with the following configuration parameters defined in /etc/one/sched.conf:
 
 -  ``MESSAGE_SIZE``: Buffer size in bytes for XML-RPC responses.
--  ``ONED_PORT``: Port to connect to the OpenNebula daemon oned (Default: 2633)
+-  ``ONE_XMLRPC``: URL to connect to the OpenNebula daemon (oned) (Default:http://localhost:2633/RPC2)
 -  ``SCHED_INTERVAL``: Seconds between two scheduling actions (Default: 30)
 -  ``MAX_VM``: Maximum number of Virtual Machines scheduled in each scheduling action (Default: 5000). Use 0 to schedule all pending VMs each time.
 -  ``MAX_DISPATCH``: Maximum number of Virtual Machines actually dispatched to a host in each scheduling action (Default: 30)
@@ -106,7 +106,7 @@ Sample Configuration:
 
     MESSAGE_SIZE = 1073741824
 
-    ONED_PORT = 2633
+    ONE_XMLRPC = "http://localhost:2633/RPC2"
 
     SCHED_INTERVAL = 30
 
