@@ -9,7 +9,6 @@ In order to use your existing physical nodes, you have to add them to the system
 -  *Hostname* of the host or IP
 -  *Information Driver* to be used to monitor the host, e.g. ``kvm``. These should match the Virtualization Drivers installed and more info about them can be found at the :ref:`Virtualization Subsystem guide <vmmg>`.
 -  *Virtualization Driver* to boot, stop, resume or migrate VMs in the host, e.g. ``kvm``. Information about these drivers can be found in :ref:`its guide <vmmg>`.
--  *Networking Driver* to isolate virtual networks and apply firewalling rules, e.g. ``802.1Q``. Information about these drivers can be found in :ref:`its guide <nm>`.
 -  *Cluster* where to place this host. The Cluster assignment is optional, you can read more about it in the :ref:`Managing Clusters <cluster_guide>` guide.
 
 .. warning:: Before adding a host check that you can ssh to it without being prompt for a password
@@ -25,6 +24,7 @@ This command enables Host management. Actions offered are:
 -  ``delete``: Deletes the given Host
 -  ``enable``: Enables the given Host
 -  ``disable``: Disables the given Host
+-  ``offline``: Sets the Host offline
 -  ``update``: Update the template contents.
 -  ``sync``: Synchronizes probes in all the hosts.
 -  ``list``: Lists Hosts in the pool
@@ -35,20 +35,19 @@ This command enables Host management. Actions offered are:
 Create and Delete
 -----------------
 
-Hosts, also known as physical nodes, are the servers managed by OpenNebula responsible for Virtual Machine execution. To use these hosts in OpenNebula you need to register them so they are monitored and well-known to the scheduler.
+Hosts are the servers managed by OpenNebula responsible for Virtual Machine execution. To use these hosts in OpenNebula you need to register them so they are monitored and well-known to the scheduler.
 
 Creating a host:
 
 .. code::
 
-    $ onehost create host01 --im dummy --vm dummy --net dummy
+    $ onehost create host01 --im dummy --vm dummy 
     ID: 0
 
 The parameters are:
 
--  ``--im/-i``: Information Manager driver. Valid options: ``kvm``, ``ec2``, ``ganglia``, ``dummy``.
--  ``--vm/-v``: Virtual Machine Manager driver. Valid options: ``kvm``, ``ec2``, ``dummy``.
--  ``--net/-n``: Network manager driver. Valid options: ``802.1Q``,\ ``dummy``,\ ``ebtables``,\ ``fw``,\ ``ovswitch``
+-  ``--im/-i``: Information Manager driver. 
+-  ``--vm/-v``: Virtual Machine Manager driver. 
 
 To remove a host, just like with other OpenNebula commands, you can either specify it by ID or by name. The following commands are equivalent:
 
@@ -72,7 +71,6 @@ To display information about a single host the ``show`` command is used:
     STATE                 : MONITORED
     IM_MAD                : dummy
     VM_MAD                : dummy
-    VN_MAD                : dummy
     LAST MONITORING TIME  : 07/06 17:40:41
 
     HOST SHARES
@@ -106,7 +104,6 @@ We can instead display this information in XML format with the ``-x`` parameter:
       <STATE>2</STATE>
       <IM_MAD>dummy</IM_MAD>
       <VM_MAD>dummy</VM_MAD>
-      <VN_MAD>dummy</VN_MAD>
       <LAST_MON_TIME>1341589306</LAST_MON_TIME>
       <CLUSTER_ID>-1</CLUSTER_ID>
       <CLUSTER/>
@@ -161,10 +158,32 @@ It can also be displayed in XML format using ``-x``:
 
 The ``top`` command is similar to the ``list`` command, except that the output is refreshed until the user presses ``CTRL-C``.
 
-Enable, Disable and Flush
--------------------------
+Host Life-cycle: Enable, Disable, Offline and Flush
+---------------------------------------------------
 
-The ``disable`` command disables a host, which means that no further monitorization is performed on this host and no Virtual Machines are deployed in it. It won't however affect the running VMs in the host.
+In order to manage the life cycle of a host it can be set to different operation
+modes: enabled (on), disabled (dsbl) and offline (off). The different operation
+status for each mode is described by the following table:
+
++----------------+------------+----------------+------------------------------------------------------------------------------------+
+|                |            |  VM DEPLOYMENT |                                                                                    |
+|   OP. MODE     | MONITORING +--------+-------+  MEANING                                                                           |
+|                |            | MANUAL | SCHED |                                                                                    |
++================+============+========+=======+====================================================================================+
+| ENABLED (on)   |    Yes     |  Yes   |  Yes  | The host is fully operational                                                      |
++----------------+------------+--------+-------+------------------------------------------------------------------------------------+
+| UPDATE (update)|    Yes     |  Yes   |  Yes  | The host is being monitored                                                        |
++----------------+------------+--------+-------+------------------------------------------------------------------------------------+
+| DISABLED (dsbl)|    Yes     |  Yes   |  No   | Disabled, e.g. to perform maintenance operations                                   |
++----------------+------------+--------+-------+------------------------------------------------------------------------------------+
+| OFFLINE (off)  |    No      |  No    |  No   | Host is totally offline                                                            |
++----------------+------------+--------+-------+------------------------------------------------------------------------------------+
+| ERROR (err)    |    Yes     |  Yes   |  No   | Error while monitoring the host, use ``onehost show`` for the error description.   |
++----------------+------------+--------+-------+------------------------------------------------------------------------------------+
+| RETRY (retry)  |    Yes     |  Yes   |  No   | Monitoring a host in error state                                                   |
++----------------+------------+--------+-------+------------------------------------------------------------------------------------+
+
+The ``onehost`` tool includes three commands to set the operation mode of a host: ``disable``, ``offline`` and ``enable``, for example:
 
 .. code::
 
@@ -175,6 +194,12 @@ To re-enable the host use the ``enable`` command:
 .. code::
 
     $ onehost enable 0
+
+Similarly to put the host offline:
+
+.. code::
+
+    $ onehost offline 0
 
 The ``flush`` command will mark all the running VMs in the specified host as to be rescheduled, which means that they will be migrated to another server with enough capacity. At the same time, the specified host will be disabled, so no more Virtual Machines are deployed in it. This command is useful to clean a host of running VMs.
 
@@ -233,7 +258,6 @@ The host drivers can be also changed with the host template attributes ``_MAD``.
 
     IM_MAD="kvm"
     VM_MAD="kvm"
-    VN_MAD="dummy"
 
 .. _host_guide_sync:
 
@@ -330,26 +354,6 @@ Hosts include the following monitoring information. You can use this variables t
 | ZOMBIES    | Comma separated list of VMs running in the host that were launched by OpenNebula but are not currently controlled by it.                                                                                                                                                                                   |
 +------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-
-Host Life-cycle
-===============
-
-+---------------+----------------------------+---------------------------------------------------------------------------------------------------------------------+
-| Short state   | State                      | Meaning                                                                                                             |
-+===============+============================+=====================================================================================================================+
-| ``init``      | ``INIT``                   | Initial state for enabled hosts.                                                                                    |
-+---------------+----------------------------+---------------------------------------------------------------------------------------------------------------------+
-| ``update``    | ``MONITORING_MONITORED``   | Monitoring a healthy Host.                                                                                          |
-+---------------+----------------------------+---------------------------------------------------------------------------------------------------------------------+
-| ``on``        | ``MONITORED``              | The host has been successfully monitored.                                                                           |
-+---------------+----------------------------+---------------------------------------------------------------------------------------------------------------------+
-| ``err``       | ``ERROR``                  | An error occurred while monitoring the host. See the Host information with ``onehost show`` for an error message.   |
-+---------------+----------------------------+---------------------------------------------------------------------------------------------------------------------+
-| ``off``       | ``DISABLED``               | The host is disabled, and won't be monitored. The scheduler ignores Hosts in this state.                            |
-+---------------+----------------------------+---------------------------------------------------------------------------------------------------------------------+
-| ``retry``     | ``MONITORING_ERROR``       | Monitoring a host in error state.                                                                                   |
-+---------------+----------------------------+---------------------------------------------------------------------------------------------------------------------+
-
 Scheduler Policies
 ==================
 
@@ -403,8 +407,8 @@ Hosts can be added to the system anytime with the ``onehost`` command. You can a
 
 .. code::
 
-    $ onehost create host01 --im kvm --vm kvm --net dummy
-    $ onehost create host02 --im kvm --vm kvm --net dummy
+    $ onehost create host01 --im kvm --vm kvm 
+    $ onehost create host02 --im kvm --vm kvm
 
 The status of the hosts can be checked with the ``onehost list`` command:
 
@@ -428,7 +432,6 @@ And specific information about a host with ``show``:
     STATE                 : MONITORED
     IM_MAD                : kvm
     VM_MAD                : kvm
-    VN_MAD                : dummy
     LAST MONITORING TIME  : 1332756227
 
     HOST SHARES
