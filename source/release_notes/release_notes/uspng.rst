@@ -28,8 +28,6 @@ This is the list of the individual platform components that have been through th
 +------------------------------+---------------------------------------+
 | Microsoft Azure              | Current API version                   |
 +------------------------------+---------------------------------------+
-| IBM SoftLayer                | Current API version                   |
-+------------------------------+---------------------------------------+
 | Ceph                         | Hammer (LTS) v0.94                    |
 +------------------------------+---------------------------------------+
 
@@ -48,7 +46,7 @@ The following applies to all Front-Ends:
 
     # sudo gem install nokogiri -v 1.4.4
 
-- older ruby versions are not supported for **cloud bursting** (precisely for Microsoft Azure and IBM SoftLayer) and the :ref:`Sunstone commercial support integration <commercial_support_sunstone>`. For those supported distros with ruby versions <= 1.9.3 (like Centos 6.x) please update the ruby installation or use `rvm <https://rvm.io/>`__ to run a newer (>= 1.9.3) version (remember to run ``install_gems`` after the ruby upgrade is done to reinstall all gems)
+- older ruby versions are not supported for **cloud bursting** (specifically for Microsoft Azur) and the :ref:`Sunstone commercial support integration <commercial_support_sunstone>`. For those supported distros with ruby versions <= 1.9.3 (like Centos 6.x) please update the ruby installation or use `rvm <https://rvm.io/>`__ to run a newer (>= 1.9.3) version (remember to run ``install_gems`` after the ruby upgrade is done to reinstall all gems)
 
 - **OneFlow** requires a version >= 1.6.3 for treetop, packages distributed with Debian 8 includes an older version (1.4.5) and must be removed
 

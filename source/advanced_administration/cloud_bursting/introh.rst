@@ -4,7 +4,7 @@
 Cloud Bursting
 ===============
 
-Cloud bursting is a model in which the local resources of a Private Cloud are combined with resources from remote Cloud providers. The remote provider could be a commercial Cloud service, such as Amazon EC2, IBM SoftLayer or Microsoft Azure. Such support for cloud bursting enables highly scalable hosting environments.
+Cloud bursting is a model in which the local resources of a Private Cloud are combined with resources from remote Cloud providers. The remote provider could be a commercial Cloud service, such as Amazon EC2, or Microsoft Azure. Such support for cloud bursting enables highly scalable hosting environments.
 
 |image0|
 
@@ -18,7 +18,7 @@ As you may know, OpenNebula’s approach to cloud bursting is quite unique. The 
        3 kvm-1           -           0       0 / 100 (0%)     0K / 1.8G (0%) on
        4 us-east-1       ec2         0       0 / 500 (0%)     0K / 8.5G (0%) on
 
-On the other hand, the **transparency to end users** is offered through the hybrid template functionality: the same VM template in OpenNebula can describe the VM if it is deployed locally and also if it gets deployed in EC2, SoftLayer or Azure. So users just have to instantiate the template, and OpenNebula will transparently choose if that is executed locally or remotely. A simple template like the following is enough to launch Virtual Machines in EC2:
+On the other hand, the **transparency to end users** is offered through the hybrid template functionality: the same VM template in OpenNebula can describe the VM if it is deployed locally and also if it gets deployed in EC2, or Azure. So users just have to instantiate the template, and OpenNebula will transparently choose if that is executed locally or remotely. A simple template like the following is enough to launch Virtual Machines in EC2:
 
 .. code::
 
@@ -45,12 +45,10 @@ For more information on how to configure an Amazon EC2 host see the following gu
 
 -  :ref:`Amazon EC2 driver <ec2g>`
 
-For more information on how to configure a SoftLayer host see the following guide:
-
--  :ref:`SoftLayer driver <slg>`
-
 For more information on how to configure an Azure host see the following guide:
 
 -  :ref:`Azure driver <azg>`
 
 .. |image0| image:: /images/hybridcloud.png
+
+Additionally, there is support of IBM SoftLayer available as add-on `here <https://github.com/OpenNebula/addon-softlayer>`__.
