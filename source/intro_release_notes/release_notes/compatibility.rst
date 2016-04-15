@@ -23,6 +23,7 @@ Context is now generated whenever a VirtualMachine is started in a host, i.e. wh
 
 Virutal Machine Management
 --------------------------------------------------------------------------------
+
 Virtual Machines in RUNNING state can take disk snapshots if the drivers support it (kvm with ceph or qcow2) otherwise the VM needs to be manually powered off or suspended. Similarly, disk snapshot revert operation requires the VM to be powered off or suspended. The strategy option has been removed from the VMM drivers, as well as the DISK_SNAPSHOT_REVERT state (for VMs doing a snapshot operation while RUNNING).
 
 VNC port assignment has been improved in 5.0 to support TCP port reservations and to better reuse the port pool. The VNC port is checked now at the cluster level and not zone-wise, so a VM can be deployed/migrated in/to any host in the selected cluster. The automatic port selection assignment will first try ``VNC_PORTS[START] + VMID`` as in previous versions. Moreover, in this new version if the user sets a port its availability is first checked. ``VNC_BASE_PORT`` attribute in ``oned.conf`` has been changed to ``VNC_PORTS`` to include also a set of reserved ports.
@@ -93,6 +94,8 @@ Deprecated Components
 The Xen hypervisor is no longer included in the main distribution. It can be however manually installed through the `Xen Add-on <https://github.com/OpenNebula/addon-xen>`__.
 
 The VMware hypervisor is no longer included in the main distribution. Users are encourage to migrate to the more roboust and enterprise-ready :ref:`VMware vCenter Drivers <vcenterg>`.
+
+The SoftLayer Hybrid driver is no longer included in the main distribution. It can be however manually installed through the `SoftLayer Add-on <https://github.com/OpenNebula/addon-softlayer>`__.
 
 Developers and Integrators
 ================================================================================
