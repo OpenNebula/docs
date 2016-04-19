@@ -1,15 +1,15 @@
 .. _intro:
 
 ==========================
-An Overview of OpenNebula
+OpenNebula Overview
 ==========================
 
-OpenNebula offers a **simple but feature-rich and flexible solution** to build and manage data center virtualization and enterprise clouds. This introductory guide gives an overview of OpenNebula and summarizes its key features for the different roles involved in a cloud computing setup. You can also refer to our a summarized table of `Key Features <http://opennebula.org/about/key-features/>`__ or to the :ref:`Detailed Features and Functionality Guide <features>` included in the documentation of each version.
+**Welcome to OpenNebula documentation!**. If you are new to OpenNebula you should go through this short introduction before proceeding to the deployment and administration guides. 
 
-The Simplest Deployment and Management Experience
+The Simplest Cloud Deployment and Management Experience
 =================================================
 
-The main OpenNebula distribution provides full support for the two most widely used hypervisors, KVM and VMware (through vCenter), at different levels of functionality. 
+OpenNebula is an open-source management platform to build IaaS private, public and hybrid clouds. The main OpenNebula distribution provides full support for the two most widely used hypervisors, KVM and VMware (through vCenter), at different levels of functionality. 
 
 - **Virtualization and Cloud Management on KVM**. Many companies use OpenNebula to manage data center virtualization, consolidate  servers, and integrate existing IT assets for computing, storage, and networking. In this deployment model, OpenNebula directly integrates with KVM and has complete control over virtual and physical resources, providing advanced features for capacity management, resource optimization, high availability and business continuity. Some of these deployments additionally use OpenNebula’s **Cloud  Management and Provisioning** features when they want to federate data centers, implement cloudbursting, or offer self-service portals for end users.
 - **Cloud Management on VMware vCenter**. Other companies use OpenNebula to provide a multi-tenant, cloud-like provisioning layer on top of VMware vCenter. These deployments are looking for provisioning, elasticity and multi-tenancy cloud features like virtual data centers provisioning, datacenter federation or hybrid cloud computing to connect in-house infrastructures with public clouds, while the infrastructure is managed by already familiar tools for infrastructure management and operation, such as vSphere and vCenter Operations Manager.
@@ -21,7 +21,7 @@ There are other virtualization technologies, like LXC or Xen, supported by the c
 TODO: FIgure
 
 
-Interfaces
+OpenNebula on 
 ===============================================
 
 Because no two clouds are the same, OpenNebula provides many different interfaces that can be used to interact with the functionality offered to manage physical and virtual resources. There are four main different perspectives to interact with OpenNebula:
