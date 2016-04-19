@@ -11,7 +11,7 @@ OpenNebula is an open-source management platform to build IaaS private, public a
 1. Choose Your Hypervisor
 =================================================
 
-The first step is to decide on the main hypervisor that you will use in your cloud infrastructure. The main OpenNebula distribution provides full support for the two most widely used hypervisors, KVM and VMware (through vCenter), at different levels of functionality. 
+The first step is to decide on the hypervisor that you will use in your cloud infrastructure. The main OpenNebula distribution provides full support for the two most widely used hypervisors, KVM and VMware (through vCenter), at different levels of functionality. 
 
 - **Virtualization and Cloud Management on KVM**. Many companies use OpenNebula to manage data center virtualization, consolidate  servers, and integrate existing IT assets for computing, storage, and networking. In this deployment model, OpenNebula directly integrates with KVM and has complete control over virtual and physical resources, providing advanced features for capacity management, resource optimization, high availability and business continuity. Some of these deployments additionally use OpenNebula’s **Cloud  Management and Provisioning** features when they want to federate data centers, implement cloudbursting, or offer self-service portals for end users.
 
