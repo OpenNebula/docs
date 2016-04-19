@@ -13,6 +13,13 @@ This introductory guide gives an overview of OpenNebula and summarizes its main 
 What Are the Key Features Provided by OpenNebula?
 =================================================
 
+OpenNebula provides features at the two main layers of Data Center Virtualization and Cloud Infrastructure:
+
+- **Data Center Virtualization Management**. Many of our users use OpenNebula to manage data center virtualization,  consolidate  servers, and  integrate existing IT assets for computing, storage, and networking. In this deployment model, OpenNebula directly integrates with the hypervisor (mostly KVM) and has complete control over virtual and physical resources, providing advanced features for capacity management, resource optimization, high availability and business continuity. Some of these users also enjoy OpenNebula’s cloud management and provisioning features when they additional want to federate data centers, implement cloudbursting, or offer self-service portals for users.
+- **Cloud Management**. We also have users that use OpenNebula to provide a multi-tenant, cloud-like provisioning layer on top of an existing infrastructure management solution (mostly VMware vCenter). These users are looking for provisioning, elasticity and multi-tenancy cloud features like virtual data centers provisioning, datacenter federation or hybrid cloud computing to connect in-house infrastructures with public clouds, while the infrastructure is managed by already familiar tools for infrastructure management and operation.
+
+TODO: FIgure
+
 You can refer to our a summarized table of `Key Features <http://opennebula.org/about/key-features/>`__ or to the :ref:`Detailed Features and Functionality Guide <features>` included in the documentation of each version.
 
 What Are the Interfaces Provided by OpenNebula?
