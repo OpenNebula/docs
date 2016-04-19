@@ -25,7 +25,11 @@ TODO: Figure
 2. Design and Installation
 ===============================================
 
-2.a. go through this short introduction on concepts and terminology before proceeding to the installation or administration guides.
+2.1. 
+--------------------------------
+
+
+go through this short introduction on concepts and terminology before proceeding to the installation or administration guides.
 
 It is very important that get 
 
