@@ -4,7 +4,7 @@
 An Overview of OpenNebula
 ==========================
 
-OpenNebula offers a **simple but feature-rich and flexible solution** to build and manage enterprise clouds and virtualized data centers. This introductory guide gives an overview of OpenNebula and summarizes its main benefits for the different roles involved in a cloud computing setup.
+OpenNebula offers a **simple but feature-rich and flexible solution** to build and manage enterprise clouds and virtualized data centers. This introductory guide gives an overview of OpenNebula and summarizes its key features for the different roles involved in a cloud computing setup.
 
 Key Features
 =================================================
@@ -30,7 +30,7 @@ Because no two clouds are the same, OpenNebula provides many different interface
 
 |OpenNebula Cloud Interfaces|
 
-Benefits for Cloud Consumers
+Key Features for Cloud Consumers
 ==============================================
 
 OpenNebula provides a powerful, scalable and secure multi-tenant cloud platform for fast delivery and elasticity of virtual resources. Multi-tier applications can be deployed and consumed as pre-configured virtual appliances from catalogs.
@@ -43,7 +43,7 @@ OpenNebula provides a powerful, scalable and secure multi-tenant cloud platform 
 
 |OpenNebula Cloud Support for Virtual Infrastructures|
 
-Benefits for Cloud Operators
+Key Features for Cloud Operators
 ==============================================
 
 
@@ -79,7 +79,7 @@ OpenNebula is all about simplicity. It has been designed to be extremely simple.
 
 |OpenNebula Cloud Internals|
 
-Benefits for Cloud Builders
+Key Features for Cloud Builders
 =============================================
 
 OpenNebula is a turnkey enterprise-ready solution that includes all the features needed to provide an on-premises (private) cloud offering, and to offer public cloud services. 
@@ -103,7 +103,7 @@ OpenNebula offers broad support for commodity and enterprise-grade hypervisor, m
 
 |OpenNebula Cloud Platform Support|
 
-Benefits for Cloud Integrators
+Key Features for Cloud Integrators
 ================================================
 
 OpenNebula is fully platform independent and offers many tools for cloud integrators:
