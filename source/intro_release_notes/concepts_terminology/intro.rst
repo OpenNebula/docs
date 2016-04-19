@@ -4,25 +4,21 @@
 An Overview of OpenNebula
 ==========================
 
-OpenNebula offers a **simple but feature-rich and flexible solution** to build and manage enterprise clouds and virtualized data centers. OpenNebula is a turnkey enterprise-ready solution that includes all the features needed to provide an on-premises (private) cloud offering, and to offer public cloud services. 
+OpenNebula offers a **simple but feature-rich and flexible solution** to build and manage enterprise clouds and virtualized data centers. This introductory guide gives an overview of OpenNebula and summarizes its main benefits for the different roles involved in a cloud computing setup.
 
-OpenNebula is all about simplicity. It has been designed to be extremely simple. Simple to install, update and operate for the cloud administrators, and simple to use by end users. 
-
-This introductory guide gives an overview of OpenNebula and summarizes its main benefits for the different roles involved in a cloud computing setup.
-
-What Are the Key Features Provided by OpenNebula?
+Key Features
 =================================================
 
 OpenNebula provides features at the two main layers of Data Center Virtualization and Cloud Infrastructure:
 
-- **Data Center Virtualization Management**. Many of our users use OpenNebula to manage data center virtualization,  consolidate  servers, and  integrate existing IT assets for computing, storage, and networking. In this deployment model, OpenNebula directly integrates with the hypervisor (mostly KVM) and has complete control over virtual and physical resources, providing advanced features for capacity management, resource optimization, high availability and business continuity. Some of these users also enjoy OpenNebula’s cloud management and provisioning features when they additional want to federate data centers, implement cloudbursting, or offer self-service portals for users.
-- **Cloud Management**. We also have users that use OpenNebula to provide a multi-tenant, cloud-like provisioning layer on top of an existing infrastructure management solution (mostly VMware vCenter). These users are looking for provisioning, elasticity and multi-tenancy cloud features like virtual data centers provisioning, datacenter federation or hybrid cloud computing to connect in-house infrastructures with public clouds, while the infrastructure is managed by already familiar tools for infrastructure management and operation.
+- **Data Center Virtualization Management**. Many companies use OpenNebula to manage data center virtualization,  consolidate  servers, and  integrate existing IT assets for computing, storage, and networking. In this deployment model, OpenNebula directly integrates with the hypervisor (mostly KVM) and has complete control over virtual and physical resources, providing advanced features for capacity management, resource optimization, high availability and business continuity. Some of these users additionally enjoy OpenNebula’s cloud management and provisioning features when they additional want to federate data centers, implement cloudbursting, or offer self-service portals for end users.
+- **Cloud Management**. Other companies use OpenNebula to provide a multi-tenant, cloud-like provisioning layer on top of an existing infrastructure management solution (mostly VMware vCenter). These users are looking for provisioning, elasticity and multi-tenancy cloud features like virtual data centers provisioning, datacenter federation or hybrid cloud computing to connect in-house infrastructures with public clouds, while the infrastructure is managed by already familiar tools for infrastructure management and operation.
 
 TODO: FIgure
 
 You can refer to our a summarized table of `Key Features <http://opennebula.org/about/key-features/>`__ or to the :ref:`Detailed Features and Functionality Guide <features>` included in the documentation of each version.
 
-What Are the Interfaces Provided by OpenNebula?
+Interfaces
 ===============================================
 
 Because no two clouds are the same, OpenNebula provides many different interfaces that can be used to interact with the functionality offered to manage physical and virtual resources. There are four main different perspectives to interact with OpenNebula:
@@ -34,7 +30,7 @@ Because no two clouds are the same, OpenNebula provides many different interface
 
 |OpenNebula Cloud Interfaces|
 
-What Does OpenNebula Offer to Cloud Consumers?
+Benefits for Cloud Consumers
 ==============================================
 
 OpenNebula provides a powerful, scalable and secure multi-tenant cloud platform for fast delivery and elasticity of virtual resources. Multi-tier applications can be deployed and consumed as pre-configured virtual appliances from catalogs.
@@ -47,10 +43,11 @@ OpenNebula provides a powerful, scalable and secure multi-tenant cloud platform 
 
 |OpenNebula Cloud Support for Virtual Infrastructures|
 
-What Does OpenNebula Offer to Cloud Operators?
+Benefits for Cloud Operators
 ==============================================
 
-OpenNebula is composed of the following subsystems:
+
+OpenNebula is all about simplicity. It has been designed to be extremely simple. Simple to install, update and operate for the cloud administrators, and simple to use by end users. OpenNebula is composed of the following subsystems:
 
 -  **Users and Groups**: OpenNebula features advanced multi-tenancy with powerful :ref:`users and groups management <manage_users>`, :ref:`fine-grained ACLs <manage_acl>` for resource allocation, and :ref:`resource quota management <quota_auth>` to track and limit computing, storage and networking utilization.
 
@@ -82,9 +79,10 @@ OpenNebula is composed of the following subsystems:
 
 |OpenNebula Cloud Internals|
 
-What Does OpenNebula Offer to Cloud Builders?
+Benefits for Cloud Builders
 =============================================
 
+OpenNebula is a turnkey enterprise-ready solution that includes all the features needed to provide an on-premises (private) cloud offering, and to offer public cloud services. 
 
 
 OpenNebula offers broad support for commodity and enterprise-grade hypervisor, monitoring, storage, networking and user management services:
@@ -105,7 +103,7 @@ OpenNebula offers broad support for commodity and enterprise-grade hypervisor, m
 
 |OpenNebula Cloud Platform Support|
 
-What Does OpenNebula Offer to Cloud Integrators?
+Benefits for Cloud Integrators
 ================================================
 
 OpenNebula is fully platform independent and offers many tools for cloud integrators:
