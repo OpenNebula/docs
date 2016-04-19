@@ -4,7 +4,9 @@
 An Overview of OpenNebula
 ==========================
 
-OpenNebula offers a **simple but feature-rich and flexible solution** to build and manage enterprise clouds and virtualized data centers. OpenNebula is a turnkey enterprise-ready solution that includes all the features needed to provide an on-premises (private) cloud offering, and to offer public cloud services. OpenNebula is designed to be simple. Simple to install, update and operate by the admins, and simple to use by end users. 
+OpenNebula offers a **simple but feature-rich and flexible solution** to build and manage enterprise clouds and virtualized data centers. OpenNebula is a turnkey enterprise-ready solution that includes all the features needed to provide an on-premises (private) cloud offering, and to offer public cloud services. 
+
+OpenNebula is all about simplicity. It has been designed to be extremely simple. Simple to install, update and operate for the cloud administrators, and simple to use by end users. 
 
 This introductory guide gives an overview of OpenNebula and summarizes its main benefits for the different roles involved in a cloud computing setup.
 
