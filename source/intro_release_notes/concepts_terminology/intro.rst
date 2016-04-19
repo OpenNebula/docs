@@ -23,21 +23,28 @@ TODO: Figure
 
 
 2. Design and Installation
-===============================================
+===========================
 
-2.1. 
---------------------------------
-
+2.1. Understand the OpenNebula Provisioning Model
+--------------------------------------------------
 
 go through this short introduction on concepts and terminology before proceeding to the installation or administration guides.
 
-It is very important that get 
-
-Generally speaking, most CloudStack deployments consist of the management server and the resources to be managed. During deployment you inform the management server of the resources to be managed, such as IP address blocks, storage devices, hypervisors, and VLANs.
-
+2.2. Design the Cloud Architetcure
+--------------------------------------------------
 
 
-This guide intents to provide pointers to information for each step of the installation process, which includes the installation of OpenNebula and also the configuration of the infrastructure needed to turn your hardware into a cloud fabric.
+2.3. Install the Front-end
+--------------------------------------------------
+
+
+2.4. Installa the Virtualization Nodes
+--------------------------------------------------
+
+A node is a host or a vCeter node...
+
+
+
 
 
 Infrastructure Set-up
