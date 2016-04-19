@@ -1,7 +1,7 @@
 .. _sunstone:
 
 =================================================
-OpenNebula Sunstone: The Cloud Operations Center
+OpenNebula Sunstone
 =================================================
 
 OpenNebula Sunstone is the OpenNebula Cloud Operations Center, a Graphical User Interface (GUI) intended for regular users and administrators that simplifies the typical management operations in private and hybrid cloud infrastructures. OpenNebula Sunstone allows to easily manage all OpenNebula resources and perform typical operations on them.
