@@ -12,24 +12,6 @@ This guide also illustrates the three main types of cloud infrastructures that a
 * Simple cloud provisioning model
 * Advanced cloud provisioning model
 
-Definitions
-================================================================================
-
-To make it easier to follow this guide, here is a list of the main resources and how we refer to them in OpenNebula:
-
-* Physical Resources
-
-  * **Host**: A physical machine with a hypervisor installed.
-  * **Virtual Network**: Describes a Physical Network, and a set of IPs.
-  * **Datastore**: Storage medium used as disk images repository or to hold images for running VMs
-  * **Cluster**: Group of physical resources (Hosts, Virtual Networks and Datastores) that share common characteristics or configurations. For example, you can have the "kvm" and "vcenter" Clusters, the "kvm-ceph" and "kvm-gluster" Clusters, the "Dev" and "Production" Clusters, or the "infiniband" and "ehternet" Clusters.
-  * **Zone**: A single OpenNebula instance consisting of one or several Clusters. A single Data Center (DC) can hold one or several Zones. Several Zones can be federeated within a single Cloud.
-
-* Organization Resources
-
-  * **User**: An OpenNebula user account.
-  * **Group**: A group of Users.
-  * **Virtual Data Center (VDC)**: Defines an assignment of one or several Groups to a pool of Physical Resources. Typically this pool of Physical Resources consists of resources from one or several Clusters that could belong to different Zones or public external clouds for hybrid cloud computing.
 
 The Infrastructure Perspective
 ================================================================================
