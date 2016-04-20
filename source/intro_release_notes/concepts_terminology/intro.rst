@@ -54,7 +54,7 @@ Step 3. Infrastructure Set-up
 3.1. Data Center Infrastructure Integration
 --------------------------------------------------
 
-Now you should have an OpenNebula cloud up and running with at least one virtualization node. The next step is, if needed, to perform the integration of OpenNebula with your infrastructure platform and define the configuration of its components. When using the vCenter driver, the interaction with the underlying netwotking, storage and compute infrastructure is performed through vCenter. 
+Now you should have an OpenNebula cloud up and running with at least one virtualization node. The next step is, if needed, to perform the integration of OpenNebula with your infrastructure platform and define the configuration of its components. When using the vCenter driver, no additonal integragtion is required because the interaction with the underlying networking, storage and compute infrastructure is performed through vCenter. 
 
 However when using KVM, OpenNebula directly manages the hypervisor, networking and storage platforms. In the open cloud architecture, you may be interested in checking the guides for 
 
@@ -80,21 +80,28 @@ Step 4. Operation and Usage
 --------------------------------------------------
 You are now ready to operate and use your cloud infrastructure. 
 
-OpenNebula provides complete functionality for the management of the :ref:`physical hosts <host_guide>` in the cloud
+Regarding the underlying infrastructure, OpenNebula provides complete functionality for the management of the :ref:`physical hosts <host_guide>` and :ref:`clusters <cluster_guide>`in the cloud.
 
+OpenNebula features advanced multi-tenancy with powerful :ref:`users and groups management <manage_users>`, a powerful :ref:`Access Control List <manage_acl>` mechanism allowing different role management with fine grain permission granting over any resource managed by OpenNebula, support for isolation at different levels, :ref:`resource quota management <quota_auth>` to track and limit computing, storage and networking utilization, a configurable :ref:`accounting system <accounting>` to visualize and report resource usage data and to allow their integration with chargeback and billing platforms, or to guarantee fair share of resources among users.
 
-OpenNebula features advanced multi-tenancy with powerful :ref:`users and groups management <manage_users>`, :ref:`fine-grained ACLs <manage_acl>` for resource allocation, and :ref:`resource quota management <quota_auth>` to track and limit computing, storage and networking utilization.
-
--  **Virtualization**: Various hypervisors are supported with the ability to control the complete lifecycle of Virtual Machines and multiple hypervisors in the same cloud infrastructure.
-
-
-4.2. Virtual Resources Manaegment
+4.2. Virtual Resources Management
 --------------------------------------------------
 
-OpenNebula provides ruch functionality to manage the life-cycle of all v
+OpenNebula provides ruch functionality to manage the life-cycle of all virtual resources.
+
+OpenNebula provides a powerful, scalable and secure multi-tenant cloud platform for fast delivery and elasticity of virtual resources. Multi-tier applications can be deployed and consumed as pre-configured virtual appliances from catalogs.
+
+-  **Image Catalogs**: OpenNebula allows to store :ref:`disk images in catalogs <img_guide>` (termed datastores), that can be then used to define VMs or shared with other users. The images can be OS installations, persistent data sets or empty data blocks that are created within the datastore.
+-  **Network Catalogs**: :ref:`Virtual networks <vgg>` can be also be organised in network catalogs, and provide means to interconnect virtual machines. This kind of resources can be defined as IPv4, IPv6, or mixed networks, and can be used to achieve full isolation between virtual networks.
+-  **VM Template Catalog**: The :ref:`template catalog <vm_guide>` system allows to register :ref:`virtual machine <vm_guide_2>` definitions in the system, to be instantiated later as virtual machine instances.
+-  **Virtual Resource Control and Monitoring**: Once a template is instantiated to a virtual machine, there are a number of operations that can be performed to control lifecycle of the :ref:`virtual machine instances <vm_guide_2>`, such as migration (live and cold), stop, resume, cancel, poweroff, etc.
 
 Step 5. Advanced Components
 ===============================================
+
+-  Cloud interfaces for **Cloud Consumers**, like :ref:`EC2 Query and EBS <ec2qug>` interfaces, and a simple :ref:`Sunstone cloud user view <cloud_view>` that can be used as a self-service portal.
+
+-  **Multi-tier Application Management**: OpenNebula allows to :ref:`define, execute and manage multi-tiered elastic applications <appflow_use_cli>`, or services composed of interconnected Virtual Machines with deployment dependencies between them and :ref:`auto-scaling rules <appflow_elasticity>`.
 
 Step 6. Integration with other Components
 ===============================================
@@ -102,7 +109,6 @@ Step 6. Integration with other Components
 
 Because no two clouds are the same, OpenNebula provides many different interfaces that can be used to interact with the functionality offered to manage physical and virtual resources. There are four main different perspectives to interact with OpenNebula:
 
--  Cloud interfaces for **Cloud Consumers**, like :ref:`EC2 Query and EBS <ec2qug>` interfaces, and a simple :ref:`Sunstone cloud user view <cloud_view>` that can be used as a self-service portal.
 -  Administration interfaces for **Cloud Advanced Users and Operators**, like a Unix-like :ref:`command line interface <cli>` and the powerful :ref:`Sunstone GUI <sunstone>`.
 -  Extensible low-level APIs for **Cloud Integrators** in :ref:`Ruby <ruby>`, :ref:`JAVA <java>` and :ref:`XMLRPC API <api>`
 -  A :ref:`Marketplace <marketplace>` for **Appliance Builders** with a catalog of virtual appliances ready to run in OpenNebula environments.
@@ -112,13 +118,7 @@ Because no two clouds are the same, OpenNebula provides many different interface
 Key Features for Cloud Consumers
 ==============================================
 
-OpenNebula provides a powerful, scalable and secure multi-tenant cloud platform for fast delivery and elasticity of virtual resources. Multi-tier applications can be deployed and consumed as pre-configured virtual appliances from catalogs.
 
--  **Image Catalogs**: OpenNebula allows to store :ref:`disk images in catalogs <img_guide>` (termed datastores), that can be then used to define VMs or shared with other users. The images can be OS installations, persistent data sets or empty data blocks that are created within the datastore.
--  **Network Catalogs**: :ref:`Virtual networks <vgg>` can be also be organised in network catalogs, and provide means to interconnect virtual machines. This kind of resources can be defined as IPv4, IPv6, or mixed networks, and can be used to achieve full isolation between virtual networks.
--  **VM Template Catalog**: The :ref:`template catalog <vm_guide>` system allows to register :ref:`virtual machine <vm_guide_2>` definitions in the system, to be instantiated later as virtual machine instances.
--  **Virtual Resource Control and Monitoring**: Once a template is instantiated to a virtual machine, there are a number of operations that can be performed to control lifecycle of the :ref:`virtual machine instances <vm_guide_2>`, such as migration (live and cold), stop, resume, cancel, poweroff, etc.
--  **Multi-tier Application Management**: OpenNebula allows to :ref:`define, execute and manage multi-tiered elastic applications <appflow_use_cli>`, or services composed of interconnected Virtual Machines with deployment dependencies between them and :ref:`auto-scaling rules <appflow_elasticity>`.
 
 |OpenNebula Cloud Support for Virtual Infrastructures|
 
@@ -131,17 +131,14 @@ OpenNebula is all about simplicity. It has been designed to be extremely simple 
 
 -  **Monitoring**: Virtual resources as well as :ref:`hosts <hostsubsystem>` are periodically monitored for key performance indicators. The information can then used by a powerful and flexible :ref:`scheduler <schg>` for the definition of workload and resource-aware allocation policies. You can also :ref:`gain insight application status and performance <onegate_usage>`.
 
--  **Accounting**: A Configurable :ref:`accounting system <accounting>` to visualize and report resource usage data, to allow their integration with chargeback and billing platforms, or to guarantee fair share of resources among users.
 
 -  **Networking**: An easily adaptable and customizable :ref:`network subsystem <nm>` is present in OpenNebula in order to better integrate with the specific network requirements of existing data centers and to allow full isolation between virtual machines that composes a virtualised service.
 
 -  **Storage**: The support for multiple datastores in the :ref:`storage subsystem <sm>` provides extreme flexibility in planning the storage backend and important performance benefits.
 
--  **Security**: This feature is spread across several subsystems: :ref:`authentication and authorization mechanisms <auth_overview>` allowing for various possible mechanisms to identify a authorize users, a powerful :ref:`Access Control List <manage_acl>` mechanism allowing different role management with fine grain permission granting over any resource managed by OpenNebula, support for isolation at different levels...
 
 -  **High Availability**: Support for :ref:`HA architectures <oneha>` and :ref:`configurable behavior in the event of host or VM failure <ftguide>` to provide easy to use and cost-effective failover solutions.
 
--  **Clusters**: :ref:`Clusters <cluster_guide>` are pools of hosts that share datastores and virtual networks. Clusters are used for load balancing, high availability, and high performance computing.
 
 -  **Multiple Zones**: The :ref:`Data Center Federation <introf>` functionality allows for the centralized management of multiple instances of OpenNebula for scalability, isolation and multiple-site support.
 
