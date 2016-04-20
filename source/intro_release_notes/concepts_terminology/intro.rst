@@ -56,13 +56,13 @@ Step 3. Infrastructure Set-up
 
 Now you should have an OpenNebula cloud up and running with at least one virtualization node. The next step is, if needed, to perform the integration of OpenNebula with your infrastructure platform and define the configuration of its components. When using the vCenter driver, no additonal integragtion is required because the interaction with the underlying networking, storage and compute infrastructure is performed through vCenter. 
 
-However when using KVM, OpenNebula directly manages the hypervisor, networking and storage platforms. In the open cloud architecture, you may be interested in checking the guides for 
+However when using KVM, in the open cloud architecture, OpenNebula directly manages the hypervisor, networking and storage platforms, and you may need additional configuration:
 
 -  Networking setup with :ref:`802.1Q VLANs <hm-vlan>`, :ref:`ebtables <ebtables>`, :ref:`Open vSwitch <openvswitch>` or :ref:`VXLAN <vxlan>`.
 
 -  Storage setup with :ref:`filesystem datastore <fs_ds>`, :ref:`LVM datastore <lvm_drivers>` or :ref:`Ceph <ceph_ds>`.
 
--  Host setup, and the guide with the configuration options for the hosts, like high availability or scheduling. [TODO: Add links]
+-  Host setup with the configuration options for the hosts, like high availability or scheduling. [TODO: Add links]
 
 3.2. Cloud Services Configuration
 --------------------------------------------------
@@ -71,14 +71,14 @@ OpenNebula comes by default with an internal user/password authentication system
 
 Sunstone, the OpenNebula GUI, brings by default a pre-defined configuration of views. Optionally it can be customized and extended to meet your needs. You can :ref:`customize the roles and views <suns_views>`, :ref:`improve security with x509 authentication and SSL <suns_auth>` or :ref:`improve scalability for large deployments <suns_advance>`.
 
-We also provide a detailed description of the different configuration files, and logging and debugging reports of the OpenNebula services. [TODO: Add links]
+We also provide references with a detailed description of the different configuration files, and logging and debugging reports of the OpenNebula services. [TODO: Add links]
 
 Step 4. Operation and Usage
 ===============================================
 
 4.1. Host and User Management
 --------------------------------------------------
-You are now ready to operate and use your cloud infrastructure. 
+You are now ready to operate and use your cloud infrastructure.  VDC (Virtual Data Center) defines an assignment of one or several groups to a pool of physical resources
 
 Regarding the underlying infrastructure, OpenNebula provides complete functionality for the management of the :ref:`physical hosts <host_guide>` and :ref:`clusters <cluster_guide>`in the cloud.
 
