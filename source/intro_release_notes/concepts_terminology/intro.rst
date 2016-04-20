@@ -46,20 +46,23 @@ Optionally you can setup a :ref:`high available cluster for OpenNebula <frontend
 2.4. Install the Virtualization hosts
 --------------------------------------------------
 
-Now you are ready to add the virtualization nodes. The OpenNebula packages bring support for :ref:`KVM <kvm_node>` and :ref:`vCenter <vCenter_node>`vCenter nodes. In the case of vCenter, a host represents a vCenter cluster with all its ESX hosts. You can add different hypervisors to the same OpenNebula instance, or any other virtualization technology, like LXC or Xen, supported by the community. Please refer to the OpenNebula Add-ons Catalog [TODO: Add link].
+Now you are ready to add the virtualization nodes. The OpenNebula packages bring support for :ref:`KVM <kvm_node>` and :ref:`vCenter <vCenter_node>` nodes. In the case of vCenter, a host represents a vCenter cluster with all its ESX hosts. You can add different hypervisors to the same OpenNebula instance, or any other virtualization technology, like LXC or Xen, supported by the community. Please refer to the OpenNebula Add-ons Catalog [TODO: Add link].
 
 Step 3. Infrastructure Set-up
 ===============================================
 
-Now you should have an OpenNebula cloud up and running. This step performs the integration of OpenNebula with your infrastructure platform and defines the configuration of its components.
+Now you should have an OpenNebula cloud up and running with at least one virtualziation node. The next step is, if needed, to perform the integration of OpenNebula with your infrastructure platform and define the configuration of its components.
 
-When using the vCenter driver, the interaction with the underlying netwotking, storage and compute infrastructure is performed through vCenter. However when using KVM, OpenNebula directly manages the hypervisor, networking and storage platforms. In the open cloud architecture, you may be interested in checking the guides for networking setup and storage setup, and the guide with the configuration options for the hosts, like high availability or scheduling. [TODO: Add link]
+When using the vCenter driver, the interaction with the underlying netwotking, storage and compute infrastructure is performed through vCenter. However when using KVM, OpenNebula directly manages the hypervisor, networking and storage platforms. In the open cloud architecture, you may be interested in checking the guides for 
+-  Networking setup with :ref:`802.1Q VLANs <hm-vlan>`, :ref:`ebtables <ebtables>`, :ref:`Open vSwitch <openvswitch>` or :ref:`VXLAN <vxlan>`.
+-  Storage setup with :ref:`filesystem datastore <fs_ds>`, :ref:`LVM datastore <lvm_drivers>` or :ref:`Ceph <ceph_ds>`.
+-  Host setup, and the guide with the configuration options for the hosts, like high availability or scheduling. [TODO: Add links]
 
 OpenNebula comes by default with an internal user/password authentication system. Optionally you can enable an external Authentication driver like :ref:`ssh <ssh_auth>`, :ref:`x509 <x509_auth>`, :ref:`ldap <ldap>` or :ref:`Active Directory <ldap>`.
 
 Sunstone, the OpenNebula GUI, brings by default a pre-defined configuration of views. Optionally it can be customized and extended to meet your needs. You can :ref:`customize the roles and views <suns_views>`, :ref:`improve security with x509 authentication and SSL <suns_auth>` or :ref:`improve scalability for large deployments <suns_advance>`.
 
-We also provide a detailed description of the different configuration files, and logging and debugging reports of the OpenNebula services. [TODO: Add link]
+We also provide a detailed description of the different configuration files, and logging and debugging reports of the OpenNebula services. [TODO: Add links]
 
 Step 4. Operation and Usage
 ===============================================
@@ -135,15 +138,9 @@ Key Features for Cloud Builders
 
 OpenNebula offers broad support for commodity and enterprise-grade hypervisor, monitoring, storage, networking and user management services. The main OpenNebula distributions brings support for:
 
--  **User Management**: OpenNebula can validate users using its own internal user database based on :ref:`passwords <manage_users>`, or external mechanisms, .
-
--  **Virtualization**: :ref:`KVM <kvmg>` and VMware (through vCenter) are fully supported.
-
 -  **Monitoring**: OpenNebula provides its own :ref:`customizable and highly scalable monitoring system <mon>` and also can be integrated with external data center monitoring tools.
 
--  **Networking**: Virtual networks can be backed up by :ref:`802.1Q VLANs <hm-vlan>`, :ref:`ebtables <ebtables>`, :ref:`Open vSwitch <openvswitch>` or :ref:`VXLAN <vxlan>`.
 
--  **Storage**: Multiple backends are supported like the regular (shared or not) :ref:`filesystem datastore <fs_ds>` supporting popular distributed file systems like NFS, Lustre, GlusterFS, ZFS, GPFS, MooseFS...; the :ref:`LVM datastore <lvm_drivers>` to store disk images in a block device form; and :ref:`Ceph <ceph_ds>` for distributed block device.
 
 
 -  **Cloud Bursting**: Out of the box connectors are shipped to support :ref:`Amazon EC2 <ec2g>` and :ref:`Microsoft Azure <azg>` cloudbursting.
