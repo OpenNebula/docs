@@ -21,16 +21,17 @@ After having installed the cloud with one hypervisor you may add another hypervi
 
 There are other virtualization technologies, like LXC or Xen, supported by the community. Please refer to the OpenNebula Add-ons Catalog [TODO: Add link].
 
-TODO: Figure
+[TODO: Add Figure]
 
 
 2. Design and Installation
 ===========================
 
+
 2.1. Understand the OpenNebula Provisioning Model
 --------------------------------------------------
 
-go through this short introduction on concepts and terminology before proceeding to the installation or administration guides.
+Before defining the architeture of your cloud, we recommend you go through this introduction to the :ref:`OpenNebula provisioning model <understand>`. In a small installation with a few hosts, you can use OpenNebula without giving much thought to infrastructure federation, partitioning and provisioning. But for medium and large deployments you will probably want to provide some level of isolation and structure. 
 
 2.2. Design the Cloud Architetcure
 --------------------------------------------------
