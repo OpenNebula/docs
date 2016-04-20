@@ -54,8 +54,11 @@ Step 3. Infrastructure Set-up
 Now you should have an OpenNebula cloud up and running with at least one virtualziation node. The next step is, if needed, to perform the integration of OpenNebula with your infrastructure platform and define the configuration of its components.
 
 When using the vCenter driver, the interaction with the underlying netwotking, storage and compute infrastructure is performed through vCenter. However when using KVM, OpenNebula directly manages the hypervisor, networking and storage platforms. In the open cloud architecture, you may be interested in checking the guides for 
+
 -  Networking setup with :ref:`802.1Q VLANs <hm-vlan>`, :ref:`ebtables <ebtables>`, :ref:`Open vSwitch <openvswitch>` or :ref:`VXLAN <vxlan>`.
+
 -  Storage setup with :ref:`filesystem datastore <fs_ds>`, :ref:`LVM datastore <lvm_drivers>` or :ref:`Ceph <ceph_ds>`.
+
 -  Host setup, and the guide with the configuration options for the hosts, like high availability or scheduling. [TODO: Add links]
 
 OpenNebula comes by default with an internal user/password authentication system. Optionally you can enable an external Authentication driver like :ref:`ssh <ssh_auth>`, :ref:`x509 <x509_auth>`, :ref:`ldap <ldap>` or :ref:`Active Directory <ldap>`.
