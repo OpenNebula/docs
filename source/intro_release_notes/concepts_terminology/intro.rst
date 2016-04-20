@@ -4,9 +4,9 @@
 Start Here: OpenNebula Overview
 ================================================================================
 
-**Welcome to OpenNebula documentation!**.
+Welcome to OpenNebula documentation!
 
-OpenNebula is an open-source management platform to build IaaS private, public and hybrid clouds. Installing a cloud from scratch could be a complex process, in the sense that many concepts are involved. The degree of familiarity with these concepts (system administration, infrastructure planning, virtualization management) will determine the difficulty of the installation process. If you are new to OpenNebula you should go through this short introduction before proceeding to the deployment and administration guides.
+OpenNebula is an open-source management platform to build IaaS private, public and hybrid clouds. Installing a cloud from scratch could be a complex process, in the sense that many components and concepts are involved. The degree of familiarity with these concepts (system administration, infrastructure planning, virtualization management) will determine the difficulty of the installation process. If you are new to OpenNebula you should go through this short introduction before proceeding to the deployment and administration guides.
 
 1. Choose Your Hypervisor
 =================================================
@@ -17,9 +17,9 @@ The first step is to decide on the hypervisor that you will use in your cloud in
 
 -  **Cloud Management on VMware vCenter**. Other companies use OpenNebula to provide a multi-tenant, cloud-like provisioning layer on top of VMware vCenter. These deployments are looking for provisioning, elasticity and multi-tenancy cloud features like virtual data centers provisioning, datacenter federation or hybrid cloud computing to connect in-house infrastructures with public clouds, while the infrastructure is managed by already familiar tools for infrastructure management and operation, such as vSphere and vCenter Operations Manager.
 
-After having installed the cloud with one hypervisor you may add another hypervisors. You can have heterogeneous multi-hypervisor environments managed by a single OpenNebula instance. An advantage of using OpenNebula on VMware is the strategic path to openness as companies move beyond virtualization toward a private cloud. OpenNebula can leverage existing VMware infrastructure, protecting IT investments, and at the same time gradually integrate other open-source hypervisors, therefore avoiding future vendor lock-in and strengthening the negotiating position of the company.
+After having installed the cloud with one hypervisor you may add another hypervisors. You can deploy heterogeneous multi-hypervisor environments managed by a single OpenNebula instance. An advantage of using OpenNebula on VMware is the strategic path to openness as companies move beyond virtualization toward a private cloud. OpenNebula can leverage existing VMware infrastructure, protecting IT investments, and at the same time gradually integrate other open-source hypervisors, therefore avoiding future vendor lock-in and strengthening the negotiating position of the company.
 
-There are other virtualization technologies, like LXC or Xen, supported by the community. Please refer to the OpenNebula Add-ons Catalog.
+There are other virtualization technologies, like LXC or Xen, supported by the community. Please refer to the OpenNebula Add-ons Catalog [TODO: Add link].
 
 TODO: Figure
 
