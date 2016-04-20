@@ -23,10 +23,8 @@ There are other virtualization technologies, like LXC or Xen, supported by the c
 
 [TODO: Add Figure]
 
-
 Step 2. Cloud Design and Installation
 =======================================
-
 
 2.1. Understand the OpenNebula Provisioning Model
 --------------------------------------------------
@@ -53,11 +51,20 @@ Now you are ready to add the virtualization nodes. The OpenNebula packages bring
 Step 3. Infrastructure Set-up
 ===============================================
 
+Now you should have an OpenNebula cloud up and running. This step performs the integration of OpenNebula with your infrastructure platform and defines the configuration of its components.
 
+When using the vCenter driver, the interaction with the underlying netwotking, storage and compute infrastructure is performed through vCenter. However when using KVM, OpenNebula directly manages the hypervisor, networking and storage platforms. In the open cloud architecture, you may be interested in checking the guides for networking setup and storage setup, and the guide with the configuration options for the hosts, like high availability or scheduling. [TODO: Add link]
 
+OpenNebula comes by default with an internal user/password authentication system. Optionally you can enable an external Authentication driver. [TODO: Add link]
 
-Operation and Usage
+Sunstone, the OpenNebula GUI, brings by default a pre-defined configuration of views. Optionally you can it can be customized and extended to meet your needs. [TODO: Add link]
+
+We also provide a detailed description of the different configuration files, and logging and debugging reports of the OpenNebula services. [TODO: Add link]
+
+Step 4. Operation and Usage
 ===============================================
+
+
 
 Advanced Components
 ===============================================
