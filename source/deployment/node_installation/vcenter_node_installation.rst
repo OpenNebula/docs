@@ -1,4 +1,5 @@
 .. _vcenterg:
+.. _vcenter_node:
 
 =========================
 vCenter Node Installation
