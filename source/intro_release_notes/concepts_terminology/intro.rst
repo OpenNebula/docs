@@ -33,9 +33,10 @@ There are other virtualization technologies, like LXC or Xen, supported by the c
 
 Before defining the architeture of your cloud, we recommend you go through this introduction to the :ref:`OpenNebula provisioning model <understand>`. In a small installation with a few hosts, you can use OpenNebula without giving much thought to infrastructure federation, partitioning and provisioning. But for medium and large deployments you will probably want to provide some level of isolation and structure. 
 
-2.2. Design the Cloud Architetcure
+2.2. Design the Cloud Architecture
 --------------------------------------------------
 
+In order to get the most out of a OpenNebula Cloud, we recommend that you create a plan with the features, performance, scalability, and high availability characteristics you want in your deployment. We have prepared Cloud Architecture Design guides for :ref:`KVM <open_cloud_architecture>` and :ref:`vCenter <vmware_cloud_architecture>` to help you plan an OpenNebula installation, so you can easily architect your deployment and understand the technologies involved in the management of virtualized resources and their relationship. These guides have been created from the collective information and experiences from hundreds of users and cloud client engagements. Besides main logical components and interrelationships, this guides document software products, configurations, and requirements of infrastructure platforms recommended for a smooth OpenNebula installation.
 
 2.3. Install the Front-end
 --------------------------------------------------
