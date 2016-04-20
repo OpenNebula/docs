@@ -5,6 +5,7 @@ Infrastructure Integration
 .. toctree::
    :maxdepth: 2
 
+   Overview <overview>
    Using Hooks <hooks>
    Virtualization Driver <devel-vmm>
    Storage Driver <sd>

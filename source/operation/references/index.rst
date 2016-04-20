@@ -5,6 +5,7 @@ References
 .. toctree::
    :maxdepth: 2
 
+   Overview <overview>
    Virtual Machine Definition File <template>
    Virtual Machine States Reference <vm_states>
    Image Definition Template <img_template>
