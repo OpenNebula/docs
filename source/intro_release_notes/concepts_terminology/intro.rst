@@ -8,7 +8,7 @@ Welcome to OpenNebula documentation!
 
 OpenNebula is an open-source management platform to build IaaS private, public and hybrid clouds. Installing a cloud from scratch could be a complex process, in the sense that many components and concepts are involved. The degree of familiarity with these concepts (system administration, infrastructure planning, virtualization management) will determine the difficulty of the installation process. If you are new to OpenNebula you should go through this short introduction before proceeding to the deployment and administration guides.
 
-1. Choose Your Hypervisor
+Step 1. Choose Your Hypervisor
 =================================================
 
 The first step is to decide on the hypervisor that you will use in your cloud infrastructure. The main OpenNebula distribution provides full support for the two most widely used hypervisors, KVM and VMware (through vCenter), at different levels of functionality.
@@ -24,8 +24,8 @@ There are other virtualization technologies, like LXC or Xen, supported by the c
 [TODO: Add Figure]
 
 
-2. Design and Installation
-===========================
+Step 2. Cloud Design and Installation
+=======================================
 
 
 2.1. Understand the OpenNebula Provisioning Model
@@ -36,23 +36,25 @@ Before defining the architeture of your cloud, we recommend you go through this 
 2.2. Design the Cloud Architecture
 --------------------------------------------------
 
-In order to get the most out of a OpenNebula Cloud, we recommend that you create a plan with the features, performance, scalability, and high availability characteristics you want in your deployment. We have prepared Cloud Architecture Design guides for :ref:`KVM <open_cloud_architecture>` and :ref:`vCenter <vmware_cloud_architecture>` to help you plan an OpenNebula installation, so you can easily architect your deployment and understand the technologies involved in the management of virtualized resources and their relationship. These guides have been created from the collective information and experiences from hundreds of users and cloud client engagements. Besides main logical components and interrelationships, this guides document software products, configurations, and requirements of infrastructure platforms recommended for a smooth OpenNebula installation.
+In order to get the most out of a OpenNebula Cloud, we recommend that you create a plan with the features, performance, scalability, and high availability characteristics you want in your deployment. We have prepared Cloud Architecture Design guides for :ref:`KVM <open_cloud_architecture>` and :ref:`vCenter <vmware_cloud_architecture>` to help you plan an OpenNebula installation, so you can easily architect your deployment and understand the technologies involved in the management of virtualized resources and their relationship. These guides have been created from the collective information and experiences from hundreds of users and cloud client engagements. Besides main logical components and interrelationships, this guides document software products, configurations, and requirements of infrastructure platforms recommended for a smooth OpenNebula installation. 
 
 2.3. Install the Front-end
 --------------------------------------------------
 
+Next step is the installation of OpenNebula in the cloud front-end. This :ref:`installation process<frontend_installation>` is the same for any underlying hypervisor. 
 
-2.4. Installa the Virtualization Nodes
+Optionally you can setup a :ref:`high available cluster for OpenNebula <frontend_ha_setup>` for OpenNebula to reduce downtime of core OpenNebula services, and :ref:`configure a MySQL backend <mysql>` as an alternative to the default Sqlite backend if you are planning a large-scale infrastructure.
+
+2.4. Install the Virtualization hosts
 --------------------------------------------------
 
-A node is a host or a vCeter node...
+Now you are ready to add the virtualization nodes. The OpenNebula packages bring support for :ref:`KVM <kvm_node>` and :ref:`vCenter <vCenter_node>`vCenter nodes. In the case of vCenter, a host represents a vCenter cluster with all its ESX hosts. You can add different hypervisors to an OpenNebula instance, or any other virtualization technology, like LXC or Xen, supported by the community. Please refer to the OpenNebula Add-ons Catalog [TODO: Add link].
 
-
-
-
-
-Infrastructure Set-up
+Step 3. Infrastructure Set-up
 ===============================================
+
+
+
 
 Operation and Usage
 ===============================================
