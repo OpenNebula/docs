@@ -64,12 +64,12 @@ We also provide a detailed description of the different configuration files, and
 Step 4. Operation and Usage
 ===============================================
 
+OpenNebula provides...
 
-
-Advanced Components
+Step 5. Advanced Components
 ===============================================
 
-Integration with other Components
+Step 6. Integration with other Components
 ===============================================
 
 
