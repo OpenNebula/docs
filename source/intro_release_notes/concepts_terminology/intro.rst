@@ -51,15 +51,21 @@ Now you are ready to add the virtualization nodes. The OpenNebula packages bring
 Step 3. Infrastructure Set-up
 ===============================================
 
-Now you should have an OpenNebula cloud up and running with at least one virtualziation node. The next step is, if needed, to perform the integration of OpenNebula with your infrastructure platform and define the configuration of its components.
+3.1. Data Center Infrastructure Integration
+--------------------------------------------------
 
-When using the vCenter driver, the interaction with the underlying netwotking, storage and compute infrastructure is performed through vCenter. However when using KVM, OpenNebula directly manages the hypervisor, networking and storage platforms. In the open cloud architecture, you may be interested in checking the guides for 
+Now you should have an OpenNebula cloud up and running with at least one virtualization node. The next step is, if needed, to perform the integration of OpenNebula with your infrastructure platform and define the configuration of its components. When using the vCenter driver, the interaction with the underlying netwotking, storage and compute infrastructure is performed through vCenter. 
+
+However when using KVM, OpenNebula directly manages the hypervisor, networking and storage platforms. In the open cloud architecture, you may be interested in checking the guides for 
 
 -  Networking setup with :ref:`802.1Q VLANs <hm-vlan>`, :ref:`ebtables <ebtables>`, :ref:`Open vSwitch <openvswitch>` or :ref:`VXLAN <vxlan>`.
 
 -  Storage setup with :ref:`filesystem datastore <fs_ds>`, :ref:`LVM datastore <lvm_drivers>` or :ref:`Ceph <ceph_ds>`.
 
 -  Host setup, and the guide with the configuration options for the hosts, like high availability or scheduling. [TODO: Add links]
+
+3.2. Cloud Services Configuration
+--------------------------------------------------
 
 OpenNebula comes by default with an internal user/password authentication system. Optionally you can enable an external Authentication driver like :ref:`ssh <ssh_auth>`, :ref:`x509 <x509_auth>`, :ref:`ldap <ldap>` or :ref:`Active Directory <ldap>`.
 
@@ -70,7 +76,22 @@ We also provide a detailed description of the different configuration files, and
 Step 4. Operation and Usage
 ===============================================
 
-OpenNebula provides...
+4.1. Host and User Management
+--------------------------------------------------
+You are now ready to operate and use your cloud infrastructure. 
+
+OpenNebula provides complete functionality for the management of the :ref:`physical hosts <host_guide>` in the cloud
+
+
+OpenNebula features advanced multi-tenancy with powerful :ref:`users and groups management <manage_users>`, :ref:`fine-grained ACLs <manage_acl>` for resource allocation, and :ref:`resource quota management <quota_auth>` to track and limit computing, storage and networking utilization.
+
+-  **Virtualization**: Various hypervisors are supported with the ability to control the complete lifecycle of Virtual Machines and multiple hypervisors in the same cloud infrastructure.
+
+
+4.2. Virtual Resources Manaegment
+--------------------------------------------------
+
+OpenNebula provides ruch functionality to manage the life-cycle of all v
 
 Step 5. Advanced Components
 ===============================================
@@ -106,11 +127,7 @@ Key Features for Cloud Operators
 
 OpenNebula is all about simplicity. It has been designed to be extremely simple to install, update and operate for the cloud administrators:
 
--  **Users and Groups**: OpenNebula features advanced multi-tenancy with powerful :ref:`users and groups management <manage_users>`, :ref:`fine-grained ACLs <manage_acl>` for resource allocation, and :ref:`resource quota management <quota_auth>` to track and limit computing, storage and networking utilization.
-
--  **Virtualization**: Various hypervisors are supported with the ability to control the complete lifecycle of Virtual Machines and multiple hypervisors in the same cloud infrastructure.
-
--  **Hosts**: The :ref:`host manager <host_guide>` provides complete functionality for the management of the physical hosts in the cloud.
+.
 
 -  **Monitoring**: Virtual resources as well as :ref:`hosts <hostsubsystem>` are periodically monitored for key performance indicators. The information can then used by a powerful and flexible :ref:`scheduler <schg>` for the definition of workload and resource-aware allocation policies. You can also :ref:`gain insight application status and performance <onegate_usage>`.
 
