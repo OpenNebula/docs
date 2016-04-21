@@ -27,7 +27,7 @@ There are other virtualization technologies, like LXC or Xen, supported by the c
 
 [TODO: Add Figure]
 
-Step 2. Cloud Design and Installation
+Step 2. Design and Install the Cloud
 =======================================
 
 2.1. Design the Cloud Architecture
@@ -47,11 +47,11 @@ Optionally you can setup a :ref:`high available cluster for OpenNebula <frontend
 
 Now you are ready to **add the virtualization nodes**. The OpenNebula packages bring support for :ref:`KVM <kvm_node>` and :ref:`vCenter <vCenter_node>` nodes. In the case of vCenter, a host represents a vCenter cluster with all its ESX hosts. You can add different hypervisors to the same OpenNebula instance, or any other virtualization technology, like LXC or Xen, supported by the community. Please refer to the OpenNebula Add-ons Catalog [TODO: Add link].
 
-Step 3. Infrastructure Set-up
+Step 3. Set-up Infrastructure and Services
 ===============================================
 
-3.1. Data Center Infrastructure Integration
---------------------------------------------------
+3.1. Integrate with Data Center Infrastructure 
+------------------------------------------------------------
 
 Now you should have an OpenNebula cloud up and running with at least one virtualization node. The next step is, if needed, to perform the integration of OpenNebula with your infrastructure platform and define the configuration of its components. When using the vCenter driver, no additonal integragtion is required because the interaction with the underlying networking, storage and compute infrastructure is performed through vCenter. 
 
@@ -63,7 +63,7 @@ However when using KVM, in the open cloud architecture, OpenNebula directly mana
 
 -  **Host setup** with the configuration options for the hosts, like high availability or scheduling. [TODO: Add links]
 
-3.2. Cloud Services Configuration
+3.2. Configure Cloud Services 
 --------------------------------------------------
 
 OpenNebula comes by default with an internal **user/password authentication system**. Optionally you can enable an external Authentication driver like :ref:`ssh <ssh_auth>`, :ref:`x509 <x509_auth>`, :ref:`ldap <ldap>` or :ref:`Active Directory <ldap>`.
@@ -72,10 +72,10 @@ OpenNebula comes by default with an internal **user/password authentication syst
 
 We also provide **references** with a detailed description of the different configuration files, and logging and debugging reports of the OpenNebula services. [TODO: Add references and links]
 
-Step 4. Operation and Usage
+Step 4. Operate your Coud
 ===============================================
 
-4.1. Provisioning Model
+4.1. Define a Provisioning Model
 --------------------------------------------------
 
 Before configuring multi-tenancy and defining the provisioning model of your cloud, we recommend you go through this introduction to the :ref:`OpenNebula provisioning model <understand>`. In a small installation with a few hosts, you can skip this guide and use OpenNebula without giving much thought to infrastructure partitioning and provisioning. But for medium and large deployments you will probably want to provide some level of isolation and structure. 
@@ -86,7 +86,7 @@ Before configuring multi-tenancy and defining the provisioning model of your clo
 
 -  Last but not least, you can define VDCs (Virtual Data Center) as assignments of one or several user groups to a pool of physical resources. While clusters are used to group physical resources according to common characteristics such as networking topology or physical location, Virtual Data Centers (VDCs) allow to create “logical” pools of resources (which could belong to different clusters and cones) and allocate them to user groups.  
 
-4.2. Virtual Resources Management
+4.2. Manage Virtual Resources 
 --------------------------------------------------
 
 Now everything is ready for operation. OpenNebula provides full control to manage virtual resources. [TODO: Explain not all features available for vCenter, such us security groups.. virtual router]
@@ -101,15 +101,15 @@ Now everything is ready for operation. OpenNebula provides full control to manag
 
 [TODO: Talk about References and about the CLI]
 
-4.3. Virtual Machine Creation
+4.3. Create Virtual Machines
 --------------------------------------------------
 
 One of the most important aspects of teh cloud is the **preparation of the images** for our users. [TODO: Add link and more details]
 
-Step 5. Advanced Components
+Step 5. Install Advanced Components
 ===============================================
 
-This step is only for advanced users. We recommend you  familiarize with OpenNebula before installing these components.
+This step is optionaly and only for advanced users. We recommend you  familiarize with OpenNebula before installing these components.
 
 OpenNebula brings the following advanced components:
 
@@ -125,8 +125,10 @@ OpenNebula brings the following advanced components:
 
 -  **Cloud bursting** gives support to build a :ref:`hybrid cloud <introh>`, an extension of a private cloud to combine local resources with resources from remote cloud providers. A whole public cloud provider can be encapsulated as a local resource to be able to use extra computational capacity to satisfy peak demands. Out of the box connectors are shipped to support :ref:`Amazon EC2 <ec2g>` and :ref:`Microsoft Azure <azg>` cloudbursting.
 
-Step 6. Integration with other Components
+Step 6. Integrate with other Components
 ===============================================
+
+This step is optionaly and only for integrators and builders.
 
 Because no two clouds are the same, OpenNebula provides many different interfaces that can be used to interact with the functionality offered to manage physical and virtual resources.
 
