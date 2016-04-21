@@ -78,11 +78,11 @@ Step 4. Operation and Usage
 
 4.1. Host and User Management
 --------------------------------------------------
-You are now ready to operate and use your cloud infrastructure.  VDC (Virtual Data Center) defines an assignment of one or several groups to a pool of physical resources
+You are now ready to define the :ref:` provisioning model <understand>` in your cloud. 
 
-Regarding the underlying infrastructure, OpenNebula provides complete functionality for the management of the :ref:`physical hosts <host_guide>` and :ref:`clusters <cluster_guide>`in the cloud.
-
-OpenNebula features advanced multi-tenancy with powerful :ref:`users and groups management <manage_users>`, a powerful :ref:`Access Control List <manage_acl>` mechanism allowing different role management with fine grain permission granting over any resource managed by OpenNebula, support for isolation at different levels, :ref:`resource quota management <quota_auth>` to track and limit computing, storage and networking utilization, a configurable :ref:`accounting system <accounting>` to visualize and report resource usage data and to allow their integration with chargeback and billing platforms, or to guarantee fair share of resources among users.
+Regarding user management, OpenNebula features advanced multi-tenancy with powerful :ref:`users and groups management <manage_users>`, a :ref:`Access Control List <manage_acl>` mechanism allowing different role management with fine grain permission granting over any resource, :ref:`resource quota management <quota_auth>` to track and limit computing, storage and networking utilization, and a configurable :ref:`accounting  <accounting>` and :ref:`showback  <showback>` systems to visualize and report resource usage data and to allow their integration with chargeback and billing platforms, or to guarantee fair share of resources among users.
+Regarding the underlying infrastructure, OpenNebula provides complete functionality for the management of the :ref:`physical hosts <host_guide>` and :ref:`clusters <cluster_guide>`in the cloud. A Cluster is a group of Hosts that can have associated Datastores and Virtual Networks. 
+Last but not least, you can define VDCs (Virtual Data Center) as assignments of one or several user groups to a pool of physical resources. While clusters are used to group physical resources according to common characteristics such as networking topology or physical location, Virtual Data Centers (VDCs) allow to create “logical” pools of resources (which could belong to different clusters and cones) and allocate them to user groups.  
 
 4.2. Virtual Resources Management
 --------------------------------------------------
