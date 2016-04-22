@@ -27,7 +27,6 @@ Advanced Multi-tenancy with Group Management
 On-demand Provision of Virtual Data Centers
 ===========================================
 
-- A VDC is a fully-isolated virtual infrastructure environment where a Group of users, optionally under the control of the VDC admin, can create and manage compute and storage capacity.
 - User Groups can be assigned one or more resource providers. Resource providers are defined as a cluster of servers, virtual networks, datastores and public clouds for cloud bursting in an OpenNebula zone. Read more in the :ref:`Users and Groups Management Guide <managing_resource_provider_within_groups>`.
 - A special administration group can be defined to manage specific aspects of the group like user management or appliances definition. Read more in the :ref:`Managing Users and Groups <manage_users>` guide.
 - Sunstone views for new groups can be dynamically defined without the need of modifying the Sunstone configuration files. More information in the :ref:`Sunstone Views <suns_views>` guide.
@@ -64,7 +63,6 @@ Complete Virtual Machine Configuration
 -  :ref:`Hook Manager <hooks>` to trigger administration scripts upon VM state change
 -  Wide range of guest operating system including Microsoft Windows and Linux
 -  :ref:`Flexible network defintion <vnet_template>`
--  :ref:`Security Groups <security_groups>` to define firewall rules and apply them to Virtual Machines
 
 Advanced Control and Monitoring of Physical Infrastructure
 ==========================================================
@@ -122,7 +120,6 @@ Community Virtual Appliance Marketplace
 Management of Multi-tier Applications
 =====================================
 
--  :ref:`Automatic execution of multi-tiered applications <oneapps_overview>` with complete `functionality for the management of groups of virtual machines as a single entity <http://docs.opennebula.org/doc/4.10/cli/oneflow.1.html>`__: list, delete, scale up, scale down, shutdown... and the `management of Service Templates <http://docs.opennebula.org/doc/4.8/cli/oneflow-template.1.html>`__: create, show, delete, instantiate...
 -  :ref:`Automatic deployment and undeployment of Virtual Machines <appflow_use_cli>` according to their dependencies in the Service Template
 -  Provide configurable services from a catalog and self-service portal
 -  Enable tight, efficient administrative control
@@ -137,7 +134,6 @@ Management of Multi-tier Applications
 Gain Insight into Cloud Applications
 ====================================
 
--  :ref:`OneGate allows Virtual Machine guests to push monitoring information to OpenNebula <onegate_usage>`
 -  With a security token the VMs can call back home and report guest and/or application status in a simple way, that can be easily queried through OpenNebula interfaces (Sunstone, CLI or API).
 -  Users and administrators can use it to gather metrics, detect problems in their applications, and trigger :ref:`OneFlow auto-scaling rules <appflow_elasticity>`
 
@@ -151,10 +147,9 @@ Hybrid Cloud Computing and Cloud Bursting
 Standard Cloud Interfaces and Simple Provisioning Portal for Cloud Consumers
 ============================================================================
 
--  :ref:`Transform your local infrastructure into a public cloud by exposing REST-based interfaces <introc>`
 -  :ref:`AWS EC2 API service <ec2qcg>`, the de facto cloud API standard, with :ref:`compatibility with EC2 ecosystem tools <ec2qec>` and :ref:`client tools <ec2qug>`
 -  Support for simultaneously exposing multiple cloud APIs
--  :ref:`Provisioning portal implemented as a user Cloud View of Sunstone <cloud_view>` to allow non-IT end users to easily create, deploy and manage compute, storage and network resources
+
 -  VDCAdmin Sunstone view where VDC admins are able to create new users and manage the resources of the VDC.
 
 Rich Command Line and Web Interfaces for Cloud Administrators
