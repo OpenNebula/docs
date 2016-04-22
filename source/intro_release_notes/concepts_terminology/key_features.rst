@@ -8,7 +8,8 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 **INTERFACES FOR CLOUD CONSUMERS**
 
-- De-facto standard cloud APIs
+- :ref:`De-facto standard cloud APIs <introc>`
+
 
 - Simple, clean, intuitive Portals for cloud consumers and VDC admins
 
