@@ -8,28 +8,24 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 **INTERFACES FOR CLOUD CONSUMERS**
 
-- :ref:`De-facto standard cloud APIs <introc>`
-
-
-- Simple, clean, intuitive Portals for cloud consumers and VDC admins
+- :ref:`De-facto standard cloud APIs <introc>` with compatibility with cloud ecosystem tools
+- :ref:`Simple, clean, intuitive Portals for cloud consumers <cloud_view>` to allow non-IT end users to easily create, deploy and manage compute, storage and network resources
 
 
 **CLOUD CONSUMPTION**
 
-- Automatic installation and configuration of application environments and their secure sharing with other cloud users
+- :ref:`Automatic installation and configuration of application environments <context_overview>`
 
-- Automatic execution and scaling of multi-tiered (multi-VM)applications and their provision from a catalog and self-service portal
+- :ref:`Automatic execution of multi-tiered (multi-VM) applications <oneapps_overview>` and their provision from a catalog and self-service portal
 
-- Gain insight cloud applications so their status and metrics can be easily queried through OpenNebula interfaces and used in auto-scaling rules
-
-- Powerful and flexible contextualization system
+- :ref:`Gain insight cloud applications <onegate_overview>` so their status and metrics can be easily queried through OpenNebula interfaces and used in auto-scaling rules
 
 
 **ON-DEMAND PROVISION OF VIRTUAL DATA CENTERS**
 
-- A VDC is a fully-isolated virtual infrastructure environment where a Group of users, optionally under the control of the VDC admin, can create and manage compute and storage capacity
+- A :ref:`VDC <manage_vdcs>` is a fully-isolated virtual infrastructure environment where a Group of users, optionally under the control of the VDC admin, can create and manage compute and storage capacity
 
-- Sunstone views for new groups can be dynamically defined without the need of modifying the Sunstone configuration files
+- :ref:`Sunstone view for new group admin group_admin_view>` can be defined without the need of modifying the Sunstone configuration files
 
 
 **VIRTUAL MACHINE MANAGEMENT**
@@ -53,7 +49,9 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 - Full control, monitoring and accounting of virtual infrastructure resources
 
-- Virtual routers and security groups
+- Virtual routers
+
+-  :ref:`Security Groups <security_groups>` to define firewall rules and apply them to Virtual Machines
 
 
 **INTERFACES FOR ADMINISTRATORS AND ADVANCED USERS**	
