@@ -20,7 +20,7 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 +------------------------------+---------------------------------------+
 | VMware                       | ESX 5.5/6.0 & vCenter 5.5/6.0         |
 +------------------------------+---------------------------------------+
-| KVM                          | Support for version included in       |
+| KVM                          | -  Support for version included in       |
 |                              | the kernel for the Linux distribution |
 +------------------------------+---------------------------------------+
 | Amazon Web Service           | Current API version                   |
