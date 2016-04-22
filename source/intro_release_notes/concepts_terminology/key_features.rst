@@ -6,6 +6,34 @@ OpenNebula Key Features
 
 OpenNebula offers a **simple but feature-rich and flexible solution** to build and manage data center virtualization and enterprise clouds. This introductory guide gives an overview of OpenNebula and summarizes its key features for the different roles involved in a cloud computing setup. You can also refer to the summarized table of `Key Features <http://opennebula.org/about/key-features/>`__ available at the OpenNebula site or to the :ref:`Detailed Features and Functionality Guide <features>` included in the documentation of each version.
 
+
++------------------------------+---------------------------------------+
+| Certified Platform Component |                Version                |
++==============================+=======================================+
+| RedHat Enterprise Linux      | 6.5, 7.0                              |
++------------------------------+---------------------------------------+
+| Ubuntu Server                | 14.04 (LTS) , 15.04                   |
++------------------------------+---------------------------------------+
+| CentOS                       | 6.5, 7.0                              |
++------------------------------+---------------------------------------+
+| Debian                       | 8                                     |
++------------------------------+---------------------------------------+
+| VMware                       | ESX 5.5/6.0 & vCenter 5.5/6.0         |
++------------------------------+---------------------------------------+
+| KVM                          | Support for version included in       |
+|                              | the kernel for the Linux distribution |
++------------------------------+---------------------------------------+
+| Amazon Web Service           | Current API version                   |
++------------------------------+---------------------------------------+
+| Microsoft Azure              | Current API version                   |
++------------------------------+---------------------------------------+
+| Ceph                         | Hammer (LTS) v0.94                    |
++------------------------------+---------------------------------------+
+
+
+
+
+
 Interfaces
 ===============================================
 
