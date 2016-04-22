@@ -4,32 +4,110 @@
 OpenNebula Key Features
 ================================================================================
 
-OpenNebula offers a **simple but feature-rich and flexible solution** to build and manage data center virtualization and enterprise clouds. This introductory guide gives an overview of OpenNebula and summarizes its key features for the different roles involved in a cloud computing setup. You can also refer to the summarized table of `Key Features <http://opennebula.org/about/key-features/>`__ available at the OpenNebula site or to the :ref:`Detailed Features and Functionality Guide <features>` included in the documentation of each version.
+OpenNebula offers a **simple but feature-rich and flexible solution** to build and manage data center virtualization and enterprise clouds. This guide summarizes its key features. You can also refer to the :ref:`Platform Notes <features>` included in the documentation of each version to know about the infrastructure platforms and services supported by OpenNebula.
+
+INTERFACES FOR CLOUD CONSUMERS	
+De-facto standard cloud APIs
+Simple, clean, intuitive Portals for cloud consumers and VDC admins
+
+CLOUD CONSUMPTION
+Automatic installation and configuration of application environments and their secure sharing with other cloud users
+Automatic execution and scaling of multi-tiered (multi-VM)applications and their provision from a catalog and self-service portal
+Gain insight cloud applications so their status and metrics can be easily queried through OpenNebula interfaces and used in auto-scaling rules
+Powerful and flexible contextualization system
+
+ON-DEMAND PROVISION OF VIRTUAL DATA CENTERS
+A VDC is a fully-isolated virtual infrastructure environment where a Group of users, optionally under the control of the VDC admin, can create and manage compute and storage capacity
+Sunstone views for new groups can be dynamically defined without the need of modifying the Sunstone configuration files
+
+VIRTUAL MACHINE MANAGEMENT
+Virtual infrastructure management adjusted to enterprise data centers
+Complete life-cycle management of virtual resources
+Full control, monitoring and accounting of virtual infrastructure resources
+Virtual routers and security groups
+Programmable VM operations, so allowing users to schedule actions
+
+VIRTUAL NETWORK MANAGEMENT
+Virtual infrastructure management adjusted to enterprise data centers
+Complete life-cycle management of virtual resources
+Full control, monitoring and accounting of virtual infrastructure resources
+Virtual routers and security groups
 
 
-+------------------------------+---------------------------------------+
-| Certified Platform Component |                Version                |
-+==============================+=======================================+
-| RedHat Enterprise Linux      | 6.5, 7.0                              |
-+------------------------------+---------------------------------------+
-| Ubuntu Server                | 14.04 (LTS) , 15.04                   |
-+------------------------------+---------------------------------------+
-| CentOS                       | 6.5, 7.0                              |
-+------------------------------+---------------------------------------+
-| Debian                       | 8                                     |
-+------------------------------+---------------------------------------+
-| VMware                       | ESX 5.5/6.0 & vCenter 5.5/6.0         |
-+------------------------------+---------------------------------------+
-| KVM                          | -  Support for version included in       |
-|                              | the kernel for the Linux distribution |
-+------------------------------+---------------------------------------+
-| Amazon Web Service           | Current API version                   |
-+------------------------------+---------------------------------------+
-| Microsoft Azure              | Current API version                   |
-+------------------------------+---------------------------------------+
-| Ceph                         | Hammer (LTS) v0.94                    |
-+------------------------------+---------------------------------------+
+INTERFACES FOR ADMINISTRATORS AND ADVANCED USERS	
+Powerful CLI that resembles typical UNIX commands applications
+SunStone Portal for administrators and advanced users
 
+
+APPLIANCE MARKETPLACE	
+Create your private centralized catalog of cloud applications 
+Move images across different types of datastores 
+Share OpenNebula images in Federation environments
+
+
+ACCOUNTING AND CHARGEBACK	
+Fine-grained accounting and monitoring
+Easy integration with any billing system
+Showback system
+
+
+MULTI-TENANCY AND SECURITY
+Dynamic creation of Virtual Data Centers as fully-isolated virtual infrastructure environments where a group of users, under the control of the VDC administrator, can create and manage compute, storage and networking capacity
+Fine-grained ACLs for resource allocation
+Resource Quota Management to track and limit computing, storage and networking resource utilization
+Powerful user, group and role management
+Integration with external identity management services
+Login token functionality
+Fine-grained auditing
+Support for isolation at different levels
+
+
+CAPACITY AND PERFORMANCE MANAGEMENT	
+Dynamic creation of Clusters as pools of hosts that share datastores and virtual networks for load balancing, high availability, and high performance computing.
+Federation of multiple OpenNebula Zones for scalability, isolation or multiple-site support
+Powerful and flexible Scheduler for the definition of workload and resource-aware allocation policies such as packing, striping, load-aware, affinity-aware…
+
+
+HIGH AVAILABILITY AND BUSINESS CONTINUITY	
+High availability architecture
+Persistent database backend with support for high availability configurations
+Configurable behavior in the event of host or VM failure to provide easy to use and cost-effective failover solutions
+
+
+CLOUD BURSTING	
+Native support for hybrid cloud computing
+
+
+PLATFORM	
+Fully platform independent
+Broad support for commodity and enterprise-grade hypervisor, monitoring, storage, networking and user management services
+Packages for major Linux distributions
+
+
+INTEGRATION WITH THIRD-PARTY TOOLS	
+Modular and extensible architecture
+Customizable plug-ins for integration with any third-party data center service
+API for integration with higher level tools such as billing, self-service portals…
+Powerful hooking system
+
+LICENSING	
+Fully open-source software released under Apache license
+
+UPGRADE PROCESS	
+Automatic import of existing environments
+All key functionalities for enterprise cloud computing, storage and networking in a single install
+Long term stability and performance through a single integrated patching and upgrade process
+
+
+QUALITY ASSURANCE	
+Internal quality assurance process for functionality, scalability, performance, robustness and stability
+Technology matured through an active and engaged large community
+Scalability, reliability and performance tested on many massive scalable production deployments
+
+
+PRODUCT SUPPORT	
+Best-effort community support
+SLA-based commercial support directly from the developers
 
 
 
