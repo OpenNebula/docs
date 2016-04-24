@@ -31,7 +31,7 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 **VIRTUAL MACHINE MANAGEMENT**
 
-- Virtual infrastructure management adjusted to enterprise data centers with full control, monitoring and accounting of virtual infrastructure resources
+- Virtual infrastructure management adjusted to enterprise data centers with full control, monitoring and accounting of virtual  resources
 
 - Virtual machine image management through :ref:`catalogs of disk images <img_guide>` (termed datastores) with OS installations, persistent data sets or empty data blocks that are created within the datastore
 
@@ -62,36 +62,33 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 **APPLIANCE MARKETPLACE**	
 
-- Create your private centralized catalog of cloud applications 
+- Access to the public `OpenNebula Systems Marketplace <http://marketplace.opennebula.systems>` with a catalog of :ref:`OpenNebula-ready <bcont>` cloud images
 
-- Move VM images and templates across different types of datastores 
+- Create your private centralized catalog (external satastore) of cloud applications (images and templates)  [TODO: Add link]
 
-- Share OpenNebula images in Federation environments
+- Move VM images and templates across different types of datastores within the same OpenNebula instance  [TODO: Add link]
+
+- Share VM images in Federation environments across several OpenNebula instances  [TODO: Add link]
 
 
-**ACCOUNTING AND CHARGEBACK**	
+**ACCOUNTING AND SHOWBACK**	
 
-- Fine-grained accounting and monitoring
+- Configurable :ref:`accounting system <accounting>` to report resource usage data and guarantee fair share of resources among users
 
-- Easy integration with any billing system
+- Easy integration with chargeback and billing platforms
 
-- Showback system
-
--  **Accounting**: A Configurable :ref:`accounting system <accounting>` to visualize and report resource usage data, to allow their integration with chargeback and billing platforms, or to guarantee fair share of resources among users.
-
+- Showback system  [TODO: Add link]
 
 
 **MULTI-TENANCY AND SECURITY**
 
-- Dynamic creation of Virtual Data Centers as fully-isolated virtual infrastructure environments where a group of users, under the control of the VDC administrator, can create and manage compute, storage and networking capacity
+- :ref:`Fine-grained ACLs <manage_acl>` for resource allocation
 
-- Fine-grained ACLs for resource allocation
+- :ref:`Resource quota management <quota_auth>` to track and limit computing, storage and networking resource utilization
 
-- Resource Quota Management to track and limit computing, storage and networking resource utilization
+- Powerful :ref:`user, group and role management <manage_users>`
 
-- Powerful user, group and role management
-
-- Integration with external identity management services
+- Integration with :ref:`external identity management services <auth_overview>`
 
 - Login token functionality
 
@@ -99,44 +96,30 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 - Support for isolation at different levels
 
--  **Users and Groups**: OpenNebula features advanced multi-tenancy with powerful :ref:`users and groups management <manage_users>`, :ref:`fine-grained ACLs <manage_acl>` for resource allocation, and :ref:`resource quota management <quota_auth>` to track and limit computing, storage and networking utilization.
-
--  **Security**: This feature is spread across several subsystems: :ref:`authentication and authorization mechanisms <auth_overview>` allowing for various possible mechanisms to identify a authorize users, a powerful :ref:`Access Control List <manage_acl>` mechanism allowing different role management with fine grain permission granting over any resource managed by OpenNebula, support for isolation at different levels...
-
--  **User Management**: OpenNebula can validate users using its own internal user database based on :ref:`passwords <manage_users>`, or external mechanisms, like :ref:`ssh <ssh_auth>`, :ref:`x509 <x509_auth>`, :ref:`ldap <ldap>` or :ref:`Active Directory <ldap>`.
-
 
 **CAPACITY AND PERFORMANCE MANAGEMENT**	
 
-- Dynamic creation of Clusters as pools of hosts that share datastores and virtual networks for load balancing, high availability, and high performance computing.
+- :ref:`Host management <host_guide>` with complete functionality for the management of the virtualziation nodes in the cloud
 
-- Federation of multiple OpenNebula Zones for scalability, isolation or multiple-site support
+- Dynamic creation of :ref:`Clusters <cluster_guide>` as pools of hosts that share datastores and virtual networks for load balancing, high availability, and high performance computing
 
-- Powerful and flexible Scheduler for the definition of workload and resource-aware allocation policies such as packing, striping, load-aware, affinity-aware…
+- :ref:`Federation of multiple OpenNebula Zones <introf>` for scalability, isolation or multiple-site support
 
--  **Hosts**: The :ref:`host manager <host_guide>` provides complete functionality for the management of the physical hosts in the cloud.
+- Powerful and flexible Scheduler for the definition of workload and resource-aware allocation policies such as packing, striping, load-aware, affinity-aware…  [TODO: Add link]
 
-
--  **Clusters**: :ref:`Clusters <cluster_guide>` are pools of hosts that share datastores and virtual networks. Clusters are used for load balancing, high availability, and high performance computing.
-
--  **Multiple Zones**: The :ref:`Data Center Federation <introf>` functionality allows for the centralized management of multiple instances of OpenNebula for scalability, isolation and multiple-site support.
 
 **HIGH AVAILABILITY AND BUSINESS CONTINUITY**	
 
-- High availability architecture
+- :ref:`High availability architecture <oneha>` in active-passive configuration
 
 - Persistent database backend with support for high availability configurations
 
-- Configurable behavior in the event of host or VM failure to provide easy to use and cost-effective failover solutions
-
--  **High Availability**: Support for :ref:`HA architectures <oneha>` and :ref:`configurable behavior in the event of host or VM failure <ftguide>` to provide easy to use and cost-effective failover solutions.
-
+- ref:`Configurable behavior in the event of host or VM failure <ftguide>` to provide easy to use and cost-effective failover solutions
 
 
 **CLOUD BURSTING**	
 
-- Native support for hybrid cloud computing
--  **Cloud Bursting**: OpenNebula gives support to build a :ref:`hybrid cloud <introh>`, an extension of a private cloud to combine local resources with resources from remote cloud providers. A whole public cloud provider can be encapsulated as a local resource to be able to use extra computational capacity to satisfy peak demands.
+- Build a :ref:`hybrid cloud <introh>` to combine your local resources with resources from remote cloud provider and use extra computational capacity to satisfy peak demands
 
 
 **PLATFORM**	
