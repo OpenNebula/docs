@@ -31,30 +31,26 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 **VIRTUAL MACHINE MANAGEMENT**
 
-- Virtual infrastructure management adjusted to enterprise data centers
+- Virtual infrastructure management adjusted to enterprise data centers with full control, monitoring and accounting of virtual infrastructure resources
 
--  Virtual machine image management through :ref:`catalogs of disk images <img_guide>` (termed datastores) that can be then used to define VMs or shared with other users. The images can be OS installations, persistent data sets or empty data blocks that are created within the datastore.
--  Virtual machine template management through :ref:`catalogs of templates <vm_guide>` that allow to register :ref:`virtual machine <vm_guide_2>` definitions in the system, to be instantiated later as virtual machine instances.
--  Virtual machine instance management to control lifecycle of the :ref:`virtual machine instances <vm_guide_2>`
+- Virtual machine image management through :ref:`catalogs of disk images <img_guide>` (termed datastores) with OS installations, persistent data sets or empty data blocks that are created within the datastore
 
--  :ref:`Programmable VM operations <vm_guide2_scheduling_actions>`, so allowing users to schedule actions
+-  Virtual machine template management through :ref:`catalogs of templates <vm_guide>` that allow to register :ref:`virtual machine <vm_guide_2>` definitions in the system to be instantiated later as virtual machine instances
 
+-  Virtual machine instance management with full control of :ref:`virtual machine lifecycle <vm_guide_2>`
 
+-  :ref:`Programmable VM operations <vm_guide2_scheduling_actions>` allowing users to schedule actions
 
 
 **VIRTUAL NETWORK MANAGEMENT**
 
 - Fully isolated :ref:`virtual networks <vgg>` organised in network catalogs that can be defined as IPv4, IPv6, or mixed networks.
 
-- Virtual infrastructure management adjusted to enterprise data centers
+- [TODO: Add Features]
 
-- Complete life-cycle management of virtual resources
+- Virtual routers [TODO: Add link]
 
-- Full control, monitoring and accounting of virtual infrastructure resources
-
-- Virtual routers
-
--  :ref:`Security Groups <security_groups>` to define firewall rules and apply them to Virtual Machines
+- :ref:`Security Groups <security_groups>` to define firewall rules and apply them to Virtual Machines
 
 
 **INTERFACES FOR ADMINISTRATORS AND ADVANCED USERS**	
@@ -68,7 +64,7 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 - Create your private centralized catalog of cloud applications 
 
-- Move images across different types of datastores 
+- Move VM images and templates across different types of datastores 
 
 - Share OpenNebula images in Federation environments
 
