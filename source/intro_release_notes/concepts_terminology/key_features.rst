@@ -105,7 +105,9 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 - :ref:`Federation of multiple OpenNebula Zones <introf>` for scalability, isolation or multiple-site support
 
-- Powerful and flexible Scheduler for the definition of workload and resource-aware allocation policies such as packing, striping, load-aware, affinity-aware…  [TODO: Add link]
+- ref:`customizable and highly scalable monitoring system <mon>` and also can be integrated with external data center monitoring tools.
+
+- Powerful and flexible :ref:`scheduler <schg>` for the definition of workload and resource-aware allocation policies such as packing, striping, load-aware, affinity-aware…  [TODO: Add link]
 
 
 **HIGH AVAILABILITY AND BUSINESS CONTINUITY**	
@@ -126,75 +128,63 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 - Fully platform independent
 
-- Various hypervisors are supported with the ability to control the complete lifecycle of Virtual Machines and multiple hypervisors in the same cloud infrastructure.
+- Multiple hypervisors in the same cloud infrastructure.
 
-- Broad support for commodity and enterprise-grade hypervisor, monitoring, storage, networking and user management services
+- Broad support for commodity and enterprise-grade hypervisor, monitoring, storage, networking and user management services [TODO: Link to PLatform Notes]
 
-- Packages for major Linux distributions
-
--  **Networking**: An easily adaptable and customizable :ref:`network subsystem <nm>` is present in OpenNebula in order to better integrate with the specific network requirements of existing data centers and to allow full isolation between virtual machines that composes a virtualised service.
-
--  **Storage**: The support for multiple datastores in the :ref:`storage subsystem <sm>` provides extreme flexibility in planning the storage backend and important performance benefits.
-
--  **Networking**: Virtual networks can be backed up by :ref:`802.1Q VLANs <hm-vlan>`, :ref:`ebtables <ebtables>`, :ref:`Open vSwitch <openvswitch>` or :ref:`VXLAN <vxlan>`.
-
--  **Storage**: Multiple backends are supported like the regular (shared or not) :ref:`filesystem datastore <fs_ds>` supporting popular distributed file systems like NFS, Lustre, GlusterFS, ZFS, GPFS, MooseFS...; the :ref:`LVM datastore <lvm_drivers>` to store disk images in a block device form; and :ref:`Ceph <ceph_ds>` for distributed block device.
-
--  **Monitoring**: Virtual resources as well as :ref:`hosts <hostsubsystem>` are periodically monitored for key performance indicators. The information can then used by a powerful and flexible :ref:`scheduler <schg>` for the definition of workload and resource-aware allocation policies. You can also :ref:`gain insight application status and performance <onegate_usage>`.
-
--  **Monitoring**: OpenNebula provides its own :ref:`customizable and highly scalable monitoring system <mon>` and also can be integrated with external data center monitoring tools.
+- Packages for major Linux distributions [TODO: Link]
 
 
-**INTEGRATION WITH THIRD-PARTY TOOLS**	
+**CUSTOMIZATION AND INTEGRATION**	
 
 - Modular and extensible architecture
 
-- Customizable plug-ins for integration with any third-party data center service
+- :ref:`Customizable plug-ins <intro_integration>` for integration with underlying data cservices 
 
-- API for integration with higher level tools such as billing, self-service portals…
+- :ref:`API for integration with higher level tools <introapis>` such as billing, self-service portals…
 
-- Powerful hooking system
-
-
--  **Modular and extensible architecture** with :ref:`customizable plug-ins <introapis>` for integration with any third-party data center service
-
--  **API for integration** with higher level tools such as billing, self-service portals... that offers all the rich functionality of the OpenNebula core, with bindings for :ref:`ruby <ruby>` and :ref:`java <java>`.
+-  **Hook Manager** to :ref:`trigger administration scripts upon VM state change <hooks>`.
 
 -  **Sunstone custom routes and tabs** to extend the :ref:`sunstone server <sunstone_dev>`.
 
 -  **OneFlow API** to create, control and monitor :ref:`multi-tier applications or services composed of interconnected Virtual Machines <appflow_api>`.
 
--  **Hook Manager** to :ref:`trigger administration scripts upon VM state change <hooks>`.
-
 
 **LICENSING**	
 
-- Fully open-source software released under Apache license
+- Fully open-source software released under Apache license [TODO: Link to GitHub]
+
 
 **UPGRADE PROCESS**	
 
-- Automatic import of existing environments
+- Automatic import of existing environments [TODO: Link to Overview of Virtualiation Node Installation Guide]
 
-- All key functionalities for enterprise cloud computing, storage and networking in a single install
+- All key functionalities for enterprise cloud computing, storage and networking in a single install [TODO: Link to Front-end Installaton Guide]
 
-- Long term stability and performance through a single integrated patching and upgrade process
+- Long term stability and performance through a single integrated patching and upgrade process  [TODO: Link to Upgrade in RN]
 
 
 **QUALITY ASSURANCE**	
 
-- Internal quality assurance process for functionality, scalability, performance, robustness and stability
+- Internal quality assurance process for functionality, scalability, performance, robustness and stability  [TODO: Link to web site page]
 
-- Technology matured through an active and engaged large community
+- Technology matured through an active and engaged large community [TODO: Link to community page]
 
 - Scalability, reliability and performance tested on many massive scalable production deployments
 
 
 **PRODUCT SUPPORT**	
 
-- Best-effort community support
+- Best-effort community support [TODO: Link to forum]
 
-- SLA-based commercial support directly from the developers
+- SLA-based commercial support directly from the developers  [TODO: Link to OpenNebula.pro]
 
+
+[TODO: This info should go to Platform Notes]
+
+-  **Networking**: Virtual networks can be backed up by :ref:`802.1Q VLANs <hm-vlan>`, :ref:`ebtables <ebtables>`, :ref:`Open vSwitch <openvswitch>` or :ref:`VXLAN <vxlan>`.
+
+-  **Storage**: Multiple backends are supported like the regular (shared or not) :ref:`filesystem datastore <fs_ds>` supporting popular distributed file systems like NFS, Lustre, GlusterFS, ZFS, GPFS, MooseFS...; the :ref:`LVM datastore <lvm_drivers>` to store disk images in a block device form; and :ref:`Ceph <ceph_ds>` for distributed block device.
 
 
 
