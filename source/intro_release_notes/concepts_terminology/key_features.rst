@@ -26,7 +26,7 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 - A :ref:`VDC <manage_vdcs>` is a fully-isolated virtual infrastructure environment where a Group of users, optionally under the control of the VDC admin, can create and manage compute and storage capacity
 
-- :ref:`Sunstone view for new group admin group_admin_view>` can be defined without the need of modifying the Sunstone configuration files
+- :ref:`Sunstone view for new group admin <suns_views_group_admin>` can be defined without the need of modifying the Sunstone configuration files
 
 
 **VIRTUAL MACHINE MANAGEMENT**
@@ -53,14 +53,14 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 - :ref:`Security Groups <security_groups>` to define firewall rules and apply them to Virtual Machines
 
 
-**INTERFACES FOR ADMINISTRATORS AND ADVANCED USERS**	
+**INTERFACES FOR ADMINISTRATORS AND ADVANCED USERS**
 
 - Powerful :ref:`Command Line Interface <cli>` that resembles typical UNIX commands applications
 
 - ref:`Sunstone GUI <sunstone>` for administrators and advanced users
 
 
-**APPLIANCE MARKETPLACE**	
+**APPLIANCE MARKETPLACE**
 
 - Access to the public `OpenNebula Systems Marketplace <http://marketplace.opennebula.systems>` with a catalog of :ref:`OpenNebula-ready <bcont>` cloud images
 
@@ -71,7 +71,7 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 - Share VM images in Federation environments across several OpenNebula instances  [TODO: Add link]
 
 
-**ACCOUNTING AND SHOWBACK**	
+**ACCOUNTING AND SHOWBACK**
 
 - Configurable :ref:`accounting system <accounting>` to report resource usage data and guarantee fair share of resources among users
 
@@ -97,7 +97,7 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 - Support for isolation at different levels
 
 
-**CAPACITY AND PERFORMANCE MANAGEMENT**	
+**CAPACITY AND PERFORMANCE MANAGEMENT**
 
 - :ref:`Host management <host_guide>` with complete functionality for the management of the virtualziation nodes in the cloud
 
@@ -110,7 +110,7 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 - Powerful and flexible :ref:`scheduler <schg>` for the definition of workload and resource-aware allocation policies such as packing, striping, load-aware, affinity-aware…  [TODO: Add link]
 
 
-**HIGH AVAILABILITY AND BUSINESS CONTINUITY**	
+**HIGH AVAILABILITY AND BUSINESS CONTINUITY**
 
 - :ref:`High availability architecture <oneha>` in active-passive configuration
 
@@ -119,12 +119,12 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 - ref:`Configurable behavior in the event of host or VM failure <ftguide>` to provide easy to use and cost-effective failover solutions
 
 
-**CLOUD BURSTING**	
+**CLOUD BURSTING**
 
 - Build a :ref:`hybrid cloud <introh>` to combine your local resources with resources from remote cloud provider and use extra computational capacity to satisfy peak demands
 
 
-**PLATFORM**	
+**PLATFORM**
 
 - Fully platform independent
 
@@ -135,11 +135,11 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 - Packages for major Linux distributions [TODO: Link]
 
 
-**CUSTOMIZATION AND INTEGRATION**	
+**CUSTOMIZATION AND INTEGRATION**
 
 - Modular and extensible architecture
 
-- :ref:`Customizable plug-ins <intro_integration>` for integration with underlying data cservices 
+- :ref:`Customizable plug-ins <intro_integration>` for integration with underlying data cservices
 
 - :ref:`API for integration with higher level tools <introapis>` such as billing, self-service portals…
 
@@ -150,12 +150,12 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 -  **OneFlow API** to create, control and monitor :ref:`multi-tier applications or services composed of interconnected Virtual Machines <appflow_api>`.
 
 
-**LICENSING**	
+**LICENSING**
 
 - Fully open-source software released under Apache license [TODO: Link to GitHub]
 
 
-**UPGRADE PROCESS**	
+**UPGRADE PROCESS**
 
 - Automatic import of existing environments [TODO: Link to Overview of Virtualiation Node Installation Guide]
 
@@ -164,7 +164,7 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 - Long term stability and performance through a single integrated patching and upgrade process  [TODO: Link to Upgrade in RN]
 
 
-**QUALITY ASSURANCE**	
+**QUALITY ASSURANCE**
 
 - Internal quality assurance process for functionality, scalability, performance, robustness and stability  [TODO: Link to web site page]
 
@@ -173,7 +173,7 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 - Scalability, reliability and performance tested on many massive scalable production deployments
 
 
-**PRODUCT SUPPORT**	
+**PRODUCT SUPPORT**
 
 - Best-effort community support [TODO: Link to forum]
 

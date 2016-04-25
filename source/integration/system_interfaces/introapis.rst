@@ -42,4 +42,4 @@ The OpenNebula Cloud API provides a simplified and convenient way to interface t
 
 *You can find more information at...* :ref:`OCA-Ruby reference guide <ruby>` and the :ref:`OCA-JAVA reference guide <java>`.
 
-
+.. |image0| image:: /images/opennebula_interfaces.png

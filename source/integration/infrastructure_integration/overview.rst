@@ -25,5 +25,3 @@ The interactions between OpenNebula and the Cloud infrastructure are performed b
 OpenNebula saves its state and lots of accounting information in a persistent data-base. OpenNebula can use MySQL or SQLite and can be easily interfaced with any database tool.
 
 *Use the OpenNebula DB if...* you need to generate custom accounting or billing reports.
-
-.. |image0| image:: /images/opennebula_interfaces.png

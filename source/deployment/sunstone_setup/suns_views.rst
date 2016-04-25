@@ -64,6 +64,8 @@ In this view users will not be able to manage nor retrieve the hosts and cluster
 
 |user_view|
 
+.. _suns_views_group_admin:
+
 Group Admin View
 --------------------------------------------------------------------------------
 
