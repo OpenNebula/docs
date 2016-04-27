@@ -7,30 +7,15 @@ OpenNebula Key Features
 
 OpenNebula offers a **simple but feature-rich and flexible solution** to build and manage data center virtualization and enterprise clouds. This guide summarizes its key features(\*). You can also refer to the :ref:`Platform Notes <uspng>` included in the documentation of each version to know about the infrastructure platforms and services supported by OpenNebula.
 
+
+[TODO: Specify those features that are only for KVM]
+
+
 **INTERFACES FOR CLOUD CONSUMERS**
 
 - :ref:`De-facto standard cloud APIs <introc>` with compatibility with cloud ecosystem tools
 
-- :ref:`Simple, clean, intuitive Portals for cloud consumers <cloud_view>` to allow non-IT end users to easily create, deploy and manage compute, storage and network resources
-
-
-**CLOUD CONSUMPTION**
-
-- :ref:`Automatic installation and configuration of application environments <context_overview>`
-
-- :ref:`Gain insight cloud applications <onegate_overview>` so their status and metrics can be easily queried through OpenNebula interfaces and used in auto-scaling rules
-
-
-**MULTI-VM APPLICATION MANAGEMENT**
-
-- :ref:`Automatic execution of multi-tiered (multi-VM) applications <oneapps_overview>` and their provision from a catalog and self-service portal
-- :ref:`Automatic scaling of multi-tiered applications <appflow_elasticity>` according to performance metrics and time schedule
-
-**ON-DEMAND PROVISION OF VIRTUAL DATA CENTERS**
-
-- A :ref:`VDC (Virtual Data Center) <manage_vdcs>` is a fully-isolated virtual infrastructure environment where a Group of users, optionally under the control of the group admin, can create and manage compute and storage capacity
-
-- There is a pre-configured :ref:`Sunstone view for group admins<suns_views_group_admin>` 
+- :ref:`Simple, clean, intuitive GUI for cloud consumers <cloud_view>` to allow non-IT end users to easily create, deploy and manage compute, storage and network resources
 
 
 **VIRTUAL MACHINE MANAGEMENT**
@@ -45,7 +30,7 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 -  :ref:`Programmable VM operations <vm_guide2_scheduling_actions>` allowing users to schedule actions
 
--  Volume hotplugging to easily hot plug a volatile disk created on-the-fly or an existing image from a Datastore to a running VM
+-  Volume hotplugging, :ref:` disk snapshot capabilities <vm_guide_2_disk_snapshots>` and :ref:`disk resizing <vm_guide2_resize_disk>`
 
 
 **VIRTUAL NETWORK MANAGEMENT**
@@ -59,12 +44,22 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 - :ref:`Security Groups <security_groups>` to define firewall rules and apply them to Virtual Machines
 
 
-**VIRTUAL MACHINE CONFIGURATION**
+**APPLICATION CONFIGURATION AND INSIGHT**
 
--  Complete :ref:`definition of VM attributes and requirements <template>`
--  VM attributes can be provided by the user when the template is instantiated
--  Support for automatic configuration of VMs with advanced :ref:`contextualization mechanisms <cong>`
+- :ref:`Automatic installation and configuration of application environments <context_overview>`
+
+- VM attributes can be provided by the user when the template is instantiated
+
 -  Wide range of guest operating system including Microsoft Windows and Linux
+
+- :ref:`Gain insight cloud applications <onegate_overview>` so their status and metrics can be easily queried through OpenNebula interfaces and used in auto-scaling rules
+
+
+**MULTI-VM APPLICATION MANAGEMENT**
+
+- :ref:`Automatic execution of multi-tiered (multi-VM) applications <oneapps_overview>` and their provision from a catalog and self-service portal
+
+- :ref:`Automatic scaling of multi-tiered applications <appflow_elasticity>` according to performance metrics and time schedule
 
 
 **INTERFACES FOR ADMINISTRATORS AND ADVANCED USERS**
@@ -115,6 +110,13 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 - Support for isolation at different levels
 
 
+**ON-DEMAND PROVISION OF VIRTUAL DATA CENTERS**
+
+- A :ref:`VDC (Virtual Data Center) <manage_vdcs>` is a fully-isolated virtual infrastructure environment where a Group of users, optionally under the control of the group admin, can create and manage compute and storage capacity
+
+- There is a pre-configured :ref:`Sunstone view for group admins<suns_views_group_admin>` 
+
+
 **CAPACITY AND PERFORMANCE MANAGEMENT**
 
 - :ref:`Host management <host_guide>` with complete functionality for the management of the virtualziation nodes in the cloud
@@ -129,9 +131,8 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 - Support for multiple data stores to balance I/O operations between storage servers, or to define different SLA policies (e.g. backup) and performance features for different VM types or users [TODO: Add Link]
 
-- :ref:`PCI passthrough <kvm_pci_passthrough>` available for VMs that need consumption of raw GPU devices existing on a physical host
+- :ref:`PCI passthrough <kvm_pci_passthrough>` available for VMs that need consumption of raw GPU devices
 
-- :ref:`Advanced disk snapshot capabilities <vm_guide_2_disk_snapshots>`, Disk resizing, :ref:`grow a VM disk at instantiation time <vm_guide2_resize_disk>` on your VM while conforming with your quotas and being noted down for accounting FALTA HOT
 
 
 **FEDERATED CLOUD ENVIRONMENTS**
@@ -192,18 +193,17 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 **INSTALLATION AND UPGRADE PROCESS**
 
-
 -  :ref:`Configurable to deploy public, private and hybrid clouds <intro>`
-
-- :ref:`Automatic import of existing VMs <import_wild_vms>` running in local hypervisors and public clouds for hybrid cloud computing
 
 - All key functionalities for enterprise cloud computing, storage and networking in a single install [TODO: Link to Front-end Installaton Guide]
 
 - Long term stability and performance through a single integrated patching and upgrade process  [TODO: Link to Upgrade in RN]
 
--  :ref:`Optional building from source code <compile>`
+- :ref:`Automatic import of existing VMs <import_wild_vms>` running in local hypervisors and public clouds for hybrid cloud computing
 
--  :ref:`System features a small footprint <plan>`, less than 10Mb
+- :ref:`Optional building from source code <compile>`
+
+- :ref:`System features a small footprint <plan>`, less than 10Mb
 
 
 
@@ -214,6 +214,7 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 - Technology matured through an active and engaged large community [TODO: Link to community page]
 
 - Scalability, reliability and performance tested on many massive scalable production deployments consisting of hundreds of thousands of cores and VMs
+
 
 **PRODUCT SUPPORT**
 
