@@ -175,11 +175,11 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 - :ref:`API for integration with higher level tools <introapis>` such as billing, self-service portals…
 
-- **Hook Manager** to :ref:`trigger administration scripts upon VM state change <hooks>`.
+- Hook manager to :ref:`trigger administration scripts upon VM state change <hooks>`.
 
-- **Sunstone custom routes and tabs** to extend the :ref:`sunstone server <sunstone_dev>`.
+- Sunstone custom routes and tabs to extend the :ref:`sunstone server <sunstone_dev>`.
 
-- **OneFlow API** to create, control and monitor :ref:`multi-tier applications or services composed of interconnected Virtual Machines <appflow_api>`.
+- OneFlow API to create, control and monitor :ref:`multi-tier applications or services composed of interconnected Virtual Machines <appflow_api>`.
 
 - `OpenNebula Add-on Catalog <http://opennebula.org/addons:addons>`_ with components enhancing the functionality provided by OpenNebula
 
