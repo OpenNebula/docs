@@ -1,10 +1,11 @@
 .. _key_features:
+.. _features:
 
 ================================================================================
 OpenNebula Key Features
 ================================================================================
 
-OpenNebula offers a **simple but feature-rich and flexible solution** to build and manage data center virtualization and enterprise clouds. This guide summarizes its key features. You can also refer to the :ref:`Platform Notes <uspng>` included in the documentation of each version to know about the infrastructure platforms and services supported by OpenNebula.
+OpenNebula offers a **simple but feature-rich and flexible solution** to build and manage data center virtualization and enterprise clouds. This guide summarizes its key features(\*). You can also refer to the :ref:`Platform Notes <uspng>` included in the documentation of each version to know about the infrastructure platforms and services supported by OpenNebula.
 
 **INTERFACES FOR CLOUD CONSUMERS**
 
@@ -17,25 +18,13 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 - :ref:`Automatic installation and configuration of application environments <context_overview>`
 
-- :ref:`Automatic execution of multi-tiered (multi-VM) applications <oneapps_overview>` and their provision from a catalog and self-service portal
-
 - :ref:`Gain insight cloud applications <onegate_overview>` so their status and metrics can be easily queried through OpenNebula interfaces and used in auto-scaling rules
 
 
+**MULTI-VM APPLICATION MANAGEMENT**
 
-
-Management of Multi-tier Applications
-=====================================
-
--  :ref:`Automatic deployment and undeployment of Virtual Machines <appflow_use_cli>` according to their dependencies in the Service Template
--  Provide configurable services from a catalog and self-service portal
--  Enable tight, efficient administrative control
--  Complete integration with the OpenNebula's `User Security Management <http://opennebula.org/documentation:features#powerful_user_security_management>`__ system
--  Computing resources can be tracked and limited using OpenNebula's :ref:`Resource Quota Management <quota_auth>`
--  :ref:`Automatic scaling of multi-tiered applications <appflow_elasticity>` according to performance metrics and time schedule
-- Dynamic information sharing where information can be passed across nodes in the service
-- Network configuration can be defined for a service template
-- OpenNebula Flow has been integrated in the Cloud and VDC Admin Sunstone views, so users can instantiate new services and monitor groups of Virtual Machines
+- :ref:`Automatic execution of multi-tiered (multi-VM) applications <oneapps_overview>` and their provision from a catalog and self-service portal
+- :ref:`Automatic scaling of multi-tiered applications <appflow_elasticity>` according to performance metrics and time schedule
 
 **ON-DEMAND PROVISION OF VIRTUAL DATA CENTERS**
 
@@ -82,7 +71,9 @@ Management of Multi-tier Applications
 
 - Powerful :ref:`Command Line Interface <cli>` that resembles typical UNIX commands applications
 
-- ref:`Sunstone GUI <sunstone>` for administrators and advanced users
+- :ref:`Easy-to-use Sunstone Graphical Interface <sunstone>` providing usage graphics and statistics with cloudwatch-like functionality, :ref:`remote acccess through VNC or SPICE <remote_access_sunstone>`, different system views for different roles, catalog access, multiple-zone management...
+
+- :ref:`Sunstone is easily customizable <suns_views>` to define multiple cloud views for different user groups
 
 
 **APPLIANCE MARKETPLACE**
@@ -142,6 +133,7 @@ Management of Multi-tier Applications
 
 - :ref:`Advanced disk snapshot capabilities <vm_guide_2_disk_snapshots>`, Disk resizing, :ref:`grow a VM disk at instantiation time <vm_guide2_resize_disk>` on your VM while conforming with your quotas and being noted down for accounting FALTA HOT
 
+
 **FEDERATED CLOUD ENVIRONMENTS**
 
 - :ref:`Federation of multiple OpenNebula Zones <introf>` for scalability, isolation or multiple-site support
@@ -176,17 +168,21 @@ Management of Multi-tier Applications
 
 **CUSTOMIZATION AND INTEGRATION**
 
-- Modular and extensible architecture
+- Modular and extensible architecture to fit into any existing datacenter
 
-- :ref:`Customizable plug-ins <intro_integration>` for integration with underlying data cservices
+- Customizable drivers for the main subsystems to easily leverage existing IT infrastructure and system management products: :ref:`Virtualization <devel-vmm>`, :ref:`Storage <sd>`, :ref:`Monitoring <devel-im>`, :ref:`Network <devel-nm>`, :ref:`Auth <auth_overview>` and :ref:`Hybrid Cloud <devel-vmm>` [TODO: Check and Complete]
 
 - :ref:`API for integration with higher level tools <introapis>` such as billing, self-service portals…
 
--  **Hook Manager** to :ref:`trigger administration scripts upon VM state change <hooks>`.
+- **Hook Manager** to :ref:`trigger administration scripts upon VM state change <hooks>`.
 
--  **Sunstone custom routes and tabs** to extend the :ref:`sunstone server <sunstone_dev>`.
+- **Sunstone custom routes and tabs** to extend the :ref:`sunstone server <sunstone_dev>`.
 
--  **OneFlow API** to create, control and monitor :ref:`multi-tier applications or services composed of interconnected Virtual Machines <appflow_api>`.
+- **OneFlow API** to create, control and monitor :ref:`multi-tier applications or services composed of interconnected Virtual Machines <appflow_api>`.
+
+- `OpenNebula Add-on Catalog <http://opennebula.org/addons:addons>`_ with components enhancing the functionality provided by OpenNebula
+
+- :ref:`Configuration and tuning parameters <oned_conf>` to adjust behavior of the cloud management instance to the requirements of the environment and use cases
 
 
 **LICENSING**
@@ -196,6 +192,7 @@ Management of Multi-tier Applications
 
 **INSTALLATION AND UPGRADE PROCESS**
 
+
 -  :ref:`Configurable to deploy public, private and hybrid clouds <intro>`
 
 - :ref:`Automatic import of existing VMs <import_wild_vms>` running in local hypervisors and public clouds for hybrid cloud computing
@@ -204,6 +201,11 @@ Management of Multi-tier Applications
 
 - Long term stability and performance through a single integrated patching and upgrade process  [TODO: Link to Upgrade in RN]
 
+-  :ref:`Optional building from source code <compile>`
+
+-  :ref:`System features a small footprint <plan>`, less than 10Mb
+
+
 
 **QUALITY ASSURANCE**
 
@@ -211,8 +213,7 @@ Management of Multi-tier Applications
 
 - Technology matured through an active and engaged large community [TODO: Link to community page]
 
-- Scalability, reliability and performance tested on many massive scalable production deployments
-
+- Scalability, reliability and performance tested on many massive scalable production deployments consisting of hundreds of thousands of cores and VMs
 
 **PRODUCT SUPPORT**
 
@@ -220,6 +221,14 @@ Management of Multi-tier Applications
 
 - SLA-based commercial support directly from the developers  [TODO: Link to OpenNebula.pro]
 
+- :ref:`Integrated tab in Sunstone <commercial_support_sunstone>` to access OpenNebula Systems professional support
+
+(\*) *Because OpenNebula leverages the functionality exposed by the underlying platform services, its functionality and performance may be affected by the limitations imposed by those services.*
+
+-  *The list of features may change on the different platform configurations*
+-  *Not all platform configurations exhibit a similar performance and stability*
+-  *The features may change to offer users more features and integration with other virtualization and cloud components*
+-  *The features may change due to changes in the functionality provided by underlying virtualization services*
 
 [TODO: This info should go to Platform Notes]
 
