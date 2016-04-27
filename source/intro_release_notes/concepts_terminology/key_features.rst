@@ -22,11 +22,26 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 - :ref:`Gain insight cloud applications <onegate_overview>` so their status and metrics can be easily queried through OpenNebula interfaces and used in auto-scaling rules
 
 
+
+
+Management of Multi-tier Applications
+=====================================
+
+-  :ref:`Automatic deployment and undeployment of Virtual Machines <appflow_use_cli>` according to their dependencies in the Service Template
+-  Provide configurable services from a catalog and self-service portal
+-  Enable tight, efficient administrative control
+-  Complete integration with the OpenNebula's `User Security Management <http://opennebula.org/documentation:features#powerful_user_security_management>`__ system
+-  Computing resources can be tracked and limited using OpenNebula's :ref:`Resource Quota Management <quota_auth>`
+-  :ref:`Automatic scaling of multi-tiered applications <appflow_elasticity>` according to performance metrics and time schedule
+- Dynamic information sharing where information can be passed across nodes in the service
+- Network configuration can be defined for a service template
+- OpenNebula Flow has been integrated in the Cloud and VDC Admin Sunstone views, so users can instantiate new services and monitor groups of Virtual Machines
+
 **ON-DEMAND PROVISION OF VIRTUAL DATA CENTERS**
 
-- A :ref:`VDC <manage_vdcs>` is a fully-isolated virtual infrastructure environment where a Group of users, optionally under the control of the VDC admin, can create and manage compute and storage capacity
+- A :ref:`VDC (Virtual Data Center) <manage_vdcs>` is a fully-isolated virtual infrastructure environment where a Group of users, optionally under the control of the group admin, can create and manage compute and storage capacity
 
-- :ref:`Sunstone view for new group admin <suns_views_group_admin>` can be defined without the need of modifying the Sunstone configuration files
+- There is a pre-configured :ref:`Sunstone view for group admins<suns_views_group_admin>` 
 
 
 **VIRTUAL MACHINE MANAGEMENT**
@@ -41,16 +56,26 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 -  :ref:`Programmable VM operations <vm_guide2_scheduling_actions>` allowing users to schedule actions
 
+-  Volume hotplugging to easily hot plug a volatile disk created on-the-fly or an existing image from a Datastore to a running VM
+
 
 **VIRTUAL NETWORK MANAGEMENT**
 
-- Fully isolated :ref:`virtual networks <vgg>` organised in network catalogs that can be defined as IPv4, IPv6, or mixed networks.
+- :ref:`Advanced network virtualization capabilities <vgg>` with traffic isolation, address reservation, flexible defintion of address ranges to accommodate any address distribution, definition of generic attributes to define multi-tier services...
 
-- [TODO: Add Features]
+- :ref:`IPv6 support <vgg_ipv6_networks>` with definition site and global unicast addresses
 
 - Virtual routers [TODO: Add link]
 
 - :ref:`Security Groups <security_groups>` to define firewall rules and apply them to Virtual Machines
+
+
+**VIRTUAL MACHINE CONFIGURATION**
+
+-  Complete :ref:`definition of VM attributes and requirements <template>`
+-  VM attributes can be provided by the user when the template is instantiated
+-  Support for automatic configuration of VMs with advanced :ref:`contextualization mechanisms <cong>`
+-  Wide range of guest operating system including Microsoft Windows and Linux
 
 
 **INTERFACES FOR ADMINISTRATORS AND ADVANCED USERS**
@@ -77,20 +102,22 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 - Easy integration with chargeback and billing platforms
 
-- Showback system  [TODO: Add link]
+- :ref:`Showback <showback>` capabilities to define cost associated to CPU/hours and MEMORY/hours per VM Template.
 
 
 **MULTI-TENANCY AND SECURITY**
 
 - :ref:`Fine-grained ACLs <manage_acl>` for resource allocation
 
-- :ref:`Resource quota management <quota_auth>` to track and limit computing, storage and networking resource utilization
+- Powerful :ref:`user and role management <manage_users>`
 
-- Powerful :ref:`user, group and role management <manage_users>`
+- Administrators can :ref:`groups users <manage_users_groups>` into organizations that can represent different projects, division...
 
 - Integration with :ref:`external identity management services <auth_overview>`
 
-- Login token functionality
+- Special authentication mechanisms for :ref:`SunStone (OpenNebula GUI) <sunstone>` and the :ref:`Cloud Services (EC2) <cloud_auth>`
+
+- :ref:`Login token <manage_users_managing_users>` functionality to password based logins
 
 - Fine-grained auditing
 
@@ -103,11 +130,23 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 - Dynamic creation of :ref:`Clusters <cluster_guide>` as pools of hosts that share datastores and virtual networks for load balancing, high availability, and high performance computing
 
-- :ref:`Federation of multiple OpenNebula Zones <introf>` for scalability, isolation or multiple-site support
-
 - ref:`customizable and highly scalable monitoring system <mon>` and also can be integrated with external data center monitoring tools.
 
-- Powerful and flexible :ref:`scheduler <schg>` for the definition of workload and resource-aware allocation policies such as packing, striping, load-aware, affinity-aware…  [TODO: Add link]
+- Powerful and flexible :ref:`scheduler <schg>` for the definition of workload and resource-aware allocation policies such as packing, striping, load-aware, affinity-aware…  
+
+- :ref:`Resource quota management <quota_auth>` to track and limit computing, storage and networking resource utilization
+
+- Support for multiple data stores to balance I/O operations between storage servers, or to define different SLA policies (e.g. backup) and performance features for different VM types or users [TODO: Add Link]
+
+- :ref:`PCI passthrough <kvm_pci_passthrough>` available for VMs that need consumption of raw GPU devices existing on a physical host
+
+- :ref:`Advanced disk snapshot capabilities <vm_guide_2_disk_snapshots>`, Disk resizing, :ref:`grow a VM disk at instantiation time <vm_guide2_resize_disk>` on your VM while conforming with your quotas and being noted down for accounting FALTA HOT
+
+**FEDERATED CLOUD ENVIRONMENTS**
+
+- :ref:`Federation of multiple OpenNebula Zones <introf>` for scalability, isolation or multiple-site support
+
+- Users can seamlessly provision virtual machines from multiple zones with an integrated interface both in Sunstone and CLI
 
 
 **HIGH AVAILABILITY AND BUSINESS CONTINUITY**
@@ -128,9 +167,9 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 - Fully platform independent
 
-- Multiple hypervisors in the same cloud infrastructure.
+- Hypervisor agnostic with broad hypervisor support (:ref:`KVM <kvmg>` and :ref:`VMware vCenter <vcenterg>`) and centralized management of environments with multiple hypervisors
 
-- Broad support for commodity and enterprise-grade hypervisor, monitoring, storage, networking and user management services [TODO: Link to PLatform Notes]
+- Broad support for commodity and enterprise-grade hypervisor, monitoring, storage, networking and user management services [TODO: Link to Platform Notes]
 
 - Packages for major Linux distributions [TODO: Link]
 
@@ -155,9 +194,11 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 - Fully open-source software released under Apache license [TODO: Link to GitHub]
 
 
-**UPGRADE PROCESS**
+**INSTALLATION AND UPGRADE PROCESS**
 
-- Automatic import of existing environments [TODO: Link to Overview of Virtualiation Node Installation Guide]
+-  :ref:`Configurable to deploy public, private and hybrid clouds <intro>`
+
+- :ref:`Automatic import of existing VMs <import_wild_vms>` running in local hypervisors and public clouds for hybrid cloud computing
 
 - All key functionalities for enterprise cloud computing, storage and networking in a single install [TODO: Link to Front-end Installaton Guide]
 
