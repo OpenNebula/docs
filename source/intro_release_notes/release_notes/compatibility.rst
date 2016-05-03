@@ -21,7 +21,7 @@ included (std) that uses the stderr stream.
 
 Context is now generated whenever a VirtualMachine is started in a host, i.e. when the deploy or restore action is invoked or when a NIC is attached/detached from tthe VM. This should be transparent for users, driver integrators may want to implement the reconfigure VMM driver action. This new action notifies a running VM that the context has changed and needs to reconfigure its NICs.
 
-Virutal Machine Management
+Virtual Machine Management
 --------------------------------------------------------------------------------
 
 Virtual Machines in RUNNING state can take disk snapshots if the drivers support it (kvm with ceph or qcow2) otherwise the VM needs to be manually powered off or suspended. Similarly, disk snapshot revert operation requires the VM to be powered off or suspended. The strategy option has been removed from the VMM drivers, as well as the DISK_SNAPSHOT_REVERT state (for VMs doing a snapshot operation while RUNNING).
@@ -42,6 +42,11 @@ Clusters
 In 5.0 we have introduced to possibility to add Datastores and VNets to more than one cluster. At the same time, we have elimitated the 'none' (-1) cluster.
 
 In OpenNebula 4.14 this special cluster none was used to share Datastores and VNets across all clusters. In 5.0 the resources outside of any cluster are "disabled for new deployments" from the scheduler's point of view. You will need to explicity add your resources to all the clusters that are configured to use those Datastores and VNets.
+
+Storage and Datastores
+--------------------------------------------------------------------------------
+
+The attribute ``BASE_PATH`` has been deprecated and removed from the interface. If it was defined in the Datastore templates, it has now been removed. This means, that everything is now built on ``DATASTORE_LOCATION`` as defined in ``oned.conf``, which defaults to ``/var/lib/one/datastores``. If you were using a differente ``BASE_PATH``, you will need to create a symbolic link in your nodes to fix that mountpoint. Something along the lines of: ``ln -s <BASE_PATH> /var/lib/one/datastores``.
 
 Disk Templates
 --------------------------------------------------------------------------------

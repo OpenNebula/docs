@@ -50,7 +50,6 @@ The datastore needs to have: ``DS_MAD`` and ``TM_MAD`` set to ``iscsi`` and ``DI
 +-----------------+-------------------------------------------------------------------------------------------------------------------------+
 
 Note that for this datastore some of the :ref:`common datastore attributes <sm_common_attributes>` do **not** apply, in particular:
-- ``BASE_PATH``: does **NOT** apply
 - ``RESTRICTED_DIRS``: does **NOT** apply
 - ``SAFE_DIRS``: does **NOT** apply
 - ``NO_DECOMPRESS``: does **NOT** apply
@@ -129,7 +128,7 @@ In order to use CHAP authentication, you will need to create a libvirt secret in
 - Do this in all the hypervisors.
 
 
-Further notes on Installation and Usage 
+Further notes on Installation and Usage
 ========================================
 
 Ubuntu Hypervisors
@@ -146,10 +145,10 @@ already libiscsi-enabled, so these steps are unnecessary for Centos Hypervisors)
 
   #installing some packages needed for compiling libiscsi and qemu
    sudo apt-get install -y libvdeplug2 libvdeplug2-dev libaio1 libaio-dev \
-   libcap-dev libattr1-dev libsdl-dev libxml2-dev dh-autoreconf 
+   libcap-dev libattr1-dev libsdl-dev libxml2-dev dh-autoreconf
 
-  #Obtaining the libiscsi and qemu source packages 
-  
+  #Obtaining the libiscsi and qemu source packages
+
   #libiscsi (make sure you do not install libiscsi packages via apt)
   git clone https://github.com/sahlberg/libiscsi.git
   cd libiscsi
@@ -198,7 +197,7 @@ Another characteristic of the persistent iSCSI LUNs is that after a VM is delete
 
 .. code::
 
-  oneadmin@onedv:~/exampletemplates$ onevm list 
+  oneadmin@onedv:~/exampletemplates$ onevm list
       ID USER     GROUP    NAME            STAT UCPU    UMEM HOST             TIME
       16 oneadmin oneadmin testvm20        runn  0.5  263.9M 192.168.50   0d 00h49
   oneadmin@onedv:~/exampletemplates$ oneimage list
@@ -211,11 +210,11 @@ Another characteristic of the persistent iSCSI LUNs is that after a VM is delete
      2 oneadmin   oneadmin   Ubuntu 1404, 64 default        10G OS    No rdy     0
      4 oneadmin   oneadmin   iscsi_device_wi iscsi           0M OS   Yes err     0
   oneadmin@onedv:~/exampletemplates$ oneimage enable 4
-  oneadmin@onedv:~/exampletemplates$ oneimage list 
+  oneadmin@onedv:~/exampletemplates$ oneimage list
     ID USER       GROUP      NAME            DATASTORE     SIZE TYPE PER STAT RVMS
      2 oneadmin   oneadmin   Ubuntu 1404, 64 default        10G OS    No rdy     0
      4 oneadmin   oneadmin   iscsi_device_wi iscsi           0M OS   Yes rdy     0
-  oneadmin@onedv:~/exampletemplates$ 
+  oneadmin@onedv:~/exampletemplates$
 
 Please refer to this issue (http://dev.opennebula.org/issues/3989) for further information.
 
@@ -231,19 +230,19 @@ The iSCSI LUNs are live-migrated when the VMs are live-migrated.
       ID USER     GROUP    NAME            STAT UCPU    UMEM HOST             TIME
       17 oneadmin oneadmin testvm          runn 51.5    256M 192.168.50   0d 00h00
   oneadmin@onedv:~/exampletemplates$ onehost list
-    ID NAME            CLUSTER   RVM      ALLOCATED_CPU      ALLOCATED_MEM STAT  
-     1 192.168.50.232  -           0       0 / 200 (0%)   0K / 993.9M (0%) on    
-     6 192.168.50.231  -           1    100 / 200 (50%) 256M / 993.9M (25% on    
+    ID NAME            CLUSTER   RVM      ALLOCATED_CPU      ALLOCATED_MEM STAT
+     1 192.168.50.232  -           0       0 / 200 (0%)   0K / 993.9M (0%) on
+     6 192.168.50.231  -           1    100 / 200 (50%) 256M / 993.9M (25% on
   oneadmin@onedv:~/exampletemplates$ oneimage list
     ID USER       GROUP      NAME            DATASTORE     SIZE TYPE PER STAT RVMS
      2 oneadmin   oneadmin   Ubuntu 1404, 64 default        10G OS    No used    1
      4 oneadmin   oneadmin   iscsi_device_wi iscsi           0M OS   Yes used    1
   oneadmin@onedv:~/exampletemplates$ onevm migrate  17 192.168.50.232 --live
-  oneadmin@onedv:~/exampletemplates$ onehost list 
-    ID NAME            CLUSTER   RVM      ALLOCATED_CPU      ALLOCATED_MEM STAT  
-     1 192.168.50.232  -           1    100 / 200 (50%) 256M / 993.9M (25% on    
-     6 192.168.50.231  -           0       0 / 200 (0%)   0K / 993.9M (0%) on    
-  oneadmin@onedv:~/exampletemplates$ 
+  oneadmin@onedv:~/exampletemplates$ onehost list
+    ID NAME            CLUSTER   RVM      ALLOCATED_CPU      ALLOCATED_MEM STAT
+     1 192.168.50.232  -           1    100 / 200 (50%) 256M / 993.9M (25% on
+     6 192.168.50.231  -           0       0 / 200 (0%)   0K / 993.9M (0%) on
+  oneadmin@onedv:~/exampletemplates$
 
 
 

@@ -5310,7 +5310,6 @@ Schemas for Datastore
             </xs:element>
             <xs:element name="DS_MAD" type="xs:string"/>
             <xs:element name="TM_MAD" type="xs:string"/>
-            <xs:element name="BASE_PATH" type="xs:string"/>
             <xs:element name="TYPE" type="xs:integer"/>
             <xs:element name="DISK_TYPE" type="xs:integer"/>
             <xs:element name="STATE" type="xs:integer"/>

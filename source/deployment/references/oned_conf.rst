@@ -212,7 +212,6 @@ The :ref:`Storage Subsystem <sm>` allows users to set up images, which can be op
 Here you can configure the default values for the Datastores and Image templates. You have more information about the templates syntax :ref:`here <img_template>`.
 
 -  ``DATASTORE_LOCATION``: Path for Datastores in the hosts. It is the same for all the hosts in the cluster. ``DATASTORE_LOCATION`` **is only for the hosts and not the front-end**. It defaults to /var/lib/one/datastores (or ``$ONE_LOCATION/var/datastores`` in self-contained mode)
--  ``DATASTORE_BASE_PATH``: This is the base path for the SOURCE attribute of the images registered in a Datastore. This is a default value, that can be changed when the datastore is created.
 -  ``DATASTORE_CAPACITY_CHECK``: Checks that there is enough capacity before creating a new imag. Defaults to Yes.
 -  ``DEFAULT_IMAGE_TYPE`` : Default value for TYPE field when it is omitted in a template. Values accepted are ``OS``, ``CDROM``, ``DATABLOCK``.
 -  ``DEFAULT_DEVICE_PREFIX`` : Default value for DEV\_PREFIX field when it is omitted in a template. The missing DEV\_PREFIX attribute is filled when Images are created, so changing this prefix won't affect existing Images. It can be set to:
@@ -239,9 +238,7 @@ Sample configuration:
     # Image Repository Configuration
     #*******************************************************************************
     #DATASTORE_LOCATION  = /var/lib/one/datastores
-     
-    #DATASTORE_BASE_PATH = /var/lib/one/datastores
-     
+          
     DATASTORE_CAPACITY_CHECK = "yes"
      
     DEFAULT_IMAGE_TYPE    = "OS"

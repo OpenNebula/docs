@@ -44,7 +44,6 @@ The datastore needs to have: ``DS_MAD`` and ``TM_MAD`` set to ``dev`` and ``DISK
 +---------------+-------------------------------------------------+
 
 Note that for this datastore some of the :ref:`common datastore attributes <sm_common_attributes>` do **not** apply, in particular:
-- ``BASE_PATH``: does **NOT** apply
 - ``RESTRICTED_DIRS``: does **NOT** apply
 - ``SAFE_DIRS``: does **NOT** apply
 - ``NO_DECOMPRESS``: does **NOT** apply

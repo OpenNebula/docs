@@ -90,8 +90,6 @@ However, in some scenarios this not ideal, and therefore it can be configured. I
 | ``STAGING_DIR`` | **(Optional)** Images are first downloaded to the frontend and then scp'd over to the chosen host from the ``BRIDGE_LIST`` list. They are scp'd to the ``STAGING_DIR``, and then moved to the final destination. If empty, it defaults to ``/var/tmp``.                                                 |
 +-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-.. warning:: When using a BRIDGE_LIST the front-end will not interact with the datastore therefore the BASE_PATH of the datastore needs to be set to the DATASTORE_LOCATION value. This is the default behavior and only needs to be adjusted if the DATASTORE_LOCATION attribute has been changed.
-
 .. _fs_ds_using_the_shared_transfer_driver:
 
 Using the Shared Transfer Driver
