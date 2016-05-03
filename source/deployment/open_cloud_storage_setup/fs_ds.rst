@@ -153,6 +153,7 @@ The following list details the differences:
 
 -  Persistent images are created with the ``qemu-img`` command using the original image as backing file
 -  When an image has to be copied back to the datastore the ``qemu-img convert`` command is used instead of a direct copy
+-  Options can be sent to ``qemu-img`` clone action. To do this change the file ``/var/lib/one/remotes/tm/tmrc``. There is a variable called ``QCOW2_OPTIONS`` that can be used to set the parameters.
 
 Tuning and Extending
 ====================
