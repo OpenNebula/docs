@@ -48,6 +48,8 @@ Storage and Datastores
 
 The attribute ``BASE_PATH`` has been deprecated and removed from the interface. If it was defined in the Datastore templates, it has now been removed. This means, that everything is now built on ``DATASTORE_LOCATION`` as defined in ``oned.conf``, which defaults to ``/var/lib/one/datastores``. If you were using a differente ``BASE_PATH``, you will need to create a symbolic link in your nodes to fix that mountpoint. Something along the lines of: ``ln -s <BASE_PATH> /var/lib/one/datastores``.
 
+The functionality that formats a Datablock when creating it has been deprecated. Datablocks are now always ``RAW``. Before OpenNebula 5.0 it was possible to pass an ``FSTYPE`` attribute with contents like ``ext3``, etc, however the ``FSTYPE`` attribute is not supported anymore. Images can only be of ``RAW`` type or of ``qcow2`` type.
+
 Disk Templates
 --------------------------------------------------------------------------------
 

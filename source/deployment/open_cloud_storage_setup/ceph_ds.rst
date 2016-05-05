@@ -146,11 +146,6 @@ The DS and TM MAD can be changed later using the ``onedatastore update`` command
 
 After creating a new datastore the LN\_TARGET and CLONE\_TARGET parameters will be added to the template. These values should not be changed since they define the datastore behaviour. The default values for these parameters are defined in :ref:`oned.conf <oned_conf_transfer_driver>` for each driver.
 
-Using Datablocks with Ceph
-==========================
-
-It is worth noting that when creating datablock, creating a RAW image is very fast whereas creating a formatted block device takes a longer time. If you want to use a RAW image remember to use the following attribute/option when creating the Image datablock: ``FS_TYPE = RAW``.
-
 Ceph Authentication (Cephx)
 ===========================
 

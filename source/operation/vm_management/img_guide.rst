@@ -130,8 +130,6 @@ You can also create images using just parameters in the ``oneimage create`` call
 +--------------------------------+---------------------------------------------------------------------------------------+
 | ``--size size``                | Size in MB. Used for DATABLOCK type                                                   |
 +--------------------------------+---------------------------------------------------------------------------------------+
-| ``--fstype fstype``            | Type of file system to be built: ext2, ext3, ext4, ntfs, reiserfs, jfs, swap, qcow2   |
-+--------------------------------+---------------------------------------------------------------------------------------+
 
 To create the previous example image you can do it like this:
 
