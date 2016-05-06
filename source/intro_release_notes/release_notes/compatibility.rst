@@ -46,9 +46,20 @@ In OpenNebula 4.14 this special cluster none was used to share Datastores and VN
 Storage and Datastores
 --------------------------------------------------------------------------------
 
+**BASE_PATH has been deprecated**
+
 The attribute ``BASE_PATH`` has been deprecated and removed from the interface. If it was defined in the Datastore templates, it has now been removed. This means, that everything is now built on ``DATASTORE_LOCATION`` as defined in ``oned.conf``, which defaults to ``/var/lib/one/datastores``. If you were using a differente ``BASE_PATH``, you will need to create a symbolic link in your nodes to fix that mountpoint. Something along the lines of: ``ln -s <BASE_PATH> /var/lib/one/datastores``.
 
-The functionality that formats a Datablock when creating it has been deprecated. Datablocks are now always ``RAW``. Before OpenNebula 5.0 it was possible to pass an ``FSTYPE`` attribute with contents like ``ext3``, etc, however the ``FSTYPE`` attribute is not supported anymore. Images can only be of ``RAW`` type or of ``qcow2`` type.
+**FSTYPE has been deprecated**
+
+Datablocks and Volatile Disks can now only be ``raw`` or ``qcow2`` (and ``swap`` for volatile disks). They will be created as blocks and no filesystem will be created inside. The options like ``ext3, ext4, vfat, etc`` are not supported any more. Furthermore, the attribute ``FSTYPE`` has been deprecated. The logic is the following:
+
+- New Empty Datablock: If ``if DRIVER == qcow2`` => The block will be created as ``qcow2``.
+- New Empty Datablock: If ``if DRIVER != qcow2`` => The block will be created as ``raw``.
+- New Empty Datablock: If ``if DRIVER is empty && TM_MAD == qcow2`` => The block will be created as ``qcow2``.
+- New Empty Datablock: If ``if DRIVER is empty && TM_MAD != qcow2`` => The block will be created as ``raw``.
+- Volatile Disk: Same logic as above, except if ``TYPE == swap``.
+- Volatile Disk: ``if TYPE == swap`` => The block will be created as ``raw`` and formatted as ``swap`` (regardless if the ``TM_MAD == qcow2``).
 
 Disk Templates
 --------------------------------------------------------------------------------
