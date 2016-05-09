@@ -61,7 +61,7 @@ OpenNebula frontend connect to de Hypervisor hosts using SSH. To be able to do t
 
 .. _ignc_step_8_networking_configuration:
 
-Step 4. Networking Configuration
+Step 5. Networking Configuration
 ================================
 
 |image3|
@@ -81,7 +81,7 @@ For example, a typical host with two physical networks, one for public IP addres
     br0        8000.001e682f02ac no          eth0
     br1        8000.001e682f02ad no          eth1
 
-Step 5. Storage Configuration
+Step 6. Storage Configuration
 =============================
 
 OpenNebula uses Datastores to manage VM disk Images. There are two configuration steps needed to perform a basic set up:
@@ -93,7 +93,7 @@ The suggested configuration is to use a shared FS, which enables most of OpenNeb
 
 The simplest way to achieve a shared FS back-end for OpenNebula datastores is to export via NFS from the OpenNebula front-end both the ``system`` (``/var/lib/one/datastores/0``) and the ``images`` (``/var/lib/one/datastores/1``) datastores. They need to be mounted by all the virtualization nodes to be added into the OpenNebula cloud.
 
-Step 6. Adding a Node to the OpenNebula Cloud
+Step 7. Adding a Node to the OpenNebula Cloud
 =============================================
 
 To add a node to the cloud, there are four needed parameters: name/IP of the host, virtualization, network and information driver. Using the recommended configuration above, and assuming a KVM hypervisor, you can add your host ``node01`` to OpenNebula in the following fashion (as oneadmin, in the front-end):
