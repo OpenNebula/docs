@@ -1,0 +1,42 @@
+CentOS/RHEL 7
+-------------
+
+To add OpenNebula repository execute the following as root:
+
+.. code-block:: console
+
+    # cat << EOT > /etc/yum.repos.d/opennebula.repo
+    [opennebula]
+    name=opennebula
+    baseurl=http://downloads.opennebula.org/repo/5.0/CentOS/7/x86_64
+    enabled=1
+    gpgcheck=0
+    EOT
+
+Debian/Ubuntu
+-------------
+
+To add OpenNebula repository on Debian/Ubuntu execute as root:
+
+.. code-block:: console
+
+    # wget -q -O- http://downloads.opennebula.org/repo/Debian/repo.key | apt-key add -
+
+**Debian 8**
+
+.. code-block:: console
+
+    # echo "deb http://downloads.opennebula.org/repo/5.0/Debian/8 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+
+**Ubuntu 14.04**
+
+.. code-block:: console
+
+    # echo "deb http://downloads.opennebula.org/repo/5.0/Ubuntu/14.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+
+**Ubuntu 16.04**
+
+.. code-block:: console
+
+    # echo "deb http://downloads.opennebula.org/repo/5.0/Ubuntu/16.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+
