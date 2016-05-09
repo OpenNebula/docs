@@ -11,15 +11,15 @@ The first step of building a reliable, useful and successful cloud is to decide 
 Hypervisor compatibility
 ------------------------
 
-+-----------------------------------+---------------------------------------------+
-|              Section              |                Compatibility                |
-+===================================+=============================================+
-| ``OpenNebula Provisioning Model`` | This guide applies to both KVM and vCenter. |
-+-----------------------------------+---------------------------------------------+
-| ``Open Cloud Architecture``       | This guide applies to KVM.                  |
-+-----------------------------------+---------------------------------------------+
-| ``VMware Cloud Architecture``     | This guide applies to vCenter.              |
-+-----------------------------------+---------------------------------------------+
++--------------------------------------------------------------+---------------------------------------------+
+|                           Section                            |                Compatibility                |
++==============================================================+=============================================+
+| :ref:`OpenNebula Provisioning Model <understand>`            | This guide applies to both KVM and vCenter. |
++--------------------------------------------------------------+---------------------------------------------+
+| :ref:`Open Cloud Architecture <open_cloud_architecture>`     | This guide applies to KVM.                  |
++--------------------------------------------------------------+---------------------------------------------+
+| :ref:`VMware Cloud Architecture <vmware_cloud_architecture>` | This guide applies to vCenter.              |
++--------------------------------------------------------------+---------------------------------------------+
 
 How should I read this guide
 ----------------------------
