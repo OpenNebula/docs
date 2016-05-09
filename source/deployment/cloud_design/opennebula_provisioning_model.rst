@@ -6,7 +6,7 @@ OpenNebula Provisioning Model
 
 In a small installation with a few hosts, you can use OpenNebula without giving much thought to infrastructure partitioning and provisioning. But for medium and large deployments you will probably want to provide some level of isolation and structure.
 
-This guide is meant for cloud architects, builders and administrators, to help them understand the OpenNebula model for managing and provisioning virtual resources. This model is a result of our collaboration with our user community throughout the life of the project.
+This Section is meant for cloud architects, builders and administrators, to help them understand the OpenNebula model for managing and provisioning virtual resources. This model is a result of our collaboration with our user community throughout the life of the project.
 
 The Infrastructure Perspective
 ================================================================================
@@ -137,7 +137,7 @@ These "Cloud Users" typically access the cloud by using the Cloud View of Sunsto
 
 
 Advanced Cloud Provisioning 
------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
 The advanced provisioning model is an extension of the previous one where the cloud provider offers VDCs on demand to Groups of Users (projects, companies, departments or business units). Each Group can define one or more users as Group Admins. These admins can create new users inside the Group, and also manage the resources of the rest of the users. A Group Admin may, for example, shutdown a VM from other user to free group quota usage.
 

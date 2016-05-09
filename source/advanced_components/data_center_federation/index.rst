@@ -1,3 +1,5 @@
+.. _federation_section:
+
 ======================
 Data Center Federation
 ======================

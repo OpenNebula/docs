@@ -17,7 +17,7 @@ This is the first Chapter to read, as it introduces the needed concepts to corre
 
 Within this Chapter, the first step would be to read the :ref:`OpenNebula Provisioning Model <understand>` to identify the wanted model to provision resources to end users. Afterwards a design of the cloud and its dimension should be drafted. For KVM clouds proceed to :ref:`Open Cloud Architecture <open_cloud_architecture>` and for vCenter clouds read :ref:`VMware Cloud Architecture <vmware_cloud_architecture>`.
 
-Once the cloud architecture has been designed the next step would be to learn how to install the :ref:`OpenNebula front-end <qwqopennebula_installation>`.
+Once the cloud architecture has been designed the next step would be to learn how to install the :ref:`OpenNebula front-end <opennebula_installation>`.
 
 Hypervisor Compatibility
 ================================================================================
@@ -31,5 +31,3 @@ Hypervisor Compatibility
 +--------------------------------------------------------------+-----------------------------------------------+
 | :ref:`VMware Cloud Architecture <vmware_cloud_architecture>` | This Section  applies to vCenter.             |
 +--------------------------------------------------------------+-----------------------------------------------+
-
-

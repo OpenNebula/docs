@@ -409,7 +409,7 @@ To import existing VMs, the 'onehost importvm" command can be used. VMs in runni
     ID USER     GROUP    NAME            STAT UCPU    UMEM HOST               TIME
      3 oneadmin oneadmin RunningVM       runn    0    590M MyvCenterHost  0d 01h02
 
-After a Virtual Machine is imported, their lifecycle (including creation of snapshots) can be controlled through OpenNebula. The following operations *cannot* be performed on an imported VM:
+After a Virtual Machine is imported, their life-cycle (including creation of snapshots) can be controlled through OpenNebula. The following operations *cannot* be performed on an imported VM:
 
 - Delete --recreate
 - Undeploy (and Undeploy --hard)
@@ -426,7 +426,7 @@ The same import mechanism is available graphically through Sunstone for hosts, n
     :width: 90%
     :align: center
 
-.. note:: running VMS can only be imported after the vCenter host has been successfuly acquired.
+.. note:: running VMS can only be imported after the vCenter host has been successfully acquired.
 
 .. note:: If you are running Sunstone using nginx/apache you will have to forward the following headers to be able to interact with vCenter, HTTP_X_VCENTER_USER, HTTP_X_VCENTER_PASSWORD and HTTP_X_VCENTER_HOST. For example in nginx you have to add the following attrs to the server section of your nginx file (underscores_in_headers on; proxy_pass_request_headers on;)
 
