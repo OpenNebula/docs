@@ -1,15 +1,15 @@
 =================================
-Upgrading from OpenNebula 4.12.x
+Upgrading from OpenNebula 4.10.x
 =================================
 
-This guide describes the installation procedure for systems that are already running a 4.12.x OpenNebula. The upgrade will preserve all current users, hosts, resources and configurations; for both Sqlite and MySQL backends.
+This section describes the installation procedure for systems that are already running a 4.10.x OpenNebula. The upgrade will preserve all current users, hosts, resources and configurations; for both Sqlite and MySQL backends.
 
-Read the Compatibility Guide for `4.14 <http://docs.opennebula.org/4.14/release_notes/release_notes/compatibility.html>`_ and :ref:`5.0 <compatibility>`, and the `Release Notes <http://opennebula.org/software/release/>`_ to know what is new in OpenNebula 5.0.
+Read the Compatibility Guide for `4.12 <http://docs.opennebula.org/4.12/release_notes/release_notes/compatibility.html>`_, `4.14 <http://docs.opennebula.org/4.14/release_notes/release_notes/compatibility.html>`_ and :ref:`5.0 <compatibility>`, and the `Release Notes <http://opennebula.org/software/release/>`_ to know what is new in OpenNebula 5.0.
 
 Upgrading a Federation
 ================================================================================
 
-If you have two or more 4.12.x OpenNebulas working as a :ref:`Federation <introf>`, you need to upgrade all of them. The upgrade does not have to be simultaneous, the slaves can be kept running while the master is upgraded.
+If you have two or more 4.10.x OpenNebulas working as a :ref:`Federation <introf>`, you need to upgrade all of them. The upgrade does not have to be simultaneous, the slaves can be kept running while the master is upgraded.
 
 The steps to follow are:
 
@@ -33,22 +33,7 @@ To perform the first step, `pause the replication <http://dev.mysql.com/doc/refm
      Slave_IO_Running: No
     Slave_SQL_Running: No
 
-Then follow this guide for the **master zone**. After the master has been updated to 5.0, upgrade each **slave zone** following this same guide.
-
-Upgrading from a High Availability deployment
-================================================================================
-
-The recommended procedure to upgrade two OpenNebulas configured in HA is to follow the upgrade procedure in a specific order. Some steps need to be executed in both servers, and others in just the active node. For the purpose of this guide, we will still refer to the *active node* as such even after stopping the cluster, so we run the single node steps always in the same node:
-
-* *Preparation* in the active node.
-* *Backup* in the active node.
-* Stop the cluster in the active node: ``pcs cluster stop``.
-* *Installation* in both nodes. Before running ``install_gems``, run ``gem list > previous_gems.txt`` so we can go back to those specific ``sinatra`` and ``rack`` gems if the ``pcsd`` refuses to start.
-* *Configuration Files Upgrade* in the active node.
-* *Database Upgrade* in the active node.
-* *Check DB Consistency* in the active node.
-* *Reload Start Scripts in CentOS 7* in both nodes.
-* Start the cluster in the active node.
+Then follow this section for the **master zone**. After the master has been updated to 5.0, upgrade each **slave zone** following this same section.
 
 Preparation
 ===========
@@ -75,7 +60,7 @@ Follow the :ref:`Platform Notes <uspng>` and the :ref:`Installation guide <ignc>
 
 Make sure to run the ``install_gems`` tool, as the new OpenNebula version may have different gem requirements.
 
-It is highly recommended **not to keep** your current ``oned.conf``, and update the ``oned.conf`` file shipped with OpenNebula 5.0 to your setup. If for any reason you plan to preserve your current ``oned.conf`` file, read the :ref:`Compatibility Guide <compatibility>` and the complete oned.conf reference for `4.12 <http://docs.opennebula.org/4.12/administration/references/oned_conf.html>`_ and :ref:`5.0 <oned_conf>` versions.
+It is highly recommended **not to keep** your current ``oned.conf``, and update the ``oned.conf`` file shipped with OpenNebula 5.0 to your setup. If for any reason you plan to preserve your current ``oned.conf`` file, read the :ref:`Compatibility Guide <compatibility>` and the complete oned.conf reference for `4.10 <http://docs.opennebula.org/4.10/administration/references/oned_conf.html>`_ and :ref:`5.0 <oned_conf>` versions.
 
 Configuration Files Upgrade
 ===========================
@@ -118,42 +103,21 @@ If everything goes well, you should get an output similar to this one:
     $ onedb upgrade -v -u oneadmin -d opennebula
     MySQL Password:
     Version read:
-    Shared tables 4.11.80 : OpenNebula 4.12.1 daemon bootstrap
-    Local tables  4.11.80 : OpenNebula 4.12.1 daemon bootstrap
-
-    MySQL dump stored in /var/lib/one/mysql_localhost_opennebula.sql
-    Use 'onedb restore' or restore the DB using the mysql command:
-    mysql -u user -h server -P port db_name < backup_file
-
+    Shared tables 4.4.0 : OpenNebula 4.4.0 daemon bootstrap
+    Local tables  4.4.0 : OpenNebula 4.4.0 daemon bootstrap
 
     >>> Running migrators for shared tables
-    Database already uses version 4.11.80
+      > Running migrator /usr/lib/one/ruby/onedb/shared/4.4.0_to_4.4.1.rb
+      > Done in 0.00s
+
+      > Running migrator /usr/lib/one/ruby/onedb/shared/4.4.1_to_4.5.80.rb
+      > Done in 0.75s
+
+    Database migrated from 4.4.0 to 4.5.80 (OpenNebula 4.5.80) by onedb command.
 
     >>> Running migrators for local tables
-      > Running migrator /usr/lib/one/ruby/onedb/local/4.11.80_to_4.13.80.rb
-    **************************************************************
-    *  WARNING  WARNING WARNING WARNING WARNING WARNING WARNING  *
-    **************************************************************
-
-    OpenNebula 4.13.80 improves the management of FAILED VMs
-    Please remove (onevm delete) any FAILED VM before continuing.
-
-    **************************************************************
-    *  WARNING  WARNING WARNING WARNING WARNING WARNING WARNING  *
-    **************************************************************
-
-
-    The scheduler (and oned) has been update to enforce access
-    rights on system datastores. This new version also checks that
-    the user can access the System DS.
-    This *may require* to update system DS rights of your cloud
-
-    Do you want to proceed ? [y/N]y
-      > Done in 41.93s
-
-    Database migrated from 4.11.80 to 4.13.80 (OpenNebula 4.13.80) by onedb command.
-
-    Total time: 41.93s
+    Database already uses version 4.5.80
+    Total time: 0.77s
 
 Now execute the following DB patch:
 
@@ -178,7 +142,7 @@ Check DB Consistency
 
 After the upgrade is completed, you should run the command ``onedb fsck``.
 
-First, move the 4.12 backup file created by the upgrade command to a safe place.
+First, move the 4.10 backup file created by the upgrade command to a safe place.
 
 .. code::
 
@@ -204,7 +168,7 @@ For the **master zone**: This step is not necessary.
 
 For a **slave zone**: The MySQL replication must be resumed now.
 
-- First, add two new tables, ``marketplace_pool`` and ``marketplaceapp_pool``, to the replication configuration.
+- First, add 3 new tables, ``vdc_pool``, ``marketplace_pool`` and ``marketplaceapp_pool`` to the replication configuration.
 
 .. warning:: Do not copy the server-id from this example, each slave should already have a unique ID.
 
@@ -249,6 +213,19 @@ In order for the system to re-read the configuration files you should issue the 
 
     # systemctl daemon-reload
 
+
+Enable Start Scripts in CentOS 7
+================================
+
+CentOS 7 packages now come with systemd scripts instead of the old systemV ones. You will need to enable the services again so they are started on system boot. The names of the services are the same as the previous one. For example, to enable ``opennebula``, ``opennebula-sunstone``, ``opennebula-flow`` and ``opennebula-gate`` you can issue these commands:
+
+.. code-block:: none
+
+    # systemctl enable opennebula
+    # systemctl enable opennebula-sunstone
+    # systemctl enable opennebula-flow
+    # systemctl enable opennebula-gate
+
 Update the Drivers
 ==================
 
@@ -264,6 +241,24 @@ If you are using :ref:`LDAP as default auth driver <ldap>`, you will need to upd
 .. code::
 
     DEFAULT_AUTH = "ldap"
+
+vCenter Password
+================
+
+.. note:: This step only applies if you are upgrading from OpenNebula **4.10.0**. If you are already using 4.10.1 or 4.10.2 you can skip this step.
+
+If you already have a host with vCenter drivers you need to update the password as version >4.10.0 expects it to be encrypted. To do so, proceed to Sunstone -> Infrastructure -> Hosts, click on the vCenter host(s) and change the value in ``VCENTER_PASSWORD`` field. It will be automatically encrypted.
+
+Create the Security Group ACL Rule
+================================================================================
+
+There is a new kind of resource introduced in 4.12: :ref:`Security Groups <security_groups>`. If you want your existing users to be able to create their own Security Groups, create the following :ref:`ACL Rule <manage_acl>`:
+
+.. code::
+
+    $ oneacl create "* SECGROUP/* CREATE *"
+
+.. note:: For environments in a Federation: This command needs to be executed only once in the master zone, after it is upgraded to 5.0.
 
 Create the Virtual Router ACL Rule
 ================================================================================

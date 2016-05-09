@@ -1,11 +1,11 @@
 
 =================================
-Upgrading from OpenNebula 4.2
+Upgrading from OpenNebula 4.0.x
 =================================
 
-This guide describes the installation procedure for systems that are already running a 4.2 OpenNebula. The upgrade will preserve all current users, hosts, resources and configurations; for both Sqlite and MySQL backends.
+This section describes the installation procedure for systems that are already running a 4.0.x OpenNebula. The upgrade will preserve all current users, hosts, resources and configurations; for both Sqlite and MySQL backends.
 
-Read the Compatibility Guide `for 4.4 <http://docs.opennebula.org/4.4/release_notes44/compatibility.html>`_, `4.6 <http://docs.opennebula.org/4.6/release_notes/release_notes/compatibility.html>`_, `4.8 <http://docs.opennebula.org/4.8/release_notes/release_notes/compatibility.html>`_, `4.10 <http://docs.opennebula.org/4.10/release_notes/release_notes/compatibility.html>`_, `4.12 <http://docs.opennebula.org/4.12/release_notes/release_notes/compatibility.html>`_, `4.14 <http://docs.opennebula.org/4.14/release_notes/release_notes/compatibility.html>`_ and :ref:`5.0 <compatibility>`, and the `Release Notes <http://opennebula.org/software/release/>`_ to know what is new in OpenNebula 5.0.
+Read the Compatibility Guide `for 4.2 <http://archives.opennebula.org/documentation:archives:rel4.2:compatibility>`_, `4.4 <http://docs.opennebula.org/4.4/release_notes44/compatibility.html>`_, `4.6 <http://docs.opennebula.org/4.6/release_notes/release_notes/compatibility.html>`_, `4.8 <http://docs.opennebula.org/4.8/release_notes/release_notes/compatibility.html>`_, `4.10 <http://docs.opennebula.org/4.10/release_notes/release_notes/compatibility.html>`_, `4.12 <http://docs.opennebula.org/4.12/release_notes/release_notes/compatibility.html>`_, `4.14 <http://docs.opennebula.org/4.14/release_notes/release_notes/compatibility.html>`_ and :ref:`5.0 <compatibility>`, and the `Release Notes <http://opennebula.org/software/release/>`_ to know what is new in OpenNebula 5.0.
 
 .. warning:: With the new :ref:`multi-system DS <system_ds_multiple_system_datastore_setups>` functionality, it is now required that the system DS is also part of the cluster. If you are using System DS 0 for Hosts inside a Cluster, any VM saved (stop, suspend, undeploy) **will not be able to be resumed after the upgrade process**.
 
@@ -14,6 +14,11 @@ Read the Compatibility Guide `for 4.4 <http://docs.opennebula.org/4.4/release_no
 
     -  **iscsi** drivers have been moved out of the main OpenNebula distribution and are available (although not supported) as an `addon <https://github.com/OpenNebula/addon-iscsi>`__.
     -  **ganglia** drivers have been moved out of the main OpenNebula distribution and are available (although not supported) as an `addon <https://github.com/OpenNebula/addon-ganglia>`__.
+
+.. warning::
+    There are combinations of **VMware storage** no longer supported (see the VMFS Datastore guide for the supported configurations).
+
+    If you want to upgrade and you are using SSH, NFS or VMFS without SSH-mode, you will need to manually migrate your images to a newly created VMFS with SSH-mode datastore. To do so implies powering off all the VMs with images in any of the deprecated datastores, upgrade OpenNebula, create a VMFS datastore and then manually register the images from those deprecated datastores into the new one. `Let us know <http://opennebula.org/community/mailinglists/>`_ if you have doubts or problems with this process.
 
 Preparation
 ===========
@@ -44,7 +49,7 @@ Follow the :ref:`Platform Notes <uspng>` and the :ref:`Installation guide <ignc>
 
 Make sure to run the ``install_gems`` tool, as the new OpenNebula version may have different gem requirements.
 
-It is highly recommended **not to keep** your current ``oned.conf``, and update the ``oned.conf`` file shipped with OpenNebula 5.0 to your setup. If for any reason you plan to preserve your current ``oned.conf`` file, read the :ref:`Compatibility Guide <compatibility>` and the complete oned.conf reference for `4.2 <http://opennebula.org/documentation:archives:rel4.2:oned_conf>`__ and :ref:`5.0 <oned_conf>` versions.
+It is highly recommended **not to keep** your current ``oned.conf``, and update the ``oned.conf`` file shipped with OpenNebula 5.0 to your setup. If for any reason you plan to preserve your current ``oned.conf`` file, read the :ref:`Compatibility Guide <compatibility>` and the complete oned.conf reference for `4.0 <http://opennebula.org/documentation:archives:rel4.0:oned_conf>`__ and :ref:`5.0 <oned_conf>` versions.
 
 Database Upgrade
 ================
@@ -94,7 +99,7 @@ If everything goes well, you should get an output similar to this one:
     Total time: 0.77s
 
 
-If you receive the message “ATTENTION: manual intervention required”, read the section :ref:`Manual Intervention Required <upgrade_42_manual_intervention_required>` below.
+If you receive the message “ATTENTION: manual intervention required”, read the section :ref:`Manual Intervention Required <upgrade_40_manual_intervention_required>` below.
 
 Now execute the following DB patch:
 
@@ -119,7 +124,7 @@ Check DB Consistency
 
 After the upgrade is completed, you should run the command ``onedb fsck``.
 
-First, move the 4.2 backup file created by the upgrade command to a safe place.
+First, move the 4.0 backup file created by the upgrade command to a safe place.
 
 .. code::
 
@@ -143,6 +148,15 @@ You should be able now to start OpenNebula as usual, running 'one start' as onea
 
 .. warning:: Doing ``onehost sync`` is important. If the monitorization drivers are not updated, the hosts will behave erratically.
 
+Setting new System DS
+=====================
+
+With the new :ref:`multi-system DS <system_ds_multiple_system_datastore_setups>` functionality, it is now required that the system DS is also part of the cluster. If you are using System DS 0 for Hosts inside a Cluster, any VM saved (stop, suspend, undeploy) **will not be able to be resumed after the upgrade process**.
+
+You will need to have at least one system DS in each cluster. If you don't already, create new system DS with the same definition as the system DS 0 (TM\_MAD driver). Depending on your setup this may or may not require additional configuration on the hosts.
+
+You may also try to recover saved VMs (stop, suspend, undeploy) following the steps described in this `thread of the users mailing list <http://lists.opennebula.org/pipermail/users-opennebula.org/2013-December/025727.html>`__.
+
 Create the Security Group ACL Rule
 ================================================================================
 
@@ -162,15 +176,6 @@ There is a new kind of resource introduced in 5.0: :ref:`Virtual Routers <vroute
     $ oneacl create "* VROUTER/* CREATE *"
 
 .. note:: For environments in a Federation: This command needs to be executed only once in the master zone, after it is upgraded to 5.0.
-
-Setting new System DS
-=====================
-
-With the new :ref:`multi-system DS <system_ds_multiple_system_datastore_setups>` functionality, it is now required that the system DS is also part of the cluster. If you are using System DS 0 for Hosts inside a Cluster, any VM saved (stop, suspend, undeploy) **will not be able to be resumed after the upgrade process**.
-
-You will need to have at least one system DS in each cluster. If you don't already, create new system DS with the same definition as the system DS 0 (TM\_MAD driver). Depending on your setup this may or may not require additional configuration on the hosts.
-
-You may also try to recover saved VMs (stop, suspend, undeploy) following the steps described in this `thread of the users mailing list <http://lists.opennebula.org/pipermail/users-opennebula.org/2013-December/025727.html>`__.
 
 Testing
 =======
@@ -201,7 +206,7 @@ The workaround is to temporarily change the oneadmin's password to an ASCII stri
 
     mysql> SET PASSWORD = PASSWORD('newpass');
 
-.. _upgrade_42_manual_intervention_required:
+.. _upgrade_40_manual_intervention_required:
 
 Manual Intervention Required
 ============================

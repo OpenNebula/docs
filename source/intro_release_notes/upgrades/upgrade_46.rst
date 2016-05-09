@@ -1,15 +1,15 @@
 =================================
-Upgrading from OpenNebula 4.8.x
+Upgrading from OpenNebula 4.6.x
 =================================
 
-This guide describes the installation procedure for systems that are already running a 4.8.x OpenNebula. The upgrade will preserve all current users, hosts, resources and configurations; for both Sqlite and MySQL backends.
+This section describes the installation procedure for systems that are already running a 4.6.x OpenNebula. The upgrade will preserve all current users, hosts, resources and configurations; for both Sqlite and MySQL backends.
 
-Read the Compatibility Guide for `4.10 <http://docs.opennebula.org/4.10/release_notes/release_notes/compatibility.html>`_, `4.12 <http://docs.opennebula.org/4.12/release_notes/release_notes/compatibility.html>`_, `4.14 <http://docs.opennebula.org/4.14/release_notes/release_notes/compatibility.html>`_ and :ref:`5.0 <compatibility>`, and the `Release Notes <http://opennebula.org/software/release/>`_ to know what is new in OpenNebula 5.0.
+Read the Compatibility Guide for `4.8 <http://docs.opennebula.org/4.8/release_notes/release_notes/compatibility.html>`_, `4.10 <http://docs.opennebula.org/4.10/release_notes/release_notes/compatibility.html>`_, `4.12 <http://docs.opennebula.org/4.12/release_notes/release_notes/compatibility.html>`_, `4.14 <http://docs.opennebula.org/4.14/release_notes/release_notes/compatibility.html>`_ and :ref:`5.0 <compatibility>`, and the `Release Notes <http://opennebula.org/software/release/>`_ to know what is new in OpenNebula 5.0.
 
 Upgrading a Federation
 ================================================================================
 
-If you have two or more 4.8 OpenNebulas working as a :ref:`Federation <introf>`, you need to upgrade all of them. The upgrade does not have to be simultaneous, the slaves can be kept running while the master is upgraded.
+If you have two or more 4.6 OpenNebulas working as a :ref:`Federation <introf>`, you need to upgrade all of them. The upgrade does not have to be simultaneous, the slaves can be kept running while the master is upgraded.
 
 The steps to follow are:
 
@@ -33,8 +33,7 @@ To perform the first step, `pause the replication <http://dev.mysql.com/doc/refm
      Slave_IO_Running: No
     Slave_SQL_Running: No
 
-Then follow this guide for the **master zone**. After the master has been updated to 5.0, upgrade each **slave zone** following this same guide.
-
+Then follow this section for the **master zone**. After the master has been updated to 5.0, upgrade each **slave zone** following this same section.
 
 Preparation
 ===========
@@ -50,6 +49,7 @@ Stop OpenNebula and any other related services you may have running: EC2, OCCI, 
     $ sunstone-server stop
     $ oneflow-server stop
     $ econe-server stop
+    $ occi-server stop
     $ one stop
 
 Backup
@@ -72,7 +72,7 @@ Follow the :ref:`Platform Notes <uspng>` and the :ref:`Installation guide <ignc>
 
 Make sure to run the ``install_gems`` tool, as the new OpenNebula version may have different gem requirements.
 
-It is highly recommended **not to keep** your current ``oned.conf``, and update the ``oned.conf`` file shipped with OpenNebula 5.0 to your setup. If for any reason you plan to preserve your current ``oned.conf`` file, read the :ref:`Compatibility Guide <compatibility>` and the complete oned.conf reference for `4.8 <http://docs.opennebula.org/4.8/administration/references/oned_conf.html>`_ and :ref:`5.0 <oned_conf>` versions.
+It is highly recommended **not to keep** your current ``oned.conf``, and update the ``oned.conf`` file shipped with OpenNebula 5.0 to your setup. If for any reason you plan to preserve your current ``oned.conf`` file, read the :ref:`Compatibility Guide <compatibility>` and the complete oned.conf reference for `4.6 <http://docs.opennebula.org/4.6/administration/references/oned_conf.html>`_ and :ref:`5.0 <oned_conf>` versions.
 
 Configuration Files Upgrade
 ===========================
@@ -97,6 +97,11 @@ You can upgrade the existing DB with the 'onedb' command. You can specify any Sq
 .. warning:: Make sure at this point that OpenNebula is not running. If you installed from packages, the service may have been started automatically.
 
 .. warning:: For environments in a Federation: Before upgrading the **master**, make sure that all the slaves have the MySQL replication paused.
+
+.. note::
+
+    If you have a MAC_PREFIX in :ref:`oned.conf <oned_conf>` different than the default ``02:00``, open 
+    ``/usr/lib/one/ruby/onedb/local/4.5.80_to_4.7.80.rb`` and change the value of the ``ONEDCONF_MAC_PREFIX`` constant.
 
 After you install the latest OpenNebula, and fix any possible conflicts in oned.conf, you can issue the 'onedb upgrade -v' command. The connection parameters have to be supplied with the command line options, see the :ref:`onedb manpage <cli>` for more information. Some examples:
 
@@ -154,7 +159,7 @@ Check DB Consistency
 
 After the upgrade is completed, you should run the command ``onedb fsck``.
 
-First, move the 4.8 backup file created by the upgrade command to a safe place.
+First, move the 4.6 backup file created by the upgrade command to a safe place.
 
 .. code::
 
@@ -222,15 +227,6 @@ Update the Drivers
 You should be able now to start OpenNebula as usual, running 'one start' as oneadmin. At this point, execute ``onehost sync`` to update the new drivers in the hosts.
 
 .. warning:: Doing ``onehost sync`` is important. If the monitorization drivers are not updated, the hosts will behave erratically.
-
-Default Auth
-============
-
-If you are using :ref:`LDAP as default auth driver <ldap>`, you will need to update ``/etc/one/oned.conf`` and set the new ``DEFAULT_AUTH`` variable:
-
-.. code::
-
-    DEFAULT_AUTH = "ldap"
 
 Create the Security Group ACL Rule
 ================================================================================

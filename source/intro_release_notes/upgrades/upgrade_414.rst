@@ -4,7 +4,7 @@
 Upgrading from OpenNebula 4.14.x
 =================================
 
-This guide describes the installation procedure for systems that are already running a 4.14.x OpenNebula. The upgrade will preserve all current users, hosts, resources and configurations; for both Sqlite and MySQL backends.
+This section describes the installation procedure for systems that are already running a 4.14.x OpenNebula. The upgrade will preserve all current users, hosts, resources and configurations; for both Sqlite and MySQL backends.
 
 Read the :ref:`Compatibility Guide <compatibility>` and `Release Notes <http://opennebula.org/software/release/>`_ to know what is new in OpenNebula 5.0.
 
@@ -35,13 +35,13 @@ To perform the first step, `pause the replication <http://dev.mysql.com/doc/refm
      Slave_IO_Running: No
     Slave_SQL_Running: No
 
-Then follow this guide for the **master zone**. After the master has been updated to 5.0, upgrade each **slave zone** following this same guide.
+Then follow this section for the **master zone**. After the master has been updated to 5.0, upgrade each **slave zone** following this same section.
 
 
 Upgrading from a High Availability deployment
 ================================================================================
 
-The recommended procedure to upgrade two OpenNebulas configured in HA is to follow the upgrade procedure in a specific order. Some steps need to be executed in both servers, and others in just the active node. For the purpose of this guide, we will still refer to the *active node* as such even after stopping the cluster, so we run the single node steps always in the same node:
+The recommended procedure to upgrade two OpenNebulas configured in HA is to follow the upgrade procedure in a specific order. Some steps need to be executed in both servers, and others in just the active node. For the purpose of this section, we will still refer to the *active node* as such even after stopping the cluster, so we run the single node steps always in the same node:
 
 * *Preparation* in the active node.
 * *Backup* in the active node.
