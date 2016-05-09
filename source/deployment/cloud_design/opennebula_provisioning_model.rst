@@ -4,8 +4,9 @@
 OpenNebula Provisioning Model
 ================================================================================
 
-In a small installation with a few hosts, you can use OpenNebula without giving much thought to infrastructure partitioning and provisioning. But for medium and large deployments you will probably want to provide some level of isolation and structure. 
-This guide is meant for cloud architects, builders and administrators, to help them understand the OpenNebula model for managing and provisioning virtual resources. This model is a result of our collaboration with our user community during the last years. 
+In a small installation with a few hosts, you can use OpenNebula without giving much thought to infrastructure partitioning and provisioning. But for medium and large deployments you will probably want to provide some level of isolation and structure.
+
+This guide is meant for cloud architects, builders and administrators, to help them understand the OpenNebula model for managing and provisioning virtual resources. This model is a result of our collaboration with our user community throughout the life of the project.
 
 The Infrastructure Perspective
 ================================================================================
@@ -19,13 +20,17 @@ For example, you could have two Data Centers in different geographic locations, 
 The Organizational Perspective
 ================================================================================
 
-Users are organized into Groups (similar to what other environments call Projects, Domains, Tenants...). A Group is an authorization boundary that can be seen as a business unit if you are considering it as private cloud or as a complete new company if it is public cloud. While Clusters are used to group Physical Resources according to common characteristics such as networking topology or physical location, Virtual Data Centers (VDCs) allow to create "logical" pools of Physical Resources (which could belong to different Clusters and Zones) and allocate them to user Groups. 
+Users are organized into Groups (similar to what other environments call Projects, Domains, Tenants...). A Group is an authorization boundary that can be seen as a business unit if you are considering it as a private cloud or as a complete new company if it is a public cloud. While Clusters are used to group Physical Resources according to common characteristics such as networking topology or physical location, Virtual Data Centers (VDCs) allow to create "logical" pools of Physical Resources (which could belong to different Clusters and Zones) and allocate them to user Groups. 
  
- A VDC is a fully-isolated virtual infrastructure environment where a Group of users (or optionally several Groups of users), under the control of a Group admin, can create and manage compute and storage capacity. The users in the Group, including the Group admin, would only see the virtual resources and not the underlying physical infrastructure. The Physical Resources allocated to the Group are managed by the cloud administrator through a VDC. These resources grouped in the VDC can be dedicated exclusively to the Group, providing isolation at the physical level too.
+A VDC is a fully-isolated virtual infrastructure environment where a Group of users (or optionally several Groups of users), under the control of a Group admin, can create and manage compute and storage capacity. The users in the Group, including the Group admin, would only see the virtual resources and not the underlying physical infrastructure. The Physical Resources allocated to the Group are managed by the cloud administrator through a VDC. These resources grouped in the VDC can be dedicated exclusively to the Group, providing isolation at the physical level too.
 
 The privileges of the Group users and the admin regarding the operations over the virtual resources created by other users can be configured. For example, in the Advanced Cloud Provisioning Case described below, the users can instantiate virtual machine templates to create their machines, while the admins of the Group have full control over other users' resources and can also create new users in the Group.
 
 Users can access their resources through any of the existing OpenNebula interfaces, such as the CLI, Sunstone Cloud View, OCA, or the AWS APIs. Group admins can manage their Groups through the CLI or the Group Admin View in Sunstone. Cloud administrators can manage the Groups through the CLI or Sunstone.
+
+.. todo::
+
+ Change Screenshot
 
 |cloud-view|
 
@@ -57,15 +62,15 @@ For example, you can think Web Development, Human Resources, and Big Data Analys
 Cloud Provisioning Scenarios
 ================================================================================
 
-OpenNebula has three pre-defined User roles to implement three typical enterprise cloud scenarios:
+OpenNebula has three predefined User roles to implement three typical enterprise cloud scenarios:
 
 * Data center infrastructure management
 * Simple cloud provisioning model
 * Advanced cloud provisioning model
 
-In the three scenarios, the Cloud Administrators manage the physical infrastructure, creates Users and VDCs, prepares base templates and images for Users, etc
+In these three scenarios, Cloud Administrators manage the physical infrastructure, creates Users and VDCs, prepares base templates and images for Users, etc
 
-Cloud Administrators typically access to the cloud by using the CLI or the Admin View of Sunstone.
+Cloud Administrators typically access the cloud using the CLI or the Admin View of Sunstone.
 
 +------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
 |       Role       |                                                                       Capabilities                                                                       |
@@ -84,7 +89,7 @@ Cloud Administrators typically access to the cloud by using the CLI or the Admin
 Data Center Infrastructure Management
 -----------------------------------------------------------------------------
 
-This model is used to manage data center virtualization and to integrate and federate existing IT assets that can be in different data centers. In this usage model, Users are familiar with virtualization concepts. Except for the infrastructure resources, the web interface offeres the same operations available to the Cloud Admin. These are "Advanced Users" that could be considered also as "Limited Cloud Administrators".
+This model is used to manage data center virtualization and to integrate and federate existing IT assets that can be in different data centers. In this usage model, Users are familiar with virtualization concepts. Except for the infrastructure resources, the web interface offers the same operations available to the Cloud Admin. These are "Advanced Users" that could be considered also as "Limited Cloud Administrators".
 
 Users can use the templates and images pre-defined by the cloud administrator, but usually are also allowed to create their own templates and images. They are also able to manage the life-cycle of their resources, including advanced features that may harm the VM guests, like hot-plugging of new disks, resize of Virtual Machines, modify boot parameters, etc.
 
@@ -106,7 +111,7 @@ These "Advanced Users" typically access the cloud by using the CLI or the User V
 Simple Cloud Provisioning 
 -----------------------------------------------------------------------------
 
-In the simple infrastructure provisioning model, the Cloud is offering infrastructure as a service to individual Users. Users are considered as "Cloud Users" or "Cloud Consumers", being much more limited in their operations. These Users access a very intuitive simplified web interface that allows them to launch Virtual Machines from pre-defined Templates. They can access their VMs, and perform basic operations like shutdown. The changes made to a VM disk can be saved back, but new Images cannot be created from scratch.
+In the simple infrastructure provisioning model, the Cloud offers infrastructure as a service to individual Users. Users are considered as "Cloud Users" or "Cloud Consumers", being much more limited in their operations. These Users access a very intuitive simplified web interface that allows them to launch Virtual Machines from predefined Templates. They can access their VMs, and perform basic operations like shutdown. The changes made to a VM disk can be saved back, but new Images cannot be created from scratch.
 
 Groups are used by the Cloud Administrator to isolate users, which are combined with VDCs to have allocated resources, but are not offered on-demand.
 
