@@ -4,14 +4,14 @@
 The Filesystem Datastore
 =========================
 
-The Filesystem datastore lets you store VM images in a file form. The datastore is format agnostic, so you can store any file-type depending on the target hypervisor. The use of file-based disk images presents several benefits over deviced backed disks (e.g. easily backup images, or use of shared FS) although it may less performing in some cases.
+The Filesystem datastore lets you store VM images in a file form. The datastore is format agnostic, so you can store any file-type depending on the target hypervisor. The use of file-based disk images presents several benefits over device backed disks (e.g. easily backup images, or use of shared FS) although it may less performing in some cases.
 
 Usually it is a good idea to have multiple filesystem datastores to:
 
--  Group images of the same type, so you can have a qcow2 datastore for another one for raw images.
--  Balance I/O operations, as the datastores can be in different servers
--  Use different datastores for different cluster hosts
--  Apply different QoS policies to different images
+* Group images of the same type, so you can have a qcow2 datastore for another one for raw images.
+* Balance I/O operations, as the datastores can be in different servers
+* Use different datastores for different cluster hosts
+* Apply different QoS policies to different images
 
 Requirements
 ============
@@ -26,9 +26,8 @@ Configuring the System Datastore
 
 Filesystem datastores can work with a system datastore that uses either the shared or the SSH transfer drivers, note that:
 
--  Shared drivers for the **system** datastore enables live-migrations, but it could demand a high-performance SAN.
-
--  SSH drivers for the **system** datastore may increase deployment/shutdown times but all the operations are performed locally, so improving performance in general.
+* Shared drivers for the **system** datastore enables live-migrations, but it could demand a high-performance NAS.
+* SSH drivers for the **system** datastore may increase deployment/shutdown times but all the operations are performed locally, so improving performance in general.
 
 See more details on the :ref:`System Datastore Guide <system_ds>`
 
@@ -71,16 +70,12 @@ The DS and TM MAD can be changed later using the ``onedatastore update`` command
 
 Finally, you have to prepare the storage for the datastore and configure the hosts to access it. This depends on the transfer mechanism you have chosen for your datastore.
 
-After creating a new datastore the LN\_TARGET and CLONE\_TARGET parameters will be added to the template. These values should not be changed since they define the datastore behaviour. The default values for these parameters are defined in :ref:`oned.conf <oned_conf_transfer_driver>` for each driver.
-
-.. warning:: Note that datastores are not associated to any cluster by default, and their are supposed to be accessible by every single host. If you need to configure datastores for just a subset of the hosts take a look to the :ref:`Cluster guide <cluster_guide>`.
-
 Frontend Access to the Storage
 --------------------------------------------------------------------------------
 
-By default, it is implied that the Frontend has direct access to the storage. Let's say we are configuring datastore `DS_ID = 100`. It is implied that the frontend can write directly to `/var/lib/one/datastores/100`. When an image is first downloaded and registered into the datastore, only the frontend is involved in this operation.
+By default, it is implied that the Frontend has direct access to the storage. Let's say we are configuring datastore `DS_ID = 100`. It is implied that the frontend can write directly to ``/var/lib/one/datastores/100``. When an image is first downloaded and registered into the datastore, only the frontend is involved in this operation.
 
-However, in some scenarios this not ideal, and therefore it can be configured. If the underlying storage is *GlusterFS*, *GFS2* or any other shared storage system, and we do **not** want the frontend to be part of this storage cluster we can use these attributes to configure the behaviour:
+However, in some scenarios this not ideal, and therefore it can be configured. If the underlying storage is *GlusterFS*, *GFS2* or any other shared storage system, and we do **not** want the frontend to be part of this storage cluster we can use these attributes to configure the behavior:
 
 +-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 |    Attribute    |                                                                                                                                               Description                                                                                                                                               |
@@ -106,7 +101,7 @@ If the VM uses a persistent image, a symbolic link to the datastore is created i
 
 On the other hand, the original file is used directly, and if for some reason the VM fails and the image data is corrupted or lost, there is no way to cancel the persistence.
 
-Finally images created using the 'onevm disk-snapshot' command will be moved to the datastore only after the VM is successfully shut down. This means that the VM has to be shutdown using the 'onevm shutdown' command, and not 'onevm delete'. Suspending or stopping a running VM won't copy the disk file to the datastore either.
+Finally images created using the ``onevm disk-saveas`` command will be moved to the datastore only after the VM is successfully shut down. This means that the VM has to be shutdown using the ``onevm terminate`` command, and not ``onevm recover --delete``. Suspending or stopping a running VM won't copy the disk file to the datastore either.
 
 Host Configuration
 ------------------
@@ -121,10 +116,6 @@ If you are using NFS to share the filesystem between nodes some sensible mount o
 
 With the documented configuration of libvirt/kvm the image files are accessed as ``oneadmin`` user. In case the files must be read by ``root`` the option ``no_root_squash`` must be added.
 
-.. warning:: DATASTORE\_LOCATION defines the path to access the datastores in the hosts. It can be defined for each cluster, or if not defined for the cluster the default in oned.conf will be used.
-
-.. warning:: When needed, the front-end will access the datastores using BASE\_PATH (defaults to ``/var/lib/one/datastores``). You can set the BASE\_PATH for the datastore at creation time.
-
 Using the SSH Transfer Driver
 =============================
 
@@ -137,7 +128,7 @@ Persistent & Non Persistent Images
 
 In either case (persistent and non-persistent) images are always copied from the datastore to the corresponding directory of the system datastore in the target host.
 
-If an image is persistent (or for the matter of fact, created with the 'onevm disk-snapshot' command), it is transferred back to the Datastore only after the VM is successfully shut down. This means that the VM has to be shut down using the 'onevm shutdown' command, and not 'onevm delete'. Note that no modification to the image registered in the datastore occurs till that moment. Suspending or stopping a running VM won't copy/modify the disk file registered in the datastore either.
+If an image is persistent (or created with the ``onevm disk-saveas`` command), it is transferred back to the Datastore only after the VM is successfully shut down. This means that the VM has to be shut down using the ``onevm terminate`` command, and not ``onevm recover --delete``. Note that no modification to the image registered in the datastore occurs till that moment. Suspending or stopping a running VM won't copy/modify the disk file registered in the datastore either.
 
 Host Configuration
 ------------------
@@ -151,9 +142,9 @@ The qcow2 drivers are a specialization of the shared drivers to work with the qc
 
 The following list details the differences:
 
--  Persistent images are created with the ``qemu-img`` command using the original image as backing file
--  When an image has to be copied back to the datastore the ``qemu-img convert`` command is used instead of a direct copy
--  Options can be sent to ``qemu-img`` clone action. To do this change the file ``/var/lib/one/remotes/tm/tmrc``. There is a variable called ``QCOW2_OPTIONS`` that can be used to set the parameters.
+* Persistent images are created with the ``qemu-img`` command using the original image as backing file
+* When an image has to be copied back to the datastore the ``qemu-img convert`` command is used instead of a direct copy
+* Options can be sent to ``qemu-img`` clone action. To do this change the file ``/var/lib/one/remotes/tm/tmrc``. There is a variable called ``QCOW2_OPTIONS`` that can be used to set the parameters.
 
 Tuning and Extending
 ====================
@@ -162,8 +153,8 @@ Drivers can be easily customized please refer to the specific guide for each dat
 
 However you may find the files you need to modify here:
 
--  /var/lib/one/remotes/datastore/``<DS_DRIVER>``
--  /var/lib/one/remotes/tm/``<TM_DRIVER>``
+* ``/var/lib/one/remotes/datastore/<DS_DRIVER>``
+* ``/var/lib/one/remotes/tm/<TM_DRIVER>``
 
 .. |image1| image:: /images/fs_shared.png
 .. |image2| image:: /images/fs_ssh.png

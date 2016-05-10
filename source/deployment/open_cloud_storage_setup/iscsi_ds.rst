@@ -6,8 +6,6 @@ The iSCSI Datastore
 
 This datastore is used to register already existing iSCSI volume available to the hypervisor nodes, to be used with virtual machines. It does not do any kind of device discovering or setup. The iSCSI volume should already exists and be available for all the hypervisors. The Virtual Machines will see this device as a regular disk.
 
-.. warning:: This driver **only** works with KVM hosts.
-
 Requirements
 ============
 
@@ -24,7 +22,6 @@ Configuring the System Datastore
 --------------------------------
 
 The system datastore can be of type ``shared`` or ``ssh``. See more details on the :ref:`System Datastore Guide <system_ds>`
-
 
 Configuring DEV Datastore
 -------------------------
@@ -79,8 +76,8 @@ An example of datastore:
        2 files              12.3G 66%   -                 0 fil  fs       ssh
      101 iscsi                 1M 100%  -                 0 img  dev      dev
 
-Use
-===
+Usage
+=====
 
 New images can be added as any other image specifying the path. If you are using the CLI **do not use the shorthand parameters** as the CLI check if the file exists and the device most provably won't exist in the frontend. As an example here is an image template to add a node disk ``iqn.1992-01.com.example:storage:diskarrays-sn-a8675309``:
 

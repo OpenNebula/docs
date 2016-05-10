@@ -14,13 +14,11 @@ Requirements
 Ceph Cluster Configuration
 --------------------------
 
-The hosts where Ceph datastores based images will be deployed must be part of a running Ceph cluster. To do so refer to the `Ceph documentation <http://ceph.com/docs/master/>`__.
-
-Also the ``mon`` daemon must be defined in the ``ceph.conf`` for all the nodes, so ``hostname`` and ``port`` doesn't need to be specified explicitely in any Ceph command.
+The ceph client tools must be available in the hypervisor hosts, as they will need access to the Ceph cluster. The ``mon`` daemon must be defined in the ``ceph.conf`` for all the nodes, so ``hostname`` and ``port`` doesn't need to be specified explicitely in any Ceph command.
 
 Additionally each OpenNebula datastore is backed by a ceph pool, these pools must be created and configured in the Ceph cluster. The name of the pool by default is ``one`` but can be changed on a per-datastore basis (see below).
 
-``ceph`` cluster admin must include a valid user to be used by ``one`` ``ceph`` datastore (see below). This user should be configured in the ``CEPH_USER`` variable in the datastore template (see below). OpenNebula will issue commands from the ``oneadmin`` account in the nodes and in the frontend, using ``--id $CEPH_USER`` as a parameter, for example ``rbd --id $CEPH_USER``. If a non-default configuration file needs to be used, it can be passed along with the ``CEPH_CONF`` tag: when set, ``rbd`` and``rados`` commands will called with: ``rbd --conf=$CEPH_CONF``. Ceph authentication must be configured in a way that issuing commands these commands does work.
+``ceph`` cluster admin must include a valid user to be used by the ``one`` ``ceph`` datastore (see below). This user should be configured in the ``CEPH_USER`` variable in the datastore template (see below). OpenNebula will issue commands from the ``oneadmin`` account in the nodes and in the frontend, using ``--id $CEPH_USER`` as a parameter, for example ``rbd --id $CEPH_USER``. If a non-default configuration file needs to be used, it can be passed along with the ``CEPH_CONF`` tag: when set, ``rbd`` and``rados`` commands will called with: ``rbd --conf=$CEPH_CONF``. Ceph authentication must be configured in a way that issuing commands these commands does work.
 
 This driver can work with either RBD Format 1 or RBD Format 2 (default). To set the default you can specify this option in ``ceph.conf``:
 
@@ -53,7 +51,7 @@ Configuration
 Configuring the System Datastore
 --------------------------------
 
-To use Ceph drivers the system datastore must be either :ref:`Shared <system_ds_shared>` or :ref:`Ceph <system_ds_ceph>`. Make sure to read both guides to understand the differences of using either one. A short summary:
+To use Ceph drivers the system datastore must be either :ref:`Shared <system_ds_shared>` or :ref:`Ceph <system_ds_ceph>`. Make sure to read both subsections to understand the differences of using either one. A short summary:
 
 +------------------------------------------------------------------------+---------------------------------------------------------------------------------+
 |                                 Shared                                 |                                       Ceph                                      |
@@ -141,10 +139,6 @@ An example of datastore:
      100 cephds          none     0      ceph   ceph
 
 The DS and TM MAD can be changed later using the ``onedatastore update`` command. You can check more details of the datastore by issuing the ``onedatastore show`` command.
-
-.. warning:: Note that datastores are not associated to any cluster by default, and they are supposed to be accessible by every single host. If you need to configure datastores for just a subset of the hosts take a look to the :ref:`Cluster guide <cluster_guide>`.
-
-After creating a new datastore the LN\_TARGET and CLONE\_TARGET parameters will be added to the template. These values should not be changed since they define the datastore behaviour. The default values for these parameters are defined in :ref:`oned.conf <oned_conf_transfer_driver>` for each driver.
 
 Ceph Authentication (Cephx)
 ===========================

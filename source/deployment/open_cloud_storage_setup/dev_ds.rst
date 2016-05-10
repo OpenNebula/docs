@@ -6,8 +6,6 @@ The Devices Datastore
 
 This datastore is used to register already existent block devices in the nodes to be used with virtual machines. It does not do any kind of device discovering or setup. The devices should be already setup and available and, VMs using these devices must be fixed to run in the nodes ready for them.
 
-.. warning:: This driver **only** works with KVM drivers.
-
 Requirements
 ============
 
@@ -71,8 +69,8 @@ An example of datastore:
        2 files              12.3G 66%   -                 0 fil  fs       ssh
      101 dev                   1M 100%  -                 0 img  dev      dev
 
-Use
-===
+Usage
+=====
 
 New images can be added as any other image specifying the path. If you are using the CLI do not use the shorthand parameters as the CLI check if the file exists and the device most provably won't exist in the frontend. As an example here is an image template to add a node disk ``/dev/sdb``:
 

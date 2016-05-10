@@ -10,44 +10,19 @@ The LVM datastore driver provides OpenNebula with the possibility of using LVM v
 Overview
 ========
 
-OpenNebula ships with two sets of LVM drivers:
+OpenNebula ships with an LVM Driver: **FS LVM**. The images will be stored as regular files, but they will be dumped into a Logical Volumes (LV) upon instantiation, using the ``fs_lvm`` drivers. The Virtual Machines will run from Logical Volumes in the host. Therefore, this mechanism keeps separate the image datastore, where the images will be stored as files (under the usual path: ``/var/lib/one/datastores/<id>``), from the system datastore, where images are dumped into an LV.
 
--  **FS LVM**, file based VM disk images with Logical Volumes (LV), using the ``fs_lvm`` drivers
--  **Block LVM**, pure Logical Volume (LV), using the ``lvm`` drivers
-
-In both cases Virtual Machine will run from Logical Volumes in the host, and they both require cLVM in order to provide live-migration.
-
-However there are some differences, in particular the way non active images are stored, and the name of the Volume Group where they are executed.
-
-This is a brief description of both drivers:
-
-FS LVM
-======
-
-In a FS LVM datastore using the fs\_lvm drivers (the now recommended LVM drivers), images are registered as files in a shared FS volume, under the usual path: ``/var/lib/one/datastores/<id>``.
-
-This directory needs to be accessible in the worker nodes, using NFS or any other shared/distributed file-system.
+This is the recommended driver to be used when a high-end SAN is available. The same LUN can be exported to all the hosts, Virtual Machines will be able to run directly from the SAN.
 
 When a Virtual Machine is instantiated OpenNebula will dynamically select the system datastore. Let's assume for instance the selected datastore is ``104``. The virtual disk image will be copied from the stored image file under the ``datastores`` directory and dumped into a LV under the Volume Group: ``vg-one-104``. It follows that each node **must** have a cluster-aware LVM Volume Group for every possible system datastore it may execute.
 
-This set of drivers brings precisely the advantage of dynamic selection of the system datastore, allowing therefore more granular control of the performance of the storage backend.
+If the system datastore runs out of space, the OpenNebula architect can add a new system datastore, providing horizontal scalability for the storage. As OpenNebula features a dynamic selection of the system datastore, it turns into a more granular control of the performance of the storage backend.
 
 |image0|
 
-:ref:`Read more <fs_lvm_ds>`
+.. note::
 
-=====================
-The FS LVM Datastore
-=====================
-
-Overview
-========
-
-The FS LVM datastore driver provides OpenNebula with the possibility of using LVM volumes instead of plain files to hold the Virtual Images.
-
-A difference from previous versions and ``lvm`` drivers is that this datastore does **not** need CLVM configured in your cluster. The drivers refresh LVM metadata each time an image is needed in another host.
-
-|image0|
+  A difference from previous versions and with the deprecated ``lvm`` drivers is that this datastore does **not** need CLVM configured in your cluster. The drivers refresh LVM meta-data each time an image is needed in another host.
 
 Requirements
 ============
@@ -55,29 +30,36 @@ Requirements
 OpenNebula Front-end
 --------------------
 
--  Password-less ssh access to an OpenNebula LVM-enabled host.
+No specific requirements are needed for the OpenNebula frontend.
 
 OpenNebula LVM Hosts
 --------------------
 
 LVM must be available in the Hosts. The ``oneadmin`` user should be able to execute several LVM related commands with sudo passwordlessly.
 
--  Password-less sudo permission for: ``lvremove``, ``lvcreate``, ``lvs``, ``lvscan``, ``lvchange``, ``vgdisplay`` and ``dd``.
--  LVM2
--  lvmetad disabled
--  ``oneadmin`` needs to belong to the ``disk`` group (for KVM).
+* Password-less sudo permission for: ``lvremove``, ``lvcreate``, ``lvs``, ``lvscan``, ``lvchange``, ``vgdisplay`` and ``dd``.
+* LVM2 installed.
+* ``lvmetad`` must be disabled. Set this parameter in ``/etc/lvm/lvm.conf``: ``use_lvmetad = 0``, and disable the ``lvm2-lvmetad.service`` if running.
+* ``oneadmin`` needs to belong to the ``disk`` group (for KVM).
 
 Configuration
 =============
 
+Host Configuration
+------------------
+
+``lvmetad`` must be disabled. Set this parameter in ``/etc/lvm/lvm.conf``: ``use_lvmetad = 0``, and disable the ``lvm2-lvmetad.service`` if running.
+
+The hosts must have LVM2 installed and **must** have a Volume-Group for every possible system-datastore that can run in the host.
+
 Configuring the System Datastore
 --------------------------------
 
-To use LVM drivers, the system datastore **must** be ``fs_lvm``. This sytem datastore will hold only the symbolic links to the block devices, so it will not take much space. See more details on the :ref:`System Datastore Guide <system_ds>`
+To use LVM drivers, the system datastore **must** be ``fs_lvm``. This system datastore will hold only the symbolic links to the block devices, and the checkpoints if ``onevm suspend`` is executed , so it will not take much space. See more details on the :ref:`System Datastore Guide <system_ds>`.
 
 It will also be used to hold context images and Disks created on the fly, they will be created as regular files.
 
-It is worth noting that running virtual disk images will be created in Volume Groups that are hardcoded to be ``vg-one-<system_ds_id>``. Therefore the nodes **must** have those Volume Groups pre-created and available for **all** possible system datastores.
+The LVM Volume Group is hardcoded to have the following name: ``vg-one-<system_ds_id>``. Therefore the nodes **must** have those Volume Groups pre-created and available in the Hosts.
 
 Configuring LVM Datastores
 --------------------------
@@ -114,16 +96,8 @@ For example, the following examples illustrates the creation of an LVM datastore
        1 default         none     3      fs     shared
      100 production      none     0      fs     fs_lvm
 
-.. note:: Datastores are not associated to any cluster by default, and they are supposed to be accessible by every single host. If you need to configure datastores for just a subset of the hosts take a look to the :ref:`Cluster guide <cluster_guide>`.
 
-After creating a new datastore the LN\_TARGET and CLONE\_TARGET parameters will be added to the template. These values should not be changed since they define the datastore behaviour. The default values for these parameters are defined in :ref:`oned.conf <oned_conf_transfer_driver>` for each driver.
-
-Host Configuration
-------------------
-
-The hosts must have LVM2 and **must** have a Volume-Group for every possible system-datastore that can run in the host. CLVM must also be installed and active accross all the hosts that use this datastore.
-
-It's also required to have password-less sudo permission for: ``lvremove``, ``lvcreate``, ``lvs``, ``lvscan``, ``lvchange`` and ``dd``.
+Now you need to setup the LVM VG. To do so, in one host run ``pvcreate <PhysicalVolume>`` for the physical volume that is shared across all the hosts. Now create a new VG using that very same PV with the name: ``vg-one-<system_ds_id>``. In the rest of the nodes simply run ``pvscan`` and ``vgscan``. You should see the new VG as long as the host has access to the shared physical volume.
 
 Tuning & Extending
 ==================
@@ -132,9 +106,9 @@ System administrators and integrators are encouraged to modify these drivers in 
 
 Under ``/var/lib/one/remotes/``:
 
--  **tm/fs\_lvm/ln**: Links to the LVM logical volume.
--  **tm/fs\_lvm/clone**: Clones the image by creating a snapshot.
--  **tm/fs\_lvm/mvds**: Saves the image in a new LV for SAVE\_AS.
--  **tm/fs\_lvm/cpds**: Saves the image in a new LV for SAVE\_AS while VM is running.
+* **tm/fs_lvm/ln**: Links to the LVM logical volume.
+* **tm/fs_lvm/clone**: Clones the image by creating a snapshot.
+* **tm/fs_lvm/mvds**: Saves the image in a new LV for SAVE_AS.
+* **tm/fs_lvm/cpds**: Saves the image in a new LV for SAVE_AS while VM is running.
 
 .. |image0| image:: /images/fs_lvm_datastore.png
