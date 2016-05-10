@@ -37,7 +37,7 @@ Before installing:
 
 -  Activate the `EPEL <http://fedoraproject.org/wiki/EPEL#How_can_I_use_these_extra_packages.3F>`__ repo. In CentOS this can be done with the following command:
 
-.. code-block:: console
+.. prompt:: bash, #
 
     # yum install epel-release
 
