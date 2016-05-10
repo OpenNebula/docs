@@ -173,8 +173,10 @@ After installing the OpenNebula packages in the front-end the following director
 |image2|
 
 
-Step 11. Next steps
+Step 7. Next steps
 ===================
+
+.. todo:: next steps
 
 Now that you have a fully functional cloud, it is time to start learning how to use it. A good starting point is this :ref:`overview of the virtual resource management <intropr>`.
 

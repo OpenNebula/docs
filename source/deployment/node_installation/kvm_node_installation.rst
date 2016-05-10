@@ -55,7 +55,7 @@ After this file is changed reboot the machine.
 Step 4. Configure Passwordless SSH
 ==================================
 
-OpenNebula frontend connect to de Hypervisor hosts using SSH. To be able to do that its user must be able to authenticate using SSH keys. You can do it distributing the public key of ``oneadmin`` user from all machines to the file ``/var/lib/one/.ssh/authorized`` in all the machines. Another method consists on copying the keys from the frontend to all the hosts.
+OpenNebula front-end connect to the Hypervisor hosts using SSH. To be able to do that its user must be able to authenticate using SSH keys. You can do it distributing the public key of ``oneadmin`` user from all machines to the file ``/var/lib/one/.ssh/authorized`` in all the machines. Another method consists on copying the keys from the front-end to all the hosts.
 
 .. todo:: copy ssh keys
 
@@ -96,12 +96,87 @@ The simplest way to achieve a shared FS back-end for OpenNebula datastores is to
 Step 7. Adding a Node to the OpenNebula Cloud
 =============================================
 
-To add a node to the cloud, there are four needed parameters: name/IP of the host, virtualization, network and information driver. Using the recommended configuration above, and assuming a KVM hypervisor, you can add your host ``node01`` to OpenNebula in the following fashion (as oneadmin, in the front-end):
+To add a node to the cloud, there are four needed parameters: name/IP of the host, virtualization, network and information driver. Using the recommended configuration above you can add your host ``node01`` to OpenNebula in the following fashion (as ``oneadmin``, in the front-end):
 
 .. code-block:: console
 
-    $ onehost create node01 -i kvm -v kvm -n dummy
+    $ onehost create node01 -i kvm -v kvm
 
 To learn more about the host subsystem, read :ref:`this guide <hostsubsystem>`.
 
 .. |image3| image:: /images/network-02.png
+
+Step 8. Import Currently Running VMs
+====================================
+
+If you already have libvirt+KVM VMs running in the host you can import and manage them with OpenNebula. To do so you'll first have to list the VMs in that host. For example if the node is ``node01`` you can list them with this command executed in the front-end:
+
+.. code-block:: console
+
+    $ onehost show node01
+    [...]
+    WILD VIRTUAL MACHINES
+
+    NAME                                                      IMPORT_ID  CPU     MEMORY
+    zentyal-4.2                    1b09ebbf-e88a-4bfa-b998-4f96dc97b77a    1       1024
+    [...]
+
+Check the table and find the VM you want to import and use the command ``onehost import`` to add it to the OpenNebula database. For example:
+
+.. code-block:: console
+
+    $ onehost importvm node01 zentyal-4.2
+    $ onevm show zentyal-4.2
+    VIRTUAL MACHINE 12 INFORMATION
+    ID                  : 12
+    NAME                : zentyal-4.2
+    USER                : oneadmin
+    GROUP               : oneadmin
+    STATE               : ACTIVE
+    LCM_STATE           : RUNNING
+    RESCHED             : No
+    HOST                : node01
+    CLUSTER ID          : 0
+    CLUSTER             : default
+    START TIME          : 05/09 19:20:42
+    END TIME            : -
+    DEPLOY ID           : 1b09ebbf-e88a-4bfa-b998-4f96dc97b77a
+
+    VIRTUAL MACHINE MONITORING
+    CPU                 : 1.0
+    MEMORY              : 1.1G
+    NETTX               : 252K
+    NETRX               : 5.9M
+    VM_NAME             : zentyal-4.2
+
+    PERMISSIONS
+    OWNER               : um-
+    GROUP               : ---
+    OTHER               : ---
+
+    VIRTUAL MACHINE HISTORY
+    SEQ HOST            ACTION             DS           START        TIME     PROLOG
+      0 localhost       none                0  05/09 19:20:42   0d 00h00m   0h00m00s
+
+    USER TEMPLATE
+    HYPERVISOR="kvm"
+
+    VIRTUAL MACHINE TEMPLATE
+    AUTOMATIC_REQUIREMENTS="!(PUBLIC_CLOUD = YES)"
+    CPU="1"
+    FEATURES=[
+      ACPI="yes",
+      APIC="yes" ]
+    GRAPHICS=[
+      PORT="5900",
+      TYPE="spice" ]
+    IMPORTED="YES"
+    MEMORY="1024"
+    OS=[
+      ARCH="x86_64" ]
+    VCPU="1"
+    VMID="12"
+
+
+.. todo:: next steps
+
