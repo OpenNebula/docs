@@ -28,8 +28,3 @@ Before reading this chapter, you should have already installed your :ref:`Fronte
 * If you are interested in very fast deployment times you might want to read the :ref:`Multiple Actions <kvm_multiple_actions>` section in order to perform multiple operations concurrently in each Host.
 
 After reading this chapter, you should read the :ref:`Storage <storage>` chapter.
-
-Other Hypervisors
-================================================================================
-
-Support for Xen 4 is provided through the `Xen Add-on <https://github.com/OpenNebula/addon-xen>`__ .
