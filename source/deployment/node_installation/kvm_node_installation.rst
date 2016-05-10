@@ -22,7 +22,7 @@ Installing on CentOS/RHEL
 
 Execute the following commands to install the node package and restart libvirt to use the OpenNebula provided configuration file:
 
-.. code-block:: console
+.. prompt:: bash $ auto
 
     $ sudo yum install opennebula-node-kvm
     $ sudo service libvirt restart
@@ -34,7 +34,7 @@ Installing on Debian/Ubuntu
 
 Execute the following commands to install the node package and restart libvirt to use the OpenNebula provided configuration file:
 
-.. code-block:: console
+.. prompt:: bash $ auto
 
     $ sudo apt-get install opennebula-node
     $ sudo service libvirt restart
@@ -74,7 +74,7 @@ The simplest network model corresponds to the ``dummy`` drivers, where only the 
 
 For example, a typical host with two physical networks, one for public IP addresses (attached to eth0 NIC) and the other for private virtual LANs (NIC eth1) should have two bridges:
 
-.. code-block:: console
+.. prompt:: bash $ auto
 
     $ brctl show
     bridge name bridge id         STP enabled interfaces
@@ -98,7 +98,7 @@ Step 7. Adding a Node to the OpenNebula Cloud
 
 To add a node to the cloud, there are four needed parameters: name/IP of the host, virtualization, network and information driver. Using the recommended configuration above you can add your host ``node01`` to OpenNebula in the following fashion (as ``oneadmin``, in the front-end):
 
-.. code-block:: console
+.. prompt:: bash $ auto
 
     $ onehost create node01 -i kvm -v kvm
 
@@ -111,7 +111,7 @@ Step 8. Import Currently Running VMs
 
 If you already have libvirt+KVM VMs running in the host you can import and manage them with OpenNebula. To do so you'll first have to list the VMs in that host. For example if the node is ``node01`` you can list them with this command executed in the front-end:
 
-.. code-block:: console
+.. prompt:: bash $ auto
 
     $ onehost show node01
     [...]
@@ -123,7 +123,7 @@ If you already have libvirt+KVM VMs running in the host you can import and manag
 
 Check the table and find the VM you want to import and use the command ``onehost import`` to add it to the OpenNebula database. For example:
 
-.. code-block:: console
+.. prompt:: bash $ auto
 
     $ onehost importvm node01 zentyal-4.2
     $ onevm show zentyal-4.2

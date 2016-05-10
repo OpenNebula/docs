@@ -37,7 +37,7 @@ Before installing:
 
 -  Activate the `EPEL <http://fedoraproject.org/wiki/EPEL#How_can_I_use_these_extra_packages.3F>`__ repo. In CentOS this can be done with the following command:
 
-.. prompt:: bash, #
+.. prompt:: bash # auto
 
     # yum install epel-release
 
@@ -45,7 +45,7 @@ There are packages for the front-end, distributed in the various components that
 
 To install a CentOS/RHEL OpenNebula front-end with packages from **our repository**, execute the following as root.
 
-.. code-block:: console
+.. prompt:: bash # auto
 
     # yum install opennebula-server opennebula-sunstone opennebula-ruby
 
@@ -73,7 +73,7 @@ Installing on Debian/Ubuntu
 
 To install OpenNebula on a Debian/Ubuntu front-end using packages from **our repositories** execute as root:
 
-.. code-block:: console
+.. prompt:: bash # auto
 
     # apt-get update
     # apt-get install opennebula opennebula-sunstone
@@ -112,7 +112,7 @@ Some OpenNebula components need Ruby libraries. OpenNebula provides a script tha
 
 As root execute:
 
-.. code-block:: console
+.. prompt:: bash # auto
 
     # /usr/share/one/install_gems
 
@@ -135,7 +135,7 @@ Log in as the ``oneadmin`` user follow these steps:
 
 -  If you installed from packages, you should have the ``one/one_auth`` file created with a randomly-generated password. Otherwise, set oneadmin's OpenNebula credentials (username and password) adding the following to ``~/.one/one_auth`` (change ``password`` for the desired password):
 
-.. code-block:: console
+.. prompt:: bash $ auto
 
     $ mkdir ~/.one
     $ echo "oneadmin:password" > ~/.one/one_auth
@@ -145,7 +145,7 @@ Log in as the ``oneadmin`` user follow these steps:
 
 -  You are ready to start the OpenNebula daemons:
 
-.. code-block:: console
+.. prompt:: bash # auto
 
     # service opennebula start
 
@@ -154,14 +154,14 @@ Step 6. Verifying the Installation
 
 After OpenNebula is started for the first time, you should check that the commands can connect to the OpenNebula daemon. In the front-end, run as oneadmin the command onevm:
 
-.. code-block:: console
+.. prompt:: bash $ auto
 
     $ onevm list
         ID USER     GROUP    NAME            STAT UCPU    UMEM HOST             TIME
 
 If instead of an empty list of VMs you get an error message, then the OpenNebula daemon could not be started properly:
 
-.. code-block:: console
+.. prompt:: bash $ auto
 
     $ onevm list
     Connection refused - connect(2)
