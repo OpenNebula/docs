@@ -7,7 +7,11 @@ Large Deployments
 Monitoring
 ==========
 
-OpenNebula supports two native monitoring systems: ``ssh-pull`` and ``udp-push``. The former one, ``ssh-pull`` is the default monitoring system for OpenNebula <= 4.2, however from OpenNebula 4.4 onwards, the default monitoring system is the ``udp-push`` system. This model is highly scalable and its limit (in terms of number of VMs monitored per second) is bounded to the performance of the server running oned and the database server. Our scalability testing achieves the monitoring of tens of thousands of VMs in a few minutes.
+In KVM environments, OpenNebula supports two native monitoring systems: ``ssh-pull`` and ``udp-push``. The former one, ``ssh-pull`` is the default monitoring system for OpenNebula <= 4.2, however from OpenNebula 4.4 onwards, the default monitoring system is the ``udp-push`` system. This model is highly scalable and its limit (in terms of number of VMs monitored per second) is bounded to the performance of the server running oned and the database server.
+
+For vCenter environments, OpenNebula uses the VI API offered by vCenter to monitor the state of the hypervisor and all the Virtual Machines running in all the imported vCenter clusters. The driver is optimized to cache common VM information.
+
+In both environments, our scalability testing achieves the monitoring of tens of thousands of VMs in a few minutes.
 
 Read more in the :ref:`Monitoring guide <mon>`.
 
