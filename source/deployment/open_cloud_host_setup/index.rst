@@ -10,4 +10,3 @@ Open Cloud Host Setup
    Virtual Machines HA <ftguide>
    Monitoring <monitoring>
    PCI Passthrough <pci_passthrough>
-   Multiple Actions per Host <multiple_actions>
