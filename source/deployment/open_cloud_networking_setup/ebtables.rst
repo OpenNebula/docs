@@ -14,25 +14,20 @@ This hook requires ``ebtables`` to be available in all the OpenNebula Hosts.
 Considerations & Limitations
 ============================
 
-Although this is the most easily usable driver, since it doesn't require any special hardware or any software configuration, it lacks the ability of sharing IPs amongst different VNETs, that is, if an VNET is using leases of 192.168.0.0/24, another VNET can't be using IPs in the same network.
+Although this is the most easily usable driver, since it doesn't require any special hardware or any software configuration, it lacks the ability of sharing IPs amongst different VNETs, that is, if an VNET is using leases of 192.168.0.0/24, another VNET must not use the same IPs in the same network. Note that OpenNebula will not prevent you to create
 
 Configuration
 =============
 
+Frontend Configuration
+------------------------
+
+No specific configuration is required for the frontend.
+
 Hosts Configuration
 -------------------
 
--  The package ``ebtables`` must be installed in the hosts.
--  The ``sudoers`` file must be configured so ``oneadmin`` can execute ``ebtables`` in the hosts.
-
-OpenNebula Configuration
-------------------------
-
-To enable this driver, use **ebtables** as the Virtual Network Manager driver parameter when the hosts are created with the :ref:`onehost command <host_guide>`:
-
-.. code::
-
-    $ onehost create host01 -i kvm -v kvm -n ebtables
+The package ``ebtables`` must be installed in the hosts.
 
 Driver Actions
 --------------
@@ -50,27 +45,29 @@ Driver Actions
 Usage
 =====
 
-The driver will be automatically applied to every Virtual Machine deployed in the Host. Only the virtual networks with the attribute ``VLAN`` set to ``YES`` will be isolated. There are no other special attributes required.
+To use this driver, use ``VN_MAD="ebtables"`` in the Network Template.
+
+The driver will be automatically applied to every Virtual Machine deployed in the Host.
 
 .. code::
 
     NAME    = "ebtables_net"
+    VN_MAD  = "ebtables"
     BRIDGE  = vbr1
-    VLAN    = "YES" 
     ...
 
 Tuning & Extending
 ==================
 
-EBTABLES Rules
+Ebtables Rules
 --------------
 
-This section lists the EBTABLES rules that are created:
+This section lists the ebtables rules that are created:
 
 .. code::
 
     # Drop packets that don't match the network's MAC Address
-    -s ! <mac_address>/ff:ff:ff:ff:ff:0 -o <tap_device> -j DROP 
+    -s ! <mac_address>/ff:ff:ff:ff:ff:0 -o <tap_device> -j DROP
     # Prevent MAC spoofing
     -s ! <mac_address> -i <tap_device> -j DROP
 

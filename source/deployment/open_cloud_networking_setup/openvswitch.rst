@@ -4,16 +4,18 @@
 Open vSwitch
 =============
 
-This guide describes how to use the `Open vSwitch <http://openvswitch.org/>`__ network drives. They provide two indepent functionalities that can be used together: network isolation using VLANs, and network filtering using OpenFlow. Each Virtual Network interface will receive a VLAN tag enabling network isolation. Other traffic attributes that may be configured through Open vSwitch are not modified.
+.. todo:: this guide must be reviewed because of the deprecation of black_ports
 
-The VLAN id will be the same for every interface in a given network, calculated by adding a constant to the network id. It may also be forced by specifying an VLAN\_ID parameter in the :ref:`Virtual Network template <vnet_template>`.
+This guide describes how to use the `Open vSwitch <http://openvswitch.org/>`__ network drives. They provide two independent functionalities that can be used together: network isolation using VLANs, and network filtering using OpenFlow. Each Virtual Network interface will receive a VLAN tag enabling network isolation. Other traffic attributes that may be configured through Open vSwitch are not modified.
 
-The network filtering functionality is very similar to the :ref:`Firewall <firewall>` drivers, with a few limitations discussed below.
+The VLAN id will be the same for every interface in a given network, calculated by adding a constant to the network id. It may also be forced by specifying an ``VLAN_ID`` parameter in the :ref:`Virtual Network template <vnet_template>`.
+
+.. warning:: This driver is not compatible with Security Groups.
 
 Requirements
 ============
 
-This driver requires Open vSwitch to be installed on each OpenNebula Host. Follow the resources specified in :ref:`hosts\_configuration <openvswitch_hosts_configuration>` to install it.
+This driver requires Open vSwitch to be installed on each OpenNebula Host. Follow the resources specified in :ref:`hosts configuration <openvswitch_hosts_configuration>` to install it.
 
 Considerations & Limitations
 ============================
@@ -25,24 +27,36 @@ This guide will address the usage of VLAN tagging and OpenFlow filtering of Open
 Configuration
 =============
 
+OpenNebula Configuration
+------------------------
+
+The VLAN_ID is calculated according to this configuration option of ``oned.conf``:
+
+.. code:: bash
+
+    #  VLAN_IDS: VLAN ID pool for the automatic VLAN_ID assigment. This pool
+    #  is for 802.1Q networks (Open vSwitch and 802.1Q drivers). The driver
+    #  will try first to allocate VLAN_IDS[START] + VNET_ID
+    #     start: First VLAN_ID to use
+    #     reserved: Comma separated list of VLAN_IDs
+
+    VLAN_IDS = [
+        START    = "2",
+        RESERVED = "0, 1, 4095"
+    ]
+
+By modifying that parameter you can reserve some VLANs so they aren't assigned to a Network. You can also define the first VLAN_ID. When a new isolatad network is created, OpenNebula will find a free VLAN_ID from the VLAN pool. This pool is global, and it's also shared with the :ref:`802.1Q <hm-vlan>` driver.
+
+.. warning::
+
+    A reserved VLAN_ID will be reserved forever, even if you remove it from the list, it will still be reserved. There is no mechanism to un-reserve a VLAN_ID.
+
 .. _openvswitch_hosts_configuration:
 
 Hosts Configuration
 -------------------
 
--  You need to install Open vSwitch on each OpenNebula Host. Please refer to the `Open vSwitch documentation <https://github.com/openvswitch/ovs/blob/master/INSTALL.md>`__ to do so.
--  The ``sudoers`` file must be configured so ``oneadmin`` can execute ``ovs-vsctl`` in the hosts.
-
-OpenNebula Configuration
-------------------------
-
-To enable this driver, use **ovswitch** as the Virtual Network Manager driver parameter when the hosts are created with the :ref:`onehost command <host_guide>`:
-
-.. code::
-
-    # for kvm hosts
-    $ onehost create host01 -i kvm -v kvm -n ovswitch
-
+You need to install Open vSwitch on each OpenNebula Host. Please refer to the `Open vSwitch documentation <https://github.com/openvswitch/ovs/blob/master/INSTALL.md>`__ to do so.
 
 Open vSwitch Options
 --------------------
@@ -56,7 +70,7 @@ It is possible to disable the ARP Cache Poisoning prevention rules by changing t
     # Enable ARP Cache Poisoning Prevention Rules
     :arp_cache_poisoning: true
 
-The start VLAN id can also be set in that file.
+
 
 Driver Actions
 --------------
@@ -80,40 +94,18 @@ VLAN trunking is also supported by adding the following tag to the ``NIC`` eleme
 
 .. _openvswitch_different_bridge:
 
-Different Bridge for OpenvSwitch
---------------------------------
-
-If a template is intended to be instantiated in hosts with ``ovswitch`` vnm driver and also in hosts with a different driver, it's possible to specify what bridge in both sets of hosts by setting the ``BRIDGE_OVS`` parameter in addition to the regular ``BRIDGE`` parameter. ``BRIDGE`` will be used for non ``ovswitch`` hosts and ``BRIDGE_OVS`` for ``ovswitch`` hosts.
-
-For example, consider the following network template:
-
-.. code::
-
-    BRIDGE="br0"
-    BRIDGE_OVS="ovsbr0"
-
-- If instiated in a host with ``vnm=dummy`` the virtual network interface will be connected to the ``br0`` bridge.
-- Whereas if instantiated in a host with ``vnm=ovswitch``, it will be connected to the ``ovsbr0`` ovs switch.
-
 Usage
 =====
 
-Network Isolation
------------------
-
-The driver will be automatically applied to every Virtual Machine deployed in the Host. Only the virtual networks with the attribute ``VLAN`` set to ``YES`` will be isolated. There are no other special attributes required.
+To use this driver, use **VN_MAD="ovswitch"** in the Network Template.
 
 .. code::
 
     NAME    = "ovswitch_net"
+    VN_MAD  = "ovswitch"
     BRIDGE  = vbr1
-     
-    VLAN    = "YES"
-    VLAN_ID = 50        # optional
-     
+    VLAN_ID = 50 # optional
     ...
-
-.. warning:: Any user with Network creation/modification permissions may force a custom vlan id with the ``VLAN_ID`` parameter in the network template. In that scenario, any user may be able to connect to another network with the same network id. Techniques to avoid this are explained under the Tuning & Extending section.
 
 Network Filtering
 -----------------
@@ -122,11 +114,11 @@ The first rule that is always applied when using the Open vSwitch drivers is the
 
 The firewall directives must be placed in the :ref:`network section <template_network_section>` of the Virtual Machine template. These are the possible attributes:
 
--  ``BLACK_PORTS_TCP = iptables_range``: Doesn't permit access to the VM through the specified ports in the TCP protocol. Superseded by WHITE\_PORTS\_TCP if defined.
--  ``BLACK_PORTS_UDP = iptables_range``: Doesn't permit access to the VM through the specified ports in the UDP protocol. Superseded by WHITE\_PORTS\_UDP if defined.
--  ``ICMP = drop``: Blocks ICMP connections to the VM. By default it's set to accept.
+* ``BLACK_PORTS_TCP = iptables_range``: Doesn't permit access to the VM through the specified ports in the TCP protocol.
+* ``BLACK_PORTS_UDP = iptables_range``: Doesn't permit access to the VM through the specified ports in the UDP protocol.
+* ``ICMP = drop``: Blocks ICMP connections to the VM. By default it's set to accept.
 
-``iptables_range``: a list of ports separated by commas, e.g.: ``80,8080``. Currently no ranges are supporteg, e.g.: ``5900:6000`` is **not** supported.
+``iptables_range``: a list of ports separated by commas, e.g.: ``80,8080``. Currently no ranges are supported, e.g.: ``5900:6000`` is **not** supported.
 
 Example:
 
@@ -134,37 +126,10 @@ Example:
 
     NIC = [ NETWORK_ID = 3, BLACK_PORTS_TCP = "80, 22", ICMP = drop ]
 
-Note that WHITE\_PORTS\_TCP and BLACK\_PORTS\_TCP are mutually exclusive. In the event where they're both defined the more restrictive will prevail i.e. WHITE\_PORTS\_TCP. The same happens with WHITE\_PORTS\_UDP and BLACK\_PORTS\_UDP.
-
 Tuning & Extending
 ==================
 
-.. warning:: Remember that any change in the ``/var/lib/one/remotes`` directory won't be effective in the Hosts until you execute, as oneadmin:
-
-.. code::
-
-    oneadmin@frontend $ onehost sync
-
-This way in the next monitoring cycle the updated files will be copied again to the Hosts.
-
-Restricting Manually the VLAN ID
---------------------------------
-
-You can either restrict permissions on Network creation with :ref:`ACL rules <manage_acl>`, or you can entirely disable the possibility to redefine the VLAN\_ID by modifying the source code of ``/var/lib/one/remotes/vnm/ovswitch/OpenvSwitch.rb``. Change these lines:
-
-.. code::
-
-                    if nic[:vlan_id]
-                        vlan = nic[:vlan_id]
-                    else
-                        vlan = CONF[:start_vlan] + nic[:network_id].to_i
-                    end
-
-with this one:
-
-.. code::
-
-                    vlan = CONF[:start_vlan] + nic[:network_id].to_i
+Remember to sync any changes to the hosts by running ``onehost sync`` and to backup the changes in order to re-apply them after upgrading to a new release of OpenNebula.
 
 OpenFlow Rules
 --------------
