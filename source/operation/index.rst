@@ -12,4 +12,5 @@ Operation Guide
    Virtual Network Management <network_management/index>
    Virtual Machine Management <vm_management/index>
    Virtual Machine Setup <vm_setup/index>
+   Cloud End-User <sunstone_enduser/index>
    References <references/index>

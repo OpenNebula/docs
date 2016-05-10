@@ -124,6 +124,15 @@ The Virtual Machine and Service Templates are visible to the group users when th
 
 You can read more about OpenNebula permissions in the :ref:`Managing Permissions <chmod>` and :ref:`Managing ACL Rules <manage_acl>` guides.
 
+
+Resource Sharing
+================================================================================
+
+When a new group is created the cloud administrator can define if the users of this view will be allowed to view the VMs and Services of other users in the same group. If this option is checked a new ACL rule will be created to give users in this group access to the VMS and Services in the same group. Users will not able to manage these resources but they will be included in the list views of each resource.
+
+|cloud_resource_sharing|
+
+
 .. _manage_users_primary_and_secondary_groups:
 
 Primary and Secondary Groups
@@ -144,3 +153,4 @@ All the described functionality is available graphically using :ref:`Sunstone <s
 .. |prepare-tmpl-chgrp| image:: /images/prepare-tmpl-chgrp.png
 .. |manage_groups_1| image:: /images/manage_groups_1.png
 .. |manage_groups_2| image:: /images/manage_groups_2.png
+.. |cloud_resource_sharing| image:: /images/cloud_resource_sharing.png
