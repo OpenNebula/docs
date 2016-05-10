@@ -6,9 +6,7 @@ Virtual Machine Setup
    :maxdepth: 2
 
    Overview <context_overview>
+   KVM Contextualization <kvm>
+   vCenter Contextualization <vcenter>
    Adding content to your cloud <add_content>
-   Basic Contextualization <bcont>
-   Advanced Contextualization <cong>
-   Windows Contextualization <windows_context>
-   Cloud-init <cloud-init>
-   vCenter Customization <vcenter_customization>
+

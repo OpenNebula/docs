@@ -6,3 +6,4 @@ Work in Progress
    :maxdepth: 2
 
    Work in Progress <wip/index>
+   Deprecated <deprecated/index>
