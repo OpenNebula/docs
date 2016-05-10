@@ -8,8 +8,6 @@ Overview
     * KVM
     * vCenter
 
-This chapter contains complete references for OpenNebula configuration files, tools, and advanced deployment configurations.
-
 This Chapter cover references that apply to the configuration of OpenNebula to interact smoothly and efficiently with other datacenter components, as well as information on where are the log files, the database tool, and all the configuration parameters of the OpenNebula core daemon.
 
 How Should I Read This Chapter
