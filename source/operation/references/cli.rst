@@ -25,6 +25,8 @@ CLI
 -  `onezone </doc/5.0/cli/onezone.1.html>`__: manages OpenNebula zones
 -  `onesecgroup </doc/5.0/cli/onesecgroup.1.html>`__: manages OpenNebula security groups
 
+.. todo:: missing onevcenter CLI
+
 The output of these commands can be customized by modifying the configuration files that can be found in ``/etc/one/cli/``. They also can be customized on a per-user basis, in this case the configuration files should be placed in ``$HOME/.one/cli``.
 
 ECONE Commands
@@ -53,9 +55,11 @@ ECONE Commands
 -  `econe-describe-keypairs </doc/5.0/cli/econe-describe-keypairs.1.html>`__: List and describe the key pairs available to the user
 -  `econe-register </doc/5.0/cli/econe-register.1.html>`__: Registers an image
 
-oneFlow Commands
+OneFlow Commands
 ================
 
 -  `oneflow </doc/5.0/cli/oneflow.1.html>`__: oneFlow Service management
 -  `oneflow-template </doc/5.0/cli/oneflow-template.1.html>`__: oneFlow Service Template management
+
+.. todo:: missing OneGate commands
 

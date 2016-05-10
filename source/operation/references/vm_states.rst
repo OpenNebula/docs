@@ -4,6 +4,8 @@
 Virtual Machines States Reference
 ================================================================================
 
+.. todo:: Needs update for new terminate state.
+
 This page is a complete reference of all the VM states that will be useful for administrators doing troubleshooting and developers.
 
 The simplified life-cycle is explained in the :ref:`Managing Virtual Machines guide <vm_life_cycle_and_states>`. That simplified diagram uses a smaller number of state names. These names are the ones used by onevm list, e.g. ``prolog``, ``prolog_migrate`` and ``prolog_resume`` are all presented as ``prol``. It is intended as a reference for end-users. That section should be enough for end-users and every-day administration tasks.

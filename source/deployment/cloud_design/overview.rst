@@ -2,7 +2,7 @@
 Overview
 ================================================================================
 
-.. TODO: Jaime's Table
+.. todo:: Jaime's Table
 
     -* Cloud Architect
     -* KVM
