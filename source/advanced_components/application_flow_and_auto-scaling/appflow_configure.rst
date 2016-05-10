@@ -9,9 +9,9 @@ The OneFlow commands do not interact directly with the OpenNebula daemon, there 
 Installation
 ============
 
-OneFlow server is shipped with the main distribution. The oneflow server is usually contained in the 'opennebula-flow' package, and the commands in the specific CLI paclage. Check the :ref:`Installation guide <ignc>` for details of what packages you have to install depending on your distribution.
+OneFlow server is shipped with the main distribution. The oneflow server is usually contained in the 'opennebula-flow' package, and the commands in the specific CLI package. Check the :ref:`Installation guide <ignc>` for details of what packages you have to install depending on your distribution.
 
-Make sure you execute ``ìnstall_gems`` to install the required gems, in particular: ``treetop``, ``parse-cron``.
+.. note:: Make sure you executed ``ìnstall_gems`` during the installation to install the required gems, in particular: ``treetop``, ``parse-cron``.
 
 Configuration
 =============
