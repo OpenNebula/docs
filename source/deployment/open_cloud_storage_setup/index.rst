@@ -5,7 +5,7 @@ Open Cloud Storage Setup
 .. toctree::
    :maxdepth: 2
 
-   Overview <sm>
+   Overview <overview>
    System Datastore <system_ds>
    Filesystem Datastore <fs_ds>
    LVM Datastore <lvm_drivers>

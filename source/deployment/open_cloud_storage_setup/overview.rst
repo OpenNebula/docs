@@ -1,7 +1,8 @@
 .. _sm:
+.. _storage:
 
 =================
-Storage Overview
+Overview
 =================
 
 A Datastore is any storage medium used to store disk images for VMs, previous versions of OpenNebula refer to this concept as Image Repository. Typically, a datastore will be backed by SAN/NAS servers.
