@@ -1,3 +1,5 @@
+.. _advanced_components:
+
 =============================
 Advanced Administration Guide
 =============================

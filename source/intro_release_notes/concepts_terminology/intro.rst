@@ -93,11 +93,11 @@ Now everything is ready for operation. OpenNebula provides full control to manag
 
 -  **Virtual machine image management** that allows to store :ref:`disk images in catalogs <img_guide>` (termed datastores), that can be then used to define VMs or shared with other users. The images can be OS installations, persistent data sets or empty data blocks that are created within the datastore.
 
--  **Virtual network management** of `Virtual networks <vgg>` that can be organised in network catalogs, and provide means to interconnect virtual machines. This kind of resources can be defined as IPv4, IPv6, or mixed networks, and can be used to achieve full isolation between virtual networks.
+-  **Virtual network management** of `Virtual networks <vgg>` that can be organized in network catalogs, and provide means to interconnect virtual machines. This kind of resources can be defined as IPv4, IPv6, or mixed networks, and can be used to achieve full isolation between virtual networks.
 
 -  **Virtual machine template management** with :ref:`template catalog <vm_guide>` system that allows to register :ref:`virtual machine <vm_guide_2>` definitions in the system, to be instantiated later as virtual machine instances.
 
--  **Virtual machine instance management** with anumber of operations that can be performed to control lifecycle of the :ref:`virtual machine instances <vm_guide_2>`, such as migration (live and cold), stop, resume, cancel, poweroff, etc.
+-  **Virtual machine instance management** with a number of operations that can be performed to control lifecycle of the :ref:`virtual machine instances <vm_guide_2>`, such as migration (live and cold), stop, resume, cancel, poweroff, etc.
 
 [TODO: Talk about References and about the CLI]
 
