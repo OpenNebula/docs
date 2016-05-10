@@ -11,3 +11,4 @@ Deprecated
    Cloud-init <cloud-init>
    vCenter Customization <vcenter_customization>
    Introduction to Private Cloud Computing <intropr>
+   Creating MarketPlaceApps <vm4market>

@@ -10,10 +10,12 @@ A MarketPlace can be either Public, accessible universally by all OpenNebula's, 
 
 A MarketPlace is a repository of MarketPlaceApps. A MarketPlaceApp can be thought of as an external image optionally associated to a Virtual Machine Template.
 
-Using MarketPlaces is very convenient, as it will allow you to move images across different kinds of datatastores (using the MarketPlace as an exchange point), it is a way to share OpenNebula images in a Federation, as these resources are federated. In an OpenNebula deployment where the different VDCs don't share any resources, a MarketPlace will act like a shared datastore for all the users.
+Using MarketPlaces is very convenient, as it will allow you to move images across different kinds of datastores (using the MarketPlace as an exchange point), it is a way to share OpenNebula images in a Federation, as these resources are federated. In an OpenNebula deployment where the different VDCs don't share any resources, a MarketPlace will act like a shared datastore for all the users.
 
 Supported Actions
 =================
+
+.. todo:: check onemarket delete, is it properly described?
 
 MarketPlaces support various actions:
 
@@ -75,5 +77,19 @@ Using the MarketPlace is recommended in many scenarios, to name a few:
 
 * When starting with an empty OpenNebula, the public `OpenNebula Systems Marketplace <http://marketplace.opennebula.systems>`__ contains a catalog of :ref:`OpenNebula-ready <bcont>` cloud images, allowing you to get on your feet very quickly.
 * You can upload an image into a MarketPlace, and download it later on to another Datastores even if the source and target Datastores are of a different type, thus enabling image cloning from any datastore to any other datastore.
-* In a federation, it is almost essential to have a shared MarketPlace in order to share MarketPlaceApps accross zones.
+* In a federation, it is almost essential to have a shared MarketPlace in order to share MarketPlaceApps across zones.
 * MarketPlaces are a great way to provide content for the users in VDCs with no initial virtual resources.
+
+Hypervisor Compatibility
+================================================================================
+
+This chapter applies both to KVM and vCenter.
+
+How Should I Read This Chapter
+================================================================================
+
+Before reading this chapter make sure you have read the :ref:`Deployment Guide <deployment_guide>`.
+
+Read the :ref:`OpenNebula Systems MarketPlace <market_one>` as it's global for all the OpenNebula installations. Then read the specific guide for the MarketPlace flavor you are interested in. Finally, read the :ref:`Managing MarketPlaceApps <marketapp>` to understand what operations you can perform on MarketPlaceApps.
+
+After reading this chapter you can continue configuring more :ref:`Advanced Components <advanced_components>`.

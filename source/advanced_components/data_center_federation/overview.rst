@@ -1,7 +1,7 @@
 .. _introf:
 
 ======================
-Data Center Federation
+Overview
 ======================
 
 Several OpenNebula instances can be configured as a **Federation**. Each instance of the Federation is called a **Zone**, and they are configured as one master and several slaves.
@@ -38,13 +38,19 @@ Other Services
 
 Although a single Sunstone server can connect to different Zones, all the other OpenNebula services will only work with the local Zone resources. This includes the :ref:`Scheduler <schg>`, the :ref:`Public Cloud Servers <introc>`, :ref:`OneFlow <oneapps_overview>`, and :ref:`OneGate <onegate_overview>`.
 
-Next Steps
+Hypervisor Compatibility
 ================================================================================
 
-Continue to the following guides to learn how to configure and manage a Federation:
+This chapter applies both to KVM and vCenter.
 
-* :ref:`Federation Configuration <federationconfig>`
-* :ref:`Federation Management <federationmng>`
+How Should I Read This Chapter
+================================================================================
+
+Before reading this chapter make sure you have read the :ref:`Deployment Guide <deployment_guide>`.
+
+Read the :ref:`Federation Configuration <federationconfig>` section to learn how to setup a federation, and the :ref:`Federation Management <federationmng>` section to learn how to manage zones in OpenNebula.
+
+After reading this chapter you can continue configuring more :ref:`Advanced Components <advanced_components>`.
 
 .. |fed_architecture| image:: /images/fed_architecture.png
    :width: 90 %

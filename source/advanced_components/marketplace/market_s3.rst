@@ -78,6 +78,8 @@ Tuning & Extending
 
 In order to change the available size of the MarketPlace from 1TB to your desired value, you can modify `/var/lib/one/remotes/market/s3/monitor` and change:
 
+.. code::
+
     TOTAL_MB_DEFAULT = 1048576 # Default maximum 1TB
 
 System administrators and integrators are encouraged to modify these drivers in order to integrate them with their datacenter. Please refer to the :ref:`Market Driver Development <devel-market>` guide to learn about the driver details.

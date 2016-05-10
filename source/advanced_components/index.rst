@@ -1,7 +1,7 @@
 .. _advanced_components:
 
 =============================
-Advanced Administration Guide
+Advanced Components Guide
 =============================
 
 .. toctree::
