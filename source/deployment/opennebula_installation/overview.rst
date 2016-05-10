@@ -13,11 +13,11 @@ The front-end is the central part of an OpenNebula installation. This is the mac
 How Should I Read This Chapter
 ================================================================================
 
-First you should read the Front-end installation guide. By default it uses a sqlite database that is not recommended for production so, if this is not a small proof of concept, you should head to MySQL Setup after that.
+First you should read the :ref:`Front-end Installation <frontend_installation>` guide. By default it uses a sqlite database that is not recommended for production so, if this is not a small proof of concept, you should head to :ref:`MySQL Setup <mysql_setup>` after that.
 
-In the Scheduler guide you'll learn how to change the configuration to suit your needs. For example changing the scheduling policies or the number of VMs that will be sent per host.
+In the :ref:`Scheduler guide <schg>` you'll learn how to change the configuration to suit your needs. For example changing the scheduling policies or the number of VMs that will be sent per host.
 
-Finally there is the Front-end HA Setup that will guide you on setting up two front-ends in and active/passive fashion. This setup requires the use of a MySQL database.
+Finally there is the :ref:`Front-end HA Setup <frontend_ha_setup>` section that will guide you on setting up two front-ends in and active/passive fashion. This setup requires the use of a MySQL database.
 
 Hypervisor Compatibility
 ================================================================================

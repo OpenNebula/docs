@@ -9,6 +9,6 @@ OpenNebula Installation
 
    Overview <overview>
    Front-end Installation <frontend_installation>
-   Front-end HA Setup <frontend_ha_setup>
-   Scheduler <scheduler>
    MySQL Setup <mysql_setup>
+   Scheduler <scheduler>
+   Front-end HA Setup <frontend_ha_setup>
