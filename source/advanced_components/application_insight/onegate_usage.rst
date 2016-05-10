@@ -1,19 +1,21 @@
 .. _onegate_usage:
 
+.. todo:: Needs to be reviewed and updated to 5.0
+
 =======================
 OneGate Usage
 =======================
 
-OneGate allows Virtual Machine guests to pull and push VM information from OpenNebula. Users and administrators can use it to gather metrics, detect problems in their applications, and trigger OneFlow elasticity rules from inside the VM. 
+The OneGate component allows Virtual Machine guests to pull and push VM information from OpenNebula. Users and administrators can use it to gather metrics, detect problems in their applications, and trigger OneFlow elasticity rules from inside the VM.
 
-For Virtual Machines that are part of a Multi-VM Application (Service), they can also retrieve the Service information directly from OneGate and trigger actions to reconfigure the service or pass information among different VMs.
-
-|onegate_arch|
+For Virtual Machines that are part of a Multi-VM Application (OneFlow Service), they can also retrieve the Service information directly from OneGate and trigger actions to reconfigure the service or pass information among different VMs.
 
 OneGate Workflow Explained
 ==========================
 
 OneGate is a server that listens to http connections from the Virtual Machines. OpenNebula assigns an individual token to each VM instance, and Applications running inside the VM use this token to interact with the OneGate API. This token is generated using VM information and signed with the user TOKEN_PASSWORD. This password can be changed updating the user template, but tokens from existing vms will not work anymore.
+
+|onegate_arch|
 
 OneGate Usage
 =============
@@ -23,7 +25,7 @@ First, the cloud administrator must configure and start the :ref:`OneGate server
 Setup the VM Template
 ---------------------
 
-Your VM Template must set the CONTEXT/TOKEN attribute to ``yes``.
+Your VM Template must set the CONTEXT/TOKEN attribute to ``YES``.
 
 .. code::
 

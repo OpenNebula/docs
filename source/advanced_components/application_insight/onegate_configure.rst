@@ -1,5 +1,7 @@
 .. _onegate_configure:
 
+.. todo:: Needs to be reviewed and updated to 5.0
+
 =============================
 OneGate Server Configuration
 =============================
