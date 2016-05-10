@@ -119,19 +119,19 @@ Using the Cloud as a Group Admin
 
 If you login as the 'web-dev-admin', you will see a simplified interface, the :ref:`Group admin view <vdc_admin_view>`. This view hides the physical infrastructure, but allows some administration tasks to be performed.
 
-|vdcadmin_dash|
+
 
 The group admin can create new user accounts, that will belong to the same group. They can also see the current resource usage of all the group users, and set quota limits for each one of them.
 
-|vdcadmin_create_user|
+
 
 The group admin can manage the Services, VMs and Templates of other users in the group. The resources of a specific user can be filtered in the list views for each resource type or can be listed in the detailed view of the user.
 
-|vdcadmin_user_info|
+
 
 Although the cloud administrator is the only one that can create new base Images and Templates, the group admin can customize existing Templates, and share them with the rest of the group users.
 
-|vdcadmin_save_vm|
+
 
 Create a new user, and login again.
 
@@ -181,10 +181,10 @@ From the user settings tab, the users can also change their password, language, 
    :width: 100 %
 .. |qs_vdc13| image:: /images/qs_vdc13.png
    :width: 100 %
-.. |vdcadmin_dash| image:: /images/vdcadmin_dash.png
-.. |vdcadmin_create_user| image:: /images/vdcadmin_create_user.png
-.. |vdcadmin_user_info| image:: /images/vdcadmin_user_info.png
-.. |vdcadmin_save_vm| image:: /images/vdcadmin_save_vm.png
+
+
+
+
 .. |cloud_dash| image:: /images/cloud_dash.png
 .. |cloud_service_info| image:: /images/cloud_service_info.png
 .. |cloud_create_vm| image:: /images/cloud_create_vm.png

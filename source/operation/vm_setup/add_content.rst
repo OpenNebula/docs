@@ -65,7 +65,7 @@ Set a Cost
 
 Each VM Template can have a cost. This cost is set by CPU and MB, to allow users to change the capacity and see the cost updated accordingly. VMs with a cost will appear in the :ref:`showback reports <showback>`.
 
-|showback_template_wizard|
+.. todo:: add image showback_template_wizard
 
 .. _cloud_view_features:
 
@@ -94,7 +94,9 @@ Make the Images Non-Persistent
 
 The Images used by the Cloud View Templates should not be persistent. A :ref:`persistent Image <img_guide_persistent>` can only be used by one VM simultaneously, and the next user will find the changes made by the previous user.
 
-If the users need persistent storage, they can use the `Save a VM`_ functionality
+.. todo:: add link to save a VM
+
+If the users need persistent storage, they can use the Save a VM functionality
 
 .. _cloud_view_select_network:
 
