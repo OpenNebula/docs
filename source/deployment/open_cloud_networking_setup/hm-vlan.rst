@@ -43,10 +43,6 @@ The VLAN_ID is calculated according to this configuration option of ``oned.conf`
 
 By modifying that parameter you can reserve some VLANs so they aren't assigned to a Network. You can also define the first VLAN_ID. When a new isolatad network is created, OpenNebula will find a free VLAN_ID from the VLAN pool. This pool is global, and it's also shared with the :ref:`Open vSwitch <openvswitch>` driver.
 
-.. warning::
-
-    A reserved VLAN_ID will be reserved forever, even if you remove it from the list, it will still be reserved. There is no mechanism to un-reserve a VLAN_ID.
-
 
 Hosts Configuration
 -------------------
