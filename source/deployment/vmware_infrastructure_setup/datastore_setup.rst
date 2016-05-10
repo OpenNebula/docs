@@ -1,30 +1,30 @@
 .. _vcenter_ds:
 
-=====================
-The vCenter Datastore
-=====================
+================================================================================
+vCenter Datastore Setup
+================================================================================
 
 The vCenter datastore allows the representation in OpenNebula of VMDK images available in vCenter datastores. It is a persistent only datastore, meaning that VMDK images are not cloned automatically by OpenNebula when a VM is instantiated. vCenter handles the VMDK image copies, so no system datastore is needed in OpenNebula, and only vCenter image datastores are allowed.
 
 No system datastore is needed since the vCenter support in OpenNebula does not rely on transfer managers to copy VMDK images, but rather this is delegated to vCenter. When a VM Template is instantiated, vCenter performs the VMDK copies, and deletes them after the VM ends its lifecycle. The OpenNebula vCenter datastore is a purely persistent images datastore to allow for VMDK cloning and enable disk attach/detach on running VMs.
 
-The vCenter datastore in OpenNebula is tied to a vCenter OpenNebula host in the sense that all operations to be perfomed in the datastore are going to be performed through the vCenter instance associated to the OpenNebula host, which happens to hold the needed credentials to access the vCenter instance.
+The vCenter datastore in OpenNebula is tied to a vCenter OpenNebula host in the sense that all operations to be performed in the datastore are going to be performed through the vCenter instance associated to the OpenNebula host, which happens to hold the needed credentials to access the vCenter instance.
 
 Creation of empty datablocks and VMDK image cloning are supported, as well as image deletion.
 
 Limitations
-===========
+================================================================================
 
 - No VMDK image upload. This means that only VMDK images already existing in the vCenter datastore can be used and/or cloned, but no new images can be added to the datastore from OpenNebula.
 - No support for snapshots in the vCenter datastore.
 
 Requirements
-============
+================================================================================
 
 -  In order to use the vCenter datastore, all the ESX servers controlled by vCenter need to mount the same VMFS datastore with the same name.
 
 Configuration
-=============
+================================================================================
 
 In order to create a OpenNebula vCenter datastore that represents a vCenter VMFS datastore, a new OpenNebula datastore needs to be created with the following attributes:
 
@@ -45,11 +45,22 @@ In order to create a OpenNebula vCenter datastore that represents a vCenter VMFS
 | ``DISK_TYPE``       | Type of disk to be created when a DATABLOCK is requested. This value is inherited from the datastore to the image but can be explicitly overwritten. The type of disk has implications on performance and occupied space. Values (careful with the case): delta,eagerZeroedThick,flatMonolithic,preallocated,raw,rdm,rdmp,seSparse,sparse2Gb,sparseMonolithic,thick,thick2Gb,thin. More information `in the VMware documentation <http://pubs.vmware.com/vsphere-60/index.jsp?topic=%2Fcom.vmware.wssdk.apiref.doc%2Fvim.VirtualDiskManager.VirtualDiskType.html>`__ |
 +---------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
+.. todo:: review
+
+vCenter datastores can be represented in OpenNebula to achieve the following VM operations:
+
+  - Choose a different datastore
+  - Clone VMDKs
+  - Create empty datablocks
+  - Delete VMDKs
+
+.. todo:: import datastores
+
 
 Image management
 ================
 
-Images cannot be upload to the vCenter datastore, but existing images can be represented. In order to create an image in OpenNebula that represents a vCenter datastore, use the following parameters:
+Existing vCenter images (VMDKs) can be represented. In order to create an image in OpenNebula that represents a vCenter datastore, use the following parameters:
 
 +------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 |    Attribute     |                                                                                                                                                                                                   Description                                                                                                                                                                                                   |
@@ -65,14 +76,17 @@ Images cannot be upload to the vCenter datastore, but existing images can be rep
 | ``DISK_TYPE``    | The type of disk has implications on performance and occupied space. Values (careful with the case): delta,eagerZeroedThick,flatMonolithic,preallocated,raw,rdm,rdmp,seSparse,sparse2Gb,sparseMonolithic,thick,thick2Gb,thin. More information `in the VMware documentation <http://pubs.vmware.com/vsphere-60/index.jsp?topic=%2Fcom.vmware.wssdk.apiref.doc%2Fvim.VirtualDiskManager.VirtualDiskType.html>`__ |
 +------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
+.. todo:: Images can be upload to the vCenter datastore, cloned, ....
+.. todo:: import images
+
 
 Tuning and Extending
 ====================
 
-Drivers can be easily customized please refer to the specific guide for each datastore driver or to the :ref:`Storage substystem developer's guide <sd>`.
+Drivers can be easily customized please refer to the specific guide for each datastore driver or to the :ref:`Storage subsystem developer's guide <sd>`.
 
 However you may find the files you need to modify here:
 
--  /var/lib/one/remotes/datastore/``<DS_DRIVER>``
--  /var/lib/one/remotes/tm/``<TM_DRIVER>``
+-  /var/lib/one/remotes/datastore/vcenter
+-  /var/lib/one/remotes/tm/vcenter
 

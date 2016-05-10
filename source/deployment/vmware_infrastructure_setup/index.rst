@@ -1,10 +1,12 @@
 ================================================================================
-Work in Progress
+VMware Infrastructure Setup
 ================================================================================
 
 .. toctree::
    :maxdepth: 2
-   
-   qs_centos7_kvm <qs_centos7_kvm>
-   qs_ubuntu_kvm <qs_ubuntu_kvm>
-   qs_vdc <qs_vdc>
+
+   Overview <overview>
+   vCenter Driver <vcenter_driver>
+   Datastore Setup <datastore_setup>
+   Networking Setup <networking_setup>
+

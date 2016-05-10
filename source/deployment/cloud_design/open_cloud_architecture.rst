@@ -23,9 +23,7 @@ A cloud architecture is defined by three components: storage, networking and vir
 
 OpenNebula presents a highly modular architecture that offers broad support for commodity and enterprise-grade hypervisor, monitoring, storage, networking and user management services. This Section briefly describes the different choices that you can make for the management of the different subsystems. If your specific services are not supported we recommend to check the drivers available in the `Add-on Catalog <http://opennebula.org/addons:catalog>`__. We also provide information and support about how to develop new drivers.
 
-.. todo::
-
-  Review architecture --> only for KVM??
+.. todo::   Review architecture --> only for KVM??
 
 |OpenNebula Cloud Platform Support|
 

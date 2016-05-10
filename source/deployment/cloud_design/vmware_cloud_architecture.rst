@@ -8,6 +8,9 @@ In order to get the most out of a OpenNebula Cloud, we recommend that you create
 
 OpenNebula is intended for companies willing to create a self-service cloud environment on top of their VMware infrastructure without having to abandon their investment in VMware and retool the entire stack. In these environments, OpenNebula seamlessly integrates with existing vCenter infrastructures to leverage advanced features -such as vMotion, HA or DRS scheduling- provided by the VMware vSphere product family. OpenNebula exposes a multi-tenant, cloud-like provisioning layer on top of vCenter, including features like virtual data centers, data center federation or hybrid cloud computing to connect in-house vCenter infrastructures with public clouds.
 
+
+OpenNebula over vCenter is intended for companies that want to keep VMware management tools, procedures and workflows. For these companies, throwing away VMware and retooling the entire stack is not the answer. However, as they consider moving beyond virtualization toward a private cloud, they can choose to either invest more in VMware, or proceed on a tactically challenging but strategically rewarding path of open.
+
 Architectural Overview
 ================================================================================
 
@@ -15,7 +18,7 @@ OpenNebula assumes that your physical infrastructure adopts a classical cluster-
 
 The VMware vCenter drivers enable OpenNebula to access one or more vCenter servers that manages one or more ESX Clusters. Each ESX Cluster is presented in OpenNebula as an aggregated hypervisor. Note that OpenNebula scheduling decisions are therefore made at ESX Cluster level, vCenter then uses the DRS component to select the actual ESX host and Datastore to deploy the Virtual Machine.
 
-.. todo: image from VMware Reference Architecture
+.. todo:: image from VMware Reference Architecture, or from /images/JV_architecture.png
 
 |high level architecture of cluster, its components and relationship|
 
@@ -28,9 +31,7 @@ A cloud architecture is defined by three components: storage, networking and vir
 
 OpenNebula presents a highly modular architecture that offers broad support for commodity and enterprise-grade hypervisor, monitoring, storage, networking and user management services. This Section briefly describes the different choices that you can make for the management of the different subsystems. If your specific services are not supported we recommend to check the drivers available in the `Add-on Catalog <http://opennebula.org/addons:catalog>`__. We also provide information and support about how to develop new drivers.
 
-.. todo::
-
-  Review architecture --> only for VMware??
+.. todo:: Review architecture --> only for VMware??
 
 |OpenNebula Cloud Platform Support|
 
