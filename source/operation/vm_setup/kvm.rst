@@ -7,7 +7,7 @@ KVM Contextualization
 Step 1. Start a VM with the OS you want to Customize
 ====================================================
 
-Supported contextualization packages are available for the following OSs:
+Supported contextualization packages are available for the following OS's:
 
 * **CentOS/RHEL** >= 6
 * **Debian** >= 6
