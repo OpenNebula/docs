@@ -1,6 +1,8 @@
 .. _vm_guide_2:
 .. _vm_instances:
 
+.. todo:: Needs to be reviewed and updated to 5.0
+
 ==========================
 Managing Virtual Machines
 ==========================

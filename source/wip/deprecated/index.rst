@@ -10,3 +10,4 @@ Deprecated
    Windows Contextualization <windows_context>
    Cloud-init <cloud-init>
    vCenter Customization <vcenter_customization>
+   Introduction to Private Cloud Computing <intropr>

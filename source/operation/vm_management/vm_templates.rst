@@ -1,5 +1,7 @@
 .. _vm_guide:
 
+.. todo:: Needs to be reviewed and updated to 5.0
+
 ==========================
 Creating Virtual Machines
 ==========================
@@ -16,7 +18,6 @@ A Virtual Machine within the OpenNebula system consists of:
 -  A capacity in terms memory and CPU
 -  A set of NICs attached to one or more virtual networks
 -  A set of disk images
--  A state file (optional) or recovery file, that contains the memory image of a running VM plus some hypervisor specific information.
 
 The above items, plus some additional VM attributes like the OS kernel and context information to be used inside the VM, are specified in a template file.
 
@@ -112,9 +113,9 @@ Simple templates can be also created using the command line instead of creating 
 +------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``--vcpu vcpu``              | Number of virtualized CPUs                                                                                                                                                                                  |
 +------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``--arch arch``              | Architecture of the VM, e.g.: i386 or x86\_64                                                                                                                                                               |
+| ``--arch arch``              | Architecture of the VM, e.g.: i386 or x86_64                                                                                                                                                                |
 +------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``--memory memory``          | Memory ammount given to the VM                                                                                                                                                                              |
+| ``--memory memory``          | Memory amount given to the VM                                                                                                                                                                               |
 +------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``--disk disk0,disk1``       | Disks to attach. To use a disk owned by other user use user[disk]                                                                                                                                           |
 +------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -124,7 +125,7 @@ Simple templates can be also created using the command line instead of creating 
 +------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``--vnc``                    | Add VNC server to the VM                                                                                                                                                                                    |
 +------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``--ssh [file]``             | Add an ssh public key to the context. If the file is omited then the user variable SSH\_PUBLIC\_KEY will be used.                                                                                           |
+| ``--ssh [file]``             | Add an ssh public key to the context. If the file is omitted then the user variable SSH\_PUBLIC\_KEY will be used.                                                                                          |
 +------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``--net_context``            | Add network contextualization parameters                                                                                                                                                                    |
 +------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
