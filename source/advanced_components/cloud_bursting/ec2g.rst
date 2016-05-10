@@ -1,11 +1,11 @@
 .. _ec2g:
 
-==================
+================================================================================
 Amazon EC2 Driver
-==================
+================================================================================
 
 Considerations & Limitations
-============================
+================================================================================
 
 You should take into account the following technical considerations when using the EC2 cloud with OpenNebula:
 
@@ -22,14 +22,14 @@ Please refer to the EC2 documentation to obtain more information about Amazon in
 -  `General information of instances <http://aws.amazon.com/ec2/instance-types/>`__
 
 Prerequisites
-=============
+================================================================================
 
 -  You must have a working account for `AWS <http://aws.amazon.com/>`__ and signup for EC2 and S3 services.
 
 -  The `aws-sdk ruby gem <https://github.com/aws/aws-sdk-ruby>`__ needs to be installed. This gem is automatically installed as part of the `installation process <ruby_runtime>`__. In case you need to deploy it manually, please take into account that v2 of the gem only works for ruby versions > 1.9.
 
 OpenNebula Configuration
-========================
+================================================================================
 
 Uncomment the EC2 IM and VMM drivers from ``/etc/one/oned.conf`` file in order to use the driver.
 
@@ -84,12 +84,12 @@ Also, you can modify in the same file the default 300 seconds timeout that is wa
 
 After OpenNebula is restarted, create a new Host that uses the ec2 drivers:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onehost create ec2 --im ec2 --vm ec2 --net dummy
 
 EC2 Specific Template Attributes
-================================
+================================================================================
 
 In order to deploy an instance in EC2 through OpenNebula you must include an EC2 section in the virtual machine template. This is an example of a virtual machine template that can be deployed in our local resources or in EC2.
 
@@ -194,11 +194,11 @@ These values can furthermore be asked to the user using :ref:`user inputs <vm_gu
             USERDATA="$USERDATA"]
 
 Context Support
----------------
+--------------------------------------------------------------------------------
 
 If a CONTEXT section is defined in the template, it will be available as USERDATA inside the VM and can be retrieved by running the following command:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ curl http://169.254.169.254/latest/user-data
     ONEGATE_ENDPOINT="https://onegate...
@@ -213,7 +213,7 @@ For example, if you want to enable SSH access to the VM, an existing EC2 keypair
 .. _ec2g_multi_ec2_site_region_account_support:
 
 Multi EC2 Site/Region/Account Support
-=====================================
+================================================================================
 
 It is possible to define various EC2 hosts to allow opennebula the managing of different EC2 regions or different EC2 accounts.
 
@@ -234,7 +234,7 @@ When you create a new host the credentials and endpoint for that host are retrie
 
 After that, create a new Host with the ``eu-west-1`` name:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onehost create eu-west-1 --im ec2 --vm ec2 --net dummy
 
@@ -256,7 +256,7 @@ You will have *ami-0022c769* launched when this VM template is sent to host *ec2
 The availability zone inside a region, can be specified using the ``AVAILABILITYZONE`` attribute in the EC2 section of the template
 
 Hybrid VM Templates
-===================
+================================================================================
 
 A powerful use of cloud bursting in OpenNebula is the ability to use hybrid templates, defining a VM if OpenNebula decides to launch it locally, and also defining it if it is going to be outsourced to Amazon EC2. The idea behind this is to reference the same kind of VM even if it is incarnated by different images (the local image and the remote AMI).
 
@@ -303,14 +303,14 @@ You must create a template file containing the information of the AMIs you want 
 
 You only can submit and control the template using the OpenNebula interface:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onetemplate create ec2template
     $ onetemplate instantiate ec2template
 
 Now you can monitor the state of the VM with
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onevm list
         ID USER     GROUP    NAME         STAT CPU     MEM        HOSTNAME        TIME
@@ -330,7 +330,7 @@ Also you can see information (like IP address) related to the amazon instance la
 -  AWS\_SECURITY\_GROUPS
 -  AWS\_INSTANCE\_TYPE
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onevm show 0
     VIRTUAL MACHINE 0 INFORMATION
@@ -380,12 +380,12 @@ Also you can see information (like IP address) related to the amazon instance la
     AWS_SECURITY_GROUPS="sg-8e45a3e7"
 
 Scheduler Configuration
-=======================
+================================================================================
 
 Since ec2 Hosts are treated by the scheduler like any other host, VMs will be automatically deployed in them. But you probably want to lower their priority and start using them only when the local infrastructure is full.
 
 Configure the Priority
-----------------------
+--------------------------------------------------------------------------------
 
 The ec2 drivers return a probe with the value PRIORITY = -1. This can be used by :ref:`the scheduler <schg>`, configuring the 'fixed' policy in ``sched.conf``:
 
@@ -416,7 +416,7 @@ The first VM will be deployed in the local host. The second VM will have also so
 A quick way to ensure that your local infrastructure will be always used before the ec2 hosts is to **set MAX\_DISPATH to the number of local hosts**.
 
 Force a Local or Remote Deployment
-----------------------------------
+--------------------------------------------------------------------------------
 
 The ec2 drivers report the host attribute PUBLIC\_CLOUD = YES. Knowing this, you can use that attribute in your :ref:`VM requirements <template_placement_section>`.
 
@@ -433,7 +433,7 @@ To force a VM deployment in an ec2 host, use:
     SCHED_REQUIREMENTS = "PUBLIC_CLOUD = YES"
 
 Importing VMs
-=============
+================================================================================
 
 VMs running on EC2 that were not launched through OpenNebula can be :ref:`imported in OpenNebula <import_wild_vms>`.
 

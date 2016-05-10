@@ -1,19 +1,19 @@
 .. _azg:
 
-============
+================================================================================
 Azure Driver
-============
+================================================================================
 
 Considerations & Limitations
-============================
+================================================================================
 
 You should take into account the following technical considerations when using the Microsoft Azure (AZ) cloud with OpenNebula:
 
 -  There is no direct access to the hypervisor, so it cannot be monitored (we don't know where the VM is running on the Azure cloud).
 
--  The usual OpenNebula functionality for snapshotting, hot-plugging, or migration is not available with Azure (currently).
+-  The usual OpenNebula functionality for snapshotting, hot-plugging, or migration is not available with Azure.
 
--  By default OpenNebula will always launch Small (1 CPU, 1792 MB RAM) instances, unless otherwise specified.
+-  By default OpenNebula will always launch Small (1 CPU, 1792 MB RAM) instances, unless otherwise specified. The following table is an excerpt of all the instance types available in Azure, a more exhaustive list can be found (and edited) in ``/etc/one/az_driver.conf``.
 
 +------------+--------------+-----------------+
 |    Name    | CPU Capacity | Memory Capacity |
@@ -40,7 +40,7 @@ You should take into account the following technical considerations when using t
 +------------+--------------+-----------------+
 
 Prerequisites
-=============
+================================================================================
 
 .. warning:: ruby >= 1.9.3 is required, and it is not packaged in all distros supported by OpenNebula. If you are running on an older supported distro (like Centos 6.x) please update ruby or use `rvm <https://rvm.io/>`__ to run a newer (>= 1.9.3) version (remember to run ``install_gems`` after the ruby upgrade is done to reinstall all gems)
 
@@ -77,7 +77,7 @@ Prerequisites
     # /usr/share/one/install_gems cloud
 
 OpenNebula Configuration
-========================
+================================================================================
 
 Uncomment the Azure AZ IM and VMM drivers from ``/etc/one/oned.conf`` file in order to use the driver.
 
@@ -138,12 +138,12 @@ If the OpenNebula frontend needs to use a proxy to connect to internet you also 
 
 Once the file is saved, OpenNebula needs to be restarted (as ``oneadmin``, do a 'onevm restart'), create a new Host that uses the AZ drivers:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onehost create west-europe -i az -v az -n dummy
 
 Azure Specific Template Attributes
-==================================
+================================================================================
 
 In order to deploy an instance in Azure through OpenNebula you must include an PUBLIC_CLOUD section in the virtual machine template. This is an example of a virtual machine template that can be deployed in our local resources or in Azure.
 
@@ -251,7 +251,7 @@ Default values for all these attributes can be defined in the ``/etc/one/az_driv
 .. _azg_multi_az_site_region_account_support:
 
 Multi Azure Location/Account Support
-====================================
+================================================================================
 
 It is possible to define various Azure hosts to allow OpenNebula the managing of different Azure locations or different Azure accounts. OpenNebula choses the datacenter in which to launch the VM in the following way:
 
@@ -277,7 +277,7 @@ When you create a new host the credentials and endpoint for that host are retrie
 
 After that, create a new Host with the ``west-europe`` name:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onehost create west-europe -i az -v az -n dummy
 
@@ -308,7 +308,7 @@ You will have a small Ubuntu 14.04 VM launched when this VM template is sent to 
 .. warning:: If only one Azure host is defined, the Azure driver will deploy all Azure templates onto it, not paying attention to the **LOCATION** attribute.
 
 Hybrid VM Templates
-===================
+================================================================================
 
 A powerful use of cloud bursting in OpenNebula is the ability to use hybrid templates, defining a VM if OpenNebula decides to launch it locally, and also defining it if it is going to be outsourced to Azure. The idea behind this is to reference the same kind of VM even if it is incarnated by different images (the local image and the Azure image).
 
@@ -336,7 +336,7 @@ An example of a hybrid template:
 OpenNebula will use the first portion (from NAME to NIC) in the above template when the VM is scheduled to a local virtualization node, and the PUBLIC_CLOUD section of TYPE="AZURE" when the VM is scheduled to an Azure node (ie, when the VM is going to be launched in Azure).
 
 Testing
-=======
+================================================================================
 
 You must create a template file containing the information of the VMs you want to launch.
 
@@ -364,14 +364,14 @@ You must create a template file containing the information of the VMs you want t
 
 You can submit and control the template using the OpenNebula interface:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onetemplate create aztemplate
     $ onetemplate instantiate aztemplate
 
 Now you can monitor the state of the VM with
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onevm list
         ID USER     GROUP    NAME         STAT CPU     MEM        HOSTNAME        TIME
@@ -394,7 +394,7 @@ Also you can see information (like IP address) related to the Azure instance lau
 -  AZ_UDP_ENDPOINTS,
 -  AZ_VIRTUAL_NETWORK_NAME
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onevm show 0
     VIRTUAL MACHINE 0 INFORMATION
@@ -455,12 +455,12 @@ Also you can see information (like IP address) related to the Azure instance lau
     VMID="0"
 
 Scheduler Configuration
-=======================
+================================================================================
 
 Since Azure Hosts are treated by the scheduler like any other host, VMs will be automatically deployed in them. But you probably want to lower their priority and start using them only when the local infrastructure is full.
 
 Configure the Priority
-----------------------
+--------------------------------------------------------------------------------
 
 The Azure drivers return a probe with the value PRIORITY = -1. This can be used by :ref:`the scheduler <schg>`, configuring the 'fixed' policy in ``sched.conf``:
 
@@ -472,7 +472,7 @@ The Azure drivers return a probe with the value PRIORITY = -1. This can be used 
 
 The local hosts will have a priority of 0 by default, but you could set any value manually with the 'onehost/onecluster update' command.
 
-There are two other parameters that you may want to adjust in sched.conf::
+There are two other parameters that you may want to adjust in sched.conf:
 
 -  MAX_DISPATCH: Maximum number of Virtual Machines actually dispatched to a host in each scheduling action
 -  MAX_HOST: Maximum number of Virtual Machines dispatched to a given host in each scheduling action
@@ -491,7 +491,7 @@ The first VM will be deployed in the local host. The second VM will have also so
 A quick way to ensure that your local infrastructure will be always used before the Azure hosts is to **set MAX\_DISPATH to the number of local hosts**.
 
 Force a Local or Remote Deployment
-----------------------------------
+--------------------------------------------------------------------------------
 
 The Azure drivers report the host attribute PUBLIC\_CLOUD = YES. Knowing this, you can use that attribute in your :ref:`VM requirements <template_placement_section>`.
 
@@ -508,7 +508,7 @@ To force a VM deployment in a Azure host, use:
     SCHED_REQUIREMENTS = "PUBLIC_CLOUD = YES"
 
 Importing VMs
-=============
+================================================================================
 
 VMs running on Azure that were not launched through OpenNebula can be :ref:`imported in OpenNebula <import_wild_vms>`.
 
