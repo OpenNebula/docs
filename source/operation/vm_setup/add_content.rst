@@ -46,7 +46,7 @@ Capacity is Customizable
 
 .. todo:: Instance types are deprecated
 
-You must set a default CPU and Memory for the Template, but users can change these values. The available capacity presets can be :ref:`customized <sunstone_instance_types>`
+You must set a default CPU and Memory for the Template, but users can change these values. The available capacity presets can be :ref:customized <sunstone_instance_types>
 
 |prepare-tmpl-capacity|
 
