@@ -1,7 +1,7 @@
 .. _vmmg:
 
 ================================================================================
-Open Cloud Host Setup
+Overview
 ================================================================================
 
 * Architect
@@ -19,11 +19,15 @@ Follow the :ref:`vCenter Node <vcenter_node>` section for a similar guide for vC
 How Should I Read This Chapter
 ================================================================================
 
+Before reading this chapter, you should have already installed your :ref:`Frontend <frontend_installation>` (including any :ref:`External Authentication <external_auth>` if any, and configuring :ref:`Sunstone <sunstone>`) and the :ref:`KVM Hosts <kvm_node>`.
+
 * Read the :ref:`KVM driver <kvmg>` section in order to understand the procedure of configuring and managing kvm Hosts.
 * In the :ref:`Monitoring <mon>` section, you can find information about how OpenNebula is monitoring its Hosts and Virtual Machines, and changes you can make in the configuration of that subsystem.
 * Optionally, you can enable :ref:`Virtual Machine HA <ftguide>`.
 * You can read this section if you are interested in performing :ref:`PCI Passthrough <kvm_pci_passthrough>`.
 * If you are interested in very fast deployment times you might want to read the :ref:`Multiple Actions <kvm_multiple_actions>` section in order to perform multiple operations concurrently in each Host.
+
+After reading this chapter, you should read the :ref:`Storage <storage>` chapter.
 
 Other Hypervisors
 ================================================================================
