@@ -1,13 +1,30 @@
 .. _context_overview:
 
-===========================
+==========================
 Contextualization Overview
-===========================
+==========================
 
-OpenNebula provides different methods to pass information to a newly created Virtual Machine. This information can be the network configuration of the VM, user credentials, init scripts and free form data.
+OpenNebula uses a method called contextualization to send information to the VM at boot time. Its most basic usage is to share networking configuration and login credentials with the VM so it can be configured. More advanced cases can be starting a custom script on VM boot or preparing configuration to use :ref:`OpenNebula Gate <onegate_usage>`.
 
--  :ref:`Basic Contextualization <bcont>`: If you only want to configure networking and root ssh keys read this guide.
--  :ref:`Advanced Contextualization <cong>`: For additional topics in contextualization like adding custom init scripts and variables also read this guide.
--  :ref:`Cloud-init <cloud-init>`: To know how to use the `cloud-init <http://cloudinit.readthedocs.org/en/latest/>`__ functionality with OpenNebula check this guide.
--  :ref:`Windows Contextualization <windows_context>`: Contextualization guide specific for Windows guests. From provisioning to contextualization.
+To enable the use of contextualization there are two steps that you need to perform:
+
+- Installing contextualization packages in your images
+- Set contextualization data in the VM template
+
+How Should I Read This Chapter
+================================================================================
+
+Hypervisor Compatibility
+================================================================================
+
++--------------------------------------------------------------+-----------------------------------------------+
+|                           Section                            |                 Compatibility                 |
++==============================================================+===============================================+
+| :ref:`KVM Contextualization <kvm_contextualization>`         | This Section applies to KVM.                  |
++--------------------------------------------------------------+-----------------------------------------------+
+| :ref:`vCenter Contextualization <vcenter_contextualization>` | This Section  applies to vCenter.             |
++--------------------------------------------------------------+-----------------------------------------------+
+| :ref:`Adding Content to your Cloud <add_content>`            | This Section applies to both KVM and vCenter. |
++--------------------------------------------------------------+-----------------------------------------------+
+
 
