@@ -111,7 +111,7 @@ Here the error tells that it could not copy a file, most probably it does not ex
 
 Alternatively you can also check the log files for the VM at ``/var/log/one/<vmid>.log``.
 
-.. warning::
+.. note::
 
    Check the :ref:`Virtual Machines High Availability Guide<ftguide>`, to learn how to recover a VM in ``fail`` state.
 
