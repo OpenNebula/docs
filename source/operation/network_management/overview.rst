@@ -13,9 +13,17 @@ This chapter contains documentation on how to create and manage  :ref:`Virtual N
 How Should I Read This Chapter
 ================================================================================
 
-Before reading this chapter, you should have already installed your :ref:`Frontend <frontend_installation>`, the :ref:`KVM Hosts <kvm_node>` and have an OpenNebula cloud up and running with at least one virtualization node.
+Before reading this chapter, you should have already installed your :ref:`Frontend <frontend_installation>`, have an OpenNebula cloud up and running with at least one virtualization node.
 
 Hypervisor Compatibility
 ================================================================================
 
-This chapter applies only to KVM.
++-------------------------------------------------+-----------------------------------------------+
+|                     Section                     |                 Compatibility                 |
++=================================================+===============================================+
+| :ref:`Managing Virtual Networks <manage_vnets>` | This Section applies to both KVM and vCenter. |
++-------------------------------------------------+-----------------------------------------------+
+| :ref:`Security Groups <security_groups>`        | This Section applies to KVM.                  |
++-------------------------------------------------+-----------------------------------------------+
+| :ref:`Virtual Routers <vrouter>`                | This Section applies to both KVM and vCenter. |
++-------------------------------------------------+-----------------------------------------------+
