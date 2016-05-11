@@ -16,8 +16,6 @@ Admin View
 
 This view provides full control of the cloud. Details can be configured in the ``/etc/one/sunstone-views/admin.yaml`` file.
 
-.. todo:: update screenshot
-
 |admin_view|
 
 .. _vcenter_view:
@@ -54,8 +52,6 @@ User View
 --------------------------------------------------------------------------------
 
 Based on the Admin View, it is an advanced user view. It is intended for users that need access to more actions that the limited set available in the cloud view. Users will not be able to manage nor retrieve the hosts and clusters of the cloud. They will be able to see Datastores and Virtual Networks in order to use them when creating a new Image or Virtual Machine, but they will not be able to create new ones. Details can be configured in the ``/etc/one/sunstone-views/user.yaml`` file.
-
-.. todo:: update screenshot
 
 |user_view|
 

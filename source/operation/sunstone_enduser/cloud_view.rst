@@ -16,8 +16,6 @@ Create VM
 
 In this scenario the cloud administrator must prepare a set of templates and images and make them available to the cloud users. These Templates must be ready to be instantiated, i.e. they define all the mandatory attributes. Before using them, users can optionally customize the VM capacity, resize disks, add new network interfaces and provide values required by the template. Read :ref:`Adding Content to Your Cloud <add_content>` for more information.
 
-.. todo:: update screenshot
-
 |cloud_create_vm|
 
 Access the VMs with SSH Keys
