@@ -1,4 +1,5 @@
 .. _sunstone_overview:
+.. _sunstone:
 
 ================================================================================
 Overview
@@ -18,7 +19,7 @@ OpenNebula Sunstone is a Graphical User Interface (GUI) intended for both end us
 How Should I Read this Chapter
 ================================================================================
 
-The :ref:`Sunstone Installation & Configuration <sunstone>` section describes the configuration and customization options for Sunstone
+The :ref:`Sunstone Installation & Configuration <sunstone_setup>` section describes the configuration and customization options for Sunstone
 
 After Sunstone is running, you can define different sunstone behaviors for each user role in the :ref:`Sunstone Views <suns_views>` section.
 

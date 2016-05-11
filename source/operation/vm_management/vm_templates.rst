@@ -1,17 +1,15 @@
 .. _vm_guide:
 
-.. todo:: Needs to be reviewed and updated to 5.0
-
-==========================
+================================================================================
 Creating Virtual Machines
-==========================
+================================================================================
 
 In OpenNebula the Virtual Machines are defined with Template files. This guide explains **how to describe the wanted-to-be-ran Virtual Machine, and how users typically interact with the system**.
 
 The Template Repository system allows OpenNebula administrators and users to register Virtual Machine definitions in the system, to be instantiated later as Virtual Machine instances. These Templates can be instantiated several times, and also shared with other users.
 
 Virtual Machine Model
-=====================
+================================================================================
 
 A Virtual Machine within the OpenNebula system consists of:
 
@@ -19,16 +17,17 @@ A Virtual Machine within the OpenNebula system consists of:
 -  A set of NICs attached to one or more virtual networks
 -  A set of disk images
 
-The above items, plus some additional VM attributes like the OS kernel and context information to be used inside the VM, are specified in a template file.
+The above items, plus some optional VM attributes like the OS booting and context information to be used inside the VM, are specified in a template file.
 
 .. _vm_guide_defining_a_vm_in_3_steps:
 
-Defining a VM in 3 Steps
-========================
+Defining a VM
+================================================================================
 
 Virtual Machines are defined in an OpenNebula Template. Templates are stored in a repository to easily browse and instantiate VMs from them. To create a new Template you have to define 3 things
 
--  **Capacity & Name**, how big will the VM be?
+Capacity & Name
+--------------------------------------------------------------------------------
 
 +------------+-----------------------------------------------------+-----------+------------+
 | Attribute  |                     Description                     | Mandatory |  Default   |
@@ -42,25 +41,32 @@ Virtual Machines are defined in an OpenNebula Template. Templates are stored in 
 | ``VCPU``   | Number of virtual cpus.                             | No        | 1          |
 +------------+-----------------------------------------------------+-----------+------------+
 
--  **Disks**. Each disk is defined with a DISK attribute. A VM can use three types of disk:
+Disks
+--------------------------------------------------------------------------------
 
-   -  **Use a persistent Image** changes to the disk image will persist after the VM is shutdown.
-   -  **Use a non-persistent Image** images are cloned, changes to the image will be lost.
-   -  **Volatile** disks are created on the fly on the target host. After the VM is shutdown the disk is disposed.
+Each disk is defined with a DISK attribute. A VM can use three types of disk:
 
--  **Persistent and Clone Disks**
+* **Use a persistent Image** changes to the disk image will persist after the VM is terminated.
+* **Use a non-persistent Image** images are cloned, changes to the image will be lost.
+* **Volatile** disks are created on the fly on the target host. After the VM is shutdown the disk is disposed.
 
-+----------------------------+----------------------------------------------+-----------+---------+
-|         Attribute          |                 Description                  | Mandatory | Default |
-+============================+==============================================+===========+=========+
-| ``IMAGE_ID`` and ``IMAGE`` | The ID or Name of the image in the datastore | Yes       |         |
-+----------------------------+----------------------------------------------+-----------+---------+
-| ``IMAGE_UID``              | Select the IMAGE of a given user by her ID   | No        | self    |
-+----------------------------+----------------------------------------------+-----------+---------+
-| ``IMAGE_UNAME``            | Select the IMAGE of a given user by her NAME | No        | self    |
-+----------------------------+----------------------------------------------+-----------+---------+
+**Disks Using an Image**
 
--  **Volatile**
+You can set the Image ID directly, or use the Image name. Optionally, if the image is not owned by the user instantiating the Template, you can set the owner user's ID or name.
+
++-----------------+----------------------------------------------+-----------------------------+---------+
+|    Attribute    |                 Description                  |          Mandatory          | Default |
++=================+==============================================+=============================+=========+
+| ``IMAGE_ID``    | The ID of the image                          | Yes (if IMAGE not given)    |         |
++-----------------+----------------------------------------------+-----------------------------+---------+
+| ``IMAGE``       | The ID or Name of the image                  | Yes (if IMAGE_ID not given) |         |
++-----------------+----------------------------------------------+-----------------------------+---------+
+| ``IMAGE_UID``   | Select the IMAGE of a given user by her ID   | No                          | self    |
++-----------------+----------------------------------------------+-----------------------------+---------+
+| ``IMAGE_UNAME`` | Select the IMAGE of a given user by her NAME | No                          | self    |
++-----------------+----------------------------------------------+-----------------------------+---------+
+
+**Volatile**
 
 +------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+---------+
 | Attribute  |                                                                           Description                                                                           | Mandatory | Default |
@@ -72,21 +78,29 @@ Virtual Machines are defined in an OpenNebula Template. Templates are stored in 
 | ``FORMAT`` | (only for ``TYPE=fs``) ``raw`` or ``qcow2``                                                                                                                     | Yes       |         |
 +------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+---------+
 
--  **Network Interfaces**. Each network interface of a VM is defined with the ``NIC`` attribute.
+Network Interfaces
+--------------------------------------------------------------------------------
 
-+--------------------------------+------------------------------------------------+-----------+---------+
-|           Attribute            |                  Description                   | Mandatory | Default |
-+================================+================================================+===========+=========+
-| ``NETWORK_ID`` and ``NETWORK`` | The ID or Name of the network                  | Yes       |         |
-+--------------------------------+------------------------------------------------+-----------+---------+
-| ``NETWORK_UID``                | Select the NETWORK of a given user by her ID   | No        | self    |
-+--------------------------------+------------------------------------------------+-----------+---------+
-| ``NETWORK_UNAME``              | Select the NETWORK of a given user by her NAME | No        | self    |
-+--------------------------------+------------------------------------------------+-----------+---------+
+Each network interface of a VM is defined with the ``NIC`` attribute.
+
+
+You can set the Network ID directly, or use the Network name. Optionally, if the virtual network is not owned by the user instantiating the Template, you can set the owner user's ID or name.
+
++-------------------+------------------------------------------------+-------------------------------+---------+
+|     Attribute     |                  Description                   |           Mandatory           | Default |
++===================+================================================+===============================+=========+
+| ``NETWORK_ID``    | The ID of the network                          | Yes (if NETWORK not given)    |         |
++-------------------+------------------------------------------------+-------------------------------+---------+
+| ``NETWORK``       | The ID or Name of the network                  | Yes (if NETWORK_ID not given) |         |
++-------------------+------------------------------------------------+-------------------------------+---------+
+| ``NETWORK_UID``   | Select the NETWORK of a given user by her ID   | No                            | self    |
++-------------------+------------------------------------------------+-------------------------------+---------+
+| ``NETWORK_UNAME`` | Select the NETWORK of a given user by her NAME | No                            | self    |
++-------------------+------------------------------------------------+-------------------------------+---------+
 
 The following example shows a VM Template file with a couple of disks and a network interface, also a VNC section was added.
 
-.. code::
+.. code-block:: none
 
     NAME   = test-vm
     MEMORY = 128
@@ -102,49 +116,17 @@ The following example shows a VM Template file with a couple of disks and a netw
       TYPE    = "vnc",
       LISTEN  = "0.0.0.0"]
 
-Simple templates can be also created using the command line instead of creating a template file. The parameters to do this for ``onetemplate`` are:
+.. note:: Check the :ref:`VM definition file for a complete reference <template>`
 
-+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-|          Parameter           |                                                                                                 Description                                                                                                 |
-+==============================+=============================================================================================================================================================================================================+
-| ``--name name``              | Name for the VM                                                                                                                                                                                             |
-+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``--cpu cpu``                | CPU percentage reserved for the VM (1=100% one CPU)                                                                                                                                                         |
-+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``--vcpu vcpu``              | Number of virtualized CPUs                                                                                                                                                                                  |
-+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``--arch arch``              | Architecture of the VM, e.g.: i386 or x86_64                                                                                                                                                                |
-+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``--memory memory``          | Memory amount given to the VM                                                                                                                                                                               |
-+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``--disk disk0,disk1``       | Disks to attach. To use a disk owned by other user use user[disk]                                                                                                                                           |
-+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``--nic vnet0,vnet1``        | Networks to attach. To use a network owned by other user use user[network]                                                                                                                                  |
-+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``--raw string``             | Raw string to add to the template. Not to be confused with the RAW attribute. If you want to provide more than one element, just include an enter inside quotes, instead of using more than one -raw option |
-+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``--vnc``                    | Add VNC server to the VM                                                                                                                                                                                    |
-+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``--ssh [file]``             | Add an ssh public key to the context. If the file is omitted then the user variable SSH\_PUBLIC\_KEY will be used.                                                                                          |
-+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``--net_context``            | Add network contextualization parameters                                                                                                                                                                    |
-+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``--context line1,line2`` \* | Lines to add to the context section                                                                                                                                                                         |
-+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``--boot device``            | Select boot device (``hd``, ``fd``, ``cdrom`` or ``network``)                                                                                                                                               |
-+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+Simple templates can be also created using the command line instead of creating a template file. For example, a similar template as the previous example can be created with the following command:
 
-A similar template as the previous example can be created with the following command:
-
-.. code::
+.. prompt:: bash $ auto
 
     $ onetemplate create --name test-vm --memory 128 --cpu 1 --disk "Arch Linux" --nic Public
 
-.. warning:: You may want to add VNC access, input hw or change the default targets of the disks. Check the :ref:`VM definition file for a complete reference <template>`
+For a complete reference of all the available options for ``onetemplate create``, go to the :ref:`CLI reference <cli>`, or run ``onetemplate create -h``.
 
-.. warning:: OpenNebula Templates are designed to be hypervisor-agnostic, but there are additional attributes that are supported for each hypervisor. Check the :ref:`KVM <kvmg>` configuration guide for more details
-
-.. warning:: Volatile disks can not be saved as. Pre-register a DataBlock image if you need to attach arbitrary volumes to the VM
+Note: OpenNebula Templates are designed to be hypervisor-agnostic, but there are additional attributes that are supported for each hypervisor. Check the :ref:`KVM configuration <kvmg>` and :ref:`vCenter configuration <vcenterg>` for more details.
 
 Managing Templates
 ==================
@@ -156,7 +138,7 @@ Listing Available Templates
 
 You can use the ``onetemplate list`` command to check the available Templates in the system.
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onetemplate list a
       ID USER     GROUP    NAME                         REGTIME
@@ -183,39 +165,48 @@ Using ``onetemplate create``, users can create new Templates for private or shar
 
 For instance, if the previous example template is written in the vm-example.txt file:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onetemplate create vm-example.txt
     ID: 6
 
-You can also clone an existing Template, with the ``onetemplate clone`` command:
+Via Sunstone, you can easily add templates using the provided wizards (or copy/pasting a template file) and delete them clicking on the delete button:
 
-.. code::
+|image2|
+
+.. vm_template_clone::
+
+Cloning Templates
+-----------------------------
+
+You can also clone an existing Template with the ``onetemplate clone`` command:
+
+.. prompt:: bash $ auto
 
     $ onetemplate clone 6 new_template
     ID: 7
 
-Via Sunstone, you can easily add templates using the provided wizards (or copy/pasting a template file) and delete them clicking on the delete button:
+If you use the ``onetemplate clone --recursive`` option, OpenNebula will clone each one of the Images used in the template Disks. These Images are made persistent, and the cloned template DISK/IMAGE_ID attributes are replaced to point to them.
 
-|image2|
+|sunstone_clone_template|
 
 Updating a Template
 -------------------
 
 It is possible to update a template by using the ``onetemplate update``. This will launch the editor defined in the variable ``EDITOR`` and let you edit the template.
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onetemplate update 3
 
-Publishing Templates
+Sharing Templates
 --------------------
 
 The users can share their Templates with other users in their group, or with all the users in OpenNebula. See the :ref:`Managing Permissions documentation <chmod>` for more information.
 
 Let's see a quick example. To share the Template 0 with users in the group, the **USE** right bit for **GROUP** must be set with the **chmod** command:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onetemplate show 0
     ...
@@ -235,7 +226,7 @@ Let's see a quick example. To share the Template 0 with users in the group, the 
 
 The following command allows users in the same group **USE** and **MANAGE** the Template, and the rest of the users **USE** it:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onetemplate chmod 0 664
 
@@ -246,14 +237,18 @@ The following command allows users in the same group **USE** and **MANAGE** the 
     GROUP          : um-
     OTHER          : u--
 
-The commands ``onetemplate publish`` and ``onetemplate unpublish`` are still present for compatibility with previous versions. These commands set/unset the ``GROUP USE`` bit.
+The ``onetemplate chmod --recursive`` option will perform the chmod action also on each one of the Images used in the Template disks.
+
+Sunstone offers an "alias" for ``onetemplate chmod --recursive 640``, the share action:
+
+|sunstone_template_share|
 
 Instantiating Templates
 =======================
 
-The ``onetemplate instantiate`` command accepts a Template ID or name, and creates a VM instance (you can define the number of instances using the ``-multiple num_of_instances`` option) from the given template.
+The ``onetemplate instantiate`` command accepts a Template ID or name, and creates a VM instance from the given template. You can create more than one instance simultaneously with the ``--multiple num_of_instances`` option.
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onetemplate instantiate 6
     VM ID: 0
@@ -262,9 +257,9 @@ The ``onetemplate instantiate`` command accepts a Template ID or name, and creat
         ID USER     GROUP    NAME         STAT CPU     MEM        HOSTNAME        TIME
          0 oneuser1 users    one-0        pend   0      0K                 00 00:00:16
 
-You can also merge another template to the one being instantiated. The new attributes will be added, or will replace the ones fom the source template. This can be more convinient that cloning an existing template and updating it.
+You can also merge another template to the one being instantiated. The new attributes will be added, or will replace the ones fom the source template. This can be more convenient that cloning an existing template and updating it.
 
-.. code::
+.. prompt:: bash $ auto
 
     $ cat /tmp/file
     MEMORY = 512
@@ -273,9 +268,9 @@ You can also merge another template to the one being instantiated. The new attri
     $ onetemplate instantiate 6 /tmp/file
     VM ID: 1
 
-The same options to create new templates can be used to be merged with an existing one. See the above table, or execute 'onetemplate instantiate -help' for a complete reference.
+The same options to create new templates can be used to be merged with an existing one. See the :ref:`CLI reference <cli>`, or execute ``onetemplate instantiate --help`` for a complete reference.
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onetemplate instantiate 6 --cpu 2 --memory 1024
     VM ID: 2
@@ -285,9 +280,18 @@ The same options to create new templates can be used to be merged with an existi
 Ask for User Inputs
 --------------------------------------------------------------------------------
 
-The User Inputs functionality provides the template creator with the possibility to dynamically ask the user instantiating the template for dynamic values that must be defined.
+The User Inputs functionality provides the template creator the possibility to dynamically ask the user instantiating the template dynamic values that must be defined.
 
-User input can be of type text, password or text64, the latter will be encoded in base64 before they passed to the VM.
+A user input can be one of the following types:
+
+* **text**: any text value
+* **password**: any text value. The interface will block the input visually, but the value will be stored as plain text.
+* **text64**: will be encoded in base64 before the value is passed to the VM.
+* **number**: any integer number.
+* **number-float**: any number.
+* **range**: any integer number within the defined min..max range.
+* **range-float**: any number within the defined min..max range
+* **list**: the user will select from a pre-defined list of values
 
 |prepare-tmpl-user-input-1|
 
@@ -297,14 +301,16 @@ These inputs will be presented to the user when the Template is instantiated. Th
 
 If a VM Template with user inputs is used by a :ref:`Service Template Role <appflow_use_cli>`, the user will be also asked for these inputs when the Service is created.
 
+.. todo:: add examples with capacity
+
 Merge Use Case
 --------------
 
-The template merge functionality, combined with the restricted attibutes, can be used to allow users some degree of customization for predefined templates.
+The template merge functionality, combined with the restricted attributes, can be used to allow users some degree of customization for predefined templates.
 
 Let's say the administrator wants to provide base templates that the users can customize, but with some restrictions. Having the following :ref:`restricted attributes in oned.conf <oned_conf_restricted_attributes_configuration>`:
 
-.. code::
+.. code-block:: none
 
     VM_RESTRICTED_ATTR = "CPU"
     VM_RESTRICTED_ATTR = "VPU"
@@ -312,7 +318,7 @@ Let's say the administrator wants to provide base templates that the users can c
 
 And the following template:
 
-.. code::
+.. code-block:: none
 
     CPU     = "1"
     VCPU    = "1"
@@ -324,13 +330,13 @@ And the following template:
 
 Users can instantiate it customizing anything except the CPU, VCPU and NIC. To create a VM with different memory and disks:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onetemplate instantiate 0 --memory 1G --disk "Ubuntu 12.10"
 
 .. warning:: The merged attributes replace the existing ones. To add a new disk, the current one needs to be added also.
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onetemplate instantiate 0 --disk 0,"Ubuntu 12.10"
 
@@ -339,7 +345,7 @@ Deployment
 
 The OpenNebula Scheduler will deploy automatically the VMs in one of the available Hosts, if they meet the requirements. The deployment can be forced by an administrator using the ``onevm deploy`` command.
 
-Use ``onevm shutdown`` to shutdown a running VM.
+Use ``onevm terminate`` to shutdown and delete a running VM.
 
 Continue to the :ref:`Managing Virtual Machine Instances Guide <vm_guide_2>` to learn more about the VM Life Cycle, and the available operations that can be performed.
 
@@ -348,3 +354,6 @@ Continue to the :ref:`Managing Virtual Machine Instances Guide <vm_guide_2>` to 
 .. |image2| image:: /images/sunstone_template_create.png
 .. |prepare-tmpl-user-input-1| image:: /images/prepare-tmpl-user-input-1.png
 .. |prepare-tmpl-user-input-2| image:: /images/prepare-tmpl-user-input-2.png
+.. |sunstone_clone_template| image:: /images/sunstone_clone_template.png
+.. |sunstone_template_share| image:: /images/sunstone_template_share.png
+

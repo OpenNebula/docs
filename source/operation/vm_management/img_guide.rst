@@ -56,8 +56,6 @@ Image Life-cycle
 | ``clon``    | ``CLONE``            | The image is being cloned.                                                                                 |
 +-------------+----------------------+------------------------------------------------------------------------------------------------------------+
 
-.. todo:: update state diagrams with new states
-
 This is the state diagram for **persistent** images:
 
 |Persistent Image States|
@@ -166,10 +164,6 @@ Image file upload to the server via the client browser is possible. The process 
 -  Step 4: The temporal file is deleted and the request returns successfully to the user (a message pops up indicating that image was uploaded correctly).
 
 Note that when file sizes become big (normally over 1GB), and depending on your hardware, it may take long to complete the copying in step 3. Since the upload request needs to stay pending until copying is successful (so it can delete the temp file safely), there might be Ajax timeouts and/or lack of response from the server. This may cause errors, or trigger re-uploads (which re-initiate the loading progress bar).
-
-.. todo:: update with more up-to-date versions
-
-As of Firefox 11 and previous versions, uploads seem to be limited to 2GB. Chrome seems to work well with images > 4 GB.
 
 Clone Images
 ------------

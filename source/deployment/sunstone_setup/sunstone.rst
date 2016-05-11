@@ -1,4 +1,4 @@
-.. _sunstone:
+.. _sunstone_setup:
 
 =================================================
 Sunstone Installation & Configuration
