@@ -1,13 +1,13 @@
 .. _hooks:
 
-============
+================================================================================
 Using Hooks
-============
+================================================================================
 
 The Hook Manager present in OpenNebula enables the triggering of custom scripts tied to a change in state in a particular resource, being that a Host or a Virtual Machine. This opens a wide area of automation for system administrators to tailor their cloud infrastructures.
 
 Configuration
-=============
+================================================================================
 
 Hook Manager configuration is set in ``/etc/one/oned.conf``. Hooks can be tied to changes in host or virtual machine states, and they can be executed locally to the OpenNebula front-end and remotely in the relevant worker node.
 
@@ -18,7 +18,7 @@ In general, hook definition in ``/etc/one/oned.conf`` has two paremeters:
 -  **arguments**: for the driver executable, can be an absolute path or relative to ``/etc/one/``
 
 Hooks for VirtualMachines
-=========================
+================================================================================
 
 In the case of VirtualMachine hooks, the following can be defined:
 
@@ -69,7 +69,7 @@ Or an more advanced example:
       arguments = "$ID $PREV_STATE $PREV_LCM_STATE" ]
 
 Hooks for Hosts
-===============
+================================================================================
 
 In the case of Host hooks, the following can be defined:
 
@@ -119,7 +119,7 @@ The following is an example of a hook tied to the ERROR state of a Host:
     #-------------------------------------------------------------------------------
 
 Other Hooks
-===========
+================================================================================
 
 Other OpenNebula entities like Virtual Networks, Users, Groups and Images can be hooked on creation and removal. These hooks are specified with the following variables in oned.conf:
 
@@ -158,7 +158,7 @@ The following is an example of a hook that sends and email to a new register use
     In a :ref:`Federation <introf>`, **USER** and **GROUP** hooks can only be defined in the **master** OpenNebula. Because the slaves will rely the user and group actions to the master, they will only be triggered once, in the master. The hooks for any other resource are defined locally for each OpenNebula instance.
 
 Developing your Hooks
-=====================
+================================================================================
 
 The execution of each hook is tied to the object that trigger the event. The data of the object can be passed to the hook through the $ID and the $TEMPLATE variables:
 

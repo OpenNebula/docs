@@ -1,45 +1,44 @@
 .. _introapis:
 
-===============================
-Scalable Architecture and APIs
-===============================
+================================================================================
+Overview
+================================================================================
+
+.. todo::
+
+    -* Cloud Architect
+    -* KVM
+    -* vCenter
 
 OpenNebula has been designed to be easily adapted to any infrastructure and easily extended with new components. The result is a modular system that can implement a variety of Cloud architectures and can interface with multiple datacenter services. In this Guide we review the main interfaces of OpenNebula, their use and give pointers to additional documentation for each one.
 
-We have classified the interfaces in two categories: end-user cloud and system interfaces. Cloud interfaces are primarily used to develop tools targeted to the end-user, and they provide a high level abstraction of the functionality provided by the Cloud. On the other hand, the system interfaces expose the full functionality of OpenNebula and are mainly used to adapt and tune the behavior of OpenNebula to the target infrastructure.
+We have classified the interfaces in two categories: end-user cloud and system interfaces.
+
+.. todo:: update image
 
 |image0|
 
-1. Cloud Interfaces
-===================
+How Should I Read This Chapter
+================================================================================
 
-Cloud interfaces enable you to manage virtual machines, networks and images through a simple and easy-to-use REST API. The Cloud interfaces hide most of the complexity of a Cloud and are specially suited for end-users. OpenNebula an EC2 interface:
+You should be reading this Chapter if you are trying to automate tasks in your deployed OpenNebula cloud, and you have already read all of the previous guides.
 
--  **EC2-Query API**. OpenNebula implements the functionality offered by the `Amazon's EC2 API <http://docs.aws.amazon.com/AWSEC2/latest/APIReference/Welcome.html>`__, mainly those related to virtual machine management. In this way, you can use any EC2 Query tool to access your OpenNebula Cloud.
+This Chapter introduces the OpenNebula interfaces:
 
-*Use the cloud interface if...* you are developing portals, tools or specialized solutions for end-users.
+* Cloud interfaces are primarily used to develop tools targeted to the end-user, and they provide a high level abstraction of the functionality provided by the Cloud. They are designed to manage virtual machines, networks and images through a simple and easy-to-use REST API. The Cloud interfaces hide most of the complexity of a Cloud and are specially suited for end-users. OpenNebula features a EC2 interface, implementing the functionality offered by the `Amazon's EC2 API <http://docs.aws.amazon.com/AWSEC2/latest/APIReference/Welcome.html>`__, mainly those related to virtual machine management. In this way, you can use any EC2 Query tool to access your OpenNebula Cloud. Use the cloud interface if you are developing portals, tools or specialized solutions for end-users. You can find more information at :ref:`EC2-Query reference <ec2qug>`.
 
-*You can find more information at...* :ref:`EC2-Query reference <ec2qug>`.
+.. todo:: move here ec2 query reference?
 
-2. System Interfaces
-====================
+* The system interfaces expose the full functionality of OpenNebula and are mainly used to adapt and tune the behavior of OpenNebula to the target infrastructure:
+  * The XML-RPC interface is the primary interface for OpenNebula, and it exposes all the functionality to interface the OpenNebula daemon. Through the XML-RPC interface you can control and manage any OpenNebula resource, including virtual machines, networks, images, users, hosts and clusters. Use the XML-RPC interface if you are developing specialized libraries for Cloud applications or you need a low-level interface with the OpenNebula core. A full reference in the :ref:`XML-RPC reference Section <api>`.
+  * The OpenNebula Cloud API provides a simplified and convenient way to interface with the OpenNebula core XMLRPC API. The OCA interfaces exposes the same functionality as that of the XML-RPC interface. OpenNebula includes two language bindings for OCA: :ref:`Ruby <ruby>` and :ref:`JAVA <java>`.
+  * The OpenNebula OneFlow API is a RESTful service to create, control and monitor multi-tier applications or services composed of interconnected Virtual Machines with deployment dependencies between them. 
 
-2.1. The OpenNebula XML-RPC Interface
--------------------------------------
+After this Chapter, if you are interested in extending the OpenNebula functionality, you need to read the :ref:`Infrastructure Integration Chapter <intro_integration>` to understand how OpenNebula relates with the different datacenter components.
 
-The XML-RPC interface is the primary interface for OpenNebula, and it exposes all the functionality to interface the OpenNebula daemon. Through the XML-RPC interface you can control and manage any OpenNebula resource, including virtual machines, networks, images, users, hosts and clusters.
+Hypervisor Compatibility
+================================================================================
 
-*Use the XML-RPC interface if...* you are developing specialized libraries for Cloud applications or you need a low-level interface with the OpenNebula core.
-
-*You can find more information at...* :ref:`XML-RPC reference guide <api>`.
-
-2.2. The OpenNebula Cloud API (OCA)
------------------------------------
-
-The OpenNebula Cloud API provides a simplified and convenient way to interface the OpenNebula core. The OCA interfaces exposes the same functionality as that of the XML-RPC interface. OpenNebula includes two language bindings for OCA: Ruby and JAVA.
-
-*Use the OCA interface if...* you are developing advanced IaaS tools that need full access to the OpenNebula functionality.
-
-*You can find more information at...* :ref:`OCA-Ruby reference guide <ruby>` and the :ref:`OCA-JAVA reference guide <java>`.
+All the Sections of this Chapter applies to both KVM and vCenter hypervisors.
 
 .. |image0| image:: /images/opennebula_interfaces.png

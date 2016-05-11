@@ -1,13 +1,10 @@
-.. _devel-cloudbursting:
+.. _devel_cloudbursting:
 
-======================
+================================================================================
 Cloud Bursting Driver
-======================
+================================================================================
 
 This guide will show you how to develop a new driver for OpenNebula to interact with an external cloud provider.
-
-Overview
-========
 
 Cloud bursting is a model in which the local resources of a Private Cloud are combined with resources from remote Cloud providers. The remote provider could be a commercial Cloud service, such as Amazon EC2, or Microsoft Azure, or a partner infrastructure running a different OpenNebula instance. Such support for cloud bursting enables highly scalable hosting environments. For more information on this model see the :ref:`Cloud Bursting overview <introh>`
 
@@ -48,10 +45,10 @@ VNM drivers are used to set the network configuration in the host (firewall, 802
 When creating a new host to interact with a remote cloud provider we will use mock versions for the TM and VNM drivers. Therefore, we will only implement the functionality required for the IM and VMM driver.
 
 Adding the Information Manager
-==============================
+================================================================================
 
 Edit oned.conf
---------------
+--------------------------------------------------------------------------------
 
 Add a new IM section for the new driver in oned.conf:
 
@@ -85,7 +82,7 @@ Add a new IM section for the new driver in oned.conf:
     #-------------------------------------------------------------------------------
 
 Populating the Probes
----------------------
+--------------------------------------------------------------------------------
 
 Create a new directory to store your probes, the name of this folder must match the name provided in the arguments section of the IM\_MAD in oned.conf:
 
@@ -106,10 +103,10 @@ You can see an example of these probes in the `ec2 driver <https://github.com/Op
     HYPERVISOR="provider_name"
 
 Adding the Virtual Machine Manager
-==================================
+================================================================================
 
 Edit oned.conf
---------------
+--------------------------------------------------------------------------------
 
 .. code::
 
@@ -143,7 +140,7 @@ Edit oned.conf
     #-------------------------------------------------------------------------------
 
 Create the Driver Folder and Implement the Specific Actions
------------------------------------------------------------
+--------------------------------------------------------------------------------
 
 Create a new folder inside the remotes dir (/var/lib/one/remotes/vmm). The new folder should be named “providet\_name”, the name specified in the previous VM\_MAD arguments section.
 
@@ -185,7 +182,7 @@ You can see examples on how to implement this in the `ec2 driver <https://github
     ec2_drv.shutdown(deploy_id)
 
 Create the New Host
--------------------
+--------------------------------------------------------------------------------
 
 After restarting oned we can create the new host that will use this new driver
 
@@ -194,7 +191,7 @@ After restarting oned we can create the new host that will use this new driver
     $ onehost create remote_provider im_provider vmm_provider tm_dummy dummy
 
 Create a new Virtual Machine
-----------------------------
+--------------------------------------------------------------------------------
 
 Create a new VM using a template with an specific section for this provider. You have to include the required information to start a new VM inside the PUBLIC\_CLOUD section, and the TYPE attribute must match the HYPERVISOR value of the host. For example:
 

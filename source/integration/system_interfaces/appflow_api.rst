@@ -1,18 +1,15 @@
 .. _appflow_api:
 
-======================
+================================================================================
 OneFlow Specification
-======================
-
-Overview
-========
+================================================================================
 
 The OpenNebula OneFlow API is a RESTful service to create, control and monitor multi-tier applications or services composed of interconnected Virtual Machines with deployment dependencies between them. Each group of Virtual Machines is deployed and managed as a single entity, and is completely integrated with the advanced OpenNebula user and group management. There are two kind of resources; services templates and services. All data is sent and received as JSON.
 
 This guide is intended for developers. The OpenNebula distribution includes a :ref:`cli <cli>` to interact with OneFlow and it is also fully integrated in the :ref:`Sunstone GUI <appflow_configure>`
 
 Authentication & Authorization
-==============================
+================================================================================
 
 User authentication will be `HTTP Basic access authentication <http://tools.ietf.org/html/rfc1945#section-11>`__. The credentials passed should be the User name and password.
 
@@ -21,7 +18,7 @@ User authentication will be `HTTP Basic access authentication <http://tools.ietf
     $ curl -u "username:password" https://oneflow.server
 
 Return Codes
-============
+================================================================================
 
 The OneFlow API uses the following subset of HTTP Status codes:
 
@@ -56,7 +53,7 @@ The OneFlow API uses the following subset of HTTP Status codes:
 The methods specified below are described without taking into account **4xx** (can be inferred from authorization information in section above) and **5xx** errors (which are method independent). HTTP verbs not defined for a particular entity will return a **501 Not Implemented**.
 
 Methods
-=======
+================================================================================
 
 Service
 -------

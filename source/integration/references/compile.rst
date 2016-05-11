@@ -1,8 +1,8 @@
 .. _compile:
 
-==========================
+================================================================================
 Building from Source Code
-==========================
+================================================================================
 
 This page will show you how to compile and install OpenNebula from the sources.
 
@@ -11,7 +11,7 @@ If you want to install it from your package manager, visit the `software menu <h
 .. warning:: Do not forget to check the :ref:`Building Dependecies <build_deps>` for a list of specific software requirements to build OpenNebula.
 
 Compiling the Software
-======================
+================================================================================
 
 Follow these simple steps to install the OpenNebula software:
 
@@ -89,7 +89,7 @@ The packages do a ``system-wide`` installation. To create a similar environment,
     oneadmin@frontend:~/one-4.0 $> sudo ./install.sh -u oneadmin -g oneadmin
 
 Ruby Dependencies
-=================
+================================================================================
 
 Ruby version needs to be:
 
@@ -128,7 +128,7 @@ For example, to install only requirements for sunstone and ec2 interfaces you'll
     oneadmin@frontend: $> ./install_gems sunstone cloud
 
 Building Sunstone from Source
-=============================
+================================================================================
 
 Please check the :ref:`Sunstone Development guide <sunstone_dev>` for detailed information
     

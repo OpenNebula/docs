@@ -1,13 +1,13 @@
 .. _devel-nm:
 
-==================
+================================================================================
 Networking Driver
-==================
+================================================================================
 
 This component is in charge of configuring the network in the hypervisors. The purpose of this guide is to describe how to create a new network manager driver.
 
 Driver Configuration and Description
-====================================
+================================================================================
 
 To enable a new network manager driver, the only requirement is to make a new directory with the name of the driver in ``/var/lib/one/remotes/vnm/remotes/<name>`` with three files:
 
@@ -28,8 +28,8 @@ Virtual Machine actions and their relation with Network actions:
 -  **Attach Nic**: ``pre`` and ``post``
 -  **Detach Nic**: ``clean``
 
-Driver Paramenters
-==================
+Driver Parameters
+================================================================================
 
 All three driver actions have a first parameter which is the XML VM template encoded in base64 format.
 

@@ -1,18 +1,18 @@
 .. _ruby:
 
-==========================
+================================================================================
 Ruby OpenNebula Cloud API
-==========================
+================================================================================
 
 This page contains the OpenNebula Cloud API Specification for Ruby. It has been designed as a wrapper for the :ref:`XML-RPC methods <api>`, with some basic helpers. This means that you should be familiar with the XML-RPC API and the XML formats returned by the OpenNebula core. As stated in the :ref:`XML-RPC documentation <api>`, you can download the :ref:`XML Schemas (XSD) here <api_xsd_reference>`.
 
 API Documentation
-=================
+================================================================================
 
 You can consult the `doc online </doc/5.0/oca/ruby/>`__.
 
 Usage
-=====
+================================================================================
 
 You can use the Ruby OCA included in the OpenNebula distribution by adding the OpenNebula Ruby library path to the search path:
 
@@ -37,7 +37,7 @@ You can use the Ruby OCA included in the OpenNebula distribution by adding the O
     require 'opennebula'
 
 Code Sample: Shutdown all the VMs of the Pool
-=============================================
+================================================================================
 
 This is a small code snippet. As you can see, the code flow would be as follows:
 

@@ -1,8 +1,8 @@
 .. _devel-market:
 
-=============
+================================================================================
 Market Driver
-=============
+================================================================================
 
 The Market Driver is in charge of managing both MarketPlaces and MarketPlaceApps.
 
@@ -76,7 +76,7 @@ There are two kinds of ``monitor`` scripts, those that do not require the discov
 
 **RETURNS**
 
-In the case of simple monitorization with no discovery, the ``monitor`` action must return a report of the available and used space in the MarketPlace in OpenNebula-syntax template format:
+In the case of simple monitoring with no discovery, the ``monitor`` action must return a report of the available and used space in the MarketPlace in OpenNebula-syntax template format:
 
 .. code::
 
@@ -84,7 +84,7 @@ In the case of simple monitorization with no discovery, the ``monitor`` action m
     FREE_MB=<FREE_MB>
     TOTAL_MB=<TOTAL_MB>
 
-In the casee of monitorization with discovery, it must also return the information of each Appliance, encoded in Base64 in the following way (the full APP string has been trimmed for legibility):
+In the case of monitoring with discovery, it must also return the information of each Appliance, encoded in Base64 in the following way (the full APP string has been trimmed for legibility):
 
 .. code::
 

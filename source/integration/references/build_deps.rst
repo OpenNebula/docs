@@ -1,8 +1,8 @@
 .. _build_deps:
 
-===================
+================================================================================
 Build Dependencies
-===================
+================================================================================
 
 This page lists the **build** dependencies for OpenNebula.
 
@@ -18,7 +18,7 @@ If you want to install it from your package manager, visit the `software menu <h
 -  **ruby** interpreter (>= 1.8.7)
 
 Debian/Ubuntu
-=============
+================================================================================
 
 -  **g++**
 -  **libxmlrpc-c3-dev**
@@ -32,7 +32,7 @@ Debian/Ubuntu
 Note: In Ubuntu 14.04 libxmlrpc-c3-dev no longer exists. Instead, install these packages libxmlrpc-c++8-dev, libxmlrpc-core-c3-dev.
 
 CentOS 6
-========
+================================================================================
 
 -  **gcc-c++**
 -  **libcurl-devel**
@@ -49,7 +49,7 @@ CentOS 6
 -  **java-1.7.0-openjdk-devel**
 
 CentOS 5 / RHEL 5
-=================
+================================================================================
 
 scons
 ~~~~~
@@ -104,7 +104,7 @@ Ruby package is needed during install process
     $ yum install ruby
 
 openSUSE 11.3
-=============
+================================================================================
 
 Building tools
 ~~~~~~~~~~~~~~
@@ -163,7 +163,7 @@ xmlrpc-c must be built by downloading the latest svn release and compiling it. R
     make install
 
 MAC OSX 10.4 10.5
-=================
+================================================================================
 
 OpenNebula frontend can be installed in Mac OS X. Here are the dependencies to build it in 10.5 (Leopard)
 
@@ -207,7 +207,7 @@ Unfortunately it will also compile python an lost of other packages. Another way
     $ alias scons='python ~/tmp/scons/scons.py'
 
 Gentoo
-======
+================================================================================
 
 When installing libxmlrpc you have to specify that it will be compiled with thread support:
 

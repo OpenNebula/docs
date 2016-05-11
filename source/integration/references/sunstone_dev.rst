@@ -1,13 +1,13 @@
 .. _sunstone_dev:
 
-====================
+================================================================================
 Sunstone Development
-====================
+================================================================================
 
 In OpenNebula 5.0 the graphical interface code, Sunstone, was redesigned and modularized to improve the code readibility and ease the task of adding new components. Now, each component (tab, panel, form...) is defined in a separate module using `requirejs <http://requirejs.org/>`__ and HTML code is now defined in separate files using `Handlebars <http://handlebarsjs.com/>`__ templates. External libraries are handled using `Bower <http://bower.io/>`__, a Javascript package manager. `Zurb Foundation <http://foundation.zurb.com/>`__ is used for the styles and layout of the web and additional CSS styles are added using `SASS <http://sass-lang.com/>`__. `Grunt <http://gruntjs.com/>`__ is used as a tasker to automate the different processes to generate the optimized files.
 
 RequireJS
-=========
+================================================================================
 
 `requirejs <http://requirejs.org/>`__ allows you to define blocks of functionality in different modules/files and then load and reuse them in other modules.
 
@@ -50,7 +50,7 @@ And how the different modules are used in the images-tab file:
 The `optimization tool <http://requirejs.org/docs/optimization.html>`__ provided by `requirejs <http://requirejs.org/>`__ is used to group multiple files into a single minified file (dist/main.js). The options for the optimization are defined in the `Gruntfile.js <https://github.com/OpenNebula/one/blob/master/src/sunstone/public/Gruntfile.js>`__ file using the `r.js plugin <https://github.com/gruntjs/grunt-contrib-requirejs>`__ for `Grunt <http://gruntjs.com/>`__.
 
 Handlebars
-==========
+================================================================================
 
 `Handlebars <http://handlebarsjs.com/>`__ provides the power necessary to let you build semantic templates and is largely compatible with Mustache templates.
 
@@ -86,7 +86,7 @@ Additional helpers can be defined just creating a new file inside the ``app/temp
   {{/isTabActionEnabled}}
 
 SASS & Foundation
-=================
+================================================================================
 
 The `Zurb Foundation <http://foundation.zurb.com/>`__ framkework is used for the layout of the app. It provides a powerful grid system and different nifty widgets such as tabs, sliders, dialogs...
 
@@ -94,7 +94,7 @@ The Zurb Foundation configuration parameters are defined in the ``app/scss/setti
 
 
 Modifying JS & CSS files
-========================
+================================================================================
 
 Sunstone can be run in two different environments:
 
@@ -183,7 +183,7 @@ Install.sh
 By default the install.sh script will install all the files, including the non-minified ones. Providing the -p option, only the minified files will be installed.
 
 Adding Custom Tabs
-==================
+================================================================================
 
 New tabs can be included following these steps:
 

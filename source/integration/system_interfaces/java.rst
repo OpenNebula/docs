@@ -1,25 +1,25 @@
 .. _java:
 
-==========================
+================================================================================
 Java OpenNebula Cloud API
-==========================
+================================================================================
 
 This page contains the OpenNebula Cloud API Specification for Java. It has been designed as a wrapper for the :ref:`XML-RPC methods <api>`, with some basic helpers. This means that you should be familiar with the XML-RPC API and the XML formats returned by the OpenNebula core. As stated in the :ref:`XML-RPC documentation <api>`, you can download the :ref:`XML Schemas (XSD) here <api_xsd_reference>`.
 
 Download
-========
+================================================================================
 
 The Java OCA is part of the OpenNebula core distribution. If you installed from the Debian, Ubuntu or CentOS packages it should be already installed in ``/usr/share/java/org.opennebula.client.jar``. You also can download the ``.jar`` file compiled using Java OpenJDK 1.7, the required libraries, and the javadoc packaged in a tar.gz file `following this link <http://downloads.opennebula.org/packages>`__.
 
 You can also consult the `javadoc online </doc/5.0/oca/java/>`__.
 
 Usage
-=====
+================================================================================
 
 To use the OpenNebula Cloud API for Java in your Java project, you have to add to the classpath the org.opennebula.client.jar file and the xml-rpc libraries located in the lib directory.
 
 Code Sample
-===========
+================================================================================
 
 This is a small code snippet. As you can see, the code flow would be as follows:
 

@@ -1,13 +1,13 @@
 .. _devel-vmm:
 
-======================
+================================================================================
 Virtualization Driver
-======================
+================================================================================
 
 The component that deals with the hypervisor to create, manage and get information about virtual machine objects is called Virtual Machine Manager (VMM for short). This component has two parts. The first one resides in the core and holds most of the general functionality common to all the drivers (and some specific), the second is the driver that is the one able to translate basic VMM actions to the hypervisor.
 
 Driver Configuration
-====================
+================================================================================
 
 There are two main drivers ``one_vmm_exec`` and ``one_vmm_sh``. Both take commands from OpenNebula and execute a set of scripts for those actions, the main difference is that ``one_vmm_exec`` executes the commands remotely (logging into the host where VM is being or is going to be executed) and ``one_vmm_sh`` does the execution of the scripts in the frontend.
 
@@ -107,7 +107,7 @@ These supported action are specified in the :ref:`oned.conf file <oned_conf>`, `
 .. _devel-vmm_action:
 
 Actions
-=======
+================================================================================
 
 Every action should have an executable program (mainly scripts) located in the remote dir (``remotes/vmm/<driver_directory>``) that performs the desired action. These scripts receive some parameters (and in the case of ``DEPLOY`` also STDIN) and give back the error message or information in some cases writing to STDOUT.
 
@@ -367,7 +367,7 @@ When using shell script there is a handy script that gets parameters for given X
 ``one_vmm_sh`` has the same script actions and meanings but an argument more that is the host where the action is going to be performed. This argument is always the first one. If you use ``-p`` parameter in ``one_vmm_ssh`` the poll action script is called with one more argument that is the host where the VM resides, also it is the same parameter.
 
 Poll Information
-================
+================================================================================
 
 ``POLL`` is the action that gets monitoring info from the running VMs. The format it is supposed to give back information is a line with ``KEY=VALUE`` pairs separated by spaces. It also supports vector values ``KEY = [ SK1=VAL1, SK2=VAL2 ]``. An example monitoring output looks like this:
 
@@ -412,7 +412,7 @@ The poll action can give back any information and it will be added to the VM inf
 +-------+--------------------------------------------------------------------------------------------+
 
 Deployment File
-===============
+================================================================================
 
 The deployment file is a text file written by OpenNebula core that holds the information of a VM. It is used when deploying a new VM. OpenNebula is able to generate three formats of deployment files:
 

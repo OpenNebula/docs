@@ -4,8 +4,11 @@
 Overview
 ================================================================================
 
-2.3. The OpenNebula Drivers Interfaces
---------------------------------------
+.. todo::
+
+    -* Cloud Architect
+    -* KVM
+    -* vCenter
 
 The interactions between OpenNebula and the Cloud infrastructure are performed by specific drivers. Each one addresses a particular area:
 
@@ -15,13 +18,18 @@ The interactions between OpenNebula and the Cloud infrastructure are performed b
 -  **Authorization**. OpenNebula can be also configured to use an external program to authorize and authenticate user requests. In this way, you can implement any access policy to Cloud resources.
 -  **Networking**. The hypervisor is also prepared with the network configuration for each Virtual Machine.
 
-*Use the driver interfaces if...* you need OpenNebula to interface any specific storage, virtualization, monitoring or authorization system already deployed in your datacenter or to tune the behavior of the standard OpenNebula drivers.
+Use the driver interfaces if you need OpenNebula to interface any specific storage, virtualization, monitoring or authorization system already deployed in your datacenter or to tune the behavior of the standard OpenNebula drivers.
 
-*You can find more information at...* the :ref:`virtualization system <devel-vmm>`,\ :ref:`storage system <sd>`, the :ref:`information system <devel-im>`, the :ref:`authentication system <auth_overview>` and :ref:`network system <devel-nm>` guides.
+How Should I Read This Chapter
+================================================================================
 
-2.4. The OpenNebula DataBase
-----------------------------
+You should be reading this Chapter if you are trying to extend OpenNebula functionality.
 
-OpenNebula saves its state and lots of accounting information in a persistent data-base. OpenNebula can use MySQL or SQLite and can be easily interfaced with any database tool.
+You can proceed to any of the following sections depending on which component you want to understand and extend the :ref:`virtualization system <devel-vmm>` (with a separate Section for :ref:`cloud bursting <devel_cloudbursting>`), the :ref:`storage system <sd>`, the :ref:`information system <devel-im>`, the :ref:`authentication system <auth_overview>`, the :ref:`network system <devel-nm>` or the :ref:`marketplace drivers <devel-market>`. Also you might be interested in the :ref:`Hook mechanism <hooks>`, a powerful way of integrating OpenNebua within your datacenter processes.
 
-*Use the OpenNebula DB if...* you need to generate custom accounting or billing reports.
+After this Chapter, congratulations! You finished OpenNebula.
+
+Hypervisor Compatibility
+================================================================================
+
+All the Sections of this Chapter applies to both KVM and vCenter hypervisors.

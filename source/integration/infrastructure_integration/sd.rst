@@ -1,8 +1,8 @@
 .. _sd:
 
-===============
+================================================================================
 Storage Driver
-===============
+================================================================================
 
 The Storage subsystem is highly modular. These drivers are separated into two logical sets:
 
@@ -10,7 +10,7 @@ The Storage subsystem is highly modular. These drivers are separated into two lo
 -  **TM**: Transfer Manager drivers. They manage images associated to instantiated VMs.
 
 Datastore Drivers Structure
-===========================
+================================================================================
 
 Located under ``/var/lib/one/remotes/datastore/<ds_mad>``
 
@@ -78,7 +78,7 @@ Located under ``/var/lib/one/remotes/datastore/<ds_mad>``
 .. _sd_tm:
 
 TM Drivers Structure
-====================
+================================================================================
 
 This is a list of the TM drivers and their action. Note that they don't return anything. If the exit code is not ``0``, the driver will have failed.
 
@@ -228,7 +228,7 @@ Action scripts needed when the TM is used for the system datastore:
 .. note:: If the TM is only for regular images you only need to implement the first group.
 
 An Example VM
-=============
+================================================================================
 
 Consider a VM with two disks:
 
@@ -291,7 +291,7 @@ This a list of TM actions that will be called upon the events listed:
 -  ``tm_mad_sysds``: TM driver of the system datastore
 
 Helper Scripts
-==============
+================================================================================
 
 There is a helper shell script with some functions defined to do some common tasks. It is located in ``/var/lib/one/remotes/scripts_common.sh``
 
@@ -342,7 +342,7 @@ Here are the description of those functions.
 The are additional minor helper functions, please read the ``scripts_common.sh`` to see them.
 
 Decoded Example
-===============
+================================================================================
 
 .. _sd_dump:
 

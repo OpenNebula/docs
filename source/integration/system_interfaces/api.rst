@@ -1,8 +1,8 @@
 .. _api:
 
-============
+================================================================================
 XML-RPC API
-============
+================================================================================
 
 This reference documentation describes the xml-rpc methods exposed by OpenNebula. Each description consists of the method name and the input and output values.
 
@@ -65,7 +65,7 @@ Can be also given to OpenNebula with the following XML:
     </TEMPLATE>
 
 Authorization Requests Reference
-================================
+================================================================================
 
 For each XML-RPC request, the session token is authenticated, and after that the Request Manager generates an authorization request that can include more than one operation. The following tables document these requests.
 

@@ -35,4 +35,3 @@ Hypervisor Compatibility
 All the Sections in this Chapter applies to both KVM and vCentre based OpenNebula clouds.
 
 .. |image0| image:: /images/hybridcloud.png
-

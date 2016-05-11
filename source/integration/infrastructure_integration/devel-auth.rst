@@ -1,8 +1,8 @@
 .. _devel-auth:
 
-======================
+================================================================================
 Authentication Driver
-======================
+================================================================================
 
 This guide will show you how to develop a new driver for OpenNebula to interact with an external authentication service.
 
@@ -11,7 +11,7 @@ OpenNebula comes with an internal user/password way of authentication, this is c
 In the OpenNebula database there are two values saved for every user, this is ``username`` and ``password``. When the driver used for authentication is core (authenticated without an external auth driver) the password value holds the SHA1 hash of the user's password. In case we are using other authentication method this ``password`` field can contain any other information we can use to recognize a user, for example, for x509 authentication this field contains the user's public key.
 
 Authentication Driver
-=====================
+================================================================================
 
 Authentication drivers are located at ``/var/lib/one/remotes/auth``. There is a directory for each of authentication drivers with an executable inside called ``authenticate``. The name of the directory has to be the same as the user's auth driver we want to authenticate. For example, if a user has as auth driver ``x509`` OpenNebula will execute the file ``/var/lib/one/remotes/auth/x509/authenticate`` when he performs an OpenNebula action.
 
@@ -55,7 +55,7 @@ The code for the ``/var/lib/one/remotes/auth/length/authenticate`` executable ca
     fi
 
 Enabling the Driver
-===================
+================================================================================
 
 To be able to use the new driver we need to add its name to the list of enabled drivers in ``oned.conf``:
 

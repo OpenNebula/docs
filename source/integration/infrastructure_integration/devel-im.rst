@@ -1,15 +1,15 @@
 .. _devel-im:
 
-==================
+================================================================================
 Monitoring Driver
-==================
+================================================================================
 
 The Monitoring Drivers (or IM drivers) collect host and virtual machine monitoring data by executing a set of probes in the hosts. This data is either actively queried by OpenNebula or sent periodically by an agent running in the hosts to the frontend.
 
 This guide describes the process of customize or add probes to the hosts. It is also a starting point on how to create a new IM driver from scratch.
 
 Probe Location
-==============
+================================================================================
 
 The default probes are installed in the frontend in the following path:
 
@@ -19,7 +19,7 @@ The default probes are installed in the frontend in the following path:
 In the case of ``KVM``, the probes are distributed to the hosts, therefore if the probes are changed, they **must** be distributed to the hosts by running ``onehost sync``.
 
 General Probe Structure
-=======================
+================================================================================
 
 An IM driver is composed of one or several scripts that write to ``stdout`` information in this form:
 
@@ -60,7 +60,7 @@ Take into account that in shell script the parameters start at 1 (``$1``) and in
 .. _devel-im_basic_monitoring_scripts:
 
 Basic Monitoring Scripts
-========================
+================================================================================
 
 You can add any key and value you want to use later in ``RANK`` and ``REQUIREMENTS`` for scheduling but there are some basic values you should output:
 
@@ -116,7 +116,7 @@ For real examples check the directories at ``/var/lib/one/remotes/im``.
 .. _devel-im_vm_information:
 
 VM Information
-==============
+================================================================================
 
 The scripts should also provide information about the VMs running in the host. This is useful as it will only need one call to gather all that information about the VMs in each host. The output should be in this form:
 
@@ -199,7 +199,7 @@ For example here is a simple script to get qemu/kvm VMs status from libvirt. As 
       POLL="STATE=a" ]
 
 System Datastore Information
-============================
+================================================================================
 
 Information Manager drivers are also responsible to collect the datastore sizes and its available space. To do so there is an already made script that collects this information for filesystem and lvm based datastores. You can copy it from the KVM driver (``/var/lib/one/remotes/im/kvm-probes.d/monitor_ds.sh``) into your driver directory.
 
@@ -252,20 +252,20 @@ These are the meanings of the values:
 The DATASTORE LOCATION is the path where the datastores are mounted. By default is ``/var/lib/one/datastores`` but it is specified in the second parameter of the script call.
 
 Creating a New IM Driver
-========================
+================================================================================
 
 Choosing the Execution Engine
------------------------------
+--------------------------------------------------------------------------------
 
 OpenNebula provides two IM probe execution engines: ``one_im_sh`` and ``one_im_ssh``. ``one_im_sh`` is used to execute probes in the frontend, for example ``vcenter`` uses this engine as it collects data via an API call executed in the frontend. On the other hand, ``one_im_ssh`` is used when probes need to be run remotely in the hosts, which is the case for ``KVM``.
 
 Populating the Probes
----------------------
+--------------------------------------------------------------------------------
 
 Both ``one_im_sh`` and ``one_im_ssh`` require an argument which indicates the directory that contains the probes. This argument is appended with ”.d”.
 
 Making Use of Colllectd
------------------------
+--------------------------------------------------------------------------------
 
 If the new IM driver wishes to use the ``collectd`` component, it needs to:
 
@@ -274,7 +274,7 @@ If the new IM driver wishes to use the ``collectd`` component, it needs to:
 -  The probes should be actually placed in the ``/var/lib/one/remotes/im/<im_name>-probes.d`` folder.
 
 Enabling the Driver
--------------------
+--------------------------------------------------------------------------------
 
 A new IM section should be placed added to ``oned.conf``.
 
