@@ -1,8 +1,15 @@
 .. _marketplace_overview:
 
 ====================
-MarketPlace Overview
+Overview
 ====================
+
+.. todo::
+
+    * Architect
+    * Admin
+    * KVM
+    * vCenter
 
 Sharing, provisioning and consuming cloud images is one of the main concerns when using Cloud. OpenNebula provides a simple way to create and integrate with a cloud image provider, called MarketPlaces. Think of them as external datastores.
 
@@ -80,11 +87,6 @@ Using the MarketPlace is recommended in many scenarios, to name a few:
 * In a federation, it is almost essential to have a shared MarketPlace in order to share MarketPlaceApps across zones.
 * MarketPlaces are a great way to provide content for the users in VDCs with no initial virtual resources.
 
-Hypervisor Compatibility
-================================================================================
-
-This chapter applies both to KVM and vCenter.
-
 How Should I Read This Chapter
 ================================================================================
 
@@ -93,3 +95,8 @@ Before reading this chapter make sure you have read the :ref:`Deployment Guide <
 Read the :ref:`OpenNebula Systems MarketPlace <market_one>` as it's global for all the OpenNebula installations. Then read the specific guide for the MarketPlace flavor you are interested in. Finally, read the :ref:`Managing MarketPlaceApps <marketapp>` to understand what operations you can perform on MarketPlaceApps.
 
 After reading this chapter you can continue configuring more :ref:`Advanced Components <advanced_components>`.
+
+Hypervisor Compatibility
+================================================================================
+
+This chapter applies both to KVM and vCenter.

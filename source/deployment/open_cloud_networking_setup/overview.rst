@@ -1,8 +1,13 @@
 .. _nm:
 
 ====================
-Networking Overview
+Overview
 ====================
+
+.. todo::
+
+    * Architect
+    * KVM
 
 When a new Virtual Machine is launched, OpenNebula will connect its network interfaces (defined in the NIC section of the template) to the bridge or physical device specified in the :ref:`Virtual Network definition <vgg>`. This will allow the VM to have access to different networks, public or private.
 
@@ -78,11 +83,6 @@ The default paths for the binaries/executables used during the network configura
       :ipset    => "sudo ipset"
     }
 
-Hypervisor Compatibility
-================================================================================
-
-This chapter applies only to KVM.
-
 How Should I Read This Chapter
 ================================================================================
 
@@ -91,3 +91,8 @@ Before reading this chapter make sure you have read the :ref:`Open Cloud Storage
 Read the specific section for the driver that you are interested in.
 
 After reading this chapter you can complete your OpenNebula installation by optionally enabling an :ref:`External Authentication <authentication>` or configuring :ref:`Sunstone <sunstone>`. Otherwise you are ready to :ref:`Operate your Cloud <operation_guide>`.
+
+Hypervisor Compatibility
+================================================================================
+
+This chapter applies only to KVM.

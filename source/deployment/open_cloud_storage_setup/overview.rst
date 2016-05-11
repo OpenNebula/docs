@@ -5,8 +5,10 @@
 Overview
 =================
 
-* Architect
-* KVM
+.. todo::
+
+    * Architect
+    * KVM
 
 A Datastore is any storage medium used to store disk images for VMs, previous versions of OpenNebula refer to this concept as Image Repository. Typically, a datastore will be backed by SAN/NAS servers.
 
@@ -132,13 +134,6 @@ However you may find the files you need to modify here:
 * ``/var/lib/one/remotes/datastore/<DS_DRIVER>``
 * ``/var/lib/one/remotes/tm/<TM_DRIVER>``
 
-Hypervisor Compatibility
-================================================================================
-
-This chapter applies only to KVM.
-
-Follow the :ref:`vCenter Storage <vcenter_ds>` section for a similar guide for vCenter.
-
 How Should I Read This Chapter
 ================================================================================
 
@@ -147,5 +142,12 @@ Before reading this chapter make sure you have read the :ref:`Open Cloud Host <v
 Regardless of what Image Datastore you are using, read the :ref:`System Datastore <system_ds>` section as it is a crucial part of the Storage system. Likewise, you should also be familiar with the :ref:`Files <file_ds>` datastore, as you can use it with any Datastore type. Finally, read the specific section for the Datastores you may be interested in.
 
 After reading this chapter you should read the :ref:`Open Cloud Networking <nm>` chapter.
+
+Hypervisor Compatibility
+================================================================================
+
+This chapter applies only to KVM.
+
+Follow the :ref:`vCenter Storage <vcenter_ds>` section for a similar guide for vCenter.
 
 .. |image0| image:: /images/datastoreoverview.png

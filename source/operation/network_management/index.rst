@@ -6,6 +6,6 @@ Virtual Network Management
    :maxdepth: 2
 
    Overview <overview>
-   Virtual Networks <vgg>
+   Virtual Networks <manage_vnets>
    Virtual Routers <vrouter>
    Security Groups <security_groups>

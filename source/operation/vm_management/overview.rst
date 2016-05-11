@@ -1,3 +1,5 @@
+.. _vm_management_overview:
+
 ================================================================================
 Overview
 ================================================================================
@@ -13,7 +15,7 @@ This chapter contains documentation on how to create and manage Virtual Machine 
 How Should I Read This Chapter
 ================================================================================
 
-You should be reading this chapter after the initial OpenNebula installation, including storage and Node setup.
+Before reading this chapter, you should have already installed your :ref:`Frontend <frontend_installation>`, the :ref:`KVM Hosts <kvm_node>` and have an OpenNebula cloud up and running with at least one virtualization node.
 
 Hypervisor Compatibility
 ================================================================================

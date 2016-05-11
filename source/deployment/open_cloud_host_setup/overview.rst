@@ -4,17 +4,12 @@
 Overview
 ================================================================================
 
-* Architect
-* KVM
+.. todo::
+
+    * Architect
+    * KVM
 
 The Virtualization Subsystem is the component in charge of talking with the hypervisor installed in the hosts and taking the actions needed for each step in the VM life-cycle. This chapter focuses on the procedure to configure and add KVM hosts into the OpenNebula Cloud.
-
-Hypervisor Compatibility
-================================================================================
-
-This chapter applies only to KVM.
-
-Follow the :ref:`vCenter Node <vcenter_node>` section for a similar guide for vCenter.
 
 How Should I Read This Chapter
 ================================================================================
@@ -29,3 +24,10 @@ This chapter will focus on the configuration options for the hosts.
 * You can read this section if you are interested in performing :ref:`PCI Passthrough <kvm_pci_passthrough>`.
 
 After reading this chapter, you should read the :ref:`Open Cloud Storage <storage>` chapter.
+
+Hypervisor Compatibility
+================================================================================
+
+This chapter applies only to KVM.
+
+Follow the :ref:`vCenter Node <vcenter_node>` section for a similar guide for vCenter.
