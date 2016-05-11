@@ -152,6 +152,8 @@ to be able to install packages.
 This special Security Group is added to all the Virtual Networks when they are
 created, but you can remove it later updating the network's properties.
 
+.. _security_groups_update:
+
 Security Group Update
 ================================================================================
 
