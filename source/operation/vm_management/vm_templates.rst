@@ -133,6 +133,8 @@ Managing Templates
 
 Users can manage the Template Repository using the command ``onetemplate``, or the graphical interface :ref:`Sunstone <sunstone>`. For each user, the actual list of templates available are determined by the ownership and permissions of the templates.
 
+.. _vm_templates_labels:
+
 Listing Available Templates
 ---------------------------
 

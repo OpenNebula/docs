@@ -158,6 +158,8 @@ It can also be displayed in XML format using ``-x``:
 
 The ``top`` command is similar to the ``list`` command, except that the output is refreshed until the user presses ``CTRL-C``.
 
+.. _host_lifecycle:
+
 Host Life-cycle: Enable, Disable, Offline and Flush
 ---------------------------------------------------
 

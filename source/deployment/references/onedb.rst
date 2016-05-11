@@ -172,6 +172,8 @@ onedb restore
 
 Restores the DB from a backup file. Please not that this tool will only restore backups generated from the same backend, i.e. you cannot backup a SQLite database and then try to populate a MySQL one.
 
+.. _onedb_sqlite2mysql:
+
 onedb sqlite2mysql
 ==================
 

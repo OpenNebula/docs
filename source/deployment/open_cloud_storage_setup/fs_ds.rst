@@ -135,6 +135,8 @@ Host Configuration
 
 There is no special configuration for the hosts in this case. Just make sure that there is enough space under ``$DATASTORE_LOCATION`` to hold the images of the VMs running in that host.
 
+.. _qcow2_options:
+
 Using the qcow2 Transfer driver
 ===============================
 

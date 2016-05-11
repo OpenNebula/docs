@@ -1,13 +1,13 @@
 .. _rn:
 
 ================================================================================
-Release Notes 4.14
+Release Notes 5.0
 ================================================================================
 
 .. toctree::
    :maxdepth: 1
 
-   What's New in 4.14 <whats_new>
+   What's New in 5.0 <whats_new>
    Platform Notes <uspng>
    Compatibility Guide <compatibility>
    Known Issues <known_issues>
