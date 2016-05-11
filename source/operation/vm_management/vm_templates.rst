@@ -176,7 +176,7 @@ Via Sunstone, you can easily add templates using the provided wizards (or copy/p
 
 |image2|
 
-.. vm_template_clone::
+.. _vm_template_clone:
 
 Cloning Templates
 -----------------------------

@@ -4,7 +4,7 @@
 What's New in 5.0 Beta
 ================================================================================
 
-OpenNebula 5.0 Beta (Wizard) is the first release of the major 5.0 update. As such, it comes with several improvements in different subsystems and components, with minimal changes in the API and the VM life-cycle states which embodies long overdue changes but implemented to minimize the impact and ensure backwards compatibility as far as possible. Sunstone never stops evolving, and this is the look and feel the team is most proud of to date. 
+OpenNebula 5.0 Beta (Wizard) is the first release of the major 5.0 update. As such, it comes with several improvements in different subsystems and components, with minimal changes in the API and the VM life-cycle states which embodies long overdue changes but implemented to minimize the impact and ensure backwards compatibility as far as possible. Sunstone never stops evolving, and this is the look and feel the team is most proud of to date.
 
 .. image:: /images/admin_view.png
     :width: 90%
@@ -24,11 +24,11 @@ Native support for Virtual Routers is also great news in 5.0. Virtual Routers ar
     :width: 90%
     :align: center
 
-For large scale deployments, a long overdue feature is the ability to group resources using labels, which is now present in Wizard's Sunstone. This new feature will enable the possibility to group the different resources under a given label and filter them in the admin and cloud views. 
+For large scale deployments, a long overdue feature is the ability to group resources using labels, which is now present in Wizard's Sunstone. This new feature will enable the possibility to group the different resources under a given label and filter them in the admin and cloud views.
 
 For vCenter based OpenNebula clouds, 5.0 is good news! Support for vCenter storage resources like Datastores and VMDKs enable a wealth of new functionality, like for instance VMDK upload, cloning and deleting, VM disk hotplug, choose Datastore for newly launched VMs and many more. Also, support for resource pools comes in this new major update, as well as the ability to instantiate to persistent (also available for KVM), all packed in an optimized driver.
 
-There are many other improvements in 5.0 like dynamic context regeneration, new host offline mode, cluster resource sharing, VM configuration update, renamed VM life-cycle, support for DB change, 
+There are many other improvements in 5.0 like dynamic context regeneration, new host offline mode, cluster resource sharing, VM configuration update, renamed VM life-cycle, support for DB change,
 
 This OpenNebula release is named after `NGC 7380 (also known as the Wizard Nebula) <https://en.wikipedia.org/wiki/NGC_7380>`, an open cluster also known as 142 in the 1959 Sharpless catalog (Sh2-142). This reasonably large nebula is located in Cepheus. It is extremely difficult to observe visually, usually requiring very dark skies and an O-III filter.
 
@@ -98,7 +98,7 @@ OpenNebula Drivers :: vCenter Virtualization
 - **Improved VM import**, with the ability to :ref:`import powered off VMs <import_vcenter_resources>`.
 - **New reconfigure driver action**, to notify running VMs of context changes [TODO]
 - **Instantiate to persistent**, for VMs creating a new VM Template in vCenter [TODO]
-- **Control VM disk deletion** on VM shutdown with a new `VM Template attribute <vm_template_definition_vcenter>`. 
+- **Control VM disk deletion** on VM shutdown with a new `VM Template attribute <vm_template_definition_vcenter>`.
 
 OpenNebula Drivers :: Hybrid Virtualization
 --------------------------------------------------------------------------------
@@ -117,7 +117,7 @@ Sunstone
 Sunstone has undergone massive changes, both behind the scenes (upgrade from Foundation 5 to 6 for instance) and in the front-end layout (see the screenshot above), as well as generally extended to support all the new Wizard functionality.
 
 - **Dynamic configuration inputs**, based on the OpenNebula core active configuration. For instance, show KVM drivers in host creation dialog only if they are active.
-- **Resource labels**, to better organize and search for any resource, like for instance :ref:`VM Templates <vm_templates>` and OneFlow templates and services.
+- **Resource labels**, to better organize and search for any resource, like for instance :ref:`VM Templates <vm_guide>` and OneFlow templates and services.
 - **Refactored left menu**, to present resources in a more organize manner.
 - **Improve wizard descriptions and usability**.
 - **Improve user tab**, to allow graphical edit of secondary groups.
