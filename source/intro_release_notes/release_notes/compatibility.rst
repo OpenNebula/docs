@@ -32,15 +32,34 @@ included (std) that uses the stderr stream. Follow this link to the :ref:`Log an
 Virtual Machine Management
 --------------------------------------------------------------------------------
 
+Disk Snapshots
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Virtual Machines in RUNNING state can now take disk snapshots if the drivers support it (kvm with ceph or qcow2), otherwise the VM needs to be manually powered off or suspended. Similarly, the disk snapshot revert operation requires the VM to be powered off or suspended. The strategy option has been removed from the VMM drivers, as well as the DISK_SNAPSHOT_REVERT state (for VMs doing a snapshot operation while RUNNING).
+
+VNC Ports
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 VNC port assignment has been improved in 5.0 to support TCP port reservations and to better reuse the port pool. The VNC port is checked now at the cluster level and not zone-wise, so a VM can be deployed/migrated in/to any host in the selected cluster. The automatic port selection assignment will first try ``VNC_PORTS[START] + VMID`` as in previous versions. Moreover, in this new version if the user sets a port its availability is first checked. ``VNC_BASE_PORT`` attribute in ``oned.conf`` has been changed to ``VNC_PORTS`` to include also a set of reserved ports. See :ref:`the oned.conf reference <oned_conf>` for more information.
 
+Context
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Context is now generated whenever a VirtualMachine is started in a host, i.e. when the deploy or restore action is invoked or when a NIC is attached/detached from the VM. This means that a new attached NIC will have the IP properly configured.
 
-.. todo:: `Feature #3932 <http://dev.opennebula.org/issues/3932>`_ Rename shutdown action to terminate
+Shutdown and Delete actions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. todo:: `Feature #4400 <http://dev.opennebula.org/issues/4400>`_ instantiate to persistent
+The ``onevm shutdown (--hard)`` action has been renamed to ``onevm terminate (--hard)``. This action can be executed from almost any state, except those where the VM is waiting for a driver operation to finish.
+
+The ``onevm delete (--recreate)`` action has been removed. End-users can execute the new ``onevm terminate --hard`` action to remove the VM completely from any state. When a VM is stuck in a state where ``terminate`` is not available, the cloud administrator can perform an immediate delete with the new ``onevm recover --delete/--recreate`` options.
+
+For more information, read the :ref:`Managing Virtual Machines section <vm_instances>`.
+
+Instantiate a Persistent Copy
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+OpenNebula 4.14 had the ``onevm save`` command to save a VM instance into a new VM Template. In the 5.0 release we have added the possibility to instantiate as persistent with the ``onetemplate instantiate --persistent`` command. This creates a Template copy (plus a persistent copy of each disk image) and instantiates that copy.
 
 .. todo:: boot order (new syntax), and boot order update
 
@@ -50,7 +69,7 @@ Scheduler
 --------------------------------------------------------------------------------
 
 The scheduler now considers secondary groups to schedule VMs for both hosts and
-datastores (see ``feature #4156 <http://dev.opennebula.org/issues/4156>`_ <http://dev.opennebula.org/issues/4156>`__). This
+datastores (see `feature #4156 <http://dev.opennebula.org/issues/4156>`_). This
 feature enable users to effectively use multiple VDCs. This may **only** affect
 to installations using multiple groups per user.
 
@@ -69,11 +88,13 @@ Hosts
 Storage and Datastores
 --------------------------------------------------------------------------------
 
-**BASE_PATH has been deprecated**
+BASE_PATH has been deprecated
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The attribute ``BASE_PATH`` has been deprecated and removed from the interface. If it was defined in the Datastore templates, it has now been removed. This means, that everything is now built on ``DATASTORE_LOCATION`` as defined in ``oned.conf``, which defaults to ``/var/lib/one/datastores``. If you were using a different ``BASE_PATH``, you will need to create a symbolic link in your nodes to fix that mountpoint. Something along the lines of: ``ln -s <BASE_PATH> /var/lib/one/datastores``.
 
-**FSTYPE has been deprecated**
+FSTYPE has been deprecated
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Datablocks and Volatile Disks can now only be ``raw`` or ``qcow2`` (and ``swap`` for volatile disks). They will be created as blocks and no filesystem will be created inside. The options like ``ext3, ext4, vfat, etc`` are not supported any more. Furthermore, the attribute ``FSTYPE`` has been deprecated. The logic is the following:
 
@@ -120,7 +141,25 @@ The Security Group update action now automatically triggers the :ref:`update of 
 Sunstone
 --------------------------------------------------------------------------------
 
-.. todo:: `Feature #4317 <http://dev.opennebula.org/issues/4317>`_ Redesign group admin view. Instance types, groupadmin based on admin, user inputs for capacity.
+Groupadmin View
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Sunstone's 4.14 'groupadmin' view was similar to the 'cloud' view, but with added functionality to manage users and quotas. In 5.0 we have decided to redesign the 'groupadmin' view, and now its layout is based on the advanced 'admin' view.
+
+Group administrators still have a limited set of available actions and a limited view of the cloud, restricted to their group's resources. The main difference in terms of what they can do is the access to the virtual network information and virtual routers creation.
+
+Group admin users can also access the simplified 'cloud' view, but only to manage VMs and Services. The administrative features are only available in the 'groupadmin' view.
+
+Read more about the different :ref:`Sunstone views following this link <suns_views>`.
+
+Instance Types
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Instance types, not available anymore in OpenNebula 5.0, allowed the administrators to define different VM capacity sizes. In 5.0 the capacity can be edited, but each VM Template defines the modification allowed.
+
+While instance types were only available to users of the Sunstone 'cloud' view, the new modification is made available when the VM Template is instantiated from any of the Sunstone views and the CLI.
+
+.. todo:: link to full documentation
 
 Developers and Integrators
 ================================================================================
@@ -140,10 +179,12 @@ Sunstone
 
 All the SUNSTONE specific information in VM Template, Group, User and other object templates has been arranged in a vector attribute like:
 
-* USER
+**USER**
 
 +----------------------------------------+-------------------------------------------------+
-|   ``TEMPLATE/SUNSTONE_DISPLAY_NAME``   |        ``TEMPLATE/SUNSTONE/DISPLAY_NAME``       |
+|             4.14 Attribute             |                  5.0 Attribute                  |
++========================================+=================================================+
+| ``TEMPLATE/SUNSTONE_DISPLAY_NAME``     | ``TEMPLATE/SUNSTONE/DISPLAY_NAME``              |
 +----------------------------------------+-------------------------------------------------+
 | ``TEMPLATE/LANG``                      | ``TEMPLATE/SUNSTONE/LANG``                      |
 +----------------------------------------+-------------------------------------------------+
@@ -156,10 +197,12 @@ All the SUNSTONE specific information in VM Template, Group, User and other obje
 | ``TEMPLATE/GROUP_ADMIN_DEFAULT_VIEW``  | ``TEMPLATE/SUNSTONE/GROUP_ADMIN_DEFAULT_VIEW``  |
 +----------------------------------------+-------------------------------------------------+
 
-* GROUP
+**GROUP**
 
 +---------------------------------------+------------------------------------------------+
-|      ``TEMPLATE/SUNSTONE_VIEWS``      |          ``TEMPLATE/SUNSTONE/VIEWS``           |
+|             4.14 Attribute            |                 5.0 Attribute                  |
++=======================================+================================================+
+| ``TEMPLATE/SUNSTONE_VIEWS``           | ``TEMPLATE/SUNSTONE/VIEWS``                    |
 +---------------------------------------+------------------------------------------------+
 | ``TEMPLATE/DEFAULT_VIEW``             | ``TEMPLATE/SUNSTONE/DEFAULT_VIEW``             |
 +---------------------------------------+------------------------------------------------+
@@ -168,9 +211,11 @@ All the SUNSTONE specific information in VM Template, Group, User and other obje
 | ``TEMPLATE/GROUP_ADMIN_DEFAULT_VIEW`` | ``TEMPLATE/SUNSTONE/GROUP_ADMIN_DEFAULT_VIEW`` |
 +---------------------------------------+------------------------------------------------+
 
-* VMTEMPLATE
+**VMTEMPLATE**
 
 +---------------------------------------+---------------------------------------+
+|             4.14 Attribute            |             5.0 Attribute             |
++=======================================+=======================================+
 | ``TEMPLATE/SUNSTONE_CAPACITY_SELECT`` | ``TEMPLATE/SUNSTONE/CAPACITY_SELECT`` |
 +---------------------------------------+---------------------------------------+
 | ``TEMPLATE/SUNSTONE_NETWORK_SELECT``  | ``TEMPLATE/SUNSTONE/NETWORK_SELECT``  |
