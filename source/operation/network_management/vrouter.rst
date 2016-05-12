@@ -10,6 +10,8 @@ The routing itself is implemented with a Virtual Machine appliance provided by t
 Creating a new Virtual Router
 ================================================================================
 
+.. todo:: review default template
+
 New Virtual Routers are created from a special type of VM Template. The installation will create a default Template that can be later customized.
 
 Virtual Router Appliance Images
@@ -56,6 +58,8 @@ In here you can also define a name for the VM, if it should be created on hold, 
 
 Click the "create" button to finish. OpenNebula will create the Virtual Router and the Virtual Machines automatically.
 
+|sunstone_create_vrouter|
+
 CLI
 --------------------------------------------------------------------------------
 
@@ -93,6 +97,8 @@ Managing Virtual Routers
 Using the Virtual Routers tab in Sunstone, or the ``onevrouter show`` command, you can retrieve the generic resource information such as owner and group, the list of Virtual Networks interconnected by this router, and the Virtual Machines that are actually providing the routing.
 
 .. todo:: sunstone screenshots
+
+|sunstone_topology|
 
 The Virtual Networks connected to the VR machines can be modified with the attach/detach actions.
 
@@ -163,3 +169,6 @@ A virtual router appliance does routing between interfaces and has `keepalived` 
 * ``VROUTER_KEEPALIVED_PASSWORD``: ``keepalived`` service password
 
 Another thing the VRouter machine must do is to react to cdrom or network interface change. Virtual Routers support reconfiguration to add or take out networks they route. When this happens the contextualization data is regenerated and it must be reconfigured. The provided image has a ``udev`` rule that triggers reconfiguration on network interface hot plug.
+
+.. |sunstone_create_vrouter| image:: /images/sunstone_create_vrouter.png
+.. |sunstone_topology| image:: /images/sunstone_topology.png
