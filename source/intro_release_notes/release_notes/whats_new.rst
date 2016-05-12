@@ -147,3 +147,13 @@ Contextualization
 - **Support for Alpine Linux** [TODO]
 - **Context is now generated whenever a VirtualMachine is started in a host**, i.e. when the deploy or restore action is invoked, or when a NIC is attached/detached from the VM. The :ref:`context <context_overview>` will be updated with any change in the network attributes in the associated Virtual Network, and those changes will be reflected in the context.sh ISO, and so updated in the guest configuration by the context drivers.
 
+Components Moved to the Add-ons Catalog
+--------------------------------------------------------------------------------
+
+Some of the infrastructure drivers that were available in OpenNebula 4.x have been moved to the add-ons catalog. This decision has been made based on user demands and with the aim of delivering an OpenNebula distribution supporting the most widely used cloud environemnts. 
+- Xen
+- LVM
+- ...
+
+OpenNebula users interested in using these components can install them from the add-ons catalog after installing OpenNebula 5.0.
+
