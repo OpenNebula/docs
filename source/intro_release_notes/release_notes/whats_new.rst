@@ -116,7 +116,7 @@ Sunstone
 
 - **Upgrade Foundation** from version 5 to version 6
 - **Dynamic configuration inputs**, based on the OpenNebula core active configuration. For instance, show KVM drivers in host creation dialog only if they are active.
-- **Resource labels**, to better organize and search for any resource, like for instance :ref:`VM Templates <vm_guide>` and OneFlow templates and services.
+- **Resource labels**, to better organize and search for any resource, like for instance :ref:`VM Templates <vm_templates_labels>` and OneFlow templates and services.
 - **Refactored left menu**, to present resources in a more organize manner.
 - **Improved wizard descriptions and usability**.
 - **Improved user tab**, to allow graphical edit of secondary groups.
