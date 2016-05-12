@@ -59,7 +59,7 @@ OpenNebula Drivers :: Networking
 - **Network drivers definition** in the :ref:`Virtual Network <vgg>`, moved from the host.
 - **Virtual Router** as a new OpenNebula resource. Virtual Networks can be joined together using HA deployed :ref:`Virtual Routers <vrouter>`.
 - **Improved network interface naming**, to avoid problems with libvirt and :ref:`security groups <security_groups>`.
-- **Dynamic security groups!**, now changes to :ref:`security groups <security_groups>` will dynamically apply to VMs.
+- **Dynamic security groups**, now changes to :ref:`security groups <security_groups>` will dynamically apply to VMs.
 - **Improved spoofing features** in :ref:`security groups <security_groups>`.
 
 
@@ -119,9 +119,9 @@ Sunstone has undergone massive changes, both behind the scenes (upgrade from Fou
 - **Dynamic configuration inputs**, based on the OpenNebula core active configuration. For instance, show KVM drivers in host creation dialog only if they are active.
 - **Resource labels**, to better organize and search for any resource, like for instance :ref:`VM Templates <vm_guide>` and OneFlow templates and services.
 - **Refactored left menu**, to present resources in a more organize manner.
-- **Improve wizard descriptions and usability**.
-- **Improve user tab**, to allow graphical edit of secondary groups.
-- **Change default listen address**, for :ref:`Sunstone server <sunstone>`.
+- **Improved wizard descriptions and usability**.
+- **Improved user tab**, to allow graphical edit of secondary groups.
+- **Updated default listen address**, for :ref:`Sunstone server <sunstone>`.
 - **Better string escape handling** that prevents resource template mangling.
 - **Overcommitment better presented**, in the host creation dialog.
 - **Ability to select IP for NIC** at instantiation time.
