@@ -1,8 +1,6 @@
 .. _vm_guide_2:
 .. _vm_instances:
 
-.. todo:: Needs to be reviewed and updated to 5.0
-
 ==========================
 Managing Virtual Machines
 ==========================
@@ -16,49 +14,55 @@ Virtual Machine Life-cycle
 
 The life-cycle of a Virtual Machine within OpenNebula includes the following stages:
 
-.. warning:: Note that this is a simplified version. If you are a developer you may want to take a look at the complete diagram referenced in the :ref:`Virtual Machines States Reference guide <vm_states>`):
+.. note:: Note that this is a simplified version. If you are a developer you may want to take a look at the complete diagram referenced in the :ref:`Virtual Machines States Reference guide <vm_states>`):
 
-+-------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Short state |     State      |                                                                                                                                                 Meaning                                                                                                                                                  |
-+=============+================+==========================================================================================================================================================================================================================================================================================================+
-| ``pend``    | ``Pending``    | By default a VM starts in the pending state, waiting for a resource to run on. It will stay in this state until the scheduler decides to deploy it, or the user deploys it using the ``onevm deploy`` command.                                                                                           |
-+-------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``hold``    | ``Hold``       | The owner has held the VM and it will not be scheduled until it is released. It can be, however, deployed manually.                                                                                                                                                                                      |
-+-------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``prol``    | ``Prolog``     | The system is transferring the VM files (disk images and the recovery file) to the host in which the virtual machine will be running.                                                                                                                                                                    |
-+-------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``boot``    | ``Boot``       | OpenNebula is waiting for the hypervisor to create the VM.                                                                                                                                                                                                                                               |
-+-------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``runn``    | ``Running``    | The VM is running (note that this stage includes the internal virtualized machine booting and shutting down phases). In this state, the virtualization driver will periodically monitor it.                                                                                                              |
-+-------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``migr``    | ``Migrate``    | The VM is migrating from one resource to another. This can be a life migration or cold migration (the VM is saved and VM files are transferred to the new resource).                                                                                                                                     |
-+-------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``hotp``    | ``Hotplug``    | A disk attach/detach, nic attach/detach operation is in process.                                                                                                                                                                                                                                         |
-+-------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``snap``    | ``Snapshot``   | A system snapshot is being taken.                                                                                                                                                                                                                                                                        |
-+-------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``save``    | ``Save``       | The system is saving the VM files after a migration, stop or suspend operation.                                                                                                                                                                                                                          |
-+-------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``epil``    | ``Epilog``     | In this phase the system cleans up the Host used to virtualize the VM, and additionally disk images to be saved are copied back to the system datastore.                                                                                                                                                 |
-+-------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``shut``    | ``Shutdown``   | OpenNebula has sent the VM the shutdown ACPI signal, and is waiting for it to complete the shutdown process. If after a timeout period the VM does not disappear, OpenNebula will assume that the guest OS ignored the ACPI signal and the VM state will be changed to **running**, instead of **done**. |
-+-------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``stop``    | ``Stopped``    | The VM is stopped. VM state has been saved and it has been transferred back along with the disk images to the system datastore.                                                                                                                                                                          |
-+-------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``susp``    | ``Suspended``  | Same as stopped, but the files are left in the host to later resume the VM there (i.e. there is no need to re-schedule the VM).                                                                                                                                                                          |
-+-------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``poff``    | ``PowerOff``   | Same as suspended, but no checkpoint file is generated. Note that the files are left in the host to later boot the VM there.                                                                                                                                                                             |
-|             |                |                                                                                                                                                                                                                                                                                                          |
-|             |                | When the VM guest is shutdown, OpenNebula will put the VM in this state.                                                                                                                                                                                                                                 |
-+-------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``unde``    | ``Undeployed`` | The VM is shut down. The VM disks are transfered to the system datastore. The VM can be resumed later.                                                                                                                                                                                                   |
-+-------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``fail``    | ``Failed``     | The VM failed.                                                                                                                                                                                                                                                                                           |
-+-------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``unkn``    | ``Unknown``    | The VM couldn't be reached, it is in an unknown state.                                                                                                                                                                                                                                                   |
-+-------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``done``    | ``Done``       | The VM is done. VMs in this state won't be shown with ``onevm list`` but are kept in the database for accounting purposes. You can still get their information with the ``onevm show`` command.                                                                                                          |
-+-------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++-------------+----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Short state |        State         |                                                                                                                                                 Meaning                                                                                                                                                  |
++=============+======================+==========================================================================================================================================================================================================================================================================================================+
+| ``pend``    | ``Pending``          | By default a VM starts in the pending state, waiting for a resource to run on. It will stay in this state until the scheduler decides to deploy it, or the user deploys it using the ``onevm deploy`` command.                                                                                           |
++-------------+----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``hold``    | ``Hold``             | The owner has held the VM and it will not be scheduled until it is released. It can be, however, deployed manually.                                                                                                                                                                                      |
++-------------+----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``clon``    | ``Cloning``          | The VM is waiting for one or more disk images to finish the initial copy to the repository (image state still in ``lock``)                                                                                                                                                                               |
++-------------+----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``prol``    | ``Prolog``           | The system is transferring the VM files (disk images and the recovery file) to the host in which the virtual machine will be running.                                                                                                                                                                    |
++-------------+----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``boot``    | ``Boot``             | OpenNebula is waiting for the hypervisor to create the VM.                                                                                                                                                                                                                                               |
++-------------+----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``runn``    | ``Running``          | The VM is running (note that this stage includes the internal virtualized machine booting and shutting down phases). In this state, the virtualization driver will periodically monitor it.                                                                                                              |
++-------------+----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``migr``    | ``Migrate``          | The VM is migrating from one resource to another. This can be a life migration or cold migration (the VM is saved and VM files are transferred to the new resource).                                                                                                                                     |
++-------------+----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``hotp``    | ``Hotplug``          | A disk attach/detach, nic attach/detach operation is in process.                                                                                                                                                                                                                                         |
++-------------+----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``snap``    | ``Snapshot``         | A system snapshot is being taken.                                                                                                                                                                                                                                                                        |
++-------------+----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``save``    | ``Save``             | The system is saving the VM files after a migration, stop or suspend operation.                                                                                                                                                                                                                          |
++-------------+----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``epil``    | ``Epilog``           | In this phase the system cleans up the Host used to virtualize the VM, and additionally disk images to be saved are copied back to the system datastore.                                                                                                                                                 |
++-------------+----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``shut``    | ``Shutdown``         | OpenNebula has sent the VM the shutdown ACPI signal, and is waiting for it to complete the shutdown process. If after a timeout period the VM does not disappear, OpenNebula will assume that the guest OS ignored the ACPI signal and the VM state will be changed to **running**, instead of **done**. |
++-------------+----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``stop``    | ``Stopped``          | The VM is stopped. VM state has been saved and it has been transferred back along with the disk images to the system datastore.                                                                                                                                                                          |
++-------------+----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``susp``    | ``Suspended``        | Same as stopped, but the files are left in the host to later resume the VM there (i.e. there is no need to re-schedule the VM).                                                                                                                                                                          |
++-------------+----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``poff``    | ``PowerOff``         | Same as suspended, but no checkpoint file is generated. Note that the files are left in the host to later boot the VM there.                                                                                                                                                                             |
+|             |                      |                                                                                                                                                                                                                                                                                                          |
+|             |                      | When the VM guest is shutdown, OpenNebula will put the VM in this state.                                                                                                                                                                                                                                 |
++-------------+----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``unde``    | ``Undeployed``       | The VM is shut down. The VM disks are transfered to the system datastore. The VM can be resumed later.                                                                                                                                                                                                   |
++-------------+----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``fail``    | ``Failed``           | The VM failed.                                                                                                                                                                                                                                                                                           |
++-------------+----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``unkn``    | ``Unknown``          | The VM couldn't be reached, it is in an unknown state.                                                                                                                                                                                                                                                   |
++-------------+----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``clea``    | ``Cleanup-resubmit`` | The VM is waiting for the drivers to clean the host after a ``onevm recover --recreate`` action                                                                                                                                                                                                          |
++-------------+----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``done``    | ``Done``             | The VM is done. VMs in this state won't be shown with ``onevm list`` but are kept in the database for accounting purposes. You can still get their information with the ``onevm show`` command.                                                                                                          |
++-------------+----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+.. todo:: Update
 
 |Virtual Machine States|
 
@@ -70,13 +74,15 @@ The following sections show the basics of the ``onevm`` command with simple usag
 Create and List Existing VMs
 ----------------------------
 
-.. warning:: Read the :ref:`Creating Virtual Machines guide <vm_guide>` for more information on how to manage and instantiate VM Templates.
+.. note:: Read the :ref:`Creating Virtual Machines guide <vm_guide>` for more information on how to manage and instantiate VM Templates.
 
-.. warning:: Read the complete reference for :ref:`Virtual Machine templates <template>`.
+.. note:: Read the complete reference for :ref:`Virtual Machine templates <template>`.
+
+|sunstone_admin_instantiate|
 
 Assuming we have a VM Template registered called *vm-example* with ID 6, then we can instantiate the VM issuing a:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onetemplate list
       ID USER     GROUP    NAME                         REGTIME
@@ -88,7 +94,7 @@ Assuming we have a VM Template registered called *vm-example* with ID 6, then we
 
 If the template has :ref:`USER INPUTS <vm_guide_user_inputs>` defined the CLI will prompt the user for these values:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onetemplate instantiate vm-example --name my_vm
     There are some parameters that require user input.
@@ -98,7 +104,7 @@ If the template has :ref:`USER INPUTS <vm_guide_user_inputs>` defined the CLI wi
 
 Afterwards, the VM can be listed with the ``onevm list`` command. You can also use the ``onevm top`` command to list VMs continuously.
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onevm list
         ID USER     GROUP    NAME         STAT CPU     MEM        HOSTNAME        TIME
@@ -106,7 +112,7 @@ Afterwards, the VM can be listed with the ``onevm list`` command. You can also u
 
 After a Scheduling cycle, the VM will be automatically deployed. But the deployment can also be forced by oneadmin using ``onevm deploy``:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onehost list
       ID NAME               RVM   TCPU   FCPU   ACPU   TMEM   FMEM   AMEM   STAT
@@ -120,7 +126,7 @@ After a Scheduling cycle, the VM will be automatically deployed. But the deploym
 
 and details about it can be obtained with ``show``:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onevm show 0
     VIRTUAL MACHINE 0 INFORMATION
@@ -155,66 +161,52 @@ and details about it can be obtained with ``show``:
 Terminating VM Instances...
 ---------------------------
 
-You can terminate a running instance with the following operations (either as ``onevm`` commands or through Sunstone):
+You can terminate an instance with the ``onevm terminate`` command, from any state. It will shutdown (if needed) and delete the VM. This operation will free the resources (images, networks, etc) used by the VM.
 
--  ``shutdown``: Gracefully shuts down a running VM, sending the ACPI signal. Once the VM is shutdown the host is cleaned, and persistent and deferred-snapshot disk will be moved to the associated datastore. If after a given time the VM is still running (e.g. guest ignoring ACPI signals), OpenNebula will returned the VM to the ``RUNNING`` state.
+If the instance is running, there is a ``--hard`` option that has the following meaning:
 
--  ``shutdown --hard``: Same as above but the VM is immediately destroyed. Use this action instead of ``shutdown`` when the VM doesn't have ACPI support.
-
-If you need to terminate an instance in any state use:
-
--  ``delete``: The VM is immediately destroyed no matter its state. Hosts are cleaned as needed but no images are moved to the repository, leaving then in error. Think of delete as kill -9 for a process, an so it should be only used when the VM is not responding to other actions.
-
-All the above operations free the resources used by the VM
+* ``terminate``: Gracefully shuts down and deletes a running VM, sending the ACPI signal. Once the VM is shutdown the host is cleaned, and persistent and deferred-snapshot disk will be moved to the associated datastore. If after a given time the VM is still running (e.g. guest ignoring ACPI signals), OpenNebula will returned the VM to the ``RUNNING`` state.
+* ``terminate --hard``: Same as above but the VM is immediately destroyed. Use this action instead of ``terminate`` when the VM doesn't have ACPI support.
 
 Pausing VM Instances...
 -----------------------
 
 There are two different ways to temporarily stop the execution of a VM: short and long term pauses. A **short term** pause keeps all the VM resources allocated to the hosts so its resume its operation in the same hosts quickly. Use the following ``onevm`` commands or Sunstone actions:
 
--  ``suspend``: the VM state is saved in the running Host. When a suspended VM is resumed, it is immediately deployed in the same Host by restoring its saved state.
-
--  ``poweroff``: Gracefully powers off a running VM by sending the ACPI signal. It is similar to suspend but without saving the VM state. When the VM is resumed it will boot immediately in the same Host.
-
--  ``poweroff --hard``: Same as above but the VM is immediately powered off. Use this action when the VM doesn't have ACPI support.
+* ``suspend``: the VM state is saved in the running Host. When a suspended VM is resumed, it is immediately deployed in the same Host by restoring its saved state.
+* ``poweroff``: Gracefully powers off a running VM by sending the ACPI signal. It is similar to suspend but without saving the VM state. When the VM is resumed it will boot immediately in the same Host.
+* ``poweroff --hard``: Same as above but the VM is immediately powered off. Use this action when the VM doesn't have ACPI support.
 
 .. note:: When the guest is shutdown from within the VM, OpenNebula will put the VM in the ``poweroff`` state.
 
 You can also plan a **long term pause**. The Host resources used by the VM are freed and the Host is cleaned. Any needed disk is saved in the system datastore. The following actions are useful if you want to preserve network and storage allocations (e.g. IPs, persistent disk images):
 
--  ``undeploy``: Gracefully shuts down a running VM, sending the ACPI signal. The Virtual Machine disks are transferred back to the system datastore. When an undeployed VM is resumed, it is be moved to the pending state, and the scheduler will choose where to re-deploy it.
-
--  ``undeploy --hard``: Same as above but the running VM is immediately destroyed.
-
--  ``stop``: Same as ``undeploy`` but also the VM state is saved to later resume it.
+* ``undeploy``: Gracefully shuts down a running VM, sending the ACPI signal. The Virtual Machine disks are transferred back to the system datastore. When an undeployed VM is resumed, it is be moved to the pending state, and the scheduler will choose where to re-deploy it.
+* ``undeploy --hard``: Same as above but the running VM is immediately destroyed.
+* ``stop``: Same as ``undeploy`` but also the VM state is saved to later resume it.
 
 When the VM is successfully paused you can resume its execution with:
 
--  ``resume``: Resumes the execution of VMs in the stopped, suspended, undeployed and poweroff states.
+* ``resume``: Resumes the execution of VMs in the stopped, suspended, undeployed and poweroff states.
 
-Resetting VM Instances...
--------------------------
+Rebooting VM Instances...
+--------------------------------------------------------------------------------
 
-There are two ways of resetting a VM: in-host and full reset. The first one does not frees any resources and reset a RUNNING VM instance at the hypervisor level:
+Use the following commands to reboot a VM:
 
--  ``reboot``: Gracefully reboots a running VM, sending the ACPI signal.
-
--  ``reboot --hard``: Performs a 'hard' reboot.
-
-A VM instance can be reset in any state with:
-
--  ``delete --recreate``: Deletes the VM as described above, but instead of disposing it the VM is moving again to PENDING state. As the delete operation this action should be used when the VM is not responding to other actions. Try undeploy or undeploy --hard first.
+* ``reboot``: Gracefully reboots a running VM, sending the ACPI signal.
+* ``reboot --hard``: Performs a 'hard' reboot.
 
 Delaying VM Instances...
 ------------------------
 
 The deployment of a PENDING VM (e.g. after creating or resuming it) can be delayed with:
 
--  ``hold``: Sets the VM to hold state. The scheduler will not deploy VMs in the ``hold`` state. Please note that VMs can be created directly on hold, using 'onetemplate instantiate --hold' or 'onevm create --hold'.
+* ``hold``: Sets the VM to hold state. The scheduler will not deploy VMs in the ``hold`` state. Please note that VMs can be created directly on hold, using 'onetemplate instantiate --hold' or 'onevm create --hold'.
 
 Then you can resume it with:
 
--  ``release``: Releases a VM from hold state, setting it to pending. Note that you can automatically release a VM by scheduling the operation as explained below
+* ``release``: Releases a VM from hold state, setting it to pending. Note that you can automatically release a VM by scheduling the operation as explained below
 
 .. _vm_guide_2_disk_snapshots:
 
@@ -223,13 +215,13 @@ Disk Snapshots
 
 There are two kinds of operations related to disk snapshots:
 
-- ``disk-snapshot-create``, ``disk-snapshot-revert``, ``disk-snapshot-delete``: Allows the user to take snapshots of the disk states and return to them during the VM life-cycle. It is also possible to delete snapshots.
-- ``disk-saveas``: Exports VM disk (or a previusly created snapshot) to an image. This is a live action.
+* ``disk-snapshot-create``, ``disk-snapshot-revert``, ``disk-snapshot-delete``: Allows the user to take snapshots of the disk states and return to them during the VM life-cycle. It is also possible to delete snapshots.
+* ``disk-saveas``: Exports VM disk (or a previously created snapshot) to an image. This is a live action.
 
 .. _vm_guide_2_disk_snapshots_managing:
 
 Managing disk snapshots
-^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 A user can take snapshots of the disk states at any moment in time (if the VM is in ``RUNNING``, ``POWEROFF`` or ``SUSPENDED`` states). These snapshots are organized in a tree-like structure, meaning that every snapshot has a parent, except for the first snapshot whose parent is ``-1``. At any given time a user can revert the disk state to a previously taken snapshot. The active snapshot, the one the user has last reverted to, or taken, will act as the parent of the next snapshot. In addition, it's possible to delete snapshots that are not active and that have no children.
 
@@ -237,28 +229,30 @@ A user can take snapshots of the disk states at any moment in time (if the VM is
 - ``disk-snapshot-revert <vmid> <diskid> <snapshot_id>``: Reverts to the specified snapshot. The snapshots are immutable, therefore the user can revert to the same snapshot as many times as he wants, the disk will return always to the state of the snapshot at the time it was taken.
 - ``disk-snapshot-delete <vmid> <diskid> <snapshot_id>``: Deletes a snapshot if it has no children and is not active.
 
+|sunstone_disk_snapshot|
 
 ``disk-snapshot-create`` can take place when the VM is in ``RUNNING`` state, provided that the drivers support it, while ``disk-snapshot-revert`` requires the VM to be ``POWEROFF`` or ``SUSPENDED``. Live snapshots is only supported for some drivers:
 
 - Hypervisor ``VM_MAD=kvm`` combined with ``TM_MAD=qcow2`` datastores. In this case OpenNebula will request that the hypervisor executes ``virsh snapshot-create``.
-
 - Hypervisor ``VM_MAD=kvm`` with Ceph datastores (``TM_MAD=ceph``). In this case OpenNebula will initially create the snapshots as Ceph snapshots in the current volume.
 
-With CEPH and qcow2 datastores and  KVM hypervisor you can :ref:`enable QEMU Guest Agent <enabling_qemu_guest_agent>`. With this agent enabled the filesystem will be frozen while the snapshot is being done.
+With CEPH and qcow2 datastores and KVM hypervisor you can :ref:`enable QEMU Guest Agent <enabling_qemu_guest_agent>`. With this agent enabled the filesystem will be frozen while the snapshot is being done.
 
-OpenNebula will not automatically handle non-live ``disk-snapshot-create`` and ``disk-snapshot-revert`` operations for VMs in ``RUNNING`` if the drivers does not support it. In this case the user needs to suspend or poweroff the VM before creating the snapshot.
+OpenNebula will not automatically handle non-live ``disk-snapshot-create`` and ``disk-snapshot-revert`` operations for VMs in ``RUNNING`` if the drivers do not support it. In this case the user needs to suspend or poweroff the VM before creating the snapshot.
 
 See the :ref:`Storage Driver <sd_tm>` guide for a reference on the driver actions invoked to perform live and non-live snapshost.
 
 Persistent image snapshots
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 These actions are available for both persistent and non-persistent images. In the case of persistent images the snapshots **will** be preserved upon VM termination and will be able to be used by other VMs using that image. See the :ref:`snapshots <img_guide_snapshots>` section in the Images guide for more information.
 
-Backend implementations
-^^^^^^^^^^^^^^^^^^^^^^^
+Back-end implementations
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The snapshot operations are implemented differently depending on the storage backend:
+.. todo:: update with information for vCenter
+
+The snapshot operations are implemented differently depending on the storage back-end:
 
 +----------------------+-----------------------------------------------------------------------------------------+---------------------------------------------------+---------------------------------------------------------------------------+------------------+
 | **Operation/TM_MAD** |                                           Ceph                                          |                  Shared  and SSH                  |                                   Qcow2                                   | Dev, FS_LVM, LVM |
@@ -277,30 +271,26 @@ The snapshot operations are implemented differently depending on the storage bac
   Depending on the ``CACHE`` the live snapshot may or may not work correctly. For more security use ``CACHE=writethrough`` although this delivers the slowest performance.
 
 Exporting disk images with ``disk-saveas``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Any VM disk can be exported to a new image (if the VM is in ``RUNNING``, ``POWEROFF`` or ``SUSPENDED`` states). This is a live operation that happens immediately. This operation accepts ``--snapshot <snapshot_id>`` as an optional argument, which specifies a disk snapshot to use as the source of the clone, instead of the current disk state (value by default).
-
-.. note::
-
-  This action is called ``onevm disk-snapshot --live`` in OpenNebula <= 5.0 but has been renamed to ``onevm disk-saveas``
 
 .. warning::
 
   This action is not in sync with the hypervisor. If the VM is in ``RUNNING`` state make sure the disk is unmounted (preferred), synced or quiesced in some way or another before taking the snapshot.
 
-Disk Hotpluging
----------------
+Disk Hot-plugging
+--------------------------------------------------------------------------------
 
 New disks can be hot-plugged to running VMs with the ``onevm`` ``disk-attach`` and ``disk-detach`` commands. For example, to attach to a running VM the Image named **storage**:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onevm disk-attach one-5 --image storage
 
 To detach a disk from a running VM, find the disk ID of the Image you want to detach using the ``onevm show`` command, and then simply execute ``onevm detach vm_id disk_id``:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onevm show one-5
     ...
@@ -316,12 +306,12 @@ To detach a disk from a running VM, find the disk ID of the Image you want to de
 
 .. _vm_guide2_nic_hotplugging:
 
-NIC Hotpluging
---------------
+NIC Hot-plugging
+--------------------------------------------------------------------------------
 
-You can hotplug network interfaces to VMs in the ``RUNNING``, ``POWEROFF`` or ``SUSPENDED`` states. Simply specify the network where the new interface should be attach to, for example:
+You can hot-plug network interfaces to VMs in the ``RUNNING``, ``POWEROFF`` or ``SUSPENDED`` states. Simply specify the network where the new interface should be attached to, for example:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onevm show 2
 
@@ -350,7 +340,7 @@ You can hotplug network interfaces to VMs in the ``RUNNING``, ``POWEROFF`` or ``
 
 After the operation you should see two NICs, 0 and 1:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onevm show 2
     VIRTUAL MACHINE 2 INFORMATION
@@ -372,7 +362,7 @@ After the operation you should see two NICs, 0 and 1:
 
 Also, you can detach a NIC by its ID. If you want to detach interface 1 (MAC=02:00:ac:10:00:ca), just execute:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onevm nic-detach 2 1
 
@@ -387,7 +377,7 @@ You can create, delete and restore snapshots for running VMs. A snapshot will co
 
 .. warning:: The snapshots will only be available during the ``RUNNING`` state. If the state changes (stop, migrate, etc...) the snapshots **will** be lost.
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onevm snapshot-create 4 "just in case"
 
@@ -409,27 +399,28 @@ Please take into consideration the following limitations:
 
 .. _vm_guide2_resizing_a_vm:
 
-Resizing a VM Capacity
+Resizing VM Capacity
 ----------------------
 
-You may re-size the capacity assigned to a Virtual Machine in terms of the virtual CPUs, memory and CPU allocated. VM re-sizing can be done when the VM is not ACTIVE, an so in any of the following states: PENDING, HOLD, FAILED and specially in POWEROFF.
+You may resize the capacity assigned to a Virtual Machine in terms of the virtual CPUs, memory and CPU allocated. VM resizing can be done in any of the following states: 
+POWEROFF, UNDEPLOYED.
 
 If you have created a Virtual Machine and you need more resources, the following procedure is recommended:
 
 -  Perform any operation needed to prepare your Virtual Machine for shutting down, e.g. you may want to manually stop some services...
 -  Poweroff the Virtual Machine
--  Re-size the VM
+-  Resize the VM
 -  Resume the Virtual Machine using the new capacity
 
 Note that using this procedure the VM will preserve any resource assigned by OpenNebula (e.g. IP leases)
 
 The following is an example of the previous procedure from the command line (the Sunstone equivalent is straight forward):
 
-.. code::
+.. prompt:: bash $ auto
 
-    > onevm poweroff web_vm
-    > onevm resize web_vm --memory 2G --vcpu 2
-    > onevm resume web_vm
+    $ onevm poweroff web_vm
+    $ onevm resize web_vm --memory 2G --vcpu 2
+    $ onevm resume web_vm
 
 From Sunstone:
 
@@ -437,77 +428,118 @@ From Sunstone:
 
 .. _vm_guide2_resize_disk:
 
-Resizing a VM Disks
+Resizing VM Disks
 -------------------
 
 If the disks assigned to a Virtual Machine need more size, this can achieved at instantiation time of the VM. The SIZE parameter of the disk can be adjusted and, if it is bigger than the original size of the image, OpenNebula will:
 
 - Increase the size of the disk container prior to launching the VM
-- Using the :ref:`contextualization packages <bcont>`, at boot time the VM will grow the filesystem to adjust to the new size.
+- Using the :ref:`contextualization packages <bcont>`, at boot time the VM will grow the filesystem to adjust to the new size. This is only available for Linux guests in KVM.
 
-This can be
+This can be done with an extra file given to the ``instantiate`` command:
 
-.. code::
+.. prompt:: bash $ auto
 
-   DISK=[IMAGE_ID=4,
-         SIZE=2000]   # If Image 4 is 1 GB, OpenNebula will resize it to 2 GB
+    $ cat /tmp/disk.txt
+    DISK = [ IMAGE_ID = 4,
+             SIZE = 2000]   # If Image 4 is 1 GB, OpenNebula will resize it to 2 GB
 
-Alternatively, the resize can be created directly using the CLI as follows:
+    $ onetemplate instantiate 7 /tmp/disk.txt
 
-.. code::
+Or with CLI options:
 
-  onetemplate instantiate <template> --disk image0:size=20000
+.. prompt:: bash $ auto
+
+    $ onetemplate instantiate <template> --disk image0:size=20000
 
 This can also be achieved from Sunstone, both in Cloud and Admin View, at the time of instantiating a VM Template:
 
-|image9|
-
+|sunstone_admin_instantiate|
 
 .. _vm_guide2_clone_vm:
 
 Cloning a VM
 --------------------------------------------------------------------------------
 
-A VM instance can be saved back to a new VM Template. To do that, ``poweroff`` the VM and then use the ``onevm save`` command:
+A VM Template or VM instance can be copied to a new VM Template. This copy will preserve the changes made to the VM disks after the instance is terminated. The template is private, and will only be listed to the owner user.
 
-.. code::
+There are two ways to create a persistent private copy of a VM:
 
-    $ onevm save web_vm copy_of_web_vm
+* Instantiate a template 'to persistent'
+* Save a existing VM instance with ``onevm save``
+
+Instantiate to persistent
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+When **instantiating to persistent** the Template is cloned recursively (a private persistent clone of each disk Image is created), and that new Template is instantiated.
+
+To "instantiate to persistent" use the ``--persistent`` option:
+
+.. prompt:: bash $ auto
+
+    $ onetemplate instantiate web_vm --persistent --name my_vm
+    VM ID: 31
+
+    $ onetemplate list
+      ID USER            GROUP           NAME                                REGTIME
+       7 oneadmin        oneadmin        web_vm                       05/12 14:53:11
+       8 oneadmin        oneadmin        my_vm                        05/12 14:53:38
+
+    $ oneimage list
+      ID USER       GROUP      NAME            DATASTORE     SIZE TYPE PER STAT RVMS
+       7 oneadmin   oneadmin   web-img         default       200M OS   Yes used    1
+       8 oneadmin   oneadmin   my_vm-disk-0    default       200M OS   Yes used    1
+
+In sunstone, activate the "Persistent" switch next to the create button:
+
+|sunstone_persistent_1|
+
+Please bear in mind the following ``ontemplate instantiate --persistent`` limitation:
+
+- Volatile disks cannot be persistent, and the contents will be lost when the VM is terminated. The cloned VM Template will contain the definition for an empty volatile disk.
+
+Save a VM Instance
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Alternatively, a VM that was not created as persistent can be **saved** before it is destroyed. To do so, the user has to ``poweroff`` the VM first and then use the ``save`` operation.
+
+This action clones the VM source Template, replacing the disks with snapshots of the current disks (see the disk-snapshot action). If the VM instance was resized, the current capacity is also used. The new cloned Images can be made persistent with the ``--persistent`` option. NIC interfaces are also overwritten with the ones from the VM instance, to preserve any attach/detach action.
+
+.. prompt:: bash $ auto
+
+    $ onevm save web_vm copy_of_web_vm --persistent
     Template ID: 26
 
-The clone takes into account the customization available to end users through Sunstone. This action clones the VM source Template, replacing the disks with snapshots of the current disks (see the disk-snapshot action). If the VM instance was resized, the current capacity is also used. NIC interfaces are also overwritten with the ones from the VM instance, to preserve any attach/detach action.
+In the :ref:`Cloud View <cloud_view>`:
 
-Please bear in mind the following limitations:
+|sunstone_persistent_3|
+
+From the :ref:`Admin View <sunstone_overview>`:
+
+|image10|
+
+Please bear in mind the following ``onevm save`` limitations:
 
 - The VM's source Template will be used. If this Template was updated since the VM was instantiated, the new contents will be used.
 - Volatile disks cannot be saved, and the current contents will be lost. The cloned VM Template will contain the definition for an empty volatile disk.
 - Disks and NICs will only contain the target Image/Network ID. If your Template requires extra configuration (such as DISK/DEV_PREFIX), you will need to update the new Template.
-
-This can also be achieved from Sunstone when the VM is in poweroff state:
-
-|image10|
-|image11|
-
-From the Cloud View
-
-|image12|
 
 .. _vm_guide2_scheduling_actions:
 
 Scheduling Actions
 ------------------
 
-Most of the onevm commands accept the '--schedule' option, allowing users to delay the actions until the given date and time.
+Most of the onevm commands accept the ``--schedule`` option, allowing users to delay the actions until the given date and time.
 
 Here is an usage example:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onevm suspend 0 --schedule "09/20"
-    VM 0: suspend scheduled at 2013-09-20 00:00:00 +0200
+    VM 0: suspend scheduled at 2016-09-20 00:00:00 +0200
 
     $ onevm resume 0 --schedule "09/23 14:15"
-    VM 0: resume scheduled at 2013-09-23 14:15:00 +0200
+    VM 0: resume scheduled at 2016-09-23 14:15:00 +0200
 
     $ onevm show 0
     VIRTUAL MACHINE 0 INFORMATION
@@ -521,9 +553,9 @@ Here is an usage example:
      0 suspend     09/20 00:00            -
      1 resume      09/23 14:15            -
 
-These actions can be deleted or edited using the 'onevm update' command. The time attributes use Unix time internally.
+These actions can be deleted or edited using the ``onevm update`` command. The time attributes use Unix time internally.
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onevm update 0
 
@@ -536,12 +568,12 @@ These actions can be deleted or edited using the 'onevm update' command. The tim
       ID="1",
       TIME="1379938500" ]
 
+|sunstone_schedule_action|
+
 These are the commands that can be scheduled:
 
--  ``shutdown``
--  ``shutdown --hard``
--  ``undeploy``
--  ``undeploy --hard``
+-  ``terminate [--hard]``
+-  ``undeploy [--hard]``
 -  ``hold``
 -  ``release``
 -  ``stop``
@@ -549,10 +581,8 @@ These are the commands that can be scheduled:
 -  ``resume``
 -  ``delete``
 -  ``delete-recreate``
--  ``reboot``
--  ``reboot --hard``
--  ``poweroff``
--  ``poweroff --hard``
+-  ``reboot [--hard]``
+-  ``poweroff [--hard]``
 -  ``snapshot-create``
 
 .. _vm_guide2_user_defined_data:
@@ -560,9 +590,9 @@ These are the commands that can be scheduled:
 User Defined Data
 -----------------
 
-Custom tags can be associated to a VM to store metadata related to this specific VM instance. To add custom attributes simply use the ``onevm update`` command.
+Custom attributes can be added to a VM to store metadata related to this specific VM instance. To add custom attributes simply use the ``onevm update`` command.
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onevm show 0
     ...
@@ -591,7 +621,7 @@ Manage VM Permissions
 
 OpenNebula comes with an advanced :ref:`ACL rules permission mechanism <manage_acl>` intended for administrators, but each VM object has also :ref:`implicit permissions <chmod>` that can be managed by the VM owner. To share a VM instance with other users, to allow them to list and show its information, use the ``onevm chmod`` command:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onevm show 0
     ...
@@ -629,31 +659,27 @@ There are some ``onevm`` commands operations meant for the cloud administrators:
 -  ``migrate --live``: The Virtual Machine is transferred between Hosts with no noticeable downtime. This action requires a :ref:`shared file system storage <sm>`.
 -  ``migrate``: The VM gets stopped and resumed in the target host. In an infrastructure with :ref:`multiple system datastores <system_ds_multiple_system_datastore_setups>`, the VM storage can be also migrated (the datastore id can be specified).
 
-Note: By default, the above operations do not check the target host capacity. You can use the -e (-enforce) option to be sure that the host capacity is not overcommitted.
+Note: By default, the above operations do not check the target host capacity. You can use the ``--enforce`` option to be sure that the host capacity is not overcommitted.
 
 **Troubleshooting:**
 
--  ``recover``: If the VM is stuck in any other state (or the boot operation does not work), you can recover the VM by simulating the failure or success of the missing action, or you can launch it with the ``--retry`` flag (and optionally the ``--interactive`` if its a Transfer Manager problem) to replay the driver actions. Read the :ref:`Virtual Machine Failures guide <ftguide_virtual_machine_failures>` for more information.
+-  ``recover``: If the VM is stuck in any other state (or the boot operation does not work), you can recover the VM with the following options. Read the :ref:`Virtual Machine Failures guide <ftguide_virtual_machine_failures>` for more information.
+   
+   - ``--success``: simulates the success of the missing driver action
+   - ``--failure``: simulates the failure of the missing driver action
+   - ``--retry``: retries to perform the current driver action. Optionally the ``--interactive`` can be combined if its a Transfer Manager problem.
+   - ``--delete``: Deletes the VM, moving it to the DONE state immediately
+   - ``--recreate``: Deletes the VM, and moves it to the PENDING state
+
 -  ``migrate`` or ``resched``: A VM in the UNKNOWN state can be booted in a different host manually (``migrate``) or automatically by the scheduler (``resched``). This action must be performed only if the storage is shared, or manually transfered by the administrator. OpenNebula will not perform any action on the storage for this migration.
 
-Sunstone
-========
-
-You can manage your virtual machines using the :ref:`onevm command <cli>` or :ref:`Sunstone <sunstone>`.
-
-In Sunstone, you can easily instantiate currently defined :ref:`templates <vm_guide>` by clicking ``New`` on the Virtual Machines tab and manage the life cycle of the new instances
-
-|image6|
-
-Using the noVNC Console
------------------------
+VNC Access through Sunstone
+================================================================================
 
 In order to use this feature, make sure that:
 
 -  The VM template has a ``GRAPHICS`` section defined, that the ``TYPE`` attribute in it is set to ``VNC``.
-
 -  The specified VNC port on the host on which the VM is deployed is accessible from the Sunstone server host.
-
 -  The VM is in ``running`` state.
 
 If the VM supports VNC and is ``running``, then the VNC icon on the Virtual Machines view should be visible and clickable:
@@ -663,16 +689,12 @@ If the VM supports VNC and is ``running``, then the VNC icon on the Virtual Mach
 When clicking the VNC icon, the process of starting a session begins:
 
 -  A request is made and if a VNC session is possible, Sunstone server will add the VM Host to the list of allowed vnc session targets and create a random token associated to it.
-
 -  The server responds with the session token, then a ``noVNC`` dialog pops up.
-
 -  The VNC console embedded in this dialog will try to connect to the proxy either using websockets (default) or emulating them using ``Flash``. Only connections providing the right token will be successful. Websockets are supported from Firefox 4.0 (manual activation required in this version) and Chrome. The token expires and cannot be reused.
 
 |image8|
 
-In order to close the VNC session just close the console dialog.
-
-.. note:: From Sunstone 3.8, a single instance of the VNC proxy is launched when Sunstone server starts. This instance will listen on a single port and proxy all connections from there.
+To close the VNC session just close the console dialog.
 
 Information for Developers and Integrators
 ==========================================
@@ -691,7 +713,12 @@ Information for Developers and Integrators
 .. |image6| image:: /images/sunstone_vm_list.png
 .. |image7| image:: /images/sunstone_vnc.png
 .. |image8| image:: /images/sunstonevnc4.png
-.. |image9| image:: /images/sunstone_vm_resize.png
 .. |image10| image:: /images/sunstone_save_button.png
 .. |image11| image:: /images/sunstone_save_dialog.png
 .. |image12| image:: /images/sunstone_cloud_save_button.png
+.. |sunstone_admin_instantiate| image:: /images/sunstone_admin_instantiate.png
+.. |sunstone_disk_snapshot| image:: /images/sunstone_disk_snapshot.png
+.. |sunstone_persistent_1| image:: /images/sunstone_persistent_1.png
+.. |sunstone_persistent_2| image:: /images/sunstone_persistent_2.png
+.. |sunstone_persistent_3| image:: /images/sunstone_persistent_3.png
+.. |sunstone_schedule_action| image:: /images/sunstone_schedule_action.png

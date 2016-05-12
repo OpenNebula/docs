@@ -55,6 +55,8 @@ More information on hooks :ref:`here <hooks>`.
 Virtual Machine Failures
 ========================
 
+.. todo:: delete and recreate
+
 The overall state of a virtual machine in a failure condition will show as ``failure`` (or ``fail`` in the CLI). To find out the specific failure situation you need to check the ``LCM_STATE`` of the VM in the VM info tab (or ``onevm show`` in the CLI.). Moreover, a VM can be stuck in a transition (e.g. boot or save) because of a host or network failure. Typically these operations will eventually timeout and lead to a VM failure state.
 
 The administrator has the ability to force a recovery action from Sunstone or from the CLI, with the ``onevm recover`` command. This command has the following options:
