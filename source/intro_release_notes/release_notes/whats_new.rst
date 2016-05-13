@@ -30,7 +30,7 @@ There are many other improvements in 5.0 like dynamic context regeneration, new 
 
 This OpenNebula release is named after `NGC 7380 (also known as the Wizard Nebula) <https://en.wikipedia.org/wiki/NGC_7380>`__, an open cluster also known as 142 in the 1959 Sharpless catalog (Sh2-142). This reasonably large nebula is located in Cepheus. It is extremely difficult to observe visually, usually requiring very dark skies and an O-III filter.
 
-The OpenNebula team is now set to bug-fixing mode. Note that this is a beta release aimed at testers and developers to try the new features, and send a more than welcomed feedback for the final release.
+The OpenNebula team is now set to bug-fixing mode. Note that this is a beta release aimed at testers and developers to try the new features, hence not suitable for production environments. Feedback is more than welcome for the final release.
 
 In the following list you can check the highlights of OpenNebula 5.0 Beta (`a detailed list of changes can be found here <http://dev.opennebula.org/projects/opennebula/issues?utf8=%E2%9C%93&set_filter=1&f%5B%5D=fixed_version_id&op%5Bfixed_version_id%5D=%3D&v%5Bfixed_version_id%5D%5B%5D=75&f%5B%5D=&c%5B%5D=tracker&c%5B%5D=status&c%5B%5D=priority&c%5B%5D=subject&c%5B%5D=assigned_to&c%5B%5D=updated_on&group_by=category>`__):
 
