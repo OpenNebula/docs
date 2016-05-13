@@ -32,6 +32,14 @@ Debian/Ubuntu
 
     # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v4.14.4/one-context_4.14.4.deb
 
+Windows
+-------
+
+Downloads these two files to ``C:\``:
+
+* https://raw.githubusercontent.com/OpenNebula/addon-context-windows/master/context.ps1
+* https://raw.githubusercontent.com/OpenNebula/addon-context-windows/master/startup.vbs
+
 Step 2. Install Contextualization Packages and Dependencies
 ===========================================================
 
@@ -54,4 +62,19 @@ CentOS/RHEL 7
     # yum install -y epel-release
     # yum install -y cloud-utils-growpart
 
+Debian/Ubuntu
+-------------
+
+.. prompt:: bash # auto
+
+    # dpkg -i one-context*deb
+    # apt-get install ruby # only needed for onegate command
+    # apt-get install -y cloud-utils
+
+Windows
+-------
+
+* Open the Local Group Policy Dialog by running ``gpedit.msc``.
+* Go to *Computer Configuration* -> *Windows Settings* -> *Scripts* -> *startup* (right click).
+* Browse to the ``startup.vbs`` file and enable it as a startup script.
 
