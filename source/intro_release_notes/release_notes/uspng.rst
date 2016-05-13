@@ -58,34 +58,35 @@ vCenter Nodes
 KVM Nodes
 ================================================================================
 
-+------------------------------+-----------------------------------------------------------------------+-----------------------------------------+
-| Certified Platform Component |                                Version                                |             More information            |
-+==============================+=======================================================================+=========================================+
-| RedHat Enterprise Linux      | 7.0                                                                   | :ref:`KVM Driver <kvmg>`                |
-+------------------------------+-----------------------------------------------------------------------+-----------------------------------------+
-| Ubuntu Server                | 14.04 (LTS) , 16.04                                                   | :ref:`KVM Driver <kvmg>`                |
-+------------------------------+-----------------------------------------------------------------------+-----------------------------------------+
-| CentOS                       | 7.0                                                                   | :ref:`KVM Driver <kvmg>`                |
-+------------------------------+-----------------------------------------------------------------------+-----------------------------------------+
-| Debian                       | 8                                                                     | :ref:`KVM Driver <kvmg>`                |
-+------------------------------+-----------------------------------------------------------------------+-----------------------------------------+
-| KVM/Libvirt                  | Support for version included in the kernel for the Linux distribution | :ref:`KVM Node Installation <kvm_node>` |
-+------------------------------+-----------------------------------------------------------------------+-----------------------------------------+
++------------------------------+---------------------------------------------------------+-----------------------------------------+
+| Certified Platform Component |                         Version                         |             More information            |
++==============================+=========================================================+=========================================+
+| RedHat Enterprise Linux      | 7.0                                                     | :ref:`KVM Driver <kvmg>`                |
++------------------------------+---------------------------------------------------------+-----------------------------------------+
+| Ubuntu Server                | 14.04 (LTS) , 16.04                                     | :ref:`KVM Driver <kvmg>`                |
++------------------------------+---------------------------------------------------------+-----------------------------------------+
+| CentOS/RHEL                  | 7.0                                                     | :ref:`KVM Driver <kvmg>`                |
++------------------------------+---------------------------------------------------------+-----------------------------------------+
+| Debian                       | 8                                                       | :ref:`KVM Driver <kvmg>`                |
++------------------------------+---------------------------------------------------------+-----------------------------------------+
+| KVM/Libvirt                  | Support for version included in the Linux distribution. | :ref:`KVM Node Installation <kvm_node>` |
+|                              | For CentOS the packages from ``qemu-ev`` are used.      |                                         |
++------------------------------+---------------------------------------------------------+-----------------------------------------+
 
 Open Cloud Networking Infrastructure
 ================================================================================
 
-+------------------------------+---------+-----------------------------------+
-| Certified Platform Component | Version |          More information         |
-+==============================+=========+===================================+
-| ebtables                     |         | :ref:`Ebtables <ebtables>`        |
-+------------------------------+---------+-----------------------------------+
-| 8021q kernel module          |         | :ref:`802.1Q VLAN <hm-vlan>`      |
-+------------------------------+---------+-----------------------------------+
-| Open vSwitch                 |         | :ref:`Open vSwitch <openvswitch>` |
-+------------------------------+---------+-----------------------------------+
-| iproute2                     |         | :ref:`VXLAN <vxlan>`              |
-+------------------------------+---------+-----------------------------------+
++------------------------------+--------------------------------------------+-----------------------------------+
+| Certified Platform Component |                  Version                   |          More information         |
++==============================+============================================+===================================+
+| ebtables                     | Version included in the Linux distribution | :ref:`Ebtables <ebtables>`        |
++------------------------------+--------------------------------------------+-----------------------------------+
+| 8021q kernel module          | Version included in the Linux distribution | :ref:`802.1Q VLAN <hm-vlan>`      |
++------------------------------+--------------------------------------------+-----------------------------------+
+| Open vSwitch                 | Version included in the Linux distribution | :ref:`Open vSwitch <openvswitch>` |
++------------------------------+--------------------------------------------+-----------------------------------+
+| iproute2                     | Version included in the Linux distribution | :ref:`VXLAN <vxlan>`              |
++------------------------------+--------------------------------------------+-----------------------------------+
 
 Open Cloud Storage Infrastructure
 ================================================================================
@@ -103,13 +104,13 @@ Open Cloud Storage Infrastructure
 Authentication
 ================================================================================
 
-+------------------------------+---------+----------------------------------------+
-| Certified Platform Component | Version |            More information            |
-+==============================+=========+========================================+
-| LDAP                         |         | :ref:`LDAP Authentication <ldap>`      |
-+------------------------------+---------+----------------------------------------+
-| openssl                      |         | :ref:`x509 Authentication <x509_auth>` |
-+------------------------------+---------+----------------------------------------+
++------------------------------+--------------------------------------------+----------------------------------------+
+| Certified Platform Component |                  Version                   |            More information            |
++==============================+============================================+========================================+
+| net-ldap ruby library        | 0.12.1                                     | :ref:`LDAP Authentication <ldap>`      |
++------------------------------+--------------------------------------------+----------------------------------------+
+| openssl                      | Version included in the Linux distribution | :ref:`x509 Authentication <x509_auth>` |
++------------------------------+--------------------------------------------+----------------------------------------+
 
 Cloud Bursting
 ================================================================================
@@ -137,14 +138,14 @@ The following applies to all Front-Ends:
 
     # sudo gem install nokogiri -v 1.4.4
 
-- older ruby versions ( <= 1.9.3 ) are not supported for **cloud bursting** (specifically for Microsoft Azur) and the :ref:`Sunstone commercial support integration <commercial_support_sunstone>`.
+- older ruby versions ( <= 1.9.3 ) are not supported for **cloud bursting** (specifically for Microsoft Azure) and the :ref:`Sunstone commercial support integration <commercial_support_sunstone>`.
 
 - **OneFlow** requires a version >= 1.6.3 for treetop, packages distributed with Debian 8 includes an older version (1.4.5) and must be removed
 
 CentOS 7.0 Platform Notes
 --------------------------------------------------------------------------------
 
-This distribution lacks some packaged ruby libraries. This makes some components unusable until they are installed. In the frontend, just after package installation these commands should be executed as root to install extra dependencies:
+This distribution lacks some packaged ruby libraries. This makes some components unusable until they are installed. In the front-end, just after package installation these commands should be executed as root to install extra dependencies:
 
 .. code::
 
@@ -152,19 +153,26 @@ This distribution lacks some packaged ruby libraries. This makes some components
 
 When using Apache to serve Sunstone, it is required that you disable or comment the ``PrivateTMP=yes`` directive in ``/usr/lib/systemd/system/httpd.service``.
 
-There is an automatic job that removes all data from ``/var/tmp/``, in order to disable this, please edit the ``/usr/lib/tmpfiles.d/tmp.conf`` and re ove the line that removes ``/var/tmp``.
+There is an automatic job that removes all data from ``/var/tmp/``, in order to disable this, please edit the ``/usr/lib/tmpfiles.d/tmp.conf`` and remove the line that removes ``/var/tmp``.
 
 Ubuntu 14.04 Platform Notes
 --------------------------------------------------------------------------------
 
-Package ruby-ox shouldn't be installed as it cointains a version of the gem incompatible with the CLI
+Package ruby-ox shouldn't be installed as it contains a version of the gem incompatible with the CLI
 
-RedHat 7.0 Platform Notes
+CentOS/RedHat 7.0 Platform Notes
 --------------------------------------------------------------------------------
 
 In order to install ruby dependencies, the Server Optional channel needs to be enabled. Please refer to `RedHat documentation <https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/>`__ to enable the channel.
 
 Alternatively, use CentOS 7 repositories to install ruby dependencies.
+
+The libvirt/qemu packages used in the testing infrastructure are the ones in the ``qemu-ev`` repository. To add this repository you can install the following packages:
+
+.. prompt:: bash # auto
+
+    # yum install centos-release-qemu-ev
+    # yum install qemu-kvm-ev
 
 Nodes Platform Notes
 --------------------------------------------------------------------------------
@@ -199,7 +207,7 @@ CentOS 6.5 Usage Platform Notes
      RAW=[TYPE = "kvm",
           DATA = "<devices><controller type='scsi' index='0' model='virtio-scsi'></controller></devices>"]
 
-   * due to libvirt version < = 0.10.2, there is a bug in libvrit/qemu attac/detach nic functionality that prevents the reuse of net IDs. This means that after a successful attach/detach NIC, a new attach will fail.
+   * due to libvirt version < = 0.10.2, there is a bug in libvirt/qemu attach/detach nic functionality that prevents the reuse of net IDs. This means that after a successful attach/detach NIC, a new attach will fail.
 
 Installing on ArchLinux
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
