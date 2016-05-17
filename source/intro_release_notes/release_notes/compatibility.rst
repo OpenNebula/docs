@@ -61,9 +61,14 @@ Instantiate a Persistent Copy
 
 OpenNebula 4.14 had the ``onevm save`` command to save a VM instance into a new VM Template. In the 5.0 release we have added the possibility to instantiate as persistent with the ``onetemplate instantiate --persistent`` command. This creates a Template copy (plus a persistent copy of each disk image) and instantiates that copy.
 
-.. todo:: boot order (new syntax), and boot order update
+Description & Features
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. todo:: `Feature #4157 <http://dev.opennebula.org/issues/4157>`_ Add support for qemu guest agent
+OpenNebula now allows to set an arbitrary boot order from any device. The ``BOOT`` attribute semantic has been updated to implement this new feature. The previous ``hd,net,cdrom`` will be ignored.
+
+Moreover, the boot order as well as other configuration attributes can be updated now in poweroff state, so easing the workflow for new VM installation and recovery.
+
+A shortcut option to automatically include support for the qemu guest agent has been added to OpenNebula. There is no need to add RAW attributes to add agent support to a VM.
 
 Scheduler
 --------------------------------------------------------------------------------
@@ -83,7 +88,7 @@ In OpenNebula 4.14 this special cluster none was used to share Datastores and VN
 Hosts
 --------------------------------------------------------------------------------
 
-.. todo:: `Feature #4403 <http://dev.opennebula.org/issues/4403>`_ new OFFLINE state
+A new state offline has been added to manage a host life-cycle. This new state completely sets the host offline. It differs from disable state, where hosts are still monitored.
 
 Storage and Datastores
 --------------------------------------------------------------------------------
@@ -134,9 +139,9 @@ The old ``fw`` driver has been removed from OpenNebula (it was deprecated in Ope
 
 The Security Group update action now automatically triggers the :ref:`update of the rules for all the VMs in the security group <security_groups_update>`. This operation can be also manually triggered at any time with the ``onesecgroup commit`` command.
 
-.. todo:: `Feature #3848 <http://dev.opennebula.org/issues/3848>`_ Virtual networks should have an associated networking driver
+Virtual Network drivers are now defined per vnet. This allow to implement multiple vnet types from the same host. The migration process should take care of this automatically, although it may request manual input on some corner cases. Any third-party tool that creates hosts or virtual networks must be updated accordingly. 
 
-.. todo:: `Feature #3707 <http://dev.opennebula.org/issues/3707>`_ re-evalute the VLAN attribute
+The previous change makes the ``VLAN`` attribute useless and it will be removed from any virtual network. Third-party network drivers using this attribute should be updated. 
 
 Sunstone
 --------------------------------------------------------------------------------
@@ -167,7 +172,12 @@ Developers and Integrators
 Transfer Manager
 --------------------------------------------------------------------------------
 
-.. todo:: New monitor script for system datastores
+The monitoring process of the storage resources has been greatly improved and optimized: System datastores are now monitored as any other datastore. Third-party datastore drivers needs to implement the monitor script to return this value to oned.
+
+Also disk usage monitoring from VMs has been also improved to allow thrid-party drivers to hook on this process
+
+.. todo:: hook for VM disk usage monitor is not in first beta
+
 
 Virtual Machine Manager
 --------------------------------------------------------------------------------
