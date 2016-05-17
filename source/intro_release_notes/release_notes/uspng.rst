@@ -13,14 +13,8 @@ This is the list of the individual platform components that have been through th
    complete versions for
 
      - corosync+pacemaker
-     - ebtables
-     - vlan
-     - openvswitch
-     - iproute2
      - iscsi ?? needed?
      - lvm2
-     - ldap
-     - x509 (openssl needed?)
 
 
 Front-End Components
