@@ -103,23 +103,22 @@ FSTYPE has been deprecated
 
 Datablocks and Volatile Disks can now only be ``raw`` or ``qcow2`` (and ``swap`` for volatile disks). They will be created as blocks and no filesystem will be created inside. The options like ``ext3, ext4, vfat, etc`` are not supported any more. Furthermore, the attribute ``FSTYPE`` has been deprecated. The logic is the following:
 
-- New Empty Datablock:
+* New Empty Datablock:
 
-  - ``if DRIVER == qcow2`` => The block will be created as ``qcow2``.
-  - ``if DRIVER != qcow2`` => The block will be created as ``raw``.
-  - ``if DRIVER is empty && TM_MAD == qcow2`` => The block will be created as ``qcow2``.
-  - ``if DRIVER is empty && TM_MAD != qcow2`` => The block will be created as ``raw``.
+  * ``if DRIVER == qcow2`` => The block will be created as ``qcow2``.
+  * ``if DRIVER != qcow2`` => The block will be created as ``raw``.
+  * ``if DRIVER is empty && TM_MAD == qcow2`` => The block will be created as ``qcow2``.
+  * ``if DRIVER is empty && TM_MAD != qcow2`` => The block will be created as ``raw``.
 
-- Volatile Disk:
+* Volatile Disk:
 
-  - Same logic as above, except if ``TYPE == swap``.
-  - ``if TYPE == swap`` => The block will be created as ``raw`` and formatted as ``swap`` (regardless if the ``TM_MAD == qcow2``).
+  * Same logic as above, except if ``TYPE == swap``.
+  * ``if TYPE == swap`` => The block will be created as ``raw`` and formatted as ``swap`` (regardless if the ``TM_MAD == qcow2``).
 
-.. todo:: `Feature #3987 <http://dev.opennebula.org/issues/3987>`_ Make Ceph a system datastore capable driver
+SOURCE does not support the http protocol
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. todo:: `Feature #3915 <http://dev.opennebula.org/issues/3915>`_ deprecate SOURCE = http
-
-.. todo:: `Feature #3907 <http://dev.opennebula.org/issues/3907>`_ Rethink the Image datablock qcow2 options
+Before 5.0, it was possible to register images without a ``PATH`` attribute, by manually setting the ``SOURCE`` attribute instead. This could only be defined by oneadmin, and it was a restricted attribute. This ``SOURCE`` attribute could be an http link, instead of a path. In 5.0, having an http link as a source for an image is not supported anymore. If you run ``oneimage list -x|grep SOURCE|grep http`` and you see something displayed, the image with that ``SOURCE`` will not work.
 
 Disk Templates
 --------------------------------------------------------------------------------
