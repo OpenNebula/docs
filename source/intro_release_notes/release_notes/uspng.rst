@@ -13,10 +13,12 @@ This is the list of the individual platform components that have been through th
    complete versions for
 
      - iscsi ?? needed?
-     - lvm2
+
+Certified Components Version
+================================================================================
 
 Front-End Components
-================================================================================
+--------------------------------------------------------------------------------
 
 +------------------------------+---------------------------------------------------------+-------------------------------------------------------+
 | Certified Platform Component |                         Version                         |                    More information                   |
@@ -39,7 +41,7 @@ Front-End Components
 +------------------------------+---------------------------------------------------------+-------------------------------------------------------+
 
 vCenter Nodes
-================================================================================
+--------------------------------------------------------------------------------
 
 +------------------------------+---------+-----------------------------------------------------------------------+
 | Certified Platform Component | Version |                            More information                           |
@@ -48,7 +50,7 @@ vCenter Nodes
 +------------------------------+---------+-----------------------------------------------------------------------+
 
 KVM Nodes
-================================================================================
+--------------------------------------------------------------------------------
 
 +------------------------------+---------------------------------------------------------+-----------------------------------------+
 | Certified Platform Component |                         Version                         |             More information            |
@@ -66,7 +68,7 @@ KVM Nodes
 +------------------------------+---------------------------------------------------------+-----------------------------------------+
 
 Open Cloud Networking Infrastructure
-================================================================================
+--------------------------------------------------------------------------------
 
 +------------------------------+--------------------------------------------+-----------------------------------+
 | Certified Platform Component |                  Version                   |          More information         |
@@ -81,7 +83,7 @@ Open Cloud Networking Infrastructure
 +------------------------------+--------------------------------------------+-----------------------------------+
 
 Open Cloud Storage Infrastructure
-================================================================================
+--------------------------------------------------------------------------------
 
 +------------------------------+--------------------------------------------+-------------------------------------+
 | Certified Platform Component |                  Version                   |           More information          |
@@ -92,7 +94,7 @@ Open Cloud Storage Infrastructure
 +------------------------------+--------------------------------------------+-------------------------------------+
 
 Authentication
-================================================================================
+--------------------------------------------------------------------------------
 
 +------------------------------+--------------------------------------------+----------------------------------------+
 | Certified Platform Component |                  Version                   |            More information            |
@@ -103,7 +105,7 @@ Authentication
 +------------------------------+--------------------------------------------+----------------------------------------+
 
 Cloud Bursting
-================================================================================
+--------------------------------------------------------------------------------
 
 +------------------------------+---------+---------------------------------+
 | Certified Platform Component | Version |         More information        |
@@ -115,22 +117,14 @@ Cloud Bursting
 
 .. note:: Generally for all Linux platforms, it is worth noting that gems should be installed with the :ref:`install_gems <ruby_runtime>`, avoiding the platform's package version.
 
-Specific Platform Notes
+Frontend Platform Notes
 ================================================================================
 
 The following applies to all Front-Ends:
 
--  xmlrpc tuning parameters (MAX\_CONN, MAX\_CONN\_BACKLOG, KEEPALIVE\_TIMEOUT, KEEPALIVE\_MAX\_CONN and TIMEOUT) are only available with packages distributed by us as they are compiled with a newer xmlrpc-c library.
-
--  for **cloud bursting**, a newer nokogiri gem than the one packed by current distros is required. If you are planning to use cloud bursting, you need to install nokogiri >= 1.4.4 prior to run ``install_gems``
-
-.. code::
-
-    # sudo gem install nokogiri -v 1.4.4
-
-- older ruby versions ( <= 1.9.3 ) are not supported for **cloud bursting** (specifically for Microsoft Azure) and the :ref:`Sunstone commercial support integration <commercial_support_sunstone>`.
-
-- **OneFlow** requires a version >= 1.6.3 for treetop, packages distributed with Debian 8 includes an older version (1.4.5) and must be removed
+* XML-RPC tuning parameters (``MAX_CONN``, ``MAX_CONN_BACKLOG``, ``KEEPALIVE_TIMEOUT``, ``KEEPALIVE_MAX_CONN`` and ``TIMEOUT``) are only available with packages distributed by us as they are compiled with a newer xmlrpc-c library.
+* For **cloud bursting**, a newer nokogiri gem than the one packed by current distros is required. If you are planning to use cloud bursting, you need to install nokogiri >= 1.4.4 prior to run ``install_gems``: ``# sudo gem install nokogiri -v 1.4.4``.
+* Older ruby versions ( <= 1.9.3 ) are not supported for **cloud bursting** (specifically for Microsoft Azure) and the :ref:`Sunstone commercial support integration <commercial_support_sunstone>`
 
 CentOS 7.0 Platform Notes
 --------------------------------------------------------------------------------
@@ -150,6 +144,22 @@ Ubuntu 14.04 Platform Notes
 
 Package ruby-ox shouldn't be installed as it contains a version of the gem incompatible with the CLI
 
+Debian 8
+--------------------------------------------------------------------------------
+
+Make sure that the packages ``ruby-treetop`` and ``treetop`` are not installed before running ``ìnstall_gems``, as the version of ``treetop`` that comes packaged in Debian 8 is incompatible with OpenNebula. **OneFlow** requires a version >= 1.6.3 for treetop, packages distributed with Debian 8 includes an older version (1.4.5).
+
+
+Nodes Platform Notes
+================================================================================
+
+* Since OpenNebula 4.14 there is a new monitoring probe that gets information about PCI devices. By default it retrieves all the PCI devices in a host. To limit the PCI devices that it gets info and appear in ``onehost show`` refer to :ref:`kvm_pci_passthrough`.
+* When using qcow2 storage drivers you can make sure that the data is written to disk when doing snapshots setting its ``cache`` parameter to ``writethrough``. This change will make writes slower than other cache modes but safer. To do this edit the file ``/etc/one/vmm_exec/vmm_exec_kvm.conf`` and change the line for ``DISK``:
+
+.. code::
+
+    DISK = [ driver = "qcow2", cache = "writethrough" ]
+
 CentOS/RedHat 7.0 Platform Notes
 --------------------------------------------------------------------------------
 
@@ -164,26 +174,13 @@ The libvirt/qemu packages used in the testing infrastructure are the ones in the
     # yum install centos-release-qemu-ev
     # yum install qemu-kvm-ev
 
-Nodes Platform Notes
---------------------------------------------------------------------------------
-
--  Since OpenNebula 4.14 there is a new monitoring probe that gets information about PCI devices. By default it retrieves all the PCI devices in a host. To limit the PCI devices that it gets info and appear in ``onehost show`` refer to :ref:`kvm_pci_passthrough`.
--  When using qcow2 storage drivers you can make sure that the data is written to disk when doing snapshots setting its ``cache`` parameter to ``writethrough``. This change will make writes slower than other cache modes but safer. To do this edit the file ``/etc/one/vmm_exec/vmm_exec_kvm.conf`` and change the line for ``DISK``:
-
-.. code::
-
-    DISK     = [ driver = "qcow2", cache = "writethrough" ]
-
-Debian 8
---------------------------------------------------------------------------------
-
-Make sure that the packages ``ruby-treetop`` and ``treetop`` are not installed before running ``ìnstall_gems``. The version of ``treetop`` that comes packaged in debian is incompatible with OpenNebula.
-
 Unsupported Platforms Notes
---------------------------------------------------------------------------------
+================================================================================
+
+.. warning:: Use the following distributions at your own risk. They are not officially supported by OpenNebula.
 
 CentOS 6.5 Usage Platform Notes
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------------------------------------------------
 
 * As a front-end, because home directory of oneadmin is located in /var, it violates SELinux default policy. So in ssh passwordless configuration you should disable SELinux by setting SELINUX=disabled in /etc/selinux/config.
 
@@ -200,12 +197,12 @@ CentOS 6.5 Usage Platform Notes
    * due to libvirt version < = 0.10.2, there is a bug in libvirt/qemu attach/detach nic functionality that prevents the reuse of net IDs. This means that after a successful attach/detach NIC, a new attach will fail.
 
 Installing on ArchLinux
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------------------------------------------------
 
 OpenNebula is available at the Arch User Repository (AUR), `please check the opennebula package page <https://aur.archlinux.org/packages.php?ID=32163>`__.
 
 Installing on Gentoo
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------------------------------------------------
 
 There is an ebuild contributed by Thomas Stein in the following repository:
 
