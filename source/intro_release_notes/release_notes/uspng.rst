@@ -8,12 +8,6 @@ This page will show you the specific considerations at the time of using an Open
 
 This is the list of the individual platform components that have been through the complete `OpenNebula Quality Assurance and Certification Process <http://opennebula.org/software:testing>`__.
 
-.. todo::
-
-   complete versions for
-
-     - iscsi ?? needed?
-
 Certified Components Version
 ================================================================================
 
