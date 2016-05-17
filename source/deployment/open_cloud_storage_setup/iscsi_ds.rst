@@ -129,6 +129,8 @@ In order to use CHAP authentication, you will need to create a libvirt secret in
 Further notes on Installation and Usage
 ========================================
 
+.. _iscsi_ds_ubuntu:
+
 Ubuntu Hypervisors
 ------------------
 Libiscsi is needed for OpenNebula to present the iSCSI LUN to the (KVM) VM running off the qemu hypervisor.
@@ -138,16 +140,16 @@ already libiscsi-enabled, so these steps are unnecessary for Centos Hypervisors)
 
 .. code:: bash
 
-  #On the hypervisor - first install the stock hypervisor software.
-   sudo apt-get install opennebula-node
+  # On the hypervisor - first install the stock hypervisor software.
+  sudo apt-get install opennebula-node
 
-  #installing some packages needed for compiling libiscsi and qemu
-   sudo apt-get install -y libvdeplug2 libvdeplug2-dev libaio1 libaio-dev \
-   libcap-dev libattr1-dev libsdl-dev libxml2-dev dh-autoreconf
+  # installing some packages needed for compiling libiscsi and qemu
+  sudo apt-get install -y libvdeplug2 libvdeplug2-dev libaio1 libaio-dev \
+  libcap-dev libattr1-dev libsdl-dev libxml2-dev dh-autoreconf
 
-  #Obtaining the libiscsi and qemu source packages
+  # Obtaining the libiscsi and qemu source packages
 
-  #libiscsi (make sure you do not install libiscsi packages via apt)
+  # libiscsi (make sure you do not install libiscsi packages via apt)
   git clone https://github.com/sahlberg/libiscsi.git
   cd libiscsi
   ./autogen.sh
@@ -155,20 +157,21 @@ already libiscsi-enabled, so these steps are unnecessary for Centos Hypervisors)
   make
   sudo make install
 
-  #qemu
+  # qemu
   wget http://wiki.qemu-project.org/download/qemu-2.5.0.tar.bz2
-  #(This is the current version as of this writing, you may want to get the another version if you want)
+
+  # (This is the current version as of this writing, you may want to get the another version if you want)
   cd qemu-2.5.0/
   ./configure --prefix=/usr \
-  --sysconfdir=/etc \
-  --enable-kvm \
-  --enable-vde \
-  --enable-virtfs \
-  --enable-linux-aio \
-  --enable-libiscsi \
-  --enable-sdl \
-  --target-list=i386-softmmu,x86_64-softmmu,i386-linux-user,x86_64-linux-user \
-  --audio-drv-list=alsa
+    --sysconfdir=/etc \
+    --enable-kvm \
+    --enable-vde \
+    --enable-virtfs \
+    --enable-linux-aio \
+    --enable-libiscsi \
+    --enable-sdl \
+    --target-list=i386-softmmu,x86_64-softmmu,i386-linux-user,x86_64-linux-user \
+    --audio-drv-list=alsa
   make
   sudo make install
 

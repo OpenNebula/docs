@@ -85,13 +85,17 @@ Open Cloud Networking Infrastructure
 Open Cloud Storage Infrastructure
 --------------------------------------------------------------------------------
 
-+------------------------------+--------------------------------------------+-------------------------------------+
-| Certified Platform Component |                  Version                   |           More information          |
-+==============================+============================================+=====================================+
-| LVM2                         | Version included in the Linux distribution | :ref:`LVM Drivers <lvm_drivers>`    |
-+------------------------------+--------------------------------------------+-------------------------------------+
-| Ceph                         | Hammer (LTS) v0.94                         | :ref:`The Ceph Datastore <ceph_ds>` |
-+------------------------------+--------------------------------------------+-------------------------------------+
++------------------------------+---------------------------------------------------+-------------------------------------+
+| Certified Platform Component |                      Version                      |           More information          |
++==============================+===================================================+=====================================+
+| iSCSI                        | Version included in the Linux distribution [#f1]_ | :ref:`LVM Drivers <lvm_drivers>`    |
++------------------------------+---------------------------------------------------+-------------------------------------+
+| LVM2                         | Version included in the Linux distribution        | :ref:`LVM Drivers <lvm_drivers>`    |
++------------------------------+---------------------------------------------------+-------------------------------------+
+| Ceph                         | Hammer (LTS) v0.94                                | :ref:`The Ceph Datastore <ceph_ds>` |
++------------------------------+---------------------------------------------------+-------------------------------------+
+
+.. [#f1] For Ubuntu hypervisors you need to :ref:`recompile QEMU <iscsi_ds_ubuntu>`.
 
 Authentication
 --------------------------------------------------------------------------------
@@ -153,6 +157,8 @@ Make sure that the packages ``ruby-treetop`` and ``treetop`` are not installed b
 Nodes Platform Notes
 ================================================================================
 
+The following items apply to all distributions:
+
 * Since OpenNebula 4.14 there is a new monitoring probe that gets information about PCI devices. By default it retrieves all the PCI devices in a host. To limit the PCI devices that it gets info and appear in ``onehost show`` refer to :ref:`kvm_pci_passthrough`.
 * When using qcow2 storage drivers you can make sure that the data is written to disk when doing snapshots setting its ``cache`` parameter to ``writethrough``. This change will make writes slower than other cache modes but safer. To do this edit the file ``/etc/one/vmm_exec/vmm_exec_kvm.conf`` and change the line for ``DISK``:
 
@@ -163,9 +169,15 @@ Nodes Platform Notes
 CentOS/RedHat 7.0 Platform Notes
 --------------------------------------------------------------------------------
 
+Ruby Dependencies
+~~~~~~~~~~~~~~~~~
+
 In order to install ruby dependencies, the Server Optional channel needs to be enabled. Please refer to `RedHat documentation <https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/>`__ to enable the channel.
 
 Alternatively, use CentOS 7 repositories to install ruby dependencies.
+
+Libvirt Version
+~~~~~~~~~~~~~~~
 
 The libvirt/qemu packages used in the testing infrastructure are the ones in the ``qemu-ev`` repository. To add this repository you can install the following packages:
 
