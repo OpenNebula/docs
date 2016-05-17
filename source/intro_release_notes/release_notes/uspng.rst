@@ -12,10 +12,8 @@ This is the list of the individual platform components that have been through th
 
    complete versions for
 
-     - corosync+pacemaker
      - iscsi ?? needed?
      - lvm2
-
 
 Front-End Components
 ================================================================================
@@ -33,11 +31,11 @@ Front-End Components
 +------------------------------+---------------------------------------------------------+-------------------------------------------------------+
 | MySQL                        | Version included in the Linux distribution              | :ref:`MySQL Setup <mysql>`                            |
 +------------------------------+---------------------------------------------------------+-------------------------------------------------------+
-| sqlite                       | Version included in the Linux distribution              | Default DB, no configuration needed                   |
+| SQLite                       | Version included in the Linux distribution              | Default DB, no configuration needed                   |
 +------------------------------+---------------------------------------------------------+-------------------------------------------------------+
 | Ruby Gems                    | Versions installed by packages and install_gems utility | :ref:`front-end installation <ruby_runtime>`          |
 +------------------------------+---------------------------------------------------------+-------------------------------------------------------+
-| Corosync+Pacemaker           |                                                         | :ref:`Front-end HA Setup <oneha>`                     |
+| Corosync+Pacemaker           | Version included in the Linux distribution              | :ref:`Front-end HA Setup <oneha>`                     |
 +------------------------------+---------------------------------------------------------+-------------------------------------------------------+
 
 vCenter Nodes
@@ -88,8 +86,6 @@ Open Cloud Storage Infrastructure
 +------------------------------+--------------------+---------------------------------------+
 | Certified Platform Component |      Version       |            More information           |
 +==============================+====================+=======================================+
-| iSCSI                        |                    | :ref:`The iSCSI Datastore <iscsi_ds>` |
-+------------------------------+--------------------+---------------------------------------+
 | LVM2                         |                    | :ref:`LVM Drivers <lvm_drivers>`      |
 +------------------------------+--------------------+---------------------------------------+
 | Ceph                         | Hammer (LTS) v0.94 | :ref:`The Ceph Datastore <ceph_ds>`   |
@@ -193,7 +189,7 @@ CentOS 6.5 Usage Platform Notes
 
 * As a node, to accomplish disk hotplugging:
 
-  * to accomplish disk hotplugging, disks need to be attached through SCSI, so their images should have a DEV_PREFIX=“sd” 
+  * to accomplish disk hotplugging, disks need to be attached through SCSI, so their images should have a DEV_PREFIX=“sd”
   * to accomplish disk hotplugging, VM template that will permit SCSI disk attaches afterwards needs to have an explicitly defined SCSI controller:
 
 .. code::
