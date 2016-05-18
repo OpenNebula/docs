@@ -54,6 +54,7 @@ The KVM driver is enabled by default in OpenNebula:
         ARGUMENTS     = "-t 15 -r 0 kvm",
         DEFAULT       = "vmm_exec/vmm_exec_kvm.conf",
         TYPE          = "kvm",
+        KEEP_SNAPSHOTS= "no",
         IMPORTED_VMS_ACTIONS = "terminate, terminate-hard, hold, release, suspend,
             resume, delete, reboot, reboot-hard, resched, unresched, disk-attach,
             disk-detach, nic-attach, nic-detach, snap-create, snap-delete"

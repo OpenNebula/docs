@@ -332,6 +332,7 @@ The virtualization drivers are used to create, control and monitor VMs on the ho
 -  **arguments**: for the driver executable
 -  **type**: driver type, supported drivers: xen, kvm or xml
 -  **default**: default values and configuration parameters for the driver, can be an absolute path or relative to ``/etc/one/``
+-  **keep_snapshots**: do not remove snapshots on power on/off cycles and live migrations if the hypervisor supports that.
 -  **imported_vms_actions** : comma-separated list of actions supported for imported vms. The available actions are:
 
    - migrate
@@ -373,12 +374,13 @@ Sample configuration:
     #-------------------------------------------------------------------------------
      
     VM_MAD = [
-        NAME          = "kvm",
-        SUNSTONE_NAME = "KVM",
-        EXECUTABLE    = "one_vmm_exec",
-        ARGUMENTS     = "-t 15 -r 0 kvm",
-        DEFAULT       = "vmm_exec/vmm_exec_kvm.conf",
-        TYPE          = "kvm",
+        NAME           = "kvm",
+        SUNSTONE_NAME  = "KVM",
+        EXECUTABLE     = "one_vmm_exec",
+        ARGUMENTS      = "-t 15 -r 0 kvm",
+        DEFAULT        = "vmm_exec/vmm_exec_kvm.conf",
+        TYPE           = "kvm",
+        KEEP_SNAPSHOTS = "no",
         IMPORTED_VMS_ACTIONS = "terminate, terminate-hard, hold, release, suspend,
             resume, delete, reboot, reboot-hard, resched, unresched, disk-attach,
             disk-detach, nic-attach, nic-detach, snap-create, snap-delete"

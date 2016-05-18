@@ -101,8 +101,11 @@ These supported action are specified in the :ref:`oned.conf file <oned_conf>`, `
         arguments  = "-t 15 -r 0 -i kvm",
         default    = "vmm_exec/vmm_exec_kvm.conf",
         type       = "kvm",
+        keep_snapshots = "no",
         imported_vms_actions = "shutdown,shutdown-hard,hold,release,suspend,resume,delete,reboot,reboot-hard,resched,unresched,disk-attach,disk-detach,nic-attach,nic-detach,snap-create,snap-delete"
     ]
+
+The hypervisor may preserve system snapshots across power on/off cycles and live migrations, in that case you can set ``keep_snapshots`` variable to ``yes``.
 
 .. _devel-vmm_action:
 
