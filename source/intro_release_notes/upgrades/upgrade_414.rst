@@ -4,6 +4,10 @@
 Upgrading from OpenNebula 4.14.x
 =================================
 
+.. todo:: remove the following warning in the final.
+
+.. warning:: The upgrade process to OpenNebula 5.0 Beta is currently broken. If you want to upgrade please follow `this process <https://forum.opennebula.org/t/opennebula-5-0-wizard-beta-released/2253/12?u=jmelis>`__.
+
 This section describes the installation procedure for systems that are already running a 4.14.x OpenNebula. The upgrade will preserve all current users, hosts, resources and configurations; for both Sqlite and MySQL backends.
 
 Read the :ref:`Compatibility Guide <compatibility>` and `Release Notes <http://opennebula.org/software/release/>`_ to know what is new in OpenNebula 5.0.
