@@ -40,12 +40,12 @@ Considerations & Limitations
 - **No files in context**: Passing entire files to VMs is not supported, but all the other CONTEXT sections will be honored
 - Cluster name cannot contain spaces
 - vCenter credential password cannot have more than 22 characters
-- If you are running Sunstone using nginx/apache you will have to forward the following headers to be able to interact with vCenter, HTTP_X_VCENTER_USER, HTTP_X_VCENTER_PASSWORD and HTTP_X_VCENTER_HOST. For example in nginx you have to add the following attrs to the server section of your nginx file (underscores_in_headers on; proxy_pass_request_headers on;)
+- If you are running Sunstone using nginx/apache you will have to forward the following headers to be able to interact with vCenter, [HTTP_]X_VCENTER_USER, [HTTP_]X_VCENTER_PASSWORD and [HTTP_]X_VCENTER_HOST. For example in nginx you have to add the following attrs to the server section of your nginx file (underscores_in_headers on; proxy_pass_request_headers on;)
 
 .. _import_vcenter_resources:
 
 Importing vCenter VM Templates and running VMs
-========================================================
+================================================================================
 
 The same **onevcenter** tool can be used to import existing VM templates from the ESX clusters:
 
@@ -102,7 +102,7 @@ The same **onevcenter** tool can be used to import existing VM templates from th
 
 To import existing VMs, the 'onehost importvm" command can be used. VMs in running state can be imported, and also VMs defined in vCenter that are not in power.on state (this will import the VMs in OpenNebula as in the poweroff state).
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onehost show 0
       HOST 0 INFORMATION
