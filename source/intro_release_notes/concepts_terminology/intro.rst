@@ -68,7 +68,7 @@ OpenNebula comes by default with an internal **user/password authentication syst
 
 **Sunstone, the OpenNebula GUI**, brings by default a pre-defined configuration of views. Optionally it can be customized and extended to meet your needs. You can :ref:`customize the roles and views <suns_views>`, :ref:`improve security with x509 authentication and SSL <suns_auth>` or :ref:`improve scalability for large deployments <suns_advance>`.
 
-We also provide **references** with a detailed description of the different :ref:`configuration files<oned_conf>`, and :ref:`logging and debugging reports<log_debug>` of the OpenNebula services.
+We also provide **references** with a detailed description of the different :ref:`configuration files <oned_conf>`, and :ref:`logging and debugging reports <log_debug>` of the OpenNebula services.
 
 Step 4. Operate your Coud
 ===============================================
@@ -82,7 +82,7 @@ Before configuring multi-tenancy and defining the provisioning model of your clo
 
 -  Regarding **user management**, OpenNebula features advanced multi-tenancy with powerful :ref:`users and groups management <manage_users>`, a :ref:`Access Control List <manage_acl>` mechanism allowing different role management with fine grain permission granting over any resource, :ref:`resource quota management <quota_auth>` to track and limit computing, storage and networking utilization, and a configurable :ref:`accounting  <accounting>` and :ref:`showback  <showback>` systems to visualize and report resource usage data and to allow their integration with chargeback and billing platforms, or to guarantee fair share of resources among users.
 
--  Last but not least, you can define VDCs (Virtual Data Center) as assignments of one or several user groups to a pool of physical resources. While clusters are used to group physical resources according to common characteristics such as networking topology or physical location, Virtual Data Centers (VDCs) allow to create “logical” pools of resources (which could belong to different clusters and cones) and allocate them to user groups.
+-  Last but not least, you can define :ref:`VDCs <manage_vdcs>` (Virtual Data Center) as assignments of one or several user groups to a pool of physical resources. While clusters are used to group physical resources according to common characteristics such as networking topology or physical location, Virtual Data Centers (VDCs) allow to create “logical” pools of resources (which could belong to different clusters and cones) and allocate them to user groups.
 
 4.2. Manage Virtual Resources
 --------------------------------------------------
