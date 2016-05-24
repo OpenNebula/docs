@@ -1,0 +1,66 @@
+
+Step 2. Download Contextualization Packages to the VM
+-----------------------------------------------------
+
+CentOS/RHEL
+~~~~~~~~~~~
+
+.. prompt:: bash # auto
+
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v4.14.4/one-context-ec2_4.14.4.rpm
+
+Debian/Ubuntu
+~~~~~~~~~~~~~
+
+.. prompt:: bash # auto
+
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v4.14.4/one-context_4.14.4.deb
+
+Windows
+~~~~~~~
+
+Downloads these two files to ``C:\``:
+
+* https://raw.githubusercontent.com/OpenNebula/addon-context-windows/master/context.ps1
+* https://raw.githubusercontent.com/OpenNebula/addon-context-windows/master/startup.vbs
+
+Step 3. Install Contextualization Packages and Dependencies
+-----------------------------------------------------------
+
+CentOS/RHEL 6
+~~~~~~~~~~~~~
+
+.. prompt:: bash # auto
+
+    # rpm -Uvh one-context*rpm
+    # yum install -y epel-release
+    # yum install ruby # only needed for onegate command
+    # yum install -i dracut-modules-growroot
+    # dracut -f
+
+CentOS/RHEL 7
+~~~~~~~~~~~~~
+
+.. prompt:: bash # auto
+
+    # rpm -Uvh one-context*rpm
+    # yum install -y epel-release
+    # yum install ruby # only needed for onegate command
+    # yum install -y cloud-utils-growpart
+
+Debian/Ubuntu
+~~~~~~~~~~~~~
+
+.. prompt:: bash # auto
+
+    # dpkg -i one-context*deb
+    # apt-get install ruby # only needed for onegate command
+    # apt-get install -y cloud-utils
+
+Windows
+~~~~~~~
+
+* Open the Local Group Policy Dialog by running ``gpedit.msc``.
+* Go to *Computer Configuration* -> *Windows Settings* -> *Scripts* -> *startup* (right click).
+* Browse to the ``startup.vbs`` file and enable it as a startup script.
+
