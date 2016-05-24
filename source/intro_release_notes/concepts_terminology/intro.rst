@@ -114,13 +114,13 @@ OpenNebula brings the following advanced components:
 
 -  Implementation of the :ref:`EC2 Query and EBS <ec2qug>` **public cloud** interfaces.
 
--  OneFlow allows **multi-VM application and auto-scaling** to :ref:`define, execute and manage multi-tiered elastic applications <appflow_use_cli>`, or services composed of interconnected Virtual Machines with deployment dependencies between them and :ref:`auto-scaling rules <appflow_elasticity>`.
+-  :ref:`OneFlow <oneapps_overview>` allows **multi-VM application and auto-scaling** to :ref:`define, execute and manage multi-tiered elastic applications <appflow_use_cli>`, or services composed of interconnected Virtual Machines with deployment dependencies between them and :ref:`auto-scaling rules <appflow_elasticity>`.
 
--  The **datacenter federation** functionality allows for the centralized management of multiple instances of OpenNebula for scalability, isolation and multiple-site support. [TODO: links]
+-  The :ref:`datacenter federation <introf>` functionality allows for the **centralized management of multiple instances of OpenNebula for scalability, isolation and multiple-site support**.
 
--  **Application insight** with :ref:`OneGate <onegate_usage>` allows Virtual Machine guests to pull and push VM information from OpenNebula. Users and administrators can use it to gather metrics, detect problems in their applications, and trigger OneFlow elasticity rules from inside the VM.
+-  **Application insight** with :ref:`OneGate <onegate_overview>` allows Virtual Machine guests to pull and push VM information from OpenNebula. Users and administrators can use it to gather metrics, detect problems in their applications, and trigger OneFlow elasticity rules from inside the VM.
 
--  A :ref:`Marketplace <marketplace>`... [TODO: Extend with benefits and links]
+- :ref:`Marketplaces <marketplace_overview>` for sharing, provisioning and consuming cloud images. They can be seen as external datastores, where images can be easily imported, exported and shared by a federation of OpenNebula instances.
 
 -  **Cloud bursting** gives support to build a :ref:`hybrid cloud <introh>`, an extension of a private cloud to combine local resources with resources from remote cloud providers. A whole public cloud provider can be encapsulated as a local resource to be able to use extra computational capacity to satisfy peak demands. Out of the box connectors are shipped to support :ref:`Amazon EC2 <ec2g>` and :ref:`Microsoft Azure <azg>` cloudbursting.
 
@@ -131,23 +131,17 @@ This step is optionaly and only for integrators and builders.
 
 Because no two clouds are the same, OpenNebula provides many different interfaces that can be used to interact with the functionality offered to manage physical and virtual resources.
 
--  **Modular and extensible architecture** with :ref:`customizable plug-ins <introapis>` for integration with any third-party data center infrastructure platform for [TODO: enlist and link the plugins]
+-  **Modular and extensible architecture** with :ref:`customizable plug-ins <intro_integration>` for integration with any third-party data center infrastructure platform for :ref:`storage <sd>`, :ref:`monitoring <devel-im>`, :ref:`networking <devel-nm>`, :ref:`authentication <devel-auth>`, :ref:`virtualziation <devel-vmm>`, :ref:`cloud bursting <devel_cloudbursting>` and :ref:`market <devel-market>`.
 
--  **API for integration** with higher level tools such as billing, self-service portals... that offers all the rich functionality of the OpenNebula core, with bindings for :ref:`ruby <ruby>` and :ref:`java <java>` and :ref:`XMLRPC API <api>`
+-  **API for integration** with higher level tools such as billing, self-service portals... that offers all the rich functionality of the OpenNebula core, with bindings for :ref:`ruby <ruby>` and :ref:`java <java>` and :ref:`XMLRPC API <api>`,
 
--  **OneFlow API** to create, control and monitor :ref:`multi-tier applications or services composed of interconnected Virtual Machines <appflow_api>`. [TODO: Merge with APIs]
+-  **OneFlow API** to create, control and monitor :ref:`multi-tier applications or services composed of interconnected Virtual Machines <appflow_api>`. 
 
 -  **Sunstone custom routes and tabs** to extend the :ref:`sunstone server <sunstone_dev>`.
 
 -  **Hook Manager** to :ref:`trigger administration scripts upon VM state change <hooks>`.
 
-|OpenNebula Cloud Architecture|
+.. |OpenNebula Cloud Architecture|
 
 .. |OpenNebula Hypervisors| image:: /images/ONE_Hypervisors.png
-
-
-.. |OpenNebula Cloud Interfaces| image:: /images/overview_interfaces.png
-.. |OpenNebula Cloud Support for Virtual Infrastructures| image:: /images/overview_consumers.png
-.. |OpenNebula Cloud Internals| image:: /images/overview_operators.png
-.. |OpenNebula Cloud Platform Support| image:: /images/overview_builders.png
-.. |OpenNebula Cloud Architecture| image:: /images/overview_integrators.png
+.. |OpenNebula Cloud Architecture| image:: /images/new_overview_integrators.png
