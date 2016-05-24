@@ -5,8 +5,6 @@
 Managing Virtual Networks
 ==========================
 
-.. todo:: the host is not bound to a vn_mad anymore
-
 A host is connected to one or more networks that are available to the virtual machines through the corresponding bridges. OpenNebula allows the creation of Virtual Networks by mapping them on top of the physical ones.
 
 .. _vgg_vn_model:
@@ -14,13 +12,13 @@ A host is connected to one or more networks that are available to the virtual ma
 Virtual Network Definition
 ==========================
 
-A virtual network (VNET) definition consists of three different parts:
+A Virtual Network definition consists of three different parts:
 
 - The **underlying physical network infrastructure** that will support it, including the network driver.
 
-- The **logical address space** available. Addresses associated to a Virtual Network can be IPv4, IPv6, dual stack IPv4-IPv6 or Ethernet; and can define a non-continuous addresses range structured in one or more Address Ranges (AR), see below.
+- The **logical address space** available. Addresses associated to a Virtual Network can be IPv4, IPv6, dual stack IPv4-IPv6 or Ethernet.
 
-- The **guest configuration attributes**. Apart from the addresses and configuration attributes used to setup the guest network additional information can be injected into the VM at boot time. These contextualization attributes may include for example network masks, DNS servers or gateways.
+- The **guest configuration attributes** to setup the Virtual Machine network, that may include for example network masks, DNS servers or gateways.
 
 Physical Network Attributes
 ---------------------------
@@ -30,12 +28,13 @@ To define a Virtual Network include:
 * ``NAME`` to refer this Virtual Network.
 
 * ``VN_MAD`` the driver to implement this Virtual Network. Depending on the driver you may need to set additional attributes, check the following to get more details:
+
   * Define a bridged network
   * Define a 802.1Q network
   * Define a VXLAN network
   * Define a OpenvSwitch network
 
-For example, to define a 802.1Q Virtual Network you would something like:
+For example, to define a 802.1Q Virtual Network you would add:
 
 .. code::
 
@@ -46,12 +45,12 @@ For example, to define a 802.1Q Virtual Network you would something like:
 Address Space
 -------------
 
-The addresses available in a Virtual Network are defined by one or more Address Ranges (AR). Each address range defines a continuous address range and optionally, configuration attributes (context or configuration) that will override the first level attributes defined in the Virtual Network. There are three types of ARs:
+The addresses available in a Virtual Network are defined by one or more Address Ranges (AR). Each AR defines a continuous address range and optionally, configuration attributes that will override the first level attributes defined in the Virtual Network. There are four types of ARs:
 
 - **IPv4**, to define a contiguous IPv4 address set (classless), :ref:`see more details here <vnet_template_ar4>`
-- **IPv6**, to define a global and ULA IPv6 networks, see full details here, :ref:`see more details here <vnet_template_ar6>`
-- **Dual stack**, defines IPv4 and IPv6 addresses each NIC in the network will get both a IPv4 and IPv6 address, see more here, :ref:`see more details here <vnet_template_ar46>`
-- **Ethernet**,  just MAC addresses are generated for the VMs. You should use this AR when an external service is providing the IP addresses, such a DHCP server, :ref:`see more details here <vnet_template_eth>.`
+- **IPv6**, to define global and ULA IPv6 networks, :ref:`see full details here <vnet_template_ar6>`
+- **Dual stack**, each NIC in the network will get both a IPv4 and a IPv6 address, :ref:`see more here <vnet_template_ar46>`
+- **Ethernet**,  just MAC addresses are generated for the VMs. You should use this AR when an external service is providing the IP addresses, such a DHCP server, :ref:`see more details here <vnet_template_eth>`
 
 For example, to define the IPv4 address range 10.0.0.150 - 10.0.0.200
 
@@ -182,12 +181,6 @@ You can check the details of a Virtual Network with the ``onevnet show`` command
     MAC                         02:00:0a:00:00:96                  02:00:0a:00:00:c8
     IP                                 10.0.0.150                         10.0.0.200
 
-
-    LEASES
-    AR  OWNER                         MAC              IP                 IP6_GLOBAL
-
-    VIRTUAL ROUTERS
-
 Check the ``onevnet`` command help or the :ref:`reference guide <cli>` for more options to list the virtual networks.
 
 Virtual Network Tips
@@ -206,8 +199,11 @@ Updating a Virtual Network
 ==========================
 
 After creating a Virtual Network, you can use the ``onevnet update`` command to update the following attributes:
+
 * Any attribute corresponding to the context or description.
+
 * Physical network configuration attributes, e.g. ``PHYDEV`` or ``VLAN_ID``.
+
 * Any custom tag.
 
 Also the name of the Virtual Network can be changed with ``onevnet rename`` command.
@@ -215,7 +211,7 @@ Also the name of the Virtual Network can be changed with ``onevnet rename`` comm
 Managing Address Ranges
 =======================
 
-Addresses are structured in Address Ranges (AR). Address Ranges can be dynamically added or removed from a Virtual Networks. In this way, you can easily add new addresses to an existing Virtual Network if the current addresses are exhausted.
+Addresses are structured in Address Ranges (AR). Address Ranges can be dynamically added or removed from a Virtual Network. In this way, you can easily add new addresses to an existing Virtual Network if the current addresses are exhausted.
 
 Adding and Removing Address Ranges
 ----------------------------------
@@ -266,7 +262,7 @@ You see the list of leases on hold with the 'onevnet show' command, they'll show
 Using a Virtual Network
 =======================
 
-Once the Virtual Networks are setup, they can be made it available to users based on access rights and ownership. The preferred way to do so is through :ref:`Virtual Data Center abstraction <manage_vdcs>`. By default, all Virtual Networks are automatically available to the group ``users``.
+Once the Virtual Networks are setup, they can be made available to users based on access rights and ownership. The preferred way to do so is through :ref:`Virtual Data Center abstraction <manage_vdcs>`. By default, all Virtual Networks are automatically available to the group ``users``.
 
 Attach a Virtual Machine to a Virtual Network
 ---------------------------------------------
@@ -365,5 +361,3 @@ A Reservation can be also extended with new addresses. This is, you can add a ne
 
 .. note:: The reservation interface is exposed by Sunstone in a very convenient way.
 
-.. |image0| image:: /images/sunstone_vnet_create.png
-.. |image1| image:: /images/sunstone_vnet_leases.png
