@@ -23,7 +23,7 @@ After having installed the cloud with one hypervisor you may add another hypervi
 
 There are other virtualization technologies, like LXC or Xen, supported by the community. Please refer to the `OpenNebula Add-ons Catalog<http://opennebula.org/addons/>`__.
 
-[TODO: Add Figure]
+|OpenNebula Hypervisors|
 
 Step 2. Design and Install the Cloud
 =======================================
@@ -43,7 +43,7 @@ Optionally you can setup a :ref:`high available cluster for OpenNebula <frontend
 2.3. Install the Virtualization hosts
 -------------------------------------------------
 
-Now you are ready to **add the virtualization nodes**. The OpenNebula packages bring support for :ref:`KVM <kvm_node>` and :ref:`vCenter <vCenter_node>` nodes. In the case of vCenter, a host represents a vCenter cluster with all its ESX hosts. You can add different hypervisors to the same OpenNebula instance, or any other virtualization technology, like LXC or Xen, supported by the community. Please refer to the OpenNebula Add-ons Catalog [TODO: Add link].
+Now you are ready to **add the virtualization nodes**. The OpenNebula packages bring support for :ref:`KVM <kvm_node>` and :ref:`vCenter <vCenter_node>` nodes. In the case of vCenter, a host represents a vCenter cluster with all its ESX hosts. You can add different hypervisors to the same OpenNebula instance, or any other virtualization technology, like LXC or Xen, supported by the community. Please refer to the `OpenNebula Add-ons Catalog<http://opennebula.org/addons/>`__.
 
 Step 3. Set-up Infrastructure and Services
 ===============================================
@@ -68,7 +68,7 @@ OpenNebula comes by default with an internal **user/password authentication syst
 
 **Sunstone, the OpenNebula GUI**, brings by default a pre-defined configuration of views. Optionally it can be customized and extended to meet your needs. You can :ref:`customize the roles and views <suns_views>`, :ref:`improve security with x509 authentication and SSL <suns_auth>` or :ref:`improve scalability for large deployments <suns_advance>`.
 
-We also provide **references** with a detailed description of the different configuration files, and logging and debugging reports of the OpenNebula services. [TODO: Add references and links]
+We also provide **references** with a detailed description of the different :ref:`configuration files<oned_conf>`, and :ref:`logging and debugging reports<log_debug>` of the OpenNebula services.
 
 Step 4. Operate your Coud
 ===============================================
@@ -141,6 +141,9 @@ Because no two clouds are the same, OpenNebula provides many different interface
 -  **Hook Manager** to :ref:`trigger administration scripts upon VM state change <hooks>`.
 
 |OpenNebula Cloud Architecture|
+
+.. |OpenNebula Hypervisors| image:: /images/ONE_Hypervisors.png
+
 
 .. |OpenNebula Cloud Interfaces| image:: /images/overview_interfaces.png
 .. |OpenNebula Cloud Support for Virtual Infrastructures| image:: /images/overview_consumers.png
