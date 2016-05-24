@@ -1,49 +1,53 @@
 .. _vnet_template:
 
-================================
-Virtual Network Definition File
-================================
+==========================
+Virtual Network Definition
+==========================
 
-This page describes how to define a new Virtual Network template. A Virtual Network template follows the same syntax as the :ref:`VM template <template>`.
+This page describes how to define a new Virtual Network. A Virtual Network includes three different aspects:
 
-If you want to learn more about the Virtual Network management, you can do so :ref:`here <vgg>`.
+* Physical network attributes
+* Address Range
+* Configuration attributes for the guests
 
-A VNET is defined by three parts: the physical network, the address space and the contextualization parameters. The following sections details each part.
+.. note:: When writting a Virtual Network template in a file just follows the same syntax as the :ref:`VM template <template>`.
 
 Physical Network Attributes
 ===========================
 
-It defines the **underlying networking infrastructure** that will support the VNET. These section includes the following values:
+It defines the **underlying networking infrastructure** that will support the Virtual Network, such as the VLAN ID or the hypervisor interface to bind the Virtual Network.
 
-+--------------+-----------------------------------------------------+---------------------+
-| Attribute    |                     Description                     |  Value  | Mandatory |
-+==============+=====================================================+=====================+
-| **NAME**     | Name of the Virtual Network                         | String  | YES       |
-+--------------+-----------------------------------------------------+---------+-----------+
-| **BRIDGE**   | Device to bind the virtual and physical network,    | String  | YES if no |
-|              | depending on the network driver it may refer to     |         | PHYDEV    |
-|              | different technologies or require host setups.      |         |           |
-+--------------+-----------------------------------------------------+---------+-----------+
-| **VLAN**     | Set to YES to activate VLAN isolation when          | YES/NO  | NO        |
-|              | supported by the network drivers, see               |         |           |
-|              | :ref:`Virtual Network Manager drivers <nm>`.        |         |           |
-|              | Defaults to NO                                      |         |           |
-+--------------+-----------------------------------------------------+---------+-----------+
-| **VLAN\_ID** | Identifier for the VLAN                             | Integer | NO        |
-+--------------+-----------------------------------------------------+---------+-----------+
-| **PHYDEV**   | Name of the physical network device that will be    | String  | YES for   |
-|              | attached to the bridge.                             |         | 802.1Q    |
-+--------------+-----------------------------------------------------+---------+-----------+
-
++--------------+-----------------------------------------------------+---------------------+-------------+
+| Attribute    |                     Description                     |  Value  | Mandatory |    Drivers  |
++==============+=====================================================+=========+===========+=============+
+| **NAME**     | Name of the Virtual Network                         | String  | YES       |             |
++--------------+-----------------------------------------------------+---------+-----------+-------------+
+| **VN_MAD**   | The network driver to implement the network         | 802.1Q  | YES       |             |
+|              |                                                     | ebtables|           |             |
+|              |                                                     | fw      |           |             |
+|              |                                                     | ovswtich|           |             |
+|              |                                                     | vxlan   |           |             |
+|              |                                                     | dummy   |           |             |
++--------------+-----------------------------------------------------+---------+-----------+-------------+
+| **BRIDGE**   | Device to attach the virtual machines to,           | String  | YES for   | dummy       |
+|              | depending on the network driver it may refer to     |         | dummy     | 802.1Q      |
+|              | different technologies or require host setups.      |         | ovswtich  | vxlan       |
+|              |                                                     |         | ebtables  | ovswicth    |
+|              |                                                     |         | fw        | ebtables    |
+|              |                                                     |         |           | fw          |
++--------------+-----------------------------------------------------+---------+-----------+-------------+
+| **VLAN\_ID** | Identifier for the VLAN                             | Integer | NO        | 802.1Q      |
+|              |                                                     |         |           | vxlan       |
+|              |                                                     |         |           | ovswtich    |
++--------------+-----------------------------------------------------+---------+-----------+-------------+
+| **PHYDEV**   | Name of the physical network device that will be    | String  | YES       | 802.1Q      |
+|              | attached to the bridge.                             |         |           | vxlan       |
++--------------+-----------------------------------------------------+---------+-----------+-------------+
 
 The Address Range
 =================
 
-The addresses available in a VNET are defined by one or more Address Ranges (AR). Each address range is defined in an AR attribute to set a continuous address range.
-
-Optionally, each AR can include configuration attributes (context or physical network attributes) that will override those provided by the VNET.
-
-.. note:: When not manually set, MAC addresses are derived from the IPv4 address. A VNET lease for a given IP will have a MAC address in the form MAC_PREFIX:IP where MAC_PREFIX is defined in oned.conf.
+.. _vnet_template_ar4:
 
 IPv4 Address Range
 ------------------
@@ -61,6 +65,8 @@ IPv4 Address Range
 +-------------+-----------------------------------------------------+-----------+
 | **SIZE**    | Number of addresses in this range.                  |  YES      |
 +-------------+-----------------------------------------------------+-----------+
+
+.. _vnet_template_ar6:
 
 IPv6 Address Range
 ------------------
@@ -80,6 +86,8 @@ IPv6 Address Range
 | **SIZE**          | Number of addresses in this range.                  |  YES      |
 +-------------------+-----------------------------------------------------+-----------+
 
+.. _vnet_template_ar46:
+
 Dual IPv4-IPv6 Address Range
 ----------------------------
 
@@ -88,7 +96,7 @@ Dual IPv4-IPv6 Address Range
 +===================+=====================================================+===========+
 | **TYPE**          | ``IP4_6``                                           | YES       |
 +-------------------+-----------------------------------------------------+-----------+
-| **IP**            | First IP in the range in dot notation.              | YES       |
+| **IP**            | First IPv4 in the range in dot notation.            | YES       |
 +-------------------+-----------------------------------------------------+-----------+
 | **MAC**           | First MAC, if not provided it will be               | NO        |
 |                   | generated using the IP and the MAC_PREFIX in        |           |
@@ -101,6 +109,8 @@ Dual IPv4-IPv6 Address Range
 +-------------------+-----------------------------------------------------+-----------+
 | **SIZE**          | Number of addresses in this range.                  | YES       |
 +-------------------+-----------------------------------------------------+-----------+
+
+.. _vnet_template_eth:
 
 Ethernet Address Range
 ----------------------
@@ -116,6 +126,7 @@ Ethernet Address Range
 | **SIZE**          | Number of addresses in this range.                  | YES       |
 +-------------------+-----------------------------------------------------+-----------+
 
+.. _vnet_template_context:
 
 Contextualization Attributes
 ============================
@@ -127,12 +138,13 @@ Contextualization Attributes
 +--------------------------+-------------------------------------------------------+
 | **NETWORK\_MASK**        | Network mask                                          |
 +--------------------------+-------------------------------------------------------+
-| **GATEWAY**              | Router for this network, do not set when the network  |
-|                          | is not routable                                       |
-+--------------------------+-------------------------------------------------------+
-| **DNS**                  | Specific DNS for this network                         |
+| **GATEWAY**              | Default gateway for the network                       |
 +--------------------------+-------------------------------------------------------+
 | **GATEWAY6**             | IPv6 router for this network                          |
++--------------------------+-------------------------------------------------------+
+| **DNS**                  | DNS servers, a space separated list of servers        |
++--------------------------+-------------------------------------------------------+
+| **GUEST_MTU**            | Sets the MTU for the NICs in this network             |
 +--------------------------+-------------------------------------------------------+
 | **CONTEXT\_FORCE\_IPV4** | When a vnet is IPv6 the IPv4 is not configured unless |
 |                          | this attribute is set                                 |
@@ -140,8 +152,10 @@ Contextualization Attributes
 | **SEARCH_DOMAIN**        | Default search domains for DNS resolution             |
 +--------------------------+-------------------------------------------------------+
 
-Examples
-========
+.. _vnet_template_example:
+
+Virtual Network Definition Examples
+===================================
 
 Sample IPv4 VNet:
 
@@ -186,3 +200,4 @@ Sample IPv4 VNet, using AR of just one IP:
     AR=[ TYPE = "IP4", IP = "130.56.23.24", SIZE = "1"]
     AR=[ TYPE = "IP4", IP = "130.56.23.17", MAC= "50:20:20:20:20:21", SIZE = "1"]
     AR=[ TYPE = "IP4", IP = "130.56.23.12", SIZE = "1"]
+

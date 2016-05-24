@@ -11,315 +11,216 @@ A host is connected to one or more networks that are available to the virtual ma
 
 .. _vgg_vn_model:
 
-Virtual Network Model
-=====================
+Virtual Network Definition
+==========================
 
 A virtual network (VNET) definition consists of three different parts:
 
--  The **underlying networking infrastructure** that will support the VNET. These section will typically include the following values:
+- The **underlying physical network infrastructure** that will support it, including the network driver.
 
-+-------------+-----------------------------------------------------+
-| Attribute   |                     Description                     |
-+=============+=====================================================+
-| ``BRIDGE``  | Device to bind the virtual and physical network,    |
-|             | depending on the network driver it may refer to     |
-|             | different technologies or require host setups.      |
-+-------------+-----------------------------------------------------+
-| ``VLAN``    | Set to ``YES`` to activate VLAN isolation when      |
-|             | supported by the network drivers                    |
-+-------------+-----------------------------------------------------+
-| ``VLAN_ID`` | Identifier for the VLAN                             |
-+-------------+-----------------------------------------------------+
+- The **logical address space** available. Addresses associated to a Virtual Network can be IPv4, IPv6, dual stack IPv4-IPv6 or Ethernet; and can define a non-continuous addresses range structured in one or more Address Ranges (AR), see below.
 
-.. warning:: The attributes above depend on the networking technology (drivers) used by the hosts when they are created. Please refer to the specific :ref:`networking guide <nm>` for a complete description of each value.
+- The **guest configuration attributes**. Apart from the addresses and configuration attributes used to setup the guest network additional information can be injected into the VM at boot time. These contextualization attributes may include for example network masks, DNS servers or gateways.
 
-- The **logical address space** available. Addresses associated to a VNET can be IPv4, IPv6, dual stack IPv4-IPv6 or Ethernet; and can define a non-continuous addresses range  structured in one or more Address Ranges (AR), see below
+Physical Network Attributes
+---------------------------
 
-- **Context attributes**. Apart from the addresses and configuration attributes used to setup the guest network additional information can be injected into the VM at boot time. These contextualization attributes may include for example network masks, DNS servers or gateways. The following values are recognize by the contextualization packages:
+To define a Virtual Network include:
 
-  - ``NETWORK_ADDRESS``
-  - ``NETWORK_MASK``
-  - ``GATEWAY``
-  - ``GATEWAY6``
-  - ``DNS``
-  - ``GUEST_MTU``
+* ``NAME`` to refer this Virtual Network.
 
-The value of ``GUEST_MTU`` will be used to configure the VM's interface MTU.
+* ``VN_MAD`` the driver to implement this Virtual Network. Depending on the driver you may need to set additional attributes, check the following to get more details:
+  * Define a bridged network
+  * Define a 802.1Q network
+  * Define a VXLAN network
+  * Define a OpenvSwitch network
 
-These attributes can be later used in the :ref:`Virtual Machine Contextualization <template_context>`. For example:
+For example, to define a 802.1Q Virtual Network you would something like:
+
+.. code::
+
+    NAME    = "Private Network"
+    VN_MAD  = "802.1Q"
+    PHYDEV  = "eth0"
+
+Address Space
+-------------
+
+The addresses available in a Virtual Network are defined by one or more Address Ranges (AR). Each address range defines a continuous address range and optionally, configuration attributes (context or configuration) that will override the first level attributes defined in the Virtual Network. There are three types of ARs:
+
+- **IPv4**, to define a contiguous IPv4 address set (classless), :ref:`see more details here <vnet_template_ar4>`
+- **IPv6**, to define a global and ULA IPv6 networks, see full details here, :ref:`see more details here <vnet_template_ar6>`
+- **Dual stack**, defines IPv4 and IPv6 addresses each NIC in the network will get both a IPv4 and IPv6 address, see more here, :ref:`see more details here <vnet_template_ar46>`
+- **Ethernet**,  just MAC addresses are generated for the VMs. You should use this AR when an external service is providing the IP addresses, such a DHCP server, :ref:`see more details here <vnet_template_eth>.`
+
+For example, to define the IPv4 address range 10.0.0.150 - 10.0.0.200
+
+.. code::
+
+    AR=[
+        TYPE = "IP4",
+        IP   = "10.0.0.150",
+        SIZE = "51",
+    ]
+
+Guest Configuration Attributes (Context)
+----------------------------------------
+
+To setup the guest network, the Virtual Network may include additional information to be injected into the VM at boot time. These contextualization attributes may include for example network masks, DNS servers or gateways. For example, to define a gateway and DNS server for the virtual machines in the Virtual Network, simply add:
+
+.. code::
+
+    DNS = "10.0.0.23"
+    GATEWAY = "10.0.0.1"
+
+These attributes are automatically added to the VM and processed by the context packages. Virtual Machines just need to add:
 
 .. code::
 
     CONTEXT = [
-      DNS = "$NETWORK[DNS, NETWORK=Private]"
+      NETWORK="yes"
     ]
 
-.. note:: You can add any arbitrary data to the VNET to later use it within the VMs or just to tag the VNET with any attribute.
+:ref:`See here for a full list of supported attributes <vnet_template_context>`
 
-.. _vgg_vn_ar:
+Virtual Network Definition Example
+----------------------------------
 
-The Address Range (AR)
-----------------------
-
-The addresses available in a VNET are defined by one or more Address Ranges (AR). Each address range defines a continuous address range and optionally, configuration attributes (context or configuration) that will override those provided by the VNET.
-
-.. _vgg_ipv6_networks:
-
-IPv4 Address Range
-^^^^^^^^^^^^^^^^^^
-
-Defines a continuous IPv4 range:
-
-+-------------+-----------------------------------------------------+
-| Attribute   |                     Description                     |
-+=============+=====================================================+
-| ``TYPE``    | ``IP4``                                             |
-+-------------+-----------------------------------------------------+
-| ``IP``      | First IP in the range in dot notation.              |
-+-------------+-----------------------------------------------------+
-| ``MAC``     | **Optional**. First MAC, if not provided it will be |
-|             | generated using the IP and the MAC_PREFIX in        |
-|             | ``oned.conf``.                                      |
-+-------------+-----------------------------------------------------+
-| ``SIZE``    | Number of addresses in this range.                  |
-+-------------+-----------------------------------------------------+
+Getting all the three pieces together we get:
 
 .. code::
 
-    #Example of an IPv4 AR, template form
+    NAME    = "Private"
+    VN_MAD  = "802.1Q"
+    PHYDEV  = "eth0"
+
     AR=[
         TYPE = "IP4",
         IP   = "10.0.0.150",
-        MAC  = "02:00:0a:00:00:96",
-        SIZE = "51",
+        SIZE = "51"
     ]
 
-IPv6 Address Range
-^^^^^^^^^^^^^^^^^^
+    DNS     = "10.0.0.23"
+    GATEWAY = "10.0.0.1"
 
-IPv6 networks assumes the auto-configuration process defined in the IPv6 standard, so the host id part is derived by the MAC address (or randomly). The global and ULA prefix needs to be provided.
+    DESCRIPTION = "A private network for VM inter-communication"
 
-+-------------------+-----------------------------------------------------+
-| Attribute         |                     Description                     |
-+===================+=====================================================+
-| ``TYPE``          | ``IP6``                                             |
-+-------------------+-----------------------------------------------------+
-| ``MAC``           | **Optional**. First MAC, if not provided it will be |
-|                   | generated randomly.                                 |
-+-------------------+-----------------------------------------------------+
-| ``GLOBAL_PREFIX`` | **Optional**. A /64 globally routable prefix        |
-+-------------------+-----------------------------------------------------+
-| ``ULA_PREFIX``    | **Optional**. A /64 unique local address (ULA)      |
-|                   | prefix corresponding to the ``fd00::/8`` block      |
-+-------------------+-----------------------------------------------------+
-| ``SIZE``          | Number of addresses in this range.                  |
-+-------------------+-----------------------------------------------------+
+This file will create a IPv4 network using VLAN tagging, the VLAN ID in this case is assigned by OpenNebula. The network will lease IPs in the range 10.0.0.150 - 10.0.0.200. Virtual Machines in this network will get a lease in the range and configure DNS servers to 10.0.0.23 and 10.0.0.1 as default gateway.
 
-.. code::
-
-    #Example of an IPv6 AR, template form
-    AR=[
-        TYPE= "IP6",
-        MAC = "02:00:40:55:83:ff",
-        GLOBAL_PREFIX = "2001:a::",
-        ULA_PREFIX    = "fd01:a:b::",
-        SIZE="1000"
-    ]
-
-.. note:: You can define either ``GLOBAL_PREFIX`` or ``ULA_PREFIX``, or both as needed to generate global, or ULA, or both IP6 addresses. Also note that the prefix are 64 bit long, including any subnet ID.
-
-Dual IPv4-IPv6 Address Range
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The dual stack IP4-IP6 is just a combination of the two previous ARs, thus generating both a IPv4 and IPv6 addresses.
-
-+-------------------+-----------------------------------------------------+
-| Attribute         |                     Description                     |
-+===================+=====================================================+
-| ``TYPE``          | ``IP4_6``                                           |
-+-------------------+-----------------------------------------------------+
-| ``IP``            | First IP in the range in dot notation.              |
-+-------------------+-----------------------------------------------------+
-| ``MAC``           | **Optional**. First MAC, if not provided it will be |
-|                   | generated using the IP and the MAC_PREFIX in        |
-|                   | ``oned.conf``.                                      |
-+-------------------+-----------------------------------------------------+
-| ``GLOBAL_PREFIX`` | **Optional**. A /64 globally routable prefix        |
-+-------------------+-----------------------------------------------------+
-| ``ULA_PREFIX``    | **Optional**. A /64 unique local address (ULA)      |
-|                   | prefix corresponding to the ``fd00::/8`` block      |
-+-------------------+-----------------------------------------------------+
-| ``SIZE``          | Number of addresses in this range.                  |
-+-------------------+-----------------------------------------------------+
-
-.. code::
-
-    # Example of a dual IP6 IP4 range, template form
-    AR=[
-        TYPE = "IP4_6",
-        IP   = "192.1.0.1",
-        GLOBAL_PREFIX = "2001:a::",
-        SIZE = "60"
-   ]
-
-Ethernet Address Range
-^^^^^^^^^^^^^^^^^^^^^^
-
-This is the simplest AR, just MAC addresses are generated for the VM guests. You
-should use this AR when an external service is providing the IP addresses, such a DHCP server.
-
-+-------------------+-----------------------------------------------------+
-| Attribute         |                     Description                     |
-+===================+=====================================================+
-| ``TYPE``          | ``ETHER``                                           |
-+-------------------+-----------------------------------------------------+
-| ``MAC``           | **Optional**. First MAC, if not provided it will be |
-|                   | generated randomly.                                 |
-+-------------------+-----------------------------------------------------+
-| ``SIZE``          | Number of addresses in this range.                  |
-+-------------------+-----------------------------------------------------+
-
-.. code::
-
-    # Example of Ethernet range, template form
-    AR=[
-        TYPE = "ETHER",
-        SIZE = "25"
-    ]
-
-This guide uses the CLI command ``onevnet``, but you can also manage your virtual networks using :ref:`Sunstone <sunstone>`. Select the Network tab, and there you will be able to create and manage your virtual networks in a user friendly way.
-
-|image0|
+:ref:`See here for more examples <vnet_template_example>`
 
 Adding and Deleting Virtual Networks
 ====================================
 
-A VNET is created through a template definition file containing the previous set of attributes: configuration, context and address ranges. The following example shows how to define a pure IPv4.
+.. note:: This guide uses the CLI command ``onevnet``, but you can also manage your virtual networks using :ref:`Sunstone <sunstone>`. Select the Network tab, and there you will be able to create and manage your virtual networks in a user friendly way.
 
-Create a file with the network configuration: priv.net
+|image0|
 
-.. code::
 
-    # Confgiuration attributes (dummy driver)
-    NAME        = "Private Network"
-    DESCRIPTION = "A private network for VM inter-communication"
-
-    BRIDGE = "bond-br0"
-
-    # Context attributes
-    NETWORK_ADDRESS = "10.0.0.0"
-    NETWORK_MASK    = "255.255.255.0"
-    DNS             = "10.0.0.1"
-    GATEWAY         = "10.0.0.1"
-
-    #Address Ranges, only these addresses will be assigned to the VMs
-    AR=[
-        TYPE = "IP4",
-        IP   = "10.0.0.10",
-        SIZE = "100",
-    ]
-
-    AR=[
-        TYPE = "IP4",
-        IP   = "10.0.0.200",
-        SIZE = "10",
-    ]
-
-Once the file has been created, we can create the VNET executing:
+To create a new network put its configuration in a file, for example using the contents above, and then execute:
 
 .. code::
 
     $ onevnet create priv.net
-    ID: 0
+    ID: 4
 
-You can remove a VNET when no longer needed using its ID or NAME:
+You can delete a virtual network using its ID or name:
 
 .. code::
 
     $ onevnet delete 0
-    $ onevnet delete "Private Network"
+    $ onevnet delete "Private"
 
-Also, ``onevnet`` can be used to query OpenNebula about available VNets:
+To list the virtual networks in the system use ``onevnet list``:
 
 .. code::
 
    $ onevnet list
    ID USER         GROUP        NAME            CLUSTER    BRIDGE   LEASES
-    0 admin        oneadmin     Private         -          vbr1          0
-    1 admin        oneadmin     Public          -          vbr0          0
+    0 admin        oneadmin     Private         0,100      onebr.10      0
+    1 admin        oneadmin     Public          0,101      vbr0          0
 
-In the output above, ``USER`` is the owner of the network and ``LEASES`` the number of addresses assigned to a VM or reserved from each VNET.
+In the output above, ``USER`` is the owner of the network and ``LEASES`` the number of addresses assigned to a virtual machine or reserved.
 
-You can also check the IPs leased in a network with the ``onevnet show`` command
+You can check the details of a Virtual Network with the ``onevnet show`` command:
 
 .. code::
 
   $ onevnet show 1
-  VIRTUAL NETWORK 1 INFORMATION
-  ID             : 1
-  NAME           : Public
-  USER           : admin
-  GROUP          : oneadmin
-  CLUSTER        : -
-  BRIDGE         : vbr0
-  VLAN           : No
-  USED LEASES    : 1
+    VIRTUAL NETWORK 4 INFORMATION
+    ID             : 4
+    NAME           : Private
+    USER           : ruben
+    GROUP          : oneadmin
+    CLUSTERS       : 0
+    BRIDGE         : onebr4
+    VN_MAD         : 802.1Q
+    PHYSICAL DEVICE: eth0
+    VLAN ID        : 6
+    USED LEASES    : 0
 
-  PERMISSIONS
-  OWNER          : um-
-  GROUP          : u--
-  OTHER          : u--
+    PERMISSIONS
+    OWNER          : um-
+    GROUP          : ---
+    OTHER          : ---
 
-  VIRTUAL NETWORK TEMPLATE
-  BRIDGE="vbr0"
-  DESCRIPTION="Network with Internet connection through NAT"
-  NETWORK_ADDRESS="10.0.0.0"
-  NETWORK_MASK="255.255.255.0"
-  PHYDEV=""
-  VLAN="NO"
-  VLAN_ID=""
+    VIRTUAL NETWORK TEMPLATE
+    BRIDGE="onebr4"
+    DESCRIPTION="A private network for VM inter-communication"
+    DNS="10.0.0.23"
+    GATEWAY="10.0.0.1"
+    PHYDEV="eth0"
+    SECURITY_GROUPS="0"
+    VN_MAD="802.1Q"
 
-  ADDRESS RANGE POOL
-   AR TYPE    SIZE LEASES               MAC              IP        GLOBAL_PREFIX
-    0 IP4       51      1 02:00:0a:00:00:96      10.0.0.150
+    ADDRESS RANGE POOL
+    AR 0
+    SIZE           : 51
+    LEASES         : 0
 
-  LEASES
-   AR  OWNER                     MAC              IP                   IP6_GLOBAL
-    0   VM : 43    02:00:0a:00:00:96      10.0.0.150
+    RANGE                                   FIRST                               LAST
+    MAC                         02:00:0a:00:00:96                  02:00:0a:00:00:c8
+    IP                                 10.0.0.150                         10.0.0.200
 
+
+    LEASES
+    AR  OWNER                         MAC              IP                 IP6_GLOBAL
+
+    VIRTUAL ROUTERS
 
 Check the ``onevnet`` command help or the :ref:`reference guide <cli>` for more options to list the virtual networks.
 
-VNET Definition Tips
+Virtual Network Tips
 ---------------------
-- You may have some used IPs in a VNET so you do not want them to be assigned. You can add as many ARs as you need to implement these address gaps. Alternatively you can put address on hold to prevent them to be assigned.
+* You may have some used IPs in a VNET so you do not want them to be assigned. You can add as many ARs as you need to implement these address gaps. Alternatively you can put address on hold to prevent them to be assigned.
 
-- ARs can be of SIZE = 1 to define single addresses lease scheme. This set up is equivalent to the previous FIXED VNET type.
+* ARs can be of SIZE = 1 to define single addresses lease scheme.
 
-- ARs does not need to be of the same type or belong to the same IP network. To accommodate this use case you can overwrite context attributes in the AR, this is you can include attributes like NETWORK_MASK or DNS in the AR definition.
+* ARs does not need to be of the same type or belong to the same IP network. To accommodate this use case you can overwrite context attributes in the AR, for example adding attributes like NETWORK_MASK or DNS in the AR definition.
 
-- *Super-netting*, you can even combine ARs overwriting the VNET ``BRIDGE`` or with a different ``VLAN_ID``. This way a VNET can be a logical network, e.g. DMZ, that can be implemented through multiple VLANs or host interfaces.
+* *Super-netting*, you can even combine ARs overwriting the physical attributes, e.g. ``BRIDGE`` or ``VLAN_ID``. This way a Virtual Network can be a logical super-net, e.g. DMZ, that can be implemented through multiple VLANs each using a different hypervisor bridge.
 
-- There are no need to plan all your IP assignment plan beforehand, ARs can be added and modified after the VNET is created, see below.
+* There are no need to plan all your IP assignment plan beforehand, ARs can be added and modified after the Virtual Network is created, see below.
 
 Updating a Virtual Network
 ==========================
 
-The following attributes can be changed after creating the network, using ``onevnet update`` command:
-- Any attribute corresponding to the context or VNET description.
-- Network configuration attributes, in particular: ``PHYDEV``, ``VLAN_ID``, ``VLAN`` and ``BRIDGE``
+After creating a Virtual Network, you can use the ``onevnet update`` command to update the following attributes:
+* Any attribute corresponding to the context or description.
+* Physical network configuration attributes, e.g. ``PHYDEV`` or ``VLAN_ID``.
+* Any custom tag.
 
-Also the name of the VNET can be changed with ``onevnet rename`` command.
+Also the name of the Virtual Network can be changed with ``onevnet rename`` command.
 
 Managing Address Ranges
 =======================
 
-Addresses of a VNET are structured in Address Ranges (AR), VNETs are quite flexible in terms of addition and removal of addresses. In this way, you can easily add new addresses to an existing VNET if the current addresses are exhausted.
+Addresses are structured in Address Ranges (AR). Address Ranges can be dynamically added or removed from a Virtual Networks. In this way, you can easily add new addresses to an existing Virtual Network if the current addresses are exhausted.
 
 Adding and Removing Address Ranges
 ----------------------------------
 
-A new AR can be added to the VNET using exactly the same definition parameters as described above. For example the following command will add a new AR of 20 IP addresses to the VNET:
+A new AR can be added using exactly the same definition parameters as described above. For example the following command will add a new AR of 20 IP addresses:
 
 .. code::
 
@@ -331,10 +232,6 @@ In the same way you can remove an AR:
 
     onevnet rmar Private 2
 
-Using Sunstone you can manage ARs (add, remove or update) in the Addresses tab of the VNET information.
-
-|image1|
-
 Updating Address Ranges
 -----------------------
 
@@ -342,18 +239,17 @@ You can update the following attributes of an AR:
 
 - ``SIZE``, assigned addresses cannot fall outside of the range.
 - IPv6 prefix: ``GLOBAL_PREFIX`` and ``ULA_PREFIX``
-- Any custom attribute that may override the VNET defaults.
+- Any custom attribute that may override the Virtual Network defaults.
 
-The following command shows how to update an AR using the CLI
+The following command shows how to update an AR using the CLI, an interactive editor session will be stated:
 
 .. code::
 
-    #Update the AR 0 of VNET "Private"
     onevnet updatear Private 0
 
 Hold and Release Leases
 -----------------------
-Addresses can be temporarily be marked ``on hold`` state. They are part of the network, but they will not be assigned to any VM.
+Addresses can be temporarily be marked as ``hold``. They are still part of the network, but they will not be assigned to any virtual machine.
 
 To do so, use the 'onevnet hold' and 'onevnet release' commands. By default, the address will be put on hold in all ARs containing it; if you need to hold the IP of a specific AR you can specified it with the '-a <AR_ID>' option.
 
@@ -365,99 +261,69 @@ To do so, use the 'onevnet hold' and 'onevnet release' commands. By default, the
     #Hold IP 10.0.0.123 in AR 0
     $ onevnet hold 0 10.0.0.123 -a 0
 
-You see the list of leases on hold with the 'onevnet show' command, they'll show up as used by VM -1, 'VM: -1'
+You see the list of leases on hold with the 'onevnet show' command, they'll show up as used by virtual machine -1, 'V: -1'
 
-Using a VNET
-============
+Using a Virtual Network
+=======================
 
-Getting an address for a VM
----------------------------
-An address lease from a VNET can be obtained by simply specifying the virtual network name in the ``NIC`` attribute.
+Once the Virtual Networks are setup, they can be made it available to users based on access rights and ownership. The preferred way to do so is through :ref:`Virtual Data Center abstraction <manage_vdcs>`. By default, all Virtual Networks are automatically available to the group ``users``.
 
-For example, to define VM with a network interfaces connected to the ``Private Network`` just include in the template:
+Attach a Virtual Machine to a Virtual Network
+---------------------------------------------
+
+To attach a Virtual Machine to a Virtual Network simply specify its name or ID in the ``NIC`` attribute.  For example, to define VM with a network interface connected to the ``Private`` Virtual Network just include in the template:
 
 .. code::
 
-    # Reference by ID
+    NIC = [ NETWORK = "Private" ]
+
+Equivalently you can use the network ID as:
+
+.. code::
+
     NIC = [ NETWORK_ID = 0 ]
-    # Reference by NAME
-    NIC = [ NETWORK    = "Private Network" ]
 
-Networks can be referred in a NIC in two different ways, see the :ref:`Simplified Virtual Machine Definition File documentation <vm_guide_defining_a_vm_in_3_steps>` for more information:
-
--  ``NETWORK_ID``, using its ID as returned by the create operation
-
--  ``NETWORK``, using its name. In this case the name refers to one of the virtual networks owned by the user (names cannot be repeated for the same user). If you want to refer to a VNET of other user you can specify that with ``NETWORK_UID`` (by the uid of the user) or ``NETWORK_UNAME`` (by the name of the user).
-
-You can also request a specific address just by adding the ``IP`` or ``MAC``attributes to ``NIC``. If no address is requested the first free address (in any AR) will be used.
+The Virtual Machine will also get a free address from any of the address ranges of the network.  You can also request a specific address just by adding the ``IP`` or ``MAC`` to ``NIC``. For example to put a Virtual Machine in the network ``Private`` and request 10.0.0.153 use:
 
 .. code::
 
-    NIC = [ NETWORK_ID = 1, IP = 192.168.0.3 ]
-
-When the VM is submitted, OpenNebula will look for available IPs, leases on hold, reserved or in use by other VMs will be skipped. If successful, the ``onevm show`` command should return information about the machine, including network information.
-
-.. code::
-
-    $ onevm show 0
-    VIRTUAL MACHINE 0 INFORMATION
-    VMID=0
-
-    ...
-
-    VM NICS
-      ID NETWORK              VLAN BRIDGE       IP              MAC
-       0 Public                 no vbr0         10.0.0.150      02:00:0a:00:00:96
+    NIC = [ NETWORK = "Network", IP = 10.0.0.153 ]
 
 .. warning:: Note that if OpenNebula is not able to obtain a lease from a network the submission will fail.
 
-Using the address within the VM
--------------------------------
+.. warning:: Users can only attach VMs or make reservations from Virtual Networks with **USE** rights on it. See the :ref:`Managing Permissions documentation <chmod>` for more information.
 
-Hypervisors can set the MAC address of a virtual NIC, but VMs need to obtain an IP address for it. In order to configure the IP inside the guest, you need to use one of the two available methods:
+Configuring the Virtual Machine Network
+---------------------------------------
 
--  Contextualize the VM. Please visit the :ref:`contextualization guide <cong>` to learn how to configure your Virtual Machines to automatically obtain an IP derived from the MAC.
+Hypervisors will set the MAC address for the NIC of the Virtual Machines, but not the IP address. The IP configuration inside the guest is performed by the contextualization process, check the :ref:`contextualization guide <cong>` to learn how to prepare your Virtual Machines to automatically configure the network
 
--  Use an custom external service (e.g. your own DHCP server)
-
-Apply Firewall Rules to VMs
----------------------------
-
-You can apply firewall rules on your VMs, to filter TCP and UDP ports, and to define a policy for ICMP connections.
-
-Read more about this feature :ref:`here <firewall>`.
-
-Setting up access to VNETs
---------------------------
-
-Once a VNET is setup by a Cloud admin, she may need to make it available to other users in the cloud. The preferred way to do so is asigning it to the needed :ref:`Virtual Data Centers <manage_vdcs>`.
-
-If the default VDC is used, new Virtual Networks are automatically available to all users.
-
-.. note:: Users can only attach VMs or make reservations from VNETs with **USE** rights on the VNET. See the :ref:`Managing Permissions documentation <chmod>` for more information.
-
-.. note:: The ACL rules do not apply to VNET reserveations in the same way as they do to normal VNETs and other objects. Read more in the :ref:`ACL documentation guide <manage_acl_vnet_reservations>`.
+.. note:: Altenatively a custom external service can configure the Virtual Machine network (e.g. your own DHCP server in a separate virtual machine)
 
 .. _vgg_vn_reservations:
 
-VNET Self-Provisioning: Reservations
-====================================
+Virtual Network Self-Provisioning: Reservations
+===============================================
 
-VNETs implement a simple self-provisioning scheme, that allows users to create their own networks consisting of portions of an existing VNET. Each portion is called a Reservation. To implement this you need to:
+Virtual Networks implement a simple self-provisioning scheme, that allows users to create their own networks consisting of portions of an existing Virtual Network. Each portion is called a Reservation. To implement this you need to:
 
-- **Define a VNET**, with the desired ARs and configuration attributes. These attributes will be inherited by any Reservation made on the VNET. Final users does not need to deal with low-level networking details.
-- **Setting up access**. In order to make a Reservation, users needs USE rights on the VNET, just as if they would use it to directly to provision IPs from it.
-- **Make Reservations**. Users can easily request specific addresses or just a number of addresses from a VNET. Reservations are placed in their own VNET for the user.
-- **Use Reservations**. Reservations offer the same interface as a regular VNET so you can just point your VM templates to the new VNET. The number of addresses and usage stats are shown also in the same way.
+- **Define a VNET**, with the desired ARs and configuration attributes. These attributes will be inherited by any Reservation, so the final users do not need to deal with low-level networking details.
+
+- **Setting up access**. In order to make a Reservation, users needs USE rights on the Virtual Network, just as if they would use it to directly to provision IPs from it.
+
+- **Make Reservations**. Users can easily request specific addresses or just a number of addresses from a network. Reservations are placed in a new Virtual Network for the user.
+
+- **Use Reservations**. Reservations are Virtual Networks and offer the same interface, so simply point any Virtual Machine to them. The number of addresses and usage stats are shown also in the same way.
 
 Make and delete Reservations
 ----------------------------
 
-In its simplest form you can make a reservations just by defining the source VNET, the number of addresses and the name of the reservation. For example to reserve 10 addresses from VNET Private and place it on MyVNET just:
+To make a reservations just choose the source Virtual Network, the number of addresses and the name of the reservation. For example to reserve 10 addresses from Private and place it on MyVNET just:
 
 .. code::
 
      $ onevnet reserve Private -n MyVNET -s 10
+     Reservation VNET ID: 7
 
 As a result a new VNET has been created:
 
@@ -466,16 +332,16 @@ As a result a new VNET has been created:
     $ onevnet list
     ID USER         GROUP        NAME            CLUSTER    BRIDGE   LEASES
      0 admin        oneadmin     Private         -          vbr1         10
-     1 helen        users        MyVNET          -          vbr1          0
+     7 helen        users        MyVNET          -          vbr1          0
 
-Note that VNET Private shows 10 address leases in use, and leased to VNET 1. Also note that both VNETs share the same configuration, e.g. BRIDGE vbr1. You can verify this details with ``onevnet show`` command.
+Note that Private shows 10 address leases in use, those reserved by Virtual Network 7. Also note that both networks share the same configuration, e.g. ``BRIDGE``.
 
 Reservations can include advanced options such as:
 
-- The AR where you want to make the reservation from in the source VNET
+- The AR where you want to make the reservation from in the source Virtual Network
 - The starting IP or MAC to make the reservation from
 
-A reservation can be remove just as a regular VNET:
+A reservation can be remove just as a regular Virtual Network:
 
 .. code::
 
@@ -484,12 +350,14 @@ A reservation can be remove just as a regular VNET:
 Using Reservations
 ------------------
 
-To use a reservation you can use it as any other VNET; as they expose the same interface, i.e. you can refer to VNET variables in context, add NICs...
+To use a reservation you can use it as any other Virtual Network; as they expose the same interface. For example, to attach a virtual machine to the previous Reservation:
 
 .. code::
 
-   #Use a reservation in a VM
    NIC = [ NETWORK = "MyVNET"]
+
+Updating Reservations
+---------------------
 
 A Reservation can be also extended with new addresses. This is, you can add a new reservation to an existing one. This way a user can refer to its own network with a controlled and deterministic address space.
 
