@@ -6,7 +6,7 @@ Sunstone Views
 
 Using the OpenNebula Sunstone Views you will be able to provide a simplified UI aimed at end-users of an OpenNebula cloud. The OpenNebula Sunstone Views are fully customizable, so you can easily enable or disable specific information tabs or action buttons. You can define multiple  views for different user groups. Each view defines a set of UI components so each user just accesses and views the relevant parts of the cloud for her role.
 
-The OpenNebula Sunstone Views can be grouped in two different layouts. On one hand, the classic Sunstone layout exposes a complete view of the cloud, allowing administrators and advanced users to have full control of any physical or virtual resource of the cloud. On the other hand, the cloud layout exposes a simplified version of the cloud where end-users will be able to manage any virtual resource of the cloud, without taking care of the physical resources management.
+The OpenNebula Sunstone Views can be grouped into two different layouts. On one hand, the classic Sunstone layout exposes a complete view of the cloud, allowing administrators and advanced users to have full control of any physical or virtual resource of the cloud. On the other hand, the cloud layout exposes a simplified version of the cloud where end-users will be able to manage any virtual resource of the cloud, without taking care of the physical resources management.
 
 Default Views
 ================================================================================
@@ -112,7 +112,7 @@ The name of the view will be the filename without the yaml extension.
 Admin View Customization
 --------------------------------------------------------------------------------
 
-The content of a view file specifies the tabs available in the view (note: tab is on of the main sections of the UI, those in the left-side menu). Each tab can be enabled or disabled by updating the ``enabled_tabs:`` attribute. For example to disable the Clusters tab, comment the ``clusters-tab`` entry:
+The content of a view file specifies the tabs available in the view (note: tab is one of the main sections of the UI, those in the left-side menu). Each tab can be enabled or disabled by updating the ``enabled_tabs:`` attribute. For example to disable the Clusters tab, comment the ``clusters-tab`` entry:
 
 .. code-block:: yaml
 

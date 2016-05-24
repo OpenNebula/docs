@@ -11,7 +11,7 @@ You must have an OpenNebula site properly configured and running to use OpenNebu
 
 OpenNebula Sunstone was installed during the OpenNebula installation. If you followed the :ref:`installation guide <ignc>` then you already have all ruby gem requirements. Otherwise, run the ``install_gem`` script as root:
 
-.. code-block:: console
+.. prompt:: bash # auto
 
     # /usr/share/one/install_gems sunstone
 
@@ -29,11 +29,9 @@ Requirements:
 Considerations & Limitations
 ================================================================================
 
-OpenNebula Sunstone supports Internet Explorer (>= 9), Firefox (> 3.5) and Chrome browsers. Other browsers are not supported and may not work well.
+OpenNebula Sunstone supports Chrome, Firefox and Internet Explorer 11. Other browsers are not supported and may not work well.
 
-.. warning:: Internet Explorer is **not** supported with the Compatibility Mode enabled, since it emulates IE7 which is not supported.
-
-The upload option for files and images is limited to Firefox 4+ and Chrome 11+.
+.. note:: Internet Explorer is **not** supported with the Compatibility Mode enabled, since it emulates IE7 which is not supported.
 
 Configuration
 ================================================================================
@@ -108,17 +106,11 @@ Starting Sunstone
 
 To start Sunstone just issue the following command as oneadmin
 
-.. code-block:: console
+.. prompt:: bash # auto
 
-    $ sunstone-server start
+    # service opennebula-sunstone start
 
 You can find the Sunstone server log file in ``/var/log/one/sunstone.log``. Errors are logged in ``/var/log/one/sunstone.error``.
-
-To stop the Sunstone service:
-
-.. code-block:: console
-
-    $ sunstone-server stop
 
 .. _commercial_support_sunstone:
 
@@ -166,7 +158,7 @@ There can be multiple reasons that may prevent noVNC from correctly connecting t
 -  Your browser must support websockets, and have them enabled. This is the default in current Chrome and Firefox, but former versions of Firefox (i.e. 3.5) required manual activation. Otherwise Flash emulation will be used.
 -  Make sure there are not firewalls blocking the connections. The proxy will redirect the websocket data from the VNC proxy port to the ``VNC`` port stated in the template of the VM. The value of the proxy port is defined in ``sunstone-server.conf``.
 -  Make sure that you can connect directly from Sunstone frontend to the VM using a normal VNC client tools such as ``vncviewer``.
--  When using secure websockets, make sure that your certificate and key (if not included in certificate), are correctly set in Sunstone configuration files. Note that your certificate must be valid and trusted for the wss connection to work. If you are working with a certicificate that it is not accepted by the browser, you can manually add it to the browser trust-list visiting ``https://sunstone.server.address:vnc_proxy_port``. The browser will warn that the certificate is not secure and prompt you to manually trust it.
+-  When using secure websockets, make sure that your certificate and key (if not included in certificate) are correctly set in Sunstone configuration files. Note that your certificate must be valid and trusted for the wss connection to work. If you are working with a certicificate that it is not accepted by the browser, you can manually add it to the browser trust-list visiting ``https://sunstone.server.address:vnc_proxy_port``. The browser will warn that the certificate is not secure and prompt you to manually trust it.
 -  If your connection is very, very, very slow, there might be a token expiration issue. Please try the manual proxy launch as described below to check it.
 -  Doesn't work yet? Try launching Sunstone, killing the websockify proxy and relaunching the proxy manually in a console window with the command that is logged at the beginning of ``/var/log/one/novnc.log``. You must generate a lock file containing the PID of the python process in ``/var/lock/one/.novnc.lock`` Leave it running and click on the VNC icon on Sunstone for the same VM again. You should see some output from the proxy in the console and hopefully the cause of why the connection does not work.
 -  Please contact the support forum only when you have gone through the suggestion above and provide full sunstone logs, shown errors and any relevant information of your infrastructure (if there are Firewalls etc)
@@ -184,7 +176,7 @@ Sunstone supports multiple languages. If you want to contribute a new language, 
 
 Translating through Transifex is easy and quick. All translations should be submitted via Transifex.
 
-Users can update or contribute translations anytime. Prior to every release, normally after the beta release, a call for translations will be made in the user list. Then the source strings will be updated in Transifex so all the translations can be updated to the latest OpenNebula version. Translation with an acceptable level of completeness will be added to the final OpenNebula release.
+Users can update or contribute translations anytime. Prior to every release, normally after the beta release, a call for translations will be made in the forum. Then the source strings will be updated in Transifex so all the translations can be updated to the latest OpenNebula version. Translation with an acceptable level of completeness will be added to the final OpenNebula release.
 
 Customize the VM Logos
 --------------------------------------------------------------------------------

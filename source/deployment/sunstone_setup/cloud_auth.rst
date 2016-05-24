@@ -34,7 +34,7 @@ To use it, you need a user with the driver **server\_cipher**. Enable it in the 
 -  :ref:`Sunstone <sunstone>`: ``/etc/one/sunstone-server.conf``
 -  :ref:`EC2 <ec2qcg>`: ``/etc/one/econe.conf``
 
-.. code::
+.. code-block:: yaml
 
     :core_auth: cipher
 
@@ -43,7 +43,7 @@ Configure
 
 You must update the configuration files in ``/var/lib/one/.one`` if you change the serveradmin's password, or create a different user with the **server\_cipher** driver.
 
-.. code::
+.. prompt:: bash $ auto
 
     $ ls -1 /var/lib/one/.one
     ec2_auth
@@ -52,11 +52,11 @@ You must update the configuration files in ``/var/lib/one/.one`` if you change t
     $ cat /var/lib/one/.one/sunstone_auth
     serveradmin:1612b78a4843647a4b541346f678f9e1b43bbcf9
 
-.. warning:: ``serveradmin`` password is hashed in the database. You can use the ``–sha1`` flag when issuing ``oneuser passwd`` command for this user.
+.. warning:: ``serveradmin`` password is hashed in the database. You can use the ``--sha1`` flag when issuing ``oneuser passwd`` command for this user.
 
 .. warning:: When Sunstone is running in a different machine than oned you should use an SSL connection. This can be archived with an SSL proxy like stunnel or apache/nginx acting as proxy. After securing OpenNebula XMLRPC connection configure Sunstone to use https with the proxy port:
 
-.. code::
+.. code-block:: yaml
 
     :one_xmlrpc: https://frontend:2634/RPC2
 
@@ -66,16 +66,16 @@ x509 Encryption
 Enable
 ------
 
-To enable it, change the authentication driver of the **serveradmin** user, or create a new user with the driver **server\_x509**:
+To enable it, change the authentication driver of the **serveradmin** user, or create a new user with the driver **server_x509**:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ oneuser chauth serveradmin server_x509
     $ oneuser passwd serveradmin --x509 --cert usercert.pem
 
 The serveradmin account should look like:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ oneuser list
 
@@ -85,7 +85,7 @@ The serveradmin account should look like:
 
 You need to edit ``/etc/one/auth/server_x509_auth.conf`` and uncomment all the fields. The defaults should work:
 
-.. code::
+.. code-block:: yaml
 
     # User to be used for x509 server authentication
     :srv_user: serveradmin
@@ -102,7 +102,7 @@ Then edit the relevant configuration file in ``/etc/one``:
 -  :ref:`Sunstone <sunstone>`: ``/etc/one/sunstone-server.conf``
 -  :ref:`EC2 <ec2qcg>`: ``/etc/one/econe.conf``
 
-.. code::
+.. code-block:: yaml
 
     :core_auth: x509
 
@@ -111,7 +111,7 @@ Configure
 
 To trust the serveradmin certificate, ``/etc/one/auth/cert.pem`` if you used the default path, the CA's certificate must be added to the ``ca_dir`` defined in ``/etc/one/auth/x509_auth.conf``. See the :ref:`x509 Authentication guide for more information <x509_auth>`.
 
-.. code::
+.. prompt:: bash $ auto
 
     $ openssl x509 -noout -hash -in cacert.pem
     78d0bbd8
@@ -124,7 +124,10 @@ Tuning & Extending
 Files
 -----
 
-You can find the drivers in these paths: ``/var/lib/one/remotes/auth/server_cipher/authenticate`` ``/var/lib/one/remotes/auth/server_server/authenticate``
+You can find the drivers in these paths:
+
+* ``/var/lib/one/remotes/auth/server_cipher/authenticate``
+* ``/var/lib/one/remotes/auth/server_server/authenticate``
 
 Authentication Session String
 -----------------------------
@@ -141,5 +144,5 @@ Whereas a user with a **server\_**\ \* driver must use this token format:
 
     username:target_username:secret
 
-The core daemon understands a request with this authentication session token as ``perform this operation on behalf of target\_user``. The ``secret`` part of the token is signed with one of the two mechanisms explained below.
+The core daemon understands a request with this authentication session token as "perform this operation on behalf of target_user". The ``secret`` part of the token is signed with one of the two mechanisms explained before.
 

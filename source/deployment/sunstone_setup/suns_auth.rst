@@ -4,16 +4,15 @@
 User Security and Authentication
 =================================
 
-By default Sunstone works with the core authentication method (user and password) although you can configure any authentication mechanism supported by OpenNebula. In this guide you will learn how to enable other authentication methods and how to secure the Sunstone connections through SSL.
+By default Sunstone works with the core authentication method (user and password) although you can configure any authentication mechanism supported by OpenNebula. In this section you will learn how to enable other authentication methods and how to secure the Sunstone connections through SSL.
 
 Authentication Methods
 ======================
 
 Authentication is two-folded:
 
--  **Web client and Sunstone server**. Authentication is based on the credentials store in the OpenNebula database for the user. Depending on the type of this credentials the authentication method can be: basic, x509 and opennebula (supporting LDAP or other custom methods).
-
--  **Sunstone server and OpenNebula core**. The requests of a user are forwarded to the core daemon, including the original user name. Each request is signed with the credentials of an special ``server`` user. This authentication mechanism is based either in symmetric key cryptography (default) or x509 certificates. Details on how to configure these methods can be found in the :ref:`Cloud Authentication guide <cloud_auth>`.
+* **Web client and Sunstone server**. Authentication is based on the credentials stored in the OpenNebula database for the user. Depending on the type of this credentials the authentication method can be: sunstone, x509 and opennebula (supporting LDAP or other custom methods).
+* **Sunstone server and OpenNebula core**. The requests of a user are forwarded to the core daemon, including the original user name. Each request is signed with the credentials of an special ``server`` user. This authentication mechanism is based either in symmetric key cryptography (default) or x509 certificates. Details on how to configure these methods can be found in the :ref:`Cloud Authentication section <cloud_auth>`.
 
 The following sections details the client-to-Sunstone server authentication methods.
 
@@ -24,7 +23,7 @@ In the basic mode, username and password are matched to those in OpenNebula's da
 
 To enable this login method, set the ``:auth:`` option of ``/etc/one/sunstone-server.conf`` to ``sunstone``:
 
-.. code::
+.. code-block:: yaml
 
         :auth: sunstone
 
@@ -33,7 +32,7 @@ OpenNebula Auth
 
 Using this method the credentials included in the header will be sent to the OpenNebula core and the authentication will be delegated to the OpenNebula auth system, using the specified driver for that user. Therefore any OpenNebula auth driver can be used through this method to authenticate the user (i.e: LDAP). The sunstone configuration is:
 
-.. code::
+.. code-block:: yaml
 
         :auth: opennebula
 
@@ -44,31 +43,31 @@ This method performs the login to OpenNebula based on a x509 certificate DN (Dis
 
 The user password has to be changed running one of the following commands:
 
-.. code::
+.. prompt:: bash $ auto
 
-    oneuser chauth new_user x509 "/C=ES/O=ONE/OU=DEV/CN=clouduser"
+    $ oneuser chauth new_user x509 "/C=ES/O=ONE/OU=DEV/CN=clouduser"
 
 or the same command using a certificate file:
 
-.. code::
+.. prompt:: bash $ auto
 
-    oneuser chauth new_user --x509 --cert /tmp/my_cert.pem
+    $ oneuser chauth new_user --x509 --cert /tmp/my_cert.pem
 
 New users with this authentication method should be created as follows:
 
-.. code::
+.. prompt:: bash $ auto
 
-    oneuser create new_user "/C=ES/O=ONE/OU=DEV/CN=clouduser" --driver x509
+    $ oneuser create new_user "/C=ES/O=ONE/OU=DEV/CN=clouduser" --driver x509
 
 or using a certificate file:
 
-.. code::
+.. prompt:: bash $ auto
 
-    oneuser create new_user --x509 --cert /tmp/my_cert.pem
+    $ oneuser create new_user --x509 --cert /tmp/my_cert.pem
 
 To enable this login method, set the ``:auth:`` option of ``/etc/one/sunstone-server.conf`` to ``x509``:
 
-.. code::
+.. code-block:: yaml
 
         :auth: x509
 
@@ -80,26 +79,26 @@ Note that OpenNebula will not verify that the user is holding a valid certificat
 
 .. warning:: Sunstone x509 auth method only handles the authentication of the user at the time of login. Authentication of the user certificate is a complementary setup, which can rely on Apache.
 
-remote Auth
+Remote Auth
 -----------
 
 This method is similar to x509 auth. It performs the login to OpenNebula based on a Kerberos ``REMOTE_USER``. The ``USER@DOMAIN`` is extracted from ``REMOTE_USER`` variable and matched to the password value in the user database. To use Kerberos authentication users needs to be configured with the public driver. Note that this will prevent users to authenticate through the XML-RPC interface, only Sunstone access will be granted to these users.
 
-To update exisiting users to use the Kerberos authentication change the driver to public and update the password as follows:
+To update existing users to use the Kerberos authentication change the driver to public and update the password as follows:
 
-.. code::
+.. prompt:: bash $ auto
 
-    oneuser chauth new_user public "new_user@DOMAIN"
+    $ oneuser chauth new_user public "new_user@DOMAIN"
 
 New users with this authentication method should be created as follows:
 
-.. code::
+.. prompt:: bash $ auto
 
-    oneuser create new_user "new_user@DOMAIN" --driver public
+    $ oneuser create new_user "new_user@DOMAIN" --driver public
 
 To enable this login method, set the ``:auth:`` option of ``/etc/one/sunstone-server.conf`` to ``remote``:
 
-.. code::
+.. code-block:: yaml
 
         :auth: remote
 
@@ -131,21 +130,21 @@ We are going to generate a snakeoil certificate. If using an Ubuntu system follo
 
 -  Install the ``ssl-cert`` package
 
-.. code::
+.. prompt:: bash # auto
 
-    $ sudo apt-get install ssl-cert
+    # apt-get install ssl-cert
 
 -  Generate the certificate
 
-.. code::
+.. prompt:: bash # auto
 
-    $ sudo /usr/sbin/make-ssl-cert generate-default-snakeoil
+    # /usr/sbin/make-ssl-cert generate-default-snakeoil
 
 -  As we are using lighttpd, we need to append the private key with the certificate to obtain a server certificate valid to lighttpd
 
-.. code::
+.. prompt:: bash # auto
 
-    $ sudo cat /etc/ssl/private/ssl-cert-snakeoil.key /etc/ssl/certs/ssl-cert-snakeoil.pem > /etc/lighttpd/server.pem
+    # cat /etc/ssl/private/ssl-cert-snakeoil.key /etc/ssl/certs/ssl-cert-snakeoil.pem > /etc/lighttpd/server.pem
 
 Step 2: SSL HTTP Proxy
 ----------------------
@@ -165,13 +164,13 @@ You will need to edit the ``/etc/lighttpd/lighttpd.conf`` configuration file and
 
 -  Change the server port to 443 if you are going to run lighttpd as root, or any number above 1024 otherwise:
 
-.. code::
+.. code-block:: none
 
     server.port               = 8443
 
 -  Add the proxy module section:
 
-.. code::
+.. code-block:: none
 
     #### proxy module
     ## read proxy.txt for more info
@@ -198,7 +197,7 @@ You will need to configure a new virtual host in nginx. Depending on the operati
 
 -  A sample ``cloudserver.org`` virtual host is presented next:
 
-.. code::
+.. code-block:: none
 
     #### OpenNebula Sunstone upstream
     upstream sunstone  {
@@ -230,12 +229,17 @@ You will need to configure a new virtual host in nginx. Depending on the operati
             }
     }
 
-The IP address and port number used in ``upstream`` must be the ones of the server Sunstone is running on. On typical installations the nginx master process is run as user root so you don't need to modify the HTTPS port.
+The IP address and port number used in ``upstream`` must be the one of the server Sunstone is running on. On typical installations the nginx master process is run as user root so you don't need to modify the HTTPS port.
 
 Step 3: Sunstone Configuration
 ------------------------------
 
-Start the Sunstone server using the default values, this way the server will be listening at localhost:9869.
+Edit ``/etc/one/sunstone-server.conf`` to listen at localhost:9869.
+
+.. code-block:: yaml
+
+    :host: 127.0.0.1
+    :port: 9869
 
 Once the proxy server is started, OpenNebula Sunstone requests using HTTPS URIs can be directed to ``https://cloudserver.org:8443``, that will then be unencrypted, passed to localhost, port 9869, satisfied (hopefully), encrypted again and then passed back to the client.
 
