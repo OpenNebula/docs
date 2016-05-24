@@ -70,7 +70,7 @@ OpenNebula comes by default with an internal **user/password authentication syst
 
 We also provide **references** with a detailed description of the different :ref:`configuration files <oned_conf>`, and :ref:`logging and debugging reports <log_debug>` of the OpenNebula services.
 
-Step 4. Operate your Coud
+Step 4. Operate your Cloud
 ===============================================
 
 4.1. Define a Provisioning Model
@@ -91,11 +91,11 @@ Now everything is ready for operation. OpenNebula provides full control to manag
 
 -  **Virtual machine image management** that allows to store :ref:`disk images in catalogs <img_guide>` (termed datastores), that can be then used to define VMs or shared with other users. The images can be OS installations, persistent data sets or empty data blocks that are created within the datastore.
 
--  **Virtual network management** of :ref:`Virtual networks <vgg>` that can be organized in network catalogs, and provide means to interconnect virtual machines. This kind of resources can be defined as IPv4, IPv6, or mixed networks, and can be used to achieve full isolation between virtual networks. Networks can be easily interconnected by using :ref:`virtual routers <vrouter>` and KVM users can also dinamically configure :ref:`security groups <security_groups>`
+-  **Virtual network management** of :ref:`Virtual networks <vgg>` that can be organized in network catalogs, and provide means to interconnect virtual machines. This kind of resources can be defined as IPv4, IPv6, or mixed networks, and can be used to achieve full isolation between virtual networks. Networks can be easily interconnected by using :ref:`virtual routers <vrouter>` and KVM users can also dynamically configure :ref:`security groups <security_groups>`
 
 -  **Virtual machine template management** with :ref:`template catalog <vm_guide>` system that allows to register :ref:`virtual machine <vm_guide_2>` definitions in the system, to be instantiated later as virtual machine instances.
 
--  **Virtual machine instance management** with a number of operations that can be performed to control lifecycle of the :ref:`virtual machine instances <vm_guide_2>`, such as migration (live and cold), stop, resume, cancel, poweroff, etc.
+-  **Virtual machine instance management** with a number of operations that can be performed to control lifecycle of the :ref:`virtual machine instances <vm_guide_2>`, such as migration (live and cold), stop, resume, cancel, power-off, etc.
 
 Several :ref:`reference guides <overview_references_operation>` are provided for more information about definition files, templates and CLI.
 
@@ -108,7 +108,7 @@ One of the most important aspects of teh cloud is the **preparation of the image
 Step 5. Install Advanced Components
 ===============================================
 
-This step is optionaly and only for advanced users. We recommend you  familiarize with OpenNebula before installing these components.
+This step is optional and only for advanced users. We recommend you  familiarize with OpenNebula before installing these components.
 
 OpenNebula brings the following advanced components:
 
@@ -127,7 +127,7 @@ OpenNebula brings the following advanced components:
 Step 6. Integrate with other Components
 ===============================================
 
-This step is optionaly and only for integrators and builders.
+This step is optional and only for integrators and builders.
 
 Because no two clouds are the same, OpenNebula provides many different interfaces that can be used to interact with the functionality offered to manage physical and virtual resources.
 
