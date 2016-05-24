@@ -113,6 +113,11 @@ footer {
     background-color: #EBEBED;
 }
 
+/* For sphinx-prompt */
+pre.highlight {
+    background: #EBEBED;
+}
+
 code {
     color: #0098c3;
     background-color: #EBEBED;
