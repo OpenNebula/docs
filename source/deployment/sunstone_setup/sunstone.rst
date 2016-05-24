@@ -147,8 +147,16 @@ The Service instances and templates tabs may show the following message:
 
 You need to start the OneFlow component :ref:`following this section <appflow_configure>`, or disable the Service and Service Templates menu entries in the :ref:`Sunstone views yaml files <suns_views>`.
 
+.. _sunstone_vnc_troubleshooting:
+
 VNC Troubleshooting
 --------------------------------------------------------------------------------
+
+When clicking the VNC icon, the process of starting a session begins:
+
+-  A request is made and if a VNC session is possible, Sunstone server will add the VM Host to the list of allowed vnc session targets and create a random token associated to it.
+-  The server responds with the session token, then a ``noVNC`` dialog pops up.
+-  The VNC console embedded in this dialog will try to connect to the proxy either using websockets (default) or emulating them using ``Flash``. Only connections providing the right token will be successful. The token expires and cannot be reused.
 
 There can be multiple reasons that may prevent noVNC from correctly connecting to the machines. Here's a checklist of common problems:
 

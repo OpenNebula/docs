@@ -4,9 +4,9 @@
 Creating Virtual Machines
 ================================================================================
 
-In OpenNebula the Virtual Machines are defined with Template files. This guide explains **how to describe the wanted-to-be-ran Virtual Machine, and how users typically interact with the system**.
+In OpenNebula the Virtual Machines are defined with VM Templates. This section explains **how to describe the wanted-to-be-ran Virtual Machine, and how users typically interact with the system**.
 
-The Template Repository system allows OpenNebula administrators and users to register Virtual Machine definitions in the system, to be instantiated later as Virtual Machine instances. These Templates can be instantiated several times, and also shared with other users.
+The VM Template Pool allows OpenNebula administrators and users to register Virtual Machine definitions in the system, to be instantiated later as Virtual Machine instances. These Templates can be instantiated several times, and also shared with other users.
 
 Virtual Machine Model
 ================================================================================
@@ -16,15 +16,14 @@ A Virtual Machine within the OpenNebula system consists of:
 -  A capacity in terms memory and CPU
 -  A set of NICs attached to one or more virtual networks
 -  A set of disk images
-
-The above items, plus some optional VM attributes like the OS booting and context information to be used inside the VM, are specified in a template file.
+-  Optional attributes like the booting order, context information, etc.
 
 .. _vm_guide_defining_a_vm_in_3_steps:
 
 Defining a VM
 ================================================================================
 
-Virtual Machines are defined in an OpenNebula Template. Templates are stored in a repository to easily browse and instantiate VMs from them. To create a new Template you have to define 3 things
+Virtual Machines are defined in an OpenNebula Template. Templates are stored in the system to easily browse and instantiate VMs from them. To create a new Template you have to define 3 things
 
 Capacity & Name
 --------------------------------------------------------------------------------
@@ -46,13 +45,14 @@ Disks
 
 Each disk is defined with a DISK attribute. A VM can use three types of disk:
 
-* **Use a persistent Image** changes to the disk image will persist after the VM is terminated.
-* **Use a non-persistent Image** images are cloned, changes to the image will be lost.
-* **Volatile** disks are created on the fly on the target host. After the VM is shutdown the disk is disposed.
+* **Use a persistent Image**: changes to the disk image will persist after the VM is terminated.
+* **Use a non-persistent Image**: a copy of the source Image is used, changes made to the VM disk will be lost.
+* **Volatile**: disks are created on the fly on the target host. After the VM is terminated the disk is disposed.
 
-**Disks Using an Image**
+Disks Using an Image
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-You can set the Image ID directly, or use the Image name. Optionally, if the image is not owned by the user instantiating the Template, you can set the owner user's ID or name.
+You can set the Image ID directly, or use the Image name. Optionally, if the Image is not owned by the user instantiating the Template, you can set the owner user's ID or name.
 
 +-----------------+----------------------------------------------+-----------------------------+---------+
 |    Attribute    |                 Description                  |          Mandatory          | Default |
@@ -66,7 +66,10 @@ You can set the Image ID directly, or use the Image name. Optionally, if the ima
 | ``IMAGE_UNAME`` | Select the IMAGE of a given user by her NAME | No                          | self    |
 +-----------------+----------------------------------------------+-----------------------------+---------+
 
-**Volatile**
+Volatile
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. todo:: review this table
 
 +------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+---------+
 | Attribute  |                                                                           Description                                                                           | Mandatory | Default |
@@ -120,7 +123,7 @@ The following example shows a VM Template file with a couple of disks and a netw
 
 Simple templates can be also created using the command line instead of creating a template file. For example, a similar template as the previous example can be created with the following command:
 
-.. prompt:: bash $ auto
+.. prompt:: text $ auto
 
     $ onetemplate create --name test-vm --memory 128 --cpu 1 --disk "Arch Linux" --nic Public
 
@@ -131,7 +134,7 @@ Note: OpenNebula Templates are designed to be hypervisor-agnostic, but there are
 Managing Templates
 ==================
 
-Users can manage the Template Repository using the command ``onetemplate``, or the graphical interface :ref:`Sunstone <sunstone>`. For each user, the actual list of templates available are determined by the ownership and permissions of the templates.
+Users can manage the VM Templates using the command ``onetemplate``, or the graphical interface :ref:`Sunstone <sunstone>`. For each user, the actual list of templates available are determined by the ownership and permissions of the templates.
 
 .. _vm_templates_labels:
 
@@ -140,7 +143,7 @@ Listing Available Templates
 
 You can use the ``onetemplate list`` command to check the available Templates in the system.
 
-.. prompt:: bash $ auto
+.. prompt:: text $ auto
 
     $ onetemplate list a
       ID USER     GROUP    NAME                         REGTIME
@@ -167,7 +170,7 @@ Using ``onetemplate create``, users can create new Templates for private or shar
 
 For instance, if the previous example template is written in the vm-example.txt file:
 
-.. prompt:: bash $ auto
+.. prompt:: text $ auto
 
     $ onetemplate create vm-example.txt
     ID: 6
@@ -183,12 +186,12 @@ Cloning Templates
 
 You can also clone an existing Template with the ``onetemplate clone`` command:
 
-.. prompt:: bash $ auto
+.. prompt:: text $ auto
 
     $ onetemplate clone 6 new_template
     ID: 7
 
-If you use the ``onetemplate clone --recursive`` option, OpenNebula will clone each one of the Images used in the template Disks. These Images are made persistent, and the cloned template DISK/IMAGE_ID attributes are replaced to point to them.
+If you use the ``onetemplate clone --recursive`` option, OpenNebula will clone each one of the Images used in the Template Disks. These Images are made persistent, and the cloned template DISK/IMAGE_ID attributes are replaced to point to them.
 
 |sunstone_clone_template|
 
@@ -197,7 +200,7 @@ Updating a Template
 
 It is possible to update a template by using the ``onetemplate update``. This will launch the editor defined in the variable ``EDITOR`` and let you edit the template.
 
-.. prompt:: bash $ auto
+.. prompt:: text $ auto
 
     $ onetemplate update 3
 
@@ -208,7 +211,7 @@ The users can share their Templates with other users in their group, or with all
 
 Let's see a quick example. To share the Template 0 with users in the group, the **USE** right bit for **GROUP** must be set with the **chmod** command:
 
-.. prompt:: bash $ auto
+.. prompt:: text $ auto
 
     $ onetemplate show 0
     ...
@@ -228,7 +231,7 @@ Let's see a quick example. To share the Template 0 with users in the group, the 
 
 The following command allows users in the same group **USE** and **MANAGE** the Template, and the rest of the users **USE** it:
 
-.. prompt:: bash $ auto
+.. prompt:: text $ auto
 
     $ onetemplate chmod 0 664
 
@@ -250,7 +253,7 @@ Instantiating Templates
 
 The ``onetemplate instantiate`` command accepts a Template ID or name, and creates a VM instance from the given template. You can create more than one instance simultaneously with the ``--multiple num_of_instances`` option.
 
-.. prompt:: bash $ auto
+.. prompt:: text $ auto
 
     $ onetemplate instantiate 6
     VM ID: 0
@@ -261,7 +264,7 @@ The ``onetemplate instantiate`` command accepts a Template ID or name, and creat
 
 You can also merge another template to the one being instantiated. The new attributes will be added, or will replace the ones fom the source template. This can be more convenient that cloning an existing template and updating it.
 
-.. prompt:: bash $ auto
+.. prompt:: text $ auto
 
     $ cat /tmp/file
     MEMORY = 512
@@ -272,7 +275,7 @@ You can also merge another template to the one being instantiated. The new attri
 
 The same options to create new templates can be used to be merged with an existing one. See the :ref:`CLI reference <cli>`, or execute ``onetemplate instantiate --help`` for a complete reference.
 
-.. prompt:: bash $ auto
+.. prompt:: text $ auto
 
     $ onetemplate instantiate 6 --cpu 2 --memory 1024
     VM ID: 2
@@ -297,13 +300,15 @@ A user input can be one of the following types:
 
 |prepare-tmpl-user-input-1|
 
-These inputs will be presented to the user when the Template is instantiated. The VM guest needs to be :ref:`contextualized <bcont>` to make use of the values provided by the user.
+The CPU, MEMORY and VCPU attributes can have a user input to define how the users will be able to modify the capacity on instantiation.
 
 |prepare-tmpl-user-input-2|
 
-If a VM Template with user inputs is used by a :ref:`Service Template Role <appflow_use_cli>`, the user will be also asked for these inputs when the Service is created.
+These inputs will be presented to the user when the Template is instantiated. The VM guest needs to be :ref:`contextualized <bcont>` to make use of the values provided by the user.
 
-.. todo:: add examples with capacity
+|prepare-tmpl-user-input-3|
+
+.. note:: If a VM Template with user inputs is used by a :ref:`Service Template Role <appflow_use_cli>`, the user will be also asked for these inputs when the Service is created.
 
 Merge Use Case
 --------------
@@ -332,15 +337,15 @@ And the following template:
 
 Users can instantiate it customizing anything except the CPU, VCPU and NIC. To create a VM with different memory and disks:
 
-.. prompt:: bash $ auto
+.. prompt:: text $ auto
 
-    $ onetemplate instantiate 0 --memory 1G --disk "Ubuntu 12.10"
+    $ onetemplate instantiate 0 --memory 1G --disk "Ubuntu 16.04"
 
 .. warning:: The merged attributes replace the existing ones. To add a new disk, the current one needs to be added also.
 
-.. prompt:: bash $ auto
+.. prompt:: text $ auto
 
-    $ onetemplate instantiate 0 --disk 0,"Ubuntu 12.10"
+    $ onetemplate instantiate 0 --disk 0,"Ubuntu 16.04"
 
 Deployment
 ==========
@@ -356,6 +361,7 @@ Continue to the :ref:`Managing Virtual Machine Instances Guide <vm_guide_2>` to 
 .. |image2| image:: /images/sunstone_template_create.png
 .. |prepare-tmpl-user-input-1| image:: /images/prepare-tmpl-user-input-1.png
 .. |prepare-tmpl-user-input-2| image:: /images/prepare-tmpl-user-input-2.png
+.. |prepare-tmpl-user-input-3| image:: /images/prepare-tmpl-user-input-3.png
 .. |sunstone_clone_template| image:: /images/sunstone_clone_template.png
 .. |sunstone_template_share| image:: /images/sunstone_template_share.png
 

@@ -80,9 +80,9 @@ Create and List Existing VMs
 
 |sunstone_admin_instantiate|
 
-Assuming we have a VM Template registered called *vm-example* with ID 6, then we can instantiate the VM issuing a:
+Assuming we have a VM Template registered called **vm-example** with ID 6, then we can instantiate the VM issuing a:
 
-.. prompt:: bash $ auto
+.. prompt:: text $ auto
 
     $ onetemplate list
       ID USER     GROUP    NAME                         REGTIME
@@ -94,7 +94,7 @@ Assuming we have a VM Template registered called *vm-example* with ID 6, then we
 
 If the template has :ref:`USER INPUTS <vm_guide_user_inputs>` defined the CLI will prompt the user for these values:
 
-.. prompt:: bash $ auto
+.. prompt:: text $ auto
 
     $ onetemplate instantiate vm-example --name my_vm
     There are some parameters that require user input.
@@ -104,7 +104,7 @@ If the template has :ref:`USER INPUTS <vm_guide_user_inputs>` defined the CLI wi
 
 Afterwards, the VM can be listed with the ``onevm list`` command. You can also use the ``onevm top`` command to list VMs continuously.
 
-.. prompt:: bash $ auto
+.. prompt:: text $ auto
 
     $ onevm list
         ID USER     GROUP    NAME         STAT CPU     MEM        HOSTNAME        TIME
@@ -112,7 +112,7 @@ Afterwards, the VM can be listed with the ``onevm list`` command. You can also u
 
 After a Scheduling cycle, the VM will be automatically deployed. But the deployment can also be forced by oneadmin using ``onevm deploy``:
 
-.. prompt:: bash $ auto
+.. prompt:: text $ auto
 
     $ onehost list
       ID NAME               RVM   TCPU   FCPU   ACPU   TMEM   FMEM   AMEM   STAT
@@ -126,7 +126,7 @@ After a Scheduling cycle, the VM will be automatically deployed. But the deploym
 
 and details about it can be obtained with ``show``:
 
-.. prompt:: bash $ auto
+.. prompt:: text $ auto
 
     $ onevm show 0
     VIRTUAL MACHINE 0 INFORMATION
@@ -220,7 +220,7 @@ There are two kinds of operations related to disk snapshots:
 
 .. _vm_guide_2_disk_snapshots_managing:
 
-Managing disk snapshots
+Managing Disk Snapshots
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 A user can take snapshots of the disk states at any moment in time (if the VM is in ``RUNNING``, ``POWEROFF`` or ``SUSPENDED`` states). These snapshots are organized in a tree-like structure, meaning that every snapshot has a parent, except for the first snapshot whose parent is ``-1``. At any given time a user can revert the disk state to a previously taken snapshot. The active snapshot, the one the user has last reverted to, or taken, will act as the parent of the next snapshot. In addition, it's possible to delete snapshots that are not active and that have no children.
@@ -231,7 +231,7 @@ A user can take snapshots of the disk states at any moment in time (if the VM is
 
 |sunstone_disk_snapshot|
 
-``disk-snapshot-create`` can take place when the VM is in ``RUNNING`` state, provided that the drivers support it, while ``disk-snapshot-revert`` requires the VM to be ``POWEROFF`` or ``SUSPENDED``. Live snapshots is only supported for some drivers:
+``disk-snapshot-create`` can take place when the VM is in ``RUNNING`` state, provided that the drivers support it, while ``disk-snapshot-revert`` requires the VM to be ``POWEROFF`` or ``SUSPENDED``. Live snapshots are only supported for some drivers:
 
 - Hypervisor ``VM_MAD=kvm`` combined with ``TM_MAD=qcow2`` datastores. In this case OpenNebula will request that the hypervisor executes ``virsh snapshot-create``.
 - Hypervisor ``VM_MAD=kvm`` with Ceph datastores (``TM_MAD=ceph``). In this case OpenNebula will initially create the snapshots as Ceph snapshots in the current volume.
@@ -242,12 +242,12 @@ OpenNebula will not automatically handle non-live ``disk-snapshot-create`` and `
 
 See the :ref:`Storage Driver <sd_tm>` guide for a reference on the driver actions invoked to perform live and non-live snapshost.
 
-Persistent image snapshots
+Persistent Image Snapshots
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 These actions are available for both persistent and non-persistent images. In the case of persistent images the snapshots **will** be preserved upon VM termination and will be able to be used by other VMs using that image. See the :ref:`snapshots <img_guide_snapshots>` section in the Images guide for more information.
 
-Back-end implementations
+Back-end Implementations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. todo:: update with information for vCenter
@@ -268,9 +268,9 @@ The snapshot operations are implemented differently depending on the storage bac
 
 .. warning::
 
-  Depending on the ``CACHE`` the live snapshot may or may not work correctly. For more security use ``CACHE=writethrough`` although this delivers the slowest performance.
+  Depending on the ``DISK/CACHE`` attribute the live snapshot may or may not work correctly. To be sure, you can use ``CACHE=writethrough``, although this delivers the slowest performance.
 
-Exporting disk images with ``disk-saveas``
+Exporting Disk Images with ``disk-saveas``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Any VM disk can be exported to a new image (if the VM is in ``RUNNING``, ``POWEROFF`` or ``SUSPENDED`` states). This is a live operation that happens immediately. This operation accepts ``--snapshot <snapshot_id>`` as an optional argument, which specifies a disk snapshot to use as the source of the clone, instead of the current disk state (value by default).
@@ -284,13 +284,13 @@ Disk Hot-plugging
 
 New disks can be hot-plugged to running VMs with the ``onevm`` ``disk-attach`` and ``disk-detach`` commands. For example, to attach to a running VM the Image named **storage**:
 
-.. prompt:: bash $ auto
+.. prompt:: text $ auto
 
     $ onevm disk-attach one-5 --image storage
 
 To detach a disk from a running VM, find the disk ID of the Image you want to detach using the ``onevm show`` command, and then simply execute ``onevm detach vm_id disk_id``:
 
-.. prompt:: bash $ auto
+.. prompt:: text $ auto
 
     $ onevm show one-5
     ...
@@ -311,19 +311,15 @@ NIC Hot-plugging
 
 You can hot-plug network interfaces to VMs in the ``RUNNING``, ``POWEROFF`` or ``SUSPENDED`` states. Simply specify the network where the new interface should be attached to, for example:
 
-.. prompt:: bash $ auto
+.. prompt:: text $ auto
 
     $ onevm show 2
 
     VIRTUAL MACHINE 2 INFORMATION
     ID                  : 2
     NAME                : centos-server
-    USER                : ruben
-    GROUP               : oneadmin
     STATE               : ACTIVE
     LCM_STATE           : RUNNING
-    RESCHED             : No
-    HOST                : cloud01
 
     ...
 
@@ -331,23 +327,20 @@ You can hot-plug network interfaces to VMs in the ``RUNNING``, ``POWEROFF`` or `
     ID NETWORK      VLAN BRIDGE   IP              MAC
      0 net_172        no vbr0     172.16.0.201    02:00:ac:10:0
 
-    VIRTUAL MACHINE HISTORY
-     SEQ HOST            REASON           START            TIME     PROLOG_TIME
-       0 cloud01         none    03/07 11:37:40    0d 00h02m14s    0d 00h00m00s
     ...
 
     $ onevm nic-attach 2 --network net_172
 
 After the operation you should see two NICs, 0 and 1:
 
-.. prompt:: bash $ auto
+.. prompt:: text $ auto
 
     $ onevm show 2
     VIRTUAL MACHINE 2 INFORMATION
     ID                  : 2
     NAME                : centos-server
-    USER                : ruben
-    GROUP               : oneadmin
+    STATE               : ACTIVE
+    LCM_STATE           : RUNNING
 
     ...
 
@@ -360,9 +353,9 @@ After the operation you should see two NICs, 0 and 1:
                                   fe80::400:acff:fe10:ca
     ...
 
-Also, you can detach a NIC by its ID. If you want to detach interface 1 (MAC=02:00:ac:10:00:ca), just execute:
+You can also detach a NIC by its ID. If you want to detach interface 1 (MAC ``02:00:ac:10:00:ca``), execute:
 
-.. prompt:: bash $ auto
+.. prompt:: text $ auto
 
     $ onevm nic-detach 2 1
 
@@ -375,9 +368,7 @@ Snapshotting
 
 You can create, delete and restore snapshots for running VMs. A snapshot will contain the current disks and memory state.
 
-.. warning:: The snapshots will only be available during the ``RUNNING`` state. If the state changes (stop, migrate, etc...) the snapshots **will** be lost.
-
-.. prompt:: bash $ auto
+.. prompt:: text $ auto
 
     $ onevm snapshot-create 4 "just in case"
 
@@ -390,10 +381,10 @@ You can create, delete and restore snapshots for running VMs. A snapshot will co
     $ onevm snapshot-revert 4 0 --verbose
     VM 4: snapshot reverted
 
-Please take into consideration the following limitations:
+.. warning:: **For KVM only**. Please take into consideration the following limitations:
 
--  **The snapshots are lost if any life-cycle operation is performed, e.g. a suspend, migrate, delete request.**
--  KVM: Snapshots are only available if all the VM disks use the :ref:`qcow2 driver <img_template>`.
+    -  The snapshots are lost if any life-cycle operation is performed, e.g. a suspend, migrate, delete request.
+    -  Snapshots are only available if all the VM disks use the :ref:`qcow2 driver <img_template>`.
 
 |image4|
 
@@ -407,16 +398,16 @@ POWEROFF, UNDEPLOYED.
 
 If you have created a Virtual Machine and you need more resources, the following procedure is recommended:
 
--  Perform any operation needed to prepare your Virtual Machine for shutting down, e.g. you may want to manually stop some services...
+-  Perform any operation needed to prepare your Virtual Machine for shutting down, e.g. you may want to manually stop some services
 -  Poweroff the Virtual Machine
 -  Resize the VM
 -  Resume the Virtual Machine using the new capacity
 
-Note that using this procedure the VM will preserve any resource assigned by OpenNebula (e.g. IP leases)
+Note that using this procedure the VM will preserve any resource assigned by OpenNebula, such as IP leases.
 
-The following is an example of the previous procedure from the command line (the Sunstone equivalent is straight forward):
+The following is an example of the previous procedure from the command line:
 
-.. prompt:: bash $ auto
+.. prompt:: text $ auto
 
     $ onevm poweroff web_vm
     $ onevm resize web_vm --memory 2G --vcpu 2
@@ -434,11 +425,11 @@ Resizing VM Disks
 If the disks assigned to a Virtual Machine need more size, this can achieved at instantiation time of the VM. The SIZE parameter of the disk can be adjusted and, if it is bigger than the original size of the image, OpenNebula will:
 
 - Increase the size of the disk container prior to launching the VM
-- Using the :ref:`contextualization packages <bcont>`, at boot time the VM will grow the filesystem to adjust to the new size. This is only available for Linux guests in KVM.
+- Using the :ref:`contextualization packages <bcont>`, at boot time the VM will grow the filesystem to adjust to the new size. **This is only available for Linux guests in KVM**.
 
 This can be done with an extra file given to the ``instantiate`` command:
 
-.. prompt:: bash $ auto
+.. prompt:: text $ auto
 
     $ cat /tmp/disk.txt
     DISK = [ IMAGE_ID = 4,
@@ -448,7 +439,7 @@ This can be done with an extra file given to the ``instantiate`` command:
 
 Or with CLI options:
 
-.. prompt:: bash $ auto
+.. prompt:: text $ auto
 
     $ onetemplate instantiate <template> --disk image0:size=20000
 
@@ -475,7 +466,7 @@ When **instantiating to persistent** the Template is cloned recursively (a priva
 
 To "instantiate to persistent" use the ``--persistent`` option:
 
-.. prompt:: bash $ auto
+.. prompt:: text $ auto
 
     $ onetemplate instantiate web_vm --persistent --name my_vm
     VM ID: 31
@@ -505,7 +496,7 @@ Alternatively, a VM that was not created as persistent can be **saved** before i
 
 This action clones the VM source Template, replacing the disks with snapshots of the current disks (see the disk-snapshot action). If the VM instance was resized, the current capacity is also used. The new cloned Images can be made persistent with the ``--persistent`` option. NIC interfaces are also overwritten with the ones from the VM instance, to preserve any attach/detach action.
 
-.. prompt:: bash $ auto
+.. prompt:: text $ auto
 
     $ onevm save web_vm copy_of_web_vm --persistent
     Template ID: 26
@@ -533,7 +524,7 @@ Most of the onevm commands accept the ``--schedule`` option, allowing users to d
 
 Here is an usage example:
 
-.. prompt:: bash $ auto
+.. prompt:: text $ auto
 
     $ onevm suspend 0 --schedule "09/20"
     VM 0: suspend scheduled at 2016-09-20 00:00:00 +0200
@@ -555,7 +546,7 @@ Here is an usage example:
 
 These actions can be deleted or edited using the ``onevm update`` command. The time attributes use Unix time internally.
 
-.. prompt:: bash $ auto
+.. prompt:: text $ auto
 
     $ onevm update 0
 
@@ -592,7 +583,7 @@ User Defined Data
 
 Custom attributes can be added to a VM to store metadata related to this specific VM instance. To add custom attributes simply use the ``onevm update`` command.
 
-.. prompt:: bash $ auto
+.. prompt:: text $ auto
 
     $ onevm show 0
     ...
@@ -621,7 +612,7 @@ Manage VM Permissions
 
 OpenNebula comes with an advanced :ref:`ACL rules permission mechanism <manage_acl>` intended for administrators, but each VM object has also :ref:`implicit permissions <chmod>` that can be managed by the VM owner. To share a VM instance with other users, to allow them to list and show its information, use the ``onevm chmod`` command:
 
-.. prompt:: bash $ auto
+.. prompt:: text $ auto
 
     $ onevm show 0
     ...
@@ -673,28 +664,16 @@ Note: By default, the above operations do not check the target host capacity. Yo
 
 -  ``migrate`` or ``resched``: A VM in the UNKNOWN state can be booted in a different host manually (``migrate``) or automatically by the scheduler (``resched``). This action must be performed only if the storage is shared, or manually transfered by the administrator. OpenNebula will not perform any action on the storage for this migration.
 
-VNC Access through Sunstone
+VNC/Spice Access through Sunstone
 ================================================================================
 
-In order to use this feature, make sure that:
-
--  The VM template has a ``GRAPHICS`` section defined, that the ``TYPE`` attribute in it is set to ``VNC``.
--  The specified VNC port on the host on which the VM is deployed is accessible from the Sunstone server host.
--  The VM is in ``running`` state.
-
-If the VM supports VNC and is ``running``, then the VNC icon on the Virtual Machines view should be visible and clickable:
+If the VM supports VNC or Spice and is ``running``, then the VNC icon on the Virtual Machines view should be visible and clickable:
 
 |image7|
 
-When clicking the VNC icon, the process of starting a session begins:
-
--  A request is made and if a VNC session is possible, Sunstone server will add the VM Host to the list of allowed vnc session targets and create a random token associated to it.
--  The server responds with the session token, then a ``noVNC`` dialog pops up.
--  The VNC console embedded in this dialog will try to connect to the proxy either using websockets (default) or emulating them using ``Flash``. Only connections providing the right token will be successful. Websockets are supported from Firefox 4.0 (manual activation required in this version) and Chrome. The token expires and cannot be reused.
-
 |image8|
 
-To close the VNC session just close the console dialog.
+The Sunstone documentation contains a section on :ref:`VCN troubleshooting <sunstone_vnc_troubleshooting>`.
 
 Information for Developers and Integrators
 ==========================================
