@@ -4,14 +4,14 @@
 Onedb Tool
 ===========
 
-This guide describes the ``onedb`` CLI tool. It can be used to get information from an OpenNebula database, upgrade it, or fix inconsistency problems.
+This section describes the ``onedb`` CLI tool. It can be used to get information from an OpenNebula database, upgrade it, or fix inconsistency problems.
 
 Connection Parameters
 =====================
 
 The command ``onedb`` can connect to any SQLite or MySQL database. Visit the :ref:`onedb man page <cli>` for a complete reference. These are two examples for the default databases:
 
-.. code::
+.. prompt:: text $ auto
 
     $ onedb <command> -v --sqlite /var/lib/one/one.db
     $ onedb <command> -v -S localhost -u oneadmin -p oneadmin -d opennebula
@@ -21,7 +21,7 @@ onedb fsck
 
 Checks the consistency of the DB, and fixes the problems found. For example, if the machine where OpenNebula is running crashes, or looses connectivity with the database, you may have a wrong number of VMs running in a Host, or incorrect usage quotas for some users.
 
-.. code::
+.. prompt:: text $ auto
 
     $ onedb fsck --sqlite /var/lib/one/one.db
     Sqlite database backup stored in /var/lib/one/one.db.bck
@@ -44,14 +44,13 @@ Checks the consistency of the DB, and fixes the problems found. For example, if 
 
 If onedb fsck shows the following error message:
 
-.. code::
+.. code-block:: none
 
     [UNREPAIRED] History record for VM <<vid>> seq # <<seq>> is not closed (etime = 0)
 
 This is due to `bug #4000 <http://dev.opennebula.org/issues/4000>`_. It means that when using accounting or showback, the etime (end-time) of that history record is not set, and the VM is considered as still running when it should not. To fix this problem, locate the time when the VM was shut down in the logs and then execute this patch to edit the times manually:
 
-.. code::
-
+.. prompt:: text $ auto
 
     $ onedb patch -v --sqlite /var/lib/one/one.db /usr/lib/one/ruby/onedb/patches/history_times.rb
     Version read:
@@ -105,14 +104,14 @@ onedb version
 
 Prints the current DB version.
 
-.. code::
+.. prompt:: text $ auto
 
     $ onedb version --sqlite /var/lib/one/one.db
     3.8.0
 
 Use the ``-v`` flag to see the complete version and comment.
 
-.. code::
+.. prompt:: text $ auto
 
     $ onedb version -v --sqlite /var/lib/one/one.db
     Version:   3.8.0
@@ -123,7 +122,7 @@ If the MySQL database password contains special characters, such as ``@`` or ``#
 
 The workaround is to temporarily change the oneadmin's password to an ASCII string. The `set password <http://dev.mysql.com/doc/refman/5.6/en/set-password.html>`__ statement can be used for this:
 
-.. code::
+.. prompt:: text $ auto
 
     $ mysql -u oneadmin -p
 
@@ -134,7 +133,7 @@ onedb history
 
 Each time the DB is upgraded, the process is logged. You can use the ``history`` command to retrieve the upgrade history.
 
-.. code::
+.. prompt:: text $ auto
 
     $ onedb history -S localhost -u oneadmin -p oneadmin -d opennebula
     Version:   3.0.0
@@ -161,7 +160,7 @@ onedb backup
 
 Dumps the OpenNebula DB to a file.
 
-.. code::
+.. prompt:: text $ auto
 
     $ onedb backup --sqlite /var/lib/one/one.db /tmp/my_backup.db
     Sqlite database backup stored in /tmp/my_backup.db

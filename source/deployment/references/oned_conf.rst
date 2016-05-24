@@ -53,7 +53,7 @@ Daemon Configuration Attributes
 
 Example of this section:
 
-.. code::
+.. code-block:: bash
 
     #*******************************************************************************
     # Daemon configuration attributes
@@ -117,7 +117,7 @@ Control the :ref:`federation capabilities of oned <introf>`. Operation in a fede
 -  ``ZONE_ID`` : The zone ID as returned by onezone command.
 -  ``MASTER_ONED`` : The xml-rpc endpoint of the master oned, e.g. http://master.one.org:2633/RPC2
 
-.. code::
+.. code-block:: bash
 
     #*******************************************************************************
     # Federation configuration attributes
@@ -136,7 +136,7 @@ Default Showback Cost
 
 The following attributes define the default cost for Virtual Machines that don't have a CPU, MEMORY or DISK cost. This is used by the :ref:`oneshowback calculate method <showback>`.
 
-.. code::
+.. code-block:: bash
 
     #*******************************************************************************
     # Default showback cost
@@ -173,7 +173,7 @@ XML-RPC Server Configuration
    -  ``%a`` -- auth token
    -  ``%%`` -- %
 
-.. code::
+.. code-block:: bash
 
     #*******************************************************************************
     # XML-RPC server configuration
@@ -207,7 +207,7 @@ Virtual Networks
 
 Sample configuration:
 
-.. code::
+.. code-block:: bash
 
     #*******************************************************************************
     # Physical Networks configuration
@@ -261,7 +261,7 @@ More information on the image repository can be found in the :ref:`Managing Virt
 
 Sample configuration:
 
-.. code::
+.. code-block:: bash
 
     #*******************************************************************************
     # Image Repository Configuration
@@ -288,7 +288,7 @@ This driver CANNOT BE ASSIGNED TO A HOST, and needs to be used with KVM drivers.
 
 Sample configuration:
 
-.. code::
+.. code-block:: bash
 
     IM_MAD = [
           name       = "collectd",
@@ -308,7 +308,7 @@ For more information on configuring the information and monitoring system and hi
 
 Sample configuration:
 
-.. code::
+.. code-block:: bash
 
     #-------------------------------------------------------------------------------
     #  KVM UDP-push Information Driver Manager Configuration
@@ -337,8 +337,8 @@ The virtualization drivers are used to create, control and monitor VMs on the ho
 
    - migrate
    - live-migrate
-   - shutdown
-   - shutdown-hard
+   - terminate
+   - terminate-hard
    - undeploy
    - undeploy-hard
    - hold
@@ -361,13 +361,14 @@ The virtualization drivers are used to create, control and monitor VMs on the ho
    - snap-create
    - snap-delete
 
-For more information on configuring and setting up the Virtual Machine Manager Driver please check the guide that suits you:
+For more information on configuring and setting up the Virtual Machine Manager Driver please check the section that suits you:
 
--  :ref:`KVM Adaptor <kvmg>`
+* :ref:`KVM Driver <kvmg>`
+* :ref:`vCenter Driver <vcenterg>`
 
 Sample configuration:
 
-.. code::
+.. code-block:: bash
 
     #-------------------------------------------------------------------------------
     # Virtualization Driver Configuration
@@ -403,7 +404,7 @@ For more information on configuring different storage alternatives :ref:`please 
 
 Sample configuration:
 
-.. code::
+.. code-block:: bash
 
     #-------------------------------------------------------------------------------
     # Transfer Manager Driver Configuration
@@ -435,7 +436,7 @@ The configuration for each driver is defined in the TM\_MAD\_CONF section. These
 
 Sample configuration:
 
-.. code::
+.. code-block:: bash
 
     TM_MAD_CONF = [
         name        = "lvm",
@@ -465,7 +466,7 @@ The Datastore Driver defines a set of scripts to manage the storage backend.
 
 Sample configuration:
 
-.. code::
+.. code-block:: bash
 
     DATASTORE_MAD = [
         EXECUTABLE = "one_datastore",
@@ -487,7 +488,7 @@ Drivers to manage different marketplaces, specialized for the storage back-end
 
 Sample configuration:
 
-.. code::
+.. code-block:: bash
 
   MARKET_MAD = [
       EXECUTABLE = "one_market",
@@ -504,7 +505,7 @@ Hooks in OpenNebula are programs (usually scripts) which execution is triggered 
 
 Sample configuration:
 
-.. code::
+.. code-block:: bash
 
     HM_MAD = [
         executable = "one_hm" ]
@@ -560,7 +561,7 @@ Host Hooks (HOST\_HOOK) defined by:
 
 Sample configuration:
 
-.. code::
+.. code-block:: bash
      
     VM_HOOK = [
       name      = "advanced_hook",
@@ -588,7 +589,7 @@ Auth Manager Configuration
 
 Sample configuration:
 
-.. code::
+.. code-block:: bash
 
     AUTH_MAD = [
         executable = "one_auth_mad",
@@ -604,7 +605,7 @@ Sample configuration:
 
 The ``DEFAULT_AUTH`` can be used to point to the desired default authentication driver, for example ``ldap``:
 
-.. code::
+.. code-block:: bash
 
     DEFAULT_AUTH = "ldap"
 
@@ -623,7 +624,7 @@ If the VM template has been created by admins in the ''oneadmin'' group, then us
 
 Sample configuration:
 
-.. code::
+.. code-block:: bash
 
     VM_RESTRICTED_ATTR = "CONTEXT/FILES"
     VM_RESTRICTED_ATTR = "NIC/MAC"
@@ -681,7 +682,7 @@ The following attributes will be copied from the resource template to the instan
 
 Sample configuration:
 
-.. code::
+.. code-block:: bash
 
     #INHERIT_IMAGE_ATTR     = "EXAMPLE"
     #INHERIT_IMAGE_ATTR     = "SECOND_EXAMPLE"
@@ -724,7 +725,7 @@ OneGate Configuration
 
 Sample configuration:
 
-.. code::
+.. code-block:: bash
 
     ONEGATE_ENDPOINT = "http://192.168.0.5:5030"
 

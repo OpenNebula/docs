@@ -15,19 +15,17 @@ With syslog or standard error the logging strategy is almost identical, except t
 Configure the Logging System
 ============================
 
-The Logging system can be changed in ``/etc/one/oned.conf``, specifically under the ``LOG`` section. Two parameters can be changed: ``SYSTEM``, which is 'syslog', 'file' (default) or 'std', and the ``DEBUG_LEVEL`` is the logging verbosity.
+The Logging system can be changed in :ref:`/etc/one/oned.conf <oned_conf>`, specifically under the ``LOG`` section. Two parameters can be changed: ``SYSTEM``, which is 'syslog', 'file' (default) or 'std', and the ``DEBUG_LEVEL`` is the logging verbosity.
 
-For the scheduler the logging system can be changed in the exact same way. In this case the configuration is in ``/etc/one/sched.conf``.
+For the scheduler the logging system can be changed in the exact same way. In this case the configuration is in :ref:`/etc/one/sched.conf <schg>`.
 
 Log Resources
 =============
 
 There are different log resources corresponding to different OpenNebula components:
 
--  **ONE Daemon**: The core component of OpenNebula dumps all its logging information onto ``/var/log/one/oned.log``. Its verbosity is regulated by DEBUG\_LEVEL in ``/etc/one/oned.conf``. By default the one start up scripts will backup the last oned.log file using the current time, e.g. oned.log.20121011151807. Alternatively, this resource can be logged to the syslog.
-
--  **Scheduler**: All the scheduler information is collected into the /var/log/one/sched.log file. This resource can also be logged to the syslog.
-
+-  **ONE Daemon**: The core component of OpenNebula dumps all its logging information onto ``/var/log/one/oned.log``. Its verbosity is regulated by DEBUG_LEVEL in ``/etc/one/oned.conf``. By default the one start up scripts will backup the last oned.log file using the current time, e.g. oned.log.20121011151807. Alternatively, this resource can be logged to the syslog.
+-  **Scheduler**: All the scheduler information is collected into the ``/var/log/one/sched.log`` file. This resource can also be logged to the syslog.
 -  **Virtual Machines**: The information specific of the VM will be dumped in the log file ``/var/log/one/<vmid>.log``. All VMs controlled by OpenNebula have their folder, ``/var/lib/one/vms/<VID>``, or to the syslog/stderr if enabled. You can find the following information in it:
 
    -  **Deployment description files** : Stored in ``deployment.<EXECUTION>``, where ``<EXECUTION>`` is the sequence number in the execution history of the VM (deployment.0 for the first host, deployment.1 for the second and so on).
@@ -40,13 +38,13 @@ Logging Format
 
 The structure of an OpenNebula message for a file based logging system is the following:
 
-.. code::
+.. code-block:: none
 
     date [Z<zone_id>][module][log_level]: message body
 
 In the case of syslog it follows the standard:
 
-.. code::
+.. code-block:: none
 
     date hostname process[pid]: [Z<zone_id>][module][log_level]: message 
 
@@ -54,13 +52,13 @@ Where the zone_id is the ID of the zone in the federation, 0 for single zone set
 
 For the syslog, OpenNebula will also log the Virtual Machine events like this:
 
-.. code::
+.. code-block:: none
 
     date hostname process[pid]: [VM id][Z<zone_id>][module][log_level]: message
 
 And similarly for the stderr logging, for oned and VM events the format are:
 
-.. code::
+.. code-block:: none
 
     date [Z<zone_id>][module][log_level]: message
     date [VM id][Z<zone_id>][module][log_level]: message
@@ -71,7 +69,7 @@ Virtual Machine Errors
 
 Virtual Machine errors can be checked by the owner or an administrator using the ``onevm show`` output:
 
-.. code::
+.. prompt:: text $ auto
 
     $ onevm show 0
     VIRTUAL MACHINE 0 INFORMATION
@@ -120,7 +118,7 @@ Host Errors
 
 Host errors can be checked executing the ``onehost show`` command:
 
-.. code::
+.. prompt:: text $ auto
 
     $ onehost show 1
     HOST 1 INFORMATION
@@ -147,7 +145,7 @@ Host errors can be checked executing the ``onehost show`` command:
 
 The error message appears in the ``ERROR`` value of the monitoring. To get more information you can check ``/var/log/one/oned.log``. For example for this error we get in the log file:
 
-.. code::
+.. code-block:: none
 
     Tue Jul 19 17:17:22 2011 [InM][I]: Monitoring host host01 (1)
     Tue Jul 19 17:17:22 2011 [InM][I]: Command execution fail: scp -r /var/lib/one/remotes/. host01:/var/tmp/one
