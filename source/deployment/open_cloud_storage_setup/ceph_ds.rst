@@ -140,6 +140,8 @@ An example of datastore:
 
 The DS and TM MAD can be changed later using the ``onedatastore update`` command. You can check more details of the datastore by issuing the ``onedatastore show`` command.
 
+|cephdatastore|
+
 Ceph Authentication (Cephx)
 ===========================
 
@@ -207,16 +209,18 @@ System administrators and integrators are encouraged to modify these drivers in 
 
 Under ``/var/lib/one/remotes/``:
 
--  **datastore/ceph/ceph.conf**: Default values for ceph parameters
+* **datastore/ceph/ceph.conf**: Default values for ceph parameters
 
-   -  HOST: Default OpenNebula Ceph frontend
-   -  POOL\_NAME: Default volume group
-   -  STAGING\_DIR: Default path for image operations in the OpenNebula Ceph frontend.
+  * ``HOST``: Default OpenNebula Ceph frontend
+  * ``POOL_NAME``: Default volume group
+  * ``STAGING_DIR``: Default path for image operations in the OpenNebula Ceph frontend.
 
--  **datastore/ceph/cp**: Registers a new image. Creates a new logical volume in ceph.
--  **datastore/ceph/mkfs**: Makes a new empty image. Creates a new logical volume in ceph.
--  **datastore/ceph/rm**: Removes the ceph logical volume.
--  **tm/ceph/ln**: Does nothing since it's handled by libvirt.
--  **tm/ceph/clone**: Copies the image to a new image.
--  **tm/ceph/mvds**: Saves the image in a Ceph block device for SAVE\_AS.
--  **tm/ceph/delete**: Removes a non-persistent image from the Virtual Machine directory if it hasn't been subject to a ``disk-snapshot`` operation.
+* **datastore/ceph/cp**: Registers a new image. Creates a new logical volume in ceph.
+* **datastore/ceph/mkfs**: Makes a new empty image. Creates a new logical volume in ceph.
+* **datastore/ceph/rm**: Removes the ceph logical volume.
+* **tm/ceph/ln**: Does nothing since it's handled by libvirt.
+* **tm/ceph/clone**: Copies the image to a new image.
+* **tm/ceph/mvds**: Saves the image in a Ceph block device for SAVE\_AS.
+* **tm/ceph/delete**: Removes a non-persistent image from the Virtual Machine directory if it hasn't been subject to a ``disk-snapshot`` operation.
+
+.. |cephdatastore| image:: /images/sunstone_datastore_ceph.png

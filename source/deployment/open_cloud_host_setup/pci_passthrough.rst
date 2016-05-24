@@ -3,9 +3,9 @@
 PCI Passthrough
 ===============
 
-It is possible to discover PCI devices in the hypervisors and assign them to Virtual Machines for the KVM hypervisor.
+It is possible to discover PCI devices in the Hosts and assign them to Virtual Machines for the KVM hypervisor.
 
-The setup and environment information is taken from http://www.firewing1.com/howtos/fedora-20/create-gaming-virtual-machine-using-vfio-pci-passthrough-kvm. You can safely ignore all the VGA related sections, for PCI devices that are not graphic cards, or if you don't want to output video signal from them.
+The setup and environment information is taken from `here <http://www.firewing1.com/howtos/fedora-20/create-gaming-virtual-machine-using-vfio-pci-passthrough-kvm>`__. You can safely ignore all the VGA related sections, for PCI devices that are not graphic cards, or if you don't want to output video signal from them.
 
 .. warning:: The overall setup state was extracted from a preconfigured Fedora 22 machine. **Configuration for your distro may be different.**
 
@@ -14,8 +14,6 @@ Requirements
 
 * The host that is going to be used for virtualization needs to support `I/O MMU <https://en.wikipedia.org/wiki/IOMMU>`__. For Intel processors this is called VT-d and for AMD processors is called AMD-Vi. The instructions are made for Intel branded processors but the process should be very similar for AMD.
 * kernel >= 3.12
-* libvirt >= 1.1.3
-* kvm hypervisor
 
 Machine Configuration (Hypervisor)
 ----------------------------------

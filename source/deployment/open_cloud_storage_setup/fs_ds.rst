@@ -4,7 +4,7 @@
 The Filesystem Datastore
 =========================
 
-The Filesystem datastore lets you store VM images in a file form. The datastore is format agnostic, so you can store any file-type depending on the target hypervisor. The use of file-based disk images presents several benefits over device backed disks (e.g. easily backup images, or use of shared FS) although it may less performing in some cases.
+The Filesystem Datastore lets you store VM images in a file form. The datastore is format agnostic, so you can store any file-type depending on the target hypervisor. The use of file-based disk images presents several benefits over device backed disks (e.g. easily backup images, or use of shared FS) although it may less performing in some cases.
 
 Usually it is a good idea to have multiple filesystem datastores to:
 
@@ -16,7 +16,7 @@ Usually it is a good idea to have multiple filesystem datastores to:
 Requirements
 ============
 
-There are no special requirements or software dependencies to use the filesystem datastore. The drivers make use of standard filesystem utils (cp, ln, mv, tar, mkfs...) that should be installed in your system.
+There are no special requirements or software dependencies to use the filesystem datastore. The drivers make use of standard filesystem utils (``cp``, ``ln``, ``mv``, ``tar``, ``qemu-img``, ...) that should be installed in your system.
 
 Configuration
 =============
@@ -24,14 +24,14 @@ Configuration
 Configuring the System Datastore
 --------------------------------
 
-Filesystem datastores can work with a system datastore that uses either the shared or the SSH transfer drivers, note that:
+Filesystem datastores can work with a System Datastore that uses either the shared or the SSH transfer drivers, note that:
 
-* Shared drivers for the **system** datastore enables live-migrations, but it could demand a high-performance NAS.
-* SSH drivers for the **system** datastore may increase deployment/shutdown times but all the operations are performed locally, so improving performance in general.
+* Shared drivers for the System Datastore enables live-migrations, but it could demand a high-performance NAS.
+* SSH drivers for the System Datastore may increase deployment/shutdown times but all the operations are performed locally, so improving performance in general. Note that even if live-migration is not supported, regular migration is, which has the same effect (memory state is not lost).
 
 See more details on the :ref:`System Datastore Guide <system_ds>`
 
-Configuring the FileSystem Datastores
+Configuring the Filesystem Datastores
 -------------------------------------
 
 The first step to create a filesystem datastore is to set up a template file for it. In the following table you can see the valid configuration attributes for a filesystem datastore. The datastore type is set by its drivers, in this case be sure to add ``DS_MAD=fs``.

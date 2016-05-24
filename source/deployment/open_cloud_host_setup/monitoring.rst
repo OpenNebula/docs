@@ -5,18 +5,18 @@
 Monitoring Overview
 ====================
 
-This section provides an overview of the OpenNebula monitoring subsystem. The monitoring subsystem gathers information relative to the hosts and the virtual machines, such as the host status, basic performance indicators, as well as VM status and capacity consumption. This information is collected by executing a set of static probes provided by OpenNebula. The output of these probes is sent to OpenNebula using a push mechanism.
+This section provides an overview of the OpenNebula monitoring subsystem. The monitoring subsystem gathers information relative to the Hosts and the Virtual Machines, such as the Host status, basic performance indicators, as well as Virtual Machine status and capacity consumption. This information is collected by executing a set of static probes provided by OpenNebula. The output of these probes is sent to OpenNebula using a push mechanism.
 
 Overview
 ==================
 
 Each host periodically sends monitoring data via UDP to the frontend which collects it and processes it in a dedicated module. This distributed monitoring system resembles the architecture of dedicated monitoring systems, using a lightweight communication protocol, and a push model.
 
-OpenNebula starts a ``collectd`` daemon running in the frontend host that listens for UDP connections on port 4124. In the first monitoring cycle the OpenNebula connects to the host using ``ssh`` and starts a daemon that will execute the probe scripts and sends the collected data to the collectd daemon in the fronted every specific amount of seconds (configurable with the ``-i`` option of the ``collectd IM_MAD``). This way the monitoring subsystem doesn't need to make new ssh connections to the hosts when it needs data.
+OpenNebula starts a ``collectd`` daemon running in the Front-end that listens for UDP connections on port 4124. In the first monitoring cycle the OpenNebula connects to the host using ``ssh`` and starts a daemon that will execute the probe scripts and sends the collected data to the collectd daemon in the fronted every specific amount of seconds (configurable with the ``-i`` option of the ``collectd IM_MAD``). This way the monitoring subsystem doesn't need to make new ssh connections to receive data.
 
 |image0|
 
-If the agent stops in a specific host, OpenNebula will detect that no monitorization data is received from that hosts and will restart the probe with SSH.
+If the agent stops in a specific Host, OpenNebula will detect that no monitorization data is received from that hosts and will restart the probe with SSH.
 
 Requirements
 ============
@@ -96,8 +96,6 @@ OpenNebula allows to customize the general behavior of the whole monitoring subs
 | HOST_PER_INTERVAL      | Number of hosts monitored in each interval.                                                               |
 +------------------------+-----------------------------------------------------------------------------------------------------------+
 
-.. warning:: Note that in this case HOST_PER_INTERVAL is only relevant when bootstrapping the monitor agents. Once the agents are up and running, OpenNebula does not polls the hosts.
-
 .. _monitoring_troubleshooting:
 
 Troubleshooting
@@ -110,20 +108,21 @@ Every (approximately) ``monitoring_push_cycle`` of seconds OpenNebula is receivi
 
 .. code::
 
-    Mon Nov 18 22:25:00 2013 [InM][D]: Host thost001 (1) successfully monitored.
-    Mon Nov 18 22:25:01 2013 [VMM][D]: VM 0 successfully monitored: ...
-    Mon Nov 18 22:25:21 2013 [InM][D]: Host thost001 (1) successfully monitored.
-    Mon Nov 18 22:25:21 2013 [VMM][D]: VM 0 successfully monitored: ...
-    Mon Nov 18 22:25:40 2013 [InM][D]: Host thost001 (1) successfully monitored.
-    Mon Nov 18 22:25:41 2013 [VMM][D]: VM 0 successfully monitored: ...
+    Tue May 24 16:21:47 2016 [Z0][InM][D]: Host thost087 (0) successfully monitored.
+    Tue May 24 16:21:47 2016 [Z0][VMM][D]: VM 0 successfully monitored: STATE=a CPU=0.0 MEMORY=113404 NETRX=648 NETTX=398
+    Tue May 24 16:22:07 2016 [Z0][InM][D]: Host thost087 (0) successfully monitored.
+    Tue May 24 16:22:07 2016 [Z0][VMM][D]: VM 0 successfully monitored: STATE=a CPU=0.0 MEMORY=113516 NETRX=648 NETTX=468
+    Tue May 24 16:22:11 2016 [Z0][VMM][D]: VM 0 successfully monitored: DISK_SIZE=[ID=0,SIZE=27] DISK_SIZE=[ID=1,SIZE=1]
+    Tue May 24 16:22:27 2016 [Z0][InM][D]: Host thost087 (0) successfully monitored.
+    Tue May 24 16:22:27 2016 [Z0][VMM][D]: VM 0 successfully monitored: STATE=a CPU=0.0 MEMORY=113544 NETRX=648 NETTX=468
 
 However, if in ``oned.log`` a host is being monitored **actively** periodically (every ``MONITORING_INTERVAL`` seconds) then the monitorization is **not** working correctly:
 
 .. code::
 
-    Mon Nov 18 22:22:30 2013 [InM][D]: Monitoring host thost087 (87)
-    Mon Nov 18 22:23:30 2013 [InM][D]: Monitoring host thost087 (87)
-    Mon Nov 18 22:24:30 2013 [InM][D]: Monitoring host thost087 (87)
+    Tue May 24 16:24:23 2016 [Z0][InM][D]: Monitoring host thost087 (0)
+    Tue May 24 16:25:23 2016 [Z0][InM][D]: Monitoring host thost087 (0)
+    Tue May 24 16:26:23 2016 [Z0][InM][D]: Monitoring host thost087 (0)
 
 If this is the case it's probably because OpenNebula is receiving probes faster than it can process. See the Tuning section to fix this.
 

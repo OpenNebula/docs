@@ -4,19 +4,19 @@
 KVM Driver
 ================================================================================
 
-`KVM (Kernel-based Virtual Machine) <http://www.linux-kvm.org/>`__ is the default hypervisor for OpenNebula's :ref:`Open Cloud Architecture <open_cloud_architecture>`. KVM is a complete virtualization technique for Linux. It offers full virtualization, where each Virtual Machine interacts with its own virtualized hardware. This guide describes the use of the KVM virtualizer with OpenNebula.
+`KVM (Kernel-based Virtual Machine) <http://www.linux-kvm.org/>`__ is the hypervisor for OpenNebula's :ref:`Open Cloud Architecture <open_cloud_architecture>`. KVM is a complete virtualization system for Linux. It offers full virtualization, where each Virtual Machine interacts with its own virtualized hardware. This guide describes the use of the KVM with OpenNebula.
 
 Requirements
 ================================================================================
 
-The Hosts will need a CPU with `Intel VT <http://www.intel.com/content/www/us/en/virtualization/virtualization-technology/intel-virtualization-technology.html>`__ or `AMD's AMD-V <http://www.amd.com/en-us/solutions/servers/virtualization>`__, in order to support virtualization. KVM's `Preparing to use KVM <http://www.linux-kvm.org/page/FAQ#Preparing_to_use_KVM>`__ guide will clarify any doubts you may have regarding if your hardware supports KVM.
+The Hosts will need a CPU with `Intel VT <http://www.intel.com/content/www/us/en/virtualization/virtualization-technology/intel-virtualization-technology.html>`__ or `AMD's AMD-V <http://www.amd.com/en-us/solutions/servers/virtualization>`__ features, in order to support virtualization. KVM's `Preparing to use KVM <http://www.linux-kvm.org/page/FAQ#Preparing_to_use_KVM>`__ guide will clarify any doubts you may have regarding if your hardware supports KVM.
 
 KVM will be installed and configured after following the :ref:`KVM Host Installation <kvm_node>` section.
 
 Considerations & Limitations
 ================================================================================
 
-Try to use :ref:`virtio <kvmg_virtio>` whenever possible, both for networks and disks.
+Try to use :ref:`virtio <kvmg_virtio>` whenever possible, both for networks and disks. Using emulated hardware, both for networks and disks, will have an impact in performance and will not expose all the available functionality. For instance, if you don't use ``virtio`` for the disk drivers, you will not be able to exceed a small number of devices connected to the controller, meaning that you have a limit when attaching disks, and it will not work while the VM is running (live disk-attach).
 
 Configuration
 ================================================================================
@@ -81,14 +81,13 @@ There are some attributes required for KVM to boot a VM. You can set a suitable 
 * ``HYPERV``: to enable hyperv extensions.
 * ``SPICE``: to add default devices for SPICE.
 
-
 For example:
 
 .. code::
 
-    OS       = [ arch = "x86_64" ]
+    OS       = [ ARCH = "x86_64" ]
     FEATURES = [ PAE = "no", ACPI = "yes", APIC = "no", HYPERV = "no", GUEST_AGENT = "no" ]
-    DISK     = [ driver = "raw" , cache = "none"]
+    DISK     = [ DRIVER = "raw" , CACHE = "none"]
     HYPERV_OPTIONS="<relaxed state='on'/><vapic state='on'/><spinlocks state='on' retries='4096'/>"
     SPICE_OPTIONS="
         <video>
@@ -101,7 +100,6 @@ For example:
         <redirdev bus='usb' type='spicevmc'/>
         <redirdev bus='usb' type='spicevmc'/>
         <redirdev bus='usb' type='spicevmc'/>"
-
 
 Live-Migration for Other Cache settings
 --------------------------------------------------------------------------------
@@ -249,13 +247,13 @@ NIC
 * ``SCRIPT``: name of a shell script to be executed after creating the tun device for the VM. It corresponds to the ``script`` option of the '-net' argument of the ``kvm`` command.
 * ``MODEL``: ethernet hardware to emulate. You can get the list of available models with this command:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ kvm -net nic,model=? -nographic /dev/null
 
 * ``FILTER`` to define a network filtering rule for the interface. Libvirt includes some predefined rules (e.g. clean-traffic) that can be used. `Check the Libvirt documentation <http://libvirt.org/formatnwfilter.html#nwfelemsRules>`__ for more information, you can also list the rules in your system with:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ virsh -c qemu:///system nwfilter-list
 
@@ -311,7 +309,7 @@ The configuration for the default cache type on newly attached disks is configur
 
 For Disks and NICs, if the guest OS is a Linux flavor, the guest needs to be explicitly tell to rescan the PCI bus. This can be done issuing the following command as root:
 
-.. code::
+.. prompt:: bash # auto
 
     # echo 1 > /sys/bus/pci/rescan
 
@@ -375,7 +373,7 @@ You will also need to modify ``/etc/sysconfig/libvirtd`` and uncomment this line
 
 After modifying these files the libvirt daemon must be restarted:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ sudo systemctl restart libvirtd
 
@@ -407,7 +405,7 @@ The scheduler configuration should also be changed to let it deploy more than on
 
 After this update the remote files in the nodes and restart opennebula:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onehost sync --force
     $ sudo systemctl restart opennebula

@@ -9,14 +9,14 @@ Overview
     * Architect
     * KVM
 
-The Virtualization Subsystem is the component in charge of talking with the hypervisor installed in the hosts and taking the actions needed for each step in the VM life-cycle. This chapter focuses on the procedure to configure and add KVM hosts into the OpenNebula Cloud.
+The Hosts are servers with a hypervisor installed (KVM) which execute the running Virtual Machines. These Hosts are managed by the KVM Driver, which will perform the actions needed to manage the VM and its life-cycle. This chapter analyses the KVM driver in detail, and will give you, amongst other things, the tools to configure and add KVM hosts into the OpenNebula Cloud.
 
 How Should I Read This Chapter
 ================================================================================
 
 Before reading this chapter, you should have already installed your :ref:`Frontend <frontend_installation>`, the :ref:`KVM Hosts <kvm_node>` and have an OpenNebula cloud up and running with at least one virtualization node.
 
-This chapter will focus on the configuration options for the hosts.
+This chapter will focus on the configuration options for the Hosts.
 
 * Read the :ref:`KVM driver <kvmg>` section in order to understand the procedure of configuring and managing kvm Hosts.
 * In the :ref:`Monitoring <mon>` section, you can find information about how OpenNebula is monitoring its Hosts and Virtual Machines, and changes you can make in the configuration of that subsystem.
