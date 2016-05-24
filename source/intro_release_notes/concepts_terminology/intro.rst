@@ -87,22 +87,23 @@ Before configuring multi-tenancy and defining the provisioning model of your clo
 4.2. Manage Virtual Resources
 --------------------------------------------------
 
-Now everything is ready for operation. OpenNebula provides full control to manage virtual resources. [TODO: Explain not all features available for vCenter, such us security groups.. virtual router]
+Now everything is ready for operation. OpenNebula provides full control to manage virtual resources.
 
 -  **Virtual machine image management** that allows to store :ref:`disk images in catalogs <img_guide>` (termed datastores), that can be then used to define VMs or shared with other users. The images can be OS installations, persistent data sets or empty data blocks that are created within the datastore.
 
--  **Virtual network management** of `Virtual networks <vgg>` that can be organized in network catalogs, and provide means to interconnect virtual machines. This kind of resources can be defined as IPv4, IPv6, or mixed networks, and can be used to achieve full isolation between virtual networks.
+-  **Virtual network management** of :ref:`Virtual networks <vgg>` that can be organized in network catalogs, and provide means to interconnect virtual machines. This kind of resources can be defined as IPv4, IPv6, or mixed networks, and can be used to achieve full isolation between virtual networks. Networks can be easily interconnected by using :ref:`virtual routers <vrouter>` and KVM users can also dinamically configure :ref:`security groups <security_groups>`
 
 -  **Virtual machine template management** with :ref:`template catalog <vm_guide>` system that allows to register :ref:`virtual machine <vm_guide_2>` definitions in the system, to be instantiated later as virtual machine instances.
 
 -  **Virtual machine instance management** with a number of operations that can be performed to control lifecycle of the :ref:`virtual machine instances <vm_guide_2>`, such as migration (live and cold), stop, resume, cancel, poweroff, etc.
 
-[TODO: Talk about References and about the CLI]
+Several :ref:`reference guides <overview_references_operation>` are provided for more information about definition files, templates and CLI.
 
 4.3. Create Virtual Machines
 --------------------------------------------------
 
-One of the most important aspects of teh cloud is the **preparation of the images** for our users. [TODO: Add link and more details]
+One of the most important aspects of teh cloud is the **preparation of the images** for our users. OpenNebula uses a method called :ref:`contextualization <context_overview>` to send information to the VM at boot time. Its most basic usage is to share networking configuration and login credentials with the VM so it can be configured. More advanced cases can be starting a custom script on VM boot or preparing configuration to use :ref:`OpenNebula Gate <onegate_usage>`.
+
 
 Step 5. Install Advanced Components
 ===============================================
