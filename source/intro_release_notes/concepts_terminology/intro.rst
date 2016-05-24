@@ -6,11 +6,9 @@ Start Here: OpenNebula Overview
 
 Welcome to OpenNebula documentation!
 
-OpenNebula is an open-source management platform to build IaaS private, public and hybrid clouds. Installing a cloud from scratch could be a complex process, in the sense that many components and concepts are involved. The degree of familiarity with these concepts (system administration, infrastructure planning, virtualization management) will determine the difficulty of the installation process.
+OpenNebula is an open-source management platform to build IaaS private, public and hybrid clouds. Installing a cloud from scratch could be a complex process, in the sense that many components and concepts are involved. The degree of familiarity with these concepts (system administration, infrastructure planning, virtualization management...) will determine the difficulty of the installation process.
 
 If you are new to OpenNebula you should go through this short introduction before proceeding to the deployment and administration guides.
-
-[TODO: Guide title in bold and link to sections]
 
 Step 1. Choose Your Hypervisor
 =================================================
@@ -23,7 +21,8 @@ The first step is to decide on the hypervisor that you will use in your cloud in
 
 After having installed the cloud with one hypervisor you may add another hypervisors. You can deploy heterogeneous multi-hypervisor environments managed by a single OpenNebula instance. An advantage of using OpenNebula on VMware is the strategic path to openness as companies move beyond virtualization toward a private cloud. OpenNebula can leverage existing VMware infrastructure, protecting IT investments, and at the same time gradually integrate other open-source hypervisors, therefore avoiding future vendor lock-in and strengthening the negotiating position of the company.
 
-There are other virtualization technologies, like LXC or Xen, supported by the community. Please refer to the OpenNebula Add-ons Catalog [TODO: Add link].
+There are other virtualization technologies, like LXC or Xen, supported by the community. Please refer to the OpenNebula Add-ons Catalog.<http://opennebula.org/addons/>`__
+
 
 [TODO: Add Figure]
 
