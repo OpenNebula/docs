@@ -70,6 +70,19 @@ Moreover, the boot order as well as other configuration attributes can be update
 
 A shortcut option to automatically include support for the qemu guest agent has been added to OpenNebula. There is no need to add RAW attributes to add agent support to a VM.
 
+Cloud Bursting
+--------------------------------------------------------------------------------
+
+The following valid syntax in 4.14 EC2 VM Templates has been deprecated:
+
+.. code::
+
+    EC2=[AMI="xxx", ...]
+
+In 5.0 Wizard the only valid syntax is using PUBLIC_CLOUD with the attributes defined in the :ref:`Amazon EC2 Driver Section <ec2_specific_temaplate_attributes>`.
+
+The existing VM Templates with the old EC2 Section will be automatically modified with the new syntax by the onedb upgrade command.
+
 Scheduler
 --------------------------------------------------------------------------------
 

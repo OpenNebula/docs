@@ -42,12 +42,9 @@ You should take into account the following technical considerations when using t
 Prerequisites
 ================================================================================
 
-.. warning:: ruby >= 1.9.3 is required, and it is not packaged in all distros supported by OpenNebula. If you are running on an older supported distro (like Centos 6.x) please update ruby or use `rvm <https://rvm.io/>`__ to run a newer (>= 1.9.3) version (remember to run ``install_gems`` after the ruby upgrade is done to reinstall all gems)
-
--  You must have a working account for `Azure <http://azure.microsoft.com/>`__
--  You need your Azure credentials (Information on how to manage Azure certificates can be found `here <http://azure.microsoft.com/en-us/documentation/articles/linux-use-ssh-key/>`__. ). The information can be obtained from the `Management Azure page <https://manage.windowsazure.com>`__
-
-- First, the Subscription ID, that can be uploaded and retrieved from Settings -> Subscriptions
+-  You must have a working account for `Azure <http://azure.microsoft.com/>`__.
+-  You need your Azure credentials (Information on how to manage Azure certificates can be found `here <http://azure.microsoft.com/en-us/documentation/articles/linux-use-ssh-key/>`__. ). The information can be obtained from the `Management Azure page <https://manage.windowsazure.com>`__.
+- First, the Subscription ID, that can be uploaded and retrieved from Settings -> Subscriptions.
 - Second, the Management Certificate file, that can be created with the following steps- We need the .pem file (for the ruby gem) and the .cer file (to upload to Azure):
 
 .. code::
@@ -70,9 +67,9 @@ Prerequisites
 
 - Third, the certificate file (.cer) has to be uploaded to Settings -> Management Certificates
 
--  The following gem is required: ``azure``. Otherwise, run the ``install_gems`` script as root:
+-  The following gem is required: ``azure``. This gem is automatically installed as part of the :ref:`installation process <ruby_runtime>`. Otherwise, run the ``install_gems`` script as root:
 
-.. code::
+.. prompt:: bash # auto
 
     # /usr/share/one/install_gems cloud
 
@@ -130,7 +127,7 @@ Additionally you must define your credentials, the Azure location to be used and
 
 In the above file, each region represents an `Azure datacenter <http://matthew.sorvaag.net/2011/06/windows-azure-data-centre-locations/>`__ (Microsoft doesn't provide an official list). (see the :ref:`multi site region account section <azg_multi_az_site_region_account_support>` for more information.
 
-If the OpenNebula frontend needs to use a proxy to connect to internet you also need to configure the proxy in that file. The parameter is called ``proxy_uri``. Authenticated proxies are not supported, that is, the ones that require user name and password. For example, if the proxy is in ``10.0.0.1`` and its port is ``8080`` the configuration line should read:
+If the OpenNebula frontend needs to use a proxy to connect to the public Internet you also need to configure the proxy in that file. The parameter is called ``proxy_uri``. Authenticated proxies are not supported, that is, the ones that require user name and password. For example, if the proxy is in ``10.0.0.1`` and its port is ``8080`` the configuration line should read:
 
 .. code::
 
@@ -140,7 +137,7 @@ Once the file is saved, OpenNebula needs to be restarted (as ``oneadmin``, do a 
 
 .. prompt:: bash $ auto
 
-    $ onehost create west-europe -i az -v az -n dummy
+    $ onehost create west-europe -i az -v az
 
 Azure Specific Template Attributes
 ================================================================================
@@ -173,39 +170,9 @@ In order to deploy an instance in Azure through OpenNebula you must include an P
 
 These are the attributes that can be used in the PUBLIC_CLOUD section of the template for TYPE "AZURE":
 
-+--------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-|        ATTRIBUTES        |                                                                                             DESCRIPTION                                                                                             |
-+==========================+=====================================================================================================================================================================================================+
-| ``INSTANCE_TYPE``        | Specifies the capacity of the VM in terms of CPU and memory                                                                                                                                         |
-+--------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``IMAGE``                | Specifies the base OS of the VM. There are various ways to obtain the list of valid images for Azure, the simplest one is detailed `here <http://msdn.microsoft.com/library/azure/jj157191.aspx>`__ |
-+--------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``VM_USER``              | If the selected IMAGE is prepared for Azure provisioning, a username can be specified here to access the VM once booted                                                                             |
-+--------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``VM_PASSWORD``          | Password for VM_USER                                                                                                                                                                                |
-+--------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``LOCATION``             | Azure datacenter where the VM will be sent. See /etc/one/az_driver.conf for possible values (use the name of the section, not the region names). Spaces are not supported in this value.            |
-+--------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``STORAGE_ACCOUNT``      | Specify the storage account where this VM will belong                                                                                                                                               |
-+--------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``WIN_RM``               | Comma-separated list of possible protocols to access this Windows VM                                                                                                                                |
-+--------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``CLOUD_SERVICE``        | Specifies the name of the cloud service where this VM will be linked. Defaults to "csn<vid>, where vid is the id of the VM".                                                                        |
-+--------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``TCP_ENDPOINTS``        | Comma-separated list of TCP ports to be accesible from the public internet to this VM                                                                                                               |
-+--------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``SSHPORT``              | Port where the VMs ssh server will listen on                                                                                                                                                        |
-+--------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``VIRTUAL_NETWORK_NAME`` | Name of the virtual network to which this VM will be connected                                                                                                                                      |
-+--------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``SUBNET``               | NAme of the particular Subnet where this VM will be connected to                                                                                                                                    |
-+--------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``AVAILABILITY_SET``     | Name of the availability set to which this VM will belong                                                                                                                                           |
-+--------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``AFFINITY_GROUP``       | Affinity groups allow you to group your Azure services to optimize performance. All services and VMs within an affinity group will be located in the same region belong                             |
-+--------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+Check an exhaustive list of attributes in the :ref:`Virtual Machine Definition File Reference Section <_public_cloud_azure_atts>`.
 
-.. note:: The PUBLIC_CLOUD sections allow for substitions from template and virtual network variables, the same way as the :ref:`CONTEXT section allows <cong_defining_context>`.
+.. note:: The PUBLIC_CLOUD sections allow for substitutions from template and virtual network variables, the same way as the :ref:`CONTEXT section allows <cong_defining_context>`.
 
 
 Default values for all these attributes can be defined in the ``/etc/one/az_driver.default`` file.
@@ -279,7 +246,7 @@ After that, create a new Host with the ``west-europe`` name:
 
 .. prompt:: bash $ auto
 
-    $ onehost create west-europe -i az -v az -n dummy
+    $ onehost create west-europe -i az -v az
 
 If the Host name does not match any regions key, the ``default`` will be used.
 
@@ -511,4 +478,3 @@ Importing VMs
 ================================================================================
 
 VMs running on Azure that were not launched through OpenNebula can be :ref:`imported in OpenNebula <import_wild_vms>`.
-

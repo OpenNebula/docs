@@ -26,7 +26,7 @@ Prerequisites
 
 -  You must have a working account for `AWS <http://aws.amazon.com/>`__ and signup for EC2 and S3 services.
 
--  The `aws-sdk ruby gem <https://github.com/aws/aws-sdk-ruby>`__ needs to be installed. This gem is automatically installed as part of the `installation process <ruby_runtime>`__. In case you need to deploy it manually, please take into account that v2 of the gem only works for ruby versions > 1.9.
+-  The `aws-sdk ruby gem <https://github.com/aws/aws-sdk-ruby>`__ needs to be installed, version 1.66. This gem is automatically installed as part of the :ref:`installation process <ruby_runtime>`.
 
 OpenNebula Configuration
 ================================================================================
@@ -86,7 +86,9 @@ After OpenNebula is restarted, create a new Host that uses the ec2 drivers:
 
 .. prompt:: bash $ auto
 
-    $ onehost create ec2 --im ec2 --vm ec2 --net dummy
+    $ onehost create ec2 --im ec2 --vm ec2
+
+.. _ec2_specific_temaplate_attributes:
 
 EC2 Specific Template Attributes
 ================================================================================
@@ -102,59 +104,16 @@ In order to deploy an instance in EC2 through OpenNebula you must include an EC2
     DISK     = [ IMAGE_ID = 3 ]
     NIC      = [ NETWORK_ID = 7 ]
      
-    # EC2 template machine, this will be use wen submitting this VM to EC2
-    EC2 = [ AMI="ami-00bafcb5",
-            KEYPAIR="gsg-keypair",
-            INSTANCETYPE=m1.small]
+    # PUBLIC_CLOUD template, this will be use wen submitting this VM to EC2
+    PUBLIC_CLOUD = [ TYPE="EC2",
+                     AMI="ami-00bafcb5",
+                     KEYPAIR="gsg-keypair",
+                     INSTANCETYPE=m1.small]
      
     #Add this if you want to use only EC2 cloud
     #SCHED_REQUIREMENTS = 'HOSTNAME = "ec2"'
 
-These are the attributes that can be used in the EC2 section of the template:
-
-+------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-|       ATTRIBUTES       |                                                                                                                                        DESCRIPTION                                                                                                                                         |
-+========================+============================================================================================================================================================================================================================================================================================+
-| ``AMI``                | Unique ID of a machine image, returned by a call to ec2-describe-images.                                                                                                                                                                                                                   |
-+------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``AKI``                | The ID of the kernel with which to launch the instance.                                                                                                                                                                                                                                    |
-+------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``CLIENTTOKEN``        | Unique, case-sensitive identifier you provide to ensure idempotency of the request.                                                                                                                                                                                                        |
-+------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``INSTANCETYPE``       | Specifies the instance type.                                                                                                                                                                                                                                                               |
-+------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``KEYPAIR``            | The name of the key pair, later will be used to execute commands like *ssh -i id\_keypair* or *scp -i id\_keypair*                                                                                                                                                                         |
-+------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``LICENSEPOOL``        | –license-pool                                                                                                                                                                                                                                                                              |
-+------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``BLOCKDEVICEMAPPING`` | The block device mapping for the instance. More than one can be specified in a space-separated list. Check the –block-device-mapping option of the `EC2 CLI Reference <http://docs.aws.amazon.com/AWSEC2/latest/CommandLineReference/ApiReference-cmd-RunInstances.html>`__ for the syntax |
-+------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``PLACEMENTGROUP``     | Name of the placement group.                                                                                                                                                                                                                                                               |
-+------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``PRIVATEIP``          | If you're using Amazon Virtual Private Cloud, you can optionally use this parameter to assign the instance a specific available IP address from the subnet.                                                                                                                                |
-+------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``RAMDISK``            | The ID of the RAM disk to select.                                                                                                                                                                                                                                                          |
-+------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``SUBNETID``           | If you're using Amazon Virtual Private Cloud, this specifies the ID of the subnet you want to launch the instance into. This parameter is also passed to the command *ec2-associate-address -i i-0041230 -a elasticip*.                                                                    |
-+------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``TENANCY``            | The tenancy of the instance you want to launch.                                                                                                                                                                                                                                            |
-+------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``USERDATA``           | Specifies Base64-encoded MIME user data to be made available to the instance(s) in this reservation.                                                                                                                                                                                       |
-+------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``SECURITYGROUPS``     | Name of the security group. You can specify more than one security group (comma separated).                                                                                                                                                                                                |
-+------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``SECURITYGROUPIDS``   | Ids of the security group. You can specify more than one security group (comma separated).                                                                                                                                                                                                 |
-+------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``ELASTICIP``          | EC2 Elastic IP address to assign to the instance. This parameter is passed to the command *ec2-associate-address -i i-0041230 elasticip*.                                                                                                                                                  |
-+------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``TAGS``               | Key and optional value of the tag, separated by an equals sign ( = ).You can specify more than one tag (comma separated).                                                                                                                                                                  |
-+------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``AVAILABILITYZONE``   | The Availability Zone in which to run the instance.                                                                                                                                                                                                                                        |
-+------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``HOST``               | Defines which OpenNebula host will use this template                                                                                                                                                                                                                                       |
-+------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``EBS_OPTIMIZED``      | Obtain a better I/O throughput for VMs with EBS provisioned volumes                                                                                                                                                                                                                        |
-+------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+Check an exhaustive list of attributes in the :ref:`Virtual Machine Definition File Reference Section <public_cloud_amazon_ec2_atts>`.
 
 Default values for all these attributes can be defined in the ``/etc/one/ec2_driver.default`` file.
 
@@ -163,35 +122,36 @@ Default values for all these attributes can be defined in the ``/etc/one/ec2_dri
     <!--
      Default configuration attributes for the EC2 driver
      (all domains will use these values as defaults)
-     Valid atributes are: AKI AMI CLIENTTOKEN INSTANCETYPE KEYPAIR LICENSEPOOL
+     Valid attributes are: AKI AMI CLIENTTOKEN INSTANCETYPE KEYPAIR LICENSEPOOL
         PLACEMENTGROUP PRIVATEIP RAMDISK SUBNETID TENANCY USERDATA SECURITYGROUPS
         AVAILABILITYZONE EBS_OPTIMIZED ELASTICIP TAGS
      Use XML syntax to specify defaults, note elements are UPCASE
      Example:
      <TEMPLATE>
-       <EC2>
+       <PUBLIC_CLOUD>
          <KEYPAIR>gsg-keypair</KEYPAIR>
          <INSTANCETYPE>m1.small</INSTANCETYPE>
-       </EC2>
+       </PUBLIC_CLOUD>
      </TEMPLATE>
     -->
      
     <TEMPLATE>
-      <EC2>
+      <PUBLIC_CLOUD>
         <INSTANCETYPE>m1.small</INSTANCETYPE>
-      </EC2>
+      </PUBLIC_CLOUD>
     </TEMPLATE>
 
-.. note:: The EC2 and PUBLIC_CLOUD sections allow for substitions from template and virtual network variables, the same way as the :ref:`CONTEXT section allows <cong_defining_context>`.
+.. note:: The PUBLIC_CLOUD sections allow for substitutions from template and virtual network variables, the same way as the :ref:`CONTEXT section allows <cong_defining_context>`.
 
-These values can furthermore be asked to the user using :ref:`user inputs <vm_guide_user_inputs>`. A common scenario is to delegate the User Data to the end user. For that, a new User Input named USERDATA can be created of text64 (the User Data needs to be encoded on base64) and a placeholder added to the EC2 section:
+These values can furthermore be asked to the user using :ref:`user inputs <vm_guide_user_inputs>`. A common scenario is to delegate the User Data to the end user. For that, a new User Input named USERDATA can be created of text64 (the User Data needs to be encoded on base64) and a placeholder added to the PUBLIC_CLOUD section:
 
 .. code::
-    
-    EC2 = [ AMI="ami-00bafcb5",
-            KEYPAIR="gsg-keypair",
-            INSTANCETYPE=m1.small,
-            USERDATA="$USERDATA"]
+
+    PUBLIC_CLOUD = [ TYPE="EC2",
+                     AMI="ami-00bafcb5",
+                     KEYPAIR="gsg-keypair",
+                     INSTANCETYPE=m1.small,
+                     USERDATA="$USERDATA"]
 
 Context Support
 --------------------------------------------------------------------------------
@@ -204,7 +164,7 @@ If a CONTEXT section is defined in the template, it will be available as USERDAT
     ONEGATE_ENDPOINT="https://onegate...
     SSH_PUBLIC_KEY="ssh-rsa ABAABeqzaC1y...
 
-If the :ref:`linux context packages for EC2 <linux_packages>` are installed in the VM, these parameters will be used to configure the VM. These is the :ref:`list of the supported parameters for EC2 <ec2_context>`.
+If the :ref:`linux context packages for EC2 <linux_packages>` are installed in the VM, these parameters will be used to configure the VM. This is the :ref:`list of the supported parameters for EC2 <ec2_context>`.
 
 For example, if you want to enable SSH access to the VM, an existing EC2 keypair name can be provided in the EC2 template section or the :ref:`SSH public key of the user <vcenter_context>` can be included in the CONTEXT section of the template.
 
@@ -215,7 +175,7 @@ For example, if you want to enable SSH access to the VM, an existing EC2 keypair
 Multi EC2 Site/Region/Account Support
 ================================================================================
 
-It is possible to define various EC2 hosts to allow opennebula the managing of different EC2 regions or different EC2 accounts.
+It is possible to define various EC2 hosts to allow OpenNebula the managing of different EC2 regions or different EC2 accounts.
 
 When you create a new host the credentials and endpoint for that host are retrieved from the ``/etc/one/ec2_driver.conf`` file using the host name. Therefore, if you want to add a new host to manage a different region, i.e. ``eu-west-1``, just add your credentials and the capacity limits to the the ``eu-west-1`` section in the conf file, and specify that name (eu-west-1) when creating the new host.
 
@@ -236,18 +196,20 @@ After that, create a new Host with the ``eu-west-1`` name:
 
 .. prompt:: bash $ auto
 
-    $ onehost create eu-west-1 --im ec2 --vm ec2 --net dummy
+    $ onehost create eu-west-1 --im ec2 --vm ec2
 
 If the Host name does not match any regions key, the ``default`` will be used.
 
-You can define a different EC2 section in your template for each EC2 host, so with one template you can define different AMIs depending on which host it is scheduled, just include a HOST attribute in each EC2 section:
+You can define a different PUBLIC_CLOUD section in your template for each EC2 host, so with one template you can define different AMIs depending on which host it is scheduled, just include a HOST attribute in each EC2 section:
 
 .. code::
 
-    EC2 = [ HOST="ec2",
-            AMI="ami-0022c769" ]
-    EC2 = [ HOST="eu-west-1",
-            AMI="ami-03324cc9" ]
+    PUBLIC_CLOUD = [ TYPE="EC2",
+                     HOST="ec2",
+                     AMI="ami-0022c769" ]
+    PUBLIC_CLOUD = [ TYPE="EC2",
+                     HOST="eu-west-1",
+                     AMI="ami-03324cc9" ]
 
 You will have *ami-0022c769* launched when this VM template is sent to host *ec2* and *ami-03324cc9* whenever the VM template is sent to host *eu-west-1*.
 
@@ -279,7 +241,7 @@ An example of a hybrid template:
 OpenNebula will use the first portion (from NAME to NIC) in the above template when the VM is scheduled to a local virtualization node, and the EC2 section when the VM is scheduled to an EC2 node (ie, when the VM is going to be launched in Amazon EC2).
 
 Testing
-=======
+================================================================================
 
 You must create a template file containing the information of the AMIs you want to launch. Additionally if you have an elastic IP address you want to use with your EC2 instances, you can specify it as an optional parameter.
 
@@ -294,9 +256,10 @@ You must create a template file containing the information of the AMIs you want 
      
     #EC2 template machine, this will be use wen submitting this VM to EC2
      
-    EC2 = [ AMI="ami-00bafcb5",
-            KEYPAIR="gsg-keypair",
-            INSTANCETYPE=m1.small]
+    PUBLIC_CLOUD = [ TYPE="EC2",
+                     AMI="ami-00bafcb5",
+                     KEYPAIR="gsg-keypair",
+                     INSTANCETYPE=m1.small]
      
     #Add this if you want to use only EC2 cloud
     #SCHED_REQUIREMENTS = 'HOSTNAME = "ec2"'
@@ -363,7 +326,8 @@ Also you can see information (like IP address) related to the amazon instance la
       0 ec2             none                0  11/15 14:15:37   2d 21h48m   0h00m00s
 
     USER TEMPLATE
-    EC2=[
+    PUBLIC_CLOUD=[
+      TYPE="EC2",
       AMI="ami-6f5f1206",
       INSTANCETYPE="m1.small",
       KEYPAIR="gsg-keypair" ]
@@ -399,8 +363,8 @@ The local hosts will have a priority of 0 by default, but you could set any valu
 
 There are two other parameters that you may want to adjust in sched.conf::
 
--  ``MAX_DISPATCH``: Maximum number of Virtual Machines actually dispatched to a host in each scheduling action
--  ``MAX_HOST``: Maximum number of Virtual Machines dispatched to a given host in each scheduling action
+-  MAX_DISPATCH: Maximum number of Virtual Machines actually dispatched to a host in each scheduling action
+-  MAX_HOST: Maximum number of Virtual Machines dispatched to a given host in each scheduling action
 
 In a scheduling cycle, when MAX\_HOST number of VMs have been deployed to a host, it is discarded for the next pending VMs.
 
