@@ -21,8 +21,7 @@ The first step is to decide on the hypervisor that you will use in your cloud in
 
 After having installed the cloud with one hypervisor you may add another hypervisors. You can deploy heterogeneous multi-hypervisor environments managed by a single OpenNebula instance. An advantage of using OpenNebula on VMware is the strategic path to openness as companies move beyond virtualization toward a private cloud. OpenNebula can leverage existing VMware infrastructure, protecting IT investments, and at the same time gradually integrate other open-source hypervisors, therefore avoiding future vendor lock-in and strengthening the negotiating position of the company.
 
-There are other virtualization technologies, like LXC or Xen, supported by the community. Please refer to the OpenNebula Add-ons Catalog.<http://opennebula.org/addons/>`__
-
+There are other virtualization technologies, like LXC or Xen, supported by the community. Please refer to the `OpenNebula Add-ons Catalog<http://opennebula.org/addons/>`__.
 
 [TODO: Add Figure]
 
