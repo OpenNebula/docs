@@ -36,14 +36,14 @@ In order to get the most out of a OpenNebula Cloud, we recommend that you create
 2.2. Install the Front-end
 --------------------------------------------------
 
-Next step is the **installation of OpenNebula in the cloud front-end**. This :ref:`installation process<frontend_installation>` is the same for any underlying hypervisor.
+Next step is the **installation of OpenNebula in the cloud front-end**. This :ref:`installation process <frontend_installation>` is the same for any underlying hypervisor.
 
 Optionally you can setup a :ref:`high available cluster for OpenNebula <frontend_ha_setup>` for OpenNebula to reduce downtime of core OpenNebula services, and :ref:`configure a MySQL backend <mysql>` as an alternative to the default Sqlite backend if you are planning a large-scale infrastructure.
 
 2.3. Install the Virtualization hosts
 -------------------------------------------------
 
-Now you are ready to **add the virtualization nodes**. The OpenNebula packages bring support for :ref:`KVM <kvm_node>` and :ref:`vCenter <vCenter_node>` nodes. In the case of vCenter, a host represents a vCenter cluster with all its ESX hosts. You can add different hypervisors to the same OpenNebula instance, or any other virtualization technology, like LXC or Xen, supported by the community. Please refer to the `OpenNebula Add-ons Catalog<http://opennebula.org/addons/>`__.
+Now you are ready to **add the virtualization nodes**. The OpenNebula packages bring support for :ref:`KVM <kvm_node>` and :ref:`vCenter <vCenter_node>` nodes. In the case of vCenter, a host represents a vCenter cluster with all its ESX hosts. You can add different hypervisors to the same OpenNebula instance, or any other virtualization technology, like LXC or Xen, supported by the community. Please refer to the `OpenNebula Add-ons Catalog <http://opennebula.org/addons/>`__.
 
 Step 3. Set-up Infrastructure and Services
 ===============================================
@@ -135,13 +135,11 @@ Because no two clouds are the same, OpenNebula provides many different interface
 
 -  **API for integration** with higher level tools such as billing, self-service portals... that offers all the rich functionality of the OpenNebula core, with bindings for :ref:`ruby <ruby>` and :ref:`java <java>` and :ref:`XMLRPC API <api>`,
 
--  **OneFlow API** to create, control and monitor :ref:`multi-tier applications or services composed of interconnected Virtual Machines <appflow_api>`. 
+-  **OneFlow API** to create, control and monitor :ref:`multi-tier applications or services composed of interconnected Virtual Machines <appflow_api>`.
 
 -  **Sunstone custom routes and tabs** to extend the :ref:`sunstone server <sunstone_dev>`.
 
 -  **Hook Manager** to :ref:`trigger administration scripts upon VM state change <hooks>`.
-
-.. |OpenNebula Cloud Architecture|
 
 .. |OpenNebula Hypervisors| image:: /images/ONE_Hypervisors.png
 .. |OpenNebula Cloud Architecture| image:: /images/new_overview_integrators.png
