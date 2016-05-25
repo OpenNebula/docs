@@ -11,7 +11,7 @@ Cluster Management
 
 Clusters are managed with the :ref:`''onecluster'' command <cli>`. To create new Clusters, use ``onecluster create <name>``. Existing Clusters can be inspected with the ``onecluster list`` and ``show`` commands.
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onecluster list
       ID NAME            HOSTS NETS  DATASTORES
@@ -43,7 +43,7 @@ To delete a Host from a Cluster, the command ``onecluster delhost`` must be used
 
 In the following example, we will add Host 0 to the Cluster we created before. You will notice that the ``onecluster show`` command will list the Host ID 0 as part of the Cluster.
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onehost list
       ID NAME         CLUSTER     RVM   TCPU   FCPU   ACPU   TMEM   FMEM   AMEM STAT
@@ -76,7 +76,7 @@ For instance, if you have several Hosts configured to use :ref:`Open vSwitch net
 
 These operations can be done with the ``onecluster`` ``addvnet/delvnet`` and ``adddatastore/deldatastore``:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onecluster addvnet production priv-ovswitch
 
@@ -116,19 +116,24 @@ Cluster Properties
 
 Each cluster includes a generic template where cluster configuration properties or attributes can be defined. The following list of attributes are recognized by OpenNebula:
 
-+--------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Attribute                | Description                                                                                                                                                                                                                                |
-+==========================+============================================================================================================================================================================================================================================+
-| ``DATASTORE_LOCATION``   | \*Default\* path for datastores in the cluster hosts. It **is** the same for all the hosts in the cluster. Note that DATASTORE\_LOCATION is only for the cluster hosts and not for the front-end. It defaults to /var/lib/one/datastores   |
-+--------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``RESERVED_CPU``         | In percentage. Applies to all the Hosts in this cluster. It will be substracted from the TOTAL CPU. See :ref:`scheduler <schg_limit>`.                                                                                                     |
-+--------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``RESERVED_MEM``         | In KB. Applies to all the Hosts in this cluster. It will be substracted from the TOTAL MEM. See :ref:`scheduler <schg_limit>`.                                                                                                             |
-+--------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++------------------------+--------------------------------------------------------------------------+
+|       Attribute        |                               Description                                |
++========================+==========================================================================+
+| ``DATASTORE_LOCATION`` | \*Default\* path for datastores in the cluster hosts. It **is** the same |
+|                        | for all the hosts in the cluster. Note that DATASTORE\_LOCATION is only  |
+|                        | for the cluster hosts and not for the front-end. It defaults             |
+|                        | to /var/lib/one/datastores                                               |
++------------------------+--------------------------------------------------------------------------+
+| ``RESERVED_CPU``       | In percentage. Applies to all the Hosts in this cluster. It will be      |
+|                        | subtracted from the TOTAL CPU. See :ref:`scheduler <schg_limit>`.        |
++------------------------+--------------------------------------------------------------------------+
+| ``RESERVED_MEM``       | In KB. Applies to all the Hosts in this cluster. It will be subtracted   |
+|                        | from the TOTAL MEM. See :ref:`scheduler <schg_limit>`.                   |
++------------------------+--------------------------------------------------------------------------+
 
 You can easily update this values with the ``onecluster`` command:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onecluster update production
 
@@ -140,7 +145,7 @@ You can easily update this values with the ``onecluster`` command:
     ~
     ----->8----- editor session ------>8------
 
-    $oneluster show production
+    $ onecluster show production
     CLUSTER 100 INFORMATION
     ID               : 100
     NAME             : production
@@ -168,7 +173,7 @@ Automatic Requirements
 
 When a Virtual Machine uses resources (Images or Virtual Networks) from a Cluster, OpenNebula adds the following :ref:`requirement <template_placement_section>` to the template:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onevm show 0
     [...]
@@ -176,7 +181,7 @@ When a Virtual Machine uses resources (Images or Virtual Networks) from a Cluste
 
 Because of this, if you try to use resources that do not belong to the same Cluster, the Virtual Machine creation will fail with a message similar to this one:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onetemplate instantiate 0
     [TemplateInstantiate] Error allocating a new virtual machine. Incompatible cluster IDs.
@@ -188,7 +193,7 @@ Manual Requirements and Rank
 
 The placement attributes :ref:`SCHED\_REQUIREMENTS and SCHED\_RANK <template_placement_section>` can use attributes from the Cluster template. Let’s say you have the following scenario:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onehost list
       ID NAME            CLUSTER   RVM      ALLOCATED_CPU      ALLOCATED_MEM STAT
@@ -206,7 +211,7 @@ The placement attributes :ref:`SCHED\_REQUIREMENTS and SCHED\_RANK <template_pla
 
 You can use these expressions:
 
-.. code::
+.. code-block:: bash
 
     SCHED_REQUIREMENTS = "QOS = GOLD"
      
@@ -215,7 +220,7 @@ You can use these expressions:
 Managing Clusters in Sunstone
 =============================
 
-The :ref:`Sunstone UI interface <sunstone>` offers an easy way to manage clusters and the resources whithin them. You will find the cluster submenu under the infraestructure menu. From there, you will be able to:
+The :ref:`Sunstone UI interface <sunstone>` offers an easy way to manage clusters and the resources within them. You will find the cluster sub-menu under the infrastructure menu. From there, you will be able to:
 
 -  Create new clusters selecting the resources you want to include in this cluster:
 

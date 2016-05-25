@@ -39,19 +39,19 @@ Hosts are the servers managed by OpenNebula responsible for Virtual Machine exec
 
 Creating a host:
 
-.. code::
+.. prompt:: bash $ auto
 
-    $ onehost create host01 --im dummy --vm dummy 
+    $ onehost create host01 --im dummy --vm dummy
     ID: 0
 
 The parameters are:
 
--  ``--im/-i``: Information Manager driver. 
--  ``--vm/-v``: Virtual Machine Manager driver. 
+-  ``--im/-i``: Information Manager driver.
+-  ``--vm/-v``: Virtual Machine Manager driver.
 
 To remove a host, just like with other OpenNebula commands, you can either specify it by ID or by name. The following commands are equivalent:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onehost delete host01
     $ onehost delete 0
@@ -61,7 +61,7 @@ Show, List and Top
 
 To display information about a single host the ``show`` command is used:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onehost show 0
     HOST 0 INFORMATION
@@ -95,7 +95,7 @@ To display information about a single host the ``show`` command is used:
 
 We can instead display this information in XML format with the ``-x`` parameter:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onehost show -x 0
     <HOST>
@@ -137,7 +137,7 @@ We can instead display this information in XML format with the ``-x`` parameter:
 
 To see a list of all the hosts:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onehost list
       ID NAME            CLUSTER   RVM TCPU FCPU ACPU    TMEM    FMEM    AMEM STAT
@@ -146,7 +146,7 @@ To see a list of all the hosts:
 
 It can also be displayed in XML format using ``-x``:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onehost list -x
     <HOST_POOL>
@@ -187,25 +187,25 @@ status for each mode is described by the following table:
 
 The ``onehost`` tool includes three commands to set the operation mode of a host: ``disable``, ``offline`` and ``enable``, for example:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onehost disable 0
 
 To re-enable the host use the ``enable`` command:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onehost enable 0
 
 Similarly to put the host offline:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onehost offline 0
 
 The ``flush`` command will mark all the running VMs in the specified host as to be rescheduled, which means that they will be migrated to another server with enough capacity. At the same time, the specified host will be disabled, so no more Virtual Machines are deployed in it. This command is useful to clean a host of running VMs.
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onehost list
       ID NAME            CLUSTER   RVM TCPU FCPU ACPU    TMEM    FMEM    AMEM STAT
@@ -242,13 +242,13 @@ It's sometimes useful to store information in the host's template. To do so, the
 
 An example use case is to add the following line to the host's template:
 
-.. code::
+.. code-block:: bash
 
     TYPE="production"
 
 Which can be used at a later time for scheduling purposes by adding the following section in a VM template:
 
-.. code::
+.. code-block:: bash
 
     SCHED_REQUIREMENTS="TYPE=\"production\""
 
@@ -256,7 +256,7 @@ That will restrict the Virtual Machine to be deployed in ``TYPE=production`` hos
 
 The host drivers can be also changed with the host template attributes ``_MAD``. Please note that this change will only apply to new deployments. If the ``im_mad`` is changed, make sure to run the ``onehost sync`` command explained below.
 
-.. code::
+.. code-block:: bash
 
     IM_MAD="kvm"
     VM_MAD="kvm"
@@ -270,7 +270,7 @@ When OpenNebula monitors a host, it copies a certain amount of files to ``/var/t
 
 To keep track of the probes version there's a new file in ``/var/lib/one/remotes/VERSION``. By default this holds the OpenNebula version (ex. '4.4.0'). This version can be seen in he hosts with a ``onehost show <host>``:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onehost show 0
     HOST 0 INFORMATION
@@ -284,20 +284,20 @@ The command ``onehost sync`` only updates the hosts with ``VERSION`` lower than 
 
 In case you want to force upgrade, that is, no ``VERSION`` checking you can do that adding ``--force`` option:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onehost sync --force
 
 You can also select which hosts you want to upgrade naming them or selecting a cluster:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onehost sync host01,host02,host03
     $ onehost sync -c myCluster
 
 ``onehost sync`` command can alternatively use ``rsync`` as the method of upgrade. To do this you need to have installed ``rsync`` command in the frontend and the nodes. This method is faster that the standard one and also has the benefit of deleting remote files no longer existing in the frontend. To use it add the parameter ``--rsync``:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onehost sync --rsync
 
@@ -308,53 +308,69 @@ Host Information
 
 Hosts include the following monitoring information. You can use this variables to create custom ``RANK`` and ``REQUIREMENTS`` expressions for scheduling. Note also that you can manually add any tag and use it also for ``RANK`` and ``REQUIREMENTS``
 
-+------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-|    Key     |                                                                                                                                                Description                                                                                                                                                 |
-+============+============================================================================================================================================================================================================================================================================================================+
-| HYPERVISOR | Name of the hypervisor of the host, useful for selecting the hosts with an specific technology.                                                                                                                                                                                                            |
-+------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ARCH       | Architecture of the host CPUs, e.g. x86_64.                                                                                                                                                                                                                                                                |
-+------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| MODELNAME  | Model name of the host CPU, e.g. Intel(R) Core(TM) i7-2620M CPU @ 2.70GHz.                                                                                                                                                                                                                                 |
-+------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| CPUSPEED   | Speed in Mhz of the CPUs.                                                                                                                                                                                                                                                                                  |
-+------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| HOSTNAME   | As returned by the ``hostname`` command.                                                                                                                                                                                                                                                                   |
-+------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| VERSION    | This is the version of the monitoring probes. Used to control local changes and the update process                                                                                                                                                                                                         |
-+------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| MAX_CPU    | Number of CPUs multiplied by 100. For example, a 16 cores machine will have a value of 1600. The value of RESERVED_CPU will be substracted from the information reported by the monitoring system.  This value is displayed as ``TOTAL CPU`` by the ``onehost show`` command under ``HOST SHARE`` section. |
-+------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| MAX_MEM    | Maximum memory that could be used for VMs. It is advised to take out the memory used by the hypervisor using RESERVED_MEM. This values is substracted from the memory amount reported. This value is displayed as ``TOTAL MEM`` by the ``onehost show`` command under ``HOST SHARE`` section.              |
-+------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| MAX_DISK   | Total space in megabytes in the DATASTORE LOCATION.                                                                                                                                                                                                                                                        |
-+------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| USED_CPU   | Percentage of used CPU multiplied by the number of cores. This value is displayed as ``USED CPU (REAL)`` by the ``onehost show`` command under ``HOST SHARE`` section.                                                                                                                                     |
-+------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| USED_MEM   | Memory used, in kilobytes. This value is displayed as ``USED MEM (REAL)`` by the ``onehost show`` command under ``HOST SHARE`` section.                                                                                                                                                                    |
-+------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| USED_DISK  | Used space in megabytes in the DATASTORE LOCATION.                                                                                                                                                                                                                                                         |
-+------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| FREE_CPU   | Percentage of idling CPU multiplied by the number of cores. For example, if 50% of the CPU is idling in a 4 core machine the value will be 200.                                                                                                                                                            |
-+------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| FREE_MEM   | Available memory for VMs at that moment, in kilobytes.                                                                                                                                                                                                                                                     |
-+------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| FREE_DISK  | Free space in megabytes in the DATASTORE LOCATION                                                                                                                                                                                                                                                          |
-+------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| CPU_USAGE  | Total CPU allocated to VMs running on the host as requested in ``CPU`` in each VM template. This value is displayed as ``USED CPU (ALLOCATED)`` by the ``onehost show`` command under ``HOST SHARE`` section.                                                                                              |
-+------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| MEM_USAGE  | Total MEM allocated to VMs running on the host as requested in ``MEMORY`` in each VM template. This value is displayed as ``USED MEM (ALLOCATED)`` by the ``onehost show`` command under ``HOST SHARE`` section.                                                                                           |
-+------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| DISK_USAGE | Total size allocated to disk images of VMs running on the host computed using the ``SIZE`` attribute of each image and considering the datastore characteristics.                                                                                                                                          |
-+------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| NETRX      | Received bytes from the network                                                                                                                                                                                                                                                                            |
-+------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| NETTX      | Transferred bytes to the network                                                                                                                                                                                                                                                                           |
-+------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| WILD       | Comma separated list of VMs running in the host that were not launched and are not currently controlled by OpenNebula                                                                                                                                                                                      |
-+------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ZOMBIES    | Comma separated list of VMs running in the host that were launched by OpenNebula but are not currently controlled by it.                                                                                                                                                                                   |
-+------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++------------+----------------------------------------------------------------------------------------------------+
+|    Key     |                                            Description                                             |
++============+====================================================================================================+
+| HYPERVISOR | Name of the hypervisor of the host, useful for selecting the hosts with an specific technology.    |
++------------+----------------------------------------------------------------------------------------------------+
+| ARCH       | Architecture of the host CPU's, e.g. x86_64.                                                       |
++------------+----------------------------------------------------------------------------------------------------+
+| MODELNAME  | Model name of the host CPU, e.g. Intel(R) Core(TM) i7-2620M CPU @ 2.70GHz.                         |
++------------+----------------------------------------------------------------------------------------------------+
+| CPUSPEED   | Speed in MHz of the CPU's.                                                                         |
++------------+----------------------------------------------------------------------------------------------------+
+| HOSTNAME   | As returned by the ``hostname`` command.                                                           |
++------------+----------------------------------------------------------------------------------------------------+
+| VERSION    | This is the version of the monitoring probes. Used to control local changes and the update process |
++------------+----------------------------------------------------------------------------------------------------+
+| MAX_CPU    | Number of CPU's multiplied by 100. For example, a 16 cores machine will have a value of 1600.      |
+|            | The value of RESERVED_CPU will be subtracted from the information reported by the                  |
+|            | monitoring system.  This value is displayed as ``TOTAL CPU`` by the                                |
+|            | ``onehost show`` command under ``HOST SHARE`` section.                                             |
++------------+----------------------------------------------------------------------------------------------------+
+| MAX_MEM    | Maximum memory that could be used for VMs. It is advised to take out the memory                    |
+|            | used by the hypervisor using RESERVED_MEM. This values is subtracted from the memory               |
+|            | amount reported. This value is displayed as ``TOTAL MEM`` by the ``onehost show``                  |
+|            | command under ``HOST SHARE`` section.                                                              |
++------------+----------------------------------------------------------------------------------------------------+
+| MAX_DISK   | Total space in megabytes in the DATASTORE LOCATION.                                                |
++------------+----------------------------------------------------------------------------------------------------+
+| USED_CPU   | Percentage of used CPU multiplied by the number of cores. This value is displayed                  |
+|            | as ``USED CPU (REAL)`` by the ``onehost show`` command under ``HOST SHARE`` section.               |
++------------+----------------------------------------------------------------------------------------------------+
+| USED_MEM   | Memory used, in kilobytes. This value is displayed as ``USED MEM (REAL)``                          |
+|            | by the ``onehost show`` command under ``HOST SHARE`` section.                                      |
++------------+----------------------------------------------------------------------------------------------------+
+| USED_DISK  | Used space in megabytes in the DATASTORE LOCATION.                                                 |
++------------+----------------------------------------------------------------------------------------------------+
+| FREE_CPU   | Percentage of idling CPU multiplied by the number of cores. For example,                           |
+|            | if 50% of the CPU is idling in a 4 core machine the value will be 200.                             |
++------------+----------------------------------------------------------------------------------------------------+
+| FREE_MEM   | Available memory for VMs at that moment, in kilobytes.                                             |
++------------+----------------------------------------------------------------------------------------------------+
+| FREE_DISK  | Free space in megabytes in the DATASTORE LOCATION                                                  |
++------------+----------------------------------------------------------------------------------------------------+
+| CPU_USAGE  | Total CPU allocated to VMs running on the host as requested in ``CPU``                             |
+|            | in each VM template. This value is displayed as ``USED CPU (ALLOCATED)``                           |
+|            | by the ``onehost show`` command under ``HOST SHARE`` section.                                      |
++------------+----------------------------------------------------------------------------------------------------+
+| MEM_USAGE  | Total MEM allocated to VMs running on the host as requested in ``MEMORY``                          |
+|            | in each VM template. This value is displayed as ``USED MEM (ALLOCATED)``                           |
+|            | by the ``onehost show`` command under ``HOST SHARE`` section.                                      |
++------------+----------------------------------------------------------------------------------------------------+
+| DISK_USAGE | Total size allocated to disk images of VMs running on the host computed                            |
+|            | using the ``SIZE`` attribute of each image and considering the datastore characteristics.          |
++------------+----------------------------------------------------------------------------------------------------+
+| NETRX      | Received bytes from the network                                                                    |
++------------+----------------------------------------------------------------------------------------------------+
+| NETTX      | Transferred bytes to the network                                                                   |
++------------+----------------------------------------------------------------------------------------------------+
+| WILD       | Comma separated list of VMs running in the host that were not launched                             |
+|            | and are not currently controlled by OpenNebula                                                     |
++------------+----------------------------------------------------------------------------------------------------+
+| ZOMBIES    | Comma separated list of VMs running in the host that were launched by                              |
+|            | OpenNebula but are not currently controlled by it.                                                 |
++------------+----------------------------------------------------------------------------------------------------+
 
 Scheduler Policies
 ==================
@@ -363,7 +379,7 @@ You can define global Scheduler Policies for all VMs in the sched.conf file, fol
 
 The attributes and values for a host are inserted by the monitoring probes that run from time to time on the nodes to get information. The administrator can add custom attributes either :ref:`creating a probe in the host <devel-im>`, or updating the host information with: ``onehost update <HOST_ID>``. Calling this command will fire up an editor (the one specified in the ``EDITOR`` environment variable) and you will be able to add, delete or modify some of those values.
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onehost show 3
     [...]
@@ -398,7 +414,7 @@ The attributes and values for a host are inserted by the monitoring probes that 
 
 This feature is useful when we want to separate a series of hosts or marking some special features of different hosts. These values can then be used for scheduling the same as the ones added by the monitoring probes, as a :ref:`placement requirement <template_placement_section>`:
 
-.. code::
+.. code-block:: bash
 
     SCHED_REQUIREMENTS = "CUSTOM_ATTRIBUTE = \"SOME_VALUE\""
 
@@ -407,14 +423,14 @@ A Sample Session
 
 Hosts can be added to the system anytime with the ``onehost`` command. You can add the hosts to be used by OpenNebula like this:
 
-.. code::
+.. prompt:: bash $ auto
 
-    $ onehost create host01 --im kvm --vm kvm 
+    $ onehost create host01 --im kvm --vm kvm
     $ onehost create host02 --im kvm --vm kvm
 
 The status of the hosts can be checked with the ``onehost list`` command:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onehost list
       ID NAME         CLUSTER     RVM   TCPU   FCPU   ACPU   TMEM   FMEM   AMEM STAT
@@ -424,7 +440,7 @@ The status of the hosts can be checked with the ``onehost list`` command:
 
 And specific information about a host with ``show``:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onehost show host01
     HOST 0 INFORMATION
@@ -462,13 +478,13 @@ And specific information about a host with ``show``:
 
 If you want not to use a given host you can temporarily disable it:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onehost disable host01
 
 A disabled host should be listed with ``STAT off`` by ``onehost list``. You can also remove a host permanently with:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onehost delete host01
 
@@ -483,7 +499,7 @@ The monitoring mechanism in OpenNebula reports all VMs found in a hypervisor, ev
 
 The Wild VMs can be spotted through the ``onehost show`` command:
 
-.. code::
+.. prompt:: bash $ auto
 
       $ onehost show 3
       HOST 3 INFORMATION
@@ -499,18 +515,18 @@ The Wild VMs can be spotted through the ``onehost show`` command:
 
 And imported through the ``onehost importvm`` command:
 
-.. code::
+.. prompt:: bash $ auto
 
       $ onehost importvm 0 CentOS7
       $ onevm list
       ID USER     GROUP    NAME            STAT UCPU    UMEM HOST               TIME
        3 oneadmin oneadmin CentOS7         runn    0    590M MyvCenterHost  0d 01h02
 
-After a Virtual Machine is imported, their lifecycle (including creation of snapshots) can be controlled through OpenNebula. The following operations *cannot* be performed on an imported VM:
+After a Virtual Machine is imported, their life-cycle (including creation of snapshots) can be controlled through OpenNebula. The following operations *cannot* be performed on an imported VM:
 
-- Delete --recreate
-- Undeploy (and Undeploy --hard)
-- Migrate (and Migrate --live)
+- Delete ``--recreate``
+- Undeploy (and Undeploy ``--hard``)
+- Migrate (and Migrate ``--live``)
 - Stop
 
 The same import mechanism is available graphically through Sunstone. Running and Powered Off VMs can be imported through the WILDS tab in the Host info tab.
