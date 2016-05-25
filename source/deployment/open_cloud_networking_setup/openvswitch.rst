@@ -162,3 +162,23 @@ These rules prevent any traffic to come out of the port for IPv4 IP's not config
 
     icmp,dl_dst=<MAC>,actions=drop
 
+
+Configuration
+-------------
+
+Some drivers have the ability to customize their behaviour by editing a configuration file. This file is located in ``/var/lib/one/remotes/vnm/OpenNebulaNetwork.conf``.
+
+Currently it supports the following options:
+
++---------------------+----------------------------+----------------------------------------------------------------------------------+
+|      Parameter      |           Driver           |                                   Description                                    |
++=====================+============================+==================================================================================+
+| arp_cache_poisoning | ovswitch                   | Enable ARP Cache Poisoning Prevention Rules.                                     |
++---------------------+----------------------------+----------------------------------------------------------------------------------+
+| vxlan_mc            | vxlan                      | Base multicast address for each VLAN. The multicas sddress is vxlan_mc + vlan_id |
++---------------------+----------------------------+----------------------------------------------------------------------------------+
+| vxlan_ttl           | vxlan                      | Time To Live (TTL) should be > 1 in routed multicast networks (IGMP)             |
++---------------------+----------------------------+----------------------------------------------------------------------------------+
+
+.. note:: Remember to run ``onehost sync`` to deploy the file to all the nodes.
+

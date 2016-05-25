@@ -1,4 +1,4 @@
-.. _ebtables:
+.. _bridged:
 
 =========
 Ebtables

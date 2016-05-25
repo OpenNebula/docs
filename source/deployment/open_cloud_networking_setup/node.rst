@@ -1,0 +1,93 @@
+.. _networking_mode:
+
+====================
+Node Setup
+====================
+
+.. todo::
+
+    * Architect
+    * KVM
+
+
+This guide includes specific node setup steps to enable each network mode. You **only need** to apply the corresponding section to the select mode.
+
+Bridged Networking Mode
+================================================================================
+
+Requirements
+--------------------------------------------------------------------------------
+* The OpenNebula node packages has been installed, see :ref:`the KVM node installation section <kvm_node>` for more details.
+
+* By default, network isolation is provided through ``ebtables``, this package needs to be installed in the nodes.
+
+Configuration
+--------------------------------------------------------------------------------
+* Create a linux bridge for each network that would be expose to Virtual Machines. Use the same name in all the nodes.
+
+* Add the physical network interface to the bridge.
+
+For example, a node with two networks one for public IP addresses (attached to eth0) and another one for private traffic (NIC eth1) should have two bridges:
+
+.. prompt:: bash $ auto
+
+    $ brctl show
+    bridge name bridge id         STP enabled interfaces
+    br0        8000.001e682f02ac no          eth0
+    br1        8000.001e682f02ad no          eth1
+
+.. note:: It is recommended that this configuration is made persistent. Please refer to the network configuration guide of your system to do so.
+
+.. note:: You can bridge the traffic to tagged interfaces
+
+VLAN Networking Mode
+================================================================================
+
+Requirements
+--------------------------------------------------------------------------------
+* The OpenNebula node packages has been installed, see :ref:`the KVM node installation section <kvm_node>` for more details.
+
+* The ``8021q`` module must be loaded in the kernel.
+
+* A network switch capable of forwarding VLAN tagged traffic. The physical switch ports should be VLAN trunks.
+
+
+Configuration
+--------------------------------------------------------------------------------
+
+No additional configuration is needed.
+
+
+VXLAN Networking Mode
+================================================================================
+
+Requirements
+--------------------------------------------------------------------------------
+* The OpenNebula node packages has been installed, see :ref:`the KVM node installation section <kvm_node>` for more details.
+
+* The node  must run a Linux kernel (>3.7.0) that natively supports the VXLAN protocol and the associated iproute2 package.
+
+* When all the nodes are connected to the same broadcasting domain be sure that the multicast traffic is not filtered by any iptable rule in the nodes. Note that if the multicast traffic needs to traverse routers a multicast protocol like IGMP needs to be configured in your network.
+
+Configuration
+--------------------------------------------------------------------------------
+
+No additional configuration is needed.
+
+Open vSwtich Networking Mode
+================================================================================
+
+Requirements
+--------------------------------------------------------------------------------
+* The OpenNebula node packages has been installed, see :ref:`the KVM node installation section <kvm_node>` for more details.
+
+* You need to install Open vSwitch on each node. Please refer to the Open vSwitch documentation to do so.
+
+Configuration
+--------------------------------------------------------------------------------
+* Create a openvswitch for each network that would be expose to Virtual Machines. Use the same name in all the nodes.
+
+* Add the physical network interface to the openvswitch.
+
+.. note:: It is recommended that this configuration is made persistent. Please refer to the network configuration guide of your system to do so.
+

@@ -6,8 +6,8 @@ Open Cloud Networking Setup
    :maxdepth: 2
 
    Overview <overview>
-   802.1Q VLAN Driver <hm-vlan>
-   VXLAN Driver <vxlan>
-   Open vSwitch Driver <openvswitch>
-   Ebtables Driver <ebtables>
-
+   Node Setup <node>
+   Bridged Networking <bridged.rst>
+   802.1Q VLAN Networks <hm-vlan>
+   VXLAN Networks <vxlan>
+   Open vSwitch Networks <openvswitch>
