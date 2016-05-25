@@ -55,9 +55,29 @@ After this file is changed reboot the machine.
 Step 4. Configure Passwordless SSH
 ==================================
 
-OpenNebula front-end connect to the Hypervisor hosts using SSH. To be able to do that its user must be able to authenticate using SSH keys. You can do it distributing the public key of ``oneadmin`` user from all machines to the file ``/var/lib/one/.ssh/authorized`` in all the machines. Another method consists on copying the keys from the front-end to all the hosts.
+OpenNebula front-end connect to the Hypervisor hosts using SSH. To be able to do that its user must be able to authenticate using SSH keys. You can do it distributing the public key of ``oneadmin`` user from all machines to the file ``/var/lib/one/.ssh/authorized_keys`` in all the machines. Another method consists on copying the keys from the front-end to all the hosts. For this guide we are going to use the second method.
 
-.. todo:: copy ssh keys
+When the packages are installed the user ``oneadmin`` is created and a new set of SSH keys generated and ``authorized_keys`` populated. The only thing we have to prepare is the ``known_hosts`` file. To create it we have to execute this command as user ``oneadmin`` in the frontend with all the node names (or IP's) as parameters:
+
+.. prompt:: bash $ auto
+
+    $ ssh-keyscan node1 node2 node3 >> /var/lib/one/.ssh/known_hosts
+
+Now we need to copy the directory ``/var/lib/one/.ssh`` to all the nodes. The easiest way is to set a temporary password to ``oneadmin`` in all the hosts and copy the directory from the frontend:
+
+.. prompt:: bash $ auto
+
+    $ scp -rp /var/lib/one/.ssh node1:/var/lib/one/
+    $ scp -rp /var/lib/one/.ssh node2:/var/lib/one/
+    $ scp -rp /var/lib/one/.ssh node3:/var/lib/one/
+
+Now you can verify that connecting from the frontend as user ``oneadmin`` to the nodes does not ask password:
+
+.. prompt:: bash $ auto
+
+    $ ssh node1
+    $ ssh node2
+    $ ssh node3
 
 .. _ignc_step_8_networking_configuration:
 
