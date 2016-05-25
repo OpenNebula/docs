@@ -1,19 +1,17 @@
 .. _onegate_usage:
 
-.. todo:: Needs to be reviewed and updated to 5.0
-
 =======================
 OneGate Usage
 =======================
 
 The OneGate component allows Virtual Machine guests to pull and push VM information from OpenNebula. Users and administrators can use it to gather metrics, detect problems in their applications, and trigger OneFlow elasticity rules from inside the VM.
 
-For Virtual Machines that are part of a Multi-VM Application (OneFlow Service), they can also retrieve the Service information directly from OneGate and trigger actions to reconfigure the service or pass information among different VMs.
+For Virtual Machines that are part of a Multi-VM Application (:ref:`OneFlow Service <oneflow_overview>`), they can also retrieve the Service information directly from OneGate and trigger actions to reconfigure the Service or pass information among different VMs.
 
 OneGate Workflow Explained
 ==========================
 
-OneGate is a server that listens to http connections from the Virtual Machines. OpenNebula assigns an individual token to each VM instance, and Applications running inside the VM use this token to interact with the OneGate API. This token is generated using VM information and signed with the user TOKEN_PASSWORD. This password can be changed updating the user template, but tokens from existing vms will not work anymore.
+OneGate is a server that listens to http connections from the Virtual Machines. OpenNebula assigns an individual token to each VM instance, and Applications running inside the VM use this token to interact with the OneGate API. This token is generated using VM information and signed with the owner User template attribute TOKEN_PASSWORD. This password can be changed updating the User template, but tokens from existing VMs will not work anymore.
 
 |onegate_arch|
 
@@ -25,12 +23,12 @@ First, the cloud administrator must configure and start the :ref:`OneGate server
 Setup the VM Template
 ---------------------
 
-Your VM Template must set the CONTEXT/TOKEN attribute to ``YES``.
+Your VM Template must set the ``CONTEXT/TOKEN`` attribute to ``YES``.
 
-.. code::
+.. code-block:: none
 
     CPU     = "0.5"
-    MEMORY  = "128"
+    MEMORY  = "1024"
      
     DISK = [
       IMAGE_ID = "0" ]
@@ -44,9 +42,9 @@ or check the OneGate checkbox in Sunstone:
 
 |onegate_context|
 
-When this Template is instantiated, OpenNebula will automatically add the ONEGATE_ENDPOINT context variable, and a token.txt will be placed in the context cdrom. This token.txt file is only accessible from inside the VM.
+When this Template is instantiated, OpenNebula will automatically add the ONEGATE_ENDPOINT context variable, and a token.txt will be placed in the :ref:`context cdrom <context_overview>`. This token.txt file is only accessible from inside the VM.
 
-.. code::
+.. code-block:: none
 
     ...
      
@@ -62,49 +60,24 @@ In vCenter this information is available in the extraConfig section of the VM me
 Using the OneGate Client inside the Guest VM
 --------------------------------------------
 
-A ruby client that implements the OneGate API is included in the offical `OpenNebula context packages <https://github.com/OpenNebula/addon-context-linux>`__. This is a simple command line interface to interact with the OneGate server, it will handle the authentication and requests complexity.
+A ruby client that implements the OneGate API is included in the official `OpenNebula context packages <https://github.com/OpenNebula/addon-context-linux>`__. This is a simple command line interface to interact with the OneGate server, it will handle the authentication and requests complexity.
 
 OneGate Client Usage
 --------------------
 
-Available commands and usage are shown with `onegate -h`:
+Available commands and usage are shown with ``onegate -h``.
 
-.. code::
+With the appropriate policies implemented in the Service, these mechanisms allow Services to be self-managed, enabling self-configuration, self-healing, self-optimization and self-protection.
 
-    $ onegate -h
-    Available commands
-        $ onegate vm show [VMID] [--json]
-
-        $ onegate vm update [VMID] --data KEY=VALUE[\nKEY2=VALUE2]
-
-        $ onegate vm ACTION VMID
-            $ onegate vm resume VMID
-            $ onegate vm stop VMID
-            $ onegate vm suspend VMID
-            $ onegate vm delete VMID [--hard]
-            $ onegate vm shutdown VMID [--hard]
-            $ onegate vm reboot VMID [--hard]
-            $ onegate vm poweroff VMID [--hard]
-            $ onegate vm resubmit VMID
-            $ onegate vm resched VMID
-            $ onegate vm unresched VMID
-            $ onegate vm hold VMID
-            $ onegate vm release VMID
-
-        $ onegate service show [--json]
-
-        $ onegate service scale --role ROLE --cardinality CARDINALITY
-
-With the appropriate policies implemented in the service, these mechanisms allow services to be self-managed, enabling self-configuration, self-healing, self-optimization and self-protection.
-
-* **Self-Awareness**
+Self-Awareness
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 There are several actions available to retrieve information of the Virtual Machine and the Service it belongs to. A Virtual Machine can also retrieve information of other Virtual Machines that are part of the Service.
 
-Retrieving information of the VM
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Retrieving Information of the VM
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-Using the `onegate vm show` command the information of the Virtual Machine will be retrieved. For a detailed version use the `--json` option and all the information will be returned in JSON format.
+Using the ``onegate vm show`` command the information of the Virtual Machine will be retrieved. For a detailed version use the ``--json`` option and all the information will be returned in JSON format.
 
 If no argument is provided, the information of the current Virtual Machine will be retrieved. Alternatively, a VM ID can be provided to retrieve the information of a specific Virtual Machine.
 
@@ -117,9 +90,9 @@ If no argument is provided, the information of the current Virtual Machine will 
     IP                  : 192.168.122.23
 
 Retrieving information of the Service
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-Using the `onegate service show` command the information of the Service will be retrieved. For a detailed version use the `--json` option and all the information will be returned in JSON format.
+Using the ``onegate service show`` command the information of the Service will be retrieved. For a detailed version use the ``--json`` option and all the information will be returned in JSON format.
 
 .. code::
 
@@ -141,11 +114,11 @@ Using the `onegate service show` command the information of the Service will be 
 
 
 Updating the VM Information
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 The Virtual Machine can update the information of itself or other Virtual Machine of the Service. This information can be retrieved from any of the Virtual Machines.
 
-For example, the master Virtual Machine can change the `ACTIVE` attribute from one Virtual Machine to another one. Then, this information can be used to trigger any kind of action in the other Virtual Machine.
+For example, the master Virtual Machine can change the ``ACTIVE`` attribute from one Virtual Machine to another one. Then, this information can be used to trigger any kind of action in the other Virtual Machine.
 
 .. code::
 
@@ -173,39 +146,36 @@ For example, the master Virtual Machine can change the `ACTIVE` attribute from o
       }
     }
 
+Self-Configuration
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* **Self-Configuration**
-
-
-There are several actions to adapt the Service to a given situation. Actions on any of the Virtual Machines can be performed individually. Also, the size of the service can be customized just specifying a cardinality for each of the roles.
+There are several actions to adapt the Service to a given situation. Actions on any of the Virtual Machines can be performed individually. Also, the size of the Service can be customized just specifying a cardinality for each of the roles.
 
 Performing actions on a VM
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-One of the following actions can be performed in any of the Virtual Machines of the Service. 
+The following actions can be performed in any of the Virtual Machines of the Service. 
 
 * ``onegate vm resume``: Resumes the execution of the a saved VM. Valid states: STOPPED, SUSPENDED, UNDEPLOYED, POWEROFF
 * ``onegate vm stop``: Stops a running VM. The VM state is saved and transferred back to the front-end along with the disk files. Valid states: RUNNING
 * ``onegate vm suspend``:  Saves a running VM. It is the same as ``onegate vm stop``, but the files are left in the remote machine to later restart the VM there (i.e. the resources are not freed and there is no need to re-schedule the VM). Valid states: RUNNING
-* ``onegate vm delete``: Deletes the given VM. Using --recreate resubmits the VM. With --hard it unplugs the VM. Valid states: ANY
-* ``onegate vm shutdown``: Shuts down the given VM. The VM life cycle will end. With --hard it unplugs the VM. Valid states: RUNNING, UNKNOWN (with --hard)
+* ``onegate vm terminate``: Terminates the given VM. The VM life cycle will end. With --hard it unplugs the VM. Valid states: any except those with a pending driver response
 * ``onegate vm reboot``: Reboots the given VM, this is equivalent to execute the reboot command from the VM console. The VM will be ungracefully rebooted if --hard is used. Valid states: RUNNING
 * ``onegate vm poweroff``: Powers off the given VM. The VM will remain in the poweroff state, and can be powered on with the ``onegate vm resume`` command. Valid states: RUNNING
-* ``onegate vm resubmit``: Resubmits the VM to PENDING state to re-deploy a fresh copy of the same VM. Valid states: ANY
 * ``onegate vm resched``: Sets the rescheduling flag for the VM. The VM will be moved to a different host based on the scheduling policies. Valid states: RUNNING
 * ``onegate vm unresched``:  Unsets the rescheduling flag for the VM. Valid states: RUNNING
 * ``onegate vm hold``: Sets the given VM on hold. A VM on hold is not scheduled until it is released. Valid states: PENDING
 * ``onegate vm release``: Releases a VM on hold. See `onegate vm hold` Valid states: HOLD
 
-.. code::
+.. prompt:: text $ auto
 
-    $ onegate vm shutdown --hard 9
+    $ onegate vm terminate --hard 9
 
 
 Change Service cardinality
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-The number of Virtual Machines of a Service can be also modified from any of the Virtual Machines that have access to the OneGate Server. The Virtual Machines of Services are grouped in roles and each role has a cardinality (number of Virtual Machines). This cardinality can be increased or decreased, in case the given cardinality is lower than the current one, Virtual Machines will be shut down to meet the given number. If the cardinality is greater than the current one, new Virtual Machines will be instantiated using the template associated to the role.
+The number of Virtual Machines of a Service can be also modified from any of the Virtual Machines that have access to the OneGate Server. The Virtual Machines of Services are grouped in Roles and each Role has a cardinality (number of Virtual Machines). This cardinality can be increased or decreased, in case the given cardinality is lower than the current one, Virtual Machines will be terminated to meet the given number. If the cardinality is greater than the current one, new Virtual Machines will be instantiated using the VM Template associated to the Role.
 
 .. code::
 
@@ -237,7 +207,7 @@ OneGate provides a REST API. To use this API you will need to get some data from
 
 The contextualization cdrom should contain the ``context.sh`` and ``token.txt`` files.
 
-.. code::
+.. prompt:: text # auto
 
     # mkdir /mnt/context
     # mount /dev/hdb /mnt/context
@@ -270,7 +240,7 @@ Self-awareness
 * ``GET ${ONEGATE_ENDPOINT}/vm``: To request information about the current Virtual Machine.
 * ``GET ${ONEGATE_ENDPOINT}/vms/${VM_ID}``: To request information about a specific Virtual Machine of the Service. The information is returned in JSON format and is ready for public cloud usage:
 
-  .. code::
+  .. prompt:: text $ auto
 
       $ curl -X "GET" "${ONEGATE_ENDPOINT}/vm" \
           --header "X-ONEGATE-TOKEN: `cat token.txt`" \
@@ -301,7 +271,7 @@ Self-awareness
 * ``PUT ${ONEGATE_ENDPOINT}/vm``: To add information to the template of the current VM. The new information is placed inside the VM's user template section. This means that the application metrics are visible from the command line, Sunstone, or the APIs, and can be used to trigger OneFlow elasticity rules.
 * ``PUT ${ONEGATE_ENDPOINT}/vms/${VM_ID}``: To add information to the template of a specific VM of the Service.
 
-  .. code::
+  .. prompt:: text $ auto
 
       $ curl -X "PUT" "${ONEGATE_ENDPOINT}/vm" \
           --header "X-ONEGATE-TOKEN: `cat token.txt`" \
@@ -310,7 +280,7 @@ Self-awareness
 
   The new metric is stored in the user template section of the VM:
 
-  .. code::
+  .. prompt:: text $ auto
 
       $ onevm show 0
       ...
@@ -318,9 +288,9 @@ Self-awareness
       APP_LOAD="9.7"
 
 
-* ``GET ${ONEGATE_ENDPOINT}/service``: To request information about the Service. The information is returned in JSON format and is ready for public cloud usage. By pushing data ``PUT /vm`` from one VM and pulling the service data from another VM ``GET /service``, nodes that are part of a OneFlow service can pass values from one to another.
+* ``GET ${ONEGATE_ENDPOINT}/service``: To request information about the Service. The information is returned in JSON format and is ready for public cloud usage. By pushing data ``PUT /vm`` from one VM and pulling the Service data from another VM ``GET /service``, nodes that are part of a OneFlow Service can pass values from one to another.
 
-  .. code::
+  .. prompt:: text $ auto
 
       $ curl -X "GET" "${ONEGATE_ENDPOINT}/service" \
           --header "X-ONEGATE-TOKEN: `cat token.txt`" \
@@ -354,7 +324,7 @@ Self-awareness
 
 * ``GET ${ONEGATE_ENDPOINT}``: returns information endpoints:
 
-  .. code::
+  .. prompt:: text $ auto
 
       $ curl -X "GET" "${ONEGATE_ENDPOINT}/service" \
           --header "X-ONEGATE-TOKEN: `cat token.txt`" \
@@ -371,16 +341,16 @@ Self-configuration
 
 * ``PUT ${ONEGATE_ENDPOINT}/service/role/${ROLE_NAME}``: To change the cardinality of a specific role of the Service:
 
-  .. code::
+  .. prompt:: text $ auto
 
       $ curl -X "PUT" "${ONEGATE_ENDPOINT}/service/role/worker" \
           --header "X-ONEGATE-TOKEN: `cat token.txt`" \
           --header "X-ONEGATE-VMID: $VMID" \
           -d "{'cardinality' : 10}"
 
-* ``POST ${ONEGATE_ENDPOINT}/vms/${VM_ID}/action``: To perform an action on a specific VM of the Service. Supported actions (resume, stop, suspend, delete, shutdown, reboot, poweroff, resubmit, resched, unresched, hold, release)
+* ``POST ${ONEGATE_ENDPOINT}/vms/${VM_ID}/action``: To perform an action on a specific VM of the Service. Supported actions (resume, stop, suspend, terminate, reboot, poweroff, resched, unresched, hold, release)
 
-  .. code::
+  .. prompt:: text $ auto
 
       $ curl -X "POST" "${ONEGATE_ENDPOINT}/vms/18/action" \
           --header "X-ONEGATE-TOKEN: `cat token.txt`" \
@@ -391,12 +361,13 @@ Self-configuration
 Sample Application Monitoring Script
 ====================================
 
-.. code::
+.. code-block:: bash
+  :linenos:
 
     #!/bin/bash
-     
+
     # -------------------------------------------------------------------------- #
-    # Copyright 2002-2013, OpenNebula Project (OpenNebula.org), C12G Labs        #
+    # Copyright 2002-2016, OpenNebula Project, OpenNebula Systems                #
     #                                                                            #
     # Licensed under the Apache License, Version 2.0 (the "License"); you may    #
     # not use this file except in compliance with the License. You may obtain    #

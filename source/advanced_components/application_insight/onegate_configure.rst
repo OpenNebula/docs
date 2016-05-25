@@ -1,19 +1,19 @@
 .. _onegate_configure:
 
-.. todo:: Needs to be reviewed and updated to 5.0
-
 =============================
 OneGate Server Configuration
 =============================
 
-The OneGate service allows Virtual Machines guests to pull and push VM information from OpenNebula. Although it is installed by default, its use is completely optional.
+The OneGate service allows Virtual Machine guests to pull and push VM information from OpenNebula. Although it is installed by default, its use is completely optional.
 
 Requirements
 ============
 
 Check the :ref:`Installation guide <ignc>` for details of what package you have to install depending on your distribution
 
-Currently, OneGate is not supported for VMs instantiated in Azure, since the authentication token is not available inside these VMs. OneGate support for these drivers will be include in upcoming releases. Since OpenNebula 5.0.2 the authentication token is available for :ref:` instances deployed in EC2 <context_ec2>`.
+OneGate can be used with VMs running on :ref:`KVM, vCenter <context_overview>`, and :ref:`EC2 <context_ec2>`.
+
+Currently, OneGate is not supported for VMs instantiated in Azure, since the authentication token is not available inside these VMs. OneGate support for these drivers will be include in upcoming releases. 
 
 Configuration
 =============
@@ -43,16 +43,13 @@ The OneGate configuration file can be found at ``/etc/one/onegate-server.conf``.
   * ``x509`` for x509 certificate encryption of tokens. For more information, visit the :ref:`OpenNebula Cloud Auth documentation <cloud_auth>`.
 
 * ``oneflow_server`` Endpoint where the OneFlow server is listening.
-
 * ``permissions`` By default OneGate exposes all the available API calls, each of the actions can be enabled/disabled in the server configuration.
-
 * ``restricted_attrs`` Attrs that cannot be modified when updating a VM template
-
 * ``restricted_actions`` Actions that cannot be performed on a VM
 
 This is the default file
 
-.. code::
+.. code-block:: yaml
 
     ################################################################################
     # Server Configuration
@@ -131,12 +128,11 @@ This is the default file
 Start OneGate
 =============
 
-To start and stop the server, use the ``onegate-server start/stop`` command:
+To start and stop the server, use the ``opennebula-gate`` command:
 
-.. code::
+.. prompt:: bash # auto
 
-    $ onegate-server start
-    onegate-server started
+    # service opennebula-gate start
 
 .. warning:: By default, the server will only listen to requests coming from localhost. Change the ``:host`` attribute in ``/etc/one/onegate-server.conf`` to your server public IP, or 0.0.0.0 so onegate will listen on any interface.
 
@@ -156,7 +152,7 @@ Before your VMs can communicate with OneGate, you need to edit ``/etc/one/oned.c
 
     ONEGATE_ENDPOINT = "http://192.168.0.5:5030"
 
-Continue to the :ref:`OneGate usage guide <onegate_usage>`.
+At this point the service is ready, you can continue to the :ref:`OneGate usage documentation <onegate_usage>`.
 
 Configuring a SSL Proxy
 =======================
@@ -165,17 +161,17 @@ This is an example on how to configure Nginx as a ssl proxy for Onegate in Ubunt
 
 Update your package lists and install Nginx:
 
-.. code::
+.. prompt:: bash $ auto
 
-    sudo apt-get update
-    sudo apt-get install nginx
+    $ sudo apt-get update
+    $ sudo apt-get install nginx
 
 You should get an official signed certificate, but for the purpose of this example we will generate a self-signed SSL certificate:
 
-.. code::
+.. prompt:: bash $ auto
 
-    cd /etc/one
-    sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/one/cert.key -out /etc/one/cert.crt
+    $ cd /etc/one
+    $ sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/one/cert.key -out /etc/one/cert.crt
 
 Next you will need to edit the default Nginx configuration file or generate a new one. Change the ONEGATE_ENDPOINT variable with your own domain name.
 
@@ -231,8 +227,8 @@ Update ``/etc/one/onegate-server.conf`` with the new OneGate endpoint and uncomm
 
 Then restart oned, onegate-server and Nginx:
 
-.. code::
+.. prompt:: bash $ auto
 
-    sudo service nginx restart
-    sudo service opennebula restart
-    sudo service opennebula-gate restart
+    $ sudo service nginx restart
+    $ sudo service opennebula restart
+    $ sudo service opennebula-gate restart

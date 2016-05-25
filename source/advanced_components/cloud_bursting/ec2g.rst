@@ -153,6 +153,8 @@ These values can furthermore be asked to the user using :ref:`user inputs <vm_gu
                      INSTANCETYPE=m1.small,
                      USERDATA="$USERDATA"]
 
+.. _context_ec2:
+
 Context Support
 --------------------------------------------------------------------------------
 
