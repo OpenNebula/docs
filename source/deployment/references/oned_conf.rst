@@ -585,7 +585,7 @@ Auth Manager Configuration
 
 -  **SESSION\_EXPIRATION\_TIME**: Time in seconds to keep an authenticated token as valid. During this time, the driver is not used. Use 0 to disable session caching
 -  **ENABLE\_OTHER\_PERMISSIONS**: Whether or not to enable the permissions for 'other'. Users in the oneadmin group will still be able to change these permissions. Values: YES or NO
--  **DEFAULT\_UMASK**: Similar to Unix umask, sets the default resources permissions. Its format must be 3 octal digits. For example a umask of 137 will set the new object's permissions to 640 ``um- u– —``
+-  **DEFAULT\_UMASK**: Similar to Unix umask, sets the default resources permissions. Its format must be 3 octal digits. For example a umask of 137 will set the new object's permissions to 640 ``um- u-- ---``
 
 Sample configuration:
 

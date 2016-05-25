@@ -52,7 +52,7 @@ Follow these steps to change oneadmin's authentication method to x509:
 
     $ sudo cp cacert.pem /etc/one/auth/certificates/78d0bbd8.0
 
--  :ref:`Create a login <x509_auth_user_login>` for oneadmin using the –x509 option. This token has a default expiration time set to 1 hour, you can change this value using the option –time.
+-  :ref:`Create a login <x509_auth_user_login>` for oneadmin using the --x509 option. This token has a default expiration time set to 1 hour, you can change this value using the option --time.
 
 .. code::
 
@@ -132,14 +132,14 @@ You can also map multiple certificates to the same OpenNebula account. Just add 
 User Login
 ----------
 
-Users must execute the 'oneuser login' command to generate a login token. The token will be stored in the $ONE\_AUTH environment variable. The command requires the OpenNebula username, and the authentication method (``–x509`` in this case).
+Users must execute the 'oneuser login' command to generate a login token. The token will be stored in the $ONE\_AUTH environment variable. The command requires the OpenNebula username, and the authentication method (``--x509`` in this case).
 
 .. code::
 
     newuser@frontend $ oneuser login newuser --x509 --cert newcert.pem --key newkey.pem
     Enter PEM pass phrase:
 
-The generated token has a default **expiration time** of 10 hours. You can change that with the ``–time`` option.
+The generated token has a default **expiration time** of 10 hours. You can change that with the ``--time`` option.
 
 Tuning & Extending
 ==================

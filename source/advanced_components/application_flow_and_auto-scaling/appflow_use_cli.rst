@@ -466,8 +466,8 @@ These are the commands that can be performed:
 
 Instead of performing the action immediately on all the VMs, you can perform it on small groups of VMs with these options:
 
--  ``-p, –period x``: Seconds between each group of actions
--  ``-n, –number x``: Number of VMs to apply the action to each period
+-  ``-p, --period x``: Seconds between each group of actions
+-  ``-n, --number x``: Number of VMs to apply the action to each period
 
 Let's say you need to reboot all the VMs of a Role, but you also need to avoid downtime. This command will reboot 2 VMs each 5 minutes:
 

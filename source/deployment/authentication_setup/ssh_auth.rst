@@ -67,7 +67,7 @@ The following command will create a new user with username 'newuser', assuming t
 
     oneadmin@frontend $ oneuser create newuser --ssh --read-file /tmp/pub_key
 
-Instead of using the ``–read-file`` option, the public key could be specified as the second parameter.
+Instead of using the ``--read-file`` option, the public key could be specified as the second parameter.
 
 If the administrator has access to the user's **private ssh key**, he can create new users with the following command:
 
@@ -86,17 +86,17 @@ You can change the authentication method of an existing user to SSH with the fol
 
     oneadmin@frontend $ oneuser passwd <id|name> --ssh --read-file /tmp/pub_key
 
-As with the ``create`` command, you can specify the public key as the second parameter, or use the user's private key with the ``–key`` option.
+As with the ``create`` command, you can specify the public key as the second parameter, or use the user's private key with the ``--key`` option.
 
 User Login
 ----------
 
-Users must execute the 'oneuser login' command to generate a login token. The token will be stored in the $ONE\_AUTH environment variable. The command requires the OpenNebula username, and the authentication method (``–ssh`` in this case).
+Users must execute the 'oneuser login' command to generate a login token. The token will be stored in the $ONE\_AUTH environment variable. The command requires the OpenNebula username, and the authentication method (``--ssh`` in this case).
 
 .. code::
 
     newuser@frontend $ oneuser login newuser --ssh
 
-The default ssh key is assumed to be in ``~/.ssh/id_rsa``, otherwise the path can be specified with the ``–key`` option.
+The default ssh key is assumed to be in ``~/.ssh/id_rsa``, otherwise the path can be specified with the ``--key`` option.
 
-The generated token has a default **expiration time** of 10 hour. You can change that with the ``–time`` option.
+The generated token has a default **expiration time** of 10 hour. You can change that with the ``--time`` option.

@@ -37,7 +37,7 @@ Clusters are managed with the :ref:`''onecluster'' command <cli>`. To create new
 Add Hosts to Clusters
 ---------------------
 
-Hosts can be created directly in a Cluster, using the ``–cluster`` option of ``onehost create``, or be added at any moment using the command ``onecluster addhost``. Hosts can be in only one Cluster at a time.
+Hosts can be created directly in a Cluster, using the ``--cluster`` option of ``onehost create``, or be added at any moment using the command ``onecluster addhost``. Hosts can be in only one Cluster at a time.
 
 To delete a Host from a Cluster, the command ``onecluster delhost`` must be used. A Host needs to belong to a Cluster, so it will be moved to the ``default`` cluster.
 
