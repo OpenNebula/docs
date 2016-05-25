@@ -14,16 +14,16 @@ This is a fully supported MarketPlace with all the implemented features.
 Requirements
 ================================================================================
 
-A web-server should be deployed either in the fronted or in a node reachable by the frontend. A directory that will be used to store the uploaded images (MarketPlaceApps) should be configured to have the desired available space, and the web-server must be configured in order to grant HTTP access to that directory.
+A web-server should be deployed either in the Frontend or in a node reachable by the Frontend. A directory that will be used to store the uploaded images (MarketPlaceApps) should be configured to have the desired available space, and the web-server must be configured in order to grant HTTP access to that directory.
 
-It is recommended to use either `Apache <https://httpd.apache.org/>`__ or `NGINX <https://www.nginx.com/>`__ as they are known to handle properly to the potentially large MarketPlaceApp files. However, other web servers may work as long as they're capable to handle the load.
+It is recommended to use either `Apache <https://httpd.apache.org/>`__ or `NGINX <https://www.nginx.com/>`__ as they are known to work properly with the potentially large size of the MarketPlaceApp files. However, other web servers may work as long as they're capable to handle the load.
 
 The web-server should be deployed by the administrator before registering the MarketPlace.
 
 Configuration
 ================================================================================
 
-These are the conifguration attributes of a MarketPlace template of the `HTTP` kind.
+These are the configuration attributes of a MarketPlace template of the `HTTP` kind.
 
 +-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 |    Attribute    |                                                                               Description                                                                               |
@@ -32,25 +32,25 @@ These are the conifguration attributes of a MarketPlace template of the `HTTP` k
 +-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``MARKET_MAD``  | Must be ``http``                                                                                                                                                        |
 +-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``PUBLIC_DIR``  | (**Required**) Absolute directory path to place images, the document root for http server, in the frontend or in the hosts pointed at by the ``BRIDGE_LIST`` directive. |
+| ``PUBLIC_DIR``  | (**Required**) Absolute directory path to place images, the document root for http server, in the Frontend or in the hosts pointed at by the ``BRIDGE_LIST`` directive. |
 +-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``BASE_URL``    | (**Required**) URL base to generate app end points, where the ``PUBLIC_DIR`` is accessible.                                                                             |
+| ``BASE_URL``    | (**Required**) URL base to generate MarketPlaceApp endpoints.                                                                                                           |
 +-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``BRIDGE_LIST`` | (Optional) Comman separated list of servers to access the public directory. If not defined, public directory will be local to the frontend.                             |
+| ``BRIDGE_LIST`` | (Optional) Comma separated list of servers to access the public directory. If not defined, public directory will be local to the Frontend.                              |
 +-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 For example, the following examples illustrates the creation of an MarketPlace:
 
-.. code::
+.. prompt:: bash $ auto
 
-    > cat market.conf
+    $ cat market.conf
     NAME = PrivateMarket
     MARKET_MAD = http
     BASE_URL = "http://frontend.opennebula.org/"
     PUBLIC_DIR = "/var/loca/market-http"
     BRIDGE_LIST = "web-server.opennebula.org"
 
-    > onemarket create market.conf
+    $ onemarket create market.conf
     ID: 100
 
 Tuning & Extending

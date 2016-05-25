@@ -13,23 +13,23 @@ The MarketPlaceApps included in the official MarketPlace are third-party contrib
 
 |image0|
 
-You can also connect to MarketPlaces deployed with the `OpenNebula Add-on AppMarket <https://github.com/OpenNebula/addon-appmarket>`__. The already deployed AppMarkets can still be used, but they are now deprecated in favor of the :ref:`HTTP MarketPlaces<market_http>`.
+You can also connect to MarketPlaces deployed with the `OpenNebula Add-on AppMarket <https://github.com/OpenNebula/addon-appmarket>`__. The already deployed AppMarkets can still be used, but they are now deprecated in favor of the :ref:`HTTP MarketPlaces <market_http>`.
 
 Requirements
 ================================================================================
 
-The url `marketplace.opennebula.systems <http://marketplace.opennebula.systems>`__ must be reachable from the OpenNebula Fronted.
+The url http://marketplace.opennebula.systems must be reachable from the OpenNebula Frontend.
 
 Configuration
 ================================================================================
 
 The Official OpenNebula Systems Marketplace is pre-registered in OpenNebula:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onemarket list
-    ID NAME                       SIZE AVAIL        APPS MAD
-     0 OpenNebula Public            0M -              40 one
+    ID NAME                                 SIZE AVAIL        APPS MAD     ZONE
+     0 OpenNebula Public                      0M -              46 one        0
 
 Therefore it does not require any additional action from the administrator.
 
@@ -47,14 +47,14 @@ However, to connect to `OpenNebula Add-on AppMarkets <https://github.com/OpenNeb
 
 For example, the following examples illustrates the creation of a MarketPlace:
 
-.. code::
+.. prompt:: bash $ auto
 
-    > cat market.conf
+    $ cat market.conf
     NAME = PrivateMarket
     MARKET_MAD = one
     ENDPOINT = "http://privatemarket.opennebula.org"
 
-    > onemarket create market.conf
+    $ onemarket create market.conf
     ID: 100
 
 Tuning & Extending

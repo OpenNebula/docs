@@ -12,7 +12,7 @@ This MarketPlace uses an S3 API-capable service as the backend. This means Marke
 Limitations
 ================================================================================
 
-Since the S3 API does not provide the available space, this space is hardcoded into the driver file, limiting it to 1TB. See below to learn how to change the default value.
+Since the S3 API does not provide the available space, this space is hard-coded into the driver file, limiting it to 1TB. See below to learn how to change the default value.
 
 Requirements
 ================================================================================
@@ -27,7 +27,7 @@ Make sure you obtain both an `access_key` and a `secret_key` of a user that has 
 Configuration
 ================================================================================
 
-These are the conifguration attributes of a MarketPlace template of the `S3` kind:
+These are the configuration attributes of a MarketPlace template of the `S3` kind:
 
 +-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 |       Attribute       |                                                                                            Description                                                                                             |
@@ -57,9 +57,9 @@ These are the conifguration attributes of a MarketPlace template of the `S3` kin
 
 For example, the following examples illustrates the creation of an MarketPlace:
 
-.. code::
+.. prompt:: bash $ auto
 
-    > cat market.conf
+    $ cat market.conf
     NAME=S3CephMarket
     ACCESS_KEY_ID="I0PJDPCIYZ665MW88W9R"
     SECRET_ACCESS_KEY="dxaXZ8U90SXydYzyS5ivamEP20hkLSUViiaR"
@@ -70,7 +70,7 @@ For example, the following examples illustrates the creation of an MarketPlace:
     REGION="default"
     SIGNATURE_VERSION=s3
 
-    > onemarket create market.conf
+    $ onemarket create market.conf
     ID: 100
 
 Tuning & Extending

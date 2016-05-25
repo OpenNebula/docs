@@ -7,7 +7,7 @@ Managing MarketPlaceApps
 Overview
 --------------------------------------------------------------------------------
 
-As mentioned in the :ref:`MarketPlace Overview <marketplace_overview>`, a MarketPlaceApp is a resource that can be either a single image associated with a template, a template associated with one or more images, or a flow composed of one or more templates associated with images. In short, MarketPlaceApps are composed of metadata (a template) and binary data (the images). This guide addresses how you can manage these MarketPlaceApps in OpenNebula, considering both the metadata and the images.
+As mentioned in the :ref:`MarketPlace Overview <marketplace_overview>`, a MarketPlaceApp is a resource that can be either a single Image associated with a template, a template associated with one or more images, or a flow composed of one or more templates associated with images. In short, MarketPlaceApps are composed of metadata (a template) and binary data (the images). This guide addresses how you can manage these MarketPlaceApps in OpenNebula, considering both the metadata and the images.
 
 MarketPlaceApps can be managed either using the CLI with the ``onemarketapp`` command or with the Sunstone GUI. In this section we will detail the actions available for MarketPlaceApps in both interfaces. MarketPlaceApps are common OpenNebula objects and respond the the common actions shared by all the OpenNebula objets: `list`, `show`, `create`, `delete`, etc, plus some specific ones.
 
@@ -16,7 +16,7 @@ Listing MarketPlaceApps
 
 Using the CLI:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onemarketapp list
      ID NAME                         VERSION  SIZE STAT TYPE  REGTIME               MARKET
@@ -39,7 +39,7 @@ Show a MarketPlaceApp
 
 Using the CLI:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onemarketapp show 0
     MARKETPLACE APP 0 INFORMATION

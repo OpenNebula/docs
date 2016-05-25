@@ -10,9 +10,9 @@ This section provides an overview of the OpenNebula monitoring subsystem. The mo
 Overview
 ==================
 
-Each host periodically sends monitoring data via UDP to the frontend which collects it and processes it in a dedicated module. This distributed monitoring system resembles the architecture of dedicated monitoring systems, using a lightweight communication protocol, and a push model.
+Each host periodically sends monitoring data via UDP to the Frontend which collects it and processes it in a dedicated module. This distributed monitoring system resembles the architecture of dedicated monitoring systems, using a lightweight communication protocol, and a push model.
 
-OpenNebula starts a ``collectd`` daemon running in the Front-end that listens for UDP connections on port 4124. In the first monitoring cycle the OpenNebula connects to the host using ``ssh`` and starts a daemon that will execute the probe scripts and sends the collected data to the collectd daemon in the fronted every specific amount of seconds (configurable with the ``-i`` option of the ``collectd IM_MAD``). This way the monitoring subsystem doesn't need to make new ssh connections to receive data.
+OpenNebula starts a ``collectd`` daemon running in the Front-end that listens for UDP connections on port 4124. In the first monitoring cycle the OpenNebula connects to the host using ``ssh`` and starts a daemon that will execute the probe scripts and sends the collected data to the collectd daemon in the Frontend every specific amount of seconds (configurable with the ``-i`` option of the ``collectd IM_MAD``). This way the monitoring subsystem doesn't need to make new ssh connections to receive data.
 
 |image0|
 
@@ -21,7 +21,7 @@ If the agent stops in a specific Host, OpenNebula will detect that no monitoriza
 Requirements
 ============
 
-* The firewall of the frontend (if enabled) must allow UDP packages incoming from the hosts on port 4124.
+* The firewall of the Frontend (if enabled) must allow UDP packages incoming from the hosts on port 4124.
 
 OpenNebula Configuration
 ========================

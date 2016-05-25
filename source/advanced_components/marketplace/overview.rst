@@ -13,9 +13,12 @@ Overview
 
 Sharing, provisioning and consuming cloud images is one of the main concerns when using Cloud. OpenNebula provides a simple way to create and integrate with a cloud image provider, called MarketPlaces. Think of them as external datastores.
 
-A MarketPlace can be either Public, accessible universally by all OpenNebula's, or Private: local within an organization and specific for a single OpenNebula (a single zone) or shared by a federation (a collection of zones).
+A MarketPlace can be:
 
-A MarketPlace is a repository of MarketPlaceApps. A MarketPlaceApp can be thought of as an external image optionally associated to a Virtual Machine Template.
+* **Public**: accessible universally by all OpenNebula's.
+* **Private**: local within an organization and specific for a single OpenNebula (a single zone) or shared by a federation (a collection of zones).
+
+A MarketPlace is a repository of MarketPlaceApps. A MarketPlaceApp can be thought of as an external Image optionally associated to a Virtual Machine Template.
 
 Using MarketPlaces is very convenient, as it will allow you to move images across different kinds of datastores (using the MarketPlace as an exchange point), it is a way to share OpenNebula images in a Federation, as these resources are federated. In an OpenNebula deployment where the different VDCs don't share any resources, a MarketPlace will act like a shared datastore for all the users.
 
@@ -53,10 +56,6 @@ As for the MarketPlaceApps, they support these actions:
 +--------------+-----------------------------------------------------------------------------------------------------------------------------+
 | *other*      | Generic actions common to OpenNebula resources are also available: update, chgrp, chown, chmod, rename, enable and disable. |
 +--------------+-----------------------------------------------------------------------------------------------------------------------------+
-
-.. warning::
-
-    Currently the **export** action is only available for Datastores of type ``fs`` and ``ceph``.
 
 .. warning:: In order to use the ``download`` functionality make sure you read the :ref:`Sunstone Advanced Guide <suns_advance_marketplace>`.
 
