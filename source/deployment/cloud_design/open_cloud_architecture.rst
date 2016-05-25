@@ -23,10 +23,6 @@ A cloud architecture is defined by three components: storage, networking and vir
 
 OpenNebula presents a highly modular architecture that offers broad support for commodity and enterprise-grade hypervisor, monitoring, storage, networking and user management services. This Section briefly describes the different choices that you can make for the management of the different subsystems. If your specific services are not supported we recommend to check the drivers available in the `Add-on Catalog <http://opennebula.org/addons:catalog>`__. We also provide information and support about how to develop new drivers.
 
-.. todo::   Review architecture --> only for KVM??
-
-|OpenNebula Cloud Platform Support|
-
 Dimensioning the Cloud
 ================================================================================
 
@@ -176,5 +172,4 @@ Once you have an OpenNebula cloud up and running, you can install the following 
 -  :ref:`Application Insight <onegate_overview>`: OneGate allows Virtual Machine guests to push monitoring information to OpenNebula. Users and administrators can use it to gather metrics, detect problems in their applications, and trigger OneFlow auto-scaling rules.
 
 .. |high level architecture of cluster, its components and relationship| image:: /images/one_high.png
-.. |OpenNebula Cloud Platform Support| image:: /images/overview_builders.png
 .. |image3| image:: /images/datastoreoverview.png

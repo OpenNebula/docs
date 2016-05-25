@@ -1,13 +1,13 @@
 .. _cli:
 
-=======================
+================================================================================
 Command Line Interface
-=======================
+================================================================================
 
 OpenNebula provides a set commands to interact with the system:
 
 CLI
-===
+================================================================================
 
 -  `oneacct </doc/5.0/cli/oneacct.1.html>`__: gets accounting data from OpenNebula
 -  `oneacl </doc/5.0/cli/oneacl.1.html>`__: manages OpenNebula ACLs
@@ -24,22 +24,21 @@ CLI
 -  `onevnet </doc/5.0/cli/onevnet.1.html>`__: manages OpenNebula networks
 -  `onezone </doc/5.0/cli/onezone.1.html>`__: manages OpenNebula zones
 -  `onesecgroup </doc/5.0/cli/onesecgroup.1.html>`__: manages OpenNebula security groups
-
-.. todo:: missing onevcenter CLI
+-  `onevcenter </doc/5.0/cli/onevcenter.1.html>`__: handles vCenter resource import
 
 The output of these commands can be customized by modifying the configuration files that can be found in ``/etc/one/cli/``. They also can be customized on a per-user basis, in this case the configuration files should be placed in ``$HOME/.one/cli``.
 
 ECONE Commands
-==============
+================================================================================
 
 -  `econe-upload </doc/5.0/cli/econe-upload.1.html>`__: Uploads an image to OpenNebula
 -  `econe-describe-images </doc/5.0/cli/econe-describe-images.1.html>`__: Lists all registered images belonging to one particular user.
 -  `econe-run-instances </doc/5.0/cli/econe-run-instances.1.html>`__: Runs an instance of a particular image (that needs to be referenced).
 -  `econe-describe-instances </doc/5.0/cli/econe-describe-instances.1.html>`__: Outputs a list of launched images belonging to one particular user.
--  `econe-terminate-instances </doc/5.0/cli/econe-terminate-instances.1.html>`__: Shutdowns a set ofvirtual machines (or cancel, depending on its state).
--  `econe-reboot-instances </doc/5.0/cli/econe-reboot-instances.1.html>`__: Reboots a set ofvirtual machines.
--  `econe-start-instances </doc/5.0/cli/econe-start-instances.1.html>`__: Starts a set ofvirtual machines.
--  `econe-stop-instances </doc/5.0/cli/econe-stop-instances.1.html>`__: Stops a set ofvirtual machines.
+-  `econe-terminate-instances </doc/5.0/cli/econe-terminate-instances.1.html>`__: Shutdowns a set of virtual machines (or cancel, depending on its state).
+-  `econe-reboot-instances </doc/5.0/cli/econe-reboot-instances.1.html>`__: Reboots a set of virtual machines.
+-  `econe-start-instances </doc/5.0/cli/econe-start-instances.1.html>`__: Starts a set of virtual machines.
+-  `econe-stop-instances </doc/5.0/cli/econe-stop-instances.1.html>`__: Stops a set of virtual machines.
 -  `econe-create-volume </doc/5.0/cli/econe-create-volume.1.html>`__: Creates a new DATABLOCK in OpenNebula
 -  `econe-delete-volume </doc/5.0/cli/econe-delete-volume.1.html>`__: Deletes an existing DATABLOCK.
 -  `econe-describe-volumes </doc/5.0/cli/econe-describe-volumes.1.html>`__: Describe all available DATABLOCKs for this user
@@ -56,10 +55,13 @@ ECONE Commands
 -  `econe-register </doc/5.0/cli/econe-register.1.html>`__: Registers an image
 
 OneFlow Commands
-================
+================================================================================
 
--  `oneflow </doc/5.0/cli/oneflow.1.html>`__: oneFlow Service management
--  `oneflow-template </doc/5.0/cli/oneflow-template.1.html>`__: oneFlow Service Template management
+-  `oneflow </doc/5.0/cli/oneflow.1.html>`__: OneFlow Service management
+-  `oneflow-template </doc/5.0/cli/oneflow-template.1.html>`__: OneFlow Service Template management
 
-.. todo:: missing OneGate commands
+OneFlow Commands
+================================================================================
+
+- `onegate </doc/5.0/cli/oneflow.1.html>`: OneGate Service management
 

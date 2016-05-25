@@ -13,7 +13,7 @@ Overview
 
 Every resource in OpenNebula has its own Template, a collection of attributes that modify its behavior and their relationship with other cloud components. This Chapter contains an exhaustive reference of the templates of various resources.
 
-.. todo:: Review all guides and add vCenter references. To discuss: do we need host template reference? datastore reference? public_cloud reference vcenter, ec2, azure?
+.. todo:: To discuss: do we need host template reference? datastore reference? public_cloud reference vcenter, ec2, azure?
 
 How Should I Read This Chapter
 ================================================================================

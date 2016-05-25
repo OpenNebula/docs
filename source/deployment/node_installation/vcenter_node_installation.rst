@@ -222,3 +222,5 @@ The following variables are added to the OpenNebula hosts representing ESX clust
 .. note::
 
    OpenNebula will add by default a "one-<vid>-" prefix to the name of the vCenter VMs it spawns, where <vid> is the id of the VM in OpenNebula. This value can be changed using a special attribute set in the vCenter cluster representation in OpenNebula, ie, the OpenNebula host. This attribute is called "VM_PREFIX" (which can be set in the OpenNebula host template), and will evaluate one variable, $i, to the id of the VM. A value of "one-$i-" in that parameter would have the same behavior as the default.
+
+After this guide, you may want to :ref:`verify your installation <verify_installation>` or learn how to setup the :ref:`vmware-based cloud infrastructure <vmware_infrastructure_setup_overview>`.

@@ -18,8 +18,6 @@ OpenNebula assumes that your physical infrastructure adopts a classical cluster-
 
 The VMware vCenter drivers enable OpenNebula to access one or more vCenter servers that manages one or more ESX Clusters. Each ESX Cluster is presented in OpenNebula as an aggregated hypervisor. Note that OpenNebula scheduling decisions are therefore made at ESX Cluster level, vCenter then uses the DRS component to select the actual ESX host and Datastore to deploy the Virtual Machine.
 
-.. todo:: image from VMware Reference Architecture, or from /images/JV_architecture.png
-
 |high level architecture of cluster, its components and relationship|
 
 A cloud architecture is defined by three components: storage, networking and virtualization. Therefore, the basic components of an OpenNebula cloud are:
@@ -30,10 +28,6 @@ A cloud architecture is defined by three components: storage, networking and vir
 -  Physical **networks** used to support basic services such as interconnection of the VMs.
 
 OpenNebula presents a highly modular architecture that offers broad support for commodity and enterprise-grade hypervisor, monitoring, storage, networking and user management services. This Section briefly describes the different choices that you can make for the management of the different subsystems. If your specific services are not supported we recommend to check the drivers available in the `Add-on Catalog <http://opennebula.org/addons:catalog>`__. We also provide information and support about how to develop new drivers.
-
-.. todo:: Review architecture --> only for VMware??
-
-|OpenNebula Cloud Platform Support|
 
 Dimensioning the Cloud
 ================================================================================
@@ -156,5 +150,4 @@ Once you have an OpenNebula cloud up and running, you can install the following 
 -  :ref:`Public Cloud <introc>`: Cloud interfaces can be added to your Private Cloud if you want to provide partners or external users with access to your infrastructure, or to sell your overcapacity. The following interface provide a simple and remote management of cloud (virtual) resources at a high abstraction level: :ref:`Amazon EC2 and EBS APIs <ec2qcg>`.
 -  :ref:`Application Insight <onegate_overview>`: OneGate allows Virtual Machine guests to push monitoring information to OpenNebula. Users and administrators can use it to gather metrics, detect problems in their applications, and trigger OneFlow auto-scaling rules.
 
-.. |high level architecture of cluster, its components and relationship| image:: /images/one_high.png
-.. |OpenNebula Cloud Platform Support| image:: /images/overview_builders.png
+.. |high level architecture of cluster, its components and relationship| image:: /images/one_vcenter_high.png

@@ -1,4 +1,5 @@
 .. _vm_guide:
+.. _vm_templates:
 
 ================================================================================
 Managing Virtual Machine Templates

@@ -6,7 +6,7 @@ VMware Infrastructure Setup
    :maxdepth: 2
 
    Overview <overview>
-   vCenter Driver <vcenter_driver>
-   Datastore Setup <datastore_setup>
-   Networking Setup <networking_setup>
+   vCenter Node <vcenter_driver>
+   vCenter Datastore <datastore_setup>
+   vCenter Networking <networking_setup>
 

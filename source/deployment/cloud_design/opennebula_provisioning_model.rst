@@ -28,11 +28,9 @@ The privileges of the Group users and the admin regarding the operations over th
 
 Users can access their resources through any of the existing OpenNebula interfaces, such as the CLI, Sunstone Cloud View, OCA, or the AWS APIs. Group admins can manage their Groups through the CLI or the Group Admin View in Sunstone. Cloud administrators can manage the Groups through the CLI or Sunstone.
 
-.. todo::
-
- Change Screenshot
-
-|cloud-view|
+.. image:: /images/cloud-view.png
+    :width: 90%
+    :align: center
 
 The Cloud provisioning model based on VDCs enables an integrated, comprehensive framework to dynamically provision the infrastructure resources in large multi-datacenter environments to different customers, business units or groups. This brings several benefits:
 
@@ -173,4 +171,3 @@ The new VDCs contain a list of Clusters, just like before, but they can also hav
 .. |VDC Resources| image:: /images/vdc_resources.png
 .. |VDC Groups| image:: /images/vdc_groups.png
 .. |VDC Organization| image:: /images/vdc_organization.png
-.. |cloud-view| image:: /images/cloud-view.png
