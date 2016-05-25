@@ -19,7 +19,7 @@ There are different user types in the OpenNebula system:
 -  **Infrastructure User** accounts may access most of the functionality offered by OpenNebula to manage resources.
 - **Group Administrators** accounts manage a limited set of resources and users.
 - **Users** access a simplified Sunstone view with limited actions to create new VMs, and perform basic life cycle operations.
--  **Public users** can only access OpenNebula through a public API (EC2), hence they can only use a limited set of functionality and can not access the xml-rpc API directly (nor any application using it like the CLI or SunStone )
+-  **Public users** can only access OpenNebula through a public API (EC2), hence they can only use a limited set of functionality and can not access the xml-rpc API directly (nor any application using it like the CLI or Sunstone )
 -  User **serveradmin** is also created the first time OpenNebula is started. Its password is created randomly, and this account is used by the :ref:`Sunstone <sunstone>` and :ref:`EC2 <ec2qcg>` servers to interact with OpenNebula.
 
 .. note:: The complete OpenNebula approach to user accounts, groups and VDC is explained in more detail in the :ref:`Understanding OpenNebula <understand>` guide.
@@ -33,40 +33,40 @@ OpenNebula users should have the following environment variables set, you may wa
 
 **ONE\_XMLRPC**
 
-URL where the OpenNebula daemon is listening. If it is not set, CLI tools will use the default: **http://localhost:2633/RPC2**. See the ``PORT`` attribute in the :ref:`Daemon configuration file <oned_conf>` for more information.
+URL where the OpenNebula daemon is listening. If it is not set, CLI tools will use the default: ``http://localhost:2633/RPC2``. See the ``PORT`` attribute in the :ref:`Daemon configuration file <oned_conf>` for more information.
 
 **ONE\_AUTH**
 
 Needs to point to **a file containing a valid authentication key**, it can be:
 
-* A passord file with just a single line stating **``username:password``**.
+* A password file with just a single line stating ``username:password``.
 
-* A token file with just a single line with **``username:token``**, where token is a valid token created with the ``oneuser login`` command or API call.
+* A token file with just a single line with ``username:token``, where token is a valid token created with the ``oneuser login`` command or API call.
 
-If ONE\_AUTH is not defined, $HOME/.one/one\_auth will be used instead. If no auth file is present, OpenNebula cannot work properly, as this is needed by the core, the CLI, and the cloud components as well.
+If ``ONE_AUTH`` is not defined, ``$HOME/.one/one_auth`` will be used instead. If no auth file is present, OpenNebula cannot work properly, as this is needed by the core, the CLI, and the cloud components as well.
 
 **ONE\_POOL\_PAGE\_SIZE**
 
 By default the OpenNebula Cloud API (CLI and Sunstone make use of it) paginates some pool responses. By default this size is 2000 but it can be changed with this variable. A numeric value greater that 2 is the pool size. To disable it you can use a non numeric value.
 
-.. code-block:: bash
+.. prompt:: bash $ auto
 
     $ export ONE_POOL_PAGE_SIZE=5000        # Sets the page size to 5000
     $ export ONE_POOL_PAGE_SIZE=disabled    # Disables pool pagination
 
 **ONE\_CERT\_DIR** and **ONE\_DISABLE\_SSL\_VERIFY**
 
-If OpenNebula XMLRPC endpoint is behind an SSL proxy you can specify an extra trusted certificates directory using **ONE\_CERT\_DIR**. Make sure that the certificate is named ``<hash>.0``. You can get the hash of a certificate with this command:
+If OpenNebula XML-RPC endpoint is behind an SSL proxy you can specify an extra trusted certificates directory using ``ONE_CERT_DIR``. Make sure that the certificate is named ``<hash>.0``. You can get the hash of a certificate with this command:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ openssl x509 -in <certificate.pem> -hash
 
-Alternatively you can set the environment variable **ONE\_DISABLE\_SSL\_VERIFY** to any value to disable certificate validation. You should only use this parameter for testing as it makes the connection insecure.
+Alternatively you can set the environment variable ``ONE_DISABLE_SSL_VERIFY`` to any value to disable certificate validation. You should only use this parameter for testing as it makes the connection insecure.
 
 For instance, a user named ``regularuser`` may have the following environment:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ tail ~/.bashrc
 
@@ -77,27 +77,23 @@ For instance, a user named ``regularuser`` may have the following environment:
     $ cat ~/.one/one_auth
     regularuser:password
 
-.. note:: Please note that the example above is intended for a user interacting with OpenNebula from the front-end, but you can use it from any other computer. Just set the appropriate hostname and port in the ONE\_XMLRPC variable.
+.. note:: Please note that the example above is intended for a user interacting with OpenNebula from the front-end, but you can use it from any other computer. Just set the appropriate hostname and port in the ``ONE_XMLRPC`` variable.
 
 .. note:: If you do not want passwords to be stored in plain files, protected with basic filesystem permissions, please refer to the token-based authentication mechanism described below.
 
 An alternative method to specify credentials and OpenNebula endpoint is using command line parameters. Most of the commands can understand the following parameters:
 
-``--user name``
-
-User name used to connect to OpenNebula
-
-``--password password``
-
-Password to authenticate with OpenNebula
-
-``--endpoint endpoint``
-
-URL of OpenNebula xmlrpc frontend
++-------------------------+------------------------------------------+
+| ``--user name``         | User name used to connect to OpenNebula  |
++-------------------------+------------------------------------------+
+| ``--password password`` | Password to authenticate with OpenNebula |
++-------------------------+------------------------------------------+
+| ``--endpoint endpoint`` | URL of OpenNebula XML-RPC frontend        |
++-------------------------+------------------------------------------+
 
 If ``user`` is specified but not ``password`` the user will be prompted for the password. ``endpoint`` has the same meaning and get the same value as ``ONE_XMLRPC``. For example:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onevm list --user my_user --endpoint http://one.frontend.com:2633/RPC2
     Password:
@@ -123,7 +119,7 @@ It must point to the installation <destination\_folder>.
 
 The OpenNebula bin files must be added to the path
 
-.. code-block:: bash
+.. prompt:: bash $ auto
 
     $ export PATH=$ONE_LOCATION/bin:$PATH
 
@@ -139,7 +135,7 @@ Administrators
 
 Administrators can be easily added to the system like this:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ oneuser create otheradmin password
     ID: 2
@@ -166,9 +162,9 @@ Administrators can be easily added to the system like this:
 Regular Users
 --------------------------------------------------------------------------------
 
-Simply create the usets with the create command:
+Simply create the users with the create command:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ oneuser create regularuser password
     ID: 3
@@ -180,30 +176,30 @@ Public Users
 
 Public users needs to define a special authentication method that internally relies in the core auth method. First create the public user as it was a regular one:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ oneuser create publicuser password
     ID: 4
 
 and then change its auth method (see below for more info) to the public authentication method.
 
-.. code::
+.. prompt:: bash $ auto
 
     $ oneuser chauth publicuser public
 
 Server Users
 --------------------------------------------------------------------------------
 
-Server user accounts are used mainly as proxy authentication accounts for OpenNebula services. Any account that uses the server\_cipher or server\_x509 auth methods are a server user. You will never use this account directly. To create a user account just create a regular account
+Server user accounts are used mainly as proxy authentication accounts for OpenNebula services. Any account that uses the ``server_cipher`` or ``server_x509`` auth methods are a server user. You will never use this account directly. To create a user account just create a regular account
 
-.. code::
+.. prompt:: bash $ auto
 
     $ oneuser create serveruser password
     ID: 5
 
 and then change its auth method to ``server_cipher`` (for other auth methods please refer to the :ref:`Authentication guide <external_auth>`):
 
-.. code::
+.. prompt:: bash $ auto
 
     $ oneuser chauth serveruser server_cipher
 
@@ -217,16 +213,16 @@ User Authentication
 
 In order to authenticate with OpenNebula you need a valid password or authentication token. Its meaning depends on the authentication driver, ``AUTH_DRIVER``, set for the user. Note that you will be using this password or token to authenticate within the Sunstone portal or at the CLI/API level.
 
-The default driver, ``core``, is a simple user-password match mechanism. To configure a user account simply add to $HOME/.one/one\_auth a single line with the format ``<username>:<password>``. For example, for user ``oneadmin`` and password ``opennebula`` the file would be:
+The default driver, ``core``, is a simple user-password match mechanism. To configure a user account simply add to ``$HOME/.one/one_auth`` a single line with the format ``<username>:<password>``. For example, for user ``oneadmin`` and password ``opennebula`` the file would be:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ cat $HOME/.one/one_auth
     oneadmin:opennebula
 
 Once configured you will be able to access the OpenNebula API and use the CLI tools:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ oneuser show
     USER 0 INFORMATION
@@ -237,11 +233,11 @@ Once configured you will be able to access the OpenNebula API and use the CLI to
 
 .. note:: OpenNebula does not store the plain password but a hashed version in the database, as show by the oneuser example above.
 
-Note that $HOME/.one/one\_auth is just protected with the standard filesystem permissions. To improve the system security you can use authentication tokens. In this way there is no need to store plain passwords, OpenNebula can generate or use an authentication token with a given expiration time. By default, the tokens are also stored in $HOME/.one/one\_auth.
+Note that ``$HOME/.one/one_auth`` is just protected with the standard filesystem permissions. To improve the system security you can use authentication tokens. In this way there is no need to store plain passwords, OpenNebula can generate or use an authentication token with a given expiration time. By default, the tokens are also stored in ``$HOME/.one/one_auth``.
 
 The following example shows the token generation and usage for the previous ``oneadmin`` user:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ ls $ONE_AUTH
     ls: cannot access /home/oneadmin/.one/one_auth: No such file or directory
@@ -262,18 +258,18 @@ The following example shows the token generation and usage for the previous ``on
     LOGIN_TOKEN     : 800481374d8888805dd51dabd36ca50d77e2132e
     TOKEN VALIDITY  : not after 2014-09-15 14:27:19 +0200
 
-By default tokens are generated with a valid period of ten hours. This can be asjusted when issuing the token with the `oneuser login` command. You can also use this token to authenticate through Sunstone.
+By default tokens are generated with a valid period of ten hours. This can be adjusted when issuing the token with the ``oneuser login`` command. You can also use this token to authenticate through Sunstone.
 
 Finally, you can configure multiple authentication drivers, read the :ref:`External Auth guide <external_auth>` for more information about, enabling :ref:`LDAP/AD <ldap>`, :ref:`SSH <ssh_auth>` or :ref:`x509 <x509_auth>` authentication.
 
-.. note:: The purpose of the $HOME/.one/one\_auth file and the token generation/usage are valid for any authentication mechanism.
+.. note:: The purpose of the ``$HOME/.one/one_auth`` file and the token generation/usage are valid for any authentication mechanism.
 
 User Templates
 --------------------------------------------------------------------------------
 
 The ``USER TEMPLATE`` section can hold any arbitrary data. You can use the ``oneuser update`` command to open an editor and add, for instance, the following ``DEPARTMENT`` and ``EMAIL`` attributes:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ oneuser show 2
     USER 2 INFORMATION
@@ -290,7 +286,7 @@ The ``USER TEMPLATE`` section can hold any arbitrary data. You can use the ``one
 
 These attributes can be later used in the :ref:`Virtual Machine Contextualization <template_context>`. For example, using contextualization the user's public ssh key can be automatically installed in the VM:
 
-.. code::
+.. code-block:: bash
 
     ssh_key = "$USER[SSH_KEY]"
 
@@ -301,7 +297,7 @@ Regular users can see their account information, and change their password.
 
 For instance, as ``regularuser`` you could do the following:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ oneuser list
     [UserPoolInfo] User [2] not authorized to perform action on user.
