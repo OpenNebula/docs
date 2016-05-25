@@ -5,8 +5,7 @@
 Security Groups
 ================================================================================
 
-Using Security Groups, administrators can define the firewall rules and apply
-them to the Virtual Machines.
+Security Groups define firewall rules to be applied them to the Virtual Machines.
 
 .. note::
 
@@ -16,32 +15,11 @@ them to the Virtual Machines.
     everything will be always allowed.
 
 .. warning::
-
-    These drivers deprecate the old `firewall` drivers. However, it will respect
-    backwards compatibility and if old rules such `WHITE_PORTS_TCP`, etc are
-    defined, the old drivers will be used and it will completely ignore the new
-    security drivers mechanism.
+    Security groups is not supported for OpenvSwitch and vCenter networks, and IPv6 addressing.
 
 .. _security_groups_requirements:
 
-Requirements
-============
-
-These kernel features must be enabled for the security groups to work properly:
-
-.. code::
-
-    net.bridge.bridge-nf-call-arptables = 1
-    net.bridge.bridge-nf-call-ip6tables = 1
-    net.bridge.bridge-nf-call-iptables = 1
-
-You will probably need to load the ``bridge`` module for CentOS/RHEL 7 or ``br_netfiler`` for other OSs in order to enable those kernel features.
-
-.. note::
-
-    In CentOS 7.2, these directives are being explicitely disabled by ``/usr/lib/sysctl.d/00-system.conf``. You must add a file in ``/etc/sysctl.d/`` enabling them.
-
-Definition
+Defining a Security Group
 ================================================================================
 
 A Security Group is composed of several Rules. Each Rule is defined with the following attributes:
@@ -91,9 +69,11 @@ To create a Security Group, use the Sunstone web interface, or create a template
     $ onesecgroup create ./sg.txt
     ID: 102
 
+  .. note:: This guide focuses on the CLI command ``onesecgroup``, but you can also manage Security Groups using :ref:`Sunstone <sunstone>`, mainly through the Security Group tab in a user friendly way.
+
 |sg_wizard_create|
 
-Usage
+Using a Security Group
 ================================================================================
 
 To apply a Security Group to your Virtual Machines, you can assign them to the Virtual Networks. Either use the Sunstone wizard, or set the SECURITY_GROUPS attribute:
@@ -103,8 +83,6 @@ To apply a Security Group to your Virtual Machines, you can assign them to the V
     $ onevnet update 0
 
     SECURITY_GROUPS = "100, 102, 110"
-
-|sg_vnet_assign|
 
 When a Virtual Machine is instantiated, the rules are copied to the VM resource and can be seen in the CLI and Sunstone.
 
@@ -121,8 +99,6 @@ To accommodate more complex scenarios, you can also set Security Groups to each 
 
     SECURITY_GROUPS = "100, 102, 110"
 
-|sg_ar_assign|
-
 Moreover, each Virtual Machine Template NIC can define a list of Security Groups:
 
 .. code::
@@ -135,7 +111,7 @@ Moreover, each Virtual Machine Template NIC can define a list of Security Groups
 
 If the Address Range or the Template NIC define SECURITY_GROUPS, the IDs do not overwrite the ones defined in the Virtual Network. All the Security Group IDs are combined, and applied to the Virtual Machine instance.
 
-Default Security Group
+The Default Security Group
 ================================================================================
 
 .. warning::
@@ -162,20 +138,8 @@ propagated to all VMs in the security group, so it may take some time till the
 changes are applied. The particular status of a VM can be checked in the security
 group properties, where outdated and up-to-date VMs are listed.
 
-If the update process needs to be reset, i.e. apply again the SG rules, you can use the ``onesecgroup commit`` command.
+If the update process needs to be reset, i.e. apply again the rules, you can use the ``onesecgroup commit`` command.
 
-Configuration
-================================================================================
-
-Security groups is only supported and automatically enabled when using the
-following drivers:
-
-* ``802.1Q``
-* ``ebtables``
-* ``fw``
-* ``vxlan``
-
-.. note:: Openvswitch do not support Security Groups.
 
 .. |sg_wizard_create| image:: /images/sg_wizard_create.png
 .. |sg_vnet_assign| image:: /images/sg_vnet_assign.png

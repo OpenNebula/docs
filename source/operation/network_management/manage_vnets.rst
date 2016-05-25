@@ -115,7 +115,6 @@ Adding and Deleting Virtual Networks
 
 |image0|
 
-
 To create a new network put its configuration in a file, for example using the contents above, and then execute:
 
 .. code::
@@ -360,4 +359,6 @@ A Reservation can be also extended with new addresses. This is, you can add a ne
 .. note:: Reservation increase leases counters on the user and group, and they can be limited through a quota.
 
 .. note:: The reservation interface is exposed by Sunstone in a very convenient way.
+
+.. |image0| image:: /images/sunstone_vnet_create.png
 
