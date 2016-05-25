@@ -5,11 +5,11 @@
 MySQL Setup
 ==============
 
-The MySQL backend is an alternative to the default Sqlite backend. Either of them can be used seamlessly to the upper layers and ecosystem tools. These high level components do not need to be modified or configured.
+The MySQL back-end is an alternative to the default Sqlite back-end. Either of them can be used seamlessly to the upper layers and ecosystem tools. These high level components do not need to be modified or configured.
 
-The two backends cannot coexist, and you will have to decide which one is going to be used while planning your OpenNebula installation.
+The two back-ends cannot coexist, and you will have to decide which one is going to be used while planning your OpenNebula installation.
 
-.. note:: If you are planning to install OpenNebula with MySQL backend, pleae follow this guide *prior* to start OpenNebula the first time to avoid problems with oneadmin and serveradmin credentials.
+.. note:: If you are planning to install OpenNebula with MySQL back-end, please follow this guide *prior* to start OpenNebula the first time to avoid problems with oneadmin and serveradmin credentials.
 
 .. _mysql_installation:
 
@@ -46,7 +46,7 @@ Assuming you are going to use the default values, log in to your MySQL server an
 
 Visit the `MySQL documentation <http://dev.mysql.com/doc/refman/5.7/en/user-account-management.html>`__ to learn how to manage accounts.
 
-Now configure the transcation isolation level:
+Now configure the transaction isolation level:
 
 .. code::
 
@@ -70,7 +70,7 @@ Before you run OpenNebula, you need to set in :ref:`oned.conf <oned_conf>` the c
 
 Fields:
 
--  server: url of the machine running the MySQL server
+-  server: URL of the machine running the MySQL server
 -  port: port for the connection to the server. If set to 0, the default port is used.
 -  user: MySQL user-name
 -  passwd: MySQL password
