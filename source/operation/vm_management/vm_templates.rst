@@ -1,7 +1,7 @@
 .. _vm_guide:
 
 ================================================================================
-Creating Virtual Machines
+Managing Virtual Machine Templates
 ================================================================================
 
 In OpenNebula the Virtual Machines are defined with VM Templates. This section explains **how to describe the wanted-to-be-ran Virtual Machine, and how users typically interact with the system**.

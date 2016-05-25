@@ -1,9 +1,9 @@
 .. _vm_guide_2:
 .. _vm_instances:
 
-==========================
-Managing Virtual Machines
-==========================
+================================================================================
+Managing Virtual Machines Instances
+================================================================================
 
 This guide follows the :ref:`Creating Virtual Machines guide <vm_guide>`. Once a Template is instantiated to a Virtual Machine, there are a number of operations that can be performed using the ``onevm`` command.
 
@@ -61,8 +61,6 @@ The life-cycle of a Virtual Machine within OpenNebula includes the following sta
 +-------------+----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``done``    | ``Done``             | The VM is done. VMs in this state won't be shown with ``onevm list`` but are kept in the database for accounting purposes. You can still get their information with the ``onevm show`` command.                                                                                                          |
 +-------------+----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-
-.. todo:: Update
 
 |Virtual Machine States|
 
