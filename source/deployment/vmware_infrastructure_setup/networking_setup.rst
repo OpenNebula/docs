@@ -2,7 +2,7 @@
 .. _virtual_network_vcenter_usage:
 
 ================================================================================
-vCenter Networking Setup
+vCenter Networking
 ================================================================================
 
 Virtual Networks from vCenter can be represented using OpenNebula networks, taking into account that the BRIDGE of the Virtual Network needs to match the name of the Network defined in vCenter. OpenNebula supports both "Port Groups" and "Distributed Port Groups", and as such can consume any vCenter defined network resource (even those created by other networking components NSX)

@@ -1,7 +1,7 @@
 .. _vcenterg:
 
 ================================================================================
-vCenter Driver
+vCenter Node
 ================================================================================ 
 
 The vCenter driver for OpenNebula enables the interaction with vCenter to control the life-cycle of vCenter resources such as Virtual Machines, Templates, Networks and VMDKs.
@@ -40,7 +40,7 @@ Considerations & Limitations
 - **No files in context**: Passing entire files to VMs is not supported, but all the other CONTEXT sections will be honored
 - Cluster name cannot contain spaces
 - vCenter credential password cannot have more than 22 characters
-- If you are running Sunstone using nginx/apache you will have to forward the following headers to be able to interact with vCenter, [HTTP_]X_VCENTER_USER, [HTTP_]X_VCENTER_PASSWORD and [HTTP_]X_VCENTER_HOST. For example in nginx you have to add the following attrs to the server section of your nginx file (underscores_in_headers on; proxy_pass_request_headers on;)
+- If you are running Sunstone using nginx/apache you will have to forward the following headers to be able to interact with vCenter, HTTP_X_VCENTER_USER, HTTP_X_VCENTER_PASSWORD and HTTP_X_VCENTER_HOST (or, alternatively, X_VCENTER_USER, X_VCENTER_PASSWORD and X_VCENTER_HOST). For example in nginx you have to add the following attrs to the server section of your nginx file (underscores_in_headers on; proxy_pass_request_headers on;)
 
 .. _import_vcenter_resources:
 
@@ -49,9 +49,9 @@ Importing vCenter VM Templates and running VMs
 
 The same **onevcenter** tool can be used to import existing VM templates from the ESX clusters:
 
-.. code::
+.. prompt:: bash $ auto
 
-    $ ./onevcenter templates --vcenter <vcenter-host> --vuser <vcenter-username> --vpass <vcenter-password>
+    $ onevcenter templates --vcenter <vcenter-host> --vuser <vcenter-username> --vpass <vcenter-password>
 
     Connecting to vCenter: <vcenter-host>...done!
 
@@ -178,6 +178,7 @@ OpenNebula uses several assumptions to instantiate a VM Template in an automatic
 
 - Target **resource pool**: OpenNebula uses the default cluster resource pool to place the VM instantiated from the VM template, unless VCENTER_RESOURCE_POOL variable defined in the OpenNebula host template, or the tag RESOURCE_POOL is present in the VM Template inside the PUBLIC_CLOUD section.
 
+.. todo:: save as persistent
 
 Usage
 ================================================================================
@@ -189,27 +190,31 @@ VM Template definition
 
 In order to manually create a VM Template definition in OpenNebula that represents a vCenter VM Template, the following attributes are needed:
 
-+--------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-|     Operation      |                                                                                                                               Note                                                                                                                              |
-+--------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| CPU                | Physical CPUs to be used by the VM. This does not have to relate to the CPUs used by the vCenter VM Template, OpenNebula will change the value accordingly                                                                                                      |
-+--------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| MEMORY             | Physical Memory in MB to be used by the VM. This does not have to relate to the CPUs used by the vCenter VM Template, OpenNebula will change the value accordingly                                                                                              |
-+--------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| NIC                | Check :ref:`VM template reference <template_network_section>`. Valid MODELs are: virtuale1000, virtuale1000e, virtualpcnet32, virtualsriovethernetcard, virtualvmxnetm, virtualvmxnet2, virtualvmxnet3.                                                         |
-+--------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| GRAPHICS           | Multi-value - Only VNC supported, check the  :ref:`VM template reference <io_devices_section>`.                                                                                                                                                                 |
-+--------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| PUBLIC_CLOUD       | Multi-value. TYPE must be set to vcenter, and VM_TEMPLATE must point to the uuid of the vCenter VM that is being represented                                                                                                                                    |
-+--------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| SCHED_REQUIREMENTS | NAME="name of the vCenter cluster where this VM Template can instantiated into a VM". See :ref:`VM Scheduling section <vm_scheduling_vcenter>` for more details.                                                                                                |
-+--------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| CONTEXT            | All :ref:`sections <template_context>` will be honored except FILES. You can find more information about contextualization in the :ref:`vcenter Contextualization <vcenter_context>` section.                                                                   |
-+--------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| KEEP_DISKS_ON_DONE | (Optional) Prevent OpenNebula from erasing the VM disks upon reaching the done state (either via shutdown or cancel)                                                                                                                                            |
-+--------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| VCENTER_DATASTORE  | By default, the VM will be deployed to the datastore where the VM Template is bound to.. This attribute allows to set the name of the datastore where this VM will be deployed.  This can be overwritten explicitly at deployment time from the CLI or Sunstone |
-+--------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|     Operation      |                                                                                                                                                                     Note                                                                                                                                                                     |
++--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| CPU                | Physical CPUs to be used by the VM. This does not have to relate to the CPUs used by the vCenter VM Template, OpenNebula will change the value accordingly                                                                                                                                                                                   |
++--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| MEMORY             | Physical Memory in MB to be used by the VM. This does not have to relate to the CPUs used by the vCenter VM Template, OpenNebula will change the value accordingly                                                                                                                                                                           |
++--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| NIC                | Check :ref:`VM template reference <template_network_section>`. Valid MODELs are: virtuale1000, virtuale1000e, virtualpcnet32, virtualsriovethernetcard, virtualvmxnetm, virtualvmxnet2, virtualvmxnet3.                                                                                                                                      |
++--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| DISK               | Check :ref:`VM template reference <reference_vm_template_disk_section>`. Take into account that all images are persistent, as explained in :ref:`vCenter Datastore Setup <vcenter_ds>`.                                                                                                                                                      |
++--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| GRAPHICS           | Multi-value - Only VNC supported, check the  :ref:`VM template reference <io_devices_section>`.                                                                                                                                                                                                                                              |
++--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| PUBLIC_CLOUD       | Multi-value. TYPE must be set to vcenter, and VM_TEMPLATE must point to the uuid of the vCenter VM that is being represented                                                                                                                                                                                                                 |
++--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| SCHED_REQUIREMENTS | NAME="name of the vCenter cluster where this VM Template can instantiated into a VM". See :ref:`VM Scheduling section <vm_scheduling_vcenter>` for more details.                                                                                                                                                                             |
++--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| CONTEXT            | All :ref:`sections <template_context>` will be honored except FILES. You can find more information about contextualization in the :ref:`vcenter Contextualization <vcenter_context>` section.                                                                                                                                                |
++--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| KEEP_DISKS_ON_DONE | (Optional) Prevent OpenNebula from erasing the VM disks upon reaching the done state (either via shutdown or cancel)                                                                                                                                                                                                                         |
++--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| VCENTER_DATASTORE  | By default, the VM will be deployed to the datastore where the VM Template is bound to. This attribute allows to set the name of the datastore where this VM will be deployed.  This can be overwritten explicitly at deployment time from the CLI or Sunstone. More information in the :ref:` vCenter Datastore Setup Section <vcenter_ds>` |
++--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| RESOURCE_POOL      | By default, the VM will be deployed to the default resource pool. If this attribute is set, its value will be used to confine this the VM in the referred resource pool. Check :ref:`this section <vcenter_resource_pool>` for more information.                                                                                             |
++--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 After a VM Template is instantiated, the life-cycle of the resulting virtual machine (including creation of snapshots) can be controlled through OpenNebula. Also, all the operations available in the :ref:`vCenter Admin view <vcenter_view>` can be performed, including:
 
@@ -247,15 +252,15 @@ Afterwards, these credentials can be used to add to OpenNebula the host represen
    :width: 90%
    :align: center
 
-The second approach is more flexible in the sense that all Resource Pools defined in vCenter can be used, and the mechanism to select which one the VM is going to reside into can be defined using the attribute RESOURCE_POOL in the PUBLIC_CLOUD section of OpenNebula VM Template:
+The second approach is more flexible in the sense that all Resource Pools defined in vCenter can be used, and the mechanism to select which one the VM is going to reside into can be defined using the attribute RESOURCE_POOL  in the OpenNebula VM Template:
 
 Nested Resource Pools can be represented using '/'. For instance, a Resource Pool "RPChild" nested under "RPAncestor" can be represented both in VCENTER_RESOURCE_POOL and RESOURCE_POOL attributes as "RPAncestor/RPChild".
 
 .. code::
 
+    RESOURCE_POOL="RPAncestor/RPChild"
     PUBLIC_CLOUD=[
       HOST="Cluster",
-      RESOURCE_POOL="RPAncestor/RPChild",
       TYPE="vcenter",
       VM_TEMPLATE="4223067b-ed9b-8f73-82ba-b1a98c3ff96e" ]
 

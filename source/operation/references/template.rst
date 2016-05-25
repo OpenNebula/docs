@@ -665,6 +665,9 @@ Example:
     SCHED_DS_REQUIREMENTS = "NAME=GoldenCephDS"
     SCHED_DS_RANK         = FREE_MB
 
+vCenter Section
+================================================================================
+
 
 Public Cloud Section
 ================================================================================

@@ -170,7 +170,7 @@ In order to deploy an instance in Azure through OpenNebula you must include an P
 
 These are the attributes that can be used in the PUBLIC_CLOUD section of the template for TYPE "AZURE":
 
-Check an exhaustive list of attributes in the :ref:`Virtual Machine Definition File Reference Section <_public_cloud_azure_atts>`.
+Check an exhaustive list of attributes in the :ref:`Virtual Machine Definition File Reference Section <public_cloud_azure_atts>`.
 
 .. note:: The PUBLIC_CLOUD sections allow for substitutions from template and virtual network variables, the same way as the :ref:`CONTEXT section allows <cong_defining_context>`.
 
