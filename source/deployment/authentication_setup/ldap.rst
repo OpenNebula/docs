@@ -4,21 +4,21 @@
 LDAP Authentication
 ====================
 
-The LDAP Authentication addon permits users to have the same credentials as in LDAP, so effectively centralizing authentication. Enabling it will let any correctly authenticated LDAP user to use OpenNebula.
+The LDAP Authentication add-on permits users to have the same credentials as in LDAP, so effectively centralizing authentication. Enabling it will let any correctly authenticated LDAP user to use OpenNebula.
 
 Prerequisites
 =============
 
-.. warning:: This Addon requires the **'net/ldap'** ruby library provided by the 'net-ldap' gem.
+.. warning:: This Add-on requires the **'net/ldap'** ruby library provided by the 'net-ldap' gem.
 
-This Addon will not install any Ldap server or configure it in any way. It will not create, delete or modify any entry in the Ldap server it connects to. The only requirement is the ability to connect to an already running Ldap server and being able to perform a successful **ldapbind** operation and have a user able to perform searches of users, therefore no special attributes or values are required in the LDIF entry of the user authenticating.
+This Add-on will not install any Ldap server or configure it in any way. It will not create, delete or modify any entry in the Ldap server it connects to. The only requirement is the ability to connect to an already running Ldap server and being able to perform a successful **ldapbind** operation and have a user able to perform searches of users, therefore no special attributes or values are required in the LDIF entry of the user authenticating.
 
 Configuration
 =============
 
 Configuration file for auth module is located at ``/etc/one/auth/ldap_auth.conf``. This is the default configuration:
 
-.. code::
+.. code-block:: yaml
 
     server 1:
         # Ldap user able to query, if not set connects as anonymous. For
@@ -34,7 +34,7 @@ Configuration file for auth module is located at ``/etc/one/auth/ldap_auth.conf`
         :host: localhost
         :port: 389
 
-        # Uncomment this line for tsl conections
+        # Uncomment this line for tls connections
         #:encryption: :simple_tls
      
         # base hierarchy where to search for users and groups
@@ -61,7 +61,7 @@ Configuration file for auth module is located at ``/etc/one/auth/ldap_auth.conf`
         # Seconds a mapping file remain untouched until the next regeneration
         :mapping_timeout: 300
 
-        # Name of the mapping file in OpenNebula var diretory
+        # Name of the mapping file in OpenNebula var directory
         :mapping_filename: server1.yaml
 
         # Key from the OpenNebula template to map to an AD group
@@ -97,10 +97,10 @@ The structure is a hash where any key different to ``:order`` will contain the c
 | ``:password``         | Password for the user defined in ``:user``.     |
 |                       | Do not set if anonymous access is enabled       |
 +-----------------------+-------------------------------------------------+
-| ``:auth_method``      | Can be set to ``:simple_tls`` if ssl connection |
+| ``:auth_method``      | Can be set to ``:simple_tls`` if SSL connection |
 |                       | is needed                                       |
 +-----------------------+-------------------------------------------------+
-| ``:encryption``       | Can be set to ``:simple_tls`` if ssl connection |
+| ``:encryption``       | Can be set to ``:simple_tls`` if SSL connection |
 |                       | is needed                                       |
 +-----------------------+-------------------------------------------------+
 | ``:host``             | Host name of the ldap server                    |
@@ -135,7 +135,7 @@ The structure is a hash where any key different to ``:order`` will contain the c
 
 To enable ``ldap`` authentication the described parameters should be configured. OpenNebula must be also configured to enable external authentication. Add this line in ``/etc/one/oned.conf``
 
-.. code::
+.. code-block:: bash
 
     DEFAULT_AUTH = "ldap"
 
@@ -144,11 +144,9 @@ User Management
 
 Using LDAP authentication module the administrator doesn't need to create users with ``oneuser`` command as this will be automatically done.
 
-
-
 Users can store their credentials into ``$ONE_AUTH`` file (usually ``$HOME/.one/one_auth``) in this fashion:
 
-.. code::
+.. code-block:: bash
 
     <user_dn>:ldap_password
 
@@ -168,7 +166,7 @@ When the user dn or password contains blank spaces the LDAP driver will escape t
 
 Users can easily create escaped $ONE\_AUTH tokens with the command ``oneuser encode <user> [<password>]``, as an example:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ oneuser encode 'cn=First Name,dc=institution,dc=country' 'pass word'
     cn=First%20Name,dc=institution,dc=country:pass%20word
@@ -190,7 +188,7 @@ You will need to change the following values in the configuration file (``/etc/o
 -  ``:user``: the Active Directory user with read permissions in the user's tree plus the domain. For example for user **Administrator** at domain **win.opennebula.org** you specify it as ``Administrator@win.opennebula.org``
 -  ``:password``: password of this user
 -  ``:host``: hostname or IP of the Domain Controller
--  ``:base``: base DN to search for users. You need to decompose the full domain name and use each part as DN component. Example, for ``win.opennebula.org`` you will get te base DN: DN=win,DN=opennebula,DN=org
+-  ``:base``: base DN to search for users. You need to decompose the full domain name and use each part as DN component. Example, for ``win.opennebula.org`` you will get the base DN: DN=win,DN=opennebula,DN=org
 -  ``:user_field``: set it to ``sAMAccountName``
 
 ``:group`` parameter is still not supported for Active Directory, leave it commented.
@@ -202,7 +200,7 @@ Group Mapping
 
 You can make new users belong to an specific group upon creation. To do this a mapping is generated from the LDAP group to an existing OpenNebula group. This system uses a mapping file specified by ``:mapping_file`` parameter and resides in OpenNebula ``var`` directory. The mapping file can be generated automatically using data in the group template that tells which LDAP group maps to that specific group. For example we can add in the group template this line:
 
-.. code:: bash
+.. code-block:: bash
 
     GROUP_DN="CN=technicians,CN=Groups,DC=example,DC=com"
 
@@ -210,14 +208,14 @@ And in the ldap configuration file we set the ``:mapping_key`` to ``GROUP_DN``. 
 
 You can also disable the automatic generation of this file and do the mapping manually. The mapping file is in YAML format and contains a hash where the key is the LDAP's group DN and the value is the ID of the OpenNebula group. For example:
 
-.. code:: yaml
+.. code-block:: yaml
 
     CN=technicians,CN=Groups,DC=example,DC=com: '100'
     CN=Domain Admins,CN=Users,DC=example,DC=com: '101'
 
 When several servers are configured you should have different ``:mapping_key`` and ``:mapping_file`` values for each one so they don't collide. For example:
 
-.. code:: yaml
+.. code-block:: yaml
 
     internal:
         :mapping_file: internal.yaml
@@ -229,7 +227,7 @@ When several servers are configured you should have different ``:mapping_key`` a
 
 And in the OpenNebula group template you can define two mappings, one for each server:
 
-.. code:: bash
+.. code-block:: bash
 
     INTERNAL_GROUP_DN="CN=technicians,CN=Groups,DC=internal,DC=com"
     EXTERNAL_GROUP_DN="CN=staff,DC=other-company,DC=com"
@@ -239,7 +237,7 @@ Enabling LDAP auth in Sunstone
 
 Update the ``/etc/one/sunstone-server.conf`` :auth parameter to use the ``opennebula``:
 
-.. code::
+.. code-block:: yaml
 
         :auth: opennebula
 
@@ -247,7 +245,7 @@ Using this method the credentials provided in the login screen will be sent to t
 
 To automatically encode credentials as explained in :ref:`DN's with special characters <ldap_dn_with_special_characters>` section also add this parameter to sunstone configuration:
 
-.. code::
+.. code-block:: yaml
 
         :encode_user_password: true
 
