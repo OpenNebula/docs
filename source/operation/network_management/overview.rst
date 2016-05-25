@@ -21,7 +21,7 @@ Hypervisor Compatibility
 +-------------------------------------------------+-----------------------------------------------+
 |                     Section                     |                 Compatibility                 |
 +=================================================+===============================================+
-| :ref:`Managing Virtual Networks <manage_vnets>` | This Section applies to both KVM and vCenter. |
+| :ref:`Virtual Networks <manage_vnets>`          | This Section applies to both KVM and vCenter. |
 +-------------------------------------------------+-----------------------------------------------+
 | :ref:`Security Groups <security_groups>`        | This Section applies to KVM.                  |
 +-------------------------------------------------+-----------------------------------------------+

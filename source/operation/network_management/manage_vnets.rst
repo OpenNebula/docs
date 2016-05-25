@@ -1,9 +1,9 @@
 .. _vgg:
 .. _manage_vnets:
 
-==========================
-Managing Virtual Networks
-==========================
+================
+Virtual Networks
+================
 
 A host is connected to one or more networks that are available to the virtual machines through the corresponding bridges. OpenNebula allows the creation of Virtual Networks by mapping them on top of the physical ones.
 
