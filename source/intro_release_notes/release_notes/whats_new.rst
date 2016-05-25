@@ -40,7 +40,7 @@ OpenNebula Core
 - **New offline mode** for :ref:`host maintenance <host_lifecycle>`, OpenNebula keeps monitoring the host but the scheduler won't deploy new VMs
 - **Instantiate to persistent**, new mechanism to :ref:`clone a public template to a private template <vm_guide2_clone_vm>`, with private copies of each image
 - **Resource sharing** in :ref:`clusters <cluster_guide>` is now possible, so for instance a virtual network can be shared among different clusters.
-- **Dynamic VM configuration**, VMs in poweroff can have their boot order, features lie ACPI, VNC access, and so on :ref:`updated with the new "onevm update" command <vm_guide_2>`.
+- **Dynamic VM configuration**, VMs in poweroff can have their boot order, features lie ACPI, VNC access, and so on :ref:`updated with the new "onevm updateconf" command <vm_updateconf>`.
 - **Support for DB change**, with a new :ref:`onedb sqlite2myql command <onedb_sqlite2mysql>`.
 - **Renamed VM life-cycle**, with :ref:`renamed states <vm_guide_2>` like for instance terminate instead of shutdown in order to avoid confusion.
 - **Revisited VM delete operation**, now part of the :ref:`onevm recover <vm_guide_2>` family and only available for admins.

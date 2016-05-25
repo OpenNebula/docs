@@ -445,6 +445,37 @@ This can also be achieved from Sunstone, both in Cloud and Admin View, at the ti
 
 |sunstone_admin_instantiate|
 
+.. _vm_updateconf:
+
+Updating VM Configuration
+--------------------------------------------------------------------------------
+
+Some of the VM configuration attributes defined in the VM Template can be updated after the VM is created. If the VM is not running, the ``onevm updateconf`` command will allow you to change the following attributes:
+
++--------------+-------------------------------------------------------------------------+
+|  Attribute   |                              Sub-attributes                             |
++==============+=========================================================================+
+| ``OS``       | ``ARCH``, ``MACHINE``, ``KERNEL``, ``INITRD``, ``BOOTLOADER``, ``BOOT`` |
++--------------+-------------------------------------------------------------------------+
+| ``FEATURES`` | ``ACPI``, ``PAE``, ``APIC``, ``LOCALTIME``, ``HYPERV``, ``GUEST_AGENT`` |
++--------------+-------------------------------------------------------------------------+
+| ``INPUT``    | ``TYPE``, ``BUS``                                                       |
++--------------+-------------------------------------------------------------------------+
+| ``GRAPHICS`` | ``TYPE``, ``LISTEN``, ``PASSWD``, ``KEYMAP``                            |
++--------------+-------------------------------------------------------------------------+
+| ``RAW``      | ``DATA``, ``DATA_VMX``, ``TYPE``                                        |
++--------------+-------------------------------------------------------------------------+
+| ``CONTEXT``  | Any value. **Variable substitution will be made**                       |
++--------------+-------------------------------------------------------------------------+
+
+.. note:: Visit the :ref:`Virtual Machine Template reference <template>` for a complete description of each attribute
+
+In Sunstone this action is inside the 'Conf' VM panel:
+
+|sunstone_updateconf_1|
+
+|sunstone_updateconf_2|
+
 .. _vm_guide2_clone_vm:
 
 Cloning a VM
@@ -699,3 +730,5 @@ Information for Developers and Integrators
 .. |sunstone_persistent_2| image:: /images/sunstone_persistent_2.png
 .. |sunstone_persistent_3| image:: /images/sunstone_persistent_3.png
 .. |sunstone_schedule_action| image:: /images/sunstone_schedule_action.png
+.. |sunstone_updateconf_1| image:: /images/sunstone_updateconf_1.png
+.. |sunstone_updateconf_2| image:: /images/sunstone_updateconf_2.png
