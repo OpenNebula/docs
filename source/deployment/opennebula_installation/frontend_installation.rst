@@ -148,6 +148,7 @@ Log in as the ``oneadmin`` user follow these steps:
 .. prompt:: bash # auto
 
     # service opennebula start
+    # service opennebula-sunstone start
 
 Step 6. Verifying the Installation
 ==================================
@@ -167,6 +168,8 @@ If instead of an empty list of VMs you get an error message, then the OpenNebula
     Connection refused - connect(2)
 
 The OpenNebula logs are located in ``/var/log/one``, you should have at least the files ``oned.log`` and ``sched.log``, the core and scheduler logs. Check ``oned.log`` for any error messages, marked with ``[E]``.
+
+Now you can try to log in into Sunstone web interface. To do this point your browser to ``http://<fontend_address>:9869``. If everything is OK you will be greeted with a login page. The user is ``oneadmin`` and the password is the one in the file ``/var/lib/one/.one/one_auth`` in your frontend.
 
 After installing the OpenNebula packages in the front-end the following directory structure will be used
 
