@@ -1,13 +1,12 @@
-.. _opennebula_installation:
+.. _ha:
 
 ================================================================================
-OpenNebula Installation
+Host and VM High Availability
 ================================================================================
 
 .. toctree::
    :maxdepth: 2
 
    Overview <overview>
-   Front-end Installation <frontend_installation>
-   MySQL Setup <mysql_setup>
-   Scheduler <scheduler>
+   Front-end HA Setup <frontend_ha_setup>
+   Virtual Machines HA <ftguide>

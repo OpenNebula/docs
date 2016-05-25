@@ -1,5 +1,3 @@
-
-
 ================================================================================
 Overview
 ================================================================================
@@ -17,8 +15,6 @@ First you should read the :ref:`Front-end Installation <frontend_installation>` 
 
 In the :ref:`Scheduler guide <schg>` you'll learn how to change the configuration to suit your needs. For example changing the scheduling policies or the number of VMs that will be sent per host.
 
-Finally there is the :ref:`Front-end HA Setup <frontend_ha_setup>` section that will guide you on setting up two front-ends in and active/passive fashion. This setup requires the use of a MySQL database.
-
 Hypervisor Compatibility
 ================================================================================
 
@@ -31,7 +27,3 @@ Hypervisor Compatibility
 +-------------------------------------------------------+-----------------------------------------------+
 | :ref:`Scheduler <schg>`                               | This Section applies to both KVM and vCenter. |
 +-------------------------------------------------------+-----------------------------------------------+
-| :ref:`Front-end HA Setup <frontend_ha_setup>`         | This Section applies to both KVM and vCenter. |
-+-------------------------------------------------------+-----------------------------------------------+
-
-

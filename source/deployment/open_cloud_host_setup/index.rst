@@ -7,6 +7,5 @@ Open Cloud Host Setup
 
    Overview <overview>
    KVM Driver <kvm_driver>
-   Virtual Machines HA <ftguide>
    Monitoring <monitoring>
    PCI Passthrough <pci_passthrough>
