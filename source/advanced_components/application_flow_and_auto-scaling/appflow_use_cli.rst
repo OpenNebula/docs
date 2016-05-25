@@ -1,12 +1,10 @@
 .. _appflow_use_cli:
 
-.. todo:: Needs to be reviewed and updated to 5.0
-
 ==================================
 Multi-tier Applications Management
 ==================================
 
-OneFlow allows users and administrators to define, execute and manage multi-tiered applications, or services composed of interconnected Virtual Machines with deployment dependencies between them. Each group of Virtual Machines is deployed and managed as a single entity, and is completely integrated with the advanced :ref:`OpenNebula user and group management <auth_overview>`.
+OneFlow allows users and administrators to define, execute and manage multi-tiered applications, or Services composed of interconnected Virtual Machines with deployment dependencies between them. Each group of Virtual Machines is deployed and managed as a single entity, and is completely integrated with the advanced :ref:`OpenNebula user and group management <auth_overview>`.
 
 What Is a Service
 =================
@@ -17,7 +15,7 @@ The following diagram represents a multi-tier application. Each node represents 
 
 This Service can be represented with the following JSON template:
 
-.. code::
+.. code-block:: javascript
 
     {
       "name": "my_service",
@@ -60,19 +58,19 @@ Managing Service Templates
 
 OneFlow allows OpenNebula administrators and users to register Service Templates in OpenNebula, to be instantiated later as Services. These Templates can be instantiated several times, and also shared with other users.
 
-Users can manage the Service Templates using the command ``oneflow-template``, or the graphical interface. For each user, the actual list of Service Templates available is determined by the ownership and permissions of the Templates.
+Users can manage the Service Templates using the command ``oneflow-template``, or Sunstone. For each user, the actual list of Service Templates available is determined by the ownership and permissions of the Templates.
 
 Create and List Existing Service Templates
 ------------------------------------------
 
-The command ``oneflow-template create`` registers a JSON template file. For example, if the previous example template is saved in /tmp/my\_service.json, you can execute:
+The command ``oneflow-template create`` registers a JSON template file. For example, if the previous example template is saved in /tmp/my_service.json, you can execute:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ oneflow-template create /tmp/my_service.json
     ID: 0
 
-You can also create service template from Sunstone:
+You can also create Service Templates from Sunstone:
 
 |image1|
 
@@ -111,7 +109,7 @@ Templates can be deleted with ``oneflow-template delete``.
 Determining when a VM is READY
 -------------------------------
 
-Depending on the deployment strategy, OneFlow will wait until all the VMs in a specific role are all in running state before deploying VMs that belong to a child role. How OneFlow determines the running state of the VMs can be specified with the checkbox ``Wait for VMs to report that the are READY`` available in the service creation dialog in Sunstone, or the attribute in ``ready_status_gate`` in the top-level of the service JSON.
+Depending on the deployment strategy, OneFlow will wait until all the VMs in a specific Role are all in running state before deploying VMs that belong to a child Role. How OneFlow determines the running state of the VMs can be specified with the checkbox ``Wait for VMs to report that the are READY`` available in the Service creation dialog in Sunstone, or the attribute in ``ready_status_gate`` in the top level of the Service Template JSON.
 
 |oneflow-ready-status-checkbox|
 
@@ -138,7 +136,7 @@ If ``ready_status_gate`` is set to ``false``, a VM will be considered to be in r
 Configure Dynamic Networks
 --------------------------------------------------------------------------------
 
-A Service Role has a :ref:`Virtual Machine Template <vm_guide>` assigned. The VM Template will define the capacity, disks, and network interfaces. But instead of using the Virtual Networks set in the VM Template, the Service Template can define a set of dynamic networks.
+Each Service Role has a :ref:`Virtual Machine Template <vm_guide>` assigned. The VM Template will define the capacity, disks, and network interfaces. But instead of using the Virtual Networks set in the VM Template, the Service Template can define a set of dynamic networks.
 
 |oneflow-templates-net-1|
 
@@ -165,14 +163,14 @@ Create and List Existing Services
 
 New Services are created from Service Templates, using the ``oneflow-template instantiate`` command:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ oneflow-template instantiate 0
     ID: 1
 
 To list the available Services, use ``oneflow list/top``:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ oneflow list
             ID USER            GROUP           NAME                      STATE
@@ -244,7 +242,7 @@ Life-cycle
 
 The ``deployment`` attribute defines the deployment strategy that the Life Cycle Manager (part of the :ref:`oneflow-server <appflow_configure>`) will use. These two values can be used:
 
--  **none**: All roles are deployed at the same time.
+-  **none**: All Roles are deployed at the same time.
 -  **straight**: Each Role is deployed when all its parent Roles are ``RUNNING``.
 
 Regardless of the strategy used, the Service will be ``RUNNING`` when all of the Roles are also ``RUNNING``. Likewise, a Role will enter this state only when all the VMs are ``running``.
@@ -296,7 +294,7 @@ Each Role has an individual state, described in the following table:
 +--------------------------+-------------------------------------------------------------------------------------------+
 | ``COOLDOWN``             | The Role is in the cooldown period after a scaling operation                              |
 +--------------------------+-------------------------------------------------------------------------------------------+
-| ``UNDEPLOYING``          | The VMs are being shutdown. The role will stay in this state until all VMs are ``done``   |
+| ``UNDEPLOYING``          | The VMs are being shutdown. The Role will stay in this state until all VMs are ``done``   |
 +--------------------------+-------------------------------------------------------------------------------------------+
 | ``DONE``                 | All the VMs are ``done``                                                                  |
 +--------------------------+-------------------------------------------------------------------------------------------+
@@ -310,22 +308,22 @@ Each Role has an individual state, described in the following table:
 Life-Cycle Operations
 ---------------------
 
-Services are deployed automatically by the Life Cycle Manager. To undeploy a running Service, users have the commands ``oneflow shutdown`` and ``oneflow delete``.
+Services are deployed automatically by the Life Cycle Manager. To undeploy a running Service, users can use the commands ``oneflow shutdown`` and ``oneflow delete``.
 
-The command ``oneflow shutdown`` will perform a graceful shutdown of all the running VMs, and will delete any VM in a failed state (see :ref:`onevm shutdown and delete <vm_instances>`). If the ``straight`` deployment strategy is used, the Roles will be shutdown in the reverse order of the deployment.
+The command ``oneflow shutdown`` will perform a graceful a ``terminate`` on all the running VMs (see :ref:`onevm terminate <vm_instances>`). If the ``straight`` deployment strategy is used, the Roles will be shutdown in the reverse order of the deployment.
 
-After a successful shutdown, the Service will remain in the ``DONE`` state. If any of the VM shutdown operations cannot be performed, the Service state will show ``FAILED``, to indicate that manual intervention is required to complete the cleanup. In any case, the Service can be completely removed using the command ``oneflow delete``.
+After a successful shutdown, the Service will remain in the ``DONE`` state. If any of the VM terminate operations cannot be performed, the Service state will show ``FAILED``, to indicate that manual intervention is required to complete the cleanup. In any case, the Service can be completely removed using the command ``oneflow delete``.
 
-If a Service and its VMs must be immediately undeployed, the command ``oneflow delete`` can be used from any Service state. This will execute a delete operation for each VM and delete the Service. Please be aware that **this is not recommended**, because VMs using persistent Images can leave them in an inconsistent state.
+If a Service and its VMs must be immediately undeployed, the command ``oneflow delete`` can be used from any Service state. This will execute a terminate operation for each VM and delete the Service. Please be aware that **this is not recommended**, because failed terminate actions may leave VMs in the system.
 
 When a Service fails during a deployment, undeployment or scaling operation, the command ``oneflow recover`` can be used to retry the previous action once the problem has been solved.
 
 Elasticity
 ----------
 
-A role's cardinality can be adjusted manually, based on metrics, or based on a schedule. To start the scalability immediately, use the command ``oneflow scale``:
+A Role's cardinality can be adjusted manually, based on metrics, or based on a schedule. To start the scalability immediately, use the command ``oneflow scale``:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ oneflow scale <serviceid> <role_name> <cardinality>
 
@@ -371,7 +369,7 @@ For example, to change the owner and group of the Service 1, we can use ``oneflo
          1 johndoe  apptools db_master_0_(se runn   74  115.2M localhost    0d 01h16
     ...
 
-Note that the Service's VM ownership is also changed.
+.. note:: The Service's VM ownership is also changed.
 
 All Services and Templates have associated permissions for the **owner**, the users in its **group**, and **others**. For each one of these groups, there are three rights that can be set: **USE**, **MANAGE** and **ADMIN**. These permissions are very similar to those of UNIX file system, and can be modified with the command ``chmod``.
 
@@ -438,7 +436,7 @@ Please refer to the OpenNebula documentation for more information about :ref:`us
 Scheduling Actions on the Virtual Machines of a Role
 ====================================================
 
-You can use the ``action`` command to perform a VM action on all the Virtual Machines belonging to a role. For example, if you want to suspend the Virtual Machines of the worker Role:
+You can use the ``action`` command to perform a VM action on all the Virtual Machines belonging to a Role. For example, if you want to suspend the Virtual Machines of the worker Role:
 
 .. code::
 
@@ -446,23 +444,20 @@ You can use the ``action`` command to perform a VM action on all the Virtual Mac
 
 These are the commands that can be performed:
 
--  ``shutdown``
--  ``shutdown-hard``
--  ``undeploy``
--  ``undeploy-hard``
--  ``hold``
--  ``release``
--  ``stop``
--  ``suspend``
--  ``resume``
--  ``boot``
--  ``delete``
--  ``delete-recreate``
--  ``reboot``
--  ``reboot-hard``
--  ``poweroff``
--  ``poweroff-hard``
--  ``snapshot-create``
+* ``terminate``
+* ``terminate-hard``
+* ``undeploy``
+* ``undeploy-hard``
+* ``hold``
+* ``release``
+* ``stop``
+* ``suspend``
+* ``resume``
+* ``reboot``
+* ``reboot-hard``
+* ``poweroff``
+* ``poweroff-hard``
+* ``snapshot-create``
 
 Instead of performing the action immediately on all the VMs, you can perform it on small groups of VMs with these options:
 
@@ -471,35 +466,40 @@ Instead of performing the action immediately on all the VMs, you can perform it 
 
 Let's say you need to reboot all the VMs of a Role, but you also need to avoid downtime. This command will reboot 2 VMs each 5 minutes:
 
-.. code::
+.. prompt:: text $ auto
 
     $ oneflow action my-service my-role reboot --period 300 --number 2
 
-The ``oneflow-server.conf`` file contains default values for ``period`` and ``number`` that are used if you omit one of them.
+The ``/etc/one/oneflow-server.conf`` file contains default values for ``period`` and ``number`` that are used if you omit one of them.
 
 Recovering from Failures
 ========================
 
 Some common failures can be resolved without manual intervention, calling the ``oneflow recover`` command. This command has different effects depending on the Service state:
 
-+--------------------------+-------------------+----------------------------------------------------------------------------+
-| State                    | New State         | Recover action                                                             |
-+==========================+===================+============================================================================+
-| ``FAILED_DEPLOYING``     | ``DEPLOYING``     | VMs in ``DONE`` or ``FAILED`` are deleted.                                 |
-|                          |                   |  VMs in ``UNKNOWN`` are booted.                                            |
-+--------------------------+-------------------+----------------------------------------------------------------------------+
-| ``FAILED_UNDEPLOYING``   | ``UNDEPLOYING``   | The undeployment is resumed.                                               |
-+--------------------------+-------------------+----------------------------------------------------------------------------+
-| ``FAILED_SCALING``       | ``SCALING``       | VMs in ``DONE`` or ``FAILED`` are deleted.                                 |
-|                          |                   |  VMs in ``UNKNOWN`` are booted.                                            |
-|                          |                   |  For a scale-down, the shutdown actions are retried.                       |
-+--------------------------+-------------------+----------------------------------------------------------------------------+
-| ``COOLDOWN``             | ``RUNNING``       | The Service is simply set to running before the cooldown period is over.   |
-+--------------------------+-------------------+----------------------------------------------------------------------------+
-| ``WARNING``              | ``WARNING``       | VMs in ``DONE`` or ``FAILED`` are deleted.                                 |
-|                          |                   |  VMs in ``UNKNOWN`` are booted.                                            |
-|                          |                   |  New VMs are instantiated to maintain the current cardinality.             |
-+--------------------------+-------------------+----------------------------------------------------------------------------+
++------------------------+-----------------+--------------------------------------------------------------------------+
+|         State          |    New State    |                              Recover action                              |
++========================+=================+==========================================================================+
+| ``FAILED_DEPLOYING``   | ``DEPLOYING``   | VMs in ``DONE`` or ``FAILED`` are terminated.                            |
+|                        |                 |                                                                          |
+|                        |                 | VMs in ``UNKNOWN`` are booted.                                           |
++------------------------+-----------------+--------------------------------------------------------------------------+
+| ``FAILED_UNDEPLOYING`` | ``UNDEPLOYING`` | The undeployment is resumed.                                             |
++------------------------+-----------------+--------------------------------------------------------------------------+
+| ``FAILED_SCALING``     | ``SCALING``     | VMs in ``DONE`` or ``FAILED`` are terminated.                            |
+|                        |                 |                                                                          |
+|                        |                 | VMs in ``UNKNOWN`` are booted.                                           |
+|                        |                 |                                                                          |
+|                        |                 | For a scale-down, the shutdown actions are retried.                      |
++------------------------+-----------------+--------------------------------------------------------------------------+
+| ``COOLDOWN``           | ``RUNNING``     | The Service is simply set to running before the cooldown period is over. |
++------------------------+-----------------+--------------------------------------------------------------------------+
+| ``WARNING``            | ``WARNING``     | VMs in ``DONE`` or ``FAILED`` are terminated.                            |
+|                        |                 |                                                                          |
+|                        |                 | VMs in ``UNKNOWN`` are booted.                                           |
+|                        |                 |                                                                          |
+|                        |                 | New VMs are instantiated to maintain the current cardinality.            |
++------------------------+-----------------+--------------------------------------------------------------------------+
 
 Service Template Reference
 ==========================

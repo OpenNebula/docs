@@ -1,21 +1,19 @@
 .. _appflow_elasticity:
 
-.. todo:: Needs to be reviewed and updated to 5.0
-
 =========================
 Application Auto-scaling
 =========================
 
-A role's cardinality can be adjusted manually, based on metrics, or based on a schedule.
+A Service Role's cardinality can be adjusted manually, based on metrics, or based on a schedule.
 
 Overview
 ========
 
-When a scaling action starts, the Role and Service enter the ``SCALING`` state. In this state, the Role will ``instantiate`` or ``shutdown`` a number of VMs to reach its new cardinality.
+When a scaling action starts, the Role and Service enter the ``SCALING`` state. In this state, the Role will ``instantiate`` or ``terminate`` a number of VMs to reach its new cardinality.
 
-A role with elasticity policies must define a minimum and maximum number of VMs:
+A Role with elasticity policies must define a minimum and maximum number of VMs:
 
-.. code::
+.. code-block:: javascript
 
     "roles": [
         {
@@ -36,7 +34,7 @@ Set the Cardinality of a Role Manually
 
 The command ``oneflow scale`` starts the scalability immediately.
 
-.. code::
+.. prompt:: text $ auto
 
     $ oneflow scale <serviceid> <role_name> <cardinality>
 
@@ -45,7 +43,7 @@ You can force a cardinality outside the defined range with the ``--force`` optio
 Maintain the Cardinality of a Role
 ==================================
 
-The 'min\_vms' attribute is a hard limit, enforced by the elasticity module. If the cardinality drops below this minimum, a scale-up operation will be triggered.
+The 'min_vms' attribute is a hard limit, enforced by the elasticity module. If the cardinality drops below this minimum, a scale-up operation will be triggered.
 
 Set the Cardinality of a Role Automatically
 ===========================================
@@ -53,11 +51,11 @@ Set the Cardinality of a Role Automatically
 Auto-scaling Types
 ------------------
 
-Both elasticity\_policies and scheduled\_policies elements define an automatic adjustment of the Role cardinality. Three different adjustment types are supported:
+Both elasticity_policies and scheduled_policies elements define an automatic adjustment of the Role cardinality. Three different adjustment types are supported:
 
--  **CHANGE**: Add/substract the given number of VMs
+-  **CHANGE**: Add/subtract the given number of VMs
 -  **CARDINALITY**: Set the cardinality to the given number
--  **PERCENTAGE\_CHANGE**: Add/substract the given percentage to the current cardinality
+-  **PERCENTAGE_CHANGE**: Add/subtract the given percentage to the current cardinality
 
 +---------------------+-----------+-------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Attribute           | Type      | Mandatory   | Description                                                                                                                                                          |
@@ -72,14 +70,14 @@ Both elasticity\_policies and scheduled\_policies elements define an automatic a
 Auto-scaling Based on Metrics
 -----------------------------
 
-Each role can have an array of ``elasticity_policies``. These policies define an expression that will trigger a cardinality adjustment.
+Each Role can have an array of ``elasticity_policies``. These policies define an expression that will trigger a cardinality adjustment.
 
 These expressions can use performance data from
 
 -  The VM guest. Using the :ref:`OneGate server <onegate_usage>`, applications can send custom monitoring metrics to OpenNebula.
 -  The VM, at hypervisor level. The :ref:`Virtualization Drivers <vmmg>` return information about the VM, such as ``CPU``, ``MEMORY``, ``NETTX`` and ``NETRX``.
 
-.. code::
+.. code-block:: javascript
 
       "elasticity_policies" : [
         {
@@ -110,9 +108,9 @@ The attribute will be looked for in ``/VM/USER_TEMPLATE``, ``/VM/MONITORING``, `
 Auto-scaling Based on a Schedule
 --------------------------------
 
-Combined with the elasticity policies, each role can have an array of ``scheduled_policies``. These policies define a time, or a time recurrence, and a cardinality adjustment.
+Combined with the elasticity policies, each Role can have an array of ``scheduled_policies``. These policies define a time, or a time recurrence, and a cardinality adjustment.
 
-.. code::
+.. code-block:: javascript
 
       "scheduled_policies" : [
         {
@@ -124,7 +122,7 @@ Combined with the elasticity policies, each role can have an array of ``schedule
         },
         {
           // +10 percent at the given date and time
-          "start_time" : "2nd oct 2013 15:45",
+          "start_time" : "2nd oct 2017 15:45",
      
           "type" : "PERCENTAGE_CHANGE",
           "adjust" : 10
@@ -142,7 +140,7 @@ Combined with the elasticity policies, each role can have an array of ``schedule
 Visualize in the CLI
 ====================
 
-The ``oneflow show / top`` commands show the defined policies. When a service is scaling, the VMs being created or shutdown can be identified by an arrow next to their ID:
+The ``oneflow show / top`` commands show the defined policies. When a Service is scaling, the VMs being created or terminated can be identified by an arrow next to their ID:
 
 .. code::
 
@@ -185,7 +183,7 @@ Interaction with Individual VM Management
 
 All the VMs created by a Service can be managed as regular VMs. When VMs are monitored in an unexpected state, this is what OneFlow interprets:
 
--  VMs in a recoverable state ('suspend', 'poweroff', etc.) are considered are healthy machines. The user will eventually decide to resume these VMs, so OneFlow will keep monitoring them. For the elasticity module, these VMs are just like 'running' VMs.
+-  VMs in a recoverable state ('suspend', 'poweroff', etc.) are considered healthy machines. The user will eventually decide to resume these VMs, so OneFlow will keep monitoring them. For the elasticity module, these VMs are just like 'running' VMs.
 -  VMs in the final 'done' state are cleaned from the Role. They do not appear in the nodes information table, and the cardinality is updated to reflect the new number of VMs. This can be seen as an manual scale-down action.
 -  VMs in 'unknown' or 'failed' are in an anomalous state, and the user must be notified. The Role and Service are set to the 'WARNING' state.
 
@@ -194,7 +192,7 @@ All the VMs created by a Service can be managed as regular VMs. When VMs are mon
 Examples
 ========
 
-.. code::
+.. code-block:: javascript
 
     /*
     Testing:
@@ -255,7 +253,7 @@ Examples
       ]
     }
 
-.. code::
+.. code-block:: javascript
 
     {
       "name": "Time_windows",

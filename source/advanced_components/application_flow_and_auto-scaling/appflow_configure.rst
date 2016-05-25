@@ -4,12 +4,12 @@
 OneFlow Server Configuration
 =============================
 
-The OneFlow commands do not interact directly with the OpenNebula daemon, there is a server that takes the requests and manages the service (multi-tiered application) life-cycle. This guide shows how to start OneFlow, and the different options that can be configured.
+The OneFlow commands do not interact directly with the OpenNebula daemon, there is a server that takes the requests and manages the Service (multi-tiered application) life-cycle. This guide shows how to start OneFlow, and the different options that can be configured.
 
 Installation
 ============
 
-OneFlow server is shipped with the main distribution. The oneflow server is usually contained in the 'opennebula-flow' package, and the commands in the specific CLI package. Check the :ref:`Installation guide <ignc>` for details of what packages you have to install depending on your distribution.
+OneFlow server is shipped with the main distribution. The oneflow server is contained in the 'opennebula-flow' package, and the commands in the specific CLI package. Check the :ref:`Installation guide <ignc>` for details of what packages you have to install depending on your distribution.
 
 .. note:: Make sure you executed ``ìnstall_gems`` during the installation to install the required gems, in particular: ``treetop``, ``parse-cron``.
 
@@ -37,7 +37,7 @@ The OneFlow configuration file can be found at ``/etc/one/oneflow-server.conf``.
 +----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | :shutdown\_action    | Default shutdown action. Values: 'shutdown', 'shutdown-hard'                                                                                                            |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| :action\_number      | Default number of virtual machines (action\_number) that will receive the given call in each interval defined by action\_period, when an action is performed on a role. |
+| :action\_number      | Default number of virtual machines (action\_number) that will receive the given call in each interval defined by action\_period, when an action is performed on a Role. |
 | :action\_period      |                                                                                                                                                                         |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | :vm\_name\_template  | Default name for the Virtual Machines created by oneflow. You can use any of the following placeholders:                                                                |
@@ -50,8 +50,10 @@ The OneFlow configuration file can be found at ``/etc/one/oneflow-server.conf``.
 | **Auth**                                                                                                                                                                                       |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | :core\_auth          | Authentication driver to communicate with OpenNebula core                                                                                                               |
-|                      | ``cipher``: for symmetric cipher encryption of tokens                                                                                                                   |
-|                      | ``x509``: for x509 certificate encryption of tokens                                                                                                                     |
+|                      |                                                                                                                                                                         |
+|                      | * ``cipher``: for symmetric cipher encryption of tokens                                                                                                                 |
+|                      | * ``x509``: for x509 certificate encryption of tokens                                                                                                                   |
+|                      |                                                                                                                                                                         |
 |                      | For more information, visit the :ref:`OpenNebula Cloud Auth documentation <cloud_auth>`                                                                                 |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **Log**                                                                                                                                                                                        |
@@ -62,7 +64,7 @@ The OneFlow configuration file can be found at ``/etc/one/oneflow-server.conf``.
 
 This is the default file
 
-.. code::
+.. code-block:: yaml
 
     ################################################################################
     # Server Configuration
@@ -124,16 +126,15 @@ This is the default file
 Start OneFlow
 =============
 
-To start and stop the server, use the ``oneflow-server start/stop`` command:
+To start and stop the server, use the ``opennebula-flow`` service:
 
-.. code::
+.. prompt:: bash # auto
 
-    $ oneflow-server start
-    oneflow-server started
+    # service opennebula-flow start
 
-.. warning:: By default, the server will only listen to requests coming from localhost. Change the ``:host`` attribute in ``/etc/one/oneflow-server.conf`` to your server public IP, or 0.0.0.0 so oneflow will listen on any interface.
+.. note:: By default, the server will only listen to requests coming from localhost. Change the ``:host`` attribute in ``/etc/one/oneflow-server.conf`` to your server public IP, or 0.0.0.0 so oneflow will listen on any interface.
 
-Inside ``/var/log/one/`` you will find new log files for the server, and individual ones for each service in ``/var/log/one/oneflow/<id>.log``
+Inside ``/var/log/one/`` you will find new log files for the server, and individual ones for each Service in ``/var/log/one/oneflow/<id>.log``
 
 .. code::
 
@@ -143,22 +144,7 @@ Inside ``/var/log/one/`` you will find new log files for the server, and individ
 Enable the Sunstone Tabs
 ========================
 
-The OneFlow tabs are enabled by default. To enable or disable them, edit ``/etc/one/sunstone-views/admin.yaml`` and ``user.yaml`` and comment out the oneflow tabs lines inside ``enabled_tabs``:
-
-.. code-block:: yaml
-
-    enabled_tabs:
-        - dashboard-tab
-     
-        ...
-     
-        - oneflow-dashboard
-        - oneflow-services
-        - oneflow-templates
-
-Be sure to restart Sunstone for the changes to take effect.
-
-For more information on how to customize the views based on the user/group interacting with Sunstone check the :ref:`sunstone views guide <suns_views>`
+The OneFlow tabs (Services and Service Templates) are visible in Sunstone by default. To customize its visibility for each kind of user, visit the :ref:`Sunstone views documentation <suns_views>`
 
 Advanced Setup
 ==============
