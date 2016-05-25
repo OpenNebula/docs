@@ -4,42 +4,40 @@
 Virtual Routers
 ================================================================================
 
-Virtual Routers are an OpenNebula resource that provide routing across Virtual Networks. The administrators can easily connect Virtual Networks from Sunstone and the CLI.
-The routing itself is implemented with a Virtual Machine appliance provided by the OpenNebula installation. This Virtual Machine can be seamlessly deployed in high availability mode.
+Virtual Routers provide routing across Virtual Networks. The administrators can easily connect Virtual Networks from Sunstone and the CLI.  The routing itself is implemented with a Virtual Machine appliance available though the market place. This Virtual Machine can be seamlessly deployed in high availability mode.
+
+Download the Virtual Router Appliance
+================================================================================
+
+OpenNebula provides a light weight Alpine-based virtual router. The virtual router image is prepared to run in a HA mode, and process the context information from OpenNebula. So its base capabilities can be easily extened.
+
+- Download the appliance from the market place. For example to put the virtual router image in the default datastore and create a Virtual Router tempalte named vrotuer_apline use:
+
+.. code::
+
+    $onemarketapp export  'alpine-vrouter (KVM)' vrouter_alpine --datastore default --vmname vrouter_alpine
+    IMAGE
+        ID: 9
+    VMTEMPLATE
+        ID: 8
+
+- Check that the resources are properly created, an update them to your OpenNebula installation if needed.
+
+.. code::
+
+    $ oneimage show 9  # 9 is the IMAGE ID from the previous onemarketapp command
+    $ onetemplate show 8 # 8 is for the VMTEMPLATE ID
+
+.. note:: For vCenter infrastructures an ova with the preconfigured image can be imported from the following URL:
+
+    https://s3-eu-west-1.amazonaws.com/opennebula-marketplace/alpine-vrouter.ova
+
+    After that you'll only need to import new templates from vcenter and set the template as Virtual Router at the bottom of the General tab of the template update wizzard.
 
 Creating a new Virtual Router
 ================================================================================
 
-.. todo:: review default template
-
-New Virtual Routers are created from a special type of VM Template. The installation will create a default Template that can be later customized.
-
-Virtual Router Appliance Images
--------------------------------
-
-There are two already prepared images with the needed configuration to act as a Virtual Router instance. These are for KVM and vcenter hypervisors.
-
-KVM
-~~~
-
-You can download the image from the `OpenNebula Marketplace <http://marketplace.opennebula.systems/>`__ and its name is "`alpine-vrouter (KVM) <http://marketplace.opennebula.systems/appliance/56e156618fb81d0768000001>`__". The image only needs 256 Mb of RAM to run and supports SSH contextualization. This is the configuration needed in the template:
-
-* Enable network contextualization.
-* Use ``vd`` as disk prefix and ``virtio`` as default network model, this can be set in the template wizzard at the bottom of networks tab.
-* Do not add any network to the template as these will be added when the Virtual Router is created.
-* Mark the template as Virtual Router at the bottom of the General tab. The button is labeled "Make this template available for Virtual Router machines only".
-
-vcenter
-~~~~~~~
-
-An ova with the preconfigured image can be imported from the following URL:
-
-.. code::
-
-    https://s3-eu-west-1.amazonaws.com/opennebula-marketplace/alpine-vrouter.ova
-
-After that you'll only need to import new templates from vcenter and set the template as Virtual Router at the bottom of the General tab of the template update wizzard.
-
+New Virtual Routers are created from a special type of VM Template, as the one created automatically when downloading the market app.
 
 Sunstone
 --------------------------------------------------------------------------------
@@ -49,14 +47,13 @@ To create a new Virtual Router from Sunstone, follow the wizard to select the Vi
 For each Virtual Network, the following options can be defined:
 
 * **Floating IP**. Only used in High Availability, explained bellow.
+
 * **Force IPv4**. You can force the IP assigned to the network interface. When the VR is not configured in High Availability, this will be the IP requested for the Virtual Machine appliance.
-* **Management interface**. If checked, this network interface will be a Virtual Router management interface. Traffic will not be forwarded.
 
-The Virtual Router needs a VM Template from which to create the VM containing the routing appliance. You should at least have the default one created following the instructions from "Virtual Router Appliance Images" section.
+* **Management interface**. If checked, this network interface will be a Virtual Router management interface. Traffic will not be forwarded to it.
 
-In here you can also define a name for the VM, if it should be created on hold, and the number of instances. If more than one VM instance is required, they will work in High Availability mode (see bellow).
 
-Click the "create" button to finish. OpenNebula will create the Virtual Router and the Virtual Machines automatically.
+Once ready, click the "create" button to finish. OpenNebula will create the Virtual Router and the Virtual Machines automatically.
 
 |sunstone_create_vrouter|
 
@@ -66,8 +63,6 @@ CLI
 Virtual Routers can be managed with the ``onevrouter`` command.
 
 To create a new Virtual Router from the CLI, first you need to create a VR Template file, with the following attributes:
-
-.. todo:: list of VR attributes, name, nics, etc
 
 Then use the ``onevrouter create`` command:
 
@@ -88,15 +83,13 @@ At this point the Virtual Router resource is created, but it does not have any V
 
 .. code::
 
-    $ instantiate <vrouterid> <templateid>
+    $ onevrouter instantiate <vrouterid> <templateid>
 
 
 Managing Virtual Routers
 ================================================================================
 
 Using the Virtual Routers tab in Sunstone, or the ``onevrouter show`` command, you can retrieve the generic resource information such as owner and group, the list of Virtual Networks interconnected by this router, and the Virtual Machines that are actually providing the routing.
-
-.. todo:: sunstone screenshots
 
 |sunstone_topology|
 
@@ -112,9 +105,9 @@ After a NIC is attached or detached, the Virtual Machine appliances are automati
 Managing Virtual Router VMs
 --------------------------------------------------------------------------------
 
-The Virtual Machines that are associated to a Virtual Router have a limited set of actions. Specifically, any action that changes the VM state cannot be executed, including VM shutdown or delete.
+The Virtual Machines that are associated to a Virtual Router have a limited set of actions. Specifically, any action that changes the VM state cannot be executed, including terminate.
 
-To shut down a VM associated with a Virtual Router, you need to delete the Virtual Router.
+To terminate a Virtual Machine associated with a Virtual Router, you need to delete the Virtual Router.
 
 High Availability
 ================================================================================
@@ -141,14 +134,10 @@ And for each Virtual Network Interface:
 
 The floating IP assignment is managed in a similar way to normal VM IPs. If you open the information of the Virtual Network, it will contain a lease assigned to the Virtual Router (not a VM). Besides the floating IP, each VM will get their own individual IP.
 
-.. todo:: sunstone screenshot, VM NICs table
-
 Other Virtual Machines in the network will use the floating IP to contact the Virtual Router VMs. At any given time, only one VM is using that floating IP address. If the active VM crashes, the other VMs will coordinate to assign the floating IP to a new Virtual Router VM.
 
 Customization
 ================================================================================
-
-.. todo:: customization options, how to create new VR Templates.
 
 You can provide two optional parameters in the context to configure the keepalived service started in the Virtual Router VM:
 
@@ -156,19 +145,6 @@ You can provide two optional parameters in the context to configure the keepaliv
 * ``VROUTER_KEEPALIVED_ID``: Number identifier of the service (0-255). This is useful when you have several virtual routers or other keepalived services in the same network. By default it is generated from the Virtual Router ID (``$vrouter_id & 255``) but you can specify it manually if needed.
 
 These parameters can also be provided in the Virtual Router creation wizzard of sunstone.
-
-Create Your Own Images
-----------------------
-
-A virtual router appliance does routing between interfaces and has `keepalived` service to manage the floating IP. In case one of the VRouter crashes the other configures that floating IP to continue doing the routing. The extra information we add to contextualization is as follows:
-
-* ``ETHX_VROUTER_IP``: the floating IP
-* ``ETHX_VROUTER_MANAGEMENT``: if this variable is set to ``true`` the interface is used for management and is not routed
-* ``VROUTER_ID``: Virtual Router identifier. This number will increase for each new set of Virtual Routers.
-* ``VROUTER_KEEPALIVED_ID``: Identifier to be used by ``keepalived``
-* ``VROUTER_KEEPALIVED_PASSWORD``: ``keepalived`` service password
-
-Another thing the VRouter machine must do is to react to cdrom or network interface change. Virtual Routers support reconfiguration to add or take out networks they route. When this happens the contextualization data is regenerated and it must be reconfigured. The provided image has a ``udev`` rule that triggers reconfiguration on network interface hot plug.
 
 .. |sunstone_create_vrouter| image:: /images/sunstone_create_vrouter.png
 .. |sunstone_topology| image:: /images/sunstone_topology.png
