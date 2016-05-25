@@ -25,13 +25,20 @@ Configuration
 
 The following table summarizes the available options for the x509 driver (``/etc/one/auth/x509_auth.conf``):
 
-+---------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| VARIABLE      | VALUE                                                                                                                                                                                                                                                                                          |
-+===============+================================================================================================================================================================================================================================================================================================+
-| :ca\_dir      | Path to the trusted CA directory. It should contain the trusted CA's for the server, each CA certificate shoud be name CA\_hash.0                                                                                                                                                              |
-+---------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| :check\_crl   | By default, if you place CRL files in the CA directory in the form CA\_hash.r0, OpenNebula will check them. You can enforce CRL checking by defining :check\_crl, i.e. authentication will fail if no CRL file is found. You can always disable this feature by moving or renaming .r0 files   |
-+---------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++-----------------+---------------------------------------------------------+
+|     VARIABLE    |                          VALUE                          |
++=================+=========================================================+
+| **:ca\_dir**    | Path to the trusted CA directory. It should contain the |
+|                 | trusted CA's for the server, each CA certificate shoud  |
+|                 | be name CA\_hash.0                                      |
++-----------------+---------------------------------------------------------+
+| **:check\_crl** | By default, if you place CRL files in the CA directory  |
+|                 | in the form CA\_hash.r0, OpenNebula will check them.    |
+|                 | You can enforce CRL checking by defining :check\_crl,   |
+|                 | i.e. authentication will fail if no CRL file is found.  |
+|                 | You can always disable this feature by moving or        |
+|                 | renaming .r0 files                                      |
++-----------------+---------------------------------------------------------+
 
 Follow these steps to change oneadmin's authentication method to x509:
 
