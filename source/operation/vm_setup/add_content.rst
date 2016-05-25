@@ -8,11 +8,11 @@ Once you have setup your OpenNebula cloud you'll have ready the infrastructure
 to it for your users. This basically means two different things:
 
 -  Add base disk images with OS installations of your choice. Including any software package of interest.
--  Define virtual servers in the form of VM Templates. We recommend that VM definitions are made by the admins as it may require fine or advanced tunning. For example you may want to define a LAMP server with the capacity to be instantiated in a remote AWS cloud.
+-  Define virtual servers in the form of VM Templates. We recommend that VM definitions are made by the admins as it may require fine or advanced tuning. For example you may want to define a LAMP server with the capacity to be instantiated in a remote AWS cloud.
 
 When you have basic virtual server definitions the users of your cloud can use them to easily provision VMs, adjusting basic parameters, like capacity or network connectivity.
 
-There are three basic methods to bootstratp the contents of your cloud, namely:
+There are three basic methods to bootstrap the contents of your cloud, namely:
 
 - **External Images**. If you already have disk images in any supported format (raw, qcow2, vmdk...) you can just add them to a datastore. Alternatively you can use any virtualization tool (e.g. virt-manager) to install an image and then add it to a OpenNebula datastore.
 - **Install within OpenNebula**. You can also use OpenNebula to prepare the images for your cloud. The process will be as follows:
@@ -20,7 +20,7 @@ There are three basic methods to bootstratp the contents of your cloud, namely:
   - Add the installation medium to a OpenNebula datastore. Usually it will be a OS installation CD-ROM/DVD.
   - Create a DATABLOCK image of the desired capacity to install the OS. Once created change its type to OS and make it persistent.
   - Create a new template using the previous two images. Make sure to set the OS/BOOT parameter to cdrom and enable the VNC console.
-  - Instantiate the template and install the OS and any additional software
+  - Instantiate the template and install the OS and any additional software. You can find specific instructions to install contextualization packages in the other two sections of this guide.
   - Once you are done, shutdown the VM
 
 -  **Use the OpenNebula Marketplace**. Go to the marketplace tab in Sunstone, and simply pick a disk image with the OS and Hypervisor of your choice.
@@ -28,10 +28,6 @@ There are three basic methods to bootstratp the contents of your cloud, namely:
 Once the images are ready, just create VM templates with the relevant configuration attributes, including default capacity, networking or any other preset needed by your infrastructure.
 
 You are done, make sure that your cloud users can access the images and templates you have just created.
-
-
-.. todo:: Format and review the following contents
-
 
 
 How to Prepare the Virtual Machine Templates
@@ -52,7 +48,7 @@ You must set a default CPU and Memory for the Template, but users can change the
 
 You can disable this option for the whole cloud modifying the ``cloud.yaml`` or ``groupadmin.yaml`` view files or per template in the template creation wizard
 
-.. code::
+.. code-block:: yaml
 
     provision-tab:
         ...
@@ -65,7 +61,7 @@ Set a Cost
 
 Each VM Template can have a cost. This cost is set by CPU and MB, to allow users to change the capacity and see the cost updated accordingly. VMs with a cost will appear in the :ref:`showback reports <showback>`.
 
-.. todo:: add image showback_template_wizard
+|showback_template_wizard|
 
 .. _cloud_view_features:
 
@@ -94,9 +90,7 @@ Make the Images Non-Persistent
 
 The Images used by the Cloud View Templates should not be persistent. A :ref:`persistent Image <img_guide_persistent>` can only be used by one VM simultaneously, and the next user will find the changes made by the previous user.
 
-.. todo:: add link to save a VM
-
-If the users need persistent storage, they can use the Save a VM functionality
+If the users need persistent storage, they can use the :ref:`Save a VM functionality <vm_guide2_clone_vm>`.
 
 .. _cloud_view_select_network:
 
@@ -113,7 +107,7 @@ Because users will add network interfaces, you need to define a default NIC mode
 
 You can disable this option for the whole cloud modifying the ``cloud.yaml`` or ``groupadmin.yaml`` view files or per template in the template creation wizard
 
-.. code::
+.. code-block:: yaml
 
     provision-tab:
         ...
@@ -133,7 +127,7 @@ To make a Template available to other users, you have two options:
 
 Please note that you will need to do the same for any Image and Virtual Network referenced by the Template, otherwise the VM creation will fail with an error message similar to this one:
 
-.. code::
+.. code-block:: text
 
     [TemplateInstantiate] User [6] : Not authorized to perform USE IMAGE [0].
 
@@ -171,3 +165,4 @@ Please note that you will need to do the same for any VM Template used by the Ro
 .. |prepare-tmpl-user-input-2| image:: /images/prepare-tmpl-user-input-2.png
 .. |prepare-tmpl-flow-1| image:: /images/prepare-tmpl-flow-1.png
 .. |prepare-tmpl-flow-2| image:: /images/prepare-tmpl-flow-2.png
+.. |showback_template_wizard| image:: /images/showback_template_wizard.png
