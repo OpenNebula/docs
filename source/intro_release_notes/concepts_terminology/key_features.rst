@@ -37,7 +37,7 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 - :ref:`Advanced network virtualization capabilities <vgg>` with traffic isolation, address reservation, flexible defintion of address ranges to accommodate any address distribution, definition of generic attributes to define multi-tier services...
 
-- :ref:`IPv6 support <vgg_ipv6_networks>` with definition site and global unicast addresses
+- :ref:`IPv6 support <manage_vnets>` with definition site and global unicast addresses
 
 - Virtual routers [TODO: Add link]
 
