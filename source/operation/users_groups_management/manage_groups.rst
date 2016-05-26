@@ -18,7 +18,7 @@ Your can use the ``onegroup`` command line tool to manage groups in OpenNebula. 
 
 To create new groups:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onegroup list
       ID NAME
@@ -37,7 +37,7 @@ Adding Users to Groups
 
 Use the ``oneuser chgrp`` command to assign users to groups.
 
-.. code::
+.. prompt:: bash $ auto
 
     $ oneuser chgrp -v regularuser "new group"
     USER 1: Group changed
@@ -80,7 +80,7 @@ This can be managed visually in Sunstone, and can also be managed through the CL
 
 An example:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onegroup create --name groupA \
     --admin_user admin_userA --admin_password somestr \
