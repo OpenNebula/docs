@@ -141,5 +141,7 @@ Because no two clouds are the same, OpenNebula provides many different interface
 
 -  **Hook Manager** to :ref:`trigger administration scripts upon VM state change <hooks>`.
 
+|OpenNebula Cloud Architecture|
+
 .. |OpenNebula Hypervisors| image:: /images/ONE_Hypervisors.png
 .. |OpenNebula Cloud Architecture| image:: /images/new_overview_integrators.png
