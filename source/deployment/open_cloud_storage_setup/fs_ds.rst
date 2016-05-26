@@ -1,162 +1,185 @@
 .. _fs_ds:
 
-=========================
-The Filesystem Datastore
-=========================
+================================================================================
+Filesystem Datastore
+================================================================================
 
-The Filesystem Datastore lets you store VM images in a file form. The datastore is format agnostic, so you can store any file-type depending on the target hypervisor. The use of file-based disk images presents several benefits over device backed disks (e.g. easily backup images, or use of shared FS) although it may less performing in some cases.
+The Filesystem Datastore lets you store VM images in a file form.  The use of file-based disk images presents several benefits over device backed disks (e.g. easily backup images, or use of shared FS) although it may less performing in some cases.
 
 Usually it is a good idea to have multiple filesystem datastores to:
 
-* Group images of the same type, so you can have a qcow2 datastore for another one for raw images.
-* Balance I/O operations, as the datastores can be in different servers
+* Balancing I/O operations between storage servers
+
 * Use different datastores for different cluster hosts
-* Apply different QoS policies to different images
 
-Requirements
-============
+* Apply different transfer modes to different images
 
-There are no special requirements or software dependencies to use the filesystem datastore. The drivers make use of standard filesystem utils (``cp``, ``ln``, ``mv``, ``tar``, ``qemu-img``, ...) that should be installed in your system.
+* Different SLA policies (e.g. backup) can be applied to different VM types or users
 
-Configuration
-=============
+* Easily add new storage to the cloud
 
-Configuring the System Datastore
---------------------------------
+The Filesystem datastore can be used with three different transfer modes, described below:
 
-Filesystem datastores can work with a System Datastore that uses either the shared or the SSH transfer drivers, note that:
+* **shared**, images are exported in a shared filesystem
 
-* Shared drivers for the System Datastore enables live-migrations, but it could demand a high-performance NAS.
-* SSH drivers for the System Datastore may increase deployment/shutdown times but all the operations are performed locally, so improving performance in general. Note that even if live-migration is not supported, regular migration is, which has the same effect (memory state is not lost).
+* **ssh**, images are copied using the ssh protocol
 
-See more details on the :ref:`System Datastore Guide <system_ds>`
+* **qcow2**, like *shared* but specialized for the qcow2 format
 
-Configuring the Filesystem Datastores
--------------------------------------
 
-The first step to create a filesystem datastore is to set up a template file for it. In the following table you can see the valid configuration attributes for a filesystem datastore. The datastore type is set by its drivers, in this case be sure to add ``DS_MAD=fs``.
+Datastore Layout
+================================================================================
+Images are saved into the corresponding datastore directory (``/var/lib/one/datastores/<DATASTORE ID>``). Also, for each running virtual machine there is a directory (named after the ``VM ID``) in the corresponding System Datastore. These directories contain the VM disks and additional files, e.g. checkpoint or snapshots.
 
-The other important attribute to configure the datastore is the transfer drivers. These drivers determine how the images are accessed in the hosts. The Filesystem datastore can use shared, ssh and qcow2. See below for more details.
-
-The specific attributes for this datastore driver are listed in the following table, you will also need to complete with the :ref:`common datastore attributes <sm_common_attributes>`:
-
-+---------------+-----------------------------------------------------------------------------------------------------------------------------------+
-|   Attribute   |                                                            Description                                                            |
-+===============+===================================================================================================================================+
-| ``DS_MAD``    | The DS type, use ``fs`` for the Filesystem datastore                                                                              |
-+---------------+-----------------------------------------------------------------------------------------------------------------------------------+
-| ``TM_MAD``    | Transfer drivers for the datastore: ``shared``, ``ssh`` or ``qcow2``, see below                                                   |
-+---------------+-----------------------------------------------------------------------------------------------------------------------------------+
-
-For example, the following illustrates the creation of a filesystem datastore using the shared transfer drivers.
+For example, a system with an Image Datastore (``1``) with three images and 3 Virtual Machines (VM 0 and 2 running, and VM 7 stopped) running from System Datastore ``0`` would present the following layout:
 
 .. code::
 
-    > cat ds.conf
-    NAME = production
-    DS_MAD = fs
-    TM_MAD = shared
+    /var/lib/one/datastores
+    |-- 0/
+    |   |-- 0/
+    |   |   |-- disk.0
+    |   |   `-- disk.1
+    |   |-- 2/
+    |   |   `-- disk.0
+    |   `-- 7/
+    |       |-- checkpoint
+    |       `-- disk.0
+    `-- 1
+        |-- 05a38ae85311b9dbb4eb15a2010f11ce
+        |-- 2bbec245b382fd833be35b0b0683ed09
+        `-- d0e0df1fb8cfa88311ea54dfbcfc4b0c
 
-    > onedatastore create ds.conf
-    ID: 100
+.. note::
 
-    > onedatastore list
-      ID NAME            CLUSTER  IMAGES TYPE   TM
-       0 system          none     0      fs     shared
-       1 default         none     3      fs     shared
-     100 production      none     0      fs     shared
+    The canonical path for ``/var/lib/one/datastores`` can be changed in oned.conf with the ``DATASTORE_LOCATION`` configuration attribute
 
-The DS and TM MAD can be changed later using the ``onedatastore update`` command. You can check more details of the datastore by issuing the ``onedatastore show`` command.
-
-Finally, you have to prepare the storage for the datastore and configure the hosts to access it. This depends on the transfer mechanism you have chosen for your datastore.
-
-Frontend Access to the Storage
+Shared & Qcow2 Transfer Modes
 --------------------------------------------------------------------------------
+The shared transfer driver assumes that the datastore is mounted in all the hosts of the cluster. Typically this is achieved through a distributed FS like NFS, GlusterFS or Lustre.
 
-By default, it is implied that the Frontend has direct access to the storage. Let's say we are configuring datastore `DS_ID = 100`. It is implied that the frontend can write directly to ``/var/lib/one/datastores/100``. When an image is first downloaded and registered into the datastore, only the frontend is involved in this operation.
+When a VM is created, its disks (the ``disk.i`` files) are copied or linked in the corresponding directory of the system datastore. These file operations are always performed remotely on the target host.
 
-However, in some scenarios this not ideal, and therefore it can be configured. If the underlying storage is *GlusterFS*, *GFS2* or any other shared storage system, and we do **not** want the frontend to be part of this storage cluster we can use these attributes to configure the behavior:
+This transfer mode usually reduces VM deployment times and **enables live-migration**, but it can also become a bottleneck in your infrastructure and degrade your Virtual Machines performance if the virtualized services perform disk-intensive workloads. Usually this limitation may be overcome by:
 
-+-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-|    Attribute    |                                                                                                                                               Description                                                                                                                                               |
-+=================+=========================================================================================================================================================================================================================================================================================================+
-| ``BRIDGE_LIST`` | **(Optional)** Space separated list of hosts that have access to the storage. This can be all the hosts in the storage cluster, or a subset of them, which will carry out the write operations to the datastore. For each operation only one of the host will be chosen, using a round-robin algorithm. |
-+-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``STAGING_DIR`` | **(Optional)** Images are first downloaded to the frontend and then scp'd over to the chosen host from the ``BRIDGE_LIST`` list. They are scp'd to the ``STAGING_DIR``, and then moved to the final destination. If empty, it defaults to ``/var/tmp``.                                                 |
-+-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-
-.. _fs_ds_using_the_shared_transfer_driver:
-
-Using the Shared Transfer Driver
-================================
-
-The shared transfer driver assumes that the datastore is mounted in all the hosts of the cluster. When a VM is created, its disks (the ``disk.i`` files) are copied or linked in the corresponding directory of the system datastore. These file operations are always performed remotely on the target host.
+* Using different file-system servers for the images datastores, so the actual I/O bandwidth is balanced
+* Using an ssh System Datastore instead, the images are copied locally to each host
+* Tuning or improving the file-system servers
 
 |image1|
 
-Persistent & Non Persistent Images
-----------------------------------
-
-If the VM uses a persistent image, a symbolic link to the datastore is created in the corresponding directory of the system datastore. Non-persistent images are copied instead. For persistent images, this allows an immediate deployment, and no extra time is needed to save the disk back to the datastore when the VM is shut down.
-
-On the other hand, the original file is used directly, and if for some reason the VM fails and the image data is corrupted or lost, there is no way to cancel the persistence.
-
-Finally images created using the ``onevm disk-saveas`` command will be moved to the datastore only after the VM is successfully shut down. This means that the VM has to be shutdown using the ``onevm terminate`` command, and not ``onevm recover --delete``. Suspending or stopping a running VM won't copy the disk file to the datastore either.
-
-Host Configuration
-------------------
-
-Each host has to mount the datastore under ``$DATASTORE_LOCATION/<datastore_id>``. You also have to mount the datastore in the front-end in ``/var/lib/one/datastores/<datastore_id>``.
-
-If you are using NFS to share the filesystem between nodes some sensible mount options are ``soft,intr,rsize=32768,wsize=32768``. For example:
-
-.. code::
-
-    server:/storage/datastore0 /var/lib/one/datastores/0 nfs soft,intr,rsize=32768,wsize=32768,rw 0 0
-
-With the documented configuration of libvirt/kvm the image files are accessed as ``oneadmin`` user. In case the files must be read by ``root`` the option ``no_root_squash`` must be added.
-
-Using the SSH Transfer Driver
-=============================
-
-In this case the datastore is only directly accessed by the front-end. VM images are copied from/to the datastore using the SSH protocol. This may impose high VM deployment times depending on your infrastructure network connectivity.
+SSH Transfer Mode
+--------------------------------------------------------------------------------
+In this case the System Datastore is distributed among the hosts. The ssh transfer driver uses the hosts' local storage to place the images of running Virtual Machines. All the operations are then performed locally but images have to be copied always to the hosts, which in turn can be a very resource demanding operation. Also this driver prevents the use of live-migrations between hosts.
 
 |image2|
 
-Persistent & Non Persistent Images
-----------------------------------
+Frontend Setup
+================================================================================
+The Frontend needs to prepare the storage area for:
 
-In either case (persistent and non-persistent) images are always copied from the datastore to the corresponding directory of the system datastore in the target host.
+* The Image Datastores, to store the images.
 
-If an image is persistent (or created with the ``onevm disk-saveas`` command), it is transferred back to the Datastore only after the VM is successfully shut down. This means that the VM has to be shut down using the ``onevm terminate`` command, and not ``onevm recover --delete``. Note that no modification to the image registered in the datastore occurs till that moment. Suspending or stopping a running VM won't copy/modify the disk file registered in the datastore either.
+* The System Datastores, will hold temporary disks and files for VMs ``stopped`` and ``undeployed``.
 
-Host Configuration
-------------------
+Shared & Qcow2 Transfer Modes
+--------------------------------------------------------------------------------
+Simply mount the **Image** Datastore directory in the front-end in ``/var/lib/one/datastores/<datastore_id>``. Note that if all the datastores are of the same type you can mount the whole ``/var/lib/one/datastores`` directory.
 
-There is no special configuration for the hosts in this case. Just make sure that there is enough space under ``$DATASTORE_LOCATION`` to hold the images of the VMs running in that host.
+.. warning:: The frontend only needs to mount the Image Datastores and **not** the System Datastores.
+
+.. note::  **NFS volumes mount tips**. The following options are recomended to mount a NFS shares:``soft, intr, rsize=32768, wsize=32768``. With the documented configuration of libvirt/kvm the image files are accessed as ``oneadmin`` user. In case the files must be read by ``root`` the option ``no_root_squash`` must be added.
+
+SSH Transfer Mode
+--------------------------------------------------------------------------------
+Simply make sure that there is enough space under ``/var/lib/one/datastores`` to store Images and the disks of the ``stopped`` and ``undeployed`` virtual machines. Note that ``/var/lib/one/datastores`` **can be mounted from any NAS/SAN server in your network**.
+
+Node Setup
+================================================================================
+
+Shared & Qcow2 Transfer Modes
+--------------------------------------------------------------------------------
+The configuration is the same as for the Frontend above, simply mount in each node the datastore directories in ``/var/lib/one/datastores/<datastore_id>``.
+
+SSH Transfer Mode
+--------------------------------------------------------------------------------
+Just make sure that there is enough space under ``/var/lib/one/datastores`` to store the disks of running VMs on that host.
+
+OpenNebula Configuration
+================================================================================
+Once the Filesystem storage is setup, the OpenNebula configuration comprises to steps:
+
+- Create a System Datastore
+- Create an Image Datastore
+
+Create a System Datastore
+--------------------------------------------------------------------------------
+To create a new System Datastore you need to specify its type as system datastore and transfer mode:
+
++---------------+-------------------------------------------------+
+|   Attribute   |                   Description                   |
++===============+=================================================+
+| ``NAME``      | The name of the datastore                       |
++---------------+-------------------------------------------------+
+| ``TYPE``      | ``SYSTEM_DS``                                   |
++---------------+-------------------------------------------------+
+| ``TM_MAD``    | ``shared`` for shared transfer mode             |
+|               |                                                 |
+|               | ``qcow2`` for qcow2 transfer mode               |
+|               |                                                 |
+|               | ``ssh`` for ssh transfer mode                   |
++---------------+-------------------------------------------------+
+
+This can be done either in Sunstone or through the CLI, for example to create a System Datastore using the shared mode simply:
+
+.. prompt:: text $ auto
+
+    $ cat systemds.txt
+    NAME    = nfs_system
+    TM_MAD  = shared
+    TYPE    = SYSTEM_DS
+
+    $ onedatastore create systemds.txt
+    ID: 101
+
+Create an Image Datastore
+--------------------------------------------------------------------------------
+In the same way, to create an Image Datastore you need to set:
+
++---------------+-------------------------------------------------------------+
+|   Attribute   |                   Description                               |
++===============+=============================================================+
+| ``NAME``      | The name of the datastore                                   |
++---------------+-------------------------------------------------------------+
+| ``DS_MAD``    | ``fs``                                                      |
++---------------+-------------------------------------------------------------+
+| ``TM_MAD``    | ``shared`` for shared transfer mode                         |
+|               |                                                             |
+|               | ``qcow2`` for qcow2 transfer mode                           |
+|               |                                                             |
+|               | ``ssh`` for ssh transfer mode                               |
++---------------+-------------------------------------------------------------+
+
+For example, the following illustrates the creation of a filesystem datastore using the shared transfer drivers.
+
+.. prompt:: text $ auto
+
+ $ cat ds.conf
+ NAME   = nfs_images
+ DS_MAD = fs
+ TM_MAD = shared
+
+ $ onedatastore create ds.conf
+ ID: 100
+
+Check the :ref:`Datastore Operation guide <ds_op>` to learn how to update and manage the life cycle of the datastores. Also note that there are additional attributes that can be set, check the :ref:`datastore template attributes <ds_op_definition>`.
 
 .. _qcow2_options:
 
-Using the qcow2 Transfer driver
-===============================
+Addtional Configuration for Qcow2 Transfer Mode
+--------------------------------------------------------------------------------
 
-The qcow2 drivers are a specialization of the shared drivers to work with the qcow2 format for disk images. The same features/restrictions and configuration applies so be sure to read the shared driver section.
-
-The following list details the differences:
-
-* Persistent images are created with the ``qemu-img`` command using the original image as backing file
-* When an image has to be copied back to the datastore the ``qemu-img convert`` command is used instead of a direct copy
-* Options can be sent to ``qemu-img`` clone action. To do this change the file ``/var/lib/one/remotes/tm/tmrc``. There is a variable called ``QCOW2_OPTIONS`` that can be used to set the parameters.
-
-Tuning and Extending
-====================
-
-Drivers can be easily customized please refer to the specific guide for each datastore driver or to the :ref:`Storage substystem developer's guide <sd>`.
-
-However you may find the files you need to modify here:
-
-* ``/var/lib/one/remotes/datastore/<DS_DRIVER>``
-* ``/var/lib/one/remotes/tm/<TM_DRIVER>``
+The qcow2 drivers are a specialization of the shared drivers to work with the qcow2 format for disk images. Images are created and through the ``qemu-img`` command using the original image as backing file. Custom options can be sent to ``qemu-img`` clone action through the variable ``QCOW2_OPTIONS`` in ``/var/lib/one/remotes/tm/tmrc``.
 
 .. |image1| image:: /images/fs_shared.png
 .. |image2| image:: /images/fs_ssh.png

@@ -6,7 +6,6 @@ Open Cloud Storage Setup
    :maxdepth: 2
 
    Overview <overview>
-   System Datastore <system_ds>
    Filesystem Datastore <fs_ds>
    LVM Datastore <lvm_drivers>
    Ceph Datastore <ceph_ds>
