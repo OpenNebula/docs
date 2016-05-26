@@ -35,7 +35,6 @@ Considerations & Limitations
 
 - **No Security Groups**: Firewall rules as defined in Security Groups cannot be enforced in vCenter VMs.
 - OpenNebula treats **snapshots** a tad different than VMware. OpenNebula assumes that they are independent, whereas VMware builds them incrementally. This means that OpenNebula will still present snapshots that are no longer valid if one of their parent snapshots are deleted, and thus revert operations applied upon them will fail.
-
 - **No files in context**: Passing entire files to VMs is not supported, but all the other CONTEXT sections will be honored
 - Cluster name cannot contain spaces
 - vCenter credential password cannot have more than 22 characters
@@ -106,6 +105,14 @@ The **onevcenter** tool can be used to import existing VM templates from the ESX
       VM_TEMPLATE="4216d5af-7c51-914c-33af-1747667c1019" ]
     SCHED_REQUIREMENTS="NAME=\"devel\""
     VCPU="1"
+
+After a vCenter VM Template is imported as a OpenNebula VM Template, it can be modified to change the capacity in terms of CPU and MEMORY, the name, permissions, etc. It can also be enriched to add:
+
+- :ref:`New disks <disk_hotplugging>`
+- :ref:`New network interfaces <vm_guide2_nic_hotplugging>` 
+- :ref:`Context information <vcenter_contextualization>`
+
+Before using your OpenNebula cloud you may want to read about the :ref:`vCenter specifics <vcenter_specifics>`.
 
 To import existing VMs, the 'onehost importvm" command can be used. VMs in running state can be imported, and also VMs defined in vCenter that are not in power.on state (this will import the VMs in OpenNebula as in the poweroff state).
 

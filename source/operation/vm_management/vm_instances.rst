@@ -277,6 +277,8 @@ Any VM disk can be exported to a new image (if the VM is in ``RUNNING``, ``POWER
 
   This action is not in sync with the hypervisor. If the VM is in ``RUNNING`` state make sure the disk is unmounted (preferred), synced or quiesced in some way or another before taking the snapshot.
 
+.. _disk_hotplugging:
+
 Disk Hot-plugging
 --------------------------------------------------------------------------------
 
