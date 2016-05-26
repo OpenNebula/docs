@@ -112,9 +112,37 @@ The name of the view will be the filename without the yaml extension.
 Admin View Customization
 --------------------------------------------------------------------------------
 
-.. todo:: list of dashboard widgets
-
 The contents of a view file specifies the enabled features, visible tabs, and enabled actions
+
+For the dashboard, the following widgets can be configured:
+
+.. code-block:: yaml
+
+    # The following widgets can be used inside any of the '_per_row' settings
+    # bellow. As the name suggest, the widgets will be scaled to fit one,
+    # two, or three per row. The footer uses the widgets at full size, i.e.
+    # one per row.
+    # 
+    # - storage
+    # - users
+    # - network
+    # - hosts
+    # - vms
+    # - groupquotas
+    # - quotas
+    panel_tabs:
+    actions:
+        Dashboard.refresh: false
+        Sunstone.toggle_top: false
+    widgets_one_per_row:
+        - vms
+        - hosts
+        - users
+    widgets_three_per_row:
+    widgets_two_per_row:
+        - storage
+        - network
+    widgets_one_footer:
 
 Inside ``features`` there are two settings:
 
