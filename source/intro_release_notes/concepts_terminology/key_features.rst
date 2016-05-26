@@ -8,9 +8,6 @@ OpenNebula Key Features
 OpenNebula offers a **simple but feature-rich and flexible solution** to build and manage data center virtualization and enterprise clouds. This guide summarizes its key features(\*). You can also refer to the :ref:`Platform Notes <uspng>` included in the documentation of each version to know about the infrastructure platforms and services supported by OpenNebula.
 
 
-[TODO: Specify those features that are only for KVM]
-
-
 **INTERFACES FOR CLOUD CONSUMERS**
 
 - :ref:`De-facto standard cloud APIs <introc>` with compatibility with cloud ecosystem tools
@@ -30,7 +27,7 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 -  :ref:`Programmable VM operations <vm_guide2_scheduling_actions>` allowing users to schedule actions
 
--  Volume hotplugging, :ref:`disk snapshot capabilities <vm_guide_2_disk_snapshots>` and :ref:`disk resizing <vm_guide2_resize_disk>`
+-  Volume hotplugging and :ref:`disk snapshot capabilities <vm_guide_2_disk_snapshots>` and :ref:`disk resizing <vm_guide2_resize_disk>` for KVM virtual machines
 
 
 **VIRTUAL NETWORK MANAGEMENT**
@@ -41,7 +38,7 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 - :ref:`Virtual routers <vrouter>`
 
-- :ref:`Security Groups <security_groups>` to define firewall rules and apply them to Virtual Machines
+- :ref:`Security Groups <security_groups>` to define firewall rules and apply them to KVM Virtual Machines
 
 
 **APPLICATION CONFIGURATION AND INSIGHT**
@@ -50,7 +47,7 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 - VM attributes can be provided by the user when the template is instantiated
 
--  Wide range of guest operating system including Microsoft Windows and Linux
+- Wide range of guest operating system including Microsoft Windows and Linux
 
 - :ref:`Gain insight cloud applications <onegate_overview>` so their status and metrics can be easily queried through OpenNebula interfaces and used in auto-scaling rules
 
@@ -129,9 +126,9 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 - :ref:`Resource quota management <quota_auth>` to track and limit computing, storage and networking resource utilization
 
-- Support for multiple data stores to balance I/O operations between storage servers, or to define different SLA policies (e.g. backup) and performance features for different VM types or users
+- Support for multiple data stores to balance I/O operations between storage servers, or to define different SLA policies (e.g. backup) and performance features for different KVM VM types or users
 
-- :ref:`PCI passthrough <kvm_pci_passthrough>` available for VMs that need consumption of raw GPU devices
+- :ref:`PCI passthrough <kvm_pci_passthrough>` available for KVM VMs that need consumption of raw GPU devices
 
 
 
@@ -148,7 +145,7 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 - Persistent database backend with support for high availability configurations
 
-- :ref:`Configurable behavior in the event of host or VM failure <ftguide>` to provide easy to use and cost-effective failover solutions
+- :ref:`Configurable behavior in the event of host or KVM VM failure <ftguide>` to provide easy to use and cost-effective failover solutions
 
 
 **CLOUD BURSTING**
