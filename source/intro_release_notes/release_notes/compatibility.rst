@@ -17,6 +17,7 @@ The **VMware** hypervisor is no longer included in the main distribution. Users 
 
 The **SoftLayer** Hybrid driver is no longer included in the main distribution. It can be however manually installed through the `SoftLayer Add-on <https://github.com/OpenNebula/addon-softlayer>`__.
 
+The **Block LVM** Storage driver is no longer included in the main distribution. It can be however manually installed through the `LVM Add-on <https://github.com/OpenNebula/addon-lvm>`__.
 
 OpenNebula Administrators and Users
 ================================================================================
@@ -151,9 +152,9 @@ The old ``fw`` driver has been removed from OpenNebula (it was deprecated in Ope
 
 The Security Group update action now automatically triggers the :ref:`update of the rules for all the VMs in the security group <security_groups_update>`. This operation can be also manually triggered at any time with the ``onesecgroup commit`` command.
 
-Virtual Network drivers are now defined per vnet. This allow to implement multiple vnet types from the same host. The migration process should take care of this automatically, although it may request manual input on some corner cases. Any third-party tool that creates hosts or virtual networks must be updated accordingly. 
+Virtual Network drivers are now defined per vnet. This allow to implement multiple vnet types from the same host. The migration process should take care of this automatically, although it may request manual input on some corner cases. Any third-party tool that creates hosts or virtual networks must be updated accordingly.
 
-The previous change makes the ``VLAN`` attribute useless and it will be removed from any virtual network. Third-party network drivers using this attribute should be updated. 
+The previous change makes the ``VLAN`` attribute useless and it will be removed from any virtual network. Third-party network drivers using this attribute should be updated.
 
 Sunstone
 --------------------------------------------------------------------------------
