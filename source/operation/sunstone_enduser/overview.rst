@@ -12,7 +12,7 @@ This chapter contains reference guides for Sunstone end-users.
 How Should I Read This Chapter
 ================================================================================
 
-The following sections are intended for the cloud consumers. Since the cloud administrator is the one that provides templates for the end-users, they can skip most of the OpenNebula documentation and read these two guides only.
+The following sections are intended for the cloud consumers. They can skip most of the OpenNebula documentation and read these two guides only.
 
 Procceed to the corresponding guide following these links:
 
