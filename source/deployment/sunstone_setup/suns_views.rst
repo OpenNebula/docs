@@ -112,7 +112,26 @@ The name of the view will be the filename without the yaml extension.
 Admin View Customization
 --------------------------------------------------------------------------------
 
-The content of a view file specifies the tabs available in the view (note: tab is one of the main sections of the UI, those in the left-side menu). Each tab can be enabled or disabled by updating the ``enabled_tabs:`` attribute. For example to disable the Clusters tab, comment the ``clusters-tab`` entry:
+.. todo:: list of dashboard widgets
+
+The contents of a view file specifies the enabled features, visible tabs, and enabled actions
+
+Inside ``features`` there are two settings:
+
+* ``showback``: When this is false, all :ref:`Showback <showback>` features are hidden. The monthly report tables, and the cost for new VMs in the create VM wizard.
+* ``secgroups``: If true, the create VM wizard will allow to add security groups to each network interface.
+
+.. code-block:: yaml
+
+    features:
+        # True to show showback monthly reports, and VM cost
+        showback: true
+
+        # Allows to change the security groups for each network interface
+        # on the VM creation dialog
+        secgroups: true
+
+This file also defines the tabs available in the view (note: tab is one of the main sections of the UI, those in the left-side menu). Each tab can be enabled or disabled by updating the ``enabled_tabs:`` attribute. For example to disable the Clusters tab, comment the ``clusters-tab`` entry:
 
 .. code-block:: yaml
 
@@ -194,27 +213,75 @@ The attributes in each of the above sections should be self-explanatory. As an e
 Cloud View Customization
 --------------------------------------------------------------------------------
 
-.. todo:: Document features, dashboard, create_vm
+The cloud layout can also be customized by changing the corresponding ``/etc/one/sunstone-views/`` yaml files. In this file you can customize the options available when instantiating a new template, the dashboard setup or the resources available for cloud users.
 
-The cloud layout can also be customized by changing the corresponding yaml files.
+Features
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In this section you can customize the options available when instantiating a new template, the dashboard setup or the resources available for cloud users.
+* ``showback``: When this is false, all :ref:`Showback <showback>` features are hidden. The monthly report tables, and the cost for new VMs in the create VM wizard.
+* ``secgroups``: If true, the create VM wizard will allow to add security groups to each network interface.
 
 .. code-block:: yaml
 
-    provision_logo: images/one_small_logo.png
-    enabled_tabs:
-        - provision-tab
-        - users-tab
-        - settings-tab
     features:
+        # True to show showback monthly reports, and VM cost
         showback: true
 
         # Allows to change the security groups for each network interface
         # on the VM creation dialog
         secgroups: true
 
-The actions available for a given VM can be customized and extended by modifying the ``cloud.yaml`` file. You can even insert VM panels from the admin view into this view, for example to use the disk snapshots or scheduled actions.
+Resources
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The list of VMs is always visible. The list of :ref:`VM Templates <vm_templates>` and :ref:`OneFlow Services <oneflow_overview>` can be hidden with the ``provision_tabs`` setting.
+
+.. code-block:: yaml
+
+    tabs:
+        provision-tab:
+            provision_tabs:
+                flows: true
+                templates: true
+
+Dashboard
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The dashboard can be configured to show user's quotas, group quotas, overview of user VMs, overview of group VMs
+
+.. code-block:: yaml
+
+    tabs:
+        dashboard:
+            # Connected user's quotas
+            quotas: true
+            # Overview of connected user's VMs
+            vms: true
+            # Group's quotas
+            vdcquotas: false
+            # Overview of group's VMs
+            vdcvms: false
+
+Create VM Wizard
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The create VM wizard can be configured with the following options:
+
+.. code-block:: yaml
+
+    tabs:
+        create_vm:
+            # True to allow capacity (CPU, MEMORY, VCPU) customization
+            capacity_select: true
+            # True to allow NIC customization
+            network_select: true
+            # True to allow DISK size customization
+            disk_resize: true
+
+Actions
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The actions available for a given VM can be customized and extended by modifying the yaml file. You can even insert VM panels from the admin view into this view, for example to use the disk snapshots or scheduled actions.
 
 * Hiding the delete button
 
