@@ -75,11 +75,11 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 - Access to the public `OpenNebula Systems Marketplace <http://marketplace.opennebula.systems>`__ with a catalog of :ref:`OpenNebula-ready <context_overview>` cloud images
 
-- Create your private centralized catalog (external satastore) of cloud applications (images and templates)  [TODO: Add link]
+- Create your private centralized catalog (external satastore) of cloud applications (images and templates) 
 
-- Move VM images and templates across different types of datastores within the same OpenNebula instance  [TODO: Add link]
+- Move VM images and templates across different types of datastores within the same OpenNebula instance  
 
-- Share VM images in Federation environments across several OpenNebula instances  [TODO: Add link]
+- Share VM images in Federation environments across several OpenNebula instances
 
 
 **ACCOUNTING AND SHOWBACK**
@@ -99,9 +99,9 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 - Administrators can :ref:`groups users <manage_users_groups>` into organizations that can represent different projects, division...
 
-- Integration with :ref:`external identity management services <auth_overview>`
+- Integration with :ref:`external identity management services <external_auth>`
 
-- Special authentication mechanisms for :ref:`SunStone (OpenNebula GUI) <sunstone>` and the :ref:`Cloud Services (EC2) <cloud_auth>`
+- Special authentication mechanisms for :ref:`SunStone (OpenNebula GUI) <suns_auth>` and the :ref:`Cloud Services (EC2) <cloud_auth>`
 
 - :ref:`Login token <manage_users_managing_users>` functionality to password based logins
 
@@ -114,7 +114,7 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 - A :ref:`VDC (Virtual Data Center) <manage_vdcs>` is a fully-isolated virtual infrastructure environment where a Group of users, optionally under the control of the group admin, can create and manage compute and storage capacity
 
-- There is a pre-configured :ref:`Sunstone view for group admins<suns_views_group_admin>` 
+- There is a pre-configured :ref:`Sunstone view for group admins<vdc_admin_view>` 
 
 
 **CAPACITY AND PERFORMANCE MANAGEMENT**
@@ -129,7 +129,7 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 - :ref:`Resource quota management <quota_auth>` to track and limit computing, storage and networking resource utilization
 
-- Support for multiple data stores to balance I/O operations between storage servers, or to define different SLA policies (e.g. backup) and performance features for different VM types or users [TODO: Add Link]
+- Support for multiple data stores to balance I/O operations between storage servers, or to define different SLA policies (e.g. backup) and performance features for different VM types or users
 
 - :ref:`PCI passthrough <kvm_pci_passthrough>` available for VMs that need consumption of raw GPU devices
 
@@ -148,7 +148,7 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 - Persistent database backend with support for high availability configurations
 
-- ref:`Configurable behavior in the event of host or VM failure <ftguide>` to provide easy to use and cost-effective failover solutions
+- :ref:`Configurable behavior in the event of host or VM failure <ftguide>` to provide easy to use and cost-effective failover solutions
 
 
 **CLOUD BURSTING**
@@ -162,22 +162,22 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 - Hypervisor agnostic with broad hypervisor support (:ref:`KVM <kvmg>` and :ref:`VMware vCenter <vcenterg>`) and centralized management of environments with multiple hypervisors
 
-- Broad support for commodity and enterprise-grade hypervisor, monitoring, storage, networking and user management services [TODO: Link to Platform Notes]
+- :ref:`Broad support for commodity and enterprise-grade hypervisor, monitoring, storage, networking and user management services <uspng>`
 
-- Packages for major Linux distributions [TODO: Link]
+- `Packages for major Linux distributions <http://opennebula.org/software/>`__ 
 
 
 **CUSTOMIZATION AND INTEGRATION**
 
-- Modular and extensible architecture to fit into any existing datacenter
+- :ref:`Modular and extensible architecture <intro_integration>` to fit into any existing datacenter
 
-- Customizable drivers for the main subsystems to easily leverage existing IT infrastructure and system management products: :ref:`Virtualization <devel-vmm>`, :ref:`Storage <sd>`, :ref:`Monitoring <devel-im>`, :ref:`Network <devel-nm>`, :ref:`Auth <auth_overview>` and :ref:`Hybrid Cloud <devel-vmm>` [TODO: Check and Complete]
+- Customizable drivers for the main subsystems to easily leverage existing IT infrastructure and system management products: :ref:`storage <sd>`, :ref:`monitoring <devel-im>`, :ref:`networking <devel-nm>`, :ref:`authentication <devel-auth>`, :ref:`virtualziation <devel-vmm>`, :ref:`cloud bursting <devel_cloudbursting>` and :ref:`market <devel-market>`
 
 - :ref:`API for integration with higher level tools <introapis>` such as billing, self-service portals…
 
-- Hook manager to :ref:`trigger administration scripts upon VM state change <hooks>`.
+- Hook manager to :ref:`trigger administration scripts upon VM state change <hooks>`
 
-- Sunstone custom routes and tabs to extend the :ref:`sunstone server <sunstone_dev>`.
+- Sunstone custom routes and tabs to extend the :ref:`sunstone server <sunstone_dev>`
 
 - OneFlow API to create, control and monitor :ref:`multi-tier applications or services composed of interconnected Virtual Machines <appflow_api>`.
 
@@ -188,39 +188,38 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 **LICENSING**
 
-- Fully open-source software released under Apache license [TODO: Link to GitHub]
+- `Fully open-source software <https://github.com/OpenNebula/one>`__  released under Apache license
 
 
 **INSTALLATION AND UPGRADE PROCESS**
 
 -  :ref:`Configurable to deploy public, private and hybrid clouds <intro>`
 
-- All key functionalities for enterprise cloud computing, storage and networking in a single install [TODO: Link to Front-end Installaton Guide]
+- All key functionalities for enterprise cloud computing, storage and networking in a :ref:`single install <frontend_installation>`
 
-- Long term stability and performance through a single integrated patching and upgrade process  [TODO: Link to Upgrade in RN]
+- Long term stability and performance through a :ref:`single integrated patching and upgrade process <upgrade>`
 
 - :ref:`Automatic import of existing VMs <import_wild_vms>` running in local hypervisors and public clouds for hybrid cloud computing
 
 - :ref:`Optional building from source code <compile>`
 
-- :ref:`System features a small footprint <plan>`, less than 10Mb
-
+- System features a small footprint, less than 10Mb
 
 
 **QUALITY ASSURANCE**
 
-- Internal quality assurance process for functionality, scalability, performance, robustness and stability  [TODO: Link to web site page]
+- `Internal quality assurance process for functionality, scalability, performance, robustness and stability <http://opennebula.org/software/testing/>`__ 
 
-- Technology matured through an active and engaged large community [TODO: Link to community page]
+- `Technology matured through an active and engaged large community <http://opennebula.org/community/>`__ 
 
 - Scalability, reliability and performance tested on many massive scalable production deployments consisting of hundreds of thousands of cores and VMs
 
 
 **PRODUCT SUPPORT**
 
-- Best-effort community support [TODO: Link to forum]
+- `Best-effort community support <http://forum.opennebula.org>`__ 
 
-- SLA-based commercial support directly from the developers  [TODO: Link to OpenNebula.pro]
+- `SLA-based commercial support directly from the developers <http://openneula.pro>`__
 
 - :ref:`Integrated tab in Sunstone <commercial_support_sunstone>` to access OpenNebula Systems professional support
 
