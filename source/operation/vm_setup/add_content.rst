@@ -14,16 +14,16 @@ When you have basic virtual server definitions the users of your cloud can use t
 
 There are three basic methods to bootstrap the contents of your cloud, namely:
 
-- **External Images**. If you already have disk images in any supported format (raw, qcow2, vmdk...) you can just add them to a datastore. Alternatively you can use any virtualization tool (e.g. virt-manager) to install an image and then add it to a OpenNebula datastore.
-- **Install within OpenNebula**. You can also use OpenNebula to prepare the images for your cloud. The process will be as follows:
+* **External Images**. If you already have disk images in any supported format (raw, qcow2, vmdk...) you can just add them to a datastore. Alternatively you can use any virtualization tool (e.g. virt-manager) to install an image and then add it to a OpenNebula datastore.
+* **Install within OpenNebula**. You can also use OpenNebula to prepare the images for your cloud. The process will be as follows:
 
-  - Add the installation medium to a OpenNebula datastore. Usually it will be a OS installation CD-ROM/DVD.
-  - Create a DATABLOCK image of the desired capacity to install the OS. Once created change its type to OS and make it persistent.
-  - Create a new template using the previous two images. Make sure to set the OS/BOOT parameter to cdrom and enable the VNC console.
-  - Instantiate the template and install the OS and any additional software. You can find specific instructions to install contextualization packages in the other two sections of this guide.
-  - Once you are done, shutdown the VM
+  * Add the installation medium to a OpenNebula datastore. Usually it will be a OS installation CD-ROM/DVD.
+  * Create a DATABLOCK image of the desired capacity to install the OS. Once created change its type to OS and make it persistent.
+  * Create a new template using the previous two images. Make sure to set the OS/BOOT parameter to cdrom and enable the VNC console.
+  * Instantiate the template and install the OS and any additional software. You can find specific instructions to install contextualization packages in the other two sections of this guide.
+  * Once you are done, shutdown the VM
 
--  **Use the OpenNebula Marketplace**. Go to the marketplace tab in Sunstone, and simply pick a disk image with the OS and Hypervisor of your choice.
+* **Use the OpenNebula Marketplace**. Go to the marketplace tab in Sunstone, and simply pick a disk image with the OS and Hypervisor of your choice.
 
 Once the images are ready, just create VM templates with the relevant configuration attributes, including default capacity, networking or any other preset needed by your infrastructure.
 
@@ -35,7 +35,7 @@ Adding External Images
 
 You can use as basis for your images the ones provided by the distributions. These images are usually prepared to be used with other clouds and won't behave correctly or will not have all the features provided by OpenNebula. You can do a customization of these images before importing them.
 
-To do this modification we are going to use the software `libguestfs <http://libguestfs.org/>`__ in a Linux machine with kvm support. You should use a modern distribution to have a recent version of libguestfs (>= 1.26). To have the latest version you can use Arch Linux but a CentOS 7 is ok.
+To do this modification we are going to use the software `libguestfs <http://libguestfs.org/>`__ in a Linux machine with kvm support. You should use a modern distribution to have a recent version of libguestfs (>= 1.26). To have the latest version you can use Arch Linux but a CentOS 7 is OK.
 
 Step 1. Install Libguestfs
 --------------------------
@@ -59,7 +59,7 @@ Debian/Ubuntu
 Arch Linux
 ~~~~~~~~~~
 
-This package is available in `aur repository <https://aur.archlinux.org/packages/libguestfs/>`__. You can either download the ``PKGUILD`` and compile it manually or use a pacman helper like `yaourt <https://archlinux.fr/yaourt-en>`__:
+This package is available in `aur repository <https://aur.archlinux.org/packages/libguestfs/>`__. You can either download the ``PKGBUILD`` and compile it manually or use a pacman helper like `yaourt <https://archlinux.fr/yaourt-en>`__:
 
 .. prompt:: bash # auto
 
@@ -279,7 +279,7 @@ Now we are going to execute ``virt-customize`` (a tool of libguestfs) to modify 
 Step 8. Convert the Image to the Desired Format
 -----------------------------------------------
 
-After we are happy with the result we can convert the image to the preferred format to import to OpenNebula. Even if we want a ``qcow2`` image we hace to convert it to consolidate all the layers in one file. For example, to create a ``qcow2`` image that can be imported to fs (ssh, shared and qcow2), ceph and fs_lvm datastores we can execute this command:
+After we are happy with the result we can convert the image to the preferred format to import to OpenNebula. Even if we want a ``qcow2`` image we have to convert it to consolidate all the layers in one file. For example, to create a ``qcow2`` image that can be imported to fs (ssh, shared and qcow2), ceph and fs_lvm datastores we can execute this command:
 
 .. prompt:: bash $ auto
 
@@ -298,7 +298,7 @@ You can now use Sunstone to upload the final version of the image or copy it to 
 
 .. prompt:: bash $ auto
 
-    $ oneimage crate --name centos7 --path /var/tmp/final.qcow2 --driver qcow2 --prefix vd --datastore default
+    $ oneimage create --name centos7 --path /var/tmp/final.qcow2 --driver qcow2 --prefix vd --datastore default
 
 .. _cloud_view_services:
 
