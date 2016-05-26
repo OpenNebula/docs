@@ -15,7 +15,9 @@ How Should I Read This Chapter
 
 This is the first Chapter to read, as it introduces the needed concepts to correctly define a cloud architecture.
 
-Within this Chapter, the first step would be to read the :ref:`OpenNebula Provisioning Model <understand>` to identify the wanted model to provision resources to end users. Afterwards a design of the cloud and its dimension should be drafted. For KVM clouds proceed to :ref:`Open Cloud Architecture <open_cloud_architecture>` and for vCenter clouds read :ref:`VMware Cloud Architecture <vmware_cloud_architecture>`.
+Within this Chapter, as first step a design of the cloud and its dimension should be drafted. For KVM clouds proceed to :ref:`Open Cloud Architecture <open_cloud_architecture>` and for vCenter clouds read :ref:`VMware Cloud Architecture <vmware_cloud_architecture>`.
+
+Then you could read the :ref:`OpenNebula Provisioning Model <understand>` to identify the wanted model to provision resources to end users. In a small installation with a few hosts, you can skip this provisioning model guide and use OpenNebula without giving much thought to infrastructure partitioning and provisioning. But for medium and large deployments you will probably want to provide some level of isolation and structure.
 
 Once the cloud architecture has been designed the next step would be to learn how to install the :ref:`OpenNebula front-end <opennebula_installation>`.
 
