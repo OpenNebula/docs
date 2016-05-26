@@ -15,14 +15,7 @@ When you have basic virtual server definitions the users of your cloud can use t
 There are three basic methods to bootstrap the contents of your cloud, namely:
 
 * **External Images**. If you already have disk images in any supported format (raw, qcow2, vmdk...) you can just add them to a datastore. Alternatively you can use any virtualization tool (e.g. virt-manager) to install an image and then add it to a OpenNebula datastore.
-* **Install within OpenNebula**. You can also use OpenNebula to prepare the images for your cloud. The process will be as follows:
-
-  * Add the installation medium to a OpenNebula datastore. Usually it will be a OS installation CD-ROM/DVD.
-  * Create a DATABLOCK image of the desired capacity to install the OS. Once created change its type to OS and make it persistent.
-  * Create a new template using the previous two images. Make sure to set the OS/BOOT parameter to cdrom and enable the VNC console.
-  * Instantiate the template and install the OS and any additional software. You can find specific instructions to install contextualization packages in the other two sections of this guide.
-  * Once you are done, shutdown the VM
-
+* **Install within OpenNebula**. You can also use OpenNebula to prepare the images for your cloud.
 * **Use the OpenNebula Marketplace**. Go to the marketplace tab in Sunstone, and simply pick a disk image with the OS and Hypervisor of your choice.
 
 Once the images are ready, just create VM templates with the relevant configuration attributes, including default capacity, networking or any other preset needed by your infrastructure.
@@ -300,6 +293,73 @@ You can now use Sunstone to upload the final version of the image or copy it to 
 
     $ oneimage create --name centos7 --path /var/tmp/final.qcow2 --driver qcow2 --prefix vd --datastore default
 
+Install within OpenNebula
+=========================
+
+If you are using KVM hypervisor you can do the installations using OpenNebula. Here are the steps to do it:
+
+Step 1. Add the Installtion Medium
+----------------------------------
+
+You can add the installation CD to OpenNebula uploading the image using Sunstone and setting its type to CDROM or using the command line. For example, to add the CentOS ISO file you can use this command:
+
+.. prompt:: bash $ auto
+
+    $ oneimage create --name centos7-install --path http://buildlogs.centos.org/rolling/7/isos/x86_64/CentOS-7-x86_64-DVD.iso --type CDROM --datastore default
+
+Step 2. Create Installation Disk
+--------------------------------
+
+The disk where the OS will be installed needs to be created as a DATABLOCK. Don't make the image too big as it can be resized afterwards on VM instantiation. Also make sure to make it persistent so we don't lose the installation when the Virtual Machine terminates.
+
+|sunstone_datablock_create|
+
+If you are using the CLI you can do the same with this command:
+
+.. prompt:: bash $ auto
+
+    $ oneimage create --name centos7 --description "Base CentOS 7 Installation" --type DATABLOCK --persistent --prefix vd --driver qcow2 --size 10240 --datastore default
+
+Step 3. Create a Template to do the Installation
+------------------------------------------------
+
+In this step you have to take the following into account:
+
+* Add first the persistent datablock and second the installation media in the storage tab
+* Add a network as it will be needed to download context packages
+* On OS Booting tab enable both disks for booting. The first time it will use the CD and after installing the OS the DATABLOCK will be used
+* In Input/Output tab enable VNC and add as input an USB Tablet. This will be useful in case the OS has a graphical installation
+
+This can be done with the CLI using this command:
+
+.. prompt:: bash $ auto
+
+    $ onetemplate create --name centos7-cli --cpu 1 --memory 1G --disk centos7,centos7-install --nic network --boot disk0,disk1 --vnc --raw "INPUT=[TYPE=tablet,BUS=usb]"
+
+Now instantiate the template and do the installation using the VNC viewer. Make sure that you configure the network manually as there are no context packages in the installation media. Upon completion tell the installator to reboot the machine, log into the new OS and follow the instructions from the accompaining sections to install the contextualization.
+
+As a tip, one of the latest things you should do when using this method is disabling ``root`` password and deleting any extra users that the install tool has created.
+
+Step 4. Shutdown the Machine and Configure the Image
+----------------------------------------------------
+
+You can now shutdown the Virtual Machine from inside, that is, use the OS to shutdown itself. When the machine appears as poweroff in OpenNebula terminate it.
+
+Make sure that you change the image to non persistant and you give access to other people.
+
+Using the CLI you can do:
+
+.. prompt:: bash $ auto
+
+    $ oneimage nonpersistent centos7
+    $ oneimage chmod centos7 744
+
+Use the OpenNebula Marketplace
+==============================
+
+If your frontend is connected to the internet it should have access to the public OpenNebula Marketplate. In it there are several images prepared to run in an OpenNebula Cloud. To get images from it you can go to the Storage/Apps tab in Sunstone web interface
+
+
 .. _cloud_view_services:
 
 How to Prepare the Service Templates
@@ -322,5 +382,6 @@ To make a Service Template available to other users, you have two options:
 
 Please note that you will need to do the same for any VM Template used by the Roles, and any Image and Virtual Network referenced by those VM Templates, otherwise the Service deployment will fail.
 
+.. |sunstone_datablock_create| image:: /images/sunstone_datablock_create.png
 .. |prepare-tmpl-flow-1| image:: /images/prepare-tmpl-flow-1.png
 .. |prepare-tmpl-flow-2| image:: /images/prepare-tmpl-flow-2.png
