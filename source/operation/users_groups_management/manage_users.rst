@@ -88,7 +88,7 @@ An alternative method to specify credentials and OpenNebula endpoint is using co
 +-------------------------+------------------------------------------+
 | ``--password password`` | Password to authenticate with OpenNebula |
 +-------------------------+------------------------------------------+
-| ``--endpoint endpoint`` | URL of OpenNebula XML-RPC frontend        |
+| ``--endpoint endpoint`` | URL of OpenNebula XML-RPC Front-end      |
 +-------------------------+------------------------------------------+
 
 If ``user`` is specified but not ``password`` the user will be prompted for the password. ``endpoint`` has the same meaning and get the same value as ``ONE_XMLRPC``. For example:
