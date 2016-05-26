@@ -31,8 +31,8 @@ This chapter should be read after the infrastructure is properly setup, and cont
 Proceed to each section following these links:
 
 * :ref:`OneFlow Server Configuration <appflow_configure>`
-* :ref:`Multi-tier Applications <appflow_use_cli>`
-* :ref:`Application Auto-scaling <appflow_elasticity>`
+* :ref:`OneFlow Services Management <appflow_use_cli>`
+* :ref:`OneFlow Services Auto-scaling <appflow_elasticity>`
 
 Hypervisor Compatibility
 ================================================================================

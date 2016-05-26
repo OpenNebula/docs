@@ -1,8 +1,8 @@
 .. _appflow_elasticity:
 
-=========================
-Application Auto-scaling
-=========================
+================================================================================
+OneFlow Services Auto-scaling
+================================================================================
 
 A Service Role's cardinality can be adjusted manually, based on metrics, or based on a schedule.
 

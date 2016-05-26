@@ -7,5 +7,5 @@ Multi-VM Applications and Auto-scaling
 
    Overview <overview>
    OneFlow Server Configuration <appflow_configure>
-   Multi-tier Applications Management <appflow_use_cli>
-   Application Auto-scaling <appflow_elasticity>
+   OneFlow Services Management <appflow_use_cli>
+   OneFlow Services Auto-scaling <appflow_elasticity>

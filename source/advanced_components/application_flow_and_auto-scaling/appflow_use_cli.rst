@@ -1,10 +1,10 @@
 .. _appflow_use_cli:
 
-==================================
-Multi-tier Applications Management
-==================================
+================================================================================
+OneFlow Services Management
+================================================================================
 
-OneFlow allows users and administrators to define, execute and manage multi-tiered applications, or Services composed of interconnected Virtual Machines with deployment dependencies between them. Each group of Virtual Machines is deployed and managed as a single entity, and is completely integrated with the advanced :ref:`OpenNebula user and group management <auth_overview>`.
+OneFlow allows users and administrators to define, execute and manage multi-tiered applications, which we call Services, composed of interconnected Virtual Machines with deployment dependencies between them. Each group of Virtual Machines is deployed and managed as a single entity, and is completely integrated with the advanced :ref:`OpenNebula user and group management <auth_overview>`.
 
 What Is a Service
 =================
