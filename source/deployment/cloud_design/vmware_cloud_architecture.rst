@@ -4,10 +4,7 @@
 VMware Cloud Architecture
 ================================================================================
 
-In order to get the most out of a OpenNebula Cloud, we recommend that you create a plan with the features, performance, scalability, and high availability characteristics you want in your deployment. This Section provides information to plan an OpenNebula cloud based on KVM, an open source hypervisor. With this information, you will be able to easily architect and dimension your deployment, as well as understand the technologies involved in the management of virtualized resources and their relationship.
-
 OpenNebula is intended for companies willing to create a self-service cloud environment on top of their VMware infrastructure without having to abandon their investment in VMware and retool the entire stack. In these environments, OpenNebula seamlessly integrates with existing vCenter infrastructures to leverage advanced features -such as vMotion, HA or DRS scheduling- provided by the VMware vSphere product family. OpenNebula exposes a multi-tenant, cloud-like provisioning layer on top of vCenter, including features like virtual data centers, data center federation or hybrid cloud computing to connect in-house vCenter infrastructures with public clouds.
-
 
 OpenNebula over vCenter is intended for companies that want to keep VMware management tools, procedures and workflows. For these companies, throwing away VMware and retooling the entire stack is not the answer. However, as they consider moving beyond virtualization toward a private cloud, they can choose to either invest more in VMware, or proceed on a tactically challenging but strategically rewarding path of open.
 
@@ -18,7 +15,9 @@ OpenNebula assumes that your physical infrastructure adopts a classical cluster-
 
 The VMware vCenter drivers enable OpenNebula to access one or more vCenter servers that manages one or more ESX Clusters. Each ESX Cluster is presented in OpenNebula as an aggregated hypervisor. Note that OpenNebula scheduling decisions are therefore made at ESX Cluster level, vCenter then uses the DRS component to select the actual ESX host and Datastore to deploy the Virtual Machine.
 
-|high level architecture of cluster, its components and relationship|
+.. image:: /images/one_vcenter_high.png
+    :width: 90%
+    :align: center
 
 A cloud architecture is defined by three components: storage, networking and virtualization. Therefore, the basic components of an OpenNebula cloud are:
 
@@ -34,10 +33,12 @@ Dimensioning the Cloud
 
 The dimension of a cloud infrastructure can be directly inferred from the expected workload in terms of VMs that the cloud infrastructure must sustain. This workload is also tricky to estimate, but this is a crucial exercise to build an efficient cloud.
 
-Regarding the OpenNebula front-end, the minimum recommended specs are:
+**OpenNebula front-end**
+
+The minimum recommended specs are for the OpenNebula front-end are:
 
 +-----------+-----------------------------------+
-|           | Minimum Recommended configuration |
+|  Resource | Minimum Recommended configuration |
 +===========+===================================+
 | Memory    | 2 GB                              |
 +-----------+-----------------------------------+
@@ -54,26 +55,21 @@ When running on a front-end with the minimums described in the above table, Open
 - Up to 40 ESXs managed by each vCenter
 - Up to 1.000 VMs in total, each vCenter managing up to 250 VMs
 
-The main aspects to take into account at the time of dimensioning the OpenNebula cloud for a given workload are:
+**ESX nodes**
 
-- **CPU**:
+Regarding the dimensions of the ESX virtualization nodes:
 
-  - *without* overcommitment, each CPU core assigned to a VM must exists as a physical CPU core. By example, for a workload of 40 VMs with 2 CPUs, the cloud will need 80 physical CPUs. These 80 physical CPUs can be spread among different hosts: 10 servers with 8 cores each, or 5 server of 16 cores each;
-
-  - *with* overcommitment, however, CPU dimension can be planned ahead, using the ``CPU`` and ``VCPU`` attributes: ``CPU`` states physical CPUs assigned to the VM, while ``VCPU`` states virtual CPUs to be presented to the guest OS.
+- **CPU**: without overcommitment, each CPU core assigned to a VM must exists as a physical CPU core. By example, for a workload of 40 VMs with 2 CPUs, the cloud will need 80 physical CPUs. These 80 physical CPUs can be spread among different hosts: 10 servers with 8 cores each, or 5 server of 16 cores each. With overcommitment, however, CPU dimension can be planned ahead, using the ``CPU`` and ``VCPU`` attributes: ``CPU`` states physical CPUs assigned to the VM, while ``VCPU`` states virtual CPUs to be presented to the guest OS.
 
 - **MEMORY**: Planning for memory is straightforward, as by default *there is no overcommitment of memory* in OpenNebula. It is always a good practice to count 10% of overhead by the hypervisor (this is not an absolute upper limit, it depends on the hypervisor). So, in order to sustain a VM workload of 45 VMs with 2GB of RAM each, 90GB of physical memory is needed. The number of hosts is important, as each one will incur a 10% overhead due to the hypervisors. For instance, 10 hypervisors with 10GB RAM each will contribute with 9GB each (10% of 10GB = 1GB), so they will be able to sustain the estimated workload. The rule of thumb is having at least 1GB per core, but this also depends on the expected workload.
 
-- **STORAGE**: Dimensioning storage is a critical aspect, as it is usually the cloud bottleneck. OpenNebula can manage any datastore that is mounted in the ESX and visible in vCenter. The datastore used by a VM can be fixed by the cloud admin or delegated to the cloud user. It is important to ensure that enough space is available for new VMs, otherwise its creation process will fail. One valid approach is to limit the storage available to users by defining quotas in the number of maximum VMs, and ensuring enough datastore space to comply with the limit set in the quotas. In any case, OpenNebula allows cloud administrators to add more datastores if needed.
+**Storage**
 
-- **NETWORK**: Networking needs to be carefully designed to ensure reliability in the cloud infrastructure. The recommendation is having 2 NICs in the front-end (service and public network) 4 NICs present in each ESX node: private, public, service and storage networks. Less NICs can be needed depending on the storage and networking configuration.
+Dimensioning storage is a critical aspect, as it is usually the cloud bottleneck. OpenNebula can manage any datastore that is mounted in the ESX and visible in vCenter. The datastore used by a VM can be fixed by the cloud admin or delegated to the cloud user. It is important to ensure that enough space is available for new VMs, otherwise its creation process will fail. One valid approach is to limit the storage available to users by defining quotas in the number of maximum VMs, and ensuring enough datastore space to comply with the limit set in the quotas. In any case, OpenNebula allows cloud administrators to add more datastores if needed.
 
-Importing Existing VMs
-================================================================================
+**Network**
 
-As soon as a new vCenter cluster or public cloud is added to OpenNebula, the monitoring subsystem will extract all the Virtual Machines running in that particular server or public cloud region and label them as *Wild VMs*. Wild VMs are therefore VMs running in a hypervisor controlled by OpenNebula that have not been launched through OpenNebula.
-
-OpenNebula allows to import these Wild VMs in order to control their life-cycle just like any other VM launched by OpenNebula. Proceed to this :ref:`host section <import_wild_vms>` for more details.
+Networking needs to be carefully designed to ensure reliability in the cloud infrastructure. The recommendation is having 2 NICs in the front-end (service and public network) 4 NICs present in each ESX node: private, public, service and storage networks. Less NICs can be needed depending on the storage and networking configuration.
 
 Front-End
 ================================================================================
@@ -84,17 +80,15 @@ OpenNebula services include:
 
 -  Management daemon (``oned``) and scheduler (``mm_sched``)
 -  Web interface server (``sunstone-server``)
--  Optional  services: OneFlow, OneGate, econe, ...
+-  Advanced components: OneFlow, OneGate, econe, ...
 
-.. warning:: Note that these components communicate through :ref:`XML-RPC <api>` and may be installed in different machines for security or performance reasons
+.. note:: Note that these components communicate through :ref:`XML-RPC <api>` and may be installed in different machines for security or performance reasons
 
 There are several certified platforms to act as front-end for each version of OpenNebula. Refer to the :ref:`platform notes <uspng>` and chose the one that better fits your needs.
 
 OpenNebula's default database uses **sqlite**. If you are planning a production or medium to large scale deployment, you should consider using :ref:`MySQL <mysql>`.
 
 If you are interested in setting up a high available cluster for OpenNebula, check the :ref:`High Availability OpenNebula Section <oneha>`.
-
-If you need to federate several datacenters, with a different OpenNebula instance managing the resources but needing a common authentication schema, check the :ref:`Federation Section <federation_section>`.
 
 Monitoring
 ================================================================================
@@ -140,14 +134,27 @@ The following authentication methods are supported to access OpenNebula:
 
 Please check the :ref:`Authentication Chapter <external_auth>` to find out more information about the authentication technologies supported by OpenNebula.
 
+Multi-Datacenter Deployments
+================================================================================
+
+OpenNebula interacts with the vCenter instances by interfacing with its SOAP API exclusively. This characteristic enables architectures where the OpenNebula instance and the vCenter environment are located in different datacenters. A single OpenNebula instances can orchestrate several vCenter instances remotely located in different data centers. Connectivity between data centers needs to have low latency in order to have a reliable management of vCenter from OpenNebula.
+
+.. image:: /images/vcenter_remote_dc.png
+    :width: 90%
+    :align: center
+
+When administration domains need to be isolated or the interconnection between datacenters does not allow a single controlling entity, OpenNebula can be configured in a federation. Each OpenNebula instance of the federation is called a Zone, one of them configured as master and the others as slaves. An OpenNebula federation is a tightly coupled integration, all the instances will share the same user accounts, groups, and permissions configuration. Federation allows end users to consume resources allocated by the federation administrators regardless of their geographic location. The integration is seamless, meaning that a user logged into the Sunstone web interface of a Zone will not have to log out and enter the address of another Zone. Sunstone allows to change the active Zone at any time, and it will automatically redirect the requests to the right OpenNebula at the target Zone. For more information, check the :ref:`Federation Section <federation_section>`.
+
+.. image:: /images/vcenter_multi_dc.png
+    :width: 90%
+    :align: center
+
 Advanced Components
 ================================================================================
 
 Once you have an OpenNebula cloud up and running, you can install the following advanced components:
 
--  :ref:`Multi-VM Applications and Auto-scaling <oneapps_overview>`: OneFlow allows users and administrators to define, execute and manage multi-tiered applications, or services composed of interconnected Virtual Machines with deployment dependencies between them. Each group of Virtual Machines is deployed and managed as a single entity, and is completely integrated with the advanced OpenNebula user and group management.
+-  :ref:`Multi-VM Applications and Auto-scaling <oneapps_overview>`: OneFlow allows users and administrators to define, execute and manage services composed of interconnected Virtual Machines with deployment dependencies between them. Each group of Virtual Machines is deployed and managed as a single entity, and is completely integrated with the advanced OpenNebula user and group management.
 -  :ref:`Cloud Bursting <introh>`: Cloud bursting is a model in which the local resources of a Private Cloud are combined with resources from remote Cloud providers. Such support for cloud bursting enables highly scalable hosting environments.
 -  :ref:`Public Cloud <introc>`: Cloud interfaces can be added to your Private Cloud if you want to provide partners or external users with access to your infrastructure, or to sell your overcapacity. The following interface provide a simple and remote management of cloud (virtual) resources at a high abstraction level: :ref:`Amazon EC2 and EBS APIs <ec2qcg>`.
 -  :ref:`Application Insight <onegate_overview>`: OneGate allows Virtual Machine guests to push monitoring information to OpenNebula. Users and administrators can use it to gather metrics, detect problems in their applications, and trigger OneFlow auto-scaling rules.
-
-.. |high level architecture of cluster, its components and relationship| image:: /images/one_vcenter_high.png

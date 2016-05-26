@@ -5,7 +5,7 @@
 Open Cloud Architecture
 ================================================================================
 
-In order to get the most out of a OpenNebula Cloud, we recommend that you create a plan with the features, performance, scalability, and high availability characteristics you want in your deployment. This Section provides information to plan an OpenNebula cloud based on KVM, an open source hypervisor. With this information, you will be able to easily architect and dimension your deployment, as well as understand the technologies involved in the management of virtualized resources and their relationship.
+Enterprise cloud computing is the next step in the evolution of data center (DC) virtualization. OpenNebula is a simple but feature-rich and flexible solution to build and manage enterprise clouds and virtualized DCs, that combines existing virtualization technologies with advanced features for multi-tenancy, automatic provision and elasticity. OpenNebula follows a bottom-up approach driven by sysadmins, devops and users real needs.
 
 Architectural Overview
 ================================================================================
@@ -28,34 +28,49 @@ Dimensioning the Cloud
 
 The dimension of a cloud infrastructure can be directly inferred from the expected workload in terms of VMs that the cloud infrastructure must sustain. This workload is also tricky to estimate, but this is a crucial exercise to build an efficient cloud.
 
-The main aspects to take into account at the time of dimensioning the OpenNebula cloud are:
+The main aspects to take into account at the time of dimensioning the OpenNebula cloud follows.
 
-- **CPU**:
+**OpenNebula front-end**
 
-  - *without* overcommitment, each CPU core assigned to a VM must exists as a physical CPU core. By example, for a workload of 40 VMs with 2 CPUs, the cloud will need 80 physical CPUs. These 80 physical CPUs can be spread among different hosts: 10 servers with 8 cores each, or 5 server of 16 cores each;
+The minimum recommended specs are for the OpenNebula front-end are:
 
-  - *with* overcommitment, however, CPU dimension can be planned ahead, using the ``CPU`` and ``VCPU`` attributes: ``CPU`` states physical CPUs assigned to the VM, while ``VCPU`` states virtual CPUs to be presented to the guest OS.
++-----------+-----------------------------------+
+| Resources | Minimum Recommended configuration |
++===========+===================================+
+| Memory    | 2 GB                              |
++-----------+-----------------------------------+
+| CPU       | 1 CPU (2 cores)                   |
++-----------+-----------------------------------+
+| Disk Size | 100 GB                            |
++-----------+-----------------------------------+
+| Network   | 2 NICS                            |
++-----------+-----------------------------------+
+
+The maximum number of servers (virtualization hosts) that can be managed by a single OpenNebula instance strongly depends on the performance and scalability of the underlying platform infrastructure, mainly the storage subsystem. The general recommendation is that no more than 500 servers managed by a single instance, but there are users with 1,000 servers in each zone. Related to this, read the section about :ref:`how to tune OpenNebula for large deployments <one_scalability>`.
+
+**KVM nodes**
+
+Regarding the dimensions of the KVM virtualization nodes:
+
+- **CPU**: without overcommitment, each CPU core assigned to a VM must exists as a physical CPU core. By example, for a workload of 40 VMs with 2 CPUs, the cloud will need 80 physical CPUs. These 80 physical CPUs can be spread among different hosts: 10 servers with 8 cores each, or 5 server of 16 cores each. With overcommitment, however, CPU dimension can be planned ahead, using the ``CPU`` and ``VCPU`` attributes: ``CPU`` states physical CPUs assigned to the VM, while ``VCPU`` states virtual CPUs to be presented to the guest OS.
 
 - **MEMORY**: Planning for memory is straightforward, as by default *there is no overcommitment of memory* in OpenNebula. It is always a good practice to count 10% of overhead by the hypervisor (this is not an absolute upper limit, it depends on the hypervisor). So, in order to sustain a VM workload of 45 VMs with 2GB of RAM each, 90GB of physical memory is needed. The number of hosts is important, as each one will incur a 10% overhead due to the hypervisors. For instance, 10 hypervisors with 10GB RAM each will contribute with 9GB each (10% of 10GB = 1GB), so they will be able to sustain the estimated workload. The rule of thumb is having at least 1GB per core, but this also depends on the expected workload.
 
-- **STORAGE**: It is important to understand how OpenNebula uses storage, mainly the difference between system and image datastore.
+**Storage**
 
-  - The **image datastore** is where OpenNebula stores all the images registered that can be used to create VMs, so the rule of thumb is to devote enough space for all the images that OpenNebula will have registered.
+It is important to understand how OpenNebula uses storage, mainly the difference between system and image datastore.
 
-  - The **system datastore** is where the VMs that are currently running store their disks. It is trickier to estimate correctly since volatile disks come into play with no counterpart in the image datastore (volatile disks are created on the fly in the hypervisor).
+- The **image datastore** is where OpenNebula stores all the images registered that can be used to create VMs, so the rule of thumb is to devote enough space for all the images that OpenNebula will have registered.
 
-  - One valid approach is to limit the storage available to users by defining quotas in the number of maximum VMs and also the Max Volatile Storage a user can demand, and ensuring enough system and image datastore space to comply with the limit set in the quotas. In any case, OpenNebula allows cloud administrators to add more system and images datastores if needed.
+- The **system datastore** is where the VMs that are currently running store their disks. It is trickier to estimate correctly since volatile disks come into play with no counterpart in the image datastore (volatile disks are created on the fly in the hypervisor).
 
-  - Dimensioning storage is a critical aspect, as it is usually the cloud bottleneck. It very much depends on the underlying technology. As an example, in Ceph for a medium size cloud  at least three servers are needed for storage with 5 disks each of 1TB, 16Gb of RAM, 2 CPUs of 4 cores each and at least 2 NICs.
+One valid approach is to limit the storage available to users by defining quotas in the number of maximum VMs and also the Max Volatile Storage a user can demand, and ensuring enough system and image datastore space to comply with the limit set in the quotas. In any case, OpenNebula allows cloud administrators to add more system and images datastores if needed.
 
-- **NETWORK**: Networking needs to be carefully designed to ensure reliability in the cloud infrastructure. The recommendation is having 2 NICs in the front-end (public and service) (or 3 NICs depending on the storage backend, access to the storage network may be needed) 4 NICs present in each virtualization node: private, public, service and storage networks. Less NICs can be needed depending on the storage and networking configuration.
+Dimensioning storage is a critical aspect, as it is usually the cloud bottleneck. It very much depends on the underlying technology. As an example, in Ceph for a medium size cloud  at least three servers are needed for storage with 5 disks each of 1TB, 16Gb of RAM, 2 CPUs of 4 cores each and at least 2 NICs.
 
-Importing Existing VMs
-================================================================================
+**Network**
 
-As soon as a new hypervisor server or public cloud is added to OpenNebula, the monitoring subsystem will extract all the Virtual Machines running in that particular server or public cloud region and label them as *Wild VMs*. Wild VMs are therefore VMs running in a hypervisor controlled by OpenNebula that have not been launched through OpenNebula.
-
-OpenNebula allows to import these Wild VMs in order to control their life-cycle just like any other VM launched by OpenNebula. Proceed to this :ref:`host section <import_wild_vms>` for more details.
+Networking needs to be carefully designed to ensure reliability in the cloud infrastructure. The recommendation is having 2 NICs in the front-end (public and service) (or 3 NICs depending on the storage backend, access to the storage network may be needed) 4 NICs present in each virtualization node: private, public, service and storage networks. Less NICs can be needed depending on the storage and networking configuration.
 
 Front-End
 ================================================================================
@@ -66,9 +81,9 @@ OpenNebula services include:
 
 -  Management daemon (``oned``) and scheduler (``mm_sched``)
 -  Web interface server (``sunstone-server``)
--  Optional  services: OneFlow, OneGate, econe, ...
+-  Advanced components: OneFlow, OneGate, econe, ...
 
-.. warning:: Note that these components communicate through :ref:`XML-RPC <api>` and may be installed in different machines for security or performance reasons
+.. note:: Note that these components communicate through :ref:`XML-RPC <api>` and may be installed in different machines for security or performance reasons
 
 There are several certified platforms to act as front-end for each version of OpenNebula. Refer to the :ref:`platform notes <uspng>` and chose the one that better fits your needs.
 
@@ -78,12 +93,10 @@ If you are interested in setting up a high available cluster for OpenNebula, che
 
 If you need to federate several datacenters, with a different OpenNebula instance managing the resources but needing a common authentication schema, check the :ref:`Federation Section <federation_section>`.
 
-The maximum number of servers (virtualization hosts) that can be managed by a single OpenNebula instance (zone) strongly depends on the performance and scalability of the underlying platform infrastructure, mainly the storage subsystem. We do not recommend more than 500 servers within each zone, but there are users with 1,000 servers in each zone. You may find interesting the following section about :ref:`how to tune OpenNebula for large deployments <one_scalability>`.
-
 Monitoring
 ================================================================================
 
-The monitoring subsystem gathers information relative to the hosts and the virtual machines, such as the host status, basic performance indicators, as well as VM status and capacity consumption. This information is collected by executing a set of static probes provided by OpenNebula. The information is sent according to the following process: each host periodically sends monitoring data via UDP to the front-end which collects it and processes it in a dedicated module. This model is highly scalable and its limit (in terms of number of VMs monitored per second) is bounded to the performance of the server running oned and the database server. Please read the :ref:`UDP-push Section <imudppushg>` for more information.
+The monitoring subsystem gathers information relative to the hosts and the virtual machines, such as the host status, basic performance indicators, as well as VM status and capacity consumption. This information is collected by executing a set of static probes provided by OpenNebula. The information is sent according to the following process: each host periodically sends monitoring data to the front-end which collects it and processes it in a dedicated module. This model is highly scalable and its limit (in terms of number of VMs monitored per second) is bounded to the performance of the server running oned and the database server.
 
 Please check the :ref:`the Monitoring Section <mon>` for more details.
 
@@ -117,13 +130,13 @@ OpenNebula is shipped with 3 different datastore classes:
 
 Image datastores can be of different types, depending on the underlying storage technology:
 
--  :ref:`Filesystem <fs_ds>`: to store disk images in a file form. The files are stored in a shared filesystem mounted from a SAN/NAS server.
+-  :ref:`Filesystem <fs_ds>`: to store disk images in a file form. There are three types: ssh, shared and qcow.
 
 -  :ref:`LVM <lvm_drivers>`: to use LVM volumes instead of plain files to hold the Virtual Images. This reduces the overhead of having a file-system in place and thus increases performance.
 
 -  :ref:`Ceph <ceph_ds>`: to store disk images using Ceph block devices.
 
-.. warning:: **Default:** The system and images datastores are configured to use a shared filesystem.
+.. warning:: **Default:** The default system and images datastores are configured to use a filesystem with the ssh transfer drivers.
 
 Please check the :ref:`Storage Chapter <sm>` for more details.
 
@@ -142,8 +155,7 @@ The OpenNebula administrator may associate one of the following drivers to each 
 -  :ref:`802.1Q <hm-vlan>`: restrict network access through VLAN tagging, which requires support by the hardware switches.
 -  :ref:`ebtables <ebtables>`: restrict network access through Ebtables rules. No special hardware configuration required.
 -  :ref:`ovswitch <openvswitch>`: restrict network access with `Open vSwitch Virtual Switch <http://openvswitch.org/>`__.
-
-.. warning:: **Default:** The default configuration connects the VM network interface to a bridge in the physical host.
+-  :ref:`vxlan <vxlan>`: segment a VLAN in isolated networks using the VXLAN encapsulation protocol.
 
 Please check the :ref:`Networking Chapter <nm>` to find out more information about the networking technologies supported by OpenNebula.
 

@@ -10,6 +10,8 @@ Overview
 
 The first step of building a reliable, useful and successful cloud is to decide a clear design. This design needs to be aligned with the expected use of the cloud, and it needs to describe which data center components are going to be part of the cloud. This comprises i) all the infrastructure components such as networking, storage, authorization and virtualization back-ends, as well as the ii) planned dimension of the cloud (characteristics of the workload, numbers of users and so on) and the iii) provisioning workflow, ie, how end users are going to be isolated and using the cloud.
 
+In order to get the most out of a OpenNebula Cloud, we recommend that you create a plan with the features, performance, scalability, and high availability characteristics you want in your deployment. This Chapter provides information to plan an OpenNebula cloud based on :ref:`KVM <open_cloud_architecture>` or :ref:`vCenter <vmware_cloud_architecture>`. With this information, you will be able to easily architect and dimension your deployment, as well as understand the technologies involved in the management of virtualized resources and their relationship.
+
 How Should I Read This Chapter
 ================================================================================
 
@@ -27,9 +29,9 @@ Hypervisor Compatibility
 +--------------------------------------------------------------+-----------------------------------------------+
 |                           Section                            |                 Compatibility                 |
 +==============================================================+===============================================+
-| :ref:`OpenNebula Provisioning Model <understand>`            | This Section applies to both KVM and vCenter. |
-+--------------------------------------------------------------+-----------------------------------------------+
 | :ref:`Open Cloud Architecture <open_cloud_architecture>`     | This Section applies to KVM.                  |
 +--------------------------------------------------------------+-----------------------------------------------+
 | :ref:`VMware Cloud Architecture <vmware_cloud_architecture>` | This Section  applies to vCenter.             |
++--------------------------------------------------------------+-----------------------------------------------+
+| :ref:`OpenNebula Provisioning Model <understand>`            | This Section applies to both KVM and vCenter. |
 +--------------------------------------------------------------+-----------------------------------------------+
