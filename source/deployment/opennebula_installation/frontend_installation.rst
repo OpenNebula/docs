@@ -150,6 +150,8 @@ Log in as the ``oneadmin`` user follow these steps:
     # service opennebula start
     # service opennebula-sunstone start
 
+.. _verify_frontend_section:
+
 Step 6. Verifying the Installation
 ==================================
 

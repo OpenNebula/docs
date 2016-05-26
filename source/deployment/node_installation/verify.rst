@@ -11,7 +11,7 @@ Verify your Installation
 vCenter based Cloud Verification
 ================================================================================
 
-In order to verify the correct installation of your OpenNebua cloud, follow the next steps:
+In order to verify the correct installation of your OpenNebua cloud, follow the next steps. The following assumes that Sunstone is up and running, as explained in the :ref:`front-end installation Section <verify_frontend_section>`. To access Sunstone, point your browser to ``http://<fontend_address>:9869``.
 
 Step 1. Import a VM Template
 --------------------------------------------------------------------------------
