@@ -41,6 +41,14 @@ Considerations & Limitations
 - vCenter credential password cannot have more than 22 characters
 - If you are running Sunstone using nginx/apache you will have to forward the following headers to be able to interact with vCenter, HTTP_X_VCENTER_USER, HTTP_X_VCENTER_PASSWORD and HTTP_X_VCENTER_HOST (or, alternatively, X_VCENTER_USER, X_VCENTER_PASSWORD and X_VCENTER_HOST). For example in nginx you have to add the following attrs to the server section of your nginx file: (underscores_in_headers on; proxy_pass_request_headers on;)
 
+Configuring
+================================================================================
+
+The vCenter virtualization driver configuration file is located in ``/etc/one/vmm_exec/vmm_exec_vcenter.conf``. This file is home for default values for OpenNebula VM templates.
+
+It is generally a good idea to place defaults for the vCenter-specific attributes, that is, attributes mandatory in the vCenter driver that are not mandatory for other hypervisors. Non mandatory attributes for vCenter but specific to them are also recommended to have a default.
+
+
 .. _import_vcenter_resources:
 
 Importing vCenter VM Templates and running VMs
@@ -178,18 +186,3 @@ Nested Resource Pools can be represented using '/'. For instance, a Resource Poo
       HOST="Cluster",
       TYPE="vcenter",
       VM_TEMPLATE="4223067b-ed9b-8f73-82ba-b1a98c3ff96e" ]
-
-
-Tuning & Extending
-================================================================================
-
-The vCenter virtualization driver consists of the following files:
-
--  ``/usr/lib/one/mads/one_vmm_exec`` : generic VMM driver.
--  ``/var/lib/one/remotes/vmm/vcenter`` : commands executed to perform actions.
-
-And the following driver configuration files:
-
--  ``/etc/one/vmm_exec/vmm_exec_vcenter.conf`` : This file is home for default values for OpenNebula VM templates
-
-It is generally a good idea to place defaults for the vCenter-specific attributes, that is, attributes mandatory in the vCenter driver that are not mandatory for other hypervisors. Non mandatory attributes for vCenter but specific to them are also recommended to have a default.
