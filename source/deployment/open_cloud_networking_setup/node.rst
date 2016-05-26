@@ -1,4 +1,4 @@
-.. _networking_mode:
+.. _networking_node:
 
 ====================
 Node Setup
@@ -38,7 +38,6 @@ For example, a node with two networks one for public IP addresses (attached to e
 
 .. note:: It is recommended that this configuration is made persistent. Please refer to the network configuration guide of your system to do so.
 
-.. note:: You can bridge the traffic to tagged interfaces
 
 VLAN Networking Mode
 ================================================================================
@@ -82,6 +81,19 @@ Requirements
 * The OpenNebula node packages has been installed, see :ref:`the KVM node installation section <kvm_node>` for more details.
 
 * You need to install Open vSwitch on each node. Please refer to the Open vSwitch documentation to do so.
+
+For example, a node that forwards Virtual Networks traffic through the ``enp0s8`` network interface should create an openvswitch like:
+
+.. prompt:: text # auto
+
+    # ovs-vsctl show
+    c61ba96f-fc11-4db9-9636-408e763f529e
+        Bridge "ovsbr0"
+            Port "ovsbr0"
+                Interface "ovsbr0"
+                    type: internal
+            Port "enp0s8"
+                Interface "enp0s8"
 
 Configuration
 --------------------------------------------------------------------------------

@@ -7,7 +7,7 @@ Open Cloud Networking Setup
 
    Overview <overview>
    Node Setup <node>
-   Bridged Networking <bridged.rst>
+   Bridged Networking <bridged>
    802.1Q VLAN Networks <hm-vlan>
    VXLAN Networks <vxlan>
    Open vSwitch Networks <openvswitch>

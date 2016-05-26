@@ -1,69 +1,61 @@
 .. _bridged:
 .. _ebtables:
 
-=========
-Ebtables
-=========
+================================================================================
+Bridged Networking
+================================================================================
 
-This guide describes how to enable Network isolation provided through ebtables rules applied on the bridges. This method will only permit isolation with a mask of 255.255.255.0.
+This guide describes how to deploy Bridged networks. In this mode virtual machine traffic is directly bridged through an existing Linux bridge in the nodes. Bridged networks can operate on three different modes depending on the additional traffic filtering made by OpenNebula:
 
-Requirements
-============
-
-This hook requires ``ebtables`` to be available in all the OpenNebula Hosts.
+* **Dummy**, no filtering is made
+* **Security Group**, iptables rules are installed to implement security groups rules.
+* **ebtables VLAN**, same as above plus additional ebtables rules to isolate (L2) each Virtual Networks.
 
 Considerations & Limitations
-============================
+================================================================================
 
-Although this is the most easily usable driver, since it doesn't require any special hardware or any software configuration, it lacks the ability of sharing IPs amongst different VNETs, that is, if an VNET is using leases of 192.168.0.0/24, another VNET must not use the same IPs in the same network. Note that OpenNebula will not prevent you to create
+The following needs to be considered regarding traffic isolation:
 
-Configuration
-=============
+* In the **Dummy** and **Security Group** modes you can add tagged network interfaces to achieve network isolation. This is the **recommended** deployment strategy in production environments in this mode.
 
-Frontend Configuration
-------------------------
+* The **L2 VLAN** mode is targeted to small environments without proper hardware support to implement VLANS. Note that it is limited to /24 networks, and that IP addresses cannot overlap between Virtual Networks. This mode is only recommended for testing purposes.
 
-No specific configuration is required for the frontend.
 
-Hosts Configuration
--------------------
+OpenNebula Configuration
+================================================================================
 
-The package ``ebtables`` must be installed in the hosts.
+No specific configuration is required for bridged networking
 
-Driver Actions
---------------
+.. _bridged_net:
 
-+-----------+------------------------------------------------------------------+
-|   Action  |                           Description                            |
-+===========+==================================================================+
-| **Pre**   | N/A                                                              |
-+-----------+------------------------------------------------------------------+
-| **Post**  | Creates EBTABLES rules in the Host where the VM has been placed. |
-+-----------+------------------------------------------------------------------+
-| **Clean** | Removes the EBTABLES rules created during the ``Post`` action.   |
-+-----------+------------------------------------------------------------------+
+Defining a Bridged Network
+================================================================================
 
-Usage
-=====
+To create a 802.1Q network include the following information:
 
-To use this driver, use ``VN_MAD="ebtables"`` in the Network Template.
++-------------+-------------------------------------------------------------------------+-----------+
+| Attribute   | Value                                                                   | Mandatory |
++=============+=========================================================================+===========+
+| **VN_MAD**  | * ``dummy`` for the Dummy Bridged mode                                  |  **YES**  |
+|             | * ``fw`` for Bridged with Security Groups                               |           |
+|             | * ``ebtables`` for Bridged with ebtables isolation                      |           |
++-------------+-------------------------------------------------------------------------+-----------+
+| **BRIDGE**  | Name of the linux bridge in the nodes                                   |  **YES**  |
++-------------+-------------------------------------------------------------------------+-----------+
 
-The driver will be automatically applied to every Virtual Machine deployed in the Host.
+The following example defines Bridged network using the Security Groups mode:
 
 .. code::
 
-    NAME    = "ebtables_net"
-    VN_MAD  = "ebtables"
+    NAME    = "bridged_net"
+    VN_MAD  = "fw"
     BRIDGE  = vbr1
     ...
 
-Tuning & Extending
-==================
+ebtables VLAN Mode: default rules
+================================================================================
 
-Ebtables Rules
---------------
-
-This section lists the ebtables rules that are created:
+This section lists the ebtables rules that are created, in case you need to debug your setup
 
 .. code::
 

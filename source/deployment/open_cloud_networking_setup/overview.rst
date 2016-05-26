@@ -32,7 +32,7 @@ How Should I Read This Chapter
 
 Before reading this chapter make sure you have read the :ref:`Open Cloud Storage <storage>` chapter.
 
-Read the specific section for the networking mode that you are interested in.
+**Start by reading** the common :ref:`Node Setup <networking_node>` section to learn how to configure your hosts, and then proceed to the specific section for the networking mode that you are interested in.
 
 After reading this chapter you can complete your OpenNebula installation by optionally enabling an :ref:`External Authentication <authentication>` or configuring :ref:`Sunstone <sunstone>`. Otherwise you are ready to :ref:`Operate your Cloud <operation_guide>`.
 

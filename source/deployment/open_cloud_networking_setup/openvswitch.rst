@@ -1,34 +1,17 @@
 .. _openvswitch:
 
-=============
-Open vSwitch
-=============
+================================================================================
+Open vSwitch Networks
+================================================================================
 
-.. todo:: this guide must be reviewed because of the deprecation of black_ports
+This guide describes how to use the `Open vSwitch <http://openvswitch.org/>`__ network drives. They provide network isolation using VLANs by tagging ports and basic network filtering using OpenFlow. Other traffic attributes that may be configured through Open vSwitch are not modified.
 
-This guide describes how to use the `Open vSwitch <http://openvswitch.org/>`__ network drives. They provide two independent functionalities that can be used together: network isolation using VLANs, and network filtering using OpenFlow. Each Virtual Network interface will receive a VLAN tag enabling network isolation. Other traffic attributes that may be configured through Open vSwitch are not modified.
-
-The VLAN id will be the same for every interface in a given network, calculated by adding a constant to the network id. It may also be forced by specifying an ``VLAN_ID`` parameter in the :ref:`Virtual Network template <vnet_template>`.
+The VLAN id will be the same for every interface in a given network, calculated automatically by OpenNebula. It may also be forced by specifying an ``VLAN_ID`` parameter in the :ref:`Virtual Network template <vnet_template>`.
 
 .. warning:: This driver is not compatible with Security Groups.
 
-Requirements
-============
-
-This driver requires Open vSwitch to be installed on each OpenNebula Host. Follow the resources specified in :ref:`hosts configuration <openvswitch_hosts_configuration>` to install it.
-
-Considerations & Limitations
-============================
-
-Integrating OpenNebula with Open vSwitch brings a long list of benefits to OpenNebula, read `Open vSwitch Features <http://openvswitch.org/features/>`__ to get a hold on these features.
-
-This guide will address the usage of VLAN tagging and OpenFlow filtering of OpenNebula Virtual Machines. On top of that any other Open vSwitch feature may be used, but that's outside of the scope of this guide.
-
-Configuration
-=============
-
 OpenNebula Configuration
-------------------------
+================================================================================
 
 The VLAN_ID is calculated according to this configuration option of ``oned.conf``:
 
@@ -45,55 +28,36 @@ The VLAN_ID is calculated according to this configuration option of ``oned.conf`
         RESERVED = "0, 1, 4095"
     ]
 
-By modifying that parameter you can reserve some VLANs so they aren't assigned to a Network. You can also define the first VLAN_ID. When a new isolatad network is created, OpenNebula will find a free VLAN_ID from the VLAN pool. This pool is global, and it's also shared with the :ref:`802.1Q <hm-vlan>` driver.
+By modifying that parameter you can reserve some VLANs so they aren't assigned to a Virtual Network. You can also define the first VLAN_ID. When a new isolatad network is created, OpenNebula will find a free VLAN_ID from the VLAN pool. This pool is global, and it's also shared with the :ref:`802.1Q VLAN <hm-vlan>` network mode.
 
-.. _openvswitch_hosts_configuration:
+The following configuration attributes can be adjusted in ``/var/lib/one/remotes/vnm/OpenNebulaNetwork.conf``:
 
-Hosts Configuration
--------------------
++---------------------+----------------------------------------------------------------------------------+
+|      Parameter      |                                   Description                                    |
++=====================+==================================================================================+
+| arp_cache_poisoning | Enable ARP Cache Poisoning Prevention Rules.                                     |
++---------------------+----------------------------------------------------------------------------------+
 
-You need to install Open vSwitch on each OpenNebula Host. Please refer to the `Open vSwitch documentation <https://github.com/openvswitch/ovs/blob/master/INSTALL.md>`__ to do so.
+.. note:: Remember to run ``onehost sync`` to deploy the file to all the nodes.
 
-Open vSwitch Options
---------------------
+.. _ovswitch_net:
 
-.. _openvswitch_arp_cache_poisoning:
+Defining an Open vSwitch Network
+================================================================================
 
-It is possible to disable the ARP Cache Poisoning prevention rules by changing this snippet in ``/var/lib/one/remotes/vnm/OpenNebulaNetwork.conf``:
+To create a VXLAN network include the following information:
 
-.. code::
++-------------+-------------------------------------------------------------------------+-----------+
+| Attribute   | Value                                                                   | Mandatory |
++=============+=========================================================================+===========+
+| **VN_MAD**  | ovswitch                                                                |  **YES**  |
++-------------+-------------------------------------------------------------------------+-----------+
+| **BRIDGE**  | Name of the Open vSwitch switch to use                                  |  **YES**  |
++-------------+-------------------------------------------------------------------------+-----------+
+| **VLAN_ID** | The VLAN ID, will be generated if not defined                           |  NO       |
++-------------+-------------------------------------------------------------------------+-----------+
 
-    # Enable ARP Cache Poisoning Prevention Rules
-    :arp_cache_poisoning: true
-
-
-
-Driver Actions
---------------
-
-+-----------+--------------------------------------------------------------------------------------------------------------+
-|   Action  |                                                 Description                                                  |
-+===========+==============================================================================================================+
-| **Pre**   | N/A                                                                                                          |
-+-----------+--------------------------------------------------------------------------------------------------------------+
-| **Post**  | Performs the appropriate Open vSwitch commands to tag the virtual tap interface.                             |
-+-----------+--------------------------------------------------------------------------------------------------------------+
-| **Clean** | It doesn't do anything. The virtual tap interfaces will be automatically discarded when the VM is shut down. |
-+-----------+--------------------------------------------------------------------------------------------------------------+
-
-Multiple VLANs (VLAN trunking)
-------------------------------
-
-VLAN trunking is also supported by adding the following tag to the ``NIC`` element in the VM template or to the virtual network template:
-
--  ``VLAN_TAGGED_ID``: Specify a range of VLANs to tag, for example: ``1,10,30,32``.
-
-.. _openvswitch_different_bridge:
-
-Usage
-=====
-
-To use this driver, use **VN_MAD="ovswitch"** in the Network Template.
+The following example defines a VXLAN network
 
 .. code::
 
@@ -103,36 +67,21 @@ To use this driver, use **VN_MAD="ovswitch"** in the Network Template.
     VLAN_ID = 50 # optional
     ...
 
-Network Filtering
------------------
+Multiple VLANs (VLAN trunking)
+------------------------------
 
-The first rule that is always applied when using the Open vSwitch drivers is the MAC-spoofing rule, that prevents any traffic coming out of the VM if the user changes the MAC address.
+VLAN trunking is also supported by adding the following tag to the ``NIC`` element in the VM template or to the virtual network template:
 
-The firewall directives must be placed in the :ref:`network section <template_network_section>` of the Virtual Machine template. These are the possible attributes:
+-  ``VLAN_TAGGED_ID``: Specify a range of VLANs to tag, for example: ``1,10,30,32``.
 
-* ``BLACK_PORTS_TCP = iptables_range``: Doesn't permit access to the VM through the specified ports in the TCP protocol.
-* ``BLACK_PORTS_UDP = iptables_range``: Doesn't permit access to the VM through the specified ports in the UDP protocol.
-* ``ICMP = drop``: Blocks ICMP connections to the VM. By default it's set to accept.
-
-``iptables_range``: a list of ports separated by commas, e.g.: ``80,8080``. Currently no ranges are supported, e.g.: ``5900:6000`` is **not** supported.
-
-Example:
-
-.. code::
-
-    NIC = [ NETWORK_ID = 3, BLACK_PORTS_TCP = "80, 22", ICMP = drop ]
-
-Tuning & Extending
-==================
-
-Remember to sync any changes to the hosts by running ``onehost sync`` and to backup the changes in order to re-apply them after upgrading to a new release of OpenNebula.
 
 OpenFlow Rules
---------------
+================================================================================
 
-To modify these rules you have to edit: ``/var/lib/one/remotes/vnm/ovswitch/OpenvSwitch.rb``.
+This section lists de default openflow rules installed in the open vswitch.
 
-**Mac-spoofing**
+Mac-spoofing
+--------------------------------------------------------------------------------
 
 These rules prevent any traffic to come out of the port the MAC address has changed.
 
@@ -141,7 +90,8 @@ These rules prevent any traffic to come out of the port the MAC address has chan
     in_port=<PORT>,dl_src=<MAC>,priority=40000,actions=normal
     in_port=<PORT>,priority=39000,actions=normal
 
-**IP hijacking**
+IP hijacking
+--------------------------------------------------------------------------------
 
 These rules prevent any traffic to come out of the port for IPv4 IP's not configured for a VM
 
@@ -150,35 +100,16 @@ These rules prevent any traffic to come out of the port for IPv4 IP's not config
     in_port=<PORT>,arp,dl_src=<MAC>priority=45000,actions=drop
     in_port=<PORT>,arp,dl_src=<MAC>,nw_src=<IP>,priority=46000,actions=normal
 
-**Black ports (one rule per port)**
+Black ports (one rule per port)
+--------------------------------------------------------------------------------
 
 .. code::
 
     tcp,dl_dst=<MAC>,tp_dst=<PORT>,actions=drop
 
-**ICMP Drop**
+ICMP Drop
+--------------------------------------------------------------------------------
 
 .. code::
 
     icmp,dl_dst=<MAC>,actions=drop
-
-
-Configuration
--------------
-
-Some drivers have the ability to customize their behaviour by editing a configuration file. This file is located in ``/var/lib/one/remotes/vnm/OpenNebulaNetwork.conf``.
-
-Currently it supports the following options:
-
-+---------------------+----------------------------+----------------------------------------------------------------------------------+
-|      Parameter      |           Driver           |                                   Description                                    |
-+=====================+============================+==================================================================================+
-| arp_cache_poisoning | ovswitch                   | Enable ARP Cache Poisoning Prevention Rules.                                     |
-+---------------------+----------------------------+----------------------------------------------------------------------------------+
-| vxlan_mc            | vxlan                      | Base multicast address for each VLAN. The multicas sddress is vxlan_mc + vlan_id |
-+---------------------+----------------------------+----------------------------------------------------------------------------------+
-| vxlan_ttl           | vxlan                      | Time To Live (TTL) should be > 1 in routed multicast networks (IGMP)             |
-+---------------------+----------------------------+----------------------------------------------------------------------------------+
-
-.. note:: Remember to run ``onehost sync`` to deploy the file to all the nodes.
-

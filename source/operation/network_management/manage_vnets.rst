@@ -29,10 +29,10 @@ To define a Virtual Network include:
 
 * ``VN_MAD`` the driver to implement this Virtual Network. Depending on the driver you may need to set additional attributes, check the following to get more details:
 
-  * Define a bridged network
+  * :ref:`Define a bridged network <bridged_net>`
   * :ref:`Define a 802.1Q network <hm-vlan_net>`
   * :ref:`Define a VXLAN network <vxlan_net>`
-  * Define a OpenvSwitch network
+  * :ref:`Define a OpenvSwitch network <ovswitch_net>`
 
 For example, to define a 802.1Q Virtual Network you would add:
 

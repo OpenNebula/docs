@@ -1,8 +1,8 @@
 .. _vxlan:
 
-============
-VXLAN
-============
+================================================================================
+VXLAN Networks
+================================================================================
 
 This guide describes how to enable Network isolation provided through the VXLAN encapsulation protocol. This driver will create a bridge for each OpenNebula Virtual Network and attach a VXLAN tagged network interface to the bridge.
 
@@ -10,6 +10,13 @@ The VLAN id will be the same for every interface in a given network, calculated 
 
 Additionally each VLAN has associated a multicast address to encapsulate L2 broadcast and multicast traffic. This address is assigned by default to the 239.0.0.0/8 range as defined by RFC 2365 (Administratively Scoped IP Multicast). In particular the multicast address is obtained by adding the VLAN_ID to the 239.0.0.0/8 base address.
 
+
+Considerations & Limitations
+================================================================================
+
+This driver works with the default UDP server port 8472.
+
+VXLAN traffic is forwarded to a physical device, this device can be set to be a VLAN tagged interface, but in that case you must make sure that the tagged interface is manually created first in all the hosts.
 
 OpenNebula Configuration
 ================================================================================
@@ -69,12 +76,5 @@ The following example defines a VXLAN network
     ...
 
 In this scenario, the driver will check for the existence of the ``vxlan50`` bridge. If it doesn't exist it will be created. ``eth0`` will be tagged (``eth0.50``) and attached to ``vxlan50`` (unless it's already attached). Note that eth0 can be a 802.1Q tagged interface if you want to isolate the OpenNebula VXLAN traffic.
-
-Considerations & Limitations
-============================
-
-This driver works with the default UDP server port 8472.
-
-VXLAN traffic is forwarded to a physical device, this device can be set to be a VLAN tagged interface, but in that case you must make sure that the tagged interface is manually created first in all the hosts.
 
 
