@@ -189,8 +189,12 @@ The attributes in each of the above sections should be self-explanatory. As an e
                 Datastore.enable: false
                 Datastore.disable: false
 
+.. _cloud_view_config:
+
 Cloud View Customization
 --------------------------------------------------------------------------------
+
+.. todo:: Document features, dashboard, create_vm
 
 The cloud layout can also be customized by changing the corresponding yaml files.
 

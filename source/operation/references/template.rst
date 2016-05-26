@@ -948,6 +948,8 @@ These attributes can be configured in :ref:`oned.conf <oned_conf>`.
 User Inputs
 ================================================================================
 
+.. todo:: update with new types, and options
+
 ``USER_INPUTS`` provides the template creator with the possibility to dynamically ask the user instantiating the template for dynamic values that must be defined.
 
 .. code::
