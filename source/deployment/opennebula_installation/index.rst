@@ -10,4 +10,3 @@ OpenNebula Installation
    Overview <overview>
    Front-end Installation <frontend_installation>
    MySQL Setup <mysql_setup>
-   Scheduler <scheduler>

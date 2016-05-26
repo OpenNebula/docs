@@ -8,3 +8,4 @@ Hosts and Clusters Management
    Overview <hostsubsystem>
    Hosts <host_guide>
    Clusters <cluster_guide>
+   Scheduler <scheduler>

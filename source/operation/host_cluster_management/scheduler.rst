@@ -4,22 +4,22 @@
 Scheduler
 ==========
 
-The Scheduler module is in charge of the assignment between pending Virtual Machines and known Hosts. OpenNebula's architecture defines this module as a separate process that can be started independently of ``oned``. The OpenNebula scheduling framework is designed in a generic way, so it is highly modifiable and can be easily replaced by third-party developments.
+The Scheduler module is in charge of the assignment between pending Virtual Machines and known Hosts. OpenNebula's architecture defines this module as a separate process that can be started independently of ``oned`` (it is however started automatically when you start the ``opennebula`` service). The OpenNebula scheduling framework is designed in a generic way, so it is highly modifiable and can be easily replaced by third-party developments.
 
 .. _schg_the_match_making_scheduler:
 
 The Match-making Scheduler
 ==========================
 
-OpenNebula comes with a ``match making`` scheduler (*mm\_sched*) that implements the *Rank Scheduling Policy*. The goal of this policy is to prioritize those resources more suitable for the VM.
+OpenNebula comes with a **match making** scheduler (``mm_sched``) that implements the **Rank Scheduling Policy**. The goal of this policy is to prioritize those resources more suitable for the VM.
 
 The match-making algorithm works as follows:
 
--  Each disk of a running VM consumes storage from an Image Datastore. The VMs that require more storage than there is currently available are filtered out, and will remain in the 'pending' state.
--  Those hosts that do not meet the VM requirements (see the :ref:`SCHED\_REQUIREMENTS attribute <template_placement_section>`) or do not have enough resources (available CPU and memory) to run the VM are filtered out (see below for more information).
--  The same happens for System Datastores: the ones that do not meet the DS requirements (see the :ref:`SCHED\_DS\_REQUIREMENTS attribute <template>`) or do not have enough free storage are filtered out.
--  The :ref:`SCHED\_RANK and SCHED\_DS\_RANK expressions <template_placement_section>` are evaluated upon the Host and Datastore list using the information gathered by the monitor drivers. Any variable reported by the monitor driver (or manually set in the Host or Datastore template) can be included in the rank expressions.
--  Those resources with a higher rank are used first to allocate VMs.
+* Each disk of a running VM consumes storage from an Image Datastore. The VMs that require more storage than there is currently available are filtered out, and will remain in the ``pending`` state.
+* Those hosts that do not meet the VM requirements (see the :ref:`SCHED_REQUIREMENTS attribute <template_placement_section>`) or do not have enough resources (available CPU and memory) to run the VM are filtered out (see below for more information).
+* The same happens for System Datastores: the ones that do not meet the DS requirements (see the :ref:`SCHED_DS_REQUIREMENTS attribute <template>`) or do not have enough free storage are filtered out.
+* The :ref:`SCHED_RANK and SCHED_DS_RANK expressions <template_placement_section>` are evaluated upon the Host and Datastore list using the information gathered by the monitor drivers. Any variable reported by the monitor driver (or manually set in the Host or Datastore template) can be included in the rank expressions.
+* Those resources with a higher rank are used first to allocate VMs.
 
 This scheduler algorithm easily allows the implementation of several placement heuristics (see below) depending on the RANK expressions used.
 
@@ -28,8 +28,8 @@ Configuring the Scheduling Policies
 
 The policy used to place a VM can be configured in two places:
 
--  For each VM, as defined by the SCHED\_RANK and SCHED\_DS\_RANK attributes in the VM template.
--  Globally for all the VMs in the ``sched.conf`` file
+* For each VM, as defined by the ``SCHED_RANK`` and ``SCHED_DS_RANK`` attributes in the VM template.
+* Globally for all the VMs in the ``sched.conf`` file (OpenNebula restart required).
 
 .. _schg_re-scheduling_virtual_machines:
 
@@ -38,15 +38,15 @@ Re-Scheduling Virtual Machines
 
 When a VM is in the running state it can be rescheduled. By issuing the ``onevm resched`` command the VM's recheduling flag is set. In a subsequent scheduling interval, the VM will be consider for rescheduling, if:
 
--  There is a suitable host for the VM
--  The VM is not already running in it
+* There is a suitable host for the VM.
+* The VM is not already running in it.
 
 This feature can be used by other components to trigger rescheduling action when certain conditions are met.
 
 Scheduling VM Actions
 ---------------------
 
-Users can schedule one or more VM actions to be executed at a certain date and time. The :ref:`onevm command <cli>` 'schedule' option will add a new SCHED\_ACTION attribute to the Virtual Machine editable template. Visit :ref:`the VM guide <vm_guide2_scheduling_actions>` for more information.
+Users can schedule one or more VM actions to be executed at a certain date and time. The :ref:`onevm schedule <cli>` command will add a new SCHED_ACTION attribute to the Virtual Machine editable template. Visit :ref:`the VM guide <vm_guide2_scheduling_actions>` for more information.
 
 .. _schg_configuration:
 
@@ -55,17 +55,17 @@ Configuration
 
 The behavior of the scheduler can be tuned to adapt it to your infrastructure with the following configuration parameters defined in /etc/one/sched.conf:
 
--  ``MESSAGE_SIZE``: Buffer size in bytes for XML-RPC responses.
--  ``ONE_XMLRPC``: URL to connect to the OpenNebula daemon (oned) (Default:http://localhost:2633/RPC2)
--  ``SCHED_INTERVAL``: Seconds between two scheduling actions (Default: 30)
--  ``MAX_VM``: Maximum number of Virtual Machines scheduled in each scheduling action (Default: 5000). Use 0 to schedule all pending VMs each time.
--  ``MAX_DISPATCH``: Maximum number of Virtual Machines actually dispatched to a host in each scheduling action (Default: 30)
--  ``MAX_HOST``: Maximum number of Virtual Machines dispatched to a given host in each scheduling action (Default: 1)
--  ``LIVE_RESCHEDS``: Perform live (1) or cold migrations (0) when rescheduling a VM
--  ``DEFAULT_SCHED``: Definition of the default scheduling algorithm.
+* ``MESSAGE_SIZE``: Buffer size in bytes for XML-RPC responses.
+* ``ONE_XMLRPC``: URL to connect to the OpenNebula daemon (oned) (Default: http://localhost:2633/RPC2)
+* ``SCHED_INTERVAL``: Seconds between two scheduling actions (Default: 30)
+* ``MAX_VM``: Maximum number of Virtual Machines scheduled in each scheduling action (Default: 5000). Use 0 to schedule all pending VMs each time.
+* ``MAX_DISPATCH``: Maximum number of Virtual Machines actually dispatched to a host in each scheduling action (Default: 30)
+* ``MAX_HOST``: Maximum number of Virtual Machines dispatched to a given host in each scheduling action (Default: 1)
+* ``LIVE_RESCHEDS``: Perform live (1) or cold migrations (0) when rescheduling a VM
+* ``DEFAULT_SCHED``: Definition of the default scheduling algorithm.
 
-   -  ``RANK``: Arithmetic expression to rank suitable **hosts** based on their attributes.
-   -  ``POLICY``: A predefined policy, it can be set to:
+   * ``RANK``: Arithmetic expression to rank suitable **hosts** based on their attributes.
+   * ``POLICY``: A predefined policy, it can be set to:
 
 +--------+-------------------------------------------------------------------------------------------------------------+
 | POLICY |                                                 DESCRIPTION                                                 |
@@ -81,10 +81,10 @@ The behavior of the scheduler can be tuned to adapt it to your infrastructure wi
 |      4 | **Fixed**: Hosts will be ranked according to the PRIORITY attribute found in the Host or Cluster template   |
 +--------+-------------------------------------------------------------------------------------------------------------+
 
--  ``DEFAULT_DS_SCHED``: Definition of the default storage scheduling algorithm.
+* ``DEFAULT_DS_SCHED``: Definition of the default storage scheduling algorithm.
 
-   -  ``RANK``: Arithmetic expression to rank suitable **datastores** based on their attributes.
-   -  ``POLICY``: A predefined policy, it can be set to:
+  * ``RANK``: Arithmetic expression to rank suitable **datastores** based on their attributes.
+  * ``POLICY``: A predefined policy, it can be set to:
 
 +--------+----------------------------------------------------------------------------------------------------------+
 | POLICY |                                               DESCRIPTION                                                |
@@ -133,9 +133,9 @@ The following list describes the predefined policies (``DEFAULT_SCHED``) that ca
 Packing Policy
 ~~~~~~~~~~~~~~
 
--  **Target**: Minimize the number of cluster nodes in use
--  **Heuristic**: Pack the VMs in the cluster nodes to reduce VM fragmentation
--  **Implementation**: Use those nodes with more VMs running first
+* **Target**: Minimize the number of cluster nodes in use
+* **Heuristic**: Pack the VMs in the cluster nodes to reduce VM fragmentation
+* **Implementation**: Use those nodes with more VMs running first
 
 .. code::
 
@@ -144,9 +144,9 @@ Packing Policy
 Striping Policy
 ~~~~~~~~~~~~~~~
 
--  **Target**: Maximize the resources available to VMs in a node
--  **Heuristic**: Spread the VMs in the cluster nodes
--  **Implementation**: Use those nodes with less VMs running first
+* **Target**: Maximize the resources available to VMs in a node
+* **Heuristic**: Spread the VMs in the cluster nodes
+* **Implementation**: Use those nodes with less VMs running first
 
 .. code::
 
@@ -155,9 +155,9 @@ Striping Policy
 Load-aware Policy
 ~~~~~~~~~~~~~~~~~
 
--  **Target**: Maximize the resources available to VMs in a node
--  **Heuristic**: Use those nodes with less load
--  **Implementation**: Use those nodes with more FREE\_CPU first
+* **Target**: Maximize the resources available to VMs in a node
+* **Heuristic**: Use those nodes with less load
+* **Implementation**: Use those nodes with more FREE_CPU first
 
 .. code::
 
@@ -166,9 +166,9 @@ Load-aware Policy
 Fixed Policy
 ~~~~~~~~~~~~
 
--  **Target**: Sort the hosts manually
--  **Heuristic**: Use the PRIORITY attribute
--  **Implementation**: Use those nodes with more PRIORITY first
+* **Target**: Sort the hosts manually
+* **Heuristic**: Use the PRIORITY attribute
+* **Implementation**: Use those nodes with more PRIORITY first
 
 .. code::
 
@@ -184,9 +184,9 @@ Packing Policy
 
 Tries to optimize storage usage by selecting the DS with less free space
 
--  **Target**: Minimize the number of system datastores in use
--  **Heuristic**: Pack the VMs in the system datastores to reduce VM fragmentation
--  **Implementation**: Use those datastores with less free space first
+* **Target**: Minimize the number of system datastores in use
+* **Heuristic**: Pack the VMs in the system datastores to reduce VM fragmentation
+* **Implementation**: Use those datastores with less free space first
 
 .. code::
 
@@ -195,9 +195,9 @@ Tries to optimize storage usage by selecting the DS with less free space
 Striping Policy
 ~~~~~~~~~~~~~~~
 
--  **Target**: Maximize the I/O available to VMs
--  **Heuristic**: Spread the VMs in the system datastores
--  **Implementation**: Use those datastores with more free space first
+* **Target**: Maximize the I/O available to VMs
+* **Heuristic**: Spread the VMs in the system datastores
+* **Implementation**: Use those datastores with more free space first
 
 .. code::
 
@@ -206,9 +206,9 @@ Striping Policy
 Fixed Policy
 ~~~~~~~~~~~~
 
--  **Target**: Sort the datastores manually
--  **Heuristic**: Use the PRIORITY attribute
--  **Implementation**: Use those datastores with more PRIORITY first
+* **Target**: Sort the datastores manually
+* **Heuristic**: Use the PRIORITY attribute
+* **Implementation**: Use those datastores with more PRIORITY first
 
 .. code::
 
@@ -219,15 +219,14 @@ Fixed Policy
 Limiting the Resources Exposed by a Host
 ========================================
 
-Prior to assgining a VM to a Host, the available capacity is checked to ensure that the VM fits in the host. The capacity is obtained by the monitor probes. You may alter this behaviour by reserving an amount of capacity (memory and cpu). You can reserve this capacity:
+Prior to assigning a VM to a Host, the available capacity is checked to ensure that the VM fits in the host. The capacity is obtained by the monitor probes. You may alter this behavior by reserving an amount of capacity (MEMORY and CPU). You can reserve this capacity:
 
-- Cluster-wise, by updating the cluster template (e.g. ``onecluster update``). All the host of the cluster will reserve the same amount of capacity.
-
-- Host-wise, by updating the host template (e.g. ``onehost update``). This value will override those defined at cluster level.
+* Cluster-wise, by updating the cluster template (e.g. ``onecluster update``). All the host of the cluster will reserve the same amount of capacity.
+* Host-wise, by updating the host template (e.g. ``onehost update``). This value will override those defined at cluster level.
 
 In particular the following capacity attributes can be reserved:
 
-- ``RESERVED_CPU`` in percentage. It will be substracted from the ``TOTAL CPU``
-- ``RESERVED_MEM`` in KB. It will be substracted from the ``TOTAL MEM``
+* ``RESERVED_CPU`` in percentage. It will be subtracted from the ``TOTAL CPU``
+* ``RESERVED_MEM`` in KB. It will be subtracted from the ``TOTAL MEM``
 
-.. note:: These values can be negative, in that case you'll be actually increassing the overall capacity so overcommiting host capacity.
+.. note:: These values can be negative, in that case you'll be actually increasing the overall capacity so overcommiting host capacity.
