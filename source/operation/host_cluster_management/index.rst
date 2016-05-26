@@ -9,3 +9,4 @@ Hosts and Clusters Management
    Hosts <host_guide>
    Clusters <cluster_guide>
    Scheduler <scheduler>
+   Datastores <datastore_guide>
