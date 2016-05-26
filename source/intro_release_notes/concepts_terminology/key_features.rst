@@ -30,7 +30,7 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 -  :ref:`Programmable VM operations <vm_guide2_scheduling_actions>` allowing users to schedule actions
 
--  Volume hotplugging, :ref:` disk snapshot capabilities <vm_guide_2_disk_snapshots>` and :ref:`disk resizing <vm_guide2_resize_disk>`
+-  Volume hotplugging, :ref:`disk snapshot capabilities <vm_guide_2_disk_snapshots>` and :ref:`disk resizing <vm_guide2_resize_disk>`
 
 
 **VIRTUAL NETWORK MANAGEMENT**
@@ -39,7 +39,7 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 - :ref:`IPv6 support <manage_vnets>` with definition site and global unicast addresses
 
-- Virtual routers [TODO: Add link]
+- :ref:`Virtual routers <vrouter>`
 
 - :ref:`Security Groups <security_groups>` to define firewall rules and apply them to Virtual Machines
 
@@ -73,7 +73,7 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 **APPLIANCE MARKETPLACE**
 
-- Access to the public `OpenNebula Systems Marketplace <http://marketplace.opennebula.systems>` with a catalog of :ref:`OpenNebula-ready <bcont>` cloud images
+- Access to the public `OpenNebula Systems Marketplace <http://marketplace.opennebula.systems>`__ with a catalog of :ref:`OpenNebula-ready <context_overview>` cloud images
 
 - Create your private centralized catalog (external satastore) of cloud applications (images and templates)  [TODO: Add link]
 
@@ -230,12 +230,6 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 -  *Not all platform configurations exhibit a similar performance and stability*
 -  *The features may change to offer users more features and integration with other virtualization and cloud components*
 -  *The features may change due to changes in the functionality provided by underlying virtualization services*
-
-[TODO: This info should go to Platform Notes]
-
--  **Networking**: Virtual networks can be backed up by :ref:`802.1Q VLANs <hm-vlan>`, :ref:`ebtables <ebtables>`, :ref:`Open vSwitch <openvswitch>` or :ref:`VXLAN <vxlan>`.
-
--  **Storage**: Multiple backends are supported like the regular (shared or not) :ref:`filesystem datastore <fs_ds>` supporting popular distributed file systems like NFS, Lustre, GlusterFS, ZFS, GPFS, MooseFS...; the :ref:`LVM datastore <lvm_drivers>` to store disk images in a block device form; and :ref:`Ceph <ceph_ds>` for distributed block device.
 
 
 
