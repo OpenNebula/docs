@@ -1,15 +1,17 @@
 .. _template:
 
-================================
-Virtual Machine Definition File
-================================
+================================================================================
+Virtual Machine Definition Template
+================================================================================
 
 A template file consists of a set of attributes that defines a Virtual Machine. Using the command ``onetemplate create``, a template can be registered in OpenNebula to be later instantiated. For compatibility with previous versions, you can also create a new Virtual Machine directly from a template file, using the ``onevm create`` command.
 
 .. warning:: There are some template attributes that can compromise the security of the system or the security of other VMs, and can be used **only** by users in the oneadmin group. These attributes can be configured in :ref:`oned.conf <oned_conf>`, the default ones are labeled with ``*`` in the following tables. See the complete list in the :ref:`Restricted Attributes <template_restricted_attributes>` section.
 
+.. note:: If not explicitly stated, the described attributes are valid for all supported hypervisors.
+
 Syntax
-======
+================================================================================
 
 The syntax of the template file is as follows:
 
@@ -31,9 +33,9 @@ The syntax of the template file is as follows:
 -  Attribute names are case insensitive, in fact the names are converted to uppercase internally.
 
 XML Syntax
-==========
+================================================================================
 
-Since OpenNebula 3.4, template files can be in XML, with the following syntax:
+Template files can be expressed in XML, with the following syntax:
 
 -  The root element must be ``TEMPLATE``
 -  **Single Attributes** are in the form:
@@ -69,7 +71,7 @@ A simple example:
     </TEMPLATE>
 
 Capacity Section
-================
+================================================================================
 
 The following attributes can be defined to specify the capacity of a VM.
 
@@ -114,7 +116,7 @@ The following attributes can be defined to set the cost of a VM. Read the :ref:`
 .. _template_os_and_boot_options_section:
 
 OS and Boot Options Section
-===========================
+================================================================================
 
 The OS system is defined with the ``OS`` vector attribute. The following sub-attributes are supported:
 
@@ -172,7 +174,7 @@ Example, a VM booting from ``sda1`` with kernel ``/vmlinuz`` :
            KERNEL_CMD = "ro console=tty1"]
 
 Features Section
-================
+================================================================================
 
 This section configures the features enabled for the VM.
 
@@ -214,7 +216,7 @@ This section configures the features enabled for the VM.
 .. _reference_vm_template_disk_section:
 
 Disks Section
-=============
+================================================================================
 
 The disks of a VM are defined with the ``DISK`` vector attribute. You can define as many ``DISK`` attributes as you need. There are three types of disks:
 
@@ -223,54 +225,62 @@ The disks of a VM are defined with the ``DISK`` vector attribute. You can define
 -  Volatile disks, created on-the-fly on the target hosts. Disks are disposed when the VM is shutdown and cannot be saved\_as
 
 Persistent and Clone Disks
---------------------------
+--------------------------------------------------------------------------------
 
-+----------------------+----------------------------------------------------------------------------------+------------------------------------+------------------------------+
-|  DISK Sub-Attribute  |                                   Description                                    |                KVM                 |           vCenter            |
-+======================+==================================================================================+====================================+==============================+
-| **IMAGE\_ID**        | ID of the Image to use                                                           | **Mandatory** (no IMAGE)           | **Mandatory** (no IMAGE)     |
-+----------------------+----------------------------------------------------------------------------------+------------------------------------+------------------------------+
-| **IMAGE**            | Name of the Image to use                                                         | **Mandatory** (no IMAGE\_ID)       | **Mandatory** (no IMAGE\_ID) |
-+----------------------+----------------------------------------------------------------------------------+------------------------------------+------------------------------+
-| **IMAGE\_UID**       | To select the IMAGE of a given user by her ID                                    | Optional                           | Optional                     |
-+----------------------+----------------------------------------------------------------------------------+------------------------------------+------------------------------+
-| **IMAGE\_UNAME**     | To select the IMAGE of a given user by her NAME                                  | Optional                           | Optional                     |
-+----------------------+----------------------------------------------------------------------------------+------------------------------------+------------------------------+
-| **DEV\_PREFIX**      | Prefix for the emulated device this image will be                                | Optional                           | Optional                     |
-|                      | mounted at. For instance, ``hd``, ``sd``, or ``vd``                              |                                    |                              |
-|                      | for KVM virtio. If omitted, the dev\_prefix attribute                            |                                    |                              |
-|                      | of the `Image <img_template>`__ will be used                                     |                                    |                              |
-+----------------------+----------------------------------------------------------------------------------+------------------------------------+------------------------------+
-| **TARGET**           | Device to map image disk. If set, it will overwrite                              | Optional                           | -                            |
-|                      | the default device mapping.                                                      |                                    |                              |
-+----------------------+----------------------------------------------------------------------------------+------------------------------------+------------------------------+
-| **DRIVER**           | Specific image mapping driver                                                    | Optional e.g.:                     | -                            |
-|                      |                                                                                  | ``raw``, ``qcow2``                 |                              |
-+----------------------+----------------------------------------------------------------------------------+------------------------------------+------------------------------+
-| **CACHE**            | Selects the cache mechanism for the disk. Values                                 | Optional                           | -                            |
-|                      | are ``default``, ``none``, ``writethrough``,                                     |                                    |                              |
-|                      | ``writeback``, ``directsync`` and ``unsafe``. More info in the                   |                                    |                              |
-|                      | `libvirt documentation <http://libvirt.org/formatdomain.html#elementsDevices>`__ |                                    |                              |
-+----------------------+----------------------------------------------------------------------------------+------------------------------------+------------------------------+
-| **READONLY**         | Set how the image is exposed by the hypervisor                                   | Optional e.g.: ``yes``, ``no``.    | -                            |
-|                      |                                                                                  | This attribute should only be used |                              |
-|                      |                                                                                  | for special storage configurations |                              |
-+----------------------+----------------------------------------------------------------------------------+------------------------------------+------------------------------+
-| **IO**               | Set IO policy. Values are ``threads``, ``native``                                | Optional (Needs qemu 1.1)          | -                            |
-+----------------------+----------------------------------------------------------------------------------+------------------------------------+------------------------------+
-| **TOTAL_BYTES_SEC**, | IO throttling attributes for the disk. They are specified in bytes or IOPS       |                                    | -                            |
-| **READ_BYTES_SEC**,  | (IO Operations) and can be specified for the total (read+write) or specific for  |                                    |                              |
-| **WRITE_BYTES_SEC**  | read or write. Total and read or write can not be used at the same time.         |                                    |                              |
-| **TOTAL_IOPS_SEC**,  | By default these parameters are only allowed to be used by oneadmin.             |                                    |                              |
-| **READ_IOPS_SEC**,   |                                                                                  |                                    |                              |
-| **WRITE_IOPS_SEC**   |                                                                                  | Optional (Needs qemu 1.1)          |                              |
-+----------------------+----------------------------------------------------------------------------------+------------------------------------+------------------------------+
+**Note** the hypervisor column states that the attribute is **O**\ ptional, **M**\ andatory, or ``-`` not supported for that hypervisor
+
++----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------+-------------------------------------------------+
+|  DISK Sub-Attribute  |                                                                                                                                                                                                   Description                                                                                                                                                                                                   |                KVM                 |                     vCenter                     |
++======================+=================================================================================================================================================================================================================================================================================================================================================================================================================+====================================+=================================================+
+| **IMAGE\_ID**        | ID of the Image to use                                                                                                                                                                                                                                                                                                                                                                                          | **Mandatory** (no IMAGE)           | **Mandatory** (no IMAGE)                        |
++----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------+-------------------------------------------------+
+| **IMAGE**            | Name of the Image to use                                                                                                                                                                                                                                                                                                                                                                                        | **Mandatory** (no IMAGE\_ID)       | **Mandatory** (no IMAGE\_ID)                    |
++----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------+-------------------------------------------------+
+| **IMAGE\_UID**       | To select the IMAGE of a given user by her ID                                                                                                                                                                                                                                                                                                                                                                   | Optional                           | Optional                                        |
++----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------+-------------------------------------------------+
+| **IMAGE\_UNAME**     | To select the IMAGE of a given user by her NAME                                                                                                                                                                                                                                                                                                                                                                 | Optional                           | Optional                                        |
++----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------+-------------------------------------------------+
+| **DEV\_PREFIX**      | Prefix for the emulated device this image will be                                                                                                                                                                                                                                                                                                                                                               | Optional                           | Optional                                        |
+|                      | mounted at. For instance, ``hd``, ``sd``, or ``vd``                                                                                                                                                                                                                                                                                                                                                             |                                    |                                                 |
+|                      | for KVM virtio. If omitted, the dev\_prefix attribute                                                                                                                                                                                                                                                                                                                                                           |                                    |                                                 |
+|                      | of the `Image <img_template>`__ will be used                                                                                                                                                                                                                                                                                                                                                                    |                                    |                                                 |
++----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------+-------------------------------------------------+
+| **TARGET**           | Device to map image disk. If set, it will overwrite                                                                                                                                                                                                                                                                                                                                                             | Optional                           | -                                               |
+|                      | the default device mapping.                                                                                                                                                                                                                                                                                                                                                                                     |                                    |                                                 |
++----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------+-------------------------------------------------+
+| **DRIVER**           | Specific image mapping driver                                                                                                                                                                                                                                                                                                                                                                                   | Optional e.g.:                     | -                                               |
+|                      |                                                                                                                                                                                                                                                                                                                                                                                                                 | ``raw``, ``qcow2``                 |                                                 |
++----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------+-------------------------------------------------+
+| **CACHE**            | Selects the cache mechanism for the disk. Values                                                                                                                                                                                                                                                                                                                                                                | Optional                           | -                                               |
+|                      | are ``default``, ``none``, ``writethrough``,                                                                                                                                                                                                                                                                                                                                                                    |                                    |                                                 |
+|                      | ``writeback``, ``directsync`` and ``unsafe``. More info in the                                                                                                                                                                                                                                                                                                                                                  |                                    |                                                 |
+|                      | `libvirt documentation <http://libvirt.org/formatdomain.html#elementsDevices>`__                                                                                                                                                                                                                                                                                                                                |                                    |                                                 |
++----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------+-------------------------------------------------+
+| **READONLY**         | Set how the image is exposed by the hypervisor                                                                                                                                                                                                                                                                                                                                                                  | Optional e.g.: ``yes``, ``no``.    | -                                               |
+|                      |                                                                                                                                                                                                                                                                                                                                                                                                                 | This attribute should only be used |                                                 |
+|                      |                                                                                                                                                                                                                                                                                                                                                                                                                 | for special storage configurations |                                                 |
++----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------+-------------------------------------------------+
+| **IO**               | Set IO policy. Values are ``threads``, ``native``                                                                                                                                                                                                                                                                                                                                                               | Optional (Needs qemu 1.1)          | -                                               |
++----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------+-------------------------------------------------+
+| **TOTAL_BYTES_SEC**, | IO throttling attributes for the disk. They are specified in bytes or IOPS                                                                                                                                                                                                                                                                                                                                      |                                    | -                                               |
+| **READ_BYTES_SEC**,  | (IO Operations) and can be specified for the total (read+write) or specific for                                                                                                                                                                                                                                                                                                                                 |                                    |                                                 |
+| **WRITE_BYTES_SEC**  | read or write. Total and read or write can not be used at the same time.                                                                                                                                                                                                                                                                                                                                        |                                    |                                                 |
+| **TOTAL_IOPS_SEC**,  | By default these parameters are only allowed to be used by oneadmin.                                                                                                                                                                                                                                                                                                                                            |                                    |                                                 |
+| **READ_IOPS_SEC**,   |                                                                                                                                                                                                                                                                                                                                                                                                                 |                                    |                                                 |
+| **WRITE_IOPS_SEC**   |                                                                                                                                                                                                                                                                                                                                                                                                                 | Optional (Needs qemu 1.1)          |                                                 |
++----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------+-------------------------------------------------+
+| ``ADAPTER_TYPE``     | Possible values (careful with the case): lsiLogic, ide, busLogic.                                                                                                                                                                                                                                                                                                                                               | -                                  | **Mandatory** (can be inherited from Datastore) |
+|                      | More information `in the VMware documentation <http://pubs.vmware.com/vsphere-60/index.jsp#com.vmware.wssdk.apiref.doc/vim.VirtualDiskManager.VirtualDiskAdapterType.html>`__                                                                                                                                                                                                                                   |                                    |                                                 |
++----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------+-------------------------------------------------+
+| ``DISK_TYPE``        | The type of disk has implications on performance and occupied space. Values (careful with the case): delta,eagerZeroedThick,flatMonolithic,preallocated,raw,rdm,rdmp,seSparse,sparse2Gb,sparseMonolithic,thick,thick2Gb,thin. More information `in the VMware documentation <http://pubs.vmware.com/vsphere-60/index.jsp?topic=%2Fcom.vmware.wssdk.apiref.doc%2Fvim.VirtualDiskManager.VirtualDiskType.html>`__ | -                                  | **Mandatory** (can be inherited from Datastore) |
++----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------+-------------------------------------------------+
+
 
 .. _template_volatile_disks_section:
 
 
 Volatile DISKS
---------------
+--------------------------------------------------------------------------------
 
 +----------------------+----------------------------------------------------------------------------------+---------------------------------+---------+
 |  DISK Sub-Attribute  |                                   Description                                    |               KVM               | vCenter |
@@ -316,7 +326,7 @@ Volatile DISKS
 .. _template_disks_device_mapping:
 
 Disks Device Mapping
---------------------
+--------------------------------------------------------------------------------
 
 If the TARGET attribute is not set for a disk, OpenNebula will automatically assign it using the following precedence, starting with ``dev_prefix + a``:
 
@@ -332,7 +342,7 @@ You can find a complete description of the contextualization features in the :re
 The default device prefix ``sd`` can be changed to ``hd`` or other prefix that suits your virtualization hypervisor requirements. You can find more information in the :ref:`daemon configuration guide <oned_conf>`.
 
 An Example
-----------
+--------------------------------------------------------------------------------
 
 This a sample section for disks. There are four disks using the image repository, and two volatile ones. Note that ``fs`` and ``swap`` are generated on-the-fly:
 
@@ -369,7 +379,7 @@ Because this VM did not declare a CONTEXT or any disk using a CDROM Image, the f
 .. _template_network_section:
 
 Network Section
-===============
+================================================================================
 
 +---------------------+----------------------------------------------------------------------------------------------------------------------------------------+--------------------------------+--------------------------------+
 |  NIC Sub-Attribute  |                                                              Description                                                               |              KVM               |            vCenter             |
@@ -412,15 +422,6 @@ For more information on setting up virtual networks please check the :ref:`Manag
 
 .. _nic_default_template:
 
-Deprecated Attributes
---------------------------------------------------------------------------------
-
-Deprecated in OpenNebula 5.0:
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* **WHITE\_PORTS\_TCP**, **BLACK\_PORTS\_TCP**, **WHITE\_PORTS\_UDP**, **BLACK\_PORTS\_UDP**, **ICMP**: Use Security Groups instead. Note that for backwards compatibility reasons these attributes will still be honored, however users should deprecate them.
-
-
 Network Defaults
 --------------------------------------------------------------------------------
 
@@ -434,7 +435,7 @@ You can define a ``NIC_DEFAULT`` attribute with values that will be copied to ea
 
 
 I/O Devices Section
-===================
+================================================================================
 
 The following I/O interfaces can be defined for a VM:
 
@@ -474,7 +475,7 @@ Example:
 .. _template_context:
 
 Context Section
-===============
+================================================================================
 
 Context information is passed to the Virtual Machine via an ISO mounted as a partition. This information can be defined in the VM template in the optional section called Context, with the following attributes:
 
@@ -640,7 +641,7 @@ Example:
 .. _template_placement_section:
 
 Placement Section
-=================
+================================================================================
 
 The following attributes sets placement constraints and preferences for the VM, valid for all hypervisors:
 
@@ -771,7 +772,7 @@ More information in the :ref:`Azure Driver Section <azg>`:
 .. _template_requirement_expression_syntax:
 
 Predefined Host Attributes
------------------------------
+--------------------------------------------------------------------------------
 
 There are some predefined Host attributes that can be used in the requirements and rank expressions, valid for all hypervisors:
 
@@ -806,7 +807,7 @@ You can execute ``onehost show <id> -x`` to see all the attributes and their val
 .. note:: Check the :ref:`Monitoring Subsystem <devel-im>` guide to find out how to extend the information model and add any information probe to the Hosts.
 
 Requirement Expression Syntax
------------------------------
+--------------------------------------------------------------------------------
 
 The syntax of the requirement expressions is defined as:
 
@@ -867,7 +868,7 @@ For example, if you have a custom probe that generates a MACS attribute for the 
     SCHED_REQUIREMENTS = "MAC=\"$NIC[MAC]\""
 
 Rank Expression Syntax
-----------------------
+--------------------------------------------------------------------------------
 
 The syntax of the rank expressions is defined as:
 
@@ -902,7 +903,7 @@ Examples:
 .. _template_raw_section:
 
 RAW Section
-===========
+================================================================================
 
 This optional section of the VM template is used whenever the need to pass special attributes to the underlying hypervisor arises. Anything placed in the data attribute gets passed straight to the hypervisor, unmodified.
 
@@ -919,7 +920,7 @@ This optional section of the VM template is used whenever the need to pass speci
 .. _template_restricted_attributes:
 
 Restricted Attributes
-=====================
+================================================================================
 
 All the **default** restricted attributes to users in the oneadmin group are summarized in the following list:
 
@@ -945,7 +946,7 @@ These attributes can be configured in :ref:`oned.conf <oned_conf>`.
 .. _template_user_inputs:
 
 User Inputs
-===========
+================================================================================
 
 ``USER_INPUTS`` provides the template creator with the possibility to dynamically ask the user instantiating the template for dynamic values that must be defined.
 
