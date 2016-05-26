@@ -1,8 +1,8 @@
 .. _vnet_template:
 
-==========================
+================================================================================
 Virtual Network Definition
-==========================
+================================================================================
 
 This page describes how to define a new Virtual Network. A Virtual Network includes three different aspects:
 
@@ -10,47 +10,50 @@ This page describes how to define a new Virtual Network. A Virtual Network inclu
 * Address Range
 * Configuration attributes for the guests
 
-.. note:: When writting a Virtual Network template in a file just follows the same syntax as the :ref:`VM template <template>`.
+.. note:: When writing a Virtual Network template in a file just follows the same syntax as the :ref:`VM template <template>`.
 
 Physical Network Attributes
-===========================
+================================================================================
 
 It defines the **underlying networking infrastructure** that will support the Virtual Network, such as the VLAN ID or the hypervisor interface to bind the Virtual Network.
 
-+--------------+-----------------------------------------------------+---------------------+-------------+
-| Attribute    |                     Description                     |  Value  | Mandatory |    Drivers  |
-+==============+=====================================================+=========+===========+=============+
-| **NAME**     | Name of the Virtual Network                         | String  | YES       |             |
-+--------------+-----------------------------------------------------+---------+-----------+-------------+
-| **VN_MAD**   | The network driver to implement the network         | 802.1Q  | YES       |             |
-|              |                                                     | ebtables|           |             |
-|              |                                                     | fw      |           |             |
-|              |                                                     | ovswtich|           |             |
-|              |                                                     | vxlan   |           |             |
-|              |                                                     | dummy   |           |             |
-+--------------+-----------------------------------------------------+---------+-----------+-------------+
-| **BRIDGE**   | Device to attach the virtual machines to,           | String  | YES for   | dummy       |
-|              | depending on the network driver it may refer to     |         | dummy     | 802.1Q      |
-|              | different technologies or require host setups.      |         | ovswtich  | vxlan       |
-|              |                                                     |         | ebtables  | ovswicth    |
-|              |                                                     |         | fw        | ebtables    |
-|              |                                                     |         |           | fw          |
-+--------------+-----------------------------------------------------+---------+-----------+-------------+
-| **VLAN\_ID** | Identifier for the VLAN                             | Integer | NO        | 802.1Q      |
-|              |                                                     |         |           | vxlan       |
-|              |                                                     |         |           | ovswtich    |
-+--------------+-----------------------------------------------------+---------+-----------+-------------+
-| **PHYDEV**   | Name of the physical network device that will be    | String  | YES       | 802.1Q      |
-|              | attached to the bridge.                             |         |           | vxlan       |
-+--------------+-----------------------------------------------------+---------+-----------+-------------+
++--------------+--------------------------------------------------+----------+-----------+----------+
+|  Attribute   |                   Description                    |  Value   | Mandatory | Drivers  |
++==============+==================================================+==========+===========+==========+
+| **NAME**     | Name of the Virtual Network                      | String   | YES       | All      |
++--------------+--------------------------------------------------+----------+-----------+----------+
+| **VN_MAD**   | The network driver to implement the network      | 802.1Q   | YES       | All      |
+|              |                                                  | ebtables |           |          |
+|              |                                                  | fw       |           |          |
+|              |                                                  | ovswtich |           |          |
+|              |                                                  | vxlan    |           |          |
+|              |                                                  | vcenter  |           |          |
+|              |                                                  | dummy    |           |          |
++--------------+--------------------------------------------------+----------+-----------+----------+
+| **BRIDGE**   | Device to attach the virtual machines to,        | String   | YES for   | dummy    |
+|              | depending on the network driver it may refer to  |          | dummy     | 802.1Q   |
+|              | different technologies or require host setups.   |          | ovswtich  | vxlan    |
+|              |                                                  |          | ebtables  | ovswicth |
+|              |                                                  |          | fw        | ebtables |
+|              |                                                  |          | vcenter   | fw       |
+|              |                                                  |          |           | vcenter  |
++--------------+--------------------------------------------------+----------+-----------+----------+
+| **VLAN\_ID** | Identifier for the VLAN                          | Integer  | NO        | 802.1Q   |
+|              |                                                  |          |           | vxlan    |
+|              |                                                  |          |           | ovswtich |
+|              |                                                  |          |           | vcenter  |
++--------------+--------------------------------------------------+----------+-----------+----------+
+| **PHYDEV**   | Name of the physical network device that will be | String   | YES       | 802.1Q   |
+|              | attached to the bridge.                          |          |           | vxlan    |
++--------------+--------------------------------------------------+----------+-----------+----------+
 
 The Address Range
-=================
+================================================================================
 
 .. _vnet_template_ar4:
 
 IPv4 Address Range
-------------------
+--------------------------------------------------------------------------------
 
 +-------------+-----------------------------------------------------+-----------+
 | Attribute   |                     Description                     | Mandatory |
@@ -69,7 +72,7 @@ IPv4 Address Range
 .. _vnet_template_ar6:
 
 IPv6 Address Range
-------------------
+--------------------------------------------------------------------------------
 
 +-------------------+-----------------------------------------------------+-----------+
 | Attribute         |                     Description                     | Mandatory |
@@ -89,7 +92,7 @@ IPv6 Address Range
 .. _vnet_template_ar46:
 
 Dual IPv4-IPv6 Address Range
-----------------------------
+--------------------------------------------------------------------------------
 
 +-------------------+-----------------------------------------------------+-----------+
 | Attribute         |                     Description                     | Mandatory |
@@ -113,7 +116,7 @@ Dual IPv4-IPv6 Address Range
 .. _vnet_template_eth:
 
 Ethernet Address Range
-----------------------
+--------------------------------------------------------------------------------
 
 +-------------------+-----------------------------------------------------+-----------+
 | Attribute         |                     Description                     | Mandatory |
@@ -129,7 +132,7 @@ Ethernet Address Range
 .. _vnet_template_context:
 
 Contextualization Attributes
-============================
+================================================================================
 
 +--------------------------+-------------------------------------------------------+
 |        Attribute         |                      Description                      |
@@ -155,13 +158,13 @@ Contextualization Attributes
 .. _vnet_template_example:
 
 Virtual Network Definition Examples
-===================================
+================================================================================
 
 Sample IPv4 VNet:
 
 .. code::
 
-    # Confgiuration attributes (dummy driver)
+    # Configuration attributes (dummy driver)
     NAME        = "Private Network"
     DESCRIPTION = "A private network for VM inter-communication"
 
