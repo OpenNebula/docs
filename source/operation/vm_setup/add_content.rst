@@ -303,7 +303,7 @@ Install within OpenNebula
 If you are using KVM hypervisor you can do the installations using OpenNebula. Here are the steps to do it:
 
 Step 1. Add the Installation Medium
-----------------------------------
+-----------------------------------
 
 You can add the installation CD to OpenNebula uploading the image using Sunstone and setting its type to CDROM or using the command line. For example, to add the CentOS ISO file you can use this command:
 

@@ -7,7 +7,7 @@ CentOS/RHEL
 
 .. prompt:: bash # auto
 
-    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v4.14.4/one-context-ec2_4.14.4.rpm
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v4.14.4/one-context_4.14.4.rpm
 
 Debian/Ubuntu
 ~~~~~~~~~~~~~
