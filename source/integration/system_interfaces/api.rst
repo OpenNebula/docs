@@ -40,15 +40,15 @@ The Error Code will contain one of the following values:
 | 0x2000 | INTERNAL       | Internal error, e.g. the resource could not be loaded from the DB.    |
 +--------+----------------+-----------------------------------------------------------------------+
 
-.. warning:: All methods expect a session string associated to the connected user as the first parameter. It has to be formed with the contents of the ONE\_AUTH file, which will be ``<username>:<password>`` with the default 'core' auth driver.
+.. note:: All methods expect a session string associated to the connected user as the first parameter. It has to be formed with the contents of the ONE\_AUTH file, which will be ``<username>:<password>`` with the default 'core' auth driver.
 
-.. warning:: Each XML-RPC request has to be authenticated and authorized. See the :ref:`Auth Subsystem documentation <auth_overview>` for more information.
+.. note:: Each XML-RPC request has to be authenticated and authorized. See the :ref:`Auth Subsystem documentation <auth_overview>` for more information.
 
 The information strings returned by the ``one.*.info`` methods are XML-formatted. The complete XML Schemas (XSD) reference is included at the end of this page. We encourage you to use the ``-x`` option of the :ref:`command line interface <cli>` to collect sample outputs from your own infrastructure.
 
 The methods that accept XML templates require the root element to be TEMPLATE. For instance, this template:
 
-.. code::
+.. code-block:: none
 
     NAME = abc
     MEMORY = 1024
@@ -56,7 +56,7 @@ The methods that accept XML templates require the root element to be TEMPLATE. F
 
 Can be also given to OpenNebula with the following XML:
 
-.. code::
+.. code-block:: xml
 
     <TEMPLATE>
       <NAME>abc</NAME>
@@ -76,57 +76,76 @@ onevm
 |    onevm command     |     XML-RPC Method        |   Auth. Request   |
 +======================+===========================+===================+
 | deploy               | one.vm.deploy             | VM:ADMIN          |
+|                      |                           |                   |
 |                      |                           | HOST:MANAGE       |
 +----------------------+---------------------------+-------------------+
-| delete               | one.vm.action             | VM:MANAGE         |
-| boot                 |                           |                   |
-| shutdown             |                           |                   |
+| boot                 | one.vm.action             | VM:MANAGE         |
+|                      |                           |                   |
+| terminate            |                           |                   |
+|                      |                           |                   |
 | suspend              |                           |                   |
+|                      |                           |                   |
 | hold                 |                           |                   |
+|                      |                           |                   |
 | stop                 |                           |                   |
+|                      |                           |                   |
 | resume               |                           |                   |
+|                      |                           |                   |
 | release              |                           |                   |
+|                      |                           |                   |
 | poweroff             |                           |                   |
+|                      |                           |                   |
 | reboot               |                           |                   |
 +----------------------+---------------------------+-------------------+
 | resched              | one.vm.action             | VM:ADMIN          |
+|                      |                           |                   |
 | unresched            |                           |                   |
 +----------------------+---------------------------+-------------------+
 | migrate              | one.vm.migrate            | VM:ADMIN          |
+|                      |                           |                   |
 |                      |                           | HOST:MANAGE       |
 +----------------------+---------------------------+-------------------+
 | disk-saveas          | one.vm.disksaveas         | VM:MANAGE         |
+|                      |                           |                   |
 |                      |                           | IMAGE:CREATE      |
 +----------------------+---------------------------+-------------------+
 | disk-snapshot-create | one.vm.disksnapshotcreate | VM:MANAGE         |
+|                      |                           |                   |
 |                      |                           | IMAGE:MANAGE      |
 +----------------------+---------------------------+-------------------+
 | disk-snapshot-delete | one.vm.disksnapshotdelete | VM:MANAGE         |
+|                      |                           |                   |
 |                      |                           | IMAGE:MANAGE      |
 +----------------------+---------------------------+-------------------+
 | disk-snapshot-revert | one.vm.disksnapshotrevert | VM:MANAGE         |
 +----------------------+---------------------------+-------------------+
 | disk-attach          | one.vm.attach             | VM:MANAGE         |
+|                      |                           |                   |
 |                      |                           | IMAGE:USE         |
 +----------------------+---------------------------+-------------------+
 | disk-detach          | one.vm.detach             | VM:MANAGE         |
 +----------------------+---------------------------+-------------------+
 | nic-attach           | one.vm.attachnic          | VM:MANAGE         |
+|                      |                           |                   |
 |                      |                           | NET:USE           |
 +----------------------+---------------------------+-------------------+
 | nic-detach           | one.vm.detachnic          | VM:MANAGE         |
 +----------------------+---------------------------+-------------------+
 | create               | one.vm.allocate           | VM:CREATE         |
+|                      |                           |                   |
 |                      |                           | IMAGE:USE         |
+|                      |                           |                   |
 |                      |                           | NET:USE           |
 +----------------------+---------------------------+-------------------+
 | show                 | one.vm.info               | VM:USE            |
 +----------------------+---------------------------+-------------------+
 | chown                | one.vm.chown              | VM:MANAGE         |
+|                      |                           |                   |
 | chgrp                |                           | [USER:MANAGE]     |
+|                      |                           |                   |
 |                      |                           | [GROUP:USE]       |
 +----------------------+---------------------------+-------------------+
-| chmod                | one.vm.chmod              | VM:<MANAGE\ADMIN> |
+| chmod                | one.vm.chmod              | VM:<MANAGE|ADMIN> |
 +----------------------+---------------------------+-------------------+
 | rename               | one.vm.rename             | VM:MANAGE         |
 +----------------------+---------------------------+-------------------+
@@ -143,49 +162,60 @@ onevm
 | recover              | one.vm.recover            | VM:ADMIN          |
 +----------------------+---------------------------+-------------------+
 | save                 | -- (ruby method)          | VM:MANAGE         |
+|                      |                           |                   |
 |                      |                           | IMAGE:CREATE      |
+|                      |                           |                   |
 |                      |                           | TEMPLATE:CREATE   |
++----------------------+---------------------------+-------------------+
+| updateconf           | one.vm.updateconf         | VM:MANAGE         |
 +----------------------+---------------------------+-------------------+
 | list                 | one.vmpool.info           | VM:USE            |
 | top                  |                           |                   |
 +----------------------+---------------------------+-------------------+
 
-.. warning:: The deploy action requires the user issuing the command to have VM:ADMIN rights. This user will usually be the scheduler with the oneadmin credentials.
+.. note::
 
-The scheduler deploys VMs to the Hosts over which the VM owner has MANAGE rights.
+    The **deploy** action requires the user issuing the command to have VM:ADMIN rights. This user will usually be the scheduler with the oneadmin credentials.
+
+    The scheduler deploys VMs to the Hosts over which the VM owner has MANAGE rights.
 
 onetemplate
 -----------
 
-+---------------------+--------------------------+------------------------+
-| onetemplate command |      XML-RPC Method      |     Auth. Request      |
-+=====================+==========================+========================+
-| update              | one.template.update      | TEMPLATE:MANAGE        |
-+---------------------+--------------------------+------------------------+
-| instantiate         | one.template.instantiate | TEMPLATE:USE           |
-|                     |                          | [IMAGE:USE]            |
-|                     |                          | [NET:USE]              |
-+---------------------+--------------------------+------------------------+
-| create              | one.template.allocate    | TEMPLATE:CREATE        |
-+---------------------+--------------------------+------------------------+
-| clone               | one.template.clone       | TEMPLATE:CREATE        |
-|                     |                          | TEMPLATE:USE           |
-+---------------------+--------------------------+------------------------+
-| delete              | one.template.delete      | TEMPLATE:MANAGE        |
-+---------------------+--------------------------+------------------------+
-| show                | one.template.info        | TEMPLATE:USE           |
-+---------------------+--------------------------+------------------------+
-| chown               | one.template.chown       | TEMPLATE:MANAGE        |
-| chgrp               |                          | [USER:MANAGE]          |
-|                     |                          | [GROUP:USE]            |
-+---------------------+--------------------------+------------------------+
-| chmod               | one.template.chmod       | TEMPLATE:<MANAGE\ADMIN |
-+---------------------+--------------------------+------------------------+
-| rename              | one.template.rename      | TEMPLATE:MANAGE        |
-+---------------------+--------------------------+------------------------+
-| list                | one.templatepool.info    | TEMPLATE:USE           |
-| top                 |                          |                        |
-+---------------------+--------------------------+------------------------+
++---------------------+--------------------------+-------------------------+
+| onetemplate command |      XML-RPC Method      |      Auth. Request      |
++=====================+==========================+=========================+
+| update              | one.template.update      | TEMPLATE:MANAGE         |
++---------------------+--------------------------+-------------------------+
+| instantiate         | one.template.instantiate | TEMPLATE:USE            |
+|                     |                          |                         |
+|                     |                          | [IMAGE:USE]             |
+|                     |                          |                         |
+|                     |                          | [NET:USE]               |
++---------------------+--------------------------+-------------------------+
+| create              | one.template.allocate    | TEMPLATE:CREATE         |
++---------------------+--------------------------+-------------------------+
+| clone               | one.template.clone       | TEMPLATE:CREATE         |
+|                     |                          |                         |
+|                     |                          | TEMPLATE:USE            |
++---------------------+--------------------------+-------------------------+
+| delete              | one.template.delete      | TEMPLATE:MANAGE         |
++---------------------+--------------------------+-------------------------+
+| show                | one.template.info        | TEMPLATE:USE            |
++---------------------+--------------------------+-------------------------+
+| chown               | one.template.chown       | TEMPLATE:MANAGE         |
+|                     |                          |                         |
+| chgrp               |                          | [USER:MANAGE]           |
+|                     |                          |                         |
+|                     |                          | [GROUP:USE]             |
++---------------------+--------------------------+-------------------------+
+| chmod               | one.template.chmod       | TEMPLATE:<MANAGE|ADMIN> |
++---------------------+--------------------------+-------------------------+
+| rename              | one.template.rename      | TEMPLATE:MANAGE         |
++---------------------+--------------------------+-------------------------+
+| list                | one.templatepool.info    | TEMPLATE:USE            |
+| top                 |                          |                         |
++---------------------+--------------------------+-------------------------+
 
 onehost
 -------
@@ -193,8 +223,11 @@ onehost
 +-----------------+-------------------+---------------+
 | onehost command |   XML-RPC Method  | Auth. Request |
 +=================+===================+===============+
-| enable          | one.host.enable   | HOST:ADMIN    |
+| enable          | one.host.status   | HOST:ADMIN    |
+|                 |                   |               |
 | disable         |                   |               |
+|                 |                   |               |
+| offline         |                   |               |
 +-----------------+-------------------+---------------+
 | update          | one.host.update   | HOST:ADMIN    |
 +-----------------+-------------------+---------------+
@@ -225,21 +258,27 @@ onecluster
 | update             | one.cluster.update       | CLUSTER:MANAGE  |
 +--------------------+--------------------------+-----------------+
 | addhost            | one.cluster.addhost      | CLUSTER:ADMIN   |
+|                    |                          |                 |
 |                    |                          | HOST:ADMIN      |
 +--------------------+--------------------------+-----------------+
 | delhost            | one.cluster.delhost      | CLUSTER:ADMIN   |
+|                    |                          |                 |
 |                    |                          | HOST:ADMIN      |
 +--------------------+--------------------------+-----------------+
 | adddatastore       | one.cluster.adddatastore | CLUSTER:ADMIN   |
+|                    |                          |                 |
 |                    |                          | DATASTORE:ADMIN |
 +--------------------+--------------------------+-----------------+
 | deldatastore       | one.cluster.deldatastore | CLUSTER:ADMIN   |
+|                    |                          |                 |
 |                    |                          | DATASTORE:ADMIN |
 +--------------------+--------------------------+-----------------+
 | addvnet            | one.cluster.addvnet      | CLUSTER:ADMIN   |
+|                    |                          |                 |
 |                    |                          | NET:ADMIN       |
 +--------------------+--------------------------+-----------------+
 | delvnet            | one.cluster.delvnet      | CLUSTER:ADMIN   |
+|                    |                          |                 |
 |                    |                          | NET:ADMIN       |
 +--------------------+--------------------------+-----------------+
 | rename             | one.cluster.rename       | CLUSTER:MANAGE  |
@@ -384,10 +423,12 @@ onevnet
 | show            | one.vn.info      | NET:USE            |
 +-----------------+------------------+--------------------+
 | chown           | one.vn.chown     | NET:MANAGE         |
+|                 |                  |                    |
 | chgrp           |                  | [USER:MANAGE]      |
+|                 |                  |                    |
 |                 |                  | [GROUP:USE]        |
 +-----------------+------------------+--------------------+
-| chmod           | one.vn.chmod     | NET:<MANAGE\ADMIN> |
+| chmod           | one.vn.chmod     | NET:<MANAGE|ADMIN> |
 +-----------------+------------------+--------------------+
 | rename          | one.vn.rename    | NET:MANAGE         |
 +-----------------+------------------+--------------------+
@@ -417,12 +458,15 @@ oneuser
 | quota           | one.user.quota       | USER:ADMIN                              |
 +-----------------+----------------------+-----------------------------------------+
 | chgrp           | one.user.chgrp       | USER:MANAGE                             |
+|                 |                      |                                         |
 |                 |                      | GROUP:USE                               |
 +-----------------+----------------------+-----------------------------------------+
 | addgroup        | one.user.addgroup    | USER:MANAGE                             |
+|                 |                      |                                         |
 |                 |                      | GROUP:MANAGE                            |
 +-----------------+----------------------+-----------------------------------------+
 | delgroup        | one.user.delgroup    | USER:MANAGE                             |
+|                 |                      |                                         |
 |                 |                      | GROUP:MANAGE                            |
 +-----------------+----------------------+-----------------------------------------+
 | encode          | --                   | --                                      |
@@ -456,7 +500,7 @@ onedatastore
 |                      |                        |                            |
 | chgrp                |                        | [GROUP:USE]                |
 +----------------------+------------------------+----------------------------+
-| chmod                | one.datastore.chmod    | DATASTORE:<MANAGE \ ADMIN> |
+| chmod                | one.datastore.chmod    | DATASTORE:<MANAGE | ADMIN> |
 +----------------------+------------------------+----------------------------+
 | enable               | one.datastore.enable   | DATASTORE:MANAGE           |
 |                      |                        |                            |
@@ -472,6 +516,7 @@ oneimage
 | oneimage command |    XML-RPC Method         |     Auth. Request      |
 +==================+===========================+========================+
 | persistent       | one.image.persistent      | IMAGE:MANAGE           |
+|                  |                           |                        |
 | nonpersistent    |                           |                        |
 +------------------+---------------------------+------------------------+
 | enable           | one.image.enable          | IMAGE:MANAGE           |
@@ -489,10 +534,13 @@ oneimage
 | update           | one.image.update          | IMAGE:MANAGE           |
 +------------------+---------------------------+------------------------+
 | create           | one.image.allocate        | IMAGE:CREATE           |
+|                  |                           |                        |
 |                  |                           | DATASTORE:USE          |
 +------------------+---------------------------+------------------------+
 | clone            | one.image.clone           | IMAGE:CREATE           |
+|                  |                           |                        |
 |                  |                           | IMAGE:USE              |
+|                  |                           |                        |
 |                  |                           | DATASTORE:USE          |
 +------------------+---------------------------+------------------------+
 | delete           | one.image.delete          | IMAGE:MANAGE           |
@@ -500,14 +548,17 @@ oneimage
 | show             | one.image.info            | IMAGE:USE              |
 +------------------+---------------------------+------------------------+
 | chown            | one.image.chown           | IMAGE:MANAGE           |
+|                  |                           |                        |
 | chgrp            |                           | [USER:MANAGE]          |
+|                  |                           |                        |
 |                  |                           | [GROUP:USE]            |
 +------------------+---------------------------+------------------------+
-| chmod            | one.image.chmod           | IMAGE:<MANAGE \ ADMIN> |
+| chmod            | one.image.chmod           | IMAGE:<MANAGE | ADMIN> |
 +------------------+---------------------------+------------------------+
 | rename           | one.image.rename          | IMAGE:MANAGE           |
 +------------------+---------------------------+------------------------+
 | list             | one.imagepool.info        | IMAGE:USE              |
+|                  |                           |                        |
 | top              |                           |                        |
 +------------------+---------------------------+------------------------+
 
@@ -541,17 +592,22 @@ onesecgroup
 | create              | one.secgroup.allocate | SECGROUP:CREATE           |
 +---------------------+-----------------------+---------------------------+
 | clone               | one.secgroup.clone    | SECGROUP:CREATE           |
+|                     |                       |                           |
 |                     |                       | SECGROUP:USE              |
 +---------------------+-----------------------+---------------------------+
 | delete              | one.secgroup.delete   | SECGROUP:MANAGE           |
 +---------------------+-----------------------+---------------------------+
 | chown               | one.secgroup.chown    | SECGROUP:MANAGE           |
+|                     |                       |                           |
 | chgrp               |                       | [USER:MANAGE]             |
+|                     |                       |                           |
 |                     |                       | [GROUP:USE]               |
 +---------------------+-----------------------+---------------------------+
-| chmod               | one.secgroup.chmod    | SECGROUP:<MANAGE \ ADMIN> |
+| chmod               | one.secgroup.chmod    | SECGROUP:<MANAGE | ADMIN> |
 +---------------------+-----------------------+---------------------------+
 | update              | one.secgroup.update   | SECGROUP:MANAGE           |
++---------------------+-----------------------+---------------------------+
+| commit              | one.secgroup.commit   | SECGROUP:MANAGE           |
 +---------------------+-----------------------+---------------------------+
 | rename              | one.secgroup.rename   | SECGROUP:MANAGE           |
 +---------------------+-----------------------+---------------------------+
@@ -596,7 +652,7 @@ oneshowback
 .. _document_api:
 
 documents
----------
+--------------------------------------------------------------------------------
 
 +-----------------------+---------------------------+
 |     XML-RPC Method    |       Auth. Request       |
@@ -605,15 +661,21 @@ documents
 +-----------------------+---------------------------+
 | one.document.allocate | DOCUMENT:CREATE           |
 +-----------------------+---------------------------+
+| one.document.clone    | DOCUMENT:CREATE           |
+|                       |                           |
+|                       | DOCUMENT:USE              |
++-----------------------+---------------------------+
 | one.document.delete   | DOCUMENT:MANAGE           |
 +-----------------------+---------------------------+
 | one.document.info     | DOCUMENT:USE              |
 +-----------------------+---------------------------+
 | one.document.chown    | DOCUMENT:MANAGE           |
+|                       |                           |
 |                       | [USER:MANAGE]             |
+|                       |                           |
 |                       | [GROUP:USE]               |
 +-----------------------+---------------------------+
-| one.document.chmod    | DOCUMENT:<MANAGE \ ADMIN> |
+| one.document.chmod    | DOCUMENT:<MANAGE | ADMIN> |
 +-----------------------+---------------------------+
 | one.document.rename   | DOCUMENT:MANAGE           |
 +-----------------------+---------------------------+
@@ -664,21 +726,23 @@ one.template.clone
 -  **Description**: Clones an existing virtual machine template.
 -  **Parameters**
 
-+--------+--------------+-----------------------------------------------+
-| Type   | Data Type    | Description                                   |
-+========+==============+===============================================+
-| IN     | String       | The session string.                           |
-+--------+--------------+-----------------------------------------------+
-| IN     | Int          | The ID of the template to be cloned.          |
-+--------+--------------+-----------------------------------------------+
-| IN     | String       | Name for the new template.                    |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not   |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int/String   | The new template ID / The error string.       |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int          | Error code.                                   |
-+--------+--------------+-----------------------------------------------+
++------+------------+----------------------------------------------------------------------------------------------------+
+| Type | Data Type  |                                            Description                                             |
++======+============+====================================================================================================+
+| IN   | String     | The session string.                                                                                |
++------+------------+----------------------------------------------------------------------------------------------------+
+| IN   | Int        | The ID of the template to be cloned.                                                               |
++------+------------+----------------------------------------------------------------------------------------------------+
+| IN   | String     | Name for the new template.                                                                         |
++------+------------+----------------------------------------------------------------------------------------------------+
+| IN   | Boolean    | true to clone the template plus any image defined in DISK. The new IMAGE_ID is set into each DISK. |
++------+------------+----------------------------------------------------------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not                                                        |
++------+------------+----------------------------------------------------------------------------------------------------+
+| OUT  | Int/String | The new template ID / The error string.                                                            |
++------+------------+----------------------------------------------------------------------------------------------------+
+| OUT  | Int        | Error code.                                                                                        |
++------+------------+----------------------------------------------------------------------------------------------------+
 
 one.template.delete
 -------------------
@@ -686,19 +750,21 @@ one.template.delete
 -  **Description**: Deletes the given template from the pool.
 -  **Parameters**
 
-+--------+--------------+-----------------------------------------------+
-| Type   | Data Type    | Description                                   |
-+========+==============+===============================================+
-| IN     | String       | The session string.                           |
-+--------+--------------+-----------------------------------------------+
-| IN     | Int          | The object ID.                                |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Boolean      | true or false whenever is successful or not   |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int/String   | The resource ID / The error string.           |
-+--------+--------------+-----------------------------------------------+
-| OUT    | Int          | Error code.                                   |
-+--------+--------------+-----------------------------------------------+
++------+------------+-------------------------------------------------------------+
+| Type | Data Type  |                         Description                         |
++======+============+=============================================================+
+| IN   | String     | The session string.                                         |
++------+------------+-------------------------------------------------------------+
+| IN   | Int        | The object ID.                                              |
++------+------------+-------------------------------------------------------------+
+| IN   | Boolean    | true to delete the template plus any image defined in DISK. |
++------+------------+-------------------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not                 |
++------+------------+-------------------------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.                         |
++------+------------+-------------------------------------------------------------+
+| OUT  | Int        | Error code.                                                 |
++------+------------+-------------------------------------------------------------+
 
 one.template.instantiate
 ------------------------
@@ -719,6 +785,8 @@ one.template.instantiate
 +------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
 | IN   | String     | A string containing an extra template to be merged with the one being instantiated. It can be empty. Syntax can be the usual ``attribute=value`` or XML. |
 +------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| IN   | Boolean    | true to create a private persistent copy of the template plus any image defined in DISK, and instantiate that copy.                                      |
++------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
 | OUT  | Boolean    | true or false whenever is successful or not                                                                                                              |
 +------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
 | OUT  | Int/String | The new virtual machine ID / The error string.                                                                                                           |
@@ -728,7 +796,7 @@ one.template.instantiate
 
 Sample template string:
 
-.. code::
+.. code-block:: none
 
     MEMORY=4096\nCPU=4\nVCPU=4
 
@@ -764,37 +832,39 @@ one.template.chmod
 -  **Description**: Changes the permission bits of a template.
 -  **Parameters**
 
-+------+------------+-----------------------------------------------------+
-| Type | Data Type  |                     Description                     |
-+======+============+=====================================================+
-| IN   | String     | The session string.                                 |
-+------+------------+-----------------------------------------------------+
-| IN   | Int        | The object ID.                                      |
-+------+------------+-----------------------------------------------------+
-| IN   | Int        | USER USE bit. If set to -1, it will not change.     |
-+------+------------+-----------------------------------------------------+
-| IN   | Int        | USER MANAGE bit. If set to -1, it will not change.  |
-+------+------------+-----------------------------------------------------+
-| IN   | Int        | USER ADMIN bit. If set to -1, it will not change.   |
-+------+------------+-----------------------------------------------------+
-| IN   | Int        | GROUP USE bit. If set to -1, it will not change.    |
-+------+------------+-----------------------------------------------------+
-| IN   | Int        | GROUP MANAGE bit. If set to -1, it will not change. |
-+------+------------+-----------------------------------------------------+
-| IN   | Int        | GROUP ADMIN bit. If set to -1, it will not change.  |
-+------+------------+-----------------------------------------------------+
-| IN   | Int        | OTHER USE bit. If set to -1, it will not change.    |
-+------+------------+-----------------------------------------------------+
-| IN   | Int        | OTHER MANAGE bit. If set to -1, it will not change. |
-+------+------------+-----------------------------------------------------+
-| IN   | Int        | OTHER ADMIN bit. If set to -1, it will not change.  |
-+------+------------+-----------------------------------------------------+
-| OUT  | Boolean    | true or false whenever is successful or not         |
-+------+------------+-----------------------------------------------------+
-| OUT  | Int/String | The resource ID / The error string.                 |
-+------+------------+-----------------------------------------------------+
-| OUT  | Int        | Error code.                                         |
-+------+------------+-----------------------------------------------------+
++------+------------+------------------------------------------------------------+
+| Type | Data Type  |                        Description                         |
++======+============+============================================================+
+| IN   | String     | The session string.                                        |
++------+------------+------------------------------------------------------------+
+| IN   | Int        | The object ID.                                             |
++------+------------+------------------------------------------------------------+
+| IN   | Int        | USER USE bit. If set to -1, it will not change.            |
++------+------------+------------------------------------------------------------+
+| IN   | Int        | USER MANAGE bit. If set to -1, it will not change.         |
++------+------------+------------------------------------------------------------+
+| IN   | Int        | USER ADMIN bit. If set to -1, it will not change.          |
++------+------------+------------------------------------------------------------+
+| IN   | Int        | GROUP USE bit. If set to -1, it will not change.           |
++------+------------+------------------------------------------------------------+
+| IN   | Int        | GROUP MANAGE bit. If set to -1, it will not change.        |
++------+------------+------------------------------------------------------------+
+| IN   | Int        | GROUP ADMIN bit. If set to -1, it will not change.         |
++------+------------+------------------------------------------------------------+
+| IN   | Int        | OTHER USE bit. If set to -1, it will not change.           |
++------+------------+------------------------------------------------------------+
+| IN   | Int        | OTHER MANAGE bit. If set to -1, it will not change.        |
++------+------------+------------------------------------------------------------+
+| IN   | Int        | OTHER ADMIN bit. If set to -1, it will not change.         |
++------+------------+------------------------------------------------------------+
+| IN   | Boolean    | true to chmod the template plus any image defined in DISK. |
++------+------------+------------------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not                |
++------+------------+------------------------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.                        |
++------+------------+------------------------------------------------------------+
+| OUT  | Int        | Error code.                                                |
++------+------------+------------------------------------------------------------+
 
 one.template.chown
 ------------------
@@ -973,23 +1043,21 @@ one.vm.action
 
 The action String must be one of the following:
 
-* **shutdown**
-* **shutdown-hard**
+* **terminate-hard**
+* **terminate**
+* **undeploy-hard**
+* **undeploy**
+* **poweroff-hard**
+* **poweroff**
+* **reboot-hard**
+* **reboot**
 * **hold**
 * **release**
 * **stop**
 * **suspend**
 * **resume**
-* **delete**
-* **delete-recreate**
-* **reboot**
-* **reboot-hard**
 * **resched**
 * **unresched**
-* **poweroff**
-* **poweroff-hard**
-* **undeploy**
-* **undeploy-hard**
 
 one.vm.migrate
 --------------
@@ -1145,7 +1213,7 @@ one.vm.attach
 
 Sample DISK vector attribute:
 
-.. code::
+.. code-block:: none
 
     DISK=[IMAGE_ID=42, TYPE=RBD, DEV_PREFIX=vd, SIZE=123456, TARGET=vdc]
 
@@ -1413,6 +1481,48 @@ one.vm.update
 | OUT  | Int        | Error code.                                                                                      |
 +------+------------+--------------------------------------------------------------------------------------------------+
 
+one.vm.updateconf
+--------------------------------------------------------------------------------
+
+-  **Description**: Updates (appends) a set of supported configuration attributes in the VM template
+-  **Parameters**
+
++------+------------+--------------------------------------------------------------------------------------------------+
+| Type | Data Type  |                                           Description                                            |
++======+============+==================================================================================================+
+| IN   | String     | The session string.                                                                              |
++------+------------+--------------------------------------------------------------------------------------------------+
+| IN   | Int        | The object ID.                                                                                   |
++------+------------+--------------------------------------------------------------------------------------------------+
+| IN   | String     | The new template contents. Syntax can be the usual ``attribute=value`` or XML.                   |
++------+------------+--------------------------------------------------------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not                                                      |
++------+------------+--------------------------------------------------------------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.                                                              |
++------+------------+--------------------------------------------------------------------------------------------------+
+| OUT  | Int        | Error code.                                                                                      |
++------+------------+--------------------------------------------------------------------------------------------------+
+
+The supported attributes are:
+
++--------------+-------------------------------------------------------------------------+
+|  Attribute   |                              Sub-attributes                             |
++==============+=========================================================================+
+| ``OS``       | ``ARCH``, ``MACHINE``, ``KERNEL``, ``INITRD``, ``BOOTLOADER``, ``BOOT`` |
++--------------+-------------------------------------------------------------------------+
+| ``FEATURES`` | ``ACPI``, ``PAE``, ``APIC``, ``LOCALTIME``, ``HYPERV``, ``GUEST_AGENT`` |
++--------------+-------------------------------------------------------------------------+
+| ``INPUT``    | ``TYPE``, ``BUS``                                                       |
++--------------+-------------------------------------------------------------------------+
+| ``GRAPHICS`` | ``TYPE``, ``LISTEN``, ``PASSWD``, ``KEYMAP``                            |
++--------------+-------------------------------------------------------------------------+
+| ``RAW``      | ``DATA``, ``DATA_VMX``, ``TYPE``                                        |
++--------------+-------------------------------------------------------------------------+
+| ``CONTEXT``  | Any value. **Variable substitution will be made**                       |
++--------------+-------------------------------------------------------------------------+
+
+.. note:: Visit the :ref:`Virtual Machine Template reference <template>` for a complete description of each attribute
+
 one.vm.recover
 --------------
 
@@ -1481,7 +1591,7 @@ The monitoring information returned is a list of VM elements. Each VM element co
 
 For example:
 
-.. code::
+.. code-block:: xml
 
     <MONITORING_DATA>
         <VM>
@@ -1557,6 +1667,10 @@ The state filter can be one of the following:
 +-------+---------------------------+
 |     9 | UNDEPLOYED                |
 +-------+---------------------------+
+|    10 | CLONING                   |
++-------+---------------------------+
+|    11 | CLONING_FAILURE           |
++-------+---------------------------+
 
 .. warning::
 
@@ -1590,7 +1704,7 @@ See :ref:`one.vm.monitoring <api_onevmmonitoring>`.
 
 Sample output:
 
-.. code::
+.. code-block:: xml
 
     <MONITORING_DATA>
         <VM>
@@ -1673,7 +1787,7 @@ one.vmpool.showback
 
 The XML output will be similar to this one:
 
-.. code::
+.. code-block:: xml
 
     <SHOWBACK_RECORDS>
 
@@ -1746,9 +1860,7 @@ one.host.allocate
 +------+------------+----------------------------------------------------------------------------------------------------------------------------------------------+
 | IN   | String     | The name of the virtual machine manager mad name (vmm\_mad\_name), this values are taken from the oned.conf with the tag name VM\_MAD (name) |
 +------+------------+----------------------------------------------------------------------------------------------------------------------------------------------+
-| IN   | String     | The name of the virtual network manager mad name (vnm\_mad\_name), see the :ref:`Networking Subsystem documentation <nm>`                    |
-+------+------------+----------------------------------------------------------------------------------------------------------------------------------------------+
-| IN   | Int        | The cluster ID. If it is -1, this host won't be added to any cluster.                                                                        |
+| IN   | Int        | The cluster ID. If it is -1, the default one will be used.                                                                                   |
 +------+------------+----------------------------------------------------------------------------------------------------------------------------------------------+
 | OUT  | Boolean    | true or false whenever is successful or not                                                                                                  |
 +------+------------+----------------------------------------------------------------------------------------------------------------------------------------------+
@@ -1777,27 +1889,34 @@ one.host.delete
 | OUT  | Int        | Error code.                                 |
 +------+------------+---------------------------------------------+
 
-one.host.enable
+one.host.status
 ---------------
 
--  **Description**: Enables or disables the given host
+-  **Description**: Sets the status of the host
 -  **Parameters**
 
-+------+------------+------------------------------------------------------------+
-| Type | Data Type  |                        Description                         |
-+======+============+============================================================+
-| IN   | String     | The session string.                                        |
-+------+------------+------------------------------------------------------------+
-| IN   | Int        | The Host ID.                                               |
-+------+------------+------------------------------------------------------------+
-| IN   | Boolean    | Set it to true/false to enable or disable the target Host. |
-+------+------------+------------------------------------------------------------+
-| OUT  | Boolean    | true or false whenever is successful or not                |
-+------+------------+------------------------------------------------------------+
-| OUT  | Int/String | The resource ID / The error string.                        |
-+------+------------+------------------------------------------------------------+
-| OUT  | Int        | Error code.                                                |
-+------+------------+------------------------------------------------------------+
++------+------------+---------------------------------------------+
+| Type | Data Type  |                 Description                 |
++======+============+=============================================+
+| IN   | String     | The session string.                         |
++------+------------+---------------------------------------------+
+| IN   | Int        | The Host ID.                                |
++------+------------+---------------------------------------------+
+| IN   | Int        | 0: ENABLED                                  |
+|      |            |                                             |
+|      |            | 1: DISABLED                                 |
+|      |            |                                             |
+|      |            | 2: OFFLINE                                  |
++------+------------+---------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not |
++------+------------+---------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.         |
++------+------------+---------------------------------------------+
+| OUT  | Int        | Error code.                                 |
++------+------------+---------------------------------------------+
+
+
+    
 
 one.host.update
 ---------------
@@ -1891,7 +2010,7 @@ The monitoring information returned is a list of HOST elements. Each HOST elemen
 
 For example:
 
-.. code::
+.. code-block:: xml
 
     <MONITORING_DATA>
         <HOST>
@@ -1944,7 +2063,7 @@ one.hostpool.monitoring
 
 Sample output:
 
-.. code::
+.. code-block:: xml
 
     <MONITORING_DATA>
         <HOST>
@@ -2298,14 +2417,14 @@ one.vn.add_ar
 
 Examples of valid templates:
 
-.. code::
+.. code-block:: bash
 
     AR = [
         TYPE = IP4,
         IP = 192.168.0.5,
         SIZE = 10 ]
 
-.. code::
+.. code-block:: xml
 
     <TEMPLATE>
       <AR>
@@ -2362,7 +2481,7 @@ one.vn.update_ar
 
 Examples of valid templates:
 
-.. code::
+.. code-block:: bash
 
     AR = [
         AR_ID = 7,
@@ -2370,7 +2489,7 @@ Examples of valid templates:
         EXTRA_ATT = "VALUE",
         SIZE = 10 ]
 
-.. code::
+.. code-block:: xml
 
     <TEMPLATE>
       <AR>
@@ -2737,6 +2856,28 @@ one.secgroup.update
 | IN   | String     | The new template contents. Syntax can be the usual ``attribute=value`` or XML.                   |
 +------+------------+--------------------------------------------------------------------------------------------------+
 | IN   | Int        | Update type: **0**: Replace the whole template. **1**: Merge new template with the existing one. |
++------+------------+--------------------------------------------------------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not                                                      |
++------+------------+--------------------------------------------------------------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.                                                              |
++------+------------+--------------------------------------------------------------------------------------------------+
+| OUT  | Int        | Error code.                                                                                      |
++------+------------+--------------------------------------------------------------------------------------------------+
+
+one.secgroup.commit
+--------------------------------------------------------------------------------
+
+-  **Description**: Commit security group changes to associated VMs. This is intended for retrying updates of VMs or reinitialize the updating process if oned stopped or failed after a one.secgroup.update call.
+-  **Parameters**
+
++------+------------+--------------------------------------------------------------------------------------------------+
+| Type | Data Type  |                                           Description                                            |
++======+============+==================================================================================================+
+| IN   | String     | The session string.                                                                              |
++------+------------+--------------------------------------------------------------------------------------------------+
+| IN   | Int        | The object ID.                                                                                   |
++------+------------+--------------------------------------------------------------------------------------------------+
+| IN   | Boolean    | I true the action will only operate on outdated and error VMs. False to update all VMs.          |
 +------+------------+--------------------------------------------------------------------------------------------------+
 | OUT  | Boolean    | true or false whenever is successful or not                                                      |
 +------+------------+--------------------------------------------------------------------------------------------------+
@@ -4931,7 +5072,7 @@ Let's say you want to store documents representing Chef recipes, and EC2 securit
 one.document.clone
 ------------------
 
--  **Description**: Clones an existing virtual machine document.
+-  **Description**: Clones an existing document.
 -  **Parameters**
 
 +------+------------+---------------------------------------------+
@@ -5225,7 +5366,7 @@ The XML schemas describe the XML returned by the one.\*.info methods
 Schemas for Cluster
 -------------------
 
-.. code:: xml
+.. code-block:: xml
 
     <?xml version="1.0" encoding="UTF-8"?>
     <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
@@ -5262,7 +5403,7 @@ Schemas for Cluster
       </xs:element>
     </xs:schema>
 
-.. code:: xml
+.. code-block:: xml
 
     <?xml version="1.0" encoding="UTF-8"?>
     <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
@@ -5280,7 +5421,7 @@ Schemas for Cluster
 Schemas for Datastore
 ---------------------
 
-.. code:: xml
+.. code-block:: xml
 
     <?xml version="1.0" encoding="UTF-8"?>
     <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://opennebula.org/XMLSchema" elementFormDefault="qualified" targetNamespace="http://opennebula.org/XMLSchema">
@@ -5310,11 +5451,17 @@ Schemas for Datastore
             </xs:element>
             <xs:element name="DS_MAD" type="xs:string"/>
             <xs:element name="TM_MAD" type="xs:string"/>
+            <xs:element name="BASE_PATH" type="xs:string"/>
             <xs:element name="TYPE" type="xs:integer"/>
             <xs:element name="DISK_TYPE" type="xs:integer"/>
             <xs:element name="STATE" type="xs:integer"/>
-            <xs:element name="CLUSTER_ID" type="xs:integer"/>
-            <xs:element name="CLUSTER" type="xs:string"/>
+            <xs:element name="CLUSTERS">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="ID" type="xs:integer" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
             <xs:element name="TOTAL_MB" type="xs:integer"/>
             <xs:element name="FREE_MB" type="xs:integer"/>
             <xs:element name="USED_MB" type="xs:integer"/>
@@ -5331,7 +5478,7 @@ Schemas for Datastore
       </xs:element>
     </xs:schema>
 
-.. code:: xml
+.. code-block:: xml
 
     <?xml version="1.0" encoding="UTF-8"?>
     <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
@@ -5349,7 +5496,7 @@ Schemas for Datastore
 Schemas for Group
 -----------------
 
-.. code:: xml
+.. code-block:: xml
 
     <?xml version="1.0" encoding="UTF-8"?>
     <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
@@ -5517,7 +5664,7 @@ Schemas for Group
       </xs:element>
     </xs:schema>
 
-.. code:: xml
+.. code-block:: xml
 
     <?xml version="1.0" encoding="UTF-8"?>
     <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
@@ -5666,7 +5813,7 @@ Schemas for Group
                             <xs:complexType>
                               <xs:sequence>
                                 <xs:element name="CPU" type="xs:string"/>
-                                <xs:element name="CPU_USED" type="xs:string"/>
+                                <xs:element name="CPU_USED" type="xs:string"/>               
                                 <xs:element name="MEMORY" type="xs:string"/>
                                 <xs:element name="MEMORY_USED" type="xs:string"/>
                                 <xs:element name="VMS" type="xs:string"/>
@@ -5700,11 +5847,10 @@ Schemas for Group
       </xs:element>
     </xs:schema>
 
-
 Schemas for VDC
 -----------------
 
-.. code:: xml
+.. code-block:: xml
 
     <?xml version="1.0" encoding="UTF-8"?>
     <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
@@ -5783,7 +5929,7 @@ Schemas for VDC
       </xs:element>
     </xs:schema>
 
-.. code:: xml
+.. code-block:: xml
 
     <?xml version="1.0" encoding="UTF-8"?>
     <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
@@ -5801,7 +5947,7 @@ Schemas for VDC
 Schemas for Host
 ----------------
 
-.. code:: xml
+.. code-block:: xml
 
     <?xml version="1.0" encoding="UTF-8"?>
     <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://opennebula.org/XMLSchema" elementFormDefault="qualified" targetNamespace="http://opennebula.org/XMLSchema">
@@ -5811,20 +5957,20 @@ Schemas for Host
             <xs:element name="ID" type="xs:integer"/>
             <xs:element name="NAME" type="xs:string"/>
             <!-- STATE values
-
+            
               INIT                 = 0  Initial state for enabled hosts
               MONITORING_MONITORED = 1  Monitoring the host (from monitored)
               MONITORED            = 2  The host has been successfully monitored
               ERROR                = 3  An error ocurrer while monitoring the host
-              DISABLED             = 4  The host is disabled won't be monitored
+              DISABLED             = 4  The host is disabled 
               MONITORING_ERROR     = 5  Monitoring the host (from error)
               MONITORING_INIT      = 6  Monitoring the host (from init)
               MONITORING_DISABLED  = 7  Monitoring the host (from disabled)
+              OFFLINE              = 8  The host is totally offline
             -->
             <xs:element name="STATE" type="xs:integer"/>
             <xs:element name="IM_MAD" type="xs:string"/>
             <xs:element name="VM_MAD" type="xs:string"/>
-            <xs:element name="VN_MAD" type="xs:string"/>
             <xs:element name="LAST_MON_TIME" type="xs:integer"/>
             <xs:element name="CLUSTER_ID" type="xs:integer"/>
             <xs:element name="CLUSTER" type="xs:string"/>
@@ -5891,7 +6037,7 @@ Schemas for Host
       </xs:element>
     </xs:schema>
 
-.. code:: xml
+.. code-block:: xml
 
     <?xml version="1.0" encoding="UTF-8"?>
     <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
@@ -5909,7 +6055,7 @@ Schemas for Host
 Schemas for Image
 -----------------
 
-.. code:: xml
+.. code-block:: xml
 
     <?xml version="1.0" encoding="UTF-8"?>
     <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://opennebula.org/XMLSchema" elementFormDefault="qualified" targetNamespace="http://opennebula.org/XMLSchema">
@@ -5956,6 +6102,8 @@ Schemas for Image
               CLONE     = 6, Image is being cloned
               DELETE    = 7, DS is deleting the image
               USED_PERS = 8, Image is in use and persistent
+              LOCKED_USED = 9,      FS operation in progress, VMs waiting
+              LOCKED_USED_PERS = 10 FS operation in progress, VMs waiting. Persistent
             -->
             <xs:element name="STATE" type="xs:integer"/>
             <xs:element name="RUNNING_VMS" type="xs:integer"/>
@@ -5965,18 +6113,25 @@ Schemas for Image
             <xs:element name="DATASTORE_ID" type="xs:integer"/>
             <xs:element name="DATASTORE" type="xs:string"/>
             <xs:element name="VMS">
-                  <xs:complexType>
-                    <xs:sequence>
-                      <xs:element name="ID" type="xs:integer" minOccurs="0" maxOccurs="unbounded"/>
-                    </xs:sequence>
-                  </xs:complexType>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="ID" type="xs:integer" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+              </xs:complexType>
             </xs:element>
             <xs:element name="CLONES">
-                  <xs:complexType>
-                    <xs:sequence>
-                      <xs:element name="ID" type="xs:integer" minOccurs="0" maxOccurs="unbounded"/>
-                    </xs:sequence>
-                  </xs:complexType>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="ID" type="xs:integer" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="APP_CLONES">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="ID" type="xs:integer" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+              </xs:complexType>
             </xs:element>
             <xs:element name="TEMPLATE" type="xs:anyType"/>
             <xs:element name="SNAPSHOTS">
@@ -6003,7 +6158,7 @@ Schemas for Image
       </xs:element>
     </xs:schema>
 
-.. code:: xml
+.. code-block:: xml
 
     <?xml version="1.0" encoding="UTF-8"?>
     <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
@@ -6021,7 +6176,7 @@ Schemas for Image
 Schemas for User
 ----------------
 
-.. code:: xml
+.. code-block:: xml
 
     <?xml version="1.0" encoding="UTF-8"?>
     <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
@@ -6188,7 +6343,7 @@ Schemas for User
       </xs:element>
     </xs:schema>
 
-.. code:: xml
+.. code-block:: xml
 
     <?xml version="1.0" encoding="UTF-8"?>
     <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
@@ -6373,7 +6528,7 @@ Schemas for User
 Schemas for Virtual Machine
 ---------------------------
 
-.. code:: xml
+.. code-block:: xml
 
     <?xml version="1.0" encoding="UTF-8"?>
     <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
@@ -6406,83 +6561,12 @@ Schemas for Virtual Machine
 
             <!-- STATE values,
             see http://docs.opennebula.org/stable/user/references/vm_states.html
-
-              INIT      = 0
-              PENDING   = 1
-              HOLD      = 2
-              ACTIVE    = 3 In this state, the Life Cycle Manager state is relevant
-              STOPPED   = 4
-              SUSPENDED = 5
-              DONE      = 6
-              FAILED    = 7
-              POWEROFF  = 8
-              UNDEPLOYED = 9
             -->
             <xs:element name="STATE" type="xs:integer"/>
 
             <!-- LCM_STATE values, this sub-state is relevant only when STATE is
                  ACTIVE (4)
-
-              LCM_INIT            = 0,
-              PROLOG              = 1,
-              BOOT                = 2,
-              RUNNING             = 3,
-              MIGRATE             = 4,
-              SAVE_STOP           = 5,
-              SAVE_SUSPEND        = 6,
-              SAVE_MIGRATE        = 7,
-              PROLOG_MIGRATE      = 8,
-              PROLOG_RESUME       = 9,
-              EPILOG_STOP         = 10,
-              EPILOG              = 11,
-              SHUTDOWN            = 12,
-              CANCEL              = 13,
-              FAILURE             = 14,
-              CLEANUP_RESUBMIT    = 15,
-              UNKNOWN             = 16,
-              HOTPLUG             = 17,
-              SHUTDOWN_POWEROFF   = 18,
-              BOOT_UNKNOWN        = 19,
-              BOOT_POWEROFF       = 20,
-              BOOT_SUSPENDED      = 21,
-              BOOT_STOPPED        = 22,
-              CLEANUP_DELETE      = 23,
-              HOTPLUG_SNAPSHOT    = 24,
-              HOTPLUG_NIC         = 25,
-              HOTPLUG_SAVEAS           = 26,
-              HOTPLUG_SAVEAS_POWEROFF  = 27,
-              HOTPLUG_SAVEAS_SUSPENDED = 28,
-              SHUTDOWN_UNDEPLOY   = 29,
-              EPILOG_UNDEPLOY     = 30,
-              PROLOG_UNDEPLOY     = 31,
-              BOOT_UNDEPLOY       = 32,
-              HOTPLUG_PROLOG_POWEROFF = 33,
-              HOTPLUG_EPILOG_POWEROFF = 34,
-              BOOT_MIGRATE            = 35,
-              BOOT_FAILURE            = 36,
-              BOOT_MIGRATE_FAILURE    = 37,
-              PROLOG_MIGRATE_FAILURE  = 38,
-              PROLOG_FAILURE          = 39,
-              EPILOG_FAILURE          = 40,
-              EPILOG_STOP_FAILURE     = 41,
-              EPILOG_UNDEPLOY_FAILURE = 42,
-              PROLOG_MIGRATE_POWEROFF = 43,
-              PROLOG_MIGRATE_POWEROFF_FAILURE = 44,
-              PROLOG_MIGRATE_SUSPEND          = 45,
-              PROLOG_MIGRATE_SUSPEND_FAILURE  = 46
-              BOOT_UNDEPLOY_FAILURE   = 47,
-              BOOT_STOPPED_FAILURE    = 48,
-              PROLOG_RESUME_FAILURE   = 49,
-              PROLOG_UNDEPLOY_FAILURE = 50,
-              DISK_SNAPSHOT_POWEROFF         = 51,
-              DISK_SNAPSHOT_REVERT_POWEROFF  = 52,
-              DISK_SNAPSHOT_DELETE_POWEROFF  = 53,
-              DISK_SNAPSHOT_SUSPENDED        = 54,
-              DISK_SNAPSHOT_REVERT_SUSPENDED = 55,
-              DISK_SNAPSHOT_DELETE_SUSPENDED = 56,
-              DISK_SNAPSHOT        = 57,
-              DISK_SNAPSHOT_REVERT = 58,
-              DISK_SNAPSHOT_DELETE = 59
+            see http://docs.opennebula.org/stable/user/references/vm_states.html
             -->
             <xs:element name="LCM_STATE" type="xs:integer"/>
             <xs:element name="PREV_STATE" type="xs:integer"/>
@@ -6525,10 +6609,8 @@ Schemas for Virtual Machine
                         <xs:element name="CID" type="xs:integer"/>
                         <xs:element name="STIME" type="xs:integer"/>
                         <xs:element name="ETIME" type="xs:integer"/>
-                        <xs:element name="VMMMAD" type="xs:string"/>
-                        <xs:element name="VNMMAD" type="xs:string"/>
-                        <xs:element name="TMMAD" type="xs:string"/>
-                        <xs:element name="DS_LOCATION" type="xs:string"/>
+                        <xs:element name="VM_MAD" type="xs:string"/>
+                        <xs:element name="TM_MAD" type="xs:string"/>
                         <xs:element name="DS_ID" type="xs:integer"/>
                         <xs:element name="PSTIME" type="xs:integer"/>
                         <xs:element name="PETIME" type="xs:integer"/>
@@ -6572,6 +6654,8 @@ Schemas for Virtual Machine
                           NIC_DETACH_ACTION       = 24
                           DISK_SNAPSHOT_CREATE_ACTION = 25
                           DISK_SNAPSHOT_DELETE_ACTION = 26
+                          TERMINATE_ACTION        = 27
+                          TERMINATE_HARD_ACTION   = 28
                         -->
                         <xs:element name="ACTION" type="xs:integer"/>
                       </xs:sequence>
@@ -6605,7 +6689,7 @@ Schemas for Virtual Machine
       </xs:element>
     </xs:schema>
 
-.. code:: xml
+.. code-block:: xml
 
     <?xml version="1.0" encoding="UTF-8"?>
     <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified"
@@ -6623,7 +6707,7 @@ Schemas for Virtual Machine
 Schemas for Virtual Machine Template
 ------------------------------------
 
-.. code:: xml
+.. code-block:: xml
 
     <?xml version="1.0" encoding="UTF-8"?>
     <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://opennebula.org/XMLSchema" elementFormDefault="qualified" targetNamespace="http://opennebula.org/XMLSchema">
@@ -6658,7 +6742,7 @@ Schemas for Virtual Machine Template
       </xs:element>
     </xs:schema>
 
-.. code:: xml
+.. code-block:: xml
 
     <?xml version="1.0" encoding="UTF-8"?>
     <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
@@ -6677,7 +6761,7 @@ Schemas for Virtual Network
 ---------------------------
 
 
-.. code:: xml
+.. code-block:: xml
 
     <?xml version="1.0" encoding="UTF-8"?>
     <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
@@ -6706,14 +6790,27 @@ Schemas for Virtual Network
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
-            <xs:element name="CLUSTER_ID" type="xs:integer"/>
-            <xs:element name="CLUSTER" type="xs:string"/>
+            <xs:element name="CLUSTERS">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="ID" type="xs:integer" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
             <xs:element name="BRIDGE" type="xs:string"/>
-            <xs:element name="VLAN" type="xs:integer"/>
             <xs:element name="PARENT_NETWORK_ID" type="xs:string"/>
+            <xs:element name="VN_MAD" type="xs:string"/>
             <xs:element name="PHYDEV" type="xs:string"/>
             <xs:element name="VLAN_ID" type="xs:string"/>
+            <xs:element name="VLAN_ID_AUTOMATIC" type="xs:string"/>
             <xs:element name="USED_LEASES" type="xs:integer"/>
+            <xs:element name="VROUTERS">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="ID" type="xs:integer" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
             <xs:element name="TEMPLATE" type="xs:anyType"/>
             <xs:element name="AR_POOL">
               <xs:complexType>
@@ -6729,7 +6826,7 @@ Schemas for Virtual Network
                         <xs:element name="SIZE" type="xs:integer"/>
                         <xs:element name="TYPE" type="xs:string"/>
                         <xs:element name="ULA_PREFIX" type="xs:string" minOccurs="0"/>
-                        <xs:element name="VLAN" type="xs:string"  minOccurs="0"/>
+                        <xs:element name="VN_MAD" type="xs:string"  minOccurs="0"/>
                         <xs:element name="MAC_END" type="xs:string" minOccurs="0"/>
                         <xs:element name="IP_END" type="xs:string" minOccurs="0"/>
                         <xs:element name="IP6_ULA" type="xs:string" minOccurs="0"/>
@@ -6767,7 +6864,7 @@ Schemas for Virtual Network
       </xs:element>
     </xs:schema>
 
-.. code:: xml
+.. code-block:: xml
 
     <?xml version="1.0" encoding="UTF-8"?>
     <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
@@ -6800,14 +6897,27 @@ Schemas for Virtual Network
                       </xs:sequence>
                     </xs:complexType>
                   </xs:element>
-                  <xs:element name="CLUSTER_ID" type="xs:integer"/>
-                  <xs:element name="CLUSTER" type="xs:string"/>
+                  <xs:element name="CLUSTERS">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="ID" type="xs:integer" minOccurs="0" maxOccurs="unbounded"/>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
                   <xs:element name="BRIDGE" type="xs:string"/>
-                  <xs:element name="VLAN" type="xs:integer"/>
                   <xs:element name="PARENT_NETWORK_ID" type="xs:string"/>
+                  <xs:element name="VN_MAD" type="xs:string"/>
                   <xs:element name="PHYDEV" type="xs:string"/>
                   <xs:element name="VLAN_ID" type="xs:string"/>
+                  <xs:element name="VLAN_ID_AUTOMATIC" type="xs:string"/>
                   <xs:element name="USED_LEASES" type="xs:integer"/>
+                  <xs:element name="VROUTERS">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="ID" type="xs:integer" minOccurs="0" maxOccurs="unbounded"/>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
                   <xs:element name="TEMPLATE" type="xs:anyType"/>
                   <xs:element name="AR_POOL">
                     <xs:complexType>
@@ -6824,7 +6934,7 @@ Schemas for Virtual Network
                               <xs:element name="SIZE" type="xs:integer"/>
                               <xs:element name="TYPE" type="xs:string"/>
                               <xs:element name="ULA_PREFIX" type="xs:string" minOccurs="0"/>
-                              <xs:element name="VLAN" type="xs:string"  minOccurs="0"/>
+                              <xs:element name="VN_MAD" type="xs:string"  minOccurs="0"/>
                             </xs:sequence>
                           </xs:complexType>
                         </xs:element>
@@ -6839,11 +6949,10 @@ Schemas for Virtual Network
       </xs:element>
     </xs:schema>
 
-
 Schemas for Accounting
 ----------------------
 
-.. code:: xml
+.. code-block:: xml
 
     <?xml version="1.0" encoding="UTF-8"?>
     <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
@@ -6867,10 +6976,8 @@ Schemas for Accounting
             <xs:element name="CID" type="xs:integer"/>
             <xs:element name="STIME" type="xs:integer"/>
             <xs:element name="ETIME" type="xs:integer"/>
-            <xs:element name="VMMMAD" type="xs:string"/>
-            <xs:element name="VNMMAD" type="xs:string"/>
-            <xs:element name="TMMAD" type="xs:string"/>
-            <xs:element name="DS_LOCATION" type="xs:string"/>
+            <xs:element name="VM_MAD" type="xs:string"/>
+            <xs:element name="TM_MAD" type="xs:string"/>
             <xs:element name="DS_ID" type="xs:integer"/>
             <xs:element name="PSTIME" type="xs:integer"/>
             <xs:element name="PETIME" type="xs:integer"/>
@@ -6914,6 +7021,8 @@ Schemas for Accounting
               NIC_DETACH_ACTION       = 24
               DISK_SNAPSHOT_CREATE_ACTION = 25
               DISK_SNAPSHOT_DELETE_ACTION = 26
+              TERMINATE_ACTION        = 27
+              TERMINATE_HARD_ACTION   = 28
             -->
             <xs:element name="ACTION" type="xs:integer"/>
 
@@ -6944,84 +7053,13 @@ Schemas for Accounting
                   <xs:element name="LAST_POLL" type="xs:integer"/>
 
                   <!-- STATE values,
-                  see http://opennebula.org/documentation:documentation:api#actions_for_virtual_machine_management
-
-                    INIT      = 0
-                    PENDING   = 1
-                    HOLD      = 2
-                    ACTIVE    = 3 In this state, the Life Cycle Manager state is relevant
-                    STOPPED   = 4
-                    SUSPENDED = 5
-                    DONE      = 6
-                    FAILED    = 7
-                    POWEROFF  = 8
-                    UNDEPLOYED = 9
+                  see http://docs.opennebula.org/stable/user/references/vm_states.html
                   -->
                   <xs:element name="STATE" type="xs:integer"/>
 
                   <!-- LCM_STATE values, this sub-state is relevant only when STATE is
                        ACTIVE (4)
-
-                    LCM_INIT            = 0,
-                    PROLOG              = 1,
-                    BOOT                = 2,
-                    RUNNING             = 3,
-                    MIGRATE             = 4,
-                    SAVE_STOP           = 5,
-                    SAVE_SUSPEND        = 6,
-                    SAVE_MIGRATE        = 7,
-                    PROLOG_MIGRATE      = 8,
-                    PROLOG_RESUME       = 9,
-                    EPILOG_STOP         = 10,
-                    EPILOG              = 11,
-                    SHUTDOWN            = 12,
-                    CANCEL              = 13,
-                    FAILURE             = 14,
-                    CLEANUP_RESUBMIT    = 15,
-                    UNKNOWN             = 16,
-                    HOTPLUG             = 17,
-                    SHUTDOWN_POWEROFF   = 18,
-                    BOOT_UNKNOWN        = 19,
-                    BOOT_POWEROFF       = 20,
-                    BOOT_SUSPENDED      = 21,
-                    BOOT_STOPPED        = 22,
-                    CLEANUP_DELETE      = 23,
-                    HOTPLUG_SNAPSHOT    = 24,
-                    HOTPLUG_NIC         = 25,
-                    HOTPLUG_SAVEAS           = 26,
-                    HOTPLUG_SAVEAS_POWEROFF  = 27,
-                    HOTPLUG_SAVEAS_SUSPENDED = 28,
-                    SHUTDOWN_UNDEPLOY   = 29,
-                    EPILOG_UNDEPLOY     = 30,
-                    PROLOG_UNDEPLOY     = 31,
-                    BOOT_UNDEPLOY       = 32,
-                    HOTPLUG_PROLOG_POWEROFF = 33,
-                    HOTPLUG_EPILOG_POWEROFF = 34,
-                    BOOT_MIGRATE            = 35,
-                    BOOT_FAILURE            = 36,
-                    BOOT_MIGRATE_FAILURE    = 37,
-                    PROLOG_MIGRATE_FAILURE  = 38,
-                    PROLOG_FAILURE          = 39,
-                    EPILOG_FAILURE          = 40,
-                    EPILOG_STOP_FAILURE     = 41,
-                    EPILOG_UNDEPLOY_FAILURE = 42,
-                    PROLOG_MIGRATE_POWEROFF = 43,
-                    PROLOG_MIGRATE_POWEROFF_FAILURE = 44,
-                    PROLOG_MIGRATE_SUSPEND          = 45,
-                    PROLOG_MIGRATE_SUSPEND_FAILURE  = 46
-                    BOOT_UNDEPLOY_FAILURE   = 47,
-                    BOOT_STOPPED_FAILURE    = 48,
-                    PROLOG_RESUME_FAILURE   = 49,
-                    PROLOG_UNDEPLOY_FAILURE = 50,
-                    DISK_SNAPSHOT_POWEROFF         = 51,
-                    DISK_SNAPSHOT_REVERT_POWEROFF  = 52,
-                    DISK_SNAPSHOT_DELETE_POWEROFF  = 53,
-                    DISK_SNAPSHOT_SUSPENDED        = 54,
-                    DISK_SNAPSHOT_REVERT_SUSPENDED = 55,
-                    DISK_SNAPSHOT_DELETE_SUSPENDED = 56,
-                    DISK_SNAPSHOT        = 57,
-                    DISK_SNAPSHOT_REVERT = 58,
-                    DISK_SNAPSHOT_DELETE = 59
+                  see http://docs.opennebula.org/stable/user/references/vm_states.html
                   -->
                   <xs:element name="LCM_STATE" type="xs:integer"/>
                   <xs:element name="PREV_STATE" type="xs:integer"/>
@@ -7081,4 +7119,3 @@ Schemas for Accounting
       </xs:element>
     </xs:schema>
 
-.. |FIXME| image:: /images/fixme.gif
