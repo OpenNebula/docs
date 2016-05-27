@@ -8,7 +8,7 @@ This page will show you how to compile and install OpenNebula from the sources.
 
 If you want to install it from your package manager, visit the `software menu <http://opennebula.org/software:software>`_ to find out if OpenNebula is included in your official distribution package repositories.
 
-.. warning:: Do not forget to check the :ref:`Building Dependecies <build_deps>` for a list of specific software requirements to build OpenNebula.
+.. warning:: Do not forget to check the :ref:`Building Dependencies <build_deps>` for a list of specific software requirements to build OpenNebula.
 
 Compiling the Software
 ================================================================================
@@ -78,7 +78,7 @@ where *<install\_options>* can be one or more of:
 
 The packages do a ``system-wide`` installation. To create a similar environment, create a ``oneadmin`` user and group, and execute:
 
-.. code::
+.. prompt:: text $ auto
 
     oneadmin@frontend:~/ $> wget <opennebula tar gz>
     oneadmin@frontend:~/ $> tar xzf <opennebula tar gz>
@@ -105,7 +105,7 @@ Some OpenNebula components need ruby libraries. Some of these libraries are inte
 
 You will also need ruby development package to be able to compile these gems.
 
-We provide a script to ease the installation of these gems. it is located in ``/usr/share/one/install_gems`` (system-wide mode) or ``$ONE_LOCATION/share/install_gems`` (self-contained mode). It can be called with the components you want the gem dependencies to be installed. Here are the options:
+We provide a script to ease the installation of these gems. it is located in ``/usr/share/one/install_gems`` (system-wide mode). It can be called with the components you want the gem dependencies to be installed. Here are the options:
 
 -  **optional**: libraries that make CLI and OCA faster
 -  **quota**: quota system
@@ -123,12 +123,11 @@ The tool can be also called without parameters and all the packages will be inst
 
 For example, to install only requirements for sunstone and ec2 interfaces you'll issue:
 
-.. code::
+.. prompt:: text $ auto
 
     oneadmin@frontend: $> ./install_gems sunstone cloud
 
 Building Sunstone from Source
 ================================================================================
 
-Please check the :ref:`Sunstone Development guide <sunstone_dev>` for detailed information
-    
+Please check the :ref:`Sunstone Development guide <sunstone_dev>` for detailed information  
