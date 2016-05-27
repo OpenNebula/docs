@@ -109,7 +109,7 @@ In order to create a complete environment where the scheduler can deploy VMs, yo
 
 You can add the default System DS (ID: 0), or create a new one to improve its performance (e.g. balance VM I/O between different servers) or to use different system DS types (e.g. shared and ssh).
 
-To use a specific System DS with your cluster, instead of the default one, just create it (with TYPE=SYSTEM\_DS in its template), and associate it just like any other datastore (onecluster adddatastore). Check the :ref:`System DS guide for more information <system_ds>`.
+To use a specific System DS with your cluster, instead of the default one, just create it (with TYPE=SYSTEM\_DS in its template), and associate it just like any other datastore (onecluster adddatastore).
 
 Cluster Properties
 ------------------

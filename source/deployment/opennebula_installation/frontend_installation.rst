@@ -1,5 +1,5 @@
 .. _ignc:
-.. _frotend_installation:
+.. _frontend_installation:
 
 ================================================================================
 Front-end Installation

@@ -47,7 +47,6 @@ OpenNebula Core
 - **Improved VNC port handling**, also with the :ref:`ability to reserve VNC ports <vm_guide_2>`.
 - **Attach NIC operations** now :ref:`check cluster constrains <vm_guide_2>`.
 
-
 OpenNebula Drivers :: Networking
 --------------------------------------------------------------------------------
 
@@ -57,13 +56,11 @@ OpenNebula Drivers :: Networking
 - **Dynamic security groups**, now changes to :ref:`security groups <security_groups>` will dynamically apply to VMs.
 - **Improved spoofing features** in :ref:`security groups <security_groups>`.
 
-
 OpenNebula Drivers :: Monitoring
 --------------------------------------------------------------------------------
 
 - **Improved KVM monitoring**, to skip failed checks in the :ref:`poll script <mon>`.
-- **Improved DS monitoring**, with smarter :ref:`system DS monitoring <system_ds>`.
-
+- **Improved DS monitoring**, with smarter System DS monitoring.
 
 OpenNebula Drivers :: Storage
 --------------------------------------------------------------------------------
@@ -73,7 +70,6 @@ OpenNebula Drivers :: Storage
 - **Ceph as a system DS**, removing the need of a shared filesystem for :ref:`Ceph based <ceph_ds>` deployments.
 - **Cloning options for qcow2**, with a variable called :ref:`QCOW2_OPTIONS <qcow2_options>` that can be used to set the parameters.
 
-
 OpenNebula Drivers :: KVM Virtualization
 --------------------------------------------------------------------------------
 
@@ -81,7 +77,6 @@ OpenNebula Drivers :: KVM Virtualization
 - **Additional information in the metadata field**, new element in the :ref:`VM XML document <vm_guide_2>`.
 - **Support for qemu guest agent**, a new option :ref:`GUEST available in the VM template <template>`.
 - **Generic disk polling for block devices** [TODO]
-
 
 OpenNebula Drivers :: vCenter Virtualization
 --------------------------------------------------------------------------------

@@ -122,7 +122,7 @@ When a VM is deployed, its images are *transferred* from the datastore to the ho
 
 OpenNebula is shipped with 3 different datastore classes:
 
--  :ref:`System Datastores <system_ds>`: to hold images for running VMs. Depending on the storage technology used, these temporal images can be complete copies of the original image, qcow deltas or simple filesystem links.
+-  **System Datastores**: to hold images for running VMs. Depending on the storage technology used, these temporal images can be complete copies of the original image, qcow deltas or simple filesystem links.
 
 -  **Image Datastores**: to store the disk images repository. Disk images are moved, or cloned to/from the System Datastore when the VMs are deployed or shutdown, or when disks are attached or snapshotted.
 
