@@ -18,7 +18,7 @@ The following needs to be considered regarding traffic isolation:
 
 * In the **Dummy** and **Security Group** modes you can add tagged network interfaces to achieve network isolation. This is the **recommended** deployment strategy in production environments in this mode.
 
-* The **L2 VLAN** mode is targeted to small environments without proper hardware support to implement VLANS. Note that it is limited to /24 networks, and that IP addresses cannot overlap between Virtual Networks. This mode is only recommended for testing purposes.
+* The **ebtables VLAN** mode is targeted to small environments without proper hardware support to implement VLANS. Note that it is limited to /24 networks, and that IP addresses cannot overlap between Virtual Networks. This mode is only recommended for testing purposes.
 
 
 OpenNebula Configuration

@@ -1,113 +1,194 @@
 .. _ceph_ds:
 
-===================
-The Ceph Datastore
-===================
+==============
+Ceph Datastore
+==============
 
 The Ceph datastore driver provides OpenNebula users with the possibility of using Ceph block devices as their Virtual Images.
 
 .. warning:: This driver requires that the OpenNebula nodes using the Ceph driver must be Ceph clients of a running Ceph cluster. More information in `Ceph documentation <http://ceph.com/docs/master/>`__.
 
-Requirements
-============
+Datastore Layout
+================================================================================
 
-Ceph Cluster Configuration
---------------------------
+Images and virtual machine disks are stored in the same Ceph pool. Each Image is named ``one-<IMAGE ID>`` in the pool. Virtual machines will use these rbd volumes for its disks if the Images are persistent, otherwise new snapshots are created in the form ``one-<IMAGE ID>-<VM ID>-<DISK ID>``.
 
-The ceph client tools must be available in the hypervisor hosts, as they will need access to the Ceph cluster. The ``mon`` daemon must be defined in the ``ceph.conf`` for all the nodes, so ``hostname`` and ``port`` doesn't need to be specified explicitely in any Ceph command.
+For example, consider a system using an Image and System Datastore backed by a Ceph pool named ``one``. The pool with one Image (ID 0) and two Virtual Machines 14 and 15 using this Image as virtual disk 0 would be similar to:
 
-Additionally each OpenNebula datastore is backed by a ceph pool, these pools must be created and configured in the Ceph cluster. The name of the pool by default is ``one`` but can be changed on a per-datastore basis (see below).
+.. prompt:: bash $ auto
 
-``ceph`` cluster admin must include a valid user to be used by the ``one`` ``ceph`` datastore (see below). This user should be configured in the ``CEPH_USER`` variable in the datastore template (see below). OpenNebula will issue commands from the ``oneadmin`` account in the nodes and in the frontend, using ``--id $CEPH_USER`` as a parameter, for example ``rbd --id $CEPH_USER``. If a non-default configuration file needs to be used, it can be passed along with the ``CEPH_CONF`` tag: when set, ``rbd`` and``rados`` commands will called with: ``rbd --conf=$CEPH_CONF``. Ceph authentication must be configured in a way that issuing commands these commands does work.
+    $ rbd ls -l -p one --id libvirt
+    NAME         SIZE PARENT         FMT PROT LOCK
+    one-0      10240M                  2
+    one-0@snap 10240M                  2 yes
+    one-0-14-0 10240M one/one-0@snap   2
+    one-0-15-0 10240M one/one-0@snap   2
 
-This driver can work with either RBD Format 1 or RBD Format 2 (default). To set the default you can specify this option in ``ceph.conf``:
+
+.. note:: In this case context disk and auxiliar files (deployment description and chekpoints) are stored locally in the nodes.
+
+Ceph Cluster Setup
+================================================================================
+
+This guide assumes that you already have a functional Ceph cluster in place. Additionally you need to:
+
+* Create a pool for the OpenNebula datastores. Write down the name of the pool to include it in the datastore definitions.
+
+.. prompt:: bash $ auto
+
+    $ ceph osd pool create one 128
+
+    $ ceph osd lspools
+    0 data,1 metadata,2 rbd,6 one,
+
+* Define a Ceph user to access the datastore pool, this user will be also used by libvirt to access the disk images. Also, get a copy of the key of this user to distribute it later to the OpenNebula nodes. For example, create a user ``libvirt``:
+
+.. prompt:: bash $ auto
+
+    $ ceph auth get-or-create client.libvirt mon 'allow r' osd \
+         'allow class-read object_prefix rbd_children, allow rwx pool=one'
+
+    $ ceph auth get-key client.libvirt | tee client.libvirt.key
+
+    $ ceph auth get client.libvirt -o ceph.client.libvirt.keyring
+
+* Altough RDB format 1 is supported it is strongly recommended to use Format 2. Check that ``ceph.conf`` includes:
 
 .. code::
 
   [global]
   rbd_default_format = 2
 
+* Pick a set of client nodes of the cluster to act as storage bridges. These nodes will be used to import images into the Ceph Cluster from OpenNebula. These nodes must have ``qemu-img`` command installed.
 
-OpenNebula Ceph Frontend
-------------------------
+.. note:: For production environments it is recommended to **not co-allocate** ceph services (monitor, osds) with OpenNebula nodes or front-end
 
-This driver requires the system administrator to specify one or several Ceph frontends (which need to be nodes in the Ceph cluster) where many of the datastores storage actions will take place. For instance, when creating an image, OpenNebula will choose one of the listed Ceph frontends (using a round-robin algorithm) and transfer the image to that node and run ``qemu-img convert -O rbd``. These nodes need to be specified in the ``BRIDGE_LIST`` section.
+Frontend Setup
+================================================================================
 
-Note that this Ceph frontend can be any node in the OpenNebula setup: the OpenNebula frontend, any worker node, or a specific node (recommended).
+The Frontend does not need any specific Ceph setup, it will access the Ceph cluster through the storage bridges.
 
-Ceph Nodes
-----------
+Node Setup
+================================================================================
+In order to use the Ceph cluster the nodes needs to be configured as follows:
 
-All the nodes listed in the ``BRIDGE_LIST`` variable must have\ ``qemu-img`` installed.
+* The ceph client tools must be available in the node
 
-OpenNebula Hosts
-----------------
+* The ``mon`` daemon must be defined in the ``ceph.conf`` for all the nodes, so ``hostname`` and ``port`` doesn't need to be specified explicitly in any Ceph command.
 
-There are no specific requirements for the host.
+* Copy the Ceph user keyring (``ceph.client.libvirt.keyring``) to the nodes under ``/etc/ceph``, and the user key (``client.libvirt.key``) to the oneadmin home.
 
-Configuration
-=============
+.. prompt:: bash $ auto
 
-Configuring the System Datastore
---------------------------------
+    $ scp ceph.client.libvirt.keyring root@node:/etc/ceph
 
-To use Ceph drivers the system datastore must be either :ref:`Shared <system_ds_shared>` or :ref:`Ceph <system_ds_ceph>`. Make sure to read both subsections to understand the differences of using either one. A short summary:
+    $ scp client.libvirt.key oneadmin@node:
 
-+------------------------------------------------------------------------+---------------------------------------------------------------------------------+
-|                                 Shared                                 |                                       Ceph                                      |
-+========================================================================+=================================================================================+
-| Volatile and swap disks are created as regular files in the hypervisor | Volatile and swap disks are created as rbd volumes in the Ceph system datastore |
-+------------------------------------------------------------------------+---------------------------------------------------------------------------------+
-| Requires setting up NFS, CephFS or another shared filesystem solution  | Only requires the Ceph backend                                                  |
-+------------------------------------------------------------------------+---------------------------------------------------------------------------------+
-| Supports System DS Migration                                           | Does not support System DS Migration                                            |
-+------------------------------------------------------------------------+---------------------------------------------------------------------------------+
-| Supports Live Migration                                                | Supports Live Migration                                                         |
-+------------------------------------------------------------------------+---------------------------------------------------------------------------------+
+* Generate a secret for the Ceph user and copy it to the nodes under oneadmin home. Write down the ``UUID`` for later use.
 
-.. _ceph_ds_configuring:
+.. prompt:: bash $ auto
 
-Configuring Ceph Datastores
----------------------------
+    $ UUID=`uuidgen`; echo $UUID
+    c7bdeabf-5f2a-4094-9413-58c6a9590980
 
-The first step to create a Ceph datastore is to set up a template file for it.
+    $ cat > secret.xml <<EOF
+    <secret ephemeral='no' private='no'>
+      <uuid>$UUID</uuid>
+      <usage type='ceph'>
+              <name>client.libvirt secret</name>
+      </usage>
+    </secret>
+    EOF
 
-The specific attributes for this datastore driver are listed in the following table, you will also need to complete with the :ref:`common datastore attributes <sm_common_attributes>`:
+    $ scp secret.xml oneadmin@node:
 
-+-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-|    Attribute    |                                                                                                                Description                                                                                                                |
-+=================+===========================================================================================================================================================================================================================================+
-| ``DS_MAD``      | The DS type, use ``ceph`` for the Ceph datastore                                                                                                                                                                                          |
-+-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``TM_MAD``      | Transfer drivers for the datastore, use ``ceph``, see below                                                                                                                                                                               |
-+-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``DISK_TYPE``   | The type **must** be ``RBD``                                                                                                                                                                                                              |
-+-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``BRIDGE_LIST`` | **Mandatory** space separated list of Ceph servers that are going to be used as frontends.                                                                                                                                                |
-+-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``POOL_NAME``   | The OpenNebula Ceph pool name. Defaults to ``one``. **This pool must exist before using the drivers**.                                                                                                                                    |
-+-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``STAGING_DIR`` | Default path for image operations in the OpenNebula Ceph frontend.                                                                                                                                                                        |
-+-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``CEPH_HOST``   | Space-separated list of Ceph monitors. Example: ``host1 host2:port2 host3 host4:port4`` (if no port is specified, the default one is chosen). **Required for Libvirt 1.x when cephx is enabled** .                                        |
-+-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``CEPH_USER``   | The OpenNebula Ceph user name. If set it is used by RBD commands. **This ceph user must exist before using the drivers**. **Required for Libvirt 1.x when cephx is enabled** .                                                            |
-+-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``CEPH_CONF``   | The non default ceph configuration file. If set it is used by RBD commands: ``rbd`` and ``rados``.                                                                                                                                        |
-+-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``CEPH_SECRET`` | A generated UUID for a LibVirt secret (to hold the CephX authentication key in Libvirt on each hypervisor). This should be generated when creating the Ceph datastore in OpenNebula. **Required for Libvirt 1.x when cephx is enabled** . |
-+-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``RBD_FORMAT``  | By default RBD Format 2 will be used. If ``RBD_FORMAT=1`` is specified then when instantiating non-persistent images the Ceph driver will perform ``rbd copy`` instead of ``rbd snap``.                                                   |
-+-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+* Define the a  libvirt secret and remove key files in the nodes:
 
-For example, the following examples illustrates the creation of an Ceph datastore using a configuration file. In this case we will use the host ``cephfrontend`` as one the OpenNebula Ceph frontend The ``one`` pool must already exist, if it doesn't create it with:
+.. prompt:: bash $ auto
 
-.. code::
+    $ virsh -c qemu:///system secret-define secret.xml
 
-    > ceph osd pool create one 128
+    $ virsh -c qemu:///system secret-set-value --secret $UUID --base64 $(cat client.libvirt.key)
 
-    > ceph osd lspools
-    0 data,1 metadata,2 rbd,6 one,
+    $ rm client.libvirt.key
+
+* The ``oneadmin`` account needs to access the Ceph Cluster using the ``libvirt`` Ceph user defined above. This requires access to the ceph user keyring. Test that Ceph client is properly configured in the node.
+
+.. prompt:: bash $ auto
+
+  $ ssh oneadmin@node
+
+  $ rbd ls -p one --id libvirt
+
+You can read more information about this in the Ceph guide `Using libvirt with Ceph <http://ceph.com/docs/master/rbd/libvirt/>`__.
+
+* Ancillary virtual machine files like context disks, deployment and checkpoint files are created at the nodes under ``/var/lib/one/datastores/``, make sure that enough storage for these files is provisioned in the nodes.
+
+
+OpenNebula Configuration
+================================================================================
+
+To use your Ceph cluster with OpenNebula you need to define a System and Image datastores. Both datastores will share the same configuration parameters and Ceph pool.
+
+.. note:: You may add addtional Image and System Datastores pointing to other pools with diffirent allocation/replication policies in Ceph.
+
+Each Image/System Datastore pair needs to define the same following attributes:
+
++-----------------+-------------------------------------------------------+-----------+
+|    Attribute    |  Description                                          | Mandatory |
++=================+=======================================================+===========+
+| ``POOL_NAME``   | The Ceph pool name                                    | **YES**   |
++-----------------+-------------------------------------------------------+-----------+
+| ``CEPH_USER``   | The Ceph user name, used by libvirt and rbd commands. | **YES**   |
++-----------------+-------------------------------------------------------+-----------+
+| ``TM_MAD``      | ``ceph``                                              | **YES**   |
++-----------------+-------------------------------------------------------+-----------+
+| ``CEPH_CONF``   | Non default ceph configuration file if needed.        |   NO      |
++-----------------+-------------------------------------------------------+-----------+
+| ``RBD_FORMAT``  | By default RBD Format 2 will be used.                 |   NO      |
++-----------------+-------------------------------------------------------+-----------+
+
+Create a System Datastore
+--------------------------------------------------------------------------------
+
+Create a System Datastore in Sunstone or through the CLI, for example:
+
+.. prompt:: text $ auto
+
+    $ cat systemds.txt
+    NAME    = ceph_system
+    TM_MAD  = ceph
+    TYPE    = SYSTEM_DS
+
+    POOL_NAME = one
+    CEPH_USER = libvirt
+
+    $ onedatastore create systemds.txt
+    ID: 101
+
+.. note:: Ceph can also work with a System Datastore of type Filesystem in a shared transfer mode, as described :ref:`in the Filesystem Datastore section <fs_ds>`. In that case volatile and swap disks are created as plain files in the System Datastore. Note that apart from the Ceph Cluster you need to setup a shared FS.
+
+Create an Image Datastore
+--------------------------------------------------------------------------------
+
+Apart from the previous attributes, that need to be the same as the associated System Datastore, the following can be set for an Image Datastore:
+
++-----------------+-------------------------------------------------------+-----------+
+|    Attribute    |  Description                                          | Mandatory |
++=================+=======================================================+===========+
+| ``DS_MAD``      | ``ceph``                                              | **YES**   |
++-----------------+-------------------------------------------------------+-----------+
+| ``DISK_TYPE``   | ``RBD``                                               | **YES**   |
++-----------------+-------------------------------------------------------+-----------+
+| ``BRIDGE_LIST`` | List of storage bridges to access the Ceph cluster    | **YES**   |
++-----------------+-------------------------------------------------------+-----------+
+| ``CEPH_HOST``   | Space-separated list of Ceph monitors. Example:       | **YES**   |
+|                 | ``host1 host2:port2 host3 host4:port4``.              |           |
++-----------------+-------------------------------------------------------+-----------+
+| ``CEPH_SECRET`` | The UUID of the libvirt secret.                       | **YES**   |
++-----------------+-------------------------------------------------------+-----------+
+| ``STAGING_DIR`` | Default path for image operations in the bridges      | NO        |
++-----------------+-------------------------------------------------------+-----------+
 
 An example of datastore:
 
@@ -117,110 +198,25 @@ An example of datastore:
     NAME = "cephds"
     DS_MAD = ceph
     TM_MAD = ceph
-    CEPH_HOST = host1 host2:port2
 
-    # the following lines *must* be preset
     DISK_TYPE = RBD
-    POOL_NAME = one
 
-    # CEPH_USER and CEPH_SECRET are mandatory for cephx
-    CEPH_USER = libvirt
-    CEPH_SECRET="6f88b54b-5dae-41fe-a43e-b2763f601cfc"
+    POOL_NAME   = one
+    CEPH_HOST   = host1 host2:port2
+    CEPH_USER   = libvirt
+    CEPH_SECRET = "6f88b54b-5dae-41fe-a43e-b2763f601cfc"
 
     BRIDGE_LIST = cephfrontend
 
     > onedatastore create ds.conf
     ID: 101
 
-    > onedatastore list
-      ID NAME            CLUSTER  IMAGES TYPE   TM
-       0 system          none     0      fs     shared
-       1 default         none     3      fs     shared
-     100 cephds          none     0      ceph   ceph
+Addtional Configuration
+--------------------------------------------------------------------------------
 
-The DS and TM MAD can be changed later using the ``onedatastore update`` command. You can check more details of the datastore by issuing the ``onedatastore show`` command.
+Default values for the Ceph drivers can be set in ``/var/lib/one/remotes/datastore/ceph/ceph.conf``:
 
-|cephdatastore|
+* ``POOL_NAME``: Default volume group
+* ``STAGING_DIR``: Default path for image operations in the storage bridges
+* ``RBD_FORMAT``: Default format for RBD volumes.
 
-Ceph Authentication (Cephx)
-===========================
-
-If `Cephx <http://ceph.com/docs/master/rados/operations/authentication/>`__ is enabled, there are some special considerations the OpenNebula administrator must take into account.
-
-Create a Ceph user for the OpenNebula hosts. We will use the name ``client.libvirt``, but any other name is fine. Create the user in Ceph and grant it rwx permissions on the ``one`` pool:
-
-.. code::
-
-    ceph auth get-or-create client.libvirt mon 'allow r' osd 'allow class-read object_prefix rbd_children, allow rwx pool=one'
-    ceph auth get-key client.libvirt | tee client.libvirt.key
-    ceph auth get client.libvirt -o ceph.client.libvirt.keyring
-
-Distribute the ``client.libvirt.key`` and ``ceph.client.libvirt.keyring`` file to all the KVM hosts:
-- ``ceph.client.libvirt.keyring`` must be placed under ``/etc/ceph`` (in all the hypervisors and frontend)
-- ``client.libvirt.key`` must delivered somewhere where oneadmin can read it in order to create the libvirt secret documents.
-
-Generate a UUID, for example running ``uuidgen`` (the generated uuid will referenced as ``$UUID`` from now onwards).
-
-Create a file named ``secret.xml`` (using the generated ``$UUID`` and distribute it to all the KVM hosts:
-
-.. code::
-
-    cat > secret.xml <<EOF
-    <secret ephemeral='no' private='no'>
-      <uuid>$UUID</uuid>
-      <usage type='ceph'>
-              <name>client.libvirt secret</name>
-      </usage>
-    </secret>
-    EOF
-
-The following commands must be executed in all the KVM hosts as oneadmin (assuming the ``secret.xml`` and ``client.libvirt.key`` files have been distributed to the hosts):
-
-.. code::
-
-    virsh -c qemu:///system secret-define secret.xml
-    # Replace $UUID with the value generated in the previous step
-    virsh -c qemu:///system  secret-set-value --secret $UUID --base64 $(cat client.libvirt.key)
-
-Finally, the Ceph datastore must be updated to add the following values:
-
-.. code::
-
-    CEPH_USER="libvirt"
-    CEPH_SECRET="$UUID"
-    CEPH_HOST="<list of ceph mon hosts, see table above>"
-
-You can read more information about this in the Ceph guide `Using libvirt with Ceph <http://ceph.com/docs/master/rbd/libvirt/>`__.
-
-Using the Ceph Transfer Driver
-==============================
-
-The workflow for Ceph images is similar to the other datastores, which means that a user will create an image inside the Ceph datastores by providing a path to the image file locally available in the OpenNebula frontend, or to an http url, and the driver will convert it to a Ceph block device.
-
-All the usual operations are avalaible: oneimage create, oneimage delete, oneimage clone, oneimage persistent, oneimage nonpersistent, onevm disk-snapshot, etc...
-
-Tuning & Extending
-==================
-
-File Location
--------------
-
-System administrators and integrators are encouraged to modify these drivers in order to integrate them with their datacenter:
-
-Under ``/var/lib/one/remotes/``:
-
-* **datastore/ceph/ceph.conf**: Default values for ceph parameters
-
-  * ``HOST``: Default OpenNebula Ceph frontend
-  * ``POOL_NAME``: Default volume group
-  * ``STAGING_DIR``: Default path for image operations in the OpenNebula Ceph frontend.
-
-* **datastore/ceph/cp**: Registers a new image. Creates a new logical volume in ceph.
-* **datastore/ceph/mkfs**: Makes a new empty image. Creates a new logical volume in ceph.
-* **datastore/ceph/rm**: Removes the ceph logical volume.
-* **tm/ceph/ln**: Does nothing since it's handled by libvirt.
-* **tm/ceph/clone**: Copies the image to a new image.
-* **tm/ceph/mvds**: Saves the image in a Ceph block device for SAVE\_AS.
-* **tm/ceph/delete**: Removes a non-persistent image from the Virtual Machine directory if it hasn't been subject to a ``disk-snapshot`` operation.
-
-.. |cephdatastore| image:: /images/sunstone_datastore_ceph.png

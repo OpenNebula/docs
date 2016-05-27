@@ -174,9 +174,11 @@ For example, the following illustrates the creation of a filesystem datastore us
 
 Check the :ref:`Datastore Operation guide <ds_op>` to learn how to update and manage the life cycle of the datastores. Also note that there are additional attributes that can be set, check the :ref:`datastore template attributes <ds_op_definition>`.
 
+.. warning:: Be sure to use the same ``TM_MAD`` for both the System and Image datastore.
+
 .. _qcow2_options:
 
-Addtional Configuration for Qcow2 Transfer Mode
+Addtional Configuration
 --------------------------------------------------------------------------------
 
 The qcow2 drivers are a specialization of the shared drivers to work with the qcow2 format for disk images. Images are created and through the ``qemu-img`` command using the original image as backing file. Custom options can be sent to ``qemu-img`` clone action through the variable ``QCOW2_OPTIONS`` in ``/var/lib/one/remotes/tm/tmrc``.
