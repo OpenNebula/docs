@@ -207,6 +207,8 @@ The following variables are added to the OpenNebula hosts representing ESX clust
 | VCENTER_PASSWORD | Password of the vCenter user       |
 +------------------+------------------------------------+
 
+Once the vCenter cluster is monitored, OpenNebula will display any existing VM as Wild. These VMs can be :ref:`imported <import_vcenter_resources>` and managed through OpenNebula.
+
 .. note::
 
    OpenNebula will create a special key at boot time and save it in /var/lib/one/.one/one_key. This key will be used as a private key to encrypt and decrypt all the passwords for all the vCenters that OpenNebula can access. Thus, the password shown in the OpenNebula host representing the vCenter is the original password encrypted with this special key.
