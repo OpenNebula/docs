@@ -67,10 +67,10 @@ Can be also given to OpenNebula with the following XML:
 Authorization Requests Reference
 ================================================================================
 
-For each XML-RPC request, the session token is authenticated, and after that the Request Manager generates an authorization request that can include more than one operation. The following tables document these requests.
+OpenNebula features a CLI that wraps the XML-RPC requests. For each XML-RPC request, the session token is authenticated, and after that the Request Manager generates an authorization request that can include more than one operation. The following tables document these requests from the different CLI commands.
 
 onevm
------
+--------------------------------------------------------------------------------
 
 +----------------------+---------------------------+-------------------+
 |    onevm command     |     XML-RPC Method        |   Auth. Request   |
@@ -180,7 +180,7 @@ onevm
     The scheduler deploys VMs to the Hosts over which the VM owner has MANAGE rights.
 
 onetemplate
------------
+--------------------------------------------------------------------------------
 
 +---------------------+--------------------------+-------------------------+
 | onetemplate command |      XML-RPC Method      |      Auth. Request      |
@@ -218,7 +218,7 @@ onetemplate
 +---------------------+--------------------------+-------------------------+
 
 onehost
--------
+--------------------------------------------------------------------------------
 
 +-----------------+-------------------+---------------+
 | onehost command |   XML-RPC Method  | Auth. Request |
@@ -246,7 +246,7 @@ onehost
 .. warning:: onehost sync is not performed by the core, it is done by the ruby command onehost.
 
 onecluster
-----------
+--------------------------------------------------------------------------------
 
 +--------------------+--------------------------+-----------------+
 | onecluster command |      XML-RPC Method      |  Auth. Request  |
@@ -289,7 +289,7 @@ onecluster
 +--------------------+--------------------------+-----------------+
 
 onegroup
---------
+--------------------------------------------------------------------------------
 
 +------------------+-----------------------+-----------------------------------------+
 | onegroup command |     XML-RPC Method    |              Auth. Request              |
@@ -320,7 +320,7 @@ onegroup
 +------------------+-----------------------+-----------------------------------------+
 
 onevdc
---------
+--------------------------------------------------------------------------------
 
 +----------------+----------------------+-----------------+
 | onevdc command |    XML-RPC Method    |  Auth. Request  |
@@ -395,7 +395,7 @@ onevdc
 +----------------+----------------------+-----------------+
 
 onevnet
--------
+--------------------------------------------------------------------------------
 
 +-----------------+------------------+--------------------+
 | onevnet command |  XML-RPC Method  |   Auth. Request    |
@@ -436,7 +436,7 @@ onevnet
 +-----------------+------------------+--------------------+
 
 oneuser
--------
+--------------------------------------------------------------------------------
 
 +-----------------+----------------------+-----------------------------------------+
 | oneuser command |    XML-RPC Method    |              Auth. Request              |
@@ -479,7 +479,7 @@ oneuser
 +-----------------+----------------------+-----------------------------------------+
 
 onedatastore
-------------
+--------------------------------------------------------------------------------
 
 +----------------------+------------------------+----------------------------+
 | onedatastore command |     XML-RPC Method     |       Auth. Request        |
@@ -510,7 +510,7 @@ onedatastore
 +----------------------+------------------------+----------------------------+
 
 oneimage
---------
+--------------------------------------------------------------------------------
 
 +------------------+---------------------------+------------------------+
 | oneimage command |    XML-RPC Method         |     Auth. Request      |
@@ -563,7 +563,7 @@ oneimage
 +------------------+---------------------------+------------------------+
 
 onezone
---------
+--------------------------------------------------------------------------------
 
 +-----------------+-------------------+---------------+
 | onezone command |   XML-RPC Method  | Auth. Request |
@@ -617,7 +617,7 @@ onesecgroup
 +---------------------+-----------------------+---------------------------+
 
 oneacl
-------
+--------------------------------------------------------------------------------
 
 +----------------+-----------------+---------------+
 | oneacl command |  XML-RPC Method | Auth. Request |
@@ -630,7 +630,7 @@ oneacl
 +----------------+-----------------+---------------+
 
 oneacct
--------
+--------------------------------------------------------------------------------
 
 +---------+-----------------------+---------------+
 | command |     XML-RPC Method    | Auth. Request |
@@ -687,7 +687,7 @@ documents
 +-----------------------+---------------------------+
 
 system
-------
+--------------------------------------------------------------------------------
 
 +---------+--------------------+-----------------------------------------+
 | command |   XML-RPC Method   |              Auth. Request              |
@@ -698,10 +698,10 @@ system
 +---------+--------------------+-----------------------------------------+
 
 Actions for Templates Management
-================================
+================================================================================
 
 one.template.allocate
----------------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Allocates a new template in OpenNebula.
 -  **Parameters**
@@ -721,7 +721,7 @@ one.template.allocate
 +------+------------+------------------------------------------------------------------------------------------------+
 
 one.template.clone
-------------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Clones an existing virtual machine template.
 -  **Parameters**
@@ -745,7 +745,7 @@ one.template.clone
 +------+------------+----------------------------------------------------------------------------------------------------+
 
 one.template.delete
--------------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Deletes the given template from the pool.
 -  **Parameters**
@@ -767,7 +767,7 @@ one.template.delete
 +------+------------+-------------------------------------------------------------+
 
 one.template.instantiate
-------------------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Instantiates a new virtual machine from a template.
 -  **Parameters**
@@ -800,10 +800,10 @@ Sample template string:
 
     MEMORY=4096\nCPU=4\nVCPU=4
 
-Note that declaring a field overwrites the template. Thus, declaring ``DISK=[...]`` overwrites the template ``DISK`` attribute and as such, must contain the entire ``DISK`` definition.
+.. note:: Declaring a field overwrites the template. Thus, declaring ``DISK=[...]`` overwrites the template ``DISK`` attribute and as such, must contain the entire ``DISK`` definition.
 
 one.template.update
--------------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Replaces the template contents.
 -  **Parameters**
@@ -827,7 +827,7 @@ one.template.update
 +------+------------+--------------------------------------------------------------------------------------------------+
 
 one.template.chmod
-------------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Changes the permission bits of a template.
 -  **Parameters**
@@ -867,7 +867,7 @@ one.template.chmod
 +------+------------+------------------------------------------------------------+
 
 one.template.chown
-------------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Changes the ownership of a template.
 -  **Parameters**
@@ -891,7 +891,7 @@ one.template.chown
 +------+------------+------------------------------------------------------------------------+
 
 one.template.rename
--------------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Renames a template.
 -  **Parameters**
@@ -913,7 +913,7 @@ one.template.rename
 +------+------------+---------------------------------------------+
 
 one.template.info
------------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Retrieves information for the template.
 -  **Parameters**
@@ -935,7 +935,7 @@ one.template.info
 +------+-----------+--------------------------------------------------------------------------------------------------------+
 
 one.templatepool.info
----------------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Retrieves information for all or part of the Resources in the pool.
 -  **Parameters**
@@ -967,10 +967,10 @@ one.templatepool.info
 The range can be used to retrieve a subset of the pool, from the 'start' to the 'end' ID. To retrieve the complete pool, use ``(-1, -1)``; to retrieve all the pool from a specific ID to the last one, use ``(<id>, -1)``, and to retrieve the first elements up to an ID, use ``(0, <id>)``.
 
 Actions for Virtual Machine Management
-======================================
+================================================================================
 
 one.vm.allocate
----------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Allocates a new virtual machine in OpenNebula.
 -  **Parameters**
@@ -994,7 +994,7 @@ one.vm.allocate
 .. _api_xonevmdeploy:
 
 one.vm.deploy
--------------
+--------------------------------------------------------------------------------<
 
 -  **Description**: initiates the instance of the given vmid on the target host.
 -  **Parameters**
@@ -1020,7 +1020,7 @@ one.vm.deploy
 +------+------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 one.vm.action
--------------
+--------------------------------------------------------------------------------
 
 -  **Description**: submits an action to be performed on a virtual machine.
 -  **Parameters**
@@ -1060,7 +1060,7 @@ The action String must be one of the following:
 * **unresched**
 
 one.vm.migrate
---------------
+--------------------------------------------------------------------------------
 
 -  **Description**: migrates one virtual machine (vid) to the target host (hid).
 -  **Parameters**
@@ -1088,7 +1088,7 @@ one.vm.migrate
 +------+------------+------------------------------------------------------------------------+
 
 one.vm.disksaveas
------------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Sets the disk to be saved in the given image.
 -  **Parameters**
@@ -1118,7 +1118,7 @@ one.vm.disksaveas
 +------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 one.vm.disksnapshotcreate
--------------------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Takes a new snapshot of the disk image
 -  **Parameters**
@@ -1142,7 +1142,7 @@ one.vm.disksnapshotcreate
 +------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 one.vm.disksnapshotdelete
--------------------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Deletes a disk snapshot
 -  **Parameters**
@@ -1166,7 +1166,7 @@ one.vm.disksnapshotdelete
 +------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 one.vm.disksnapshotrevert
--------------------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Reverts disk state to a previously taken snapshot
 -  **Parameters**
@@ -1190,7 +1190,7 @@ one.vm.disksnapshotrevert
 +------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 one.vm.attach
--------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Attaches a new disk to the virtual machine
 -  **Parameters**
@@ -1218,7 +1218,7 @@ Sample DISK vector attribute:
     DISK=[IMAGE_ID=42, TYPE=RBD, DEV_PREFIX=vd, SIZE=123456, TARGET=vdc]
 
 one.vm.detach
--------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Detaches a disk from a virtual machine
 -  **Parameters**
@@ -1240,7 +1240,7 @@ one.vm.detach
 +------+------------+---------------------------------------------+
 
 one.vm.attachnic
-----------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Attaches a new network interface to the virtual machine
 -  **Parameters**
@@ -1262,7 +1262,7 @@ one.vm.attachnic
 +------+------------+--------------------------------------------------------------------------------------------------------+
 
 one.vm.detachnic
-----------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Detaches a network interface from a virtual machine
 -  **Parameters**
@@ -1284,7 +1284,7 @@ one.vm.detachnic
 +------+------------+---------------------------------------------+
 
 one.vm.chmod
-------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Changes the permission bits of a virtual machine.
 -  **Parameters**
@@ -1322,7 +1322,7 @@ one.vm.chmod
 +------+------------+-----------------------------------------------------+
 
 one.vm.chown
-------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Changes the ownership of a virtual machine.
 -  **Parameters**
@@ -1346,7 +1346,7 @@ one.vm.chown
 +------+------------+------------------------------------------------------------------------+
 
 one.vm.rename
--------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Renames a virtual machine
 -  **Parameters**
@@ -1368,7 +1368,7 @@ one.vm.rename
 +------+------------+---------------------------------------------+
 
 one.vm.snapshotcreate
----------------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Creates a new virtual machine snapshot
 -  **Parameters**
@@ -1390,7 +1390,7 @@ one.vm.snapshotcreate
 +------+------------+---------------------------------------------+
 
 one.vm.snapshotrevert
----------------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Reverts a virtual machine to a snapshot
 -  **Parameters**
@@ -1412,7 +1412,7 @@ one.vm.snapshotrevert
 +------+------------+---------------------------------------------+
 
 one.vm.snapshotdelete
----------------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Deletes a virtual machine snapshot
 -  **Parameters**
@@ -1434,7 +1434,7 @@ one.vm.snapshotdelete
 +------+------------+---------------------------------------------+
 
 one.vm.resize
--------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Changes the capacity of the virtual machine
 -  **Parameters**
@@ -1458,7 +1458,7 @@ one.vm.resize
 +------+------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 one.vm.update
--------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Replaces the **user template** contents.
 -  **Parameters**
@@ -1524,7 +1524,7 @@ The supported attributes are:
 .. note:: Visit the :ref:`Virtual Machine Template reference <template>` for a complete description of each attribute
 
 one.vm.recover
---------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Recovers a stuck VM that is waiting for a driver operation. The recovery may be done by failing or succeeding the pending operation. You need to manually check the vm status on the host, to decide if the operation was successful or not.
 -  **Parameters**
@@ -1546,7 +1546,7 @@ one.vm.recover
 +------+------------+---------------------------------------------------------------------------+
 
 one.vm.info
------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Retrieves information for the virtual machine.
 -  **Parameters**
@@ -1568,7 +1568,7 @@ one.vm.info
 .. _api_onevmmonitoring:
 
 one.vm.monitoring
------------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Returns the virtual machine monitoring records.
 -  **Parameters**
@@ -1607,7 +1607,7 @@ For example:
     </MONITORING_DATA>
 
 one.vmpool.info
----------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Retrieves information for all or part of the VMs in the pool.
 -  **Parameters**
@@ -1677,7 +1677,7 @@ The state filter can be one of the following:
   Value 7 is reserved for FAILED VMs for compatibility reasons.
 
 one.vmpool.monitoring
----------------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Returns all the virtual machine monitoring records.
 -  **Parameters**
@@ -1730,7 +1730,7 @@ Sample output:
     </MONITORING_DATA>
 
 one.vmpool.accounting
----------------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Returns the virtual machine history records.
 -  **Parameters**
@@ -1760,7 +1760,7 @@ one.vmpool.accounting
 The XML output is explained in detail in the :ref:`''oneacct'' guide <accounting>`.
 
 one.vmpool.showback
----------------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Returns the virtual machine showback records
 -  **Parameters**
@@ -1841,10 +1841,10 @@ one.vmpool.calculateshowback
 +------+-----------+-------------------------------------------------------------------------------------------------------------------------+
 
 Actions for Hosts Management
-============================
+================================================================================
 
 one.host.allocate
------------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Allocates a new host in OpenNebula
 -  **Parameters**
@@ -1870,7 +1870,7 @@ one.host.allocate
 +------+------------+----------------------------------------------------------------------------------------------------------------------------------------------+
 
 one.host.delete
----------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Deletes the given host from the pool
 -  **Parameters**
@@ -1890,7 +1890,7 @@ one.host.delete
 +------+------------+---------------------------------------------+
 
 one.host.status
----------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Sets the status of the host
 -  **Parameters**
@@ -1915,11 +1915,8 @@ one.host.status
 | OUT  | Int        | Error code.                                 |
 +------+------------+---------------------------------------------+
 
-
-    
-
 one.host.update
----------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Replaces the host's template contents.
 -  **Parameters**
@@ -1943,7 +1940,7 @@ one.host.update
 +------+------------+--------------------------------------------------------------------------------------------------+
 
 one.host.rename
----------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Renames a host.
 -  **Parameters**
@@ -1965,7 +1962,7 @@ one.host.rename
 +------+------------+---------------------------------------------+
 
 one.host.info
--------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Retrieves information for the host.
 -  **Parameters**
@@ -1987,7 +1984,7 @@ one.host.info
 .. _api_onehostmonitoring:
 
 one.host.monitoring
--------------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Returns the host monitoring records.
 -  **Parameters**
@@ -2026,7 +2023,7 @@ For example:
     </MONITORING_DATA>
 
 one.hostpool.info
------------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Retrieves information for all the hosts in the pool.
 -  **Parameters**
@@ -2044,7 +2041,7 @@ one.hostpool.info
 +------+-----------+---------------------------------------------+
 
 one.hostpool.monitoring
------------------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Returns all the host monitoring records.
 -  **Parameters**
@@ -2089,10 +2086,10 @@ Sample output:
     </MONITORING_DATA>
 
 Actions for Cluster Management
-==============================
+================================================================================
 
 one.cluster.allocate
---------------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Allocates a new cluster in OpenNebula.
 -  **Parameters**
@@ -2112,7 +2109,7 @@ one.cluster.allocate
 +------+------------+----------------------------------------------+
 
 one.cluster.delete
-------------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Deletes the given cluster from the pool.
 -  **Parameters**
@@ -2132,7 +2129,7 @@ one.cluster.delete
 +------+------------+---------------------------------------------+
 
 one.cluster.update
-------------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Replaces the cluster template contents.
 -  **Parameters**
@@ -2156,7 +2153,7 @@ one.cluster.update
 +------+------------+--------------------------------------------------------------------------------------------------+
 
 one.cluster.addhost
--------------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Adds a host to the given cluster.
 -  **Parameters**
@@ -2178,7 +2175,7 @@ one.cluster.addhost
 +------+------------+---------------------------------------------+
 
 one.cluster.delhost
--------------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Removes a host from the given cluster.
 -  **Parameters**
@@ -2200,7 +2197,7 @@ one.cluster.delhost
 +------+------------+---------------------------------------------+
 
 one.cluster.adddatastore
-------------------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Adds a datastore to the given cluster.
 -  **Parameters**
@@ -2222,7 +2219,7 @@ one.cluster.adddatastore
 +------+------------+---------------------------------------------+
 
 one.cluster.deldatastore
-------------------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Removes a datastore from the given cluster.
 -  **Parameters**
@@ -2244,7 +2241,7 @@ one.cluster.deldatastore
 +------+------------+---------------------------------------------+
 
 one.cluster.addvnet
--------------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Adds a vnet to the given cluster.
 -  **Parameters**
@@ -2266,7 +2263,7 @@ one.cluster.addvnet
 +------+------------+---------------------------------------------+
 
 one.cluster.delvnet
--------------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Removes a vnet from the given cluster.
 -  **Parameters**
@@ -2288,7 +2285,7 @@ one.cluster.delvnet
 +------+------------+---------------------------------------------+
 
 one.cluster.rename
-------------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Renames a cluster.
 -  **Parameters**
@@ -2310,7 +2307,7 @@ one.cluster.rename
 +------+------------+---------------------------------------------+
 
 one.cluster.info
-----------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Retrieves information for the cluster.
 -  **Parameters**
@@ -2330,7 +2327,7 @@ one.cluster.info
 +------+-----------+---------------------------------------------+
 
 one.clusterpool.info
---------------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Retrieves information for all the clusters in the pool.
 -  **Parameters**
@@ -2348,10 +2345,10 @@ one.clusterpool.info
 +------+-----------+---------------------------------------------+
 
 Actions for Virtual Network Management
-======================================
+================================================================================
 
 one.vn.allocate
----------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Allocates a new virtual network in OpenNebula.
 -  **Parameters**
@@ -2373,7 +2370,7 @@ one.vn.allocate
 +------+------------+--------------------------------------------------------------------------------------------------------------+
 
 one.vn.delete
--------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Deletes the given virtual network from the pool.
 -  **Parameters**
@@ -2435,7 +2432,7 @@ Examples of valid templates:
     </TEMPLATE>
 
 one.vn.rm_ar
----------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Removes an address range from a virtual network.
 -  **Parameters**
@@ -2542,7 +2539,7 @@ The third parameter must be an OpenNebula ATTRIBUTE=VALUE template, with these v
 +------------+------------------------------------------------------------------------------------------------------------------------+-----------+
 
 one.vn.free_ar
----------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Frees a reserved address range from a virtual network.
 -  **Parameters**
@@ -2563,10 +2560,8 @@ one.vn.free_ar
 | OUT  | Int        | Error code.                                 |
 +------+------------+---------------------------------------------+
 
-
-
 one.vn.hold
------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Holds a virtual network Lease as used.
 -  **Parameters**
@@ -2588,7 +2583,7 @@ one.vn.hold
 +------+------------+------------------------------------------------------------------+
 
 one.vn.release
---------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Releases a virtual network Lease on hold.
 -  **Parameters**
@@ -2610,7 +2605,7 @@ one.vn.release
 +------+------------+---------------------------------------------------------------------+
 
 one.vn.update
--------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Replaces the virtual network template contents.
 -  **Parameters**
@@ -2634,7 +2629,7 @@ one.vn.update
 +------+------------+--------------------------------------------------------------------------------------------------+
 
 one.vn.chmod
-------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Changes the permission bits of a virtual network.
 -  **Parameters**
@@ -2672,7 +2667,7 @@ one.vn.chmod
 +------+------------+-----------------------------------------------------+
 
 one.vn.chown
-------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Changes the ownership of a virtual network.
 -  **Parameters**
@@ -2696,7 +2691,7 @@ one.vn.chown
 +------+------------+------------------------------------------------------------------------+
 
 one.vn.rename
--------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Renames a virtual network.
 -  **Parameters**
@@ -2718,7 +2713,7 @@ one.vn.rename
 +------+------------+---------------------------------------------+
 
 one.vn.info
------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Retrieves information for the virtual network.
 -  **Parameters**
@@ -2740,7 +2735,7 @@ one.vn.info
 .. note:: The ACL rules do not apply to VNET reserveations in the same way as they do to normal VNETs and other objects. Read more in the :ref:`ACL documentation guide <manage_acl_vnet_reservations>`.
 
 one.vnpool.info
----------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Retrieves information for all or part of the virtual networks in the pool.
 -  **Parameters**
@@ -3023,10 +3018,10 @@ one.secgrouppool.info
 The range can be used to retrieve a subset of the pool, from the 'start' to the 'end' ID. To retrieve the complete pool, use ``(-1, -1)``; to retrieve all the pool from a specific ID to the last one, use ``(<id>, -1)``, and to retrieve the first elements up to an ID, use ``(0, <id>)``.
 
 Actions for Datastore Management
-================================
+================================================================================
 
 one.datastore.allocate
-----------------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Allocates a new datastore in OpenNebula.
 -  **Parameters**
@@ -3048,7 +3043,7 @@ one.datastore.allocate
 +------+------------+--------------------------------------------------------------------------------------------------------+
 
 one.datastore.delete
---------------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Deletes the given datastore from the pool.
 -  **Parameters**
@@ -3068,7 +3063,7 @@ one.datastore.delete
 +------+------------+---------------------------------------------+
 
 one.datastore.update
---------------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Replaces the datastore template contents.
 -  **Parameters**
@@ -3092,7 +3087,7 @@ one.datastore.update
 +------+------------+--------------------------------------------------------------------------------------------------+
 
 one.datastore.chmod
--------------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Changes the permission bits of a datastore.
 -  **Parameters**
@@ -3130,7 +3125,7 @@ one.datastore.chmod
 +------+------------+-----------------------------------------------------+
 
 one.datastore.chown
--------------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Changes the ownership of a datastore.
 -  **Parameters**
@@ -3154,7 +3149,7 @@ one.datastore.chown
 +------+------------+------------------------------------------------------------------------+
 
 one.datastore.rename
---------------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Renames a datastore.
 -  **Parameters**
@@ -3200,7 +3195,7 @@ one.datastore.enable
 
 
 one.datastore.info
-------------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Retrieves information for the datastore.
 -  **Parameters**
@@ -3220,7 +3215,7 @@ one.datastore.info
 +------+-----------+---------------------------------------------+
 
 one.datastorepool.info
-----------------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Retrieves information for all or part of the datastores in the pool.
 -  **Parameters**
@@ -3238,10 +3233,10 @@ one.datastorepool.info
 +------+-----------+---------------------------------------------+
 
 Actions for Image Management
-============================
+================================================================================
 
 one.image.allocate
-------------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Allocates a new image in OpenNebula.
 -  **Parameters**
@@ -3263,7 +3258,7 @@ one.image.allocate
 +------+------------+----------------------------------------------------------------------------------------------------+
 
 one.image.clone
----------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Clones an existing image.
 -  **Parameters**
@@ -3287,7 +3282,7 @@ one.image.clone
 +------+------------+------------------------------------------------------------------------------------+
 
 one.image.delete
-----------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Deletes the given image from the pool.
 -  **Parameters**
@@ -3307,7 +3302,7 @@ one.image.delete
 +------+------------+---------------------------------------------+
 
 one.image.enable
-----------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Enables or disables an image.
 -  **Parameters**
@@ -3329,7 +3324,7 @@ one.image.enable
 +------+------------+----------------------------------------------+
 
 one.image.persistent
---------------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Sets the Image as persistent or not persistent.
 -  **Parameters**
@@ -3351,7 +3346,7 @@ one.image.persistent
 +------+------------+-----------------------------------------------+
 
 one.image.chtype
-----------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Changes the type of an Image.
 -  **Parameters**
@@ -3373,7 +3368,7 @@ one.image.chtype
 +------+------------+-------------------------------------------------------------------------------------------------------+
 
 one.image.update
-----------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Replaces the image template contents.
 -  **Parameters**
@@ -3397,7 +3392,7 @@ one.image.update
 +------+------------+--------------------------------------------------------------------------------------------------+
 
 one.image.chmod
----------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Changes the permission bits of an image.
 -  **Parameters**
@@ -3435,7 +3430,7 @@ one.image.chmod
 +------+------------+-----------------------------------------------------+
 
 one.image.chown
----------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Changes the ownership of an image.
 -  **Parameters**
@@ -3459,7 +3454,7 @@ one.image.chown
 +------+------------+------------------------------------------------------------------------+
 
 one.image.rename
-----------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Renames an image.
 -  **Parameters**
@@ -3481,7 +3476,7 @@ one.image.rename
 +------+------------+---------------------------------------------+
 
 one.image.snapshotdelete
-------------------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Deletes a snapshot from the image
 -  **Parameters**
@@ -3503,7 +3498,7 @@ one.image.snapshotdelete
 +------+------------+---------------------------------------------+
 
 one.image.snapshotrevert
-------------------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Reverts image state to a previous snapshot
 -  **Parameters**
@@ -3525,7 +3520,7 @@ one.image.snapshotrevert
 +------+------------+---------------------------------------------+
 
 one.image.snapshotflatten
--------------------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Flatten the snapshot of image and discards others
 -  **Parameters**
@@ -3547,7 +3542,7 @@ one.image.snapshotflatten
 +------+------------+---------------------------------------------+
 
 one.image.info
---------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Retrieves information for the image.
 -  **Parameters**
@@ -3567,7 +3562,7 @@ one.image.info
 +------+-----------+---------------------------------------------+
 
 one.imagepool.info
-------------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Retrieves information for all or part of the images in the pool.
 -  **Parameters**
@@ -3599,10 +3594,10 @@ one.imagepool.info
 The range can be used to retrieve a subset of the pool, from the 'start' to the 'end' ID. To retrieve the complete pool, use ``(-1, -1)``; to retrieve all the pool from a specific ID to the last one, use ``(<id>, -1)``, and to retrieve the first elements up to an ID, use ``(0, <id>)``.
 
 Actions for User Management
-===========================
+================================================================================
 
 one.user.allocate
------------------
+--------------------------------------------------------------------------------
 
 -  **Description**: Allocates a new user in OpenNebula
 -  **Parameters**
