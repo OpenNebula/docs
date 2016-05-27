@@ -29,6 +29,10 @@ In order to use CHAP authentication, you will need to create a libvirt secret in
 
 OpenNebula Configuration
 ================================================================================
+Once the storage is setup, the OpenNebula configuration comprises two steps:
+
+* Create a System Datastore
+* Create an Image Datastore
 
 Create a System Datastore
 --------------------------------------------------------------------------------

@@ -107,10 +107,10 @@ Just make sure that there is enough space under ``/var/lib/one/datastores`` to s
 
 OpenNebula Configuration
 ================================================================================
-Once the Filesystem storage is setup, the OpenNebula configuration comprises to steps:
+Once the Filesystem storage is setup, the OpenNebula configuration comprises two steps:
 
-- Create a System Datastore
-- Create an Image Datastore
+* Create a System Datastore
+* Create an Image Datastore
 
 Create a System Datastore
 --------------------------------------------------------------------------------

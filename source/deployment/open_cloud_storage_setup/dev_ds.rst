@@ -25,6 +25,10 @@ The devices you want to attach to a VM should be accessible by the hypervisor. A
 
 OpenNebula Configuration
 ================================================================================
+Once the storage is setup, the OpenNebula configuration comprises two steps:
+
+* Create a System Datastore
+* Create an Image Datastore
 
 Create a System Datastore
 --------------------------------------------------------------------------------
