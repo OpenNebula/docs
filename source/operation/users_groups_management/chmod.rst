@@ -194,31 +194,28 @@ The ACL rules are managed using the :ref:`oneacl command <cli>`. The 'oneacl lis
 .. code::
 
     $ oneacl list
-       ID     USER RES_VHNIUTGDCOZS   RID OPE_UMAC  ZONE
-        0       @1     V-NI-T---O--     *     ---c    #0
-        1        *     ----------Z-     *     u---     *
-        2       @1     -H----------     *     -m--    #0
-        3       @1     --N----D----     *     u---    #0
-        4       #5     --NI-T------  @104     u---    #0
-        5     @106     ---I--------   #31     u---    #0
+       ID     USER RES_VHNIUTGDCOZSvRMA   RID OPE_UMAC  ZONE
+        0       @1     V--I-T---O-S----     *     ---c     *
+        1        *     ----------Z-----     *     u---     *
+        2        *     --------------MA     *     u---     *
+        3       @1     -H--------------     *     -m--    #0
+        4       @1     --N----D--------     *     u---    #0
+        5     @106     ---I------------   #31     u---    #0
 
 The rules shown correspond to the following ones:
 
 .. code::
 
-    @1      VM+NET+IMAGE+TEMPLATE+DOCUMENT/*    CREATE  #0
-    *       ZONE/*                              USE     *
-    @1      HOST/*                              MANAGE  #0
-    @1      NET+DATASTORE/*                     USE     #0
-    #5      NET+IMAGE+TEMPLATE/@104             USE     #0
-    @106    IMAGE/#31                           USE     #0
+    @1      VM+IMAGE+TEMPLATE+DOCUMENT+SECGROUP/*   CREATE  *
+    *       ZONE/*                                  USE     *
+    *       MARKETPLACE+MARKETPLACEAPP/*            USE     *
+    @1      HOST/*                                  MANAGE  #0
+    @1      NET+DATASTORE/*                         USE     #0
+    @106    IMAGE/#31                               USE     #0
 
-The first four were created on bootstrap by OpenNebula, and the last two were created using oneacl:
+The first five were created on bootstrap by OpenNebula, and the last one was created using oneacl:
 
 .. code::
-
-    $ oneacl create "#5 NET+IMAGE+TEMPLATE/@104 USE"
-    ID: 4
 
     $ oneacl create "@106 IMAGE/#31 USE"
     ID: 5
@@ -241,6 +238,10 @@ The **Resources** column lists the existing Resource types initials. Each rule f
 -  ``O : DOCUMENT``
 -  ``Z : ZONE``
 -  ``S : SECURITY GROUP``
+-  ``v : VDC``
+-  ``R : VROUTER``
+-  ``M : MARKETPLACE``
+-  ``A : MARKETPLACEAPP``
 
 **RID** stands for Resource ID, it can be an individual object (#), group (@) or cluster (%) id; or all (\*) objects.
 

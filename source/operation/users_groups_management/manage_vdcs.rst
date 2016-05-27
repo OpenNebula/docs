@@ -104,7 +104,7 @@ Using the previous scenario as an example, the Cloud Admin can add the Group Web
 Create Super-Clusters
 --------------------------------------------------------------------------------
 
-A VDC can have more than one physical resource of each type (Cluster, Hosts, VNets, Datastores), and a physical resource can be in more than one VDC. In contrast, a Host, VNet or Datastore can be part of only one Cluster. This means that you can decide to create a VDC that encompasses resources that may not be part of the same physical Cluster.
+A VDC can have more than one physical resource of each type (Cluster, Hosts, VNets, Datastores), and a physical resource can be in more than one VDC. In contrast a Host can be part of only one Cluster. This means that you can decide to create a VDC that encompasses resources that may not be part of the same physical Cluster.
 
 For example, a VDC called 'high-performance' may contain Hosts from two incompatible Clusters, let's say 'kvm-ceph' and 'kvm-qcow2'. These Hosts may be part of the same VDC, but from the deployment point of view, the important factor is their Cluster. The scheduler will decide the deployment target based on each Host's Cluster, and this guarantees that the VMs are always deployed in a compatible Host.
 
