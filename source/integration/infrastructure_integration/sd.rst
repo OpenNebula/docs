@@ -80,7 +80,7 @@ Located under ``/var/lib/one/remotes/datastore/<ds_mad>``
 TM Drivers Structure
 ================================================================================
 
-This is a list of the TM drivers and their action. Note that they don't return anything. If the exit code is not ``0``, the driver will have failed.
+This is a list of the TM drivers and their action. Note that they don't return anything. If the exit code is not ``0``, the driver failed.
 
 Located under ``/var/lib/one/remotes/tm/<tm_mad>``. There are two types of action scripts: the first group applies to general image datastores and includes (``clone``, ``ln``, ``mv`` and ``mvds``); the second one is only used in conjunction with the system datastore.
 

@@ -6,13 +6,13 @@ Cloud Bursting Driver
 
 This guide will show you how to develop a new driver for OpenNebula to interact with an external cloud provider.
 
-Cloud bursting is a model in which the local resources of a Private Cloud are combined with resources from remote Cloud providers. The remote provider could be a commercial Cloud service, such as Amazon EC2, or Microsoft Azure, or a partner infrastructure running a different OpenNebula instance. Such support for cloud bursting enables highly scalable hosting environments. For more information on this model see the :ref:`Cloud Bursting overview <introh>`
+Cloud bursting, or hybrid cloud, is a model in which the local resources of a Private Cloud are combined with resources from remote Cloud providers. The remote provider could be a commercial Cloud service, such as Amazon EC2 or Microsoft Azure, or a partner infrastructure running a different OpenNebula instance. Such support for cloud bursting enables highly scalable hosting environments. For more information on this model see the :ref:`Cloud Bursting overview <introh>`
 
 The remote cloud provider will be included in the OpenNebula host pool like any other physical host of your infrastructure:
 
 .. code::
 
-    $ onehost create remote_provider im_provider vmm_provider tm_dummy dummy
+    $ onehost create remote_provider im_provider vmm_provider
 
     $ onehost list
       ID NAME            CLUSTER   RVM      ALLOCATED_CPU      ALLOCATED_MEM STAT
@@ -34,13 +34,7 @@ IM driver gather information about the physical host and hypervisor status, so t
 
 VMM drivers translate the high-level OpenNebula virtual machine life-cycle management actions, like deploy, shutdown, etc. into specific hypervisor operations. For instance, the KVM driver will issue a virsh create command in the physical host. The EC2 driver translate the actions into Amazon EC2 API calls.
 
--  :ref:`Transfer Manager <sd>`: ``tm_dummy``
-
-TM drivers are used to transfer, clone and remove Virtual Machines Image files. They take care of the file transfer from the OpenNebula image repository to the physical hosts. There are specific drivers for different storage configurations: shared, non-shared, lvm storage, etc.
-
--  :ref:`VirtualNetwork Manager <nm>`: ``dummy``
-
-VNM drivers are used to set the network configuration in the host (firewall, 802.1Q, ebtables, osvswitch)
+.. note:: Storage and Network drivers are derived from the VM characteristics rather than the host.
 
 When creating a new host to interact with a remote cloud provider we will use mock versions for the TM and VNM drivers. Therefore, we will only implement the functionality required for the IM and VMM driver.
 
@@ -90,8 +84,8 @@ Create a new directory to store your probes, the name of this folder must match 
 
 These probes must return:
 
--  :ref:`Information of the host capacity <devel-im_basic_monitoring_scripts>`, to limit the number of VMs that can be deployed in this hosts.
--  :ref:`Information of the VMs <devel-im_vm_information>` running in this host-
+-  :ref:`Information of the host capacity <devel-im_basic_monitoring_scripts>`, to limit the number of VMs that can be deployed in this host.
+-  :ref:`Information of the VMs <devel-im_vm_information>` running in this host.
 
 You can see an example of these probes in the `ec2 driver <https://github.com/OpenNebula/one/tree/master/src/im_mad/remotes/ec2.d>`__ (`code <https://github.com/OpenNebula/one/blob/master/src/vmm_mad/remotes/ec2/ec2_driver.rb#L300>`__) included in OpenNebula
 
@@ -131,6 +125,7 @@ Edit oned.conf
     #               /etc/one/ if OpenNebula was installed in /)
     #
     #   type      : driver type, supported drivers: xen, kvm, xml
+    #  
     #-------------------------------------------------------------------------------
     VM_MAD = [
         name       = "vmm_provider",
@@ -142,7 +137,7 @@ Edit oned.conf
 Create the Driver Folder and Implement the Specific Actions
 --------------------------------------------------------------------------------
 
-Create a new folder inside the remotes dir (/var/lib/one/remotes/vmm). The new folder should be named “providet\_name”, the name specified in the previous VM\_MAD arguments section.
+Create a new folder inside the remotes dir (/var/lib/one/remotes/vmm). The new folder should be named “provider\_name”, the name specified in the previous VM\_MAD arguments section.
 
 This folder must contain scripts for the supported actions. You can see the list of available actions in the :ref:`Virtual Machine Driver guide <devel-vmm_action>`. These scripts are language-agnostic so you can implement them using python, ruby, bash...
 
@@ -155,7 +150,7 @@ You can see examples on how to implement this in the `ec2 driver <https://github
     #!/usr/bin/env ruby
      
     # -------------------------------------------------------------------------- #
-    # Copyright 2010-2013, C12G Labs S.L                                         #
+    # Copyright 2002-2016, OpenNebula Project, OpenNebula Systems                #
     #                                                                            #
     # Licensed under the Apache License, Version 2.0 (the "License"); you may    #
     # not use this file except in compliance with the License. You may obtain    #
@@ -188,7 +183,7 @@ After restarting oned we can create the new host that will use this new driver
 
 .. code::
 
-    $ onehost create remote_provider im_provider vmm_provider tm_dummy dummy
+    $ onehost create remote_provider im_provider vmm_provider
 
 Create a new Virtual Machine
 --------------------------------------------------------------------------------

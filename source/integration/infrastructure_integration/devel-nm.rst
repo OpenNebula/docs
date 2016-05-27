@@ -68,7 +68,7 @@ The VXLAN Driver
 
 Driver Files
 --------------------------------------------------------------------------------
-The code can be enhanced and modified, by chaning the following files in the frontend:
+The code can be enhanced and modified, by changing the following files in the frontend:
 
 * /var/lib/one/remotes/vnm/vxlan/vxlan_driver.rb
 * /var/lib/one/remotes/vnm/vxlan/post

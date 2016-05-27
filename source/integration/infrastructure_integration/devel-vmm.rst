@@ -96,16 +96,19 @@ These supported action are specified in the :ref:`oned.conf file <oned_conf>`, `
 .. code::
 
     VM_MAD = [
-        name       = "kvm",
-        executable = "one_vmm_exec",
-        arguments  = "-t 15 -r 0 -i kvm",
-        default    = "vmm_exec/vmm_exec_kvm.conf",
-        type       = "kvm",
+        sunstone_name = "KVM",
+        name           = "kvm",
+        executable     = "one_vmm_exec",
+        arguments      = "-t 15 -r 0 -i kvm",
+        default        = "vmm_exec/vmm_exec_kvm.conf",
+        type           = "kvm",
         keep_snapshots = "no",
         imported_vms_actions = "shutdown,shutdown-hard,hold,release,suspend,resume,delete,reboot,reboot-hard,resched,unresched,disk-attach,disk-detach,nic-attach,nic-detach,snap-create,snap-delete"
     ]
 
 The hypervisor may preserve system snapshots across power on/off cycles and live migrations, in that case you can set ``keep_snapshots`` variable to ``yes``.
+
+The sunstone name will be used in the host creation dialog in the Sunstone WebUI.
 
 .. _devel-vmm_action:
 
@@ -135,7 +138,7 @@ VMM actions, they are the same as the names of the scripts:
    -  Response
 
       -  Success: -
-      -  Faulure: Error message
+      -  Failure: Error message
 
 -  **attach\_nic**: Attaches a new NIC in the VM
 
@@ -146,6 +149,7 @@ VMM actions, they are the same as the names of the scripts:
       -  **BRIDGE**: Bridge where to attach the new NIC
       -  **MODEL**: NIC model to emulate, ex: ``e1000``
       -  **NET\_DRV**: Network driver used, ex: ``ovswitch``
+      -  **TARGET**: Names the VM interface in the host bridge
 
    -  Response
 
@@ -167,7 +171,7 @@ VMM actions, they are the same as the names of the scripts:
 
    -  Arguments:
 
-      -  **DEPLOYMENT\_FILE**: where to write de deployment file. You have to write whatever comes from STDIN to a file named like this parameter. In shell script you can do: ``cat > $domain``
+      -  **DEPLOYMENT\_FILE**: where to write the deployment file. You have to write whatever comes from STDIN to a file named like this parameter. In shell script you can do: ``cat > $domain``
 
    -  Response
 
@@ -201,6 +205,19 @@ VMM actions, they are the same as the names of the scripts:
       -  Failure: Error message
 
 -  **migrate**: Live migrate a VM to another host
+
+   -  Arguments:
+
+      -  **DOMAIN**: Domain name: one-286
+      -  **DESTINATION\_HOST**: Host where to migrate the VM
+      -  **HOST**: Host where the VM is currently running
+
+   -  Response
+
+      -  Success: -
+      -  Failure: Error message
+
+-  **migrate_local**: Live migrate a VM to another host, initiating the connection from the front-end
 
    -  Arguments:
 
@@ -372,7 +389,7 @@ When using shell script there is a handy script that gets parameters for given X
 Poll Information
 ================================================================================
 
-``POLL`` is the action that gets monitoring info from the running VMs. The format it is supposed to give back information is a line with ``KEY=VALUE`` pairs separated by spaces. It also supports vector values ``KEY = [ SK1=VAL1, SK2=VAL2 ]``. An example monitoring output looks like this:
+``POLL`` is the action that gets monitoring info from the running VMs. This action is called when the VM is not found in the host monitoring process for whatever reason. The format it is supposed to give back information is a line with ``KEY=VALUE`` pairs separated by spaces. It also supports vector values ``KEY = [ SK1=VAL1, SK2=VAL2 ]``. An example monitoring output looks like this:
 
 .. code::
 
@@ -422,7 +439,7 @@ The deployment file is a text file written by OpenNebula core that holds the inf
 -  **kvm**: libvirt format used to create kvm VMs
 -  **xml**: xml representation of the VM
 
-If the target hypervisor is not xen nor libvirt/kvm the best format to use is xml as it holds more information than the two others. It has all the template information encoded as xml. This is an example:
+If the target hypervisor is not libvirt/kvm the best format to use is xml as it holds more information than the two others. It has all the template information encoded as xml. This is an example:
 
 .. code::
 

@@ -109,13 +109,13 @@ The following is an example of a hook tied to the ERROR state of a Host:
     #           -p <n> avoid resubmission if host comes
     #                  back after n monitoring cycles
     #*******************************************************************************
-    #
-    #HOST_HOOK = [
-    #    name      = "error",
-    #    on        = "ERROR",
-    #    command   = "ft/host_error.rb",
-    #    arguments = "$ID -m -p 5",
-    #    remote    = "no" ]
+    
+    HOST_HOOK = [
+        name      = "error",
+        on        = "ERROR",
+        command   = "ft/host_error.rb",
+        arguments = "$ID -m -p 5",
+        remote    = "no" ]
     #-------------------------------------------------------------------------------
 
 Other Hooks
@@ -182,6 +182,8 @@ The execution of each hook is tied to the object that trigger the event. The dat
      
     #UNAME and PERMISSIONS/OWNER_U are the XPATH for the attributes without the root element
 
--  $ID you can use the ID of the object to retreive more information or to perform an action over the object. (e.g. onevm hold $ID)
+-  $ID you can use the ID of the object to retrieve more information or to perform an action over the object. (e.g. onevm hold $ID)
 
-Note that within the hook you can further interact with OpenNebula to retrieve more information, or perform any other action
+A good starting point is the :ref:`hook that implements the Virtual Machine High Availability <ftguide>`, that uses the OpenNebula Cloud API to implement the HA functionality of VMs when the host that are running on crashes.
+
+Note that within the hook you can further interact with OpenNebula to retrieve more information, or perform any other action.

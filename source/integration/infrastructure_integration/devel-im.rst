@@ -14,7 +14,7 @@ Probe Location
 The default probes are installed in the frontend in the following path:
 
 -  **KVM**: ``/var/lib/one/remotes/im/kvm-probes.d``
--  **vCenter and EC2**: ``/var/lib/one/remotes/im/<hypervisor>.d``
+-  **vCenter, EC2 and Azure**: ``/var/lib/one/remotes/im/<hypervisor>.d``
 
 In the case of ``KVM``, the probes are distributed to the hosts, therefore if the probes are changed, they **must** be distributed to the hosts by running ``onehost sync``.
 
@@ -264,7 +264,7 @@ Populating the Probes
 
 Both ``one_im_sh`` and ``one_im_ssh`` require an argument which indicates the directory that contains the probes. This argument is appended with ”.d”.
 
-Making Use of Colllectd
+Making Use of collectd
 --------------------------------------------------------------------------------
 
 If the new IM driver wishes to use the ``collectd`` component, it needs to:
