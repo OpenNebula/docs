@@ -51,7 +51,9 @@ Disk images are transferred between the Image and System datastores by the trans
 +---------------+-------------------------------------------------------------------+
 | LVM           | * **fs_lvm**, images exported in a shared FS but dumped to a LV   |
 +---------------+-------------------------------------------------------------------+
-| Dev           | * **dev**, images are existing block devices in the nodes         |
+| Raw Devices   | * **dev**, images are existing block devices in the nodes         |
++---------------+-------------------------------------------------------------------+
+| iSCSI libvirt | * **iscsi**, images are iSCSI targets                             |
 +---------------+-------------------------------------------------------------------+
 
 How Should I Read This Chapter
