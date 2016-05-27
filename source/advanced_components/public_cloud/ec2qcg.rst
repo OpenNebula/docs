@@ -1,11 +1,8 @@
 .. _ec2qcg:
 
-=========================
+================================================================================
 EC2 Server Configuration
-=========================
-
-Overview
-========
+================================================================================
 
 The OpenNebula EC2 Query is a web service that enables you to launch and manage virtual machines in your OpenNebula installation through the `Amazon EC2 Query Interface <http://docs.amazonwebservices.com/AWSEC2/2009-04-04/DeveloperGuide/index.html?using-query-api.html>`__. In this way, you can use any EC2 Query tool or utility to access your Private Cloud. The EC2 Query web service is implemented upon the **OpenNebula Cloud API** (OCA) layer that exposes the full capabilities of an OpenNebula private cloud; and `Sinatra <http://www.sinatrarb.com/>`__, a widely used light web framework.
 
@@ -13,26 +10,21 @@ The OpenNebula EC2 Query is a web service that enables you to launch and manage 
 
 The current implementation includes the basic routines to use a Cloud, namely: image upload and registration, and the VM run, describe and terminate operations. The following sections explain you how to install and configure the EC2 Query web service on top of a running OpenNebula cloud.
 
-.. warning:: The OpenNebula EC2 Query service provides a Amazon EC2 Query API compatible interface to your cloud, that can be used alongside the native OpenNebula CLI or OpenNebula Sunstone.
-
-.. warning:: The OpenNebula distribution includes the tools needed to use the EC2 Query service.
+.. note:: The OpenNebula EC2 Query service provides a Amazon EC2 Query API compatible interface to your cloud, that can be used alongside the native OpenNebula CLI or OpenNebula Sunstone. The OpenNebula distribution includes the tools needed to use the EC2 Query service.
 
 Requirements & Installation
-===========================
+================================================================================
 
-You must have an OpenNebula site properly configured and running , be sure to check the :ref:`OpenNebula Installation and Configuration Guides <design_and_installation_guide>` to set up your private cloud first. This guide also assumes that you are familiar with the configuration and use of OpenNebula.
+You must have an OpenNebula site properly configured and running, be sure to check the :ref:`OpenNebula Installation and Configuration Guides <design_and_installation_guide>` to set up your private cloud first. This guide also assumes that you are familiar with the configuration and use of OpenNebula.
 
 The OpenNebula EC2 Query service was installed during the OpenNebula installation, and the dependencies of this service are installed when using the install\_gems tool as explained in the :ref:`installation guide <ignc>`
-
-If you installed OpenNebula from source you can install the EC2 Query dependencias as explained at the end of the :ref:`Building from Source Code guide <compile>`
-
 
 .. _ec2qcg_configuration:
 
 Configuration
-=============
+================================================================================
 
-The service is configured through the ``/etc/one/econe.conf`` file, where you can set up the basic operational parameters for the EC2 Query web service. The following table summarizes the available options:
+The service is configured through the ``/etc/one/econe.conf`` file, where you can set up the basic operational parameters for the EC2 Query web service. The available options are:
 
 **Server configuration**
 
@@ -49,7 +41,7 @@ The service is configured through the ``/etc/one/econe.conf`` file, where you ca
 **Auth**
 
 * ``auth``: Authentication driver for incomming requests
-* ``core_auth``: Authentication driver to communicate with OpenNebula core. Check :ref:`this guide <cloud_auth>` for more information about the core\_auth syste
+* ``core_auth``: Authentication driver to communicate with OpenNebula core. Check :ref:`this guide <cloud_auth>` for more information about the core\_auth system
 
 **File based templates**
 
@@ -58,8 +50,8 @@ The service is configured through the ``/etc/one/econe.conf`` file, where you ca
 
 **Resources**
 
-* ``describe_with_terminated_instances``: Include terminated instances in the describe\_instances xml. When this parameter is enabled all the VMs in DONE state will be retrieved in each descibe\_instances action and then filtered. This can cause performance issues when the pool of VMs in DONE state is huge
-* ``terminated_instances_expiration_time``: Terminated VMs will be included in the list till the termination date + terminated\_instances\_expiration\_time is eached
+* ``describe_with_terminated_instances``: Include terminated instances in the describe\_instances xml. When this parameter is enabled all the VMs in DONE state will be retrieved in each describe\_instances action and then filtered. This can cause performance issues when the pool of VMs in DONE state is huge
+* ``terminated_instances_expiration_time``: Terminated VMs will be included in the list till the termination date + terminated\_instances\_expiration\_time is reached
 * ``datastore_id``: Datastore in which the Images uploaded through EC2 will be allocated, by default 1
 * ``cluster_id``: Cluster associated with the EC2 resources, by default no Cluster is defined
 
@@ -75,16 +67,14 @@ The service is configured through the ``/etc/one/econe.conf`` file, where you ca
 
 .. warning:: The ``:host`` **must** be a FQDN, do not use IP's here.
 
-.. warning:: Preserve YAML syntax in the ``econe.conf`` file.
-
 .. _ec2qcg_cloud_users:
 
 Cloud Users
------------
+--------------------------------------------------------------------------------
 
-The cloud users have to be created in the OpenNebula system by ``oneadmin`` using the ``oneuser`` utility. Once a user is registered in the system, using the same procedure as to create private cloud users, they can start using the system.
+The cloud users have to be created in OpenNebula by ``oneadmin`` using the ``oneuser`` utility. Once a user is registered in the system, using the same procedure as to create private cloud users, they can start using the system.
 
-The users will authenticate using the `Amazon EC2 procedure <http://docs.amazonwebservices.com/AWSEC2/latest/DeveloperGuide/index.html?using-query-api.html>`__ with ``AWSAccessKeyId`` their OpenNebula's username and ``AWSSecretAccessKey`` their OpenNebula's hashed password.
+The users will authenticate using the `Amazon EC2 procedure <http://docs.amazonwebservices.com/AWSEC2/latest/DeveloperGuide/index.html?using-query-api.html>`__ with ``AWSAccessKeyId`` their OpenNebula's user name and ``AWSSecretAccessKey`` their OpenNebula's hashed password.
 
 The cloud administrator can limit the interfaces that these users can use to interact with OpenNebula by setting the driver ``public`` for them. Using that driver cloud users will not be able to interact with OpenNebula through Sunstone, CLI nor XML-RPC.
 
@@ -93,11 +83,11 @@ The cloud administrator can limit the interfaces that these users can use to int
     $ oneuser chauth cloud_user public
 
 Defining VM Types
------------------
+--------------------------------------------------------------------------------
 
 You can define as many Virtual Machine types as you want, just:
 
--  Create a new OpenNebula template for the new type and make it available for the users group. You can use restricted attributes and set permissions like any other opennebula resource. **You must include the EC2\_INSTANCE\_TYPE parameter inside the template definition**, otherwise the template will not be available to be used as an instance type in EC2.
+-  Create a new OpenNebula template for the new type and make it available for the users group. You can use restricted attributes and set permissions like any other OpenNebula resource. **You must include the EC2\_INSTANCE\_TYPE parameter inside the template definition**, otherwise the template will not be available to be used as an instance type in EC2.
 
 .. code::
 
@@ -108,7 +98,7 @@ You can define as many Virtual Machine types as you want, just:
     MEMORY = 1700
     ...
 
-.. code::
+.. prompt:: bash $ auto
 
     $ onetemplate create /tmp/m1.small
     $ onetemplate chgrp m1.small users
@@ -118,14 +108,14 @@ The template must include all the required information to instantiate a new virt
 
 The user will select an instance type along with the ami id, keypair and user data when creating a new instance. Therefore, **the template should not include the OS**, since it will be specified by the user with the selected AMI.
 
-.. warning:: The templates are processed by the EC2 server to include specific data for the instance.
+.. note:: The templates are processed by the EC2 server to include specific data for the instance.
 
 Starting the Cloud Service
-==========================
+================================================================================
 
 To start the EC2 Query service just issue the following command
 
-.. code::
+.. prompt:: text $ auto
 
     $ econe-server start
 
@@ -133,34 +123,31 @@ You can find the econe server log file in ``/var/log/one/econe-server.log``.
 
 To stop the EC2 Query service:
 
-.. code::
+.. prompt:: text $ auto
 
     $ econe-server stop
 
 Advanced Configuration
-======================
+================================================================================
 
 Enabling Keypair
-----------------
+--------------------------------------------------------------------------------
 
-In order to benefit from the Keypair functionality, the images that will be used by the econe users must be prepared to read the EC2\_PUBLIC\_KEY and EC2\_USER\_DATA from the CONTEXT disk. This can be easliy achieved with the new `contextualization packages <http://opennebula.org/documentation:rel3.8:cong#contextualization_packages_for_vm_images>`__, generating a new custom contextualization package like this one:
+In order to benefit from the Keypair functionality, the images that will be used by the econe users must be prepared to read the EC2\_PUBLIC\_KEY and EC2\_USER\_DATA from the CONTEXT disk. This can be easiliy achieved with the new `contextualization packages <http://opennebula.org/documentation:rel3.8:cong#contextualization_packages_for_vm_images>`__, generating a new custom contextualization package like this one:
 
-.. code::
+.. prompt:: text $ auto
 
     #!/bin/bash
     echo "$EC2_PUBLIC_KEY" > /root/.ssh/authorized_keys
 
 Enabling Elastic IP Functionality
----------------------------------
+--------------------------------------------------------------------------------
 
-An Elastic IP address is associated with the user, not a particular instance, and the user controls that address until he chooses to release it. This way the user can programmatically remap his public IP addresses to any of his instances.
+An Elastic IP address is associated with the user, not a particular instance, and the user controls that address until she chooses to release it. This way the user can remap his public IP addresses to any of his instances.
 
-In order to enable this functionality you have to follow the following steps:
+In order to enable this functionality you have to follow the following steps in order to create a VNET containing the elastic IPS
 
-1. Create a VNET Containing the Elastic IPS
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
--  As oneadmin create a new VirtualNetwork containing the public IPs that will be controlled by the EC2 users. Each IP **must be placed in its own AR**:
+-  Create a new Virtual Network as oneadmin containing the public IPs that will be controlled by the EC2 users. Each IP **must be placed in its own AR**:
 
 .. code::
 
@@ -179,7 +166,7 @@ In order to enable this functionality you have to follow the following steps:
     # Custom Attributes to be used in Context
     GATEWAY = 130.10.0.1
 
-.. code::
+.. prompt:: text $ auto
 
     $ onevnet create /tmp/fixed.vnet
     ID: 8
@@ -195,7 +182,7 @@ This VNET will be managed by the oneadmin user, therefore ``USE`` permission for
 
 -  Provide associate and disassociate scripts
 
-The interaction with the infrastructure has been abstracted, therefore two scripts have to be provided by the cloud administrator in order to interact with each specific network configuration. This two scripts enable us to adapt this feature to different configurations and data centers.
+The interaction with the infrastructure has been abstracted, therefore two scripts have to be provided by the cloud administrator in order to interact with each specific network configuration. These two scripts enable us to adapt this feature to different configurations and data centers.
 
 These scripts are language agnostic and their path has to be specified in the econe configuration file:
 
@@ -204,25 +191,25 @@ These scripts are language agnostic and their path has to be specified in the ec
       :associate_script: /usr/bin/associate_ip.sh
       :disassociate_script: /usr/bin/disassociate_ip.sh
 
-The associate script will receive three arguments: **elastic\_ip** to be associated; **private\_ip** of the instance; **Virtual Network template** base64 encoded
+The associate script will receive three arguments: **elastic\_ip** to be associated; **private\_ip** of the instance; **Virtual Network template** base64 encoded.
 
-The disassociate script will receive three arguments: **elastic\_ip** to be disassociated
+The disassociate script will receive three arguments: **elastic\_ip** to be disassociated.
 
 Scripts to interact with OpenFlow can be found in the following `ecosystem project <http://www.opennebula.org/software:ecosystem:onenox>`__
 
 Using a Specific Group for EC2
-------------------------------
+--------------------------------------------------------------------------------
 
 It is recommended to create a new group to handle the ec2 cloud users:
 
-.. code::
+.. prompt:: text $ auto
 
     $ onegroup create ec2
     ID: 100
 
 Create and add the users to the ec2 group (ID:100):
 
-.. code::
+.. prompt:: text $ auto
 
     $ oneuser create clouduser my_password
     ID: 12
@@ -230,7 +217,7 @@ Create and add the users to the ec2 group (ID:100):
 
 Also, you will have to create ACL rules so that the cloud users are able to deploy their VMs in the allowed hosts.
 
-.. code::
+.. prompt:: text $ auto
 
     $ onehost list
       ID NAME            CLUSTER   RVM      ALLOCATED_CPU      ALLOCATED_MEM   STAT
@@ -240,21 +227,21 @@ Also, you will have to create ACL rules so that the cloud users are able to depl
 
 These rules will allow users inside the ec2 group (ID:100) to deploy VMs in the hosts kvm01 (ID:0) and kvm03 (ID:3)
 
-.. code::
+.. prompt:: text $ auto
 
     $ oneacl create "@100 HOST/#1 MANAGE"
     $ oneacl create "@100 HOST/#3 MANAGE"
 
 You **have to create a VNet network** using the ``onevnet utility`` with the IP's you want to lease to the VMs created with the EC2 Query service.
 
-.. code::
+.. prompt:: text $ auto
 
     $ onevnet create /tmp/templates/vnet
     ID: 12
 
 Remember that you will have to add this VNet (ID:12) to the users group (ID:100) and give USE (640) permissions to the group in order to get leases from it.
 
-.. code::
+.. prompt:: text $ auto
 
     $ onevnet chgrp 12 100
     $ onevnet chmod 12 640
@@ -262,7 +249,7 @@ Remember that you will have to add this VNet (ID:12) to the users group (ID:100)
 .. warning:: You will have to update the NIC template, inside the ``/etc/one/ec2query_templates`` directory, in order to use this VNet ID
 
 Configuring a SSL Proxy
------------------------
+--------------------------------------------------------------------------------
 
 OpenNebula EC2 Query Service runs natively just on normal HTTP connections. If the extra security provided by SSL is needed, a proxy can be set up to handle the SSL connection that forwards the petition to the EC2 Query Service and takes back the answer to the client.
 
@@ -277,32 +264,32 @@ If you want to try out the SSL setup easily, you can find in the following lines
 Let's assume the server were the lighttpd proxy is going to be started is called ``cloudserver.org``. Therefore, the steps are:
 
 1. Snakeoil Server Certificate
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-We are going to generate a snakeoil certificate. If using an Ubuntu system follow the next steps (otherwise your milleage may vary, but not a lot):
+We are going to generate a snakeoil certificate. If using an Ubuntu system follow the next steps (otherwise your mileage may vary, but not a lot):
 
 -  Install the ``ssl-cert`` package
 
-.. code::
+.. prompt:: text $ auto
 
     $ sudo apt-get install ssl-cert
 
 -  Generate the certificate
 
-.. code::
+.. prompt:: text $ auto
 
     $ sudo /usr/sbin/make-ssl-cert generate-default-snakeoil
 
 -  As we are using lighttpd, we need to append the private key with the certificate to obtain a server certificate valid to lighttpd
 
-.. code::
+.. prompt:: text $ auto
 
     $ sudo cat /etc/ssl/private/ssl-cert-snakeoil.key /etc/ssl/certs/ssl-cert-snakeoil.pem > /etc/lighttpd/server.pem
 
 2. lighttpd as a SSL HTTP Proxy
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You will need to edit the ``/etc/lighttpd/lighttpd.conf`` configuration file and
+You will need to edit the ``/etc/lighttpd/lighttpd.conf`` configuration file and:
 
 -  Add the following modules (if not present already)
 
@@ -341,7 +328,7 @@ You will need to edit the ``/etc/lighttpd/lighttpd.conf`` configuration file and
 The host must be the server hostname of the computer running the EC2Query Service, and the port the one that the EC2Query Service is running on.
 
 3. EC2Query Service Configuration
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The ``econe.conf`` needs to define the following:
 

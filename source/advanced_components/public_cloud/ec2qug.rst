@@ -1,32 +1,32 @@
 .. _ec2qug:
 
-==========================
+================================================================================
 OpenNebula EC2 User Guide
-==========================
+================================================================================
 
 The `EC2 Query API <http://docs.amazonwebservices.com/AWSEC2/latest/DeveloperGuide/index.html?using-query-api.html>`__ offers the functionality exposed by Amazon EC2: upload images, register them, run, monitor and terminate instances, etc. In short, Query requests are HTTP or HTTPS requests that use the HTTP verb GET or POST and a Query parameter.
 
 OpenNebula implements a subset of the EC2 Query interface, enabling the creation of public clouds managed by OpenNebula.
 
 AMIs
-----
+--------------------------------------------------------------------------------
 
 -  **upload image**: Uploads an image to OpenNebula
 -  **register image**: Register an image into OpenNebula
 -  **describe images**: Lists all registered images belonging to one particular user.
 
 Instances
----------
+--------------------------------------------------------------------------------
 
 -  **run instances**: Runs an instance of a particular image (that needs to be referenced).
 -  **describe instances**: Outputs a list of launched images belonging to one particular user.
--  **terminate instances**: Shutdowns a set ofvirtual machines (or cancel, depending on its state).
--  **reboot instances**: Reboots a set ofvirtual machines.
--  **start instances**: Starts a set ofvirtual machines.
--  **stop instances**: Stops a set ofvirtual machines.
+-  **terminate instances**: Shutdowns a set of virtual machines (or cancel, depending on its state).
+-  **reboot instances**: Reboots a set of virtual machines.
+-  **start instances**: Starts a set of virtual machines.
+-  **stop instances**: Stops a set of virtual machines.
 
 EBS
----
+--------------------------------------------------------------------------------
 
 -  **create volume**: Creates a new DATABLOCK in OpenNebula
 -  **delete volume**: Deletes an existing DATABLOCK.
@@ -36,26 +36,26 @@ EBS
 
 -  **create snapshot**:
 -  **delete snapshot**:
--  **describe snpahost**:
+-  **describe snapshot**:
 
 Elastic IPs
------------
+--------------------------------------------------------------------------------
 
 -  **allocate address**: Allocates a new elastic IP address for the user
 -  **release address**: Releases a publicIP of the user
 -  **describe addresses**: Lists elastic IP addresses
 -  **associate address**: Associates a publicIP of the user with a given instance
--  **disassociate address**: Disasociate a publicIP of the user currently associated with an instance
+-  **disassociate address**: Disassociate a publicIP of the user currently associated with an instance
 
 Keypairs
---------
+--------------------------------------------------------------------------------
 
 -  **create keypair**: Creates the named keypair
 -  **delete keypair**: Deletes the named keypair, removes the associated keys
 -  **describe keypairs**: List and describe the key pairs available to the user
 
 Tags
-----
+--------------------------------------------------------------------------------
 
 -  **create-tags**
 -  **describe-tags**
@@ -64,7 +64,7 @@ Tags
 Commands description can be accessed from the :ref:`Command Line Reference <cli>`.
 
 User Account Configuration
-==========================
+================================================================================
 
 An account is needed in order to use the OpenNebula cloud. The cloud administrator will be responsible for assigning these accounts, which have a one to one correspondence with OpenNebula accounts, so all the cloud administrator has to do is check the :ref:`configuration guide to setup accounts <ec2qcg_cloud_users>`, and automatically the OpenNebula cloud account will be created.
 
@@ -81,7 +81,7 @@ In order to use such an account, the end user can make use of clients programmed
 .. warning:: The ``EC2_URL`` has to use the FQDN of the EC2-Query Server
 
 Hello Cloud!
-============
+================================================================================
 
 Lets take a walk through a typical usage scenario. In this brief scenario it will be shown how to upload an image to the OpenNebula image repository, how to register it in the OpenNebula cloud and perform operations upon it.
 
@@ -89,7 +89,7 @@ Lets take a walk through a typical usage scenario. In this brief scenario it wil
 
 Assuming we have a working Gentoo installation residing in an **.img** file, we can upload it into the OpenNebula cloud using the **econe-upload** command:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ econe-upload /images/gentoo.img
     Success: ImageId ami-00000001
@@ -100,7 +100,7 @@ Assuming we have a working Gentoo installation residing in an **.img** file, we 
 
 We will need the **ImageId** to launch the image, so in case we forgotten we can list registered images using the **econe-describe-images** command:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ econe-describe-images -H
     Owner        ImageId       Status         Visibility   Location
@@ -111,7 +111,7 @@ We will need the **ImageId** to launch the image, so in case we forgotten we can
 
 Once we recall the ImageId, we will need to use the **econe-run-instances** command to launch an Virtual Machine instance of our image:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ econe-run-instances -H ami-00000001
     Owner       ImageId                InstanceId InstanceType
@@ -124,7 +124,7 @@ We will need the **InstanceId** to monitor and shutdown our instance, so we bett
 
 If we have too many instances launched and we don't remember everyone of them, we can ask **econe-describe-instances** to show us which instances we have submitted.
 
-.. code::
+.. prompt:: bash $ auto
 
     $ econe-describe-instances  -H
     Owner       Id    ImageId      State         IP              Type
@@ -133,7 +133,7 @@ If we have too many instances launched and we don't remember everyone of them, w
 
 We can see that the instances with Id i-15 has been launched, but it is still pending, i.e., it still needs to be deployed into a physical host. If we try the same command again after a short while, we should be seeing it running as in the following excerpt:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ econe-describe-instances  -H
     Owner       Id    ImageId      State         IP              Type
@@ -144,10 +144,9 @@ We can see that the instances with Id i-15 has been launched, but it is still pe
 
 After we put the Virtual Machine to a good use, it is time to shut it down to make space for other Virtual Machines (and, presumably, to stop being billed for it). For that we can use the **econe-terminate-instances** passing to it as an argument the **InstanceId** that identifies our Virtual Machine:
 
-.. code::
+.. prompt:: bash $ auto
 
     $ econe-terminate-instances i-15
     Success: Terminating i-15 in running state
 
-.. warning:: You can obtain more information on how to use the above commands accessing their Usage help passing them the **-h** flag
-
+.. note:: You can obtain more information on how to use the above commands accessing their Usage help passing them the **-h** flag
