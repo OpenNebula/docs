@@ -1,76 +1,82 @@
 .. _dev_ds:
 
-=====================
-The Devices Datastore
-=====================
+================================================================================
+Raw Device Mapping (RDM) Datastore
+================================================================================
 
-This datastore is used to register already existent block devices in the nodes to be used with virtual machines. It does not do any kind of device discovering or setup. The devices should be already setup and available and, VMs using these devices must be fixed to run in the nodes ready for them.
-
-Requirements
-============
-
-The devices you want to attach to a VM should be accessible by the hypervisor. As KVM usually runs as oneadmin, make sure this user is in a group with access to the disk (like disk) and has read write permissions for the group.
-
-Images created in this datastore should be persistent. Making the images non persistent allows more than one VM use this device and will probably cause problems and data corruption.
+The RDM Datastore is an Image Datastore that enables raw access to node block devices.
 
 .. warning:: The datastore should only be usable by the administrators. Letting users create images in this datastore will cause security problems. For example, register an image ``/dev/sda`` and reading the host filesystem.
 
-Configuration
-=============
+Datastore Layout
+================================================================================
 
-Configuring the System Datastore
---------------------------------
+The RDM Datastore is used to register already existent block devices in the nodes. The devices should be already setup and available and, VMs using these devices must be fixed to run in the nodes ready for them. Additional virtual machine files, like deployment files or volatile disks are created as regular files.
 
-The system datastore can be of type ``shared`` or ``ssh``. See more details on the :ref:`System Datastore Guide <system_ds>`
+Frontend Setup
+================================================================================
 
+No addtional setup is required.
 
-Configuring DEV Datastore
--------------------------
+Node Setup
+================================================================================
 
-The datastore needs to have: ``DS_MAD`` and ``TM_MAD`` set to ``dev`` and ``DISK_TYPE`` to ``BLOCK``.
+The devices you want to attach to a VM should be accessible by the hypervisor. As KVM usually runs as oneadmin, make sure this user is in a group with access to the disk (like disk) and has read write permissions for the group.
+
+OpenNebula Configuration
+================================================================================
+
+Create a System Datastore
+--------------------------------------------------------------------------------
+
+The RDM Datastore can work with the following System Datastores:
+
+* Filesystem, shared transfer mode
+* Filesystem, ssh transfer mode
+
+Please refer to the :ref:`Filesystem Datastore section <fs_ds>` for more details. Note that the System Datastore is only used for volatile disks and context devices.
+
+Create an Image Datastore
+--------------------------------------------------------------------------------
+
+To create an Image Datastore you just need to define the name, and set the following:
 
 +---------------+-------------------------------------------------+
 |   Attribute   |                   Description                   |
 +===============+=================================================+
 | ``NAME``      | The name of the datastore                       |
 +---------------+-------------------------------------------------+
-| ``DS_MAD``    | The DS type, use ``dev``                        |
+| ``TYPE``      | ``IMAGE_DS``                                    |
 +---------------+-------------------------------------------------+
-| ``TM_MAD``    | Transfer drivers for the datastore, use ``dev`` |
+| ``DS_MAD``    | ``dev``                                         |
 +---------------+-------------------------------------------------+
-| ``DISK_TYPE`` | The type **must** be ``BLOCK``                  |
+| ``TM_MAD``    | ``dev``                                         |
 +---------------+-------------------------------------------------+
-
-Note that for this datastore some of the :ref:`common datastore attributes <sm_common_attributes>` do **not** apply, in particular:
-- ``RESTRICTED_DIRS``: does **NOT** apply
-- ``SAFE_DIRS``: does **NOT** apply
-- ``NO_DECOMPRESS``: does **NOT** apply
-- ``LIMIT_TRANSFER_BW``: does **NOT** apply
-- ``DATASTORE_CAPACITY_CHECK``: does **NOT** apply
+| ``DISK_TYPE`` | ``BLOCK``                                       |
++---------------+-------------------------------------------------+
 
 An example of datastore:
 
 .. code::
 
-    > cat dev.conf
-    NAME=dev
-    DISK_TYPE="BLOCK"
-    DS_MAD="dev"
-    TM_MAD="dev"
-    TYPE="IMAGE_DS"
+    > cat rdm.conf
+    NAME      = rdm_datastore
+    TYPE      = "IMAGE_DS"
+    DS_MAD    = "dev"
+    TM_MAD    = "dev"
+    DISK_TYPE = "BLOCK"
 
-    > onedatastore create dev.conf
+    > onedatastore create rdm.conf
     ID: 101
 
-    > onedatastore list
-      ID NAME                SIZE AVAIL CLUSTER      IMAGES TYPE DS       TM
-       0 system              9.9G 98%   -                 0 sys  -        shared
-       1 default             9.9G 98%   -                 2 img  shared   shared
-       2 files              12.3G 66%   -                 0 fil  fs       ssh
-     101 dev                   1M 100%  -                 0 img  dev      dev
+.. warning:: Images created in this datastore should be persistent. Making the images non persistent allows more than one VM use this device and will probably cause problems and data corruption.
 
-Usage
-=====
+Addtional Configuration
+--------------------------------------------------------------------------------
+
+
+Datastore Usage
+================================================================================
 
 New images can be added as any other image specifying the path. If you are using the CLI do not use the shorthand parameters as the CLI check if the file exists and the device most provably won't exist in the frontend. As an example here is an image template to add a node disk ``/dev/sdb``:
 
@@ -81,3 +87,4 @@ New images can be added as any other image specifying the path. If you are using
     PERSISTENT=YES
 
 .. warning:: As this datastore does is just a container for existing devices images does not take any size from it. All devices registered will render size of 0 and the overall devices datastore will show up with 1MB of available space
+

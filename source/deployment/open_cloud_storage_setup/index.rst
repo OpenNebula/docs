@@ -7,8 +7,8 @@ Open Cloud Storage Setup
 
    Overview <overview>
    Filesystem Datastore <fs_ds>
-   LVM Datastore <lvm_drivers>
    Ceph Datastore <ceph_ds>
-   Devices Datastore <dev_ds>
-   iSCSI Datastore <iscsi_ds>
+   LVM Datastore <lvm_drivers>
+   Raw Device Mapping Datastore <dev_ds>
+   iSCSI - Libvirt Datastore <iscsi_ds>
    Kernels and Files Datastore <file_ds>
