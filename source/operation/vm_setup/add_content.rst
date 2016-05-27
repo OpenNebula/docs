@@ -23,6 +23,8 @@ Once the images are ready, just create VM templates with the relevant configurat
 You are done, make sure that your cloud users can access the images and templates you have just created.
 
 
+.. _add_content_external_images:
+
 Adding External Images
 ======================
 
@@ -293,12 +295,14 @@ You can now use Sunstone to upload the final version of the image or copy it to 
 
     $ oneimage create --name centos7 --path /var/tmp/final.qcow2 --driver qcow2 --prefix vd --datastore default
 
+.. _add_content_install_withing_opennebula:
+
 Install within OpenNebula
 =========================
 
 If you are using KVM hypervisor you can do the installations using OpenNebula. Here are the steps to do it:
 
-Step 1. Add the Installtion Medium
+Step 1. Add the Installation Medium
 ----------------------------------
 
 You can add the installation CD to OpenNebula uploading the image using Sunstone and setting its type to CDROM or using the command line. For example, to add the CentOS ISO file you can use this command:
@@ -336,7 +340,7 @@ This can be done with the CLI using this command:
 
     $ onetemplate create --name centos7-cli --cpu 1 --memory 1G --disk centos7,centos7-install --nic network --boot disk0,disk1 --vnc --raw "INPUT=[TYPE=tablet,BUS=usb]"
 
-Now instantiate the template and do the installation using the VNC viewer. Make sure that you configure the network manually as there are no context packages in the installation media. Upon completion tell the installator to reboot the machine, log into the new OS and follow the instructions from the accompaining sections to install the contextualization.
+Now instantiate the template and do the installation using the VNC viewer. Make sure that you configure the network manually as there are no context packages in the installation media. Upon completion tell the instanter to reboot the machine, log into the new OS and follow the instructions from the accompanying sections to install the contextualization.
 
 As a tip, one of the latest things you should do when using this method is disabling ``root`` password and deleting any extra users that the install tool has created.
 
@@ -345,7 +349,7 @@ Step 4. Shutdown the Machine and Configure the Image
 
 You can now shutdown the Virtual Machine from inside, that is, use the OS to shutdown itself. When the machine appears as poweroff in OpenNebula terminate it.
 
-Make sure that you change the image to non persistant and you give access to other people.
+Make sure that you change the image to non persistent and you give access to other people.
 
 Using the CLI you can do:
 
@@ -354,10 +358,33 @@ Using the CLI you can do:
     $ oneimage nonpersistent centos7
     $ oneimage chmod centos7 744
 
+
+.. _add_content_marketplace:
+
 Use the OpenNebula Marketplace
 ==============================
 
-If your frontend is connected to the internet it should have access to the public OpenNebula Marketplate. In it there are several images prepared to run in an OpenNebula Cloud. To get images from it you can go to the Storage/Apps tab in Sunstone web interface
+If your frontend is connected to the internet it should have access to the public OpenNebula Marketplace. In it there are several images prepared to run in an OpenNebula Cloud. To get images from it you can go to the Storage/Apps tab in Sunstone web interface, select one of the images and click the button "<arrow> OpenNebula":
+
+|sunstone_marketplace_list_import|
+
+Using the CLI we can list an import using these commands:
+
+.. prompt:: text $ auto
+
+	$ onemarketapp list
+	  ID NAME                         VERSION  SIZE STAT TYPE  REGTIME MARKET               ZONE
+	[...]
+	  41 boot2docker                   1.10.2   32M  rdy  img 02/26/16 OpenNebula Public       0
+	  42 alpine-vrouter (KVM)           1.0.3  256M  rdy  img 03/10/16 OpenNebula Public       0
+	  43 alpine-vrouter (vcenter)         1.0  256M  rdy  img 03/10/16 OpenNebula Public       0
+	  44 CoreOS alpha                1000.0.0  245M  rdy  img 04/03/16 OpenNebula Public       0
+	  45 Devuan                      1.0 Beta    8M  rdy  img 05/03/16 OpenNebula Public       0
+	$ onemarketapp export Devuan Devuan --datastore default
+	IMAGE
+		ID: 12
+	VMTEMPLATE
+		ID: -1
 
 
 .. _cloud_view_services:
@@ -383,5 +410,6 @@ To make a Service Template available to other users, you have two options:
 Please note that you will need to do the same for any VM Template used by the Roles, and any Image and Virtual Network referenced by those VM Templates, otherwise the Service deployment will fail.
 
 .. |sunstone_datablock_create| image:: /images/sunstone_datablock_create.png
+.. |sunstone_marketplace_list_import| image:: /images/sunstone_marketplace_list_import.png
 .. |prepare-tmpl-flow-1| image:: /images/prepare-tmpl-flow-1.png
 .. |prepare-tmpl-flow-2| image:: /images/prepare-tmpl-flow-2.png
