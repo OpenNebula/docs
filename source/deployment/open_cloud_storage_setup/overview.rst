@@ -19,7 +19,7 @@ OpenNebula storage is structured around the Datastore concept. A Datastore is an
 
 * The **System Datastore** holds disk for running virtual machines. Disk are moved, or cloned to/from the Images datastore when the VMs are deployed or terminated; or when disks are attached or snapshotted.
 
-* The **Files & Kernels Datastore** to store plain files and not disk images. The plain files can be used as kernels, ram-disks or context files.
+* The **Files & Kernels Datastore** to store plain files and not disk images. The plain files can be used as kernels, ram-disks or context files. :ref:`See details here <file_ds>`.
 
 |image0|
 
@@ -33,7 +33,9 @@ There are different Image Datastores depending on how the images are stored on t
 
 * :ref:`Ceph <ceph_ds>`, to store images using Ceph block devices.
 
-* :ref:`Dev <dev_ds>`, to direct attach to the virtual machine existing block devices in the nodes.
+* :ref:`Raw Device Mapping <dev_ds>`, to direct attach to the virtual machine existing block devices in the nodes.
+
+* :ref:`iSCSI - Libvirt Datastore <iscsi_ds>`, to access iSCSI devices through the buil-in qemu support.
 
 Disk images are transferred between the Image and System datastores by the transfer manager (TM) drivers. These drivers are specialized pieces of software that perform low-level storage operations. The following table summarizes the available transfer modes for each datastore:
 

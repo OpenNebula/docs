@@ -71,10 +71,6 @@ An example of datastore:
 
 .. warning:: Images created in this datastore should be persistent. Making the images non persistent allows more than one VM use this device and will probably cause problems and data corruption.
 
-Addtional Configuration
---------------------------------------------------------------------------------
-
-
 Datastore Usage
 ================================================================================
 
