@@ -6,7 +6,7 @@ OpenNebula Federation Management
 
 The administrator of a federation has the ability to add or remove Zones from the federation. See this guide for details on how to configure the federation in both the master and the slave of the OpenNebula federation.
 
-A user will have access to all the Zones where at least one of her groups has VDC resources in. This access can done through Sunstone or through the CLI
+A user will have access to all the Zones where at least one of her groups has VDC resources in. This access be can done through Sunstone or through the CLI
 
 Adding a Zone
 =============
@@ -21,16 +21,15 @@ Adding a Zone through the CLI entails the creation of a Zone template.
 | Endpoint  | XMLRPC endpoint of the OpenNebula |
 +-----------+-----------------------------------+
 
-.. code-block:: none
+.. prompt:: bash $ auto
 
-    # vi zone.tmpl
+    $ vi zone.tmpl
     NAME = ZoneB
     ENDPOINT = http://zoneb.opennebula.front-end.server:2633/RPC2
 
 This same operation can be performed through Sunstone (Zone tab -> Create).
 
-
-.. warning:: The ENDPOINT has to be reachable from the Sunstone server machine, or the computer running the CLI in order for the user to access the Zone.
+.. note:: The ENDPOINT has to be reachable from the Sunstone server machine, or the computer running the CLI in order for the user to access the Zone.
 
 Using a Zone
 ============
@@ -46,15 +45,14 @@ What's happening behind the scenes is that the Sunstone server you are connectin
 
 .. |zoneswitchsunstone| image:: /images/zoneswitchsunstone.jpg
 
-.. note:: Uploading an image functionality is limited to the zone where the Sunstone instance the user is connecting to, even if it can switch to other federated zones.
-
+.. warning:: Uploading an image functionality is limited to the zone where the Sunstone instance the user is connecting to, even if it can switch to other federated zones.
 
 Through CLI
 -----------
 
 Users can switch Zones through the command line using the `onezone </doc/5.0/cli/onezone.1.html>`__ command. The following session can be examined to understand the Zone management through the CLI.
 
-.. code-block:: none
+.. prompt:: bash $ auto
 
     $ onezone list
     C    ID NAME                      ENDPOINT

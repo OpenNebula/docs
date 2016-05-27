@@ -1,30 +1,28 @@
 .. _federationconfig:
 
-====================================
+================================================================================
 OpenNebula Federation Configuration
-====================================
+================================================================================
 
 This section will explain how to configure two (or more) OpenNebula zones to work as federation master and slave. The process described here can be applied to new installations, or existing OpenNebula instances.
 
-MySQL needs to be configured to enable the master-slave replication. Please read `the MySQL documentation for your version <http://dev.mysql.com/doc/refman/5.7/en/replication.html>`_ for complete instructions. The required steps are summarized here, but it may happen that your MySQL version needs a different configuration.
+MySQL needs to be configured to enable the master-slave replication. Please read `the MySQL documentation <http://dev.mysql.com/doc/refman/5.7/en/replication.html>`_ for complete instructions. The required steps are summarized here, but it may happen that your MySQL version needs a different configuration.
 
-.. warning:: If Sunstone is configured behind a proxy please make sure that the request headers are being :ref:`properly sent <suns_advance_federated>`.
-
-1. Configure the OpenNebula Federation Master
--------------------------------------------------------------------------------
+Step 1. Configure the OpenNebula Federation Master
+================================================================================
 
 - Start with an existing OpenNebula, or install OpenNebula as usual following the :ref:`installation guide <ignc>`. For new installations, you may need to create a MySQL user for OpenNebula, read more in the :ref:`MySQL configuration guide <mysql>`.
 
-.. code-block:: none
+.. prompt:: bash # auto
 
     # mysql -u root -p
     mysql> GRANT ALL PRIVILEGES ON opennebula.* TO 'oneadmin' IDENTIFIED BY 'oneadmin';
 
 - Configure OpenNebula to use the **master MySQL**, and to act as a **federation master**.
 
-.. code-block:: none
+.. prompt:: bash $ auto
 
-    # vi /etc/one/oned.conf
+    $ sudo vi /etc/one/oned.conf
     #DB = [ backend = "sqlite" ]
 
     # Sample configuration for MySQL
@@ -51,7 +49,7 @@ MySQL needs to be configured to enable the master-slave replication. Please read
 
 - Create a Zone for each one of the slaves, and write down the new Zone ID. This can be done via Sunstone, or with the onezone command.
 
-.. code-block:: none
+.. prompt:: bash $ auto
 
     $ vim /tmp/zone.tmpl
     NAME     = slave-name
@@ -68,7 +66,7 @@ MySQL needs to be configured to enable the master-slave replication. Please read
 - Stop OpenNebula.
 
 2. Import the Existing Slave OpenNebula
---------------------------------------------------------------------------------
+================================================================================
 
 .. note:: If your slave OpenNebula is going to be installed from scratch, you can skip this step.
 
@@ -77,7 +75,7 @@ If the OpenNebula to be added as a Slave is an existing installation, and you ne
 - Stop the slave OpenNebula. Make sure the master OpenNebula is also stopped.
 - Run the ``onedb import-slave`` command. Use ``-h`` to get an explanation of each option.
 
-.. code-block:: none
+.. prompt:: bash $ auto
 
     $ onedb import-slave -h
     ## USAGE
@@ -102,7 +100,7 @@ The tool will ask for the Zone ID you created in step 1.
 
 You will also need to decide if the users, groups and VDCs will be merged.
 
-If you had different people using the master and slave OpenNebula instances, then choose not to merge users. In case of name collision, the slave account will be renamed to ``username-1``.
+If you had different people using the master and slave OpenNebula instances, then choose not to merge users. In case of name collision, the slave account will be renamed to ``<username>-1``.
 
 You will want to merge if your users were accessing both the master and slave OpenNebula instances before the federation. To put it more clearly, the same person had previous access to the ``alice`` user in master and ``alice`` user in the slave. This will be the case if, for example, you had more than one OpenNebula instances pointing to the same LDAP server for authentication.
 
@@ -134,32 +132,31 @@ In any case, the ownership of existing resources and group membership is preserv
 When the import process finishes, onedb will write in ``/var/log/one/onedb-import.log`` the new user IDs and names if they were renamed.
 
 3. Configure the MySQL Replication Master
---------------------------------------------------------------------------------
+================================================================================
 
-- In your **master MySQL**: enable the binary log for the opennebula database and set a server ID. Change the 'opennebula' database name to the one set in oned.conf.
+- In your **master MySQL**: enable the binary log for the OpenNebula database and set a server ID. Change the 'opennebula' database name to the one set in oned.conf.
 
-.. code-block:: none
+.. prompt:: bash $ auto
 
-    # vi /etc/my.cnf
+    $ sudo vi /etc/my.cnf
     [mysqld]
     log-bin             = mysql-bin
     server-id           = 1
     binlog-do-db        = opennebula
 
-    # service mysqld restart
+    $ sudo service mysqld restart
 
 - **Master MySQL**: You also need to create a special user that will be used by the MySQL replication slaves.
 
 .. _federationconfig_create_user:
 
-.. code-block:: none
+.. prompt:: bash # auto
 
     # mysql -u root -p
     mysql> CREATE USER 'one-slave'@'%' IDENTIFIED BY 'one-slave-pass';
     mysql> GRANT REPLICATION SLAVE ON *.* TO 'one-slave'@'%';
 
 .. warning:: In the previous example we are granting access to user one-replication from any host. You may want to restrict the hosts with the hostnames of the mysql slaves
-
 
 - **Master MySQL**: Lock the tables and perform a dump.
 
@@ -169,7 +166,7 @@ First you need to lock the tables before dumping the federated tables.
 
     mysql> FLUSH TABLES WITH READ LOCK;
 
-Then you can safetly execute the mysqldump command in another terminal. Please note the ``--master-data`` option, it must be present to allow the slaves to know the current position of the binary log.
+Then you can safely execute the mysqldump command in another terminal. Please note the ``--master-data`` option, it must be present to allow the slaves to know the current position of the binary log.
 
 .. code-block:: none
 
@@ -186,15 +183,15 @@ Once you get the dump you can unlock the DB tables again.
 - You can start the master OpenNebula at this point.
 
 4. Configure the MySQL Replication Slave
---------------------------------------------------------------------------------
+================================================================================
 
 For each one of the slaves, configure the MySQL server as a replication slave. Pay attention to the ``server-id`` set in my.cnf, it must be unique for each one.
 
 - Set a server ID for the **slave MySQL**, and configure these tables to be replicated. You may need to change 'opennebula' to the database name used in oned.conf. The database name must be the same for the master and slaves OpenNebulas.
 
-.. code-block:: none
+.. prompt:: bash $ auto
 
-    # vi /etc/my.cnf
+    $ sudo vi /etc/my.cnf
     [mysqld]
     server-id           = 100
     replicate-do-table  = opennebula.user_pool
@@ -206,13 +203,13 @@ For each one of the slaves, configure the MySQL server as a replication slave. P
     replicate-do-table  = opennebula.db_versioning
     replicate-do-table  = opennebula.acl
 
-    # service mysqld restart
+    $ sudo service mysqld restart
 
 - Set the master configuration on the **slave MySQL**.
 
-.. code-block:: none
+.. prompt:: bash $ auto
 
-    # mysql -u root -p
+    $ sudo mysql -u root -p
     mysql> CHANGE MASTER TO
         ->     MASTER_HOST='master_host_name',
         ->     MASTER_USER='one-slave',
@@ -243,23 +240,23 @@ The ``SHOW SLAVE STATUS`` output will provide detailed information, but to confi
 
 
 5. Configure the OpenNebula Federation Slave
---------------------------------------------------------------------------------
+================================================================================
 
 For each slave, follow these steps.
 
 - If it is a new installation, install OpenNebula as usual following the :ref:`installation guide <ignc>`.
 - Configure OpenNebula to use MySQL, first you'll need to create a database user for OpenNebula and grant access to the OpenNebula database:
 
-.. code-block:: none
+.. prompt:: bash $ auto
 
-    # mysql -u root -p
+    $ sudo mysql -u root -p
     mysql> GRANT ALL PRIVILEGES ON opennebula.* TO 'oneadmin' IDENTIFIED BY 'oneadmin';
 
 and update oned.conf to use these values:
 
-.. code-block:: none
+.. prompt:: bash $ auto
 
-    # vi /etc/one/oned.conf
+    $ sudo vi /etc/one/oned.conf
     #DB = [ backend = "sqlite" ]
 
     # Sample configuration for MySQL
@@ -283,7 +280,7 @@ and update oned.conf to use these values:
 
 - Copy the directory ``/var/lib/one/.one`` from the **master** front-end to the **slave**. This directory and its contents must have **oneadmin as owner**. The directory should contain these files:
 
-.. code-block:: none
+.. prompt:: bash $ auto
 
     $ ls -1 /var/lib/one/.one
     ec2_auth
@@ -296,10 +293,15 @@ Make sure ``one_auth`` (the oneadmin credentials) is present. If it's not, copy 
 
 - Start the slave OpenNebula.
 
+6. Configure Sunstone for a Federation
+================================================================================
+
+If Sunstone is behind a proxy, make sure you follow :ref:`these <suns_advance_federated>` instructions in order to enable the proper header support required by a federation.
+
 .. _federationconfig_ha:
 
 High-Availability and Federation
---------------------------------------------------------------------------------
+================================================================================
 
 In order to add :ref:`federation <federationconfig>` to an HA set-up you will need to use `MariaDB <https://mariadb.org/>`__ >= 10.0.2. If this version is not available in your distribution, please use the `repositories provided by MariaDB <https://downloads.mariadb.org/mariadb/repositories/#mirror=tedeco>`__.
 
@@ -307,7 +309,6 @@ The procedure to enable both HA and Federation uses the `multi source replicatio
 
 * Every zone must have a 2-node master-master MariaDB cluster.
 * Every zone except for the master zone should configure DB replcation for the federated tables from **both** MariaDB nodes of the master zone.
-
 
 This is illustrated by the following diagram:
 
@@ -320,7 +321,7 @@ Each replication arrow is implemented in MariaDB by a slave configured with the 
 .. note:: The HA cluster can must be composed of at least 2 nodes, but you can scale up to as many nodes as you need. In order to so, you should set up a circular replication for HA: A->B->C->...->A and pull the federated tables from all the nodes of the master zone in the rest of the zones.
 
 Configuration
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------------------------------------------------
 
 To set-up the HA replication in each cluster enable the following in the MariaDB configuration file, e.g. `/etc/my.cnf.d/server.cnf` of both nodes:
 
@@ -360,14 +361,14 @@ Additionally, in all the zones but the master zone, configure the federation rep
 
 Restart the MariaDB service in all the nodes, e.g.:
 
-.. code-block:: none
+.. prompt:: bash $ auto
 
-    /etc/init.d/mysql restart
+    $ sudo /etc/init.d/mysql restart
 
 Create the replication users as explained in :ref:`this section <federationconfig_create_user>`.
 
 HA Replication
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------------------------------------------------
 
 Follow these steps in all the zones, including the master zone.
 
@@ -405,7 +406,7 @@ Repeat the reverse process by running `SHOW MASTER STATUS` in the second node, a
     START SLAVE 'zone<ZONE_ID>-slave';
 
 Federation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------------------------------------------------
 
 In all the nodes, except the nodes in the master zone, you will to set up the replication of the federated tables from both nodes in the master zone.
 
@@ -425,11 +426,11 @@ Repeat the following commands in both nodes of each zone:
 
 
 Verify
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------------------------------------------------
 
 Verify in all the nodes that the replication is up and running both for HA and for Federation:
 
-.. code-block:: none
+.. prompt:: bash $ auto
 
     $ mysql -u root -p -e "SHOW ALL SLAVES STATUS \G" | grep -E 'Connection_name|_Running'
                   Connection_name: zone0-master1
@@ -445,7 +446,7 @@ Verify in all the nodes that the replication is up and running both for HA and f
 If `Slave_IO_Running` or `Slave_SQL_Running` is not `Yes`, then the replication is not running.
 
 Failover Scenario
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------------------------------------------------
 
 Should a failover event take place, the OpenNebula service will balance normally and everything will work. However, when the fenced node is brought up again, it should **not** be configured to enter the cluster automatically. It is very important that the node only enters the cluster again only if the replication is up to date, that is, only if `Slave_IO_Running` or `Slave_SQL_Running` are set to `Yes`.
 
