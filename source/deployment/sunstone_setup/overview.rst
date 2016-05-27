@@ -25,9 +25,9 @@ After Sunstone is running, you can define different sunstone behaviors for each 
 
 For more information on how to customize and extend you Sunstone deployment use the following links:
 
--  :ref:`Security & Authentication Methods <suns_auth>`, improve security with x509 authentication and SSL
--  :ref:`Cloud Servers Authentication <cloud_auth>`, advanced reference about the security between Sunstone and OpenNebula.
--  :ref:`Advanced Deployments <suns_advance>`, improving scalability and isolating the server
+* :ref:`Security & Authentication Methods <suns_auth>`, improve security with x509 authentication and SSL
+* :ref:`Cloud Servers Authentication <cloud_auth>`, advanced reference about the security between Sunstone and OpenNebula.
+* :ref:`Advanced Deployments <suns_advance>`, improving scalability and isolating the server
 
 Hypervisor Compatibility
 ================================================================================

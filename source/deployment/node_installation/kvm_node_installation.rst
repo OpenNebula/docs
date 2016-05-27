@@ -6,8 +6,7 @@ KVM Node Installation
 
 This page shows you how to install OpenNebula from the binary packages.
 
-.. todo:: Add overview
-
+Using the packages provided in our site is the recommended method, to ensure the installation of the latest version and to avoid possible packages divergences of different distributions. There are two alternatives here: you can add **our package repositories** to your system, or visit the `software menu <http://opennebula.org/software:software>`__ to **download the latest package** for your Linux distribution.
 
 Step 1. Add OpenNebula Repositories
 ===================================
@@ -55,44 +54,54 @@ After this file is changed reboot the machine.
 Step 4. Configure Passwordless SSH
 ==================================
 
-OpenNebula front-end connect to the Hypervisor hosts using SSH. To be able to do that its user must be able to authenticate using SSH keys. You can do it distributing the public key of ``oneadmin`` user from all machines to the file ``/var/lib/one/.ssh/authorized_keys`` in all the machines. Another method consists on copying the keys from the front-end to all the hosts. For this guide we are going to use the second method.
+OpenNebula Front-end connects to the hypervisor Hosts using SSH. You must distribute the public key of ``oneadmin`` user from all machines to the file ``/var/lib/one/.ssh/authorized_keys`` in all the machines. There are many methods to achieve the distribution of the SSH keys, ultimately the administrator should choose a method (the recommendation is to use a configuration management system). In this guide we are going to manually scp the SSH keys.
 
-When the packages are installed the user ``oneadmin`` is created and a new set of SSH keys generated and ``authorized_keys`` populated. The only thing we have to prepare is the ``known_hosts`` file. To create it we have to execute this command as user ``oneadmin`` in the frontend with all the node names (or IP's) as parameters:
-
-.. prompt:: bash $ auto
-
-    $ ssh-keyscan node1 node2 node3 >> /var/lib/one/.ssh/known_hosts
-
-Now we need to copy the directory ``/var/lib/one/.ssh`` to all the nodes. The easiest way is to set a temporary password to ``oneadmin`` in all the hosts and copy the directory from the frontend:
+When the package was installed in the Front-end, an SSH key was generated and the ``authorized_keys`` populated. We will sync the ``id_rsa``, ``id_rsa.pub`` and ``authorized_keys`` from the Front-end to the nodes. Additionally we need to create a ``known_hosts`` file and sync it as well to the nodes. To create the ``known_hosts`` file, we have to execute this command as user ``oneadmin`` in the Front-end with all the node names as parameters:
 
 .. prompt:: bash $ auto
 
-    $ scp -rp /var/lib/one/.ssh node1:/var/lib/one/
-    $ scp -rp /var/lib/one/.ssh node2:/var/lib/one/
-    $ scp -rp /var/lib/one/.ssh node3:/var/lib/one/
+    $ ssh-keyscan <node1> <node2> <node3> ... >> /var/lib/one/.ssh/known_hosts
 
-Now you can verify that connecting from the frontend as user ``oneadmin`` to the nodes does not ask password:
+Now we need to copy the directory ``/var/lib/one/.ssh`` to all the nodes. The easiest way is to set a temporary password to ``oneadmin`` in all the hosts and copy the directory from the Front-end:
 
 .. prompt:: bash $ auto
 
-    $ ssh node1
-    $ ssh node2
-    $ ssh node3
+    $ scp -rp /var/lib/one/.ssh <node1>:/var/lib/one/
+    $ scp -rp /var/lib/one/.ssh <node2>:/var/lib/one/
+    $ scp -rp /var/lib/one/.ssh <node3>:/var/lib/one/
+    $ ...
 
-.. _ignc_step_8_networking_configuration:
+You should verify that connecting from the Front-end, as user ``oneadmin``, to the nodes, and from the nodes to the Front-end, does not ask password:
+
+.. prompt:: bash $ auto
+
+    $ ssh <node1>
+    $ ssh <frontend>
+    $ exit
+    $ exit
+
+    $ ssh <node2>
+    $ ssh <frontend>
+    $ exit
+    $ exit
+
+    $ ssh <node3>
+    $ ssh <frontend>
+    $ exit
+    $ exit
+
+.. _kvm_node_networking:
 
 Step 5. Networking Configuration
 ================================
 
 |image3|
 
-A network connection is needed by the OpenNebula front-end daemons to access the hosts to manage and monitor the hypervisors; and move image files. It is highly recommended to install a dedicated network for this purpose.
+A network connection is needed by the OpenNebula Front-end daemons to access the hosts to manage and monitor the Hosts, and to transfer the Image files. It is highly recommended to use a dedicated network for this purpose.
 
-There are various network models (please check the :ref:`Networking guide <nm>` to find out the networking technologies supported by OpenNebula), but they all have something in common. They rely on network bridges with the same name in all the hosts to connect Virtual Machines to the physical network interfaces.
+There are various network models (please check the :ref:`Networking <nm>` chapter to find out the networking technologies supported by OpenNebula).
 
-The simplest network model corresponds to the ``dummy`` drivers, where only the network bridges are needed.
-
-For example, a typical host with two physical networks, one for public IP addresses (attached to eth0 NIC) and the other for private virtual LANs (NIC eth1) should have two bridges:
+You may want to use the simplest network model that corresponds to the :ref:`dummy <bridged>` drivers. For this driver, you will need to setup a linux bridge and include a physical device to the bridge. Later on, when defining the network in OpenNebula, you will specify the name of this bridge and OpenNebula will know that it should connect the VM to this bridge, thus giving it connectivity with the physical network device connected to the bridge. For example, a typical host with two physical networks, one for public IP addresses (attached to an ``eth0`` NIC for example) and the other for private virtual LANs (NIC ``eth1`` for example) should have two bridges:
 
 .. prompt:: bash $ auto
 
@@ -101,102 +110,86 @@ For example, a typical host with two physical networks, one for public IP addres
     br0        8000.001e682f02ac no          eth0
     br1        8000.001e682f02ad no          eth1
 
+.. note:: Remember that this is only required in the Hosts, not in the Front-end. Also remember that it is not important the exact name of the resources (``br0``, ``br1``, etc...), however it's important that the bridges and NICs have the same name in all the Hosts.
+
 Step 6. Storage Configuration
 =============================
 
-OpenNebula uses Datastores to manage VM disk Images. There are two configuration steps needed to perform a basic set up:
+You can skip this step entirely if you just want to try out OpenNebula, as it will come configured by default in such a way that it uses the local storage of the Front-end to store Images, and the local storage of the hypervisors as storage for the running VMs.
 
--  First, you need to configure the **system datastore** to hold images for the running VMs, check the :ref:`the System Datastore Guide <system_ds>`, for more details.
--  Then you have to setup one ore more datastore for the disk images of the VMs, you can find more information on setting up :ref:`Filesystem Datastores here <fs_ds>`.
+However, if you want to set-up another storage configuration at this stage, like Ceph, NFS, LVM, etc, you should read the :ref:`Open Cloud Storage <storage>` chapter.
 
-The suggested configuration is to use a shared FS, which enables most of OpenNebula VM controlling features. OpenNebula **can work without a Shared FS**, but this will force the deployment to always clone the images and you will only be able to do *cold* migrations.
-
-The simplest way to achieve a shared FS back-end for OpenNebula datastores is to export via NFS from the OpenNebula front-end both the ``system`` (``/var/lib/one/datastores/0``) and the ``images`` (``/var/lib/one/datastores/1``) datastores. They need to be mounted by all the virtualization nodes to be added into the OpenNebula cloud.
-
-Step 7. Adding a Node to the OpenNebula Cloud
+Step 8. Adding a Host to OpenNebula
 =============================================
 
-To add a node to the cloud, there are four needed parameters: name/IP of the host, virtualization, network and information driver. Using the recommended configuration above you can add your host ``node01`` to OpenNebula in the following fashion (as ``oneadmin``, in the front-end):
-
-.. prompt:: bash $ auto
-
-    $ onehost create node01 -i kvm -v kvm
+In this step we will register the node we have installed in the OpenNebula Front-end, so OpenNebula can launch VMs in it. This step can be done in the CLI **or** in Sunstone, the graphical user interface. Follow just one method, not both, as they accomplish the same.
 
 To learn more about the host subsystem, read :ref:`this guide <hostsubsystem>`.
 
+Adding a Host through Sunstone
+--------------------------------------------------------------------------------
+
+Open the Sunstone as documented :ref:`here <verify_frontend_section_sunstone>`. In the left side menu go to Infrastructure -> Hosts. Click on the ``+`` button.
+
+|sunstone_select_create_host|
+
+The fill-in the fqdn of the node in the Hostname field.
+
+|sunstone_create_host_dialog|
+
+Finally, return to the Hosts list, and check that the Host switch to ON status. It should take somewhere between 20s to 1m. Try clicking on the refresh button to check the status more frequently.
+
+|sunstone_list_hosts|
+
+If the host turns to ``err`` state instead of ``on``, check the ``/var/log/one/oned.log``. Chances are it's a problem with the SSH!
+
+Adding a Host through the CLI
+--------------------------------------------------------------------------------
+
+To add a node to the cloud, run this command as ``oneadmin`` in the Front-end:
+
+.. prompt:: bash $ auto
+
+    $ onehost create <node01> -i kvm -v kvm
+
+    $ onehost list
+      ID NAME            CLUSTER   RVM      ALLOCATED_CPU      ALLOCATED_MEM STAT
+       1 localhost       default     0                  -                  - init
+
+    # After some time (20s - 1m)
+
+    $ onehost list
+      ID NAME            CLUSTER   RVM      ALLOCATED_CPU      ALLOCATED_MEM STAT
+       0 node01          default     0       0 / 400 (0%)     0K / 7.7G (0%) on
+
+If the host turns to ``err`` state instead of ``on``, check the ``/var/log/one/oned.log``. Chances are it's a problem with the SSH!
+
+Step 8. Import Currently Running VMs (Optional)
+===============================================
+
+You can skip this step as importing VMs can be done at any moment, however, if you wish to see your previously deployed VMs in OpenNebula you can use the :ref:`import VM <import_wild_vms>` functionality.
+
+Step 9. Next steps
+================================================================================
+
+You can now jump to the optional :ref:`Verify your Installation <verify_installation>` section in order to get to launch a test VM.
+
+Otherwise, you are ready to :ref:`start using your cloud <operation_guide>` or you could configure more components:
+
+* :ref:`Authenticaton <authentication>`. (Optional) For integrating OpenNebula with LDAP/AD, or securing it further with other authentication technologies.
+* :ref:`Sunstone <sunstone>`. OpenNebula GUI should working and accessible at this stage, but by reading this guide you will learn about specific enhanced configurations for Sunstone.
+
+If your cloud is KVM based you should also follow:
+
+* :ref:`Open Cloud Host Setup <vmmg>`.
+* :ref:`Open Cloud Storage Setup <storage>`.
+* :ref:`Open Cloud Networking Setup <nm>`.
+
+If it's VMware based:
+
+* Head over to the :ref:`VMware Infrastructure Setup <vmware_infrastructure_setup_overview>` chapter.
+
 .. |image3| image:: /images/network-02.png
-
-Step 8. Import Currently Running VMs
-====================================
-
-If you already have libvirt+KVM VMs running in the host you can import and manage them with OpenNebula. To do so you'll first have to list the VMs in that host. For example if the node is ``node01`` you can list them with this command executed in the front-end:
-
-.. prompt:: bash $ auto
-
-    $ onehost show node01
-    [...]
-    WILD VIRTUAL MACHINES
-
-    NAME                                                      IMPORT_ID  CPU     MEMORY
-    zentyal-4.2                    1b09ebbf-e88a-4bfa-b998-4f96dc97b77a    1       1024
-    [...]
-
-Check the table and find the VM you want to import and use the command ``onehost import`` to add it to the OpenNebula database. For example:
-
-.. prompt:: bash $ auto
-
-    $ onehost importvm node01 zentyal-4.2
-    $ onevm show zentyal-4.2
-    VIRTUAL MACHINE 12 INFORMATION
-    ID                  : 12
-    NAME                : zentyal-4.2
-    USER                : oneadmin
-    GROUP               : oneadmin
-    STATE               : ACTIVE
-    LCM_STATE           : RUNNING
-    RESCHED             : No
-    HOST                : node01
-    CLUSTER ID          : 0
-    CLUSTER             : default
-    START TIME          : 05/09 19:20:42
-    END TIME            : -
-    DEPLOY ID           : 1b09ebbf-e88a-4bfa-b998-4f96dc97b77a
-
-    VIRTUAL MACHINE MONITORING
-    CPU                 : 1.0
-    MEMORY              : 1.1G
-    NETTX               : 252K
-    NETRX               : 5.9M
-    VM_NAME             : zentyal-4.2
-
-    PERMISSIONS
-    OWNER               : um-
-    GROUP               : ---
-    OTHER               : ---
-
-    VIRTUAL MACHINE HISTORY
-    SEQ HOST            ACTION             DS           START        TIME     PROLOG
-      0 localhost       none                0  05/09 19:20:42   0d 00h00m   0h00m00s
-
-    USER TEMPLATE
-    HYPERVISOR="kvm"
-
-    VIRTUAL MACHINE TEMPLATE
-    AUTOMATIC_REQUIREMENTS="!(PUBLIC_CLOUD = YES)"
-    CPU="1"
-    FEATURES=[
-      ACPI="yes",
-      APIC="yes" ]
-    GRAPHICS=[
-      PORT="5900",
-      TYPE="spice" ]
-    IMPORTED="YES"
-    MEMORY="1024"
-    OS=[
-      ARCH="x86_64" ]
-    VCPU="1"
-    VMID="12"
-
-
-.. todo:: next steps
-
+.. |sunstone_create_host_dialog| image:: /images/sunstone_create_host_dialog.png
+.. |sunstone_list_hosts| image:: /images/sunstone_list_hosts.png
+.. |sunstone_select_create_host| image:: /images/sunstone_select_create_host.png

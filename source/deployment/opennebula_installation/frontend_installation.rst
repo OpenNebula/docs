@@ -1,5 +1,5 @@
 .. _ignc:
-.. _frontend_installation:
+.. _frotend_installation:
 
 ================================================================================
 Front-end Installation
@@ -41,9 +41,9 @@ Before installing:
 
     # yum install epel-release
 
-There are packages for the front-end, distributed in the various components that conform OpenNebula, and packages for the virtualization host.
+There are packages for the Front-end, distributed in the various components that conform OpenNebula, and packages for the virtualization host.
 
-To install a CentOS/RHEL OpenNebula front-end with packages from **our repository**, execute the following as root.
+To install a CentOS/RHEL OpenNebula Front-end with packages from **our repository**, execute the following as root.
 
 .. prompt:: bash # auto
 
@@ -70,7 +70,7 @@ These are the packages available for this distribution:
 Installing on Debian/Ubuntu
 ---------------------------
 
-To install OpenNebula on a Debian/Ubuntu front-end using packages from **our repositories** execute as root:
+To install OpenNebula on a Debian/Ubuntu Front-end using packages from **our repositories** execute as root:
 
 .. prompt:: bash # auto
 
@@ -158,7 +158,12 @@ You are ready to start the OpenNebula daemons:
 Step 7. Verifying the Installation
 ================================================================================
 
-After OpenNebula is started for the first time, you should check that the commands can connect to the OpenNebula daemon. In the Front-end, run the following command as oneadmin:
+After OpenNebula is started for the first time, you should check that the commands can connect to the OpenNebula daemon. You can do this in the Linux CLI or in the graphical user interface: Sunstone.
+
+Linux CLI
+--------------------------------------------------------------------------------
+
+In the Front-end, run the following command as oneadmin:
 
 .. prompt:: bash $ auto
 
@@ -186,7 +191,17 @@ If you get an error message, then the OpenNebula daemon could not be started pro
 
 The OpenNebula logs are located in ``/var/log/one``, you should have at least the files ``oned.log`` and ``sched.log``, the core and scheduler logs. Check ``oned.log`` for any error messages, marked with ``[E]``.
 
-Now you can try to log in into Sunstone web interface. To do this point your browser to ``http://<fontend_address>:9869``. If everything is OK you will be greeted with a login page. The user is ``oneadmin`` and the password is the one in the file ``/var/lib/one/.one/one_auth`` in your frontend. If the page does not load, make sure you check ``/var/log/one/sunstone.log`` and ``/var/log/one/sunstone.error``. Also, make sure TCP port 9869 is allowed through the firewall.
+.. _verify_frontend_section_sunstone:
+
+Sunstone
+--------------------------------------------------------------------------------
+
+Now you can try to log in into Sunstone web interface. To do this point your browser to ``http://<fontend_address>:9869``. If everything is OK you will be greeted with a login page. The user is ``oneadmin`` and the password is the one in the file ``/var/lib/one/.one/one_auth`` in your Front-end.
+
+If the page does not load, make sure you check ``/var/log/one/sunstone.log`` and ``/var/log/one/sunstone.error``. Also, make sure TCP port 9869 is allowed through the firewall.
+
+Directory Structure
+--------------------------------------------------------------------------------
 
 The following table lists some notable paths that are available in your Front-end after the installation:
 

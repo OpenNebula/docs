@@ -6,10 +6,10 @@ Managing Hosts
 
 In order to use your existing physical nodes, you have to add them to the system as OpenNebula hosts. You need the following information:
 
--  *Hostname* of the host or IP
--  *Information Driver* to be used to monitor the host, e.g. ``kvm``. These should match the Virtualization Drivers installed and more info about them can be found at the :ref:`Virtualization Subsystem guide <vmmg>`.
--  *Virtualization Driver* to boot, stop, resume or migrate VMs in the host, e.g. ``kvm``. Information about these drivers can be found in :ref:`its guide <vmmg>`.
--  *Cluster* where to place this host. The Cluster assignment is optional, you can read more about it in the :ref:`Managing Clusters <cluster_guide>` guide.
+* *Hostname* of the host or IP
+* *Information Driver* to be used to monitor the host, e.g. ``kvm``. These should match the Virtualization Drivers installed and more info about them can be found at the :ref:`Virtualization Subsystem guide <vmmg>`.
+* *Virtualization Driver* to boot, stop, resume or migrate VMs in the host, e.g. ``kvm``. Information about these drivers can be found in :ref:`its guide <vmmg>`.
+* *Cluster* where to place this host. The Cluster assignment is optional, you can read more about it in the :ref:`Managing Clusters <cluster_guide>` guide.
 
 .. warning:: Before adding a host check that you can ssh to it without being prompt for a password
 
@@ -20,17 +20,17 @@ The following sections show the basics of the ``onehost`` command with simple us
 
 This command enables Host management. Actions offered are:
 
--  ``create``: Creates a new Host
--  ``delete``: Deletes the given Host
--  ``enable``: Enables the given Host
--  ``disable``: Disables the given Host
--  ``offline``: Sets the Host offline
--  ``update``: Update the template contents.
--  ``sync``: Synchronizes probes in all the hosts.
--  ``list``: Lists Hosts in the pool
--  ``show``: Shows information for the given Host
--  ``top``: Lists Hosts continuously
--  ``flush``: Disables the host and reschedules all the running VMs it.
+* ``create``: Creates a new Host
+* ``delete``: Deletes the given Host
+* ``enable``: Enables the given Host
+* ``disable``: Disables the given Host
+* ``offline``: Sets the Host offline
+* ``update``: Update the template contents.
+* ``sync``: Synchronizes probes in all the hosts.
+* ``list``: Lists Hosts in the pool
+* ``show``: Shows information for the given Host
+* ``top``: Lists Hosts continuously
+* ``flush``: Disables the host and reschedules all the running VMs it.
 
 Create and Delete
 -----------------
@@ -46,8 +46,8 @@ Creating a host:
 
 The parameters are:
 
--  ``--im/-i``: Information Manager driver.
--  ``--vm/-v``: Virtual Machine Manager driver.
+* ``--im/-i``: Information Manager driver.
+* ``--vm/-v``: Virtual Machine Manager driver.
 
 To remove a host, just like with other OpenNebula commands, you can either specify it by ID or by name. The following commands are equivalent:
 
@@ -524,10 +524,10 @@ And imported through the ``onehost importvm`` command:
 
 After a Virtual Machine is imported, their life-cycle (including creation of snapshots) can be controlled through OpenNebula. The following operations *cannot* be performed on an imported VM:
 
-- Delete ``--recreate``
-- Undeploy (and Undeploy ``--hard``)
-- Migrate (and Migrate ``--live``)
-- Stop
+* Delete ``--recreate``
+* Undeploy (and Undeploy ``--hard``)
+* Migrate (and Migrate ``--live``)
+* Stop
 
 The same import mechanism is available graphically through Sunstone. Running and Powered Off VMs can be imported through the WILDS tab in the Host info tab.
 
