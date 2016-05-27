@@ -95,8 +95,8 @@ This is a small code snippet. As you can see, the code flow would be as follows:
      
     exit 0
 
-Code Sample: Create a new VirtualNetwork
-========================================
+Code Sample: Create a new Virtual Network
+================================================================================
 
 .. code-block:: ruby
 

@@ -4,7 +4,7 @@
 OneFlow Specification
 ================================================================================
 
-The OpenNebula OneFlow API is a RESTful service to create, control and monitor multi-tier applications or services composed of interconnected Virtual Machines with deployment dependencies between them. Each group of Virtual Machines is deployed and managed as a single entity, and is completely integrated with the advanced OpenNebula user and group management. There are two kind of resources; services templates and services. All data is sent and received as JSON.
+The OpenNebula OneFlow API is a RESTful service to create, control and monitor services composed of interconnected Virtual Machines with deployment dependencies between them. Each group of Virtual Machines is deployed and managed as a single entity, and is completely integrated with the advanced OpenNebula user and group management. There are two kind of resources; services templates and services. All data is sent and received as JSON.
 
 This guide is intended for developers. The OpenNebula distribution includes a :ref:`cli <cli>` to interact with OneFlow and it is also fully integrated in the :ref:`Sunstone GUI <appflow_configure>`
 
@@ -22,16 +22,16 @@ Return Codes
 
 The OneFlow API uses the following subset of HTTP Status codes:
 
--  **200 OK** : The request has succeeded.
--  **201 Created** : Request was successful and a new resource has being created
--  **202 Accepted** : The request has been accepted for processing, but the processing has not been completed
--  **204 No Content** : The request has been accepted for processing, but no info in the response
--  **400 Bad Request** : Malformed syntax
--  **401 Unauthorized** : Bad authentication
--  **403 Forbidden** : Bad authorization
--  **404 Not Found** : Resource not found
--  **500 Internal Server Error** : The server encountered an unexpected condition which prevented it from fulfilling the request.
--  **501 Not Implemented** : The functionality requested is not supported
+*  **200 OK** : The request has succeeded.
+*  **201 Created** : Request was successful and a new resource has being created
+*  **202 Accepted** : The request has been accepted for processing, but the processing has not been completed
+*  **204 No Content** : The request has been accepted for processing, but no info in the response
+*  **400 Bad Request** : Malformed syntax
+*  **401 Unauthorized** : Bad authentication
+*  **403 Forbidden** : Bad authorization
+*  **404 Not Found** : Resource not found
+*  **500 Internal Server Error** : The server encountered an unexpected condition which prevented it from fulfilling the request.
+*  **501 Not Implemented** : The functionality requested is not supported
 
 .. code::
 
@@ -56,7 +56,7 @@ Methods
 ================================================================================
 
 Service
--------
+--------------------------------------------------------------------------------
 
 +--------------+----------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------+
 | **Method**   | **URL**                                | **Meaning / Entity Body**                                                                                                                                                                                                                                                                                                                                  | **Response**                                                           |
@@ -75,7 +75,7 @@ Service
 +--------------+----------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------+
 
 Service Template
-----------------
+--------------------------------------------------------------------------------
 
 +--------------+-------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+
 | **Method**   | **URL**                             | **Meaning / Entity Body**                                                                                                            | **Response**                                                                                       |
@@ -94,10 +94,10 @@ Service Template
 +--------------+-------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+
 
 Resource Representation
-=======================
+================================================================================
 
 Service Schema
---------------
+--------------------------------------------------------------------------------
 
 A Service is defined with JSON syntax templates.
 
@@ -219,7 +219,7 @@ And each scheduled policy is defined as:
     }
 
 Role Schema
-~~~~~~~~~~~
+--------------------------------------------------------------------------------
 
 .. code::
 
@@ -344,7 +344,7 @@ Role Schema
     }
 
 Action Schema
--------------
+--------------------------------------------------------------------------------
 
 .. code::
 
@@ -369,10 +369,10 @@ Action Schema
     }
 
 Examples
-========
+================================================================================
 
 Create a New Service Template
------------------------------
+--------------------------------------------------------------------------------
 
 +--------------+-------------------------+---------------------------------------------------+----------------------------------------------------------------------------------------------------+
 | **Method**   | **URL**                 | **Meaning / Entity Body**                         | **Response**                                                                                       |
@@ -543,7 +543,7 @@ Create a New Service Template
       }
 
 Get Detailed Information of a Given Service Template
-----------------------------------------------------
+--------------------------------------------------------------------------------
 
 +--------------+------------------------------+-----------------------------------------------------------------+------------------------------------------------------------------------+
 | **Method**   | **URL**                      | **Meaning / Entity Body**                                       | **Response**                                                           |
@@ -590,7 +590,7 @@ Get Detailed Information of a Given Service Template
                 ...
 
 List the Available Service Templates
-------------------------------------
+--------------------------------------------------------------------------------
 
 +--------------+-------------------------+-----------------------------------------------------------------+------------------------------------------------------------------------+
 | **Method**   | **URL**                 | **Meaning / Entity Body**                                       | **Response**                                                           |
@@ -647,7 +647,7 @@ List the Available Service Templates
                     ...
 
 Update a Given Template
------------------------
+--------------------------------------------------------------------------------
 
 +--------------+------------------------------+--------------------------------------------------------------------+----------------+
 | **Method**   | **URL**                      | **Meaning / Entity Body**                                          | **Response**   |
@@ -761,7 +761,7 @@ Update a Given Template
                 ...
 
 Instantiate a Given Template
-----------------------------
+--------------------------------------------------------------------------------
 
 +--------------+-------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------+----------------+
 | **Method**   | **URL**                             | **Meaning / Entity Body**                                                                                                            | **Response**   |
@@ -820,7 +820,7 @@ Available actions:
                 "vm_template": 0,
 
 Delete a Given Template
------------------------
+--------------------------------------------------------------------------------
 
 +--------------+------------------------------+-------------------------------------------------------------------+----------------+
 | **Method**   | **URL**                      | **Meaning / Entity Body**                                         | **Response**   |
@@ -849,7 +849,7 @@ Delete a Given Template
     < Server: thin 1.2.8 codename Black Keys
 
 Get Detailed Information of a Given Service
--------------------------------------------
+--------------------------------------------------------------------------------
 
 +--------------+---------------------+--------------------------------------------------------+------------------------------------------------------------------------+
 | **Method**   | **URL**             | **Meaning / Entity Body**                              | **Response**                                                           |
@@ -1214,7 +1214,7 @@ Get Detailed Information of a Given Service
       }
 
 List the Available Services
----------------------------
+--------------------------------------------------------------------------------
 
 +--------------+----------------+--------------------------------------------------------+------------------------------------------------------------------------+
 | **Method**   | **URL**        | **Meaning / Entity Body**                              | **Response**                                                           |
@@ -1263,7 +1263,7 @@ List the Available Services
                     ...
 
 Perform an Action on a Given Service
-------------------------------------
+--------------------------------------------------------------------------------
 
 +--------------+----------------------------+-------------------------------------------------------------------------+----------------+
 | **Method**   | **URL**                    | **Meaning / Entity Body**                                               | **Response**   |
@@ -1273,21 +1273,17 @@ Perform an Action on a Given Service
 
 Available actions:
 
--  shutdown: Shutdown a service.
-
-   -  From RUNNING or WARNING shuts down the Service
-
--  recover: Recover a failed service, cleaning the failed VMs.
-
-   -  From FAILED\_DEPLOYING continues deploying the Service
-   -  From FAILED\_SCALING continues scaling the Service
-   -  From FAILED\_UNDEPLOYING continues shutting down the Service
-   -  From COOLDOWN the Service is set to running ignoring the cooldown duration
-   -  From WARNING failed VMs are deleted, and new VMs are instantiated
-
--  chown
--  chmod
--  chgrp
+* shutdown: Shutdown a service.
+   * From RUNNING or WARNING shuts down the Service
+* recover: Recover a failed service, cleaning the failed VMs.
+   * From FAILED\_DEPLOYING continues deploying the Service
+   * From FAILED\_SCALING continues scaling the Service
+   * From FAILED\_UNDEPLOYING continues shutting down the Service
+   * From COOLDOWN the Service is set to running ignoring the cooldown duration
+   * From WARNING failed VMs are deleted, and new VMs are instantiated
+* chown
+* chmod
+* chgrp
 
 .. code::
 
@@ -1309,7 +1305,7 @@ Available actions:
     }'
 
 Update the Cardinality of a Given Role
---------------------------------------
+--------------------------------------------------------------------------------
 
 +--------------+---------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------+
 | **Method**   | **URL**                         | **Meaning / Entity Body**                                                                                                                                           | **Response**   |
@@ -1345,7 +1341,7 @@ You can force a cardinality outside the defined range with the force param.
     < Server: thin 1.2.8 codename Black Keys
 
 Perform an Action on All the VMs of a Given Role
-------------------------------------------------
+--------------------------------------------------------------------------------
 
 +--------------+----------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+----------------+
 | **Method**   | **URL**                                | **Meaning / Entity Body**                                                                                                                          | **Response**   |
@@ -1357,23 +1353,23 @@ You can use this call to perform a VM action on all the Virtual Machines belongi
 
 These are the commands that can be performed:
 
--  ``shutdown``
--  ``shutdown-hard``
--  ``undeploy``
--  ``undeploy-hard``
--  ``hold``
--  ``release``
--  ``stop``
--  ``suspend``
--  ``resume``
--  ``boot``
--  ``delete``
--  ``delete-recreate``
--  ``reboot``
--  ``reboot-hard``
--  ``poweroff``
--  ``poweroff-hard``
--  ``snapshot-create``
+* ``shutdown``
+* ``shutdown-hard``
+* ``undeploy``
+* ``undeploy-hard``
+* ``hold``
+* ``release``
+* ``stop``
+* ``suspend``
+* ``resume``
+* ``boot``
+* ``delete``
+* ``delete-recreate``
+* ``reboot``
+* ``reboot-hard``
+* ``poweroff``
+* ``poweroff-hard``
+* ``snapshot-create``
 
 Instead of performing the action immediately on all the VMs, you can perform it on small groups of VMs with these options:
 

@@ -115,7 +115,7 @@ For more complete examples, please check the ``src/oca/java/share/examples`` dir
     }
 
 Compilation
-===========
+================================================================================
 
 To compile the Java OCA, untar the `OpenNebula source <http://downloads.opennebula.org>`__, ``cd`` to the java directory and use the build script:
 
