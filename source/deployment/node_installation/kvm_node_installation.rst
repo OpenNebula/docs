@@ -177,7 +177,7 @@ You can now jump to the optional :ref:`Verify your Installation <verify_installa
 Otherwise, you are ready to :ref:`start using your cloud <operation_guide>` or you could configure more components:
 
 * :ref:`Authenticaton <authentication>`. (Optional) For integrating OpenNebula with LDAP/AD, or securing it further with other authentication technologies.
-* :ref:`Sunstone <sunstone>`. OpenNebula GUI should working and accessible at this stage, but by reading this guide you will learn about specific enhanced configurations for Sunstone.
+* :ref:`Sunstone <sunstone>`. OpenNebula GUI should be working and accessible at this stage, but by reading this guide you will learn about specific enhanced configurations for Sunstone.
 
 If your cloud is KVM based you should also follow:
 
