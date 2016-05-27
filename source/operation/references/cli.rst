@@ -25,6 +25,11 @@ CLI
 -  `onezone </doc/5.0/cli/onezone.1.html>`__: manages OpenNebula zones
 -  `onesecgroup </doc/5.0/cli/onesecgroup.1.html>`__: manages OpenNebula security groups
 -  `onevcenter </doc/5.0/cli/onevcenter.1.html>`__: handles vCenter resource import
+-  `onevrouter </doc/5.0/cli/onevrouter.1.html>`__: manages OpenNebula Virtual Routers
+-  `oneshowback </doc/5.0/cli/oneshowback.1.html>`__: OpenNebula Showback Tool
+-  `onemarket </doc/5.0/cli/onemarket.1.html>`__: manages internal and external Marketplaces
+-  `onemarketapp </doc/5.0/cli/onemarketapp.1.html>`__: manages appliances from Marketplaces
+
 
 The output of these commands can be customized by modifying the configuration files that can be found in ``/etc/one/cli/``. They also can be customized on a per-user basis, in this case the configuration files should be placed in ``$HOME/.one/cli``.
 
