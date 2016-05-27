@@ -13,7 +13,7 @@ Managing Permission through the CLI
 
 This is how the permissions look in the terminal:
 
-.. code::
+.. prompt:: text $ auto
 
     $ onetemplate show 0
     TEMPLATE 0 INFORMATION
@@ -34,11 +34,11 @@ The previous output shows that for the Template 0, the owner user ``oneuser1`` h
 
 You can check what operations are allowed with each of the **USE**, **MANAGE** and **ADMIN** rights in the :ref:`xml-rpc reference documentation <api>`. In general these rights are associated with the following operations:
 
--  **USE**: Operations that do not modify the resource like listing it or using it (e.g. using an image or a virtual network). Typically you will grant ``USE`` rights to share your resources with other users of your group or with the rest of the users.
+* **USE**: Operations that do not modify the resource like listing it or using it (e.g. using an image or a virtual network). Typically you will grant ``USE`` rights to share your resources with other users of your group or with the rest of the users.
 
--  **MANAGE**: Operations that modify the resource like stopping a virtual machine, changing the persistent attribute of an image or removing a lease from a network. Typically you will grant ``MANAGE`` rights to users that will manage your own resources.
+* **MANAGE**: Operations that modify the resource like stopping a virtual machine, changing the persistent attribute of an image or removing a lease from a network. Typically you will grant ``MANAGE`` rights to users that will manage your own resources.
 
--  **ADMIN**: Special operations that are typically limited to administrators, like updating the data of a host or deleting an user group. Typically you will grant ``ADMIN`` permissions to those users with an administrator role.
+* **ADMIN**: Special operations that are typically limited to administrators, like updating the data of a host or deleting an user group. Typically you will grant ``ADMIN`` permissions to those users with an administrator role.
 
 .. warning:: By default every user can update any permission group (owner, group or other) with the exception of the admin bit. There are some scenarios where it would be advisable to limit the other set (e.g. OpenNebula Zones so users can not break the group limits). In these situations the ``ENABLE_OTHER_PERMISSIONS`` attribute can be set to ``NO`` in ``/etc/one/oned.conf`` file
 
@@ -53,7 +53,7 @@ The previous permissions can be updated with the chmod command. This command tak
 
 Let's see some examples:
 
-.. code::
+.. prompt:: text $ auto
 
     $ onetemplate show 0
     ...
@@ -191,7 +191,7 @@ Managing ACL Rules via Console
 
 The ACL rules are managed using the :ref:`oneacl command <cli>`. The 'oneacl list' output looks like this:
 
-.. code::
+.. prompt:: text $ auto
 
     $ oneacl list
        ID     USER RES_VHNIUTGDCOZSvRMA   RID OPE_UMAC  ZONE
@@ -215,7 +215,7 @@ The rules shown correspond to the following ones:
 
 The first five were created on bootstrap by OpenNebula, and the last one was created using oneacl:
 
-.. code::
+.. prompt:: text $ auto
 
     $ oneacl create "@106 IMAGE/#31 USE"
     ID: 5
@@ -263,11 +263,11 @@ Select ACLs in the left-side menu to access a view of the current ACLs defined i
 
 |image1|
 
-This view is designed to easily undestand what the purpose of each ACL is. You can create new ACLs by clicking on the ``New`` button at the top. A dialog will pop up:
+This view is designed to easily understand what the purpose of each ACL is. You can create new ACLs by clicking on the ``New`` button at the top. A dialog will pop up:
 
 |image2|
 
-In the creation dialog you can easily define the resouces affected by the rule and the permissions that are granted upon them.
+In the creation dialog you can easily define the resources affected by the rule and the permissions that are granted upon them.
 
 How Permission is Granted or Denied
 ===================================
@@ -280,7 +280,7 @@ For the internal Authorization in OpenNebula, there is an implicit rule:
 
 If the resource is one of type ``VM``, ``NET``, ``IMAGE``, ``TEMPLATE``, or ``DOCUMENT`` the object's permissions are checked. For instance, this is an example of the oneimage show output:
 
-.. code::
+.. prompt:: text $ auto
 
     $ oneimage show 2
     IMAGE 2 INFORMATION

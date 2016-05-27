@@ -22,7 +22,7 @@ Upon group creation, an associated admin user can be created. By default this us
 
 Along with the users & groups the Auth Subsystem is responsible for the authentication and authorization of user's requests.
 
-Any interface to OpenNebula (CLI, Sunstone, Ruby or Java OCA) communicates with the core using xml-rpc calls, that contain the user's session string, which is authenticated by the OpenNebula core comparing the username and password with the registered users.
+Any interface to OpenNebula (CLI, Sunstone, Ruby or Java OCA) communicates with the core using XML-RPC calls, that contain the user's session string, which is authenticated by the OpenNebula core comparing the username and password with the registered users.
 
 Each operation generates an authorization request that is checked against the registered ACL rules. The core then can grant permission, or reject the request.
 

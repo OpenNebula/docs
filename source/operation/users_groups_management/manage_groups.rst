@@ -12,7 +12,7 @@ The group is an authorization boundary for the users, but you can also partition
 Adding and Deleting Groups
 ================================================================================
 
-There are two special groups created by default. The ``onedmin`` group allows any user in it to perform any operation, allowing different users to act with the same privileges as the ``oneadmin`` user. The ``users`` group is the default group where new users are created.
+There are two special groups created by default. The ``oneadmin`` group allows any user in it to perform any operation, allowing different users to act with the same privileges as the ``oneadmin`` user. The ``users`` group is the default group where new users are created.
 
 Your can use the ``onegroup`` command line tool to manage groups in OpenNebula. There are two groups created by default, ``oneadmin`` and ``users``.
 
@@ -30,7 +30,7 @@ To create new groups:
 
 The new group has ID 100 to differentiate the special groups from the user-defined ones.
 
-.. note:: When a new group is created, an ACL rule is also created to provide the default behaviour, allowing users to create basic resources. You can learn more about ACL rules in :ref:`this guide <manage_acl>`; but you don't need any further configuration to start using the new group.
+.. note:: When a new group is created, an ACL rule is also created to provide the default behavior, allowing users to create basic resources. You can learn more about ACL rules in :ref:`this guide <manage_acl>`; but you don't need any further configuration to start using the new group.
 
 Adding Users to Groups
 ================================================================================
@@ -60,7 +60,7 @@ Admin Users and Allowed Resources
 
 Upon group creation, a special admin user account can be defined. This admin user will have administrative privileges only for the new group, not for all the resources in the OpenNebula cloud as the 'oneadmin' group users have.
 
-Another aspect that can be controlled on creation time is the type of resources that group users will be alowed to create.
+Another aspect that can be controlled on creation time is the type of resources that group users will be allowed to create.
 
 This can be managed visually in Sunstone, and can also be managed through the CLI. In the latter, details of the group are passed to the ``onegroup create`` command as arguments. This table lists the description of said arguments.
 

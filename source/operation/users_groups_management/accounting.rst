@@ -43,7 +43,7 @@ To integrate this tool with other systems you can use ``-j``, ``-x`` or ``--csv`
 Accounting Output
 =================
 
-The oneacct command shows individual Virtual Machine history records. This means that for a single VM you may get several accounting entries, one for each migration or stop/suspend action. A resize or disk/nic attachement will also create a new entry.
+The oneacct command shows individual Virtual Machine history records. This means that for a single VM you may get several accounting entries, one for each migration or stop/suspend action. A resize or disk/nic attachment will also create a new entry.
 
 Each entry contains the complete information of the Virtual Machine, including the Virtual Machine monitoring information. By default, only network consumption is reported, see the `Tuning & Extending <#tuning-extending>`__ section for more information.
 
@@ -133,7 +133,7 @@ Obtaining the accounting information for a given user
      VID HOSTNAME        REAS     START_TIME       END_TIME MEMORY CPU NET_RX NET_TX
        3 host01          none 06/04 15:04:47              -     4G   2     0K   0.1K
 
-In case you use CSV output (``--csv``) you will het a header with the neame of each column and then the data. For example:
+In case you use CSV output (``--csv``) you will het a header with the name of each column and then the data. For example:
 
 .. code::
 
