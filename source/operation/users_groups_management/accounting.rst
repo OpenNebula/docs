@@ -1,5 +1,7 @@
 .. _accounting:
 
+.. todo:: check oneacct command output
+
 ==================
 Accounting Client
 ==================
@@ -14,17 +16,25 @@ Usage
 .. code::
 
     Usage: oneacct [options]
-      -s, --start TIME        Start date and time to take into account
-      -e, --end TIME          End date and time
-      -u, --user user         User id to filter the results
-      -g, --group group       Group id to filter the results
-      -H, --host hostname     Host id to filter the results
-          --xpath expression  Xpath expression to filter the results. For example: oneacct --xpath 'HISTORY[ETIME>0]'
-      -j, --json              Output in json format
-      -x, --xml               Output in xml format
-      --csv                   Write table in csv format
-          --split             Split the output in a table for each VM
-      -h, --help              Show this message
+     -s, --start TIME          First day of the data to retrieve
+     -e, --end TIME            Last day of the data to retrieve
+     -u, --userfilter user     User name or id to filter the results
+     -g, --group group         Group name or id to filter the results
+     -H, --host HOST           Host name or id to filter the results
+     --xpath XPATH_EXPRESSION  Xpath expression to filter the results. For
+                               example: oneacct --xpath 'HISTORY[ETIME>0]'
+     -x, --xml                 Show the resource in xml format
+     -j, --json                Show the resource in json format
+     --split                   Split the output in a table for each VM
+     -v, --verbose             Verbose mode
+     -h, --help                Show this message
+     -V, --version             Show version and copyright information
+     --describe                Describe list columns
+     -l, --list x,y,z          Selects columns to display with list command
+     --csv                     Write table in csv format
+     --user name               User name used to connect to OpenNebula
+     --password password       Password to authenticate with OpenNebula
+     --endpoint endpoint       URL of OpenNebula xmlrpc frontend
 
 The time can be written as ``month/day/year hour:minute:second``, or any other similar format, e.g ``month/day hour:minute``.
 

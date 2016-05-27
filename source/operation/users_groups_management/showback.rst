@@ -1,5 +1,7 @@
 .. _showback:
 
+.. todo:: update examples. I have no data to complete them
+
 ================================================================================
 Showback
 ================================================================================
@@ -15,8 +17,6 @@ Each VM Template can optionally define a cost (see the :ref:`syntax here <templa
 
 Using this cost schema allows the users to resize the Virtual Machine instances.
 
-.. todo:: outdated screenshot
-
 |showback_instantiate|
 
 There is a default cost that will be applied to VM Templates without a cost defined. It can be set in the :ref:`oned.conf file <oned_conf_default_showback>`.
@@ -30,7 +30,7 @@ Calculate Monthly Reports
 
 Before the cost reports can be seen by the users, the administrator has to generate them. To create the monthly cost reports, use the ``oneshowback`` command:
 
-.. code::
+.. prompt:: text $ auto
 
     $ oneshowback calculate -h
     Usage: oneshowback [options]
@@ -41,9 +41,9 @@ When this command is executed, the OpenNebula core reads all the accounting reco
 
 The monthly cost of each VM is calculated as the sum of:
 
-- CPU_COST * CPU * HOURS
-- MEMORY_COST * MEMORY * HOURS
-- DISK_COST * DISK_SIZE * HOURS
+* ``CPU_COST`` * ``CPU`` * ``HOURS``
+* ``MEMORY_COST`` * ``MEMORY`` * ``HOURS``
+* ``DISK_COST`` * ``DISK_SIZE`` * ``HOURS``
 
 The number of hours is calculated as the total number of hours that a VM has been ``running``. The time a VM is in other states, such as ``pending``, ``poweroff``, or ``stopped`` does not count towards the cost.
 
@@ -55,14 +55,14 @@ Some examples:
 
 To calculate all records, starting from March up to today:
 
-.. code::
+.. prompt:: text $ auto
 
     $ oneshowback calculate --start "03/2014"
 
 
 To calculate only September:
 
-.. code::
+.. prompt:: text $ auto
 
     $ oneshowback calculate --start "09/2014" --end "09/2014"
 
@@ -82,12 +82,12 @@ Any user or administrator can see their monthly showback reports from the CLI or
 
 |showback_cloudview|
 
-.. code::
+.. prompt:: text $ auto
 
-    $ oneshowback list -h
     ## USAGE
     list
             Returns the showback records
+            valid options: start_time, end_time, userfilter, group, xml, json, verbose, help, version, describe, list, csv, user, password, endpoint
 
     ## OPTIONS
          -s, --start TIME          First month of the data
@@ -96,9 +96,15 @@ Any user or administrator can see their monthly showback reports from the CLI or
          -g, --group group         Group name or id to filter the results
          -x, --xml                 Show the resource in xml format
          -j, --json                Show the resource in json format
+         -v, --verbose             Verbose mode
+         -h, --help                Show this message
+         -V, --version             Show version and copyright information
          --describe                Describe list columns
          -l, --list x,y,z          Selects columns to display with list command
          --csv                     Write table in csv format
+         --user name               User name used to connect to OpenNebula
+         --password password       Password to authenticate with OpenNebula
+         --endpoint endpoint       URL of OpenNebula xmlrpc frontend
 
 
 Disable Showback in Sunstone
@@ -106,7 +112,7 @@ Disable Showback in Sunstone
 
 Showback reports can be disabled in any of the Sunstone views modifying the yaml file of those views. These files can be found in ``/etc/one/sunstone-views``
 
-.. code::
+.. code-block:: yaml
 
     ...
     features:
@@ -117,13 +123,13 @@ Tuning & Extending
 
 To integrate the showback reports with external tools, you can get the CLI output as **xml**, **json**, or **csv** data.
 
-.. code::
+.. prompt:: text $ auto
 
     $ oneshowback list -u cloud_user --list YEAR,MONTH,VM_ID,COST --csv
     YEAR,MONTH,VM_ID,COST
-    2012,10,4258,1824279.62
-    2012,10,4265,433749.03
-    2012,11,4258,34248600
+    2015,10,4258,1824279.62
+    2015,10,4265,433749.03
+    2015,11,4258,34248600
 
 Developers interacting with OpenNebula using the Ruby bindings can use the `VirtualMachinePool.showback method <http://docs.opennebula.org/doc/5.0/oca/ruby/OpenNebula/VirtualMachinePool.html#showback-instance_method>`__ to retrieve showback information filtering and ordering by multiple parameters.
 

@@ -11,22 +11,22 @@ Overview
 
 The quota system tracks user and group usage of system resources, and allows the system administrator to set limits on the usage of these resources. Quota limits can be set for:
 
--  **users**, to individually limit the usage made by a given user.
+* **users**, to individually limit the usage made by a given user.
 
--  **groups**, to limit the overall usage made by all the users in a given group. This can be of special interest for the OpenNebula Zones and Virtual Data Center (VDC) components.
+* **groups**, to limit the overall usage made by all the users in a given group. This can be of special interest for the OpenNebula Zones and Virtual Data Center (VDC) components.
 
 Which Resource can be limited?
 ==============================
 
 The quota system allows you to track and limit usage on:
 
--  **Datastores**, to control the amount of storage capacity allocated to each user/group for each datastore.
+* **Datastores**, to control the amount of storage capacity allocated to each user/group for each datastore.
 
--  **Compute**, to limit the overall memory, cpu or VM instances.
+* **Compute**, to limit the overall memory, cpu or VM instances.
 
--  **Network**, to limit the number of IPs a user/group can get from a given network. This is specially interesting for networks with public IPs, which usually are a limited resource.
+* **Network**, to limit the number of IPs a user/group can get from a given network. This is specially interesting for networks with public IPs, which usually are a limited resource.
 
--  **Images**, you can limit the how many VM instances from a given user/group are using a given image. You can take advantage of this quota when the image contains consumable resources (e.g. software licenses).
+* **Images**, you can limit the how many VM instances from a given user/group are using a given image. You can take advantage of this quota when the image contains consumable resources (e.g. software licenses).
 
 Defining User/Group Quotas
 ==========================
@@ -86,14 +86,14 @@ Image Quotas. Attribute name: IMAGE
 
 For each quota, there are two special limits:
 
--  **-1** means that the **default quota** will be used
--  **-2** means **unlimited**
+* **-1** means that the **default quota** will be used
+* **-2** means **unlimited**
 
 .. warning:: Each quota has an usage counter associated named ``<QUOTA_NAME>_USED``. For example ``MEMORY_USED`` means the total memory used by user/group VMs, and its associated quota is ``MEMORY``.
 
 The following template shows a quota example for a user in plain text. It limits the overall usage in Datastore 0 to 20Gb (for an unlimited number of images); the number of VMs that can be created to 4 with a maximum memory to 2G and 5 CPUs; the number of leases from network 1 to 4; and image 1 can only be used by 3 VMs at the same time:
 
-.. code::
+.. code-block:: bash
 
     DATASTORE=[
       ID="1",
@@ -132,7 +132,7 @@ User/group quotas can be easily set up either trough the command line interface 
 
 To set the quota for a user, e.g. userA, just type:
 
-.. code::
+.. prompt:: text $ auto
 
     $ oneuser quota userA
 
@@ -144,13 +144,13 @@ This will open an editor session to edit a quota template (with some tips about 
 
 Similarly, you can set the quotas for group A with:
 
-.. code::
+.. prompt:: text $ auto
 
     $ onegroup quota groupA
 
 There is a ``batchquota`` command that allows you to set the same quotas for several users or groups:
 
-.. code::
+.. prompt:: text $ auto
 
     $ oneuser batchquota userA,userB,35
 
@@ -169,7 +169,7 @@ There are two default quota limit templates, one for users and another for group
 
 Use the ``oneuser/onegroup defaultquota`` command.
 
-.. code::
+.. prompt:: text $ auto
 
     $ oneuser defaultquota
 
@@ -178,7 +178,7 @@ Checking User/Group Quotas
 
 Quota limits and usage for each user/group is included as part of its standard information, so it can be easily check with the usual commands. Check the following examples:
 
-.. code::
+.. prompt:: text $ auto
 
     $ oneuser show uA
     USER 2 INFORMATION
@@ -209,7 +209,7 @@ Quota limits and usage for each user/group is included as part of its standard i
 
 And for the group:
 
-.. code::
+.. prompt:: text $ auto
 
     $ onegroup show gA
     GROUP 100 INFORMATION
