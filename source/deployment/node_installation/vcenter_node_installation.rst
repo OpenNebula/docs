@@ -15,11 +15,9 @@ Requirements
 
 The following must be met for a functional vCenter environment:
 
-- vCenter 5.5 and/or 6.0, with at least one cluster aggregating at least one ESX 5.5 and/or 6.0 host.
-
-- VMware tools are needed in the guestOS to enable several features (contextualization and networking feedback). Please install `VMware Tools (for Windows) <https://www.vmware.com/support/ws55/doc/new_guest_tools_ws.html>`__ or `Open Virtual Machine Tools <http://open-vm-tools.sourceforge.net/>`__ (for \*nix) in the guestOS.
-
-- Define a vCenter user for OpenNebula. This vCenter user (let's call her oneadmin) needs to have access to the ESX clusters that OpenNebula will manage. In order to avoid problems, the hassle free approach is to declare this oneadmin user as Administrator. In production environments though, it may be needed to perform a more fine grained permission assignment (please note that the following permissions related to operations are related to the use that OpenNebula does with this operations):
+* vCenter 5.5 and/or 6.0, with at least one cluster aggregating at least one ESX 5.5 and/or 6.0 host.
+* VMware tools are needed in the guestOS to enable several features (contextualization and networking feedback). Please install `VMware Tools (for Windows) <https://www.vmware.com/support/ws55/doc/new_guest_tools_ws.html>`__ or `Open Virtual Machine Tools <http://open-vm-tools.sourceforge.net/>`__ (for \*nix) in the guestOS.
+* Define a vCenter user for OpenNebula. This vCenter user (let's call her oneadmin) needs to have access to the ESX clusters that OpenNebula will manage. In order to avoid problems, the hassle free approach is to declare this oneadmin user as Administrator. In production environments though, it may be needed to perform a more fine grained permission assignment (please note that the following permissions related to operations are related to the use that OpenNebula does with this operations):
 
 +------------------------+---------------------------------------------+---------------------------------------------------+
 |   vCenter Operation    |                  Privileges                 |                       Notes                       |
@@ -89,20 +87,16 @@ The following must be met for a functional vCenter environment:
 
 .. note:: For security reasons, you may define different users to access different ESX Clusters. A different user can defined in OpenNebula per ESX cluster, which is encapsulated in OpenNebula as an OpenNebula host.
 
-- All ESX hosts belonging to the same ESX cluster to be exposed to OpenNebula **must** share at least one datastore among them.
+* All ESX hosts belonging to the same ESX cluster to be exposed to OpenNebula **must** share at least one datastore among them.
+* The ESX cluster **should** have DRS enabled. DRS is not required but it is recommended. OpenNebula does not schedule to the granularity of ESX hosts, DRS is needed to select the actual ESX host within the cluster, otherwise the VM will be launched in the ESX where the VM template has been created.
+* **Save as VM Templates those VMs that will be instantiated through the OpenNebula provisioning portal**
+* To enable VNC functionality, repeat the following procedure for each ESX:
+  * In the vSphere client proceed to Home -> Inventory -> Hosts and Clusters
+  * Select the ESX host, Configuration tab and select Security Profile in the Software category
+  * In the Firewall section, select Edit. Enable GDB Server, then click OK
+  * Make sure that the ESX hosts are reachable from the OpenNebula front-end
 
-- The ESX cluster **should** have DRS enabled. DRS is not required but it is recommended. OpenNebula does not schedule to the granularity of ESX hosts, DRS is needed to select the actual ESX host within the cluster, otherwise the VM will be launched in the ESX where the VM template has been created.
-
-- **Save as VM Templates those VMs that will be instantiated through the OpenNebula provisioning portal**
-
-- To enable VNC functionality, repeat the following procedure for each ESX:
-
-  - In the vSphere client proceed to Home -> Inventory -> Hosts and Clusters
-  - Select the ESX host, Configuration tab and select Security Profile in the Software category
-  - In the Firewall section, select Edit. Enable GDB Server, then click OK
-  - Make sure that the ESX hosts are reachable from the OpenNebula front-end
-
-.. important:: OpenNebula will **NOT** modify any vCenter configuration.
+.. note:: OpenNebula will **NOT** modify any vCenter configuration.
 
 
 Configuration
