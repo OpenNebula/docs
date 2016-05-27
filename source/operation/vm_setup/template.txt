@@ -7,6 +7,7 @@ The Virtual Machine Template has a section called context where you can automate
 .. code-block:: bash
 
     CONTEXT = [
+        TOKEN = "YES",
         NETWORK = "YES",
         SSH_PUBLIC_KEY = "$USER[SSH_PUBLIC_KEY]",
         START_SCRIPT = "yum install -y ntpdate"
@@ -14,9 +15,27 @@ The Virtual Machine Template has a section called context where you can automate
 
 In the example we are telling OpenNebula to:
 
+* Set OneGate token and onegate information in the context
 * Add network configuration to the Virtual Machine
 * Enable login into the Virtual Machine using ssh with the value of the user's parameter ``SSH_PUBLIC_KEY``
 * On Virtual Machine boot execute the command ``yum install -y ntpdate``
+
+OneGate Token
+-------------
+
+OpenNebula has a centralized service to share data between Virtual Machines and
+the main daemon, useful to set monitoring information that can be gathered
+inside the VM and configuration data. It also lets you send scaling actions
+when the Virtual Machine belongs to a Service.
+
+To do so the client installed with the contextualization packages (``onegate``) needs some information:
+
+* **Token**: it's the key specific to each VM used to authenticate with the
+  service
+* **OneGate endpoint**: the address where the OneGate daemon is reachable
+
+To fill this information you have to specify ``TOKEN = "YES"`` in the
+contextualization section.
 
 Network Configuration
 ---------------------
