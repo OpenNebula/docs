@@ -1,13 +1,13 @@
 .. _cluster_guide:
 
-==================
-Managing Clusters
-==================
+================================================================================
+Clusters
+================================================================================
 
 A Cluster is a group of :ref:`Hosts <host_guide>`. Clusters can have associated :ref:`Datastores <sm>` and :ref:`Virtual Networks <vgg>`, this is how the administrator sets which Hosts have the underlying requirements for each Datastore and Virtual Network configured.
 
 Cluster Management
-==================
+================================================================================
 
 Clusters are managed with the :ref:`''onecluster'' command <cli>`. To create new Clusters, use ``onecluster create <name>``. Existing Clusters can be inspected with the ``onecluster list`` and ``show`` commands.
 
@@ -72,7 +72,7 @@ Add Resources to Clusters
 
 Datastores and Virtual Networks can be added to multiple Clusters. This means that any Host in those Clusters is properly configured to run VMs using Images from the Datastores, or is using leases from the Virtual Networks.
 
-For instance, if you have several Hosts configured to use :ref:`Open vSwitch networks <openvswitch>`, you would group them in the same Cluster. The :ref:`Scheduler <schg>` will know that VMs using these resources can be deployed in any of the Hosts of the Cluster.
+For instance, if you have several Hosts configured to use a given Open vSwitch network, you would group them in the same Cluster. The :ref:`Scheduler <schg>` will know that VMs using these resources can be deployed in any of the Hosts of the Cluster.
 
 These operations can be done with the ``onecluster`` ``addvnet/delvnet`` and ``adddatastore/deldatastore``:
 
@@ -119,11 +119,6 @@ Each cluster includes a generic template where cluster configuration properties 
 +------------------------+--------------------------------------------------------------------------+
 |       Attribute        |                               Description                                |
 +========================+==========================================================================+
-| ``DATASTORE_LOCATION`` | \*Default\* path for datastores in the cluster hosts. It **is** the same |
-|                        | for all the hosts in the cluster. Note that DATASTORE\_LOCATION is only  |
-|                        | for the cluster hosts and not for the front-end. It defaults             |
-|                        | to /var/lib/one/datastores                                               |
-+------------------------+--------------------------------------------------------------------------+
 | ``RESERVED_CPU``       | In percentage. Applies to all the Hosts in this cluster. It will be      |
 |                        | subtracted from the TOTAL CPU. See :ref:`scheduler <schg_limit>`.        |
 +------------------------+--------------------------------------------------------------------------+
@@ -131,39 +126,7 @@ Each cluster includes a generic template where cluster configuration properties 
 |                        | from the TOTAL MEM. See :ref:`scheduler <schg_limit>`.                   |
 +------------------------+--------------------------------------------------------------------------+
 
-You can easily update this values with the ``onecluster`` command:
-
-.. prompt:: bash $ auto
-
-    $ onecluster update production
-
-    -----8<----- editor session ------8<------
-
-    DATASTORE_LOCATION="/mnt/nas/datastores"
-    ~
-    ~
-    ~
-    ----->8----- editor session ------>8------
-
-    $ onecluster show production
-    CLUSTER 100 INFORMATION
-    ID               : 100
-    NAME             : production
-    SYSTEM DATASTORE : 100
-
-    CLUSTER TEMPLATE
-    DATASTORE_LOCATION="/mnt/nas/datastores"
-
-    HOSTS
-    0
-
-    VNETS
-    1
-
-    DATASTORES
-    100
-
-You can add as many variables as you want, following the standard template syntax. These variables will be used for now only for informational purposes.
+You can easily update these values with the ``onecluster update`` command. Also, you can add as many variables as you want, following the standard template syntax. These variables will be used for now only for informational purposes.
 
 Scheduling and Clusters
 =======================

@@ -23,6 +23,8 @@ Node Setup
 
 The devices you want to attach to a VM should be accessible by the hypervisor. As KVM usually runs as oneadmin, make sure this user is in a group with access to the disk (like disk) and has read write permissions for the group.
 
+.. _dev_ds_templates:
+
 OpenNebula Configuration
 ================================================================================
 Once the storage is setup, the OpenNebula configuration comprises two steps:

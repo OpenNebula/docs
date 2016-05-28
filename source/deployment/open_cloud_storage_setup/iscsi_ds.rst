@@ -27,6 +27,8 @@ In order to use CHAP authentication, you will need to create a libvirt secret in
 * Do this in all the hypervisors.
 
 
+.. _iscsi_ds_templates:
+
 OpenNebula Configuration
 ================================================================================
 Once the storage is setup, the OpenNebula configuration comprises two steps:

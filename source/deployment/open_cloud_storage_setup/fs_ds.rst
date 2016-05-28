@@ -105,6 +105,8 @@ SSH Transfer Mode
 --------------------------------------------------------------------------------
 Just make sure that there is enough space under ``/var/lib/one/datastores`` to store the disks of running VMs on that host.
 
+.. _fs_ds_templates:
+
 OpenNebula Configuration
 ================================================================================
 Once the Filesystem storage is setup, the OpenNebula configuration comprises two steps:
@@ -172,7 +174,7 @@ For example, the following illustrates the creation of a filesystem datastore us
  $ onedatastore create ds.conf
  ID: 100
 
-Check the :ref:`Datastore Operation guide <ds_op>` to learn how to update and manage the life cycle of the datastores. Also note that there are additional attributes that can be set, check the :ref:`datastore template attributes <ds_op_definition>`.
+Also note that there are additional attributes that can be set, check the :ref:`datastore template attributes <ds_op_common_attributes>`.
 
 .. warning:: Be sure to use the same ``TM_MAD`` for both the System and Image datastore.
 

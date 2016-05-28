@@ -1,15 +1,15 @@
 .. _schg:
 
-==========
+================================================================================
 Scheduler
-==========
+================================================================================
 
-The Scheduler module is in charge of the assignment between pending Virtual Machines and known Hosts. OpenNebula's architecture defines this module as a separate process that can be started independently of ``oned`` (it is however started automatically when you start the ``opennebula`` service). The OpenNebula scheduling framework is designed in a generic way, so it is highly modifiable and can be easily replaced by third-party developments.
+The Scheduler is in charge of the assignment between pending Virtual Machines and known Hosts. OpenNebula's architecture defines this module as a separate process that can be started independently of ``oned`` (it is however started automatically when you start the ``opennebula`` service).
 
 .. _schg_the_match_making_scheduler:
 
-The Match-making Scheduler
-==========================
+Match-making
+================================================================================
 
 OpenNebula comes with a **match making** scheduler (``mm_sched``) that implements the **Rank Scheduling Policy**. The goal of this policy is to prioritize those resources more suitable for the VM.
 

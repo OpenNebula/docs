@@ -16,7 +16,7 @@ Configuration
 
 Most of the configuration considerations used for disk images datastores do apply to the Files Datastore (e.g. driver setup, cluster assignment, datastore management...).
 
-The specific attributes for this datastore driver are listed in the following table, you will also need to complete with the :ref:`common datastore attributes <sm_common_attributes>`:
+The specific attributes for this datastore driver are listed in the following table, you will also need to complete with the :ref:`common datastore attributes <ds_op_common_attributes>`:
 
 +------------+-----------------------------------------------------------------------+
 | Attribute  |                              Description                              |

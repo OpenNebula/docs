@@ -125,6 +125,8 @@ You can read more information about this in the Ceph guide `Using libvirt with C
 * Ancillary virtual machine files like context disks, deployment and checkpoint files are created at the nodes under ``/var/lib/one/datastores/``, make sure that enough storage for these files is provisioned in the nodes.
 
 
+.. _ceph_ds_templates:
+
 OpenNebula Configuration
 ================================================================================
 

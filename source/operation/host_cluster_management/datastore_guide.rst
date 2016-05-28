@@ -1,27 +1,41 @@
 .. _ds_op:
 
-Create a Datastore
-==================
+================================================================================
+Datastores
+================================================================================
 
-.. _ds_op_definition:
+OpenNebula features three different datastore types:
 
-Datastore Attributes
+* The **Images Datastore**, stores the images repository.
+
+* The **System Datastore** holds disk for running virtual machines, copied or cloned from the Images Datastore.
+
+* The **Files & Kernels Datastore** to store plain files.
+
+Datastore Management
+================================================================================
+
+Datastores are managed with the :ref:`''onedatastore'' command <cli>`. In order to be operational an OpenNebula cloud needs at least one Image Datastore and one System Datastore.
+
+Datastore Definition
 --------------------------------------------------------------------------------
 
-When defining a datastore there are a set of global attributes that can be used in any datastore. Please note that this list **must** be extended with the specific attributes for each datastore type, which can be found in the specific guide for each datastore driver.
+A datastore definition includes specific attributes to configure its interaction with the storage system; and common attributes that define its generic behavior.
 
-Common attributes:
+The specific attributes for System and Images Datastores depends on the storage:
 
-.. _sm_common_attributes:
+* Define :ref:`Filesystem Datastores <fs_ds>`.
+* Define :ref:`LVM Datastores <lvm_drivers>`.
+* Define :ref:`Ceph Datastores <ceph_ds>`.
+* Define :ref:`Raw Device Mapping Datastores <dev_ds>`.
+* Define :ref:`iSCSI - Libvirt Datastores <iscsi_ds>`.
+
+.. _ds_op_common_attributes:
+
+Also, there are a set of common attributes that can be used in any datastore and compliments the specific attributes for each datastore type described above for each datastore type.
 
 +------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
 |          Attribute           |                                                           Description                                                            |
-+------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
-| ``Name`` (**mandatory**)     | The name of the datastore                                                                                                        |
-+------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
-| ``DS_MAD`` (**mandatory**)   | The DS type. Possible values: ``fs``, ``lvm``, ``fs_lvm``, ``ceph``, ``dev``                                                     |
-+------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
-| ``TM_MAD`` (**mandatory**)   | Transfer drivers for the datastore. Possible values: ``shared``, ``ssh``, ``qcow2``, ``lvm``, ``fs_lvm``, ``ceph``, ``dev``      |
 +------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
 | ``RESTRICTED_DIRS``          | Paths that can not be used to register images. A space separated list of paths.                                                  |
 +------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
@@ -35,31 +49,24 @@ Common attributes:
 +------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
 | ``LIMIT_MB``                 | The maximum capacity allowed for the datastore in ``MB``.                                                                        |
 +------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
+| ``BRIDGE_LIST``              | Space separated list of hosts that have access to the storage to add new images to the datastore.                                |
++------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
+| ``STAGING_DIR``              | Path in the storage bridge host to copy an Image before moving it to its final destination. Defaults to ``/var/tmp``.            |
++------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
 
-
-+-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-|    Attribute    |                                                                                                                                               Description                                                                                                                                               |
-+=================+=========================================================================================================================================================================================================================================================================================================+
-| ``BRIDGE_LIST`` | **(Optional)** Space separated list of hosts that have access to the storage. This can be all the hosts in the storage cluster, or a subset of them, which will carry out the write operations to the datastore. For each operation only one of the host will be chosen, using a round-robin algorithm. |
-+-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``STAGING_DIR`` | **(Optional)** Images are first downloaded to the frontend and then scp'd over to the chosen host from the ``BRIDGE_LIST`` list. They are scp'd to the ``STAGING_DIR``, and then moved to the final destination. If empty, it defaults to ``/var/tmp``.                                                 |
-+-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+The Files & Kernels Datastore is an special datastore type to store plain files to be used as kernels, ram-disks or context files. :ref:`See here to learn how to define them <file_ds>`.
 
 .. _system_ds_multiple_system_datastore_setups:
 
 Multiple System Datastore Setup
-===============================
+================================================================================
 
 In order to distribute efficiently the I/O of the Virtual Machines across different disks, LUNs or several storage backends, OpenNebula is able to define multiple System Datastores per cluster. Scheduling algorithms take into account disk requirements of a particular VM, so OpenNebula is able to pick the best execution host based on capacity and storage metrics.
 
-Admin Perspective
------------------
+Configuring Multiple Datastores
+--------------------------------------------------------------------------------
 
-For an admin, it means that she would be able to decide which storage policy to apply for the whole cloud she is administering, that will then be used to chose which System Datastore is more suitable for a certain VM.
-
-When more than one System Datastore is added to a cluster, all of them can be taken into account by the scheduler to place Virtual Machines into.
-
-System scheduling policies are defined in ``/etc/one/sched.conf``. These are the defaults the scheduler would use if the VM template doesn't state otherwise. The possibilities are described here:
+When more than one System Datastore is added to a cluster, all of them can be taken into account by the scheduler to place Virtual Machines into. System wide scheduling policies are defined in ``/etc/one/sched.conf``. The storage scheduling policies are:
 
 * **Packing**. Tries to optimize storage usage by selecting the Datastore with less free space.
 * **Striping**. Tries to optimize I/O by distributing the Virtual Machines across Datastores.
@@ -73,34 +80,29 @@ To activate for instance the Stripping storage policy, ``/etc/one/sched.conf`` m
        policy = 1
     ]
 
-After a VM is deployed in a System Datastore, the admin can migrate it to another System Datastore. To do that, the VM must be first :ref:`powered-off <vm_guide_2>`. The command ``onevm migrate`` accepts both a new Host and Datastore id, that must have the same TM_MAD drivers as the source Datastore.
+These policies may be overriden in the Virtual Machine Template, and so apply specific storage policies to specific Virtual Machines:
 
-.. warning:: Any Host belonging to a given cluster **must** be able to access any system or image Datastore defined in that cluster.
++-----------------------+-----------------------------------------------------------------------------------+--------------------------------------------+
+|       Attribute       |                    Description                                                    |                 Example                    |
++=======================+===================================================================================+============================================+
+| SCHED_DS_REQUIREMENTS | Boolean expression to select System Datastores (evaluates to true) to run a  VM.  | ``SCHED_DS_REQUIREMENTS="ID=100"``         |
+|                       |                                                                                   | ``SCHED_DS_REQUIREMENTS="NAME=GoldenDS"``  |
+|                       |                                                                                   | ``SCHED_DS_REQUIREMENTS=FREE_MB > 250000`` |
++-----------------------+-----------------------------------------------------------------------------------+--------------------------------------------+
+| SCHED_DS_RANK         | Arithmetic expression to sort the suitable datastores for this VM.                | ``SCHED_DS_RANK= FREE_MB``                 |
+|                       |                                                                                   | ``SCHED_DS_RANK=-FREE_MB``                 |
++-----------------------+-----------------------------------------------------------------------------------+--------------------------------------------+
 
-User Perspective
-----------------
+After a VM is deployed in a System Datastore, the admin can migrate it to another System Datastore. To do that, the VM must be first :ref:`powered-off <vm_guide_2>`. The command ``onevm migrate`` accepts both a new Host and Datastore id, that must have the same ``TM_MAD`` drivers as the source Datastore.
 
-For a user, OpenNebula's ability to handle multiple Datastores means that he would be able to require for its Virtual Machines to be run on a System Datastore backed by a fast storage SAN, or run on the Host with a Datastore with the most free space available. This choice is obviously limited to the underlying hardware and the configuration.
+.. warning:: Any Host belonging to a given cluster **must** be able to access any System or Image Datastore defined in that cluster.
 
-This control can be exerted within the VM template, with two attributes:
-
-+-----------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------+
-|       Attribute       |                                                                      Description                                                                       |                    Examples                   |
-+=======================+========================================================================================================================================================+===============================================+
-| SCHED_DS_REQUIREMENTS | Boolean expression that rules out entries from the pool of Datastores suitable to run this VM.                                                         | ``SCHED_DS_REQUIREMENTS="ID=100"``            |
-|                       |                                                                                                                                                        | ``SCHED_DS_REQUIREMENTS="NAME=GoldenCephDS"`` |
-|                       |                                                                                                                                                        | ``SCHED_DS_REQUIREMENTS=FREE_MB > 250000``    |
-+-----------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------+
-| SCHED_DS_RANK         | States which attribute will be used to sort the suitable datastores for this VM. Basically, it defines which datastores are more suitable than others. | ``SCHED_DS_RANK= FREE_MB``                    |
-|                       |                                                                                                                                                        | ``SCHED_DS_RANK=-FREE_MB``                    |
-+-----------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------+
-
-.. warning:: Admins and user with admins rights can force the deployment to a certain datastore, using 'onevm deploy' command.
+.. warning:: Admins rights grant permissions to deploy a virtual machine to a certain datastore, using 'onevm deploy' command.
 
 .. _disable_system_ds:
 
 Disable a System Datastore
-================================
+=================================================================================
 
 System Datastores can be disabled to prevent the scheduler from deploying new Virtual Machines in them. Datastores in the ``disabled`` state and monitored as usual, and the existing Virtual Machines will continue to run in them.
 

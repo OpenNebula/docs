@@ -44,6 +44,8 @@ Nodes needs to meet the following requirements:
 * A LVM VG needs to be created in the shared LUNs for each datastore following name: ``vg-one-<system_ds_id>``. This just need to be done in one node.
 * Virtual Machine disks are symbolic links to the block devices. However, additional VM files like checkpoints or deployment files are stored under ``/var/lib/one/datastores/<id>``. Be sure that enough local space is present.
 
+.. _lvm_drivers_templates:
+
 OpenNebula Configuration
 ================================================================================
 Once the storage is setup, the OpenNebula configuration comprises two steps:

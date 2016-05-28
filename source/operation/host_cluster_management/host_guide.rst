@@ -1,47 +1,24 @@
 .. _host_guide:
 
-===============
-Managing Hosts
-===============
+================================================================================
+Hosts
+================================================================================
 
-In order to use your existing physical nodes, you have to add them to the system as OpenNebula hosts. You need the following information:
+In order to use your existing physical nodes, you have to add them to the system as OpenNebula Hosts. To add a host only its hostname and type is needed. Hosts are usually organized in Clusters, you can read more about it in the :ref:`Managing Clusters <cluster_guide>` guide.
 
-* *Hostname* of the host or IP
-* *Information Driver* to be used to monitor the host, e.g. ``kvm``. These should match the Virtualization Drivers installed and more info about them can be found at the :ref:`Virtualization Subsystem guide <vmmg>`.
-* *Virtualization Driver* to boot, stop, resume or migrate VMs in the host, e.g. ``kvm``. Information about these drivers can be found in :ref:`its guide <vmmg>`.
-* *Cluster* where to place this host. The Cluster assignment is optional, you can read more about it in the :ref:`Managing Clusters <cluster_guide>` guide.
+.. warning:: Before adding a KVM host check that you can ssh to it without being prompt for a password.
 
-.. warning:: Before adding a host check that you can ssh to it without being prompt for a password
 
-onehost Command
-===============
+Create and Delete Hosts
+================================================================================
 
-The following sections show the basics of the ``onehost`` command with simple usage examples. A complete reference for these commands can be found :ref:`here <cli>`.
-
-This command enables Host management. Actions offered are:
-
-* ``create``: Creates a new Host
-* ``delete``: Deletes the given Host
-* ``enable``: Enables the given Host
-* ``disable``: Disables the given Host
-* ``offline``: Sets the Host offline
-* ``update``: Update the template contents.
-* ``sync``: Synchronizes probes in all the hosts.
-* ``list``: Lists Hosts in the pool
-* ``show``: Shows information for the given Host
-* ``top``: Lists Hosts continuously
-* ``flush``: Disables the host and reschedules all the running VMs it.
-
-Create and Delete
------------------
-
-Hosts are the servers managed by OpenNebula responsible for Virtual Machine execution. To use these hosts in OpenNebula you need to register them so they are monitored and well-known to the scheduler.
+Hosts are the servers managed by OpenNebula responsible for Virtual Machine execution. To use these hosts in OpenNebula you need to register them so they are monitored and made available to the scheduler.
 
 Creating a host:
 
 .. prompt:: bash $ auto
 
-    $ onehost create host01 --im dummy --vm dummy
+    $ onehost create host01 --im kvm --vm kvm
     ID: 0
 
 The parameters are:
@@ -56,116 +33,86 @@ To remove a host, just like with other OpenNebula commands, you can either speci
     $ onehost delete host01
     $ onehost delete 0
 
-Show, List and Top
-------------------
+Showing and Listing Hosts
+================================================================================
 
 To display information about a single host the ``show`` command is used:
 
 .. prompt:: bash $ auto
 
-    $ onehost show 0
     HOST 0 INFORMATION
     ID                    : 0
-    NAME                  : host01
-    CLUSTER               : -
+    NAME                  : server
+    CLUSTER               : server
     STATE                 : MONITORED
-    IM_MAD                : dummy
-    VM_MAD                : dummy
-    LAST MONITORING TIME  : 07/06 17:40:41
+    IM_MAD                : kvm
+    VM_MAD                : kvm
+    LAST MONITORING TIME  : 05/28 00:30:51
 
     HOST SHARES
-    TOTAL MEM             : 16G
-    USED MEM (REAL)       : 857.9M
-    USED MEM (ALLOCATED)  : 0K
-    TOTAL CPU             : 800
-    USED CPU (REAL)       : 299
-    USED CPU (ALLOCATED)  : 0
-    RUNNING VMS           : 0
+    TOTAL MEM             : 7.3G
+    USED MEM (REAL)       : 4.4G
+    USED MEM (ALLOCATED)  : 1024M
+    TOTAL CPU             : 400
+    USED CPU (REAL)       : 28
+    USED CPU (ALLOCATED)  : 100
+    RUNNING VMS           : 1
+
+    LOCAL SYSTEM DATASTORE #0 CAPACITY
+    TOTAL:                : 468.4G
+    USED:                 : 150.7G
+    FREE:                 : 314.7G
 
     MONITORING INFORMATION
-    CPUSPEED="2.2GHz"
-    FREECPU="501"
-    FREEMEMORY="15898723"
-    HOSTNAME="host01"
-    HYPERVISOR="dummy"
-    TOTALCPU="800"
-    TOTALMEMORY="16777216"
-    USEDCPU="299"
-    USEDMEMORY="878493"
+    ARCH="x86_64"
+    CPUSPEED="1599"
+    HOSTNAME="server"
+    HYPERVISOR="kvm"
+    IM_MAD="kvm"
+    MODELNAME="Intel(R) Core(TM) i7-4650U CPU @ 1.70GHz"
+    NETRX="0"
+    NETTX="0"
+    RESERVED_CPU=""
+    RESERVED_MEM=""
+    VERSION="5.00.0"
+    VM_MAD="kvm"
 
-We can instead display this information in XML format with the ``-x`` parameter:
+    WILD VIRTUAL MACHINES
 
-.. prompt:: bash $ auto
+    NAME                                                      IMPORT_ID  CPU     MEMORY
 
-    $ onehost show -x 0
-    <HOST>
-      <ID>0</ID>
-      <NAME>host01</NAME>
-      <STATE>2</STATE>
-      <IM_MAD>dummy</IM_MAD>
-      <VM_MAD>dummy</VM_MAD>
-      <LAST_MON_TIME>1341589306</LAST_MON_TIME>
-      <CLUSTER_ID>-1</CLUSTER_ID>
-      <CLUSTER/>
-      <HOST_SHARE>
-        <DISK_USAGE>0</DISK_USAGE>
-        <MEM_USAGE>0</MEM_USAGE>
-        <CPU_USAGE>0</CPU_USAGE>
-        <MAX_DISK>0</MAX_DISK>
-        <MAX_MEM>16777216</MAX_MEM>
-        <MAX_CPU>800</MAX_CPU>
-        <FREE_DISK>0</FREE_DISK>
-        <FREE_MEM>12852921</FREE_MEM>
-        <FREE_CPU>735</FREE_CPU>
-        <USED_DISK>0</USED_DISK>
-        <USED_MEM>3924295</USED_MEM>
-        <USED_CPU>65</USED_CPU>
-        <RUNNING_VMS>0</RUNNING_VMS>
-      </HOST_SHARE>
-      <TEMPLATE>
-        <CPUSPEED><![CDATA[2.2GHz]]></CPUSPEED>
-        <FREECPU><![CDATA[735]]></FREECPU>
-        <FREEMEMORY><![CDATA[12852921]]></FREEMEMORY>
-        <HOSTNAME><![CDATA[host01]]></HOSTNAME>
-        <HYPERVISOR><![CDATA[dummy]]></HYPERVISOR>
-        <TOTALCPU><![CDATA[800]]></TOTALCPU>
-        <TOTALMEMORY><![CDATA[16777216]]></TOTALMEMORY>
-        <USEDCPU><![CDATA[65]]></USEDCPU>
-        <USEDMEMORY><![CDATA[3924295]]></USEDMEMORY>
-      </TEMPLATE>
-    </HOST>
+    VIRTUAL MACHINES
+
+        ID USER     GROUP    NAME            STAT UCPU    UMEM HOST             TIME
+        13 oneadmin oneadmin kvm1-13         runn  0.0   1024M server       8d 06h14
+
+The information of a host contains:
+
+* General information of the hosts including its name and the drivers used to interact with it.
+* Capacity information (*Host Shares*) for CPU and memory.
+* Local datastore information (*Local System Datastore*) if the Host is configured to use a local datastore (e.g. Filesystem in ssh transfer mode).
+* Monitoring Information, including PCI devices
+* Virtual Machines running on the hosts. *Wild* are virtual machines running on the host but not started by OpenNebula, they can be imported into OpenNebula.
 
 To see a list of all the hosts:
 
 .. prompt:: bash $ auto
 
     $ onehost list
-      ID NAME            CLUSTER   RVM TCPU FCPU ACPU    TMEM    FMEM    AMEM STAT
-       0 host01          -           0  800  198  800     16G   10.9G     16G on
-       1 host02          -           0  800  677  800     16G    3.7G     16G on
+	  ID NAME            CLUSTER   RVM      ALLOCATED_CPU      ALLOCATED_MEM STAT
+	   0 server          server      1    100 / 400 (25%) 1024M / 7.3G (13%) on
+	   1 kvm1            kvm         0                  -                  - off
+	   2 kvm2            kvm         0                  -                  - off
 
-It can also be displayed in XML format using ``-x``:
+The above information can be also displayed in XML format using ``-x``.
 
-.. prompt:: bash $ auto
-
-    $ onehost list -x
-    <HOST_POOL>
-      <HOST>
-        ...
-      </HOST>
-      ...
-    </HOST_POOL>
-
-The ``top`` command is similar to the ``list`` command, except that the output is refreshed until the user presses ``CTRL-C``.
 
 .. _host_lifecycle:
 
 Host Life-cycle: Enable, Disable, Offline and Flush
----------------------------------------------------
+================================================================================
 
-In order to manage the life cycle of a host it can be set to different operation
-modes: enabled (on), disabled (dsbl) and offline (off). The different operation
-status for each mode is described by the following table:
+In order to manage the life cycle of a host it can be set to different operation modes: enabled (on), disabled (dsbl) and offline (off). The different operation status for each mode is described by the following table:
 
 +----------------+------------+----------------+------------------------------------------------------------------------------------+
 |                |            |  VM DEPLOYMENT |                                                                                    |
@@ -205,70 +152,35 @@ Similarly to put the host offline:
 
 The ``flush`` command will mark all the running VMs in the specified host as to be rescheduled, which means that they will be migrated to another server with enough capacity. At the same time, the specified host will be disabled, so no more Virtual Machines are deployed in it. This command is useful to clean a host of running VMs.
 
+Custom Host Tags & Scheduling Policies
+================================================================================
+
+The Host attributes are inserted by the monitoring probes that run from time to time on the nodes to get information. The administrator can add custom attributes either :ref:`creating a probe in the host <devel-im>`, or updating the host information with: ``onehost update``.
+
+For example to label a host as *production* we can add a custom tag *TYPE*:
+
 .. prompt:: bash $ auto
 
-    $ onehost list
-      ID NAME            CLUSTER   RVM TCPU FCPU ACPU    TMEM    FMEM    AMEM STAT
-       0 host01          -           3  800   96  500     16G   11.1G   14.5G on
-       1 host02          -           0  800  640  800     16G    8.5G     16G on
-       2 host03          -           3  800  721  500     16G    8.6G   14.5G on
-    $ onevm list
-        ID USER     GROUP    NAME            STAT UCPU    UMEM HOST             TIME
-         0 oneadmin oneadmin vm01            runn   54  102.4M host03       0d 00h01
-         1 oneadmin oneadmin vm02            runn   91  276.5M host02       0d 00h01
-         2 oneadmin oneadmin vm03            runn   13  174.1M host01       0d 00h01
-         3 oneadmin oneadmin vm04            runn   72  204.8M host03       0d 00h00
-         4 oneadmin oneadmin vm05            runn   49  112.6M host02       0d 00h00
-         5 oneadmin oneadmin vm06            runn   87  414.7M host01       0d 00h00
-    $ onehost flush host02
-    $ onehost list
-      ID NAME            CLUSTER   RVM TCPU FCPU ACPU    TMEM    FMEM    AMEM STAT
-       0 host01          -           3  800  264  500     16G    3.5G   14.5G on
-       1 host02          -           0  800  153  800     16G    3.7G     16G off
-       2 host03          -           3  800  645  500     16G   10.3G   14.5G on
-    $ onevm list
-        ID USER     GROUP    NAME            STAT UCPU    UMEM HOST             TIME
-         0 oneadmin oneadmin vm01            runn   95  179.2M host03       0d 00h01
-         1 oneadmin oneadmin vm02            runn   27  261.1M host03       0d 00h01
-         2 oneadmin oneadmin vm03            runn   70    343M host01       0d 00h01
-         3 oneadmin oneadmin vm04            runn    9  133.1M host03       0d 00h01
-         4 oneadmin oneadmin vm05            runn   87  281.6M host01       0d 00h01
-         5 oneadmin oneadmin vm06            runn   61  291.8M host01       0d 00h01
-
-Update
-------
-
-It's sometimes useful to store information in the host's template. To do so, the ``update`` command is used.
-
-An example use case is to add the following line to the host's template:
-
-.. code-block:: bash
-
+	$ onehost update
+	...
     TYPE="production"
 
-Which can be used at a later time for scheduling purposes by adding the following section in a VM template:
+This tag can be used at a later time for scheduling purposes by adding the following section in a VM template:
 
 .. code-block:: bash
 
     SCHED_REQUIREMENTS="TYPE=\"production\""
 
-That will restrict the Virtual Machine to be deployed in ``TYPE=production`` hosts.
+That will restrict the Virtual Machine to be deployed in ``TYPE=production`` hosts. The scheduling requirements can be defined using any attribute reported by ``onehost show``, see the :ref:`Scheduler Guide <schg>` for more information.
 
-The host drivers can be also changed with the host template attributes ``_MAD``. Please note that this change will only apply to new deployments. If the ``im_mad`` is changed, make sure to run the ``onehost sync`` command explained below.
-
-.. code-block:: bash
-
-    IM_MAD="kvm"
-    VM_MAD="kvm"
+This feature is useful when we want to separate a series of hosts or marking some special features of different hosts. These values can then be used for scheduling the same as the ones added by the monitoring probes, as a :ref:`placement requirement <template_placement_section>`.
 
 .. _host_guide_sync:
 
-Sync
-----
+Update Host Drivers
+================================================================================
 
-When OpenNebula monitors a host, it copies a certain amount of files to ``/var/tmp/one``. When the administrator changes these files, they can be copied again to the hosts with the ``sync`` command. When executed this command will copy the probes to the nodes and will return the prompt after it has finished telling which nodes it could not update.
-
-To keep track of the probes version there's a new file in ``/var/lib/one/remotes/VERSION``. By default this holds the OpenNebula version (ex. '4.4.0'). This version can be seen in he hosts with a ``onehost show <host>``:
+When OpenNebula monitors a host, it copies driver files to ``/var/tmp/one``. When these files are updated, they need to be copied again to the hosts with the ``sync`` command. To keep track of the probes version there's a file in ``/var/lib/one/remotes/VERSION``. By default this holds the OpenNebula version (e.g. '5.0.0'). This version can be seen in he hosts with a ``onehost show <host>``:
 
 .. prompt:: bash $ auto
 
@@ -277,10 +189,10 @@ To keep track of the probes version there's a new file in ``/var/lib/one/remotes
     ID                    : 0
     [...]
     MONITORING INFORMATION
-    VERSION="4.4.0"
+    VERSION="5.0.0"
     [...]
 
-The command ``onehost sync`` only updates the hosts with ``VERSION`` lower than the one in the file ``/var/lib/one/remotes/VERSION``. In case you modify the probes this ``VERSION`` file should be modified with a greater value, for example ``4.4.0.01``.
+The command ``onehost sync`` only updates the hosts with ``VERSION`` lower than the one in the file ``/var/lib/one/remotes/VERSION``. In case you modify the probes this ``VERSION`` file should be modified with a greater value, for example ``5.0.0.01``.
 
 In case you want to force upgrade, that is, no ``VERSION`` checking you can do that adding ``--force`` option:
 
@@ -304,7 +216,7 @@ You can also select which hosts you want to upgrade naming them or selecting a c
 .. _host_guide_information:
 
 Host Information
-================
+================================================================================
 
 Hosts include the following monitoring information. You can use this variables to create custom ``RANK`` and ``REQUIREMENTS`` expressions for scheduling. Note also that you can manually add any tag and use it also for ``RANK`` and ``REQUIREMENTS``
 
@@ -372,128 +284,10 @@ Hosts include the following monitoring information. You can use this variables t
 |            | OpenNebula but are not currently controlled by it.                                                 |
 +------------+----------------------------------------------------------------------------------------------------+
 
-Scheduler Policies
-==================
-
-You can define global Scheduler Policies for all VMs in the sched.conf file, follow the :ref:`Scheduler Guide <schg>` for more information. Additionally, users can require their virtual machines to be deployed in a host that meets certain constrains. These constrains can be defined using any attribute reported by ``onehost show``, like the architecture (ARCH).
-
-The attributes and values for a host are inserted by the monitoring probes that run from time to time on the nodes to get information. The administrator can add custom attributes either :ref:`creating a probe in the host <devel-im>`, or updating the host information with: ``onehost update <HOST_ID>``. Calling this command will fire up an editor (the one specified in the ``EDITOR`` environment variable) and you will be able to add, delete or modify some of those values.
-
-.. prompt:: bash $ auto
-
-    $ onehost show 3
-    [...]
-    MONITORING INFORMATION
-    CPUSPEED=2.2GHz
-    FREECPU=800
-    FREEMEMORY=16777216
-    HOSTNAME=ursa06
-    HYPERVISOR=dummy
-    TOTALCPU=800
-    TOTALMEMORY=16777216
-    USEDCPU=0
-    USEDMEMORY=0
-
-    $ onehost update 3
-
-    [in editor, add CUSTOM_ATTRIBUTE=VALUE]
-
-    $onehost show 3
-    [...]
-    MONITORING INFORMATION
-    CPUSPEED=2.2GHz
-    FREECPU=800
-    FREEMEMORY=16777216
-    HOSTNAME=ursa06
-    HYPERVISOR=dummy
-    TOTALCPU=800
-    TOTALMEMORY=16777216
-    USEDCPU=0
-    USEDMEMORY=0
-    CUSTOM_ATTRIBUTE=VALUE
-
-This feature is useful when we want to separate a series of hosts or marking some special features of different hosts. These values can then be used for scheduling the same as the ones added by the monitoring probes, as a :ref:`placement requirement <template_placement_section>`:
-
-.. code-block:: bash
-
-    SCHED_REQUIREMENTS = "CUSTOM_ATTRIBUTE = \"SOME_VALUE\""
-
-A Sample Session
-================
-
-Hosts can be added to the system anytime with the ``onehost`` command. You can add the hosts to be used by OpenNebula like this:
-
-.. prompt:: bash $ auto
-
-    $ onehost create host01 --im kvm --vm kvm
-    $ onehost create host02 --im kvm --vm kvm
-
-The status of the hosts can be checked with the ``onehost list`` command:
-
-.. prompt:: bash $ auto
-
-    $ onehost list
-      ID NAME         CLUSTER     RVM   TCPU   FCPU   ACPU   TMEM   FMEM   AMEM STAT
-       0 host01       -             7    400    290    400   3.7G   2.2G   3.7G   on
-       1 host02       -             2    400    294    400   3.7G   2.2G   3.7G   on
-       2 host03       -             0    400    312    400   3.7G   2.2G   3.7G  off
-
-And specific information about a host with ``show``:
-
-.. prompt:: bash $ auto
-
-    $ onehost show host01
-    HOST 0 INFORMATION
-    ID                    : 0
-    NAME                  : host01
-    CLUSTER               : -
-    STATE                 : MONITORED
-    IM_MAD                : kvm
-    VM_MAD                : kvm
-    LAST MONITORING TIME  : 1332756227
-
-    HOST SHARES
-    MAX MEM               : 3921416
-    USED MEM (REAL)       : 1596540
-    USED MEM (ALLOCATED)  : 0
-    MAX CPU               : 400
-    USED CPU (REAL)       : 74
-    USED CPU (ALLOCATED)  : 0
-    RUNNING VMS           : 7
-
-    MONITORING INFORMATION
-    ARCH=x86_64
-    CPUSPEED=2393
-    FREECPU=326.0
-    FREEMEMORY=2324876
-    HOSTNAME=rama
-    HYPERVISOR=kvm
-    MODELNAME="Intel(R) Core(TM) i5 CPU M 450 @ 2.40GHz"
-    NETRX=0
-    NETTX=0
-    TOTALCPU=400
-    TOTALMEMORY=3921416
-    USEDCPU=74.0
-    USEDMEMORY=1596540
-
-If you want not to use a given host you can temporarily disable it:
-
-.. prompt:: bash $ auto
-
-    $ onehost disable host01
-
-A disabled host should be listed with ``STAT off`` by ``onehost list``. You can also remove a host permanently with:
-
-.. prompt:: bash $ auto
-
-    $ onehost delete host01
-
-.. warning:: Detailed information of the ``onehost`` utility can be found :ref:`in the Command Line Reference <cli>`
-
 .. _import_wild_vms:
 
 Importing Wild VMs
-==================
+================================================================================
 
 The monitoring mechanism in OpenNebula reports all VMs found in a hypervisor, even those not launched through OpenNebula. These VMs are referred to as Wild VMs, and can be imported to be managed through OpenNebula. This includes all supported hypervisors, even the hybrid ones.
 
@@ -522,12 +316,7 @@ And imported through the ``onehost importvm`` command:
       ID USER     GROUP    NAME            STAT UCPU    UMEM HOST               TIME
        3 oneadmin oneadmin CentOS7         runn    0    590M MyvCenterHost  0d 01h02
 
-After a Virtual Machine is imported, their life-cycle (including creation of snapshots) can be controlled through OpenNebula. The following operations *cannot* be performed on an imported VM:
-
-* Delete ``--recreate``
-* Undeploy (and Undeploy ``--hard``)
-* Migrate (and Migrate ``--live``)
-* Stop
+After a Virtual Machine is imported, their life-cycle (including creation of snapshots) can be controlled through OpenNebula. However, some  operations *cannot* be performed on an imported VM, including: poweroff, undeploy, migrate or delete-recreate.
 
 The same import mechanism is available graphically through Sunstone. Running and Powered Off VMs can be imported through the WILDS tab in the Host info tab.
 
@@ -536,7 +325,7 @@ The same import mechanism is available graphically through Sunstone. Running and
     :align: center
 
 Using Sunstone to Manage Hosts
-==============================
+================================================================================
 
 You can also manage your hosts using :ref:`Sunstone <sunstone>`. Select the Host tab, and there, you will be able to create, enable, disable, delete and see information about your hosts in a user friendly way.
 
