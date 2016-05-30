@@ -39,3 +39,24 @@ a {
     margin-bottom 10px;
     font-weight: normal;
 }
+
+/*
+.wy-nav-content-wrap {
+    background: #FCFCFC;
+}
+*/
+
+pre.highlight {
+    white-space: pre;
+    padding: 12px 12px;
+    font-family: Consolas,"Andale Mono WT","Andale Mono","Lucida Console","Lucida Sans Typewriter","DejaVu Sans Mono","Bitstream Vera Sans Mono","Liberation Mono","Nimbus Mono L",Monaco,"Courier New",Courier,monospace;
+    font-size: 12px;
+    line-height: 1.5;
+    display: block;
+    overflow: auto;
+    color: #404040;
+    border: 1px solid #e1e4e5;
+    overflow-x: auto;
+    background: #fff;
+    margin: 1px 0 24px 0;
+}
