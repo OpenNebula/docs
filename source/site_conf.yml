@@ -1,14 +1,14 @@
 ---
 versions:
 - - "stable"
-  - http://docs.vonecloud.today/stable
+  - http://docs.opennebula.org/stable
 - - "5.0"
-  - http://docs.vonecloud.today/5.0
+  - http://docs.opennebula.org/5.0
 - - "4.14"
-  - http://docs.vonecloud.today/4.14
+  - http://docs.opennebula.org/4.14
 
 downloads:
 - - "Operation"
-  - http://docs.vonecloud.today/pdf/vOneCloud-1.8.0.pdf
+  - http://docs.opennebula.org/pdf/vOneCloud-1.8.0.pdf
 - - "Deployment"
-  - http://docs.vonecloud.today/pdf/vOneCloud-1.6.0.pdf
+  - http://docs.opennebula.org/pdf/vOneCloud-1.6.0.pdf
