@@ -141,7 +141,7 @@ Default values for all these attributes can be defined in the ``/etc/one/ec2_dri
       </PUBLIC_CLOUD>
     </TEMPLATE>
 
-.. note:: The PUBLIC_CLOUD sections allow for substitutions from template and virtual network variables, the same way as the :ref:`CONTEXT section allows <cong_defining_context>`.
+.. note:: The PUBLIC_CLOUD sections allow for substitutions from template and virtual network variables, the same way as the :ref:`CONTEXT section allows <template_context>`.
 
 These values can furthermore be asked to the user using :ref:`user inputs <vm_guide_user_inputs>`. A common scenario is to delegate the User Data to the end user. For that, a new User Input named USERDATA can be created of text64 (the User Data needs to be encoded on base64) and a placeholder added to the PUBLIC_CLOUD section:
 
@@ -166,7 +166,7 @@ If a CONTEXT section is defined in the template, it will be available as USERDAT
     ONEGATE_ENDPOINT="https://onegate...
     SSH_PUBLIC_KEY="ssh-rsa ABAABeqzaC1y...
 
-If the :ref:`linux context packages for EC2 <linux_packages>` are installed in the VM, these parameters will be used to configure the VM. This is the :ref:`list of the supported parameters for EC2 <ec2_context>`.
+If the :ref:`linux context packages for EC2 <kvm_contextualization>` are installed in the VM, these parameters will be used to configure the VM. This is the :ref:`list of the supported parameters for EC2 <template_context>`.
 
 For example, if you want to enable SSH access to the VM, an existing EC2 keypair name can be provided in the EC2 template section or the :ref:`SSH public key of the user <vcenter_contextualization>` can be included in the CONTEXT section of the template.
 
