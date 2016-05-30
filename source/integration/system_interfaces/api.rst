@@ -6178,8 +6178,6 @@ XSD Reference
 
 The XML schemas describe the XML returned by the one.\*.info methods
 
-.. todo:: xml schemas for VRouters, Market & MarketApps
-
 Schemas for Cluster
 -------------------
 
@@ -7936,3 +7934,195 @@ Schemas for Accounting
       </xs:element>
     </xs:schema>
 
+
+Schemas for Marketplace
+--------------------------------------------------------------------------------
+
+.. code-block:: xml
+  
+    <?xml version="1.0" encoding="UTF-8"?>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+      targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
+      <xs:element name="MARKETPLACE">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="ID" type="xs:integer"/>
+            <xs:element name="UID" type="xs:integer"/>
+            <xs:element name="GID" type="xs:integer"/>
+            <xs:element name="UNAME" type="xs:string"/>
+            <xs:element name="GNAME" type="xs:string"/>
+            <xs:element name="NAME" type="xs:string"/>
+            <xs:element name="MARKET_MAD" type="xs:string"/>
+            <xs:element name="ZONE_ID" type="xs:string"/>
+            <xs:element name="TOTAL_MB" type="xs:integer"/>
+            <xs:element name="FREE_MB" type="xs:integer"/>
+            <xs:element name="USED_MB" type="xs:integer"/>
+            <xs:element name="MARKETPLACEAPPS">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="ID" type="xs:integer" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="PERMISSIONS" minOccurs="0" maxOccurs="1">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="OWNER_U" type="xs:integer"/>
+                  <xs:element name="OWNER_M" type="xs:integer"/>
+                  <xs:element name="OWNER_A" type="xs:integer"/>
+                  <xs:element name="GROUP_U" type="xs:integer"/>
+                  <xs:element name="GROUP_M" type="xs:integer"/>
+                  <xs:element name="GROUP_A" type="xs:integer"/>
+                  <xs:element name="OTHER_U" type="xs:integer"/>
+                  <xs:element name="OTHER_M" type="xs:integer"/>
+                  <xs:element name="OTHER_A" type="xs:integer"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="TEMPLATE" type="xs:anyType"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+
+.. code-block:: xml
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified"
+        targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
+        <xs:include schemaLocation="marketplace.xsd"/>
+        <xs:element name="MARKETPLACE_POOL">
+            <xs:complexType>
+                <xs:sequence maxOccurs="1" minOccurs="1">
+                    <xs:element ref="MARKETPLACE" maxOccurs="unbounded" minOccurs="0"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:element>
+    </xs:schema>
+
+Schemas for Marketplace App
+--------------------------------------------------------------------------------
+
+.. code-block:: xml
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+      targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
+      <xs:element name="MARKETPLACEAPP">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="ID" type="xs:integer"/>
+            <xs:element name="UID" type="xs:integer"/>
+            <xs:element name="GID" type="xs:integer"/>
+            <xs:element name="UNAME" type="xs:string"/>
+            <xs:element name="GNAME" type="xs:string"/>
+            <xs:element name="REGTIME" type="xs:integer"/>
+            <xs:element name="NAME" type="xs:string"/>
+            <xs:element name="ZONE_ID" type="xs:string"/>
+            <xs:element name="ORIGIN_ID" type="xs:string"/>
+            <xs:element name="SOURCE" type="xs:string"/>
+            <xs:element name="MD5" type="xs:string"/>
+            <xs:element name="SIZE" type="xs:integer"/>
+            <xs:element name="DESCRIPTION" type="xs:string"/>
+            <xs:element name="VERSION" type="xs:string"/>
+            <xs:element name="FORMAT" type="xs:string"/>
+            <xs:element name="APPTEMPLATE64" type="xs:string"/>
+            <xs:element name="MARKETPLACE_ID" type="xs:integer"/>
+            <xs:element name="MARKETPLACE" type="xs:string"/>
+            <xs:element name="STATE" type="xs:integer"/>
+            <xs:element name="TYPE" type="xs:integer"/>
+            <xs:element name="PERMISSIONS" minOccurs="0" maxOccurs="1">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="OWNER_U" type="xs:integer"/>
+                  <xs:element name="OWNER_M" type="xs:integer"/>
+                  <xs:element name="OWNER_A" type="xs:integer"/>
+                  <xs:element name="GROUP_U" type="xs:integer"/>
+                  <xs:element name="GROUP_M" type="xs:integer"/>
+                  <xs:element name="GROUP_A" type="xs:integer"/>
+                  <xs:element name="OTHER_U" type="xs:integer"/>
+                  <xs:element name="OTHER_M" type="xs:integer"/>
+                  <xs:element name="OTHER_A" type="xs:integer"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="TEMPLATE" type="xs:anyType"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+
+.. code-block:: xml
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified"
+        targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
+        <xs:include schemaLocation="marketplaceapp.xsd"/>
+        <xs:element name="MARKETPLACEAPP_POOL">
+            <xs:complexType>
+                <xs:sequence maxOccurs="1" minOccurs="1">
+                    <xs:element ref="MARKETPLACEAPP" maxOccurs="unbounded" minOccurs="0"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:element>
+    </xs:schema>
+
+Schemas for Virtual Router
+--------------------------------------------------------------------------------
+
+.. code-block:: xml
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+      targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
+      <xs:element name="VROUTER">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="ID" type="xs:integer"/>
+            <xs:element name="UID" type="xs:integer"/>
+            <xs:element name="GID" type="xs:integer"/>
+            <xs:element name="UNAME" type="xs:string"/>
+            <xs:element name="GNAME" type="xs:string"/>
+            <xs:element name="NAME" type="xs:string"/>
+            <xs:element name="PERMISSIONS" minOccurs="0" maxOccurs="1">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="OWNER_U" type="xs:integer"/>
+                  <xs:element name="OWNER_M" type="xs:integer"/>
+                  <xs:element name="OWNER_A" type="xs:integer"/>
+                  <xs:element name="GROUP_U" type="xs:integer"/>
+                  <xs:element name="GROUP_M" type="xs:integer"/>
+                  <xs:element name="GROUP_A" type="xs:integer"/>
+                  <xs:element name="OTHER_U" type="xs:integer"/>
+                  <xs:element name="OTHER_M" type="xs:integer"/>
+                  <xs:element name="OTHER_A" type="xs:integer"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="VMS">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="ID" type="xs:integer" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="TEMPLATE" type="xs:anyType"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+
+.. code-block:: xml
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified"
+        targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
+        <xs:include schemaLocation="vrouter.xsd"/>
+        <xs:element name="VROUTER_POOL">
+            <xs:complexType>
+                <xs:sequence maxOccurs="1" minOccurs="1">
+                    <xs:element ref="VROUTER" maxOccurs="unbounded" minOccurs="0"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:element>
+    </xs:schema>
