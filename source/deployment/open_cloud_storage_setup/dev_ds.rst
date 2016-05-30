@@ -75,8 +75,6 @@ An example of datastore:
     > onedatastore create rdm.conf
     ID: 101
 
-.. warning:: Images created in this datastore should be persistent. Making the images non persistent allows more than one VM use this device and will probably cause problems and data corruption.
-
 Datastore Usage
 ================================================================================
 
@@ -88,5 +86,5 @@ New images can be added as any other image specifying the path. If you are using
     PATH=/dev/sdb
     PERSISTENT=YES
 
-.. warning:: As this datastore does is just a container for existing devices images does not take any size from it. All devices registered will render size of 0 and the overall devices datastore will show up with 1MB of available space
+.. note:: As this datastore does is just a container for existing devices images does not take any size from it. All devices registered will render size of 0 and the overall devices datastore will show up with 1MB of available space
 
