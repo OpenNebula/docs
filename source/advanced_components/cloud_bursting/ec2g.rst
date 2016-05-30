@@ -168,7 +168,7 @@ If a CONTEXT section is defined in the template, it will be available as USERDAT
 
 If the :ref:`linux context packages for EC2 <linux_packages>` are installed in the VM, these parameters will be used to configure the VM. This is the :ref:`list of the supported parameters for EC2 <ec2_context>`.
 
-For example, if you want to enable SSH access to the VM, an existing EC2 keypair name can be provided in the EC2 template section or the :ref:`SSH public key of the user <vcenter_context>` can be included in the CONTEXT section of the template.
+For example, if you want to enable SSH access to the VM, an existing EC2 keypair name can be provided in the EC2 template section or the :ref:`SSH public key of the user <vcenter_contextualization>` can be included in the CONTEXT section of the template.
 
 .. note:: If a value for the USERDATA attribute is provided in the EC2 section of the template, the CONTEXT section will be ignored and the value provided as USERDATA will be available instead of the CONTEXT information.
 

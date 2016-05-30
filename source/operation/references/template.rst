@@ -479,76 +479,76 @@ Context Section
 
 Context information is passed to the Virtual Machine via an ISO mounted as a partition. This information can be defined in the VM template in the optional section called Context, with the following attributes:
 
-+---------------------------+---------------------------------------------------------------------------------+-------+---------+
-|         Attribute         |                                   Description                                   |  KVM  | vCenter |
-+===========================+=================================================================================+=======+=========+
-| **VARIABLE**              | Variables that store values related to this virtual machine or others           | O     | O       |
-|                           | . The name of the variable is arbitrary (in the example, we use hostname).      |       |         |
-+---------------------------+---------------------------------------------------------------------------------+-------+---------+
-| **FILES \***              | space-separated list of paths to include in context device.                     | O     | -       |
-+---------------------------+---------------------------------------------------------------------------------+-------+---------+
-| **FILES\_DS**             | space-separated list of File images to include in context device.               | O     | -       |
-|                           | (Not supported for vCenter)                                                     |       |         |
-+---------------------------+---------------------------------------------------------------------------------+-------+---------+
-| **INIT\_SCRIPTS**         | If the VM uses the OpenNebula contextualization package the init.sh             | O     | -       |
-|                           | file is executed by default. When the init script added is not called           |       |         |
-|                           | init.sh or more than one init script is added, this list contains the           |       |         |
-|                           | scripts to run and the order. Ex. “init.sh users.sh mysql.sh”                   |       |         |
-+---------------------------+---------------------------------------------------------------------------------+-------+---------+
-| **START\_SCRIPT**         | Text of the script executed when the machine starts up. It can                  | O     | O       |
-|                           | contain shebang in case it is not shell script. For example                     |       |         |
-|                           | ``START_SCRIPT="yum upgrade"``                                                  |       |         |
-+---------------------------+---------------------------------------------------------------------------------+-------+---------+
-| **START\_SCRIPT\_BASE64** | The same as ``START_SCRIPT`` but encoded in Base64                              | O     | O       |
-+---------------------------+---------------------------------------------------------------------------------+-------+---------+
-| **TARGET**                | device to attach the context ISO.                                               | O     | -       |
-+---------------------------+---------------------------------------------------------------------------------+-------+---------+
-| **TOKEN**                 | ``YES`` to create a token.txt file for                                          | O     | O       |
-|                           | :ref:`OneGate monitorization <onegate_usage>`                                   |       |         |
-+---------------------------+---------------------------------------------------------------------------------+-------+---------+
-| **NETWORK**               | ``YES`` to fill automatically the networking parameters for                     | O     | O       |
-|                           | each NIC, used by the :ref:`Contextualization packages <context_overview>`      |       |         |
-+---------------------------+---------------------------------------------------------------------------------+-------+---------+
-| **SET\_HOSTNAME**         | This parameter value will be the hostname of the VM.                            | O     | O       |
-+---------------------------+---------------------------------------------------------------------------------+-------+---------+
-| **DNS\_HOSTNAME**         | ``YES`` to set the VM hostname to the reverse dns name (from the first IP)      | Linux | Linux   |
-+---------------------------+---------------------------------------------------------------------------------+-------+---------+
-| **GATEWAY\_IFACE**        | This variable can be set to the interface number you want to configure          | Linux | Linux   |
-|                           | the gateway. It is useful when several networks have GATEWAY                    |       |         |
-|                           | parameter and you want yo choose the one that configures it. For example        |       |         |
-|                           | to set the first interface to configure the gateway you use ``GATEWAY_IFACE=0`` |       |         |
-+---------------------------+---------------------------------------------------------------------------------+-------+---------+
-| **DNS**                   | Specific DNS server for the Virtual Machine                                     | Linux | Linux   |
-+---------------------------+---------------------------------------------------------------------------------+-------+---------+
-| **ETHx_MAC**              | Used to find the correct interface                                              | O     | O       |
-+---------------------------+---------------------------------------------------------------------------------+-------+---------+
-| **ETHx_IP**               | IPv4 address for the interface                                                  | O     | O       |
-+---------------------------+---------------------------------------------------------------------------------+-------+---------+
-| **ETHx_IPV6**             | IPv6 address for the interface                                                  | Linux | Linux   |
-+---------------------------+---------------------------------------------------------------------------------+-------+---------+
-| **ETHx_NETWORK**          | Network address of the interface                                                | O     | O       |
-+---------------------------+---------------------------------------------------------------------------------+-------+---------+
-| **ETHx_MASK**             | Network mask                                                                    | O     | O       |
-+---------------------------+---------------------------------------------------------------------------------+-------+---------+
-| **ETHx_GATEWAY**          | Default IPv4 gateway for the interface                                          | O     | O       |
-+---------------------------+---------------------------------------------------------------------------------+-------+---------+
-| **ETHx_GATEWAY6**         | Default IPv6 gateway for the interface                                          | Linux | Linux   |
-+---------------------------+---------------------------------------------------------------------------------+-------+---------+
-| **ETHx_MTU**              | ``MTU`` value for the interface                                                 | Linux | Linux   |
-+---------------------------+---------------------------------------------------------------------------------+-------+---------+
-| **ETHx_DNS**              | DNS for the network                                                             | O     | O       |
-+---------------------------+---------------------------------------------------------------------------------+-------+---------+
-| **USERNAME**              | User to be created in the guest OS                                              | O     | O       |
-+---------------------------+---------------------------------------------------------------------------------+-------+---------+
-| **PASSWORD**              | Password for the newly created user, used with **USERNAME**                     | O     | O       |
-+---------------------------+---------------------------------------------------------------------------------+-------+---------+
-| **CRYPTED_PASSWORD**      | Cryted password for the new user, used with **USERNAME**                        | Linux | Linux   |
-+---------------------------+---------------------------------------------------------------------------------+-------+---------+
-| **SSH_PUBLIC_KEY**        | Key to be added to **USERNAME** ``authorized_keys`` file or ``root`` in case    | Linux | Linux   |
-|                           | **USERNAME** is not set.                                                        |       |         |
-+---------------------------+---------------------------------------------------------------------------------+-------+---------+
-| **EC2_PUBLIC_KEY**        | Same as **SSH_PUBLIC_KEY**                                                      | Linux | Linux   |
-+---------------------------+---------------------------------------------------------------------------------+-------+---------+
++---------------------------+---------------------------------------------------------------------------------+-------+---------+-----+
+|         Attribute         |                                   Description                                   |  KVM  | vCenter | EC2 |
++===========================+=================================================================================+=======+=========+=====+
+| **VARIABLE**              | Variables that store values related to this virtual machine or others           | O     | O       | O   |
+|                           | . The name of the variable is arbitrary (in the example, we use hostname).      |       |         |     |
++---------------------------+---------------------------------------------------------------------------------+-------+---------+-----+
+| **FILES \***              | space-separated list of paths to include in context device.                     | O     | \-      | \-  |
++---------------------------+---------------------------------------------------------------------------------+-------+---------+-----+
+| **FILES\_DS**             | space-separated list of File images to include in context device.               | O     | \-      | \-  |
+|                           | (Not supported for vCenter)                                                     |       |         |     |
++---------------------------+---------------------------------------------------------------------------------+-------+---------+-----+
+| **INIT\_SCRIPTS**         | If the VM uses the OpenNebula contextualization package the init.sh             | O     | \-      | \-  |
+|                           | file is executed by default. When the init script added is not called           |       |         |     |
+|                           | init.sh or more than one init script is added, this list contains the           |       |         |     |
+|                           | scripts to run and the order. Ex. “init.sh users.sh mysql.sh”                   |       |         |     |
++---------------------------+---------------------------------------------------------------------------------+-------+---------+-----+
+| **START\_SCRIPT**         | Text of the script executed when the machine starts up. It can                  | O     | O       | O   |
+|                           | contain shebang in case it is not shell script. For example                     |       |         |     |
+|                           | ``START_SCRIPT="yum upgrade"``                                                  |       |         |     |
++---------------------------+---------------------------------------------------------------------------------+-------+---------+-----+
+| **START\_SCRIPT\_BASE64** | The same as ``START_SCRIPT`` but encoded in Base64                              | O     | O       | O   |
++---------------------------+---------------------------------------------------------------------------------+-------+---------+-----+
+| **TARGET**                | device to attach the context ISO.                                               | O     | \-      | \-  |
++---------------------------+---------------------------------------------------------------------------------+-------+---------+-----+
+| **TOKEN**                 | ``YES`` to create a token.txt file for                                          | O     | O       | O   |
+|                           | :ref:`OneGate monitorization <onegate_usage>`                                   |       |         |     |
++---------------------------+---------------------------------------------------------------------------------+-------+---------+-----+
+| **NETWORK**               | ``YES`` to fill automatically the networking parameters for                     | O     | O       | \-  |
+|                           | each NIC, used by the :ref:`Contextualization packages <context_overview>`      |       |         |     |
++---------------------------+---------------------------------------------------------------------------------+-------+---------+-----+
+| **SET\_HOSTNAME**         | This parameter value will be the hostname of the VM.                            | O     | O       | \-  |
++---------------------------+---------------------------------------------------------------------------------+-------+---------+-----+
+| **DNS\_HOSTNAME**         | ``YES`` to set the VM hostname to the reverse dns name (from the first IP)      | Linux | Linux   | \-  |
++---------------------------+---------------------------------------------------------------------------------+-------+---------+-----+
+| **GATEWAY\_IFACE**        | This variable can be set to the interface number you want to configure          | Linux | Linux   | \-  |
+|                           | the gateway. It is useful when several networks have GATEWAY                    |       |         |     |
+|                           | parameter and you want yo choose the one that configures it. For example        |       |         |     |
+|                           | to set the first interface to configure the gateway you use ``GATEWAY_IFACE=0`` |       |         |     |
++---------------------------+---------------------------------------------------------------------------------+-------+---------+-----+
+| **DNS**                   | Specific DNS server for the Virtual Machine                                     | Linux | Linux   | \-  |
++---------------------------+---------------------------------------------------------------------------------+-------+---------+-----+
+| **ETHx_MAC**              | Used to find the correct interface                                              | O     | O       | \-  |
++---------------------------+---------------------------------------------------------------------------------+-------+---------+-----+
+| **ETHx_IP**               | IPv4 address for the interface                                                  | O     | O       | \-  |
++---------------------------+---------------------------------------------------------------------------------+-------+---------+-----+
+| **ETHx_IPV6**             | IPv6 address for the interface                                                  | Linux | Linux   | \-  |
++---------------------------+---------------------------------------------------------------------------------+-------+---------+-----+
+| **ETHx_NETWORK**          | Network address of the interface                                                | O     | O       | \-  |
++---------------------------+---------------------------------------------------------------------------------+-------+---------+-----+
+| **ETHx_MASK**             | Network mask                                                                    | O     | O       | \-  |
++---------------------------+---------------------------------------------------------------------------------+-------+---------+-----+
+| **ETHx_GATEWAY**          | Default IPv4 gateway for the interface                                          | O     | O       | \-  |
++---------------------------+---------------------------------------------------------------------------------+-------+---------+-----+
+| **ETHx_GATEWAY6**         | Default IPv6 gateway for the interface                                          | Linux | Linux   | \-  |
++---------------------------+---------------------------------------------------------------------------------+-------+---------+-----+
+| **ETHx_MTU**              | ``MTU`` value for the interface                                                 | Linux | Linux   | \-  |
++---------------------------+---------------------------------------------------------------------------------+-------+---------+-----+
+| **ETHx_DNS**              | DNS for the network                                                             | O     | O       | \-  |
++---------------------------+---------------------------------------------------------------------------------+-------+---------+-----+
+| **USERNAME**              | User to be created in the guest OS                                              | O     | O       | \-  |
++---------------------------+---------------------------------------------------------------------------------+-------+---------+-----+
+| **PASSWORD**              | Password for the newly created user, used with **USERNAME**                     | O     | O       | \-  |
++---------------------------+---------------------------------------------------------------------------------+-------+---------+-----+
+| **CRYPTED_PASSWORD**      | Cryted password for the new user, used with **USERNAME**                        | Linux | Linux   | \-  |
++---------------------------+---------------------------------------------------------------------------------+-------+---------+-----+
+| **SSH_PUBLIC_KEY**        | Key to be added to **USERNAME** ``authorized_keys`` file or ``root`` in case    | Linux | Linux   | O   |
+|                           | **USERNAME** is not set.                                                        |       |         |     |
++---------------------------+---------------------------------------------------------------------------------+-------+---------+-----+
+| **EC2_PUBLIC_KEY**        | Same as **SSH_PUBLIC_KEY**                                                      | Linux | Linux   | O   |
++---------------------------+---------------------------------------------------------------------------------+-------+---------+-----+
 
 \* only for users in oneadmin group
 
