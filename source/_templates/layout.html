@@ -1,5 +1,17 @@
-{% extends "!layout.html" %}
+{% extends "thelayout.html" %}
+
 {% block sidebartitle %}
     {{ super() }}
     <a class='btn btn-neutral' id="start-here" href="{{ pathto('intro_release_notes/concepts_terminology/intro') }}"><i class="fa fa-font-awesome" aria-hidden="true"></i>&nbsp;Start Here</a>
+{% endblock %}
+
+{% block devel %}
+    <div class="admonition warning alert alert-danger alert-error" style="margin-left: 15px; margin-right: 15px;">
+        <p class="first admonition-title">
+            Warning
+        </p>
+        <p class="last">
+            This guide is under development. The material on this page needs to be reviewed for completeness and accuracy. This guide may have not been updated yet from the last release.
+        </p>
+    </div>
 {% endblock %}
