@@ -1,8 +1,12 @@
 ---
 versions:
-- - "stable"
+- - "Stable"
   - http://docs.opennebula.org/stable
 - - "5.0"
   - http://docs.opennebula.org/5.0
 - - "4.14"
   - http://docs.opennebula.org/4.14
+
+downloads:
+- - "No pdfs yet"
+  - "javascript:void(0)"
