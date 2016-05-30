@@ -54,7 +54,7 @@ Handlebars
 
 `Handlebars <http://handlebarsjs.com/>`__ provides the power necessary to let you build semantic templates and is largely compatible with Mustache templates.
 
-.. code-block:: html+handlebars
+.. code-block:: html
 
   <div id="comments">
     {{#each comments}}
