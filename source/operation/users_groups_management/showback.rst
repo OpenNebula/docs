@@ -1,7 +1,5 @@
 .. _showback:
 
-.. todo:: update examples. I have no data to complete them
-
 ================================================================================
 Showback
 ================================================================================
@@ -57,14 +55,14 @@ To calculate all records, starting from March up to today:
 
 .. prompt:: text $ auto
 
-    $ oneshowback calculate --start "03/2014"
+    $ oneshowback calculate --start "03/2016"
 
 
 To calculate only September:
 
 .. prompt:: text $ auto
 
-    $ oneshowback calculate --start "09/2014" --end "09/2014"
+    $ oneshowback calculate --start "09/2016" --end "09/2016"
 
 
 .. note::
