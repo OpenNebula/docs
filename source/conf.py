@@ -36,7 +36,7 @@ extensions = ['sphinx.ext.todo','versions','sphinx-prompt']
 
 todo_include_todos = True
 
-site_conf = yaml.load(os.popen('git show master:source/site_conf.yml'))
+site_conf = yaml.load(os.popen('git show origin/master:source/site_conf.yml'))
 
 versions  = site_conf['versions']
 downloads = site_conf['downloads']
