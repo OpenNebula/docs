@@ -1,7 +1,5 @@
 .. _accounting:
 
-.. todo:: check oneacct command output
-
 ==================
 Accounting Client
 ==================
@@ -13,7 +11,7 @@ Usage
 
 ``oneacct`` - prints accounting information for virtual machines
 
-.. code::
+.. code-block:: text
 
     Usage: oneacct [options]
      -s, --start TIME          First day of the data to retrieve
@@ -34,7 +32,7 @@ Usage
      --csv                     Write table in csv format
      --user name               User name used to connect to OpenNebula
      --password password       Password to authenticate with OpenNebula
-     --endpoint endpoint       URL of OpenNebula xmlrpc frontend
+     --endpoint endpoint       URL of OpenNebula XML-RPC front-end
 
 The time can be written as ``month/day/year hour:minute:second``, or any other similar format, e.g ``month/day hour:minute``.
 
@@ -49,41 +47,44 @@ Each entry contains the complete information of the Virtual Machine, including t
 
 When the results are filtered with the ``-s`` and/or ``-e`` options, all the history records that were active during that time interval are shown, but they may start or end outside that interval.
 
-For example, if you have a VM that was running from 01/01/2012 to 05/15/2012, and you request the accounting information with this command:
+For example, if you have a VM that was running from May 1st to June 1st, and you request the accounting information with this command:
 
-.. code::
+.. prompt:: text $ auto
 
-    $ oneacct -s '02/01/2012' -e '01/03/2012'
-    Showing active history records from Wed Feb 01 00:00:00 +0100 2012 to Tue Jan 03 00:00:00 +0100 2012
+	$ oneacct -s 05/01 -e 06/01
+	Showing active history records from 2016-05-01 00:00:00 +0200 to 2016-06-02 00:00:00 +0200
 
-     VID HOSTNAME        REAS     START_TIME       END_TIME MEMORY CPU NET_RX NET_TX
-       9 host01          none 01/01 14:03:27 05/15 16:38:05  1024K   2   1.5G    23G
+	# User 0
 
-The record shows the complete history record, and total network consumption. It will not reflect the consumption made only during the month of February.
+	 VID HOSTNAME        ACTION           REAS     START_TIME       END_TIME MEMORY CPU  NETRX  NETTX   DISK
+	  28 host01          terminate        user 05/27 16:40:47 05/27 17:09:20  1024M 0.1     0K     0K  10.4G
+	  29 host02          none             none 05/27 17:09:28              -   256M   1   2.4M   1.3K    10G
 
-Other important thing to pay attention to is that active history records, those with END\_TIME **'-'**, refresh their monitoring information each time the VM is monitored. Once the VM is shut down, migrated or stopped, the END\_TIME is set and the monitoring information stored is frozen. The final values reflect the total for accumulative attributes, like NET\_RX/TX.
+The record shows the complete history record, and total network consumption. It will not reflect the consumption made only during the month of May.
+
+Other important thing to pay attention to is that active history records, those with ``END_TIME`` **'-'**, refresh their monitoring information each time the VM is monitored. Once the VM is shut down, migrated or stopped, the ``END_TIME`` is set and the monitoring information stored is frozen. The final values reflect the total for accumulative attributes, like ``NETRX``/``NETTX``.
 
 Sample Output
 -------------
 
 Obtaining all the available accounting information:
 
-.. code::
+.. prompt:: text $ auto
 
-    $ oneacct
-    # User 0 oneadmin
+	$ oneacct
+	# User 0
 
-     VID HOSTNAME        REAS     START_TIME       END_TIME MEMORY CPU NET_RX NET_TX
-       0 host02          user 06/04 14:55:49 06/04 15:05:02  1024M   1     0K     0K
+	 VID HOSTNAME        ACTION           REAS     START_TIME       END_TIME MEMORY CPU  NETRX  NETTX   DISK
 
-    # User 2 oneuser1
-
-     VID HOSTNAME        REAS     START_TIME       END_TIME MEMORY CPU NET_RX NET_TX
-       1 host01          stop 06/04 14:55:49 06/04 14:56:28  1024M   1     0K     0K
-       1 host01          user 06/04 14:56:49 06/04 14:58:49  1024M   1     0K   0.6K
-       1 host02          none 06/04 14:58:49              -  1024M   1     0K   0.1K
-       2 host02          erro 06/04 14:57:19 06/04 15:03:27     4G   2     0K     0K
-       3 host01          none 06/04 15:04:47              -     4G   2     0K   0.1K
+	  13 host01          nic-attach       user 05/17 17:10:57 05/17 17:12:48   256M 0.1  19.2K  15.4K     8G
+	  13 host01          nic-detach       user 05/17 17:12:48 05/17 17:13:48   256M 0.1  36.9K    25K     8G
+	  13 host01          nic-attach       user 05/17 17:13:48 05/17 17:14:54   256M 0.1  51.2K  36.4K     8G
+	  13 host01          nic-detach       user 05/17 17:14:54 05/17 17:17:19   256M 0.1  79.8K  61.7K     8G
+	  13 host01          nic-attach       user 05/17 17:17:19 05/17 17:17:27   256M 0.1  79.8K  61.7K     8G
+	  13 host01          terminate-hard   user 05/17 17:17:27 05/17 17:37:52   256M 0.1 124.6K  85.9K     8G
+	  14 host02          nic-attach       user 05/17 17:38:16 05/17 17:40:00   256M 0.1  16.5K  13.2K     8G
+	  14 host02          poweroff         user 05/17 17:40:00 05/17 17:53:40   256M 0.1  38.3K  18.8K     8G
+	  14 host02          terminate-hard   user 05/17 17:55:55 05/18 14:54:19   256M 0.1     1M  27.3K     8G
 
 The columns are:
 
@@ -94,17 +95,17 @@ The columns are:
 +-------------+---------------------------------------------------------------------------------------------+
 | HOSTNAME    | Host name                                                                                   |
 +-------------+---------------------------------------------------------------------------------------------+
+| ACTION      | Virtual Machine action that created a new history record                                    |
++-------------+---------------------------------------------------------------------------------------------+
 | REASON      | VM state change reason:                                                                     |
 |             |                                                                                             |
-|             | - **none**: Normal termination                                                              |
+|             | - **none**: Virtual Machine still running                                                   |
 |             | - **erro**: The VM ended in error                                                           |
-|             | - **stop**: Stop/resume request                                                             |
-|             | - **user**: Migration request                                                               |
-|             | - **canc**: Cancel request                                                                  |
+|             | - **user**: VM action started by the user                                                   |
 +-------------+---------------------------------------------------------------------------------------------+
-| START\_TIME | Start time                                                                                  |
+| START_TIME  | Start time                                                                                  |
 +-------------+---------------------------------------------------------------------------------------------+
-| END\_TIME   | End time                                                                                    |
+| END_TIME    | End time                                                                                    |
 +-------------+---------------------------------------------------------------------------------------------+
 | MEMORY      | Assigned memory. This is the requested memory, not the monitored memory consumption         |
 +-------------+---------------------------------------------------------------------------------------------+
@@ -117,176 +118,219 @@ The columns are:
 
 Obtaining the accounting information for a given user
 
-.. code::
+.. prompt:: text $ auto
 
-    $ oneacct -u 2 --split
-    # User 2 oneuser1
+	$ oneacct -u 0 --split
+	# User 0
 
-     VID HOSTNAME        REAS     START_TIME       END_TIME MEMORY CPU NET_RX NET_TX
-       1 host01          stop 06/04 14:55:49 06/04 14:56:28  1024M   1     0K     0K
-       1 host01          user 06/04 14:56:49 06/04 14:58:49  1024M   1     0K   0.6K
-       1 host02          none 06/04 14:58:49              -  1024M   1     0K   0.1K
+	 VID HOSTNAME        ACTION           REAS     START_TIME       END_TIME MEMORY CPU  NETRX  NETTX   DISK
+	  12 host01          none             user 05/09 19:20:42 05/09 19:35:23  1024M   1  29.8M 638.8K     0K
 
-     VID HOSTNAME        REAS     START_TIME       END_TIME MEMORY CPU NET_RX NET_TX
-       2 host02          erro 06/04 14:57:19 06/04 15:03:27     4G   2     0K     0K
+	 VID HOSTNAME        ACTION           REAS     START_TIME       END_TIME MEMORY CPU  NETRX  NETTX   DISK
+	  13 host01          nic-attach       user 05/17 17:10:57 05/17 17:12:48   256M 0.1  19.2K  15.4K     8G
+	  13 host01          nic-detach       user 05/17 17:12:48 05/17 17:13:48   256M 0.1  36.9K    25K     8G
+	  13 host01          nic-attach       user 05/17 17:13:48 05/17 17:14:54   256M 0.1  51.2K  36.4K     8G
+	  13 host01          nic-detach       user 05/17 17:14:54 05/17 17:17:19   256M 0.1  79.8K  61.7K     8G
+	  13 host01          nic-attach       user 05/17 17:17:19 05/17 17:17:27   256M 0.1  79.8K  61.7K     8G
+	  13 host01          terminate-hard   user 05/17 17:17:27 05/17 17:37:52   256M 0.1 124.6K  85.9K     8G
 
-     VID HOSTNAME        REAS     START_TIME       END_TIME MEMORY CPU NET_RX NET_TX
-       3 host01          none 06/04 15:04:47              -     4G   2     0K   0.1K
+	 VID HOSTNAME        ACTION           REAS     START_TIME       END_TIME MEMORY CPU  NETRX  NETTX   DISK
+	  14 host02          nic-attach       user 05/17 17:38:16 05/17 17:40:00   256M 0.1  16.5K  13.2K     8G
+	  14 host02          poweroff         user 05/17 17:40:00 05/17 17:53:40   256M 0.1  38.3K  18.8K     8G
+	  14 host02          terminate-hard   user 05/17 17:55:55 05/18 14:54:19   256M 0.1     1M  27.3K     8G
+
+	 VID HOSTNAME        ACTION           REAS     START_TIME       END_TIME MEMORY CPU  NETRX  NETTX   DISK
+	  29 host02          none             none 05/27 17:09:28              -   256M   1   2.4M   1.3K    10G
 
 In case you use CSV output (``--csv``) you will het a header with the name of each column and then the data. For example:
 
-.. code::
+.. prompt:: text $ auto
 
-    $ oneacct --csv
-    UID,VID,HOSTNAME,ACTION,REASON,START_TIME,END_TIME,MEMORY,CPU,NET_RX,NET_TX
-    3,68,esx2,none,none,02/17 11:16:06,-,512M,1,0K,0K
-    0,0,piscis,none,erro,09/18 15:57:55,09/18 15:57:57,1024M,1,0K,0K
-    0,0,piscis,shutdown-hard,user,09/18 16:01:55,09/18 16:19:57,1024M,1,0K,0K
-    0,1,piscis,none,none,09/18 16:20:25,-,1024M,1,2G,388M
-    0,2,esx1,shutdown-hard,user,09/18 19:27:14,09/19 12:23:45,512M,1,0K,0K
+	$ oneacct --csv
+	UID,VID,HOSTNAME,ACTION,REASON,START_TIME,END_TIME,MEMORY,CPU,NETRX,NETTX,DISK
+	0,12,host01,none,user,05/09 19:20:42,05/09 19:35:23,1024M,1,29.8M,638.8K,0K
+	0,13,host01,nic-attach,user,05/17 17:10:57,05/17 17:12:48,256M,0.1,19.2K,15.4K,8G
+	0,13,host01,nic-detach,user,05/17 17:12:48,05/17 17:13:48,256M,0.1,36.9K,25K,8G
+	0,13,host01,nic-attach,user,05/17 17:13:48,05/17 17:14:54,256M,0.1,51.2K,36.4K,8G
+	0,13,host01,nic-detach,user,05/17 17:14:54,05/17 17:17:19,256M,0.1,79.8K,61.7K,8G
+	0,13,host01,nic-attach,user,05/17 17:17:19,05/17 17:17:27,256M,0.1,79.8K,61.7K,8G
+	0,13,host01,terminate-hard,user,05/17 17:17:27,05/17 17:37:52,256M,0.1,124.6K,85.9K,8G
+	0,14,host02,nic-attach,user,05/17 17:38:16,05/17 17:40:00,256M,0.1,16.5K,13.2K,8G
+	0,14,host01,poweroff,user,05/17 17:40:00,05/17 17:53:40,256M,0.1,38.3K,18.8K,8G
+	0,14,host02,terminate-hard,user,05/17 17:55:55,05/18 14:54:19,256M,0.1,1M,27.3K,8G
+	0,29,host02,none,none,05/27 17:09:28,-,256M,1,2.4M,1.3K,10G
 
 Output Reference
 ----------------
 
 If you execute oneacct with the ``-x`` option, you will get an XML output defined by the following xsd:
 
-.. code::
+.. code-block:: xml
 
-    <?xml version="1.0" encoding="UTF-8"?>
-    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-      targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
-     
-      <xs:element name="HISTORY_RECORDS">
-        <xs:complexType>
-          <xs:sequence maxOccurs="1" minOccurs="1">
-            <xs:element ref="HISTORY" maxOccurs="unbounded" minOccurs="0"/>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-     
-      <xs:element name="HISTORY">
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element name="OID" type="xs:integer"/>
-            <xs:element name="SEQ" type="xs:integer"/>
-            <xs:element name="HOSTNAME" type="xs:string"/>
-            <xs:element name="HID" type="xs:integer"/>
-            <xs:element name="STIME" type="xs:integer"/>
-            <xs:element name="ETIME" type="xs:integer"/>
-            <xs:element name="VMMMAD" type="xs:string"/>
-            <xs:element name="VNMMAD" type="xs:string"/>
-            <xs:element name="TMMAD" type="xs:string"/>
-            <xs:element name="DS_ID" type="xs:integer"/>
-            <xs:element name="PSTIME" type="xs:integer"/>
-            <xs:element name="PETIME" type="xs:integer"/>
-            <xs:element name="RSTIME" type="xs:integer"/>
-            <xs:element name="RETIME" type="xs:integer"/>
-            <xs:element name="ESTIME" type="xs:integer"/>
-            <xs:element name="EETIME" type="xs:integer"/>
-     
-            <!-- REASON values:
-              NONE        = 0  Normal termination
-              ERROR       = 1  The VM ended in error
-              STOP_RESUME = 2  Stop/resume request
-              USER        = 3  Migration request
-              CANCEL      = 4  Cancel request
-            -->
-            <xs:element name="REASON" type="xs:integer"/>
-     
-            <xs:element name="VM">
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="ID" type="xs:integer"/>
-                  <xs:element name="UID" type="xs:integer"/>
-                  <xs:element name="GID" type="xs:integer"/>
-                  <xs:element name="UNAME" type="xs:string"/>
-                  <xs:element name="GNAME" type="xs:string"/>
-                  <xs:element name="NAME" type="xs:string"/>
-                  <xs:element name="PERMISSIONS" minOccurs="0" maxOccurs="1">
-                    <xs:complexType>
-                      <xs:sequence>
-                        <xs:element name="OWNER_U" type="xs:integer"/>
-                        <xs:element name="OWNER_M" type="xs:integer"/>
-                        <xs:element name="OWNER_A" type="xs:integer"/>
-                        <xs:element name="GROUP_U" type="xs:integer"/>
-                        <xs:element name="GROUP_M" type="xs:integer"/>
-                        <xs:element name="GROUP_A" type="xs:integer"/>
-                        <xs:element name="OTHER_U" type="xs:integer"/>
-                        <xs:element name="OTHER_M" type="xs:integer"/>
-                        <xs:element name="OTHER_A" type="xs:integer"/>
-                      </xs:sequence>
-                    </xs:complexType>
-                  </xs:element>
-                  <xs:element name="LAST_POLL" type="xs:integer"/>
-     
-                  <!-- STATE values,
-                  see http://opennebula.org/documentation:documentation:api#actions_for_virtual_machine_management
-     
-                    INIT      = 0
-                    PENDING   = 1
-                    HOLD      = 2
-                    ACTIVE    = 3 In this state, the Life Cycle Manager state is relevant
-                    STOPPED   = 4
-                    SUSPENDED = 5
-                    DONE      = 6
-                    POWEROFF  = 8
-                  -->
-                  <xs:element name="STATE" type="xs:integer"/>
-     
-                  <!-- LCM_STATE values, this sub-state is relevant only when STATE is
-                       ACTIVE (4)
-     
-                    LCM_INIT          = 0
-                    PROLOG            = 1
-                    BOOT              = 2
-                    RUNNING           = 3
-                    MIGRATE           = 4
-                    SAVE_STOP         = 5
-                    SAVE_SUSPEND      = 6
-                    SAVE_MIGRATE      = 7
-                    PROLOG_MIGRATE    = 8
-                    PROLOG_RESUME     = 9
-                    EPILOG_STOP       = 10
-                    EPILOG            = 11
-                    SHUTDOWN          = 12
-                    CANCEL            = 13
-                    FAILURE           = 14
-                    CLEANUP           = 15
-                    UNKNOWN           = 16
-                    HOTPLUG           = 17
-                    SHUTDOWN_POWEROFF = 18
-                    BOOT_UNKNOWN      = 19
-                    BOOT_POWEROFF     = 20
-                    BOOT_SUSPENDED    = 21
-                    BOOT_STOPPED      = 22
-                  -->
-                  <xs:element name="LCM_STATE" type="xs:integer"/>
-                  <xs:element name="RESCHED" type="xs:integer"/>
-                  <xs:element name="STIME" type="xs:integer"/>
-                  <xs:element name="ETIME" type="xs:integer"/>
-                  <xs:element name="DEPLOY_ID" type="xs:string"/>
-     
-                  <!-- MEMORY consumption in kilobytes -->
-                  <xs:element name="MEMORY" type="xs:integer"/>
-     
-                  <!-- Percentage of 1 CPU consumed (two fully consumed cpu is 200) -->
-                  <xs:element name="CPU" type="xs:integer"/>
-     
-                  <!-- NET_TX: Sent bytes to the network -->
-                  <xs:element name="NET_TX" type="xs:integer"/>
-     
-                  <!-- NET_RX: Received bytes from the network -->
-                  <xs:element name="NET_RX" type="xs:integer"/>
-                  <xs:element name="TEMPLATE" type="xs:anyType"/>
-                  <xs:element name="HISTORY_RECORDS">
-                  </xs:element>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-    </xs:schema>
+	<?xml version="1.0" encoding="UTF-8"?>
+	<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+	  targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
+
+	  <xs:element name="HISTORY_RECORDS">
+		<xs:complexType>
+		  <xs:sequence maxOccurs="1" minOccurs="1">
+			<xs:element ref="HISTORY" maxOccurs="unbounded" minOccurs="0"/>
+		  </xs:sequence>
+		</xs:complexType>
+	  </xs:element>
+
+	  <xs:element name="HISTORY">
+		<xs:complexType>
+		  <xs:sequence>
+			<xs:element name="OID" type="xs:integer"/>
+			<xs:element name="SEQ" type="xs:integer"/>
+			<xs:element name="HOSTNAME" type="xs:string"/>
+			<xs:element name="HID" type="xs:integer"/>
+			<xs:element name="CID" type="xs:integer"/>
+			<xs:element name="STIME" type="xs:integer"/>
+			<xs:element name="ETIME" type="xs:integer"/>
+			<xs:element name="VM_MAD" type="xs:string"/>
+			<xs:element name="TM_MAD" type="xs:string"/>
+			<xs:element name="DS_ID" type="xs:integer"/>
+			<xs:element name="PSTIME" type="xs:integer"/>
+			<xs:element name="PETIME" type="xs:integer"/>
+			<xs:element name="RSTIME" type="xs:integer"/>
+			<xs:element name="RETIME" type="xs:integer"/>
+			<xs:element name="ESTIME" type="xs:integer"/>
+			<xs:element name="EETIME" type="xs:integer"/>
+
+			<!-- REASON values:
+			  NONE  = 0 History record is not closed yet
+			  ERROR = 1 History record was closed because of an error
+			  USER  = 2 History record was closed because of a user action
+			-->
+			<xs:element name="REASON" type="xs:integer"/>
+
+			<!-- ACTION values:
+			  NONE_ACTION             = 0
+			  MIGRATE_ACTION          = 1
+			  LIVE_MIGRATE_ACTION     = 2
+			  SHUTDOWN_ACTION         = 3
+			  SHUTDOWN_HARD_ACTION    = 4
+			  UNDEPLOY_ACTION         = 5
+			  UNDEPLOY_HARD_ACTION    = 6
+			  HOLD_ACTION             = 7
+			  RELEASE_ACTION          = 8
+			  STOP_ACTION             = 9
+			  SUSPEND_ACTION          = 10
+			  RESUME_ACTION           = 11
+			  BOOT_ACTION             = 12
+			  DELETE_ACTION           = 13
+			  DELETE_RECREATE_ACTION  = 14
+			  REBOOT_ACTION           = 15
+			  REBOOT_HARD_ACTION      = 16
+			  RESCHED_ACTION          = 17
+			  UNRESCHED_ACTION        = 18
+			  POWEROFF_ACTION         = 19
+			  POWEROFF_HARD_ACTION    = 20
+			  DISK_ATTACH_ACTION      = 21
+			  DISK_DETACH_ACTION      = 22
+			  NIC_ATTACH_ACTION       = 23
+			  NIC_DETACH_ACTION       = 24
+			  DISK_SNAPSHOT_CREATE_ACTION = 25
+			  DISK_SNAPSHOT_DELETE_ACTION = 26
+			  TERMINATE_ACTION        = 27
+			  TERMINATE_HARD_ACTION   = 28
+			-->
+			<xs:element name="ACTION" type="xs:integer"/>
+
+			<xs:element name="VM">
+			  <xs:complexType>
+				<xs:sequence>
+				  <xs:element name="ID" type="xs:integer"/>
+				  <xs:element name="UID" type="xs:integer"/>
+				  <xs:element name="GID" type="xs:integer"/>
+				  <xs:element name="UNAME" type="xs:string"/>
+				  <xs:element name="GNAME" type="xs:string"/>
+				  <xs:element name="NAME" type="xs:string"/>
+				  <xs:element name="PERMISSIONS" minOccurs="0" maxOccurs="1">
+					<xs:complexType>
+					  <xs:sequence>
+						<xs:element name="OWNER_U" type="xs:integer"/>
+						<xs:element name="OWNER_M" type="xs:integer"/>
+						<xs:element name="OWNER_A" type="xs:integer"/>
+						<xs:element name="GROUP_U" type="xs:integer"/>
+						<xs:element name="GROUP_M" type="xs:integer"/>
+						<xs:element name="GROUP_A" type="xs:integer"/>
+						<xs:element name="OTHER_U" type="xs:integer"/>
+						<xs:element name="OTHER_M" type="xs:integer"/>
+						<xs:element name="OTHER_A" type="xs:integer"/>
+					  </xs:sequence>
+					</xs:complexType>
+				  </xs:element>
+				  <xs:element name="LAST_POLL" type="xs:integer"/>
+
+				  <!-- STATE values,
+				  see http://docs.opennebula.org/stable/user/references/vm_states.html
+				  -->
+				  <xs:element name="STATE" type="xs:integer"/>
+
+				  <!-- LCM_STATE values, this sub-state is relevant only when STATE is
+					   ACTIVE (4)
+				  see http://docs.opennebula.org/stable/user/references/vm_states.html
+				  -->
+				  <xs:element name="LCM_STATE" type="xs:integer"/>
+				  <xs:element name="PREV_STATE" type="xs:integer"/>
+				  <xs:element name="PREV_LCM_STATE" type="xs:integer"/>
+				  <xs:element name="RESCHED" type="xs:integer"/>
+				  <xs:element name="STIME" type="xs:integer"/>
+				  <xs:element name="ETIME" type="xs:integer"/>
+				  <xs:element name="DEPLOY_ID" type="xs:string"/>
+				  <xs:element name="MONITORING">
+				  <!--
+					<xs:complexType>
+					  <xs:all>
+						<- Percentage of 1 CPU consumed (two fully consumed cpu is 200) ->
+						<xs:element name="CPU" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+
+						<- MEMORY consumption in kilobytes ->
+						<xs:element name="MEMORY" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+
+						<- NETTX: Sent bytes to the network ->
+						<xs:element name="NETTX" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+
+						<- NETRX: Received bytes from the network ->
+						<xs:element name="NETRX" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+					  </xs:all>
+					</xs:complexType>
+				  -->
+				  </xs:element>
+				  <xs:element name="TEMPLATE" type="xs:anyType"/>
+				  <xs:element name="USER_TEMPLATE" type="xs:anyType"/>
+				  <xs:element name="HISTORY_RECORDS">
+				  </xs:element>
+				  <xs:element name="SNAPSHOTS" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+					  <xs:sequence>
+						<xs:element name="DISK_ID" type="xs:integer"/>
+						<xs:element name="SNAPSHOT" minOccurs="0" maxOccurs="unbounded">
+						  <xs:complexType>
+							<xs:sequence>
+							  <xs:element name="ACTIVE" type="xs:string" minOccurs="0" maxOccurs="1"/>
+							  <xs:element name="CHILDREN" type="xs:string" minOccurs="0" maxOccurs="1"/>
+							  <xs:element name="DATE" type="xs:integer"/>
+							  <xs:element name="ID" type="xs:integer"/>
+							  <xs:element name="NAME" type="xs:string" minOccurs="0" maxOccurs="1"/>
+							  <xs:element name="PARENT" type="xs:integer"/>
+							  <xs:element name="SIZE" type="xs:integer"/>
+							</xs:sequence>
+						  </xs:complexType>
+						</xs:element>
+					  </xs:sequence>
+					</xs:complexType>
+				  </xs:element>
+				</xs:sequence>
+			  </xs:complexType>
+			</xs:element>
+		  </xs:sequence>
+		</xs:complexType>
+	  </xs:element>
+	</xs:schema>
 
 .. _accounting_sunstone:
 
@@ -302,8 +346,8 @@ Tuning & Extending
 
 There are two kinds of monitoring values:
 
--  Instantaneous values: For example, ``VM/CPU`` or ``VM/MEMORY`` show the memory consumption last reported by the monitoring probes.
--  Accumulative values: For example, ``VM/NET_TX`` and ``VM/NET_TX`` show the total network consumption since the history record started.
+* Instantaneous values: For example, ``VM/CPU`` or ``VM/MEMORY`` show the memory consumption last reported by the monitoring probes.
+* Accumulative values: For example, ``VM/NETRX`` and ``VM/NETTX`` show the total network consumption since the history record started.
 
 Developers interacting with OpenNebula using the Ruby bindings can use the `VirtualMachinePool.accounting method <http://docs.opennebula.org/doc/5.0/oca/ruby/OpenNebula/VirtualMachinePool.html#accounting-instance_method>`__ to retrieve accounting information filtering and ordering by multiple parameters.
 
