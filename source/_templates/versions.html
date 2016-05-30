@@ -1,10 +1,21 @@
-<li class="dropdown">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-        <b>{{ version|e }}</b><b class="caret"></b>
-    </a>
-    <ul class="dropdown-menu globaltoc">
-        <li><a href="/5.0">5.0 (Development)</a></li>
-        <li><a href="/4.14">4.14 (Stable)</a></li>
-        <li><a href="http://opennebula.org/documentation/archives/">Previous Releases</a></li>
-    </ul>
-</li>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> OpenNebula</span>
+      v: {{ release }}
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        {% for slug, url in versions %}
+          <dd><a href="{{ url }}">{{ slug }}</a></dd>
+        {% endfor %}
+      </dl>
+      <dl>
+        <dt>PDF Guides</dt>
+        {% for type, url in downloads %}
+          <dd><a href="{{ url }}">{{ type }}</a></dd>
+        {% endfor %}
+      </dl>
+    </div>
+  </div>

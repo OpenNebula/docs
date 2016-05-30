@@ -1,32 +1,5 @@
-{# Import the theme's layout. #}
 {% extends "!layout.html" %}
-
-{# Add some extra stuff before and use existing with 'super()' call. #}
-{% block extrahead %}
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ pathto('_static/opennebula.css', 1) }}" type="text/css" />
-    <script type="text/javascript" src="{{ pathto('_static/opennebula.js', 1) }}"></script>
-  {{ super() }}
-{% endblock %}
-
-{% block footer %}
-  <footer class="footer">
-    <div class="container">
-      <p>
-      Copyright 2002-2016 &copy; OpenNebula Project (OpenNebula.org). All Rights Reserved. Please send comments to the <a href="mailto:webmaster [at] opennebula [dot] org">webmaster</a>. <br/>Read the <a href="http://opennebula.org/legal">Legal Notice</a>. This site is hosted by <a href="http://opennebula.systems">OpenNebula Systems</a>.
-      </p>
-    </div>
-  </footer>
-{% endblock %}
-
-{% block sidebar1 %}
-<div class="admonition warning alert alert-danger alert-error" style="margin-left: 15px; margin-right: 15px;">
-    <p class="first admonition-title">
-        Warning
-    </p>
-    <p class="last">
-        This guide is under development. The material on this page needs to be reviewed for completeness and accuracy. This guide may have not been updated yet from the last release.
-    </p>
-</div>
-{{ bsidebar() }}
+{% block sidebartitle %}
+    {{ super() }}
+    <a class='btn btn-neutral' id="start-here" href="{{ pathto('intro_release_notes/concepts_terminology/intro') }}"><i class="fa fa-font-awesome" aria-hidden="true"></i>&nbsp;Start Here</a>
 {% endblock %}

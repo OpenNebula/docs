@@ -1,0 +1,41 @@
+@import url("theme.css");
+
+.wy-nav-content {
+    max-width: 1140px;
+}
+
+body {
+    color: #353735;
+}
+
+a {
+    color: #0098c3;
+}
+
+#entry-point {
+    display: none;
+}
+
+.rst-versions {
+    background-color: #353735;
+    border-top: 0;
+}
+
+.wy-side-nav-search {
+    background-color: #0098c3;
+}
+
+.wy-nav-side {
+    background-color: #353735;
+}
+
+.wy-table-responsive table td, .wy-table-responsive table th {
+    white-space: normal;
+}
+
+#start-here {
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom 10px;
+    font-weight: normal;
+}
