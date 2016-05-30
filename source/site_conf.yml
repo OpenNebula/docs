@@ -6,9 +6,3 @@ versions:
   - http://docs.opennebula.org/5.0
 - - "4.14"
   - http://docs.opennebula.org/4.14
-
-downloads:
-- - "Operation"
-  - http://docs.opennebula.org/pdf/vOneCloud-1.8.0.pdf
-- - "Deployment"
-  - http://docs.opennebula.org/pdf/vOneCloud-1.6.0.pdf
