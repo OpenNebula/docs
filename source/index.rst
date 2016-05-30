@@ -12,8 +12,6 @@ OpenNebula 5.0 Documentation
    Operation Guide <operation/index>
    Advanced Components Guide <advanced_components/index>
    Integration Guide <integration/index>
-   Work in Progress <wip/index>
-
 
 .. raw:: html
    :file: toc.html
