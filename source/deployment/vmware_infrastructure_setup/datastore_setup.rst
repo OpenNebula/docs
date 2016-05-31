@@ -16,6 +16,7 @@ Limitations
 ================================================================================
 
 - No support for snapshots in the vCenter datastore.
+- Only one disk is allowed per directory in the vCEnter datastores.
 
 Requirements
 ================================================================================
