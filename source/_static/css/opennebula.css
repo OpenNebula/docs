@@ -85,7 +85,7 @@ pre.highlight {
     margin-bottom: 0px;
 }
 
-#opennebula-frontpage h3, #opennebula-frontpage .ofp-box-1 {
+#opennebula-frontpage h3, #opennebula-frontpage .ofp-box-1, .clear-both {
     clear: both;
 }
 

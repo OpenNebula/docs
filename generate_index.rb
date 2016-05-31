@@ -63,3 +63,4 @@ toc.each do |manual|
     puts ERB.new(toc_template).result(binding)
 end
 puts %q{</div><!-- close opennebula-frontpage -->}
+puts %q{<div class="clear-both"></div>}
