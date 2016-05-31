@@ -78,7 +78,7 @@ The three types of Images can be created from an existing file, but for **databl
 
 If you want to create an **OS Image**, you need to prepare a contextualized virtual machine, and extract its disk.
 
-Please read first the documentation about :ref:`VM contextualization here <cong>`.
+Please read first the documentation about :ref:`VM contextualization here <context_overview>`.
 
 Once you have a disk you want to register, you can upload it directly using Sunstone:
 
@@ -102,9 +102,9 @@ You need to choose the Datastore where to register the new Image. To know the av
 
     $ onedatastore list
       ID NAME                SIZE AVAIL CLUSTERS     IMAGES TYPE DS      TM      STAT
-       0 system            145.2G 56%   0                 0 sys  -       shared  on  
-       1 default           145.2G 56%   0                 3 img  fs      shared  on  
-       2 files             145.2G 56%   0                 0 fil  fs      ssh     on  
+       0 system            145.2G 56%   0                 0 sys  -       shared  on
+       1 default           145.2G 56%   0                 3 img  fs      shared  on
+       2 files             145.2G 56%   0                 0 fil  fs      ssh     on
 
 
 To submit the template, you just have to issue the command

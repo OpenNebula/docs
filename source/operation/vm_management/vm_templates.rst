@@ -134,7 +134,7 @@ A user input can be one of the following types:
 
 |prepare-tmpl-user-input-1|
 
-These inputs will be presented to the user when the Template is instantiated. The VM guest needs to be :ref:`contextualized <bcont>` to make use of the values provided by the user.
+These inputs will be presented to the user when the Template is instantiated. The VM guest needs to be :ref:`contextualized <context_overview>` to make use of the values provided by the user.
 
 |prepare-tmpl-user-input-3|
 
@@ -158,7 +158,7 @@ There are a few features of the :ref:`Cloud View <suns_views>` that will work if
 
 * Users will see the Template logo and description, something that is not so visible in the normal admin view.
 * The Cloud View gives access to the VM's VNC, but only if it is configured in the Template.
-* End users can upload their public ssh key. This requires the VM guest to be :ref:`contextualized <bcont>`, and the Template must have the ssh contextualization enabled.
+* End users can upload their public ssh key. This requires the VM guest to be :ref:`contextualized <context_overview>`, and the Template must have the ssh contextualization enabled.
 
 |prepare-tmpl-ssh|
 

@@ -393,7 +393,7 @@ You can create, delete and restore snapshots for running VMs. A snapshot will co
 Resizing VM Capacity
 ----------------------
 
-You may resize the capacity assigned to a Virtual Machine in terms of the virtual CPUs, memory and CPU allocated. VM resizing can be done in any of the following states: 
+You may resize the capacity assigned to a Virtual Machine in terms of the virtual CPUs, memory and CPU allocated. VM resizing can be done in any of the following states:
 POWEROFF, UNDEPLOYED.
 
 If you have created a Virtual Machine and you need more resources, the following procedure is recommended:
@@ -425,7 +425,7 @@ Resizing VM Disks
 If the disks assigned to a Virtual Machine need more size, this can achieved at instantiation time of the VM. The SIZE parameter of the disk can be adjusted and, if it is bigger than the original size of the image, OpenNebula will:
 
 - Increase the size of the disk container prior to launching the VM
-- Using the :ref:`contextualization packages <bcont>`, at boot time the VM will grow the filesystem to adjust to the new size. **This is only available for Linux guests in KVM**.
+- Using the :ref:`contextualization packages <context_overview>`, at boot time the VM will grow the filesystem to adjust to the new size. **This is only available for Linux guests in KVM**.
 
 This can be done with an extra file given to the ``instantiate`` command:
 
@@ -686,7 +686,7 @@ Note: By default, the above operations do not check the target host capacity. Yo
 **Troubleshooting:**
 
 -  ``recover``: If the VM is stuck in any other state (or the boot operation does not work), you can recover the VM with the following options. Read the :ref:`Virtual Machine Failures guide <ftguide_virtual_machine_failures>` for more information.
-   
+
    - ``--success``: simulates the success of the missing driver action
    - ``--failure``: simulates the failure of the missing driver action
    - ``--retry``: retries to perform the current driver action. Optionally the ``--interactive`` can be combined if its a Transfer Manager problem.

@@ -291,7 +291,7 @@ The Virtual Machine will also get a free address from any of the address ranges 
 Configuring the Virtual Machine Network
 ---------------------------------------
 
-Hypervisors will set the MAC address for the NIC of the Virtual Machines, but not the IP address. The IP configuration inside the guest is performed by the contextualization process, check the :ref:`contextualization guide <cong>` to learn how to prepare your Virtual Machines to automatically configure the network
+Hypervisors will set the MAC address for the NIC of the Virtual Machines, but not the IP address. The IP configuration inside the guest is performed by the contextualization process, check the :ref:`contextualization guide <context_overview>` to learn how to prepare your Virtual Machines to automatically configure the network
 
 .. note:: Altenatively a custom external service can configure the Virtual Machine network (e.g. your own DHCP server in a separate virtual machine)
 

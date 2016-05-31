@@ -337,7 +337,7 @@ If the TARGET attribute is not set for a disk, OpenNebula will automatically ass
 
 Please visit the guide for :ref:`managing images <img_guide>` and the :ref:`image template reference <img_template>` to learn more about the different image types.
 
-You can find a complete description of the contextualization features in the :ref:`contextualization guide <cong>`.
+You can find a complete description of the contextualization features in the :ref:`contextualization guide <context_overview>`.
 
 The default device prefix ``sd`` can be changed to ``hd`` or other prefix that suits your virtualization hypervisor requirements. You can find more information in the :ref:`daemon configuration guide <oned_conf>`.
 
