@@ -4,11 +4,6 @@
 Overview
 ========
 
-* Architect
-* Administrator
-* KVM
-* vCenter
-
 OpenNebula includes a complete user & group management system. Users in an OpenNebula installation are classified in four types:
 
 * **Administrators**, an admin user belongs to an admin group (oneadmin or otherwise) and can perform manage operations

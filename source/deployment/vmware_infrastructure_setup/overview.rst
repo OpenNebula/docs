@@ -4,11 +4,6 @@
 Overview
 ================================================================================
 
-.. todo:: Jaime's Table
-
-    -* Cloud Architect
-    -* vCenter
-
 After configuring the OpenNebula front-end and the vCenter nodes, the next step is to learn what capabilities can be leveraged from the vCenter infrastructure and fine tune the OpenNebula cloud to make use of them.
 
 The Virtualization Subsystem is the component in charge of talking with the hypervisor and taking the actions needed for each step in the VM life-cycle. This Chapter gives a detailed view of the vCenter drivers, the resources it manages and how to setup OpenNebula to leverage different vCenter features.

@@ -4,13 +4,6 @@
 Overview
 ================================================================================
 
-.. todo::
-
-    * Architect
-    * Admin
-    * KVM
-    * vCenter
-
 A Public Cloud is an **extension of a Private Cloud to expose RESTful Cloud interfaces**. Cloud interfaces can be added to your Private or Hybrid Cloud if you want to provide partners or external users with access to your infrastructure, or to sell your overcapacity. Obviously, a local cloud solution is the natural back-end for any public cloud.
 
 The :ref:`EC2 Query subset <ec2qcg>` interfaces provide a simple and remote management of cloud (virtual) resources at a high abstraction level. There is no modification in the operation of OpenNebula to expose Cloud interfaces. Users can interface the infrastructure using any Private or Public Cloud interface.

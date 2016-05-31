@@ -4,13 +4,7 @@
 Overview
 ========
 
-* Architect
-* Administrator
-* KVM
-* vCenter
-
 OpenNebula uses a method called contextualization to send information to the VM at boot time. Its most basic usage is to share networking configuration and login credentials with the VM so it can be configured. More advanced cases can be starting a custom script on VM boot or preparing configuration to use :ref:`OpenNebula Gate <onegate_usage>`.
-
 
 How Should I Read This Chapter
 ================================================================================

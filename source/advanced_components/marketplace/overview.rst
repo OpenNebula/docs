@@ -4,13 +4,6 @@
 Overview
 ====================
 
-.. todo::
-
-    * Architect
-    * Admin
-    * KVM
-    * vCenter
-
 Sharing, provisioning and consuming cloud images is one of the main concerns when using Cloud. OpenNebula provides a simple way to create and integrate with a cloud image provider, called MarketPlaces. Think of them as external datastores.
 
 A MarketPlace can be:

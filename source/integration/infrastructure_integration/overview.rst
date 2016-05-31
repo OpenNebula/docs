@@ -4,12 +4,6 @@
 Overview
 ================================================================================
 
-.. todo::
-
-    -* Cloud Architect
-    -* KVM
-    -* vCenter
-
 The interactions between OpenNebula and the Cloud infrastructure are performed by specific drivers. Each one addresses a particular area:
 
 -  **Storage**. The OpenNebula core issue abstracts storage operations (e.g. clone or delete) that are implemented by specific programs that can be replaced or modified to interface special storage backends and file-systems.

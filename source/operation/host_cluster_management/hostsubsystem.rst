@@ -4,11 +4,6 @@
 Overview
 ==========================
 
-* Architect
-* Administrator
-* KVM
-* vCenter
-
 A **Host** is a server that has the ability to run Virtual Machines and that is connected to OpenNebula's Front-end server. OpenNebula can work with Hosts with a heterogeneous configuration, i.e. you can connect Hosts to the same OpenNebula with different hypervisors or Linux distributions. To learn how to prepare the hosts you can read the :ref:`Node Installation guide <node_installation_overview>`.
 
 **Clusters** are pools of hosts that share datastores and virtual networks.

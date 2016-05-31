@@ -4,10 +4,6 @@
 Overview
 ========
 
-* Architect
-* KVM
-* vCenter
-
 OpenNebula comes by default with an internal user/password authentication system, see the :ref:`Users & Groups Subsystem guide <auth_overview>` for more information. You can enable an external Authentication driver.
 
 Authentication

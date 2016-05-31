@@ -1,13 +1,8 @@
-
 .. _node_installation_overview:
 
 ================================================================================
 Overview
 ================================================================================
-
-* Architect
-* KVM
-* vCenter
 
 After OpenNebula Front-end is correctly setup the next step is preparing the hosts where the VMs are going to run.
 

@@ -2,12 +2,6 @@
 Overview
 ================================================================================
 
-.. todo::
-
-    -* Cloud Architect
-    -* KVM
-    -* vCenter
-
 This Chapter contains advanced references to compile OpenNebula from the source code and how to extend the Sunstone functionality.
 
 How Should I Read This Chapter

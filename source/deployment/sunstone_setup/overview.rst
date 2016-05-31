@@ -5,13 +5,6 @@
 Overview
 ================================================================================
 
-.. todo::
-    * Cloud Architect
-    * Cloud Admin
-    * Cloud User
-    * KVM
-    * vCenter
-
 OpenNebula Sunstone is a Graphical User Interface (GUI) intended for both end users and administrators that simplifies the typical management operations in private and hybrid cloud infrastructures. OpenNebula Sunstone allows to easily manage all OpenNebula resources and perform typical operations on them.
 
 |admin_view|

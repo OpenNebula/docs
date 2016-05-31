@@ -4,11 +4,6 @@
 Overview
 ====================
 
-.. todo::
-
-    * Architect
-    * KVM
-
 When a new Virtual Machine is launched, OpenNebula will connect its network interfaces (defined by NIC attribute) to hypervisor physical devices as defined in the :ref:`Virtual Network <vgg>`. This will allow the VM to have access to different networks, public or private.
 
 OpenNebula supports four different networking modes:

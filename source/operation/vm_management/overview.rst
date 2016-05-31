@@ -4,12 +4,6 @@
 Overview
 ================================================================================
 
-.. todo::
-    * Cloud Architect
-    * Cloud Admin
-    * KVM
-    * vCenter
-
 This chapter contains documentation on how to create and manage Virtual Machine :ref:`templates <vm_guide>`, :ref:`instances <vm_instances>`, and :ref:`Images <img_guide>` (VM disks).
 
 How Should I Read This Chapter

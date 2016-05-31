@@ -4,11 +4,6 @@
 Overview
 ================================================================================
 
-.. todo::
-
-    * Architect
-    * KVM
-
 The Hosts are servers with a hypervisor installed (KVM) which execute the running Virtual Machines. These Hosts are managed by the KVM Driver, which will perform the actions needed to manage the VM and its life-cycle. This chapter analyses the KVM driver in detail, and will give you, amongst other things, the tools to configure and add KVM hosts into the OpenNebula Cloud.
 
 How Should I Read This Chapter

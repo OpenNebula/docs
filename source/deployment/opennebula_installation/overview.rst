@@ -4,10 +4,6 @@
 Overview
 ================================================================================
 
-* Architect
-* KVM
-* vCenter
-
 The Front-end is the central part of an OpenNebula installation. This is the machine where the server software is installed and where you connect to manage your cloud. It can be a physical node or a Virtual Machine.
 
 How Should I Read This Chapter

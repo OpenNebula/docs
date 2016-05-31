@@ -5,12 +5,6 @@
 Overview
 ================================================================================
 
-.. todo::
-    * Cloud Architect
-    * Cloud Admin
-    * KVM
-    * vCenter
-
 OneFlow is an OpenNebula component that allows users and administrators to define, execute and manage multi-tiered services composed of interconnected Virtual Machines with deployment dependencies between them. Each group of Virtual Machines is deployed and managed as a single entity, and is completely integrated with the advanced :ref:`OpenNebula user and group management <auth_overview>`.
 
 The benefits of OneFlow are:
