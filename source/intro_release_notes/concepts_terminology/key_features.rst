@@ -85,7 +85,7 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 - Easy integration with chargeback and billing platforms
 
-- :ref:`Showback <showback>` capabilities to define cost associated to CPU/hours and MEMORY/hours per VM Template.
+- :ref:`Showback <showback>` capabilities to define cost associated to CPU/hours and MEMORY/hours per VM Template
 
 
 **MULTI-TENANCY AND SECURITY**
