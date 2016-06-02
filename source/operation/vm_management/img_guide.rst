@@ -319,56 +319,12 @@ Images can be referred in a DISK in two different ways:
 Save Changes
 ------------
 
-Once the VM is deployed you can snapshot a disk, i.e. save the changes made to the disk as a new Image. There are two types of disk snapshots in OpenNebula:
+Once the VM is deployed you can and changes are made to its disk, you can save those changes in two different ways:
 
-* **Deferred snapshots** (disk-snapshot), changes to a disk will be saved as a new Image in the associated datastore when the VM is shutdown.
-* **Hot snapshots** (hot disk-snapshot), just as the deferred snapshots, but the disk is copied to the datastore the moment the operation is triggered. Therefore, you must guarantee that the disk is in a consistent state during the save\_as operation (e.g. by unmounting the disk from the VM).
+* **Disk snapshots**, a snapshot of the disk state is saved, you can later revert to this saved state.
+* **Disk save\_as**, the disk is copied to a new Image in the datastore. A new virtual machine can be started from it. The the disk must be in a consistent state during the save\_as operation (e.g. by unmounting the disk from the VM).
 
-To save a disk, use the ``onevm disk-snapshot`` command. This command takes three arguments: The VM name (or ID), the disk ID to save and the name of the new Image to register. And optionally the --live argument to not defer the disk-snapshot operation. A deferred snapshot can be canceled with the ``onevm disk-snapshot-cancel`` command.
-
-To know the ID of the disk you want to save, just take a look at the ``onevm show`` output for your VM, you are interested in the ID column in the VM DISK section.
-
-.. prompt:: text $ auto
-
-    $ onevm show 11
-    VIRTUAL MACHINE 11 INFORMATION
-    ID                  : 11
-    NAME                : ttylinux-11
-    USER                : ruben
-    GROUP               : oneadmin
-    STATE               : PENDING
-    LCM_STATE           : LCM_INIT
-    RESCHED             : No
-    START TIME          : 03/08 22:24:57
-    END TIME            : -
-    DEPLOY ID           : -
-
-    [..]
-
-    VM DISKS
-     ID TARGET IMAGE                               TYPE SAVE SAVE_AS
-      0    hda ttylinux                            file   NO       -
-      1    hdb raw - 100M                          fs     NO       -
-
-    VM NICS
-    ID NETWORK      VLAN BRIDGE   IP              MAC
-     0 net_172        no vbr0     172.16.0.201    02:00:ac:10:00:c9
-                                  fe80::400:acff:fe10:c9
-
-
-The IDs are assigned in the same order the disks were defined in the :ref:`VM template <template>`.
-
-The next command will register a new Image called "SO upgraded", that will be ready as soon as the VM is shut down. Till then the Image will be locked, and so you cannot use it.
-
-.. prompt:: text $ auto
-
-    $ onevm disk-snapshot ttylinux-11 0 "SO upgraded"
-
-This command copies disk 1 to the datastore with name *Backup of DB volume*, the Image will be available once the image copy ends:
-
-.. prompt:: text $ auto
-
-    $ onevm disk-snapshot --live ttylinux-11 1 "Backup of DB volume"
+A detailed description of this process is :ref:`described in section Vritual Machine Instances <vm_guide_2_disk_snapshots>`
 
 .. _img_guide_files:
 
