@@ -19,10 +19,10 @@ If you have two or more 4.14.x OpenNebulas working as a :ref:`Federation <introf
 
 The steps to follow are:
 
-- 1. Stop the MySQL replication in all the slaves
-- 2. Upgrade the **master** OpenNebula
-- 3. Upgrade each **slave**
-- 4. Resume the replication
+1. Stop the MySQL replication in all the slaves
+2. Upgrade the **master** OpenNebula
+3. Upgrade each **slave**
+4. Resume the replication
 
 During the time between steps 1 and 4 the slave OpenNebulas can be running, and users can keep accessing them if each zone has a local Sunstone instance. There is however an important limitation to note: all the shared database tables will not be updated in the slaves zones. This means that new user accounts, password changes, new ACL rules, etc. will not have any effect in the slaves. Read the :ref:`federation architecture documentation <introf_architecture>` for more details.
 
