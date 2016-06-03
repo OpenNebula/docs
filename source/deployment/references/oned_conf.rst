@@ -463,6 +463,7 @@ The Datastore Driver defines a set of scripts to manage the storage backend.
 
    -  **-t** number of threads, i.e. number of repo operations at the same time
    -  **-d** datastore mads separated by commas
+   -  **-s** system datastore tm drivers, used to monitor shared system ds
 
 Sample configuration:
 
