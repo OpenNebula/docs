@@ -120,7 +120,7 @@ The following applies to all Front-Ends:
 
 * XML-RPC tuning parameters (``MAX_CONN``, ``MAX_CONN_BACKLOG``, ``KEEPALIVE_TIMEOUT``, ``KEEPALIVE_MAX_CONN`` and ``TIMEOUT``) are only available with packages distributed by us as they are compiled with a newer xmlrpc-c library.
 * For **cloud bursting**, a newer nokogiri gem than the one packed by current distros is required. If you are planning to use cloud bursting, you need to install nokogiri >= 1.4.4 prior to run ``install_gems``: ``# sudo gem install nokogiri -v 1.4.4``.
-* Older ruby versions ( <= 1.9.3 ) are not supported for **cloud bursting** (specifically for Microsoft Azure) and the :ref:`Sunstone commercial support integration <commercial_support_sunstone>`
+* Only **ruby versions >= 1.9.3 are supported**.
 
 CentOS 7.0 Platform Notes
 --------------------------------------------------------------------------------
