@@ -171,5 +171,7 @@ Images can be imported from the vCenter datastore using the **onevcenter** tool:
         Import this Image [y/n]? y
         OpenNebula image 0 created!
 
+..warning: Images spaces are not allowed for import
+
 .. note: By default, OpenNebula checks the datastore capacity to see if the image fits. This may cause a "Not enough space in datastore" error. To avoid this error, disable the datastore capacity check before importing images. This can be changes in /etc/one/oned.conf, using the DATASTORE_CAPACITY_CHECK set to "no".
 
