@@ -8,7 +8,7 @@ Release Notes 5.0
    :maxdepth: 1
 
    What's New in 5.0 <whats_new>
-   Platform Notes <uspng>
+   Platform Notes <platform_notes>
    Compatibility Guide <compatibility>
    Known Issues <known_issues>
    Acknowledgements <acknowledgements>

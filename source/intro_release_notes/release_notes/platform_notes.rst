@@ -178,6 +178,23 @@ The libvirt/qemu packages used in the testing infrastructure are the ones in the
     # yum install centos-release-qemu-ev
     # yum install qemu-kvm-ev
 
+Disable PolicyKit for Libvirt
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+It is recommended that you disable PolicyKit for Libvirt:
+
+.. prompt:: bash # auto
+
+  $ cat /etc/libvirt/libvirtd.conf
+  ...
+  auth_unix_ro = "none"
+  auth_unix_rw = "none"
+  unix_sock_group = "oneadmin"
+  unix_sock_ro_perms = "0770"
+  unix_sock_rw_perms = "0770"
+  ...
+
+
 Unsupported Platforms Notes
 ================================================================================
 
