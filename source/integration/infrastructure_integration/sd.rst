@@ -127,7 +127,7 @@ Action scripts for generic image datastores:
    -  ``vm_id`` is the id of the VM
    -  ``ds_id`` is the target datastore (the original datastore for the image)
 
--  **mv**: moves images/directories across system\_ds in different hosts. When used for the system datastore the script will received the directory ARGUMENT
+-  **mv**: moves images/directories across system\_ds in different hosts. When used for the system datastore the script will received the directory ARGUMENT. This script will be also called for the image TM for each disk to perform setup tasks on the target node.
 
    -  **ARGUMENTS**: ``hostA:system_ds/disk.i|hostB:system_ds/disk.i vm_id ds_id`` OR ``hostA:system_ds/|hostB:system_ds/ vm_id ds_id``
    -  ``hostA`` is the host the VM is in.
@@ -218,14 +218,66 @@ Action scripts needed when the TM is used for the system datastore:
    -  ``vm_id`` is the id of the VM
    -  ``ds_id`` is the target datastore (the system datastore)
 
--  **monitor**: monitors a **shared** system datastore. Distributed system datastores are monitored through the monitor probes.
+-  **monitor**: monitors a **shared** system datastore. Non-shared system datastores are monitored through ``monitor_ds`` script.
 
    -  **ARGUMENTS**: ``datastore_action_dump image_id``
    -  **RETURNS**: ``monitor data``
    -  ``datastore_image_dump`` is an XML dump of the driver action encoded in Base 64. See a decoded :ref:`example <sd_dump>`.
-   -  ``monitor data`` The monitoring information of the datastore, namely “USED\_MB=...\\nTOTAL\_MB=...\\nFREE\_MB=...” which are respectively the used size of the datastore in MB, the total capacity of the datastore in MB and the available space in the datastore in MB.
+   -  ``monitor data`` Including:
+
+      - The monitoring information of the datastore, namely “USED\_MB=...\\nTOTAL\_MB=...\\nFREE\_MB=...” which are respectively the used size of the datastore in MB, the total capacity of the datastore in MB and the available space in the datastore in MB.
+      - It also needs to return for each VM the size of each disk and any snapshot on those disks. In the form:
+
+.. code::
+
+  VM = [ ID = ${vm_id}, POLL = "\
+      DISK_SIZE=[ID=${disk_id},SIZE=${disk_size}]
+      ...
+      SNAPSHOT_SIZE=[ID=${snap},DISK_ID=${disk_id},SIZE=${snap_size}]
+      ...
+      "
+  ]
+  ...
+
+-  **monitor_ds**: monitors a **ssh-like** system datastore. Distributed system datastores should ``exit 0`` on the previous monitor script. Arguments and return values are the same as the monitor script.
 
 .. note:: If the TM is only for regular images you only need to implement the first group.
+
+The Montiring Process
+================================================================================
+Image Datastores
+--------------------------------------------------------------------------------
+
+The information is obtained periodically using the Datastore driver monitor script
+
+Shared System Datastores
+--------------------------------------------------------------------------------
+
+These datastores are monitored from a single point once (either the front-end or one of the storage bridges in ``BRIDGE_LIST``). This will prevent overloading the storage by all the nodes querying it at the same time.
+
+The driver plugin ``<tm_mad>/monitor`` will report the information for two things:
+
+- Total storage metrics for the datastore (``USED_MB`` ``FREE_MB`` ``TOTAL_MB``)
+- Disk usage metrics (all disks: volatile, persistent and non-persistent)
+
+
+Non-shared System Datastores (SSH-like)
+--------------------------------------------------------------------------------
+Non-shared SSH datastores are labeled by including a ``.monitor`` file in the datastore directory in any of the clone or ln operations. Only those datastores are monitored remotely by the monitor_ds.sh probe. The datastore is monitored with ``<tm_mad>/monitor_ds``, but ``tm_mad`` is obtained by the probes reading from the .monitor file.
+
+The plugins <tm_mad>/monitor_ds + kvm-probes.d/monitor_ds.sh will report the information for two things:
+
+- Total storage metrics for the datastore (``USED_MB`` ``FREE_MB`` ``TOTAL_MB``)
+- Disk usage metrics (all disks volatile, persistent and non-persistent)
+
+.. note:: ``.monitor`` will be only present in SSH datastores to be monitored in the nodes.  System Datastores that need to be monitored in the nodes will need to provide a ``monitor_ds`` script and not the ``monitor`` one. This is to prevent errors, and not invoke the shared mechanism for local datastores.
+
+The monitor_ds script.
+--------------------------------------------------------------------------------
+The monitor_ds.sh probe from the IM, if the ``.monitor`` file is present (e.g. ``/var/lib/one/datastores/100/.monitor``), will execute its contents in the form ``/var/tmp/one/remotes/tm/$(cat .monitor)/monitor_ds /var/lib/one/datastores/100/``. Note that the argument is the datastore path and not the VM or VM disk.
+
+The script is responsible from getting the information from all disks of all VMs in the datastore in that node.
+
 
 An Example VM
 ================================================================================
