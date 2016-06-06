@@ -135,6 +135,8 @@ When using Apache to serve Sunstone, it is required that you disable or comment 
 
 There is an automatic job that removes all data from ``/var/tmp/``, in order to disable this, please edit the ``/usr/lib/tmpfiles.d/tmp.conf`` and remove the line that removes ``/var/tmp``.
 
+There is a bug in libvirt that the prevents the use of the save/restore mechanism if ``cpu_model`` is set to ``'host-passthrough'`` via ``RAW``. The `work around if needed is described in this issue <http://dev.opennebula.org/issues/4204>`__.
+
 Ubuntu 14.04 Platform Notes
 --------------------------------------------------------------------------------
 
