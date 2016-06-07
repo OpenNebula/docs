@@ -30,7 +30,7 @@ OpenNebula provides a light weight Alpine-based virtual router. The virtual rout
 
 .. note:: For vCenter infrastructures an ova with the preconfigured image can be imported from the following URL:
 
-    https://s3-eu-west-1.amazonaws.com/opennebula-marketplace/alpine-vrouter.ova
+    https://s3-eu-west-1.amazonaws.com/opennebula-marketplace/alpine-quagga.ova
 
     After that you'll only need to import new templates from vcenter and set the template as Virtual Router at the bottom of the General tab of the template update wizzard.
 
