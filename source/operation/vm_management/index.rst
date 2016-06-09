@@ -9,4 +9,5 @@ Virtual Machine Management
    Virtual Machine Images <img_guide>
    Virtual Machine Templates <vm_templates>
    Virtual Machine Instances <vm_instances>
-   vCenter Specifics <vcenter_specifics> 
+   vCenter Specifics <vcenter_specifics>
+
