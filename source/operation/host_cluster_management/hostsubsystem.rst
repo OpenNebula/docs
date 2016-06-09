@@ -16,7 +16,7 @@ In this chapter there are four guides describing these objects.
 * **Host Management**: Host management is achieved through the ``onehost`` CLI command or through the Sunstone GUI. You can read about Host Management in more detail in the :ref:`Managing Hosts <host_guide>` guide.
 * **Cluster Management**: Hosts can be grouped in Clusters. These Clusters are managed with the ``onecluster`` CLI command, or through the Sunstone GUI. You can read about Cluster Management in more detail in the :ref:`Managing Clusters <cluster_guide>` guide.
 * **Scheduler**: Where you'll learn how to change the scheduling configuration to suit your needs. For example changing the scheduling policies or the number of VMs that will be sent per host.
-* **Datastore**: 
+* **Datastore**: Where you'll learn about how to confgure and manage the different types of datastore types.
 
 
 You should read all the guides in this chapter to familiarize with these objects. For small and homogeneous clouds you may not need to create new clusters.
