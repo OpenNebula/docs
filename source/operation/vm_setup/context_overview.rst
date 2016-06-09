@@ -8,6 +8,7 @@ OpenNebula uses a method called contextualization to send information to the VM 
 
 How Should I Read This Chapter
 ================================================================================
+Before reading this chapter, you should have already installed your :ref:`Frontend <frontend_installation>`, the :ref:`KVM Hosts <kvm_node>` or :ref:`vCenter node <vcenter_node>` and have an OpenNebula cloud up and running with at least one virtualization node.
 
 To enable the use of contextualization there are two steps that you need to perform:
 
