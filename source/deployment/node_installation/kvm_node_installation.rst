@@ -102,7 +102,7 @@ A network connection is needed by the OpenNebula Front-end daemons to access the
 
 There are various network models (please check the :ref:`Networking <nm>` chapter to find out the networking technologies supported by OpenNebula).
 
-You may want to use the simplest network model that corresponds to the :ref:`dummy <bridged>` drivers. For this driver, you will need to setup a linux bridge and include a physical device to the bridge. Later on, when defining the network in OpenNebula, you will specify the name of this bridge and OpenNebula will know that it should connect the VM to this bridge, thus giving it connectivity with the physical network device connected to the bridge. For example, a typical host with two physical networks, one for public IP addresses (attached to an ``eth0`` NIC for example) and the other for private virtual LANs (NIC ``eth1`` for example) should have two bridges:
+You may want to use the simplest network model that corresponds to the :ref:`bridged <bridged>` drivers. For this driver, you will need to setup a linux bridge and include a physical device to the bridge. Later on, when defining the network in OpenNebula, you will specify the name of this bridge and OpenNebula will know that it should connect the VM to this bridge, thus giving it connectivity with the physical network device connected to the bridge. For example, a typical host with two physical networks, one for public IP addresses (attached to an ``eth0`` NIC for example) and the other for private virtual LANs (NIC ``eth1`` for example) should have two bridges:
 
 .. prompt:: bash $ auto
 
