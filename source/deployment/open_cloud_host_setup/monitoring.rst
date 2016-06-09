@@ -2,7 +2,7 @@
 .. _imudppushg:
 
 ====================
-Monitoring Overview
+Monitoring 
 ====================
 
 This section provides an overview of the OpenNebula monitoring subsystem. The monitoring subsystem gathers information relative to the Hosts and the Virtual Machines, such as the Host status, basic performance indicators, as well as Virtual Machine status and capacity consumption. This information is collected by executing a set of static probes provided by OpenNebula. The output of these probes is sent to OpenNebula using a push mechanism.
