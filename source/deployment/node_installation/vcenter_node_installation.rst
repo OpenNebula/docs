@@ -154,6 +154,18 @@ In order to configure OpenNebula to work with the vCenter drivers, the following
     ]
     #-------------------------------------------------------------------------------
 
+As a Virtualization driver, the vCenter driver accept a series of parameters that control their execution. The parameters allowed are:
+
++----------------+-------------------------------------------------------------------+
+| parameter      | description                                                       |
++================+===================================================================+
+| -r <num>       | number of retries when executing an action                        |
++----------------+-------------------------------------------------------------------+
+| -t <num        | number of threads, i.e. number of actions done at the same time   |
++----------------+-------------------------------------------------------------------+
+
+See the :ref:`Virtual Machine drivers reference <devel-vmm>` for more information about these parameters, and how to customize and extend the drivers.
+
 OpenNebula needs to be restarted afterwards, this can be done with the following command:
 
 .. prompt:: bash $ auto

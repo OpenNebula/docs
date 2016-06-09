@@ -1,8 +1,8 @@
 .. _ssh_auth:
 
-=========
+================================================================================
 SSH Authentication
-=========
+================================================================================
 
 This guide will show you how to enable and use the SSH authentication for the OpenNebula CLI. Using this authentication method, users login to OpenNebula with a token encrypted with their private ssh keys.
 
