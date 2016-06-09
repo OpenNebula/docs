@@ -8,5 +8,5 @@ Virtual Machine Setup
    Overview <context_overview>
    KVM Contextualization <kvm>
    vCenter Contextualization <vcenter>
-   Adding content to your cloud <add_content>
+   Adding Content to Your Cloud <add_content>
 
