@@ -139,7 +139,7 @@ To import existing VMs, the 'onehost importvm" command can be used. VMs in runni
 
 After a Virtual Machine is imported, their life-cycle (including creation of snapshots) can be controlled through OpenNebula. The following operations *cannot* be performed on an imported VM:
 
-- Delete --recreate
+- Recover --recreate
 - Undeploy (and Undeploy --hard)
 - Migrate (and Migrate --live)
 - Stop
