@@ -75,7 +75,7 @@ OpenNebula uses several assumptions to instantiate a VM Template in an automatic
 
 - Target **resource pool**: OpenNebula uses the default cluster resource pool to place the VM instantiated from the VM template, unless VCENTER_RESOURCE_POOL variable defined in the OpenNebula host template, or the tag RESOURCE_POOL is present in the VM Template inside the PUBLIC_CLOUD section.
 
-Saving a VM Template: Save As Persistent
+Saving a VM Template: Instantiate to Persistent
 --------------------------------------------------------------------------------
 
 At the time of deploying a VM Template, a flag can be used to create a new VM Template out of the VM.
@@ -84,9 +84,9 @@ At the time of deploying a VM Template, a flag can be used to create a new VM Te
 
   $ onetemplate instantiate <tid> --persistent
 
-Whenever the VM life-cycle ends, OpenNebula will instruct vCenter to create a new vCenter VM Template out of the VM, with the settings of the VM including any new disks or network interfaces added through OpenNebula. Any new disk added to the VM will be saved as part of the template, and when a new VM is spawnm from this new VM Template the disk will be cloned by OpenNebula (ie, it will no longer be persistent).
+Whenever the VM life-cycle ends, OpenNebula will instruct vCenter to create a new vCenter VM Template out of the VM, with the settings of the VM including any new disks or network interfaces added through OpenNebula. Any new disk added to the VM will be saved as part of the template, and when a new VM is spawned from this new VM Template the disk will be cloned by OpenNebula (ie, it will no longer be persistent).
 
-A new OpenNebula VM Template will also be created pointing to this new VM Template, so it can be instantiated through OpenNebula.
+A new OpenNebula VM Template will also be created pointing to this new VM Template, so it can be instantiated through OpenNebula. This new OpenNebula VM Template will be pointing to the original template until the VM is shutdown, at which point it will be converted to a vCenter VM Template and the OpenNebual VM Template updated to point to this new vCentre VM Template.
 
 This functionality is very useful to create new VM Templates from a original VM Template, changing the VM configuration and/or installing new software, to create a complete VM Template catalog.
 
@@ -171,7 +171,7 @@ Images can be imported from the vCenter datastore using the **onevcenter** tool:
         Import this Image [y/n]? y
         OpenNebula image 0 created!
 
-..warning: Images spaces are not allowed for import
+.. warning: Images spaces are not allowed for import
 
 .. note: By default, OpenNebula checks the datastore capacity to see if the image fits. This may cause a "Not enough space in datastore" error. To avoid this error, disable the datastore capacity check before importing images. This can be changes in /etc/one/oned.conf, using the DATASTORE_CAPACITY_CHECK set to "no".
 
