@@ -152,7 +152,7 @@ Images can be imported from the vCenter datastore using the **onevcenter** tool:
 
 .. prompt:: text $ auto
 
-    $ onevcenter images datastore1 --vuser oneadmin@vsphere.local --vpass Pantufl4. --vcenter vcenter.vcenter3
+    $ onevcenter images datastore1 --vcenter <vcenter-host> --vuser <vcenter-username> --vpass <vcenter-password>
 
     Connecting to vCenter: vcenter.vcenter3...done!
 
@@ -170,6 +170,8 @@ Images can be imported from the vCenter datastore using the **onevcenter** tool:
           - Type      : VmDiskFileInfo
         Import this Image [y/n]? y
         OpenNebula image 0 created!
+
+.. warning: Both "ADAPTER_TYPE" and "DISK_TYPE" need to be set at either the Datastore level, the Image level or the VM Disk level. Otherwise image related operations may fail.
 
 .. warning: Images spaces are not allowed for import
 

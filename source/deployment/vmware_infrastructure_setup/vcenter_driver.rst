@@ -36,7 +36,8 @@ Considerations & Limitations
 - **No Security Groups**: Firewall rules as defined in Security Groups cannot be enforced in vCenter VMs.
 - OpenNebula treats **snapshots** a tad different than VMware. OpenNebula assumes that they are independent, whereas VMware builds them incrementally. This means that OpenNebula will still present snapshots that are no longer valid if one of their parent snapshots are deleted, and thus revert operations applied upon them will fail.
 - **No files in context**: Passing entire files to VMs is not supported, but all the other CONTEXT sections will be honored
-- Cluster name cannot contain spaces
+- Cluster names cannot contain spaces
+- Image names cannot contain spaces
 - vCenter credential password cannot have more than 22 characters
 - If you are running Sunstone using nginx/apache you will have to forward the following headers to be able to interact with vCenter, HTTP_X_VCENTER_USER, HTTP_X_VCENTER_PASSWORD and HTTP_X_VCENTER_HOST (or, alternatively, X_VCENTER_USER, X_VCENTER_PASSWORD and X_VCENTER_HOST). For example in nginx you have to add the following attrs to the server section of your nginx file: (underscores_in_headers on; proxy_pass_request_headers on;)
 - Spaces in image names are not supported
