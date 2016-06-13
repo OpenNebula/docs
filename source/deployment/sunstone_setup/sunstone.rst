@@ -21,6 +21,8 @@ The Sunstone Operation Center offers the possibility of starting a VNC/SPICE ses
 
 .. warning:: The SPICE Web client is a prototype and is limited in function. More information of this component can be found in the following `link <http://www.spice-space.org/page/Html5>`__
 
+.. warning:: Make sure that there is free space in sunstone's log directory or it will die silently. By default the log directory is ``/var/log/one``.
+
 Requirements:
 
 -  Websockets-enabled browser (optional): Firefox and Chrome support websockets. In some versions of Firefox manual activation is required. If websockets are not enabled, flash emulation will be used.
