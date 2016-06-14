@@ -86,7 +86,7 @@ OpenNebula Drivers :: vCenter Virtualization
 - **Support for vCenter storage**, with :ref:`storage functionality <vcenter_ds>` like for instance VMDK upload, cloning and deleting, VM disk hotplug and choose Datastore for newly launched VMs.
 - **Improved VM import**, with the ability to :ref:`import powered off VMs <import_vcenter_resources>`.
 - **Instantiate to persistent**, for VMs creating a new :ref:`VM Template in vCenter <vcenter_instantiate_to_persistent>`.
-- **Control VM disk deletion** on VM shutdown with a new `VM Template attribute <vm_template_definition_vcenter>`.
+- **Control VM disk deletion** on VM shutdown with a new :ref:`VM Template attribute <vm_template_definition_vcenter>`.
 
 OpenNebula Drivers :: Hybrid Virtualization
 --------------------------------------------------------------------------------
