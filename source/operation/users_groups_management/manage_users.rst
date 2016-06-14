@@ -15,7 +15,7 @@ After the installation, you will have two administrative accounts, ``oneadmin`` 
 
 There are different user types in the OpenNebula system:
 
-* **Cloud Administrators**, the **oneadmin** account is created **the first time** OpenNebula is started using the ONE\_AUTH data. ``oneadmin`` has enough privileges to perform any operation on any object. Any other user in the oneadmin group has the same privileges as ``oneadmin``
+* **Cloud Administrators**, the **oneadmin** account is created **the first time** OpenNebula is started using the ONE_AUTH data. ``oneadmin`` has enough privileges to perform any operation on any object. Any other user in the oneadmin group has the same privileges as ``oneadmin``
 * **Infrastructure User** accounts may access most of the functionality offered by OpenNebula to manage resources.
 * **Group Administrators** accounts manage a limited set of resources and users.
 * **Users** access a simplified Sunstone view with limited actions to create new VMs, and perform basic life cycle operations.
@@ -31,11 +31,11 @@ Shell Environment
 
 OpenNebula users should have the following environment variables set, you may want to place them in the .bashrc of the user's Unix account for convenience:
 
-**ONE\_XMLRPC**
+**ONE_XMLRPC**
 
 URL where the OpenNebula daemon is listening. If it is not set, CLI tools will use the default: ``http://localhost:2633/RPC2``. See the ``PORT`` attribute in the :ref:`Daemon configuration file <oned_conf>` for more information.
 
-**ONE\_AUTH**
+**ONE_AUTH**
 
 Needs to point to **a file containing a valid authentication key**, it can be:
 
@@ -45,7 +45,7 @@ Needs to point to **a file containing a valid authentication key**, it can be:
 
 If ``ONE_AUTH`` is not defined, ``$HOME/.one/one_auth`` will be used instead. If no auth file is present, OpenNebula cannot work properly, as this is needed by the core, the CLI, and the cloud components as well.
 
-**ONE\_POOL\_PAGE\_SIZE**
+**ONE_POOL_PAGE_SIZE**
 
 By default the OpenNebula Cloud API (CLI and Sunstone make use of it) paginates some pool responses. By default this size is 2000 but it can be changed with this variable. A numeric value greater that 2 is the pool size. To disable it you can use a non numeric value.
 
@@ -54,7 +54,7 @@ By default the OpenNebula Cloud API (CLI and Sunstone make use of it) paginates 
     $ export ONE_POOL_PAGE_SIZE=5000        # Sets the page size to 5000
     $ export ONE_POOL_PAGE_SIZE=disabled    # Disables pool pagination
 
-**ONE\_CERT\_DIR** and **ONE\_DISABLE\_SSL\_VERIFY**
+**ONE_CERT_DIR** and **ONE_DISABLE_SSL_VERIFY**
 
 If OpenNebula XML-RPC endpoint is behind an SSL proxy you can specify an extra trusted certificates directory using ``ONE_CERT_DIR``. Make sure that the certificate is named ``<hash>.0``. You can get the hash of a certificate with this command:
 
@@ -101,19 +101,22 @@ If ``user`` is specified but not ``password`` the user will be prompted for the 
 
 .. warning:: You should better not use ``--password`` parameter in a shared machine. Process parameters can be seen by any user with the command ``ps`` so it is highly insecure.
 
-**ONE\_SUNSTONE**
+**ONE_SUNSTONE**
 
-URL of the Sunstone portal, used for downloading MarketPlaceApps streamed through Sunstone. If this is not specified, it will be inferred from ``ONE\_XMLRPC`` (by changing the port to 9869), and if that env variable is undefined as well, it will default to ``http://localhost:9869``.
+URL of the Sunstone portal, used for downloading MarketPlaceApps streamed through Sunstone. If this is not specified, it will be inferred from ``ONE_XMLRPC`` (by changing the port to 9869), and if that env variable is undefined as well, it will default to ``http://localhost:9869``.
 
+**ONEFLOW_URL**, **ONEFLOW_USER** and **ONEFLOW_PASSWORD**
+
+These variables are used by the :ref:`OneFlow <oneflow_overview>` command line tools. If not set, the default OneFlow URL will be ``http://localhost:2474``. The user and password will be taken from the ``ONE_AUTH`` file if the environment variables are not found.
 
 Shell Environment for Self-Contained Installations
 --------------------------------------------------------------------------------
 
 If OpenNebula was installed from sources in **self-contained mode** (this is not the default, and not recommended), these two variables must be also set. These are not needed if you installed from packages, or performed a system-wide installation from sources.
 
-**ONE\_LOCATION**
+**ONE_LOCATION**
 
-It must point to the installation <destination\_folder>.
+It must point to the installation <destination_folder>.
 
 **PATH**
 

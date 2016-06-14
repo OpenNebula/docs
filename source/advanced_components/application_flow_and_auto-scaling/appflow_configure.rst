@@ -141,6 +141,11 @@ Inside ``/var/log/one/`` you will find new log files for the server, and individ
     /var/log/one/oneflow.error
     /var/log/one/oneflow.log
 
+Set the Environment Variables
+================================================================================
+
+By default the :ref:`command line tools <cli>` will use the ``one_auth`` file and the ``http://localhost:2474`` OneFlow URL. To change it, set the shell environment variables as explained in the :ref:`Managing Users documentation<manage_users_shell>`.
+
 Enable the Sunstone Tabs
 ========================
 
