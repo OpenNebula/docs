@@ -1,10 +1,10 @@
 .. _whats_new:
 
 ================================================================================
-What's New in 5.0 Beta
+What's New in 5.0
 ================================================================================
 
-OpenNebula 5.0 Beta (Wizard) is the first release of the major 5.0 update. As such, it comes with several improvements in different subsystems and components, with minimal changes in the API and the VM life-cycle states which embodies long overdue changes but implemented to minimize the impact and ensure backwards compatibility as far as possible. Sunstone never stops evolving, and this is the look and feel the team is most proud of to date.
+OpenNebula 5.0 (Wizard) is the first release of the major 5.0 update. As such, it comes with several improvements in different subsystems and components, with minimal changes in the API and the VM life-cycle states which embodies long overdue changes but implemented to minimize the impact and ensure backwards compatibility as far as possible. Sunstone never stops evolving, and this is the look and feel the team is most proud of to date.
 
 .. image:: /images/admin_view.png
     :width: 90%
@@ -30,7 +30,7 @@ There are many other improvements in 5.0 like dynamic context regeneration, new 
 
 This OpenNebula release is named after `NGC 7380 (also known as the Wizard Nebula) <https://en.wikipedia.org/wiki/NGC_7380>`__, an open cluster also known as 142 in the 1959 Sharpless catalog (Sh2-142). This reasonably large nebula is located in Cepheus. It is extremely difficult to observe visually, usually requiring very dark skies and an O-III filter.
 
-The OpenNebula team is now set to bug-fixing mode. Note that this is a beta release aimed at testers and developers to try the new features, hence not suitable for production environments. Feedback is more than welcome for the final release.
+OpenNebula 5.0 Wizard is considered to be a stable release and as such, and update is available in production environments.
 
 In the following list you can check the highlights of OpenNebula 5.0 Beta (`a detailed list of changes can be found here <http://dev.opennebula.org/projects/opennebula/issues?utf8=%E2%9C%93&set_filter=1&f%5B%5D=fixed_version_id&op%5Bfixed_version_id%5D=%3D&v%5Bfixed_version_id%5D%5B%5D=75&f%5B%5D=&c%5B%5D=tracker&c%5B%5D=status&c%5B%5D=priority&c%5B%5D=subject&c%5B%5D=assigned_to&c%5B%5D=updated_on&group_by=category>`__):
 
@@ -76,18 +76,16 @@ OpenNebula Drivers :: KVM Virtualization
 - **VM Template recursive cloning**, the :ref:`VM Template clone <vm_template_clone>` operation now also clones the VM Template images. This also applies to the delete operation.
 - **Additional information in the metadata field**, new element in the :ref:`VM XML document <vm_guide_2>`.
 - **Support for qemu guest agent**, a new option :ref:`GUEST available in the VM template <template>`.
-- **Generic disk polling for block devices** [TODO]
+- **Generic disk polling for block devices**, as part of a general improvement in the system :ref:`datastore monitoring <mon>`.
 
 OpenNebula Drivers :: vCenter Virtualization
 --------------------------------------------------------------------------------
 
-- **Dynamic VM reconfiguration**, for certain VM configuration values when the VM is in poweroff state [TODO]
 - **vCenter VM name configurable** using a configurable vCenter name :ref:`suffix <vcenter_suffix_note>`.
 - **Support for Resource Pools**, with the ability to :ref:`select one <vcenter_resource_pool>` for a launched VM or delegate the choice to the user.
 - **Support for vCenter storage**, with :ref:`storage functionality <vcenter_ds>` like for instance VMDK upload, cloning and deleting, VM disk hotplug and choose Datastore for newly launched VMs.
 - **Improved VM import**, with the ability to :ref:`import powered off VMs <import_vcenter_resources>`.
-- **New reconfigure driver action**, to notify running VMs of context changes [TODO]
-- **Instantiate to persistent**, for VMs creating a new VM Template in vCenter [TODO]
+- **Instantiate to persistent**, for VMs creating a new :ref:`VM Template in vCenter <vcenter_instantiate_to_persistent>`.
 - **Control VM disk deletion** on VM shutdown with a new `VM Template attribute <vm_template_definition_vcenter>`.
 
 OpenNebula Drivers :: Hybrid Virtualization
@@ -138,7 +136,6 @@ OneGate
 Contextualization
 -------------------------------------
 
-- **Support for Alpine Linux** [TODO]
 - **Context generated when a VM is started** or when a NIC is attached/detached from the VM. The :ref:`context <context_overview>` will be updated with any change in the network attributes, and those changes will be reflected in the context ISO.
 
 Components Moved to the Add-ons Catalog

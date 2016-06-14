@@ -17,6 +17,17 @@ Networking is handled by creating Virtual Network representations of the vCenter
 
 Therefore there is no need to convert your current Virtual Machines or import/export them through any process; once ready just save them as VM Templates in vCenter, following `this procedure <http://pubs.vmware.com/vsphere-55/index.jsp?topic=%2Fcom.vmware.vsphere.vm_admin.doc%2FGUID-FE6DE4DF-FAD0-4BB0-A1FD-AFE9A40F4BFE_copy.html>`__.
 
+There are different behavior of the vCenter resources when deleted in OpenNebula. The following resources are NOT deleted in vCenter when deleted in OpenNebula:
+
+* VM Templates
+* Networks
+* Datastores
+
+The following resource are deleted in vCenter when deleted in OpenNebula:
+
+* Images
+* Virtual Machines
+
 .. note:: After a VM Template is cloned and booted into a vCenter Cluster it can access VMware advanced features and it can be managed through the OpenNebula provisioning portal -to control the life-cycle, add/remove NICs, make snapshots- or through vCenter (e.g. to move the VM to another datastore or migrate it to another ESX). OpenNebula will poll vCenter to detect these changes and update its internal representation accordingly.
 
 
@@ -33,14 +44,14 @@ Considerations & Limitations
 | disk snapshots | Only system snapshots are available for vCenter VMs |
 +----------------+-----------------------------------------------------+
 
-- **No Security Groups**: Firewall rules as defined in Security Groups cannot be enforced in vCenter VMs.
-- OpenNebula treats **snapshots** a tad different than VMware. OpenNebula assumes that they are independent, whereas VMware builds them incrementally. This means that OpenNebula will still present snapshots that are no longer valid if one of their parent snapshots are deleted, and thus revert operations applied upon them will fail.
-- **No files in context**: Passing entire files to VMs is not supported, but all the other CONTEXT sections will be honored
-- Cluster names cannot contain spaces
-- Image names cannot contain spaces
-- vCenter credential password cannot have more than 22 characters
-- If you are running Sunstone using nginx/apache you will have to forward the following headers to be able to interact with vCenter, HTTP_X_VCENTER_USER, HTTP_X_VCENTER_PASSWORD and HTTP_X_VCENTER_HOST (or, alternatively, X_VCENTER_USER, X_VCENTER_PASSWORD and X_VCENTER_HOST). For example in nginx you have to add the following attrs to the server section of your nginx file: (underscores_in_headers on; proxy_pass_request_headers on;)
-- Attaching a new CDROM ISO will add a new (or change the existing) ISO to an already existing CDROM drive that needs to be present in the VM.
+* **No Security Groups**: Firewall rules as defined in Security Groups cannot be enforced in vCenter VMs.
+* OpenNebula treats **snapshots** a tad different than VMware. OpenNebula assumes that they are independent, whereas VMware builds them incrementally. This means that OpenNebula will still present snapshots that are no longer valid if one of their parent snapshots are deleted, and thus revert operations applied upon *hem will fail.
+* **No files in context**: Passing entire files to VMs is not supported, but all the other CONTEXT sections will be honored
+* Cluster names cannot contain spaces
+* Image names cannot contain spaces
+* vCenter credential password cannot have more than 22 characters
+* If you are running Sunstone using nginx/apache you will have to forward the following headers to be able to interact with vCenter, HTTP_X_VCENTER_USER, HTTP_X_VCENTER_PASSWORD and HTTP_X_VCENTER_HOST (or, alternatively, X_VCENTER_USER, X_VCENTER_PASSWORD and X_VCENTER_HOST). For example in nginx you have to add the *ollowing attrs to the server section of your nginx file: (underscores_in_headers on; proxy_pass_request_headers on;)
+* Attaching a new CDROM ISO will add a new (or change the existing) ISO to an already existing CDROM drive that needs to be present in the VM.
 
 Configuring
 ================================================================================

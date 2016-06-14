@@ -75,6 +75,8 @@ OpenNebula uses several assumptions to instantiate a VM Template in an automatic
 
 - Target **resource pool**: OpenNebula uses the default cluster resource pool to place the VM instantiated from the VM template, unless VCENTER_RESOURCE_POOL variable defined in the OpenNebula host template, or the tag RESOURCE_POOL is present in the VM Template inside the PUBLIC_CLOUD section.
 
+.. _vcenter_instantiate_to_persistent:
+
 Saving a VM Template: Instantiate to Persistent
 --------------------------------------------------------------------------------
 
