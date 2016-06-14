@@ -46,11 +46,12 @@ Considerations & Limitations
 
 * **No Security Groups**: Firewall rules as defined in Security Groups cannot be enforced in vCenter VMs.
 * OpenNebula treats **snapshots** a tad different than VMware. OpenNebula assumes that they are independent, whereas VMware builds them incrementally. This means that OpenNebula will still present snapshots that are no longer valid if one of their parent snapshots are deleted, and thus revert operations applied upon *hem will fail.
-* **No files in context**: Passing entire files to VMs is not supported, but all the other CONTEXT sections will be honored
-* Cluster names cannot contain spaces
-* Image names cannot contain spaces
-* vCenter credential password cannot have more than 22 characters
-* If you are running Sunstone using nginx/apache you will have to forward the following headers to be able to interact with vCenter, HTTP_X_VCENTER_USER, HTTP_X_VCENTER_PASSWORD and HTTP_X_VCENTER_HOST (or, alternatively, X_VCENTER_USER, X_VCENTER_PASSWORD and X_VCENTER_HOST). For example in nginx you have to add the *ollowing attrs to the server section of your nginx file: (underscores_in_headers on; proxy_pass_request_headers on;)
+* **No files in context**: Passing entire files to VMs is not supported, but all the other CONTEXT sections will be honored.
+* Cluster names cannot contain spaces.
+* Image names cannot contain spaces.
+* Datastore names cannot contain spaces.
+* vCenter credential password cannot have more than 22 characters.
+* If you are running Sunstone using nginx/apache you will have to forward the following headers to be able to interact with vCenter, HTTP_X_VCENTER_USER, HTTP_X_VCENTER_PASSWORD and HTTP_X_VCENTER_HOST (or, alternatively, X_VCENTER_USER, X_VCENTER_PASSWORD and X_VCENTER_HOST). For example in nginx you have to add the *ollowing attrs to the server section of your nginx file: (underscores_in_headers on; proxy_pass_request_headers on;).
 * Attaching a new CDROM ISO will add a new (or change the existing) ISO to an already existing CDROM drive that needs to be present in the VM.
 
 Configuring
@@ -121,13 +122,13 @@ The **onevcenter** tool can be used to import existing VM templates from the ESX
 
 After a vCenter VM Template is imported as a OpenNebula VM Template, it can be modified to change the capacity in terms of CPU and MEMORY, the name, permissions, etc. It can also be enriched to add:
 
-- :ref:`New disks <disk_hotplugging>`
-- :ref:`New network interfaces <vm_guide2_nic_hotplugging>` 
-- :ref:`Context information <vcenter_contextualization>`
+* :ref:`New disks <disk_hotplugging>`
+* :ref:`New network interfaces <vm_guide2_nic_hotplugging>` 
+* :ref:`Context information <vcenter_contextualization>`
 
 Before using your OpenNebula cloud you may want to read about the :ref:`vCenter specifics <vcenter_specifics>`.
 
-To import existing VMs, the 'onehost importvm" command can be used. VMs in running state can be imported, and also VMs defined in vCenter that are not in power.on state (this will import the VMs in OpenNebula as in the poweroff state).
+To import existing VMs, the 'onehost importvm' command can be used. VMs in running state can be imported, and also VMs defined in vCenter that are not in power.on state (this will import the VMs in OpenNebula as in the poweroff state).
 
 .. prompt:: text $ auto
 
@@ -151,16 +152,16 @@ To import existing VMs, the 'onehost importvm" command can be used. VMs in runni
 
 After a Virtual Machine is imported, their life-cycle (including creation of snapshots) can be controlled through OpenNebula. The following operations *cannot* be performed on an imported VM:
 
-- Recover --recreate
-- Undeploy (and Undeploy --hard)
-- Migrate (and Migrate --live)
-- Stop
+* Recover --recreate
+* Undeploy (and Undeploy --hard)
+* Migrate (and Migrate --live)
+* Stop
 
 Running VMs with open VNC ports are imported with the ability to establish VNC connection to them via OpenNebula. To activate the VNC ports, you need to right click on the VM in vCenter while it is shut down and click on “Edit Settings”, and set the following remotedisplay.* settings:
 
-- remotedisplay.vnc.enabled must be set to TRUE.
-- remotedisplay.vnc.ip must be set to 0.0.0.0 (or alternatively, the IP of the OpenNebula front-end).
-- remotedisplay.vnc.port must be set to a available VNC port number.
+* remotedisplay.vnc.enabled must be set to TRUE.
+* remotedisplay.vnc.ip must be set to 0.0.0.0 (or alternatively, the IP of the OpenNebula front-end).
+* remotedisplay.vnc.port must be set to a available VNC port number.
 
 
 Also, network management operations are present like the ability to attach/detach network interfaces, as well as capacity (CPU and MEMORY) resizing operations and VNC connections if the ports are opened before hand.
@@ -184,10 +185,10 @@ OpenNebula can place VMs in different Resource Pools. There are two approaches t
 
 In the fixed per Cluster basis approach, the vCenter credentials that OpenNebula use can be confined into a Resource Pool, to allow only a fraction of the vCenter infrastructure to be used by OpenNebula users. The steps to confine OpenNebula users into a Resource Pool are:
 
-- Create a new vCenter user
-- Create a Resource Pool in vCenter and assign the subset of Datacenter hardware resources wanted to be exposed through OpenNebula
-- Give vCenter user Resource Pool Administration rights over the Resource Pool
-- Give vCenter user Resource Pool Administration (or equivalent) over the Datastores the VMs are going to be running on
+* Create a new vCenter user
+* Create a Resource Pool in vCenter and assign the subset of Datacenter hardware resources wanted to be exposed through OpenNebula
+* Give vCenter user Resource Pool Administration rights over the Resource Pool
+* Give vCenter user Resource Pool Administration (or equivalent) over the Datastores the VMs are going to be running on
 
 Afterwards, these credentials can be used to add to OpenNebula the host representing the vCenter cluster. Add a new tag called VCENTER_RESOURCE_POOL to the host template representing the vCenter cluster (for instance, in the info tab of the host, or in the CLI), with the name of the Resource Pool.
 

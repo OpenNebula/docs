@@ -15,9 +15,10 @@ Creation of empty datablocks and VMDK image cloning are supported, as well as im
 Limitations
 ================================================================================
 
-- No support for snapshots in the vCenter datastore.
-- Only one disk is allowed per directory in the vCenter datastores.
-- Datastore names cannot contain spaces.
+* No support for snapshots in the vCenter datastore.
+* Only one disk is allowed per directory in the vCenter datastores.
+* Datastore names cannot contain spaces.
+* Image names cannot contain spaces.
 
 Requirements
 ================================================================================
