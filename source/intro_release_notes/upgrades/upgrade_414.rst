@@ -58,9 +58,9 @@ Preparation
 
 Before proceeding, make sure you don't have any VMs in a transient state (prolog, migr, epil, save). Wait until these VMs get to a final state (runn, suspended, stopped, done). Check the :ref:`Managing Virtual Machines guide <vm_guide_2>` for more information on the VM life-cycle.
 
-The network drivers in OpenNebula 5.0 are located in the Virtual Network, rather that in the host. The upgrade process may ask you questions about your existing VMs, Virtual Networks and hosts, and as such it is wise to have the following information saved beforehand, since in the upgrade process OpenNebula will be stopped. 
+The network drivers in OpenNebula 5.0 are located in the Virtual Network, rather than in the host. The upgrade process may ask you questions about your existing VMs, Virtual Networks and hosts, and as such it is wise to have the following information saved beforehand, since in the upgrade process OpenNebula will be stopped.
 
-.. code::
+.. prompt:: text $ auto
 
   $ onevnet list -x > networks.txt
   $ onehost list -x > hosts.txt

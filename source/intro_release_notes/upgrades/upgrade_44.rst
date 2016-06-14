@@ -14,6 +14,23 @@ Before proceeding, make sure you don't have any VMs in a transient state (prolog
 
 .. warning:: In 4.14 the ``FAILED`` state dissapears. You need to delete all the VMs in this state **before** the new version is installed.
 
+The network drivers in OpenNebula 5.0 are located in the Virtual Network, rather than in the host. The upgrade process may ask you questions about your existing VMs, Virtual Networks and hosts, and as such it is wise to have the following information saved beforehand, since in the upgrade process OpenNebula will be stopped.
+
+.. prompt:: text $ auto
+
+  $ onevnet list -x > networks.txt
+  $ onehost list -x > hosts.txt
+  $ onevm list -x > vms.txt
+
+The list of valid network drivers in 5.0 Wizard are:
+
+* ``802.1Q``
+* ``dummy``
+* ``ebtables``
+* ``fw``
+* ``ovswitch``
+* ``vxlan``
+
 Stop OpenNebula and any other related services you may have running: EC2, OCCI, and Sunstone. As ``oneadmin``, in the front-end:
 
 .. code::
