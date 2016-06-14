@@ -175,9 +175,7 @@ Instance Types
 
 Instance types, not available anymore in OpenNebula 5.0, allowed the administrators to define different VM capacity sizes. In 5.0 the capacity can be edited, but each VM Template defines the modification allowed.
 
-While instance types were only available to users of the Sunstone 'cloud' view, the new modification is made available when the VM Template is instantiated from any of the Sunstone views and the CLI.
-
-.. todo:: link to full documentation
+While instance types were only available to users of the Sunstone 'cloud' view, the new modification is made available when the VM Template is instantiated from any of the Sunstone views and the CLI. Read more in the :ref:`Virtual Machine Templates documentation <vm_templates_endusers>`.
 
 Developers and Integrators
 ================================================================================

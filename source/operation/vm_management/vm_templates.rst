@@ -80,6 +80,8 @@ For a complete reference of all the available options for ``onetemplate create``
 
 Note: OpenNebula Templates are designed to be hypervisor-agnostic, but there are additional attributes that are supported for each hypervisor. Check the :ref:`KVM configuration <kvmg>` and :ref:`vCenter configuration <vcenterg>` for more details.
 
+.. _vm_templates_endusers:
+
 Preparing Templates for End-Users
 ================================================================================
 
