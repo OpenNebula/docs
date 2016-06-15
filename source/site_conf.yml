@@ -8,5 +8,13 @@ versions:
   - http://docs.opennebula.org/4.14
 
 downloads:
-- - "No pdfs yet"
-  - "javascript:void(0)"
+- - "Intro and Release Notes"
+  - "http://docs.opennebula.org/pdf/5.0/opennebula_5.0_intro_release_notes.pdf"
+- - "Deployment Guide"
+  - "http://docs.opennebula.org/pdf/5.0/opennebula_5.0_deployment_guide.pdf"
+- - "Operation Guide"
+  - "http://docs.opennebula.org/pdf/5.0/opennebula_5.0_operation_guide.pdf"
+- - "Advanced Components"
+  - "http://docs.opennebula.org/pdf/5.0/opennebula_5.0_advanced_components_guide.pdf"
+- - "Integration Guide"
+  - "http://docs.opennebula.org/pdf/5.0/opennebula_5.0_integration_guide.pdf"
