@@ -93,6 +93,10 @@ Follow the :ref:`Platform Notes <uspng>` and the :ref:`Installation guide <ignc>
 
 Make sure to run the ``install_gems`` tool, as the new OpenNebula version may have different gem requirements.
 
+.. note::
+
+    If executing ``install_gems`` you get a message asking to overwrite files for aws executables you can safely answer "yes".
+
 It is highly recommended **not to keep** your current ``oned.conf``, and update the ``oned.conf`` file shipped with OpenNebula 5.0 to your setup. If for any reason you plan to preserve your current ``oned.conf`` file, read the :ref:`Compatibility Guide <compatibility>` and the complete oned.conf reference for `4.14 <http://docs.opennebula.org/4.14/administration/references/oned_conf.html>`_ and :ref:`5.0 <oned_conf>` versions.
 
 Configuration Files Upgrade
@@ -236,7 +240,7 @@ In order for the system to re-read the configuration files you should issue the 
 Update the Drivers
 ==================
 
-You should be able now to start OpenNebula as usual, running 'one start' as oneadmin. At this point, execute ``onehost sync`` to update the new drivers in the hosts.
+You should be able now to start OpenNebula as usual, running ``service opennebula start`` as ``root``. At this point, as ``oneadmin`` user, execute ``onehost sync`` to update the new drivers in the hosts.
 
 .. warning:: Doing ``onehost sync`` is important. If the monitorization drivers are not updated, the hosts will behave erratically.
 
