@@ -183,11 +183,7 @@ Developers and Integrators
 Transfer Manager
 --------------------------------------------------------------------------------
 
-The monitoring process of the storage resources has been greatly improved and optimized: System datastores are now monitored as any other datastore. Third-party datastore drivers needs to implement the monitor script to return this value to oned.
-
-Also disk usage monitoring from VMs has been also improved to allow thrid-party drivers to hook on this process
-
-.. todo:: hook for VM disk usage monitor is not in first beta
+The monitoring process of the storage resources has been greatly improved and optimized: System datastores are now monitored as any other datastore. Third-party datastore drivers needs to implement the monitor script to return this value to oned. Also disk usage monitoring from VMs has been also improved to allow thrid-party TM drivers to include their own monitor scripts, :ref:`see the storage integration section for details <ds_monitor>`
 
 
 Virtual Machine Manager

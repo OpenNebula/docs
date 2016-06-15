@@ -243,6 +243,8 @@ Action scripts needed when the TM is used for the system datastore:
 
 .. note:: If the TM is only for regular images you only need to implement the first group.
 
+.. _ds_monitor:
+
 The Montiring Process
 ================================================================================
 Image Datastores
