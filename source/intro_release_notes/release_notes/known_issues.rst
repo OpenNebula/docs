@@ -88,6 +88,7 @@ Sunstone
 * `#3692 <http://dev.opennebula.org/issues/3692>`_ Sunstone image upload - not enough space
 * `#2867 <http://dev.opennebula.org/issues/2867>`_ Sunstone template update does not select images without User Name
 * `#2801 <http://dev.opennebula.org/issues/2801>`_ Template update: placement does not select the hosts/clusters
+* `#4580 <http://dev.opennebula.org/issues/4580>`_ Template instantiate ignores the provided NIC/IP
 
 
 Context
