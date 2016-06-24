@@ -7,13 +7,12 @@ A complete list of solved issues for 5.0.1 (including those for 5.0) `can be fou
 
 Specifically for 5.0.1, the following issues has been solved:
 
-- `Better Ceph df parsing <http://dev.opennebula.org/issues/3953>`__. Applied changes to Ceph System DS also
+- `Improved Ceph monitoring, fix pool names bug <http://dev.opennebula.org/issues/3953>`__. 
 - `VM Template update wizard fixed <http://dev.opennebula.org/issues/4578>`__. Now it fills properly.
 - `Fixed oned crashes when a context variable contains a filter <http://dev.opennebula.org/issues/4587>`__.
 - `Fix PCI element in KVM deployment file <http://dev.opennebula.org/issues/4585>`__.
 - `Better checks for IPv4 strings <http://dev.opennebula.org/issues/4582>`__.
 - `Fix for wrong attach disk in vCenter <http://dev.opennebula.org/issues/4581>`__.
 - `Fix VM instantiate when NIC contains a fixed IP <http://dev.opennebula.org/issues/4580>`__.
-- `Fix VM instantiate when NIC contains a fixed IP <http://dev.opennebula.org/issues/4580>`__.
-- `Add trigger for EPILOG_LOCAL event <http://dev.opennebula.org/issues/4579>`__.
+- `Fix migration for STOPPED and UNDEPLOYED states` <http://dev.opennebula.org/issues/4579>`__.
 - `Fix Apptemplate generation <http://dev.opennebula.org/issues/4575>`__.
