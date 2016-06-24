@@ -73,7 +73,7 @@ OneGate
 Scheduler
 ================================================================================
 
-* `#1811 <http://dev.opennebula.org/issues/1811>`_ If more than one scheduled actions fit in a scheduler cycle, the behaviour is unexpected
+* `#1811 <http://dev.opennebula.org/issues/1811>`_ If more than one scheduled actions fit in a scheduler cycle, the behavior is unexpected
 
 Sunstone
 ================================================================================
