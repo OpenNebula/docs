@@ -14,5 +14,5 @@ Specifically for 5.0.1, the following issues has been solved:
 - `Better checks for IPv4 strings <http://dev.opennebula.org/issues/4582>`__.
 - `Fix for wrong attach disk in vCenter <http://dev.opennebula.org/issues/4581>`__.
 - `Fix VM instantiate when NIC contains a fixed IP <http://dev.opennebula.org/issues/4580>`__.
-- `Fix migration for STOPPED and UNDEPLOYED states` <http://dev.opennebula.org/issues/4579>`__.
+- `Fix migration for STOPPED and UNDEPLOYED states <http://dev.opennebula.org/issues/4579>`__.
 - `Fix Apptemplate generation <http://dev.opennebula.org/issues/4575>`__.
