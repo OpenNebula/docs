@@ -1,4 +1,3 @@
-.. _upgrade:
 
 =================================
 Upgrading from OpenNebula 4.14.x
@@ -82,7 +81,7 @@ Backup
 
 Backup the configuration files located in **/etc/one**. You don't need to do a manual backup of your database, the onedb command will perform one automatically.
 
-.. code::
+.. prompt:: text # auto
 
     # cp -r /etc/one /etc/one.$(date +'%Y-%m-%d')
 
@@ -125,11 +124,11 @@ You can upgrade the existing DB with the 'onedb' command. You can specify any Sq
 
 After you install the latest OpenNebula, and fix any possible conflicts in oned.conf, you can issue the 'onedb upgrade -v' command. The connection parameters have to be supplied with the command line options, see the :ref:`onedb manpage <cli>` for more information. Some examples:
 
-.. code::
+.. prompt:: text $ auto
 
     $ onedb upgrade -v --sqlite /var/lib/one/one.db
 
-.. code::
+.. prompt:: text $ auto
 
     $ onedb upgrade -v -S localhost -u oneadmin -p oneadmin -d opennebula
 
@@ -168,7 +167,7 @@ After the upgrade is completed, you should run the command ``onedb fsck``.
 
 First, move the 4.14 backup file created by the upgrade command to a safe place.
 
-.. code::
+.. prompt:: text $ auto
 
     $ mv /var/lib/one/mysql_localhost_opennebula.sql /path/for/one-backups/
 
@@ -233,7 +232,7 @@ Reload Start Scripts in CentOS 7
 
 In order for the system to re-read the configuration files you should issue the following command after the installation of the new packages:
 
-.. code-block:: none
+.. prompt:: text $ auto
 
     # systemctl daemon-reload
 
