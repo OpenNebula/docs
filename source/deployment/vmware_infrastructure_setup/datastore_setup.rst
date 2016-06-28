@@ -18,7 +18,7 @@ Limitations
 * No support for snapshots in the vCenter datastore.
 * Only one disk is allowed per directory in the vCenter datastores.
 * Datastore names cannot contain spaces.
-* Image names cannot contain spaces.
+* Image names and paths cannot contain spaces.
 
 Requirements
 ================================================================================
