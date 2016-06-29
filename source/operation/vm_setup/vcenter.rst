@@ -18,7 +18,7 @@ Supported contextualization packages are available for the following OS's:
 * **Windows** >= 7
 * **Windows Server** >= 2008
 
-If you already happen to have a VM or Template in vCenter with the installed OS you can start it and prepare it to be used with OpenNebula. Alternativelly you can start an installation process with the OS media.
+If you already happen to have a VM or Template in vCenter with the installed OS you can start it and prepare it to be used with OpenNebula. Alternatively you can start an installation process with the OS media.
 
 .. include:: install_steps.txt
 

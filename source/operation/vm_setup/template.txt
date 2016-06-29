@@ -2,7 +2,7 @@
 Set Up the Virtual Machine Template
 ===================================
 
-The Virtual Machine Template has a section called context where you can automate different configuration aspects. The most common attributes are network configuration, user credentials and startup scripts. This parameters can be both added using the CLI to the template or using Sunstone Template wizard. Here is an example of the context section using the CLI:
+The Virtual Machine Template has a section called context where you can automate different configuration aspects. The most common attributes are network configuration, user credentials and startup scripts. These parameters can be both added using the CLI to the template or using Sunstone Template wizard. Here is an example of the context section using the CLI:
 
 .. code-block:: bash
 

@@ -9,9 +9,9 @@ Virtual Routers provide routing across Virtual Networks. The administrators can 
 Download the Virtual Router Appliance
 ================================================================================
 
-OpenNebula provides a light weight Alpine-based virtual router. The virtual router image is prepared to run in a HA mode, and process the context information from OpenNebula. So its base capabilities can be easily extened.
+OpenNebula provides a light weight Alpine-based virtual router. The virtual router image is prepared to run in a HA mode, and process the context information from OpenNebula. So its base capabilities can be easily extended.
 
-- Download the appliance from the market place. For example to put the virtual router image in the default datastore and create a Virtual Router tempalte named vrotuer_apline use:
+- Download the appliance from the market place. For example to put the virtual router image in the default datastore and create a Virtual Router template named vrotuer_apline use:
 
 .. code::
 
@@ -32,7 +32,7 @@ OpenNebula provides a light weight Alpine-based virtual router. The virtual rout
 
     https://s3-eu-west-1.amazonaws.com/opennebula-marketplace/alpine-quagga.ova
 
-    After that you'll only need to import new templates from vcenter and set the template as Virtual Router at the bottom of the General tab of the template update wizzard.
+    After that you'll only need to import new templates from vcenter and set the template as Virtual Router at the bottom of the General tab of the template update wizard.
 
 Creating a new Virtual Router
 ================================================================================
