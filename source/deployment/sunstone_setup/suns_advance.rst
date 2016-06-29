@@ -183,7 +183,7 @@ And this is the changes that have to be made to sunstone-server.conf:
     :vnc_proxy_key: /etc/one/ssl/opennebula-key.pem
     :vnc_proxy_ipv6: false
 
-If using a selfsigned cert, the connection to VNC window in Sunstone will fail, either get a real cert, or manually accept the selfsigned cert in your browser before trying it with Sunstone.  Now, VNC sessions should show "encrypted" in the title.
+If using a selfsigned cert, the connection to VNC window in Sunstone will fail, either get a real cert, or manually accept the selfsigned cert in your browser before trying it with Sunstone.  Now, VNC sessions should show "encrypted" in the title. You will need to have your browser trust that certificate, in both 443 and 29876 ports in the OpenNebula IP or FQDN.
 
 Running Sunstone with Passenger using FreeIPA/Kerberos auth in Apache
 ---------------------------------------------------------------------
