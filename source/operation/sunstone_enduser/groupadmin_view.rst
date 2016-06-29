@@ -5,8 +5,6 @@
 Group Admin View
 ========================
 
-.. todo:: explain how to manage networking with Virtual Routers
-
 The role of a Group Admin is to manage all the virtual resources of the Group, including the creation of new users. When one of these Group Admin users access Sunstone, they get a limited version of the cloud administrator view. You can read more about OpenNebula's approach to Groups and VDC's from the perspective of different user roles in the :ref:`Understanding OpenNebula <understand>` guide.
 
 Group administrators can also access the :ref:`simplified Cloud View <cloud_view>` if they prefer to.
@@ -77,6 +75,16 @@ The detailed view of the user provides information of the usage of the user, fro
 
 |groupadmin_user_acct|
 
+Networking
+================================================================================
+
+Group administrators can create :ref:`Virtual Routers <vrouter>` from Templates prepared by the cloud administrator. These Virtual Routers can be used to connect two or more of the Virtual Networks assigned to the Group.
+
+|groupadmin_create_vrouter|
+
+|groupadmin_topology|
+
+
 .. |groupadmin_dash| image:: /images/groupadmin_dash.png
 .. |groupadmin_change_view| image:: /images/groupadmin_change_view.png
 .. |groupadmin_users| image:: /images/groupadmin_users.png
@@ -90,3 +98,5 @@ The detailed view of the user provides information of the usage of the user, fro
 .. |groupadmin_group_acct| image:: /images/groupadmin_group_acct.png
 .. |groupadmin_group_showback| image:: /images/groupadmin_group_showback.png
 .. |groupadmin_user_acct| image:: /images/groupadmin_user_acct.png
+.. |groupadmin_create_vrouter| image:: /images/groupadmin_create_vrouter.png
+.. |groupadmin_topology| image:: /images/groupadmin_topology.png
