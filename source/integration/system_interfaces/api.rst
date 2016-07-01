@@ -2473,7 +2473,7 @@ one.vn.allocate
 +------+------------+--------------------------------------------------------------------------------------------------------------+
 | IN   | String     | A string containing the template of the virtual network. Syntax can be the usual ``attribute=value`` or XML. |
 +------+------------+--------------------------------------------------------------------------------------------------------------+
-| IN   | Int        | The cluster ID. If it is -1, this virtual network won't be added to any cluster.                             |
+| IN   | Int        | The cluster ID. If it is -1, the default one will be used.                                                   |
 +------+------------+--------------------------------------------------------------------------------------------------------------+
 | OUT  | Boolean    | true or false whenever is successful or not                                                                  |
 +------+------------+--------------------------------------------------------------------------------------------------------------+
@@ -3146,7 +3146,7 @@ one.datastore.allocate
 +------+------------+--------------------------------------------------------------------------------------------------------+
 | IN   | String     | A string containing the template of the datastore. Syntax can be the usual ``attribute=value`` or XML. |
 +------+------------+--------------------------------------------------------------------------------------------------------+
-| IN   | Int        | The cluster ID. If it is -1, this datastore won't be added to any cluster.                             |
+| IN   | Int        | The cluster ID. If it is -1, the default one will be used.                                             |
 +------+------------+--------------------------------------------------------------------------------------------------------+
 | OUT  | Boolean    | true or false whenever is successful or not                                                            |
 +------+------------+--------------------------------------------------------------------------------------------------------+
