@@ -237,3 +237,73 @@ All the SUNSTONE specific information in VM Template, Group, User and other obje
 +---------------------------------------+---------------------------------------+
 | ``TEMPLATE/SUNSTONE_NETWORK_SELECT``  | ``TEMPLATE/SUNSTONE/NETWORK_SELECT``  |
 +---------------------------------------+---------------------------------------+
+
+XML-RPC API
+--------------------------------------------------------------------------------
+
+This section lists all the changes in the API. Visit the :ref:`complete reference <api>` for more information.
+
+* New API calls:
+
+  * ``one.host.status``: Replaces ``one.host.enable``.
+  * ``one.secgroup.commit``
+  * ``one.vm.updateconf``
+
+* Deleted API methods:
+
+  * ``one.host.enable``: Replaced by ``one.host.status``.
+
+* Changed api calls:
+
+  * ``one.datastore.allocate``: Cluster ID -1 now means that the object will be added to the default cluster, instead of 'none'.
+  * ``one.vn.allocate``: Cluster ID -1 now means that the object will be added to the default cluster, instead of 'none'.
+  * ``one.host.allocate``:
+
+    * Cluster ID -1 now means that the object will be added to the default cluster, instead of 'none'.
+    * Virtual Network driver parameter disappears.
+      
+  * ``one.template.delete``: New parameter to apply the action recursively to all Images used in the DISKs
+  * ``one.template.chmod``: New parameter to apply the action recursively to all Images used in the DISKs
+  * ``one.template.clone``: New parameter to apply the action recursively to all Images used in the DISKs
+  * ``one.template.instantiate``: New parameter to create a private persistent copy of the template.
+  * ``one.vm.recover``: Two new recover operations, delete (3), delete-recreate (4)
+  * ``one.vm.action``: The action string parameter accepts different values, as listed in the following table:
+
+    +---------------------+-----------------------------+
+    |         4.14        |             5.0             |
+    +=====================+=============================+
+    | **delete**          | -- (use ``one.vm.recover``) |
+    +---------------------+-----------------------------+
+    | **delete-recreate** | -- (use ``one.vm.recover``) |
+    +---------------------+-----------------------------+
+    | hold                | hold                        |
+    +---------------------+-----------------------------+
+    | poweroff            | poweroff                    |
+    +---------------------+-----------------------------+
+    | poweroff-hard       | poweroff-hard               |
+    +---------------------+-----------------------------+
+    | reboot              | reboot                      |
+    +---------------------+-----------------------------+
+    | reboot-hard         | reboot-hard                 |
+    +---------------------+-----------------------------+
+    | release             | release                     |
+    +---------------------+-----------------------------+
+    | resched             | resched                     |
+    +---------------------+-----------------------------+
+    | resume              | resume                      |
+    +---------------------+-----------------------------+
+    | **shutdown**        | **terminate**               |
+    +---------------------+-----------------------------+
+    | **shutdown-hard**   | **terminate-hard**          |
+    +---------------------+-----------------------------+
+    | stop                | stop                        |
+    +---------------------+-----------------------------+
+    | suspend             | suspend                     |
+    +---------------------+-----------------------------+
+    | undeploy            | undeploy                    |
+    +---------------------+-----------------------------+
+    | undeploy-hard       | undeploy-hard               |
+    +---------------------+-----------------------------+
+    | unresched           | unresched                   |
+    +---------------------+-----------------------------+
+
