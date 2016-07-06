@@ -125,7 +125,7 @@ Refresh the NFS exports by doing:
 
 .. code::
 
-    # systemctl restart nfs.service
+    # systemctl restart nfs-client.target
 
 1.5. Configure SSH Public Key
 -----------------------------
@@ -173,12 +173,16 @@ Start the required services:
 
 .. code::
 
-    # systemctl enable messagebus.service
-    # systemctl start messagebus.service
     # systemctl enable libvirtd.service
     # systemctl start libvirtd.service
-    # systemctl enable nfs.service
-    # systemctl start nfs.service
+    # systemctl enable nfs-client.target
+    # systemctl start nfs-client.target
+
+dbus.service is activated in CentOS 7 by default and can't be enabled or disabled manually. Check if it is running:
+
+.. code::
+
+    # systemctl status dbus.service
 
 
 2.3. Configure the Network
