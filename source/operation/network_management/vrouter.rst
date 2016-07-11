@@ -105,9 +105,11 @@ After a NIC is attached or detached, the Virtual Machine appliances are automati
 Managing Virtual Router VMs
 --------------------------------------------------------------------------------
 
-The Virtual Machines that are associated to a Virtual Router have a limited set of actions. Specifically, any action that changes the VM state cannot be executed, including terminate.
+The Virtual Machines that are associated to a Virtual Router have a limited set of actions. For instance, these VMs cannot be powered-off, suspended, or have their NICs attached or detached.
 
-To terminate a Virtual Machine associated with a Virtual Router, you need to delete the Virtual Router.
+All the Virtual Machines associated with a Virtual Router are terminated automatically when the Virtual Router is deleted. Each VM can however be terminated individually at any time.
+
+To create new VMs use the ``onevrouter instantiate`` command, or the "Instantiate VMs" dialog in Sunstone.
 
 High Availability
 ================================================================================
