@@ -120,7 +120,7 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 - Dynamic creation of :ref:`Clusters <cluster_guide>` as pools of hosts that share datastores and virtual networks for load balancing, high availability, and high performance computing
 
-- ref:`customizable and highly scalable monitoring system <mon>` and also can be integrated with external data center monitoring tools.
+- :ref:`customizable and highly scalable monitoring system <mon>` and also can be integrated with external data center monitoring tools.
 
 - Powerful and flexible :ref:`scheduler <schg>` for the definition of workload and resource-aware allocation policies such as packing, striping, load-aware, affinity-aware…  
 
