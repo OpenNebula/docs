@@ -105,7 +105,7 @@ After a NIC is attached or detached, the Virtual Machine appliances are automati
 Managing Virtual Router VMs
 --------------------------------------------------------------------------------
 
-The Virtual Machines that are associated to a Virtual Router have a limited set of actions. For instance, these VMs cannot be powered-off, suspended, or have their NICs attached or detached.
+The Virtual Machines that are associated to a Virtual Router have a limited set of actions. They can be terminated and new Virtual Machines can be added to an existing Virtual Router.
 
 All the Virtual Machines associated with a Virtual Router are terminated automatically when the Virtual Router is deleted. Each VM can however be terminated individually at any time.
 
