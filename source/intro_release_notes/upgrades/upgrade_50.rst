@@ -1,17 +1,17 @@
 .. _upgrade:
 
 =================================
-Upgrading from OpenNebula 5.0.0
+Upgrading from OpenNebula 5.0.x
 =================================
 
-This section describes the installation procedure for systems that are already running a 5.0.0 OpenNebula. The upgrade will preserve all current users, hosts, resources and configurations; for both Sqlite and MySQL backends.
+This section describes the installation procedure for systems that are already running a 5.0.x OpenNebula. The upgrade will preserve all current users, hosts, resources and configurations; for both Sqlite and MySQL backends.
 
 Read the :ref:`Compatibility Guide <compatibility>` and `Release Notes <http://opennebula.org/software/release/>`_ to know what is new in OpenNebula 5.0.
 
 Upgrading a Federation
 ================================================================================
 
-If you have two or more 5.0.0 OpenNebulas working as a :ref:`Federation <introf>`, you can upgrade each one independently. Zones with an OpenNebula from the 5.0.x series can be part of the same federation, since the shared portion of the database is compatible.
+If you have two or more 5.0.x OpenNebulas working as a :ref:`Federation <introf>`, you can upgrade each one independently. Zones with an OpenNebula from the 5.0.x series can be part of the same federation, since the shared portion of the database is compatible.
 
 The rest of the guide applies to both a master or slave Zone. You don't need to stop the federation or the MySQL replication to follow this guide.
 
@@ -75,14 +75,14 @@ If you have customized **any** configuration files under ``/etc/one`` we recomme
 Database Upgrade
 ================
 
-The upgrade from any previous 5.0.0 version does not require a database upgrade, the database schema is compatible.
+The upgrade from any previous 5.0.x version does not require a database upgrade, the database schema is compatible.
 
 Check DB Consistency
 ====================
 
 After the upgrade is completed, you should run the command ``onedb fsck``.
 
-First, move the 5.0.0 backup file created by the upgrade command to a safe place.
+First, move the 5.0.x backup file created by the upgrade command to a safe place.
 
 .. prompt:: text $ auto
 
