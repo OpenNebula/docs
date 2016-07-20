@@ -19,11 +19,15 @@ Limitations
 * Only one disk is allowed per directory in the vCenter datastores.
 * Datastore names cannot contain spaces.
 * Image names and paths cannot contain spaces.
+* Datastores that form DRS Clusters are not supported.
 
 Requirements
 ================================================================================
 
--  In order to use the vCenter datastore, all the ESX servers controlled by vCenter need to mount the same VMFS datastore with the same name.
+In order to use the vCenter datastore, the following requirements need to be met:
+
+* All the ESX servers controlled by vCenter need to mount the same VMFS datastore with the same name.
+* The ESX servers need to be part of the Cluster controlled by OpenNebula
 
 Configuration
 ================================================================================
