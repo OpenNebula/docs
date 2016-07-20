@@ -48,7 +48,7 @@ Drivers - Storage
 Drivers - VM
 ================================================================================
 
-* `#3590 <http://dev.opennebula.org/issues/3590>`_ Delete operation leaves a poweroff instance registered in vCenter
+* `#4648 <http://dev.opennebula.org/issues/4648>`_ Delete operation leaves a poweroff instance registered in vCenter
 * `#3060 <http://dev.opennebula.org/issues/3060>`_ Trim/discard. In order to use this functionality, KVM requires the virtio-scsi controller. This controller is not (yet) supported. In order to add it, you need to add this RAW snippet to your template: ``<controller type='scsi' index='0' model='virtio-scsi'></controller>``
 * `#4550 <http://dev.opennebula.org/issues/4550>`_ Attach Disk operation in vCenter for CDROM does not add a new drive, but rather replaces the ISO of an existing one
 * `#4540 <http://dev.opennebula.org/issues/4540>`_ Import vCenter images size may be 0
