@@ -25,7 +25,7 @@ Core & System
 * `#2998 <http://dev.opennebula.org/issues/2998>`_ Deleting an image deletes the record from the database even if the delete fails
 * `#1927 <http://dev.opennebula.org/issues/1927>`_ VM Context does not fill the right values when a VM has two NICs in the same network
 * `#1494 <http://dev.opennebula.org/issues/1494>`_ Newlines wrongly interpreted in multiline context variables with template variables
-
+* `#4662 <http://dev.opennebula.org/issues/4662>`_ Segmentation fault in systems with Intel CPU and TSX extensions
 
 Drivers - Network
 ================================================================================
@@ -80,7 +80,8 @@ Sunstone
 * `#3692 <http://dev.opennebula.org/issues/3692>`_ Sunstone image upload - not enough space
 * `#2867 <http://dev.opennebula.org/issues/2867>`_ Sunstone template update does not select images without User Name
 * `#2801 <http://dev.opennebula.org/issues/2801>`_ Template update: placement does not select the hosts/clusters
-
+* `#4574 <http://dev.opennebula.org/issues/4574>`_ vCenter VMs VNC after stop/resume does not work
+* `#4652 <http://dev.opennebula.org/issues/4652>`_ noVNC mouse doesn't work when a touchscreen is present
 
 Context
 ================================================================================
