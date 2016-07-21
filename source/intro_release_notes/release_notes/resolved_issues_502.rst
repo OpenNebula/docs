@@ -40,8 +40,8 @@ Specifically for 5.0.2, the following issues has been solved:
 - `MB/GB text overlaps select arrow  <http://dev.opennebula.org/issues/4629>`__.
 - `Clone template modal does not have a close button  <http://dev.opennebula.org/issues/4625>`__.
 - `Labels are not working for VR instances  <http://dev.opennebula.org/issues/4619>`__.
-- `Private EC2 IP to be displayed in Sunstone<http://dev.opennebula.org/issues/4613>`__.
-- `Auth_mad drivers are not listed in sunstone <http://dev.opennebula.org/issues/4612>`__.
+- `Private EC2 IP to be displayed in Sunstone <http://dev.opennebula.org/issues/4613>`__.
+- `Auth_mad drivers are not listed in Sunstone <http://dev.opennebula.org/issues/4612>`__.
 - `Attach nic modal disappear when selecting page 2 <http://dev.opennebula.org/issues/4606>`__.
 - `Size column sorts alphabetically  <http://dev.opennebula.org/issues/4605>`__.
 - `VM control operations are not visiible when using firefox and sunstone in "dev" mode(while they are visible using chrome) <http://dev.opennebula.org/issues/4598>`__.
