@@ -222,5 +222,49 @@ To add a PCI device to a template, select the **Other** tab:
 
 |image2|
 
+
+Usage as Network Interfaces
+---------------------------
+
+It is possible use a PCI device as a NIC interface directly in OpenNebula. In order to do so you will need to follow the configuration steps mentioned in this guide, namely changing the device driver.
+
+When defining a Network that will be used for PCI passthrough nics, please use either the ``dummy`` network driver or the ``802.1Q`` if you are using VLAN. In any case, type any random value into the ``BRIDGE`` field, and it will be ignored. For ``802.1Q`` you can also leave ``PHYDEV`` blank.
+
+The :ref:`context packages <context_overview>` support the configuration of the following attributes:
+
+* ``MAC``: It will change the mac address of the corresponding network interface to the MAC assigned by OpenNebula.
+* ``IP``: It will assign an IPv4 address to the interface, assuming a ``/24`` netmask.
+* ``IPV6``: It will assign an IPv6 address to the interface, assuming a ``/128`` netmask.
+* ``VLAN_ID``: If present, it will create a tagged interface and assign the IPs to the tagged interface.
+
+CLI
+~~~
+
+When a ``PCI`` in a template contains the attribute ``TYPE="NIC"``, it will be treated as a ``NIC`` and OpenNebula will assign a MAC address, a VLAN_ID, an IP, etc, to the PCI device.
+
+This is an example of the PCI section of an interface that will be treated as a NIC:
+
+.. code::
+
+    PCI=[
+      NETWORK="passthrough",
+      NETWORK_UNAME="oneadmin",
+      TYPE="NIC",
+      CLASS="0200",
+      DEVICE="10d3",
+      VENDOR="8086" ]
+
+
+Note that the order of appearence of the ``PCI`` elements and ``NIC`` elements in the template is relevant. The will be mapped to nics in the order they appear, regardless if they're NICs of PCIs.
+
+Sunstone
+~~~~~~~~
+
+In the Network tab, under advanced options check the **PCI Passthrough** option and fill in the PCI address. Use the rest of the dialog as usual by selecting a network from the table.
+
+|image3|
+
 .. |image1| image:: /images/sunstone_host_pci.png
 .. |image2| image:: /images/sunstone_template_pci.png
+.. |image3| image:: /images/sunstone_nic_passthrough.png
+
