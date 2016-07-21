@@ -5,7 +5,7 @@ Resolved Issues in 5.0.2
 
 A complete list of solved issues for 5.0.2 (including those for 5.0) `can be found in the project development portal <http://dev.opennebula.org/projects/opennebula/issues?c%5B%5D=tracker&c%5B%5D=status&c%5B%5D=priority&c%5B%5D=subject&c%5B%5D=assigned_to&c%5B%5D=updated_on&f%5B%5D=fixed_version_id&f%5B%5D=tracker_id&f%5B%5D=&group_by=category&op%5Bfixed_version_id%5D=%3D&op%5Btracker_id%5D=%3D&per_page=200&set_filter=1&utf8=%E2%9C%93&v%5Bfixed_version_id%5D%5B%5D=75&v%5Bfixed_version_id%5D%5B%5D=84&v%5Bfixed_version_id%5D%5B%5D=85&v%5Btracker_id%5D%5B%5D=1>`__.
 
-New functionality for 5.0.2 have been introduced:
+New functionality for 5.0.2 has been introduced:
 
 - `Resize capabilities for VR context <http://dev.opennebula.org/issues/4621>`__.
 - `Assign IP address to PCI-passthrough devices <http://dev.opennebula.org/issues/4620>`__.
