@@ -25,7 +25,7 @@ Core & System
 * `#2998 <http://dev.opennebula.org/issues/2998>`_ Deleting an image deletes the record from the database even if the delete fails
 * `#1927 <http://dev.opennebula.org/issues/1927>`_ VM Context does not fill the right values when a VM has two NICs in the same network
 * `#1494 <http://dev.opennebula.org/issues/1494>`_ Newlines wrongly interpreted in multiline context variables with template variables
-
+* `#4662 <http://dev.opennebula.org/issues/4662>`_ Segmentation fault in systems with Intel CPU and TSX extensions
 
 Drivers - Network
 ================================================================================
@@ -48,9 +48,8 @@ Drivers - Storage
 Drivers - VM
 ================================================================================
 
-* `#3590 <http://dev.opennebula.org/issues/3590>`_ Delete operation leaves a poweroff instance registered in vCenter
+* `#4648 <http://dev.opennebula.org/issues/4648>`_ Delete operation leaves a poweroff instance registered in vCenter
 * `#3060 <http://dev.opennebula.org/issues/3060>`_ Trim/discard. In order to use this functionality, KVM requires the virtio-scsi controller. This controller is not (yet) supported. In order to add it, you need to add this RAW snippet to your template: ``<controller type='scsi' index='0' model='virtio-scsi'></controller>``
-* `#3590 <http://dev.opennebula.org/issues/3590>`_ Delete operation leaves a poweroff instance registered in vCenter
 * `#4550 <http://dev.opennebula.org/issues/4550>`_ Attach Disk operation in vCenter for CDROM does not add a new drive, but rather replaces the ISO of an existing one
 * `#4540 <http://dev.opennebula.org/issues/4540>`_ Import vCenter images size may be 0
 * `#4335 <http://dev.opennebula.org/issues/4335>`_ vCenter password cannot be longer than 22 characters
@@ -64,12 +63,6 @@ OneFlow
 * `#3797 <http://dev.opennebula.org/issues/3797>`_ oneflow and oneflow-template ignore the no_proxy environment variable
 * `#2155 <http://dev.opennebula.org/issues/2155>`_ Scheduled policy start_time cannot be defined as a POSIX time number
 
-OneGate
-================================================================================
-
-* `#3819 <http://dev.opennebula.org/issues/3819>`_ Missing commits for secure configuration.
-* `#4209 <http://dev.opennebula.org/issues/4209>`_ EC2 IPs are not shown in the VM information
-
 Scheduler
 ================================================================================
 
@@ -78,7 +71,6 @@ Scheduler
 Sunstone
 ================================================================================
 
-* `#2292 <http://dev.opennebula.org/issues/2292>`_ sunstone novnc send ctrl-alt-del not working in Firefox
 * `#1877 <http://dev.opennebula.org/issues/1877>`_ if syslog enabled disable the logs tab in the VM detailed view
 * `#3796 <http://dev.opennebula.org/issues/3796>`_ sunstone ignores the no_proxy environment variable
 * `#4567 <http://dev.opennebula.org/issues/4567>`_ VM Template create wizard: vCenter option should not allow to create volatile disks
@@ -88,13 +80,10 @@ Sunstone
 * `#3692 <http://dev.opennebula.org/issues/3692>`_ Sunstone image upload - not enough space
 * `#2867 <http://dev.opennebula.org/issues/2867>`_ Sunstone template update does not select images without User Name
 * `#2801 <http://dev.opennebula.org/issues/2801>`_ Template update: placement does not select the hosts/clusters
-* `#4580 <http://dev.opennebula.org/issues/4580>`_ Template instantiate ignores the provided NIC/IP
-
+* `#4574 <http://dev.opennebula.org/issues/4574>`_ vCenter VMs VNC after stop/resume does not work
+* `#4652 <http://dev.opennebula.org/issues/4652>`_ noVNC mouse doesn't work when a touchscreen is present
 
 Context
 ================================================================================
 
-* `#2292 <http://dev.opennebula.org/issues/2292>`_ sunstone novnc send ctrl-alt-del not working in Firefox
-* `#1877 <http://dev.opennebula.org/issues/1877>`_ if syslog enabled disable the logs tab in the VM detailed view
-* `#3796 <http://dev.opennebula.org/issues/3796>`_ sunstone ignores the no_proxy environment variable
 * `#4568 <http://dev.opennebula.org/issues/4568>`_ Context is not regenerated for vCenter

@@ -7,14 +7,14 @@ CentOS/RHEL
 
 .. prompt:: bash # auto
 
-    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.0.0/one-context_5.0.0.rpm
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.0.1/one-context_5.0.1.rpm
 
 Debian/Ubuntu
 ~~~~~~~~~~~~~
 
 .. prompt:: bash # auto
 
-    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.0.0/one-context_5.0.0.deb
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.0.1/one-context_5.0.1.deb
 
 Windows
 ~~~~~~~

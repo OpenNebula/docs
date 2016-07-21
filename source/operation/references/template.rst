@@ -820,8 +820,10 @@ The syntax of the requirement expressions is defined as:
             | VARIABLE '!=' NUMBER
             | VARIABLE '>' NUMBER
             | VARIABLE '<' NUMBER
+            | VARIABLE '@>' NUMBER
             | VARIABLE '=' STRING
             | VARIABLE '!=' STRING
+            | VARIABLE '@>' STRING
             | expr '&' expr
             | expr '|' expr
             | '!' expr
@@ -829,7 +831,7 @@ The syntax of the requirement expressions is defined as:
 
 Each expression is evaluated to 1 (TRUE) or 0 (FALSE). Only those hosts for which the requirement expression is evaluated to TRUE will be considered to run the VM.
 
-Logical operators work as expected ( less '<', greater '>', '&' AND, '\|' OR, '!' NOT), '=' means equals with numbers (floats and integers). When you use '=' operator with strings, it performs a shell wildcard pattern matching.
+Logical operators work as expected ( less '<', greater '>', '&' AND, '\|' OR, '!' NOT), '=' means equals with numbers (floats and integers). When you use '=' operator with strings, it performs a shell wildcard pattern matching. Additionally the '@>' operator means *contains*, if the variable evaluates to an array the expression will be true if that array contains the given number or string (or any string that matches the provided pattern).
 
 Any variable included in the Host template or its Cluster template can be used in the requirements. You may also use an XPath expression to refer to the attribute.
 
@@ -845,11 +847,15 @@ Examples:
     # Only those resources with more than 60% of free CPU
     SCHED_REQUIREMENTS = "FREE_CPU > 60"
      
-    # Deploy only in the Host where VM 5 is running
+    # Deploy only in the Host where VM 5 is running. Two different forms:
     SCHED_REQUIREMENTS = "CURRENT_VMS = 5"
+    SCHED_REQUIREMENTS = "\"HOST/VMS/ID\" @> 5"
      
     # Deploy in any Host, except the ones where VM 5 or VM 7 are running
     SCHED_REQUIREMENTS = "(CURRENT_VMS != 5) & (CURRENT_VMS != 7)"
+
+    # Use any datastore that is in cluster 101 (it list of cluster IDs contains 101)
+    SCHED_DS_REQUIREMENTS = "\"CLUSTERS/ID\" @> 101"
 
 .. warning:: If using OpenNebula's default match-making scheduler in a hypervisor heterogeneous environment, it is a good idea to add an extra line like the following to the VM template to ensure its placement in a specific hypervisor.
 
