@@ -81,8 +81,8 @@ You have to download them to a directory that we will later refer. In this examp
 
     $ mkdir packages
     $ cd packages
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v4.14.4/one-context_4.14.4.rpm
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v4.14.4/one-context_4.14.4.deb
+    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.0.1/one-context_5.0.1.rpm
+    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.0.1/one-context_5.0.1.deb
     $ cd ..
 
 
