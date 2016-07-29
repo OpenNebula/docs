@@ -77,6 +77,24 @@ Database Upgrade
 
 The upgrade from any previous 5.0.x version does not require a database upgrade, the database schema is compatible.
 
+You will need however to execute the following DB patch:
+
+.. prompt:: text $ auto
+
+    $ wget https://raw.githubusercontent.com/OpenNebula/one/one-5.0/src/onedb/patches/5.0_driver_names.rb -O /tmp/5.0_driver_names.rb
+    $ onedb patch -v -u oneadmin -d opennebula /tmp/5.0_driver_names.rb
+    Version read:
+    Shared tables 4.90.0 : Database migrated from 4.11.80 to 4.90.0 (OpenNebula 4.90.0) by onedb command.
+    Local tables  4.90.0 : Database migrated from 4.13.85 to 4.90.0 (OpenNebula 4.90.0) by onedb command.
+
+    Sqlite database backup stored in /var/lib/one/one.db_2016-7-29_17:33:19.bck
+    Use 'onedb restore' or copy the file back to restore the DB.
+
+      > Running patch src/onedb/patches/5.0_driver_names.rb
+      > Done
+
+      > Total time: 0.02s
+
 Check DB Consistency
 ====================
 

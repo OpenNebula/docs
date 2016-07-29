@@ -129,6 +129,25 @@ Now execute the following DB patch:
 
 .. warning:: This DB upgrade is expected to take a long time to complete in large infrastructures. If you have an `OpenNebula Systems support subscription <http://opennebula.systems/>`_, please contact them to study your case and perform the upgrade with the minimum downtime possible.
 
+Next, execute the following DB patch:
+
+.. prompt:: text $ auto
+
+    $ wget https://raw.githubusercontent.com/OpenNebula/one/one-5.0/src/onedb/patches/5.0_driver_names.rb -O /tmp/5.0_driver_names.rb
+    $ onedb patch -v -u oneadmin -d opennebula /tmp/5.0_driver_names.rb
+    Version read:
+    Shared tables 4.90.0 : Database migrated from 4.11.80 to 4.90.0 (OpenNebula 4.90.0) by onedb command.
+    Local tables  4.90.0 : Database migrated from 4.13.85 to 4.90.0 (OpenNebula 4.90.0) by onedb command.
+
+    Sqlite database backup stored in /var/lib/one/one.db_2016-7-29_17:33:19.bck
+    Use 'onedb restore' or copy the file back to restore the DB.
+
+      > Running patch src/onedb/patches/5.0_driver_names.rb
+      > Done
+
+      > Total time: 0.02s
+
+
 .. note:: Make sure you keep the backup file. If you face any issues, the onedb command can restore this backup, but it won't downgrade databases to previous versions.
 
 Check DB Consistency
