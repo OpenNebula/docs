@@ -105,6 +105,8 @@ SSH Transfer Mode
 --------------------------------------------------------------------------------
 Just make sure that there is enough space under ``/var/lib/one/datastores`` to store the disks of running VMs on that host.
 
+.. warning:: Make sure all the hosts, including the frontend, can ssh to any other host (including themselves). Otherwise migrations will not work.
+
 .. _fs_ds_templates:
 
 OpenNebula Configuration
