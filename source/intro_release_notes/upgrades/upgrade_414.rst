@@ -171,6 +171,14 @@ First, move the 4.14 backup file created by the upgrade command to a safe place.
 
     $ mv /var/lib/one/mysql_localhost_opennebula.sql /path/for/one-backups/
 
+.. warning::
+
+    To fix known issues found since the last release, you need to update the fsck file shipped with OpenNebula with the on from the stable branch of the repository:
+
+    .. prompt:: text $ auto
+
+        $ wget https://raw.githubusercontent.com/OpenNebula/one/one-5.0/src/onedb/fsck.rb -O /usr/lib/one/ruby/onedb/fsck.rb
+
 Then execute the following command:
 
 .. code::
