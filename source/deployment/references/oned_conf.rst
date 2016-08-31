@@ -31,7 +31,7 @@ Daemon Configuration Attributes
 -  ``VNC_PORTS`` : VNC port pool for automatic VNC port assignment, if possible the port will be set to ``START`` + ``VMID``. Refer to the :ref:`VM template reference <template>` for further information:
 
    - ``start``: first port to assign
-   - ``reserved``: comma separated list of reserved ports
+   - ``reserved``: comma separated list of reserved ports or ranges. Two numbers separated by a colon indicate a range.
 
 -  ``VM_SUBMIT_ON_HOLD`` : Forces VMs to be created on hold state instead of pending. Values: YES or NO.
 -  ``LOG`` : Configure the logging system
@@ -198,7 +198,7 @@ Virtual Networks
 -  ``VLAN_IDS``: VLAN ID pool for the automatic VLAN_ID assignment. This pool is for 802.1Q networks (Open vSwitch and 802.1Q drivers). The driver will try first to allocate VLAN_IDS[START] + VNET_ID
 
    - ``start``: First VLAN_ID to use
-   - ``reserved``: Comma separated list of VLAN_IDs
+   - ``reserved``: Comma separated list of VLAN_IDs or ranges. Two numbers separated by a colon indicate a range.
 
 -  ``VXLAN_IDS``: Automatic VXLAN Network ID (VNI) assignment. This is used for vxlan networks.
 

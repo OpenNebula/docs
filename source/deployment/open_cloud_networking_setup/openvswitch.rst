@@ -21,7 +21,8 @@ The VLAN_ID is calculated according to this configuration option of ``oned.conf`
     #  is for 802.1Q networks (Open vSwitch and 802.1Q drivers). The driver
     #  will try first to allocate VLAN_IDS[START] + VNET_ID
     #     start: First VLAN_ID to use
-    #     reserved: Comma separated list of VLAN_IDs
+    #     reserved: Comma separated list of VLAN_IDs or ranges. Two numbers
+    #     separated by a colon indicate a range.
 
     VLAN_IDS = [
         START    = "2",
