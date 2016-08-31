@@ -102,22 +102,6 @@ If everything goes well, you should get an output similar to this one:
     Database already uses version 4.5.80
     Total time: 0.77s
 
-Now execute the following DB patch:
-
-.. code::
-
-    $ onedb patch -v -u oneadmin -d opennebula /usr/lib/one/ruby/onedb/patches/4.14_monitoring.rb
-    Version read:
-    Shared tables 4.11.80 : OpenNebula 4.12.1 daemon bootstrap
-    Local tables  4.13.80 : Database migrated from 4.11.80 to 4.13.80 (OpenNebula 4.13.80) by onedb command.
-
-      > Running patch /usr/lib/one/ruby/onedb/patches/4.14_monitoring.rb
-      > Done
-
-      > Total time: 0.05s
-
-.. warning:: This DB upgrade is expected to take a long time to complete in large infrastructures. If you have an `OpenNebula Systems support subscription <http://opennebula.systems/>`_, please contact them to study your case and perform the upgrade with the minimum downtime possible.
-
 .. note:: Make sure you keep the backup file. If you face any issues, the onedb command can restore this backup, but it won't downgrade databases to previous versions.
 
 Check DB Consistency
