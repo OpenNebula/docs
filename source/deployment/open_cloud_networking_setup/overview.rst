@@ -22,6 +22,9 @@ When you create a new network you will need to add the attribute ``VN_MAD`` to t
 
     Security Groups are not supported by the Open vSwitch mode.
 
+Finally, the networking stack of OpenNebula can be integrated with an external IP
+address manager (IPAM). To do so, you need to develop the needed glue, :ref:`for more details refer to the IPAM driver guide. <devel-ipam>`
+
 How Should I Read This Chapter
 ================================================================================
 

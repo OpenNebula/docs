@@ -14,3 +14,4 @@ Infrastructure Integration
    Authentication Driver <devel-auth>
    Cloud Bursting Driver <devel-cloudbursting>
    Market Driver <devel-market>
+   IPAM Driver <devel-ipam>
