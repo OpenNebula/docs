@@ -198,7 +198,7 @@ You will need to change the following values in the configuration file (``/etc/o
 Group Mapping
 =============
 
-You can make new users belong to an specific group upon creation. To do this a mapping is generated from the LDAP group to an existing OpenNebula group. This system uses a mapping file specified by ``:mapping_file`` parameter and resides in OpenNebula ``var`` directory. The mapping file can be generated automatically using data in the group template that tells which LDAP group maps to that specific group. For example we can add in the group template this line:
+You can make new users belong to an specific group or groups. To do this a mapping is generated from the LDAP group to an existing OpenNebula group. This system uses a mapping file specified by ``:mapping_file`` parameter and resides in OpenNebula ``var`` directory. The mapping file can be generated automatically using data in the group template that tells which LDAP group maps to that specific group. For example we can add in the group template this line:
 
 .. code-block:: bash
 
@@ -231,6 +231,8 @@ And in the OpenNebula group template you can define two mappings, one for each s
 
     INTERNAL_GROUP_DN="CN=technicians,CN=Groups,DC=internal,DC=com"
     EXTERNAL_GROUP_DN="CN=staff,DC=other-company,DC=com"
+
+.. note:: If the map is updated (e.g. you change the LDAP DB) the user groups will be updated next time the user is authenticated. Also note that a user maybe using a login token that needs to expire to this changes to take effect. The max. life time of a token can be set in oned.conf per each driver. If you want the OpenNebula core not to update user groups (and control group assigment from OpenNebula) update ``DRIVER_MANAGED_GROUPS`` in the ``ldap`` ``AUTH_MAD_CONF`` configuration attribute.
 
 Enabling LDAP auth in Sunstone
 ==============================
