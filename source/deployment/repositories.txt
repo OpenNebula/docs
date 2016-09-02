@@ -8,7 +8,7 @@ To add OpenNebula repository execute the following as root:
     # cat << EOT > /etc/yum.repos.d/opennebula.repo
     [opennebula]
     name=opennebula
-    baseurl=http://downloads.opennebula.org/repo/5.0/CentOS/7/x86_64
+    baseurl=http://downloads.opennebula.org/repo/5.2/CentOS/7/x86_64
     enabled=1
     gpgcheck=0
     EOT
@@ -26,17 +26,17 @@ To add OpenNebula repository on Debian/Ubuntu execute as root:
 
 .. prompt:: bash # auto
 
-    # echo "deb http://downloads.opennebula.org/repo/5.0/Debian/8 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # echo "deb http://downloads.opennebula.org/repo/5.2/Debian/8 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
 
 **Ubuntu 14.04**
 
 .. prompt:: bash # auto
 
-    # echo "deb http://downloads.opennebula.org/repo/5.0/Ubuntu/14.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # echo "deb http://downloads.opennebula.org/repo/5.2/Ubuntu/14.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
 
 **Ubuntu 16.04**
 
 .. prompt:: bash # auto
 
-    # echo "deb http://downloads.opennebula.org/repo/5.0/Ubuntu/16.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # echo "deb http://downloads.opennebula.org/repo/5.2/Ubuntu/16.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
 
