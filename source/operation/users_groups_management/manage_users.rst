@@ -236,36 +236,107 @@ Once configured you will be able to access the OpenNebula API and use the CLI to
 
 .. note:: OpenNebula does not store the plain password but a hashed version in the database, as show by the oneuser example above.
 
-Note that ``$HOME/.one/one_auth`` is just protected with the standard filesystem permissions. To improve the system security you can use authentication tokens. In this way there is no need to store plain passwords, OpenNebula can generate or use an authentication token with a given expiration time. By default, the tokens are also stored in ``$HOME/.one/one_auth``.
+Tokens
+--------------------------------------------------------------------------------
 
-The following example shows the token generation and usage for the previous ``oneadmin`` user:
+``$HOME/.one/one_auth`` is just protected with the standard filesystem permissions. To improve the system security you can use authentication tokens. In this way there is no need to store plain passwords, OpenNebula can generate or use an authentication token with a given expiration time. By default, the tokens are also stored in ``$HOME/.one/one_auth``.
+
+Furthermore, if the user belongs to multiple groups, a token can be associated to one of those groups, and when the user operates with that token he will be effectively in that group, i.e. he will only see the resources that belong to that group, and when creating a resource it will be placed in that group.
+
+Create a token
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Any user can create a token:
 
 .. prompt:: bash $ auto
 
-    $ ls $ONE_AUTH
-    ls: cannot access /home/oneadmin/.one/one_auth: No such file or directory
-
-    $ oneuser login oneadmin
+    $ oneuser token --create
     Password:
+    File /var/lib/one/.one/one_auth exists, use --force to overwrite.
+    Authentication Token is:
+    testuser:b61010c8ef7a1e815ec2836ea7691e92c4d3f316
 
-    $cat $HOME/.one/one_auth
-    oneadmin:800481374d8888805dd51dabd36ca50d77e2132e
+The command will try to write ``$HOME/.one/one_auth`` if it does not exist.
+
+The expiration time of the token is by default 10h (3600 seconds). When requesting a token the option ``--time <seconds>`` can be used in order to define exactly when the token will expire. A value of ``-1`` disables the expiration time.
+
+The token can be created associated with one of the group the user belongs to. If the user logins with that token, he will be effectively **only** in that group, and will only be allowed to see the resources that belong to that group, as opposed to the default token, which allows access to all the resources available to the groups that the user belongs to. In order to specify a group, the option ``--group <id|group>`` can be used.
+
+List the tokens
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Tokens can be listed  by doing:
+
+.. prompt:: bash $ auto
 
     $ oneuser show
-    USER 0 INFORMATION
-    ID              : 0
-    NAME            : oneadmin
-    GROUP           : oneadmin
-    PASSWORD        : c24783ba96a35464632a624d9f829136edc0175e
-    AUTH_DRIVER     : core
-    LOGIN_TOKEN     : 800481374d8888805dd51dabd36ca50d77e2132e
-    TOKEN VALIDITY  : not after 2014-09-15 14:27:19 +0200
+    [...]
+    TOKENS
+         ID EGID  EGROUP     EXPIRATION
+    3ea673b 100   groupB     2016-09-03 03:58:51
+    c33ff10 100   groupB     expired
+    f836893 *1    users      forever
 
-By default tokens are generated with a valid period of ten hours. This can be adjusted when issuing the token with the ``oneuser login`` command. You can also use this token to authenticate through Sunstone.
+The asterisk in the EGID column means that the user's primary group is 1 and that the token is not group specific.
 
-Finally, you can configure multiple authentication drivers, read the :ref:`External Auth guide <external_auth>` for more information about, enabling :ref:`LDAP/AD <ldap>`, :ref:`SSH <ssh_auth>` or :ref:`x509 <x509_auth>` authentication.
+Set (enable) a token
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. note:: The purpose of the ``$HOME/.one/one_auth`` file and the token generation/usage are valid for any authentication mechanism.
+A token can be enabled by doing:
+
+.. prompt:: bash $ auto
+
+    $ oneuser token --set b6
+    export ONE_AUTH=/var/lib/one/.one/5ad20d96-964a-4e09-b550-9c29855e6457.token; export ONE_EGID=-1
+    $ export ONE_AUTH=/var/lib/one/.one/5ad20d96-964a-4e09-b550-9c29855e6457.token; export ONE_EGID=-1
+
+Delete a token
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A token can be removed similarly, by doing:
+
+.. prompt:: bash $ auto
+
+    $ oneuser token --delete b6
+    Token removed.
+
+Convenience bash functions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The file ``/usr/share/one/onetoken.sh``, contains two convenience functions: ``onetokencreate`` and ``onetokenset``.
+
+Usage example:
+
+.. prompt:: bash $ auto
+
+    $ source /usr/share/one/onetoken.sh
+
+    $ onetokencreate
+    Password:
+    File /var/lib/one/.one/one_auth exists, use --force to overwrite.
+    Authentication Token is:
+    testuser:f65c77250cfd375dd83873ad68598edc6593a39e
+    Token loaded.
+
+    $ cat $ONE_AUTH
+    testuser:f65c77250cfd375dd83873ad68598edc6593a39e%
+
+    $ oneuser show
+    [...]
+    TOKENS
+         ID EGID  EGROUP     EXPIRATION
+    3ea673b 100   groupB     2016-09-03 03:58:51
+    c33ff10 100   groupB     expired
+    f65c772 *1    users      2016-09-03 04:20:56
+    [...]
+
+    $ onetokenset 3e
+    Token loaded.
+
+    $ cat $ONE_AUTH
+    testuser:3ea673b90d318e4f5e67a83c220f57cd33618421
+
+Note the ``onetokencreate`` supports the same options as ``oneuser token --create``, like ``--time`` and ``--group``.
 
 User Templates
 --------------------------------------------------------------------------------
