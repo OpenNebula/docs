@@ -80,6 +80,7 @@ This script is used to register an specific IP address (or addresses) as used. T
 **Arguments**:
 
 * AddressRange and Address. The AddressRange (IP network) and address request in XML, encoded in Base 64. The XML will contain the AR as defined by the previous action; and the address request:
+
 .. code::
 
   <IPAM_DRIVER_ACTION_DATA>
