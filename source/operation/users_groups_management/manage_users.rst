@@ -260,7 +260,7 @@ The command will try to write ``$HOME/.one/one_auth`` if it does not exist.
 
 The expiration time of the token is by default 10h (3600 seconds). When requesting a token the option ``--time <seconds>`` can be used in order to define exactly when the token will expire. A value of ``-1`` disables the expiration time.
 
-The token can be created associated with one of the group the user belongs to. If the user logins with that token, he will be effectively **only** in that group, and will only be allowed to see the resources that belong to that group, as opposed to the default token, which allows access to all the resources available to the groups that the user belongs to. In order to specify a group, the option ``--group <id|group>`` can be used.
+The token can be created associated with one of the group the user belongs to. If the user logins with that token, he will be effectively **only** in that group, and will only be allowed to see the resources that belong to that group, as opposed to the default token, which allows access to all the resources available to the groups that the user belongs to. In order to specify a group, the option ``--group <id|group>`` can be used. When a group specific token is used, any newly created resource will be placed in that group.
 
 List the tokens
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
