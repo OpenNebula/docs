@@ -54,7 +54,7 @@ Drivers - VM
 * `#4540 <http://dev.opennebula.org/issues/4540>`_ Import vCenter images size may be 0
 * `#4335 <http://dev.opennebula.org/issues/4335>`_ vCenter password cannot be longer than 22 characters
 * `#4514 <http://dev.opennebula.org/issues/4514>`_ Spaces not allowed in SOURCE image attribute
-
+* `#4648 <http://dev.opennebula.org/issues/4648>`_ Delete VMs in poweroff leaves disks in datastore
 
 OneFlow
 ================================================================================
