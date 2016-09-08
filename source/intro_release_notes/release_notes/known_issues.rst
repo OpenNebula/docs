@@ -43,7 +43,7 @@ Drivers - Storage
 * `#3929 <http://dev.opennebula.org/issues/3929>`_ CEPH_HOST not IPv6 friendly
 * `#3727 <http://dev.opennebula.org/issues/3727>`_ Downloads can fail, but still not return in error
 * `#3705 <http://dev.opennebula.org/issues/3705>`_ Images downloaded from the Marketplace to Ceph are left with DRIVER=qcow2
-
+* `#4764 <http://dev.opennebula.org/issues/4764>`_ Hotplug of ceph volatile disks doesn't work. **FIX**: replace ``/var/lib/one/remotes/vmm/kvm/attach_disk`` with this version of the `attach_disk <https://raw.githubusercontent.com/OpenNebula/one/473db733b5f84eaacc02a13a0f45c96939794e81/src/vmm_mad/remotes/kvm/attach_disk>`_ script, and propagate it to the nodes using ``onehost sync``.
 
 Drivers - VM
 ================================================================================
