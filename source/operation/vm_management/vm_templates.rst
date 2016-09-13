@@ -295,6 +295,8 @@ Labels can be defined for most of the OpenNebula resources from the admin view. 
 
 The list of labels defined for each pool will be shown in the left navigation menu. After clicking on one of these labels only the resources with this label will be shown in the table. This filter is also available in the cloud view inside the virtual machine creation form to easily select a specific template.
 
+To create a label hierarchy, use the '/' character. For example, you could have the labels 'Linux/Ubuntu' and 'Linux/CentOS'. Please note that a resource with the label 'Linux/Ubuntu' is not automatically added to the parent 'Linux' label, but you can do it explicitly.
+
 Adding and Deleting Templates
 -----------------------------
 
