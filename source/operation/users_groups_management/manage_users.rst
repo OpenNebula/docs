@@ -54,6 +54,25 @@ By default the OpenNebula Cloud API (CLI and Sunstone make use of it) paginates 
     $ export ONE_POOL_PAGE_SIZE=5000        # Sets the page size to 5000
     $ export ONE_POOL_PAGE_SIZE=disabled    # Disables pool pagination
 
+**ONE_LISTCONF**
+
+Allows the user to use an alternate layout to displays lists. The layouts are defined in ``/etc/one/cli/onevm.yaml``.
+
+.. prompt:: bash $ auto
+
+    $ onevm list
+        ID USER     GROUP    NAME            STAT UCPU    UMEM HOST             TIME
+        20 oneadmin oneadmin tty-20          fail    0      0K localhost    0d 00h32
+        21 oneadmin oneadmin tty-21          fail    0      0K localhost    0d 00h23
+        22 oneadmin oneadmin tty-22          runn  0.0  104.7M localhost    0d 00h22
+
+    $ export ONE_LISTCONF=user
+    $ onevm list
+        ID NAME            IP              STAT UCPU    UMEM HOST             TIME
+        20 tty-20          10.3.4.20       fail    0      0K localhost    0d 00h32
+        21 tty-21          10.3.4.21       fail    0      0K localhost    0d 00h23
+        22 tty-22          10.3.4.22       runn  0.0  104.7M localhost    0d 00h23
+
 **ONE_CERT_DIR** and **ONE_DISABLE_SSL_VERIFY**
 
 If OpenNebula XML-RPC endpoint is behind an SSL proxy you can specify an extra trusted certificates directory using ``ONE_CERT_DIR``. Make sure that the certificate is named ``<hash>.0``. You can get the hash of a certificate with this command:
