@@ -6384,10 +6384,10 @@ Schemas for Group
                         <xs:element name="CPU_USED" type="xs:string"/>
                         <xs:element name="MEMORY" type="xs:string"/>
                         <xs:element name="MEMORY_USED" type="xs:string"/>
-                        <xs:element name="VMS" type="xs:string"/>
-                        <xs:element name="VMS_USED" type="xs:string"/>
                         <xs:element name="SYSTEM_DISK_SIZE" type="xs:string"/>
                         <xs:element name="SYSTEM_DISK_SIZE_USED" type="xs:string"/>
+                        <xs:element name="VMS" type="xs:string"/>
+                        <xs:element name="VMS_USED" type="xs:string"/>
                       </xs:sequence>
                     </xs:complexType>
                   </xs:element>
@@ -6454,6 +6454,8 @@ Schemas for Group
                                 <xs:element name="CPU_USED" type="xs:string"/>
                                 <xs:element name="MEMORY" type="xs:string"/>
                                 <xs:element name="MEMORY_USED" type="xs:string"/>
+                                <xs:element name="SYSTEM_DISK_SIZE" type="xs:string"/>
+                                <xs:element name="SYSTEM_DISK_SIZE_USED" type="xs:string"/>
                                 <xs:element name="VMS" type="xs:string"/>
                                 <xs:element name="VMS_USED" type="xs:string"/>
                               </xs:sequence>
@@ -6563,10 +6565,10 @@ Schemas for Group
                                 <xs:element name="CPU_USED" type="xs:string"/>
                                 <xs:element name="MEMORY" type="xs:string"/>
                                 <xs:element name="MEMORY_USED" type="xs:string"/>
-                                <xs:element name="VMS" type="xs:string"/>
-                                <xs:element name="VMS_USED" type="xs:string"/>
                                 <xs:element name="SYSTEM_DISK_SIZE" type="xs:string"/>
                                 <xs:element name="SYSTEM_DISK_SIZE_USED" type="xs:string"/>
+                                <xs:element name="VMS" type="xs:string"/>
+                                <xs:element name="VMS_USED" type="xs:string"/>
                               </xs:sequence>
                             </xs:complexType>
                           </xs:element>
@@ -6637,6 +6639,8 @@ Schemas for Group
                                 <xs:element name="CPU_USED" type="xs:string"/>               
                                 <xs:element name="MEMORY" type="xs:string"/>
                                 <xs:element name="MEMORY_USED" type="xs:string"/>
+                                <xs:element name="SYSTEM_DISK_SIZE" type="xs:string"/>
+                                <xs:element name="SYSTEM_DISK_SIZE_USED" type="xs:string"/>
                                 <xs:element name="VMS" type="xs:string"/>
                                 <xs:element name="VMS_USED" type="xs:string"/>
                               </xs:sequence>
@@ -7019,7 +7023,15 @@ Schemas for User
             <xs:element name="PASSWORD" type="xs:string"/>
             <xs:element name="AUTH_DRIVER" type="xs:string"/>
             <xs:element name="ENABLED" type="xs:integer"/>
-            <xs:element name="LOGIN_TOKEN" type="xs:string"/>
+            <xs:element name="LOGIN_TOKEN" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="TOKEN" type="xs:string"/>
+                  <xs:element name="EXPIRATION_TIME" type="xs:integer"/>
+                  <xs:element name="EGID" type="xs:integer"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
             <xs:element name="TEMPLATE" type="xs:anyType"/>
             <xs:element name="DATASTORE_QUOTA" minOccurs="0" maxOccurs="1">
               <xs:complexType>
@@ -7063,10 +7075,10 @@ Schemas for User
                         <xs:element name="CPU_USED" type="xs:string"/>
                         <xs:element name="MEMORY" type="xs:string"/>
                         <xs:element name="MEMORY_USED" type="xs:string"/>
-                        <xs:element name="VMS" type="xs:string"/>
-                        <xs:element name="VMS_USED" type="xs:string"/>
                         <xs:element name="SYSTEM_DISK_SIZE" type="xs:string"/>
                         <xs:element name="SYSTEM_DISK_SIZE_USED" type="xs:string"/>
+                        <xs:element name="VMS" type="xs:string"/>
+                        <xs:element name="VMS_USED" type="xs:string"/>
                       </xs:sequence>
                     </xs:complexType>
                   </xs:element>
@@ -7133,6 +7145,8 @@ Schemas for User
                                 <xs:element name="CPU_USED" type="xs:string"/>
                                 <xs:element name="MEMORY" type="xs:string"/>
                                 <xs:element name="MEMORY_USED" type="xs:string"/>
+                                <xs:element name="SYSTEM_DISK_SIZE" type="xs:string"/>
+                                <xs:element name="SYSTEM_DISK_SIZE_USED" type="xs:string"/>
                                 <xs:element name="VMS" type="xs:string"/>
                                 <xs:element name="VMS_USED" type="xs:string"/>
                               </xs:sequence>
@@ -7190,7 +7204,15 @@ Schemas for User
                     <xs:element name="PASSWORD" type="xs:string"/>
                     <xs:element name="AUTH_DRIVER" type="xs:string"/>
                     <xs:element name="ENABLED" type="xs:integer"/>
-                    <xs:element name="LOGIN_TOKEN" type="xs:string"/>
+                    <xs:element name="LOGIN_TOKEN" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="TOKEN" type="xs:string"/>
+                          <xs:element name="EXPIRATION_TIME" type="xs:integer"/>
+                          <xs:element name="EGID" type="xs:integer"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
                     <xs:element name="TEMPLATE" type="xs:anyType"/>
                   </xs:sequence>
                 </xs:complexType>
@@ -7241,10 +7263,10 @@ Schemas for User
                                 <xs:element name="CPU_USED" type="xs:string"/>
                                 <xs:element name="MEMORY" type="xs:string"/>
                                 <xs:element name="MEMORY_USED" type="xs:string"/>
-                                <xs:element name="VMS" type="xs:string"/>
-                                <xs:element name="VMS_USED" type="xs:string"/>
                                 <xs:element name="SYSTEM_DISK_SIZE" type="xs:string"/>
                                 <xs:element name="SYSTEM_DISK_SIZE_USED" type="xs:string"/>
+                                <xs:element name="VMS" type="xs:string"/>
+                                <xs:element name="VMS_USED" type="xs:string"/>
                               </xs:sequence>
                             </xs:complexType>
                           </xs:element>
@@ -7315,6 +7337,8 @@ Schemas for User
                                 <xs:element name="CPU_USED" type="xs:string"/>
                                 <xs:element name="MEMORY" type="xs:string"/>
                                 <xs:element name="MEMORY_USED" type="xs:string"/>
+                                <xs:element name="SYSTEM_DISK_SIZE" type="xs:string"/>
+                                <xs:element name="SYSTEM_DISK_SIZE_USED" type="xs:string"/>
                                 <xs:element name="VMS" type="xs:string"/>
                                 <xs:element name="VMS_USED" type="xs:string"/>
                               </xs:sequence>
@@ -7668,6 +7692,7 @@ Schemas for Virtual Network
                                     <xs:element name="MAC" type="xs:string"/>
                                     <xs:element name="VM" type="xs:integer" minOccurs="0"/>
                                     <xs:element name="VNET" type="xs:integer" minOccurs="0"/>
+                                    <xs:element name="VROUTER" type="xs:integer" minOccurs="0"/>
                                   </xs:all>
                                 </xs:complexType>
                               </xs:element>
