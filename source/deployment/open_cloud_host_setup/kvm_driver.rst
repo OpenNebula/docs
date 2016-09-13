@@ -101,6 +101,10 @@ For example:
         <redirdev bus='usb' type='spicevmc'/>
         <redirdev bus='usb' type='spicevmc'/>"
 
+.. note::
+
+  These values can be overriden in the VM Template
+
 Live-Migration for Other Cache settings
 --------------------------------------------------------------------------------
 

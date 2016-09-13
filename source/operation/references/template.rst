@@ -910,13 +910,15 @@ Examples:
 
 .. _template_raw_section:
 
-RAW Section
+Hypervisor Section
 ================================================================================
 
-This optional section of the VM template is used whenever the need to pass special attributes to the underlying hypervisor arises. Anything placed in the data attribute gets passed straight to the hypervisor, unmodified.
+You can also tune several low-level hypervisor attributes.
+
+The ``RAW`` attribute (optional) section of the VM template is used pass VM information directly to the underlying hypervisor. Anything placed in the data attribute gets passed straight to the hypervisor unmodified.
 
 +-------------------+---------------------------------------------------+-----+---------+
-| RAW Sub-Attribute |                    Description                    | KVM | vCenter |
+| RAW     Attribute |                    Description                    | KVM | vCenter |
 +===================+===================================================+=====+=========+
 | **TYPE**          | Possible values are: ``kvm``, ``xen``, ``vmware`` | O   | \-      |
 +-------------------+---------------------------------------------------+-----+---------+
@@ -924,6 +926,29 @@ This optional section of the VM template is used whenever the need to pass speci
 +-------------------+---------------------------------------------------+-----+---------+
 | **DATA\_VMX**     | Raw data to be added directly to the .vmx file    | \-  | \-      |
 +-------------------+---------------------------------------------------+-----+---------+
+
+Example:
+
+.. code::
+
+       RAW = [
+           type = "kvm",
+           data = "<devices><serial type=\"pty\"><source path=\"/dev/pts/5\"/><target port=\"0\"/></serial><console type=\"pty\" tty=\"/dev/pts/5\"><source path=\"/dev/pts/5\"/><target port=\"0\"/></console></devices>"
+       ]
+
+Additionally the following can be also set for each hypervisor as specified:
+
++-------------------+---------------------------------------------------+-----+---------+
+|         Attribute |                    Description                    | KVM | vCenter |
++===================+===================================================+=====+=========+
+| **EMULATOR**      | Path to the emulator binary to use with this VM   | O   | \-      |
++-------------------+---------------------------------------------------+-----+---------+
+
+Example:
+
+.. code::
+
+       EMULATOR="/usr/bin/qemu-system-aarch64"
 
 .. _template_restricted_attributes:
 
