@@ -29,6 +29,10 @@ For example, consider a system with two Virtual Machines (9 and 10) using a disk
       lv-one-10-0 vg-one-0 -wi------- 2.20g
       lv-one-9-0  vg-one-0 -wi------- 2.20g
 
+.. warning::
+
+  Images are stored in a shared storage in file form (e.g. NFS, GlusterFS...) the datastore directories and mount points needs to be configured as a regular shared image datastore, :ref:`please refer to FileSystem Datastore guide <fs_ds>`. It is a good idea to first deploy a shared FileSystem datastore and once it is working replace the associated System datastore with the LVM one, as described below.
+  
 Frontend Setup
 ================================================================================
 No additional configuration is needed.
@@ -43,6 +47,7 @@ Nodes needs to meet the following requirements:
 * All the nodes needs to have access to the same LUNs.
 * A LVM VG needs to be created in the shared LUNs for each datastore following name: ``vg-one-<system_ds_id>``. This just need to be done in one node.
 * Virtual Machine disks are symbolic links to the block devices. However, additional VM files like checkpoints or deployment files are stored under ``/var/lib/one/datastores/<id>``. Be sure that enough local space is present.
+* All the nodes needs to have access to the image datastore, mounting the asociated directory.
 
 .. _lvm_drivers_templates:
 
@@ -67,9 +72,6 @@ LVM System Datastores needs to be created with the following values:
 +-----------------+---------------------------------------------------+
 | ``TYPE``        | ``SYSTEM_DS``                                     |
 +-----------------+---------------------------------------------------+
-| ``BRIDGE_LIST`` | List of LVM NODES separated by space.             |
-+-----------------+---------------------------------------------------+
-
 
 For example:
 
@@ -88,21 +90,23 @@ Create an Image Datastore
 --------------------------------------------------------------------------------
 To create an Image Datastore you just need to define the name, and set the following:
 
-+-----------------+-------------------------------------------------+
-|   Attribute     |                   Description                   |
-+=================+=================================================+
-| ``NAME``        | The name of the datastore                       |
-+-----------------+-------------------------------------------------+
-| ``TYPE``        | ``IMAGE_DS``                                    |
-+-----------------+-------------------------------------------------+
-| ``DS_MAD``      | ``fs``                                          |
-+-----------------+-------------------------------------------------+
-| ``TM_MAD``      | ``fs_lvm``                                      |
-+-----------------+-------------------------------------------------+
-| ``DISK_TYPE``   | ``BLOCK``                                       |
-+-----------------+-------------------------------------------------+
-| ``BRIDGE_LIST`` | List of LVM NODES separated by space.           |
-+-----------------+-------------------------------------------------+
++-----------------+---------------------------------------------------------------------------------------------+
+|   Attribute     |                   Description                                                               |
++=================+=============================================================================================+
+| ``NAME``        | The name of the datastore                                                                   |
++-----------------+---------------------------------------------------------------------------------------------+
+| ``TYPE``        | ``IMAGE_DS``                                                                                |
++-----------------+---------------------------------------------------------------------------------------------+
+| ``DS_MAD``      | ``fs``                                                                                      |
++-----------------+---------------------------------------------------------------------------------------------+
+| ``TM_MAD``      | ``fs_lvm``                                                                                  |
++-----------------+---------------------------------------------------------------------------------------------+
+| ``DISK_TYPE``   | ``BLOCK``                                                                                   |
++-----------------+---------------------------------------------------------------------------------------------+
+| ``BRIDGE_LIST`` | List of LVM NODES separated by space.                                                       |
++-----------------+---------------------------------------------------------------------------------------------+
+| ``BRIDGE_LIST`` | List of nodes (space separated) with access to the shared storage, used to copy new images. |
++-----------------+---------------------------------------------------------------------------------------------+
 
 For example, the following examples illustrates the creation of an LVM datastore using a configuration file. In this case we will use the host ``host01`` as one of our OpenNebula LVM-enabled hosts.
 
