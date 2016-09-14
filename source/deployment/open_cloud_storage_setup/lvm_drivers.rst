@@ -58,15 +58,18 @@ Create a System Datastore
 
 LVM System Datastores needs to be created with the following values:
 
-+-----------------+------------------------------------------------------+
-|    Attribute    |                     Description                      |
-+=================+======================================================+
-| ``NAME``        | The name of the Datastore                            |
-+-----------------+------------------------------------------------------+
-| ``TM_MAD``      | ``fs_lvm``                                           |
-+-----------------+------------------------------------------------------+
-| ``TYPE``        | ``SYSTEM_DS``                                        |
-+-----------------+------------------------------------------------------+
++-----------------+---------------------------------------------------+
+|    Attribute    |                   Description                     |
++=================+===================================================+
+| ``NAME``        | The name of the Datastore                         |
++-----------------+---------------------------------------------------+
+| ``TM_MAD``      | ``fs_lvm``                                        |
++-----------------+---------------------------------------------------+
+| ``TYPE``        | ``SYSTEM_DS``                                     |
++-----------------+---------------------------------------------------+
+| ``BRIDGE_LIST`` | List of LVM NODES separated by space.             |
++-----------------+---------------------------------------------------+
+
 
 For example:
 
@@ -76,6 +79,7 @@ For example:
     NAME   = lvm_system
     TM_MAD = fs_lvm
     TYPE   = SYSTEM_DS
+    BRIDGE_LIST = "NODE1 NODE2"
 
     > onedatastore create ds.conf
     ID: 100
@@ -97,6 +101,8 @@ To create an Image Datastore you just need to define the name, and set the follo
 +-----------------+-------------------------------------------------+
 | ``DISK_TYPE``   | ``BLOCK``                                       |
 +-----------------+-------------------------------------------------+
+| ``BRIDGE_LIST`` | List of LVM NODES separated by space.           |
++-----------------+-------------------------------------------------+
 
 For example, the following examples illustrates the creation of an LVM datastore using a configuration file. In this case we will use the host ``host01`` as one of our OpenNebula LVM-enabled hosts.
 
@@ -109,6 +115,7 @@ For example, the following examples illustrates the creation of an LVM datastore
     DISK_TYPE = "BLOCK"
     TYPE = IMAGE_DS
     SAFE_DIRS="/var/tmp /tmp"
+    BRIDGE_LIST = "NODE1 NODE2"
 
     > onedatastore create ds.conf
     ID: 101
