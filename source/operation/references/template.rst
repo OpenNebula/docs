@@ -936,6 +936,8 @@ Example:
            data = "<devices><serial type=\"pty\"><source path=\"/dev/pts/5\"/><target port=\"0\"/></serial><console type=\"pty\" tty=\"/dev/pts/5\"><source path=\"/dev/pts/5\"/><target port=\"0\"/></console></devices>"
        ]
 
+.. _emulator_override:
+
 Additionally the following can be also set for each hypervisor as specified:
 
 +-------------------+---------------------------------------------------+-----+---------+

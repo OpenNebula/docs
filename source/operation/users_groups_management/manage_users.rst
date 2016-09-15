@@ -255,6 +255,8 @@ Once configured you will be able to access the OpenNebula API and use the CLI to
 
 .. note:: OpenNebula does not store the plain password but a hashed version in the database, as show by the oneuser example above.
 
+.. _user_tokens:
+
 Tokens
 --------------------------------------------------------------------------------
 
