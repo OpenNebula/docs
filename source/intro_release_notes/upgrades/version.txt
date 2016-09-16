@@ -1,0 +1,4 @@
+
+.. |version| replace:: 5.2
+.. |compatibility| replace:: :ref:`5.2 <compatibility>`
+.. |onedconf| replace:: :ref:`5.2 <oned_conf>`

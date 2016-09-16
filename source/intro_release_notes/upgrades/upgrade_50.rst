@@ -6,14 +6,36 @@ Upgrading from OpenNebula 5.0.x
 
 This section describes the installation procedure for systems that are already running a 5.0.x OpenNebula. The upgrade will preserve all current users, hosts, resources and configurations; for both Sqlite and MySQL backends.
 
-Read the :ref:`Compatibility Guide <compatibility>` and `Release Notes <http://opennebula.org/software/release/>`_ to know what is new in OpenNebula 5.0.
+Read the :ref:`Compatibility Guide <compatibility>` and `Release Notes <http://opennebula.org/software/release/>`_ to know what is new in OpenNebula |version|.
 
 Upgrading a Federation
 ================================================================================
 
-If you have two or more 5.0.x OpenNebulas working as a :ref:`Federation <introf>`, you can upgrade each one independently. Zones with an OpenNebula from the 5.0.x series can be part of the same federation, since the shared portion of the database is compatible.
+If you have two or more 5.0.x OpenNebulas working as a :ref:`Federation <introf>`, you need to upgrade all of them. The upgrade does not have to be simultaneous, the slaves can be kept running while the master is upgraded.
 
-The rest of the guide applies to both a master or slave Zone. You don't need to stop the federation or the MySQL replication to follow this guide.
+The steps to follow are:
+
+1. Stop the MySQL replication in all the slaves
+2. Upgrade the **master** OpenNebula
+3. Upgrade each **slave**
+4. Resume the replication
+
+During the time between steps 1 and 4 the slave OpenNebulas can be running, and users can keep accessing them if each zone has a local Sunstone instance. There is however an important limitation to note: all the shared database tables will not be updated in the slaves zones. This means that new user accounts, password changes, new ACL rules, etc. will not have any effect in the slaves. Read the :ref:`federation architecture documentation <introf_architecture>` for more details.
+
+It is recommended to upgrade all the slave zones as soon as possible.
+
+To perform the first step, `pause the replication <http://dev.mysql.com/doc/refman/5.7/en/replication-administration-pausing.html>`_ in each **slave MySQL**:
+
+.. code::
+
+    mysql> STOP SLAVE;
+
+    mysql> SHOW SLAVE STATUS\G
+
+     Slave_IO_Running: No
+    Slave_SQL_Running: No
+
+Then follow this section for the **master zone**. After the master has been updated to |version|, upgrade each **slave zone** following this same section.
 
 Upgrading from a High Availability deployment
 ================================================================================
@@ -57,7 +79,7 @@ Make sure to run the ``install_gems`` tool, as the new OpenNebula version may ha
 
     If executing ``install_gems`` you get a message asking to overwrite files for aws executables you can safely answer "yes".
 
-It is highly recommended **not to keep** your current ``oned.conf``, and update the ``oned.conf`` file shipped with OpenNebula 5.0 to your setup. If for any reason you plan to preserve your current ``oned.conf`` file, read the complete :ref:`oned.conf reference for 5.0 <oned_conf>`.
+It is highly recommended **not to keep** your current ``oned.conf``, and update the ``oned.conf`` file shipped with OpenNebula |version| to your setup. If for any reason you plan to preserve your current ``oned.conf`` file, read the :ref:`Compatibility Guide <compatibility>` and the complete oned.conf reference for `5.0 <http://docs.opennebula.org/5.0/deployment/references/oned_conf.html>`_ and |onedconf| versions.
 
 Configuration Files Upgrade
 ===========================
@@ -75,7 +97,51 @@ If you have customized **any** configuration files under ``/etc/one`` we recomme
 Database Upgrade
 ================
 
-The upgrade from any previous 5.0.x version does not require a database upgrade, the database schema is compatible.
+The database schema and contents are incompatible between versions. The OpenNebula daemon checks the existing DB version, and will fail to start if the version found is not the one expected, with the message 'Database version mismatch'.
+
+You can upgrade the existing DB with the 'onedb' command. You can specify any Sqlite or MySQL database. Check the :ref:`onedb reference <onedb>` for more information.
+
+.. warning:: Make sure at this point that OpenNebula is not running. If you installed from packages, the service may have been started automatically.
+
+.. warning:: For environments in a Federation: Before upgrading the **master**, make sure that all the slaves have the MySQL replication paused.
+
+After you install the latest OpenNebula, and fix any possible conflicts in oned.conf, you can issue the 'onedb upgrade -v' command. The connection parameters have to be supplied with the command line options, see the :ref:`onedb manpage <cli>` for more information. Some examples:
+
+.. prompt:: text $ auto
+
+    $ onedb upgrade -v --sqlite /var/lib/one/one.db
+
+.. prompt:: text $ auto
+
+    $ onedb upgrade -v -S localhost -u oneadmin -p oneadmin -d opennebula
+
+If everything goes well, you should get an output similar to this one:
+
+.. code::
+
+    $ onedb upgrade -v -u oneadmin -d opennebula
+    MySQL Password:
+    Version read:
+    Shared tables 4.11.80 : OpenNebula 4.12.1 daemon bootstrap
+    Local tables  4.11.80 : OpenNebula 4.12.1 daemon bootstrap
+
+    MySQL dump stored in /var/lib/one/mysql_localhost_opennebula.sql
+    Use 'onedb restore' or restore the DB using the mysql command:
+    mysql -u user -h server -P port db_name < backup_file
+
+
+    >>> Running migrators for shared tables
+      ...
+
+    >>> Running migrators for local tables
+      ...
+      > Done in 41.93s
+
+    Database migrated from 4.11.80 to 4.13.80 (OpenNebula 4.13.80) by onedb command.
+
+    Total time: 41.93s
+
+.. note:: Make sure you keep the backup file. If you face any issues, the onedb command can restore this backup, but it won't downgrade databases to previous versions.
 
 Check DB Consistency
 ====================
@@ -88,14 +154,6 @@ First, move the 5.0.x backup file created by the upgrade command to a safe place
 
     $ mv /var/lib/one/mysql_localhost_opennebula.sql /path/for/one-backups/
 
-.. warning::
-
-    To fix known issues found since the last release, you need to update the fsck file shipped with OpenNebula with the on from the stable branch of the repository:
-
-    .. prompt:: text $ auto
-
-        $ wget https://raw.githubusercontent.com/OpenNebula/one/one-5.0/src/onedb/fsck.rb -O /usr/lib/one/ruby/onedb/fsck.rb
-
 Then execute the following command:
 
 .. code::
@@ -106,6 +164,33 @@ Then execute the following command:
     mysql -u user -h server -P port db_name < backup_file
 
     Total errors found: 0
+
+Resume the Federation
+================================================================================
+
+This section applies only to environments working in a Federation.
+
+For the **master zone**: This step is not necessary.
+
+For a **slave zone**: The MySQL replication must be resumed now.
+
+.. warning:: Do not copy the server-id from this example, each slave should already have a unique ID.
+
+- Start the **slave MySQL** process and check its status. It may take a while to copy and apply all the pending commands.
+
+.. code-block:: none
+
+    mysql> START SLAVE;
+    mysql> SHOW SLAVE STATUS\G
+
+The ``SHOW SLAVE STATUS`` output will provide detailed information, but to confirm that the slave is connected to the master MySQL, take a look at these columns:
+
+.. code-block:: none
+
+       Slave_IO_State: Waiting for master to send event
+     Slave_IO_Running: Yes
+    Slave_SQL_Running: Yes
+
 
 Reload Start Scripts in CentOS 7
 ================================
@@ -123,15 +208,6 @@ You should be able now to start OpenNebula as usual, running ``service opennebul
 
 .. warning:: Doing ``onehost sync`` is important. If the monitorization drivers are not updated, the hosts will behave erratically.
 
-Default Auth
-============
-
-If you are using :ref:`LDAP as default auth driver <ldap>`, you will need to update ``/etc/one/oned.conf`` and set the new ``DEFAULT_AUTH`` variable:
-
-.. code::
-
-    DEFAULT_AUTH = "ldap"
-
 Testing
 =======
 
@@ -144,8 +220,8 @@ Restoring the Previous Version
 
 If for any reason you need to restore your previous OpenNebula, follow these steps:
 
--  With OpenNebula 5.0 still installed, restore the DB backup using 'onedb restore -f'
--  Uninstall OpenNebula 5.0, and install again your previous version.
+-  With OpenNebula |version| still installed, restore the DB backup using 'onedb restore -f'
+-  Uninstall OpenNebula |version|, and install again your previous version.
 -  Copy back the backup of /etc/one you did to restore your configuration.
 
 Known Issues
@@ -160,3 +236,5 @@ The workaround is to temporarily change the oneadmin's password to an ASCII stri
     $ mysql -u oneadmin -p
 
     mysql> SET PASSWORD = PASSWORD('newpass');
+
+.. include:: version.txt

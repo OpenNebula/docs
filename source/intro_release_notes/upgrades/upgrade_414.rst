@@ -5,7 +5,8 @@ Upgrading from OpenNebula 4.14.x
 
 This section describes the installation procedure for systems that are already running a 4.14.x OpenNebula. The upgrade will preserve all current users, hosts, resources and configurations; for both Sqlite and MySQL backends.
 
-Read the :ref:`Compatibility Guide <compatibility>` and `Release Notes <http://opennebula.org/software/release/>`_ to know what is new in OpenNebula 5.0.
+Read the Compatibility Guide for `5.0 <http://docs.opennebula.org/5.0/intro_release_notes/release_notes/compatibility.html>`_ and |compatibility|, and the `Release Notes <http://opennebula.org/software/release/>`_ to know what is new in OpenNebula |version|.
+
 
 Upgrading a Federation
 ================================================================================
@@ -34,7 +35,7 @@ To perform the first step, `pause the replication <http://dev.mysql.com/doc/refm
      Slave_IO_Running: No
     Slave_SQL_Running: No
 
-Then follow this section for the **master zone**. After the master has been updated to 5.0, upgrade each **slave zone** following this same section.
+Then follow this section for the **master zone**. After the master has been updated to |version|, upgrade each **slave zone** following this same section.
 
 
 Upgrading from a High Availability deployment
@@ -57,7 +58,7 @@ Preparation
 
 Before proceeding, make sure you don't have any VMs in a transient state (prolog, migr, epil, save). Wait until these VMs get to a final state (runn, suspended, stopped, done). Check the :ref:`Managing Virtual Machines guide <vm_guide_2>` for more information on the VM life-cycle.
 
-The network drivers in OpenNebula 5.0 are located in the Virtual Network, rather than in the host. The upgrade process may ask you questions about your existing VMs, Virtual Networks and hosts, and as such it is wise to have the following information saved beforehand, since in the upgrade process OpenNebula will be stopped.
+The network drivers since OpenNebula 5.0 are located in the Virtual Network, rather than in the host. The upgrade process may ask you questions about your existing VMs, Virtual Networks and hosts, and as such it is wise to have the following information saved beforehand, since in the upgrade process OpenNebula will be stopped.
 
 .. prompt:: text $ auto
 
@@ -65,7 +66,7 @@ The network drivers in OpenNebula 5.0 are located in the Virtual Network, rather
   $ onehost list -x > hosts.txt
   $ onevm list -x > vms.txt
 
-The list of valid network drivers in 5.0 Wizard are:
+The list of valid network drivers since 5.0 Wizard are:
 
 * ``802.1Q``
 * ``dummy``
@@ -96,7 +97,7 @@ Make sure to run the ``install_gems`` tool, as the new OpenNebula version may ha
 
     If executing ``install_gems`` you get a message asking to overwrite files for aws executables you can safely answer "yes".
 
-It is highly recommended **not to keep** your current ``oned.conf``, and update the ``oned.conf`` file shipped with OpenNebula 5.0 to your setup. If for any reason you plan to preserve your current ``oned.conf`` file, read the :ref:`Compatibility Guide <compatibility>` and the complete oned.conf reference for `4.14 <http://docs.opennebula.org/4.14/administration/references/oned_conf.html>`_ and :ref:`5.0 <oned_conf>` versions.
+It is highly recommended **not to keep** your current ``oned.conf``, and update the ``oned.conf`` file shipped with OpenNebula |version| to your setup. If for any reason you plan to preserve your current ``oned.conf`` file, read the :ref:`Compatibility Guide <compatibility>` and the complete oned.conf reference for `4.14 <http://docs.opennebula.org/4.14/administration/references/oned_conf.html>`_ and |onedconf| versions.
 
 Configuration Files Upgrade
 ===========================
@@ -171,14 +172,6 @@ First, move the 4.14 backup file created by the upgrade command to a safe place.
 
     $ mv /var/lib/one/mysql_localhost_opennebula.sql /path/for/one-backups/
 
-.. warning::
-
-    To fix known issues found since the last release, you need to update the fsck file shipped with OpenNebula with the on from the stable branch of the repository:
-
-    .. prompt:: text $ auto
-
-        $ wget https://raw.githubusercontent.com/OpenNebula/one/one-5.0/src/onedb/fsck.rb -O /usr/lib/one/ruby/onedb/fsck.rb
-
 Then execute the following command:
 
 .. code::
@@ -251,15 +244,6 @@ You should be able now to start OpenNebula as usual, running ``service opennebul
 
 .. warning:: Doing ``onehost sync`` is important. If the monitorization drivers are not updated, the hosts will behave erratically.
 
-Default Auth
-============
-
-If you are using :ref:`LDAP as default auth driver <ldap>`, you will need to update ``/etc/one/oned.conf`` and set the new ``DEFAULT_AUTH`` variable:
-
-.. code::
-
-    DEFAULT_AUTH = "ldap"
-
 Create the Virtual Router ACL Rule
 ================================================================================
 
@@ -269,7 +253,7 @@ There is a new kind of resource introduced in 5.0: :ref:`Virtual Routers <vroute
 
     $ oneacl create "* VROUTER/* CREATE *"
 
-.. note:: For environments in a Federation: This command needs to be executed only once in the master zone, after it is upgraded to 5.0.
+.. note:: For environments in a Federation: This command needs to be executed only once in the master zone, after it is upgraded to |version|.
 
 Testing
 =======
@@ -283,8 +267,8 @@ Restoring the Previous Version
 
 If for any reason you need to restore your previous OpenNebula, follow these steps:
 
--  With OpenNebula 5.0 still installed, restore the DB backup using 'onedb restore -f'
--  Uninstall OpenNebula 5.0, and install again your previous version.
+-  With OpenNebula |version| still installed, restore the DB backup using 'onedb restore -f'
+-  Uninstall OpenNebula |version|, and install again your previous version.
 -  Copy back the backup of /etc/one you did to restore your configuration.
 
 Known Issues
@@ -299,3 +283,5 @@ The workaround is to temporarily change the oneadmin's password to an ASCII stri
     $ mysql -u oneadmin -p
 
     mysql> SET PASSWORD = PASSWORD('newpass');
+
+.. include:: version.txt
