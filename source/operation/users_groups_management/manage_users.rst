@@ -260,6 +260,8 @@ Once configured you will be able to access the OpenNebula API and use the CLI to
 Tokens
 --------------------------------------------------------------------------------
 
+.. todo:: This section uses oneuser token --create, which does not exist anymore
+
 ``$HOME/.one/one_auth`` is just protected with the standard filesystem permissions. To improve the system security you can use authentication tokens. In this way there is no need to store plain passwords, OpenNebula can generate or use an authentication token with a given expiration time. By default, the tokens are also stored in ``$HOME/.one/one_auth``.
 
 Furthermore, if the user belongs to multiple groups, a token can be associated to one of those groups, and when the user operates with that token he will be effectively in that group, i.e. he will only see the resources that belong to that group, and when creating a resource it will be placed in that group.
