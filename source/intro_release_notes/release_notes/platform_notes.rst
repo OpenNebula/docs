@@ -222,7 +222,7 @@ CentOS 6.5 Usage Platform Notes
 Installing on ArchLinux
 --------------------------------------------------------------------------------
 
-OpenNebula is available at the Arch User Repository (AUR), `please check the opennebula package page <https://aur.archlinux.org/packages.php?ID=32163>`__.
+OpenNebula is available at the Arch User Repository (AUR), `please check the opennebula package page <https://aur.archlinux.org/packages/opennebula>`__.
 
 Installing on Gentoo
 --------------------------------------------------------------------------------
