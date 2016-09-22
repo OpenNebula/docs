@@ -377,7 +377,7 @@ Check that everything is correct (be patient, it might take a minute or so to ge
 
 .. code::
 
-    $ crm show
+    $ crm configure show
     Last updated: Thu Jul 21 12:05:50 2016
     Last change: Thu Jul 21 12:05:18 2016 via cibadmin on one-server2
     Stack: corosync
