@@ -34,6 +34,8 @@ To define a Virtual Network include:
   * :ref:`Define a VXLAN network <vxlan_net>`
   * :ref:`Define a OpenvSwitch network <ovswitch_net>`
 
+* QoS parameters (optional) for each NIC attached to the network, to limit the inbound/outbound average and peak bandwidths as well as the burst data size that can be transmitted at peak speed (:ref:`see more details here <vnet_template_qos>`).
+
 For example, to define a 802.1Q Virtual Network you would add:
 
 .. code::
@@ -41,6 +43,10 @@ For example, to define a 802.1Q Virtual Network you would add:
     NAME    = "Private Network"
     VN_MAD  = "802.1Q"
     PHYDEV  = "eth0"
+
+    OUTBOUND_AVG_BW = "1000"
+    OUTBOUND_PEAK_BW = "1500"
+    OUTBOUND_PEAK_KB = "2048"
 
 Address Space
 -------------

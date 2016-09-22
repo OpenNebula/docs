@@ -47,6 +47,29 @@ It defines the **underlying networking infrastructure** that will support the Vi
 |              | attached to the bridge.                          |          |           | vxlan    |
 +--------------+--------------------------------------------------+----------+-----------+----------+
 
+Quality of Service Attributes
+================================================================================
+
+.. _vnet_template_qos:
+
+This set of attributes limit the bandwidth of each NIC attached to the Virtual Network. Note that the limits are applied to each NIC individually and are not averaged over all the NICs (e.g. a VM with two interfaces in the same network).
+
++----------------------+---------------------------------------------------------------------------+
+| Attribute            |                     Description                                           |
++======================+===========================================================================+
+| **INBOUND_AVG_BW**   | Average bitrate for the interface in kilobytes/second for inbound traffic.|
++----------------------+---------------------------------------------------------------------------+
+| **INBOUND_PEAK_BW**  | Maximum bitrate for the interface in kilobytes/second for inbound traffic.|
++----------------------+---------------------------------------------------------------------------+
+| **INBOUND_PEAK_KB**  | Data that can be transmitted at peak speed in kilobytes.                  |
++----------------------+---------------------------------------------------------------------------+
+| **OUTBOUND_AVG_BW**  | Average bitrate for the interface in kilobytes/second for outbound traffic|
++----------------------+---------------------------------------------------------------------------+
+| **OUTBOUND_PEAK_BW** | Maximum bitrate for the interface in kilobytes/second for outbound traffic|
++----------------------+---------------------------------------------------------------------------+
+| **OUTBOUND_PEAK_KB** | Data that can be transmitted at peak speed in kilobytes.                  |
++----------------------+---------------------------------------------------------------------------+
+
 The Address Range
 ================================================================================
 
