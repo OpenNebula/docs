@@ -78,7 +78,7 @@ They can also configure several options from the settings tab:
 -  Views: change between the different available views
 -  Language: select the language that they want to use for the UI.
 -  Use secure websockets for VNC: Try to connect using secure websockets when starting VNC sessions.
--  Display Name: If the user wishes to customize the username that is shown in Sunstone it is possible to so by adding a special parameter named ``SUNSTONE_DISPLAY_NAME`` with the desired value. It is worth noting that Cloud Administrators may want to automate this with a hook on user create in order to fetch the user name from outside OpenNebula.
+-  Display Name: If the user wishes to customize the username that is shown in Sunstone it is possible to so by adding a special parameter named ``SUNSTONE/DISPLAY_NAME`` with the desired value. It is worth noting that Cloud Administrators may want to automate this with a hook on user create in order to fetch the user name from outside OpenNebula.
 
 These options are saved in the user template, as well as other hidden settings like for instance the attribute that lets Sunstone remember the number of items displayed in the datatables per user. If not defined, defaults from ``/etc/one/sunstone-server.conf`` are taken.
 
@@ -122,7 +122,7 @@ For the dashboard, the following widgets can be configured:
     # bellow. As the name suggest, the widgets will be scaled to fit one,
     # two, or three per row. The footer uses the widgets at full size, i.e.
     # one per row.
-    # 
+    #
     # - storage
     # - users
     # - network
