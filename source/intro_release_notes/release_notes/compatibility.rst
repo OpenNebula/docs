@@ -197,3 +197,4 @@ This section lists all the changes in the API. Visit the :ref:`complete referenc
 * Changed api calls:
 
   * ``one.user.login``: New parameter EGID, effective GID to use with this token. To use the current GID and user groups set it to -1
+  * ``one.user.allocate``: New parameter gids, array of Group IDs. To create a new User setting the main and secondary groups directly
