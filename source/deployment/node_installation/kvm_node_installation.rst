@@ -57,7 +57,7 @@ Step 4. Configure Passwordless SSH
 
 OpenNebula Front-end connects to the hypervisor Hosts using SSH. You must distribute the public key of ``oneadmin`` user from all machines to the file ``/var/lib/one/.ssh/authorized_keys`` in all the machines. There are many methods to achieve the distribution of the SSH keys, ultimately the administrator should choose a method (the recommendation is to use a configuration management system). In this guide we are going to manually scp the SSH keys.
 
-When the package was installed in the Front-end, an SSH key was generated and the ``authorized_keys`` populated. We will sync the ``id_rsa``, ``id_rsa.pub`` and ``authorized_keys`` from the Front-end to the nodes. Additionally we need to create a ``known_hosts`` file and sync it as well to the nodes. To create the ``known_hosts`` file, we have to execute this command as user ``oneadmin`` in the Front-end with all the node names as parameters:
+When the package was installed in the Front-end, an SSH key was generated and the ``authorized_keys`` populated. We will sync the ``id_rsa``, ``id_rsa.pub`` and ``authorized_keys`` from the Front-end to the nodes. Additionally we need to create a ``known_hosts`` file and sync it as well to the nodes. To create the ``known_hosts`` file, we have to execute this command as user ``oneadmin`` in the Front-end with all the node names and the Front-end name as parameters:
 
 .. prompt:: bash $ auto
 
@@ -72,9 +72,12 @@ Now we need to copy the directory ``/var/lib/one/.ssh`` to all the nodes. The ea
     $ scp -rp /var/lib/one/.ssh <node3>:/var/lib/one/
     $ ...
 
-You should verify that connecting from the Front-end, as user ``oneadmin``, to the nodes, and from the nodes to the Front-end, does not ask password:
+You should verify that connecting from the Front-end, as user ``oneadmin``, to the nodes and the Front-end itself, and from the nodes to the Front-end, does not ask password:
 
 .. prompt:: bash $ auto
+
+    $ ssh <frontend>
+    $ exit
 
     $ ssh <node1>
     $ ssh <frontend>
