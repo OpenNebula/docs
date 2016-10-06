@@ -2,7 +2,7 @@
 
 ================================================================================
 vCenter Node
-================================================================================ 
+================================================================================
 
 The vCenter driver for OpenNebula enables the interaction with vCenter to control the life-cycle of vCenter resources such as Virtual Machines, Templates, Networks and VMDKs.
 
@@ -123,7 +123,7 @@ The **onevcenter** tool can be used to import existing VM templates from the ESX
 After a vCenter VM Template is imported as a OpenNebula VM Template, it can be modified to change the capacity in terms of CPU and MEMORY, the name, permissions, etc. It can also be enriched to add:
 
 * :ref:`New disks <disk_hotplugging>`
-* :ref:`New network interfaces <vm_guide2_nic_hotplugging>` 
+* :ref:`New network interfaces <vm_guide2_nic_hotplugging>`
 * :ref:`Context information <vcenter_contextualization>`
 
 Before using your OpenNebula cloud you may want to read about the :ref:`vCenter specifics <vcenter_specifics>`.
@@ -168,14 +168,25 @@ Also, network management operations are present like the ability to attach/detac
 
 .. _reacquire_vcenter_resources:
 
-The same import mechanism is available graphically through Sunstone for hosts, networks, templates and running VMs. vCenter hosts can be imported using the vCenter host create dialog, and Networks and VM Templates through the Import button in the Virtual Networks and Templates tab respectively. Running and Powered Off VMs can be imported through the WILDS tab in the Host info tab.
+The same import mechanism is available graphically through Sunstone for hosts, networks, templates and running VMs.
+
+vCenter hosts can be imported using the vCenter host create dialog.
 
 .. image:: /images/vcenter_create.png
     :width: 90%
     :align: center
 
-.. note:: running VMS can only be imported after the vCenter host has been successfully acquired.
+Networks and VM Templates can be imported through the Import button in the Networks -> Virtual Networks and Templates -> VM menu entries respectively.
 
+.. note:: The Import button will be available once the one_vcenter view is enabled in Sunstone. To do so, click on your user's name (Sunstone's top-right). A drop-down menu will be shown. Then click on views and finally click on admin_vcenter.
+
+.. image:: /images/vcenter_enable_sunstone_view.png
+    :width: 50%
+    :align: center
+
+Running and Powered Off VMs can be imported through the WILDS tab in the Host info tab.
+
+.. note:: Running VMS can only be imported after the vCenter host has been successfully acquired.
 Resource Pool
 ================================================================================
 
