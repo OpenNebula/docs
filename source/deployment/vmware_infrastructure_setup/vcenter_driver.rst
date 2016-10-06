@@ -187,6 +187,7 @@ Networks and VM Templates can be imported through the Import button in the Netwo
 Running and Powered Off VMs can be imported through the WILDS tab in the Host info tab.
 
 .. note:: Running VMS can only be imported after the vCenter host has been successfully acquired.
+
 Resource Pool
 ================================================================================
 
