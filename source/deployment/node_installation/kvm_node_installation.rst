@@ -61,7 +61,7 @@ When the package was installed in the Front-end, an SSH key was generated and th
 
 .. prompt:: bash $ auto
 
-    $ ssh-keyscan <node1> <node2> <node3> ... >> /var/lib/one/.ssh/known_hosts
+    $ ssh-keyscan <frontend> <node1> <node2> <node3> ... >> /var/lib/one/.ssh/known_hosts
 
 Now we need to copy the directory ``/var/lib/one/.ssh`` to all the nodes. The easiest way is to set a temporary password to ``oneadmin`` in all the hosts and copy the directory from the Front-end:
 
