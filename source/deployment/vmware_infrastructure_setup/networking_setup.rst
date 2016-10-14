@@ -71,8 +71,15 @@ The **onevcenter** tool can be used to import existing Networks and distributed 
     LEASES
     AR  OWNER                    MAC              IP                      IP6_GLOBAL
 
-The same import mechanism is available graphically through Sunstone 
+The same import mechanism is available graphically through Sunstone
 
 .. image:: /images/vcenter_network_import.png
     :width: 90%
     :align: center
+
+Network monitoring
+================================================================================
+
+OpenNebula gathers network monitoring info for each VM. Real-time data is retrieved from vCenter thanks to the Performance Manager which collects data every 20 seconds and maintains that data for one hour. Real-time samples are used so no changes have to be applied to vCenter's Statistics setings. Network metrics for transmitted and received traffic are provided as an average using KB/s unit.
+
+The graphs provided by Sunstone are different from those found in vCenter under the Monitor -> Performance Tab when selecting Realtime in the Time Range drop-down menu or in the Advanced view selecting the Network View. The reason is that Sunstone uses polling time as time reference while vCenter uses sample time on their graphs, so we have to perform an approximation to the real values aggregating vCenter's samples between polls. As a result, upload and download peeks will be different in value and different peaks between polls won't be depicted. Anyway we believe that Sunstone's graphs will provide a useful information about networking behaviour which can be examined on vCenter later with greater detail.
