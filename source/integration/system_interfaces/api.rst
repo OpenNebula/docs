@@ -1069,10 +1069,12 @@ one.templatepool.info
 | IN   | String    | The session string.                                                   |
 +------+-----------+-----------------------------------------------------------------------+
 | IN   | Int       | Filter flag                                                           |
-|      |           | **- < = -3**: Connected user's resources                              |
-|      |           | **- -2**: All resources                                               |
-|      |           | **- -1**: Connected user's and his group's resources                  |
-|      |           | **- > = 0**: UID User's Resources                                     |
+|      |           |                                                                       |
+|      |           | * **-4**: Resources belonging to the user's primary group             |
+|      |           | * **-3**: Resources belonging to the user                             |
+|      |           | * **-2**: All resources                                               |
+|      |           | * **-1**: Resources belonging to the user and any of his groups       |
+|      |           | * **>= 0**: UID User's Resources                                      |
 +------+-----------+-----------------------------------------------------------------------+
 | IN   | Int       | When the next parameter is >= -1 this is the Range start ID.          |
 |      |           | Can be -1. For smaller values this is the offset used for pagination. |
@@ -1741,10 +1743,12 @@ one.vmpool.info
 | IN   | String    | The session string.                                                   |
 +------+-----------+-----------------------------------------------------------------------+
 | IN   | Int       | Filter flag                                                           |
-|      |           | **- < = -3**: Connected user's resources                              |
-|      |           | **- -2**: All resources                                               |
-|      |           | **- -1**: Connected user's and his group's resources                  |
-|      |           | **- > = 0**: UID User's Resources                                     |
+|      |           |                                                                       |
+|      |           | * **-4**: Resources belonging to the user's primary group             |
+|      |           | * **-3**: Resources belonging to the user                             |
+|      |           | * **-2**: All resources                                               |
+|      |           | * **-1**: Resources belonging to the user and any of his groups       |
+|      |           | * **>= 0**: UID User's Resources                                      |
 +------+-----------+-----------------------------------------------------------------------+
 | IN   | Int       | When the next parameter is >= -1 this is the Range start ID.          |
 |      |           | Can be -1. For smaller values this is the offset used for pagination. |
@@ -1805,23 +1809,25 @@ one.vmpool.monitoring
 -  **Description**: Returns all the virtual machine monitoring records.
 -  **Parameters**
 
-+------+-----------+------------------------------------------------------+
-| Type | Data Type |                     Description                      |
-+======+===========+======================================================+
-| IN   | String    | The session string.                                  |
-+------+-----------+------------------------------------------------------+
-| IN   | Int       | Filter flag                                          |
-|      |           | **- < = -3**: Connected user's resources             |
-|      |           | **- -2**: All resources                              |
-|      |           | **- -1**: Connected user's and his group's resources |
-|      |           | **- > = 0**: UID User's Resources                    |
-+------+-----------+------------------------------------------------------+
-| OUT  | Boolean   | true or false whenever is successful or not          |
-+------+-----------+------------------------------------------------------+
-| OUT  | String    | The information string / The error string.           |
-+------+-----------+------------------------------------------------------+
-| OUT  | Int       | Error code.                                          |
-+------+-----------+------------------------------------------------------+
++------+-----------+-----------------------------------------------------------------+
+| Type | Data Type |                           Description                           |
++======+===========+=================================================================+
+| IN   | String    | The session string.                                             |
++------+-----------+-----------------------------------------------------------------+
+| IN   | Int       | Filter flag                                                     |
+|      |           |                                                                 |
+|      |           | * **-4**: Resources belonging to the user's primary group       |
+|      |           | * **-3**: Resources belonging to the user                       |
+|      |           | * **-2**: All resources                                         |
+|      |           | * **-1**: Resources belonging to the user and any of his groups |
+|      |           | * **>= 0**: UID User's Resources                                |
++------+-----------+-----------------------------------------------------------------+
+| OUT  | Boolean   | true or false whenever is successful or not                     |
++------+-----------+-----------------------------------------------------------------+
+| OUT  | String    | The information string / The error string.                      |
++------+-----------+-----------------------------------------------------------------+
+| OUT  | Int       | Error code.                                                     |
++------+-----------+-----------------------------------------------------------------+
 
 See :ref:`one.vm.monitoring <api_onevmmonitoring>`.
 
@@ -1864,10 +1870,12 @@ one.vmpool.accounting
 | IN   | String    | The session string.                                                                                      |
 +------+-----------+----------------------------------------------------------------------------------------------------------+
 | IN   | Int       | Filter flag                                                                                              |
-|      |           | **- < = -3**: Connected user's resources                                                                 |
-|      |           | **- -2**: All resources                                                                                  |
-|      |           | **- -1**: Connected user's and his group's resources                                                     |
-|      |           | **- > = 0**: UID User's Resources                                                                        |
+|      |           |                                                                                                          |
+|      |           | * **-4**: Resources belonging to the user's primary group                                                |
+|      |           | * **-3**: Resources belonging to the user                                                                |
+|      |           | * **-2**: All resources                                                                                  |
+|      |           | * **-1**: Resources belonging to the user and any of his groups                                          |
+|      |           | * **>= 0**: UID User's Resources                                                                         |
 +------+-----------+----------------------------------------------------------------------------------------------------------+
 | IN   | Int       | Start time for the time interval. Can be -1, in which case the time interval won't have a left boundary. |
 +------+-----------+----------------------------------------------------------------------------------------------------------+
@@ -2869,10 +2877,12 @@ one.vnpool.info
 | IN   | String    | The session string.                                                   |
 +------+-----------+-----------------------------------------------------------------------+
 | IN   | Int       | Filter flag                                                           |
-|      |           | **- < = -3**: Connected user's resources                              |
-|      |           | **- -2**: All resources                                               |
-|      |           | **- -1**: Connected user's and his group's resources                  |
-|      |           | **- > = 0**: UID User's Resources                                     |
+|      |           |                                                                       |
+|      |           | * **-4**: Resources belonging to the user's primary group             |
+|      |           | * **-3**: Resources belonging to the user                             |
+|      |           | * **-2**: All resources                                               |
+|      |           | * **-1**: Resources belonging to the user and any of his groups       |
+|      |           | * **>= 0**: UID User's Resources                                      |
 +------+-----------+-----------------------------------------------------------------------+
 | IN   | Int       | When the next parameter is >= -1 this is the Range start ID.          |
 |      |           | Can be -1. For smaller values this is the offset used for pagination. |
@@ -3120,10 +3130,12 @@ one.secgrouppool.info
 | IN   | String    | The session string.                                                   |
 +------+-----------+-----------------------------------------------------------------------+
 | IN   | Int       | Filter flag                                                           |
-|      |           | **- < = -3**: Connected user's resources                              |
-|      |           | **- -2**: All resources                                               |
-|      |           | **- -1**: Connected user's and his group's resources                  |
-|      |           | **- > = 0**: UID User's Resources                                     |
+|      |           |                                                                       |
+|      |           | * **-4**: Resources belonging to the user's primary group             |
+|      |           | * **-3**: Resources belonging to the user                             |
+|      |           | * **-2**: All resources                                               |
+|      |           | * **-1**: Resources belonging to the user and any of his groups       |
+|      |           | * **>= 0**: UID User's Resources                                      |
 +------+-----------+-----------------------------------------------------------------------+
 | IN   | Int       | When the next parameter is >= -1 this is the Range start ID.          |
 |      |           | Can be -1. For smaller values this is the offset used for pagination. |
@@ -3696,10 +3708,12 @@ one.imagepool.info
 | IN   | String    | The session string.                                                   |
 +------+-----------+-----------------------------------------------------------------------+
 | IN   | Int       | Filter flag                                                           |
-|      |           | **- < = -3**: Connected user's resources                              |
-|      |           | **- -2**: All resources                                               |
-|      |           | **- -1**: Connected user's and his group's resources                  |
-|      |           | **- > = 0**: UID User's Resources                                     |
+|      |           |                                                                       |
+|      |           | * **-4**: Resources belonging to the user's primary group             |
+|      |           | * **-3**: Resources belonging to the user                             |
+|      |           | * **-2**: All resources                                               |
+|      |           | * **-1**: Resources belonging to the user and any of his groups       |
+|      |           | * **>= 0**: UID User's Resources                                      |
 +------+-----------+-----------------------------------------------------------------------+
 | IN   | Int       | When the next parameter is >= -1 this is the Range start ID.          |
 |      |           | Can be -1. For smaller values this is the offset used for pagination. |
@@ -4113,10 +4127,12 @@ one.marketapppool.info
 | IN   | String    | The session string.                                                   |
 +------+-----------+-----------------------------------------------------------------------+
 | IN   | Int       | Filter flag                                                           |
-|      |           | **- < = -3**: Connected user's resources                              |
-|      |           | **- -2**: All resources                                               |
-|      |           | **- -1**: Connected user's and his group's resources                  |
-|      |           | **- > = 0**: UID User's Resources                                     |
+|      |           |                                                                       |
+|      |           | * **-4**: Resources belonging to the user's primary group             |
+|      |           | * **-3**: Resources belonging to the user                             |
+|      |           | * **-2**: All resources                                               |
+|      |           | * **-1**: Resources belonging to the user and any of his groups       |
+|      |           | * **>= 0**: UID User's Resources                                      |
 +------+-----------+-----------------------------------------------------------------------+
 | IN   | Int       | When the next parameter is >= -1 this is the Range start ID.          |
 |      |           | Can be -1. For smaller values this is the offset used for pagination. |
@@ -4402,10 +4418,12 @@ one.vrouterpool.info
 | IN   | String    | The session string.                                                   |
 +------+-----------+-----------------------------------------------------------------------+
 | IN   | Int       | Filter flag                                                           |
-|      |           | **- < = -3**: Connected user's resources                              |
-|      |           | **- -2**: All resources                                               |
-|      |           | **- -1**: Connected user's and his group's resources                  |
-|      |           | **- > = 0**: UID User's Resources                                     |
+|      |           |                                                                       |
+|      |           | * **-4**: Resources belonging to the user's primary group             |
+|      |           | * **-3**: Resources belonging to the user                             |
+|      |           | * **-2**: All resources                                               |
+|      |           | * **-1**: Resources belonging to the user and any of his groups       |
+|      |           | * **>= 0**: UID User's Resources                                      |
 +------+-----------+-----------------------------------------------------------------------+
 | IN   | Int       | When the next parameter is >= -1 this is the Range start ID.          |
 |      |           | Can be -1. For smaller values this is the offset used for pagination. |
@@ -6124,10 +6142,12 @@ one.documentpool.info
 | IN   | String    | The session string.                                                   |
 +------+-----------+-----------------------------------------------------------------------+
 | IN   | Int       | Filter flag                                                           |
-|      |           | **- < = -3**: Connected user's resources                              |
-|      |           | **- -2**: All resources                                               |
-|      |           | **- -1**: Connected user's and his group's resources                  |
-|      |           | **- > = 0**: UID User's Resources                                     |
+|      |           |                                                                       |
+|      |           | * **-4**: Resources belonging to the user's primary group             |
+|      |           | * **-3**: Resources belonging to the user                             |
+|      |           | * **-2**: All resources                                               |
+|      |           | * **-1**: Resources belonging to the user and any of his groups       |
+|      |           | * **>= 0**: UID User's Resources                                      |
 +------+-----------+-----------------------------------------------------------------------+
 | IN   | Int       | When the next parameter is >= -1 this is the Range start ID.          |
 |      |           | Can be -1. For smaller values this is the offset used for pagination. |
