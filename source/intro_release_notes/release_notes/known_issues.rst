@@ -84,10 +84,5 @@ Context
 vCenter
 ================================================================================
 
-.. TODO:: check relevance and delete minor ones
-
 * `#4693 <http://dev.opennebula.org/issues/4693>`_ vlan_id is only imported for networks of type DistributedVirtualPortgroup
 * `#4699 <http://dev.opennebula.org/issues/4699>`_ Vcenter does not honor vmm_exec_vcenter.conf
-* `#4749 <http://dev.opennebula.org/issues/4749>`_ Unauthorized NIC add
-* `#4801 <http://dev.opennebula.org/issues/4801>`_ vCenter :: When instantiated VM with wrong memory value
-* `#4872 <http://dev.opennebula.org/issues/4872>`_ vCenter :: Error when create Empty Disk Image
