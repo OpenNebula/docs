@@ -30,7 +30,7 @@ Drivers - Network
 * `#3093 <http://dev.opennebula.org/issues/3093>`_ Review the Open vSwitch flows
 * `#2961 <http://dev.opennebula.org/issues/2961>`_ review nic attach with 802.1Q
 * `#4005 <http://dev.opennebula.org/issues/4005>`_ NIC defaults not honoured in attach NIC
-
+* `#4821 <http://dev.opennebula.org/issues/4821>`_ No traffic shaping in attached NICs
 
 Drivers - Storage
 ================================================================================
@@ -46,7 +46,6 @@ Drivers - VM
 
 * `#4648 <http://dev.opennebula.org/issues/4648>`_ Delete operation leaves a poweroff instance registered in vCenter
 * `#3060 <http://dev.opennebula.org/issues/3060>`_ Trim/discard. In order to use this functionality, KVM requires the virtio-scsi controller. This controller is not (yet) supported. In order to add it, you need to add this RAW snippet to your template: ``<controller type='scsi' index='0' model='virtio-scsi'></controller>``
-* `#4550 <http://dev.opennebula.org/issues/4550>`_ Attach Disk operation in vCenter for CDROM does not add a new drive, but rather replaces the ISO of an existing one
 * `#4540 <http://dev.opennebula.org/issues/4540>`_ Import vCenter images size may be 0
 * `#4335 <http://dev.opennebula.org/issues/4335>`_ vCenter password cannot be longer than 22 characters
 * `#4514 <http://dev.opennebula.org/issues/4514>`_ Spaces not allowed in SOURCE image attribute
@@ -81,3 +80,14 @@ Context
 ================================================================================
 
 * `#4568 <http://dev.opennebula.org/issues/4568>`_ Context is not regenerated for vCenter
+
+vCenter
+================================================================================
+
+.. TODO:: check relevance and delete minor ones
+
+* `#4693 <http://dev.opennebula.org/issues/4693>`_ vlan_id is only imported for networks of type DistributedVirtualPortgroup
+* `#4699 <http://dev.opennebula.org/issues/4699>`_ Vcenter does not honor vmm_exec_vcenter.conf
+* `#4749 <http://dev.opennebula.org/issues/4749>`_ Unauthorized NIC add
+* `#4801 <http://dev.opennebula.org/issues/4801>`_ vCenter :: When instantiated VM with wrong memory value
+* `#4872 <http://dev.opennebula.org/issues/4872>`_ vCenter :: Error when create Empty Disk Image
