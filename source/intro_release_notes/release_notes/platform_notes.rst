@@ -137,11 +137,6 @@ There is an automatic job that removes all data from ``/var/tmp/``, in order to 
 
 There is a bug in libvirt that the prevents the use of the save/restore mechanism if ``cpu_model`` is set to ``'host-passthrough'`` via ``RAW``. The `work around if needed is described in this issue <http://dev.opennebula.org/issues/4204>`__.
 
-Ubuntu 14.04 Platform Notes
---------------------------------------------------------------------------------
-
-Package ruby-ox shouldn't be installed as it contains a version of the gem incompatible with the CLI
-
 Debian 8
 --------------------------------------------------------------------------------
 
@@ -201,6 +196,11 @@ Unsupported Platforms Notes
 ================================================================================
 
 .. warning:: Use the following distributions at your own risk. They are not officially supported by OpenNebula.
+
+Ubuntu 14.04 Platform Notes
+--------------------------------------------------------------------------------
+
+Package ruby-ox shouldn't be installed as it contains a version of the gem incompatible with the CLI
 
 CentOS 6.5 Usage Platform Notes
 --------------------------------------------------------------------------------
