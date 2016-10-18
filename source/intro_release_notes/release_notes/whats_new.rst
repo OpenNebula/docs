@@ -1,12 +1,12 @@
 .. _whats_new:
 
 ================================================================================
-What's New in 5.2 Beta
+What's New in 5.2
 ================================================================================
 
 OpenNebula 5.2 (Excession) is the second release of the OpenNebula 5 series. A significant effort has been applied in this release to stabilize features introduced in 5.0 Wizard, while keeping an eye in implementing those features more demanded by the community.
 
-As usual almost every component of OpenNebula has been reviewed to target usability and functional improvements, trying to keep API changes to a minimum to avoid disrupting ecosystem components. Also, new components have been added to enhance the OpenNebula experience. 
+As usual almost every component of OpenNebula has been reviewed to target usability and functional improvements, trying to keep API changes to a minimum to avoid disrupting ecosystem components. Also, new components have been added to enhance the OpenNebula experience.
 
 .. image:: /images/hyperlinks_sunstone.png
     :width: 90%
@@ -32,8 +32,6 @@ Sunstone is the face of OpenNebula for both administrators and users, and hence 
 There are many other improvements in 5.2 like revamped group mapping in LDAP authentication -now being dynamic mapping-, rollback mechanism in failed migrate operations, significantly improved fault tolerant hook -to provide high availability at the VM level-, improved driver timeout, vCenter storage functionality wrinkles ironed out, more robust Ceph drivers -for instance, in volatile disks-, improved SPICE support, improvements in ebtables and Open vSwitch drivers, multiple CLI improvements -imrpved onedb patch, password handling in onevcenter command, default columns reviewed in all commands- and much more. As with previous releases, it is paramount to the prject to help build and maintain robust private, hybrid and public clouds with OpenNebula, fixing reported bugs and improving general usability.
 
 This OpenNebula release is named after the `Ian M. Banks novel <https://en.wikipedia.org/wiki/Excession>`__, a recommended read, as well as having a fitting slang meaning, "something so technologically superior that it appears as magic to the viewer.". We are confident that OpenNebula, if not really appearing as magic, at least solves elegantly your IaaS needs.
-
-The OpenNebula team is now set to bug-fixing mode. Note that this is a beta release aimed at testers and developers to try the new features, hence not suitable for production environments. Feedback is more than welcome for the final release.
 
 In the following list you can check the highlights of OpenNebula 5.2 (`a detailed list of changes can be found here <http://dev.opennebula.org/projects/opennebula/issues?c%5B%5D=tracker&c%5B%5D=status&c%5B%5D=priority&c%5B%5D=subject&c%5B%5D=assigned_to&c%5B%5D=updated_on&f%5B%5D=fixed_version_id&f%5B%5D=tracker_id&f%5B%5D=&group_by=category&op%5Bfixed_version_id%5D=%3D&op%5Btracker_id%5D=%21&per_page=200&set_filter=1&utf8=%E2%9C%93&v%5Bfixed_version_id%5D%5B%5D=83&v%5Btracker_id%5D%5B%5D=7>`__):
 
