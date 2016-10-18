@@ -19,7 +19,7 @@ Front-End Components
 +=========================+=========================================================+=======================================================+
 | RedHat Enterprise Linux | 7.0                                                     | :ref:`Front-End Installation <frontend_installation>` |
 +-------------------------+---------------------------------------------------------+-------------------------------------------------------+
-| Ubuntu Server           | 16.04 (LTS)                                             | :ref:`Front-End Installation <frontend_installation>` |
+| Ubuntu Server           | 14.04 (LTS), 16.04 (LTS)                                | :ref:`Front-End Installation <frontend_installation>` |
 +-------------------------+---------------------------------------------------------+-------------------------------------------------------+
 | CentOS                  | 7.0                                                     | :ref:`Front-End Installation <frontend_installation>` |
 +-------------------------+---------------------------------------------------------+-------------------------------------------------------+
@@ -122,6 +122,11 @@ The following applies to all Front-Ends:
 * For **cloud bursting**, a newer nokogiri gem than the one packed by current distros is required. If you are planning to use cloud bursting, you need to install nokogiri >= 1.4.4 prior to run ``install_gems``: ``# sudo gem install nokogiri -v 1.4.4``.
 * Only **ruby versions >= 1.9.3 are supported**.
 
+Ubuntu 14.04 Platform Notes
+--------------------------------------------------------------------------------
+
+Package ruby-ox shouldn't be installed as it contains a version of the gem incompatible with the CLI
+
 CentOS 7.0 Platform Notes
 --------------------------------------------------------------------------------
 
@@ -196,11 +201,6 @@ Unsupported Platforms Notes
 ================================================================================
 
 .. warning:: Use the following distributions at your own risk. They are not officially supported by OpenNebula.
-
-Ubuntu 14.04 Platform Notes
---------------------------------------------------------------------------------
-
-Package ruby-ox shouldn't be installed as it contains a version of the gem incompatible with the CLI
 
 CentOS 6.5 Usage Platform Notes
 --------------------------------------------------------------------------------
