@@ -45,7 +45,7 @@ OpenNebula Core
 - **Better template management in marketplaces**, with :ref:`rethinked restricted attributes <oned_conf_restricted_attributes_configuration>`.
 - **Rollback capabilities**, in the :ref:`migrate operation <vm_states>`.
 - **Update group information**, if driver (such as :ref:`LDAP <ldap>`) provides it.
-- **Improved range definitions** for the :ref: vlan`<vlan>` driver
+- **Improved range definitions** for the :ref:`vlan <hm-vlan>` driver
 - **Allow migration** between :ref:`clusters <cluster_guide>` provided they share datastores between them.
 - **Outsource IP management** with the new :ref:IPAM subsystem `<ipam>`.
 - **Allow to override** of :ref:`EMULATOR attribute <emulator_override>` placing it in the VM template.
