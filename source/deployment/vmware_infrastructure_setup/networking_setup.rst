@@ -77,6 +77,8 @@ The same import mechanism is available graphically through Sunstone
     :width: 90%
     :align: center
 
+.. _network_monitoring:
+
 Network monitoring
 ================================================================================
 

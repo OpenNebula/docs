@@ -29,9 +29,11 @@ Sunstone is the face of OpenNebula for both administrators and users, and hence 
     :align: center
 
 
-There are many other improvements in 5.2 like revamped group mapping in LDAP authentication -now being dynamic mapping-, rollback mechanism in failed migrate operations, significantly improved fault tolerant hook -to provide high availability at the VM level-, improved driver timeout, vCenter storage functionality wrinkles ironed out, more robust Ceph drivers -for instance, in volatile disks-, improved SPICE support, improvements in ebtables and Open vSwitch drivers, multiple CLI improvements -imrpved onedb patch, password handling in onevcenter command, default columns reviewed in all commands- and much more. As with previous releases, it is paramount to the prject to help build and maintain robust private, hybrid and public clouds with OpenNebula, fixing reported bugs and improving general usability.
+There are many other improvements in 5.2 like revamped group mapping in LDAP authentication -now being dynamic mapping-, limiting bandwidth per VM network interface in both KVM and vCenter, rollback mechanism in failed migrate operations, significantly improved fault tolerant hook -to provide high availability at the VM level-, improved driver timeout, vCenter storage functionality wrinkles ironed out, more robust Ceph drivers -for instance, in volatile disks-, improved SPICE support, improvements in ebtables and Open vSwitch drivers, multiple CLI improvements -imrpved onedb patch, password handling in onevcenter command, default columns reviewed in all commands- and much more. As with previous releases, it is paramount to the project to help build and maintain robust private, hybrid and public clouds with OpenNebula, fixing reported bugs and improving general usability.
 
 This OpenNebula release is named after the `Ian M. Banks novel <https://en.wikipedia.org/wiki/Excession>`__, a recommended read, as well as having a fitting slang meaning, "something so technologically superior that it appears as magic to the viewer.". We are confident that OpenNebula, if not really appearing as magic, at least solves elegantly your IaaS needs.
+
+OpenNebula 5.2 Excession is considered to be a stable release and as such, and update is available in production environments.
 
 In the following list you can check the highlights of OpenNebula 5.2 (`a detailed list of changes can be found here <http://dev.opennebula.org/projects/opennebula/issues?c%5B%5D=tracker&c%5B%5D=status&c%5B%5D=priority&c%5B%5D=subject&c%5B%5D=assigned_to&c%5B%5D=updated_on&f%5B%5D=fixed_version_id&f%5B%5D=tracker_id&f%5B%5D=&group_by=category&op%5Bfixed_version_id%5D=%3D&op%5Btracker_id%5D=%21&per_page=200&set_filter=1&utf8=%E2%9C%93&v%5Bfixed_version_id%5D%5B%5D=83&v%5Btracker_id%5D%5B%5D=7>`__):
 
@@ -39,8 +41,8 @@ OpenNebula Core
 --------------------------------------------------------------------------------
 
 - **Improved FT hook**, to enhancing logging and fencing mechanisms integration in the :ref:`host on error hook <ftguide>`.
-- **Project and group management**, adding authorization :ref:`tokens <user_tokens>` to include session information, to allow different group/project sessions with the same user, paired with a new parameter in the one.user.allocate API call
-- **better template management in marketplaces**, with :ref:`rethinked restricted attributes <oned_conf_restricted_attributes_configuration>`.
+- **Project and group management**, adding authorization :ref:`tokens <user_tokens>` to include session information, to allow different group/project sessions with the same user, paired with a new parameter in the one.user.allocate API call and new filter flag.
+- **Better template management in marketplaces**, with :ref:`rethinked restricted attributes <oned_conf_restricted_attributes_configuration>`.
 - **Rollback capabilities**, in the :ref:`migrate operation <vm_states>`.
 - **Update group information**, if driver (such as :ref:`LDAP <ldap>`) provides it.
 - **Improved range definitions** for the :ref: vlan`<vlan>` driver
@@ -57,9 +59,15 @@ OpenNebula Drivers :: Storage
 OpenNebula Drivers :: Virtualization
 --------------------------------------------------------------------------------
 
-- **Add timeouts (TODO doc ref)** for driver actions
+- **Add timeouts** for `driver actions <https://github.com/OpenNebula/one/blob/master/share/etc/oned.conf#L289>`__.
 - **Stop execution** of :ref:`drivers <intro_integration>` if a pipe fails
 - **Improved driver** for :ref:`EC2 integration <ec2g>`, now using aws-sdk v2 ruby gem and with double checks and retries in EC2 API methods and responses, as well as better error logging
+
+
+OpenNebula Drivers :: Networking
+--------------------------------------------------------------------------------
+
+- **Limit network consumption**, per :ref:`VM network interface <template_network_section>`.
 
 OpenNebula Drivers :: Marketplace
 --------------------------------------------------------------------------------
@@ -70,6 +78,7 @@ Scheduler
 --------------------------------------------------------------------------------
 
 - **Improved datastore capacity tests**, for datastore space in :ref:`scheduler <schg>`.
+- **Add a new sched_message** when a VM cannot be dispatched.
 
 Sunstone
 --------------------------------------------------------------------------------
@@ -85,7 +94,15 @@ Sunstone
 Command Line Interface
 --------------------------------------------------------------------------------
 
-- **Improved onedb command**, :ref:`onedb patch <onedb>` now accepts arguments
-- **Better password prompt** when doing `oneuser login </doc/5.2/cli/oneuser.1.html>`__
-- **vCenter import command improved**, :ref:`onevcenter <cli>` now asks for password in prompt if not provided in arguments
+- **Improved onedb command**, :ref:`onedb patch <onedb>` now accepts arguments.
+- **Better password prompt** when doing `oneuser login </doc/5.2/cli/oneuser.1.html>`__.
+- **vCenter import command improved**, :ref:`onevcenter <cli>` now asks for password in prompt if not provided in arguments.
 - **Improved default columns** in :ref:`commands <cli>` output.
+- **New filter flag**, to aid in project and group management through the :ref:`CLI <cli>`.
+
+vCenter
+--------------------------------------------------------------------------------
+
+- **Support for clustered Datastores**, SDRS clustered :ref:`datastores <vcenter_ds>` are now visible in vCenter
+- **Better Sunstone support**, with host dropdown option in DS creation and image import
+- **Network monitoring**, now vCenter VMs :ref:`network traffic <network_monitoring>` is accounted for in OpenNebula.
