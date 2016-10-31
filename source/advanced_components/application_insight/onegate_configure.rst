@@ -128,7 +128,13 @@ This is the default file
 Start OneGate
 =============
 
-To start and stop the server, use the ``opennebula-gate`` command:
+To start and stop the server, use the ``opennebula-gate`` service:
+
+.. prompt:: bash # auto
+
+    # systemctl start opennebula-gate
+
+Or use service in older Linux systems:
 
 .. prompt:: bash # auto
 
