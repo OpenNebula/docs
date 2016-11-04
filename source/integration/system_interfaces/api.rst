@@ -1901,6 +1901,12 @@ one.vmpool.showback
 +======+===========+=========================================================================================================================+
 | IN   | String    | The session string.                                                                                                     |
 +------+-----------+-------------------------------------------------------------------------------------------------------------------------+
+| IN   | Int       | Filter flag                                                                                                             |
+|      |           | **- < = -3**: Connected user's resources                                                                                |
+|      |           | **- -2**: All resources                                                                                                 |
+|      |           | **- -1**: Connected user's and his group's resources                                                                    |
+|      |           | **- > = 0**: UID User's Resources                                                                                       |
++------+-----------+-------------------------------------------------------------------------------------------------------------------------+
 | IN   | Int       | First month for the time interval. January is 1. Can be -1, in which case the time interval won't have a left boundary. |
 +------+-----------+-------------------------------------------------------------------------------------------------------------------------+
 | IN   | Int       | First year for the time interval. Can be -1, in which case the time interval won't have a left boundary.                |
