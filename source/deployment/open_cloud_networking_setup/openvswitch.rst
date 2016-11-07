@@ -29,7 +29,7 @@ The VLAN_ID is calculated according to this configuration option of ``oned.conf`
         RESERVED = "0, 1, 4095"
     ]
 
-By modifying that parameter you can reserve some VLANs so they aren't assigned to a Virtual Network. You can also define the first VLAN_ID. When a new isolatad network is created, OpenNebula will find a free VLAN_ID from the VLAN pool. This pool is global, and it's also shared with the :ref:`802.1Q VLAN <hm-vlan>` network mode.
+By modifying that parameter you can reserve some VLANs so they aren't assigned to a Virtual Network. You can also define the first VLAN_ID. When a new isolated network is created, OpenNebula will find a free VLAN_ID from the VLAN pool. This pool is global, and it's also shared with the :ref:`802.1Q VLAN <hm-vlan>` network mode.
 
 The following configuration attributes can be adjusted in ``/var/lib/one/remotes/vnm/OpenNebulaNetwork.conf``:
 
@@ -46,7 +46,7 @@ The following configuration attributes can be adjusted in ``/var/lib/one/remotes
 Defining an Open vSwitch Network
 ================================================================================
 
-To create a VXLAN network include the following information:
+To create an Open vSwitch network, include the following information:
 
 +-------------+-------------------------------------------------------------------------+-----------+
 | Attribute   | Value                                                                   | Mandatory |
@@ -58,7 +58,7 @@ To create a VXLAN network include the following information:
 | **VLAN_ID** | The VLAN ID, will be generated if not defined                           |  NO       |
 +-------------+-------------------------------------------------------------------------+-----------+
 
-The following example defines a VXLAN network
+The following example defines an Open vSwitch network
 
 .. code::
 
@@ -84,7 +84,7 @@ This section lists de default openflow rules installed in the open vswitch.
 Mac-spoofing
 --------------------------------------------------------------------------------
 
-These rules prevent any traffic to come out of the port the MAC address has changed.
+These rules prevent any traffic to come out of the port if the MAC address has changed.
 
 .. code::
 
@@ -94,7 +94,7 @@ These rules prevent any traffic to come out of the port the MAC address has chan
 IP hijacking
 --------------------------------------------------------------------------------
 
-These rules prevent any traffic to come out of the port for IPv4 IP's not configured for a VM
+These rules prevent any traffic to come out of the port for IPv4 if an IP address is not configured for a VM
 
 .. code::
 
