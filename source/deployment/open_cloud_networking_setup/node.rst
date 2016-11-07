@@ -73,7 +73,7 @@ Configuration
 
 No additional configuration is needed.
 
-Open vSwtich Networking Mode
+Open vSwitch Networking Mode
 ================================================================================
 
 Requirements
