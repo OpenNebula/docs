@@ -57,7 +57,7 @@ It should return this OpenNebula-syntax template:
     SIZE="<SIZE_IN_MB>"
     FORMAT="<FORMAT>"
 
-Note that typically inside the ``import`` script we fill find a call to the ``downloader.sh`` as such:
+Note that typically inside the ``import`` script we will find a call to the ``downloader.sh`` as such:
 
 .. code::
 
