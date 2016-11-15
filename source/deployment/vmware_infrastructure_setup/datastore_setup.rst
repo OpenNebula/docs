@@ -19,7 +19,7 @@ Limitations
 * Only one disk is allowed per directory in the vCenter datastores.
 * Datastore names cannot contain spaces.
 * Image names and paths cannot contain spaces.
-* Datastores that form DRS Clusters are not supported.
+* Datastores that are members of Storage DRS Clusters (StoragePod) can be imported as individual datastores where VMs can be deployed and images can be stored, but the Storage DRS entity can't be currently used so it can't decide what datastore will be used when deploying a VM for instance.
 
 Requirements
 ================================================================================
