@@ -19,7 +19,6 @@ Limitations
 * Only one disk is allowed per directory in the vCenter datastores.
 * Datastore names cannot contain spaces.
 * Image names and paths cannot contain spaces.
-* Datastores that are members of Storage DRS Clusters (StoragePod) can be imported as individual datastores where VMs can be deployed and images can be stored, but the Storage DRS entity can't be currently used so it can't decide what datastore will be used when deploying a VM for instance.
 
 Requirements
 ================================================================================
@@ -80,6 +79,32 @@ The **onevcenter** tool can be used to import vCenter datastores:
         OpenNebula datastore 100 created!
 
 .. warning: Both "ADAPTER_TYPE" and "DISK_TYPE" need to be set at either the Datastore level, the Image level or the VM Disk level. Otherwise image related operations may fail.
+
+Storage DRS and datastore cluster
+================================================================================
+
+Storage DRS allows you to manage the aggregated resources of a datastore cluster. A StoragePod data object aggregates the storage resources of associated Datastores in a datastore cluster managed by Storage DRS. 
+
+In OpenNebula, a StoragePod can be imported as a datastore using Sunstone or CLI's onevcenter datastore command. The StoragePod will be imported as a SYSTEM datastore so it won't be possible to use it to store images but it will be possible to deploy VMs on it. 
+
+Datastores which are member of the cluster, represented by the StoragePod, can be imported as individual IMAGE datastores where VMs can be deployed and images can be stored. 
+
+Current support has the following limitations:
+
+* Images in StoragePods can't be imported through Sunstone or CLI's onevcenter command though it's possible to import them from a datastore, which is a member of a storage cluster, if it has been imported previously as an individual datastore.
+
+* New images like VMDK files cannot be created or uploaded to the StoragePod as it's set as a SYSTEM datastore. However, it's possible to create an image and upload it to a datastore which is a member of a storage cluster it has been imported previously as an individual datastore.
+
+.. warning:: When a VM is deployed, a cloning operation is involved. The moveAllDisksBackingsAndDisallowSharing move type is used when target datastore is a StoragePod. According to VMWare's documentation all of the virtual disk's backings should be moved to the new datastore. It is not acceptable to attach to a disk backing with the same content ID on the destination datastore. During a clone operation any delta disk backings will be consolidated. The moveChildMostDiskBacking is used for datastores which are not StoragePods in the cloning operation.
+
+.. warning:: If you import a StorageDRS cluster you must edit /etc/one/oned.conf and add vcenter the -s argument list in the DATASTORE_MAD section so the StorageDRS cluster can be monitored as a SYSTEM datastore:
+
+.. prompt:: text $ auto
+
+    DATASTORE_MAD = [
+      EXECUTABLE = "one_datastore",
+      ARGUMENTS = "-t 15 -d dummy,fs,lvm,ceph,dev,iscsi_libvirt,vcenter -s shared,ssh,ceph,fs_lvm,qcow2,vcenter" 
+    ]
 
 Tuning and Extending
 ================================================================================
