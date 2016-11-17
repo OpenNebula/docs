@@ -258,8 +258,9 @@ Action scripts needed when the TM is used for the system datastore:
 
 .. _ds_monitor:
 
-The Montiring Process
+The Monitoring Process
 ================================================================================
+
 Image Datastores
 --------------------------------------------------------------------------------
 
@@ -274,7 +275,6 @@ The driver plugin ``<tm_mad>/monitor`` will report the information for two thing
 
 - Total storage metrics for the datastore (``USED_MB`` ``FREE_MB`` ``TOTAL_MB``)
 - Disk usage metrics (all disks: volatile, persistent and non-persistent)
-
 
 Non-shared System Datastores (SSH-like)
 --------------------------------------------------------------------------------
