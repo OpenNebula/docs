@@ -237,3 +237,10 @@ Still, if you want to compile it manually you need to install the xmlrpc-c packa
 
       USE="threads" emerge xmlrpc-c
 
+Installing on Devuan
+--------------------
+
+Packages for Devuan Jessie 1.0 Beta are provided by Alberto Zuin. You can download them at:
+
+http://downloads.opennebula.org/extra/packages/devuan/
+
