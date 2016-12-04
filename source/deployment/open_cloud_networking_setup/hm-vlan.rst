@@ -36,19 +36,21 @@ Defining a 802.1Q Network
 
 To create a 802.1Q network include the following information:
 
-+-------------+-------------------------------------------------------------------------+-----------+
-| Attribute   | Value                                                                   | Mandatory |
-+=============+=========================================================================+===========+
-| **VN_MAD**  | 802.1Q                                                                  |  **YES**  |
-+-------------+-------------------------------------------------------------------------+-----------+
-| **PHYDEV**  | Name of the physical network device that will be attached to the bridge.|  **YES**  |
-+-------------+-------------------------------------------------------------------------+-----------+
-| **BRIDGE**  | Name of the linux bridge, defaults to onebr<net_id> or onebr.<vlan_id>  |  NO       |
-+-------------+-------------------------------------------------------------------------+-----------+
-| **VLAN_ID** | The VLAN ID, will be generated if not defined                           |  NO       |
-+-------------+-------------------------------------------------------------------------+-----------+
-| **MTU**     | The MTU for the tagged interface and bridge                             |  NO       |
-+-------------+-------------------------------------------------------------------------+-----------+
++-----------------------+-------------------------------------------------------------------------------------+-------------+
+| Attribute             | Value                                                                               |  Mandatory  |
++=======================+=====================================================================================+=============+
+| **VN_MAD**            | 802.1Q                                                                              |  **YES**    |
++-----------------------+-------------------------------------------------------------------------------------+-------------+
+| **PHYDEV**            | Name of the physical network device that will be attached to the bridge.            |  **YES**    |
++-----------------------+-------------------------------------------------------------------------------------+-------------+
+| **BRIDGE**            | Name of the linux bridge, defaults to onebr<net_id> or onebr.<vlan_id>              |  NO         |
++-----------------------+-------------------------------------------------------------------------------------+-------------+
+| **VLAN_ID**           | The VLAN ID, will be generated if not defined and AUTOMATIC_VLAN_ID is set to YES   |  NO         |
++-----------------------+-------------------------------------------------------------------------------------+-------------+
+| **AUTOMATIC_VLAN_ID** | Mandatory and must be set to YES if VLAN_ID hasn't been defined                     |  **MAYBE**  |
++-----------------------+-------------------------------------------------------------------------------------+-------------+
+| **MTU**               | The MTU for the tagged interface and bridge                                         |  NO         |
++-----------------------+-------------------------------------------------------------------------------------+-------------+
 
 The following example defines a 802.1Q network
 
@@ -57,7 +59,7 @@ The following example defines a 802.1Q network
     NAME    = "hmnet"
     VN_MAD  = "802.1Q"
     PHYDEV  = "eth0"
-    VLAN_ID = 50        # optional
+    VLAN_ID = 50        # optional. If not setting VLAN_ID set AUTOMATIC_VLAN_ID = "YES"
     BRIDGE  = "brhm"    # optional
 
 In this scenario, the driver will check for the existence of the ``brhm`` bridge. If it doesn't exist it will be created. ``eth0`` will be tagged (``eth0.50``) and attached to ``brhm`` (unless it's already attached).
