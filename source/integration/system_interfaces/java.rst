@@ -9,7 +9,7 @@ This page contains the OpenNebula Cloud API Specification for Java. It has been 
 Download
 ================================================================================
 
-The Java OCA is part of the OpenNebula core distribution. If you installed from packages it should be already installed in ``/usr/share/java/org.opennebula.client.jar``. You also can download the ``.jar`` file compiled using Java 1.8, the required libraries, and the javadoc packaged in a tar.gz file `following this link <http://downloads.opennebula.org/packages>`__.
+You can download the ``.jar`` file compiled using Java 1.8, the required libraries, and the javadoc packaged in a tar.gz file `following this link <http://downloads.opennebula.org/packages>`__ in the OpenNebula version you have installed.
 
 You can also consult the `javadoc online </doc/5.2/oca/java/>`__.
 
