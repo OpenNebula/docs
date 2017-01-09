@@ -35,13 +35,16 @@ It is possible specify the start VLAN ID by configuring ``/etc/one/oned.conf``:
 
 The following configuration attributes can be adjusted in ``/var/lib/one/remotes/vnm/OpenNebulaNetwork.conf``:
 
-+---------------------+----------------------------------------------------------------------------------+
-|      Parameter      |                                   Description                                    |
-+=====================+==================================================================================+
-| vxlan_mc            | Base multicast address for each VLAN. The multicas sddress is vxlan_mc + vlan_id |
-+---------------------+----------------------------------------------------------------------------------+
-| vxlan_ttl           | Time To Live (TTL) should be > 1 in routed multicast networks (IGMP)             |
-+---------------------+----------------------------------------------------------------------------------+
++------------------+----------------------------------------------------------------------------------+
+|    Parameter     |                                   Description                                    |
++==================+==================================================================================+
+| vxlan_mc         | Base multicast address for each VLAN. The multicas sddress is vxlan_mc + vlan_id |
++------------------+----------------------------------------------------------------------------------+
+| vxlan_ttl        | Time To Live (TTL) should be > 1 in routed multicast networks (IGMP)             |
++------------------+----------------------------------------------------------------------------------+
+| validate_vlan_id | Set to true to check that no other vlans are connected to the bridge             |
++------------------+----------------------------------------------------------------------------------+
+
 
 .. _vxlan_net:
 
