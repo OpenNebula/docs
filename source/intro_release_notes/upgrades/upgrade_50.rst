@@ -1,4 +1,3 @@
-.. _upgrade:
 
 =================================
 Upgrading from OpenNebula 5.0.x
