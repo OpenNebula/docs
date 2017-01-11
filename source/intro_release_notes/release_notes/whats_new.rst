@@ -47,7 +47,7 @@ OpenNebula Core
 - **Update group information**, if driver (such as :ref:`LDAP <ldap>`) provides it.
 - **Improved range definitions** for the :ref:`vlan <hm-vlan>` driver
 - **Allow migration** between :ref:`clusters <cluster_guide>` provided they share datastores between them.
-- **Outsource IP management** with the new :ref:`IPAM subsystem `<ipam>`.
+- **Outsource IP management** with the new :ref:`IPAM subsystem <devel-ipam>`.
 - **Allow to override** of :ref:`EMULATOR attribute <emulator_override>` placing it in the VM template.
 
 
