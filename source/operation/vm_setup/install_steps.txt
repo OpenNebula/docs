@@ -19,10 +19,14 @@ Debian/Ubuntu
 Windows
 ~~~~~~~
 
-Downloads these two files to ``C:\``:
+Download the MSI package (preferred way) into ``C:\``:
 
-* https://raw.githubusercontent.com/OpenNebula/addon-context-windows/master/context.ps1
-* https://raw.githubusercontent.com/OpenNebula/addon-context-windows/master/startup.vbs
+* https://github.com/OpenNebula/addon-context-windows/releases/download/v5.2.0/one-context-5.2.0.msi
+
+or download particular contextualization scripts to ``C:\``:
+
+* https://raw.githubusercontent.com/OpenNebula/addon-context-windows/v5.2.0/context.ps1
+* https://raw.githubusercontent.com/OpenNebula/addon-context-windows/v5.2.0/startup.vbs
 
 Step 3. Install Contextualization Packages and Dependencies
 -----------------------------------------------------------
@@ -59,6 +63,18 @@ Debian/Ubuntu
 
 Windows
 ~~~~~~~
+
+For the MSI package:
+
+* double-click on the downloaded package icon in the same way you open other documents to install it or
+* start the command line ``cmd.exe`` and install or upgrade older package using the ``msiexec``, e.g.:
+
+.. prompt:: text > auto
+
+    > cd C:\
+    > forfiles /M one-context*.msi /C "cmd /c msiexec /i @file"
+
+For particular contextualization scripts:
 
 * Open the Local Group Policy Dialog by running ``gpedit.msc``.
 * Go to *Computer Configuration* -> *Windows Settings* -> *Scripts* -> *startup* (right click).
