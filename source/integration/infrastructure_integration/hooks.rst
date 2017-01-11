@@ -100,14 +100,17 @@ The following is an example of a hook tied to the ERROR state of a Host:
     #*******************************************************************************
     # This hook is used to perform recovery actions when a host fails.
     # Script to implement host failure tolerance
-    #   It can be set to
-    #           -m migrate VMs to another host. Only for images in shared storage
+    #   One of the following modes must be chosen
+    #           -m resched VMs to another host. (Only for images in shared storage!)
     #           -r recreate VMs running in the host. State will be lost.
     #           -d delete VMs running in the host
+    #
     #   Additional flags
-    #           -f force resubmission of suspended VMs
-    #           -p <n> avoid resubmission if host comes
-    #                  back after n monitoring cycles
+    #           -f resubmit suspended and powered off VMs (only for recreate)
+    #           -p <n> avoid resubmission if host comes back after n monitoring
+    #                 cycles. 0 to disable it. Default is 2.
+    #           -u disables fencing. Fencing is enabled by default. Don't disable it
+    #                 unless you are very sure about what you're doing
     #*******************************************************************************
     
     HOST_HOOK = [
@@ -117,6 +120,9 @@ The following is an example of a hook tied to the ERROR state of a Host:
         arguments = "$ID -m -p 5",
         remote    = "no" ]
     #-------------------------------------------------------------------------------
+
+.. note::
+    In the case when the resched VMs mode is selected (-m) but the host is wrongly recognized as failed (for example due to failure of the management network) it is essential to have properly configured and working ft/fence_host.sh. Otherwiseit is possible to have data coruption because the old still running VM  and the new VM both will write to the shared disk.
 
 Other Hooks
 ================================================================================
