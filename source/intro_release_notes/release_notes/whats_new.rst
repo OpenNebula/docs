@@ -35,7 +35,7 @@ This OpenNebula release is named after the `Ian M. Banks novel <https://en.wikip
 
 OpenNebula 5.2 Excession is considered to be a stable release and as such, and update is available in production environments.
 
-In the following list you can check the highlights of OpenNebula 5.2 (`a detailed list of changes can be found here <http://dev.opennebula.org/projects/opennebula/issues?c%5B%5D=tracker&c%5B%5D=status&c%5B%5D=priority&c%5B%5D=subject&c%5B%5D=assigned_to&c%5B%5D=updated_on&f%5B%5D=fixed_version_id&f%5B%5D=tracker_id&f%5B%5D=&group_by=category&op%5Bfixed_version_id%5D=%3D&op%5Btracker_id%5D=%21&per_page=200&set_filter=1&utf8=%E2%9C%93&v%5Bfixed_version_id%5D%5B%5D=83&v%5Btracker_id%5D%5B%5D=7>`__):
+In the following list you can check the highlights of OpenNebula 5.2 (`a detailed list of changes can be found here <https://dev.opennebula.org/projects/opennebula/issues?utf8=%E2%9C%93&set_filter=1&f%5B%5D=fixed_version_id&op%5Bfixed_version_id%5D=%3D&v%5Bfixed_version_id%5D%5B%5D=83&f%5B%5D=&c%5B%5D=tracker&c%5B%5D=status&c%5B%5D=priority&c%5B%5D=subject&c%5B%5D=assigned_to&c%5B%5D=updated_on&group_by=category>`__):
 
 OpenNebula Core
 --------------------------------------------------------------------------------

@@ -3,6 +3,8 @@
 Resolved Issues in 5.2.1
 --------------------------------------------------------------------------------
 
+A complete list of solved issues for 5.1.1 can be found in the `project development portal <https://dev.opennebula.org/projects/opennebula/issues?utf8=%E2%9C%93&set_filter=1&f%5B%5D=fixed_version_id&op%5Bfixed_version_id%5D=%3D&v%5Bfixed_version_id%5D%5B%5D=87&f%5B%5D=&c%5B%5D=tracker&c%5B%5D=status&c%5B%5D=priority&c%5B%5D=subject&c%5B%5D=assigned_to&c%5B%5D=updated_on&group_by=category>`__.
+
 New functionality for 5.2.1 has been introduced:
 
 - `Improvements in SDR clustered vcenter datastores <http://dev.opennebula.org/issues/4584>`__.
