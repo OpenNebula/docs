@@ -689,6 +689,7 @@ Example:
 vCenter Section
 ================================================================================
 
+You have more information about vCenter attributes in the :ref:`vCenter Specifics Section <vm_template_definition_vcenter>`:
 
 Public Cloud Section
 ================================================================================
@@ -999,6 +1000,7 @@ All the **default** restricted attributes to users in the oneadmin group are sum
 - ``CPU_COST``
 - ``MEMORY_COST``
 - ``DISK_COST``
+- ``DEPLOY_FOLDER``
 
 These attributes can be configured in :ref:`oned.conf <oned_conf>`.
 
