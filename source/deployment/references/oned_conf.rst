@@ -486,7 +486,7 @@ Drivers to manage different marketplaces, specialized for the storage back-end
 
    -  **-t** number of threads, i.e. number of repo operations at the same time
    -  **-m** marketplace mads separated by commas
-   -  **--proxy** proxy address if required to access the internet (ipaddr:port)
+   -  **--proxy** proxy URI if required to access the internet. For example ``--proxy http://1.2.3.4:5678``
    -  **-w** timeout in seconds to execute external commands (default unlimited)
 
 Sample configuration:
