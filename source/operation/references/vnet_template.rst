@@ -17,35 +17,40 @@ Physical Network Attributes
 
 It defines the **underlying networking infrastructure** that will support the Virtual Network, such as the VLAN ID or the hypervisor interface to bind the Virtual Network.
 
-+--------------+--------------------------------------------------+----------+-----------+----------+
-|  Attribute   |                   Description                    |  Value   | Mandatory | Drivers  |
-+==============+==================================================+==========+===========+==========+
-| **NAME**     | Name of the Virtual Network                      | String   | YES       | All      |
-+--------------+--------------------------------------------------+----------+-----------+----------+
-| **VN_MAD**   | The network driver to implement the network      | 802.1Q   | YES       | All      |
-|              |                                                  | ebtables |           |          |
-|              |                                                  | fw       |           |          |
-|              |                                                  | ovswtich |           |          |
-|              |                                                  | vxlan    |           |          |
-|              |                                                  | vcenter  |           |          |
-|              |                                                  | dummy    |           |          |
-+--------------+--------------------------------------------------+----------+-----------+----------+
-| **BRIDGE**   | Device to attach the virtual machines to,        | String   | YES for   | dummy    |
-|              | depending on the network driver it may refer to  |          | dummy     | 802.1Q   |
-|              | different technologies or require host setups.   |          | ovswtich  | vxlan    |
-|              |                                                  |          | ebtables  | ovswicth |
-|              |                                                  |          | fw        | ebtables |
-|              |                                                  |          | vcenter   | fw       |
-|              |                                                  |          |           | vcenter  |
-+--------------+--------------------------------------------------+----------+-----------+----------+
-| **VLAN\_ID** | Identifier for the VLAN                          | Integer  | NO        | 802.1Q   |
-|              |                                                  |          |           | vxlan    |
-|              |                                                  |          |           | ovswtich |
-|              |                                                  |          |           | vcenter  |
-+--------------+--------------------------------------------------+----------+-----------+----------+
-| **PHYDEV**   | Name of the physical network device that will be | String   | YES       | 802.1Q   |
-|              | attached to the bridge.                          |          |           | vxlan    |
-+--------------+--------------------------------------------------+----------+-----------+----------+
++------------------------+--------------------------------------------------+----------+----------------------------------+----------+
+|  Attribute             |                   Description                    |  Value   | Mandatory                        | Drivers  |
++========================+==================================================+==========+==================================+==========+
+| **NAME**               | Name of the Virtual Network                      | String   | YES                              | All      |
++------------------------+--------------------------------------------------+----------+----------------------------------+----------+
+| **VN_MAD**             | The network driver to implement the network      | 802.1Q   | YES                              | All      |
+|                        |                                                  | ebtables |                                  |          |
+|                        |                                                  | fw       |                                  |          |
+|                        |                                                  | ovswitch |                                  |          |
+|                        |                                                  | vxlan    |                                  |          |
+|                        |                                                  | vcenter  |                                  |          |
+|                        |                                                  | dummy    |                                  |          |
++------------------------+--------------------------------------------------+----------+----------------------------------+----------+
+| **BRIDGE**             | Device to attach the virtual machines to,        | String   | YES for dummy, ovswitch, ebtables| dummy    |
+|                        | depending on the network driver it may refer to  |          | fw and vcenter                   | 802.1Q   |
+|                        | different technologies or require host setups.   |          |                                  | vxlan    |
+|                        |                                                  |          |                                  | ovswitch |
+|                        |                                                  |          |                                  | ebtables |
+|                        |                                                  |          |                                  | fw       |
+|                        |                                                  |          |                                  | vcenter  |
++------------------------+--------------------------------------------------+----------+----------------------------------+----------+
+| **VLAN\_ID**           | Identifier for the VLAN.                         | Integer  | YES unless ``AUTOMATIC_VLAN_ID`` | 802.1Q   |
+|                        |                                                  |          | for 802.1Q                       | vxlan    |
+|                        |                                                  |          |                                  | ovswitch |
+|                        |                                                  |          |                                  | vcenter  |
++------------------------+--------------------------------------------------+----------+----------------------------------+----------+
+| **AUTOMATIC_VLAN\_ID** | If set to YES, OpenNebula will generate a VLAN ID| String   | YES unless ``VLAN_ID``           | 802.1Q   |
+|                        | automatically if VLAN_ID is not defined.         |          | for 802.1Q                       | vxlan    |
+|                        | Mandatory YES for 802.1Q if VLAN_ID is not       |          |                                  | ovswitch |
+|                        | defined, optional otherwise.                     |          |                                  | vcenter  |
++------------------------+--------------------------------------------------+----------+----------------------------------+----------+
+| **PHYDEV**             | Name of the physical network device that will be | String   | YES                              | 802.1Q   |
+|                        | attached to the bridge.                          |          |                                  | vxlan    |
++------------------------+--------------------------------------------------+----------+----------------------------------+----------+
 
 Quality of Service Attributes
 ================================================================================
@@ -209,7 +214,7 @@ Sample IPv4 VNet, using AR of just one IP:
 
 .. code::
 
-    # Confgiuration attributes (OpenvSwtich driver)
+    # Configuration attributes (OpenvSwitch driver)
     NAME        = "Public"
     DESCRIPTION = "Network with public IPs"
 
@@ -226,4 +231,3 @@ Sample IPv4 VNet, using AR of just one IP:
     AR=[ TYPE = "IP4", IP = "130.56.23.24", SIZE = "1"]
     AR=[ TYPE = "IP4", IP = "130.56.23.17", MAC= "50:20:20:20:20:21", SIZE = "1"]
     AR=[ TYPE = "IP4", IP = "130.56.23.12", SIZE = "1"]
-
