@@ -5,17 +5,10 @@
 Overview
 ================================================================================
 
-OneFlow is an OpenNebula component that allows users and administrators to define, execute and manage multi-tiered services composed of interconnected Virtual Machines with deployment dependencies between them. Each group of Virtual Machines is deployed and managed as a single entity, and is completely integrated with the advanced :ref:`OpenNebula user and group management <auth_overview>`.
+Some applications require multiple VMs to implement their workflow. OpenNebula allows you to coordinate the deployment and resource usage of such applications through two components:
 
-The benefits of OneFlow are:
-
-* Define multi-tiered applications (services) as collection of applications
-* Manage multi-tiered applications as a single entity
-* Automatic execution of services with dependencies
-* Provide configurable services from a catalog and self-service portal
-* Enable tight, efficient administrative control
-* Fine-grained access control for the secure sharing of services with other users
-* Auto-scaling policies based on performance metrics and schedule
+* VMGroup, to fine control the placement of related virtual machines.
+* OneFlow, to define and manage multi-vm applications as single entities. OneFlow also let's you define dependencies and auto-scaling policies for the application components.
 
 How Should I Read This Chapter
 ================================================================================
@@ -24,6 +17,7 @@ This chapter should be read after the infrastructure is properly setup, and cont
 
 Proceed to each section following these links:
 
+* :ref:`VMGroup Management <vmgroups>`
 * :ref:`OneFlow Server Configuration <appflow_configure>`
 * :ref:`OneFlow Services Management <appflow_use_cli>`
 * :ref:`OneFlow Services Auto-scaling <appflow_elasticity>`

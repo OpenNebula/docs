@@ -565,6 +565,7 @@ Host Hooks (HOST\_HOOK) defined by:
 Sample configuration:
 
 .. code-block:: bash
+
      
     VM_HOOK = [
       name      = "advanced_hook",
@@ -573,7 +574,6 @@ Sample configuration:
       lcm_state = "BOOT_UNKNOWN",
       command   = "log.rb",
       arguments = "$ID $PREV_STATE $PREV_LCM_STATE" ]
-
 
 .. _oned_auth_manager_conf:
 
