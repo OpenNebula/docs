@@ -104,25 +104,27 @@ Role to Role Affinity
 
 Specifies whether the VMs of a role have to be placed together or separately with the VMs of other role. This useful to combine the Host-VM and VM-VM policies. Affinity rules for roles are set with the ``AFFINED`` and ``ANTI_AFFINED`` attributes.
 
-For example to place each VM in a different host from two roles and select a set of suitable hosts for each role you may use:
+For example, I want the VMs of a database to run together so they access the same storage, I want all the backup VMs to run in a separate hosts; and I want database and backups to be also in different hosts. Finally, I may have some constraints about where the database and backups may run:
 
 .. code-block:: bash
 
     ROLE = [
-        NAME  = "workers",
+        NAME  = "apps",
         HOST_AFFINED = "1,2,3,4,5,6,7"
+        POLICY = "AFFINED"
     ]
 
     ROLE = [
         NAME = "backup",
         HOST_ANTI_AFFINED = "3,4"
+        POLICY = "ANTI_AFFINED"
     ]
 
     ANTI_AFFINED = "workers, backup"
 
 .. warning::
 
-  Note that a role policy has to be coherent with any role-role policy, i.e. a role with an ``AFFINED`` policy cannot be included in any ``ANTI_AFFINED`` rule.
+  Note that a role policy has to be coherent with any role-role policy, i.e. a role with an ``ANTI_AFFINED`` policy cannot be included in any ``AFFINED`` role-role rule.
 
 Scheduler Configuration and Remarks
 --------------------------------------------------------------------------------
