@@ -612,6 +612,35 @@ The ``DEFAULT_AUTH`` can be used to point to the desired default authentication 
 
     DEFAULT_AUTH = "ldap"
 
+.. _oned_conf_vm_operations:
+
+VM Operations Permissions
+===================================
+The following parameters define the operations associated to the ADMIN,
+MANAGE and USE permissions. Note that some VM operations may require additional
+permissions on other objects. Also some operations refers to a class of
+actions:
+
+- disk-snapshot, includes create, delete and revert actions
+- disk-attach, includes attach and detach actions
+- nic-attach, includes attach and detach actions
+- snapshot, includes create, delete and revert actions
+- resched, includes resched and unresched actions
+
+The list and show operations require the USE permission, this is not configurable.
+
+In the following example you need ADMIN right on a VM to perform migrate, delete, recover... while undeploy, hold, ... need MANAGE right:
+
+.. code-block:: bash
+
+    VM_ADMIN_OPERATIONS  = "migrate, delete, recover, retry, deploy, resched"
+
+    VM_MANAGE_OPERATIONS = "undeploy, hold, release, stop, suspend, resume, reboot,
+        poweroff, disk-attach, nic-attach, disk-snapshot, terminate, disk-resize,
+        snapshot, updateconf, rename, resize, update, disk-saveas"
+
+    VM_USE_OPERATIONS    = ""
+
 .. _oned_conf_restricted_attributes_configuration:
 
 Restricted Attributes Configuration
