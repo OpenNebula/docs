@@ -739,6 +739,33 @@ onesecgroup
 | list                | one.secgrouppool.info | SECGROUP:USE              |
 +---------------------+-----------------------+---------------------------+
 
+onevmgroup
+--------------------------------------------------------------------------------
+
++---------------------+-----------------------+---------------------------+
+| onevmgroup command  |     XML-RPC Method    |       Auth. Request       |
++=====================+=======================+===========================+
+| create              | one.vmgroup.allocate  | VMGROUP:CREATE            |
++---------------------+-----------------------+---------------------------+
+| delete              | one.vmgroup.delete    | VMGROUP:MANAGE            |
++---------------------+-----------------------+---------------------------+
+| chown               | one.vmgroup.chown     | VMGROUP:MANAGE            |
+|                     |                       |                           |
+| chgrp               |                       | [USER:MANAGE]             |
+|                     |                       |                           |
+|                     |                       | [GROUP:USE]               |
++---------------------+-----------------------+---------------------------+
+| chmod               | one.vmgroup.chmod     | VMGROUP:<MANAGE / ADMIN>  |
++---------------------+-----------------------+---------------------------+
+| update              | one.vmgroup.update    | VMGROUP:MANAGE            |
++---------------------+-----------------------+---------------------------+
+| rename              | one.vmgroup.rename    | VMGROUP:MANAGE            |
++---------------------+-----------------------+---------------------------+
+| show                | one.vmgroup.info      | VMGROUP:USE               |
++---------------------+-----------------------+---------------------------+
+| list                | one.vmgrouppool.info  | VMGROUP:USE               |
++---------------------+-----------------------+---------------------------+
+
 oneacl
 --------------------------------------------------------------------------------
 
@@ -3126,6 +3153,211 @@ one.secgrouppool.info
 --------------------------------------------------------------------------------
 
 -  **Description**: Retrieves information for all or part of the security groups in the pool.
+-  **Parameters**
+
++------+-----------+-----------------------------------------------------------------------+
+| Type | Data Type |                              Description                              |
++======+===========+=======================================================================+
+| IN   | String    | The session string.                                                   |
++------+-----------+-----------------------------------------------------------------------+
+| IN   | Int       | Filter flag                                                           |
+|      |           |                                                                       |
+|      |           | * **-4**: Resources belonging to the user's primary group             |
+|      |           | * **-3**: Resources belonging to the user                             |
+|      |           | * **-2**: All resources                                               |
+|      |           | * **-1**: Resources belonging to the user and any of his groups       |
+|      |           | * **>= 0**: UID User's Resources                                      |
++------+-----------+-----------------------------------------------------------------------+
+| IN   | Int       | When the next parameter is >= -1 this is the Range start ID.          |
+|      |           | Can be -1. For smaller values this is the offset used for pagination. |
++------+-----------+-----------------------------------------------------------------------+
+| IN   | Int       | For values >= -1 this is the Range end ID. Can be -1 to get until the |
+|      |           | last ID. For values < -1 this is the page size used for pagination.   |
++------+-----------+-----------------------------------------------------------------------+
+| OUT  | Boolean   | true or false whenever is successful or not                           |
++------+-----------+-----------------------------------------------------------------------+
+| OUT  | String    | The information string / The error string.                            |
++------+-----------+-----------------------------------------------------------------------+
+| OUT  | Int       | Error code.                                                           |
++------+-----------+-----------------------------------------------------------------------+
+
+The range can be used to retrieve a subset of the pool, from the 'start' to the 'end' ID. To retrieve the complete pool, use ``(-1, -1)``; to retrieve all the pool from a specific ID to the last one, use ``(<id>, -1)``, and to retrieve the first elements up to an ID, use ``(0, <id>)``.
+
+Actions for VM Group Management
+================================================================================
+
+one.vmgroup.allocate
+--------------------------------------------------------------------------------
+
+-  **Description**: Allocates a new VM group in OpenNebula.
+-  **Parameters**
+
++------+------------+------------------------------------------------------------------------------------------------+
+| Type | Data Type  |                                                 Description                                    |
++======+============+================================================================================================+
+| IN   | String     | The session string.                                                                            |
++------+------------+------------------------------------------------------------------------------------------------+
+| IN   | String     | A string containing the template of the VM. Syntax can be the usual ``attribute=value`` or XML.|
++------+------------+------------------------------------------------------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not                                                    |
++------+------------+------------------------------------------------------------------------------------------------+
+| OUT  | Int/String | The allocated resource ID / The error string.                                                  |
++------+------------+------------------------------------------------------------------------------------------------+
+| OUT  | Int        | Error code.                                                                                    |
++------+------------+------------------------------------------------------------------------------------------------+
+
+one.vmgroup.delete
+--------------------------------------------------------------------------------
+
+-  **Description**: Deletes the given VM group from the pool.
+-  **Parameters**
+
++------+------------+---------------------------------------------+
+| Type | Data Type  |                 Description                 |
++======+============+=============================================+
+| IN   | String     | The session string.                         |
++------+------------+---------------------------------------------+
+| IN   | Int        | The object ID.                              |
++------+------------+---------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not |
++------+------------+---------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.         |
++------+------------+---------------------------------------------+
+| OUT  | Int        | Error code.                                 |
++------+------------+---------------------------------------------+
+
+one.vmgroup.update
+--------------------------------------------------------------------------------
+
+-  **Description**: Replaces the VM group template contents.
+-  **Parameters**
+
++------+------------+--------------------------------------------------------------------------------------------------+
+| Type | Data Type  |                                           Description                                            |
++======+============+==================================================================================================+
+| IN   | String     | The session string.                                                                              |
++------+------------+--------------------------------------------------------------------------------------------------+
+| IN   | Int        | The object ID.                                                                                   |
++------+------------+--------------------------------------------------------------------------------------------------+
+| IN   | String     | The new template contents. Syntax can be the usual ``attribute=value`` or XML.                   |
++------+------------+--------------------------------------------------------------------------------------------------+
+| IN   | Int        | Update type: **0**: Replace the whole template. **1**: Merge new template with the existing one. |
++------+------------+--------------------------------------------------------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not                                                      |
++------+------------+--------------------------------------------------------------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.                                                              |
++------+------------+--------------------------------------------------------------------------------------------------+
+| OUT  | Int        | Error code.                                                                                      |
++------+------------+--------------------------------------------------------------------------------------------------+
+
+one.vmgroup.chmod
+--------------------------------------------------------------------------------
+
+-  **Description**: Changes the permission bits of a VM group.
+-  **Parameters**
+
++------+------------+-----------------------------------------------------+
+| Type | Data Type  |                     Description                     |
++======+============+=====================================================+
+| IN   | String     | The session string.                                 |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | The object ID.                                      |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | USER USE bit. If set to -1, it will not change.     |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | USER MANAGE bit. If set to -1, it will not change.  |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | USER ADMIN bit. If set to -1, it will not change.   |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | GROUP USE bit. If set to -1, it will not change.    |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | GROUP MANAGE bit. If set to -1, it will not change. |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | GROUP ADMIN bit. If set to -1, it will not change.  |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | OTHER USE bit. If set to -1, it will not change.    |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | OTHER MANAGE bit. If set to -1, it will not change. |
++------+------------+-----------------------------------------------------+
+| IN   | Int        | OTHER ADMIN bit. If set to -1, it will not change.  |
++------+------------+-----------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not         |
++------+------------+-----------------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.                 |
++------+------------+-----------------------------------------------------+
+| OUT  | Int        | Error code.                                         |
++------+------------+-----------------------------------------------------+
+
+one.vmgroup.chown
+--------------------------------------------------------------------------------
+
+-  **Description**: Changes the ownership of a VM group.
+-  **Parameters**
+
++------+------------+------------------------------------------------------------------------+
+| Type | Data Type  |                              Description                               |
++======+============+========================================================================+
+| IN   | String     | The session string.                                                    |
++------+------------+------------------------------------------------------------------------+
+| IN   | Int        | The object ID.                                                         |
++------+------------+------------------------------------------------------------------------+
+| IN   | Int        | The User ID of the new owner. If set to -1, the owner is not changed.  |
++------+------------+------------------------------------------------------------------------+
+| IN   | Int        | The Group ID of the new group. If set to -1, the group is not changed. |
++------+------------+------------------------------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not                            |
++------+------------+------------------------------------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.                                    |
++------+------------+------------------------------------------------------------------------+
+| OUT  | Int        | Error code.                                                            |
++------+------------+------------------------------------------------------------------------+
+
+one.vmgroup.rename
+--------------------------------------------------------------------------------
+
+-  **Description**: Renames a VM group.
+-  **Parameters**
+
++------+------------+---------------------------------------------+
+| Type | Data Type  |                 Description                 |
++======+============+=============================================+
+| IN   | String     | The session string.                         |
++------+------------+---------------------------------------------+
+| IN   | Int        | The object ID.                              |
++------+------------+---------------------------------------------+
+| IN   | String     | The new name.                               |
++------+------------+---------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not |
++------+------------+---------------------------------------------+
+| OUT  | Int/String | The VM ID / The error string.               |
++------+------------+---------------------------------------------+
+| OUT  | Int        | Error code.                                 |
++------+------------+---------------------------------------------+
+
+one.vmgroup.info
+--------------------------------------------------------------------------------
+
+-  **Description**: Retrieves information for the VM group.
+-  **Parameters**
+
++------+-----------+---------------------------------------------+
+| Type | Data Type |                 Description                 |
++======+===========+=============================================+
+| IN   | String    | The session string.                         |
++------+-----------+---------------------------------------------+
+| IN   | Int       | The object ID.                              |
++------+-----------+---------------------------------------------+
+| OUT  | Boolean   | true or false whenever is successful or not |
++------+-----------+---------------------------------------------+
+| OUT  | String    | The information string / The error string.  |
++------+-----------+---------------------------------------------+
+| OUT  | Int       | Error code.                                 |
++------+-----------+---------------------------------------------+
+
+one.vmgrouppool.info
+--------------------------------------------------------------------------------
+
+-  **Description**: Retrieves information for all or part of the VM groups in the pool.
 -  **Parameters**
 
 +------+-----------+-----------------------------------------------------------------------+
@@ -6668,7 +6900,7 @@ Schemas for Group
                             <xs:complexType>
                               <xs:sequence>
                                 <xs:element name="CPU" type="xs:string"/>
-                                <xs:element name="CPU_USED" type="xs:string"/>               
+                                <xs:element name="CPU_USED" type="xs:string"/>
                                 <xs:element name="MEMORY" type="xs:string"/>
                                 <xs:element name="MEMORY_USED" type="xs:string"/>
                                 <xs:element name="SYSTEM_DISK_SIZE" type="xs:string"/>
@@ -6814,12 +7046,12 @@ Schemas for Host
             <xs:element name="ID" type="xs:integer"/>
             <xs:element name="NAME" type="xs:string"/>
             <!-- STATE values
-            
+
               INIT                 = 0  Initial state for enabled hosts
               MONITORING_MONITORED = 1  Monitoring the host (from monitored)
               MONITORED            = 2  The host has been successfully monitored
               ERROR                = 3  An error ocurrer while monitoring the host
-              DISABLED             = 4  The host is disabled 
+              DISABLED             = 4  The host is disabled
               MONITORING_ERROR     = 5  Monitoring the host (from error)
               MONITORING_INIT      = 6  Monitoring the host (from init)
               MONITORING_DISABLED  = 7  Monitoring the host (from disabled)
@@ -7481,6 +7713,9 @@ Schemas for Virtual Machine
                       <xs:sequence>
                         <xs:element name="OID" type="xs:integer"/>
                         <xs:element name="SEQ" type="xs:integer"/>
+                        <xs:element name="UID" type="xs:integer"/>
+                        <xs:element name="GID" type="xs:integer"/>
+                        <xs:element name="REQUEST_ID" type="xs:string"/>
                         <xs:element name="HOSTNAME" type="xs:string"/>
                         <xs:element name="HID" type="xs:integer"/>
                         <xs:element name="CID" type="xs:integer"/>
@@ -7495,13 +7730,6 @@ Schemas for Virtual Machine
                         <xs:element name="RETIME" type="xs:integer"/>
                         <xs:element name="ESTIME" type="xs:integer"/>
                         <xs:element name="EETIME" type="xs:integer"/>
-
-                        <!-- REASON values:
-                          NONE  = 0 History record is not closed yet
-                          ERROR = 1 History record was closed because of an error
-                          USER  = 2 History record was closed because of a user action
-                        -->
-                        <xs:element name="REASON" type="xs:integer"/>
 
                         <!-- ACTION values:
                           NONE_ACTION             = 0
@@ -7533,6 +7761,22 @@ Schemas for Virtual Machine
                           DISK_SNAPSHOT_DELETE_ACTION = 26
                           TERMINATE_ACTION        = 27
                           TERMINATE_HARD_ACTION   = 28
+                          DISK_RESIZE_ACTION      = 29
+                          DEPLOY_ACTION           = 30
+                          CHOWN_ACTION            = 31
+                          CHMOD_ACTION            = 32
+                          UPDATECONF_ACTION       = 33
+                          RENAME_ACTION           = 34
+                          RESIZE_ACTION           = 35
+                          UPDATE_ACTION           = 36
+                          SNAPSHOT_CREATE_ACTION  = 37
+                          SNAPSHOT_DELETE_ACTION  = 38
+                          SNAPSHOT_REVERT_ACTION  = 39
+                          DISK_SAVEAS_ACTION      = 40
+                          DISK_SNAPSHOT_REVERT_ACTION = 41
+                          RECOVER_ACTION          = 42
+                          RETRY_ACTION            = 43
+                          MONITOR_ACTION          = 44
                         -->
                         <xs:element name="ACTION" type="xs:integer"/>
                       </xs:sequence>
@@ -8002,7 +8246,7 @@ Schemas for Marketplace
 --------------------------------------------------------------------------------
 
 .. code-block:: xml
-  
+
     <?xml version="1.0" encoding="UTF-8"?>
     <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
       targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
@@ -8185,6 +8429,84 @@ Schemas for Virtual Router
             <xs:complexType>
                 <xs:sequence maxOccurs="1" minOccurs="1">
                     <xs:element ref="VROUTER" maxOccurs="unbounded" minOccurs="0"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:element>
+    </xs:schema>
+
+Schemas for Virtual Machine Group
+--------------------------------------------------------------------------------
+
+.. code-block:: xml
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+      targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
+      <xs:element name="VM_GROUP">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="ID" type="xs:integer"/>
+            <xs:element name="UID" type="xs:integer"/>
+            <xs:element name="GID" type="xs:integer"/>
+            <xs:element name="UNAME" type="xs:string"/>
+            <xs:element name="GNAME" type="xs:string"/>
+            <xs:element name="NAME" type="xs:string"/>
+            <xs:element name="PERMISSIONS" minOccurs="0" maxOccurs="1">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="OWNER_U" type="xs:integer"/>
+                  <xs:element name="OWNER_M" type="xs:integer"/>
+                  <xs:element name="OWNER_A" type="xs:integer"/>
+                  <xs:element name="GROUP_U" type="xs:integer"/>
+                  <xs:element name="GROUP_M" type="xs:integer"/>
+                  <xs:element name="GROUP_A" type="xs:integer"/>
+                  <xs:element name="OTHER_U" type="xs:integer"/>
+                  <xs:element name="OTHER_M" type="xs:integer"/>
+                  <xs:element name="OTHER_A" type="xs:integer"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="ROLES">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="ROLE" maxOccurs="unbounded" minOccurs="0">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="ID" type="xs:integer"/>
+                        <xs:element name="NAME" type="xs:string" maxOccurs="1" minOccurs="0"/>
+                        <xs:element name="POLICY" type="xs:string" maxOccurs="1" minOccurs="0"/>
+                        <!-- POLICY values:
+                          AFFINED
+                          ANTI_AFFINED
+                        -->
+                        <xs:element name="HOST_AFFINED" type="xs:string" maxOccurs="1" minOccurs="0"/>
+                        <xs:element name="HOST_ANTI_AFFINED" type="xs:string" maxOccurs="1" minOccurs="0"/>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="TEMPLATE" type="xs:anyType"/>
+            <!-- POLICY values:
+              AFFINED      = "<list of roles>"
+              ANTI_AFFINED = "<list of roles>"
+            -->
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+
+.. code-block:: xml
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified"
+        targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
+        <xs:include schemaLocation="vrouter.xsd"/>
+        <xs:element name="VM_GROUP_POOL">
+            <xs:complexType>
+                <xs:sequence maxOccurs="1" minOccurs="1">
+                    <xs:element ref="VM_GROUP" maxOccurs="unbounded" minOccurs="0"/>
                 </xs:sequence>
             </xs:complexType>
         </xs:element>
