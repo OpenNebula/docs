@@ -55,7 +55,8 @@ The addresses available in a Virtual Network are defined by one or more Address 
 
 - **IPv4**, to define a contiguous IPv4 address set (classless), :ref:`see more details here <vnet_template_ar4>`
 - **IPv6**, to define global and ULA IPv6 networks, :ref:`see full details here <vnet_template_ar6>`
-- **Dual stack**, each NIC in the network will get both a IPv4 and a IPv6 address, :ref:`see more here <vnet_template_ar46>`
+- **IPv6 no-SLAAC**, to define fixed 128 bits IPv6 address, :ref:`see here<vn_template_ar6_nslaac>`
+- **Dual stack**, each NIC in the network will get both a IPv4 and a IPv6 address (SLAAC or no-SLAAC), :ref:`see more here <vnet_template_ar46>`
 - **Ethernet**,  just MAC addresses are generated for the VMs. You should use this AR when an external service is providing the IP addresses, such a DHCP server, :ref:`see more details here <vnet_template_eth>`
 
 For example, to define the IPv4 address range 10.0.0.150 - 10.0.0.200
