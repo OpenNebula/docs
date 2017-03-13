@@ -204,7 +204,7 @@ An example of datastore:
     DISK_TYPE = RBD
 
     POOL_NAME   = one
-    CEPH_HOST   = host1 host2:port2
+    CEPH_HOST   = "host1 host2:port2"
     CEPH_USER   = libvirt
     CEPH_SECRET = "6f88b54b-5dae-41fe-a43e-b2763f601cfc"
 
