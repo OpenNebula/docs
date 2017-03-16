@@ -257,6 +257,10 @@ Here you can configure the default values for the Datastores and Image templates
 
 - ``DEFAULT_CDROM_DEVICE_PREFIX``: Same as above but for CDROM devices.
 
+- ``DEFAULT_IMAGE_PERSISTENT``: Control the default value for the PERSISTENT attribute on image creation (oneimage clone, onevm disk-saveas). If blank images will inherit the persistent attribute from the base image.
+
+- ``DEFAULT_IMAGE_PERSISTENT_NEW``: Control the default value for the PERSISTENT attribute on image creation (oneimage create). By default images are no persistent if not set.
+
 More information on the image repository can be found in the :ref:`Managing Virtual Machine Images guide <img_guide>`.
 
 Sample configuration:
