@@ -83,7 +83,7 @@ VLAN trunking is also supported by adding the following tag to the ``NIC`` eleme
 OpenFlow Rules
 ================================================================================
 
-This section lists de default openflow rules installed in the open vswitch.
+This section lists the default openflow rules installed in the open vswitch.
 
 Mac-spoofing
 --------------------------------------------------------------------------------
