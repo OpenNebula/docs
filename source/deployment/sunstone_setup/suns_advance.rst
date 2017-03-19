@@ -55,7 +55,7 @@ When using one on these web servers the use of a ``memcached`` server is necessa
 
 Then you will have to change in sunstone configuration (``/etc/one/sunstone-server.conf``) the value of ``:sessions`` to ``memcache``.
 
-If you want to use novcn you need to have it running. You can start this service with the command:
+If you want to use novnc you need to have it running. You can start this service with the command:
 
 .. code::
 
