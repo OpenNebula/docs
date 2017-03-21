@@ -174,7 +174,7 @@ Example:
       GROUP_ADMIN_VIEWS        = "groupadmin,cloud"
     ]
 
-* OpenNebula Core. Set specific attributes to control the some operations. The configuration attributes are stored in the group template in the ``OPENNEBULA`` attribute:
+* OpenNebula Core. Set specific attributes to control some operations. The configuration attributes are stored in the group template in the ``OPENNEBULA`` attribute:
 
 +------------------------------+----------------------------------------------------------------------------+
 |         Attribute            |                              Description                                   |
