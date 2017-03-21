@@ -279,6 +279,9 @@ Sample configuration:
 
     DEFAULT_CDROM_DEVICE_PREFIX = "hd"
 
+    #DEFAULT_IMAGE_PERSISTENT     = ""
+    #DEFAULT_IMAGE_PERSISTENT_NEW = "NO"
+
 Information Collector
 =====================
 

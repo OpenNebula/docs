@@ -142,6 +142,61 @@ With the commands ``oneuser addgroup`` and ``delgroup`` the administrator can ad
 
 The group set with ``chgrp`` is the primary group, and resources (Images, VMs, etc) created by a user will belong to this primary group. Users can change their primary group to any of their secondary group without the intervention of an administrator, using ``chgrp`` again.
 
+Group-wise Configuration Attributes
+================================================================================
+
+When a group is created you can define specific configuration aspects for the group users. These include:
+
+* Sunstone. Allow users and group admins to access specific views. The configuration attributes are stored in the group template in the ``SUNSTONE`` attribute:
+
++-------------------------+---------------------------------------------------------------------------------+
+|         Attribute       |                                   Description                                   |
++=========================+=================================================================================+
+| DEFAULT_VIEW            | Default Sunstone view for regular users                                         |
++-------------------------+---------------------------------------------------------------------------------+
+| VIEWS                   | List of available views for regular users                                       |
++-------------------------+---------------------------------------------------------------------------------+
+| GROUP_ADMIN_DEFAULT_VIEW| Default Sunstone view for group admin users                                     |
++-------------------------+---------------------------------------------------------------------------------+
+| GROUP_ADMIN_VIEWS       | List of available views for the group admins                                    |
++-------------------------+---------------------------------------------------------------------------------+
+
+The views are defined by a comma separated list of group names. By default the following views are defined: ``groupadmin, cloud, admin, user, admin_vcenter, cloud_vcenter, groupadmin_vcenter``
+
+Example:
+
+.. code::
+
+    SUNSTONE = [
+      DEFAULT_VIEW = "cloud",
+      VIEWS        = "cloud",
+      GROUP_ADMIN_DEFAULT_VIEW = "groupadmin",
+      GROUP_ADMIN_VIEWS        = "groupadmin,cloud"
+    ]
+
+* OpenNebula Core. Set specific attributes to control the some operations. The configuration attributes are stored in the group template in the ``OPENNEBULA`` attribute:
+
++------------------------------+----------------------------------------------------------------------------+
+|         Attribute            |                              Description                                   |
++==============================+============================================================================+
+| DEFAULT_IMAGE_PERSISTENT     | Control the default value for the PERSISTENT attribute on image creation ( |
+|                              | clone and disk save-as).                                                   |
++------------------------------+----------------------------------------------------------------------------+
+| DEFAULT_IMAGE_PERSISTENT_NEW | Control the default value for the PERSISTENT attribute on image creation ( |
+|                              | only new images).                                                          |
++------------------------------+----------------------------------------------------------------------------+
+
+If the values are not set the defaults defined in ``oned.conf`` are used.
+
+Example:
+
+.. code::
+
+    OPENNEBULA = [
+      DEFAULT_IMAGE_PERSISTENT     = "YES",
+      DEFAULT_IMAGE_PERSISTENT_NEW = "NO"
+    ]
+
 Managing Groups in Sunstone
 ================================================================================
 
