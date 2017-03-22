@@ -13,7 +13,6 @@ CLI
 Core & System
 ================================================================================
 
-* `#3020 <http://dev.opennebula.org/issues/3020>`_ OpenNebula should check the available space in the frontend before doing an undeploy
 * `#2880 <http://dev.opennebula.org/issues/2880>`_ Unicode chars in VM name are truncated
 * `#2502 <http://dev.opennebula.org/issues/2502>`_ deleting image in locked state leaves current operation in progress and files not cleaned
 * `#3888 <http://dev.opennebula.org/issues/3888>`_ An image can be used twice by a VM, but this breaks the used/ready logic
