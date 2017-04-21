@@ -130,7 +130,7 @@ msgstr ""
 
 #: ../../source/advanced_administration/scalability/suns_advance.rst:50
 msgid ""
-"If you want to use novcn you need to have it running. You can start this "
+"If you want to use novnc you need to have it running. You can start this "
 "service with the command:"
 msgstr ""
 
