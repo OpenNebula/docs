@@ -16,7 +16,9 @@ Considerations & Limitations
 
 This driver works with the default UDP server port 8472.
 
-VXLAN traffic is forwarded to a physical device, this device can be set to be a VLAN tagged interface, but in that case you must make sure that the tagged interface is manually created first in all the hosts.
+VXLAN traffic is forwarded to a physical device, this device can be set (optionally) to be a VLAN tagged interface, but in that case you must make sure that the tagged interface is manually created first in all the hosts.
+
+The physical device that will act as the physical device **must** have an IP.
 
 OpenNebula Configuration
 ================================================================================
