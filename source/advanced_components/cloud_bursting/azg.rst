@@ -54,19 +54,37 @@ Prerequisites
     $ sudo yum install openssl
     ## Ubuntu
     $ sudo apt-get install openssl
+    
+    # Move to a folder (wherever you prefer, it's better if you choose a private folder to store all yours keys)
+    $ mkdir ~/.ssh/azure && cd ~/.ssh/azure
 
     ## Create certificate
     $ openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout myPrivateKey.key -out myCert.pem
     $ chmod 600 myPrivateKey.key
 
-    ## Concatenate key and pem certificate
-    $ cat myCert.pem myPrivateKey.key > vOneCloud.pem
-
     ## Generate .cer file for Azure
     $ openssl  x509 -outform der -in myCert.pem -out myCert.cer
+   
+    ## You should have now your .pem certificate and your private key
+    $ find .
+    ==>
+        ./myCert.pem
+        ./myPrivateKey.key
 
-- Third, the certificate file (.cer) has to be uploaded to Settings -> Management Certificates
 
+
+- Third, the certificate file (.cer) has to be uploaded to Settings -> Management Certificates Management Certificates can only  be accessed from classic Azure portal, if you are using V2 try to:
+
+        portal v2 home page -> Azure classic portal -> Settings -> Management Certificates
+        
+- In order to allow azure driver to properly authenticate with our Azure account, you need to sign your .pem file, keep the absolute path of the new signed certificate, you will need it for the **pem_management_cert** field inside az_driver.conf:
+
+.. code::
+
+    ## Concatenate key and pem certificate (sign with private key)
+    $ cat myCert.pem myPrivateKey.key > vOneCloud.pem
+ 
+ 
 -  The following gem is required: ``azure``. This gem is automatically installed as part of the :ref:`installation process <ruby_runtime>`. Otherwise, run the ``install_gems`` script as root:
 
 .. prompt:: bash # auto
@@ -343,6 +361,7 @@ Now you can monitor the state of the VM with
     $ onevm list
         ID USER     GROUP    NAME         STAT CPU     MEM        HOSTNAME        TIME
          0 oneadmin oneadmin one-0        runn   0      0K     west-europe    0d 07:03
+         
 
 Also you can see information (like IP address) related to the Azure instance launched via the command. The attributes available are:
 
