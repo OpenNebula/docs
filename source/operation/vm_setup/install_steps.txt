@@ -61,6 +61,15 @@ Debian/Ubuntu
     # apt-get install ruby # only needed for onegate command
     # apt-get install -y cloud-utils
 
+openSUSE Leap 42.2
+~~~~~~~~~~~~~~~~~~
+
+.. prompt:: bash # auto
+
+    # rpm -Uvh one-context*rpm
+    # zypper install -y ruby # only needed for onegate command
+    # zypper install -y growpart
+
 Windows
 ~~~~~~~
 
