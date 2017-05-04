@@ -146,7 +146,7 @@ You can provide two optional parameters in the context to configure the keepaliv
 * ``VROUTER_KEEPALIVED_PASSWORD``: Password used for the service to protect the service from packages of rogue machines. By default the service is configured without password.
 * ``VROUTER_KEEPALIVED_ID``: Number identifier of the service (0-255). This is useful when you have several virtual routers or other keepalived services in the same network. By default it is generated from the Virtual Router ID (``$vrouter_id & 255``) but you can specify it manually if needed.
 
-These parameters can also be provided in the Virtual Router creation wizzard of sunstone.
+These parameters can also be provided in the Virtual Router creation wizard of Sunstone.
 
 .. |sunstone_create_vrouter| image:: /images/sunstone_create_vrouter.png
 .. |sunstone_topology| image:: /images/sunstone_topology.png
