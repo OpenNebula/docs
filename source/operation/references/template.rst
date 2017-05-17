@@ -1051,8 +1051,6 @@ These attributes can be configured in :ref:`oned.conf <oned_conf>`.
 User Inputs
 ================================================================================
 
-.. todo:: update with new types, and options
-
 ``USER_INPUTS`` provides the template creator with the possibility to dynamically ask the user instantiating the template for dynamic values that must be defined.
 
 .. code::
@@ -1070,4 +1068,34 @@ User Inputs
 
 Note that the CONTEXT references the variables defined in the USER_INPUTS so the value is injected into the VM.
 
-Valid ``types`` are ``text``, ``text64`` and ``password``. The type ``text64`` will encode the user's response in Base64.
+Valid ``types``:
+
++-----------------+-----------------------------------------------------------------+--------------------------------------------------------+
+| Types           | Value                                                           | Description                                            |
++=================+=================================================================+========================================================+
+| text            | <VAR>="M|text| <desc>"                                          | A string                                               |
++-----------------+-----------------------------------------------------------------+--------------------------------------------------------+
+| text64          | <VAR>="M|text64| <desc>"                                        | text64 will encode the user's response in Base64       |
++-----------------+-----------------------------------------------------------------+--------------------------------------------------------+
+| password        | <VAR>="M|password| <desc>"                                      |                                                        |
++-----------------+-----------------------------------------------------------------+--------------------------------------------------------+
+| number          | <VAR>="M|number| <desc>"                                        | An integer                                             |
++-----------------+-----------------------------------------------------------------+--------------------------------------------------------+
+| float           | <VAR>="M|number-float| <desc>"                                  | A float                                                |
++-----------------+-----------------------------------------------------------------+--------------------------------------------------------+
+| range           | <VAR>="M|range| <desc>|<min>..<max>||<default>|"                | A range of integers                                    |
++-----------------+-----------------------------------------------------------------+--------------------------------------------------------+
+| range (float)   | <VAR>="M|range-float| <desc>|<min>..<max>||<default>|"          | A range of floats                                      |
++-----------------+-----------------------------------------------------------------+--------------------------------------------------------+
+| list            | <VAR>="M|list| <desc>|<v1>,<v2>,<v3>||<default>|"               | A list                                                 |
++-----------------+-----------------------------------------------------------------+--------------------------------------------------------+
+| boolean         | <VAR>="M|boolean| <desc>|<default>|"                            | Yes or not                                             |
++-----------------+-----------------------------------------------------------------+--------------------------------------------------------+
+
+There is the possibility of making the USER_INPUT mandatory or not. 
+
+In Sunstone, the ``USER_INPUTS`` can be ordered with the mouse.
+
+|user_inputs|
+
+.. |user_inputs| image:: /images/sunstone_user_inputs.png
