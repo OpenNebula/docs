@@ -80,6 +80,13 @@ For a complete reference of all the available options for ``onetemplate create``
 
 Note: OpenNebula Templates are designed to be hypervisor-agnostic, but there are additional attributes that are supported for each hypervisor. Check the :ref:`KVM configuration <kvmg>` and :ref:`vCenter configuration <vcenterg>` for more details.
 
+Other (Custom Tags)
+--------------------------------------------------------------------------------
+
+|sunstone_template_custom_tags|
+
+This section in the Other tab is for alls field that haven't any gap in the others tabs. You can introduce others own fields into this section, this values will be saved in the resuorce template.
+
 .. _vm_templates_endusers:
 
 Preparing Templates for End-Users
@@ -268,35 +275,6 @@ Managing Templates
 
 Users can manage the VM Templates using the command ``onetemplate``, or the graphical interface :ref:`Sunstone <sunstone>`. For each user, the actual list of templates available are determined by the ownership and permissions of the templates.
 
-.. _vm_templates_labels:
-
-Listing Available Templates
----------------------------
-
-You can use the ``onetemplate list`` command to check the available Templates in the system.
-
-.. prompt:: text $ auto
-
-    $ onetemplate list a
-      ID USER     GROUP    NAME                         REGTIME
-       0 oneadmin oneadmin template-0            09/27 09:37:00
-       1 oneuser  users    template-1            09/27 09:37:19
-       2 oneadmin oneadmin Ubuntu_server         09/27 09:37:42
-
-To get complete information about a Template, use ``onetemplate show``.
-
-Here is a view of templates tab in Sunstone:
-
-|labels_edit|
-
-Labels can be defined for most of the OpenNebula resources from the admin view. Each resource will store the labels information in its own template, thus it can be easily edited from the CLI or Sunstone. This feature enables the possibility to group the different resources under a given label and filter them in the admin and cloud views. The user will be able to easily find the template she wants to instantiate or select a set of resources to apply a given action.
-
-|labels_filter|
-
-The list of labels defined for each pool will be shown in the left navigation menu. After clicking on one of these labels only the resources with this label will be shown in the table. This filter is also available in the cloud view inside the virtual machine creation form to easily select a specific template.
-
-To create a label hierarchy, use the '/' character. For example, you could have the labels 'Linux/Ubuntu' and 'Linux/CentOS'. Please note that a resource with the label 'Linux/Ubuntu' is not automatically added to the parent 'Linux' label, but you can do it explicitly.
-
 Adding and Deleting Templates
 -----------------------------
 
@@ -383,11 +361,6 @@ Sunstone offers an "alias" for ``onetemplate chmod --recursive 640``, the share 
 |sunstone_template_share|
 
 
-
-
-
-.. |labels_edit| image:: /images/labels_edit.png
-.. |labels_filter| image:: /images/labels_filter.png
 .. |image2| image:: /images/sunstone_template_create.png
 .. |prepare-tmpl-user-input-1| image:: /images/prepare-tmpl-user-input-1.png
 .. |prepare-tmpl-user-input-2| image:: /images/prepare-tmpl-user-input-2.png
@@ -404,3 +377,4 @@ Sunstone offers an "alias" for ``onetemplate chmod --recursive 640``, the share 
 .. |sunstone_template_create_volatile| image:: /images/sunstone_template_create_volatile.png
 .. |sunstone_disable_network_conf| image:: /images/sunstone_disable_network_conf.png
 .. |sunstone_admin_instantiate| image:: /images/sunstone_admin_instantiate.png
+.. |sunstone_template_custom_tags| image:: /images/custom_tags.png
