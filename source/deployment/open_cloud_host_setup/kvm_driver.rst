@@ -243,6 +243,7 @@ DISK
 * ``DRIVER``: specifies the format of the disk image; possible values are ``raw``, ``qcow2``... This attribute corresponds to the ``format`` option of the ``-driver`` argument of the ``kvm`` command.
 * ``CACHE``: specifies the optional cache mechanism, possible values are ``default``, ``none``, ``writethrough`` and ``writeback``.
 * ``IO``: set IO policy possible values are ``threads`` and ``native``.
+* ``DISCARD``: Controls what to do with trim commands, the options are ``ignore`` or ``unmap``. It can only be used with virtio-scsi.
 
 NIC
 ~~~

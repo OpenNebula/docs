@@ -276,17 +276,20 @@ Persistent and Clone Disks
 | **READ_IOPS_SEC**,   |                                                                              |                                    |                                     |
 | **WRITE_IOPS_SEC**   |                                                                              |                                    |                                     |
 +----------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
-| ``ADAPTER_TYPE``     | Possible values (careful with the case): lsiLogic, ide, busLogic. More       | \-                                 | M (can be inherited from Datastore) |
+| **ADAPTER_TYPE**     | Possible values (careful with the case): lsiLogic, ide, busLogic. More       | \-                                 | M (can be inherited from Datastore) |
 |                      | information `in the VMware documentation <http://pubs.vmware.com/vsphere-60/ |                                    |                                     |
 |                      | index.jsp#com.vmware.wssdk.apiref.doc/vim.VirtualDiskManager.VirtualDiskAdap |                                    |                                     |
 |                      | terType.html>`__                                                             |                                    |                                     |
 +----------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
-| ``DISK_TYPE``        | The type of disk has implications on performance and occupied space. Values  | \-                                 | M (can be inherited from Datastore) |
+| **DISK_TYPE**        | The type of disk has implications on performance and occupied space. Values  | \-                                 | M (can be inherited from Datastore) |
 |                      | (careful with the case): delta, eagerZeroedThick, flatMonolithic,            |                                    |                                     |
 |                      | preallocated, raw, rdm, rdmp, seSparse, sparse2Gb, sparseMonolithic, thick,  |                                    |                                     |
 |                      | thick2Gb, thin. More information `in the VMware documentation                |                                    |                                     |
 |                      | <http://pubs.vmware.com/vsphere-60/index.jsp?topi c=%2Fcom.vmware.wssdk.apir |                                    |                                     |
 |                      | ef.doc%2Fvim.VirtualDiskManager.VirtualDiskType.html>`__                     |                                    |                                     |
++----------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
+| **DISCARD**          | Controls what's done with with trim commands to the disk, the values can be  | O (only with virtio-scsi)          | \-                                  |
+|                      | ``ignore`` or ``discard``.                                                   |                                    |                                     |
 +----------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
 
 
