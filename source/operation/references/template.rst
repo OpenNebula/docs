@@ -187,29 +187,30 @@ This section configures the features enabled for the VM.
 
 **Note** the hypervisor column states that the attribute is **O**\ ptional or ``-`` not supported for that hypervisor
 
-+-----------------+----------------------------------------------------------+-----+---------+
-|  Sub-Attribute  |                       Description                        | KVM | vCenter |
-+=================+==========================================================+=====+=========+
-| **PAE**         | Physical address extension mode allows 32-bit            | O   | \-      |
-|                 | guests to address more than 4 GB of memory               |     |         |
-+-----------------+----------------------------------------------------------+-----+---------+
-| **ACPI**        | Useful for power management, for example, with           | O   | \-      |
-|                 | KVM guests it is required for graceful shutdown to work  |     |         |
-+-----------------+----------------------------------------------------------+-----+---------+
-| **APIC**        | Enables the advanced programmable IRQ management.        | O   | \-      |
-|                 | Useful for SMP machines.                                 |     |         |
-+-----------------+----------------------------------------------------------+-----+---------+
-| **LOCALTIME**   | The guest clock will be synchronized to the host's       | O   | \-      |
-|                 | configured timezone when booted. Useful for Windows VMs  |     |         |
-+-----------------+----------------------------------------------------------+-----+---------+
-| **HYPERV**      | Add hyperv extensions to the VM. The options can be      | O   | \-      |
-|                 | configured in the driver configuration,                  |     |         |
-|                 | HYPERV_OPTIONS                                           |     |         |
-+-----------------+----------------------------------------------------------+-----+---------+
-| **GUEST_AGENT** | Enables the QEMU Guest Agent communication. This only    | O   | \-      |
-|                 | creates the socket inside the VM, the Guest Agent itself |     |         |
-|                 | must be installed and started in the VM.                 |     |         |
-+-----------------+----------------------------------------------------------+-----+---------+
++-------------------------+----------------------------------------------------------+-----+---------+
+| Sub-Attribute           | Description                                              | KVM | vCenter |
++=========================+==========================================================+=====+=========+
+| **PAE**                 | Physical address extension mode allows 32-bit guests to  | O   | \-      |
+|                         | address more than 4 GB of memory                         |     |         |
++-------------------------+----------------------------------------------------------+-----+---------+
+| **ACPI**                | Useful for power management, for example, with KVM       | O   | \-      |
+|                         | guests it is required for graceful shutdown to work      |     |         |
++-------------------------+----------------------------------------------------------+-----+---------+
+| **APIC**                | Enables the advanced programmable IRQ management. Useful | O   | \-      |
+|                         | for SMP machines.                                        |     |         |
++-------------------------+----------------------------------------------------------+-----+---------+
+| **LOCALTIME**           | The guest clock will be synchronized to the host's       | O   | \-      |
+|                         | configured timezone when booted. Useful for Windows VMs  |     |         |
++-------------------------+----------------------------------------------------------+-----+---------+
+| **HYPERV**              | Add hyperv extensions to the VM. The options can be      | O   | \-      |
+|                         | configured in the driver configuration, HYPERV_OPTIONS   |     |         |
++-------------------------+----------------------------------------------------------+-----+---------+
+| **GUEST_AGENT**         | Enables the QEMU Guest Agent communication. This only    | O   | \-      |
+|                         | creates the socket inside the VM, the Guest Agent itself |     |         |
+|                         | must be installed and started in the VM.                 |     |         |
++-------------------------+----------------------------------------------------------+-----+---------+
+| **VIRTIO_SCSI_QUEUES**  | Numer of vCPU queues for the virtio-scsi controller.     | O   | \-      |
++-------------------------+----------------------------------------------------------+-----+---------+
 
 .. code::
 
@@ -217,7 +218,8 @@ This section configures the features enabled for the VM.
         PAE = "yes",
         ACPI = "yes",
         APIC = "no",
-        GUEST_AGENT = "yes"
+        GUEST_AGENT = "yes",
+        VIRTIO_SCSI_QUEUES = "4"
     ]
 
 .. _reference_vm_template_disk_section:
