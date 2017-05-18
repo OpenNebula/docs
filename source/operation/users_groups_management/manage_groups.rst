@@ -204,10 +204,9 @@ All the described functionality is available graphically using :ref:`Sunstone <s
 
 |image3|
 
-Exist the option to filter all system resources by ``group``. In the user's menu appear the groups of this user. There's the option ``All`` to see all system resources.
-When you filter by group, you also change the effective group of the user.
+There is an option to filter all system resources by ``group``. In the user's menu appear the groups of this user. There's the option ``All`` to see all system resources. When you filter by group, you also change the effective group of the user.
 
-This allows you to work more comfortably on projects.
+This allows to work more comfortably on projects, by isolating the resources belonging to one group from others.
 
 |sunstone_filter|
 
