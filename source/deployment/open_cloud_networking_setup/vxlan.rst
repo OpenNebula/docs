@@ -38,7 +38,7 @@ It is possible specify the start VLAN ID by configuring ``/etc/one/oned.conf``:
 The following configuration attributes can be adjusted in ``/var/lib/one/remotes/vnm/OpenNebulaNetwork.conf``:
 
 +------------------+----------------------------------------------------------------------------------+
-|    Parameter     |                                   Description                                    |
+| Parameter        | Description                                                                      |
 +==================+==================================================================================+
 | vxlan_mc         | Base multicast address for each VLAN. The multicas sddress is vxlan_mc + vlan_id |
 +------------------+----------------------------------------------------------------------------------+
@@ -46,6 +46,31 @@ The following configuration attributes can be adjusted in ``/var/lib/one/remotes
 +------------------+----------------------------------------------------------------------------------+
 | validate_vlan_id | Set to true to check that no other vlans are connected to the bridge             |
 +------------------+----------------------------------------------------------------------------------+
+| bridge_conf      | *Hash* Options for ``brctl``                                                     |
++------------------+----------------------------------------------------------------------------------+
+| ip_link_conf     | *Hash* Arguments passed to ``ip link add``                                       |
++------------------+----------------------------------------------------------------------------------+
+
+Example:
+
+.. code::
+
+	# These options will execute brctl commands with these values. For example,
+	# this option will execute:
+	#
+	#     brctl stp <bridge name> on
+	#
+	:bridge_conf:
+	    :stp: on
+
+	# These options will be added to the ip link add command. For example:
+	#
+	#     sudo ip link add lxcbr0.260  type vxlan id 260 group 239.0.101.4 \
+	#       ttl 16 dev lxcbr0 udp6zerocsumrx  tos 3
+	#
+	:ip_link_conf:
+	    :udp6zerocsumrx:
+	    :tos: 3
 
 
 .. _vxlan_net:
