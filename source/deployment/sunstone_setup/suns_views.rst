@@ -101,7 +101,7 @@ To create a label hierarchy, use the '/' character. For example, you could have 
 
 Persistent Labels
 ================================================================================
-You can also create persistent labels, these types of labels will not be deleted even though they have no associated resources. To define the persistent tags we have 2 options, definining them as system tags, including them in the file ``/etc/one/sunstone-views.yaml`` or adding them to the user's template, this second form can be done through the CLI or through the sunstone interface, doing Click on padlock already created tags.
+You can also create persistent labels, these types of labels will not be deleted even when they have no associated resources. To define the persistent tags we have 2 options, definining them as system tags, including them in the file ``/etc/one/sunstone-views.yaml`` or adding them to the user's template, this second form can be done through the CLI or through the sunstone interface, doing Click on padlock already created tags.
 
 |labels_persis|
 
@@ -117,7 +117,7 @@ This labels will be saved in the user's template when the user do click on padlo
 
 System Labels
 --------------------------------------------------------------------------------
-These labels are defined in ``/etc/one/sunstone-views.yaml``, you can separate them per groups of users or intruduce them into default section.
+These labels are defined in ``/etc/one/sunstone-views.yaml``, you can separate them per groups of users or introduce them into default section.
 
 .. code-block:: yaml
 
