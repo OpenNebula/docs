@@ -43,7 +43,7 @@ What's happening behind the scenes is that the Sunstone server you are connectin
 
 |zoneswitchsunstone|
 
-.. |zoneswitchsunstone| image:: /images/zoneswitchsunstone.jpg
+.. |zoneswitchsunstone| image:: /images/zoneswitchsunstone.png
 
 .. warning:: Uploading an image functionality is limited to the zone where the Sunstone instance the user is connecting to, even if it can switch to other federated zones.
 
