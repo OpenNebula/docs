@@ -479,8 +479,5 @@ Sample Application Monitoring Script
         --header "X-ONEGATE-VMID: $VMID" \
         --data-binary @$TMP_DIR/metrics
 
-
-
 .. |onegate_arch| image:: /images/onegate_arch.png
 .. |onegate_context| image:: /images/onegate_context.png
-.. |files_context| image:: /images/files_context.png
