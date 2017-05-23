@@ -130,11 +130,7 @@ You can read more information about this in the Ceph guide `Using libvirt with C
 OpenNebula Configuration
 ================================================================================
 
-To use your Ceph cluster with OpenNebula you need to define a System and Image datastores. Both datastores will share the same configuration parameters and Ceph pool.
-
-.. note:: You may add addtional Image and System Datastores pointing to other pools with diffirent allocation/replication policies in Ceph.
-
-Each Image/System Datastore pair needs to define the same following attributes:
+To use your Ceph cluster with the OpenNebula, you need to define a System and Image datastores. Each Image/System Datastore pair will share same following Ceph configuration attributes:
 
 +-----------------+-------------------------------------------------------+-----------+
 |    Attribute    |  Description                                          | Mandatory |
@@ -143,15 +139,33 @@ Each Image/System Datastore pair needs to define the same following attributes:
 +-----------------+-------------------------------------------------------+-----------+
 | ``CEPH_USER``   | The Ceph user name, used by libvirt and rbd commands. | **YES**   |
 +-----------------+-------------------------------------------------------+-----------+
-| ``TM_MAD``      | ``ceph``                                              | **YES**   |
-+-----------------+-------------------------------------------------------+-----------+
 | ``CEPH_CONF``   | Non default ceph configuration file if needed.        |   NO      |
 +-----------------+-------------------------------------------------------+-----------+
 | ``RBD_FORMAT``  | By default RBD Format 2 will be used.                 |   NO      |
 +-----------------+-------------------------------------------------------+-----------+
 
+.. note:: You may add another Image and System Datastores pointing to other pools with different allocation/replication policies in Ceph.
+
 Create a System Datastore
 --------------------------------------------------------------------------------
+
+System Datastore also requires these attributes:
+
++-----------------+-----------------------------------------------------------+-----------+
+|    Attribute    |  Description                                              | Mandatory |
++=================+===========================================================+===========+
+| ``NAME``        | The name of the datastore                                 | **YES**   |
++-----------------+-----------------------------------------------------------+-----------+
+| ``TYPE``        | ``SYSTEM_DS``                                             | **YES**   |
++-----------------+-----------------------------------------------------------+-----------+
+| ``TM_MAD``      | ``ceph`` (only with local FS on the DS directory)         | **YES**   |
+|                 |                                                           |           |
+|                 | ``shared`` for shared transfer mode (only with shared FS) |           |
++-----------------+-----------------------------------------------------------+-----------+
+
+.. note:: Ceph can also work with a System Datastore of type Filesystem in a shared transfer mode, as described :ref:`in the Filesystem Datastore section <fs_ds>`. In that case volatile and swap disks are created as plain files in the System Datastore. Note that apart from the Ceph Cluster you need to setup and mount a shared FS on the System Datastore directory.
+
+.. warning:: The correct transfer mode TM_MAD must be specified for the System Datastore. Otherwise, you can experience the data loss while treating the shared filesystem as a local!
 
 Create a System Datastore in Sunstone or through the CLI, for example:
 
@@ -168,7 +182,6 @@ Create a System Datastore in Sunstone or through the CLI, for example:
     $ onedatastore create systemds.txt
     ID: 101
 
-.. note:: Ceph can also work with a System Datastore of type Filesystem in a shared transfer mode, as described :ref:`in the Filesystem Datastore section <fs_ds>`. In that case volatile and swap disks are created as plain files in the System Datastore. Note that apart from the Ceph Cluster you need to setup a shared FS.
 
 Create an Image Datastore
 --------------------------------------------------------------------------------
@@ -178,7 +191,11 @@ Apart from the previous attributes, that need to be the same as the associated S
 +-----------------+-------------------------------------------------------+-----------+
 |    Attribute    |  Description                                          | Mandatory |
 +=================+=======================================================+===========+
+| ``NAME``        | The name of the datastore                             | **YES**   |
++-----------------+-------------------------------------------------------+-----------+
 | ``DS_MAD``      | ``ceph``                                              | **YES**   |
++-----------------+-------------------------------------------------------+-----------+
+| ``TM_MAD``      | ``ceph``                                              | **YES**   |
 +-----------------+-------------------------------------------------------+-----------+
 | ``DISK_TYPE``   | ``RBD``                                               | **YES**   |
 +-----------------+-------------------------------------------------------+-----------+
@@ -213,7 +230,7 @@ An example of datastore:
     > onedatastore create ds.conf
     ID: 101
 
-Addtional Configuration
+Additional Configuration
 --------------------------------------------------------------------------------
 
 Default values for the Ceph drivers can be set in ``/var/lib/one/remotes/datastore/ceph/ceph.conf``:
