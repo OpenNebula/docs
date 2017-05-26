@@ -422,6 +422,8 @@ From Sunstone:
 Resizing VM Disks
 -------------------
 
+.. todo:: include information about life disk resize
+
 If the disks assigned to a Virtual Machine need more size, this can achieved at instantiation time of the VM. The SIZE parameter of the disk can be adjusted and, if it is bigger than the original size of the image, OpenNebula will:
 
 - Increase the size of the disk container prior to launching the VM

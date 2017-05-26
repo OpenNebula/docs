@@ -6,6 +6,28 @@ OpenNebula Federation Configuration
 
 This section will explain how to configure two (or more) OpenNebula zones to work as federation master and slave. The process described here can be applied to new installations, or existing OpenNebula instances.
 
+OpenNebula master zone server replicates database changes in slaves using a federated log that include the SQL commands that are to be applied in all zones.
+
+
+Configure the OpenNebula Federation Master Zone
+================================================================================
+
+Adding OpenNebula Federation Slave Zones
+================================================================================
+
+Importing Existing OpenNebula Zones
+================================================================================
+
+Federation and HA deployements
+================================================================================
+
+
+.. todo:: This is obsolete now, TBR
+
+
+
+
+
 MySQL needs to be configured to enable the master-slave replication. Please read `the MySQL documentation <http://dev.mysql.com/doc/refman/5.7/en/replication.html>`_ for complete instructions. The required steps are summarized here, but it may happen that your MySQL version needs a different configuration.
 
 Step 1. Configure the OpenNebula Federation Master

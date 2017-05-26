@@ -42,6 +42,8 @@ You can check what operations are allowed with each of the **USE**, **MANAGE** a
 
 .. warning:: By default every user can update any permission group (owner, group or other) with the exception of the admin bit. There are some scenarios where it would be advisable to limit the other set (e.g. OpenNebula Zones so users can not break the group limits). In these situations the ``ENABLE_OTHER_PERMISSIONS`` attribute can be set to ``NO`` in ``/etc/one/oned.conf`` file
 
+.. todo:: include information about association of vm operation to an usage right class
+
 Changing Permissions with chmod
 -------------------------------
 

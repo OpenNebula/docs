@@ -2,19 +2,69 @@
 .. _oneha:
 
 =============================
-Front-end HA Setup
+OpenNebula HA Setup
 =============================
 
-This guide walks you through the process of setting a high available cluster for OpenNebula. The ultimate goal is to reduce downtime of core OpenNebula services: core (oned), scheduler (mm\_sched) and Sunstone interface (sunstone-server).
+This guide walks you through the process of setting a high available cluster for OpenNebula core services: core (oned), scheduler (mm\_sched) and Sunstone interface (sunstone-server).
 
-We will be using the classical active-passive cluster architecture which is the recommended solution for OpenNebula. In this solution two (or more) nodes will be part of a cluster where the OpenNebula daemon, scheduler and Sunstone (web UI) are cluster resources. When the active node fails, the passive one takes control.
+OpenNebula uses a distributed consensus protocol to provide fault-tolerance and state consistency across OpenNebula services. In this section you'll learn the basics of how-to bootstrap and operate an OpenNebula distributed cluster.
 
-If you are interested in failover protection against hardware and operating system outages within your virtualized IT environment, check the :ref:`Virtual Machines High Availability Guide <ftguide>`.
+.. warning:: If you are interested in failover protection against hardware and operating system outages within your virtualized IT environment, check the :ref:`Virtual Machines High Availability Guide <ftguide>`.
 
-This guide is structured in a *how-to* form using Pacemaker tested in a CentOS 7 installation and in Ubuntu 14.04; but generic considerations and requirements for this setup are discussed to easily implement this solution with other systems.
+Raft Overview
+=============
 
-Overview
-========
+This section covers some internal details on how OpenNebula implements Raft. You do not need to know these details to effectively operate OpenNebula on HA. These details are provided for those who wish to learn about them to fine tune their deployments.
+
+A consensus algorithm is built around two concepts:
+
+* **System State**, in OpenNebula the system state is the data stored in the database tables (users, acls, or the VMs in the system).
+
+* **Log**, a sequence of SQL statements that are *consistently* applied to the OpenNebula DB in all servers to evolve the system state.
+
+To preserve a consistent view of the system across servers, modifications to system state are performed through a special node, the *leader*. The servers in the OpenNebula cluster elects a single node to be the *leader*. The *leader* periodically sends heartbeats to the other servers (*followers*) to keep its leadership. If a *leader* fails to send the heartbeat, *followers* promote to *candidates* and start a new election.
+
+Whenever the system is modified (e.g. a new VM is added to the system), the *leader* updates the log and replicates the entry in a majority of *followers* before actually writing it to the database. The latency of DB operations are thus increased, but the system state is safely replicated and the cluster can continue its operation in case of node failure.
+
+In OpenNebula, read-only operations can be performed through any oned server in the cluster, this means that reads can be arbitrarily stale but generally within the round-trip time of the network.
+
+Bootstraping the HA cluster
+===========================
+
+The recommended deployment size is either 3 or 5 servers, that are able to tolerate up to 1 or 2 server failures, respectively. You can add, replace or remove servers once the cluster is up and running.
+
+* Start the first server, to perform the initial system bootstraping.
+* Add the server to the zone (``onezone add-server...``)
+* Stop oned and update SERVER_ID
+* Start oned.
+
+Now you can add servers:
+
+* Add the new server (``onezone add-server...``)
+* Take a DB snapshot (``onedb snapshot...``)
+* Restore the snapshot in the target server (it'll copy the oned credentials)
+* Set the SERVER_ID for the new server, as returned by add-server
+* Start oned.
+
+Repeat the previous steps to add the remaining servers.
+
+Checking Cluster Health
+=======================
+
+Adding and Removing Servers
+===========================
+
+Configuring Failover for Sunstone and Monitor Agents
+====================================================
+
+Summary of Raft Configuration Attributes
+========================================
+
+
+
+
+.. todo:: Complete and remove old content
+
 
 In terms of high-availability, OpenNebula consists in three different basic services, namely:
 

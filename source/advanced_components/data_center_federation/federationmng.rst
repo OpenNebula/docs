@@ -11,6 +11,8 @@ A user will have access to all the Zones where at least one of her groups has VD
 Adding a Zone
 =============
 
+.. todo:: Move this to Configuration
+
 Adding a Zone through the CLI entails the creation of a Zone template.
 
 +-----------+-----------------------------------+
