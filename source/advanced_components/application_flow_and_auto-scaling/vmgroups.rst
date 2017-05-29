@@ -4,7 +4,7 @@
 Virtual Machine Groups (VM Groups)
 ================================================================================
 
-A VMGroup defines a set of related VMs, and associated placement constraints for the VMs in the group. A VMGroup allows you to place together (or separately) ceartain VMs (or VM classes, roles). VMGroups will help you to optimize the performance (e.g. not placing all the cpu bound VMs in the same host) or improve the fault tolerance (e.g. not placing all your front-ends in the same host) of your multi-VM applications.
+A VM Group defines a set of related VMs, and associated placement constraints for the VMs in the group. A VM Group allows you to place together (or separately) ceartain VMs (or VM classes, roles). VMGroups will help you to optimize the performance (e.g. not placing all the cpu bound VMs in the same host) or improve the fault tolerance (e.g. not placing all your front-ends in the same host) of your multi-VM applications.
 
 Defining a VM Group
 ================================================================================
