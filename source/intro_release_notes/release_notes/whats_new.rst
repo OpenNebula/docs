@@ -12,7 +12,7 @@ A major overhaul has been applied to the vCenter integration. The team decided t
 
 : .. todo::  vCenter network creation screenshot
 
-A new resource to implement affinity/antiaffinity VM-to-VM and Host-to-Host has been added to OpenNebula, the VM Groups. A VM group is a set of related virtual machines that may impose placement constraints based on affinity and anti-affinity rules. A VM group is defined as a set of ROLEs. A Role defines a VM type or class, and expressions to the VM Group can be added to define affinity between VM roles, or between VM and hosts. This ensures a dynamic approach to affinity/antiaffinity since new VMs can be enroled to a particular Role.
+A new resource to implement affinity/anti-affinity VM-to-VM and Host-to-Host has been added to OpenNebula, the VM Groups. A VM Group is a set of related virtual machines that may impose placement constraints based on affinity and anti-affinity rules. A VM Group is defined as a set of Roles. A Role defines a VM type or class, and expressions to the VM Group can be added to define affinity between VM roles, or between VM and hosts. This ensures a dynamic approach to affinity/anti-affinity since new VMs can be enroled to a particular Role.
 
 : .. todo:: VMGroups image
 
@@ -21,7 +21,6 @@ A new resource to implement affinity/antiaffinity VM-to-VM and Host-to-Host has 
 
 
 There are many other improvements in 5.4, like improved VM lifecycle, flexible resource permissions, life disk resizing, improved Ceph support, enhaced disk I/O feedback, showback cost estimate in Sunstone, flexible IPv6 definition, http proxy support for marketplace, purge tools for the OpenNebula database, resource group isolation, multiple Sunstone improvements (VNC, password dialogs, confirmatoin dialogs, etc), and many many more. As with previous releases, and in order to achieve a reliable cloud management platform, the team has gone great lenghts to fix reported bugs and improve general usability.
-
 
 This OpenNebula release is named after the `Medula Nebula <https://en.wikipedia.org/wiki/Medusa_Nebula>`__, a large planetary nebula in the constellation of Gemini on the Canis Minor border. It also known as Abell 21 and Sharpless 2-274.  It was originally discovered in 1955 by UCLA astronomer George O. Abell, who classified it as an old planetary nebula. The braided serpentine filaments of glowing gas suggests the serpent hair of Medusa found in ancient Greek mythology.
 
@@ -76,7 +75,7 @@ Database
 Scheduler
 --------------------------------------------------------------------------------
 
-- **Affinity/Anttiaffinity** for VM-to-VM and VM-to-Host using the new :ref:`VM Group resource <vmgroups>`.
+- **Affinity/Anti-affinity** for VM-to-VM and VM-to-Host using the new :ref:`VM Group resource <vmgroups>`.
 
 
 Sunstone
