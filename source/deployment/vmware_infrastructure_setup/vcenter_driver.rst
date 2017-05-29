@@ -30,6 +30,7 @@ The following resource are deleted in vCenter when deleted in OpenNebula:
 
 .. note:: After a VM Template is cloned and booted into a vCenter Cluster it can access VMware advanced features and it can be managed through the OpenNebula provisioning portal -to control the life-cycle, add/remove NICs, make snapshots- or through vCenter (e.g. to move the VM to another datastore or migrate it to another ESX). OpenNebula will poll vCenter to detect these changes and update its internal representation accordingly.
 
+.. _vcenter_limitations:
 
 Considerations & Limitations
 ================================================================================
@@ -47,7 +48,6 @@ Considerations & Limitations
 * **No Security Groups**: Firewall rules as defined in Security Groups cannot be enforced in vCenter VMs.
 * OpenNebula treats **snapshots** a tad different than VMware. OpenNebula assumes that they are independent, whereas VMware builds them incrementally. This means that OpenNebula will still present snapshots that are no longer valid if one of their parent snapshots are deleted, and thus revert operations applied upon them will fail.
 * **No files in context**: Passing entire files to VMs is not supported, but all the other CONTEXT sections will be honored.
-* Cluster names cannot contain spaces.
 * Image names cannot contain spaces.
 * Datastore names cannot contain spaces.
 * vCenter credential password cannot have more than 22 characters.

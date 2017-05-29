@@ -48,6 +48,8 @@ For example, to define a 802.1Q Virtual Network you would add:
     OUTBOUND_PEAK_BW = "1500"
     OUTBOUND_PEAK_KB = "2048"
 
+.. _manage_vnet_ar:
+
 Address Space
 -------------
 

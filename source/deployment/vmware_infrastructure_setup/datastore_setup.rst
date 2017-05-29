@@ -17,7 +17,6 @@ Limitations
 
 * No support for snapshots in the vCenter datastore.
 * Only one disk is allowed per directory in the vCenter datastores.
-* Datastore names cannot contain spaces.
 * Image names and paths cannot contain spaces.
 
 Requirements
@@ -79,6 +78,8 @@ The **onevcenter** tool can be used to import vCenter datastores:
         OpenNebula datastore 100 created!
 
 .. warning: Both "ADAPTER_TYPE" and "DISK_TYPE" need to be set at either the Datastore level, the Image level or the VM Disk level. Otherwise image related operations may fail.
+
+.. _storage_drs_pods:
 
 Storage DRS and datastore cluster
 ================================================================================

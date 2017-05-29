@@ -63,6 +63,7 @@ And similarly for the stderr logging, for oned and VM events the format are:
     date [Z<zone_id>][module][log_level]: message
     date [VM id][Z<zone_id>][module][log_level]: message
 
+.. _vm_history:
 
 Virtual Machine Errors
 ======================
