@@ -83,7 +83,6 @@ Scheduler
 Sunstone
 --------------------------------------------------------------------------------
 
-- **Better display**, for :ref:`labels <vm_templates_labels>` as well as automatic color assignment.
 - **Name display** when instantiating a :ref:`Virtual Router <vrouter>` template.
 - **required inputs and better datatables** in :ref:`vCenter import dialogs <vcenter_view>`.
 - **Compatibility with browser history**, now is possible to use the back button
