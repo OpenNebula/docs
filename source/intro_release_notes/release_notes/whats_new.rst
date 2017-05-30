@@ -11,7 +11,7 @@ As usual almost every component of OpenNebula has been reviewed to target usabil
 A major overhaul has been applied to the vCenter integration. The team decided to go all the way and level the vCenter integration with the KVM support. This means:
 
 - Full storage management. Non-Persistent images are now supported as well as volatile disks. OpenNebula is now aware of all VM disks and storage quotas can be enforced. Support for linked clones and Marketplace.
-- Full network management. It is now possible to create vCenter standard and distributed port groups and even vSwitches directly from OpenNebula.
+- Full network management. It is now possible to create vCenter standard and distributed port groups and even vSwitches directly from within OpenNebula. You can assign a VLAN ID to a port group created by OpenNebula.
 - Improved monitoring. Up to two orders of magnitude of speedup.
 - An enhanced import process where naming limitations in imported resources has been removed and the ability to enable VNC automatically for Wild VMs.
 - Disk resizing, VM and Templates folder selection when a VM is deployed... and many more changes!
@@ -131,7 +131,7 @@ The significant milestone is that vCenter is no longer treated as a public cloud
 - **Disks can be resized**, when a :ref:`VM is deployed <vm_guide2_resize_disk>`.
 - **Disks and NICs in vCenter template are now visible**, when a vCenter template is imported images and networks representing disks and nics are created. (TODO networking)
 - **Disks can be saved as**, it the VM is in poweroff state a copy of a disk can be performed. KEEP_DISKS_ON_DONE attribute is no longer available. (TODO)
-- **Network creation support**, a new vCenter network mode is available in virtual network definition, standard and different port groups and vSwitches can be created from within OpenNebula (TODO)
+- **Network creation support**, a new vCenter network mode is available in virtual network definition, standard and different port groups and vSwitches can be created from within OpenNebula. VLAN IDs, MTUs and number of ports can be specified when a port group is created. (TODO)
 - **Inventory folder selection**, a folder inside vSphere's VMs and Templates view can be specified so deployed VMs are seen under that folder. (TODO)
 - **vCenter default values**, some default values for vCenter attributes e.g NIC model, can be specified in a new configuration file (TODO)
 - **Attaching a CDROM works even though a CDROM drive is not already present in the VM**, an IDE CDROM is used. (TODO)
