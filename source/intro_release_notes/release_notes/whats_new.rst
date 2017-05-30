@@ -10,17 +10,21 @@ As usual almost every component of OpenNebula has been reviewed to target usabil
 
 A major overhaul has been applied to the vCenter integration. The team decided to go all the way and level the vCenter integration with the KVM support. This means a full network management - it is now possible to create vCenter standard port groups and distributed vSwitches directly from OpenNebula, specifying the VLAN ID if needed - , full storage management - persistent images are now supported, OpenNebula being aware of all VM disks, full stroage quotas enforcement -, support for linked clones, marketplace support, improved monitoring and import process (up to two orders of magnitude of speedup and the ability to enable VNC automatically), disk resize, removed naming limitations in imported resources and many more!
 
-: .. todo::  vCenter network creation screenshot
 
-A new resource to implement affinity/anti-affinity VM-to-VM and Host-to-Host has been added to OpenNebula, the VM Groups. A VM Group is a set of related virtual machines that may impose placement constraints based on affinity and anti-affinity rules. A VM Group is defined as a set of Roles. A Role defines a VM type or class, and expressions to the VM Group can be added to define affinity between VM roles, or between VM and hosts. This ensures a dynamic approach to affinity/anti-affinity since new VMs can be enroled to a particular Role.
-
-: .. todo:: VMGroups image
-
-
-: .. todo:: HA & federation paragraph and image
+.. image:: /images/vcenter_network_create.png
+    :width: 90%
+    :align: center
 
 
-There are many other improvements in 5.4, like improved VM lifecycle, flexible resource permissions, life disk resizing, improved Ceph support, enhaced disk I/O feedback, showback cost estimate in Sunstone, flexible IPv6 definition, http proxy support for marketplace, purge tools for the OpenNebula database, resource group isolation, multiple Sunstone improvements (VNC, password dialogs, confirmatoin dialogs, etc), and many many more. As with previous releases, and in order to achieve a reliable cloud management platform, the team has gone great lenghts to fix reported bugs and improve general usability.
+A new resource to implement affinity/antiaffinity VM-to-VM and Host-to-Host has been added to OpenNebula, the VM Groups. A VM group is a set of related virtual machines that may impose placement constraints based on affinity and anti-affinity rules. A VM group is defined as a set of Roles. A Role defines a VM type or class, and expressions to the VM Group can be added to define affinity between VM roles, or between VM and hosts. This ensures a dynamic approach to affinity/antiaffinity since new VMs can be enroled to a particular Role at boot time, after the VM Group has been defined and other VMs added to it.
+
+.. image:: /images/vmgroups_ilustration.png
+    :width: 90%
+    :align: center
+
+To top it all, OpenNebula 5.4 brings to the table a native implementation of a consensus algorithm, which enables the High Availability deployment of the OpenNebula front-end wihout relying to third party components. This distributed consensus protocol provides fault-tolerance and state consistency across OpenNebula services. A consensus algorithm is built around two concepts, System State -the data stored in the database tables- and Log -a sequence of SQL statements that are consistently applied to the OpenNebula DB in all servers-. To preserve a consistent view of the system across servers, modifications to system state are performed through a special node, the leader. The servers in the OpenNebula cluster elects a single node to be the leader. The leader periodically sends heartbeats to the other servers (follower*) to keep its leadership. If a leader fails to send the heartbeat, followers promote to candidates and start a new election. This feature, with support from floating IPs and a proper Sunstone configuration, gives robustness to OpenNebula clouds. This new functionality of distributed sytem state is used to implement OpenNebula federation. In both cases (Federation and HA) no support is needed from MySQL to create a clustered DB, so admins can forget about MySQL replication.
+
+There are many other improvements in 5.4, like improved VM lifecycle, flexible resource permissions, life disk resizing, improved Ceph support, enhaced disk I/O feedback, showback cost estimate in Sunstone, flexible IPv6 definition, http proxy support for marketplace, purge tools for the OpenNebula database, resource group isolation, multiple Sunstone improvements (VNC, password dialogs, confirmation dialogs, better vCenter support, persistent labels, usability enhacenents), networking improvements, user inputs in OneFlow and many many more features to enrich your cloud experience. As with previous releases, and in order to achieve a reliable cloud management platform, the team has gone great lenghts to fix reported bugs and improve general usability.
 
 This OpenNebula release is named after the `Medula Nebula <https://en.wikipedia.org/wiki/Medusa_Nebula>`__, a large planetary nebula in the constellation of Gemini on the Canis Minor border. It also known as Abell 21 and Sharpless 2-274.  It was originally discovered in 1955 by UCLA astronomer George O. Abell, who classified it as an old planetary nebula. The braided serpentine filaments of glowing gas suggests the serpent hair of Medusa found in ancient Greek mythology.
 
@@ -32,10 +36,11 @@ OpenNebula Core
 --------------------------------------------------------------------------------
 
 - **Improved VM lifecycle** covering also :ref:`recover from snapshot failures <onevm_api>` and :ref:`termination of failed VMs <vm_guide_2>`.
-- **Flexible resource permissions** for VMs, now is possible to redefine the semantics of :ref:`ADMIN, MANAGE and USE <oned_conf_vm_operations>`
-- **Improved VM history** now logs :ref:`the UID <vm_history>` (TODO update onevm show output form the reference)
+- **Flexible resource permissions** for VMs, now is possible to redefine the semantics of :ref:`ADMIN, MANAGE and USE <oned_conf_vm_operations>`.
+- **Improved VM history**, now VM history records log :ref:`the UID <vm_history>` that perfomed the action. (TODO update onevm show output form the reference)
 - **Disk cache modification** now possible through :ref:`vm update operations <template>`.
-- **New HA model**, providing HA in the OpenNebula core and Sunstone without third party dependencies. (TODO)
+- **New HA model**, providing HA in the OpenNebula core and Sunstone without :ref:`third party dependencies <frontend_ha_setup>`.
+- **Federation without DB replication**, using the :ref:`new distributed system state <federationconfig>` feature implemented in OpenNebula
 - **New VM Group resource** to implement :ref:`VM affinity <vmgroups>`.
 
 
@@ -50,8 +55,9 @@ OpenNebula Drivers :: Storage
 OpenNebula Drivers :: Virtualization
 --------------------------------------------------------------------------------
 
-- **Linked clones for vCenter** (TODO).
-- **EC2 improvements** (TODO)
+- **Enhanced EC2 monitoring**, with better handling of :ref:`CloudWatch <ec2g>` datapoints to avoid errors after long-term network problems.
+- **Improved VM lifecycle** for :ref:`EC2 <ec2g>` VMs.
+- **Increased security** for EC2 :ref:`credentials <ec2_driver_conf>`, stored encrypted in the OpenNebula EC2 host representation.
 
 
 OpenNebula Drivers :: Networking
@@ -77,6 +83,10 @@ Scheduler
 
 - **Affinity/Anti-affinity** for VM-to-VM and VM-to-Host using the new :ref:`VM Group resource <vmgroups>`.
 
+OneFlow
+--------------------------------------------------------------------------------
+
+- **Enhanced Functionality** in :ref:`OneFlow <oneapps_overview>`, now supporting :ref:`user inputs <vm_guide_user_inputs>` in the service definition.
 
 Sunstone
 --------------------------------------------------------------------------------

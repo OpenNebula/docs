@@ -56,6 +56,8 @@ Driver flags are the same as other drivers:
 | -r     | Number of retries   |
 +--------+---------------------+
 
+.. _ec2_driver_conf:
+
 Additionally you must define the AWS credentials and AWS region to be used and the maximum capacity that you want OpenNebula to deploy on the EC2, for this edit the file ``/etc/one/ec2_driver.conf``:
 
 .. code::
