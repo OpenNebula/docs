@@ -140,6 +140,7 @@ In order to create a OpenNebula vCenter datastore that represents a vCenter VMFS
 
 All OpenNebula datastores are actively monitoring, and the scheduler will refuse to deploy a VM onto a vCenter datastore with insufficient free space.
 
+.. _storage_drs_pods:
 
 Datastore clusters with Storage DRS
 ================================================================================
