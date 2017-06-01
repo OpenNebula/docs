@@ -53,6 +53,8 @@ Also, there are a set of common attributes that can be used in any datastore and
 +------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
 | ``STAGING_DIR``              | Path in the storage bridge host to copy an Image before moving it to its final destination. Defaults to ``/var/tmp``.            |
 +------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
+| ``DRIVER``                   | Specific image mapping driver enforcement. If present it overrides image ``DRIVER`` set in the image attributes and VM template. |
++------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
 
 The Files & Kernels Datastore is an special datastore type to store plain files to be used as kernels, ram-disks or context files. :ref:`See here to learn how to define them <file_ds>`.
 
