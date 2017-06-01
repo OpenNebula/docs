@@ -1,81 +1,259 @@
 .. _vcenter_networking_setup:
 .. _virtual_network_vcenter_usage:
 
-================================================================================
-vCenter Networking
-================================================================================
-
-Virtual Networks from vCenter can be represented using OpenNebula networks, taking into account that the BRIDGE of the Virtual Network needs to match the name of the Network defined in vCenter. OpenNebula supports both "Port Groups" and "Distributed Port Groups", and as such can consume any vCenter defined network resource (even those created by other networking components like for instance NSX).
-
-Virtual Networks in vCenter can be created using the vCenter web client, with any specific configuration like for instance VLANs. OpenNebula will use these networks with the defined characteristics, but it cannot create new Virtual Networks in vCenter, but rather only OpenNebula representations of such Virtual Networks. OpenNebula additionally can handle on top of these networks three types of :ref:`Address Ranges: Ethernet, IPv4 and IPv6 <manage_vnets>`.
-
-vCenter VM Templates can define their own NICs, and OpenNebula will not manage them. However, any NIC added in the OpenNebula VM Template, or through the attach_nic operation, will be handled by OpenNebula, and as such it is subject to be detached and its information (IP, MAC, etc) is known by OpenNebula.
-
-vCenter VM Templates with already defined NICs that reference Networks in vCenter will be imported without this information in OpenNebula. These NICs will be invisible for OpenNebula, and therefore cannot be detached from the VMs. The imported VM Templates in OpenNebula can be updated to add NICs from Virtual Networks imported from vCenter (being Networks or Distributed vSwitches). We recommend therefore to use VM Templates in vCenter without defined NICs, to add them later on in the OpenNebula VM Templates
-
-Importing vCenter Networks
+vCenter Networking Overview
 ================================================================================
 
-The **onevcenter** tool can be used to import existing Networks and distributed vSwitches from the ESX clusters:
+Virtual Networks from vCenter can be represented using OpenNebula virtual networks, where a one-to-one relationship exists between an OpenNebula's virtual network and a vSphere's port group. When :ref:`adding NICs in a VM template <vm_templates>` or :ref:`when attaching a NIC (hot-plugging) to a running VM <vm_instances>` in OpenNebula, a network interface can be attached to an OpenNebula's Virtual Network.
 
-.. prompt:: text $ auto
+In vSphere's terminology, a port group can be seen as a template for creating virtual ports with particular sets of specifications such as VLAN tagging. The VM's network interfaces connect to vSphere's virtual switches through port groups. vSphere provides two types of port groups:
 
-    $ onevcenter networks --vcenter <vcenter-host> --vuser <vcenter-username> --vpass <vcenter-password>
+- Port Group (or Standard Port Group). The port group is connected to a vSphere Standard Switch.
+- Distributed Port Group. The port group is connected to a vSphere Distributed Switch.
 
-    Connecting to vCenter: <vcenter-host>...done!
+OpenNebula supports both "Port Groups" and "Distributed Port Groups", and as such can consume any vCenter defined network resource (even those created by other networking components like for instance NSX).
 
-    Looking for vCenter networks...done!
+According to `VMWare's vSphere Networking Guide <https://pubs.vmware.com/vsphere-60/topic/com.vmware.ICbase/PDF/vsphere-esxi-vcenter-server-60-networking-guide.pdf>`_ we have two virtual switches types:
 
-    Do you want to process datacenter vOneDatacenter [y/n]? y
+- vSphere Standard Switch. It works much like a physical Ethernet switch. A vSphere standard switch can be connected to physical switches by using physical Ethernet adapters, also referred to as uplink adapters, to join virtual networks with physical networks. You create and configure the virtual standard switch on each ESXi host where you want that virtual switch to be available.
+- vSphere Distributed Switch. It acts as a single switch across all associated hosts in a datacenter to provide centralized provisioning, administration, and monitoring of virtual networks. You configure a vSphere distributed switch on the vCenter Server system and the configuration is populated across all hosts that are associated with the switch. This lets virtual machines to maintain consistent network configuration as they migrate across multiple hosts.
 
-      * Network found:
-          - Name    : MyvCenterNetwork
-          - Type    : Port Group
-        Import this Network [y/n]? y
-        How many VMs are you planning to fit into this network [255]? 45
-        What type of Virtual Network do you want to create (IPv[4],IPv[6],[E]thernet) ? E
-        Please input the first MAC in the range [Enter for default]:
-        OpenNebula virtual network 29 created with size 45!
+.. note:: The vSphere Distributed Switch is only available for VMWare's vSphere Enterprise Plus licence.
 
-    $ onevnet list
-      ID USER            GROUP        NAME                CLUSTER    BRIDGE   LEASES
-      29 oneadmin        oneadmin     MyvCenterNetwork    -          MyFakeNe      0
+In OpenNebula you have two options if you want to associate OpenNebula's virtual networks to vSphere's port groups:
 
-    $ onevnet show 29
-    VIRTUAL NETWORK 29 INFORMATION
-    ID             : 29
-    NAME           : MyvCenterNetwork
-    USER           : oneadmin
-    GROUP          : oneadmin
-    CLUSTER        : -
-    BRIDGE         : MyvCenterNetwork
-    VLAN           : No
-    USED LEASES    : 0
+- You can create the port groups using vSphere's Web Client and then consume those port groups using the import tools.
+- You can create a virtual network definitio, add the attribute ``VN_MAD=vcenter`` to the network template and let OpenNebula create the network elements for you.
 
-    PERMISSIONS
-    OWNER          : um-
-    GROUP          : ---
-    OTHER          : ---
 
-    VIRTUAL NETWORK TEMPLATE
-    BRIDGE="MyvCenterNetwork"
-    PHYDEV=""
-    VCENTER_TYPE="Port Group"
-    VLAN="NO"
-    VLAN_ID=""
+Consuming existing vCenter port groups
+================================================================================
 
-    ADDRESS RANGE POOL
-     AR TYPE    SIZE LEASES               MAC              IP          GLOBAL_PREFIX
-      0 ETHER     45      0 02:00:97:7f:f0:87               -                      -
+Existing vCenter networks can be represented using OpenNebula Virtual Networks, taking into account that the BRIDGE attribute of the Virtual Network needs to match the name of the Network (port group) defined in vCenter.
 
-    LEASES
-    AR  OWNER                    MAC              IP                      IP6_GLOBAL
+Networks can be created using vSphere's web client, with any specific configuration like for instance VLANs. OpenNebula will use these networks with the defined characteristics representing them as Virtual Networks. OpenNebula additionally can handle on top of these networks three types of :ref:`Address Ranges: Ethernet, IPv4 and IPv6 <manage_vnets>`.
 
-The same import mechanism is available graphically through Sunstone
+vCenter VM Templates can define their own NICs, and OpenNebula will manage them and its information (IP, MAC, etc) is known by OpenNebula. Any NIC present in the OpenNebula VM Template, or added through the attach_nic operation, will be handled by OpenNebula, and as such it is subject to be detached.
 
-.. image:: /images/vcenter_network_import.png
-    :width: 90%
+OpenNebula Virtual Networks which consume existing port groups will have the attribute ``VN_MAD=dummy``.
+
+You can easily consume vCenter networks using the import tools as explained in the TODO add reference `Importing vCenter Networks <vcenter_import_networks>` section.
+
+
+Creating Port Groups from OpenNebula
+================================================================================
+
+OpenNebula can create a vCenter network from a Virtual Network template if the vcenter network driver is used (thanks to the attribute ``VN_MAD=vcenter``).
+
+This is the workflow when you want OpenNebula to create a vCenter network:
+
+1. Enable the VNET hooks in OpenNebula's oned configuration file.
+2. Create a new OpenNebula Virtual Network template. Add the required attributes to the template including the OpenNebula's Host ID which represents the vCenter cluster where the network elements will be created.
+3. When the Virtual Network is created, a hook will create the network elements required on each ESX host that are members of the specified vCenter cluster.
+4. The Virtual Network will be automatically assigned to the OpenNebula cluster which includes the vCenter cluster represented as an OpenNebula host.
+5. The hooks works asynchronously so you may have to refresh the Virtual Network information until you find the VCENTER_NET_STATE attribute. If it completes the actions successfully that attribute will be set to READY and hence you can use it from VMs and templates. If the hook fails VCENTER_NET_STATE will be set to ERROR and the VCENTER_NET_ERROR attribute will offer more information.
+
+Enabling the VNET hooks
+--------------------------------------------------------------------------------
+
+If you want to use the vcenter network driver you must add the following lines to the oned.conf configuration file:
+
+.. code::
+
+    VNET_HOOK = [
+        name      = "vcenter_net_create",
+        on        = "CREATE",
+        command   = "ft/create_vcenter_net.rb",
+        arguments = "$ID $TEMPLATE"]
+
+    VNET_HOOK = [
+        name      = "vcenter_net_delete",
+        on        = "REMOVE",
+        command   = "ft/delete_vcenter_net.rb",
+        arguments = "$ID $TEMPLATE"]
+
+.. note:: If you don't want OpenNebula to remove the vCenter network elements when a Virtual Network is deleted, remove the VNET_HOOK associated to the REMOVE action.
+
+.. warning:: You'll have to restart the oned service so these changes are applied.
+
+This hooks are the scripts responsible of creating the vCenter network elements and deleting them when the OpenNebula Virtual Network template is deleted.
+
+Hooks information
+--------------------------------------------------------------------------------
+
+The creation hook performs the following actions for each ESX host found in the cluster assigned to the template if a standard port group has been chosen:
+
+* If the port group does not exist, it will create it.
+* If the port group or switch name exist, **they won't be updated** ignoring new attributes to protect you from unexpected changes that may break your connectivity.
+
+The creation hook performs the following actions if a distributed port group has been chosen:
+
+* OpenNebula creates the distributed switch if it doesn't exist. If the switch exists, it's not updated ignoring any attribute you've set.
+* OpenNebula creates the distributed port group if it doesn't exist in the datacenter associated with the vCenter cluster. If the distributed port group already exists **it won't be updated** to protect you from unexpected changes.
+* For each ESX host found in the cluster assigned to the template, it adds the ESX host to the distributed switch.
+
+Creation hook is asynchronous which means that you'll have to check if the VCENTER_NET_STATE attribute has been set. Once the hook finishes you'll find the VCENTER_NET_STATE either with the READY value or the ERROR value. If an error was found you can check what was wrong.
+
+Here's a screenshot once the hook has finished and the network is ready:
+
+.. image:: /images/vcenter_network_created.png
+    :width: 50%
     :align: center
+
+The removal hook performs the following actions:
+
+* OpenNebula contacts with the vCenter server.
+* For each ESX host found in the vCenter cluster assigned to the template, it tries to remove both the port group and the switch. If the switch has no more port groups left then the switch will be removed too.
+
+In this case the hook is also asynchronous. If you want to know if it suceeded or failed you can run the following command:
+
+.. code::
+
+    grep EXECUTE /var/log/one/oned.log | grep vcenter_net_delete
+
+If the script failed, you can check the lines before EXECUTE FAILURE in the /var/log/one/oned.log to get more information on the failure. If the removal hook fails you may have to check your vCenter server and delete those resources that could not be deleted automatically.
+
+.. warning:: If a port group or switch is in use e.g a VM is running and have a NIC attached to that port group the remove operation will fail so please ensure that you have no VMs or templates using that port group before trying to remove the Virtual Network representation.
+
+.. _vcenter_network_attributes:
+
+vCenter Network attributes
+--------------------------------------------------------------------------------
+
+You can easily create a Virtual Network definition from Sunstone but you can also create a template and apply it with the ``onevnet`` command. Here's the table with the attributes that must be added inside a TEMPLATE section:
+
++-----------------------------+------------+------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|      Attribute              | Type       | Mandatory                          |                                                                                                                                                                                                                                                                                                 Description                                                                                                                                                                                                                                                                                                          |
++=============================+============+====================================+======================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================+
+| ``VN_MAD``                  | string     | Yes                                | Must be set to ``vcenter``                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
++-----------------------------+------------+------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``BRIDGE``                  | string     | Yes                                | It's the port group name.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
++-----------------------------+------------+------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``PHYDEV``                  | string     | No                                 | If you want to assign uplinks to your switch you can specify the names of the physical network interface cards of your ESXi hosts that will be used. You can use several physical NIC names using a comma between them e.g vmnic0,vmnic1. Note that two switches cannot share the same physical nics and that you must be sure that the same physical interface name exists and it's available for every ESX host in the cluster.                                                                                                                                                                                    |
++-----------------------------+------------+------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``VCENTER_PORTGROUP_TYPE``  | string     | Yes                                | There are two possible values Port Group and Distributed Port Group. Port Group means a Standard Port Group                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
++-----------------------------+------------+------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``VCENTER_ONE_HOST_ID``     | integer    | Yes                                | The OpenNebula host id which represents the vCenter cluster where the nework will be created.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
++-----------------------------+------------+------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``VCENTER_SWITCH_NAME``     | string     | Yes                                | The name of the virtual switch where the port group will be created                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
++-----------------------------+------------+------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``VCENTER_SWITCH_NPORTS``   | integer    | No                                 | The number of ports assigned to a virtual standard switch or the number of uplink ports assigned to the Uplink port group in a Distributed Virtual Switch.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
++-----------------------------+------------+------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``MTU``                     | integer    | No                                 | The maximum transmission unit setting for the virtual switch.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
++-----------------------------+------------+------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``VLAN_ID``                 | integer    | Yes (unless ``AUTOMATIC_VLAN_ID``) | The VLAN ID, will be generated if not defined and AUTOMATIC_VLAN_ID is set to YES                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
++-----------------------------+------------+------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``AUTOMATIC_VLAN_ID``       | boolean    | Yes (unless ``VLAN_ID``)           | Mandatory and must be set to YES if VLAN_ID hasn't been defined so OpenNebula created a VLAN ID automatically                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
++-----------------------------+------------+------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Settings applied to virtual switches and port groups created by OpeNebula
+---------------------------------------------------------------------------------
+
+OpenNebula uses the following values when creating virtual switches and port groups in vCenter according to what the vSphere's Web Client uses in the same operations:
+
+- VLAN ID is set to 0, which means that no VLANs are used.
+- MTU value is set to 1500.
+
+Standard port groups created by OpenNebula has the following settings:
+
+- Number of ports is set to Elastic. According to VMWare's documentation, the Elastic mode is used to ensure efficient use of resources on ESXi hosts where the ports of virtual switches are dynamically scaled up and down. In any case, the default port number for standard switches is 128.
+- Security - Promiscuous mode is set to Reject, which means that the virtual network adapter only receives frames that are meant for it.
+- Security - MAC Address Changes is set to Accept, so the ESXi host accepts requests to change the effective MAC address to other than the initial MAC address.
+- Security - Forged transmits is set to Accept, which means that the ESXi host does not compare source and effective MAC addresses.
+- Traffic Shaping policies to control the bandwidth and burst size on a port group are disabled. You can still set QoS for each NIC in the template.
+- Physical NICs. The physical NICs used as uplinks are bridged in a bond bridge with teaming capabilities.
+
+Distributed port groups created by OpenNebula has the following settings:
+
+- Number of ports is set to Elastic. According to VMWare's documentation, the Elastic mode is used to ensure efficient use of resources on ESXi hosts where the ports of virtual switches are dynamically scaled up and down. The default port number for distributed switches is 8.
+- Static binding. When you connect a virtual machine to a distributed port group, a port is immediately assigned and reserved for it, guaranteeing connectivity at all times. The port is disconnected only when the virtual machine is removed from the port group.
+- Auto expand is enabled. When the port group is about to run out of ports, the port group is expanded automatically by a small predefined margin.
+- Early Bindind is enabled. A free DistributedVirtualPort will be selected to assign to a Virtual Machine when the Virtual Machine is reconfigured to connect to the port group.
+
+
+OpenNebula Virtual Network template (Sunstone)
+--------------------------------------------------------------------------------
+
+In this section we will explain how a Virtual Network definition can be created using the Sunstone user interface, and we will introduce the available attributes for the vcenter network driver.
+
+The first step requires you to introduce the virtual network's name:
+
+.. image:: /images/vcenter_create_virtual_network_name.png
+    :width: 50%
+    :align: center
+
+In the Conf tab, select vCenter from the Network Mode menu, so the vcenter network driver is used (the ``VN_MAD=vcenter`` attribute will be added to OpenNebula's template). The Bridge name will be the name of the port group, and by default it's the name of the Virtual Network but you can choose a different port group name.
+
+.. image:: /images/vcenter_network_mode.png
+    :width: 70%
+    :align: center
+
+Once you've selected the vCenter network mode, Sunstone will show several network attributes that can be defined.
+
+.. image:: /images/vcenter_network_attributes.png
+    :width: 60%
+    :align: center
+
+You have more information about these attributes in the :ref:`vCenter Network attributes <vcenter_network_attributes>` section, but we'll comment some of them:
+
+
+OpenNebula Host's ID
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In order to create a Virtual Network using the vcenter driver we must select which vCenter cluster, represented as an OpenNebula host, this virtual network will be associated to. OpenNebula will act on each of the ESX hosts which are members of the vCenter cluster.
+
+
+Physical device
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If you want to assign uplinks to your switch you can specify the names of the physical network interface cards of your ESXi hosts that will be used. You can use several physical NIC names using a comma between them e.g vmnic0,vmnic1. Note that you must check that two switches cannot share the same physical nics and that you must be sure that the same physical interface name exists and it's available for every ESX host in the cluster.
+
+Let's see an example. If you want to create a port group in a new virtual switch, we'll first check what physical adapters are free and unassigned in the hosts of my vCenter cluster. I've two hosts in my cluster:
+
+In my first host, the vmnic1 adapter is free and is not assigned to any vSwitch:
+
+.. image:: /images/vcenter_vmnic1_free_host1.png
+    :width: 60%
+    :align: center
+
+In my second host, the vmnic1, vmnic2 and vmnic3 interfaces are free:
+
+.. image:: /images/vcenter_vmnic1_free_host2.png
+    :width: 60%
+    :align: center
+
+So if I want to specify an uplink, the only adapter that I could use in both ESX hosts would be **vmnic1** and OpenNebula will create the switches and uplinks as needed:
+
+.. image:: /images/vcenter_vmnic1_assigned.png
+    :width: 60%
+    :align: center
+
+
+Number of ports
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This attribute is optional. With this attribute we can specify the number of ports that the virtual switch is configured to use. If you set a value here please make sure that you know and understand the `maximums supported by your vSphere platform <https://www.vmware.com/pdf/vsphere6/r60/vsphere-60-configuration-maximums.pdf>`_.
+
+
+VLAN ID
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This attribute is optional. You can set a manual VLAN ID, force OpenNebula to generate an automatic VLAN ID or set that no VLANs are used. This value will be assigned to the VLAN_ID attribute.
+
+
+
+In order to create your Virtual Network you must also add an Address Range in the Addresses tab. Please visit the :ref:`Virtual Network Definition <vnet_template>` section.
+
+
+Limitations
+--------------------------------------------------------------------------------
+
+**OpenNebula won't sync ESX hosts.** OpenNebula won't create or delete port groups or switches on ESX hosts that are added/removed after the Virtual Network was created. For example, if you're using vMotion and DPM and an ESX host is powered on, that ESX host won't have the switch and/or port group that was created by OpenNebula hence a VM cannot be migrated to that host.
+
+**Virtual Network Update is not supported.** If you update a Virtual Network definition, OpenNebula won't update the attributes in existing port groups or switches so you should remove the virtual network and create a new one with the new attributes.
+
+**Security groups.** Security Groups are not supported by the vSphere Switch mode.
+
 
 .. _network_monitoring:
 
