@@ -33,20 +33,166 @@ Bootstraping the HA cluster
 
 The recommended deployment size is either 3 or 5 servers, that are able to tolerate up to 1 or 2 server failures, respectively. You can add, replace or remove servers once the cluster is up and running.
 
-* Start the first server, to perform the initial system bootstraping.
-* Add the server to the zone (``onezone add-server...``)
-* Stop oned and update SERVER_ID
-* Start oned.
+.. warning::
 
-Now you can add servers:
+  In order to maintain a healthy cluster during the procedure of adding servers to the clusters, make sure you add **only** one server at a time
 
-* Add the new server (``onezone add-server...``)
-* Take a DB snapshot (``onedb snapshot...``)
-* Restore the snapshot in the target server (it'll copy the oned credentials)
-* Set the SERVER_ID for the new server, as returned by add-server
-* Start oned.
+Configuration of the initial leader
+--------------------------------------------------------------------------------
 
-Repeat the previous steps to add the remaining servers.
+We start with the first server, to perform the initial system bootstraping.
+
+* Start OpenNebula
+* Add the server itself to the zone:
+
+.. code::
+
+  $ onezone list
+  C    ID NAME                      ENDPOINT
+  *     0 OpenNebula                http://localhost:2633/RPC2
+
+  # We are working on Zone 0
+
+  $ onezone server-add 0 --name server-0 --rpc http://10.3.3.22:2633/RPC2
+
+  # It's now available in the zone:
+
+  $ onezone show 0
+  ZONE 0 INFORMATION
+  ID                : 0
+  NAME              : OpenNebula
+
+
+  SERVERS
+  ID NAME            STATE      TERM       INDEX      COMMIT     VOTE  ENDPOINT
+   0 server-0        solo       0          0          0          -1    http://10.3.3.22:2633/RPC2
+
+* Stop OpenNebula service and update SERVER_ID in ``/etc/one/oned.conf``
+
+.. code::
+
+  FEDERATION = [
+      MODE          = "STANDALONE",
+      ZONE_ID       = 0,
+      SERVER_ID     = 0, # changed from -1 to 0 (as 0 is the server id)
+      MASTER_ONED   = ""
+  ]
+
+
+* [Optional] Enable the RAFT Hooks. This will add a floating IP to the system.
+
+.. code::
+
+  # Executed when a server transits from follower->leader
+  RAFT_LEADER_HOOK = [
+       COMMAND = "raft/vip.sh",
+       ARGUMENTS = "leader eth0 10.3.3.2/24"
+  ]
+
+  # Executed when a server transits from leader->follower
+  RAFT_FOLLOWER_HOOK = [
+      COMMAND = "raft/follower.sh",
+      ARGUMENTS = "follower eth0 10.3.3.2/24"
+  ]
+
+* Start oned. The server is now the leader and has the floating IP.
+
+.. code::
+
+  $ onezone show 0
+  ZONE 0 INFORMATION
+  ID                : 0
+  NAME              : OpenNebula
+
+
+  SERVERS
+  ID NAME            STATE      TERM       INDEX      COMMIT     VOTE  ENDPOINT
+   0 server-0        leader     1          0          0          -1    http://10.3.3.22:2
+
+  ZONE TEMPLATE
+  ENDPOINT="http://localhost:2633/RPC2"
+
+  $ ip -o a sh eth0|grep 10.3.3.2/24
+  2: eth0    inet 10.3.3.2/24 scope global secondary eth0\       valid_lft forever preferred_lft forever
+
+Adding more servers
+--------------------------------------------------------------------------------
+
+.. warning::
+
+  This procedure will discard the OpenNebula database in the server you are adding and substitute it with the database of the initial leader.
+
+.. warning::
+
+  Add only one host at a time. Repeat this process for every server you want to add.
+
+* Create a DB backup in the initial leader and distribute it to new server, along with the files in /var/lib/one/.one/:
+
+.. code::
+
+  $ onedb backup -u oneadmin -p oneadmin -d opennebula
+  MySQL dump stored in /var/lib/one/mysql_localhost_opennebula_2017-6-1_11:52:47.sql
+  Use 'onedb restore' or restore the DB using the mysql command:
+  mysql -u user -h server -P port db_name < backup_file
+
+  # Copy it to the other servers
+  $ scp /var/lib/one/mysql_localhost_opennebula_2017-6-1_11:52:47.sql <ip>:/tmp
+
+  # Copy the .one directory (make sure you preseve the owner: oneadmin)
+  $ ssh <ip> rm -rf /var/lib/one/.one
+  $ scp -r /var/lib/one/.one/ <ip>:/var/lib/one/
+
+* Stop OpenNebula in the new server if it's running.
+* Restore the database backup in the new server.
+
+.. code::
+
+  $ onedb restore -u oneadmin -p oneadmin -d opennebula /tmp/mysql_localhost_opennebula_2017-6-1_11:52:47.sql
+  MySQL DB opennebula at localhost restored.
+
+* Add the new server to OpenNebula (in the initial leader), and note the server id.
+
+.. code::
+
+  [oneadmin@c7-10 ~]$ onezone server-add 0 --name server-1 --rpc http://10.3.3.23:2633/RPC2
+
+  [oneadmin@c7-10 ~]$ onezone show 0
+  ZONE 0 INFORMATION
+  ID                : 0
+  NAME              : OpenNebula
+
+  SERVERS
+  ID NAME            STATE      TERM       INDEX      COMMIT     VOTE  ENDPOINT
+   0 server-0        leader     3          71         68         -1    http://10.3.3.22:2
+   1 server-1        error      -          -          -          -     http://10.3.3.23:2
+
+  ZONE TEMPLATE
+  ENDPOINT="http://localhost:2633/RPC2"
+
+* The new server is in error state, since OpenNebula in the new server is still not running. Make note of the server id, in this case it's 1.
+* Edit ``/etc/one/oned.conf`` in the new server to set the SERVER_ID for the new server. Make sure to enable the hooks as in the initial leader's configuration.
+* Start OpenNebula service.
+* Run `onezone show 0` to make sure that the new server is in follower state.
+
+.. code::
+
+  [oneadmin@c7-10 ~]$ onezone show 0
+  ZONE 0 INFORMATION
+  ID                : 0
+  NAME              : OpenNebula
+
+
+  SERVERS
+  ID NAME            STATE      TERM       INDEX      COMMIT     VOTE  ENDPOINT
+   0 server-0        leader     3          71         68         -1    http://10.3.3.22:2
+   1 server-1        follower   3          55         55         -1    http://10.3.3.23:2
+
+  ZONE TEMPLATE
+  ENDPOINT="http://localhost:2633/RPC2"
+
+* It may happen TERM/INDEX/COMMIT does not need match (like above). This is not important, it will sync automatically when the DB is changed.
+
+Repeat this last section to add new servers. Make sure that you only add servers when the cluster is in healthy state, that is: there is 1 leader and the rest are in follower state. If there is one server in error state, fix it before proceeding.
 
 Checking Cluster Health
 =======================
@@ -60,11 +206,7 @@ Configuring Failover for Sunstone and Monitor Agents
 Summary of Raft Configuration Attributes
 ========================================
 
-
-
-
 .. todo:: Complete and remove old content
-
 
 In terms of high-availability, OpenNebula consists in three different basic services, namely:
 
