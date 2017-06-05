@@ -45,10 +45,8 @@ CentOS/RHEL 6
 
 .. prompt:: bash # auto
 
-    # rpm -Uvh one-context*el6.rpm
     # yum install -y epel-release
-    # yum install ruby # only needed for onegate command
-    # yum install -i dracut-modules-growroot
+    # yum install -y one-context*el6*rpm dracut-modules-growroot
     # dracut -f
 
 CentOS/RHEL 7
@@ -56,26 +54,22 @@ CentOS/RHEL 7
 
 .. prompt:: bash # auto
 
-    # rpm -Uvh one-context*el7.rpm
     # yum install -y epel-release
-    # yum install ruby # only needed for onegate command
-    # yum install -y cloud-utils-growpart
+    # yum install -y one-context*el7*rpm
 
 OpenSUSE
 ~~~~~~~~
 
 .. prompt:: bash # auto
 
-    # zypper install -y one-context*suse.rpm
+    # zypper install -y one-context*suse*rpm
 
 Debian/Ubuntu
 ~~~~~~~~~~~~~
 
 .. prompt:: bash # auto
 
-    # dpkg -i one-context*deb
-    # apt-get install ruby # only needed for onegate command
-    # apt-get install -y cloud-utils
+    # dpkg -i one-context*deb || apt-get install -fy
 
 Windows
 ~~~~~~~

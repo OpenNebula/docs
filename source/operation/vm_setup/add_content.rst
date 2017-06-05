@@ -115,7 +115,7 @@ CentOS 6
     mount LABEL=PACKAGES /tmp/mount
 
     # Install opennebula context package
-    rpm -Uvh /tmp/mount/one-context*el6.rpm
+    rpm -Uvh /tmp/mount/one-context*el6*rpm
 
     # Remove cloud-init and NetworkManager
     yum remove -y NetworkManager cloud-init
@@ -140,7 +140,7 @@ CentOS 7
     mount LABEL=PACKAGES /tmp/mount
 
     # Install opennebula context package
-    rpm -Uvh /tmp/mount/one-context*el7.rpm
+    rpm -Uvh /tmp/mount/one-context*el7*rpm
 
     # Remove cloud-init and NetworkManager
     yum remove -y NetworkManager cloud-init
