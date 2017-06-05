@@ -57,6 +57,7 @@ OpenNebula Drivers :: Storage
 - **Improved Ceph support** with trim/discard option (TODO)
 - **Enhanced disk I/O feedback**, shown per VM in :ref:`Sunstone <sunstone>`, accounted for in :ref:`OpenNebula monitoring <mon>`.
 - **Multi queue virtio-scsi** (TODO)
+- **Configurable Image Persistency Setting**, making the persistency of the images configurable for users and groups of users (TODO)
 
 OpenNebula Drivers :: Virtualization
 --------------------------------------------------------------------------------
@@ -69,7 +70,7 @@ OpenNebula Drivers :: Virtualization
 OpenNebula Drivers :: Networking
 --------------------------------------------------------------------------------
 
-- **Flexible IPv6 definition**, with the :ref:`new Non-SLAAC IPv6 <manage_vnet_ar>`.
+- **Flexible IPv6 definition**, with the :ref:`new Non-SLAAC IPv6 Address Range <manage_vnet_ar>`.
 - **Add default MTU**, for network drivers (TODO)
 - **Support for spanning tree parameters** at the bridge definition level (TODO)
 - **Per network settings** for MAC spoofing and arp cache poisoning (TODO)
@@ -107,6 +108,7 @@ Sunstone
 - **Fixed multilanguage keyboard support** in VNC feature
 - **Improved showback support**, with better dialogs to define and estimate the :ref:`VM Template showback section <template_showback_section>`.
 - **A significant number of usability enhancements**:
+
   - More secure password change dialog 
   - ESC support for VNC dialog
   - :ref:`improved overcommitment dialogs <dimensioning_the_cloud>`
