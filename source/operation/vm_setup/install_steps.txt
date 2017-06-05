@@ -2,31 +2,40 @@
 Step 2. Download Contextualization Packages to the VM
 -----------------------------------------------------
 
-CentOS/RHEL
-~~~~~~~~~~~
+CentOS/RHEL 6.x
+~~~~~~~~~~~~~~~
 
 .. prompt:: bash # auto
 
-    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.0.1/one-context_5.0.1.rpm
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.3.80/one-context-5.3.80-1.el6.noarch.rpm
 
-Debian/Ubuntu
-~~~~~~~~~~~~~
+CentOS/RHEL 7.x
+~~~~~~~~~~~~~~~
 
 .. prompt:: bash # auto
 
-    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.0.1/one-context_5.0.1.deb
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.3.80/one-context-5.3.80-1.el7.noarch.rpm
+
+OpenSUSE
+~~~~~~~~
+
+.. prompt:: bash # auto
+
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.3.80/one-context-5.3.80-1.suse.noarch.rpm
+
+Debian/Ubuntu/Devuan
+~~~~~~~~~~~~~~~~~~~~
+
+.. prompt:: bash # auto
+
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.3.80/one-context_5.3.80-1.deb
 
 Windows
 ~~~~~~~
 
-Download the MSI package (preferred way) into ``C:\``:
+Download the MSI package into ``C:\``:
 
-* https://github.com/OpenNebula/addon-context-windows/releases/download/v5.2.0/one-context-5.2.0.msi
-
-or download particular contextualization scripts to ``C:\``:
-
-* https://raw.githubusercontent.com/OpenNebula/addon-context-windows/v5.2.0/context.ps1
-* https://raw.githubusercontent.com/OpenNebula/addon-context-windows/v5.2.0/startup.vbs
+* https://github.com/OpenNebula/addon-context-windows/releases/download/v5.3.80/one-context-5.3.80.msi
 
 Step 3. Install Contextualization Packages and Dependencies
 -----------------------------------------------------------
@@ -36,7 +45,7 @@ CentOS/RHEL 6
 
 .. prompt:: bash # auto
 
-    # rpm -Uvh one-context*rpm
+    # rpm -Uvh one-context*el6.rpm
     # yum install -y epel-release
     # yum install ruby # only needed for onegate command
     # yum install -i dracut-modules-growroot
@@ -47,10 +56,17 @@ CentOS/RHEL 7
 
 .. prompt:: bash # auto
 
-    # rpm -Uvh one-context*rpm
+    # rpm -Uvh one-context*el7.rpm
     # yum install -y epel-release
     # yum install ruby # only needed for onegate command
     # yum install -y cloud-utils-growpart
+
+OpenSUSE
+~~~~~~~~
+
+.. prompt:: bash # auto
+
+    # zypper install -y one-context*suse.rpm
 
 Debian/Ubuntu
 ~~~~~~~~~~~~~
@@ -64,19 +80,6 @@ Debian/Ubuntu
 Windows
 ~~~~~~~
 
-For the MSI package:
+* double-click on the downloaded MSI package icon in the same way you open other documents to install it
 
-* double-click on the downloaded package icon in the same way you open other documents to install it or
-* start the command line ``cmd.exe`` and install or upgrade older package using the ``msiexec``, e.g.:
-
-.. prompt:: text > auto
-
-    > cd C:\
-    > forfiles /M one-context*.msi /C "cmd /c msiexec /i @file"
-
-For particular contextualization scripts:
-
-* Open the Local Group Policy Dialog by running ``gpedit.msc``.
-* Go to *Computer Configuration* -> *Windows Settings* -> *Scripts* -> *startup* (right click).
-* Browse to the ``startup.vbs`` file and enable it as a startup script.
 

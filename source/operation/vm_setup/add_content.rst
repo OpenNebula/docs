@@ -81,8 +81,10 @@ You have to download them to a directory that we will later refer. In this examp
 
     $ mkdir packages
     $ cd packages
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.0.1/one-context_5.0.1.rpm
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.0.1/one-context_5.0.1.deb
+    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.3.80/one-context-5.3.80-1.el6.noarch.rpm
+    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.3.80/one-context-5.3.80-1.el7.noarch.rpm
+    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.3.80/one-context-5.3.80-1.suse.noarch.rpm
+    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.3.80/one-context_5.3.80-1.deb
     $ cd ..
 
 
@@ -113,7 +115,7 @@ CentOS 6
     mount LABEL=PACKAGES /tmp/mount
 
     # Install opennebula context package
-    rpm -Uvh /tmp/mount/one-context*rpm
+    rpm -Uvh /tmp/mount/one-context*el6.rpm
 
     # Remove cloud-init and NetworkManager
     yum remove -y NetworkManager cloud-init
@@ -138,7 +140,7 @@ CentOS 7
     mount LABEL=PACKAGES /tmp/mount
 
     # Install opennebula context package
-    rpm -Uvh /tmp/mount/one-context*rpm
+    rpm -Uvh /tmp/mount/one-context*el7.rpm
 
     # Remove cloud-init and NetworkManager
     yum remove -y NetworkManager cloud-init
