@@ -1,15 +1,17 @@
+.. _upgrade:
+
 =================================
-Upgrading from OpenNebula 5.0.x
+Upgrading from OpenNebula 5.2.x
 =================================
 
-This section describes the installation procedure for systems that are already running a 5.0.x OpenNebula. The upgrade to OpenNebula |version| can be done directly following this section, you don't need to perform intermediate version upgrades. The upgrade will preserve all current users, hosts, resources and configurations; for both Sqlite and MySQL backends.
+This section describes the installation procedure for systems that are already running a 5.2.x OpenNebula. The upgrade to OpenNebula |version| can be done directly following this section, you don't need to perform intermediate version upgrades. The upgrade will preserve all current users, hosts, resources and configurations; for both Sqlite and MySQL backends.
 
 Read the :ref:`Compatibility Guide <compatibility>` and `Release Notes <http://opennebula.org/software/release/>`_ to know what is new in OpenNebula |version|.
 
 Upgrading a Federation
 ================================================================================
 
-If you have two or more 5.0.x OpenNebulas working as a :ref:`Federation <introf>`, you need to upgrade all of them. The upgrade does not have to be simultaneous, the slaves can be kept running while the master is upgraded.
+If you have two or more 5.2.x OpenNebulas working as a :ref:`Federation <introf>`, you need to upgrade all of them. The upgrade does not have to be simultaneous, the slaves can be kept running while the master is upgraded.
 
 The steps to follow are:
 
@@ -55,6 +57,17 @@ Preparation
 
 Before proceeding, make sure you don't have any VMs in a transient state (prolog, migr, epil, save). Wait until these VMs get to a final state (runn, suspended, stopped, done). Check the :ref:`Managing Virtual Machines guide <vm_guide_2>` for more information on the VM life-cycle.
 
+vCenter
+-------
+
+.. todo::
+
+    * run the `pre migrator <https://github.com/OpenNebula/one/blob/master/src/onedb/vcenter_one54_pre.rb>`_
+    * change oned.conf => ds to accept persistent images
+
+Stop OpenNebula
+---------------
+
 Stop OpenNebula and any other related services you may have running: OneFlow, EC2, and Sunstone. Use preferably the system tools, like `systemctl` or `service` as `root` in order to stop the services.
 
 Backup
@@ -77,7 +90,7 @@ Make sure to run the ``install_gems`` tool, as the new OpenNebula version may ha
 
     If executing ``install_gems`` you get a message asking to overwrite files for aws executables you can safely answer "yes".
 
-It is highly recommended **not to keep** your current ``oned.conf``, and update the ``oned.conf`` file shipped with OpenNebula |version| to your setup. If for any reason you plan to preserve your current ``oned.conf`` file, read the :ref:`Compatibility Guide <compatibility>` and the complete oned.conf reference for `5.0 <http://docs.opennebula.org/5.0/deployment/references/oned_conf.html>`_ and |onedconf| versions.
+It is highly recommended **not to keep** your current ``oned.conf``, and update the ``oned.conf`` file shipped with OpenNebula |version| to your setup. If for any reason you plan to preserve your current ``oned.conf`` file, read the :ref:`Compatibility Guide <compatibility>` and the complete oned.conf reference for `5.4 <http://docs.opennebula.org/5.4/deployment/references/oned_conf.html>`_ and |onedconf| versions.
 
 Configuration Files Upgrade
 ===========================
@@ -146,7 +159,7 @@ Check DB Consistency
 
 After the upgrade is completed, you should run the command ``onedb fsck``.
 
-First, move the 5.0.x backup file created by the upgrade command to a safe place.
+First, move the 5.2.x backup file created by the upgrade command to a safe place.
 
 .. prompt:: text $ auto
 
