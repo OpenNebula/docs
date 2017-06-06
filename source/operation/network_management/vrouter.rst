@@ -11,7 +11,7 @@ Download the Virtual Router Appliance
 
 OpenNebula provides a light weight Alpine-based virtual router. The virtual router image is prepared to run in a HA mode, and process the context information from OpenNebula. So its base capabilities can be easily extended.
 
-- Download the appliance from the market place. For example to put the virtual router image in the default datastore and create a Virtual Router template named vrotuer_apline use:
+- Download the appliance from the market place. For example to put the virtual router image in the default datastore and create a Virtual Router template named vrouter_alpine use:
 
 .. code::
 
