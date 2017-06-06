@@ -58,19 +58,18 @@ Driver flags are the same as other drivers:
 
 .. _ec2_driver_conf:
 
-Additionally you must define the AWS credentials and AWS region to be used and the maximum capacity that you want OpenNebula to deploy on the EC2, for this edit the file ``/etc/one/ec2_driver.conf``:
+Additionally you must define AWS region to be used and the maximum capacity that you want OpenNebula to deploy on the EC2, for this edit the file ``/etc/one/ec2_driver.conf``:
 
 .. code::
 
     regions:
         default:
             region_name: us-east-1
-            access_key_id: YOUR_ACCESS_KEY
-            secret_access_key: YOUR_SECRET_ACCESS_KEY
             capacity:
                 m1.small: 5
                 m1.large: 0
                 m1.xlarge: 0
+                
 
 You can define an http proxy if the OpenNebula Frontend does not have access to the internet, in ``/etc/one/ec2_driver.conf``:
 
@@ -83,14 +82,21 @@ Also, you can modify in the same file the default 300 seconds timeout that is wa
 .. code::
 
     state_wait_timeout_seconds: 300
+    
+    
+    
+If you were using OpenNebula before 5.4 you may have noticed that there are not AWS credentials in configuration file anymore, this is due security reasons, in 5.4 we have new secure credentials authentication for AWS. You can continue storing credentials inside ec2_driver.conf if you are using opennebula region support (see Multi EC2 Site/Region/Account Support section)  and keeps your credentials inside the region field but we encourage you to use the new method:
 
-After OpenNebula is restarted, create a new Host that uses the ec2 drivers:
+After OpenNebula is restarted, create a new Host with AWS credentials that uses the ec2 drivers:
 
 .. prompt:: bash $ auto
 
-    $ onehost create ec2 --im ec2 --vm ec2
+    $ onehost create ec2 --im ec2 --vm ec2 --ec2access your_aws_acces_key --ec2secret your_aws_secret
 
 .. _ec2_specific_temaplate_attributes:
+
+.. note:: In this step you need to add your credentials in order to get the host working, the new method encrypts your keys and stores the information inside the host template, if you are having trouble with the auth you can always change your keys updating the host atts: EC2_ACCESS, EC2_SECRET.
+
 
 EC2 Specific Template Attributes
 ================================================================================
