@@ -7949,7 +7949,7 @@ Schemas for Virtual Network
                         <xs:element name="SIZE" type="xs:integer"/>
                         <xs:element name="TYPE" type="xs:string"/>
                         <xs:element name="ULA_PREFIX" type="xs:string" minOccurs="0"/>
-                        <xs:element name="VN_MAD" type="xs:string"  minOccurs="0"/>
+                        <xs:element name="VN_MAD" type="xs:string" minOccurs="0"/>
                         <xs:element name="MAC_END" type="xs:string" minOccurs="0"/>
                         <xs:element name="IP_END" type="xs:string" minOccurs="0"/>
                         <xs:element name="IP6_ULA" type="xs:string" minOccurs="0"/>
@@ -8058,7 +8058,7 @@ Schemas for Virtual Network
                               <xs:element name="SIZE" type="xs:integer"/>
                               <xs:element name="TYPE" type="xs:string"/>
                               <xs:element name="ULA_PREFIX" type="xs:string" minOccurs="0"/>
-                              <xs:element name="VN_MAD" type="xs:string"  minOccurs="0"/>
+                              <xs:element name="VN_MAD" type="xs:string" minOccurs="0"/>
                             </xs:sequence>
                           </xs:complexType>
                         </xs:element>
