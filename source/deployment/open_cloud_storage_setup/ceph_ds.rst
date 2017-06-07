@@ -63,16 +63,12 @@ This guide assumes that you already have a functional Ceph cluster in place. Add
 
 .. note:: For production environments it is recommended to **not co-allocate** ceph services (monitor, osds) with OpenNebula nodes or front-end
 
-Frontend Setup
+Frontend and Node Setup
 ================================================================================
 
-The Frontend does not need any specific Ceph setup, it will access the Ceph cluster through the storage bridges.
-
-Node Setup
-================================================================================
 In order to use the Ceph cluster the nodes needs to be configured as follows:
 
-* The ceph client tools must be available in the node
+* The ceph client tools must be available in the machine
 
 * The ``mon`` daemon must be defined in the ``ceph.conf`` for all the nodes, so ``hostname`` and ``port`` doesn't need to be specified explicitly in any Ceph command.
 
@@ -83,6 +79,11 @@ In order to use the Ceph cluster the nodes needs to be configured as follows:
     $ scp ceph.client.libvirt.keyring root@node:/etc/ceph
 
     $ scp client.libvirt.key oneadmin@node:
+
+Node Setup
+================================================================================
+
+Nodes need extra steps to setup credentials in libvirt:
 
 * Generate a secret for the Ceph user and copy it to the nodes under oneadmin home. Write down the ``UUID`` for later use.
 
@@ -143,6 +144,15 @@ To use your Ceph cluster with the OpenNebula, you need to define a System and Im
 +-----------------+-------------------------------------------------------+-----------+
 | ``RBD_FORMAT``  | By default RBD Format 2 will be used.                 |   NO      |
 +-----------------+-------------------------------------------------------+-----------+
+| ``BRIDGE_LIST`` | List of storage bridges to access the Ceph cluster    | **YES**   |
++-----------------+-------------------------------------------------------+-----------+
+| ``CEPH_HOST``   | Space-separated list of Ceph monitors. Example:       | **YES**   |
+|                 | ``host1 host2:port2 host3 host4:port4``.              |           |
++-----------------+-------------------------------------------------------+-----------+
+| ``CEPH_SECRET`` | The UUID of the libvirt secret.                       | **YES**   |
++-----------------+-------------------------------------------------------+-----------+
+| ``POOL_NAME``   | Name of Ceph pool                                     | **YES**   |
++-----------------+-------------------------------------------------------+-----------+
 
 .. note:: You may add another Image and System Datastores pointing to other pools with different allocation/replication policies in Ceph.
 
@@ -176,8 +186,12 @@ Create a System Datastore in Sunstone or through the CLI, for example:
     TM_MAD  = ceph
     TYPE    = SYSTEM_DS
 
-    POOL_NAME = one
-    CEPH_USER = libvirt
+    POOL_NAME   = one
+    CEPH_HOST   = "host1 host2:port2"
+    CEPH_USER   = libvirt
+    CEPH_SECRET = "6f88b54b-5dae-41fe-a43e-b2763f601cfc"
+
+    BRIDGE_LIST = cephfrontend
 
     $ onedatastore create systemds.txt
     ID: 101
@@ -189,7 +203,7 @@ Create an Image Datastore
 Apart from the previous attributes, that need to be the same as the associated System Datastore, the following can be set for an Image Datastore:
 
 +-----------------+-------------------------------------------------------+-----------+
-|    Attribute    |  Description                                          | Mandatory |
+| Attribute       | Description                                           | Mandatory |
 +=================+=======================================================+===========+
 | ``NAME``        | The name of the datastore                             | **YES**   |
 +-----------------+-------------------------------------------------------+-----------+
@@ -205,6 +219,8 @@ Apart from the previous attributes, that need to be the same as the associated S
 |                 | ``host1 host2:port2 host3 host4:port4``.              |           |
 +-----------------+-------------------------------------------------------+-----------+
 | ``CEPH_SECRET`` | The UUID of the libvirt secret.                       | **YES**   |
++-----------------+-------------------------------------------------------+-----------+
+| ``POOL_NAME``   | Name of Ceph pool                                     | **YES**   |
 +-----------------+-------------------------------------------------------+-----------+
 | ``STAGING_DIR`` | Default path for image operations in the bridges      | NO        |
 +-----------------+-------------------------------------------------------+-----------+
