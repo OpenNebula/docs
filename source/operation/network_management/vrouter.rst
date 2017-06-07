@@ -4,7 +4,7 @@
 Virtual Routers
 ================================================================================
 
-Virtual Routers provide routing across Virtual Networks. The administrators can easily connect Virtual Networks from Sunstone and the CLI.  The routing itself is implemented with a Virtual Machine appliance available though the market place. This Virtual Machine can be seamlessly deployed in high availability mode.
+Virtual Routers provide routing across Virtual Networks. The administrators can easily connect Virtual Networks from Sunstone and the CLI. The routing itself is implemented with a Virtual Machine appliance available though the market place. This Virtual Machine can be seamlessly deployed in high availability mode.
 
 Download the Virtual Router Appliance
 ================================================================================
@@ -15,7 +15,7 @@ OpenNebula provides a light weight Alpine-based virtual router. The virtual rout
 
 .. code::
 
-    $onemarketapp export  'alpine-vrouter (KVM)' vrouter_alpine --datastore default --vmname vrouter_alpine
+    $onemarketapp export 'alpine-vrouter (KVM)' vrouter_alpine --datastore default --vmname vrouter_alpine
     IMAGE
         ID: 9
     VMTEMPLATE
@@ -25,7 +25,7 @@ OpenNebula provides a light weight Alpine-based virtual router. The virtual rout
 
 .. code::
 
-    $ oneimage show 9  # 9 is the IMAGE ID from the previous onemarketapp command
+    $ oneimage show 9 # 9 is the IMAGE ID from the previous onemarketapp command
     $ onetemplate show 8 # 8 is for the VMTEMPLATE ID
 
 .. note:: For vCenter infrastructures an ova with the preconfigured image can be imported from the following URL:

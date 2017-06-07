@@ -63,7 +63,7 @@ Prerequisites
     $ chmod 600 myPrivateKey.key
 
     ## Generate .cer file for Azure
-    $ openssl  x509 -outform der -in myCert.pem -out myCert.cer
+    $ openssl x509 -outform der -in myCert.pem -out myCert.cer
    
     ## You should have now your .pem certificate and your private key
     $ find .
@@ -73,7 +73,7 @@ Prerequisites
 
 
 
-- Third, the certificate file (.cer) has to be uploaded to Settings -> Management Certificates Management Certificates can only  be accessed from classic Azure portal, if you are using V2 try to:
+- Third, the certificate file (.cer) has to be uploaded to Settings -> Management Certificates Management Certificates can only be accessed from classic Azure portal, if you are using V2 try to:
 
         portal v2 home page -> Azure classic portal -> Settings -> Management Certificates
         
@@ -133,7 +133,7 @@ Additionally you must define your credentials, the Azure location to be used and
             Medium: 1
             Large: 0
     west-europe:
-        region_name:  "West Europe"
+        region_name: "West Europe"
         pem_management_cert: <path-to-your-vonecloud-pem-certificate-here>
         subscription_id: <your-subscription-id-here>
         management_endpoint:
@@ -240,7 +240,7 @@ Multi Azure Location/Account Support
 
 It is possible to define various Azure hosts to allow OpenNebula the managing of different Azure locations or different Azure accounts. OpenNebula choses the datacenter in which to launch the VM in the following way:
 
-- if the VM description contains the LOCATION attribute,  then OpenNebula knows that the VM  needs to be launch in this Azure location
+- if the VM description contains the LOCATION attribute, then OpenNebula knows that the VM needs to be launch in this Azure location
 - if the name of the host matches the region name (remember, this is the same as an Azure location), then OpenNebula knows that the VMs sent to this host needs to be launched in that Azure datacenter
 - if the VM doesn't have a LOCATION attribute, and the host name doesn't match any of the defined regions, then the default region is picked.
 

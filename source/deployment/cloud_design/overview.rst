@@ -25,7 +25,7 @@ Hypervisor Compatibility
 +==============================================================+===============================================+
 | :ref:`Open Cloud Architecture <open_cloud_architecture>`     | This Section applies to KVM.                  |
 +--------------------------------------------------------------+-----------------------------------------------+
-| :ref:`VMware Cloud Architecture <vmware_cloud_architecture>` | This Section  applies to vCenter.             |
+| :ref:`VMware Cloud Architecture <vmware_cloud_architecture>` | This Section applies to vCenter.              |
 +--------------------------------------------------------------+-----------------------------------------------+
 | :ref:`OpenNebula Provisioning Model <understand>`            | This Section applies to both KVM and vCenter. |
 +--------------------------------------------------------------+-----------------------------------------------+
