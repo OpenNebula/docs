@@ -63,7 +63,7 @@ Handlebars
     {{/each}}
   </div>
 
-The integration between `Handlebars <http://handlebarsjs.com/>`__  and `requirejs <http://requirejs.org/>`__ is done using the `Handlebars plugin for requirejs <https://github.com/SlexAxton/require-handlebars-plugin>`__, that allows you to use the templates just adding a prefix to the require call
+The integration between `Handlebars <http://handlebarsjs.com/>`__ and `requirejs <http://requirejs.org/>`__ is done using the `Handlebars plugin for requirejs <https://github.com/SlexAxton/require-handlebars-plugin>`__, that allows you to use the templates just adding a prefix to the require call
 
 .. code-block:: javascript
 

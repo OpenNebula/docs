@@ -32,7 +32,7 @@ To top it all, OpenNebula 5.4 brings to the table a native implementation of a c
 
 There are many other improvements in 5.4, like improved VM lifecycle, flexible resource permissions, life disk resizing, improved Ceph support, enhanced disk I/O feedback, showback cost estimate in Sunstone, flexible IPv6 definition, http proxy support for marketplace, purge tools for the OpenNebula database, resource group isolation, multiple Sunstone improvements (VNC, password dialogs, confirmation dialogs, better vCenter support, persistent labels, usability enhacenents), networking improvements, user inputs in OneFlow and many many more features to enrich your cloud experience. As with previous releases, and in order to achieve a reliable cloud management platform, the team has gone great lengths to fix reported bugs and improve general usability.
 
-This OpenNebula release is named after the `Medula Nebula <https://en.wikipedia.org/wiki/Medusa_Nebula>`__, a large planetary nebula in the constellation of Gemini on the Canis Minor border. It also known as Abell 21 and Sharpless 2-274.  It was originally discovered in 1955 by UCLA astronomer George O. Abell, who classified it as an old planetary nebula. The braided serpentine filaments of glowing gas suggests the serpent hair of Medusa found in ancient Greek mythology.
+This OpenNebula release is named after the `Medula Nebula <https://en.wikipedia.org/wiki/Medusa_Nebula>`__, a large planetary nebula in the constellation of Gemini on the Canis Minor border. It also known as Abell 21 and Sharpless 2-274. It was originally discovered in 1955 by UCLA astronomer George O. Abell, who classified it as an old planetary nebula. The braided serpentine filaments of glowing gas suggests the serpent hair of Medusa found in ancient Greek mythology.
 
 The OpenNebula team is now set to bug-fixing mode. Note that this is a beta release aimed at testers and developers to try the new features, and send a more than welcomed feedback for the final release. Note that being a beta there is no migration path from the previous stable version (5.2.1) nor migration path to the final stable version (5.4.0).
 
@@ -83,7 +83,7 @@ OpenNebula Drivers :: Marketplace
 Database
 --------------------------------------------------------------------------------
 
-- **New tools** to purge history records, update corrupted data  and more through the :ref:`onedb <onedb>` command. 
+- **New tools** to purge history records, update corrupted data and more through the :ref:`onedb <onedb>` command. 
 
 Scheduler
 --------------------------------------------------------------------------------
