@@ -20,6 +20,23 @@ VXLAN traffic is forwarded to a physical device, this device can be set (optiona
 
 The physical device that will act as the physical device **must** have an IP.
 
+Concurrent VXLANs host limit
+--------------------------------------------------------------------------------
+
+Each VXLAN is associated with one multicast group. There is a limit on how many multicast groups can be a physical host member of at the same time. That also means, how many **different** VXLANs can be used on a physical host concurrently. The default value is 20 and can be changed via ``sysctl`` through kernel runtime parameter ``net.ipv4.igmp_max_memberships``.
+
+For permanent change to e.g. 150, place following settings inside the ``/etc/sysctl.conf``:
+
+.. code::
+
+    net.ipv4.igmp_max_memberships=150
+
+and reload the configuration
+
+.. prompt:: bash $ auto
+
+    $ sudo sysctl -p
+
 OpenNebula Configuration
 ================================================================================
 
