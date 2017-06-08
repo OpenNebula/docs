@@ -1,6 +1,7 @@
 def setup(app):
     app.add_config_value('versions', [], 'html')
     app.add_config_value('downloads', [], 'html')
+    app.add_config_value('github_version', '', 'html')
 
     app.connect('html-page-context', create_versions)
 
@@ -12,5 +13,5 @@ def create_versions(app, docname, templatename, ctx, doctree):
     ctx['display_github'] = True
     ctx['github_user']    = 'OpenNebula'
     ctx['github_repo']    = 'docs'
-    ctx['github_version'] = 'master/'
+    ctx['github_version'] = app.builder.env.config['github_version']
     ctx['conf_py_path']   = 'source/'
