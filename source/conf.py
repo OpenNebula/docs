@@ -41,7 +41,7 @@ site_conf = yaml.load(os.popen('git show origin/master:source/site_conf.yml'))
 versions  = site_conf['versions']
 downloads = site_conf['downloads']
 
-github_version = 'master/'
+github_version = 'one-5.4/'
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
