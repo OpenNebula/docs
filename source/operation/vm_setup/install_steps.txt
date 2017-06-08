@@ -33,9 +33,9 @@ Debian/Ubuntu/Devuan
 Windows
 ~~~~~~~
 
-Download the MSI package into ``C:\``:
+.. prompt:: powershell # auto
 
-* https://github.com/OpenNebula/addon-context-windows/releases/download/v5.3.80/one-context-5.3.80.msi
+    (New-Object Net.WebClient).DownloadFile("https://github.com/OpenNebula/addon-context-windows/releases/download/v5.3.80/one-context-5.3.80.msi", "C:\one-context-5.3.80.msi")
 
 Step 3. Install Contextualization Packages and Dependencies
 -----------------------------------------------------------
