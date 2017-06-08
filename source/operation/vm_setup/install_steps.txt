@@ -77,6 +77,15 @@ Debian/Ubuntu
 
     # dpkg -i one-context*deb || apt-get install -fy
 
+openSUSE Leap 42.2
+~~~~~~~~~~~~~~~~~~
+
+.. prompt:: bash # auto
+
+    # rpm -Uvh one-context*rpm
+    # zypper install -y ruby # only needed for onegate command
+    # zypper install -y growpart
+
 Windows
 ~~~~~~~
 
