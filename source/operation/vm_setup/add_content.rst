@@ -114,13 +114,13 @@ CentOS 6
     mkdir /tmp/mount
     mount LABEL=PACKAGES /tmp/mount
 
+    # Remove cloud-init and NetworkManager
+    yum remove -y NetworkManager cloud-init
+
     yum install -y epel-release --nogpgcheck
 
     # Install opennebula context package
     yum localinstall -y /tmp/mount/one-context*el6*rpm
-
-    # Remove cloud-init and NetworkManager
-    yum remove -y NetworkManager cloud-init
 
     # Install growpart and upgrade util-linux
     yum install -y cloud-utils-growpart --nogpgcheck
@@ -140,13 +140,13 @@ CentOS 7
     mkdir /tmp/mount
     mount LABEL=PACKAGES /tmp/mount
 
+    # Remove cloud-init and NetworkManager
+    yum remove -y NetworkManager cloud-init
+
     yum install -y epel-release --nogpgcheck
 
     # Install opennebula context package
     yum localinstall -y /tmp/mount/one-context*el7*rpm
-
-    # Remove cloud-init and NetworkManager
-    yum remove -y NetworkManager cloud-init
 
     # Install growpart and upgrade util-linux
     yum install -y cloud-utils-growpart --nogpgcheck
