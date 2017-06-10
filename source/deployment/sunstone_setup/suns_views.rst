@@ -23,7 +23,11 @@ This view provides full control of the cloud. Details can be configured in the `
 Admin vCenter View
 --------------------------------------------------------------------------------
 
-Based on the Admin View. It is designed to present the valid operations against a vCenter infrastructure to a cloud administrator. Details can be configured in the ``/etc/one/sunstone-views/admin_vcenter.yaml`` file.
+Based on the Admin View. It is designed to present the valid operations against a vCenter infrastructure to a cloud administrator. Details can be configured in the ``/etc/one/sunstone-views/admin_vcenter.yaml`` file. In this view, the Import button will be displayed in the VM Templates, Datastores, Images and Virtual Networks tabs.
+
+.. image:: /images/vcenter_import_button.png
+    :width: 15%
+    :align: center
 
 .. _suns_views_group_admin:
 

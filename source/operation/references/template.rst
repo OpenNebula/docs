@@ -1092,7 +1092,7 @@ Valid ``types``:
 | boolean         | <VAR>="M|boolean| <desc>|<default>|"                            | Yes or not                                             |
 +-----------------+-----------------------------------------------------------------+--------------------------------------------------------+
 
-There is the possibility of making the USER_INPUT mandatory or not. 
+There is the possibility of making the USER_INPUT mandatory or not.
 
 In Sunstone, the ``USER_INPUTS`` can be ordered with the mouse.
 

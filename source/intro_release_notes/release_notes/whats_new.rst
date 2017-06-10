@@ -83,7 +83,7 @@ OpenNebula Drivers :: Marketplace
 Database
 --------------------------------------------------------------------------------
 
-- **New tools** to purge history records, update corrupted data and more through the :ref:`onedb <onedb>` command. 
+- **New tools** to purge history records, update corrupted data and more through the :ref:`onedb <onedb>` command.
 
 Scheduler
 --------------------------------------------------------------------------------
@@ -109,7 +109,7 @@ Sunstone
 - **Improved showback support**, with better dialogs to define and estimate the :ref:`VM Template showback section <template_showback_section>`.
 - **A significant number of usability enhancements**:
 
-  - More secure password change dialog 
+  - More secure password change dialog
   - ESC support for VNC dialog
   - :ref:`improved overcommitment dialogs <dimensioning_the_cloud>`
   - more presence of the VM logo in the VM Template and instance dialogs and tabs
@@ -137,7 +137,4 @@ The significant milestone is that vCenter is no longer treated as a public cloud
 - **Inventory folder selection**, a folder inside vSphere's VMs and Templates view can be specified so deployed VMs are seen under that folder. (TODO)
 - **vCenter default values**, some default values for vCenter attributes e.g NIC model, can be specified in a new configuration file (TODO)
 - **Attaching a CDROM works even though a CDROM drive is not already present in the VM**, an IDE CDROM is used. (TODO)
-- **Linked Clones can be used**, :ref:`onevcenter tool <vcenter_import_tool>` gives the chance to prepare a template being imported so it can benefit from VM linked clone.
-
-
-
+- **Linked Clones can be used**, :ref:`onevcenter tool <vcenter_import_host_tool>` gives the chance to prepare a template being imported so it can benefit from VM linked clone.

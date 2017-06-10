@@ -6,12 +6,12 @@ vCenter Networking Overview
 
 Virtual Networks from vCenter can be represented using OpenNebula virtual networks, where a one-to-one relationship exists between an OpenNebula's virtual network and a vSphere's port group. When :ref:`adding NICs in a VM template <vm_templates>` or :ref:`when attaching a NIC (hot-plugging) to a running VM <vm_instances>` in OpenNebula, a network interface can be attached to an OpenNebula's Virtual Network.
 
+OpenNebula can consume port groups or create port groups.
+
 In vSphere's terminology, a port group can be seen as a template for creating virtual ports with particular sets of specifications such as VLAN tagging. The VM's network interfaces connect to vSphere's virtual switches through port groups. vSphere provides two types of port groups:
 
 - Port Group (or Standard Port Group). The port group is connected to a vSphere Standard Switch.
 - Distributed Port Group. The port group is connected to a vSphere Distributed Switch.
-
-OpenNebula supports both "Port Groups" and "Distributed Port Groups", and as such can consume any vCenter defined network resource (even those created by other networking components like for instance NSX).
 
 According to `VMWare's vSphere Networking Guide <https://pubs.vmware.com/vsphere-60/topic/com.vmware.ICbase/PDF/vsphere-esxi-vcenter-server-60-networking-guide.pdf>`_ we have two virtual switches types:
 
@@ -20,16 +20,18 @@ According to `VMWare's vSphere Networking Guide <https://pubs.vmware.com/vsphere
 
 .. note:: The vSphere Distributed Switch is only available for VMWare's vSphere Enterprise Plus licence.
 
-In OpenNebula you have two options if you want to associate OpenNebula's virtual networks to vSphere's port groups:
+If you want to associate OpenNebula's virtual networks to vSphere's port groups:
 
-- You can create the port groups using vSphere's Web Client and then consume those port groups using the import tools.
-- You can create a virtual network definitio, add the attribute ``VN_MAD=vcenter`` to the network template and let OpenNebula create the network elements for you.
+- You can create the port groups using vSphere's Web Client and then consume them using the import tools or,
+- You can create port groups directly from OpenNebula using a virtual network definition, adding the attribute ``VN_MAD=vcenter`` to the network template and letting OpenNebula create the network elements for you.
 
 
 Consuming existing vCenter port groups
 ================================================================================
 
 Existing vCenter networks can be represented using OpenNebula Virtual Networks, taking into account that the BRIDGE attribute of the Virtual Network needs to match the name of the Network (port group) defined in vCenter.
+
+OpenNebula supports both "Port Groups" and "Distributed Port Groups", and as such can **create or consume** any vCenter defined network resource.
 
 Networks can be created using vSphere's web client, with any specific configuration like for instance VLANs. OpenNebula will use these networks with the defined characteristics representing them as Virtual Networks. OpenNebula additionally can handle on top of these networks three types of :ref:`Address Ranges: Ethernet, IPv4 and IPv6 <manage_vnets>`.
 
@@ -154,7 +156,7 @@ OpenNebula uses the following values when creating virtual switches and port gro
 - VLAN ID is set to 0, which means that no VLANs are used.
 - MTU value is set to 1500.
 
-Standard port groups created by OpenNebula has the following settings:
+Standard port groups created by OpenNebula have the following settings:
 
 - Number of ports is set to Elastic. According to VMWare's documentation, the Elastic mode is used to ensure efficient use of resources on ESXi hosts where the ports of virtual switches are dynamically scaled up and down. In any case, the default port number for standard switches is 128.
 - Security - Promiscuous mode is set to Reject, which means that the virtual network adapter only receives frames that are meant for it.
@@ -163,7 +165,7 @@ Standard port groups created by OpenNebula has the following settings:
 - Traffic Shaping policies to control the bandwidth and burst size on a port group are disabled. You can still set QoS for each NIC in the template.
 - Physical NICs. The physical NICs used as uplinks are bridged in a bond bridge with teaming capabilities.
 
-Distributed port groups created by OpenNebula has the following settings:
+Distributed port groups created by OpenNebula have the following settings:
 
 - Number of ports is set to Elastic. According to VMWare's documentation, the Elastic mode is used to ensure efficient use of resources on ESXi hosts where the ports of virtual switches are dynamically scaled up and down. The default port number for distributed switches is 8.
 - Static binding. When you connect a virtual machine to a distributed port group, a port is immediately assigned and reserved for it, guaranteeing connectivity at all times. The port is disconnected only when the virtual machine is removed from the port group.
@@ -185,13 +187,13 @@ The first step requires you to introduce the virtual network's name:
 In the Conf tab, select vCenter from the Network Mode menu, so the vcenter network driver is used (the ``VN_MAD=vcenter`` attribute will be added to OpenNebula's template). The Bridge name will be the name of the port group, and by default it's the name of the Virtual Network but you can choose a different port group name.
 
 .. image:: /images/vcenter_network_mode.png
-    :width: 70%
+    :width: 50%
     :align: center
 
 Once you've selected the vCenter network mode, Sunstone will show several network attributes that can be defined.
 
 .. image:: /images/vcenter_network_attributes.png
-    :width: 60%
+    :width: 50%
     :align: center
 
 You have more information about these attributes in the :ref:`vCenter Network attributes <vcenter_network_attributes>` section, but we'll comment some of them:
@@ -241,6 +243,8 @@ VLAN ID
 This attribute is optional. You can set a manual VLAN ID, force OpenNebula to generate an automatic VLAN ID or set that no VLANs are used. This value will be assigned to the VLAN_ID attribute.
 
 
+Address Ranges
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In order to create your Virtual Network you must also add an Address Range in the Addresses tab. Please visit the :ref:`Virtual Network Definition <vnet_template>` section.
 

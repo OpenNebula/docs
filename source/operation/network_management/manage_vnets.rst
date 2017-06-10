@@ -216,6 +216,8 @@ After creating a Virtual Network, you can use the ``onevnet update`` command to 
 
 Also the name of the Virtual Network can be changed with ``onevnet rename`` command.
 
+.. _manage_address_ranges:
+
 Managing Address Ranges
 =======================
 
@@ -370,4 +372,3 @@ A Reservation can be also extended with new addresses. This is, you can add a ne
 .. note:: The reservation interface is exposed by Sunstone in a very convenient way.
 
 .. |image0| image:: /images/sunstone_vnet_create.png
-
