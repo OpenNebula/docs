@@ -114,7 +114,11 @@ OpenNebula needs to be restarted afterwards, this can be done with the following
 Step 3: Importing vCenter Clusters
 --------------------------------------------------------------------------------
 
-OpenNebula ships with a powerful CLI tool to import vCenter clusters, VM Templates, Networks and running VMs. The tool **onevcenter** is self-explanatory, just set the credentials and FQDN/IP to access the vCenter host and follow on screen instructions. A sample section follows:
+OpenNebula ships with a powerful CLI tool to import vCenter clusters, VM Templates, Networks and running VMs. The tool **onevcenter** is self-explanatory, just set the credentials and FQDN/IP to access the vCenter host and follow on screen instructions.
+
+When you select a vCenter Cluster to be imported, OpenNebula will create an OpenNebula Host that will represent the vCenter Cluster. Also, you'll have to tell OpenNebula in what OpenNebula Cluster you want to group the OpenNebula Host, if you don't select a previously existing cluster, the default action is that OpenNebula will create an OpenNebula cluster for you. A vCenter Cluster may have the same name in different folders and subfolders of a datacenter, OpenNebula will inform you about the location of the vCenter Cluster so you can identify it.
+
+A sample section follows:
 
 .. prompt:: bash $ auto
 
@@ -122,27 +126,33 @@ OpenNebula ships with a powerful CLI tool to import vCenter clusters, VM Templat
       ID NAME            CLUSTER   RVM      ALLOCATED_CPU      ALLOCATED_MEM STAT
 
     $ onevcenter hosts --vcenter <vcenter-host> --vuser <vcenter-username> --vpass <vcenter-password>
-    Connecting to vCenter: <vcenter-host>...done!
+
+    Connecting to vCenter: vcenter.vcenter5-testing...done!
+
     Exploring vCenter resources...done!
-    Do you want to process datacenter Development [y/n]? y
-      * Import cluster clusterA [y/n]? y
-        OpenNebula host clusterA with id 0 successfully created.
 
-      * Import cluster clusterB [y/n]? y
-        OpenNebula host clusterB with id 1 successfully created.
+    Do you want to process datacenter Datacenter (y/[n])? y
+
+      * vCenter cluster found:
+          - Name       : Cluster
+          - Location   : /
+        Import cluster (y/[n])? y
+
+    In which OpenNebula cluster do you want the vCenter cluster to be included?
+
+
+      - ID: 123 - NAME: devel_[vcenter.vcenter5-devel-Datacenter]_cfa8ddcad1f2
+      - ID: 127 - NAME: piscisclus_[vcenter.vcenter3-Datacenter]_c9b4023587a5
+      - ID: 128 - NAME: Cluster_[vcenter.vcenter3-Datacenter]_8a71cb4b8d0e
+      - ID: 129 - NAME: Test_[vcenter.vcenter5-devel-Datacenter]_9bd3f78fa1ec
+
+    Specify the ID of the cluster or press Enter if you want OpenNebula to create a new cluster for you:
+
+    OpenNebula host Cluster_[vcenter.vcenter5-testing-Datacenter]_03a4a44d7b3a with ID 0 successfully created.
 
     $ onehost list
       ID NAME            CLUSTER   RVM      ALLOCATED_CPU      ALLOCATED_MEM STAT
-       0 clusterA        -           0                  -                  - init
-       1 clusterB        -           0                  -                  - init
-    $ onehost list
-      ID NAME            CLUSTER   RVM      ALLOCATED_CPU      ALLOCATED_MEM STAT
-       0 clusterA        -           0       0 / 800 (0%)      0K / 16G (0%) on
-       1 clusterB        -           0                  -                  - init
-    $ onehost list
-      ID NAME            CLUSTER   RVM      ALLOCATED_CPU      ALLOCATED_MEM STAT
-       0 clusterA        -           0       0 / 800 (0%)      0K / 16G (0%) on
-       1 clusterB        -           0      0 / 1600 (0%)      0K / 16G (0%) on
+       0 Cluster_[vcente -           0       0 / 800 (0%)      0K / 16G (0%) on
 
 Once the vCenter cluster is monitored successfully ON will show as the host status. If ERROR is shown please check connectivity and have a look to the /var/log/one/oned.log file in order to find out the possible cause.
 
@@ -173,7 +183,7 @@ The following variables are added to the OpenNebula hosts representing ESX clust
 
 .. note::
 
-   You have more information about what is a Managed Object Reference and what is the vCenter instance UUID in the TODO ref `vCenter driver<vcenter_managed_object_reference>` section.
+   You have more information about what is a Managed Object Reference and what is the vCenter instance UUID in the :ref:`vCenter driver<vcenter_managed_object_reference>` section.
 
 
 Step 4: Next Steps

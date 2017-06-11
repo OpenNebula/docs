@@ -126,7 +126,7 @@ The significant milestone is that vCenter is no longer treated as a public cloud
 - **VNC port configuration for wild VMs**, when a wild VM is imported, the VNC port is added automatically to VM's config at :ref:`import time <import_vcenter_resources>`.
 - **vCenter resources tied to their cluster**, this is automatically set during :ref:`import process <import_vcenter_resources>`.
 - **Improve API call management**, :ref:`vCenter driver <vcenterg>` does not leave open sessions in the server.
-- **Removed naming limitations**, like for :ref:`instance vCenter cluster names <vcenter_limitations>` with spaces are now supported.
+- **Removed naming limitations**, like for instance vCenter cluster names with spaces are now supported.
 - **Better StoragePod support**, now :ref:`clustered datastores <storage_drs_pods>` are clearly differentiated at import time.
 - **Marketplace support**, with the ability to download VMDK from the :ref:`marketplace <marketplace>`.
 - **Improved Datastore & Image management**, :ref:`non-persistent images <vcenter_ds>` are now supported and they're cloned automatically by OpenNebula, also now vCenter VMs can use volatile images.
