@@ -20,16 +20,7 @@ The following must be met for a functional vCenter environment:
 * All ESX hosts belonging to the same ESX cluster to be exposed to OpenNebula **must** share at least one datastore among them.
 * The ESX cluster **should** have DRS enabled. DRS is not required but it is recommended. OpenNebula does not schedule to the granularity of ESX hosts, DRS is needed to select the actual ESX host within the cluster, otherwise the VM will be launched in the ESX where the VM template has been created.
 * If virtual standard switches are used, check that those switches exist in every ESX hosts belonging to the same ESX cluster, so the network represented by a port group can be used by a VM, no matter in what ESX host it's running. If you use distributed virtual switches, check that ESX hosts have been added to switches.
-* To enable VNC functionality, repeat the following procedure for each ESX:
-
-  * In the vSphere client proceed to Home -> Inventory -> Hosts and Clusters.
-  * Select the ESX host, Configuration tab and select Security Profile in the Software category.
-  * In the Firewall section, select Edit. Enable GDB Server, then click OK.
-  * Make sure that the ESX hosts are reachable from the OpenNebula Front-end.
-
-  .. image:: ../../images/vcenter_enable_gdb_server.png
-      :width: 90%
-      :align: center
+* To enable VNC functionality, please check the detailed information in section `VNC on ESX hosts`_ below.
 
 .. important:: OpenNebula will **NOT** modify any vCenter configuration with some exceptions, the creation of virtual switches and port groups if the vcenter network driver is used and the creation of images for VMDK and/or ISO files.
 
@@ -318,3 +309,162 @@ If the user account that is going to be used in vCenter operations is not declar
 | DVPortgroup.Delete                          | Required if you want OpenNebula to destroy a distributed port group that   |
 |                                             | was previously created by OpenNebula.                                      |
 +---------------------------------------------+----------------------------------------------------------------------------+
+
+VNC on ESX hosts
+================================================================================
+
+To enable VNC functionality, you need to allow access to the VNC ports on
+ESX hosts. By default, access to these ports is filtered by the firewall.
+We provide an installation package, which adds the **VNC** ruleset (port
+range 5900-65535) and permits access to these ports. This package must be
+installed on each ESX host; it can be done via CLI or web UI. We'll cover
+necessary steps for both ways here.
+
+Locations of the VIB installation package or ZIP bundle:
+
+* On your OpenNebula Front-end server, in ``/usr/share/one/esx-fw-vnc/``.
+  Installed as part of the package
+
+  * **opennebula-server** on RHEL/CentOS
+  * **opennebula** on Debian and Ubuntu.
+
+* On public download server. In a case of installation problems,
+  insecure HTTP access can be used at own risk!
+
+  * https://downloads.opennebula.org/packages/opennebula-5.3.80/fw-vnc-5.3.80.vib
+  * https://downloads.opennebula.org/packages/opennebula-5.3.80/fw-vnc-5.3.80.zip
+
+
+.. note::
+
+   Make sure that the ESX hosts are reachable from the OpenNebula Front-end.
+
+Using CLI
+---------
+
+.. note::
+
+    Please replace the placeholder variables ``$ESX_HOST`` (ESX hostname),
+    ``$ESX_USER`` (access user name) and ``$ESX_PSWD`` (access user's password)
+    with the valid access parameters depending on your infrastructure configuration.
+
+**Over SSH**
+
+If you have enabled direct SSH access on the ESX hosts, copy the VIB installation
+packages to the ESX host via scp. Login the ESX host via SSH, allow the community
+packages to be installed and do the install.
+
+.. note::
+
+    The absolute path to the VIB must be provided.
+
+.. prompt:: bash $ auto
+
+    $ scp /usr/share/one/esx-fw-vnc/fw-vnc.* $ESX_HOST:/tmp/
+    $ ssh $ESX_HOST
+    $ esxcli software acceptance set --level=CommunitySupported
+    $ esxcli software vib install -v /tmp/fw-vnc.vib
+
+This enables VNC ports for any remote host. You should
+limit access to the VNC only from your OpenNebula Front-end. In this
+example, we restrict access only from IP address 192.168.0.1.
+
+.. prompt:: bash $ auto
+
+    $ esxcli network firewall ruleset set --ruleset-id VNC --allowed-all false
+    $ esxcli network firewall ruleset allowedip add --ruleset-id VNC --ip-address 192.168.0.1/32
+    $ esxcli network firewall ruleset allowedip list --ruleset-id VNC
+
+Repeat for each ESX host.
+
+**VMware vSphere CLI**
+
+If you have a working VMware vSphere CLI, you can install the package
+remotely via ``esxcli``.
+
+First, check the CLI is working:
+
+.. prompt:: bash $ auto
+
+    $ esxcli --server $ESX_HOST --username $ESX_USER --password $ESX_PSWD system version get
+
+If the connection fails on untrusted fingerprint, please specify the valid
+one as an extra ``esxcli`` parameter ``--thumbprint``. Example:
+
+.. prompt:: bash $ auto
+
+    $ esxcli --server $ESX_HOST --username $ESX_USER --password $ESX_PSWD system version get
+    Connect to $ESX_HOST failed. Server SHA-1 thumbprint: 00:11:22:33:...:11:22:33 (not trusted).
+    $ esxcli --server $ESX_HOST --username $ESX_USER --password $ESX_PSWD --thumbprint '00:11:22:33:...:11:22:33' system version get
+      Product: VMware ESXi
+      Version: 6.5.0
+      Build: Releasebuild-4887370
+      Update: 0
+      Patch: 9
+
+Now, with all required connection parameters from a test above, use the ``esxcli``
+to allow the community packages to be installed and proceed with the install.
+
+.. note::
+
+    VIB must be accessible from the ESX host, as an absolute file path
+    on the ESX host or downloadable URL.
+
+.. prompt:: bash $ auto
+
+    $ esxcli <connection options> software acceptance set --level=CommunitySupported
+    $ esxcli <connection options> software vib install -v 'https://downloads.opennebula.org/packages/opennebula-5.3.80/fw-vnc-5.3.80.vib'
+
+This enables VNC ports for any remote host. You should
+limit access to the VNC only from your OpenNebula Front-end. In this
+example, we restrict access only from IP address 192.168.0.1.
+
+.. prompt:: bash $ auto
+
+    $ esxcli <connection options> network firewall ruleset set --ruleset-id VNC --allowed-all false
+    $ esxcli <connection options> network firewall ruleset allowedip add --ruleset-id VNC --ip-address 192.168.0.1/32
+    $ esxcli <connection options> network firewall ruleset allowedip list --ruleset-id VNC
+
+Repeat for each ESX host.
+
+Using UI
+--------
+
+VIB package can also be installed over vSphere and ESX web UIs.
+
+* Allow custom VIB package to be installed (in the vSphere client)
+
+  * Login the vSphere client
+  * Go to Home -> Inventories -> Hosts and Clusters
+  * Select the ESX host and its tab **Manage** or **Configure** (depends on the vSphere version)
+  * Select **Security Profile** in the **System category**
+  * At the very bottom, select edit on **Host Image Profile Acceptance Level**
+  * Switch to **Community Supported** and confirm with **OK**
+
+.. image:: ../../images/vcenter_acceptance_level.png
+    :width: 50%
+    :align: center
+
+* Install VIB package (in the ESX host UI)
+
+  * Login the ESX host UI
+  * Go to Help -> Update in top right corner
+  * Provide the VIB URL or absolute local path and click on **Update**
+
+.. image:: ../../images/vcenter_install_vib.png
+    :width: 50%
+    :align: center
+
+* Restrict VNC access to the OpenNebula Front-end only (in the vSphere client)
+
+  * Go back again to the ESX host details in the vSphere client
+  * Reload the vSphere page to see current data
+  * Check again **Security Profile** in the **System category**, look on the Firewall/Incoming Connections for new **VNC** item
+  * Click on **Edit** for the Firewall
+  * Find the VNC and optionally restrict access only to your OpenNebula Front-end (e.g. for 192.168.0.1):
+
+.. image:: ../../images/vcenter_enable_vnc.png
+    :width: 90%
+    :align: center
+
+Repeat for each ESX host.
