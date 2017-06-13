@@ -534,7 +534,7 @@ Import a template with onevcenter
 
 This would be the process using the **onevcenter** tool.
 
-The name assigned to the template in OpenNebula contains the vCenter instance name, the datacenter, vCenter cluster's name and template's name. That name is used to prevent conflicts when several templates with the same name are found in a vCenter instance. Once the vCenter template has been imported, OpenNebula's name can be changed to a more human-friendly name.
+The name assigned to the template in OpenNebula contains the template's name, the vCenter cluster's name and a 12 character hash that prevents name collisions. That name is used to prevent conflicts when several templates with the same name are found in a vCenter instance. Once the vCenter template has been imported, OpenNebula's name can be changed to a more human-friendly name.
 
 .. prompt:: text $ auto
 
@@ -675,7 +675,7 @@ Once the template has been imported you get the template's ID.
     :align: center
 
 
-.. note:: The name assigned to the template in OpenNebula contains the vCenter instance name, the datacenter, vCenter cluster's name and the template's name and a 12 character hash. That name is used to prevent conflicts when several templates with the same name are found in a vCenter instance. Once the vCenter template has been imported, that OpenNebula's name can be changed to a more human-friendly name.
+.. note:: The name assigned to the template in OpenNebula contains the template's name, vCenter cluster's name and a 12 character hash. That name is used to prevent conflicts when several templates with the same name are found in a vCenter instance. Once the vCenter template has been imported, that OpenNebula's name can be changed to a more human-friendly name.
 
 .. note:: A vCenter template is considered that it hasn't been imported if the template's moref and vCenter instance uuid is not found in OpenNebula's template pool.
 
