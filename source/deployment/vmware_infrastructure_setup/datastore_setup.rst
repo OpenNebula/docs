@@ -35,6 +35,14 @@ OpenNebula images can be also classified in **persistent** and **non-persistent*
 Disks attached to a VM will be backed by a non-persistent or persistent image although volatile disks are also supported. Volatile disks are created on-the-fly on the target hosts and they are disposed when the VM is shutdown.
 
 
+Limitations
+--------------------------------------------------------------------------------
+
+* When a vCenter template or wild VM is imported into OpenNebula, the virtual disks are imported, an images are created in OpenNebula representing those virtual disks. Although these images represents files that already exists in the datastores, OpenNebula accounts the size of those imported images as if they were new created files hence the datastore capacity is decreased even though no real space in the vCenter datastore is being used by the OpenNebula images. You should understand this limitation if for example an image cannot be imported as OpenNebula reports that no more space is left or if you're using disk quotas.
+* No support for disk snapshots in the vCenter datastore.
+* Image names and paths cannot contain spaces.
+
+
 The vCenter Transfer Manager
 --------------------------------------------------------------------------------
 
@@ -54,9 +62,11 @@ The scheduler chooses the datastore according to the configuration in the /etc/o
 The vCenter datastore in OpenNebula is tied to a vCenter instance in the sense that all operations to be performed in the datastore are going to be performed through the vCenter instance and credentials stored in the datastore's template.
 
 vCenter datastores can be represented in OpenNebula to achieve the following VM operations:
-  - Choose a different datastore for VM deployment
+
+  - :ref:`Upload VMDK files<vcenter_upload_vmdk>`
+  - :ref:`Upload ISO files<vcenter_upload_iso>`
+  - :ref:`Create empty datablocks<vcenter_create_datablock>`
   - Clone VMDKs images
-  - Create empty datablocks
   - Delete VMDK images
 
 .. important:: Note that if you change the vCenter credentials (e.g password change) you will have to update the OpenNebula datastore's template and provide the new credentials so OpenNebula can continue performing vCenter operations.
@@ -87,13 +97,6 @@ In the following example we can see that the file associated to the Image with O
     :align: center
 
 
-Limitations
---------------------------------------------------------------------------------
-
-* No support for disk snapshots in the vCenter datastore.
-* Image names and paths cannot contain spaces.
-
-
 Requirements
 --------------------------------------------------------------------------------
 
@@ -102,6 +105,134 @@ In order to use the vCenter datastore, the following requirements need to be met
 * All the ESX servers controlled by vCenter need to mount the same VMFS datastore with the same name.
 * The ESX servers need to be part of the Cluster controlled by OpenNebula
 
+.. _vcenter_upload_vmdk:
+
+Upload VMDK files
+--------------------------------------------------------------------------------
+
+You can upload VMDK files that can be attached to Virtual Machines as Virtual Hard Disks.
+
+The file containing the VMDK can be uploaded in two ways:
+
+- Adding the file from your web browser or
+- Specify the path using an URL.
+
+The file to be uploaded can be:
+
+- A standalone VMDK file. This file can also be compressed with gzip or bzip2.
+- Flat files and a VMDK descriptor in an archived tar file. Both files must live in the first level of the archived tar file as folders and subfolders are not supported by OpenNebula inside the tar. The tar file can also be compressed with gzip or bzip2.
+
+Using the CLI
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can use the oneimage CLI command. Here's an example where we want to upload a standalone vmdk file to the IMAGE datastore with ID 154.
+
+We specify the vcenter driver, type, a name and a description. The type parameter can be OS (if you want to tell OpenNebula that the image contains an Operating System), DATABLOCK and CDROM. If you want to specify other options run oneimage without parameters and you'll have a list of the parameters and some examples.
+
+.. code::
+
+    $ oneimage create -d 153 --type OS --name test_standalone --path /tmp/tinycore-2.1-x86.vmdk --driver vcenter --description "Upload test"
+    ID: 134
+
+The command will return the image ID. While the image is being uploaded the Image status will be LOCKED. You can check later if the status has changed to READY or ERROR.
+
+Using Sunstone
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You have to select the IMAGE datastore where you want that file to be uploaded and specidy if you want the image to be persistent or non-persistent when used by a Virtual Machine.
+
+When you upload a VMDK file you can assign the image a type either Operating System Image or Generic Storage Datablock.
+
+In the following example we're uploading a tar gz file containing a flat file and vmdk descriptor, using our browser. OpenNebula will upload the file to a temporary location, untar and uncompress that file and upload its contents to the vCenter datastore you've chosen.
+
+.. image:: ../../images/vcenter_vmdk_upload_sunstone_1.png
+    :width: 50%
+    :align: center
+
+.. warning:: If your Sunstone server is not located behind an Apache or NGINX server with Passenger, you may receive an error with the message **Cannot contact server. Is it running or reachable?** if the upload operation takes more than 30 seconds to finish. In that case you may refresh the Images window and you'll see that the new image is in the LOCKED state but the upload operation is still on course, so check it again later to see it the Image is in the READY state or ERROR.
+
+Click on the Create button to start the file uploading process.
+
+While the image is uploaded the status will be LOCKED, you can refresh the Images tab later to check if the status is READY to use or ERROR.
+
+.. image:: ../../images/vcenter_vmdk_upload_sunstone_2.png
+    :width: 50%
+    :align: center
+
+.. _vcenter_upload_iso:
+
+Upload ISO files
+--------------------------------------------------------------------------------
+
+You can upload ISO files that can be used as CDROM images that can be attached to Virtual Machines.
+
+.. note:: CDROM images files can only be attached to a Virtual Machine when it's in the POWEROFF state as the ISO files is attached to the Virtual Machine as an IDE CD-ROM drive which is not a hot-pluggable devices.
+
+The ISO file can be uploaded in two ways:
+
+- Adding the file from your web browser or
+- Specify the path using an URL.
+
+Using the CLI
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can use the oneimage CLI command. Here's an example where we want to upload a standalone vmdk file to the IMAGE datastore with ID 154.
+
+We specify the vcenter driver, type will be CDROM, a name and a description.
+
+.. code::
+
+    $ oneimage create -d 153 --name test_iso_file --type CDROM --path http://tinycorelinux.net/8.x/x86/release/Core-current.iso --driver vcenter --description "Upload ISO test"
+    ID: 135
+
+The command will return the image ID. While the ISO image is being uploaded the Image status will be LOCKED. You can check later if the status has changed to READY or ERROR.
+
+
+Using Sunstone
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In the following example we're using an URL in Internet. OpenNebula will download the ISO file to a temporary file and then upload it to the vCenter datastore you've chosen.
+
+.. image:: ../../images/vcenter_iso_upload_sunstone_1.png
+    :width: 50%
+    :align: center
+
+.. warning:: If your Sunstone server is not located behind an Apache or NGINX server with Passenger, you may receive an error with the message **Cannot contact server. Is it running or reachable?** if the upload operation takes more than 30 seconds to finish. In that case you may refresh the Images window and you'll see that the new image is in the LOCKED state but the upload operation is still on course, so check it again later to see it the Image is in the READY state or ERROR.
+
+Click on the Create button to start the file uploading process.
+
+While the image is uploaded the status will be LOCKED, you can refresh the Images tab later to check if the status is READY to use or ERROR.
+
+.. image:: ../../images/vcenter_iso_upload_sunstone_2.png
+    :width: 50%
+    :align: center
+
+.. _vcenter_create_datablock:
+
+Create empty datablocks
+--------------------------------------------------------------------------------
+
+You can easily create empty VMDK datablocks from OpenNebula.
+
+In Sunstone you can follow these steps:
+
+* Give the datablock a name. A description is optional.
+* Select Generic storage datablock in the drop-down Type menu.
+* Choose the IMAGE datastore where you want OpenNebula to create the empty datablock.
+* Select Empty disk image.
+* Specify the size in MB of the datablock.
+* Select the disk type (Optional). You have a full list of disk types in the VCENTER_DISK_TYPE attribute description explained in the Configuration section.
+* Select the bus adapter (Optional). You have a full list of controller types in the VCENTER_ADAPTER_TYPE attribute description explained in the Configuration section.
+
+.. image:: ../../images/vcenter_vmdk_create_sunstone_1.png
+    :width: 50%
+    :align: center
+
+Finally click on Create.
+
+While the VMDK file is created in the datastore the Image status will be LOCKED, you can refresh the Images tab later to check if the status is READY to use or ERROR.
+
+.. note:: If you don't specify a disk type and/or bus adapter controller type the default values contained in the /etc/one/vcenter_driver.default file are applied. You have more information :ref:`here<vcenter_default_config_file>`.
 
 Configuration
 --------------------------------------------------------------------------------
