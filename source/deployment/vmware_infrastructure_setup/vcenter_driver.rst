@@ -106,7 +106,7 @@ In OpenNebula, by default, a new virtual machine cloned from a vCenter template 
 For example, if you have the following directory tree and you want VMs to be placed in the VMs folder under Management, the path to that folder from the datacenter root would be /Management/VMs. You can use that path in different OpenNebula actions e.g when a template is imported.
 
 .. image:: /images/vcenter_vm_folder_placement.png
-    :width: 50%
+    :width: 35%
     :align: center
 
 
@@ -199,7 +199,7 @@ The VCENTER_RESOURCE_POOL attribute expects a string containing the name of the 
 For instance, a Resource Pool "NestedResourcePool" nested under "TestResourcePool"
 
 .. image:: /images/vcenter_resource_pool_nested.png
-    :width: 50%
+    :width: 35%
     :align: center
 
 would be represented as "TestResourcePool/NestedResourcePool":
@@ -408,7 +408,7 @@ Once you run the import tool, OpenNebula gives you information about the datasto
 A vCenter datastore is unique inside a datacenter, so it is possible that two datastores can be found with the same name in different datacenters and/or vCenter instances. When you import a datastore, OpenNebula generates a name that avoids collisions, that name contains the datastore name, the vcenter instance name, the datacenter where it lives and the datastore type between parentheses. That name can be changed once the datastore has been imported to a more human-friendly name. This is sample name:
 
 .. image:: /images/vcenter_create_datastore_step1.png
-    :width: 50%
+    :width: 35%
     :align: center
 
 There’s an important thing to know related to imported datastores. When you import a vCenter datastore, OpenNebula will store the vCenter hostname or IP address, the vCenter user and vCenter password (encrypted) inside the datastore template definition, as OpenNebula needs that credentials to perform API actions on vCenter. So if you ever change the user or password for the vCenter connections from OpenNebula you should edit the datastore template and change that user and/or password (password can be typed on clear and OpenNebula will stored it encrypted).
@@ -493,7 +493,7 @@ In the following example the template has a location showing Templates.
 This is where the template is displayed in vSphere:
 
 .. image:: /images/vcenter_template_import_step1.png
-    :width: 50%
+    :width: 35%
     :align: center
 
 As the Templates folder is shown right beneath Datacenter, OpenNebula shows Templates as its location. If the template was found under a sub folder, the location will show the folder names separated by a slash /. If the location is /, that means that the template is found at the root of the datacenter.
@@ -855,6 +855,7 @@ In Sunstone the process is similar, click on Virtual Networks under the Network 
 In the new window, introduce the vCenter hostname or IP address and the credentials used to manage the vCenter instance and click on **Get Networks**
 
 .. image:: /images/vcenter_network_import_step2.png
+    :width: 50%
     :align: center
 
 If OpenNebula founds unimported networks they will be grouped by the datacenter they belong.
