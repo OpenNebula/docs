@@ -50,7 +50,10 @@ It defines the **underlying networking infrastructure** that will support the Vi
 +------------------------+--------------------------------------------------+----------+----------------------------------+----------+
 | **PHYDEV**             | Name of the physical network device that will be | String   | YES                              | 802.1Q   |
 |                        | attached to the bridge.                          |          |                                  | vxlan    |
+|                        |                                                  |          | Optional for vcenter             | vcenter  |
 +------------------------+--------------------------------------------------+----------+----------------------------------+----------+
+
+You have more information about the attributes used by the vcenter network driver in the :ref:`vCenter Network Overview <vcenter_network_attributes>` section.
 
 Quality of Service Attributes
 ================================================================================
