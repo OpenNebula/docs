@@ -80,6 +80,8 @@ When a VMWare VM Template is imported, OpenNebula will detect any virtual disk a
 
 The following sections explain some features that are related with vCenter templates and virtual machines deployed by OpenNebula.
 
+.. _vcenter_linked_clones_description:
+
 Linked Clones
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -528,6 +530,7 @@ A vCenter template name is only unique inside a folder, so you may have two temp
     :width: 50%
     :align: center
 
+.. _vcenter_template_import:
 
 Import a template with onevcenter
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -553,6 +556,8 @@ The name assigned to the template in OpenNebula contains the template's name, th
     Import this VM template (y/[n])? y
 
 Once you answer yes to import a template you'll be asked several questions and different actions will be taken depending on your answers.
+
+.. _vcenter_linked_clones_import:
 
 First you'll be prompted if you want to use linked clones.
 
@@ -692,6 +697,8 @@ After a vCenter VM Template is imported as a OpenNebula VM Template, it can be m
 * :ref:`Context information <vcenter_contextualization>`
 
 Before using your OpenNebula cloud you may want to read about the :ref:`vCenter specifics <vcenter_specifics>`.
+
+.. _vcenter_import_wild_vms:
 
 Importing running Virtual Machines
 --------------------------------------------------------------------------------
@@ -897,6 +904,8 @@ When you import an image, OpenNebula will generate a name automatically that pre
     :align: center
 
 The import tools will look for files that haven't been previously imported, checking if there's a file with the same PATH and DATASTORE_ID attributes.
+
+.. _vcenter_import_images:
 
 Import images with onevcenter
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
