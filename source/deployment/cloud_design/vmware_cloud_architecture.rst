@@ -93,7 +93,7 @@ If you are interested in setting up a high available cluster for OpenNebula, che
 Monitoring
 ================================================================================
 
-The monitoring subsystem gathers information relative to the hosts and the virtual machines, such as the host status, basic performance indicators, as well as VM status and capacity consumption. This information is collected by executing a set of probes in the front-end provided by OpenNebula. 
+The monitoring subsystem gathers information relative to the hosts and the virtual machines, such as the host status, basic performance indicators, as well as VM status and capacity consumption. This information is collected by executing a set of probes in the front-end provided by OpenNebula.
 
 Please check the :ref:`the Monitoring Section <mon>` for more details.
 
@@ -102,14 +102,14 @@ Virtualization Hosts
 
 The VMware vCenter drivers enable OpenNebula to access one or more vCenter servers that manages one or more ESX Clusters. Each ESX Cluster is presented in OpenNebula as an aggregated hypervisor. The Virtualization Subsystem is the component in charge of talking with vCenter and taking the actions needed for each step in the VM life-cycle. All the management operations are issued by the front-end to vCenter, except the VNC connection that is performed directly from the front-end to the ESX where a particular VM is running.
 
-OpenNebula natively supports :ref:`vCenter <vcenterg>` hypervisor, vCenter drivers need to be configured in the OpenNebula front-end. 
+OpenNebula natively supports :ref:`vCenter <vcenterg>` hypervisor, vCenter drivers need to be configured in the OpenNebula front-end.
 
 If you are interested in fail-over protection against hardware and operating system outages within your virtualized IT environment, check the :ref:`Virtual Machines High Availability Section <ftguide>`.
 
 Storage
 ================================================================================
 
-OpenNebula interacts as a consumer of vCenter storage, and as such, supports all the storage devices supported by `ESX <http://www.vmware.com/resources/compatibility/search.php?action=base&deviceCategory=san>`__. When a VM is instantiated from a VM Template, the datastore associated with the VM template is chosen. If DRS is enabled, then vCenter will pick the optimal Datastore to deploy the VM. Alternatively, the datastore used by a VM can be fixed by the cloud admin or delegated to the cloud user.
+OpenNebula interacts as a consumer of vCenter storage, and as such, supports all the storage devices supported by `ESX <http://www.vmware.com/resources/compatibility/search.php?action=base&deviceCategory=san>`__. When a VM is instantiated from a VM Template, OpenNebula's Scheduler will choose a datastore using the default policy of distributing the VMs between across available datastores, however this scheduler policy can be changed and you can force VMs instantiated from a template to use a specific datastore thanks to the SCHED_DS_REQUIREMENTS attribute. If Storage DRS is enabled, OpenNebula can request storage recommendations to the Storage DRS cluster and apply them when a VM is instantiated, so in this case OpenNebula would delegate the datastore selection to vCenter's Storage DRS.
 
 vCenter/ESX Datastores can be represented in OpenNebula to create, clone and/or upload VMDKs. The vCenter/ESX datastore representation in OpenNebula is described in the :ref:`vCenter datastore Section <vcenter_ds>`.
 
