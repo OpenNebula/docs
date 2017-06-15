@@ -98,7 +98,7 @@ OneFlow
 Sunstone
 --------------------------------------------------------------------------------
 
-- **Resource group isolation**, easy group swith only shows current group resources (TODO)
+- **Resource group isolation**, easy group switch only shows current group resources (TODO)
 - **Improved customization** with more flags to restrict action usage and enahnced logo customization (TODO)
 - **Persistent resource labels** that do not expire if no resource is tagged with a :ref:`label <labels>` (TODO)
 - **Configurable session parameters** like for instance session length (TODO)
@@ -124,17 +124,17 @@ vCenter
 The significant milestone is that vCenter is no longer treated as a public cloud by OpenNebula, but rather as a fully fledged hypervisor.
 
 - **VNC port configuration for wild VMs**, when a wild VM is imported, the VNC port is added automatically to VM's config at :ref:`import time <import_vcenter_resources>`.
-- **vCenter resources tied to their cluster**, this is automatically set during :ref:`import process <import_vcenter_resources>`.
+- **vCenter resources tied to their cluster**, hosts, networks and datastores are automatically set during :ref:`import process <import_vcenter_resources>`.
 - **Improve API call management**, :ref:`vCenter driver <vcenterg>` does not leave open sessions in the server.
-- **Removed naming limitations**, like for instance vCenter cluster names with spaces are now supported.
+- **Removed naming limitations**, like for instance vCenter cluster and datastore names with spaces are now supported.
 - **Better StoragePod support**, now :ref:`clustered datastores <storage_drs_pods>` are clearly differentiated at import time.
 - **Marketplace support**, with the ability to download VMDK from the :ref:`marketplace <marketplace>`.
 - **Improved Datastore & Image management**, :ref:`non-persistent images <vcenter_ds>` are now supported and they're cloned automatically by OpenNebula, also now vCenter VMs can use volatile images.
 - **Disks can be resized**, when a :ref:`VM is deployed <vm_guide2_resize_disk>`.
-- **Disks and NICs in vCenter template are now visible**, when a vCenter template is imported images and networks representing disks and nics are created. (TODO networking)
-- **Disks can be saved as**, it the VM is in poweroff state a copy of a disk can be performed. KEEP_DISKS_ON_DONE attribute is no longer available. (TODO)
-- **Network creation support**, a new vCenter network mode is available in virtual network definition, standard and different port groups and vSwitches can be created from within OpenNebula. VLAN IDs, MTUs and number of ports can be specified when a port group is created. (TODO)
-- **Inventory folder selection**, a folder inside vSphere's VMs and Templates view can be specified so deployed VMs are seen under that folder. (TODO)
-- **vCenter default values**, some default values for vCenter attributes e.g NIC model, can be specified in a new configuration file (TODO)
-- **Attaching a CDROM works even though a CDROM drive is not already present in the VM**, an IDE CDROM is used. (TODO)
-- **Linked Clones can be used**, :ref:`onevcenter tool <vcenter_import_host_tool>` gives the chance to prepare a template being imported so it can benefit from VM linked clone.
+- **Disks and NICs in vCenter template are now visible**, when a :ref:`vCenter template is imported <vcenter_import_templates>` images and networks representing disks and nics are created.
+- **Disks can be saved as**, it the VM is in poweroff state a :ref:`copy of a disk can be performed <disk_save_as_action>`. KEEP_DISKS_ON_DONE attribute is no longer available.
+- **Network creation support**, a new vCenter network mode is available in virtual network definition, standard and different port groups and vSwitches :ref:`can be created from within OpenNebula <vcenter_enhanced_networking>`. VLAN IDs, MTUs and number of ports can be specified when a port group is created.
+- **Inventory folder selection**, a folder inside vSphere's VMs and Templates view can be specified so deployed VMs are seen under :ref:`that folder <vcenter_folder_placement>`.
+- **vCenter default values**, some default values for vCenter attributes e.g NIC model, can be specified in :ref:`a new configuration file <vcenter_default_config_file>`
+- **Attaching a CDROM works even though a CDROM drive is not already present in the VM**, an :ref:`IDE CDROM is used <vcenter_attach_cdrom>`.
+- **Linked Clones can be used**, :ref:`onevcenter tool <vcenter_linked_clones_description>` gives the chance to prepare a template being imported so it can benefit from VM linked clone.

@@ -170,6 +170,8 @@ In Sunstone, a host abstracting a vCenter cluster will have an extra tab showing
     :width: 90%
     :align: center
 
+.. _vcenter_attach_cdrom:
+
 Attaching a CDROM to a Virtual Machine
 --------------------------------------------------------------------------------
 

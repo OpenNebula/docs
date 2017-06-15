@@ -268,6 +268,8 @@ The snapshot operations are implemented differently depending on the storage bac
 
   Depending on the ``DISK/CACHE`` attribute the live snapshot may or may not work correctly. To be sure, you can use ``CACHE=writethrough``, although this delivers the slowest performance.
 
+.. _disk_save_as_action:
+
 Exporting Disk Images with ``disk-saveas``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -276,6 +278,9 @@ Any VM disk can be exported to a new image (if the VM is in ``RUNNING``, ``POWER
 .. warning::
 
   This action is not in sync with the hypervisor. If the VM is in ``RUNNING`` state make sure the disk is unmounted (preferred), synced or quiesced in some way or another before taking the snapshot.
+
+.. note:: In vCenter, the save as operation can only be performed when the VM is in POWEROFF state. Performing this action in a different state won't work as vCenter cannot unlock the VMDK file.
+
 
 .. _disk_hotplugging:
 

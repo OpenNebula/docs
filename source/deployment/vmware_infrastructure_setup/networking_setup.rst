@@ -41,6 +41,7 @@ OpenNebula Virtual Networks which consume existing port groups will have the att
 
 You can easily consume vCenter networks using the import tools as explained in the TODO add reference `Importing vCenter Networks <vcenter_import_networks>` section.
 
+.. _vcenter_enhanced_networking:
 
 Creating Port Groups from OpenNebula
 ================================================================================
@@ -58,7 +59,7 @@ This is the workflow when you want OpenNebula to create a vCenter network:
 Enabling the VNET hooks
 --------------------------------------------------------------------------------
 
-If you want to use the vcenter network driver you must add the following lines to the oned.conf configuration file:
+If you want to use the vcenter network driver you must uncomment or add the following lines to the oned.conf configuration file:
 
 .. code::
 
