@@ -127,3 +127,17 @@ There is no automatic procedure to import existing users and groups into a runni
 
 The Zone is now ready to use. If you want to add additional HA servers, follow the standard procedure.
 
+Updating a Federation
+================================================================================
+
+OpenNebula database has two different version numbers: one for the federated tables and other for the local ones. In order to federate OpenNebula zones they must run the same version of the federated tables (which are pretty stable). 
+
+Upgrades to a version that does not increase the federated version can be done asynchronously in each zone. However an update in the shared table version requires a coordinated update of all zones.
+
+
+Administration account configuration
+================================================================================
+
+A Federation will have a unique oneadmin account. This is required to perform API calls across zones. It is recommended to not use this account directly in a production environment, and create an account in the 'oneadmin' group for each Zone administrator. 
+
+When additional access restrictions are needed, the Federation Administrator can create a special administrative group with total permissions for one zone only.

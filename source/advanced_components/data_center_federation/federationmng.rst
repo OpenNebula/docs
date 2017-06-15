@@ -1,43 +1,14 @@
 .. _federationmng:
 
 ================================
-OpenNebula Federation Management
+OpenNebula Federation Usage
 ================================
-
-The administrator of a federation has the ability to add or remove Zones from the federation. See this guide for details on how to configure the federation in both the master and the slave of the OpenNebula federation.
 
 A user will have access to all the Zones where at least one of her groups has VDC resources in. This access be can done through Sunstone or through the CLI
 
-Adding a Zone
-=============
 
-.. todo:: Move this to Configuration
-
-Adding a Zone through the CLI entails the creation of a Zone template.
-
-+-----------+-----------------------------------+
-| Parameter |            Description            |
-+===========+===================================+
-| Name      | Name of the new Zone              |
-+-----------+-----------------------------------+
-| Endpoint  | XMLRPC endpoint of the OpenNebula |
-+-----------+-----------------------------------+
-
-.. prompt:: bash $ auto
-
-    $ vi zone.tmpl
-    NAME = ZoneB
-    ENDPOINT = http://zoneb.opennebula.front-end.server:2633/RPC2
-
-This same operation can be performed through Sunstone (Zone tab -> Create).
-
-.. note:: The ENDPOINT has to be reachable from the Sunstone server machine, or the computer running the CLI in order for the user to access the Zone.
-
-Using a Zone
-============
-
-Through Sunstone
-----------------
+Using a Zone Through Sunstone
+================================================================================
 
 In the upper right position of Sunstone page, users will see a house icon next to the name of the Zone you are curently using. If the user clicks on that, she will get a dropdown with all the Zones she has access to. Clicking on any of the Zones in the dropdown will get the user to that Zone.
 
@@ -49,8 +20,8 @@ What's happening behind the scenes is that the Sunstone server you are connectin
 
 .. warning:: Uploading an image functionality is limited to the zone where the Sunstone instance the user is connecting to, even if it can switch to other federated zones.
 
-Through CLI
------------
+Using a Zone Through CLI
+================================================================================
 
 Users can switch Zones through the command line using the `onezone </doc/5.4/cli/onezone.1.html>`__ command. The following session can be examined to understand the Zone management through the CLI.
 

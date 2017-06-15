@@ -9,4 +9,4 @@ Data Center Federation
 
    Overview <overview>
    Federation Configuration <federationconfig>
-   Federation Management <federationmng>
+   Federation Usage <federationmng>
