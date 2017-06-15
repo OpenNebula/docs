@@ -425,7 +425,7 @@ Resizing VM Disks
 If the disks assigned to a Virtual Machine need more size, this can achieved at instantiation time of the VM. The SIZE parameter of the disk can be adjusted and, if it is bigger than the original size of the image, OpenNebula will:
 
 - Increase the size of the disk container prior to launching the VM
-- Using the :ref:`contextualization packages <context_overview>`, at boot time the VM will grow the filesystem to adjust to the new size. **This is only available for Linux guests in KVM**.
+- Using the :ref:`contextualization packages <context_overview>`, at boot time the VM will grow the filesystem to adjust to the new size. **This is only available for Linux guests in KVM and vCenter**.
 
 This can be done with an extra file given to the ``instantiate`` command:
 
