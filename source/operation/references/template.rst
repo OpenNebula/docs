@@ -238,59 +238,71 @@ Persistent and Clone Disks
 
 **Note** the hypervisor column states that the attribute is **O**\ ptional, **M**\ andatory, or ``-`` not supported for that hypervisor
 
-+----------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
-| DISK Sub-Attribute   | Description                                                                  | KVM                                | vCenter                             |
-+======================+==============================================================================+====================================+=====================================+
-| **IMAGE\_ID**        | ID of the Image to use                                                       | M (no IMAGE)                       | M (no IMAGE)                        |
-+----------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
-| **IMAGE**            | Name of the Image to use                                                     | M(no IMAGE\_ID)                    | M (no IMAGE\_ID)                    |
-+----------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
-| **IMAGE\_UID**       | To select the IMAGE of a given user by her ID                                | O                                  | O                                   |
-+----------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
-| **IMAGE\_UNAME**     | To select the IMAGE of a given user by her NAME                              | O                                  | O                                   |
-+----------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
-| **DEV\_PREFIX**      | Prefix for the emulated device this image will be mounted at. For instance,  | O                                  | O                                   |
-|                      | ``hd``, ``sd``, or ``vd`` for KVM virtio. If omitted, the dev\_prefix        |                                    |                                     |
-|                      | attribute of the `Image <img_template>`__ will be used                       |                                    |                                     |
-+----------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
-| **TARGET**           | Device to map image disk. If set, it will overwrite the default device       | O                                  | \-                                  |
-|                      | mapping.                                                                     |                                    |                                     |
-+----------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
-| **DRIVER**           | Specific image mapping driver                                                | O e.g.: ``raw``, ``qcow2``         | \-                                  |
-+----------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
-| **CACHE**            | Selects the cache mechanism for the disk. Values are ``default``, ``none``,  | O                                  | \-                                  |
-|                      | ``writethrough``, ``writeback``, ``directsync`` and ``unsafe``. More info in |                                    |                                     |
-|                      | the `libvirt documentation                                                   |                                    |                                     |
-|                      | <http://libvirt.org/formatdomain.html#elementsDevices>`__                    |                                    |                                     |
-+----------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
-| **READONLY**         | Set how the image is exposed by the hypervisor                               | O e.g.: ``yes``, ``no``. This      | \-                                  |
-|                      |                                                                              | attribute should only be used for  |                                     |
-|                      |                                                                              | special storage configurations     |                                     |
-+----------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
-| **IO**               | Set IO policy. Values are ``threads``, ``native``                            | O (Needs qemu 1.1)                 | \-                                  |
-+----------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
-| **TOTAL_BYTES_SEC**, | IO throttling attributes for the disk. They are specified in bytes or IOPS   | O (Needs qemu 1.1)                 | \-                                  |
-| **READ_BYTES_SEC**,  | (IO Operations) and can be specified for the total (read+write) or specific  |                                    |                                     |
-| **WRITE_BYTES_SEC**  | for read or write. Total and read or write can not be used at the same time. |                                    |                                     |
-| **TOTAL_IOPS_SEC**,  | By default these parameters are only allowed to be used by oneadmin.         |                                    |                                     |
-| **READ_IOPS_SEC**,   |                                                                              |                                    |                                     |
-| **WRITE_IOPS_SEC**   |                                                                              |                                    |                                     |
-+----------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
-| **ADAPTER_TYPE**     | Possible values (careful with the case): lsiLogic, ide, busLogic. More       | \-                                 | M (can be inherited from Datastore) |
-|                      | information `in the VMware documentation <http://pubs.vmware.com/vsphere-60/ |                                    |                                     |
-|                      | index.jsp#com.vmware.wssdk.apiref.doc/vim.VirtualDiskManager.VirtualDiskAdap |                                    |                                     |
-|                      | terType.html>`__                                                             |                                    |                                     |
-+----------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
-| **DISK_TYPE**        | The type of disk has implications on performance and occupied space. Values  | \-                                 | M (can be inherited from Datastore) |
-|                      | (careful with the case): delta, eagerZeroedThick, flatMonolithic,            |                                    |                                     |
-|                      | preallocated, raw, rdm, rdmp, seSparse, sparse2Gb, sparseMonolithic, thick,  |                                    |                                     |
-|                      | thick2Gb, thin. More information `in the VMware documentation                |                                    |                                     |
-|                      | <http://pubs.vmware.com/vsphere-60/index.jsp?topi c=%2Fcom.vmware.wssdk.apir |                                    |                                     |
-|                      | ef.doc%2Fvim.VirtualDiskManager.VirtualDiskType.html>`__                     |                                    |                                     |
-+----------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
-| **DISCARD**          | Controls what's done with with trim commands to the disk, the values can be  | O (only with virtio-scsi)          | \-                                  |
-|                      | ``ignore`` or ``discard``.                                                   |                                    |                                     |
-+----------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
++--------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
+| DISK Sub-Attribute       | Description                                                                  | KVM                                | vCenter                             |
++==========================+==============================================================================+====================================+=====================================+
+| **IMAGE\_ID**            | ID of the Image to use                                                       | M (no IMAGE)                       | M (no IMAGE)                        |
++--------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
+| **IMAGE**                | Name of the Image to use                                                     | M(no IMAGE\_ID)                    | M (no IMAGE\_ID)                    |
++--------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
+| **IMAGE\_UID**           | To select the IMAGE of a given user by her ID                                | O                                  | O                                   |
++--------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
+| **IMAGE\_UNAME**         | To select the IMAGE of a given user by her NAME                              | O                                  | O                                   |
++--------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
+| **DEV\_PREFIX**          | Prefix for the emulated device this image will be mounted at. For instance,  | O                                  | O                                   |
+|                          | ``hd``, ``sd``, or ``vd`` for KVM virtio. If omitted, the dev\_prefix        |                                    |                                     |
+|                          | attribute of the `Image <img_template>`__ will be used                       |                                    |                                     |
++--------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
+| **TARGET**               | Device to map image disk. If set, it will overwrite the default device       | O                                  | \-                                  |
+|                          | mapping.                                                                     |                                    |                                     |
++--------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
+| **DRIVER**               | Specific image mapping driver                                                | O e.g.: ``raw``, ``qcow2``         | \-                                  |
++--------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
+| **CACHE**                | Selects the cache mechanism for the disk. Values are ``default``, ``none``,  | O                                  | \-                                  |
+|                          | ``writethrough``, ``writeback``, ``directsync`` and ``unsafe``. More info in |                                    |                                     |
+|                          | the `libvirt documentation                                                   |                                    |                                     |
+|                          | <http://libvirt.org/formatdomain.html#elementsDevices>`__                    |                                    |                                     |
++--------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
+| **READONLY**             | Set how the image is exposed by the hypervisor                               | O e.g.: ``yes``, ``no``. This      | \-                                  |
+|                          |                                                                              | attribute should only be used for  |                                     |
+|                          |                                                                              | special storage configurations     |                                     |
++--------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
+| **IO**                   | Set IO policy. Values are ``threads``, ``native``                            | O (Needs qemu 1.1)                 | \-                                  |
++--------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
+| **TOTAL_BYTES_SEC**,     | IO throttling attributes for the disk. They are specified in bytes or IOPS   | O (Needs qemu 1.1)                 | \-                                  |
+| **READ_BYTES_SEC**,      | (IO Operations) and can be specified for the total (read+write) or specific  |                                    |                                     |
+| **WRITE_BYTES_SEC**      | for read or write. Total and read or write can not be used at the same time. |                                    |                                     |
+| **TOTAL_IOPS_SEC**,      | By default these parameters are only allowed to be used by oneadmin.         |                                    |                                     |
+| **READ_IOPS_SEC**,       |                                                                              |                                    |                                     |
+| **WRITE_IOPS_SEC**       |                                                                              |                                    |                                     |
++--------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
+| **VCENTER_ADAPTER_TYPE** | Possible values (careful with the case): lsiLogic, ide, busLogic. More       | \-                                 | O (can be inherited from Datastore) |
+|                          | information `in the VMware documentation <http://pubs.vmware.com/vsphere-60/ |                                    |                                     |
+|                          | index.jsp#com.vmware.wssdk.apiref.doc/vim.VirtualDiskManager.VirtualDiskAdap |                                    |                                     |
+|                          | terType.html>`__                                                             |                                    |                                     |
++--------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
+| **DISK_TYPE**            | This is the type of the supporting media for the image. Values:              | O                                  | M (can be inherited from Datastore) |
+|                          | a block device (``BLOCK``) an ISO-9660 file or readonly block device         |                                    | FILE is the only accepted value     |
+|                          | (``CDROM``)  or a plain file (``FILE``)                                      |                                    |                                     |
++--------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
+| **VCENTER_DISK_TYPE**    | Possible values (careful with the case): lsiLogic, ide, busLogic. More       | \-                                 | O (can be inherited from Datastore) |
+|                          | information `in the VMware documentation <http://pubs.vmware.com/vsphere-60/ |                                    |                                     |
+|                          | index.jsp#com.vmware.wssdk.apiref.doc/vim.VirtualDiskManager.VirtualDiskAdap |                                    |                                     |
+|                          | terType.html>`__                                                             |                                    |                                     |
++--------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
+| **DISCARD**              | Controls what's done with with trim commands to the disk, the values can be  | O (only with virtio-scsi)          | \-                                  |
+|                          | ``ignore`` or ``discard``.                                                   |                                    |                                     |
++--------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
+| **OPENNEBULA_MANAGED**   | If set to yes, in vCenter this DISK represents a virtual disk that was       | \-                                 | O (e.g YES)                         |
+|                          | imported when a template or wild VM was imported.                            |                                    |                                     |
++--------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
+| **VCENTER_DS_REF**       | vCenter datastore's managed object reference                                 | \-                                 | M (can be inherited from Datastore) |
++--------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
+| **VCENTER_INSTANCE_ID**  | vCenter intance uuid                                                         | \-                                 | M (can be inherited from Datastore) |
++--------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
+| **OPENNEBULA_MANAGED**   | If set to yes, in vCenter this DISK represents a virtual disk that was       | \-                                 | O (can be inherited from Datastore) |
+|                          | imported when a template or wild VM was imported.                            |                                    |                                     |
++--------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
 
 
 .. _template_volatile_disks_section:
@@ -299,45 +311,50 @@ Persistent and Clone Disks
 Volatile DISKS
 --------------------------------------------------------------------------------
 
-+----------------------+----------------------------------------------------------------------------------+-------------------------------+---------+
-|  DISK Sub-Attribute  |                                   Description                                    |              KVM              | vCenter |
-+======================+==================================================================================+===============================+=========+
-| **TYPE**             | Type of the disk: ``swap`` or ``fs``.                                            | O                             | \-      |
-+----------------------+----------------------------------------------------------------------------------+-------------------------------+---------+
-| **SIZE**             | size in MB                                                                       | O                             | \-      |
-+----------------------+----------------------------------------------------------------------------------+-------------------------------+---------+
-| **FORMAT**           | Format of the Image: ``raw`` or ``qcow2``.                                       | M(for fs)                     | \-      |
-+----------------------+----------------------------------------------------------------------------------+-------------------------------+---------+
-| **DEV\_PREFIX**      | Prefix for the emulated device this image                                        | O                             | \-      |
-|                      | will be mounted at. For instance, ``hd``,                                        |                               |         |
-|                      | ``sd``. If omitted, the default dev\_prefix                                      |                               |         |
-|                      | set in `oned.conf <oned_conf>`__ will be used                                    |                               |         |
-+----------------------+----------------------------------------------------------------------------------+-------------------------------+---------+
-| **TARGET**           | device to map disk                                                               | O                             | \-      |
-+----------------------+----------------------------------------------------------------------------------+-------------------------------+---------+
-| **DRIVER**           | special disk mapping options. KVM: ``raw``, ``qcow2``.                           | O                             | \-      |
-+----------------------+----------------------------------------------------------------------------------+-------------------------------+---------+
-| **CACHE**            | Selects the cache mechanism for the disk.                                        | O                             | \-      |
-|                      | Values are ``default``, ``none``,                                                |                               |         |
-|                      | ``writethrough``, ``writeback``,                                                 |                               |         |
-|                      | ``directsync`` and ``unsafe``. More info                                         |                               |         |
-|                      | in the                                                                           |                               |         |
-|                      | `libvirt documentation <http://libvirt.org/formatdomain.html#elementsDevices>`__ |                               |         |
-+----------------------+----------------------------------------------------------------------------------+-------------------------------+---------+
-| **READONLY**         | Set how the image is exposed by the hypervisor                                   | O e.g.: ``yes``, ``no``.      | \-      |
-|                      |                                                                                  | This attribute should only be |         |
-|                      |                                                                                  | used for special storage      |         |
-|                      |                                                                                  | configurations                |         |
-+----------------------+----------------------------------------------------------------------------------+-------------------------------+---------+
-| **IO**               | Set IO policy. Values are ``threads``, ``native``                                | O                             | \-      |
-+----------------------+----------------------------------------------------------------------------------+-------------------------------+---------+
-| **TOTAL_BYTES_SEC**, | IO throttling attributes for the disk. They are specified in bytes or IOPS       | O                             | \-      |
-| **READ_BYTES_SEC**,  | (IO Operations) and can be specified for the total (read+write) or specific for  |                               |         |
-| **WRITE_BYTES_SEC**, | read or write. Total and read or write can not be used at the same time.         |                               |         |
-| **TOTAL_IOPS_SEC**,  | By default these parameters are only allowed to be used by oneadmin.             |                               |         |
-| **READ_IOPS_SEC**,   |                                                                                  |                               |         |
-| **WRITE_BYTES_SEC**  |                                                                                  |                               |         |
-+----------------------+----------------------------------------------------------------------------------+-------------------------------+---------+
++--------------------------+-----------------------------------------------------------------------------------+-------------------------------+-----------+
+|  DISK Sub-Attribute      |                                   Description                                     |              KVM              | vCenter   |
++==========================+===================================================================================+===============================+===========+
+| **TYPE**                 | Type of the disk: ``swap`` or ``fs``. Type ``swawp`` is not supported in vcenter. | O                             | O         |
++--------------------------+-----------------------------------------------------------------------------------+-------------------------------+-----------+
+| **SIZE**                 | size in MB                                                                        | O                             | O         |
++--------------------------+-----------------------------------------------------------------------------------+-------------------------------+-----------+
+| **FORMAT**               | Format of the Image: ``raw`` or ``qcow2``.                                        | M(for fs)                     | M(for fs) |
++--------------------------+-----------------------------------------------------------------------------------+-------------------------------+-----------+
+| **DEV\_PREFIX**          | Prefix for the emulated device this image                                         | O                             | O         |
+|                          | will be mounted at. For instance, ``hd``,                                         |                               |           |
+|                          | ``sd``. If omitted, the default dev\_prefix                                       |                               |           |
+|                          | set in `oned.conf <oned_conf>`__ will be used                                     |                               |           |
++--------------------------+-----------------------------------------------------------------------------------+-------------------------------+-----------+
+| **TARGET**               | device to map disk                                                                | O                             | O         |
++--------------------------+-----------------------------------------------------------------------------------+-------------------------------+-----------+
+| **DRIVER**               | special disk mapping options. KVM: ``raw``, ``qcow2``.                            | O                             | \-        |
++--------------------------+-----------------------------------------------------------------------------------+-------------------------------+-----------+
+| **CACHE**                | Selects the cache mechanism for the disk.                                         | O                             | \-        |
+|                          | Values are ``default``, ``none``,                                                 |                               |           |
+|                          | ``writethrough``, ``writeback``,                                                  |                               |           |
+|                          | ``directsync`` and ``unsafe``. More info                                          |                               |           |
+|                          | in the                                                                            |                               |           |
+|                          | `libvirt documentation <http://libvirt.org/formatdomain.html#elementsDevices>`__  |                               |           |
++--------------------------+-----------------------------------------------------------------------------------+-------------------------------+-----------+
+| **READONLY**             | Set how the image is exposed by the hypervisor                                    | O e.g.: ``yes``, ``no``.      | \-        |
+|                          |                                                                                   | This attribute should only be |           |
+|                          |                                                                                   | used for special storage      |           |
+|                          |                                                                                   | configurations                |           |
++--------------------------+-----------------------------------------------------------------------------------+-------------------------------+-----------+
+| **IO**                   | Set IO policy. Values are ``threads``, ``native``                                 | O                             | \-        |
++--------------------------+-----------------------------------------------------------------------------------+-------------------------------+-----------+
+| **TOTAL_BYTES_SEC**,     | IO throttling attributes for the disk. They are specified in bytes or IOPS        | O                             | \-        |
+| **READ_BYTES_SEC**,      | (IO Operations) and can be specified for the total (read+write) or specific for   |                               |           |
+| **WRITE_BYTES_SEC**,     | read or write. Total and read or write can not be used at the same time.          |                               |           |
+| **TOTAL_IOPS_SEC**,      | By default these parameters are only allowed to be used by oneadmin.              |                               |           |
+| **READ_IOPS_SEC**,       |                                                                                   |                               |           |
+| **WRITE_BYTES_SEC**      |                                                                                   |                               |           |
++--------------------------+-----------------------------------------------------------------------------------+-------------------------------+-----------+
+| **VCENTER_ADAPTER_TYPE** | Controller that will handle this image in vCenter. Possible values: lsiLogic, ide,| \-                            | O         |
+|                          | busLogic.                                                                         |                               |           |
++--------------------------+-----------------------------------------------------------------------------------+-------------------------------+-----------+
+| **VCENTER_DISK_TYPE**    | The vCenter Disk Type of the image. Possible values: THIN, THICK, ZEROEDTHICK     | \-                            | O         |
++--------------------------+-----------------------------------------------------------------------------------+-------------------------------+-----------+
 
 
 .. _template_disks_device_mapping:
@@ -1033,12 +1050,14 @@ All the **default** restricted attributes to users in the oneadmin group are sum
 - ``NIC_DEFAULT/MAC``
 - ``NIC_DEFAULT/VLAN_ID``
 - ``NIC_DEFAULT/BRIDGE``
+- ``NIC/OPENNEBULA_MANAGED``
 - ``DISK/TOTAL_BYTES_SEC``
 - ``DISK/READ_BYTES_SEC``
 - ``DISK/WRITE_BYTES_SEC``
 - ``DISK/TOTAL_IOPS_SEC``
 - ``DISK/READ_IOPS_SEC``
 - ``DISK/WRITE_IOPS_SEC``
+- ``DISK/OPENNEBULA_MANAGED``
 - ``CPU_COST``
 - ``MEMORY_COST``
 - ``DISK_COST``
