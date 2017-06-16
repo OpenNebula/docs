@@ -197,6 +197,8 @@ Example:
       DEFAULT_IMAGE_PERSISTENT_NEW = "NO"
     ]
 
+.. _manage_groups_sunstone:
+
 Managing Groups in Sunstone
 ================================================================================
 

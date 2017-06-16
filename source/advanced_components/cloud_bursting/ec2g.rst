@@ -26,7 +26,7 @@ Prerequisites
 
 -  You must have a working account for `AWS <http://aws.amazon.com/>`__ and signup for EC2 and S3 services.
 
--  The `aws-sdk ruby gem <https://github.com/aws/aws-sdk-ruby>`__ needs to be installed, version 1.66. This gem is automatically installed as part of the :ref:`installation process <ruby_runtime>`.
+-  The `aws-sdk ruby gem <https://github.com/aws/aws-sdk-ruby>`__ needs to be installed, version 2.5+. This gem is automatically installed as part of the :ref:`installation process <ruby_runtime>`.
 
 OpenNebula Configuration
 ================================================================================

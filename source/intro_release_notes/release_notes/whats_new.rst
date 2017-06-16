@@ -98,15 +98,18 @@ OneFlow
 Sunstone
 --------------------------------------------------------------------------------
 
-- **Resource group isolation**, easy group switch only shows current group resources (TODO)
-- **Improved customization** with more flags to restrict action usage and enahnced logo customization (TODO)
-- **Persistent resource labels** that do not expire if no resource is tagged with a :ref:`label <labels>` (TODO)
+- **Resource group isolation**, easy group swith only shows :ref:`current group resources <manage_groups_sunstone>`.
+- **Improved customization** with more flags to restrict action usage and enhanced logo customization (TODO)
+- **Persistent resource labels** that do not expire if no resource is tagged with a :ref:`label <labels>`.
 - **Configurable session parameters** like for instance session length (TODO)
 - **Added confirmation dialogs** for destructive actions for enhanced security
 - **Enhanced image upload control** with progress feedback and resume capabilities (TODO)
 - **Better groups dialogs** allowing to change the primary and secondary groups directly fom the groups panel
-- **Fixed multilanguage keyboard support** in VNC feature
+- **Fixed multilanguage keyboard support** in :ref:`VNC feature <remote_access_sunstone>`.
 - **Improved showback support**, with better dialogs to define and estimate the :ref:`VM Template showback section <template_showback_section>`.
+- **Extended user inputs**, with new :ref:`types <template_user_inputs>` like booleans and the possiblity to define the order.
+
+
 - **A significant number of usability enhancements**:
 
   - More secure password change dialog
