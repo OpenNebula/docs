@@ -179,6 +179,23 @@ You can attach a CDROM to a Virtual Machine :ref:`creating first an OpenNebula i
 
 Then the CDROM can be attached to a Virtual Machine template or can be attached to deployed Virtual Machine, **ONLY** if the Virtual Machines is in the POWEROFF state. OpenNebula tries to connect the ISO file as an IDE CD-ROM drive which is not a hot-pluggable device that's why the Virtual Machine must not be RUNNING (powered on).
 
+.. _disk_monitoring:
+
+Disks monitoring
+================================================================================
+
+OpenNebula gathers disks monitoring info for each VM providing metrics like the rate of reading/writing data to the VM's virtual disks and the read/write IOPS. Real-time data is retrieved from vCenter thanks to the Performance Manager which collects data every 20 seconds and maintains it for one hour.
+
+.. important:: OpenNebula requires that you set the right Statistics Level so disk metrics are generated and stored by vCenter. Increasing the statistics level implies that more space is needed to store metrics so check that you have enough storage before changing the level.
+
+vCenter Statistics level for 5-minutes data must be set to 2.
+
+.. image:: ../../images/vcenter_disks_statistics_level.png
+    :width: 75%
+    :align: center
+
+The rate of reading/write is provided by vCenter as an average using KB/s unit. The graphs provided by Sunstone are different from those found in vCenter under the Monitor -> Performance Tab when selecting Realtime in the Time Range drop-down menu. The reason is that Sunstone uses polling time as time reference while vCenter uses sample time on their graphs, so an approximation to the real values aggregating vCenter's samples between polls is needed. As a result, peaks may be different in value and different peaks between polls won't be depicted. Sunstone's graphs will provide a useful information about disks behaviour which can be examined on vCenter later with greater detail.
+
 
 vCenter Images
 ================================================================================
