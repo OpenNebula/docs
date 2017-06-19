@@ -144,10 +144,41 @@ In general, vCenter attributes will be preceed by the suffix **VCENTER_**
 Pre-migration phase
 --------------------------------------------------------------------------------
 
-TODO
+OpenNebula provides a script that must be run **before** it is upgraded. This script can be downloaded from TODO.
+
+The script will perform the following tasks:
+
+* It will inspect all OpenNebula hosts that represents vCenter clusters and it will establish a connection with every vcenter instance that if founds using the stored credentials.
+* It will retrieve views containing clusters, virtual machines, templates, datastores and port groups. This operation may take some time so you'll have to be patient while some progress is shown during the execution.
+* New attributes that don't interfere with existing OpenNebula templates will be added to hosts, datastores, virtual networks, VM templates an images. For example, managed object references will be added to objects so vCenter objects can be monitored after OpenNebula's upgrade operation.
+* Although the script will do its best, it's probably that some manual intervention will be required. For example, if one cluster is found in several datacenter locations with the same name, the administrator must confirm what vCenter cluster is associated with the OpenNebula host.
+* For each IMAGE datastore found, a SYSTEM datastore will be created.
+* Templates and wild VMs that were imported will be inspected in order to discover virtual hard disks and network interface cards that are invisible. OpenNebula images and virtual networks will be created so the invisible disks and nics are visible once OpenNebula it's upgraded.
+* Finally the script will create XML files in the /tmp directory. Those XML files will contain a full template where old and deprecated attributes will be removed. Those XML files will be used later in the migration phase so OpenNebula templates have only the new supported attributes.
+
+.. important:: Before the pre-migration script can be executed you must edit the /etc/one/oned.conf configuration file and
 
 
 Migration phase
 --------------------------------------------------------------------------------
 
-TODO
+Once OpenNebula packages have been upgraded, the onedb tool will have a new migration tool for vCenter.
+
+The migration tool is launched using the vcenter-one54 option:
+
+.. image:: /images/vcenter_onedb_migrator_1.png
+    :width: 35%
+    :align: center
+
+The migration tool will update some OpenNebula's database tables using the XML files that were created in the pre-migration phase. This is the list of affected tables:
+
+* template_pool
+* vm_pool
+* host_pool
+* datastore_pool
+* network_pool
+* image_pool 
+
+.. important:: The migration tool must be run **before** a onedb upgrade command is executed. Also don't forget to run onedb fsck after a onedb upgrae, so some inconsistencies are tackled.
+
+.. note:: The migration tool must be run from the same machine where the pre-migrator tool was executed as it requires some XML templates files stored in the /tmp directory.
