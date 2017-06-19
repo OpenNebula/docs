@@ -153,11 +153,11 @@ The script will perform the following tasks:
 * New attributes that don't interfere with existing OpenNebula templates will be added to hosts, datastores, virtual networks, VM templates an images. For example, managed object references will be added to objects so vCenter objects can be monitored after OpenNebula's upgrade operation.
 * Although the script will do its best, it's probably that some manual intervention will be required. For example, if one cluster is found in several datacenter locations with the same name, the administrator must confirm what vCenter cluster is associated with the OpenNebula host.
 * For each IMAGE datastore found, a SYSTEM datastore will be created.
-* Templates and wild VMs that were imported will be inspected in order to discover virtual hard disks and network interface cards that are invisible. OpenNebula images and virtual networks will be created so the invisible disks and nics are visible once OpenNebula it's upgraded.
+* Templates and wild VMs that were imported will be inspected in order to discover virtual hard disks and network interface cards that are invisible. OpenNebula images and virtual networks will be created so the invisible disks and nics are visible once OpenNebula it's upgraded. Datastores that hosts those virtual hard disks will be imported into OpenNebula if they were not previously in OpenNebula.
+* OpenNebula hosts, networks and datastores will grouped under OpenNebula clusters. Each vCenter cluster will be assigned to an OpenNebula cluster.
 * Finally the script will create XML files in the /tmp directory. Those XML files will contain a full template where old and deprecated attributes will be removed. Those XML files will be used later in the migration phase so OpenNebula templates have only the new supported attributes.
 
-.. important:: Before the pre-migration script can be executed you must edit the /etc/one/oned.conf configuration file and
-
+.. important:: Before the pre-migration script can be executed you must edit the /etc/one/oned.conf configuration file and change the DS_MAD_CONF vcenter section: PERSISTENT_ONLY must be changed to NO and REQUIRED_ATTRS should be set to "" so VCENTER_CLUSTER is no longer required. OpenNebula services must be restarted once the oned.conf file is changed.
 
 Migration phase
 --------------------------------------------------------------------------------
@@ -177,7 +177,7 @@ The migration tool will update some OpenNebula's database tables using the XML f
 * host_pool
 * datastore_pool
 * network_pool
-* image_pool 
+* image_pool
 
 .. important:: The migration tool must be run **before** a onedb upgrade command is executed. Also don't forget to run onedb fsck after a onedb upgrae, so some inconsistencies are tackled.
 
