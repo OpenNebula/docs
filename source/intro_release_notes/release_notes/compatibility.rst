@@ -144,7 +144,9 @@ In general, vCenter attributes will be preceed by the suffix **VCENTER_**
 Pre-migration phase
 --------------------------------------------------------------------------------
 
-OpenNebula provides a script that must be run **before** it is upgraded. This script can be downloaded from TODO.
+OpenNebula provides a script that must be run **before** it is upgraded using the **oneadmin** user account. This script can be downloaded from TODO.
+
+.. important:: This pre-migration script should only work with OpenNebula 5.0 version and above. If you're running OpenNebula 4.14.2 or lower you should first upgrade to a 5.* version and then use this pre-migration tool.
 
 .. important:: Before the pre-migration script can be executed you must edit the /etc/one/oned.conf configuration file and change the DS_MAD_CONF vcenter section: PERSISTENT_ONLY must be changed to NO and REQUIRED_ATTRS should be set to "" so VCENTER_CLUSTER is no longer required. OpenNebula services must be restarted once the oned.conf file is changed.
 
@@ -169,7 +171,7 @@ with the following lines:
 
 .. code-block:: ruby
 
-    if drv_action["/DS_DRIVER_ACTION_DATA/IMAGE/TEMPLATE/VCENTER_IMPORTED"] == "YES"
+    if drv_action["/DS_DRIVER_ACTION_DATA/IMAGE/TEMPLATE/VCENTER_IMPORTED"] != "YES"
         vi_client.delete_virtual_disk(img_src,ds_name)
      end
 
@@ -183,6 +185,8 @@ Migration phase
 --------------------------------------------------------------------------------
 
 Once OpenNebula packages have been upgraded, the onedb tool will have a new migration tool for vCenter.
+
+.. important:: The migration tool must be run **before** a onedb upgrade command is executed.
 
 The migration tool is launched using the vcenter-one54 option:
 
@@ -199,6 +203,9 @@ The migration tool will update some OpenNebula's database tables using the XML f
 * network_pool
 * image_pool
 
-.. important:: The migration tool must be run **before** a onedb upgrade command is executed. Also don't forget to run onedb fsck after a onedb upgrae, so some inconsistencies are tackled.
+Once the migration tool finishes you'll have to follow these steps:
+
+* Run a onedb upgrade, so the database is migrated to the last version.
+* Run onedb fsck after the onedb upgrade. Some inconsistencies will be solved, others won't be fixed although they are expected. For example, you may find [UNREPAIRED] VM XX has a lease from VNet XX, but it could not be matched to any AR, that is expected for previously invisible NIC interfaces in VM added in the pre-migration phase.
 
 .. note:: The migration tool must be run from the same machine where the pre-migrator tool was executed as it requires some XML templates files stored in the /tmp directory.
