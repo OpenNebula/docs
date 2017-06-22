@@ -131,7 +131,6 @@ The significant milestone is that vCenter is no longer treated as a public cloud
 - **Improve API call management**, :ref:`vCenter driver <vcenterg>` does not leave open sessions in the server.
 - **Removed naming limitations**, like for instance vCenter cluster and datastore names with spaces are now supported.
 - **Better StoragePod support**, now :ref:`clustered datastores <storage_drs_pods>` are clearly differentiated at import time.
-- **Marketplace support**, with the ability to download VMDK from the :ref:`marketplace <marketplace>`.
 - **Improved Datastore & Image management**, :ref:`non-persistent images <vcenter_ds>` are now supported and they're cloned automatically by OpenNebula, also now vCenter VMs can use volatile images.
 - **Disks can be resized**, when a :ref:`VM is deployed <vm_guide2_resize_disk>`.
 - **Disks and NICs in vCenter template are now visible**, when a :ref:`vCenter template is imported <vcenter_import_templates>` images and networks representing disks and nics are created.
