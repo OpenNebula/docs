@@ -478,6 +478,8 @@ The **onevcenter** tool and the Sunstone interface can be used to import existin
 
 .. important:: This step should be performed **after** we have imported the datastores where the template's hard disk files are located as it was explained before.
 
+.. important:: Before importing a template check that the datastores that hosts the virtual hard disks have been monitored and that they report its size and usage information. You can't create images in a datastore until it's monitored.
+
 The import tools (either the onevcenter tool or Sunstone) gives you information about the templates:
 
 * the name of the template

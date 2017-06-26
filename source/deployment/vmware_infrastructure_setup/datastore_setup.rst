@@ -96,6 +96,7 @@ In the following example we can see that the file associated to the Image with O
     :width: 70%
     :align: center
 
+..important: OpenNebula is commited to not leaving unneeded folders and files on your datatores, however note that in vCenter 6.5 we have detected a bug in its API that currently prevents OpenNebula to delete empty directories created by OpenNebula. Hence you may find empty folders in your datastores inside locations mentioned earlier that you may have to remove by hand if those folders bothers you somehow.
 
 Requirements
 --------------------------------------------------------------------------------
@@ -104,6 +105,7 @@ In order to use the vCenter datastore, the following requirements need to be met
 
 * All the ESX servers controlled by vCenter need to mount the same VMFS datastore with the same name.
 * The ESX servers need to be part of the Cluster controlled by OpenNebula
+* Before you can create images in an IMAGE datastore check that the datastore has been monitored and that it reports its size and usage information. You can't create images in a datastore until it's monitored.
 
 .. _vcenter_upload_vmdk:
 
