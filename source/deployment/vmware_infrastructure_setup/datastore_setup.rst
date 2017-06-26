@@ -96,7 +96,7 @@ In the following example we can see that the file associated to the Image with O
     :width: 70%
     :align: center
 
-..important: OpenNebula is commited to not leaving unneeded folders and files on your datatores, however note that in vCenter 6.5 we have detected a bug in its API that currently prevents OpenNebula to delete empty directories created by OpenNebula. Hence you may find empty folders in your datastores inside locations mentioned earlier that you may have to remove by hand if those folders bothers you somehow.
+.. important:: OpenNebula is commited to not leaving unneeded folders and files on your datatores, however note that in vCenter 6.5 we have detected a bug in its API that currently prevents OpenNebula to delete empty directories created by OpenNebula. Hence you may find empty folders in your datastores inside locations mentioned earlier that you may have to remove by hand if those folders bothers you somehow.
 
 Requirements
 --------------------------------------------------------------------------------
