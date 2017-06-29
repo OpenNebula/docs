@@ -709,6 +709,13 @@ After a vCenter VM Template is imported as a OpenNebula VM Template, it can be m
 * :ref:`New network interfaces <vm_guide2_nic_hotplugging>`
 * :ref:`Context information <vcenter_contextualization>`
 
+If you modify a vCenter VM template and you edit a disk or nic that was found by OpenNebula when the template was imported, please read the following notes:
+
+* Disks and nics that were discovered have a special attribute called OPENNEBULA_MANAGED set to NO.
+* The OPENNEBULA_MANAGED=NO should only be present in DISK and NIC elements that exist in your vCenter template as OpenNebula doesnt't apply the same actions that those applied to disks and nics that are not part of your vCenter template.
+* If you edit a DISK or NIC element in your VM template which has OPENNEBULA_MANAGED set to NO and you change the image or virtual network associated to a new resource that is not part of the vCenter template please don't forget to remove the OPENNEBULA_MANAGED attribute in the DISK or NIC section of the VM template either using the Advanced view in Sunstone or from the CLI with the onetemplate update command.
+
+
 Before using your OpenNebula cloud you may want to read about the :ref:`vCenter specifics <vcenter_specifics>`.
 
 .. _vcenter_import_wild_vms:
