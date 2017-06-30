@@ -141,3 +141,4 @@ The significant milestone is that vCenter is no longer treated as a public cloud
 - **Attaching a CDROM works even though a CDROM drive is not already present in the VM**, an :ref:`IDE CDROM is used <vcenter_attach_cdrom>`.
 - **Linked Clones can be used**, :ref:`onevcenter tool <vcenter_linked_clones_description>` gives the chance to prepare a template being imported so it can benefit from VM linked clone.
 - **Disk statistics are retrieved from vCenter**, disk metrics like the rate of reading/writing data to the VM's virtual disks and read/write IOPS will be available if the :ref:`right statistics level is set in vCenter<disk_monitoring>`.
+- **VM can be saved as a template**, a VM in poweroff state can be :ref:`saved as an OpenNebula template<vcenter_save_as_template>` from the cloud_vcenter view.
