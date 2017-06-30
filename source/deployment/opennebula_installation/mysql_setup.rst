@@ -66,6 +66,23 @@ Fields:
 * **passwd**: MySQL password.
 * **db_name**: Name of the MySQL database OpenNebula will use.
 
+
+Editing Systemd opennebula.service script
+-----------------------------------------
+
+When on Ubuntu 16.04 and using OpenNebula with MySQL you might notice OpenNebula backend service not starting up automatically on system boot due to MySQL not having been started yet. In this case you may wish to edit /lib/systemd/system/opennebula.service and replace
+
+.. code::
+
+    After=mariadb.service
+    
+with
+
+.. code::
+
+    After=mysql.service
+
+
 Using OpenNebula with MySQL
 ===========================
 
