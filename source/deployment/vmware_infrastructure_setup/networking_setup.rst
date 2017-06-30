@@ -66,13 +66,13 @@ If you want to use the vcenter network driver you must uncomment or add the foll
     VNET_HOOK = [
         name      = "vcenter_net_create",
         on        = "CREATE",
-        command   = "ft/create_vcenter_net.rb",
+        command   = "vcenter/create_vcenter_net.rb",
         arguments = "$ID $TEMPLATE"]
 
     VNET_HOOK = [
         name      = "vcenter_net_delete",
         on        = "REMOVE",
-        command   = "ft/delete_vcenter_net.rb",
+        command   = "vcenter/delete_vcenter_net.rb",
         arguments = "$ID $TEMPLATE"]
 
 .. note:: If you don't want OpenNebula to remove the vCenter network elements when a Virtual Network is deleted, remove the VNET_HOOK associated to the REMOVE action.
