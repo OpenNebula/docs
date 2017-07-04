@@ -278,28 +278,6 @@ Summary of Raft Configuration Attributes
 | `XMLRPC_TIMEOUT_MS`        | To timeout raft related API calls                                                                                      |
 +----------------------------+------------------------------------------------------------------------------------------------------------------------+
 
-  RAFT: Algorithm attributes
-    LOG_RETENTION: Number of DB log records kept, it determines the
-    synchronization window across servers and extra storage space needed.
-    LOG_PURGE_TIMEOUT: How often applied records are purged according the log
-    retention value. (in seconds)
-    ELECTION_TIMEOUT_MS: Timeout to start a election process if no heartbeat or
-    log is received from leader.
-    BROADCAST_TIMEOUT_MS: How often heartbeats are sent to  followers.
-    XMLRPC_TIMEOUT_MS: To timeout raft related API calls
-
-  RAFT_LEADER_HOOK: Executed when a server transits from follower->leader
-    The purpose of this hook is to configure the Virtual IP.
-    COMMAND: raft/vip.sh is a fully working script, this should not be changed
-    ARGUMENTS: <interface> and <ip_cidr> must be replaced. For example
-               ARGUMENTS = "leader ens1 10.0.0.2/24"
-
-  RAFT_FOLLOWER_HOOK: Executed when a server transits from leader->follower
-    The purpose of this hook is to configure the Virtual IP.
-    COMMAND: raft/vip.sh is a fully working script, this should not be changed
-    ARGUMENTS: <interface> and <ip_cidr> must be replaced. For example
-               ARGUMENTS = "follower ens1 10.0.0.2/24"
-
 Compatibility with the earlier HA
 =================================
 
