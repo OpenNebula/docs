@@ -1,18 +1,18 @@
 .. _frontend_ha_setup:
 .. _oneha:
 
-=============================
+================================================================================
 OpenNebula HA Setup
-=============================
+================================================================================
 
 This guide walks you through the process of setting a high available cluster for OpenNebula core services: core (oned), scheduler (mm\_sched).
 
-OpenNebula uses a distributed consensus protocol to provide fault-tolerance and state consistency across OpenNebula services. In this section you'll learn the basics of how-to bootstrap and operate an OpenNebula distributed cluster.
+OpenNebula uses a distributed consensus protocol to provide fault-tolerance and state consistency across OpenNebula services. In this section you'll learn the basics of how to bootstrap and operate an OpenNebula distributed cluster.
 
-.. warning:: If you are interested in failover protection against hardware and operating system outages within your virtualized IT environment, check the :ref:`Virtual Machines High Availability Guide <ftguide>`.
+.. warning:: If you are interested in fail-over protection against hardware and operating system outages within your virtualized IT environment, check the :ref:`Virtual Machines High Availability Guide <ftguide>`.
 
 Raft Overview
-=============
+================================================================================
 
 This section covers some internal details on how OpenNebula implements Raft. You do not need to know these details to effectively operate OpenNebula on HA. These details are provided for those who wish to learn about them to fine tune their deployments.
 
@@ -28,16 +28,34 @@ Whenever the system is modified (e.g. a new VM is added to the system), the *lea
 
 In OpenNebula, read-only operations can be performed through any oned server in the cluster, this means that reads can be arbitrarily stale but generally within the round-trip time of the network.
 
-Requirements
-===========================
-
-.. todo:: TODO
-
-Bootstraping the HA cluster
-===========================
+Requirements and Architecture
+================================================================================
 
 The recommended deployment size is either 3 or 5 servers, that are able to tolerate up to 1 or 2 server failures, respectively. You can add, replace or remove servers once the cluster is up and running.
 
+Every HA cluster requires the following:
+
+* An odd number of servers (3 is recommended).
+* It's recommended that the servers are identical in terms of capacity, etc.
+* Every server should have a working MySQL database.
+* A floating IP which will be assigned to the *leader*
+* The configuration of the servers should be exactly the same. The sole difference would be the `SERVER_ID` field in `/etc/one/oned.conf`.
+* All the servers must share the credentials
+
+The servers should be configured in the following way:
+
+* MySQL running, with the database and user created as it appears in `/etc/one/oned.conf`.
+* Sunstone (with or without Apache/Passenger) running in all the nodes
+* Shared datastores must be mounted in all the nodes
+
+.. todo:
+
+  Shared log files and files datastore
+
+Bootstrapping the HA cluster
+================================================================================
+
+This section exemplifies and provides a procedure on how to deploy an HA Cluster.
 .. warning::
 
   In order to maintain a healthy cluster during the procedure of adding servers to the clusters, make sure you add **only** one server at a time
@@ -45,7 +63,7 @@ The recommended deployment size is either 3 or 5 servers, that are able to toler
 Configuration of the initial leader
 --------------------------------------------------------------------------------
 
-We start with the first server, to perform the initial system bootstraping.
+We start with the first server, to perform the initial system bootstrapping.
 
 * Start OpenNebula
 * Add the server itself to the zone:
@@ -239,21 +257,33 @@ The whole procedure is documented :ref:`here <frontend_ha_setup_add_remove_serve
 Sunstone
 ================================================================================
 
-.. todo:: TODO
+.. todo:: load balancer, etc.
 
 Summary of Raft Configuration Attributes
 ========================================
 
 .. todo:: TODO
 
-.. code::
++-----------------------------------------------------------------------------------------------------------------------------------------------------+
+| Raft: Algorithm Attributes                                                                                                                          |
++============================+========================================================================================================================+
+| `LOG_RETENTION`            | Number of DB log records kept, it determines the synchronization window across servers and extra storage space needed. |
++----------------------------+------------------------------------------------------------------------------------------------------------------------+
+| `LOG_PURGE_TIMEOUT`        | How often applied records are purged according the log retention value. (in seconds)                                   |
++----------------------------+------------------------------------------------------------------------------------------------------------------------+
+| `ELECTION_TIMEOUT_MS`      | Timeout to start a election process if no heartbeat or log is received from leader.                                    |
++----------------------------+------------------------------------------------------------------------------------------------------------------------+
+| `BROADCAST_TIMEOUT_MS`     | How often heartbeats are sent to  followers.                                                                           |
++----------------------------+------------------------------------------------------------------------------------------------------------------------+
+| `XMLRPC_TIMEOUT_MS`        | To timeout raft related API calls                                                                                      |
++----------------------------+------------------------------------------------------------------------------------------------------------------------+
 
   RAFT: Algorithm attributes
     LOG_RETENTION: Number of DB log records kept, it determines the
     synchronization window across servers and extra storage space needed.
     LOG_PURGE_TIMEOUT: How often applied records are purged according the log
     retention value. (in seconds)
-    ELECTION_TIMEOUT_MS: Timeout to start a election process if no hearbeat or
+    ELECTION_TIMEOUT_MS: Timeout to start a election process if no heartbeat or
     log is received from leader.
     BROADCAST_TIMEOUT_MS: How often heartbeats are sent to  followers.
     XMLRPC_TIMEOUT_MS: To timeout raft related API calls
