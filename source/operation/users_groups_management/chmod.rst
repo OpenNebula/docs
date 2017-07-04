@@ -40,6 +40,8 @@ You can check what operations are allowed with each of the **USE**, **MANAGE** a
 
 * **ADMIN**: Special operations that are typically limited to administrators, like updating the data of a host or deleting an user group. Typically you will grant ``ADMIN`` permissions to those users with an administrator role.
 
+.. important:: VirtualMachine objects allow you to set the permission level required for each specific action, for example you may want to require USE for the delete-recreate operation instead the default ADMIN right. You can :ref:`overrride the default permissions for each action <oned_conf_vm_operations>` in oned.conf.
+
 .. warning:: By default every user can update any permission group (owner, group or other) with the exception of the admin bit. There are some scenarios where it would be advisable to limit the other set (e.g. OpenNebula Zones so users can not break the group limits). In these situations the ``ENABLE_OTHER_PERMISSIONS`` attribute can be set to ``NO`` in ``/etc/one/oned.conf`` file
 
 .. todo:: include information about association of vm operation to an usage right class
