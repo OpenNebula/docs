@@ -225,6 +225,8 @@ Managing Disk Snapshots
 
 A user can take snapshots of the disk states at any moment in time (if the VM is in ``RUNNING``, ``POWEROFF`` or ``SUSPENDED`` states). These snapshots are organized in a tree-like structure, meaning that every snapshot has a parent, except for the first snapshot whose parent is ``-1``. At any given time a user can revert the disk state to a previously taken snapshot. The active snapshot, the one the user has last reverted to, or taken, will act as the parent of the next snapshot. In addition, it's possible to delete snapshots that are not active and that have no children.
 
+.. warning:: The default behavior described previously can be overridden by the storage driver; and it may allow a flat snapshot structure without parent/child relationship. In that case, snapshots can be freely removed.
+
 - ``disk-snapshot-create <vmid> <diskid> <name>``: Creates a new snapshot of the specified disk.
 - ``disk-snapshot-revert <vmid> <diskid> <snapshot_id>``: Reverts to the specified snapshot. The snapshots are immutable, therefore the user can revert to the same snapshot as many times as he wants, the disk will return always to the state of the snapshot at the time it was taken.
 - ``disk-snapshot-delete <vmid> <diskid> <snapshot_id>``: Deletes a snapshot if it has no children and is not active.
