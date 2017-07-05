@@ -258,6 +258,10 @@ Action scripts needed when the TM is used for the system datastore:
 
 .. _ds_monitor:
 
+Tunning OpenNebula Core and Driver Integration
+================================================================================
+The behavior of OpenNebula can be adapted depending on how the storage perform the underlying operations. For example quotas are computed on the original image datastore depending on the CLONE attribute. In particular, you may want to set two configuration attributes for your drivers: ``DS_MAD_CONF`` and ``TM_MAD_CONF``. See :ref:`the OpenNebula configuration reference <oned_conf_transfer_driver>` for details.
+
 The Monitoring Process
 ================================================================================
 

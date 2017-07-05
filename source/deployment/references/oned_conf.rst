@@ -441,15 +441,18 @@ The configuration for each driver is defined in the TM\_MAD\_CONF section. These
 
 - **ds_migrate**: set if system datastore migrations are allowed for this TM. Only useful for system datastore TMs.
 
+- **allow_orphans**: Snapshots can live without parents
+
 Sample configuration:
 
 .. code-block:: bash
 
     TM_MAD_CONF = [
-        name        = "lvm",
-        ln_target   = "NONE",
-        clone_target= "SELF",
-        shared      = "yes"
+        name          = "lvm",
+        ln_target     = "NONE",
+        clone_target  = "SELF",
+        shared        = "yes",
+        allow_orphans = "no"
     ]
      
     TM_MAD_CONF = [
