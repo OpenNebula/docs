@@ -133,26 +133,28 @@ OpenNebula Configuration
 
 To use your Ceph cluster with the OpenNebula, you need to define a System and Image datastores. Each Image/System Datastore pair will share same following Ceph configuration attributes:
 
-+-----------------+-------------------------------------------------------+-----------+
-|    Attribute    |  Description                                          | Mandatory |
-+=================+=======================================================+===========+
-| ``POOL_NAME``   | The Ceph pool name                                    | **YES**   |
-+-----------------+-------------------------------------------------------+-----------+
-| ``CEPH_USER``   | The Ceph user name, used by libvirt and rbd commands. | **YES**   |
-+-----------------+-------------------------------------------------------+-----------+
-| ``CEPH_CONF``   | Non default ceph configuration file if needed.        |   NO      |
-+-----------------+-------------------------------------------------------+-----------+
-| ``RBD_FORMAT``  | By default RBD Format 2 will be used.                 |   NO      |
-+-----------------+-------------------------------------------------------+-----------+
-| ``BRIDGE_LIST`` | List of storage bridges to access the Ceph cluster    | **YES**   |
-+-----------------+-------------------------------------------------------+-----------+
-| ``CEPH_HOST``   | Space-separated list of Ceph monitors. Example:       | **YES**   |
-|                 | ``host1 host2:port2 host3 host4:port4``.              |           |
-+-----------------+-------------------------------------------------------+-----------+
-| ``CEPH_SECRET`` | The UUID of the libvirt secret.                       | **YES**   |
-+-----------------+-------------------------------------------------------+-----------+
-| ``POOL_NAME``   | Name of Ceph pool                                     | **YES**   |
-+-----------------+-------------------------------------------------------+-----------+
++-----------------+---------------------------------------------------------+-----------+
+|    Attribute    |  Description                                            | Mandatory |
++=================+=========================================================+===========+
+| ``POOL_NAME``   | The Ceph pool name                                      | **YES**   |
++-----------------+---------------------------------------------------------+-----------+
+| ``CEPH_USER``   | The Ceph user name, used by libvirt and rbd commands.   | **YES**   |
++-----------------+---------------------------------------------------------+-----------+
+| ``CEPH_KEY``    | Key file for user, if not set default locations are used|   NO      |
++-----------------+---------------------------------------------------------+-----------+
+| ``CEPH_CONF``   | Non default ceph configuration file if needed.          |   NO      |
++-----------------+---------------------------------------------------------+-----------+
+| ``RBD_FORMAT``  | By default RBD Format 2 will be used.                   |   NO      |
++-----------------+---------------------------------------------------------+-----------+
+| ``BRIDGE_LIST`` | List of storage bridges to access the Ceph cluster      | **YES**   |
++-----------------+---------------------------------------------------------+-----------+
+| ``CEPH_HOST``   | Space-separated list of Ceph monitors. Example:         | **YES**   |
+|                 | ``host1 host2:port2 host3 host4:port4``.                |           |
++-----------------+---------------------------------------------------------+-----------+
+| ``CEPH_SECRET`` | The UUID of the libvirt secret.                         | **YES**   |
++-----------------+---------------------------------------------------------+-----------+
+| ``POOL_NAME``   | Name of Ceph pool                                       | **YES**   |
++-----------------+---------------------------------------------------------+-----------+
 
 .. note:: You may add another Image and System Datastores pointing to other pools with different allocation/replication policies in Ceph.
 
