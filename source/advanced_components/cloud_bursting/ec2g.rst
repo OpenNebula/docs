@@ -83,9 +83,9 @@ Also, you can modify in the same file the default 300 seconds timeout that is wa
 
     state_wait_timeout_seconds: 300
 
-.. warning:: instance_types section shows us the machines that amazon handles, Ec2 driver will retrieve this kind of information so it's better to not change it unless you are aware of your actions!
+.. warning:: instance_types section shows us the machines that AWS is able to provide, the ec2 driver will retrieve this kind of information so it's better to not change it unless you are aware of your actions.
 
-If you were using OpenNebula before 5.4 you may have noticed that there are not AWS credentials in configuration file anymore, this is due security reasons, in 5.4 we have new secure credentials authentication for AWS. With the new method, you do not need to store sensitive credential data inside your disk anymore!  Instead of this, Opennebula daemon will store the data in a encrypted format.
+If you were using OpenNebula before 5.4 you may have noticed that there are not AWS credentials in configuration file anymore, this is due security reasons, in 5.4 we have new secure credentials authentication for AWS. With the new method, you do not need to store sensitive credential data inside your disk anymore.  Instead of this, OpenNebula daemon will store the data in a encrypted format.
 
 After OpenNebula is restarted, create a new Host with AWS credentials that uses the ec2 drivers:
 
