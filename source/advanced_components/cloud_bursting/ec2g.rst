@@ -58,7 +58,7 @@ Driver flags are the same as other drivers:
 
 .. _ec2_driver_conf:
 
-First of all we take a look over our ec2_driver_conf file, it can be located in ``/etc/one/ec2_driver.conf``:
+First of all we take a look over our ec2_driver_conf file located in ``/etc/one/ec2_driver.conf``:
 
 .. code::
 
