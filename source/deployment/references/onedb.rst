@@ -183,3 +183,66 @@ This command migrates from a sqlite database to a mysql database. The procedure 
 * Bootstrap the MySQL Database: ``oned -i``
 * Migrate the Database: ``onedb sqlite2mysql -s <SQLITE_PATH> -u <MYSQL_USER> -p <MYSQL_PASS> -d <MYSQL_DB>``
 * Start OpenNebula
+
+onedb purge-history
+===================
+
+Deletes all but the last 2 history records from non DONE VMs. You can specify start and end dates in case you don't want to delete all history:
+
+.. prompt:: text $ auto
+
+    $ onedb purge-history --start 2014/01/01 --end 2016/06/15
+
+.. warning::
+
+    This action is done while OpenNebula is running. Make a backup of the database before executing.
+
+onedb purge-done
+================
+
+Deletes information of machines in DONE state. ``--start`` and ``--end`` parameters can be used the same as ``purge-history``:
+
+.. prompt:: text $ auto
+
+    $ onedb purge-done --end 2016/01
+
+.. warning::
+
+    This action is done while OpenNebula is running. Make a backup of the database before executing.
+
+onedb change-body
+=================
+
+Changes a value from the body of an object. The possible objects are: ``vm``, ``host``, ``vnet``, ``image``, ``cluster``, ``document``, ``group``, ``marketplace``, ``marketplaceapp``, ``secgroup``, ``template``, ``vrouter`` or ``zone``.
+
+You can filter the objects to modify using one of these options:
+
+    * ``--id``: object id, example: 156
+    * ``--xpath``: xpath expression, example: ``TEMPLATE[count(NIC)>1]``
+    * ``--expr``: xpath expression, can use operators ``=``, ``!=``, ``<``, ``>``, ``<=`` or ``>=``
+        examples: ``UNAME=oneadmin``, ``TEMPLATE/NIC/NIC_ID>0``
+
+If you want to change a value use a third parameter. In case you want to delete it use ``--delete`` option.
+
+Change the second network of VMs that belong to "user":
+
+.. prompt:: text $ auto
+
+    $ onedb change-body vm --expr UNAME=user '/VM/TEMPLATE/NIC[NETWORK="service"]/NETWORK' new_network
+
+Delete cache attribute in all disks, write xml, do not modify DB:
+
+.. prompt:: text $ auto
+
+    $ onedb change-body vm '/VM/TEMPLATE/DISK/CACHE' --delete --dry
+
+Delete cache attribute in all disks in poweroff:
+
+.. prompt:: text $ auto
+
+    $ onedb change-body vm --expr LCM_STATE=8 '/VM/TEMPLATE/DISK/CACHE' --delete
+
+.. warning::
+
+    This action is done while OpenNebula is running. Make a backup of the database before executing.
+
