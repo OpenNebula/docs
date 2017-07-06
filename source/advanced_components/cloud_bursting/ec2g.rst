@@ -94,9 +94,9 @@ After OpenNebula is restarted, create a new Host with AWS credentials that uses 
     $ onehost create ec2 -t ec2 --im ec2 --vm ec2
 
 
-.. note:: new option -t is needed to specific what type of remote provider host we want to set up, if you've followed all the instruction properly your default editor should show in your screen asking for the credentials and other mandatory data that will allow you to communicate with AWS.
+.. note:: -t is needed to specify what type of remote provider host we want to set up, if you've followed all the instruction properly your default editor should show in your screen asking for the credentials and other mandatory data that will allow you to communicate with AWS.
 
-Once you have opened your editor you can look for additional help at the top of your screen, we will explain everything in EC2 Specific Template Attributes/auth_attributes section but you could simply follow the given instructions creating at least 3 variables: EC2_ACCESS, EC2_SECRET, REGION_NAME.
+Once you have opened your editor you can look for additional help at the top of your screen, we will explain everything in :ref:`EC2 Specific Template Attributes <ec2_specific_temaplate_attributes>`section but you could simply follow the given instructions creating at least 3 variables: EC2_ACCESS, EC2_SECRET and REGION_NAME.
 
 This process may become tedious when you are creating a big number of host, for this reason if you need to speed up the proccess you can create a file template like this:
 
