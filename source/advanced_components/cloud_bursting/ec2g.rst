@@ -58,20 +58,20 @@ Driver flags are the same as other drivers:
 
 .. _ec2_driver_conf:
 
-Additionally you must define AWS region to be used and the maximum capacity that you want OpenNebula to deploy on the EC2, for this edit the file ``/etc/one/ec2_driver.conf``:
+First of all we take a look over our ec2_driver_conf file, it can be located in ``/etc/one/ec2_driver.conf``:
 
 .. code::
 
-    regions:
-        default:
-            region_name: us-east-1
-            capacity:
-                m1.small: 5
-                m1.large: 0
-                m1.xlarge: 0
-                
+    proxy_uri:
+    state_wait_timeout_seconds: 300
+    instance_types:
+        c1.medium:
+        cpu: 2
+        memory: 1.7
+        ...
 
-You can define an http proxy if the OpenNebula Frontend does not have access to the internet, in ``/etc/one/ec2_driver.conf``:
+
+You can define an http proxy if the OpenNebula Frontend does not have access to the internet:
 
 .. code::
 
@@ -82,21 +82,40 @@ Also, you can modify in the same file the default 300 seconds timeout that is wa
 .. code::
 
     state_wait_timeout_seconds: 300
-    
-    
-    
-If you were using OpenNebula before 5.4 you may have noticed that there are not AWS credentials in configuration file anymore, this is due security reasons, in 5.4 we have new secure credentials authentication for AWS. You can continue storing credentials inside ec2_driver.conf if you are using opennebula region support (see Multi EC2 Site/Region/Account Support section)  and keeps your credentials inside the region field but we encourage you to use the new method:
+
+.. warning:: instance_types section shows us the machines that amazon handles, Ec2 driver will retrieve this kind of information so it's better to not change it unless you are aware of your actions!
+
+If you were using OpenNebula before 5.4 you may have noticed that there are not AWS credentials in configuration file anymore, this is due security reasons, in 5.4 we have new secure credentials authentication for AWS. With the new method, you do not need to store sensitive credential data inside your disk anymore!  Instead of this, Opennebula daemon will store the data in a encrypted format.
 
 After OpenNebula is restarted, create a new Host with AWS credentials that uses the ec2 drivers:
 
 .. prompt:: bash $ auto
 
-    $ onehost create ec2 --im ec2 --vm ec2 --ec2access your_aws_acces_key --ec2secret your_aws_secret
+    $ onehost create ec2 -t ec2 --im ec2 --vm ec2
+
+
+.. note:: new option -t is needed to specific what type of remote provider host we want to set up, if you've followed all the instruction properly your default editor should show in your screen asking for the credentials and other mandatory data that will allow you to communicate with AWS.
+
+Once you have opened your editor you can look for additional help at the top of your screen, we will explain everything in EC2 Specific Template Attributes/auth_attributes section but you could simply follow the given instructions creating at least 3 variables: EC2_ACCESS, EC2_SECRET, REGION_NAME.
+
+This process may become tedious when you are creating a big number of host, for this reason if you need to speed up the proccess you can create a file template like this:
+
+.. prompt:: bash $ auto
+
+    $ echo EC2_ACCESS = "xXxXXxx" >  ec2host.tpl
+    $ echo EC2_SECRET = "xXXxxXx" >> ec2host.tpl
+    $ echo REGION_NAME= "xXXxxXx" >> ec2host.tpl
+
+We have our "ec2host.tpl" created! we should use it to create host in a faster way:
+
+.. prompt:: bash $ auto
+
+    $ ls
+    ec2host.tpl
+
+    $ onehost create ec2 -t ec2 ec2host.tpl --im ec2 --vm ec2
 
 .. _ec2_specific_temaplate_attributes:
-
-.. note:: In this step you need to add your credentials in order to get the host working, the new method encrypts your keys and stores the information inside the host template, if you are having trouble with the auth you can always change your keys updating the host atts: EC2_ACCESS, EC2_SECRET.
-
 
 EC2 Specific Template Attributes
 ================================================================================
@@ -161,6 +180,36 @@ These values can furthermore be asked to the user using :ref:`user inputs <vm_gu
                      INSTANCETYPE=m1.small,
                      USERDATA="$USERDATA"]
 
+
+.. _auth_attributes:
+
+Auth Attributes
+--------------------------------------------------------------------------------
+Due to our new auth system, we need to create new attributes for keep information of our account in a more secure way, opennebula will tell you how to lidiate with these changes.
+
+When you succesfully executed onehost create with -t option, your default editor will open, we are going to show you an example of how you can complete this area:
+.. code::
+
+    EC2_ACCESS = "this_is_my_ec2_access_key_identificator"
+    EC2_SECRET = "this_is_my_ec2_secret_key"
+    REGION_NAME = "us-east-1"
+    CAPACITY = [
+        M1SMALL = "3",
+        M1LARGE = "1" ]
+
+In this example we put first our pair of identificators required by amazon:
+
+- **EC2_ACCESS**: Amazon AWS Access Key
+- **EC2_SECRET**: Amazon AWS Secret Access Key
+
+This information will be encrypted at the same time that you creates the host, do not be scared if you try to check again these values and you find instead a couple of encrypted values, like we've told you earlier this is for security reasons.
+
+- **REGION_NAME**: it's the name of AWS region that your account uses to deploy machines.
+
+If we look at the example we see "us-east-1" as our region, you can check this information if you look at ec2 console.
+
+- **CAPACITY**: You can define this array to indicate the size and number of ec2 machines that your opennebula host will handle, you can see your ec2_driver.conf instance_types section to know the supported names, remember that point ('.') nottation isn't permitted so you can ignore it (m1.small => M1SMALL).
+
 .. _context_ec2:
 
 Context Support
@@ -181,51 +230,6 @@ For example, if you want to enable SSH access to the VM, an existing EC2 keypair
 .. note:: If a value for the USERDATA attribute is provided in the EC2 section of the template, the CONTEXT section will be ignored and the value provided as USERDATA will be available instead of the CONTEXT information.
 
 .. _ec2g_multi_ec2_site_region_account_support:
-
-Multi EC2 Site/Region/Account Support
-================================================================================
-
-It is possible to define various EC2 hosts to allow OpenNebula the managing of different EC2 regions or different EC2 accounts.
-
-When you create a new host the credentials and endpoint for that host are retrieved from the ``/etc/one/ec2_driver.conf`` file using the host name. Therefore, if you want to add a new host to manage a different region, i.e. ``eu-west-1``, just add your credentials and the capacity limits to the the ``eu-west-1`` section in the conf file, and specify that name (eu-west-1) when creating the new host.
-
-.. code::
-
-    regions:
-        ...
-        eu-west-1:
-            region_name: us-east-1
-            access_key_id: YOUR_ACCESS_KEY
-            secret_access_key: YOUR_SECRET_ACCESS_KEY
-            capacity:
-                m1.small: 5
-                m1.large: 0
-                m1.xlarge: 0
-
-After that, create a new Host with the ``eu-west-1`` name:
-
-.. prompt:: bash $ auto
-
-    $ onehost create eu-west-1 --im ec2 --vm ec2
-
-If the Host name does not match any regions key, the ``default`` will be used.
-
-You can define a different PUBLIC_CLOUD section in your template for each EC2 host, so with one template you can define different AMIs depending on which host it is scheduled, just include a HOST attribute in each EC2 section:
-
-.. code::
-
-    PUBLIC_CLOUD = [ TYPE="EC2",
-                     HOST="ec2",
-                     AMI="ami-0022c769" ]
-    PUBLIC_CLOUD = [ TYPE="EC2",
-                     HOST="eu-west-1",
-                     AMI="ami-03324cc9" ]
-
-You will have *ami-0022c769* launched when this VM template is sent to host *ec2* and *ami-03324cc9* whenever the VM template is sent to host *eu-west-1*.
-
-.. warning:: If only one EC2 site is defined, the EC2 driver will deploy all EC2 templates onto it, not paying attention to the **HOST** attribute.
-
-The availability zone inside a region, can be specified using the ``AVAILABILITYZONE`` attribute in the EC2 section of the template
 
 Hybrid VM Templates
 ================================================================================
