@@ -201,11 +201,11 @@ In this example we put first our pair of identificators required by Amazon:
 - **EC2_ACCESS**: Amazon AWS Access Key
 - **EC2_SECRET**: Amazon AWS Secret Access Key
 
-This information will be encrypted at the same time that you creates the host, do not be scared if you try to check again these values and you find instead a couple of encrypted values for security reasons.
+This information will be encrypted at the same time that you creates the host, so in the host template the values of the EC2_ACCESS and EC2_SECRET attributes will be encrypted.
 
 - **REGION_NAME**: it's the name of AWS region that your account uses to deploy machines.
 
-If we look at the example we see "us-east-1" as our region, you can check this information if you look at ec2 console.
+If we look at the example we see "us-east-1" as our region, you can check this information if you look at EC2 web console.
 
 - **CAPACITY**: You can define this array to indicate the size and number of ec2 machines that your opennebula host will handle, you can see your ec2_driver.conf instance_types section to know the supported names, remember that point ('.') nottation isn't permitted so you can ignore it (m1.small => M1SMALL).
 
