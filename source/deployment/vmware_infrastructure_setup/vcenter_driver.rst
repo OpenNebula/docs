@@ -65,7 +65,7 @@ This a screenshot of a virtual machine browsed by the Managed Object Browser:
     :align: center
 
 
-VMWare VM Templates and Opennebula
+VMWare VM Templates and OpenNebula
 --------------------------------------------------------------------------------
 
 In OpenNebula, Virtual Machines are deployed from VMware VM Templates that **must exist previously in vCenter and must be imported into OpenNebula**. There is a one-to-one relationship between each VMware VM Template and the equivalent OpenNebula VM Template. Users will then instantiate the OpenNebula VM Template and OpenNebula will create a Virtual Machine clone from the vCenter template.
@@ -977,4 +977,4 @@ OpenNebula will search for VMDK and ISO files that haven't been imported yet.
 
 Select the images you want to import and click on the Import button. The ID of the imported images will be reported.
 
-.. note:: When an image is created using the import tool, the VCENTER_IMPORTED attribute is set to YES automatically. This attribute prevents OpenNebula to delete the file from the vCenter datastore when the image is deleted from OpenNebula. This attribute is used to prevent a virtual hard disk to be removed accidentally from a vCenter template.
+.. note:: When an image is created using the import tool, the VCENTER_IMPORTED attribute is set to YES automatically. This attribute prevents OpenNebula to delete the file from the vCenter datastore when the image is deleted from OpenNebula, so it can be used to prevent a virtual hard disk to be removed accidentally from a vCenter template.
