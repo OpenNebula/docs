@@ -185,9 +185,8 @@ These values can furthermore be asked to the user using :ref:`user inputs <vm_gu
 
 Auth Attributes
 --------------------------------------------------------------------------------
-Due to our new auth system, we need to create new attributes for keep information of our account in a more secure way, opennebula will tell you how to lidiate with these changes.
 
-When you succesfully executed onehost create with -t option, your default editor will open, we are going to show you an example of how you can complete this area:
+After succesfully executing onehost create with -t option, your default editor will open. An example follows of how you can complete this area:
 .. code::
 
     EC2_ACCESS = "this_is_my_ec2_access_key_identificator"
@@ -197,12 +196,12 @@ When you succesfully executed onehost create with -t option, your default editor
         M1SMALL = "3",
         M1LARGE = "1" ]
 
-In this example we put first our pair of identificators required by amazon:
+In this example we put first our pair of identificators required by Amazon:
 
 - **EC2_ACCESS**: Amazon AWS Access Key
 - **EC2_SECRET**: Amazon AWS Secret Access Key
 
-This information will be encrypted at the same time that you creates the host, do not be scared if you try to check again these values and you find instead a couple of encrypted values, like we've told you earlier this is for security reasons.
+This information will be encrypted at the same time that you creates the host, do not be scared if you try to check again these values and you find instead a couple of encrypted values for security reasons.
 
 - **REGION_NAME**: it's the name of AWS region that your account uses to deploy machines.
 
