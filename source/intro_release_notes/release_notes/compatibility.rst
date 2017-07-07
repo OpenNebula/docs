@@ -93,6 +93,8 @@ In previous OpenNebula releases you could add the VCENTER_DATASTORE attribute an
 
 That attribute is no longer valid. OpenNebula's scheduler will be the responsible of choosing the datastore where the VM template is going to be cloned in. The scheduler behavior is ruled by the /etc/one/sched.conf file and you can override its policy using the SCHED_REQUIREMENTS and SCHED_DS_REQUIREMENTS attributes.
 
+This also means that the end user cannot chose the target DS using a USER_INPUT, this will be addressed in future revisions.
+
 Instantiate as Persistent
 --------------------------------------------------------------------------------
 

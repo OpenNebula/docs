@@ -1,7 +1,7 @@
 .. _whats_new:
 
 ================================================================================
-What's New in 5.4 Beta
+What's New in 5.4 RC 1
 ================================================================================
 
 OpenNebula 5.4 (Medusa) is the third release of the OpenNebula 5 series. A significant effort has been applied in this release to stabilize features introduced in 5.2 Excession, while keeping an eye in implementing those features more demanded by the community.
