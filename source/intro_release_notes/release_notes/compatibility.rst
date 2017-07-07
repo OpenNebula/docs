@@ -36,7 +36,7 @@ vCenter is no longer considered a PUBLIC CLOUD provider
 
 In previous releases, vCenter was considered a PUBLIC CLOUD provider as Amazon EC2 or Microsoft's Azure. This had adverse effects for vCenter e.g the CONTEXT information was not regenerated when a VM was powered off and resume.
 
-As vcenter was considered a PUBLIC CLOUD provider, several attributes were found inside VM templates under the PUBLIC_CLOUD section, that is no longer the case.
+As vCenter was considered a PUBLIC CLOUD provider, several attributes were found inside VM templates under the PUBLIC_CLOUD section, that is no longer the case.
 
 vCenter Objects reference
 --------------------------------------------------------------------------------
@@ -54,7 +54,7 @@ Disks and networks that exist in vCenter templates or Wild VM are now visible
 
 OpenNebula 5.4 can represent disks and port groups used by templates and Wild VM when they are imported. In previous versions those disks and nics were invisible and therefore you could not manage those resources e.g you could not detach a disk or network interface card.
 
-This change implies that a migration tool will identify existing disks and nics and will create OpenNebula images and virtual networks for templates and wild VMs that are running in OpenNebula.
+This change implies that a migration tool will identify existing disks and nics and will create OpenNebula images and virtual networks for templates and wild VMs that are running in OpenNebula. A new attribute OPENNEBULA_MANAGED=NO will identify DISKs and NICs that are cloned by vCenter when a VM is deployed, so these elements are not created by OpenNebula. You have more information about this attribute and its limitations :ref:`here<vcenter_opennebula_managed>`.
 
 Also there's an important change. If you want to import vCenter templates you MUST first import the vCenter datastores where the VMDK files associated to template's virtual hard disks are located. In previous releases you could import a template after a vCenter cluster was importe because existing disks were not visible to OpenNebula.
 
@@ -92,6 +92,11 @@ VCENTER_DATASTORE is no longer used, Scheduler chooses the datastore
 In previous OpenNebula releases you could add the VCENTER_DATASTORE attribute and force what datastore was going to be used when a VM was cloned before deploying the VM.
 
 That attribute is no longer valid. OpenNebula's scheduler will be the responsible of choosing the datastore where the VM template is going to be cloned in. The scheduler behavior is ruled by the /etc/one/sched.conf file and you can override its policy using the SCHED_REQUIREMENTS and SCHED_DS_REQUIREMENTS attributes.
+
+Instantiate as Persistent
+--------------------------------------------------------------------------------
+
+Instantiate as Persistent is still available when a VM is instantiated but now the template will detect disks and nics that in previous versions were invisible. Due to these new visible disks, note that you must not detach disks from the VM or resize any disk of the VM once you’ve deployed it with Instantiate as Persistent, as when the VM is terminated the OpenNebula template that was created before the VM was deployed will differ from the template created in vCenter. Differences between the templates may affect operations on VMs based on unsynced templates.
 
 Datastores now have vCenter credentials inside its templates
 --------------------------------------------------------------------------------

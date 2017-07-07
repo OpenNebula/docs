@@ -145,11 +145,23 @@ At the time of deploying a VM Template, a flag can be used to create a new VM Te
 
   $ onetemplate instantiate <tid> --persistent
 
-Whenever the VM life-cycle ends, OpenNebula will instruct vCenter to create a new vCenter VM Template out of the VM, with the settings of the VM including any new disks or network interfaces added through OpenNebula. Any new disk added to the VM will be saved as part of the template, and when a new VM is spawned from this new VM Template the disk will be cloned by OpenNebula.
+You can also use this feature from Sunstone when you instantiate a template:
 
-A new OpenNebula VM Template will also be created pointing to this new VM Template, so it can be instantiated through OpenNebula. This new OpenNebula VM Template will be pointing to the original template until the VM is shutdown, at which point it will be converted to a vCenter VM Template and the OpenNebual VM Template updated to point to this new vCentre VM Template.
+.. image:: /images/vcenter_instantiate_as_persistent_1.png
+    :width: 35%
+    :align: center
+
+OpenNebula does the following when you use Instantiate to Persistent:
+
+* A copy of every disk in the template is made and stored as OpenNebula images. Unmanaged disks which are disks that have OPENNEBULA_MANAGED attribute set to NO and that represents the disks that already exists in the vCenter template will be copied as non-persistent images. The rest of the disks will be represented as persistent images. Note that volatile disks won't have an image associated.
+* A new OpenNebula template will be created and the disks added in the previous step will be included in the template.
+* Whenever the VM life-cycle ends (a VM terminate action), OpenNebula will instruct vCenter to create a new vCenter template out of the VM, with the settings of the VM.
+* The OpenNebula VM template will point to the new vCenter template, so it can be instantiated through OpenNebula.
 
 This functionality is very useful to create new VM Templates from a original VM Template, changing the VM configuration and/or installing new software, to create a complete VM Template catalog.
+
+.. important:: Don’t detach disks from the VM or resize any disk of the VM once you’ve deployed it with Instantiate as Persistent, as when the VM is terminated the OpenNebula template that was created before the VM was deployed will differ from the template created in vCenter. Differences between the templates may affect operations on VMs based on unsynced templates.
+
 
 .. _vcenter_save_as_template:
 
@@ -168,13 +180,13 @@ OpenNebula will offer to create a copy of the disks, select non-persistent image
     :width: 35%
     :align: center
 
-the VM will show the state SAVING_IMAGE while a copy of the disks inside the vCenter VM is created.
+a message will inform you that the new OpenNebula template has been created and the VM will show the state SAVING_IMAGE.
 
 .. image:: /images/vcenter_save_as_template_3.png
     :width: 35%
     :align: center
 
-Once the disks copy finishes you'll see the VM in OFF state and you can find your new template in the templates tab.
+Refresh the VM state with the icon next to the VM's name, you'll see the VM in OFF state when your new OpenNebula template is ready to use in the templates tab.
 
 Your new VM template will contain DISK elements that will point to the disk copies created and NIC elements that will point to the same OpenNebula virtual networks used by the VM this template is based on.
 
