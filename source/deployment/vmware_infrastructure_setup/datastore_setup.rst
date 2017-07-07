@@ -38,7 +38,7 @@ Disks attached to a VM will be backed by a non-persistent or persistent image al
 Limitations
 --------------------------------------------------------------------------------
 
-* When a vCenter template or wild VM is imported into OpenNebula, the virtual disks are imported, an images are created in OpenNebula representing those virtual disks. Although these images represents files that already exists in the datastores, OpenNebula accounts the size of those imported images as if they were new created files hence the datastore capacity is decreased even though no real space in the vCenter datastore is being used by the OpenNebula images. You should understand this limitation if for example an image cannot be imported as OpenNebula reports that no more space is left or if you're using disk quotas.
+* When a vCenter template or wild VM is imported into OpenNebula, the virtual disks are imported, an images are created in OpenNebula representing those virtual disks. Although these images represent files that already exist in the datastores, OpenNebula accounts the size of those imported images as if they were new created files and therefore the datastore capacity is decreased even though no real space in the vCenter datastore is being used by the OpenNebula images. You should understand this limitation if for example an image cannot be imported as OpenNebula reports that no more space is left or if you're using disk quotas.
 * No support for disk snapshots in the vCenter datastore.
 * Image names and paths cannot contain spaces.
 
