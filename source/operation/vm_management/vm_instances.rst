@@ -454,7 +454,7 @@ This can also be achieved from Sunstone, both in Cloud and Admin View, at the ti
 
 |sunstone_admin_instantiate|
 
-.. important:: In vCenter a disk can be resized only if the VM is in poweroff state and the VM has no snapshots.
+.. important:: In vCenter a disk can be resized only if the VM is in poweroff state and the VM has no snapshots or the template, which the VM is based on, doesn't use linked clones.
 
 .. _vm_updateconf:
 
