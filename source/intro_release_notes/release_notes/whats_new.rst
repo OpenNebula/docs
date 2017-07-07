@@ -139,6 +139,6 @@ The significant milestone is that vCenter is no longer treated as a public cloud
 - **Inventory folder selection**, a folder inside vSphere's VMs and Templates view can be specified so deployed VMs are seen under :ref:`that folder <vcenter_folder_placement>`.
 - **vCenter default values**, some default values for vCenter attributes e.g NIC model, can be specified in :ref:`a new configuration file <vcenter_default_config_file>`
 - **Attaching a CDROM works even though a CDROM drive is not already present in the VM**, an :ref:`IDE CDROM is used <vcenter_attach_cdrom>`.
-- **Linked Clones can be used**, :ref:`onevcenter tool <vcenter_linked_clones_description>` gives the chance to prepare a template being imported so it can benefit from VM linked clone.
+- **Linked Clones can be used**, :ref:`onevcenter tool <vcenter_linked_clones_description>` gives the chance to prepare a template being imported so it can benefit from VM linked clones. Note that disks in a linked clone template cannot be resized.
 - **Disk statistics are retrieved from vCenter**, disk metrics like the rate of reading/writing data to the VM's virtual disks and read/write IOPS will be available if the :ref:`right statistics level is set in vCenter<disk_monitoring>`.
 - **VM can be saved as a template**, a VM in poweroff state can be :ref:`saved as an OpenNebula template<vcenter_save_as_template>` from the cloud_vcenter view.
