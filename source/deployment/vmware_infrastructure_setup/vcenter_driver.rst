@@ -94,6 +94,8 @@ In VMWare there are two types of cloning operations:
 
 When the **onevcenter** tool is used to import a vCenter template, as explained later, you'll be able to specify if you want to use linked clones when the template is imported. Note that if you want to use linked clones, OpenNebula has to create delta disks on top of the virtual disks that are attached to the template. This operation will modify the template so you may prefer that OpenNebula creates a copy of the template and modify that template instead, the onevcenter tool will allow you to choose what you prefer to do.
 
+.. important:: Linked clone disks cannot be resized.
+
 .. note:: Sunstone does not allow you to specify if you want to use Linked Clones as the operations involved are heavy enough to keep them out of the GUI.
 
 .. _vcenter_folder_placement:
@@ -709,11 +711,13 @@ After a vCenter VM Template is imported as a OpenNebula VM Template, it can be m
 * :ref:`New network interfaces <vm_guide2_nic_hotplugging>`
 * :ref:`Context information <vcenter_contextualization>`
 
-If you modify a vCenter VM template and you edit a disk or nic that was found by OpenNebula when the template was imported, please read the following notes:
+.. _vcenter_opennebula_managed:
 
-* Disks and nics that were discovered have a special attribute called OPENNEBULA_MANAGED set to NO.
-* The OPENNEBULA_MANAGED=NO should only be present in DISK and NIC elements that exist in your vCenter template as OpenNebula doesnt't apply the same actions that those applied to disks and nics that are not part of your vCenter template.
-* If you edit a DISK or NIC element in your VM template which has OPENNEBULA_MANAGED set to NO and you change the image or virtual network associated to a new resource that is not part of the vCenter template please don't forget to remove the OPENNEBULA_MANAGED attribute in the DISK or NIC section of the VM template either using the Advanced view in Sunstone or from the CLI with the onetemplate update command.
+.. important:: If you modify a VM template and you edit a disk or nic that was found by OpenNebula when the template was imported, please read the following notes:
+
+    * Disks and nics that were discovered in a vCenter template have a special attribute called OPENNEBULA_MANAGED set to NO.
+    * The OPENNEBULA_MANAGED=NO should only be present in DISK and NIC elements that exist in your vCenter template as OpenNebula doesnt't apply the same actions that those applied to disks and nics that are not part of your vCenter template.
+    * If you edit a DISK or NIC element in your VM template which has OPENNEBULA_MANAGED set to NO and you change the image or virtual network associated to a new resource that is not part of the vCenter template please don't forget to remove the OPENNEBULA_MANAGED attribute in the DISK or NIC section of the VM template either using the Advanced view in Sunstone or from the CLI with the onetemplate update command.
 
 
 Before using your OpenNebula cloud you may want to read about the :ref:`vCenter specifics <vcenter_specifics>`.
@@ -750,6 +754,8 @@ In Sunstone we have the Wild tab in the host's information:
     :align: center
 
 VMs in running state can be imported, and also VMs defined in vCenter that are not in Power On state (this will import the VMs in OpenNebula as in the poweroff state).
+
+.. important:: **Before** you import a Wild VM you must have imported the datastores where the VM's hard disk files are located as it was explained before. OpenNebula requires the datastores to exist before the image that represents an existing virtual hard disk is created.
 
 .. warning:: While the VM is being imported, OpenNebula will inspect the virtual disks and virtual nics and it will create images and virtual networks referencing the disks and port-groups used by the VM so the process may take some time, please be patient.
 
