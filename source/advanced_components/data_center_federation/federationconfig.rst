@@ -17,7 +17,7 @@ OpenNebula master zone server replicates database changes in slaves using a fede
 Step 1. Configure the OpenNebula Federation Master Zone
 ================================================================================
 
-- **@master** Start by picking an OpenNebula to act as master of the federation. The master OpenNebula will be responsible for updating shared information across zones, and replicating the updates to the slaves. You may start with an existing installation or with a new one (see the :ref:`installation guide <ignc>`). 
+- **@master** Start by picking an OpenNebula to act as master of the federation. The master OpenNebula will be responsible for updating shared information across zones, and replicating the updates to the slaves. You may start with an existing installation or with a new one (see the :ref:`installation guide <ignc>`).
 
 .. note:: When installing a new master from scratch be sure to start it at least once to properly bootstrap the database.
 
@@ -36,6 +36,19 @@ Step 2. Adding a New Federation Slave Zone
 ================================================================================
 
 - **@slave** Install OpenNebula in the slave as usual following the :ref:`installation guide <ignc>`. Start OpenNebula at least once to bootstrap the zone database and then stop it.
+
+- **@master** Update ``oned.conf`` to configure for federation:
+
+.. code-block:: none
+
+    FEDERATION = [
+        MODE = "MASTER",
+        ZONE_ID = 0,
+        SERVER_ID = <-1 if standalone | id if the slave is part of an HA cluster itself *NOTE* see below, section "Importing Existing OpenNebula Zones">,
+        MASTER_ONED = ""
+    ]
+
+- **@master** Restart OpenNebula to pick up that change
 
 - **@master** Create a zone for the slave, and write down the new Zone ID. This can be done via Sunstone, or with the onezone command.
 
@@ -59,7 +72,7 @@ Step 2. Adding a New Federation Slave Zone
 
 .. prompt:: bash $ auto
 
-    $  onedb backup --federated -s one.db 
+    $  onedb backup --federated -s /var/lib/one/one.db
     Sqlite database backup of federated tables stored in /var/lib/one/one.db_federated_2017-6-15_8:52:51.bck
     Use 'onedb restore' to restore the DB.
 
@@ -67,7 +80,7 @@ Step 2. Adding a New Federation Slave Zone
 
 - **@master**  Copy the database snapshot to the slave
 
-- **@master** Copy the directory ``/var/lib/one/.one`` to the slave. This directory and its contents must have **oneadmin as owner**. The directory should contain these files:
+- **@master** Copy **only these files** from the directory ``/var/lib/one/.one`` to the slave. This directory and its contents must have **oneadmin as owner**. Only copy over these files:
 
 .. prompt:: bash $ auto
 
@@ -85,6 +98,7 @@ Step 2. Adding a New Federation Slave Zone
     FEDERATION = [
         MODE = "SLAVE",
         ZONE_ID = 100,
+        SERVER_ID = <-1 if standalone | id if the slave is part of an HA cluster itself *NOTE* see below, section "Importing Existing OpenNebula Zones">,
         MASTER_ONED = "http://<oned-master-ip>:2633/RPC2"
     ]
 
@@ -101,7 +115,7 @@ Step 2. Adding a New Federation Slave Zone
 
 .. prompt:: bash $ auto
 
-    $onezone server-add 100 --name one_salve --rpc http://<server_ip>:2633/RPC2
+    $onezone server-add 100 --name one_slave --rpc http://<server_ip>:2633/RPC2
 
 The zone should be now configured and ready to use.
 
@@ -130,7 +144,7 @@ The Zone is now ready to use. If you want to add additional HA servers, follow t
 Updating a Federation
 ================================================================================
 
-OpenNebula database has two different version numbers: one for the federated tables and other for the local ones. In order to federate OpenNebula zones they must run the same version of the federated tables (which are pretty stable). 
+OpenNebula database has two different version numbers: one for the federated tables and other for the local ones. In order to federate OpenNebula zones they must run the same version of the federated tables (which are pretty stable).
 
 Upgrades to a version that does not increase the federated version can be done asynchronously in each zone. However an update in the shared table version requires a coordinated update of all zones.
 
@@ -138,6 +152,6 @@ Upgrades to a version that does not increase the federated version can be done a
 Administration account configuration
 ================================================================================
 
-A Federation will have a unique oneadmin account. This is required to perform API calls across zones. It is recommended to not use this account directly in a production environment, and create an account in the 'oneadmin' group for each Zone administrator. 
+A Federation will have a unique oneadmin account. This is required to perform API calls across zones. It is recommended to not use this account directly in a production environment, and create an account in the 'oneadmin' group for each Zone administrator.
 
 When additional access restrictions are needed, the Federation Administrator can create a special administrative group with total permissions for one zone only.
