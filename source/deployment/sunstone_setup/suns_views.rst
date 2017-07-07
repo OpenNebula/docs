@@ -211,6 +211,10 @@ Inside ``features`` there are two settings:
 
 * ``showback``: When this is false, all :ref:`Showback <showback>` features are hidden. The monthly report tables, and the cost for new VMs in the create VM wizard.
 * ``secgroups``: If true, the create VM wizard will allow to add security groups to each network interface.
+* ``instantiate_hide_cpu``: If true, hide the CPU setting in the VM creation dialog.
+* ``instantiate_cpu_factor``: False to not scale the CPU from VCPU. Number [0, 1] to scale.
+* ``instantiate_persistent``: True to show the option to make an instance persistent.
+* ``vcenter_vm_folder``: True to show an input to specify the the VMs and Template path/folder where a vCenter VM will deployed to
 
 .. code-block:: yaml
 
