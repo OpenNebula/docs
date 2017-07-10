@@ -155,4 +155,4 @@ The error message appears in the ``ERROR`` value of the monitoring. To get more 
     Tue Jul 19 17:17:22 2011 [InM][I]: ExitCode: 1
     Tue Jul 19 17:17:22 2011 [InM][E]: Error monitoring host 1 : MONITOR FAILURE 1 Could not update remotes
 
-From the execution output we notice that the host name is not know, probably a mistake naming the host.
+From the execution output we notice that the host name is not known, probably a mistake naming the host.
