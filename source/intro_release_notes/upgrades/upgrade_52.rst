@@ -60,10 +60,11 @@ Before proceeding, make sure you don't have any VMs in a transient state (prolog
 vCenter
 -------
 
-.. todo::
+.. important:: Read this section carefully if you are using vCenter!
 
-    * run the `pre migrator <https://github.com/OpenNebula/one/blob/master/src/onedb/vcenter_one54_pre.rb>`_
-    * change oned.conf => ds to accept persistent images
+If you are using vCenter you will need to follow some extra steps while **still running OpenNebula 5.2**.
+
+Follow the :ref:`vCenter upgrade 5.2 to 5.4 Pre-migration phase <vcenter_52_to_54_pre>`.
 
 Stop OpenNebula
 ---------------
@@ -108,13 +109,27 @@ If you have customized **any** configuration files under ``/etc/one`` we recomme
 Database Upgrade
 ================
 
+vCenter Migration Tool
+--------------------------------------------------------------------------------
+
+.. important:: Read this section carefully if you are using vCenter!
+
+If you are using vCenter you will need to run the vCenter migration tool before running the `onedb upgrade` command from the next section.
+
+Follow the :ref:`vCenter upgrade 5.2 to 5.4 Migration phase <vcenter_52_to_54_migr>`.
+
+.. _upgrade_onedb_upgrade:
+
+Perform the Database Upgrade
+--------------------------------------------------------------------------------
+
 The database schema and contents are incompatible between versions. The OpenNebula daemon checks the existing DB version, and will fail to start if the version found is not the one expected, with the message 'Database version mismatch'.
 
 You can upgrade the existing DB with the 'onedb' command. You can specify any Sqlite or MySQL database. Check the :ref:`onedb reference <onedb>` for more information.
 
-.. warning:: Make sure at this point that OpenNebula is not running. If you installed from packages, the service may have been started automatically.
+.. note:: Make sure at this point that OpenNebula is not running. If you installed from packages, the service may have been started automatically.
 
-.. warning:: For environments in a Federation: Before upgrading the **master**, make sure that all the slaves have the MySQL replication paused.
+.. note:: For environments in a Federation: Before upgrading the **master**, make sure that all the slaves have the MySQL replication paused.
 
 After you install the latest OpenNebula, and fix any possible conflicts in oned.conf, you can issue the 'onedb upgrade -v' command. The connection parameters have to be supplied with the command line options, see the :ref:`onedb manpage <cli>` for more information. Some examples:
 
@@ -185,7 +200,7 @@ For the **master zone**: This step is not necessary.
 
 For a **slave zone**: The MySQL replication must be resumed now.
 
-.. warning:: Do not copy the server-id from this example, each slave should already have a unique ID.
+.. note:: Do not copy the server-id from this example, each slave should already have a unique ID.
 
 - Start the **slave MySQL** process and check its status. It may take a while to copy and apply all the pending commands.
 
@@ -202,9 +217,10 @@ The ``SHOW SLAVE STATUS`` output will provide detailed information, but to confi
      Slave_IO_Running: Yes
     Slave_SQL_Running: Yes
 
-
-Reload Start Scripts in CentOS 7
+Reload Start Scripts
 ================================
+
+Follow this section if you are using a `systemd` base distribution, like CentOS 7+, Ubuntu 16.04+, etc.
 
 In order for the system to re-read the configuration files you should issue the following command after the installation of the new packages:
 

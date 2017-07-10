@@ -1,3 +1,4 @@
+
 .. _compatibility:
 
 ====================
@@ -13,9 +14,6 @@ OpenNebula Administrators
 
 OpenNebula Daemon
 --------------------------------------------------------------------------------
-
-
-
 
 Developers and Integrators
 ================================================================================
@@ -119,7 +117,6 @@ In previous releases, when a distributed port group was imported some informatio
 
 That information was not accurate and trying to provide the same information for standard port groups would require a significant amount of time and CPU so VLAN ID is no longer retrieved when a distributed port group is imported.
 
-
 Attributes that have changed its name
 --------------------------------------------------------------------------------
 
@@ -146,73 +143,3 @@ In an attempt to ease the task of idenfiying vCenter related attributes many att
 +------------------------------------+--------------------------------------+
 
 In general, vCenter attributes will be preceed by the suffix **VCENTER_**
-
-
-Pre-migration phase
---------------------------------------------------------------------------------
-
-OpenNebula provides a script that must be run **before** it is upgraded using the **oneadmin** user account. This script can be downloaded from TODO.
-
-.. important:: This pre-migration script should only work with OpenNebula 5.0 version and above. If you're running OpenNebula 4.14.2 or lower you should first upgrade to a 5.* version and then use this pre-migration tool.
-
-.. important:: Before the pre-migration script can be executed you must edit the /etc/one/oned.conf configuration file and change the DS_MAD_CONF vcenter section: PERSISTENT_ONLY must be changed to NO and REQUIRED_ATTRS should be set to "" so VCENTER_CLUSTER is no longer required. OpenNebula services must be restarted once the oned.conf file is changed.
-
-The script will perform the following tasks:
-
-* It will inspect all OpenNebula hosts that represents vCenter clusters and it will establish a connection with every vcenter instance that if founds using the stored credentials.
-* It will retrieve views containing clusters, virtual machines, templates, datastores and port groups. This operation may take some time so you'll have to be patient while some progress is shown during the execution.
-* New attributes that don't interfere with existing OpenNebula templates will be added to hosts, datastores, virtual networks, VM templates an images. For example, managed object references will be added to objects so vCenter objects can be monitored after OpenNebula's upgrade operation.
-* Although the script will do its best, it's probably that some manual intervention will be required. For example, if one cluster is found in several datacenter locations with the same name, the administrator must confirm what vCenter cluster is associated with the OpenNebula host.
-* For each IMAGE datastore found, a SYSTEM datastore will be created.
-* Templates and wild VMs that were imported will be inspected in order to discover virtual hard disks and network interface cards that are invisible. OpenNebula images and virtual networks will be created so the invisible disks and nics are visible once OpenNebula it's upgraded. Datastores that hosts those virtual hard disks will be imported into OpenNebula if they were not previously in OpenNebula. The virtual networks that represent port groups found inside existing templates will have an Ethernet address range with 255 MACs in the pool. You may want to change or increase this address range after the pre-migrator tool finishes.
-* OpenNebula hosts, networks and datastores will grouped under OpenNebula clusters. Each vCenter cluster will be assigned to an OpenNebula cluster.
-* Finally the script will create XML files in the /tmp directory. Those XML files will contain a full template where old and deprecated attributes will be removed. Those XML files will be used later in the migration phase so OpenNebula templates have only the new supported attributes.
-
-Before running the script, don't forget to edit the file **/var/lib/one/remotes/datastore/vcenter/rm** and replace the following line:
-
-.. code-block:: ruby
-
-    vi_client.delete_virtual_disk(img_src,ds_name)
-
-with the following lines:
-
-.. code-block:: ruby
-
-    if drv_action["/DS_DRIVER_ACTION_DATA/IMAGE/TEMPLATE/VCENTER_IMPORTED"] != "YES"
-        vi_client.delete_virtual_disk(img_src,ds_name)
-     end
-
-in order to avoid that you accidentally remove a virtual hard disk from a template or wild VM when you delete an image.
-
-.. warning:: It's advisable to disable the Sunstone user interface while the pre-migrator script is run in order to avoid that OpenNebula objects created by users while the script is run are not pre-migrated.
-
-.. note:: This script can be executed as many times as wished. It will update previous results and XML template will be always overwritten.
-
-Migration phase
---------------------------------------------------------------------------------
-
-Once OpenNebula packages have been upgraded, the onedb tool will have a new migration tool for vCenter.
-
-.. important:: The migration tool must be run **before** a onedb upgrade command is executed.
-
-The migration tool is launched using the vcenter-one54 option:
-
-.. image:: /images/vcenter_onedb_migrator_1.png
-    :width: 35%
-    :align: center
-
-The migration tool will update some OpenNebula's database tables using the XML files that were created in the pre-migration phase. This is the list of affected tables:
-
-* template_pool
-* vm_pool
-* host_pool
-* datastore_pool
-* network_pool
-* image_pool
-
-Once the migration tool finishes you'll have to follow these steps:
-
-* Run a onedb upgrade, so the database is migrated to the last version.
-* Run onedb fsck after the onedb upgrade. Some inconsistencies will be solved, others won't be fixed although they are expected. For example, you may find [UNREPAIRED] VM XX has a lease from VNet XX, but it could not be matched to any AR, that is expected for previously invisible NIC interfaces in VM added in the pre-migration phase.
-
-.. note:: The migration tool must be run from the same machine where the pre-migrator tool was executed as it requires some XML templates files stored in the /tmp directory.

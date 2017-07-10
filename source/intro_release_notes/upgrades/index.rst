@@ -19,3 +19,4 @@ Upgrading
    Upgrading from 4.2 <upgrade_42>
    Upgrading from 4.0.x <upgrade_40>
    Upgrading from 3.8.x <upgrade_38>
+   vCenter upgrade 5.2 to 5.4 <vcenter_52_to_54>
