@@ -216,6 +216,10 @@ Fixed Policy
 
 .. _schg_limit:
 
+VM Policies
+-----------
+VMs are dispatched to hosts in a FIFO fashion. You can alter this behavior by giving each VM (or the base template) a priority. Just set the attribute ``USER_PRIOTIY`` to sort the VMs based on this attribute, and so alter the dispatch order. The ``USER_PRIORITY`` can be set for example in the VM templates for a user group if you want prioritize those templates. Note that this priority is also used for rescheduling.
+
 Limiting the Resources Exposed by a Host
 ========================================
 

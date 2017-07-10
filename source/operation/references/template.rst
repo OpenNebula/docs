@@ -716,6 +716,9 @@ The following attributes sets placement constraints and preferences for the VM, 
 | **SCHED\_DS\_RANK**           | States which attribute will be used to sort the suitable datastores for this VM. Basically, it    |
 |                               | defines which datastores are more suitable than others.                                           |
 +-------------------------------+---------------------------------------------------------------------------------------------------+
+| **USER_PRIORITY**             | Alter the standard FIFO ordering to dispatch VMs. VMs with a higher USER_PRIORITY will be         |
+|                               | dispatched first.                                                                                 |
++-------------------------------+---------------------------------------------------------------------------------------------------+
 
 Example:
 
@@ -725,6 +728,106 @@ Example:
     SCHED_RANK            = "FREE_CPU"
     SCHED_DS_REQUIREMENTS = "NAME=GoldenCephDS"
     SCHED_DS_RANK         = FREE_MB
+
+Requirement Expression Syntax
+--------------------------------------------------------------------------------
+
+The syntax of the requirement expressions is defined as:
+
+.. code::
+
+      stmt::= expr';'
+      expr::= VARIABLE '=' NUMBER
+            | VARIABLE '!=' NUMBER
+            | VARIABLE '>' NUMBER
+            | VARIABLE '<' NUMBER
+            | VARIABLE '@>' NUMBER
+            | VARIABLE '=' STRING
+            | VARIABLE '!=' STRING
+            | VARIABLE '@>' STRING
+            | expr '&' expr
+            | expr '|' expr
+            | '!' expr
+            | '(' expr ')'
+
+Each expression is evaluated to 1 (TRUE) or 0 (FALSE). Only those hosts for which the requirement expression is evaluated to TRUE will be considered to run the VM.
+
+Logical operators work as expected ( less '<', greater '>', '&' AND, '\|' OR, '!' NOT), '=' means equals with numbers (floats and integers). When you use '=' operator with strings, it performs a shell wildcard pattern matching. Additionally the '@>' operator means *contains*, if the variable evaluates to an array the expression will be true if that array contains the given number or string (or any string that matches the provided pattern).
+
+Any variable included in the Host template or its Cluster template can be used in the requirements. You may also use an XPath expression to refer to the attribute.
+
+There is a special variable, ``CURRENT_VMS``, that can be used to deploy VMs in a Host where other VMs are (not) running. It can be used only with the operators '=' and '!='
+
+Examples:
+
+.. code::
+
+    # Only aquila hosts (aquila0, aquila1...), note the quotes
+    SCHED_REQUIREMENTS = "NAME = \"aquila*\""
+     
+    # Only those resources with more than 60% of free CPU
+    SCHED_REQUIREMENTS = "FREE_CPU > 60"
+     
+    # Deploy only in the Host where VM 5 is running. Two different forms:
+    SCHED_REQUIREMENTS = "CURRENT_VMS = 5"
+    SCHED_REQUIREMENTS = "\"HOST/VMS/ID\" @> 5"
+     
+    # Deploy in any Host, except the ones where VM 5 or VM 7 are running
+    SCHED_REQUIREMENTS = "(CURRENT_VMS != 5) & (CURRENT_VMS != 7)"
+
+    # Use any datastore that is in cluster 101 (it list of cluster IDs contains 101)
+    SCHED_DS_REQUIREMENTS = "\"CLUSTERS/ID\" @> 101"
+
+.. warning:: If using OpenNebula's default match-making scheduler in a hypervisor heterogeneous environment, it is a good idea to add an extra line like the following to the VM template to ensure its placement in a specific hypervisor.
+
+.. code::
+
+    SCHED_REQUIREMENTS = "HYPERVISOR=\"vcenter\""
+
+.. warning:: Template variables can be used in the SCHED\_REQUIREMENTS section.
+
+-  ``$<template_variable>``: any single value variable of the VM template.
+-  ``$<template_variable>[<attribute>]``: Any single value contained in a multiple value variable in the VM template.
+-  ``$<template_variable>[<attribute>, <attribute2>=<value2>]``: Any single value contained in a multiple value variable in the VM template, setting one atribute to discern between multiple variables called the same way.
+
+For example, if you have a custom probe that generates a MACS attribute for the hosts, you can do short of a MAC pinning, so only VMs with a given MAC runs in a given host.
+
+.. code::
+
+    SCHED_REQUIREMENTS = "MAC=\"$NIC[MAC]\""
+
+Rank Expression Syntax
+--------------------------------------------------------------------------------
+
+The syntax of the rank expressions is defined as:
+
+.. code::
+
+      stmt::= expr';'
+      expr::= VARIABLE
+            | NUMBER
+            | expr '+' expr
+            | expr '-' expr
+            | expr '*' expr
+            | expr '/' expr
+            | '-' expr
+            | '(' expr ')'
+
+Rank expressions are evaluated using each host information. '+', '-', '\*', '/' and '-' are arithmetic operators. The rank expression is calculated using floating point arithmetics, and then round to an integer value.
+
+.. warning:: The rank expression is evaluated for each host, those hosts with a higher rank are used first to start the VM. The rank policy must be implemented by the scheduler. Check the configuration guide to configure the scheduler.
+
+.. warning:: Similar to the requirements attribute, any number (integer or float) attribute defined for the host can be used in the rank attribute
+
+Examples:
+
+.. code::
+
+    # First those resources with a higher Free CPU
+      SCHED_RANK = "FREE_CPU"
+     
+    # Consider also the CPU temperature
+      SCHED_RANK = "FREE_CPU * 100 - TEMPERATURE"
 
 vCenter Section
 ================================================================================
@@ -886,108 +989,7 @@ You can execute ``onehost show <id> -x`` to see all the attributes and their val
 
 .. note:: Check the :ref:`Monitoring Subsystem <devel-im>` guide to find out how to extend the information model and add any information probe to the Hosts.
 
-Requirement Expression Syntax
---------------------------------------------------------------------------------
-
-The syntax of the requirement expressions is defined as:
-
-.. code::
-
-      stmt::= expr';'
-      expr::= VARIABLE '=' NUMBER
-            | VARIABLE '!=' NUMBER
-            | VARIABLE '>' NUMBER
-            | VARIABLE '<' NUMBER
-            | VARIABLE '@>' NUMBER
-            | VARIABLE '=' STRING
-            | VARIABLE '!=' STRING
-            | VARIABLE '@>' STRING
-            | expr '&' expr
-            | expr '|' expr
-            | '!' expr
-            | '(' expr ')'
-
-Each expression is evaluated to 1 (TRUE) or 0 (FALSE). Only those hosts for which the requirement expression is evaluated to TRUE will be considered to run the VM.
-
-Logical operators work as expected ( less '<', greater '>', '&' AND, '\|' OR, '!' NOT), '=' means equals with numbers (floats and integers). When you use '=' operator with strings, it performs a shell wildcard pattern matching. Additionally the '@>' operator means *contains*, if the variable evaluates to an array the expression will be true if that array contains the given number or string (or any string that matches the provided pattern).
-
-Any variable included in the Host template or its Cluster template can be used in the requirements. You may also use an XPath expression to refer to the attribute.
-
-There is a special variable, ``CURRENT_VMS``, that can be used to deploy VMs in a Host where other VMs are (not) running. It can be used only with the operators '=' and '!='
-
-Examples:
-
-.. code::
-
-    # Only aquila hosts (aquila0, aquila1...), note the quotes
-    SCHED_REQUIREMENTS = "NAME = \"aquila*\""
-     
-    # Only those resources with more than 60% of free CPU
-    SCHED_REQUIREMENTS = "FREE_CPU > 60"
-     
-    # Deploy only in the Host where VM 5 is running. Two different forms:
-    SCHED_REQUIREMENTS = "CURRENT_VMS = 5"
-    SCHED_REQUIREMENTS = "\"HOST/VMS/ID\" @> 5"
-     
-    # Deploy in any Host, except the ones where VM 5 or VM 7 are running
-    SCHED_REQUIREMENTS = "(CURRENT_VMS != 5) & (CURRENT_VMS != 7)"
-
-    # Use any datastore that is in cluster 101 (it list of cluster IDs contains 101)
-    SCHED_DS_REQUIREMENTS = "\"CLUSTERS/ID\" @> 101"
-
-.. warning:: If using OpenNebula's default match-making scheduler in a hypervisor heterogeneous environment, it is a good idea to add an extra line like the following to the VM template to ensure its placement in a specific hypervisor.
-
-.. code::
-
-    SCHED_REQUIREMENTS = "HYPERVISOR=\"vcenter\""
-
-.. warning:: Template variables can be used in the SCHED\_REQUIREMENTS section.
-
--  ``$<template_variable>``: any single value variable of the VM template.
--  ``$<template_variable>[<attribute>]``: Any single value contained in a multiple value variable in the VM template.
--  ``$<template_variable>[<attribute>, <attribute2>=<value2>]``: Any single value contained in a multiple value variable in the VM template, setting one atribute to discern between multiple variables called the same way.
-
-For example, if you have a custom probe that generates a MACS attribute for the hosts, you can do short of a MAC pinning, so only VMs with a given MAC runs in a given host.
-
-.. code::
-
-    SCHED_REQUIREMENTS = "MAC=\"$NIC[MAC]\""
-
-Rank Expression Syntax
---------------------------------------------------------------------------------
-
-The syntax of the rank expressions is defined as:
-
-.. code::
-
-      stmt::= expr';'
-      expr::= VARIABLE
-            | NUMBER
-            | expr '+' expr
-            | expr '-' expr
-            | expr '*' expr
-            | expr '/' expr
-            | '-' expr
-            | '(' expr ')'
-
-Rank expressions are evaluated using each host information. '+', '-', '\*', '/' and '-' are arithmetic operators. The rank expression is calculated using floating point arithmetics, and then round to an integer value.
-
-.. warning:: The rank expression is evaluated for each host, those hosts with a higher rank are used first to start the VM. The rank policy must be implemented by the scheduler. Check the configuration guide to configure the scheduler.
-
-.. warning:: Similar to the requirements attribute, any number (integer or float) attribute defined for the host can be used in the rank attribute
-
-Examples:
-
-.. code::
-
-    # First those resources with a higher Free CPU
-      SCHED_RANK = "FREE_CPU"
-     
-    # Consider also the CPU temperature
-      SCHED_RANK = "FREE_CPU * 100 - TEMPERATURE"
-
 .. _template_raw_section:
-
 Hypervisor Section
 ================================================================================
 
