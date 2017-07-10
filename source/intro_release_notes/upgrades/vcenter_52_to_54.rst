@@ -9,7 +9,7 @@ vCenter upgrade 5.2 to 5.4
 Pre-migration phase
 --------------------------------------------------------------------------------
 
-OpenNebula provides a script that must be run **before** it is upgraded using the **oneadmin** user account. This script can be downloaded from TODO.
+OpenNebula provides a script that must be run **before** it is upgraded using the **oneadmin** user account. This script can be downloaded from `https://downloads.opennebula.org/packages/opennebula-5.3.90/vcenter_one54_pre.rb <https://downloads.opennebula.org/packages/opennebula-5.3.90/vcenter_one54_pre.rb>`__.
 
 .. warning:: If you are using the vCenter drivers, there is a manual intervention required in order to upgrade to OpenNebula 5.4. Note that **upgrading from OpenNebula < 5.2 to OpenNebula 5.4 is NOT supported**. You need to upgrade first to OpenNebula 5.2, and then upgrade to OpenNebula 5.4.
 
@@ -109,6 +109,13 @@ And the following change in ``/var/lib/one/remotes/datastore/vcenter/rm``:
 .. note:: It's advisable to disable the Sunstone user interface while the pre-migrator script is run in order to avoid that OpenNebula objects created by users while the script is run are not pre-migrated.
 
 This script can be executed as many times as wished. It will update previous results and XML template will be always overwritten.
+
+In order to execute the script you need to download from `https://downloads.opennebula.org/packages/opennebula-5.3.90/vcenter_one54_pre.rb <https://downloads.opennebula.org/packages/opennebula-5.3.90/vcenter_one54_pre.rb>`__ and run it manually **as oneadmin**.
+
+.. code::
+
+    $ curl -skLO https://downloads.opennebula.org/packages/opennebula-5.3.90/vcenter_one54_pre.rb
+    $ ruby vcenter_one54_pre.rb
 
 .. _vcenter_52_to_54_migr:
 
