@@ -17,13 +17,13 @@ Front-End Components
 +-------------------------+---------------------------------------------------------+-------------------------------------------------------+
 |        Component        |                         Version                         |                    More information                   |
 +=========================+=========================================================+=======================================================+
-| RedHat Enterprise Linux | 7.0                                                     | :ref:`Front-End Installation <frontend_installation>` |
+| RedHat Enterprise Linux | 7                                                       | :ref:`Front-End Installation <frontend_installation>` |
 +-------------------------+---------------------------------------------------------+-------------------------------------------------------+
-| Ubuntu Server           | 14.04 (LTS), 16.04 (LTS), 16.10                         | :ref:`Front-End Installation <frontend_installation>` |
+| Ubuntu Server           | 14.04 (LTS), 16.04 (LTS), 17.04                         | :ref:`Front-End Installation <frontend_installation>` |
 +-------------------------+---------------------------------------------------------+-------------------------------------------------------+
-| CentOS                  | 7.0                                                     | :ref:`Front-End Installation <frontend_installation>` |
+| CentOS                  | 7                                                       | :ref:`Front-End Installation <frontend_installation>` |
 +-------------------------+---------------------------------------------------------+-------------------------------------------------------+
-| Debian                  | 8                                                       | :ref:`Front-End Installation <frontend_installation>` |
+| Debian                  | 8, 9                                                    | :ref:`Front-End Installation <frontend_installation>` |
 +-------------------------+---------------------------------------------------------+-------------------------------------------------------+
 | MariaDB or MySQL        | Version included in the Linux distribution              | :ref:`MySQL Setup <mysql>`                            |
 +-------------------------+---------------------------------------------------------+-------------------------------------------------------+
@@ -49,13 +49,13 @@ KVM Nodes
 +-------------------------+-----------------------------------------------------------+-----------------------------------------+
 |        Component        |                          Version                          |             More information            |
 +=========================+===========================================================+=========================================+
-| RedHat Enterprise Linux | 7.0                                                       | :ref:`KVM Driver <kvmg>`                |
+| RedHat Enterprise Linux | 7                                                         | :ref:`KVM Driver <kvmg>`                |
 +-------------------------+-----------------------------------------------------------+-----------------------------------------+
-| Ubuntu Server           | 14.04 (LTS) , 16.04 (LTS), 16.10                          | :ref:`KVM Driver <kvmg>`                |
+| Ubuntu Server           | 14.04 (LTS) , 16.04 (LTS), 17.04                          | :ref:`KVM Driver <kvmg>`                |
 +-------------------------+-----------------------------------------------------------+-----------------------------------------+
-| CentOS/RHEL             | 7.0                                                       | :ref:`KVM Driver <kvmg>`                |
+| CentOS/RHEL             | 7                                                         | :ref:`KVM Driver <kvmg>`                |
 +-------------------------+-----------------------------------------------------------+-----------------------------------------+
-| Debian                  | 8                                                         | :ref:`KVM Driver <kvmg>`                |
+| Debian                  | 8, 9                                                      | :ref:`KVM Driver <kvmg>`                |
 +-------------------------+-----------------------------------------------------------+-----------------------------------------+
 | KVM/Libvirt             | Support for version included in the Linux distribution.   | :ref:`KVM Node Installation <kvm_node>` |
 |                         | For CentOS/RedHat the packages from ``qemu-ev`` are used. |                                         |
