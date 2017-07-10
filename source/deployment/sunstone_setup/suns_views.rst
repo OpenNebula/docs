@@ -166,8 +166,8 @@ The name of the view will be the filename without the yaml extension.
     ...
     |-- sunstone-views/
     |   |-- admin.yaml       <--- the admin view
-    |   -- cloud.yaml       <--- the cloud view
-    -- sunstone-views.yaml
+    |   `-- cloud.yaml       <--- the cloud view
+    `-- sunstone-views.yaml
     ...
 
 .. note:: The easiest way to create a custom view is to copy the ``admin.yaml`` or ``cloud.yaml`` file and then harden it as needed.
