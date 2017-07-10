@@ -14,7 +14,7 @@ OpenNebula uses a distributed consensus protocol to provide fault-tolerance and 
 Raft Overview
 ================================================================================
 
-This section covers some internals on how the OpenNebula implements Raft. You do not need to know these details to effectively operate OpenNebula on HA. These details are provided for those who wish to learn about them to fine tune their deployments.
+This section covers some internals on how OpenNebula implements Raft. You do not need to know these details to effectively operate OpenNebula on HA. These details are provided for those who wish to learn about them to fine tune their deployments.
 
 A consensus algorithm is built around two concepts:
 
@@ -129,7 +129,7 @@ We start with the first server, to perform the initial system bootstrapping.
       ARGUMENTS = "follower eth0 10.3.3.2/24"
   ]
 
-* **Leader**: Start the OpenNebula.
+* **Leader**: Start OpenNebula.
 * **Leader**: Check the zone, the server is now the leader and has the floating IP:
 
 .. prompt:: bash $ auto

@@ -110,12 +110,6 @@ Step 2. Adding a New Federation Slave Zone
 
 - **Slave**: Start OpenNebula.
 
-- **Slave**: Register the server in the zone:
-
-.. prompt:: bash $ auto
-
-    $ onezone server-add 100 --name one_slave --rpc http://<server_ip>:2633/RPC2
-
 The zone should be now configured and ready to use.
 
 Step 3 [Optional]. Adding HA to a Federation Slave Zone
