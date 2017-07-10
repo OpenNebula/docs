@@ -72,7 +72,7 @@ Step 2. Adding a New Federation Slave Zone
 
 .. prompt:: bash $ auto
 
-    $  onedb backup --federated -s one.db
+    $ onedb backup --federated -s /var/lib/one/one.db
     Sqlite database backup of federated tables stored in /var/lib/one/one.db_federated_2017-6-15_8:52:51.bck
     Use 'onedb restore' to restore the DB.
 
@@ -80,7 +80,7 @@ Step 2. Adding a New Federation Slave Zone
 
 - **Master**: Copy the database snapshot to the slave.
 
-- **Master**: Copy the directory ``/var/lib/one/.one`` to the slave. This directory and its content must have **oneadmin as owner**. In the directory, there should be following files:
+- **Master**: Copy **only selected files** from the directory ``/var/lib/one/.one`` to the slave. This directory and its content must have **oneadmin as owner**. Replace only these files:
 
 .. prompt:: bash $ auto
 
