@@ -166,8 +166,8 @@ The name of the view will be the filename without the yaml extension.
     ...
     |-- sunstone-views/
     |   |-- admin.yaml       <--- the admin view
-    |   `-- cloud.yaml       <--- the cloud view
-    `-- sunstone-views.yaml
+    |   -- cloud.yaml       <--- the cloud view
+    -- sunstone-views.yaml
     ...
 
 .. note:: The easiest way to create a custom view is to copy the ``admin.yaml`` or ``cloud.yaml`` file and then harden it as needed.
@@ -175,7 +175,14 @@ The name of the view will be the filename without the yaml extension.
 Admin View Customization
 --------------------------------------------------------------------------------
 
-The contents of a view file specifies the enabled features, visible tabs, and enabled actions
+The contents of a view file specifies the logos, links, confirm actions, group filter, enabled features, visible tabs, and enabled actions.
+
+* `small_logo`: Image path to customize the Sunstone logo in admin views. By default OpenNebula logo.
+* `provission_logo`: Image path to customize the Sunstone logo in user views. By default OpenNebula logo.
+* `link_logo`: External URL below the logo.
+* `text_link_logo`: Text link for link_logo.
+* `confirm_vms`: If true, the user will need to confirm the actions on a VM.
+* `filter_view`: If false, hides the group name by which it's filtering.
 
 For the dashboard, the following widgets can be configured:
 
@@ -207,14 +214,14 @@ For the dashboard, the following widgets can be configured:
         - network
     widgets_one_footer:
 
-Inside ``features`` there are two settings:
+Inside ``features`` there are six settings:
 
 * ``showback``: When this is false, all :ref:`Showback <showback>` features are hidden. The monthly report tables, and the cost for new VMs in the create VM wizard.
 * ``secgroups``: If true, the create VM wizard will allow to add security groups to each network interface.
 * ``instantiate_hide_cpu``: If true, hide the CPU setting in the VM creation dialog.
 * ``instantiate_cpu_factor``: False to not scale the CPU from VCPU. Number [0, 1] to scale.
 * ``instantiate_persistent``: True to show the option to make an instance persistent.
-* ``vcenter_vm_folder``: True to show an input to specify the the VMs and Template path/folder where a vCenter VM will deployed to
+* ``vcenter_vm_folder``: True to show an input to specify the the VMs and Template path/folder where a vCenter VM will deployed to.
 
 .. code-block:: yaml
 
@@ -315,6 +322,9 @@ Features
 
 * ``showback``: When this is false, all :ref:`Showback <showback>` features are hidden. The monthly report tables, and the cost for new VMs in the create VM wizard.
 * ``secgroups``: If true, the create VM wizard will allow to add security groups to each network interface.
+* ``instantiate_hide_cpu``: If true, hide the CPU setting in the VM creation dialog.
+* ``instantiate_cpu_factor``: False to not scale the CPU from VCPU. Number [0, 1] to scale.
+* ``instantiate_persistent``: True to show the option to make an instance persistent.
 
 .. code-block:: yaml
 
