@@ -990,6 +990,7 @@ You can execute ``onehost show <id> -x`` to see all the attributes and their val
 .. note:: Check the :ref:`Monitoring Subsystem <devel-im>` guide to find out how to extend the information model and add any information probe to the Hosts.
 
 .. _template_raw_section:
+
 Hypervisor Section
 ================================================================================
 
