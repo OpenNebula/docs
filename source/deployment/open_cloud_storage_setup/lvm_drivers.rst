@@ -31,11 +31,12 @@ For example, consider a system with two Virtual Machines (9 and 10) using a disk
 
 .. warning::
 
-  Images are stored in a shared storage in file form (e.g. NFS, GlusterFS...) the datastore directories and mount points needs to be configured as a regular shared image datastore, :ref:`please refer to FileSystem Datastore guide <fs_ds>`. It is a good idea to first deploy a shared FileSystem datastore and once it is working replace the associated System datastore with the LVM one, as described below.
-  
+  Images are stored in a shared storage in file form (e.g. NFS, GlusterFS...) the datastore directories and mount points needs to be configured as a regular shared image datastore, :ref:`please refer to FileSystem Datastore guide <fs_ds>`. It is a good idea to first deploy a shared FileSystem datastore and once it is working replace the associated System datastore with the LVM one maintaining the shared mount point as described below.
+
 Frontend Setup
 ================================================================================
-No additional configuration is needed.
+
+* The frontend needs to have access to the images datastore, mounting the associated directory.
 
 Node Setup
 ================================================================================
@@ -47,7 +48,7 @@ Nodes needs to meet the following requirements:
 * All the nodes needs to have access to the same LUNs.
 * A LVM VG needs to be created in the shared LUNs for each datastore following name: ``vg-one-<system_ds_id>``. This just need to be done in one node.
 * Virtual Machine disks are symbolic links to the block devices. However, additional VM files like checkpoints or deployment files are stored under ``/var/lib/one/datastores/<id>``. Be sure that enough local space is present.
-* All the nodes needs to have access to the image datastore, mounting the asociated directory.
+* All the nodes needs to have access to the images and system datastores, mounting the associated directories.
 
 .. _lvm_drivers_templates:
 
@@ -81,7 +82,6 @@ For example:
     NAME   = lvm_system
     TM_MAD = fs_lvm
     TYPE   = SYSTEM_DS
-    BRIDGE_LIST = "NODE1 NODE2"
 
     > onedatastore create ds.conf
     ID: 100
@@ -103,8 +103,6 @@ To create an Image Datastore you just need to define the name, and set the follo
 +-----------------+---------------------------------------------------------------------------------------------+
 | ``DISK_TYPE``   | ``BLOCK``                                                                                   |
 +-----------------+---------------------------------------------------------------------------------------------+
-| ``BRIDGE_LIST`` | List of nodes (space separated) with access to the shared storage, used to copy new images. |
-+-----------------+---------------------------------------------------------------------------------------------+
 
 For example, the following examples illustrates the creation of an LVM datastore using a configuration file. In this case we will use the host ``host01`` as one of our OpenNebula LVM-enabled hosts.
 
@@ -117,7 +115,6 @@ For example, the following examples illustrates the creation of an LVM datastore
     DISK_TYPE = "BLOCK"
     TYPE = IMAGE_DS
     SAFE_DIRS="/var/tmp /tmp"
-    BRIDGE_LIST = "NODE1 NODE2"
 
     > onedatastore create ds.conf
     ID: 101
