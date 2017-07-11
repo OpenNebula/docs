@@ -70,6 +70,10 @@ Configuration file for auth module is located at ``/etc/one/auth/ldap_auth.conf`
         # Default group ID used for users in an AD group not mapped
         :mapping_default: 1
 
+        # use RFC2307bis for groups
+        # if false, depending on your LDAP server configuration,
+        # set user_field and user_group_field 'uid' and group_field 'memberUid'
+        :rfc2307bis: true
      
     # this example server wont be called as it is not in the :order list
     server 2:
@@ -131,6 +135,10 @@ The structure is a hash where any key different to ``:order`` will contain the c
 |                       | found. Set to false in case you don't want the  |
 |                       | user to be authorized if it does not belong     |
 |                       | to a mapped group                               |
++-----------------------+-------------------------------------------------+
+| ``:rfc2307bis:``      | Set to true when using Active Directory, false  |
+|                       | when using ldap. Make sure you configure        |
+|                       | ``user_group_field`` and ``group_field``        |
 +-----------------------+-------------------------------------------------+
 
 To enable ``ldap`` authentication the described parameters should be configured. OpenNebula must be also configured to enable external authentication. Add this line in ``/etc/one/oned.conf``
