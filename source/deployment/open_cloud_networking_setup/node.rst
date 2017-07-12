@@ -4,12 +4,6 @@
 Node Setup
 ====================
 
-.. todo::
-
-    * Architect
-    * KVM
-
-
 This guide includes specific node setup steps to enable each network mode. You **only need** to apply the corresponding section to the select mode.
 
 Bridged Networking Mode
