@@ -40,10 +40,10 @@ Additionally, to enable VNC access to the spawned Virtual Machines, the Front-en
 
 .. warning:: OpenNebula uses port 443 to communicate with vCenter instances. Port 443 is the default port used by vCenter so unless you're filtering that port or you've configured a different port to listen for connections from the vSphere Web Client, OpenNebula will be able to connect with the right credentials.
 
-Step 2: Enable the drivers in the Front-end (oned.conf)
+Step 2: Configure the drivers in the Front-end (oned.conf) [Optional]
 --------------------------------------------------------------------------------
 
-In order to configure OpenNebula to work with the vCenter drivers, the following sections need to be uncommented or added in the ``/etc/one/oned.conf`` file:
+The following sections in the ``/etc/one/oned.conf`` file describe the information and virutalization drivers for vCenter, which are enabled by default:
 
 .. code::
 
@@ -94,7 +94,7 @@ As a Virtualization driver, the vCenter driver accept a series of parameters tha
 
 See the :ref:`Virtual Machine drivers reference <devel-vmm>` for more information about these parameters, and how to customize and extend the drivers.
 
-OpenNebula needs to be restarted afterwards, this can be done with the following command:
+OpenNebula needs to be restarted after any change inthe ``/etc/one/oned.conf`` file, this can be done with the following command:
 
 .. prompt:: bash $ auto
 

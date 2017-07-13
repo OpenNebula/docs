@@ -43,7 +43,7 @@ OpenNebula Core
 
 - **Improved VM lifecycle** covering also :ref:`recover from snapshot failures <onevm_api>` and :ref:`termination of failed VMs <vm_guide_2>`.
 - **Flexible resource permissions** for VMs, now is possible to redefine the semantics of :ref:`ADMIN, MANAGE and USE <oned_conf_vm_operations>`.
-- **Improved VM history**, now VM history records log :ref:`the UID <vm_history>` that perfomed the action. (TODO update onevm show output form the reference)
+- **Improved VM history**, now VM history records log :ref:`the UID <vm_history>` that perfomed the action. (TODO update onevm show output from the reference)
 - **Disk cache modification** now possible through :ref:`vm update operations <template>`.
 - **New HA model**, providing HA in the OpenNebula core and Sunstone without :ref:`third party dependencies <frontend_ha_setup>`.
 - **Federation without DB replication**, using the :ref:`new distributed system state <federationconfig>` feature implemented in OpenNebula
