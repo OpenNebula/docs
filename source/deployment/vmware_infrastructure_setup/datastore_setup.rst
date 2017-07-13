@@ -18,6 +18,8 @@ For example, if we have a vcenter datastore called nfs, when we import the vCent
     :width: 70%
     :align: center
 
+.. important:: If the vCenter instance features a read only datastore, please be aware that you should disable the SYSTEM representation of the datastore after importing it to avoid OpenNebula trying to deploy VMs in it.
+
 Images and disks
 --------------------------------------------------------------------------------
 
