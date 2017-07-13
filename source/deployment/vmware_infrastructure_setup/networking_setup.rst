@@ -39,7 +39,7 @@ vCenter VM Templates can define their own NICs, and OpenNebula will manage them 
 
 OpenNebula Virtual Networks which consume existing port groups will have the attribute ``VN_MAD=dummy``.
 
-You can easily consume vCenter networks using the import tools as explained in the :ref:`Importing vCenter Networks <vcenter_import_networks>`section.
+You can easily consume vCenter networks using the import tools as explained in the :ref:`Importing vCenter Networks<vcenter_import_networks>` section.
 
 .. _vcenter_enhanced_networking:
 
