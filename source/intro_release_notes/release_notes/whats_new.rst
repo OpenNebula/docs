@@ -18,14 +18,14 @@ A major overhaul has been applied to the vCenter integration. The team decided t
 
 
 .. image:: /images/vcenter_network_create.png
-    :width: 90%
+    :width: 60%
     :align: center
 
 
 A new resource to implement affinity/antiaffinity VM-to-VM and Host-to-Host has been added to OpenNebula, the VM Groups. A VM group is a set of related virtual machines that may impose placement constraints based on affinity and anti-affinity rules. A VM group is defined as a set of Roles. A Role defines a VM type or class, and expressions to the VM Group can be added to define affinity between VM roles, or between VM and hosts. This ensures a dynamic approach to affinity/antiaffinity since new VMs can be enroled to a particular Role at boot time, after the VM Group has been defined and other VMs added to it.
 
 .. image:: /images/vmgroups_ilustration.png
-    :width: 90%
+    :width: 60%
     :align: center
 
 To top it all, OpenNebula 5.4 brings to the table a native implementation of a consensus algorithm, which enables the High Availability deployment of the OpenNebula front-end without relying to third party components. This distributed consensus protocol provides fault-tolerance and state consistency across OpenNebula services. A consensus algorithm is built around two concepts, System State -the data stored in the database tables- and Log -a sequence of SQL statements that are consistently applied to the OpenNebula DB in all servers-. To preserve a consistent view of the system across servers, modifications to system state are performed through a special node, the leader. The servers in the OpenNebula cluster elects a single node to be the leader. The leader periodically sends heartbeats to the other servers (follower*) to keep its leadership. If a leader fails to send the heartbeat, followers promote to candidates and start a new election. This feature, with support from floating IPs and a proper Sunstone configuration, gives robustness to OpenNebula clouds. This new functionality of distributed system state is also used to implement OpenNebula federation. In both cases (Federation and HA) no support is needed from MySQL to create a clustered DB, so admins can forget about MySQL replication.
@@ -47,7 +47,7 @@ OpenNebula Core
 
 - **Advance access control policies** for VMs, now is possible to redefine the access level (:ref:`ADMIN, MANAGE and USE <oned_conf_vm_operations>`) required for each VM action.
 
-- **Improved traceability on VM actions**, :ref:`VM history records <vm_history>` logs the data associated to the action performed on a VM. (TODO update onevm show output from the reference)
+- **Improved traceability on VM actions**, :ref:`VM history records <vm_history>` logs the data associated to the action performed on a VM.
 
 - **VM Groups** to define groups of related VMs and set :ref:`VM affinity <vmgroups>` rules across them.
 
@@ -81,7 +81,7 @@ Scheduler
 
 - **Affinity/Anti-affinity** for VM-to-VM, VM-to-Role and VM-to-Host using the new :ref:`VM Group resource <vmgroups>`.
 
-- **VM prioritization** a static VM priority can be assigned to pending/reschedule VMs to alter the default FIFO ordering when dispatching VMs (TODO)
+- **VM prioritization** a static VM priority can be assigned to pending/reschedule VMs to alter the default :ref:`FIFO ordering when dispatching VMs <schg_limit>`.
 
 
 Sunstone
