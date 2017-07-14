@@ -293,9 +293,6 @@ Persistent and Clone Disks
 | **DISCARD**              | Controls what's done with with trim commands to the disk, the values can be  | O (only with virtio-scsi)          | \-                                  |
 |                          | ``ignore`` or ``discard``.                                                   |                                    |                                     |
 +--------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
-| **OPENNEBULA_MANAGED**   | If set to yes, in vCenter this DISK represents a virtual disk that was       | \-                                 | O (e.g YES)                         |
-|                          | imported when a template or wild VM was imported.                            |                                    |                                     |
-+--------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
 | **VCENTER_DS_REF**       | vCenter datastore's managed object reference                                 | \-                                 | M (can be inherited from Datastore) |
 +--------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
 | **VCENTER_INSTANCE_ID**  | vCenter intance uuid                                                         | \-                                 | M (can be inherited from Datastore) |

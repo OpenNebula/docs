@@ -59,14 +59,14 @@ Storage
 
 - **Improved VM disk management**, including options to resize disks for :ref:`running VMs <vm_guide2_resize_disk>`, enhanced I/O feedback and :ref:`monitoring <mon>`.
 
-- **Improved Ceph integration**, by default Ceph disk snapshots are in a flat hierarchy (this can be also be selected for other storage backends (TODO)). Also it is now easier to setup multiple clusters with different authentication attributes (TODO-CEPH_KEY); and finally a new option has been added for trim/discard option (TODO)
+- **Improved Ceph integration**, by default Ceph disk snapshots are in a flat hierarchy (this can be also be :ref:`selected for other storage backends <oned_conf_transfer_driver>`). Also it is now easier to setup multiple clusters with different :ref:`authentication attributes <ceph_ds_templates>` and finally a new option has been added for :ref:`trim/discard option <reference_vm_template_disk_section>`.
 
 Networking
 --------------------------------------------------------------------------------
 
-- **Better IPv6 support**, including support for Security Groups (TODO) and the definition of :ref:`Non-SLAAC IPv6 Address Range <manage_vnet_ar>`.
+- **Better IPv6 support**, including support for :ref:`Security Groups <security_groups>` and the definition of :ref:`Non-SLAAC IPv6 Address Range <manage_vnet_ar>`.
 
-- **Improved network settings** that may override multiple default options used when creating links in the hypervisors including MAC spoofing, arp cache poisoning, interface MTU or STP among others. (TODO)
+- **Improved network settings** that may :ref:`override multiple default options <vnet_template_interface_creation>` used when creating links in the hypervisors including MAC spoofing, arp cache poisoning, interface MTU or STP among others.
 
 Hybrid Clouds: Amazon EC2
 --------------------------------------------------------------------------------
