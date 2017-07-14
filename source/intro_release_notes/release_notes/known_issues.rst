@@ -84,5 +84,5 @@ Context
 vCenter
 ================================================================================
 
-* `#4693 <http://dev.opennebula.org/issues/4693>`_ vlan_id is only imported for networks of type DistributedVirtualPortgroup
-* `#4699 <http://dev.opennebula.org/issues/4699>`_ Vcenter does not honor vmm_exec_vcenter.conf
+* `#4990 <http://dev.opennebula.org/issues/4990>`_ importing network on vcenter with vlan doesn't report the vlan id
+* `#5246 <http://dev.opennebula.org/issues/5246>`_ Wrong import of vCenter VM Templates with NICs in Distributed vSwitches or Distributed Ports
