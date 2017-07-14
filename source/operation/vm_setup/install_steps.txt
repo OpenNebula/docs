@@ -81,5 +81,9 @@ Windows
 ~~~~~~~
 
 * double-click on the downloaded MSI package icon in the same way you open other documents to install it
+* execute ``sysprep`` to prepare the OS for duplication. You can find more information at:
+
+https://technet.microsoft.com/en-us/library/cc721940(v=ws.10).aspx
+
 
 
