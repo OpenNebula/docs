@@ -15,13 +15,23 @@ OpenNebula Administrators
 OpenNebula Daemon
 --------------------------------------------------------------------------------
 
+OpenNebula 5.4 features an implementation of the Raft consensus algorithm. Although current HA deployments may still works it is advised to update the installation to the new system.
+
+Federated zones has been also updated to reduce its requirements and to better integrate it with HA zones. Current Federated zones are no longer compatible and have to be re-imported.
+
+Restricted attributes for Virtual Machines does not support vector attributs (e.g. USER_INPUTS/CPU). This also a known issue for prior OpenNebula versions.
+
+EC2 hybrid drivers
+--------------------------------------------------------------------------------
+
+Configuration attributes of the EC2 driver has been moved from the ``ec2_driver.conf`` file to the host attributes. The migration process automatically moves the information to each host template. Any further update of these attributes should be performed directly on each the OpenNebula host.
+
 Developers and Integrators
 ================================================================================
 
 XML-RPC API
 --------------------------------------------------------------------------------
-
-This section lists all the changes in the API. Visit the :ref:`complete reference <api>` for more information.
+There are no compatibility changes on API calls, there are new RPC methods to expose the new functionlity, visit the :ref:`complete reference <api>` for more information.
 
 
 vCenter
