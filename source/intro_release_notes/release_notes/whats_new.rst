@@ -36,6 +36,7 @@ This OpenNebula release is named after the `Medula Nebula <https://en.wikipedia.
 
 OpenNebula 5.4 Medusa is considered to be a stable release and as such, and update is available in production environments.
 
+
 In the following list you can check the highlights of OpenNebula 5.4 (`a detailed list of changes can be found here <https://dev.opennebula.org/projects/opennebula/issues?utf8=%E2%9C%93&set_filter=1&f%5B%5D=fixed_version_id&op%5Bfixed_version_id%5D=%3D&v%5Bfixed_version_id%5D%5B%5D=86&f%5B%5D=tracker_id&op%5Btracker_id%5D=%3D&v%5Btracker_id%5D%5B%5D=1&v%5Btracker_id%5D%5B%5D=2&v%5Btracker_id%5D%5B%5D=7&f%5B%5D=&c%5B%5D=tracker&c%5B%5D=status&c%5B%5D=priority&c%5B%5D=subject&c%5B%5D=assigned_to&c%5B%5D=updated_on&group_by=category>`__):
 
 OpenNebula Core
@@ -87,13 +88,13 @@ Scheduler
 Sunstone
 --------------------------------------------------------------------------------
 
-- **Resource group isolation**, easy group swith only shows :ref:`current group resources <manage_groups_sunstone>`.
-- **Improved customization** with more flags to restrict action usage and enhanced logo customization (TODO)
-- **Persistent resource labels** that do not expire if no resource is tagged with a :ref:`label <labels>`.
-- **Configurable session parameters** like for instance session length (TODO)
-- **Added confirmation dialogs** for destructive actions for enhanced security
-- **Enhanced image upload control** with progress feedback and resume capabilities (TODO)
-- **Better groups dialogs** allowing to change the primary and secondary groups directly fom the groups panel
+- **Resource group isolation**, group switch only shows :ref:`current group resources <manage_groups_sunstone>`. This, allow to work by project easily.
+- **Improved customization** with more flags to :ref:`restrict action usage <suns_views_actions>` and :ref:`enhanced logo customization <suns_views_custom>`.
+- **Persistent resource labels** that do not expire if no resource is tagged with a :ref:`label <suns_views_persis_labels>`.
+- **Configurable session parameters** like for instance session length.
+- **Added confirmation dialogs** for destructive actions for enhanced security.
+- **Enhanced image upload control** with progress feedback and resume capabilities.
+- **Better groups dialogs** allowing to change the primary and secondary groups directly from the groups panel.
 - **Fixed multilanguage keyboard support** in :ref:`VNC feature <remote_access_sunstone>`.
 - **Improved showback support**, with better dialogs to define and estimate the :ref:`VM Template showback section <template_showback_section>`.
 - **Extended user inputs**, with new :ref:`types <template_user_inputs>` like booleans and the possiblity to define the order.
@@ -101,14 +102,18 @@ Sunstone
 
 - **A significant number of usability enhancements**:
 
-  - More secure password change dialog
-  - ESC support for VNC dialog
-  - :ref:`improved overcommitment dialogs <dimensioning_the_cloud>`
-  - more presence of the VM logo in the VM Template and instance dialogs and tabs
-  - warning displayed when reverting disks, erasing VMs, etc
-  - use image name instead of IDs for files datastores
-  - better :ref:`federation <federationconfig>` support
+  - More secure password change dialog.
+  - ESC support for VNC dialog.
+  - :ref:`Improved overcommitment dialogs <dimensioning_the_cloud>`.
+  - More presence of the VM logo in the VM Template and instance dialogs and tabs.
+  - Warning displayed when reverting disks, erasing VMs, etc...
+  - Use image name instead of IDs for files datastores.
+  - Better :ref:`federation <federationconfig>` support.
+  - Cloud view improved. Diff between own VMs and group VMs.
 
+.. image:: /images/view_cloud_new.png
+    :width: 90%
+    :align: center
 
 vCenter
 --------------------------------------------------------------------------------
