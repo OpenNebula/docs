@@ -11,46 +11,25 @@ Read the :ref:`Compatibility Guide <compatibility>` and `Release Notes <http://o
 Upgrading a Federation
 ================================================================================
 
-If you have two or more 5.2.x OpenNebulas working as a :ref:`Federation <introf>`, you need to upgrade all of them. The upgrade does not have to be simultaneous, the slaves can be kept running while the master is upgraded.
+If you have two or more 5.2.x OpenNebulas working as a :ref:`Federation <introf>`, you need to upgrade all of them. The upgrade for this version has to occur simultaneously on all zones including the master.
 
 The steps to follow are:
 
-1. Stop the MySQL replication in all the slaves
-2. Upgrade the **master** OpenNebula
-3. Upgrade each **slave**
-4. Resume the replication
+1. Stop the MySQL replication in all the slaves and master zone. The MySQL replication is no longer needed. 
+2. Upgrade the **master** zone to 5.4 version
+3. Upgrade the **slaves** zones to 5.4 version
+4. Replicate the state of the shared tables from the master zone into each slave zone.
+ 
+During steps 1 and 2 the slave OpenNebula's can be running, and users can keep accessing them if each zone has a local Sunstone instance. However all the shared database tables (users, groups, ACL...) will not be updated in the slaves zones till step 3 is completed.
 
-During the time between steps 1 and 4 the slave OpenNebulas can be running, and users can keep accessing them if each zone has a local Sunstone instance. There is however an important limitation to note: all the shared database tables will not be updated in the slaves zones. This means that new user accounts, password changes, new ACL rules, etc. will not have any effect in the slaves. Read the :ref:`federation architecture documentation <introf_architecture>` for more details.
-
-It is recommended to upgrade all the slave zones as soon as possible.
-
-To perform the first step, `pause the replication <http://dev.mysql.com/doc/refman/5.7/en/replication-administration-pausing.html>`_ in each **slave MySQL**:
-
-.. code::
-
-    mysql> STOP SLAVE;
-
-    mysql> SHOW SLAVE STATUS\G
-
-     Slave_IO_Running: No
-    Slave_SQL_Running: No
+To perform the first step, you must stop and reset each slave (and master), remove any configuration attribute for replication in ``my.cnf`` file and finally restart ``mysqld``. Please refer to mysql documentation for more details on how to perform this step.
 
 Then follow this section for the **master zone**. After the master has been updated to |version|, upgrade each **slave zone** following this same section.
 
 Upgrading from a High Availability deployment
 ================================================================================
 
-The recommended procedure to upgrade two OpenNebulas configured in HA is to follow the upgrade procedure in a specific order. Some steps need to be executed in both servers, and others in just the active node. For the purpose of this section, we will still refer to the *active node* as such even after stopping the cluster, so we run the single node steps always in the same node:
-
-* *Preparation* in the active node.
-* *Backup* in the active node.
-* Stop the cluster in the active node: ``pcs cluster stop``.
-* *Installation* in both nodes. Before running ``install_gems``, run ``gem list > previous_gems.txt`` so we can go back to those specific ``sinatra`` and ``rack`` gems if the ``pcsd`` refuses to start.
-* *Configuration Files Upgrade* in the active node.
-* *Database Upgrade* in the active node.
-* *Check DB Consistency* in the active node.
-* *Reload Start Scripts in CentOS 7* in both nodes.
-* Start the cluster in the active node.
+You need to restore the HA deployment according to the new implementation. Upgrade the active OpenNebula instance as described in this section and then regenerate the HA instances as described in the :ref:`in the HA guide <frontend_ha_setup>`.
 
 Preparation
 ===========
@@ -80,8 +59,8 @@ Backup the configuration files located in **/etc/one**. You don't need to do a m
 
     # cp -r /etc/one /etc/one.$(date +'%Y-%m-%d')
 
-Installation
-============
+Installation of New Version
+===========================
 
 Follow the :ref:`Platform Notes <uspng>` and the :ref:`Installation guide <ignc>`, taking into account that you will already have configured the passwordless ssh access for oneadmin.
 
@@ -206,31 +185,14 @@ Then execute the following command:
 
     Total errors found: 0
 
-Resume the Federation
+Recreate the Federation salves
 ================================================================================
 
-This section applies only to environments working in a Federation.
+This section applies only to environments working in a Federation. Please refer to the :ref:`federation guide <federationconfig>` for more details.
 
-For the **master zone**: This step is not necessary.
+For the **master zone**: Snapshot the shared tables.
 
-For a **slave zone**: The MySQL replication must be resumed now.
-
-.. note:: Do not copy the server-id from this example, each slave should already have a unique ID.
-
-- Start the **slave MySQL** process and check its status. It may take a while to copy and apply all the pending commands.
-
-.. code-block:: none
-
-    mysql> START SLAVE;
-    mysql> SHOW SLAVE STATUS\G
-
-The ``SHOW SLAVE STATUS`` output will provide detailed information, but to confirm that the slave is connected to the master MySQL, take a look at these columns:
-
-.. code-block:: none
-
-       Slave_IO_State: Waiting for master to send event
-     Slave_IO_Running: Yes
-    Slave_SQL_Running: Yes
+For a **slave zone**: Each slave should be already configured and updated to last OpenNebula version. You only need to restore the shared tables in the previous step.
 
 Reload Start Scripts
 ================================
