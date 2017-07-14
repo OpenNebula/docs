@@ -88,7 +88,7 @@ These options are saved in the user template, as well as other hidden settings l
 
 |views_settings|
 
-.. _labels:
+.. _suns_views_labels:
 
 ================================================================================
 Labels

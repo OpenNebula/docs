@@ -143,3 +143,19 @@ In an attempt to ease the task of idenfiying vCenter related attributes many att
 +------------------------------------+--------------------------------------+
 
 In general, vCenter attributes will be preceed by the suffix **VCENTER_**
+
+Sunstone
+================================================================================
+
+Labels
+--------------------------------------------------------------------------------
+
+You will now have persistent labels that will be associated with a view or a user.
+You can read more about this topic at :ref:`Persistent labels <suns_views_labels>`
+
+Custom Tags
+--------------------------------------------------------------------------------
+
+Added the possibility of adding a new object of type vector inside Custom tags section. 
+In this section Sunstone will enter all the data that has not been collected by the Wizard and that exists in the Template
+For more information, you can see :ref:`Custom tags <vm_templates_custom_tags>`

@@ -80,12 +80,15 @@ For a complete reference of all the available options for ``onetemplate create``
 
 Note: OpenNebula Templates are designed to be hypervisor-agnostic, but there are additional attributes that are supported for each hypervisor. Check the :ref:`KVM configuration <kvmg>` and :ref:`vCenter configuration <vcenterg>` for more details.
 
+.. _vm_templates_custom_tags:
+
 Other (Custom Tags)
 --------------------------------------------------------------------------------
 
 |sunstone_template_custom_tags|
 
-This section in the Other tab is for all fields that haven't any gap in the others tabs. You can introduce others own fields into this section, this values will be saved in the resuorrce template.
+This section in the Other tab is for all fields that haven't any gap in the others tabs. You can introduce others own fields into this section, this values will be saved in the resuorce template.
+Also you can create a value of object type.
 
 .. _vm_templates_endusers:
 
