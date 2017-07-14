@@ -90,7 +90,7 @@ Sunstone
 
 - **Resource group isolation**, group switch only shows :ref:`current group resources <manage_groups_sunstone>`. This, allow to work by project easily.
 - **Improved customization** with more flags to :ref:`restrict action usage <suns_views_actions>` and :ref:`enhanced logo customization <suns_views_custom>`.
-- **Persistent resource labels** that do not expire if no resource is tagged with a :ref:`label <suns_views_persis_labels>`.
+- **Persistent resource labels** that do not expire if no resource is tagged with a :ref:`label <suns_views_labels>`.
 - **Configurable session parameters** like for instance session length.
 - **Added confirmation dialogs** for destructive actions for enhanced security.
 - **Enhanced image upload control** with progress feedback and resume capabilities.
