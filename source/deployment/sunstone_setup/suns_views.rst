@@ -174,6 +174,7 @@ The name of the view will be the filename without the yaml extension.
 
 Admin View Customization
 --------------------------------------------------------------------------------
+.. _suns_views_custom:
 
 The contents of a view file specifies the logos, links, confirm actions, group filter, enabled features, visible tabs, and enabled actions.
 
@@ -267,6 +268,8 @@ This file also defines the tabs available in the view (note: tab is one of the m
         - acls-tab
         - settings-tab
         - support-tab
+
+.. _suns_views_actions:
 
 Each tab can be tuned by selecting:
 
