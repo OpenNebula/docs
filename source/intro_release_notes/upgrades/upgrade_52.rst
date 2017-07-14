@@ -106,6 +106,21 @@ If you have customized **any** configuration files under ``/etc/one`` we recomme
 #. Edit the **new** files and port all the customizations from the previous version.
 #. You should **never** overwrite the configuration files with older versions.
 
+EC2 Configuration File
+----------------------
+
+The credentials and capacity from ec2 zones have been moved from its configuration file to the template of the host. You don't need to update the file ``/etc/one/ec2_driver.conf`` with the data from the old file. To make this data available to the migrator copy the old configuration file to ``/etc/one/ec2_driver.conf.old``:
+
+.. prompt:: text # auto
+
+    # cp /etc/one.$(date +'%Y-%m-%d')/ec2_driver.conf /etc/one/ec2_driver.conf.old
+
+After migration you can delete the old file:
+
+.. prompt:: text # auto
+
+    # rm /etc/one/ec2_driver.conf.old
+
 Database Upgrade
 ================
 
