@@ -41,59 +41,48 @@ In the following list you can check the highlights of OpenNebula 5.4 (`a detaile
 OpenNebula Core
 --------------------------------------------------------------------------------
 
-- **Improved VM lifecycle** covering also :ref:`recover from snapshot failures <onevm_api>` and :ref:`termination of failed VMs <vm_guide_2>`.
-- **Flexible resource permissions** for VMs, now is possible to redefine the semantics of :ref:`ADMIN, MANAGE and USE <oned_conf_vm_operations>`.
-- **Improved VM history**, now VM history records log :ref:`the UID <vm_history>` that perfomed the action. (TODO update onevm show output from the reference)
-- **Disk cache modification** now possible through :ref:`vm update operations <template>`.
-- **New HA model**, providing HA in the OpenNebula core and Sunstone without :ref:`third party dependencies <frontend_ha_setup>`.
-- **Federation without DB replication**, using the :ref:`new distributed system state <federationconfig>` feature implemented in OpenNebula
-- **New VM Group resource** to implement :ref:`VM affinity <vmgroups>`.
+- **New HA model**, providing native HA (RAFT) in OpenNebula components, including Sunstone without :ref:`third party dependencies <frontend_ha_setup>`.
+
+- **Simplified Federation setups** It is no longer required to setup and maintain a  MySQL replicated DB, using the :ref:`new distributed system state <federationconfig>` feature implemented in OpenNebula
+
+- **Advance access control policies** for VMs, now is possible to redefine the access level (:ref:`ADMIN, MANAGE and USE <oned_conf_vm_operations>`) required for each VM action.
+
+- **Improved traceability on VM actions**, :ref:`VM history records <vm_history>` logs the data associated to the action performed on a VM. (TODO update onevm show output from the reference)
+
+- **VM Groups** to define groups of related VMs and set :ref:`VM affinity <vmgroups>` rules across them.
+
+- **Database maitenance tools** to purge history records, update corrupted data and more through the :ref:`onedb <onedb>` command.
 
 
-OpenNebula Drivers :: Storage
+Storage
 --------------------------------------------------------------------------------
 
-- **Life disk resizing**, in the :ref:`VM running state <vm_guide2_resize_disk>`.
-- **Improved Ceph support** with trim/discard option (TODO)
-- **Enhanced disk I/O feedback**, shown per VM in :ref:`Sunstone <sunstone>`, accounted for in :ref:`OpenNebula monitoring <mon>`.
-- **Multi queue virtio-scsi** (TODO)
-- **Configurable Image Persistency Setting**, making the persistency of the images configurable for users and groups of users (TODO)
+- **Improved VM disk management**, including options to resize disks for :ref:`running VMs <vm_guide2_resize_disk>`, enhanced I/O feedback and :ref:`monitoring <mon>`.
 
-OpenNebula Drivers :: Virtualization
+- **Improved Ceph integration**, by default Ceph disk snapshots are in a flat hierarchy (this can be also be selected for other storage backends (TODO)). Also it is now easier to setup multiple clusters with different authentication attributes (TODO-CEPH_KEY); and finally a new option has been added for trim/discard option (TODO)
+
+Networking
 --------------------------------------------------------------------------------
 
-- **Enhanced EC2 monitoring**, with better handling of :ref:`CloudWatch <ec2g>` datapoints to avoid errors after long-term network problems.
-- **Improved VM lifecycle** for :ref:`EC2 <ec2g>` VMs.
-- **Increased security** for EC2 :ref:`credentials <ec2_driver_conf>`, stored encrypted in the OpenNebula EC2 host representation.
+- **Better IPv6 support**, including support for Security Groups (TODO) and the definition of :ref:`Non-SLAAC IPv6 Address Range <manage_vnet_ar>`.
 
+- **Improved network settings** that may override multiple default options used when creating links in the hypervisors including MAC spoofing, arp cache poisoning, interface MTU or STP among others. (TODO)
 
-OpenNebula Drivers :: Networking
+Hybrid Clouds: Amazon EC2
 --------------------------------------------------------------------------------
 
-- **Flexible IPv6 definition**, with the :ref:`new Non-SLAAC IPv6 Address Range <manage_vnet_ar>`.
-- **Add default MTU**, for network drivers (TODO)
-- **Support for spanning tree parameters** at the bridge definition level (TODO)
-- **Per network settings** for MAC spoofing and arp cache poisoning (TODO)
+- **Enhanced EC2 monitoring and VM lifecycle**, with better handling of :ref:`CloudWatch <ec2g>` datapoints to avoid errors after long-term network problems.
 
-OpenNebula Drivers :: Marketplace
---------------------------------------------------------------------------------
+- **Better EC2 resource characterization** the information to access and EC2 zone is now stored in the corresponding OpenNebula Host including EC2 :ref:`credentials <ec2_driver_conf>`, capacity limits and EC2 zone name.
 
-- **Enable access behind HTTP proxy** for :ref:`marketplaces <marketplace>`.
-
-Database
---------------------------------------------------------------------------------
-
-- **New tools** to purge history records, update corrupted data and more through the :ref:`onedb <onedb>` command.
 
 Scheduler
 --------------------------------------------------------------------------------
 
-- **Affinity/Anti-affinity** for VM-to-VM and VM-to-Host using the new :ref:`VM Group resource <vmgroups>`.
+- **Affinity/Anti-affinity** for VM-to-VM, VM-to-Role and VM-to-Host using the new :ref:`VM Group resource <vmgroups>`.
 
-OneFlow
---------------------------------------------------------------------------------
+- **VM prioritization** a static VM priority can be assigned to pending/reschedule VMs to alter the default FIFO ordering when dispatching VMs (TODO)
 
-- **Enhanced Functionality** in :ref:`OneFlow <oneapps_overview>`, now supporting :ref:`user inputs <vm_guide_user_inputs>` in the service definition.
 
 Sunstone
 --------------------------------------------------------------------------------
