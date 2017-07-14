@@ -1,7 +1,7 @@
 .. _whats_new:
 
 ================================================================================
-What's New in 5.4 RC 1
+What's New in 5.4
 ================================================================================
 
 OpenNebula 5.4 (Medusa) is the third release of the OpenNebula 5 series. A significant effort has been applied in this release to stabilize features introduced in 5.2 Excession, while keeping an eye in implementing those features more demanded by the community.
@@ -34,7 +34,7 @@ There are many other improvements in 5.4, like improved VM lifecycle, flexible r
 
 This OpenNebula release is named after the `Medula Nebula <https://en.wikipedia.org/wiki/Medusa_Nebula>`__, a large planetary nebula in the constellation of Gemini on the Canis Minor border. It also known as Abell 21 and Sharpless 2-274. It was originally discovered in 1955 by UCLA astronomer George O. Abell, who classified it as an old planetary nebula. The braided serpentine filaments of glowing gas suggests the serpent hair of Medusa found in ancient Greek mythology.
 
-The OpenNebula team is now set to bug-fixing mode. Note that this is a RC release aimed at testers and developers to try the new features, and send a more than welcomed feedback for the final release. The migration can be tested from previous versions, but please note that there won't be a migration path from this RC to the stable 5.4 version.
+OpenNebula 5.4 Medusa is considered to be a stable release and as such, and update is available in production environments.
 
 In the following list you can check the highlights of OpenNebula 5.4 (`a detailed list of changes can be found here <https://dev.opennebula.org/projects/opennebula/issues?utf8=%E2%9C%93&set_filter=1&f%5B%5D=fixed_version_id&op%5Bfixed_version_id%5D=%3D&v%5Bfixed_version_id%5D%5B%5D=86&f%5B%5D=tracker_id&op%5Btracker_id%5D=%3D&v%5Btracker_id%5D%5B%5D=1&v%5Btracker_id%5D%5B%5D=2&v%5Btracker_id%5D%5B%5D=7&f%5B%5D=&c%5B%5D=tracker&c%5B%5D=status&c%5B%5D=priority&c%5B%5D=subject&c%5B%5D=assigned_to&c%5B%5D=updated_on&group_by=category>`__):
 
@@ -113,21 +113,14 @@ Sunstone
 vCenter
 --------------------------------------------------------------------------------
 
-The significant milestone is that vCenter is no longer treated as a public cloud by OpenNebula, but rather as a fully fledged hypervisor.
+The significant milestone is that vCenter is no longer treated as a public cloud by OpenNebula, but rather as a fully fledged hypervisor. The monitoring and import process have been optimized with a two orders of magnitude improvement in time efficiency.
 
-- **VNC port configuration for wild VMs**, when a wild VM is imported, the VNC port is added automatically to VM's config at :ref:`import time <import_vcenter_resources>`.
-- **vCenter resources tied to their cluster**, hosts, networks and datastores are automatically set during :ref:`import process <import_vcenter_resources>`.
-- **Improve API call management**, :ref:`vCenter driver <vcenterg>` does not leave open sessions in the server.
-- **Removed naming limitations**, like for instance vCenter cluster and datastore names with spaces are now supported.
-- **Better StoragePod support**, now :ref:`clustered datastores <storage_drs_pods>` are clearly differentiated at import time.
-- **Improved Datastore & Image management**, :ref:`non-persistent images <vcenter_ds>` are now supported and they're cloned automatically by OpenNebula, also now vCenter VMs can use volatile images.
-- **Disks can be resized**, when a :ref:`VM is deployed <vm_guide2_resize_disk>`.
-- **Disks and NICs in vCenter template are now visible**, when a :ref:`vCenter template is imported <vcenter_import_templates>` images and networks representing disks and nics are created.
-- **Disks can be saved as**, it the VM is in poweroff state a :ref:`copy of a disk can be performed <disk_save_as_action>`. KEEP_DISKS_ON_DONE attribute is no longer available.
+- **Improved VM and VM Template management**, attach CDROM to a VM :ref:`without a drive<vcenter_attach_cdrom>`, add VNC capabilities to :ref:`imported wild VMs<import_vcenter_resources>`, :ref:`save VM as an OpenNebula template<vcenter_save_as_template>`, :ref:`linked clones capabilities<vcenter_linked_clones_description>`, images and networks representing disks and nics are created for :ref:`imported vCenter template<vcenter_import_templates>` and :ref:`folder placement features<vcenter_folder_placement>`, among others.
+
 - **Network creation support**, a new vCenter network mode is available in virtual network definition, standard and different port groups and vSwitches :ref:`can be created from within OpenNebula <vcenter_enhanced_networking>`. VLAN IDs, MTUs and number of ports can be specified when a port group is created.
-- **Inventory folder selection**, a folder inside vSphere's VMs and Templates view can be specified so deployed VMs are seen under :ref:`that folder <vcenter_folder_placement>`.
-- **vCenter default values**, some default values for vCenter attributes e.g NIC model, can be specified in :ref:`a new configuration file <vcenter_default_config_file>`
-- **Attaching a CDROM works even though a CDROM drive is not already present in the VM**, an :ref:`IDE CDROM is used <vcenter_attach_cdrom>`.
-- **Linked Clones can be used**, :ref:`onevcenter tool <vcenter_linked_clones_description>` gives the chance to prepare a template being imported so it can benefit from VM linked clones. Note that disks in a linked clone template cannot be resized.
-- **Disk statistics are retrieved from vCenter**, disk metrics like the rate of reading/writing data to the VM's virtual disks and read/write IOPS will be available if the :ref:`right statistics level is set in vCenter<disk_monitoring>`.
-- **VM can be saved as a template**, a VM in poweroff state can be :ref:`saved as an OpenNebula template<vcenter_save_as_template>` from the cloud_vcenter view.
+
+- **Improved Storage (datastore, Image and disk management)**, :ref:`non-persistent images and volatiles disks <vcenter_ds>` are now supported, :ref:`clustered datastores <storage_drs_pods>` are clearly differentiated at import time, :ref:`disk resize capabilities <vm_guide2_resize_disk>`, :ref:`save disk functionality <disk_save_as_action>` and :ref:`disks statistics monitoring<disk_monitoring>`.
+
+- **vCenter default values**, some default values for vCenter attributes e.g NIC model, can be specified in :ref:`a new configuration file <vcenter_default_config_file>`.
+
+- **Removed naming limitations**, like for instance vCenter cluster and datastore names with spaces are now supported.

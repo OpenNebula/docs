@@ -47,12 +47,12 @@ You have more information about the managed object references :ref:`in the docs 
 
 This change on how vCenter objects are referenced implies that a migration must be performed in two phases as it will explained later.
 
-Disks and networks that exist in vCenter templates or Wild VM are now visible
+Disks and networks that exist in vCenter templates are now visible
 --------------------------------------------------------------------------------
 
-OpenNebula 5.4 can represent disks and port groups used by templates and Wild VM when they are imported. In previous versions those disks and nics were invisible and therefore you could not manage those resources e.g you could not detach a disk or network interface card.
+OpenNebula 5.4 can represent disks and port groups used by templates when they are imported. In previous versions those disks and NICs were invisible and therefore you could not manage those resources e.g you could not detach a disk or network interface card.
 
-This change implies that a migration tool will identify existing disks and nics and will create OpenNebula images and virtual networks for templates and wild VMs that are running in OpenNebula. A new attribute OPENNEBULA_MANAGED=NO will identify DISKs and NICs that are cloned by vCenter when a VM is deployed, so these elements are not created by OpenNebula. You have more information about this attribute and its limitations :ref:`here<vcenter_opennebula_managed>`.
+This change implies that a migration tool will identify existing disks and nics and will create OpenNebula images and virtual networks for templates that are running in OpenNebula. A new attribute OPENNEBULA_MANAGED=NO will identify DISKs and NICs that are cloned by vCenter when a VM is deployed, so these elements are not created by OpenNebula. You have more information about this attribute and its limitations :ref:`here<vcenter_opennebula_managed>`.
 
 Also there's an important change. If you want to import vCenter templates you MUST first import the vCenter datastores where the VMDK files associated to template's virtual hard disks are located. In previous releases you could import a template after a vCenter cluster was importe because existing disks were not visible to OpenNebula.
 
