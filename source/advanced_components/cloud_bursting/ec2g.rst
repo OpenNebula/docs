@@ -9,7 +9,7 @@ Considerations & Limitations
 
 You should take into account the following technical considerations when using the EC2 cloud with OpenNebula:
 
--  There is no direct access to the dom0, so it cannot be monitored (we don't know where the VM is running on the EC2 cloud).
+-  There is no direct access to the hypervisor, so it cannot be monitored (we don't know where the VM is running on the EC2 cloud).
 
 -  The usual OpenNebula functionality for snapshotting, hot-plugging, or migration is not available with EC2.
 
@@ -83,9 +83,11 @@ Also, you can modify in the same file the default 300 seconds timeout that is wa
 
     state_wait_timeout_seconds: 300
 
-.. warning:: instance_types section shows us the machines that AWS is able to provide, the ec2 driver will retrieve this kind of information so it's better to not change it unless you are aware of your actions.
+.. warning:: ``instance_types`` section shows us the machines that AWS is able to provide, the ec2 driver will retrieve this kind of information so it's better to not change it unless you are aware of your actions.
 
-If you were using OpenNebula before 5.4 you may have noticed that there are not AWS credentials in configuration file anymore, this is due security reasons, in 5.4 we have new secure credentials authentication for AWS. With the new method, you do not need to store sensitive credential data inside your disk anymore.  Instead of this, OpenNebula daemon will store the data in a encrypted format.
+.. warning::
+
+    If you were using OpenNebula before 5.4 you may have noticed that there are not AWS credentials in configuration file anymore, this is due security reasons. In 5.4 there is a new secure credentials storage for AWS so you do not need to store sensitive credential data inside your disk. OpenNebula daemon stores the data in an encrypted format.
 
 After OpenNebula is restarted, create a new Host with AWS credentials that uses the ec2 drivers:
 
@@ -93,26 +95,19 @@ After OpenNebula is restarted, create a new Host with AWS credentials that uses 
 
     $ onehost create ec2 -t ec2 --im ec2 --vm ec2
 
+.. note::
 
-.. note:: -t is needed to specify what type of remote provider host we want to set up, if you've followed all the instruction properly your default editor should show in your screen asking for the credentials and other mandatory data that will allow you to communicate with AWS.
+    ``-t`` is needed to specify what type of remote provider host we want to set up, if you've followed all the instruction properly your default editor should show in your screen asking for the credentials and other mandatory data that will allow you to communicate with AWS.
 
-Once you have opened your editor you can look for additional help at the top of your screen, we will explain everything in :ref:`EC2 Specific Template Attributes <ec2_specific_template_attributes>` section but you could simply follow the given instructions creating at least 3 variables: EC2_ACCESS, EC2_SECRET and REGION_NAME.
+Once you have opened your editor you can look for additional help at the top of your screen, you have more information in :ref:`EC2 Specific Template Attributes <ec2_specific_template_attributes>` section. The basic three variables you have to set are: ``EC2_ACCESS``, ``EC2_SECRET`` and ``REGION_NAME``.
 
-This process may become tedious when you are creating a big number of host, for this reason if you need to speed up the proccess you can create a file template like this:
-
-.. prompt:: bash $ auto
-
-    $ echo EC2_ACCESS = "xXxXXxx" >  ec2host.tpl
-    $ echo EC2_SECRET = "xXXxxXx" >> ec2host.tpl
-    $ echo REGION_NAME= "xXXxxXx" >> ec2host.tpl
-
-We have our "ec2host.tpl" created! we should use it to create host in a faster way:
+This can also be done creating a template file than can be used with the creation command:
 
 .. prompt:: bash $ auto
 
-    $ ls
-    ec2host.tpl
-
+    $ echo 'EC2_ACCESS = "xXxXXxx"' >  ec2host.tpl
+    $ echo 'EC2_SECRET = "xXXxxXx"' >> ec2host.tpl
+    $ echo 'REGION_NAME= "xXXxxXx"' >> ec2host.tpl
     $ onehost create ec2 -t ec2 ec2host.tpl --im ec2 --vm ec2
 
 .. _ec2_specific_template_attributes:
@@ -186,28 +181,29 @@ These values can furthermore be asked to the user using :ref:`user inputs <vm_gu
 Auth Attributes
 --------------------------------------------------------------------------------
 
-After succesfully executing onehost create with -t option, your default editor will open. An example follows of how you can complete this area:
+After successfully executing onehost create with -t option, your default editor will open. An example follows of how you can complete this area:
+
 .. code::
 
-    EC2_ACCESS = "this_is_my_ec2_access_key_identificator"
+    EC2_ACCESS = "this_is_my_ec2_access_key_identifier"
     EC2_SECRET = "this_is_my_ec2_secret_key"
     REGION_NAME = "us-east-1"
     CAPACITY = [
         M1SMALL = "3",
         M1LARGE = "1" ]
 
-In this example we put first our pair of identificators required by Amazon:
+The first two attributes have the authentication info required by AWS:
 
 - **EC2_ACCESS**: Amazon AWS Access Key
 - **EC2_SECRET**: Amazon AWS Secret Access Key
 
-This information will be encrypted at the same time that you creates the host, so in the host template the values of the EC2_ACCESS and EC2_SECRET attributes will be encrypted.
+This information will be encrypted as soon as the host is created. In the host template the values of the ``EC2_ACCESS`` and ``EC2_SECRET`` attributes will be encrypted.
 
 - **REGION_NAME**: it's the name of AWS region that your account uses to deploy machines.
 
-If we look at the example we see "us-east-1" as our region, you can check this information if you look at EC2 web console.
+In the example the region is set to `us-east-1`, you can get this information at the EC2 web console.
 
-- **CAPACITY**: You can define this array to indicate the size and number of ec2 machines that your opennebula host will handle, you can see your ec2_driver.conf instance_types section to know the supported names, remember that point ('.') nottation isn't permitted so you can ignore it (m1.small => M1SMALL).
+- **CAPACITY**: This attribute sets the size and number of EC2 machines that your OpenNebula host will handle, you can see ``instance_types`` section in ``ec2_driver.conf`` file to know the supported names. Dot ('.') is not permitted, you have to delete it and capitalize the names (``m1.small`` => ``M1SMALL``).
 
 .. _context_ec2:
 
