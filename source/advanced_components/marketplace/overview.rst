@@ -20,33 +20,41 @@ Supported Actions
 
 MarketPlaces support various actions:
 
-+-------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-|    Action   |                                                                                                                 Description                                                                                                                  |
-+=============+==============================================================================================================================================================================================================================================+
-| ``create``  | Create a new MarketPlace.                                                                                                                                                                                                                    |
-+-------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``monitor`` | This automatic action, discovers the available MarketPlaceApps and monitors the available space of the MarketPlace.                                                                                                                          |
-+-------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``delete``  | Removes a MarketPlace from OpenNebula. For the Publick MarketPlace, it will also remove the MarketPlaceApps, but for any other type of MarketPlace this will not remove the MarketPlaceApps, and will only work if the MarketPlace is empty. |
-+-------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| *other*     | Generic actions common to OpenNebula resources are also available: update, chgrp, chown, chmod and rename.                                                                                                                                   |
-+-------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++-------------+---------------------------------------------------------------------+
+| Action      | Description                                                         |
++=============+=====================================================================+
+| ``create``  | Create a new MarketPlace.                                           |
++-------------+---------------------------------------------------------------------+
+| ``monitor`` | This automatic action, discovers the available MarketPlaceApps and  |
+|             | monitors the available space of the MarketPlace.                    |
++-------------+---------------------------------------------------------------------+
+| ``delete``  | Removes a MarketPlace from OpenNebula. For the Publick MarketPlace, |
+|             | it will also remove the MarketPlaceApps, but for any other type of  |
+|             | MarketPlace this will not remove the MarketPlaceApps, and will only |
+|             | work if the MarketPlace is empty.                                   |
++-------------+---------------------------------------------------------------------+
+| *other*     | Generic actions common to OpenNebula resources are also available:  |
+|             | update, chgrp, chown, chmod and rename.                             |
++-------------+---------------------------------------------------------------------+
 
 As for the MarketPlaceApps, they support these actions:
 
-+--------------+-----------------------------------------------------------------------------------------------------------------------------+
-|    Action    |                                                         Description                                                         |
-+==============+=============================================================================================================================+
-| ``create``   | Upload a local image into the the MarketPlace.                                                                              |
-+--------------+-----------------------------------------------------------------------------------------------------------------------------+
-| ``export``   | Export the MarketPlaceApp and download it into a local Datastore.                                                           |
-+--------------+-----------------------------------------------------------------------------------------------------------------------------+
-| ``delete``   | Removes a MarketPlaceApp.                                                                                                   |
-+--------------+-----------------------------------------------------------------------------------------------------------------------------+
-| ``download`` | Downloads a MarketPlaceApp to a file.                                                                                       |
-+--------------+-----------------------------------------------------------------------------------------------------------------------------+
-| *other*      | Generic actions common to OpenNebula resources are also available: update, chgrp, chown, chmod, rename, enable and disable. |
-+--------------+-----------------------------------------------------------------------------------------------------------------------------+
++--------------+--------------------------------------------------------------------+
+| Action       | Description                                                        |
++==============+====================================================================+
+| ``create``   | Upload a local image into the the MarketPlace. **NOTE:** This      |
+|              | action can only be done with marketplaces associated with the      |
+|              | current zone.                                                      |
++--------------+--------------------------------------------------------------------+
+| ``export``   | Export the MarketPlaceApp and download it into a local Datastore.  |
++--------------+--------------------------------------------------------------------+
+| ``delete``   | Removes a MarketPlaceApp.                                          |
++--------------+--------------------------------------------------------------------+
+| ``download`` | Downloads a MarketPlaceApp to a file.                              |
++--------------+--------------------------------------------------------------------+
+| *other*      | Generic actions common to OpenNebula resources are also available: |
+|              | update, chgrp, chown, chmod, rename, enable and disable.           |
++--------------+--------------------------------------------------------------------+
 
 .. warning:: In order to use the ``download`` functionality make sure you read the :ref:`Sunstone Advanced Guide <suns_advance_marketplace>`.
 
@@ -55,15 +63,24 @@ Backends
 
 MarketPlaces store the actual MarketPlaceApp images. How they do so depends on the backend driver. Currently these drivers are shipped with OpenNebula:
 
-+---------------------------+--------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-|           Driver          | Upload |                                                                                                                             Description                                                                                                                              |
-+===========================+========+======================================================================================================================================================================================================================================================================+
-| :ref:`one <market_one>`   | No     | This driver allows read access to the official public `OpenNebula Systems Marketplace <http://marketplace.opennebula.systems>`__, as well as to the `OpenNebula AppMarket Add-on <https://github.com/OpenNebula/addon-appmarket>`__.                                 |
-+---------------------------+--------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| :ref:`http <market_http>` | Yes    | When an image is uploaded to a MarketPlace of this kind, the image is written into a file in a specified folder, which is in turn available via a web-server.                                                                                                        |
-+---------------------------+--------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| :ref:`S3 <market_s3>`     | Yes    | Images are stored into a S3 API-capable service. This means it can be stored in the official `AWS S3 service <https://aws.amazon.com/s3/>`__ , or in services that implement that API like `Ceph Object Gateway S3 <http://docs.ceph.com/docs/master/radosgw/s3/>`__ |
-+---------------------------+--------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++---------------------------+--------+--------------------------------------------------------------------+
+| Driver                    | Upload | Description                                                        |
++===========================+========+====================================================================+
+| :ref:`one <market_one>`   | No     | This driver allows read access to the official public `OpenNebula  |
+|                           |        | Systems Marketplace <http://marketplace.opennebula.systems>`__, as |
+|                           |        | well as to the `OpenNebula AppMarket Add-on                        |
+|                           |        | <https://github.com/OpenNebula/addon-appmarket>`__.                |
++---------------------------+--------+--------------------------------------------------------------------+
+| :ref:`http <market_http>` | Yes    | When an image is uploaded to a MarketPlace of this kind, the image |
+|                           |        | is written into a file in a specified folder, which is in turn     |
+|                           |        | available via a web-server.                                        |
++---------------------------+--------+--------------------------------------------------------------------+
+| :ref:`S3 <market_s3>`     | Yes    | Images are stored into a S3 API-capable service. This means it can |
+|                           |        | be stored in the official `AWS S3 service                          |
+|                           |        | <https://aws.amazon.com/s3/>`__ , or in services that implement    |
+|                           |        | that API like `Ceph Object Gateway S3                              |
+|                           |        | <http://docs.ceph.com/docs/master/radosgw/s3/>`__                  |
++---------------------------+--------+--------------------------------------------------------------------+
 
 OpenNebula ships with the OpenNebula Systems MarketPlace pre-registered, so users can access it directly.
 
