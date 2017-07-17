@@ -134,22 +134,25 @@ OpenNebula Configuration
 To use your Ceph cluster with the OpenNebula, you need to define a System and Image datastores. Each Image/System Datastore pair will share same following Ceph configuration attributes:
 
 +-----------------+---------------------------------------------------------+-----------+
-|    Attribute    |  Description                                            | Mandatory |
+| Attribute       | Description                                             | Mandatory |
 +=================+=========================================================+===========+
+| ``NAME``        | The name of the datastore                               | **YES**   |
++-----------------+---------------------------------------------------------+-----------+
 | ``POOL_NAME``   | The Ceph pool name                                      | **YES**   |
 +-----------------+---------------------------------------------------------+-----------+
 | ``CEPH_USER``   | The Ceph user name, used by libvirt and rbd commands.   | **YES**   |
 +-----------------+---------------------------------------------------------+-----------+
-| ``CEPH_KEY``    | Key file for user, if not set default locations are used|   NO      |
+| ``CEPH_KEY``    | Key file for user, if not set default locations are     | NO        |
+|                 | used                                                    |           |
 +-----------------+---------------------------------------------------------+-----------+
-| ``CEPH_CONF``   | Non default ceph configuration file if needed.          |   NO      |
+| ``CEPH_CONF``   | Non default ceph configuration file if needed.          | NO        |
 +-----------------+---------------------------------------------------------+-----------+
-| ``RBD_FORMAT``  | By default RBD Format 2 will be used.                   |   NO      |
+| ``RBD_FORMAT``  | By default RBD Format 2 will be used.                   | NO        |
 +-----------------+---------------------------------------------------------+-----------+
 | ``BRIDGE_LIST`` | List of storage bridges to access the Ceph cluster      | **YES**   |
 +-----------------+---------------------------------------------------------+-----------+
-| ``CEPH_HOST``   | Space-separated list of Ceph monitors. Example:         | **YES**   |
-|                 | ``host1 host2:port2 host3 host4:port4``.                |           |
+| ``CEPH_HOST``   | Space-separated list of Ceph monitors. Example: ``host1 | **YES**   |
+|                 | host2:port2 host3 host4:port4``.                        |           |
 +-----------------+---------------------------------------------------------+-----------+
 | ``CEPH_SECRET`` | The UUID of the libvirt secret.                         | **YES**   |
 +-----------------+---------------------------------------------------------+-----------+
@@ -166,8 +169,6 @@ System Datastore also requires these attributes:
 +-----------------+-----------------------------------------------------------+-----------+
 |    Attribute    |  Description                                              | Mandatory |
 +=================+===========================================================+===========+
-| ``NAME``        | The name of the datastore                                 | **YES**   |
-+-----------------+-----------------------------------------------------------+-----------+
 | ``TYPE``        | ``SYSTEM_DS``                                             | **YES**   |
 +-----------------+-----------------------------------------------------------+-----------+
 | ``TM_MAD``      | ``ceph`` (only with local FS on the DS directory)         | **YES**   |
@@ -214,15 +215,6 @@ Apart from the previous attributes, that need to be the same as the associated S
 | ``TM_MAD``      | ``ceph``                                              | **YES**   |
 +-----------------+-------------------------------------------------------+-----------+
 | ``DISK_TYPE``   | ``RBD``                                               | **YES**   |
-+-----------------+-------------------------------------------------------+-----------+
-| ``BRIDGE_LIST`` | List of storage bridges to access the Ceph cluster    | **YES**   |
-+-----------------+-------------------------------------------------------+-----------+
-| ``CEPH_HOST``   | Space-separated list of Ceph monitors. Example:       | **YES**   |
-|                 | ``host1 host2:port2 host3 host4:port4``.              |           |
-+-----------------+-------------------------------------------------------+-----------+
-| ``CEPH_SECRET`` | The UUID of the libvirt secret.                       | **YES**   |
-+-----------------+-------------------------------------------------------+-----------+
-| ``POOL_NAME``   | Name of Ceph pool                                     | **YES**   |
 +-----------------+-------------------------------------------------------+-----------+
 | ``STAGING_DIR`` | Default path for image operations in the bridges      | NO        |
 +-----------------+-------------------------------------------------------+-----------+
