@@ -42,11 +42,11 @@ In the following list you can check the highlights of OpenNebula 5.4 (`a detaile
 OpenNebula Core
 --------------------------------------------------------------------------------
 
-- **New HA model**, providing native HA (RAFT) in OpenNebula components, including Sunstone without :ref:`third party dependencies <frontend_ha_setup>`.
+- **New HA model**, providing native HA (based in RAFT consensus algorithm) in OpenNebula components, including Sunstone without :ref:`third party dependencies <frontend_ha_setup>`.
 
-- **Simplified Federation setups** It is no longer required to setup and maintain a  MySQL replicated DB, using the :ref:`new distributed system state <federationconfig>` feature implemented in OpenNebula
+- **Simplified Federation setups** It is no longer required to setup and maintain a MySQL replicated DB using the :ref:`new distributed system state <federationconfig>` feature implemented in OpenNebula
 
-- **Advance access control policies** for VMs, now is possible to redefine the access level (:ref:`ADMIN, MANAGE and USE <oned_conf_vm_operations>`) required for each VM action.
+- **Advance access control policies** for VMs, now it is possible to redefine the access level (:ref:`ADMIN, MANAGE and USE <oned_conf_vm_operations>`) required for each VM action.
 
 - **Improved traceability on VM actions**, :ref:`VM history records <vm_history>` logs the data associated to the action performed on a VM.
 
@@ -88,17 +88,13 @@ Scheduler
 Sunstone
 --------------------------------------------------------------------------------
 
-- **Resource group isolation**, group switch only shows :ref:`current group resources <manage_groups_sunstone>`. This, allow to work by project easily.
 - **Improved customization** with more flags to :ref:`restrict action usage <suns_views_actions>` and :ref:`enhanced logo customization <suns_views_custom>`.
 - **Persistent resource labels** that do not expire if no resource is tagged with a :ref:`label <suns_views_labels>`.
-- **Configurable session parameters** like for instance session length.
-- **Added confirmation dialogs** for destructive actions for enhanced security.
 - **Enhanced image upload control** with progress feedback and resume capabilities.
-- **Better groups dialogs** allowing to change the primary and secondary groups directly from the groups panel.
+- **Better groups isolation** allowing to change the primary and secondary groups directly from the groups panel. Also group switch only shows :ref:`current group resources <manage_groups_sunstone>` to work by project easily.
+- **Extended user inputs**, with new :ref:`types <template_user_inputs>` like booleans and the possiblity to define the order.
 - **Fixed multilanguage keyboard support** in :ref:`VNC feature <remote_access_sunstone>`.
 - **Improved showback support**, with better dialogs to define and estimate the :ref:`VM Template showback section <template_showback_section>`.
-- **Extended user inputs**, with new :ref:`types <template_user_inputs>` like booleans and the possiblity to define the order.
-
 
 - **A significant number of usability enhancements**:
 
@@ -106,9 +102,7 @@ Sunstone
   - ESC support for VNC dialog.
   - :ref:`Improved overcommitment dialogs <dimensioning_the_cloud>`.
   - More presence of the VM logo in the VM Template and instance dialogs and tabs.
-  - Warning displayed when reverting disks, erasing VMs, etc...
-  - Use image name instead of IDs for files datastores.
-  - Better :ref:`federation <federationconfig>` support.
+  - Confirmation dialog for destructive actions like reverting disks or erasing VMs.
   - Cloud view improved. Diff between own VMs and group VMs.
 
 .. image:: /images/view_cloud_new.png

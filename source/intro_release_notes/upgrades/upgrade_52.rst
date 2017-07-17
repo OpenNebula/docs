@@ -188,11 +188,11 @@ Then execute the following command:
 Recreate the Federation salves
 ================================================================================
 
-This section applies only to environments working in a Federation. Please refer to the :ref:`federation guide <federationconfig>` for more details.
+This section applies only to environments working in a Federation. 
 
-For the **master zone**: Snapshot the shared tables.
+For the **master zone**: Snapshot the shared tables using the ``onedb`` tool. Please refer to the :ref:`federation guide <federationconfig>` for more details.
 
-For a **slave zone**: Each slave should be already configured and updated to last OpenNebula version. You only need to restore the shared tables in the previous step.
+For a **slave zone**: Each slave should be already configured, i.e. ``oned.conf`` should include the ``ZONE_ID`` for the slave, auth files present and OpenNebula updated to last version. You only need to restore the shared tables saved in the previous step and start the slave zone.
 
 Reload Start Scripts
 ================================
