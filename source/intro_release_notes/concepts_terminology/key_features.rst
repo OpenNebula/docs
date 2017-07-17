@@ -106,6 +106,10 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 - Support for isolation at different levels
 
+- Advanced access control policies for VMs to redefine the access level (:ref:`ADMIN, MANAGE and USE <oned_conf_vm_operations>`) required for each VM action
+
+- Traceability on VM actions, :ref:`VM history records <vm_history>` logs the data associated to the action performed on a VM
+
 
 **ON-DEMAND PROVISION OF VIRTUAL DATA CENTERS**
 
@@ -120,16 +124,17 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 - Dynamic creation of :ref:`Clusters <cluster_guide>` as pools of hosts that share datastores and virtual networks for load balancing, high availability, and high performance computing
 
-- :ref:`customizable and highly scalable monitoring system <mon>` and also can be integrated with external data center monitoring tools.
+- :ref:`Customizable and highly scalable monitoring system <mon>` and also can be integrated with external data center monitoring tools.
 
 - Powerful and flexible :ref:`scheduler <schg>` for the definition of workload and resource-aware allocation policies such as packing, striping, load-aware, affinity-aware…  
+
+- Definition of groups of related VMs and set :ref:`VM affinity <vmgroups>` rules across them.
 
 - :ref:`Resource quota management <quota_auth>` to track and limit computing, storage and networking resource utilization
 
 - Support for multiple data stores to balance I/O operations between storage servers, or to define different SLA policies (e.g. backup) and performance features for different KVM VM types or users
 
 - :ref:`PCI passthrough <kvm_pci_passthrough>` available for KVM VMs that need consumption of raw GPU devices
-
 
 
 **FEDERATED CLOUD ENVIRONMENTS**
