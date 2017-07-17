@@ -136,6 +136,9 @@ Note that it **is** possible to switch from SQLite to MySQL, but since it's more
 Step 6. Starting OpenNebula
 ================================================================================
 
+.. warning::
+    If you are performing an upgrade skip this and the next steps and go back to the upgrade document.
+
 Log in as the ``oneadmin`` user follow these steps:
 
 The ``/var/lib/one/.one/one_auth`` fill will have been created with a randomly-generated password. It should contain the following: ``oneadmin:<password>``. Feel free to change the password before starting OpenNebula. For example:

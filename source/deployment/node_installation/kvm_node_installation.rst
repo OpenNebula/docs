@@ -44,6 +44,9 @@ For further configuration check the specific guide: :ref:`KVM <kvmg>`.
 Step 3. Disable SElinux in CentOS/RHEL 7
 ========================================
 
+.. warning::
+    If you are performing an upgrade skip this and the next steps and go back to the upgrade document.
+
 SElinux can cause some problems, like not trusting ``oneadmin`` user's SSH credentials. You can disable it changing in the file ``/etc/selinux/config`` this line:
 
 .. code-block:: bash
