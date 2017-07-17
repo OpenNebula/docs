@@ -42,11 +42,11 @@ In the following list you can check the highlights of OpenNebula 5.4 (`a detaile
 OpenNebula Core
 --------------------------------------------------------------------------------
 
-- **New HA model**, providing native HA (based in RAFT consensus algorithm) in OpenNebula components, including Sunstone without :ref:`third party dependencies <frontend_ha_setup>`.
+- **New HA model**, providing native HA (based on RAFT consensus algorithm) in OpenNebula components, including Sunstone without :ref:`third party dependencies <frontend_ha_setup>`.
 
-- **Simplified Federation setups** It is no longer required to setup and maintain a MySQL replicated DB using the :ref:`new distributed system state <federationconfig>` feature implemented in OpenNebula
+- **Simplified Federation setups**, it is no longer required to setup and maintain a MySQL replicated DB using the :ref:`new distributed system state <federationconfig>` feature implemented in OpenNebula.
 
-- **Advance access control policies** for VMs, now it is possible to redefine the access level (:ref:`ADMIN, MANAGE and USE <oned_conf_vm_operations>`) required for each VM action.
+- **Advanced access control policies** for VMs, now it is possible to redefine the access level (:ref:`ADMIN, MANAGE and USE <oned_conf_vm_operations>`) required for each VM action.
 
 - **Improved traceability on VM actions**, :ref:`VM history records <vm_history>` logs the data associated to the action performed on a VM.
 
@@ -82,7 +82,7 @@ Scheduler
 
 - **Affinity/Anti-affinity** for VM-to-VM, VM-to-Role and VM-to-Host using the new :ref:`VM Group resource <vmgroups>`.
 
-- **VM prioritization** a static VM priority can be assigned to pending/reschedule VMs to alter the default :ref:`FIFO ordering when dispatching VMs <schg_limit>`.
+- **VM prioritization**, a static VM priority can be assigned to pending/reschedule VMs to alter the default :ref:`FIFO ordering when dispatching VMs <schg_limit>`.
 
 
 Sunstone
