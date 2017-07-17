@@ -18,26 +18,26 @@ Managed Object Reference
 
 vCenter resources like VMs, Templates, Datastores, Networks, Hosts and many more have an object identifier called Managed Object Reference, or moref, which is used by vCenter and OpenNebula to locate and manage these resources. Morefs have the following pattern:
 
-* vm-XXXXX for Virtual Machines and Templates e.g vm-2543
-* datastore-XXXXX for Datastores e.g datastore-411
-* network-XXXXX for vCenter port groups e.g network-17
-* domain-XXXXX for vCenter clusters e.g domain-c7
-* group-pXXXXX for Storage DRS Clusters e.g group-p1149
+* ``vm-XXXXX`` for Virtual Machines and Templates e.g ``vm-2543``
+* ``datastore-XXXXX`` for Datastores e.g ``datastore-411``
+* ``network-XXXXX`` for vCenter port groups e.g ``network-17``
+* ``domain-XXXXX`` for vCenter clusters e.g ``domain-c7``
+* ``group-pXXXXX`` for Storage DRS Clusters e.g ``group-p1149``
 
 OpenNebula stores the moref in attributes inside templates definitions. These are the attributes used by OpenNebula:
 
-* VCENTER_CCR_REF. Contains a cluster moref.
-* VCENTER_NET_REF. Contains a port group moref.
-* VCENTER_DS_REF. Contains a datastore moref.
-* VCENTER_DC_REF. Contains a datacenter moref.
-* VCENTER_TEMPLATE_REF. Contains a VM template moref.
-* DEPLOY_ID. When a VM is instantiated or imported, it will contain the VM's moref.
+* ``VCENTER_CCR_REF``. Contains a cluster moref.
+* ``VCENTER_NET_REF``. Contains a port group moref.
+* ``VCENTER_DS_REF``. Contains a datastore moref.
+* ``VCENTER_DC_REF``. Contains a datacenter moref.
+* ``VCENTER_TEMPLATE_REF``. Contains a VM template moref.
+* ``DEPLOY_ID``. When a VM is instantiated or imported, it will contain the VM's moref.
 
 The Managed Object Reference is a unique identifier in a specific vCenter instance, so we could find two resources with the same moref in two different vCenter servers. That's why a vCenter Instance UUID is used together with the moref to uniquely identify a resource. An instance uuid has a pattern like this 805af9ee-2267-4f8a-91f5-67a98051eebc.
 
 OpenNebula stores the instance uuid inside a template definition in the following attribute:
 
-* VCENTER_INSTANCE_ID
+* ``VCENTER_INSTANCE_ID``
 
 OpenNebula's import tools, which are explained later, will get the morefs and vcenter's intance uuid for you when a resource is imported or created, but if you want to know the managed object reference of a resource we offer you the following information.
 
