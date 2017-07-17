@@ -22,7 +22,7 @@ A major overhaul has been applied to the vCenter integration. The team decided t
     :align: center
 
 
-A new resource, the VM Groups, has been added to implement affinity/anti-affinity VM-to-VM and Host-to-Host. A VM group is a set of related virtual machines that may impose placement constraints based on affinity and anti-affinity rules. A VM group is defined as a set of Roles. A Role defines a VM type or class, and expressions to the VM Group can be added to define affinity between VM roles, or between VM and hosts. This ensures a dynamic approach to affinity/anti-affinity since new VMs can be enroled to a particular Role at boot time, after the VM Group has been defined and other VMs added to it.
+A new resource, the VM Groups, has been added to implement VM-VM and VM-Host affinity/anti-affinity rules. A VM group is a set of related virtual machines that may impose placement constraints based on affinity and anti-affinity rules. A VM group is defined as a set of Roles. A Role defines a VM type or class, and expressions to the VM Group can be added to define affinity between VM roles, or between VM and hosts. This ensures a dynamic approach to affinity/anti-affinity since new VMs can be enroled to a particular Role at boot time, after the VM Group has been defined and other VMs added to it.
 
 .. image:: /images/vmgroups_ilustration.png
     :width: 60%
@@ -50,7 +50,7 @@ OpenNebula Core
 
 - **Improved traceability on VM actions**, :ref:`VM history records <vm_history>` logs the data associated to the action performed on a VM.
 
-- **VM Groups** to define groups of related VMs and set :ref:`VM affinity <vmgroups>` rules across them.
+- **VM Groups** to define groups of related VMs and set :ref:`affinity <vmgroups>` rules across them.
 
 - **Database maitenance tools** to purge history records, update corrupted data and more through the :ref:`onedb <onedb>` command.
 
@@ -80,7 +80,7 @@ Hybrid Clouds: Amazon EC2
 Scheduler
 --------------------------------------------------------------------------------
 
-- **Affinity/Anti-affinity** for VM-to-VM, VM-to-Role and VM-to-Host using the new :ref:`VM Group resource <vmgroups>`.
+- **Affinity/Anti-affinity** for VM-VM, VM-Role and VM-Host using the new :ref:`VM Group resource <vmgroups>`.
 
 - **VM prioritization**, a static VM priority can be assigned to pending/reschedule VMs to alter the default :ref:`FIFO ordering when dispatching VMs <schg_limit>`.
 
