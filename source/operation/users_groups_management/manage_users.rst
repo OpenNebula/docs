@@ -260,8 +260,6 @@ Once configured you will be able to access the OpenNebula API and use the CLI to
 Tokens
 --------------------------------------------------------------------------------
 
-.. todo:: This section uses oneuser token --create, which does not exist anymore
-
 ``$HOME/.one/one_auth`` is just protected with the standard filesystem permissions. To improve the system security you can use authentication tokens. In this way there is no need to store plain passwords, OpenNebula can generate or use an authentication token with a given expiration time. By default, the tokens are also stored in ``$HOME/.one/one_auth``.
 
 Furthermore, if the user belongs to multiple groups, a token can be associated to one of those groups, and when the user operates with that token he will be effectively in that group, i.e. he will only see the resources that belong to that group, and when creating a resource it will be placed in that group.
@@ -273,8 +271,7 @@ Any user can create a token:
 
 .. prompt:: bash $ auto
 
-    $ oneuser token --create
-    Password:
+    $ oneuser token-create
     File /var/lib/one/.one/one_auth exists, use --force to overwrite.
     Authentication Token is:
     testuser:b61010c8ef7a1e815ec2836ea7691e92c4d3f316
@@ -309,7 +306,7 @@ A token can be enabled by doing:
 
 .. prompt:: bash $ auto
 
-    $ oneuser token --set b6
+    $ oneuser token-set --token b6
     export ONE_AUTH=/var/lib/one/.one/5ad20d96-964a-4e09-b550-9c29855e6457.token; export ONE_EGID=-1
     $ export ONE_AUTH=/var/lib/one/.one/5ad20d96-964a-4e09-b550-9c29855e6457.token; export ONE_EGID=-1
 
@@ -320,7 +317,7 @@ A token can be removed similarly, by doing:
 
 .. prompt:: bash $ auto
 
-    $ oneuser token --delete b6
+    $ oneuser token-delete b6
     Token removed.
 
 Convenience bash functions
@@ -359,7 +356,7 @@ Usage example:
     $ cat $ONE_AUTH
     testuser:3ea673b90d318e4f5e67a83c220f57cd33618421
 
-Note the ``onetokencreate`` supports the same options as ``oneuser token --create``, like ``--time`` and ``--group``.
+Note the ``onetokencreate`` supports the same options as ``oneuser token-create``, like ``--time`` and ``--group``.
 
 User Templates
 --------------------------------------------------------------------------------
