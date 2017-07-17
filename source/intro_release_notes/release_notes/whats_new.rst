@@ -22,7 +22,7 @@ A major overhaul has been applied to the vCenter integration. The team decided t
     :align: center
 
 
-A new resource to implement affinity/antiaffinity VM-to-VM and Host-to-Host has been added to OpenNebula, the VM Groups. A VM group is a set of related virtual machines that may impose placement constraints based on affinity and anti-affinity rules. A VM group is defined as a set of Roles. A Role defines a VM type or class, and expressions to the VM Group can be added to define affinity between VM roles, or between VM and hosts. This ensures a dynamic approach to affinity/antiaffinity since new VMs can be enroled to a particular Role at boot time, after the VM Group has been defined and other VMs added to it.
+A new resource, the VM Groups, has been added to implement affinity/anti-affinity VM-to-VM and Host-to-Host. A VM group is a set of related virtual machines that may impose placement constraints based on affinity and anti-affinity rules. A VM group is defined as a set of Roles. A Role defines a VM type or class, and expressions to the VM Group can be added to define affinity between VM roles, or between VM and hosts. This ensures a dynamic approach to affinity/anti-affinity since new VMs can be enroled to a particular Role at boot time, after the VM Group has been defined and other VMs added to it.
 
 .. image:: /images/vmgroups_ilustration.png
     :width: 60%
