@@ -9,8 +9,6 @@ This section's objective is to provide information in order to prepare for failu
 Host Failures
 =============
 
-.. todo:: needs to be updated with new flags
-
 When OpenNebula detects that a host is down, a hook can be triggered to deal with the situation. OpenNebula comes with a script out-of-the-box that can act as a hook to be triggered when a host enters the ERROR state. This can very useful to limit the downtime of a service due to a hardware failure, since it can redeploy the VMs on another host.
 
 Let's see how to configure ``/etc/one/oned.conf`` to set up this Host hook, to be triggered in the ERROR state. The following should be uncommented in the mentioned configuration file:
