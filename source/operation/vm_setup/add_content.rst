@@ -67,7 +67,7 @@ Step 2. Download the Image
 You can find the images for distributions in these links. We are going to use the ones from CentOS but the others are here for reference:
 
 * **CentOS 7**: http://cloud.centos.org/centos/7/images/
-* **Debian 8**: http://cdimage.debian.org/cdimage/openstack/current/
+* **Debian**: http://cdimage.debian.org/cdimage/openstack/
 * **Ubuntu**: https://cloud-images.ubuntu.com/
 
 Step 3. Download Context Packages
@@ -81,10 +81,10 @@ You have to download them to a directory that we will later refer. In this examp
 
     $ mkdir packages
     $ cd packages
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.3.80/one-context-5.3.80-1.el6.noarch.rpm
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.3.80/one-context-5.3.80-1.el7.noarch.rpm
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.3.80/one-context-5.3.80-1.suse.noarch.rpm
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.3.80/one-context_5.3.80-1.deb
+    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.4.0/one-context-5.4.0-1.el6.noarch.rpm
+    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.4.0/one-context-5.4.0-1.el7.noarch.rpm
+    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.4.0/one-context-5.4.0-1.suse.noarch.rpm
+    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.4.0/one-context_5.4.0-1.deb
     $ cd ..
 
 
@@ -114,20 +114,21 @@ CentOS 6
     mkdir /tmp/mount
     mount LABEL=PACKAGES /tmp/mount
 
-    # Remove cloud-init and NetworkManager
-    yum remove -y NetworkManager cloud-init
+    yum install -y epel-release
 
-    yum install -y epel-release --nogpgcheck
+    # Remove NetworkManager
+    yum remove -y NetworkManager
 
-    # Install opennebula context package
-    yum localinstall -y /tmp/mount/one-context*el6*rpm
+    # Upgrade util-linux
+    yum upgrade -y util-linux
 
-    # Install growpart and upgrade util-linux
-    yum install -y cloud-utils-growpart --nogpgcheck
-    yum upgrade -y util-linux --nogpgcheck
+    # Install OpenNebula context package
+    yum install -y /tmp/mount/one-context*el6*rpm
 
-    # Install ruby and rubygem-json for onegate
-    yum install -y ruby rubygem-json
+    # Take out the serial console from kernel configuration
+    # (it can freeze during the boot process).
+    sed -i --follow-symlinks '/^serial/d' /etc/grub.conf
+    sed -i --follow-symlinks 's/console=ttyS[^ "]*//g' /etc/grub.conf
 
     # Install VMware tools. You can skip this step for KVM images
     yum install -y open-vm-tools
@@ -140,20 +141,17 @@ CentOS 7
     mkdir /tmp/mount
     mount LABEL=PACKAGES /tmp/mount
 
-    # Remove cloud-init and NetworkManager
-    yum remove -y NetworkManager cloud-init
+    yum install -y epel-release
 
-    yum install -y epel-release --nogpgcheck
+    # Remove NetworkManager
+    yum remove -y NetworkManager
 
-    # Install opennebula context package
-    yum localinstall -y /tmp/mount/one-context*el7*rpm
+    # Install OpenNebula context package
+    yum install -y /tmp/mount/one-context*el7*rpm
 
-    # Install growpart and upgrade util-linux
-    yum install -y cloud-utils-growpart --nogpgcheck
-    yum upgrade -y util-linux --nogpgcheck
-
-    # Install ruby for onegate tool
-    yum install -y ruby
+    # Take out serial console from kernel configuration
+    # (it can freeze during the boot process).
+    sed -i --follow-symlinks 's/console=ttyS[^ "]*//g' /etc/default/grub /etc/grub2.cfg
 
     # Install VMware tools. You can skip this step for KVM images
     yum install -y open-vm-tools
@@ -167,28 +165,24 @@ Debian 8
     mkdir /tmp/mount
     mount LABEL=PACKAGES /tmp/mount
 
-    # remove cloud-init and add one-context
-    dpkg -i /tmp/mount/one-context*deb
-    apt-get remove -y cloud-init
+    apt-key update
+    apt-get update
 
+    # Remove cloud-init
+    apt-get purge -y cloud-init
 
-    # This package contains growpart
-    apt-get install -y cloud-utils
+    # Install OpenNebula context package
+    dpkg -i /tmp/mount/one-context*deb || apt-get install -fy
 
-    # Unconfigure serial console. OpenNebula does not configure a serial console
-    # and growpart in initrd tries to write to it. It panics in the first boot
-    # if it is configured in the kernel parameters.
-    sed -i 's/console=ttyS0,115200//' /extlinux.conf
-    cat /extlinux.conf
-
-    # Install ruby for onegate tool
-    apt-get install -y ruby
+    # Take out serial console from kernel configuration
+    # (it can freeze during the boot process).
+    sed -i 's/console=ttyS[^ "]*//' /extlinux.conf /boot/extlinux/extlinux.conf
 
     # Install VMware tools. You can skip this step for KVM images
     apt-get install -y open-vm-tools
 
-Ubuntu 14.04
-~~~~~~~~~~~~
+Debian 9
+~~~~~~~~
 
 .. code-block:: bash
 
@@ -199,25 +193,22 @@ Ubuntu 14.04
     apt-key update
     apt-get update
 
-    # remove cloud-init and add one-context
-    dpkg -i /tmp/mount/one-context*deb
-    apt-get remove -y cloud-init
+    # Remove cloud-init
+    apt-get purge -y cloud-init
 
-    # This package contains partx. Some old versions can not do online partition
-    # resizing
-    apt-get install -y util-linux
+    # Install OpenNebula context package
+    dpkg -i /tmp/mount/one-context*deb || apt-get install -fy
 
-    # This package contains growpart
-    apt-get install -y cloud-utils
-
-    # Install ruby for onegate tool
-    apt-get install -y ruby
+    # Take out serial console from kernel configuration
+    # (it can freeze during the boot process).
+    sed -i 's/console=ttyS[^ "]*//' /etc/default/grub /boot/grub/grub.cfg
+    sed -i 's/earlyprintk=ttyS[^ "]*//' /etc/default/grub /boot/grub/grub.cfg
 
     # Install VMware tools. You can skip this step for KVM images
     apt-get install -y open-vm-tools
 
-Ubuntu 16.04
-~~~~~~~~~~~~
+Ubuntu 14.04, 16.04
+~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: bash
 
@@ -228,27 +219,18 @@ Ubuntu 16.04
     apt-key update
     apt-get update
 
-    # remove cloud-init and add one-context
-    dpkg -i /tmp/mount/one-context*deb
+    # Remove cloud-init
     apt-get remove -y cloud-init
 
-    # This package contains partx. Some old versions can not do online partition
-    # resizing
-    apt-get install -y util-linux
+    # Install OpenNebula context package
+    dpkg -i /tmp/mount/one-context*deb || apt-get install -fy
 
-    # This package contains growpart
-    apt-get install -y cloud-utils
-
-    # Install ruby for onegate tool
-    apt-get install -y ruby
-
-    # Take out serial console from kernel configuration. It prevents the
-    # image from booting.
-    sed -i 's/console=ttyS0$//g' /boot/grub/grub.cfg
+    # Take out serial console from kernel configuration
+    # (it can freeze during the boot process).
+    sed -i 's/console=ttyS[^ "]*//g' /etc/default/grub /boot/grub/grub.cfg
 
     # Install VMware tools. You can skip this step for KVM images
     apt-get install -y open-vm-tools
-
 
 Step 6. Create an Overlay Image
 -------------------------------
