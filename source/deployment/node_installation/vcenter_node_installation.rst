@@ -331,8 +331,8 @@ Locations of the VIB installation package or ZIP bundle:
 * On public download server. In a case of installation problems,
   insecure HTTP access can be used at own risk!
 
-  * https://downloads.opennebula.org/packages/opennebula-5.3.80/fw-vnc-5.3.80.vib
-  * https://downloads.opennebula.org/packages/opennebula-5.3.80/fw-vnc-5.3.80.zip
+  * https://downloads.opennebula.org/packages/opennebula-5.4.0/fw-vnc-5.4.0.vib
+  * https://downloads.opennebula.org/packages/opennebula-5.4.0/fw-vnc-5.4.0.zip
 
 
 .. note::
