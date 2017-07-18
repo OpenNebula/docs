@@ -7,41 +7,41 @@ CentOS/RHEL 6.x
 
 .. prompt:: bash # auto
 
-    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.3.80/one-context-5.3.80-1.el6.noarch.rpm
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.4.0/one-context-5.4.0-1.el6.noarch.rpm
 
 CentOS/RHEL 7.x
 ~~~~~~~~~~~~~~~
 
 .. prompt:: bash # auto
 
-    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.3.80/one-context-5.3.80-1.el7.noarch.rpm
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.4.0/one-context-5.4.0-1.el7.noarch.rpm
 
 OpenSUSE
 ~~~~~~~~
 
 .. prompt:: bash # auto
 
-    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.3.80/one-context-5.3.80-1.suse.noarch.rpm
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.4.0/one-context-5.4.0-1.suse.noarch.rpm
 
 Debian/Ubuntu/Devuan
 ~~~~~~~~~~~~~~~~~~~~
 
 .. prompt:: bash # auto
 
-    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.3.80/one-context_5.3.80-1.deb
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.4.0/one-context_5.4.0-1.deb
 
 Windows
 ~~~~~~~
 
 Download the MSI package into ``C:\``:
 
-* https://github.com/OpenNebula/addon-context-windows/releases/download/v5.3.80/one-context-5.3.80.msi
+* https://github.com/OpenNebula/addon-context-windows/releases/download/v5.4.0/one-context-5.4.0.msi
 
 Or execute this command in powershell:
 
 .. prompt:: powershell # auto
 
-    (New-Object Net.WebClient).DownloadFile("https://github.com/OpenNebula/addon-context-windows/releases/download/v5.3.80/one-context-5.3.80.msi", "C:\one-context-5.3.80.msi")
+    (New-Object Net.WebClient).DownloadFile("https://github.com/OpenNebula/addon-context-windows/releases/download/v5.4.0/one-context-5.4.0.msi", "C:\one-context-5.4.0.msi")
 
 Step 3. Install Contextualization Packages and Dependencies
 -----------------------------------------------------------
@@ -52,8 +52,7 @@ CentOS/RHEL 6
 .. prompt:: bash # auto
 
     # yum install -y epel-release
-    # yum install -y one-context*el6*rpm dracut-modules-growroot
-    # dracut -f
+    # yum install -y one-context*el6*rpm
 
 CentOS/RHEL 7
 ~~~~~~~~~~~~~
@@ -75,6 +74,7 @@ Debian/Ubuntu
 
 .. prompt:: bash # auto
 
+    # apt-get purge -y cloud-init
     # dpkg -i one-context*deb || apt-get install -fy
 
 Windows
