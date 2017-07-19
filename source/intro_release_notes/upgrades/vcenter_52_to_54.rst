@@ -112,11 +112,11 @@ And the following change in ``/var/lib/one/remotes/datastore/vcenter/rm``:
 
 This script can be executed as many times as wished. It will update previous results and XML template will be always overwritten.
 
-In order to execute the script you need to download from `https://downloads.opennebula.org/packages/opennebula-5.3.90/vcenter_one54_pre.rb <https://downloads.opennebula.org/packages/opennebula-5.3.90/vcenter_one54_pre.rb>`__ and run it manually **as oneadmin**.
+In order to execute the script you need to download from `https://downloads.opennebula.org/packages/opennebula-5.4.0/vcenter_one54_pre.rb <https://downloads.opennebula.org/packages/opennebula-5.4.0/vcenter_one54_pre.rb>`__ and run it manually **as oneadmin**.
 
 .. code::
 
-    $ curl -skLO https://downloads.opennebula.org/packages/opennebula-5.3.90/vcenter_one54_pre.rb
+    $ curl -skLO https://downloads.opennebula.org/packages/opennebula-5.4.0/vcenter_one54_pre.rb
     $ ruby vcenter_one54_pre.rb
 
 OpenNebula Upgrade
