@@ -28,7 +28,7 @@ The Hosts that you have registered should be in ON status.
 Step 2. Import an appliance from the MarketPlace.
 --------------------------------------------------------------------------------
 
-We need to add an Image to our Cloud. To do so we can do so by navigating to Storage -> Apps in the left side menu (1). You will see a list of Appliances, you can filter by ``tty kvm`` (2) in order to find the one we are going to use in this guide. After that select it (3) and click to button with an arrow pointing to OpenNebula (4) in order to import it.
+We need to add an Image to our Cloud. To do so we can do so by navigating to Storage -> Apps in the left side menu (1). You will see a list of Appliances, you can filter by ``tty kvm`` (2) in order to find the one we are going to use in this guide. After that select it (3) and click to cloud button (4) in order to import it.
 
 |sunstone_import_marketapp|
 
