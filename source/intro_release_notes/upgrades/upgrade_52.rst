@@ -45,6 +45,8 @@ If you are using vCenter you will need to follow some extra steps while **still 
 
 Follow the :ref:`vCenter upgrade 5.2 to 5.4 Pre-migration phase <vcenter_52_to_54_pre>`.
 
+.. _upgrade_52_stop_opennebula:
+
 Stop OpenNebula
 ---------------
 

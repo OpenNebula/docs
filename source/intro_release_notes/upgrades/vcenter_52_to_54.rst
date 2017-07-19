@@ -117,6 +117,13 @@ In order to execute the script you need to download from `https://downloads.open
     $ curl -skLO https://downloads.opennebula.org/packages/opennebula-5.3.90/vcenter_one54_pre.rb
     $ ruby vcenter_one54_pre.rb
 
+OpenNebula Upgrade
+--------------------------------------------------------------------------------
+
+.. important:: Now you need to continue upgrading the software following the steps described in the upgrade guide.
+
+Follow the :ref:`Upgrade OpenNebula software <upgrade_52_stop_opennebula>`.
+
 .. _vcenter_52_to_54_migr:
 
 Migration phase
