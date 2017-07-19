@@ -9,7 +9,7 @@ vCenter upgrade 5.2 to 5.4
 Pre-migration phase
 --------------------------------------------------------------------------------
 
-OpenNebula provides a script that must be run **before** it is upgraded using the **oneadmin** user account. This script can be downloaded from `https://downloads.opennebula.org/packages/opennebula-5.3.90/vcenter_one54_pre.rb <https://downloads.opennebula.org/packages/opennebula-5.3.90/vcenter_one54_pre.rb>`__.
+OpenNebula provides a script that must be run **before** it is upgraded using the **oneadmin** user account. This script can be downloaded from `https://downloads.opennebula.org/packages/opennebula-5.4.0/vcenter_one54_pre.rb <https://downloads.opennebula.org/packages/opennebula-5.4.0/vcenter_one54_pre.rb>`__.
 
 .. warning:: If you are using the vCenter drivers, there is a manual intervention required in order to upgrade to OpenNebula 5.4. Note that **upgrading from OpenNebula < 5.2 to OpenNebula 5.4 is NOT supported**. You need to upgrade first to OpenNebula 5.2, and then upgrade to OpenNebula 5.4.
 
