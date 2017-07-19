@@ -31,8 +31,11 @@ Using the CLI:
       8 Hadoop 1.2 Master                1.0  1.3G  rdy  img 04/07/43    OpenNebula Public
       9 Hadoop 1.2 Slave                 1.0  1.3G  rdy  img 05/18/14    OpenNebula Public
 
+Using Sunstone:
 
-.. todo:: Sunstone
+.. image:: /images/listing_marketplaceapps.png
+    :width: 90%
+    :align: center
 
 Show a MarketPlaceApp
 --------------------------------------------------------------------------------
@@ -92,7 +95,11 @@ Not that if we unpack that `VMTEMPLATE64` we obtain the following:
 
 Which demonstrates the capability of including a template into the appliance's data.
 
-.. todo:: sunstone
+Using Sunstone:
+
+.. image:: /images/show_marketplaceapp.png
+    :width: 90%
+    :align: center
 
 Create a New MarketPlaceApp
 --------------------------------------------------------------------------------
@@ -135,7 +142,11 @@ Example:
     $ onemarketapp create marketapp.tpl -m "OpenNebula Public"
     ID: 40
 
-.. todo:: sunstone
+Using Sunstone:
+
+.. image:: /images/create_marketplaceapp.png
+    :width: 90%
+    :align: center
 
 Exporting a MarketPlaceApp
 --------------------------------------------------------------------------------
@@ -152,7 +163,11 @@ The command that exports the MarketPlaceApp is `onemarketapp export` which will 
     VMTEMPLATE
         ID: -1
 
-.. todo:: Sunstone
+Using Sunstone:
+
+.. image:: /images/exporting_marketplaceapp.png
+    :width: 90%
+    :align: center
 
 .. _marketapp_download:
 
