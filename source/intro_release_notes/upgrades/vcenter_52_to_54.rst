@@ -13,6 +13,8 @@ OpenNebula provides a script that must be run **before** it is upgraded using th
 
 .. warning:: If you are using the vCenter drivers, there is a manual intervention required in order to upgrade to OpenNebula 5.4. Note that **upgrading from OpenNebula < 5.2 to OpenNebula 5.4 is NOT supported**. You need to upgrade first to OpenNebula 5.2, and then upgrade to OpenNebula 5.4.
 
+.. warning:: The pre-migration phase may fail if there are resources in error, please clean resources in failed state prior to continue with this process.
+
 The script will perform the following tasks:
 
 * Establish a connection to every vCenter instance known by OpenNebula
