@@ -174,7 +174,7 @@ Using Sunstone:
 Downloading a MarketPlaceApp
 --------------------------------------------------------------------------------
 
-To downloadd a MarketPlaceApp to a file:
+To download a MarketPlaceApp to a file:
 
 .. code::
 
