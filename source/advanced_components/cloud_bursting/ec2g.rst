@@ -189,8 +189,8 @@ After successfully executing onehost create with -t option, your default editor 
     EC2_SECRET = "this_is_my_ec2_secret_key"
     REGION_NAME = "us-east-1"
     CAPACITY = [
-        M1SMALL = "3",
-        M1LARGE = "1" ]
+        M1_SMALL = "3",
+        M1_LARGE = "1" ]
 
 The first two attributes have the authentication info required by AWS:
 
@@ -203,7 +203,7 @@ This information will be encrypted as soon as the host is created. In the host t
 
 In the example the region is set to `us-east-1`, you can get this information at the EC2 web console.
 
-- **CAPACITY**: This attribute sets the size and number of EC2 machines that your OpenNebula host will handle, you can see ``instance_types`` section in ``ec2_driver.conf`` file to know the supported names. Dot ('.') is not permitted, you have to delete it and capitalize the names (``m1.small`` => ``M1SMALL``).
+- **CAPACITY**: This attribute sets the size and number of EC2 machines that your OpenNebula host will handle, you can see ``instance_types`` section in ``ec2_driver.conf`` file to know the supported names. Dot ('.') is not permitted, you have to change it to underscores (`_`) and capitalize the names (``m1.small`` => ``M1_SMALL``).
 
 .. _context_ec2:
 
