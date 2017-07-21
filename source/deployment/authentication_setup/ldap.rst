@@ -101,8 +101,7 @@ The structure is a hash where any key different to ``:order`` will contain the c
 | ``:password``         | Password for the user defined in ``:user``.     |
 |                       | Do not set if anonymous access is enabled       |
 +-----------------------+-------------------------------------------------+
-| ``:auth_method``      | Can be set to ``:simple_tls`` if SSL connection |
-|                       | is needed                                       |
+| ``:auth_method``      | Only ``:simple`` is supported                   |
 +-----------------------+-------------------------------------------------+
 | ``:encryption``       | Can be set to ``:simple_tls`` if SSL connection |
 |                       | is needed                                       |
