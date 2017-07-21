@@ -4,7 +4,7 @@
 What's New in 5.4
 ================================================================================
 
-OpenNebula 5.4 (Medusa) is the third release of the OpenNebula 5 series. A significant effort has been applied in this release to stabilize features introduced in 5.2 Excession, while keeping an eye in implementing those features more demanded by the community.
+OpenNebula 5.4 (Medusa) is the third release of the OpenNebula 5 series. A significant effort has been applied in this release to enhance features introduced in 5.2 Excession, while keeping an eye in implementing those features more demanded by the community.
 
 As usual almost every component of OpenNebula has been reviewed to target usability and functional improvements, trying to keep API changes to a minimum to avoid disrupting ecosystem components. An important focus has been on the vCenter integration, with an enhanced network and storage management. Also, new components have been added to improve the OpenNebula experience.
 
