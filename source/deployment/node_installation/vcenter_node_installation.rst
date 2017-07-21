@@ -413,7 +413,7 @@ to allow the community packages to be installed and proceed with the install.
 .. prompt:: bash $ auto
 
     $ esxcli <connection options> software acceptance set --level=CommunitySupported
-    $ esxcli <connection options> software vib install -v 'https://downloads.opennebula.org/packages/opennebula-5.3.80/fw-vnc-5.3.80.vib'
+    $ esxcli <connection options> software vib install -v 'https://downloads.opennebula.org/packages/opennebula-5.4.0/fw-vnc-5.4.0.vib'
 
 This enables VNC ports for any remote host. You should
 limit access to the VNC only from your OpenNebula Front-end. In this
