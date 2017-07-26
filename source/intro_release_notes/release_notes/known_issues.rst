@@ -90,3 +90,4 @@ vCenter
 
 * `#4990 <http://dev.opennebula.org/issues/4990>`_ importing network on vcenter with vlan doesn't report the vlan id
 * `#5246 <http://dev.opennebula.org/issues/5246>`_ Wrong import of vCenter VM Templates with NICs in Distributed vSwitches or Distributed Ports
+* `#5285 <https://dev.opennebula.org/issues/5285>`_ Resource Pools of type vApp are not supported
