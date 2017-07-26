@@ -11,7 +11,7 @@ Pre-migration phase
 
 OpenNebula provides a script that must be run **before** it is upgraded using the **oneadmin** user account. This script can be downloaded from `https://downloads.opennebula.org/packages/opennebula-5.4.0/vcenter_one54_pre.rb <https://downloads.opennebula.org/packages/opennebula-5.4.0/vcenter_one54_pre.rb>`__.
 
-.. warning:: If you are using VMs or VM Templates with spaces in their VMDK paths and/or names, and you cannot go without them, the recommendation is to **NOT** upgrade to OpenNebula 5.4.0, but rather wait for the next maintenance release where this :ref:`known issue<>` is addressed.
+.. warning:: If you are using VMs or VM Templates with spaces in their VMDK paths and/or names, and you cannot go without them, the recommendation is to **NOT** upgrade to OpenNebula 5.4.0, but rather wait for the next maintenance release where this :ref:`known issue<known_issues>` is addressed.
 
 .. warning:: If you are using the vCenter drivers, there is a manual intervention required in order to upgrade to OpenNebula 5.4. Note that **upgrading from OpenNebula < 5.2 to OpenNebula 5.4 is NOT supported**. You need to upgrade first to OpenNebula 5.2, and then upgrade to OpenNebula 5.4.
 
