@@ -198,8 +198,6 @@ You will need to change the following values in the configuration file (``/etc/o
 -  ``:base``: base DN to search for users. You need to decompose the full domain name and use each part as DN component. Example, for ``win.opennebula.org`` you will get the base DN: DN=win,DN=opennebula,DN=org
 -  ``:user_field``: set it to ``sAMAccountName``
 
-``:group`` parameter is still not supported for Active Directory, leave it commented.
-
 .. _ldap_group_mapping:
 
 Group Mapping
