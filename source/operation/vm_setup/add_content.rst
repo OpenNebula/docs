@@ -81,10 +81,10 @@ You have to download them to a directory that we will later refer. In this examp
 
     $ mkdir packages
     $ cd packages
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.4.0/one-context-5.4.0-1.el6.noarch.rpm
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.4.0/one-context-5.4.0-1.el7.noarch.rpm
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.4.0/one-context-5.4.0-1.suse.noarch.rpm
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.4.0/one-context_5.4.0-1.deb
+    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.4.1/one-context-5.4.1-1.el6.noarch.rpm
+    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.4.1/one-context-5.4.1-1.el7.noarch.rpm
+    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.4.1/one-context-5.4.1-1.suse.noarch.rpm
+    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.4.1/one-context_5.4.1-1.deb
     $ cd ..
 
 
@@ -130,9 +130,6 @@ CentOS 6
     sed -i --follow-symlinks '/^serial/d' /etc/grub.conf
     sed -i --follow-symlinks 's/console=ttyS[^ "]*//g' /etc/grub.conf
 
-    # Install VMware tools. You can skip this step for KVM images
-    yum install -y open-vm-tools
-
 CentOS 7
 ~~~~~~~~
 
@@ -152,9 +149,6 @@ CentOS 7
     # Take out serial console from kernel configuration
     # (it can freeze during the boot process).
     sed -i --follow-symlinks 's/console=ttyS[^ "]*//g' /etc/default/grub /etc/grub2.cfg
-
-    # Install VMware tools. You can skip this step for KVM images
-    yum install -y open-vm-tools
 
 Debian 8
 ~~~~~~~~
@@ -178,8 +172,6 @@ Debian 8
     # (it can freeze during the boot process).
     sed -i 's/console=ttyS[^ "]*//' /extlinux.conf /boot/extlinux/extlinux.conf
 
-    # Install VMware tools. You can skip this step for KVM images
-    apt-get install -y open-vm-tools
 
 Debian 9
 ~~~~~~~~
@@ -204,8 +196,6 @@ Debian 9
     sed -i 's/console=ttyS[^ "]*//' /etc/default/grub /boot/grub/grub.cfg
     sed -i 's/earlyprintk=ttyS[^ "]*//' /etc/default/grub /boot/grub/grub.cfg
 
-    # Install VMware tools. You can skip this step for KVM images
-    apt-get install -y open-vm-tools
 
 Ubuntu 14.04, 16.04
 ~~~~~~~~~~~~~~~~~~~
@@ -229,8 +219,6 @@ Ubuntu 14.04, 16.04
     # (it can freeze during the boot process).
     sed -i 's/console=ttyS[^ "]*//g' /etc/default/grub /boot/grub/grub.cfg
 
-    # Install VMware tools. You can skip this step for KVM images
-    apt-get install -y open-vm-tools
 
 Step 6. Create an Overlay Image
 -------------------------------
