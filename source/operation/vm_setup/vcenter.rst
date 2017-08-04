@@ -38,19 +38,10 @@ If you already happen to have a VM or Template in vCenter with the installed OS 
 Step 4. Install VMware Tools
 ----------------------------
 
-CentOS
-~~~~~~
+CentOS, Debian/Ubuntu
+~~~~~~~~~~~~~~~~~~~~~
 
-.. prompt:: bash # auto
-
-    # yum install open-vm-tools
-
-Debian/Ubuntu
-~~~~~~~~~~~~~
-
-.. prompt:: bash # auto
-
-    # apt-get install open-vm-tools
+``open-vm-tools`` are installed as a dependency of contextualization package.
 
 Windows
 ~~~~~~~
