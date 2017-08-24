@@ -48,7 +48,14 @@ Windows
 
 In vCenter open the VM menu, go to "Guest OS" section, click in "Install VMware Tools..." and follow the instructions.
 
-Step 5. Power Off the Machine and Save it
+Step 5. Run Sysprep in Windows Machines
+---------------------------------------
+
+Execute ``sysprep`` to prepare the OS for duplication. You can find more information at:
+
+https://technet.microsoft.com/en-us/library/cc721940(v=ws.10).aspx
+
+Step 6. Power Off the Machine and Save it
 -----------------------------------------
 
 These are the steps needed to finish the preparation and import it to OpenNebula:

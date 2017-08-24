@@ -20,7 +20,14 @@ Supported contextualization packages are available for the following OS's:
 
 .. include:: install_steps.txt
 
-Step 4. Power Off the Machine and Save it
+Step 4. Run Sysprep in Windows Machines
+---------------------------------------
+
+Execute ``sysprep`` to prepare the OS for duplication. You can find more information at:
+
+https://technet.microsoft.com/en-us/library/cc721940(v=ws.10).aspx
+
+Step 5. Power Off the Machine and Save it
 -----------------------------------------
 
 After these configuration is done you should power off the machine, so it is in a consistent state the next time it boots. Then you will have to save the image.
