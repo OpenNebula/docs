@@ -11,6 +11,8 @@ OpenNebula uses a distributed consensus protocol to provide fault-tolerance and 
 
 .. warning:: If you are interested in fail-over protection against hardware and operating system outages within your virtualized IT environment, check the :ref:`Virtual Machines High Availability Guide <ftguide>`.
 
+.. important:: We have detected a problem in the OpenNebula configuration that can be easily fixed changing the value ``RAFT/XMLRPC_TIMEOUT_MS`` to ``0``. After modifying ``/etc/one/oned.conf`` you should restart OpenNebula service.
+
 Raft Overview
 ================================================================================
 
