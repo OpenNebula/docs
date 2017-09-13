@@ -127,7 +127,7 @@ We start with the first server, to perform the initial system bootstrapping.
 
   # Executed when a server transits from leader->follower
   RAFT_FOLLOWER_HOOK = [
-      COMMAND = "raft/follower.sh",
+      COMMAND = "raft/vip.sh",
       ARGUMENTS = "follower eth0 10.3.3.2/24"
   ]
 
