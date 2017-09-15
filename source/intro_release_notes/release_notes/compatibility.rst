@@ -9,7 +9,12 @@ This guide is aimed at OpenNebula 5.2.x users and administrators who want to upg
 
 Visit the :ref:`Features list <features>` and the `Release Notes <http://opennebula.org/software/release/>`_ for a comprehensive list of what's new in OpenNebula 5.4.
 
-.. warning:: OpenNebula 5.4.1 modifies the existing Sunstone views configuration files ('/etc/one/sunstone-views/') to adjust the column names. Any change made in these files will need to be reapplied after the OpenNebula upgrade.
+To consider only if upgrading from OpenNebula 5.4.0
+================================================================================
+
+- OpenNebula 5.4.1 modifies the existing Sunstone views configuration files ('/etc/one/sunstone-views/') to adjust the column names. Any change made in these files will need to be reapplied after the OpenNebula upgrade.
+
+- Imported VMs existing in OpenNebula 5.4.0 *won't* be rediscovered in future versions. This means that these VMs won't have NICs and DISKs visible in OpenNebula, which will cause unexpected behaviours if a power cycle operation (eg POWEROFF - POWERON) occurs. In order to reimport these VMs, please rename the cancel driver ('/var/lib/one/remotes/vmm/vcenter/cancel'), delete the VMs and reimport them again from the Wild VMs tab of the corresponding vCenter cluster.
 
 OpenNebula Administrators
 ================================================================================
