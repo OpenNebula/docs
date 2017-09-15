@@ -154,4 +154,4 @@ The migration tool will update some OpenNebula's database tables using the XML f
 
 In the following sections you will need to execute ``onedb fsck``. Note that you might get the following error:  ``[UNREPAIRED] VM XX has a lease from VNet XX, but it could not be matched to any AR``. This is expected for previously invisible NIC interfaces in VMs added in the pre-migration phase.
 
-Continue the upgrade by moving on to the :ref:`next section <upgrade_onedb_upgrade>`.
+Continue the upgrade by moving on to the :ref:`next section <upgrade_52_onedb_upgrade>`.

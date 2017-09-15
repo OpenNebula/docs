@@ -1,5 +1,3 @@
-.. _upgrade:
-
 =================================
 Upgrading from OpenNebula 5.2.x
 =================================
@@ -114,7 +112,7 @@ If you are using vCenter you will need to run the vCenter migration tool before 
 
 Follow the :ref:`vCenter upgrade 5.2 to 5.4 Migration phase <vcenter_52_to_54_migr>`.
 
-.. _upgrade_onedb_upgrade:
+.. _upgrade_52_onedb_upgrade:
 
 Perform the Database Upgrade
 --------------------------------------------------------------------------------
