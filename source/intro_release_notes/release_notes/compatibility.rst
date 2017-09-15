@@ -9,6 +9,8 @@ This guide is aimed at OpenNebula 5.2.x users and administrators who want to upg
 
 Visit the :ref:`Features list <features>` and the `Release Notes <http://opennebula.org/software/release/>`_ for a comprehensive list of what's new in OpenNebula 5.4.
 
+.. warning:: OpenNebula 5.4.1 modifies the existing Sunstone views configuration files ('/etc/one/sunstone-views/') to adjust the column names. Any change made in these files will need to be reapplied after the OpenNebula upgrade.
+
 OpenNebula Administrators
 ================================================================================
 
