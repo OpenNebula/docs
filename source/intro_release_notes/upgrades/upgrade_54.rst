@@ -12,24 +12,16 @@ Read the :ref:`Compatibility Guide <compatibility>` and `Release Notes <http://o
 
 .. warning:: OpenNebula 5.4.1 modifies the existing Sunstone views configuration files ('/etc/one/sunstone-views/') to adjust the column names. Any change made in these files will need to be reapplied after the OpenNebula upgrade.
 
-Upgrading a Federation
+Upgrading a Federation and High Availability
 ================================================================================
 
-
-
-Upgrading from a High Availability deployment
-================================================================================
+You need to perform the following steps in all the HA nodes and all zones.
 
 
 Preparation
 ===========
 
 Before proceeding, make sure you don't have any VMs in a transient state (prolog, migr, epil, save). Wait until these VMs get to a final state (runn, suspended, stopped, done). Check the :ref:`Managing Virtual Machines guide <vm_guide_2>` for more information on the VM life-cycle.
-
-vCenter
--------
-
-
 
 Stop OpenNebula
 ---------------
@@ -56,7 +48,7 @@ Make sure to run the ``install_gems`` tool, as the new OpenNebula version may ha
 
     If executing ``install_gems`` you get a message asking to overwrite files for aws executables you can safely answer "yes".
 
-It is highly recommended **not to keep** your current ``oned.conf``, and update the ``oned.conf`` file shipped with OpenNebula |version| to your setup. If for any reason you plan to preserve your current ``oned.conf`` file, read the :ref:`Compatibility Guide <compatibility>` and the complete oned.conf reference for `5.4 <http://docs.opennebula.org/5.4/deployment/references/oned_conf.html>`_ and |onedconf| versions.
+It is highly recommended **not to keep** your current ``oned.conf``, and update the ``oned.conf`` file shipped with OpenNebula |version| to your setup. If for any reason you plan to preserve your current ``oned.conf`` file, read the :ref:`Compatibility Guide <compatibility>` and the complete ``oned.conf`` |onedconf| reference.
 
 Configuration Files Upgrade
 ===========================
@@ -71,34 +63,8 @@ If you have customized **any** configuration files under ``/etc/one`` we recomme
 #. Edit the **new** files and port all the customizations from the previous version.
 #. You should **never** overwrite the configuration files with older versions.
 
-EC2 Configuration File
-----------------------
-
-The credentials and capacity from ec2 zones have been moved from its configuration file to the template of the host. You don't need to update the file ``/etc/one/ec2_driver.conf`` with the data from the old file. To make this data available to the migrator copy the old configuration file to ``/etc/one/ec2_driver.conf.old``:
-
-.. prompt:: text # auto
-
-    # cp /etc/one.$(date +'%Y-%m-%d')/ec2_driver.conf /etc/one/ec2_driver.conf.old
-
-After migration you can delete the old file:
-
-.. prompt:: text # auto
-
-    # rm /etc/one/ec2_driver.conf.old
-
 Database Upgrade
 ================
-
-vCenter Migration Tool
---------------------------------------------------------------------------------
-
-.. important:: Read this section carefully if you are using vCenter!
-
-If you are using vCenter you will need to run the vCenter migration tool before running the `onedb upgrade` command from the next section.
-
-Follow the :ref:`vCenter upgrade 5.2 to 5.4 Migration phase <vcenter_52_to_54_migr>`.
-
-.. _upgrade_onedb_upgrade:
 
 Perform the Database Upgrade
 --------------------------------------------------------------------------------
@@ -108,8 +74,6 @@ The database schema and contents are incompatible between versions. The OpenNebu
 You can upgrade the existing DB with the 'onedb' command. You can specify any Sqlite or MySQL database. Check the :ref:`onedb reference <onedb>` for more information.
 
 .. note:: Make sure at this point that OpenNebula is not running. If you installed from packages, the service may have been started automatically.
-
-.. note:: For environments in a Federation: Before upgrading the **master**, make sure that all the slaves have the MySQL replication paused.
 
 After you install the latest OpenNebula, and fix any possible conflicts in oned.conf, you can issue the 'onedb upgrade -v' command. The connection parameters have to be supplied with the command line options, see the :ref:`onedb manpage <cli>` for more information. Some examples:
 
@@ -154,7 +118,7 @@ Check DB Consistency
 
 After the upgrade is completed, you should run the command ``onedb fsck``.
 
-First, move the 5.2.x backup file created by the upgrade command to a safe place.
+First, move the 5.4.x backup file created by the upgrade command to a safe place.
 
 .. prompt:: text $ auto
 
@@ -170,15 +134,6 @@ Then execute the following command:
     mysql -u user -h server -P port db_name < backup_file
 
     Total errors found: 0
-
-Recreate the Federation salves
-================================================================================
-
-This section applies only to environments working in a Federation. 
-
-For the **master zone**: Snapshot the shared tables using the ``onedb`` tool. Please refer to the :ref:`federation guide <federationconfig>` for more details.
-
-For a **slave zone**: Each slave should be already configured, i.e. ``oned.conf`` should include the ``ZONE_ID`` for the slave, auth files present and OpenNebula updated to last version. You only need to restore the shared tables saved in the previous step and start the slave zone.
 
 Reload Start Scripts
 ================================
