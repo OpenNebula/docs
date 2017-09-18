@@ -15,7 +15,7 @@ Read the :ref:`Compatibility Guide <compatibility>` and `Release Notes <http://o
 Upgrading a Federation and High Availability
 ================================================================================
 
-You need to perform the following steps in all the HA nodes and all zones.
+You need to perform the following steps in all the HA nodes and all zones. Note that you need to update all the servers at the same time, not one by one.
 
 
 Preparation
@@ -62,6 +62,10 @@ If you have customized **any** configuration files under ``/etc/one`` we recomme
 #. Compare the old and new configuration files: ``diff -ur /etc/one.YYYY-MM-DD /etc/one``. Or you can use graphical diff-tools like ``meld`` to compare both directories, which are very useful in this step.
 #. Edit the **new** files and port all the customizations from the previous version.
 #. You should **never** overwrite the configuration files with older versions.
+
+.. important::
+
+    If you are using a HA setup you need to manually change the value ``RAFT/XMLRPC_TIMEOUT_MS`` to ``0`` before restarting the OpenNebula daemons.
 
 Database Upgrade
 ================
