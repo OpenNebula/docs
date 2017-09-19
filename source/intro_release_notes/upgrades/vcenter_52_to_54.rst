@@ -9,7 +9,7 @@ vCenter upgrade 5.2 to 5.4
 Pre-migration phase
 --------------------------------------------------------------------------------
 
-OpenNebula provides a script that must be run **before** it is upgraded using the **oneadmin** user account. This script can be downloaded from `https://downloads.opennebula.org/packages/opennebula-5.4.0/vcenter_one54_pre.rb <https://downloads.opennebula.org/packages/opennebula-5.4.0/vcenter_one54_pre.rb>`__.
+OpenNebula provides a script that must be run **before** it is upgraded using the **oneadmin** user account. This script can be downloaded from `https://downloads.opennebula.org/packages/opennebula-5.4.1/vcenter_one54_pre.rb <https://downloads.opennebula.org/packages/opennebula-5.4.1/vcenter_one54_pre.rb>`__.
 
 .. warning:: As in 5.2 OpenNebula disks cannot have spaces in the VMDK paths. However, OpenNebula 5.4 now exposes all disks of existing templates and VMs. These disks were transparent for 5.2 and cannot have spaces so you need to remove them prior to upgrade. This limitation will be addressed in the short-term in the next maintenance release.
 
@@ -113,11 +113,11 @@ And the following change in ``/var/lib/one/remotes/datastore/vcenter/rm``:
 .. note:: It's advisable to disable the Sunstone user interface while the pre-migrator script is run in order to avoid that OpenNebula objects created by users while the script is run are not pre-migrated.
 
 
-In order to execute the script you need to download from `https://downloads.opennebula.org/packages/opennebula-5.4.0/vcenter_one54_pre.rb <https://downloads.opennebula.org/packages/opennebula-5.4.0/vcenter_one54_pre.rb>`__ and run it manually **as oneadmin**.
+In order to execute the script you need to download from `https://downloads.opennebula.org/packages/opennebula-5.4.1/vcenter_one54_pre.rb <https://downloads.opennebula.org/packages/opennebula-5.4.1/vcenter_one54_pre.rb>`__ and run it manually **as oneadmin**.
 
 .. code::
 
-    $ curl -skLO https://downloads.opennebula.org/packages/opennebula-5.4.0/vcenter_one54_pre.rb
+    $ curl -skLO https://downloads.opennebula.org/packages/opennebula-5.4.1/vcenter_one54_pre.rb
     $ ruby vcenter_one54_pre.rb
 
 .. note::
