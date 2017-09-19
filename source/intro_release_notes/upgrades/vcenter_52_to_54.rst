@@ -112,7 +112,6 @@ And the following change in ``/var/lib/one/remotes/datastore/vcenter/rm``:
 
 .. note:: It's advisable to disable the Sunstone user interface while the pre-migrator script is run in order to avoid that OpenNebula objects created by users while the script is run are not pre-migrated.
 
-This script can be executed as many times as wished. It will update previous results and XML template will be always overwritten.
 
 In order to execute the script you need to download from `https://downloads.opennebula.org/packages/opennebula-5.4.0/vcenter_one54_pre.rb <https://downloads.opennebula.org/packages/opennebula-5.4.0/vcenter_one54_pre.rb>`__ and run it manually **as oneadmin**.
 
@@ -120,6 +119,10 @@ In order to execute the script you need to download from `https://downloads.open
 
     $ curl -skLO https://downloads.opennebula.org/packages/opennebula-5.4.0/vcenter_one54_pre.rb
     $ ruby vcenter_one54_pre.rb
+
+.. note::
+    If you want to execute this script more than once, please delete ``/var/tmp/vcenter_one54`` directory.
+
 
 OpenNebula Upgrade
 --------------------------------------------------------------------------------
