@@ -15,6 +15,8 @@ Read the Compatibility Guide `for 4.4 <http://docs.opennebula.org/4.4/release_no
     -  **iscsi** drivers have been moved out of the main OpenNebula distribution and are available (although not supported) as an `addon <https://github.com/OpenNebula/addon-iscsi>`__.
     -  **ganglia** drivers have been moved out of the main OpenNebula distribution and are available (although not supported) as an `addon <https://github.com/OpenNebula/addon-ganglia>`__.
 
+.. warning:: If you are using the vCenter drivers, there is a manual intervention required in order to upgrade to OpenNebula 5.4. Note that **upgrading from OpenNebula < 5.2 to OpenNebula >= 5.4 is NOT supported**. You need to upgrade first to OpenNebula 5.2, and then upgrade to OpenNebula 5.4.
+
 Preparation
 ===========
 

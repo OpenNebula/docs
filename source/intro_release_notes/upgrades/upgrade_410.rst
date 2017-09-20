@@ -6,6 +6,8 @@ This section describes the installation procedure for systems that are already r
 
 Read the Compatibility Guide for `4.12 <http://docs.opennebula.org/4.12/release_notes/release_notes/compatibility.html>`_, `4.14 <http://docs.opennebula.org/4.14/release_notes/release_notes/compatibility.html>`_, `5.0 <http://docs.opennebula.org/5.0/intro_release_notes/release_notes/compatibility.html>`_ and |compatibility|, and the `Release Notes <http://opennebula.org/software/release/>`_ to know what is new in OpenNebula |version|.
 
+.. warning:: If you are using the vCenter drivers, there is a manual intervention required in order to upgrade to OpenNebula 5.4. Note that **upgrading from OpenNebula < 5.2 to OpenNebula >= 5.4 is NOT supported**. You need to upgrade first to OpenNebula 5.2, and then upgrade to OpenNebula 5.4.
+
 Upgrading a Federation
 ================================================================================
 

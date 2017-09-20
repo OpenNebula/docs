@@ -20,6 +20,8 @@ Read the Compatibility Guide `for 4.2 <http://archives.opennebula.org/documentat
 
     If you want to upgrade and you are using SSH, NFS or VMFS without SSH-mode, you will need to manually migrate your images to a newly created VMFS with SSH-mode datastore. To do so implies powering off all the VMs with images in any of the deprecated datastores, upgrade OpenNebula, create a VMFS datastore and then manually register the images from those deprecated datastores into the new one. `Let us know <http://opennebula.org/community/mailinglists/>`_ if you have doubts or problems with this process.
 
+.. warning:: If you are using the vCenter drivers, there is a manual intervention required in order to upgrade to OpenNebula 5.4. Note that **upgrading from OpenNebula < 5.2 to OpenNebula >= 5.4 is NOT supported**. You need to upgrade first to OpenNebula 5.2, and then upgrade to OpenNebula 5.4.
+
 Preparation
 ===========
 
