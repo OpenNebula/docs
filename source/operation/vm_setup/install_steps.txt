@@ -35,13 +35,13 @@ Windows
 
 Download the MSI package into ``C:\``:
 
-* https://github.com/OpenNebula/addon-context-windows/releases/download/v5.4.0/one-context-5.4.0.msi
+* https://github.com/OpenNebula/addon-context-windows/releases/download/v5.4.1/one-context-5.4.1.msi
 
 Or execute this command in powershell:
 
 .. prompt:: powershell # auto
 
-    (New-Object Net.WebClient).DownloadFile("https://github.com/OpenNebula/addon-context-windows/releases/download/v5.4.0/one-context-5.4.0.msi", "C:\one-context-5.4.0.msi")
+    (New-Object Net.WebClient).DownloadFile("https://github.com/OpenNebula/addon-context-windows/releases/download/v5.4.1/one-context-5.4.1.msi", "C:\one-context-5.4.1.msi")
 
 Step 3. Install Contextualization Packages and Dependencies
 -----------------------------------------------------------
