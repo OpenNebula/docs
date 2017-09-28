@@ -89,4 +89,5 @@ vCenter
 ================================================================================
 
 * `#4990 <http://dev.opennebula.org/issues/4990>`_ importing network on vcenter with vlan doesn't report the vlan id
+* `#5414 <https://dev.opennebula.org/issues/5414>`_ Template delete recursive operation of templates **instantiated as persistent** does not remove images from the vcenter datastores. Currently these files must be delete manually.
 
