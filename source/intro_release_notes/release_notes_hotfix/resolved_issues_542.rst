@@ -3,54 +3,33 @@
 Resolved Issues in 5.4.2
 --------------------------------------------------------------------------------
 
-A complete list of solved issues for 5.4.1 can be found in the `project development portal <hhttps://dev.opennebula.org/projects/opennebula/issues?utf8=%E2%9C%93&set_filter=1&f%5B%5D=fixed_version_id&op%5Bfixed_version_id%5D=%3D&v%5Bfixed_version_id%5D%5B%5D=89&f%5B%5D=&c%5B%5D=tracker&c%5B%5D=status&c%5B%5D=priority&c%5B%5D=subject&c%5B%5D=assigned_to&c%5B%5D=updated_on&group_by=category>`__.
+A complete list of solved issues for 5.4.2 can be found in the `project development portal <https://dev.opennebula.org/projects/opennebula/issues?c%5B%5D=tracker&c%5B%5D=status&c%5B%5D=priority&c%5B%5D=subject&c%5B%5D=assigned_to&c%5B%5D=updated_on&f%5B%5D=fixed_version_id&f%5B%5D=tracker_id&f%5B%5D=&group_by=category&op%5Bfixed_version_id%5D=%3D&op%5Btracker_id%5D=%3D&per_page=50&set_filter=1&utf8=%E2%9C%93&v%5Bfixed_version_id%5D%5B%5D=91&v%5Btracker_id%5D%5B%5D=1&v%5Btracker_id%5D%5B%5D=2&v%5Btracker_id%5D%5B%5D=7>`__.
 
-New functionality for 5.4.1 has been introduced:
+New functionality for 5.4.2 has been introduced:
 
-- `Scroll Bar in Sunstone VM Log <http://dev.opennebula.org/issues/5283>`__.
-- `Add boolean to option list for User Inputs in VM template <http://dev.opennebula.org/issues/4813>`__.
-- `Additional confirmation level for critical actions and VMs <http://dev.opennebula.org/issues/5362>`__.
-- `fsck should locate the image based on just the name <http://dev.opennebula.org/issues/5305>`__.
-- `Add volatile disk should allow user to specify size in MB as well as GB <http://dev.opennebula.org/issues/5284>`__.
-- `Explain how to add HTTPS to XMLRPC <http://dev.opennebula.org/issues/5257>`__.
-- `Wild VMs should import NICs and Disks <http://dev.opennebula.org/issues/5247>`__.
-- `Ease DS selection on VM Template update and instantiation <http://dev.opennebula.org/issues/5217>`__.
-- `Add SCHEDULED ACTIONS to VM Templates <http://dev.opennebula.org/issues/5015>`__.
-- `When a MarketplaceApp is removed from the MarketPlace it should be removed from OpenNebula <http://dev.opennebula.org/issues/4977>`__.
-- `Add a custom css so it can be overriden easily for branding purposes <http://dev.opennebula.org/issues/4373>`__.
+- `Show key instead of value for restricted attribute <https://dev.opennebula.org/issues/5446>`__.
+- `Enable template save as for vCenter <https://dev.opennebula.org/issues/5411>`__.
+- `Better error messages in get_dc function <https://dev.opennebula.org/issues/5412>`__.
 
-The following issues has been solved in 5.4.1:
+The following issues has been solved in 5.4.2:
 
-- `improve consistency of networks created when importing templates and wilds <http://dev.opennebula.org/issues/5371>`__.
-- `implement call to let raft know that a follower db has been updated <http://dev.opennebula.org/issues/5363>`__.
-- `OpenNebula flow should only work on leader <http://dev.opennebula.org/issues/5358>`__.
-- `VM with ipv6 Error in ip6tables chain <http://dev.opennebula.org/issues/5344>`__.
-- `detach disks are not being delete if vm is running <http://dev.opennebula.org/issues/5342>`__.
-- `Ceph resize of the volatile disk fails <http://dev.opennebula.org/issues/5341>`__.
-- `ec2 and azure fix instance types scripts <http://dev.opennebula.org/issues/5340>`__.
-- `IP spoofing rules does not include VIP addresses for vrouter <http://dev.opennebula.org/issues/5337>`__.
-- `detach disk is not being properly applied <http://dev.opennebula.org/issues/5333>`__.
-- `After a successful datastore monitoring UNKNOWN VMs change to RUNNING <http://dev.opennebula.org/issues/5331>`__.
-- `onevm snapshot delete does not accept a snapshot name <http://dev.opennebula.org/issues/5325>`__.
-- `Wrong message when doing a disk save as <http://dev.opennebula.org/issues/5321>`__.
-- `Add indexes to DB to speed up HA recovery <http://dev.opennebula.org/issues/5307>`__.
-- `VXLAN driver is using a module that does not exist <http://dev.opennebula.org/issues/5302>`__.
-- `Wrong error msg when disk saveas without name <http://dev.opennebula.org/issues/5301>`__.
-- `Disk size is not monitored qcow2 <http://dev.opennebula.org/issues/5300>`__.
-- `Support spaces in VMDK names and dirnames <http://dev.opennebula.org/issues/5288>`__.
-- `vCenter VM NICs pointing to the same network are not correctly identified <http://dev.opennebula.org/issue/5286s>`__.
-- `Skip vCenter VApps when importing templates as they are not supported <http://dev.opennebula.org/issues/5285>`__.
-- `README md out of date <http://dev.opennebula.org/issues/5266>`__.
-- `GPRAPHICS PORT is not cleared after freeing it in the cluster vnc port pool <http://dev.opennebula.org/issues/5263>`__.
-- `DB fsck fails for martekapp <http://dev.opennebula.org/issues/5260>`__.
-- `EC2 errors should be reported to the driver <http://dev.opennebula.org/issues/5248>`__.
-- `Wrong import of vCenter VM Templates with NICs in Distributed vSwitches or Distributed Ports <http://dev.opennebula.org/issues/5246>`__.
-- `Update documentation for oneuser token commands <http://dev.opennebula.org/issues/5235>`__.
-- `Registering image with complex URL in PATH fails <http://dev.opennebula.org/issues/5222>`__.
-- `Restricted Attributes in Vectors are not handled correctly when instantiated a <http://dev.opennebula.org/issues/5204>`__.
-- `Empty list of Zombie VMs <http://dev.opennebula.org/issues/5203>`__.
-- `Incorrect SIZE on qcow2 images from remote sources  <http://dev.opennebula.org/issues/5172>`__.
-- `VMs wrongly reported as ZOMBIES  <http://dev.opennebula.org/issues/5003>`__.
-- `OpenNebula does not take into account VM NIC MAC value  <http://dev.opennebula.org/issues/4992>`__.
-- `Sunstone detailed list of changes <https://dev.opennebula.org/projects/opennebula/issues?utf8=%E2%9C%93&set_filter=1&f%5B%5D=fixed_version_id&op%5Bfixed_version_id%5D=%3D&v%5Bfixed_version_id%5D%5B%5D=89&f%5B%5D=category_id&op%5Bcategory_id%5D=%3D&v%5Bcategory_id%5D%5B%5D=13&f%5B%5D=tracker_id&op%5Btracker_id%5D=%3D&v%5Btracker_id%5D%5B%5D=1&f%5B%5D=&c%5B%5D=tracker&c%5B%5D=status&c%5B%5D=priority&c%5B%5D=subject&c%5B%5D=assigned_to&c%5B%5D=updated_on&c%5B%5D=category&group_by=>`__.
-
+- `ldap driver with rfc2307bis does not use correct user field <https://dev.opennebula.org/issues/5445>`__.
+- `Protected info all method does respond_to in Ruby 1_9 <https://dev.opennebula.org/issues/5419>`__.
+- `Dashboard accounting too slow <https://dev.opennebula.org/issues/5417>`__.
+- `Total cost does not take into account the cost disks <https://dev.opennebula.org/issues/5415>`__.
+- `vCenter drivers cosume too much time searching for objects <https://dev.opennebula.org/issues/5409>`__.
+- `Sunstone Can not disable VM Groups shown in VM creating dialog <https://dev.opennebula.org/issues/5408>`__.
+- `Erase vnc port and wild mapping entry when you delete a vm <https://dev.opennebula.org/issues/5405>`__.
+- `OpenNebula doesnt check user permission for disk_snapshot_create <https://dev.opennebula.org/issues/5404>`__.
+- `Sorting in VM Start Time is done alphabetically <https://dev.opennebula.org/issues/5403>`__.
+- `OneFlow shutdown command is not available in sunstone <https://dev.opennebula.org/issues/5398>`__.
+- `VM snapshot revert_delete works with wrong snapshots <https://dev.opennebula.org/issues/5393>`__.
+- `Dashboard statistics do not show actual VM name <https://dev.opennebula.org/issues/5391>`__.
+- `Overcommitment update boken in Sunstone <https://dev.opennebula.org/issues/5390>`__.
+- `No unit selector in disk cloud view <https://dev.opennebula.org/issues/5388>`__.
+- `VM Instantiate tab cant see memory size <https://dev.opennebula.org/issues/5387>`__.
+- `vCenter customizations doesnt work <https://dev.opennebula.org/issues/5367>`__.
+- `VM force shutdown output of shutdown command is executed <https://dev.opennebula.org/issues/5359>`__.
+- `Unable to start VMs created by deleted users <https://dev.opennebula.org/issues/5316>`__.
+- `Quota error when exceeding virtual network reservations <https://dev.opennebula.org/issues/5119>`__.
+- `importing network on vcenter with vlan doesnt report the vlan id <https://dev.opennebula.org/issues/4990>`__.
