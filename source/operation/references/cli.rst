@@ -68,5 +68,5 @@ OneFlow Commands
 OneFlow Commands
 ================================================================================
 
-* `onegate </doc/5.4/cli/oneflow.1.html>`: OneGate Service management
+* `onegate </doc/5.4/cli/oneflow.1.html>`__: OneGate Service management
 
