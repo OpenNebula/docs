@@ -362,7 +362,7 @@ The Import button will be available once the admin_vcenter view is enabled in Su
 Importing vCenter Clusters
 --------------------------------------------------------------------------------
 
-Vcenter cluster is the first thing that you will want to add into your vcenter installation because all other vcenter resources depend on it. OpenNebula will adopt these clusters into opennebula hosts so you can monitor them easily using Sunstone (Infrastructure/Hosts) or through CLI (onehost).
+Vcenter cluster is the first thing that you will want to add into your vcenter installation because all other vcenter resources depend on it. OpenNebula will import these clusters as opennebula hosts so you can monitor them easily using Sunstone (Infrastructure/Hosts) or through CLI (onehost).
 
 In :ref:`vCenter Node Installation <vcenter_import_host_tool>` we've already explained how a vCenter cluster can be imported from the command-line interface using onevcenter.
 
