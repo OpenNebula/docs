@@ -416,7 +416,7 @@ Note that if you delete an OpenNebula host representing a vCenter cluster and if
 
 In that case should specify the right cluster from the Cluster drop-down menu or remove the OpenNebula Cluster so OpenNebula can create the cluster again automatically when the vCenter Cluster is imported.
 
-.. note:: Its important to understand that when you import vcenter clusters OpenNebula will see these as OpenNebula hosts, however it's possible that an OpenNebula Cluster can be created too for represent one or more Vcenter clusters, this means that if you are importing your first Vcenter cluster and the process succedded you should see both OpenNebula Cluster and OpenNebula host, this allow you to group vcenter clusters as you prefer.
+.. note:: It's important to understand that OpenNebula will see vCenter Clusters as OpenNebula hosts, and an OpenNebula Cluster is created too when a new vCenter Cluster is imported as an OpenNebula host. All resources from that vCenter cluster (networks and storage) will be automatically imported to that same OpenNebula Cluster.
 
 .. _vcenter_import_datastores:
 
