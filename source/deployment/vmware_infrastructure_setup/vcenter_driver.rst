@@ -439,7 +439,7 @@ There’s an important thing to know related to imported datastores. When you im
     :width: 50%
     :align: center
 
-.. warning:: You need to have already imported the vcenter cluster in order to import the datastore. Other way opennebula will tell you about that, in that case you only need to import the associted vcenter cluster (see the previous point).
+.. warning:: You need to have already imported the vCenter cluster in order to import the datastore. Otherwise OpenNebula will complain that you need to import the associated vcenter cluster (see the previous point).
 
 Import a datastore with onevcenter
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
