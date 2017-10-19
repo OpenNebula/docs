@@ -815,7 +815,7 @@ A vCenter network name is unique inside a datacenter, so it is possible that two
     :width: 50%
     :align: center
 
-.. warning:: You need to have already imported the vcenter cluster in order to import any vnet. Other way opennebula will tell you about that, in that case you only need to import the associted vcenter cluster.
+.. warning:: You need to have already imported the vCenter cluster in order to import any vnet. Otherwise OpenNebula will complain that you need to import the associated vcenter cluster (see the previous point).
 
 Import networks with onevcenter
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
