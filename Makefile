@@ -7,6 +7,7 @@ SPHINXBUILD   = sphinx-build
 PAPER         =
 BUILDDIR      = build
 SED           = sed
+PERL          = perl
 
 # Internal variables.
 PAPEROPT_a4     = -D latex_paper_size=a4
@@ -107,7 +108,19 @@ latex:
 latexpdf:
 	$(SPHINXBUILD) -b latex $(ALLSPHINXOPTS) $(BUILDDIR)/latex
 	@echo "Cleaning invalid chars..."
+
+	# ↑ => |
 	$(SED) -i 's/↑/|/' $(BUILDDIR)/latex/*.tex
+
+	# \textuparrow => |
+	$(SED) -i 's%\\textuparrow%|%' $(BUILDDIR)/latex/*.tex
+
+	# C:\ => C:\\
+	$(PERL) -i -pe '!m/textbackslash/ && s%C:\\%C:\\\\%g' $(BUILDDIR)/latex/*.tex
+
+	# \hline<stuff>\n => \hline\n<stuff>\n
+	$(PERL) -i -pe 'BEGIN{undef ;} s/^\\hline(\w+)/\\hline\n$1/smg' $(BUILDDIR)/latex/*.tex
+
 	@echo "Running LaTeX files through pdflatex..."
 	$(MAKE) -C $(BUILDDIR)/latex all-pdf
 	@echo "pdflatex finished; the PDF files are in $(BUILDDIR)/latex."
