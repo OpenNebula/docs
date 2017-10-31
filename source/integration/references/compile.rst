@@ -82,11 +82,11 @@ The packages do a ``system-wide`` installation. To create a similar environment,
 
     oneadmin@frontend:~/ $> wget <opennebula tar gz>
     oneadmin@frontend:~/ $> tar xzf <opennebula tar gz>
-    oneadmin@frontend:~/ $> cd one-4.0
-    oneadmin@frontend:~/one-4.0/ $> scons -j2 mysql=yes syslog=yes
+    oneadmin@frontend:~/ $> cd opennebula-5.x.x
+    oneadmin@frontend:~/opennebula-5.x.x/ $> scons -j2 mysql=yes syslog=yes
     [ lots of compiling information ]
     scons: done building targets.
-    oneadmin@frontend:~/one-4.0 $> sudo ./install.sh -u oneadmin -g oneadmin
+    oneadmin@frontend:~/opennebula-5.x.x $> sudo ./install.sh -u oneadmin -g oneadmin
 
 Ruby Dependencies
 ================================================================================
