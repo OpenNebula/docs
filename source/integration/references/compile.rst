@@ -80,7 +80,8 @@ where *<install\_options>* can be one or more of:
     
     If you choose the ``system-wide`` installation, OpenNebula will be installed in the following folders: 
         -   /etc/one 
-        -   /share/docs/one
+        -   /usr/lib/one
+        -   /usr/share/docs/one
         -   /usr/share/one
         -   /var/lib/one
         -   /var/lock/one
@@ -95,11 +96,11 @@ The packages do a ``system-wide`` installation. To create a similar environment,
 
     oneadmin@frontend:~/ $> wget <opennebula tar gz>
     oneadmin@frontend:~/ $> tar xzf <opennebula tar gz>
-    oneadmin@frontend:~/ $> cd opennebula-5.x.x
-    oneadmin@frontend:~/opennebula-5.x.x/ $> scons -j2 mysql=yes syslog=yes
+    oneadmin@frontend:~/ $> cd opennebula-x.y.z
+    oneadmin@frontend:~/opennebula-x.y.z/ $> scons -j2 mysql=yes syslog=yes
     [ lots of compiling information ]
     scons: done building targets.
-    oneadmin@frontend:~/opennebula-5.x.x $> sudo ./install.sh -u oneadmin -g oneadmin
+    oneadmin@frontend:~/opennebula-x.y.z $> sudo ./install.sh -u oneadmin -g oneadmin
 
 Ruby Dependencies
 ================================================================================
