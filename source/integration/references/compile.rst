@@ -76,10 +76,10 @@ where *<install\_options>* can be one or more of:
 | **-h** | prints installer help                                                                                                                                                        |
 +--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-.. note:: 
-    
-    If you choose the ``system-wide`` installation, OpenNebula will be installed in the following folders: 
-        -   /etc/one 
+.. note::
+
+    If you choose the ``system-wide`` installation, OpenNebula will be installed in the following folders:
+        -   /etc/one
         -   /usr/lib/one
         -   /usr/share/docs/one
         -   /usr/share/one
@@ -87,7 +87,7 @@ where *<install\_options>* can be one or more of:
         -   /var/lock/one
         -   /var/log/one
         -   /var/run/one
-        
+
     By using ``./install.sh -r``, dinamically generated files will not be removed.
 
 The packages do a ``system-wide`` installation. To create a similar environment, create a ``oneadmin`` user and group, and execute:
@@ -144,4 +144,4 @@ For example, to install only requirements for sunstone and ec2 interfaces you'll
 Building Sunstone from Source
 ================================================================================
 
-Please check the :ref:`Sunstone Development guide <sunstone_dev>` for detailed information  
+Please check the :ref:`Sunstone Development guide <sunstone_dev>` for detailed information
