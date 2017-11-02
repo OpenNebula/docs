@@ -296,3 +296,59 @@ From the plugin code routes, there is access to all the variables, helpers, etc.
     sunstone_config = $conf
     logger.info("New route")
     vm3_log = @SunstoneServer.get_vm_log(3)
+
+ESLint
+================================================================================
+
+Install ESLint:
+
+.. code::
+
+  sudo npm install -g eslint
+
+After the installation you can initialize ESLint with your own rules or use OpenNebula's configuration:
+
+1. Use the command ``eslint --init`` to create your own `.eslintrc.json` with your personal configuration.
+
+  or
+
+2. Manually create the `.eslintrc.json` and copy/paste the following code:
+
+``one/src/sunstone/public/.eslintrc.json``
+
+.. code::
+
+  {
+    "env": {
+        "browser": true,
+        "es6": true
+    },
+    "parserOptions": {
+        "sourceType": "module"
+    },
+    "rules": {
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "quotes": [
+            "error",
+            "double"
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "eqeqeq": 2,
+        "no-trailing-spaces": [
+            "error"
+        ]
+        //new rules here
+    }
+  }
+
+.. note::
+
+  The usage of ESLint is not mandatory but we recomend our contributors to use it, to be sure that the code is standardiced.
+
+More information about `ESlint <https://eslint.org/>`__ project.
