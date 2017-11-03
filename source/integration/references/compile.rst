@@ -54,6 +54,14 @@ If the following error appears, then you need to remove the option 'new\_xmlrpc=
 
     ./install.sh <install_options>
 
+.. note::
+
+    To install OpenNebula with the ``system-wide`` mode you should have super user privileges.
+
+    .. code::
+
+        $ sudo ./install.sh <install_options>
+
 where *<install\_options>* can be one or more of:
 
 +--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
