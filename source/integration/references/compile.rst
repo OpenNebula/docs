@@ -145,3 +145,52 @@ Building Sunstone from Source
 ================================================================================
 
 Please check the :ref:`Sunstone Development guide <sunstone_dev>` for detailed information
+
+
+Configure sudo for oneadmin
+================================================================================
+
+``oneadmin`` user, both on frontend and nodes, needs to run several commands
+under a privileged user via ``sudo``. When installing the OpenNebula from
+official packages, the necessary configuration is part of the
+``opennebula-common`` package. When installing from the source, you have
+to ensure the proper ``sudo`` configuration enables following commands
+to the ``oneadmin``.
+
++---------------+-------------------------------------------------------------+
+| Section       | Commands                                                    |
++===============+=============================================================+
+| miscellaneous | mkfs, sync, mkswap                                          |
++---------------+-------------------------------------------------------------+
+| networking    | brctl, ebtables, iptables, ip6tables, ip, ipset, arping     |
++---------------+-------------------------------------------------------------+
+| LVM           | lvcreate, lvremove, lvs, vgdisplay, lvchange, lvscan        |
++---------------+-------------------------------------------------------------+
+| iSCSI         | iscsiadm, tgt-admin, tgtadm                                 |
++---------------+-------------------------------------------------------------+
+| Open vSwitch  | ovs-ofctl, ovs-vsctl                                        |
++---------------+-------------------------------------------------------------+
+| Xen           | xentop, xl, xm                                              |
++---------------+-------------------------------------------------------------+
+| Ceph          | rbd                                                         |
++---------------+-------------------------------------------------------------+
+
+Each command has to be specified with the absolute path, which can be
+different for each platform. Commands are started on background, ``sudo``
+needs to be configured **not to require real tty** and any password
+for them.
+
+Example configuration
+--------------------------------------------------------------------------------
+
+You can put following ``sudo`` configuration template into
+``/etc/sudoers.d/opennebula`` and replace example commands
+``/bin/true`` and ``/bin/false`` with comma separated list of commands
+listed above, with the absolute path specific for your platform.
+
+.. code::
+
+    Defaults:oneadmin !requiretty
+    Defaults:oneadmin secure_path = /sbin:/bin:/usr/sbin:/usr/bin
+
+    oneadmin ALL=(ALL) NOPASSWD: /bin/true, /bin/false
