@@ -36,5 +36,5 @@ Dir['**/*'].each do |file|
 end
 
 puts
-puts "*** Remember to update conf.py, the versions.html and the release_notes, and PREMIGRATOR***"
+puts "*** Remember to update conf.py***"
 puts
