@@ -340,8 +340,14 @@ Importing vCenter Resources
 
 vCenter clusters, VM templates, networks, datastores and VMDK files located in vCenter datastores can be easily imported into OpenNebula:
 
-* Using the **onevcenter** tool from the command-line interface or,
+* Using the **onevcenter** tool from the command-line interface
+
+.. prompt:: bash $ auto
+
+    $ onevcenter` <command> [<args>] [<options>]
+
 * Using the Import button in Sunstone.
+
 
 The Import button will be available once the admin_vcenter view is enabled in Sunstone. To do so, click on your user's name (Sunstone's top-right). A drop-down menu will be shown, click on Views and finally click on admin_vcenter.
 
@@ -355,6 +361,8 @@ The Import button will be available once the admin_vcenter view is enabled in Su
 
 Importing vCenter Clusters
 --------------------------------------------------------------------------------
+
+Vcenter cluster is the first thing that you will want to add into your vcenter installation because all other vcenter resources depend on it. OpenNebula will import these clusters as opennebula hosts so you can monitor them easily using Sunstone (Infrastructure/Hosts) or through CLI (onehost).
 
 In :ref:`vCenter Node Installation <vcenter_import_host_tool>` we've already explained how a vCenter cluster can be imported from the command-line interface using onevcenter.
 
@@ -408,6 +416,7 @@ Note that if you delete an OpenNebula host representing a vCenter cluster and if
 
 In that case should specify the right cluster from the Cluster drop-down menu or remove the OpenNebula Cluster so OpenNebula can create the cluster again automatically when the vCenter Cluster is imported.
 
+.. note:: It's important to understand that OpenNebula will see vCenter Clusters as OpenNebula hosts, and an OpenNebula Cluster is created too when a new vCenter Cluster is imported as an OpenNebula host. All resources from that vCenter cluster (networks and storage) will be automatically imported to that same OpenNebula Cluster.
 
 .. _vcenter_import_datastores:
 
@@ -429,6 +438,8 @@ There’s an important thing to know related to imported datastores. When you im
 .. image:: /images/vcenter_create_datastore_step2.png
     :width: 50%
     :align: center
+
+.. warning:: You need to have already imported the vCenter cluster in order to import the datastore. Otherwise OpenNebula will complain that you need to import the associated vcenter cluster (see the previous point).
 
 Import a datastore with onevcenter
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -803,6 +814,8 @@ A vCenter network name is unique inside a datacenter, so it is possible that two
 .. image:: /images/vcenter_import_vnet_step0.png
     :width: 50%
     :align: center
+
+.. warning:: You need to have already imported the vCenter cluster in order to import any vnet. Otherwise OpenNebula will complain that you need to import the associated vcenter cluster (see the previous point).
 
 Import networks with onevcenter
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
