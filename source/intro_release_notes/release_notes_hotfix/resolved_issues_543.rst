@@ -13,32 +13,31 @@ New functionality for 5.4.3 has been introduced:
 
 The following issues has been solved in 5.4.3:
 
-- `Gemfile lock for Ubuntu 17.10 <https://dev.opennebula.org/issues/5517>`__.
-- `onedb change-body should not include volatile AR parameters <https://dev.opennebula.org/issues/5492>`__.
-- `onedb purge-history only works with VMs with multiple history records in the body <https://dev.opennebula.org/issues/5460>`__.
+- `onedb change body should not include volatile AR parameters <https://dev.opennebula.org/issues/5492>`__.
+- `onedb purge history only works with VMs with multiple history records in the body <https://dev.opennebula.org/issues/5460>`__.
 - `oneacct gives ruby error <https://dev.opennebula.org/issues/5455>`__.
-- `Changes of oneadmin password may broke federation/HA log synchronization <https://dev.opennebula.org/issues/5496>`__.
-- `Not reseale VNC port when stop the virtual machine <https://dev.opennebula.org/issues/5465>`__.
+- `Changes of oneadmin password may broke federation HA log synchronization <https://dev.opennebula.org/issues/5496>`__.
+- `Not release VNC port when stop the virtual machine <https://dev.opennebula.org/issues/5465>`__.
 - `Term is overwritten when the leader is stopped <https://dev.opennebula.org/issues/5451>`__.
-- `When importing a slave with higher UID/GID than master, quotas entries prevent synchronization from occuring <https://dev.opennebula.org/issues/5450>`__.
-- `sql opennebula.logdb table grows indefinitely in solo mode <https://dev.opennebula.org/issues/5432>`__.
-- `Fix user oned's session cache for users <https://dev.opennebula.org/issues/5425>`__.
+- `When importing a slave with higher UID GID than master quotas entries prevent synchronization from occuring <https://dev.opennebula.org/issues/5450>`__.
+- `sql opennebula logdb table grows indefinitely in solo mode <https://dev.opennebula.org/issues/5432>`__.
+- `Fix user oned session cache for users <https://dev.opennebula.org/issues/5425>`__.
 - `After importing wild VM with an unavailable VNC por it throws an error but the VM is stuck in HOLD <https://dev.opennebula.org/issues/5356>`__.
-- `Warn user (or throw error) when VNET does not exist when instantiating <https://dev.opennebula.org/issues/4967>`__.
-- `Do not include both tm_common.sh and scripts_common.sh <https://dev.opennebula.org/issues/5329>`__.
-- `Snapshots of non-persistent images are not deleted on VM termination <https://dev.opennebula.org/issues/5063>`__.
+- `Warn user or throw error when VNET does not exist when instantiating <https://dev.opennebula.org/issues/4967>`__.
+- `Do not include both tm common and scripts common <https://dev.opennebula.org/issues/5329>`__.
+- `Snapshots of non persistent images are not deleted on VM termination <https://dev.opennebula.org/issues/5063>`__.
 - `OneFlow sends a delete to VMs if terminate fails <https://dev.opennebula.org/issues/5397>`__.
 - `Scheduler cannot handle hosts with more than 2TB memory <https://dev.opennebula.org/issues/5110>`__.
-- `Script injection in SPICE viewer (only Firefox) <https://dev.opennebula.org/issues/5502>`__.
+- `Script injection in SPICE viewer only Firefox <https://dev.opennebula.org/issues/5502>`__.
 - `IMAGE_UNAME field must be quoted when adding files in the context section <https://dev.opennebula.org/issues/5500>`__.
-- `Can't change vcenter credentials <https://dev.opennebula.org/issues/5480>`__.
-- `Can not select English language, if default language is set to another one <https://dev.opennebula.org/issues/5478>`__.
-- `"VM.create_dialog: false" is not disables plus button on dashboard widget <https://dev.opennebula.org/issues/5471>`__.
+- `Cant change vcenter credentials <https://dev.opennebula.org/issues/5480>`__.
+- `Can not select English language if default language is set to another one <https://dev.opennebula.org/issues/5478>`__.
+- `VMcreatedialog false is not disables plus button on dashboard widget <https://dev.opennebula.org/issues/5471>`__.
 - `Importing vcenter resources without any Host <https://dev.opennebula.org/issues/5459>`__.
 - `VDC resources are not being retrieved properly in Sunstone <https://dev.opennebula.org/issues/5447>`__.
 - `Linked clones are always created when importing templates <https://dev.opennebula.org/issues/5429>`__.
 - `Import templates discards linked clones value <https://dev.opennebula.org/issues/5416>`__.
-- `Problem with IE11 and current (5.4) <https://dev.opennebula.org/issues/5311>`__.
+- `Problem with IE11 <https://dev.opennebula.org/issues/5311>`__.
 - `Import datastores without any vcenter cluster <https://dev.opennebula.org/issues/5458>`__.
 - `vCenter automatic_vlan_id does not work <https://dev.opennebula.org/issues/5418>`__.
 - `vCenter VM can have different NIC MAC than requested <https://dev.opennebula.org/issues/5413>`__.
