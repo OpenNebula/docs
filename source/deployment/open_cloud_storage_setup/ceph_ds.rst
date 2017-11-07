@@ -52,6 +52,8 @@ This guide assumes that you already have a functional Ceph cluster in place. Add
 
     $ ceph auth get client.libvirt -o ceph.client.libvirt.keyring
 
+.. warning:: Starting from Ceph Luminous release it is necessary to set client.libvirt user permisions as ``mon 'profile rbd'  osd 'profile rbd pool=one'``. More informatioin about user management and autorization capabilities in `Ceph documentation <http://docs.ceph.com/docs/master/rados/operations/user-management/#authorization-capabilities>`__.
+
 * Altough RDB format 1 is supported it is strongly recommended to use Format 2. Check that ``ceph.conf`` includes:
 
 .. code::
