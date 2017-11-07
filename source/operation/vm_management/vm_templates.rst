@@ -110,6 +110,7 @@ The modification options available in the drop-down are:
 * **any value**: The value can be changed to any number by the user instantiating the Template.
 * **range**: Users will be offered a range slider between the given minimum and maximum values.
 * **list**: Users will be offered a drop-down menu to select one of the given options.
+* **list-multiple**: Users will be offered a drop-down menu to select multiple of the given options.
 
 If you are using a template file instead of Sunstone, the modification is defined with user input attributes (:ref:`see below <vm_guide_user_inputs>`). The absence of user input is an implicit "any value". For example:
 
@@ -135,14 +136,15 @@ The User Inputs functionality provides the Template creator the possibility to d
 
 A user input can be one of the following types:
 
-* **text**: any text value
+* **text**: any text value.
 * **password**: any text value. The interface will block the input visually, but the value will be stored as plain text.
 * **text64**: will be encoded in base64 before the value is passed to the VM.
 * **number**: any integer number.
 * **number-float**: any number.
 * **range**: any integer number within the defined min..max range.
-* **range-float**: any number within the defined min..max range
-* **list**: the user will select from a pre-defined list of values
+* **range-float**: any number within the defined min..max range.
+* **list**: the user will select from a pre-defined list of values.
+* **list-multiple**: the user will select one or more options from a predefined list of values.
 
 |prepare-tmpl-user-input-1|
 
