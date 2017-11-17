@@ -5,14 +5,7 @@
 Security Groups
 ================================================================================
 
-Security Groups define firewall rules to be applied them to the Virtual Machines.
-
-.. note::
-
-    By default, the `default` security group is applied to new VMs, which allows
-    all OUTBOUND traffic and all INBOUND traffic. You **must** Modify the
-    `default` security group to make it more restrictive, if you leave as is
-    everything will be always allowed.
+Security Groups define firewall rules to be applied on Virtual Machines.
 
 .. warning::
     Security groups is not supported for OpenvSwitch and vCenter networks.
@@ -118,24 +111,28 @@ Moreover, each Virtual Machine Template NIC can define a list of Security Groups
       SECURITY_GROUPS = "103, 125"
     ]
 
-If the Address Range or the Template NIC define SECURITY_GROUPS, the IDs do not overwrite the ones defined in the Virtual Network. All the Security Group IDs are combined, and applied to the Virtual Machine instance.
+If the Address Range or the Template NIC defines SECURITY_GROUPS, the IDs will
+be added to the ones defined in the Virtual Network. All the Security Group IDs
+are combined, and applied to the Virtual Machine instance.
 
 The Default Security Group
 ================================================================================
 
-.. warning::
+There is a special Security Group: ``default`` (ID 0). This security
+group allows all OUTBOUND traffic and all INBOUND traffic.
 
-    If you don't modify the default Security Group you will not be able to filter any connections.
+Whenever a network is created, the ``default`` Security Group is added to the
+network.
 
-There is a default Security Group with ID 0. This Security Group, unless
-modified, will allow all traffic, both outbound and inbound. You **must** modify
-this `default` Security Group if you want to restrict connections. Consider this
-Security Group to be the bare minimum for all VMs. For example, it may make
-sense to define it as TCP port 22 inbound for SSH, and port 80 and 443 outbout
-to be able to install packages.
+This means the you **must** edit every newly created network and remove the
+``default`` Security Group from it. Otherwise even if you add other Security
+Groups, the ``default`` one will allow all traffic and therefore override the rest
+of the Security Groups.
 
-This special Security Group is added to all the Virtual Networks when they are
-created, but you can remove it later updating the network's properties.
+**Note for administrators**: you may want to remove the rules included in the
+``default`` security groups. This way users are forced to create security groups
+(otherwise they will not have connectivity to and from the VMs) which avoid some
+security problems.
 
 .. _security_groups_update:
 
