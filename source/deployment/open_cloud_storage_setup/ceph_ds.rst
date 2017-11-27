@@ -25,7 +25,7 @@ For example, consider a system using an Image and System Datastore backed by a C
     one-0-15-0 10240M one/one-0@snap   2
 
 
-.. note:: In this case context disk and auxiliar files (deployment description and chekpoints) are stored locally in the nodes.
+.. note:: In this case context disk and auxiliar files (deployment description and checkpoints) are stored locally in the nodes.
 
 Ceph Cluster Setup
 ================================================================================
@@ -52,7 +52,7 @@ This guide assumes that you already have a functional Ceph cluster in place. Add
 
     $ ceph auth get client.libvirt -o ceph.client.libvirt.keyring
 
-* Altough RDB format 1 is supported it is strongly recommended to use Format 2. Check that ``ceph.conf`` includes:
+* Although RBD format 1 is supported it is strongly recommended to use Format 2. Check that ``ceph.conf`` includes:
 
 .. code::
 
@@ -66,7 +66,7 @@ This guide assumes that you already have a functional Ceph cluster in place. Add
 Frontend and Node Setup
 ================================================================================
 
-In order to use the Ceph cluster the nodes needs to be configured as follows:
+In order to use the Ceph cluster the nodes need to be configured as follows:
 
 * The ceph client tools must be available in the machine
 
