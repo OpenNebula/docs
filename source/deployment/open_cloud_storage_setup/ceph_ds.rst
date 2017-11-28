@@ -138,8 +138,6 @@ To use your Ceph cluster with the OpenNebula, you need to define a System and Im
 +=================+=========================================================+===========+
 | ``NAME``        | The name of the datastore                               | **YES**   |
 +-----------------+---------------------------------------------------------+-----------+
-| ``POOL_NAME``   | The Ceph pool name                                      | **YES**   |
-+-----------------+---------------------------------------------------------+-----------+
 | ``CEPH_USER``   | The Ceph user name, used by libvirt and rbd commands.   | **YES**   |
 +-----------------+---------------------------------------------------------+-----------+
 | ``CEPH_KEY``    | Key file for user, if not set default locations are     | NO        |
