@@ -24,7 +24,7 @@ Execute the following commands to install the node package and restart libvirt t
 .. prompt:: bash $ auto
 
     $ sudo yum install opennebula-node-kvm
-    $ sudo service libvirtd restart
+    $ sudo systemctl restart libvirtd
 
 For further configuration, check the specific guide: :ref:`KVM <kvmg>`.
 
