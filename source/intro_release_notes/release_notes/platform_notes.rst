@@ -86,7 +86,7 @@ Open Cloud Storage Infrastructure
 +-----------+--------------------------------------------+-------------------------------------+
 | LVM2      | Version included in the Linux distribution | :ref:`LVM Drivers <lvm_drivers>`    |
 +-----------+--------------------------------------------+-------------------------------------+
-| Ceph      | Jewel v10.2.x and Luminous 12.2.x          | :ref:`The Ceph Datastore <ceph_ds>` |
+| Ceph      | Jewel v10.2.x and Luminous v12.2.x         | :ref:`The Ceph Datastore <ceph_ds>` |
 +-----------+--------------------------------------------+-------------------------------------+
 
 Authentication
