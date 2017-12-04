@@ -33,17 +33,17 @@ Step 3. Installing the Software
 Installing on CentOS/RHEL 7
 ---------------------------
 
-Before installing:
+Activate the `EPEL <http://fedoraproject.org/wiki/EPEL#How_can_I_use_these_extra_packages.3F>`__ repo before installing. 
 
-* Activate the `EPEL <http://fedoraproject.org/wiki/EPEL#How_can_I_use_these_extra_packages.3F>`__ repo. In CentOS this can be done with the following command:
+In RHEL 7 this can be done by following the instructions `here <http://fedoraproject.org/wiki/EPEL#How_can_I_use_these_extra_packages.3F>`__. 
+
+In CentOS 7 this can be done with the following command:
 
 .. prompt:: bash # auto
 
     # yum install epel-release
 
-There are packages for the Front-end, distributed in the various components that conform OpenNebula, and packages for the virtualization host.
-
-To install a CentOS/RHEL OpenNebula Front-end with packages from **our repository**, execute the following as root.
+Install the CentOS/RHEL OpenNebula Front-end with packages from **our repository** by executing the following as root:
 
 .. prompt:: bash # auto
 
@@ -51,7 +51,7 @@ To install a CentOS/RHEL OpenNebula Front-end with packages from **our repositor
 
 **CentOS/RHEL Package Description**
 
-These are the packages available for this distribution:
+The packages for the OpenNebula front-end and the virtualization host are as follows:
 
 * **opennebula**: Command Line Interface.
 * **opennebula-server**: Main OpenNebula daemon, scheduler, etc.
@@ -65,7 +65,7 @@ These are the packages available for this distribution:
 
 .. note::
 
-    The files located in ``/etc/one`` and ``/var/lib/one/remotes`` are marked as configuration files.
+    The configuration files are located in ``/etc/one`` and ``/var/lib/one/remotes``.
 
 Installing on Debian/Ubuntu
 ---------------------------
