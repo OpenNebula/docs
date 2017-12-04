@@ -41,12 +41,34 @@ This guide assumes that you already have a functional Ceph cluster in place. Add
     $ ceph osd lspools
     0 data,1 metadata,2 rbd,6 one,
 
-* Define a Ceph user to access the datastore pool, this user will be also used by libvirt to access the disk images. Also, get a copy of the key of this user to distribute it later to the OpenNebula nodes. For example, create a user ``libvirt``:
+* Define a Ceph user to access the datastore pool; this user will also be used by libvirt to access the disk images. For example, create a user ``libvirt``:
+
+On the **Ceph Jewel** (v10.2.x) and before:
 
 .. prompt:: bash $ auto
 
-    $ ceph auth get-or-create client.libvirt mon 'allow r' osd \
-         'allow class-read object_prefix rbd_children, allow rwx pool=one'
+    $ ceph auth get-or-create client.libvirt \
+          mon 'allow r' osd 'allow class-read object_prefix rbd_children, allow rwx pool=one'
+
+On the **Ceph Luminous** (v12.2.x) and later:
+
+.. prompt:: bash $ auto
+
+    $ ceph auth get-or-create client.libvirt \
+          mon 'profile rbd' osd 'profile rbd pool=one'
+
+.. warning::
+
+    Ceph Luminous release comes with simplified RBD capabilities (more information about user management and authorization capabilities is in the Ceph `documentation <http://docs.ceph.com/docs/master/rados/operations/user-management/#authorization-capabilities>`__). When **upgrading existing Ceph deployment to the Luminous and later**, please ensure the selected user has proper new capabilities. For example, for above user ``libvirt`` by running:
+
+    .. prompt:: bash $ auto
+
+        $ ceph auth caps client.libvirt \
+              mon 'profile rbd' osd 'profile rbd pool=one'
+
+* Get a copy of the key of this user to distribute it later to the OpenNebula nodes.
+
+.. prompt:: bash $ auto
 
     $ ceph auth get-key client.libvirt | tee client.libvirt.key
 
