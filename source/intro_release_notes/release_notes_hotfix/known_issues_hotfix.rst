@@ -1,7 +1,7 @@
 .. _known_issues_hotfix:
 
 ================================================================================
-Known Issues 5.4.3
+Known Issues 5.4.4
 ================================================================================
 
 CLI
@@ -86,4 +86,3 @@ vCenter
 ================================================================================
 
 * `#5414 <https://dev.opennebula.org/issues/5414>`_ Template delete recursive operation of templates **instantiated as persistent** does not remove images from the vcenter datastores. Currently these files must be delete manually.
-* `#4335 <http://dev.opennebula.org/issues/4335>`_ vCenter password cannot be longer than 22 characters
