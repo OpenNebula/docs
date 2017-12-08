@@ -180,8 +180,12 @@ To use your Ceph cluster with the OpenNebula, you need to define a System and Im
 +-----------------+---------------------------------------------------------+-----------+
 | ``POOL_NAME``   | Name of Ceph pool                                       | **YES**   |
 +-----------------+---------------------------------------------------------+-----------+
+| ``EC_POOL``     | Name of Ceph erasure coded pool                         | NO        |
++-----------------+---------------------------------------------------------+-----------+
 
 .. note:: You may add another Image and System Datastores pointing to other pools with different allocation/replication policies in Ceph.
+
+.. note:: Ceph Luminous release allows use of erasure coding for ``RBD`` images. In general, erasure coded images take up less space, but have worse I/O performance. Erasure coding can be enabled on Image and/or System Datastores by configuring ``EC_POOL`` with the name of the erasure coded data pool. Regular replicated Ceph pool ``POOL_NAME`` is still required for image metadata. More information in `Ceph documentation <http://docs.ceph.com/docs/master/rados/operations/erasure-code/#erasure-coding-with-overwrites>`__.
 
 Create a System Datastore
 --------------------------------------------------------------------------------
@@ -270,4 +274,3 @@ Default values for the Ceph drivers can be set in ``/var/lib/one/remotes/datasto
 * ``POOL_NAME``: Default volume group
 * ``STAGING_DIR``: Default path for image operations in the storage bridges
 * ``RBD_FORMAT``: Default format for RBD volumes.
-
