@@ -11,7 +11,7 @@ end
 def get_toc(file)
     guides = []
 
-    File.read(file).scan(/^\s*(.*?)\s*<(.*)>$/).each do |name, relative_path|
+    File.read(file).scan(/^\s*(.*?)\s*<(.*)>\s*$/).each do |name, relative_path|
         path = File.join(File.dirname(file), relative_path + ".rst")
         guide = {
             :name => name,
