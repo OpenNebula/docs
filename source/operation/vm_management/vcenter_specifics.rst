@@ -41,7 +41,7 @@ OpenNebula creates VM Templates using the :ref:`import tools<vcenter_import_temp
 | VCENTER_INSTANCE_ID   | The vCenter instance ID. Please visit the :ref:`Managed Object Reference <vcenter_managed_object_reference>` section to know more about these references.                                                                                                                                                                                 |
 +-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-After a VM Template is instantiated, the life-cycle of the resulting virtual machine (including creation of snapshots) can be controlled through OpenNebula. Also, all the operations available in the :ref:`vCenter Admin view <vcenter_view>` can be performed, including:
+After a VM Template is instantiated, the life-cycle of the resulting virtual machine (including creation of snapshots) can be controlled through OpenNebula. Also, all the operations available in the :ref:`Admin view <vcenter_view>` can be performed, including:
 
 - network management operations like the ability to attach/detach network interfaces
 - capacity (CPU and MEMORY) resizing
