@@ -346,6 +346,7 @@ Features
 * ``instantiate_hide_cpu``: If true, hide the CPU setting in the VM creation dialog.
 * ``instantiate_cpu_factor``: False to not scale the CPU from VCPU. Number [0, 1] to scale.
 * ``instantiate_persistent``: True to show the option to make an instance persistent.
+* ``cloud_vm_create``: True to allow to create machines to cloud users.
 
 .. code-block:: yaml
 
