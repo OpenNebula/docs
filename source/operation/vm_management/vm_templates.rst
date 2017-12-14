@@ -159,7 +159,7 @@ These inputs will be presented to the user when the Template is instantiated. Th
 Scheduling Actions
 --------------------------------------------------------------------------------
 
-You can define Scheduled Actions in a Template definition and in a :ref:`VM instantiation <vm_guide2_scheduling_actions>`.
+You can define Scheduled Actions when defining a Template and at :ref:`VM instantiation <vm_guide2_scheduling_actions>`.
 
 Set a Cost
 --------------------------------------------------------------------------------
