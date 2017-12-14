@@ -154,6 +154,13 @@ These inputs will be presented to the user when the Template is instantiated. Th
 
 .. note:: If a VM Template with user inputs is used by a :ref:`Service Template Role <appflow_use_cli>`, the user will be also asked for these inputs when the Service is created.
 
+.. _sched_actions_templ:
+
+Scheduling Actions
+--------------------------------------------------------------------------------
+
+You can define Scheduled Actions when defining a Template and at :ref:`VM instantiation <vm_guide2_scheduling_actions>`.
+
 Set a Cost
 --------------------------------------------------------------------------------
 
