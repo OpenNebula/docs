@@ -8,3 +8,4 @@ A complete list of solved issues for 5.4.6 can be found in the `project developm
 The following issues has been solved in 5.4.6:
 
 - `Monitoring error. Any stderr from virsh domblkstat command should be filtered <https://github.com/OpenNebula/one/issues/1524>`__.
+- `Race condition in the datastore monitoring drivers <https://github.com/OpenNebula/one/issues/1361>`__.
