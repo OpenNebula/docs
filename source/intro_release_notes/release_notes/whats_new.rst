@@ -30,12 +30,13 @@ Scheduler
 Sunstone
 --------------------------------------------------------------------------------
 
-- **New dashboard**, intuitive, fast and light. The new dashboard will perform better on large deployments
+- **New dashboard**, intuitive, fast and light. The new dashboard will perform better on large deployments.
 
 |sunstone_dashboard|
 
 - **KVM and vCenter more united than ever**, a single view to control the two hypervisors. :ref:`Completely customizable views <suns_views>`.
 - **Scheduled Actions** can now be defined in VM Template create and instantiate dialogs. :ref:`More info <sched_actions_templ>`.
+- **Display quotas in Clod View**, the end-user can see his quotas in real time.
 
 |sched_actions|
 
