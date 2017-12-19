@@ -87,7 +87,7 @@ Other (Custom Tags)
 
 |sunstone_template_custom_tags|
 
-This section in the Other tab is for all fields that haven't any gap in the others tabs. You can introduce others own fields into this section, this values will be saved in the resuorce template.
+This section in the Other tab is for all fields that haven't any gap in the others tabs. You can introduce others own fields into this section, this values will be saved in the resource template.
 Also you can create a value of object type.
 
 .. _vm_templates_endusers:
