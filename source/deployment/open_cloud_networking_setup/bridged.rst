@@ -24,7 +24,13 @@ The following needs to be considered regarding traffic isolation:
 OpenNebula Configuration
 ================================================================================
 
-No specific configuration is required for bridged networking
+The following configuration attributes can be adjusted in ``/var/lib/one/remotes/vnm/OpenNebulaNetwork.conf``:
+
++------------------+-------------------------------------------------------------------------------------------+
+| Parameter        | Description                                                                               |
++==================+===========================================================================================+
+| ipset_maxelem    | Maximal number of entries in the IP set (used for the security group rules)               |
++------------------+-------------------------------------------------------------------------------------------+
 
 .. _bridged_net:
 
