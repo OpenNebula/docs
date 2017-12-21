@@ -16,3 +16,4 @@ The following issues has been solved in 5.4.6:
 - `Improve Network Topology <https://github.com/OpenNebula/one/issues/1517>`__.
 - `Duplicated NIC when save a template <https://github.com/OpenNebula/one/issues/1600>`__.
 - `Size error when instantiate vCenter template <https://github.com/OpenNebula/one/issues/1606>`__.
+- `Collectd driver: Options are not properly parsed. Remove cache <https://github.com/OpenNebula/one/issues/1589>`__.
