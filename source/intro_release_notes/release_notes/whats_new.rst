@@ -44,6 +44,10 @@ Sunstone
 vCenter
 --------------------------------------------------------------------------------
 
+Core
+--------------------------------------------------------------------------------
+
+- **Deploy the images wherever you want**: We have added the possibility to select in which type of System Datastore you want to display the disk, whatever the Image Datastore where the image is stored. :ref:`More info. <ceph_ds>`.
 
 .. |sunstone_dashboard| image:: /images/sunstone_dashboard.png
 .. |sched_actions| image:: /images/sched_actions.png
