@@ -15,4 +15,4 @@ The following issues has been solved in 5.4.6:
 - `Security Groups disabled when creating an Open vSwitch network <https://github.com/OpenNebula/one/issues/1491>`__.
 - `Improve Network Topology <https://github.com/OpenNebula/one/issues/1517>`__.
 - `Duplicated NIC when save a template <https://github.com/OpenNebula/one/issues/1600>`__.
-- `Size error when instantiate vCenter template<https://github.com/OpenNebula/one/issues/1606>`__.
+- `Size error when instantiate vCenter template <https://github.com/OpenNebula/one/issues/1606>`__.
