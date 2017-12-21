@@ -18,6 +18,7 @@ Storage
 Networking
 --------------------------------------------------------------------------------
 
+- Better support for security group rules with a large number of ports. :ref:`See configuration options here <bridged_conf>`.
 
 Hybrid Clouds: Amazon EC2
 --------------------------------------------------------------------------------

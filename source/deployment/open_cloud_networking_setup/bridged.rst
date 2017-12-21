@@ -20,6 +20,7 @@ The following needs to be considered regarding traffic isolation:
 
 * The **ebtables VLAN** mode is targeted to small environments without proper hardware support to implement VLANS. Note that it is limited to /24 networks, and that IP addresses cannot overlap between Virtual Networks. This mode is only recommended for testing purposes.
 
+.. _bridged_conf:
 
 OpenNebula Configuration
 ================================================================================
