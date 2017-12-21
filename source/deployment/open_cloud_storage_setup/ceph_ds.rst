@@ -11,7 +11,11 @@ The Ceph datastore driver provides OpenNebula users with the possibility of usin
 Datastore Layout
 ================================================================================
 
-Images and virtual machine disks are stored in the same Ceph pool. Each Image is named ``one-<IMAGE ID>`` in the pool. Virtual machines will use these rbd volumes for its disks if the Images are persistent, otherwise new snapshots are created in the form ``one-<IMAGE ID>-<VM ID>-<DISK ID>``.
+Images and virtual machine disks are stored in the same Ceph pool. Each Image is named ``one-<IMAGE ID>`` in the pool. By default an image that is saved on Image Datastore backed by a Ceph pool will deploy on a Ceph System Datastore at least that you change this behavior in the virtual machine template if you want to deploy the virtual machine on SSH System Datastore.
+
+Ceph (Default)
+--------------------------------------------------------------------------------
+Virtual machines will use these rbd volumes for its disks if the Images are persistent, otherwise new snapshots are created in the form ``one-<IMAGE ID>-<VM ID>-<DISK ID>``.
 
 For example, consider a system using an Image and System Datastore backed by a Ceph pool named ``one``. The pool with one Image (ID 0) and two Virtual Machines 14 and 15 using this Image as virtual disk 0 would be similar to:
 
@@ -26,6 +30,24 @@ For example, consider a system using an Image and System Datastore backed by a C
 
 
 .. note:: In this case context disk and auxiliar files (deployment description and checkpoints) are stored locally in the nodes.
+
+SSH
+--------------------------------------------------------------------------------
+Virtual machines that have been deployed with a template whose ``DISK`` attribute changes the behavior to deploy the machine, will have the disks with type FILE.
+
+For example, consider a system using an Image backed by a Ceph pool and System Datastore backed by a SSH pool (ID=100). The pool with one Image and one Virtual Machine (ID=39) and this Image as virtual disk 0 would be similar to:
+
+.. prompt:: bash $ auto
+
+    $ ls -l /var/lib/one/datastores/100/39
+    total 609228
+    -rw-rw-r-- 1 oneadmin oneadmin        1020 Dec 20 14:41 deployment.0
+    -rw-r--r-- 1 oneadmin oneadmin 10737418240 Dec 20 15:19 disk.0
+    -rw-rw-r-- 1 oneadmin oneadmin      372736 Dec 20 14:41 disk.1
+
+.. note:: All disk attributes that are defined in the template, must to have the same ``TM_MAD_SYSTEM`` or not have it defined.
+
+.. important:: Only is necessary to register once image.
 
 Ceph Cluster Setup
 ================================================================================
@@ -147,6 +169,7 @@ You can read more information about this in the Ceph guide `Using libvirt with C
 
 * Ancillary virtual machine files like context disks, deployment and checkpoint files are created at the nodes under ``/var/lib/one/datastores/``, make sure that enough storage for these files is provisioned in the nodes.
 
+* If you are going to deploy the machine with the disks in SSH mode, you have to take into account the space of the system datastore ``/var/lib/one/datastores/<ds_id>`` where ``ds_id`` is the ID of the System Datastore.
 
 .. _ceph_ds_templates:
 
@@ -262,6 +285,9 @@ An example of datastore:
     > onedatastore create ds.conf
     ID: 101
 
+
+.. warning:: If you are going to use the TM_MAD_SYSTEM attribute with SSH mode, you must take into account that you need to have an :ref:`SSH type system Datastore <fs_ds>`
+
 Additional Configuration
 --------------------------------------------------------------------------------
 
@@ -271,3 +297,11 @@ Default values for the Ceph drivers can be set in ``/var/lib/one/remotes/datasto
 * ``STAGING_DIR``: Default path for image operations in the storage bridges
 * ``RBD_FORMAT``: Default format for RBD volumes.
 
+Using different modes
+--------------------------------------------------------------------------------
+
+How to save an Image in different modes. Only have to add an attribute into the ``DISK`` attribute to the virtual machine template.
+
+* ``DISK/TM_MAD_SYSTEM``: Define a ``DS_REQUIREMENT`` for deploy the virtual machine.
+
+You can define this disk attribute through the CLI or in Sunstone.
