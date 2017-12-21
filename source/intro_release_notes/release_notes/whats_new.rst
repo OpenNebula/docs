@@ -14,6 +14,7 @@ OpenNebula Core
 Storage
 --------------------------------------------------------------------------------
 
+- **Deploy the images wherever you want**: We have added the possibility to select different deployment modes for Image datastores. For example the same Ceph Image can be used directly from the pool (default ceph mode) or run from the hypervisor local storage (ssh mode). :ref:`More info. <ceph_ds>`.
 
 Networking
 --------------------------------------------------------------------------------
@@ -45,6 +46,8 @@ Sunstone
 vCenter
 --------------------------------------------------------------------------------
 
+Core
+--------------------------------------------------------------------------------
 
 .. |sunstone_dashboard| image:: /images/sunstone_dashboard.png
 .. |sched_actions| image:: /images/sched_actions.png
