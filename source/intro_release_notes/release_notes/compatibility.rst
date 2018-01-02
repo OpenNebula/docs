@@ -170,3 +170,11 @@ New view system
 The directory hierarchy in ``/etc/one/sunstone-views/`` has changed. Now, in sunstone-views there should be directories (KVM, vCenter, mixed) that contain the views configuration (yaml).
 
 ``sunstone-server.conf`` has the **mode** parameter, with which we will select :ref:`the directory of the views <suns_views>` we want.
+
+Yamls changes
+--------------------------------------------------------------------------------
+
+If you are interested in adding a VMGroup or DS in vCenter Cloud View, you should make the following changes in ``/etc/one/sunstone-views/cloud_vcenter.yaml``:
+
+- https://github.com/OpenNebula/one/commit/d019485e3d69588a7645fe30114c3b7c135d3065
+- https://github.com/OpenNebula/one/commit/efdffc4723aae3d2b3f524a1e2bb27c81e43b13d
