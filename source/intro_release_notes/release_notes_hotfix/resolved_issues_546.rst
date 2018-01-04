@@ -18,3 +18,9 @@ The following issues has been solved in 5.4.6:
 - `Size error when instantiate vCenter template <https://github.com/OpenNebula/one/issues/1606>`__.
 - `Collectd driver: Options are not properly parsed. Remove cache <https://github.com/OpenNebula/one/issues/1589>`__.
 - `Added missing commands to onedb to manipulate history records <https://github.com/OpenNebula/one/issues/1614>`__.
+- `VMGroup & DS datatables broken in vCenter Cloud View <https://github.com/OpenNebula/one/issues/1621>`__. If you are interested in adding a VMGroup or DS in vCenter Cloud View, you should make the following changes in ``/etc/one/sunstone-views/cloud_vcenter.yaml``:
+
+ - https://github.com/OpenNebula/one/commit/d019485e3d69588a7645fe30114c3b7c135d3065
+ - https://github.com/OpenNebula/one/commit/efdffc4723aae3d2b3f524a1e2bb27c81e43b13d
+
+- `Error retrieve VMGroup <https://github.com/OpenNebula/one/issues/1619>`__.
