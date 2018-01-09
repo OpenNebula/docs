@@ -299,6 +299,8 @@ Default values for the Ceph drivers can be set in ``/var/lib/one/remotes/datasto
 Using different modes
 --------------------------------------------------------------------------------
 
-When creating a VM Template you can choose to deploy the disks using the default Ceph mode or the SSH on. Note that you have to use the same mode for all the disks.   To set the deployment mode add the following attribute. The deployment mode needs to be set in at least one disk in the Storage tab. When using the CLI just add the following attribute to at least one disk:
+When creating a VM Template you can choose to deploy the disks using the default Ceph mode or the SSH on. Note that the same mode will be used for all disks. To set the deployment mode add the following attribute to the VM template:
 
-* ``DISK = [ TM_MAD_SYSTEM="ssh"...``
+* ``TM_MAD_SYSTEM="ssh"``
+
+When using Sunstone, the deployment mode needs to be set in Storage tab.
