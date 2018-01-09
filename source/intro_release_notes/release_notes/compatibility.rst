@@ -40,6 +40,9 @@ XML-RPC API
 --------------------------------------------------------------------------------
 There are no compatibility changes on API calls, there are new RPC methods to expose the new functionlity, visit the :ref:`complete reference <api>` for more information.
 
+Authentication drivers
+--------------------------------------------------------------------------------
+Authentication drivers now accept parameters only on the standard input as the XML document; all custom authentication drivers need to be modified to follow this way. Check the :ref:`authentication driver <devel-auth>` documentation.
 
 vCenter
 ================================================================================
