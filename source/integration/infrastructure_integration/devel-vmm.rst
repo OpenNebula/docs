@@ -33,7 +33,6 @@ These are the actions valid in the -l parameter:
 -  deploy
 -  detach\_disk
 -  detach\_nic
--  kvmrc
 -  migrate
 -  migrate\_local
 -  poll

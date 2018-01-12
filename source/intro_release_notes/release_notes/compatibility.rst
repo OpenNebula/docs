@@ -33,6 +33,11 @@ EC2 hybrid drivers
 
 Configuration attributes of the EC2 driver has been moved from the ``ec2_driver.conf`` file to the host attributes. The migration process automatically moves the information to each host template. Any further update of these attributes should be performed directly on each the OpenNebula host.
 
+Remote scripts configuration
+--------------------------------------------------------------------------------
+
+Configuration files from deep inside the remote scripts directory structure ``/var/lib/one/remotes/`` have been moved into dedicated directory ``/var/lib/one/remotes/etc/``. Check all the files on the new path, and apply any necessary changes to your environment.
+
 Developers and Integrators
 ================================================================================
 
