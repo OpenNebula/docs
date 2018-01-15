@@ -25,7 +25,7 @@ The following needs to be considered regarding traffic isolation:
 OpenNebula Configuration
 ================================================================================
 
-The following configuration attributes can be adjusted in ``/var/lib/one/remotes/vnm/OpenNebulaNetwork.conf``:
+The following configuration attributes can be adjusted in ``/var/lib/one/remotes/etc/vnm/OpenNebulaNetwork.conf``:
 
 +------------------+-------------------------------------------------------------------------------------------+
 | Parameter        | Description                                                                               |

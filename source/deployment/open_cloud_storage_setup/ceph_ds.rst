@@ -290,7 +290,7 @@ An example of datastore:
 Additional Configuration
 --------------------------------------------------------------------------------
 
-Default values for the Ceph drivers can be set in ``/var/lib/one/remotes/datastore/ceph/ceph.conf``:
+Default values for the Ceph drivers can be set in ``/var/lib/one/remotes/etc/datastore/ceph/ceph.conf``:
 
 * ``POOL_NAME``: Default volume group
 * ``STAGING_DIR``: Default path for image operations in the storage bridges

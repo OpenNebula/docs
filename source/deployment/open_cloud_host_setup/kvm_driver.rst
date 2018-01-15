@@ -108,7 +108,7 @@ For example:
 Live-Migration for Other Cache settings
 --------------------------------------------------------------------------------
 
-In case you are using disks with a cache setting different to ``none`` you may have problems with live migration depending on the libvirt version. You can enable the migration adding the ``--unsafe`` parameter to the virsh command. The file to change is ``/var/lib/one/remotes/vmm/kvm/kvmrc``. Uncomment the following line, and execute ``onehost sync --force`` afterwards:
+In case you are using disks with a cache setting different to ``none`` you may have problems with live migration depending on the libvirt version. You can enable the migration adding the ``--unsafe`` parameter to the virsh command. The file to change is ``/var/lib/one/remotes/etc/vmm/kvm/kvmrc``. Uncomment the following line, and execute ``onehost sync --force`` afterwards:
 
 .. code-block:: bash
 
@@ -119,7 +119,7 @@ In case you are using disks with a cache setting different to ``none`` you may h
 Configure the Timeouts (Optional)
 --------------------------------------------------------------------------------
 
-Optionally, you can set a timeout for the VM Shutdown operation can be set up. This feature is useful when a VM gets stuck in Shutdown (or simply does not notice the shutdown command). By default, after the timeout time the VM will return to Running state but is can also be configured so the VM is destroyed after the grace time. This is configured in ``/var/lib/one/remotes/vmm/kvm/kvmrc``:
+Optionally, you can set a timeout for the VM Shutdown operation can be set up. This feature is useful when a VM gets stuck in Shutdown (or simply does not notice the shutdown command). By default, after the timeout time the VM will return to Running state but is can also be configured so the VM is destroyed after the grace time. This is configured in ``/var/lib/one/etc/remotes/vmm/kvm/kvmrc``:
 
 .. code-block:: bash
 
@@ -312,7 +312,7 @@ KVM supports hotplugging to the ``virtio`` and the ``SCSI`` buses. For disks, th
 
 If ``TARGET`` is passed instead of ``DEV_PREFIX`` the same rules apply (what happens behind the scenes is that OpenNebula generates a ``TARGET`` based on the ``DEV_PREFIX`` if no ``TARGET`` is provided).
 
-The configuration for the default cache type on newly attached disks is configured in ``/var/lib/one/remotes/vmm/kvm/kvmrc``:
+The configuration for the default cache type on newly attached disks is configured in ``/var/lib/one/remotes/etc/vmm/kvm/kvmrc``:
 
 .. code::
 
@@ -405,7 +405,7 @@ The VMM driver must be configured so it allows more than one action to be execut
         default    = "vmm_exec/vmm_exec_kvm.conf",
         type       = "kvm" ]
 
-Change the file ``/var/lib/one/remotes/vmm/kvm/kvmrc`` so set a TCP endpoint for libvirt communication:
+Change the file ``/var/lib/one/remotes/etc/vmm/kvm/kvmrc`` so set a TCP endpoint for libvirt communication:
 
 .. code::
 
@@ -438,7 +438,7 @@ And the following driver configuration files:
 
 It is generally a good idea to place defaults for the KVM-specific attributes, that is, attributes mandatory in the KVM driver that are not mandatory for other hypervisors. Non mandatory attributes for KVM but specific to them are also recommended to have a default.
 
--  ``/var/lib/one/remotes/vmm/kvm/kvmrc`` : This file holds instructions to be executed before the actual driver load to perform specific tasks or to pass environmental variables to the driver. The syntax used for the former is plain shell script that will be evaluated before the driver execution. For the latter, the syntax is the familiar:
+-  ``/var/lib/one/remotes/etc/vmm/kvm/kvmrc`` : This file holds instructions to be executed before the actual driver load to perform specific tasks or to pass environmental variables to the driver. The syntax used for the former is plain shell script that will be evaluated before the driver execution. For the latter, the syntax is the familiar:
 
 .. code::
 

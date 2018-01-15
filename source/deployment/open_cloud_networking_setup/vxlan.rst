@@ -52,7 +52,7 @@ It is possible specify the start VLAN ID by configuring ``/etc/one/oned.conf``:
         START = "2"
     ]
 
-The following configuration attributes can be adjusted in ``/var/lib/one/remotes/vnm/OpenNebulaNetwork.conf``:
+The following configuration attributes can be adjusted in ``/var/lib/one/remotes/etc/vnm/OpenNebulaNetwork.conf``:
 
 +------------------+----------------------------------------------------------------------------------+
 | Parameter        | Description                                                                      |

@@ -33,9 +33,9 @@ Step 3. Installing the Software
 Installing on CentOS/RHEL 7
 ---------------------------
 
-Activate the `EPEL <http://fedoraproject.org/wiki/EPEL#How_can_I_use_these_extra_packages.3F>`__ repo before installing. 
+Activate the `EPEL <http://fedoraproject.org/wiki/EPEL#How_can_I_use_these_extra_packages.3F>`__ repo before installing.
 
-In RHEL 7 this can be done by following the instructions `here <http://fedoraproject.org/wiki/EPEL#How_can_I_use_these_extra_packages.3F>`__. 
+In RHEL 7 this can be done by following the instructions `here <http://fedoraproject.org/wiki/EPEL#How_can_I_use_these_extra_packages.3F>`__.
 
 In CentOS 7 this can be done with the following command:
 
@@ -98,8 +98,8 @@ These are the packages available for these distributions:
 
     Besides ``/etc/one``, the following files are marked as configuration files:
 
-    * ``/var/lib/one/remotes/datastore/ceph/ceph.conf``
-    * ``/var/lib/one/remotes/vnm/OpenNebulaNetwork.conf``
+    * ``/var/lib/one/remotes/etc/datastore/ceph/ceph.conf``
+    * ``/var/lib/one/remotes/etc/vnm/OpenNebulaNetwork.conf``
 
 .. _ruby_runtime:
 
