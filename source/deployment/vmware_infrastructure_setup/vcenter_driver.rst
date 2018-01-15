@@ -813,8 +813,8 @@ The import tool (either the onevcenter tool or Sunstone) gives you information a
 
 If there are no OpenNebula Cluster’s ID it means that you haven’t imported any vCenter cluster that uses this port group so to import properly the network you should have imported the vcenter cluster first.
 
-.. Note:: Since 5.6 Multicluster networks are supported by Opennebula, this means that you can import Port groups and Distributed Port groups with more than 1 vcenter cluster. Opennebula will show up the related vcenter clusters and you should import at least 1 before proceeding with the importation.
-          Even if it is possible to import a multicluster network having only 1 vcenter cluster, it is best to take all vcenter clusters related to the network into opennebula first (arranging them into opennebula clusters) this will facilitate the network administration.
+.. Note:: Since 5.6 Multicluster networks are supported by OpenNebula, this means that you can import Port groups and Distributed Port groups with more than 1 vcenter cluster. OpenNebula will show up the related vcenter clusters and you should import at least 1 before proceeding with the importation.
+          Even if it is possible to import a multicluster network having only 1 vcenter cluster, it is best to take all vcenter clusters related to the network into OpenNebula first (arranging them into opennebula clusters) this will facilitate the network administration.
 
 A vCenter network name is unique inside a datacenter, so it is possible that two networks can be found with the same name in different datacenters and/or vCenter instances. When you import a network, OpenNebula generates a name that avoids collisions. That name contains the port group name, the cluster where it’s used, the vcenter instance name and the datacenter where it lives and a 12 character hash that prevents a collision. That name can be changed to a more human-friendly name once the virtual network has been imported. The following screenshot shows an example:
 
