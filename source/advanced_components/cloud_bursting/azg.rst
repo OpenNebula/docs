@@ -50,8 +50,10 @@ Prerequisites
 .. code::
 
     ## Install openssl
+
     ## CentOS
     $ sudo yum install openssl
+
     ## Ubuntu
     $ sudo apt-get install openssl
     
@@ -73,18 +75,19 @@ Prerequisites
 
 
 
-- Third, the certificate file (.cer) has to be uploaded to Settings -> Management Certificates Management Certificates can only be accessed from classic Azure portal, if you are using V2 try to:
+- Third, the certificate file (.cer) has to be uploaded to Settings -> Management Certificates can only be accessed from classic Azure portal, if you are using V2 try to:
 
         portal v2 home page -> Azure classic portal -> Settings -> Management Certificates
-        
-- In order to allow azure driver to properly authenticate with our Azure account, you need to sign your .pem file, keep the absolute path of the new signed certificate, you will need it for the **pem_management_cert** field inside az_driver.conf:
+
+- In order to allow azure driver to properly authenticate with our Azure account, you need to sign your .pem file:
 
 .. code::
 
     ## Concatenate key and pem certificate (sign with private key)
-    $ cat myCert.pem myPrivateKey.key > vOneCloud.pem
- 
- 
+    $ cat myCert.pem myPrivateKey.key > azureOne.pem
+
+azureOne.pem is the result of your signed cert, OpenNebula does not need you to store this cert in any certain location of the OpenNebula front-end filesystem, please keep it safe. Remember that you will need to read it in the host creation process. We'll talk about how perform this action later.
+
 -  The following gem is required: ``azure``. This gem is automatically installed as part of the :ref:`installation process <ruby_runtime>`. Otherwise, run the ``install_gems`` script as root:
 
 .. prompt:: bash # auto
@@ -119,31 +122,30 @@ Driver flags are the same as other drivers:
 | -r   | Number of retries when contacting Azure service                      |
 +------+----------------------------------------------------------------------+
 
-Additionally you must define your credentials, the Azure location to be used and the maximum capacity that you want OpenNebula to deploy on Azure. In order to do this, edit the file ``/etc/one/az_driver.conf``:
+Azure driver has his own configuration file with a few options ready to customize, take a look inside your opennebula etc folder, edit the file ``/etc/one/az_driver.conf``:
 
 .. code::
 
-    default:
-        region_name: "West Europe"
-        pem_management_cert: <path-to-your-vonecloud-pem-certificate-here>
-        subscription_id: <your-subscription-id-here>
-        management_endpoint:
-        capacity:
-            Small: 5
-            Medium: 1
-            Large: 0
-    west-europe:
-        region_name: "West Europe"
-        pem_management_cert: <path-to-your-vonecloud-pem-certificate-here>
-        subscription_id: <your-subscription-id-here>
-        management_endpoint:
-        capacity:
-            Small: 5
-            Medium: 1
-            Large: 0
+    proxy_uri:
+    instance_types:
+        ExtraSmall:
+            cpu: 1
+            memory: 0.768
+        Small:
+            cpu: 1
+            memory: 1.75
+        Medium:
+            cpu: 2
+            memory: 3.5
+        Large:
+            cpu: 4
+            memory: 7.0
+        ExtraLarge:
+            cpu: 8
+            memory: 14.0
+        ...
 
-
-In the above file, each region represents an `Azure datacenter <http://matthew.sorvaag.net/2011/06/windows-azure-data-centre-locations/>`__ (Microsoft doesn't provide an official list). (see the :ref:`multi site region account section <azg_multi_az_site_region_account_support>` for more information.
+In the above file, each instance_type represents the physical resources that Azure will serve.
 
 If the OpenNebula frontend needs to use a proxy to connect to the public Internet you also need to configure the proxy in that file. The parameter is called ``proxy_uri``. Authenticated proxies are not supported, that is, the ones that require user name and password. For example, if the proxy is in ``10.0.0.1`` and its port is ``8080`` the configuration line should read:
 
@@ -151,11 +153,28 @@ If the OpenNebula frontend needs to use a proxy to connect to the public Interne
 
     proxy_uri: http://10.0.0.1:8080
 
-Once the file is saved, OpenNebula needs to be restarted (as ``oneadmin``, do a 'onevm restart'), create a new Host that uses the AZ drivers:
+
+.. warning:: ``instance_types`` section shows us the machines that Azure is able to provide, the azure driver will retrieve this kind of information so it's better to not change it unless you are aware of your actions.
+
+.. warning::
+
+    If you were using OpenNebula before 5.4 you may have noticed that there are not Microsoft credentials in configuration file anymore, this is due security reasons. In 5.4 there is a new secure credentials storage for Microsoft's accounts so you do not need to store sensitive credential data inside your disk. OpenNebula daemon stores the data in an encrypted format.
+
+
+Once the file is saved, OpenNebula needs to be restarted (as ``oneadmin``, do a 'onevm restart'), create a new Host with Microsoft's credentials that uses the AZ drivers:
 
 .. prompt:: bash $ auto
 
-    $ onehost create west-europe -i az -v az
+    $ onehost create azure_host -t az -i az -v az
+
+.. note::
+
+    ``-t`` is needed to specify what type of remote provider host we want to set up, if you've followed all the instruction properly your default editor should show in your screen asking for the credentials and other mandatory data that will allow you to communicate with Azure.
+
+Once you have opened your editor you can look for additional help at the top of your screen, you have more information in :ref:`Azure Auth template Attributes <az_auth_attributes>` section. The basic three variables you have to set are: ``AZ_ID``, ``AZ_CERT`` and ``REGION_NAME``.
+
+
+.. _azure_specific_template_attributes:
 
 Azure Specific Template Attributes
 ================================================================================
@@ -232,6 +251,50 @@ Default values for all these attributes can be defined in the ``/etc/one/az_driv
          <INSTANCE_TYPE>Small</INSTANCE_TYPE>
       </AZURE>
     </TEMPLATE>
+
+.. _az_auth_attributes:
+
+Azure Auth Attributes
+--------------------------------------------------------------------------------
+
+After successfully executing onehost create with -t option, your default editor will open. An example follows of how you can complete this area:
+
+.. code::
+
+    AZ_ID = "this-is-my-azure-identifier"
+    AZ_CERT = "-----BEGIN CERTIFICATE-----
+              xxxxxxxxxxxxxxxxxxxxxxxxxxxx
+              -----END CERTIFICATE-----
+              -----BEGIN PRIVATE KEY-----
+              xxxxxxxxxxxxxxxxxxxxxxxxxxxx
+              -----END PRIVATE KEY-----"
+
+    REGION_NAME = "West Europe"
+    CAPACITY = [
+        SMALL = "3",
+        MEDIUM = "1" ]
+
+The first two attributes have the authentication info required by Azure:
+
+- **AZ_ID**: your Microsoft Azure account identifier, found in Azure classic portal -> settings.
+- **AZ_CERT**: The certificate that you signed before, in our example this file is called 'azureOne.pem' you only need to read this file one time to set this attribute and start using Azure:
+
+.. prompt:: bash $ auto
+
+    $ cat ~/.ssh/azure/azureOne.pem
+
+- Copy the content into your system clipboard without any mistake selecting all the text (ctrl + Shift + c if you are under normal linux terminal).
+
+- Paste into AZ_CERT value, make sure you are inside quotes without leaving any blankspace.
+
+
+This information will be encrypted as soon as the host is created. In the host template the values of the ``AZ_ID`` and ``AZ_CERT`` attributes will be encrypted to maintain a secure way in your future communication with azure.
+
+- **REGION_NAME**: it's the name of Azure region that your account uses to deploy machines. You can check Microsoft's site to know more about the region availability `Regions Azure page <https://azure.microsoft.com/es-es/regions/>`__.
+
+In the example the region is set to `West Europe`.
+
+- **CAPACITY**: This attribute sets the size and number of Azure machines that your OpenNebula host will handle, you can see ``instance_types`` section in ``azure_driver.conf`` file to know the supported names. Remember that its mandatory to capitalize the names (``Small`` => ``SMALL``).
 
 .. _azg_multi_az_site_region_account_support:
 
