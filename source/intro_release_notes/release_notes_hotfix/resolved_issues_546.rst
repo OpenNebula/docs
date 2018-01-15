@@ -24,3 +24,4 @@ The following issues has been solved in 5.4.6:
  - https://github.com/OpenNebula/one/commit/efdffc4723aae3d2b3f524a1e2bb27c81e43b13d
 
 - `Error retrieve VMGroup <https://github.com/OpenNebula/one/issues/1619>`__.
+- `Downloader may get too small VMDK part to estimate image size <https://github.com/OpenNebula/one/issues/1627>`__.
