@@ -49,5 +49,7 @@ vCenter
 Core
 --------------------------------------------------------------------------------
 
+- **Lock resources**, from now, the user can lock certain resources with different locks levels.
+
 .. |sunstone_dashboard| image:: /images/sunstone_dashboard.png
 .. |sched_actions| image:: /images/sched_actions.png
