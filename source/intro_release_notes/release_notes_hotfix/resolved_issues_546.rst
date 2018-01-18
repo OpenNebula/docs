@@ -25,3 +25,4 @@ The following issues has been solved in 5.4.6:
 
 - `Error retrieve VMGroup <https://github.com/OpenNebula/one/issues/1619>`__.
 - `Downloader may get too small VMDK part to estimate image size <https://github.com/OpenNebula/one/issues/1627>`__.
+- `Added support for setting the CPU model <https://github.com/OpenNebula/one/issues/756>`__.
