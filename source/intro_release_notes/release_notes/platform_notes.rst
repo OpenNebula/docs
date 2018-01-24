@@ -19,7 +19,7 @@ Front-End Components
 +=========================+=========================================================+=======================================================+
 | RedHat Enterprise Linux | 7                                                       | :ref:`Front-End Installation <frontend_installation>` |
 +-------------------------+---------------------------------------------------------+-------------------------------------------------------+
-| Ubuntu Server           | 14.04 (LTS), 16.04 (LTS), 17.04                         | :ref:`Front-End Installation <frontend_installation>` |
+| Ubuntu Server           | 14.04 (LTS), 16.04 (LTS), 17.10                         | :ref:`Front-End Installation <frontend_installation>` |
 +-------------------------+---------------------------------------------------------+-------------------------------------------------------+
 | CentOS                  | 7                                                       | :ref:`Front-End Installation <frontend_installation>` |
 +-------------------------+---------------------------------------------------------+-------------------------------------------------------+
@@ -51,7 +51,7 @@ KVM Nodes
 +=========================+===========================================================+=========================================+
 | RedHat Enterprise Linux | 7                                                         | :ref:`KVM Driver <kvmg>`                |
 +-------------------------+-----------------------------------------------------------+-----------------------------------------+
-| Ubuntu Server           | 14.04 (LTS) , 16.04 (LTS), 17.04                          | :ref:`KVM Driver <kvmg>`                |
+| Ubuntu Server           | 14.04 (LTS) , 16.04 (LTS)                                 | :ref:`KVM Driver <kvmg>`                |
 +-------------------------+-----------------------------------------------------------+-----------------------------------------+
 | CentOS/RHEL             | 7                                                         | :ref:`KVM Driver <kvmg>`                |
 +-------------------------+-----------------------------------------------------------+-----------------------------------------+
@@ -86,7 +86,7 @@ Open Cloud Storage Infrastructure
 +-----------+--------------------------------------------+-------------------------------------+
 | LVM2      | Version included in the Linux distribution | :ref:`LVM Drivers <lvm_drivers>`    |
 +-----------+--------------------------------------------+-------------------------------------+
-| Ceph      | Hammer (LTS) v0.94, Jewel v10.2.0          | :ref:`The Ceph Datastore <ceph_ds>` |
+| Ceph      | Jewel v10.2, Luminous v12.2                | :ref:`The Ceph Datastore <ceph_ds>` |
 +-----------+--------------------------------------------+-------------------------------------+
 
 Authentication
@@ -147,7 +147,6 @@ Debian 8
 
 Make sure that the packages ``ruby-treetop`` and ``treetop`` are not installed before running ``ìnstall_gems``, as the version of ``treetop`` that comes packaged in Debian 8 is incompatible with OpenNebula. **OneFlow** requires a version >= 1.6.3 for treetop, packages distributed with Debian 8 includes an older version (1.4.5).
 
-
 Nodes Platform Notes
 ================================================================================
 
@@ -195,6 +194,11 @@ It is recommended that you disable PolicyKit for Libvirt:
   unix_sock_ro_perms = "0770"
   unix_sock_rw_perms = "0770"
   ...
+
+Debian 9/Ubuntu 16.04
+--------------------------------------------------------------------------------
+
+Libvirt is missing a dependency with ``systemd-machined``. This makes both, systemd and libvirtd, to manage and configure cgroups in parallel. In some situations this may lead to unbound VM cpu and memory limits. To prevent this behavior make sure to install the ``systemd-container`` package.
 
 
 Unsupported Platforms Notes
