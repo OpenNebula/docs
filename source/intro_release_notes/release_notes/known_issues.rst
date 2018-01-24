@@ -1,7 +1,7 @@
-.. _known_issues:
+.. _known_issues_hotfix:
 
 ================================================================================
-Known Issues
+Known Issues 5.4.4
 ================================================================================
 
 CLI
@@ -48,8 +48,6 @@ Drivers - Storage
 Drivers - VM
 ================================================================================
 
-* `#4335 <http://dev.opennebula.org/issues/4335>`_ vCenter password cannot be longer than 22 characters
-* `#4514 <http://dev.opennebula.org/issues/4514>`_ Spaces not allowed in SOURCE image attribute
 * `#4169 <http://dev.opennebula.org/issues/4169>`_ The state of VMs terminated through the AWS console should not be POWEROFF
 * `#3696 <http://dev.opennebula.org/issues/3696>`_ unsupported actions in the vmm drivers should end with exit 1
 
@@ -82,12 +80,10 @@ Sunstone
 * `#2801 <http://dev.opennebula.org/issues/2801>`_ Template update: placement does not select the hosts/clusters
 * `#4652 <http://dev.opennebula.org/issues/4652>`_ noVNC mouse doesn't work when a touchscreen is present
 * `#4266 <http://dev.opennebula.org/issues/4266>`_ Uploading big image via sunstone got error message
-* `#5159 <http://dev.opennebula.org/issues/5159>`_ Quotas for user should take into account more restrictive group quotas
 
 
 vCenter
 ================================================================================
 
-* `#4990 <http://dev.opennebula.org/issues/4990>`_ importing network on vcenter with vlan doesn't report the vlan id
 * `#5414 <https://dev.opennebula.org/issues/5414>`_ Template delete recursive operation of templates **instantiated as persistent** does not remove images from the vcenter datastores. Currently these files must be delete manually.
 
