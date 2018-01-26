@@ -155,35 +155,35 @@ OpenNebula Configuration
 
 To use your Ceph cluster with the OpenNebula, you need to define a System and Image datastores. Each Image/System Datastore pair will share same following Ceph configuration attributes:
 
-+-----------------+---------------------------------------------------------+-----------+
-| Attribute       | Description                                             | Mandatory |
-+=================+=========================================================+===========+
-| ``NAME``        | The name of the datastore                               | **YES**   |
-+-----------------+---------------------------------------------------------+-----------+
-| ``POOL_NAME``   | The Ceph pool name                                      | **YES**   |
-+-----------------+---------------------------------------------------------+-----------+
-| ``CEPH_USER``   | The Ceph user name, used by libvirt and rbd commands.   | **YES**   |
-+-----------------+---------------------------------------------------------+-----------+
-| ``CEPH_KEY``    | Key file for user, if not set default locations are     | NO        |
-|                 | used                                                    |           |
-+-----------------+---------------------------------------------------------+-----------+
-| ``CEPH_CONF``   | Non default ceph configuration file if needed.          | NO        |
-+-----------------+---------------------------------------------------------+-----------+
-| ``RBD_FORMAT``  | By default RBD Format 2 will be used.                   | NO        |
-+-----------------+---------------------------------------------------------+-----------+
-| ``BRIDGE_LIST`` | List of storage bridges to access the Ceph cluster      | **YES**   |
-+-----------------+---------------------------------------------------------+-----------+
-| ``CEPH_HOST``   | Space-separated list of Ceph monitors. Example: ``host1 | **YES**   |
-|                 | host2:port2 host3 host4:port4``.                        |           |
-+-----------------+---------------------------------------------------------+-----------+
-| ``CEPH_SECRET`` | The UUID of the libvirt secret.                         | **YES**   |
-+-----------------+---------------------------------------------------------+-----------+
-| ``EC_POOL``     | Name of Ceph erasure coded pool                         | NO        |
-+-----------------+---------------------------------------------------------+-----------+
++------------------+---------------------------------------------------------+-----------+
+| Attribute        | Description                                             | Mandatory |
++==================+=========================================================+===========+
+| ``NAME``         | The name of the datastore                               | **YES**   |
++------------------+---------------------------------------------------------+-----------+
+| ``POOL_NAME``    | The Ceph pool name                                      | **YES**   |
++------------------+---------------------------------------------------------+-----------+
+| ``CEPH_USER``    | The Ceph user name, used by libvirt and rbd commands.   | **YES**   |
++------------------+---------------------------------------------------------+-----------+
+| ``CEPH_KEY``     | Key file for user, if not set default locations are     | NO        |
+|                  | used                                                    |           |
++------------------+---------------------------------------------------------+-----------+
+| ``CEPH_CONF``    | Non default ceph configuration file if needed.          | NO        |
++------------------+---------------------------------------------------------+-----------+
+| ``RBD_FORMAT``   | By default RBD Format 2 will be used.                   | NO        |
++------------------+---------------------------------------------------------+-----------+
+| ``BRIDGE_LIST``  | List of storage bridges to access the Ceph cluster      | **YES**   |
++------------------+---------------------------------------------------------+-----------+
+| ``CEPH_HOST``    | Space-separated list of Ceph monitors. Example: ``host1 | **YES**   |
+|                  | host2:port2 host3 host4:port4``.                        |           |
++------------------+---------------------------------------------------------+-----------+
+| ``CEPH_SECRET``  | The UUID of the libvirt secret.                         | **YES**   |
++------------------+---------------------------------------------------------+-----------+
+| ``EC_POOL_NAME`` | Name of Ceph erasure coded pool                         | NO        |
++------------------+---------------------------------------------------------+-----------+
 
 .. note:: You may add another Image and System Datastores pointing to other pools with different allocation/replication policies in Ceph.
 
-.. note:: Ceph Luminous release allows use of erasure coding for ``RBD`` images. In general, erasure coded images take up less space, but have worse I/O performance. Erasure coding can be enabled on Image and/or System Datastores by configuring ``EC_POOL`` with the name of the erasure coded data pool. Regular replicated Ceph pool ``POOL_NAME`` is still required for image metadata. More information in `Ceph documentation <http://docs.ceph.com/docs/master/rados/operations/erasure-code/#erasure-coding-with-overwrites>`__.
+.. note:: Ceph Luminous release allows use of erasure coding for ``RBD`` images. In general, erasure coded images take up less space, but have worse I/O performance. Erasure coding can be enabled on Image and/or System Datastores by configuring ``EC_POOL_NAME`` with the name of the erasure coded data pool. Regular replicated Ceph pool ``POOL_NAME`` is still required for image metadata. More information in `Ceph documentation <http://docs.ceph.com/docs/master/rados/operations/erasure-code/#erasure-coding-with-overwrites>`__.
 
 Create a System Datastore
 --------------------------------------------------------------------------------
