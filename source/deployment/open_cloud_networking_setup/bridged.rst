@@ -20,11 +20,18 @@ The following needs to be considered regarding traffic isolation:
 
 * The **ebtables VLAN** mode is targeted to small environments without proper hardware support to implement VLANS. Note that it is limited to /24 networks, and that IP addresses cannot overlap between Virtual Networks. This mode is only recommended for testing purposes.
 
+.. _bridged_conf:
 
 OpenNebula Configuration
 ================================================================================
 
-No specific configuration is required for bridged networking
+The following configuration attributes can be adjusted in ``/var/lib/one/remotes/etc/vnm/OpenNebulaNetwork.conf``:
+
++------------------+-------------------------------------------------------------------------------------------+
+| Parameter        | Description                                                                               |
++==================+===========================================================================================+
+| ipset_maxelem    | Maximal number of entries in the IP set (used for the security group rules)               |
++------------------+-------------------------------------------------------------------------------------------+
 
 .. _bridged_net:
 

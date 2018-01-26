@@ -87,7 +87,7 @@ Other (Custom Tags)
 
 |sunstone_template_custom_tags|
 
-This section in the Other tab is for all fields that haven't any gap in the others tabs. You can introduce others own fields into this section, this values will be saved in the resuorce template.
+This section in the Other tab is for all fields that haven't any gap in the others tabs. You can introduce others own fields into this section, this values will be saved in the resource template.
 Also you can create a value of object type.
 
 .. _vm_templates_endusers:
@@ -153,6 +153,13 @@ These inputs will be presented to the user when the Template is instantiated. Th
 |prepare-tmpl-user-input-3|
 
 .. note:: If a VM Template with user inputs is used by a :ref:`Service Template Role <appflow_use_cli>`, the user will be also asked for these inputs when the Service is created.
+
+.. _sched_actions_templ:
+
+Scheduling Actions
+--------------------------------------------------------------------------------
+
+You can define Scheduled Actions when defining a Template and at :ref:`VM instantiation <vm_guide2_scheduling_actions>`.
 
 Set a Cost
 --------------------------------------------------------------------------------

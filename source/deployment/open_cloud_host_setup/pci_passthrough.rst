@@ -139,23 +139,77 @@ In our example our cards have the groups 45, 46, 58 and 59 so we add this config
 Driver Configuration
 --------------------
 
-The only configuration that is needed is the filter for the monitoring probe that gets the list of PCI cards. By default the probe lists all the cards available in a host. To narrow the list a filter configuration can be changed in ``/var/lib/one/remotes/im/kvm-probes.d/pci.rb`` and set a list with the same format as ``lspci``:
+The only configuration needed is the filter for the monitoring probe that gets the list of PCI cards. By default, the probe doesn't list any cards from a host. To narrow the list, configuration can be changed in ``/var/lib/one/remotes/etc/im/kvm-probes.d/pci.conf``. Following configuration attributes are available:
+
++------------------+------------------------------------------------------------------------------------+
+| Parameter        | Description                                                                        |
++==================+====================================================================================+
+| filter           | *List* Filters by PCI ``vendor:device:class`` patterns (same as as for ``lspci``)  |
++------------------+------------------------------------------------------------------------------------+
+| short_address    | *List* Filters by short PCI address ``bus:device.function``                        |
++------------------+------------------------------------------------------------------------------------+
+| device_name      | *List* Filters by device names with case-insensitive regular expression patterns   |
++------------------+------------------------------------------------------------------------------------+
+
+All filters are applied on the final PCI cards list.
+
+Example:
 
 .. code::
 
-    # This variable contains the filters for PCI card monitoring. The format
-    # is the same as lspci and several filters can be added separated by commas.
-    # A nil filter will retrieve all PCI cards.
+    # This option specifies the main filters for PCI card monitoring. The format
+    # is the same as used by lspci to filter on PCI card by vendor:device(:class)
+    # identification. Several filters can be added as a list, or separated
+    # by commas. The NULL filter will retrieve all PCI cards.
     #
     # From lspci help:
     #     -d [<vendor>]:[<device>][:<class>]
+    #            Show only devices with specified vendor, device and  class  ID.
+    #            The  ID's  are given in hexadecimal and may be omitted or given
+    #            as "*", both meaning "any value"#
     #
-    # For example
+    # For example:
+    #   :filter:
+    #     - '10de:*'      # all NVIDIA VGA cards
+    #     - '10de:11bf'   # only GK104GL [GRID K2]
+    #     - '*:10d3'      # only 82574L Gigabit Network cards
+    #     - '8086::0c03'  # only Intel USB controllers
     #
-    # FILTER = '::0300' # all VGA cards
-    # FILTER = '10de::0300' # all NVIDIA VGA cards
-    # FILTER = '10de:11bf:0300' # only GK104GL [GRID K2]
-    # FILTER = '8086::0300,::0106' # all Intel VGA cards and any SATA controller
+    # or
+    #
+    #   :filter: '*:*'    # all devices
+    #
+    # or
+    #
+    #   :filter: '0:0'    # no devices
+    #
+    :filter: '*:*'
+
+    # The PCI cards list restricted by the :filter option above can be even more
+    # filtered by the list of exact PCI addresses (bus:device.func).
+    #
+    # For example:
+    #   :short_address:
+    #     - '07:00.0'
+    #     - '06:00.0'
+    #
+    :short_address:
+      - '00:1f.3'
+
+    # The PCI cards list restricted by the :filter option above can be even more
+    # filtered by matching the device name against the list of regular expression
+    # case-insensitive patterns.
+    #
+    # For example:
+    #   :device_name:
+    #     - 'Virtual Function'
+    #     - 'Gigabit Network'
+    #     - 'USB.*Host Controller'
+    #     - '^MegaRAID'
+    #
+    :device_name:
+      - 'Ethernet'
+      - 'Audio Controller'
 
 Usage
 -----

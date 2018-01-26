@@ -4,60 +4,71 @@
 Sunstone Views
 ================================================================================
 
-Using the OpenNebula Sunstone Views you will be able to provide a simplified UI aimed at end-users of an OpenNebula cloud. The OpenNebula Sunstone Views are fully customizable, so you can easily enable or disable specific information tabs or action buttons. You can define multiple  views for different user groups. Each view defines a set of UI components so each user just accesses and views the relevant parts of the cloud for her role.
-
 The OpenNebula Sunstone Views can be grouped into two different layouts. On one hand, the classic Sunstone layout exposes a complete view of the cloud, allowing administrators and advanced users to have full control of any physical or virtual resource of the cloud. On the other hand, the cloud layout exposes a simplified version of the cloud where end-users will be able to manage any virtual resource of the cloud, without taking care of the physical resources management.
+
+Using the OpenNebula Sunstone Views you will be able to provide a simplified UI aimed at end-users of an OpenNebula cloud. The OpenNebula Sunstone Views are fully customizable, so you can easily enable or disable specific information tabs or action buttons. :ref:`You can define multiple views for different user groups <suns_views_define_new>`. You can define multiple views for different user groups. Each view defines a set of UI components so each user just accesses and views the relevant parts of the cloud for her role. Default views:
+
+- :ref:`Admin View <vcenter_view>`.
+- :ref:`Group Admin View <groupadmin_view>`.
+- :ref:`Cloud View <vcenter_cloud_view>`.
+- :ref:`User View <vcenter_user_view>`.
+
+
+These views are in 3 directories **kvm**, **vcenter** and **mixed** that Opennebula proposes by default:
+
+* ``/etc/one/sunstone-views/kvm`` for KVM hypervisor.
+* ``/etc/one/sunstone-views/vcenter`` for vCenter hypervisor.
+* ``/etc/one/sunstone-views/mixed`` to manage both hypervisors in the same view.
+
+
+To choose the views you just have to change the configuration parameter **mode** in ``sunstone-server.conf``.
+
+.. code-block:: yaml
+
+    # Default views directory
+    :mode: 'mixed'
+
+The **mixed** directory includes the views explained above with all the functionality of KVM and vCenter together.
+
 
 Default Views
 ================================================================================
 
+.. _vcenter_view:
+
 Admin View
 --------------------------------------------------------------------------------
 
-This view provides full control of the cloud. Details can be configured in the ``/etc/one/sunstone-views/admin.yaml`` file.
+This view provides full control of the cloud. Details can be configured in the ``/etc/one/sunstone-views/*/admin.yaml`` file.
 
-|admin_view|
+|sunstone_dashboard|
 
-.. _vcenter_view:
-
-Admin vCenter View
---------------------------------------------------------------------------------
-
-Based on the Admin View. It is designed to present the valid operations against a vCenter infrastructure to a cloud administrator. Details can be configured in the ``/etc/one/sunstone-views/admin_vcenter.yaml`` file. In this view, the Import button will be displayed in the VM Templates, Datastores, Images and Virtual Networks tabs.
-
-.. image:: /images/vcenter_import_button.png
-    :width: 15%
-    :align: center
-
-.. _suns_views_group_admin:
+.. _groupadmin_view:
 
 Group Admin View
 --------------------------------------------------------------------------------
 
 Based on the Admin View. It provides control of all the resources belonging to a group, but with no access to resources outside that group, that is, restricted to the physical and virtual resources of the group. This view features the ability to create new users within the group as well as set and keep track of user quotas. For more information on how to configure this scenario see :ref:`this section <group_admin_view>`
 
+.. _vcenter_cloud_view:
+
 Cloud View
 --------------------------------------------------------------------------------
 
-This is a simplified view mainly intended for end-users that just require a portal where they can provision new virtual machines easily from pre-defined Templates. For more information about this view, please check the ``/etc/one/sunstone-views/cloud.yaml`` file.
+This is a simplified view mainly intended for end-users that just require a portal where they can provision new virtual machines easily from pre-defined Templates. For more information about this view, please check the ``/etc/one/sunstone-views/*/cloud.yaml`` file.
 
 In this scenario the cloud administrator must prepare a set of templates and images and make them available to the cloud users. These Templates must be ready to be instantiated. Before using them, users can optionally customize the VM capacity, add new network interfaces and provide values required by the template.  Thereby, the user doesn't have to know any details of the infrastructure such as networking or storage. For more information on how to configure this scenario see :ref:`this section <cloud_view>`
 
 |cloud_dash|
 
-.. _vcenter_cloud_view:
-
-vCenter Cloud View
---------------------------------------------------------------------------------
-
-Based on the Cloud View, this view is designed to present the valid operations against a vCenter infrastructure to a cloud end-user.
+.. _vcenter_user_view:
 
 User View
 --------------------------------------------------------------------------------
 
-Based on the Admin View, it is an advanced user view. It is intended for users that need access to more actions that the limited set available in the cloud view. Users will not be able to manage nor retrieve the hosts and clusters of the cloud. They will be able to see Datastores and Virtual Networks in order to use them when creating a new Image or Virtual Machine, but they will not be able to create new ones. Details can be configured in the ``/etc/one/sunstone-views/user.yaml`` file.
+Based on the Admin View, it is an advanced user view. It is intended for users that need access to more actions that the limited set available in the cloud view. Users will not be able to manage nor retrieve the hosts and clusters of the cloud. They will be able to see Datastores and Virtual Networks in order to use them when creating a new Image or Virtual Machine, but they will not be able to create new ones. Details can be configured in the ``/etc/one/sunstone-views/*/user.yaml`` file.
 
-|user_view|
+|sunstone_user_dashboard|
 
 .. _suns_views_configuring_access:
 
@@ -152,7 +163,7 @@ These labels are defined in ``/etc/one/sunstone-views.yaml``, you can separate t
 Defining a New OpenNebula Sunstone View or Customizing an Existing one
 ================================================================================
 
-View definitions are placed in the ``/etc/one/sunstone-views`` directory. Each view is defined by a configuration file, in the form:
+View definitions are placed in the ``/etc/one/sunstone-views/*`` directory. Each view is defined by a configuration file, in the form:
 
 .. code::
 
@@ -165,8 +176,15 @@ The name of the view will be the filename without the yaml extension.
     /etc/one/
     ...
     |-- sunstone-views/
-    |   |-- admin.yaml       <--- the admin view
-    |   `-- cloud.yaml       <--- the cloud view
+    |   |-- mixed/
+    |   |   |-- admin.yaml       <--- the admin view
+    |   |   `-- cloud.yaml       <--- the cloud view
+    |   |-- kvm/
+    |   |   |-- admin.yaml       <--- the admin view
+    |   |   `-- cloud.yaml       <--- the cloud view
+    |   |-- vcenter/
+    |   |   |-- admin.yaml       <--- the admin view
+    |   |   `-- cloud.yaml       <--- the cloud view
     `-- sunstone-views.yaml
     ...
 
@@ -206,11 +224,11 @@ For the dashboard, the following widgets can be configured:
         Dashboard.refresh: false
         Sunstone.toggle_top: false
     widgets_one_per_row:
-        - vms
         - hosts
-        - users
     widgets_three_per_row:
     widgets_two_per_row:
+        - vms
+        - users
         - storage
         - network
     widgets_one_footer:
@@ -328,6 +346,7 @@ Features
 * ``instantiate_hide_cpu``: If true, hide the CPU setting in the VM creation dialog.
 * ``instantiate_cpu_factor``: False to not scale the CPU from VCPU. Number [0, 1] to scale.
 * ``instantiate_persistent``: True to show the option to make an instance persistent.
+* ``cloud_vm_create``: True to allow to create machines to cloud users.
 
 .. code-block:: yaml
 
@@ -438,11 +457,12 @@ The actions available for a given VM can be customized and extended by modifying
 
 |customizecloudview|
 
+.. |sunstone_dashboard| image:: /images/sunstone_dashboard.png
 .. |labels_edit| image:: /images/labels_edit.png
 .. |labels_persis| image:: /images/labels_persis.png
 .. |labels_filter| image:: /images/labels_filter.png
 .. |admin_view| image:: /images/admin_view.png
-.. |user_view| image:: /images/user_view.png
+.. |sunstone_user_dashboard| image:: /images/sunstone_user_dashboard.png
 .. |cloud_dash| image:: /images/cloud_dash.png
 .. |views_settings| image:: /images/views_settings.png
 .. |views_change| image:: /images/views_change.png

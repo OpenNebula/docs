@@ -33,6 +33,11 @@ EC2 hybrid drivers
 
 Configuration attributes of the EC2 driver has been moved from the ``ec2_driver.conf`` file to the host attributes. The migration process automatically moves the information to each host template. Any further update of these attributes should be performed directly on each the OpenNebula host.
 
+Remote scripts configuration
+--------------------------------------------------------------------------------
+
+Configuration files from deep inside the remote scripts directory structure ``/var/lib/one/remotes/`` have been moved into dedicated directory ``/var/lib/one/remotes/etc/``. Check all the files on the new path, and apply any necessary changes to your environment.
+
 Developers and Integrators
 ================================================================================
 
@@ -40,6 +45,9 @@ XML-RPC API
 --------------------------------------------------------------------------------
 There are no compatibility changes on API calls, there are new RPC methods to expose the new functionlity, visit the :ref:`complete reference <api>` for more information.
 
+Authentication drivers
+--------------------------------------------------------------------------------
+Authentication drivers now accept parameters only on the standard input as the XML document; all custom authentication drivers need to be modified to follow this way. Check the :ref:`authentication driver <devel-auth>` documentation.
 
 vCenter
 ================================================================================
@@ -164,15 +172,17 @@ In general, vCenter attributes will be preceed by the suffix **VCENTER_**
 Sunstone
 ================================================================================
 
-Labels
+New view system
 --------------------------------------------------------------------------------
 
-You will now have persistent labels that will be associated with a view or a user.
-You can read more about this topic at :ref:`Persistent labels <suns_views_labels>`
+The directory hierarchy in ``/etc/one/sunstone-views/`` has changed. Now, in sunstone-views there should be directories (KVM, vCenter, mixed) that contain the views configuration (yaml).
 
-Custom Tags
+``sunstone-server.conf`` has the **mode** parameter, with which we will select :ref:`the directory of the views <suns_views>` we want.
+
+Yamls changes
 --------------------------------------------------------------------------------
 
-Added the possibility of adding a new object of type vector inside Custom tags section. 
-In this section Sunstone will enter all the data that has not been collected by the Wizard and that exists in the Template
-For more information, you can see :ref:`Custom tags <vm_templates_custom_tags>`
+If you are interested in adding a VMGroup or DS in vCenter Cloud View, you should make the following changes in ``/etc/one/sunstone-views/cloud_vcenter.yaml``:
+
+- https://github.com/OpenNebula/one/commit/d019485e3d69588a7645fe30114c3b7c135d3065
+- https://github.com/OpenNebula/one/commit/efdffc4723aae3d2b3f524a1e2bb27c81e43b13d

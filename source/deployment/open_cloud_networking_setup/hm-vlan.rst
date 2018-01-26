@@ -29,7 +29,7 @@ The VLAN_ID is calculated according to this configuration option of ``oned.conf`
 
 By modifying that parameter you can reserve some VLANs so they aren't assigned to a Virtual Network. You can also define the first VLAN_ID. When a new isolated network is created, OpenNebula will find a free VLAN_ID from the VLAN pool. This pool is global, and it's also shared with the :ref:`Open vSwitch <openvswitch>` network mode.
 
-The following configuration attributes can be adjusted in ``/var/lib/one/remotes/vnm/OpenNebulaNetwork.conf``:
+The following configuration attributes can be adjusted in ``/var/lib/one/remotes/etc/vnm/OpenNebulaNetwork.conf``:
 
 +------------------+----------------------------------------------------------------------------------+
 | Parameter        | Description                                                                      |

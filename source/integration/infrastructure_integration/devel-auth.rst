@@ -15,19 +15,36 @@ Authentication Driver
 
 Authentication drivers are located at ``/var/lib/one/remotes/auth``. There is a directory for each of authentication drivers with an executable inside called ``authenticate``. The name of the directory has to be the same as the user's auth driver we want to authenticate. For example, if a user has as auth driver ``x509`` OpenNebula will execute the file ``/var/lib/one/remotes/auth/x509/authenticate`` when he performs an OpenNebula action.
 
-The script receives three parameters:
+The authentication driver expects parameters passed on the standard input as the XML document with following structure:
 
--  ``username``: name of the user who wants to authenticate.
--  ``password``: value of the password field for the user that is trying to authenticate. This can be ``-`` when the user does not exist in the OpenNebula database.
--  ``secret``: value provided in the password field of the authentication string.
+.. code-block:: xml
+
+    <AUTHN>
+        <USERNAME>VALUE</USERNAME>
+        <PASSWORD>VALUE</PASSWORD>
+        <SECRET>VALUE</SECRET>
+    </AUTHN>
+
+Where:
+
+-  ``USERNAME``: name of the user who wants to authenticate.
+-  ``PASSWORD``: value of the password field for the user that is trying to authenticate. This can be ``-`` when the user does not exist in the OpenNebula database.
+-  ``SECRET``: value provided in the password field of the authentication string.
+
+.. warning:: Before the OpenNebula 5.6, the parameters were passed as command line parameters. Now all the data are passed only on standard input only!
 
 For example, we can create a new authentication method that just checks the length of the password. For this we can store in the password field the number of characters accepted, for example 5, and user name test. Here are some example calls to the driver with several passwords:
 
 .. code::
 
-    authenticate test 5 testpassword
-    authenticate test 5 another_try
-    authenticate test 5 12345
+    echo '<AUTHN><USERNAME>test</USERNAME><PASSWORD>5</PASSWORD><SECRET>testpassword</SECRET></AUTHN>' | \
+        authenticate
+
+    echo '<AUTHN><USERNAME>test</USERNAME><PASSWORD>5</PASSWORD><SECRET>another_try</SECRET></AUTHN>' | \
+        authenticate
+
+    echo '<AUTHN><USERNAME>test</USERNAME><PASSWORD>5</PASSWORD><SECRET>12345</SECRET></AUTHN>' | \
+        authenticate
 
 The script should exit with a non 0 status when the authentication is not correct and write in ``stderr`` the error. When the authentication is correct it should return:
 
@@ -41,10 +58,12 @@ The code for the ``/var/lib/one/remotes/auth/length/authenticate`` executable ca
 
     #!/bin/bash
      
-    username=$1
-    password=$2
-    secret=$3
-     
+    data=$(cat -)
+
+    username=$(echo "${data}" | xmllint --xpath '//AUTHN/USERNAME/text()' -)
+    password=$(echo "${data}" | xmllint --xpath '//AUTHN/PASSWORD/text()' -)
+    secret=$(echo "${data}" | xmllint --xpath '//AUTHN/SECRET/text()' -)
+
     length=$(echo -n "$secret" | wc -c | tr -d ' ')
      
     if [ $length = $password ]; then
