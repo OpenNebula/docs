@@ -178,7 +178,7 @@ For example, the following illustrates the creation of a filesystem datastore us
 
 Also note that there are additional attributes that can be set, check the :ref:`datastore template attributes <ds_op_common_attributes>`.
 
-.. warning:: Be sure to use the same ``TM_MAD`` for both the System and Image datastore.
+.. warning:: Be sure to use the same ``TM_MAD`` for both the System and Image datastore. When combining different transfer modes, check the section below.
 
 .. _qcow2_options:
 
@@ -191,6 +191,24 @@ Additional Configuration
 
 * ``QCOW2_OPTIONS``: Custom options for the ``qemu-img`` clone action.
   The qcow2 drivers are a specialization of the shared drivers to work with the qcow2 format for disk images. Images are created and through the ``qemu-img`` command using the original image as backing file. Custom options can be sent to ``qemu-img`` clone action through the variable ``QCOW2_OPTIONS`` in ``/var/lib/one/remotes/tm/tmrc``.
+
+Cooperating System Datastore Transfer Modes
+--------------------------------------------------------------------------------
+
+It's possible to have multiple Filesystem based System datastores with different
+transfer modes in a cooperating approach. There always have to be a main System
+datastore with ``TM_MAD`` configured same as for the Image datastore. Only
+following combinations are supported:
+
++------------+-----------+---------------------------------------------------------------------------+
+|    Main    | Alternate | Description                                                               |
++============+===========+===========================================================================+
+| ``shared`` | ``ssh``   | VM images are copied from shared storage to local storage.                |
++------------+-----------+---------------------------------------------------------------------------+
+
+To select the (alternate) deployment mode, add the following attribute to the Virtual Machine template:
+
+* ``TM_MAD_SYSTEM="ssh"``
 
 .. |image1| image:: /images/fs_shared.png
 .. |image2| image:: /images/fs_ssh.png
