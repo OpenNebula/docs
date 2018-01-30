@@ -310,15 +310,31 @@ If the user account that is going to be used in vCenter operations is not declar
 |                                             | was previously created by OpenNebula.                                      |
 +---------------------------------------------+----------------------------------------------------------------------------+
 
+Special Permission
+------------------
+
+The above permissions except one can be set at the Cluster level. However, OpenNebula needs access to Customization spec for a successfull monitoring. This is a special privilege cause it needs to be applied to vCenter server level. It means that if you try to apply the previous privileges into a cluster/datacenter and their inheritors, OpenNebula will fail and it will tell you that higher level permissions are necessary.
+
+Our recommended approach its to create a two roles, one for the general permissions ("opennebulapermissions") that can be applied in the Cluster level, and another to handle this single permission. This way, you can create a role managing all OpenNebula permissions and other role (called for instance readcustspec) with **only** the next one:
+
++---------------------------------------------+----------------------------------------------------------------------------+
+|                  Privilege                  |                       Notes                                                |
++---------------------------------------------+----------------------------------------------------------------------------+
+| VirtualMachine.Provisioning.ReadCustSpecs   | Required by a virtual machine reconfigure action                           |
++---------------------------------------------+----------------------------------------------------------------------------+
+
+Once you have created the proper role, one way to manage these privileges is creating two groups. 
+
+  - The first group needs to be assigned the **readcustspec** role, place the OpenNebula user inside this group and grant permission over the vCenter instance to the group. 
+  - The second groups needs to be assigned the **opennebulapermissions** role, place the OpenNebula user inside this group and grant permission over the desired cluster to the group. 
+  
+.. note::
+    Do not forget to add the proper permissions to the datastores and any resource accesed by your OpenNebula user
+  
 VNC on ESX hosts
 ================================================================================
 
-To enable VNC functionality, you need to allow access to the VNC ports on
-ESX hosts. By default, access to these ports is filtered by the firewall.
-We provide an installation package, which adds the **VNC** ruleset (port
-range 5900-65535) and permits access to these ports. This package must be
-installed on each ESX host; it can be done via CLI or web UI. We'll cover
-necessary steps for both ways here.
+To enable VNC functionality, you need to allow access to the VNC ports on ESX hosts. By default, access to these ports is filtered by the firewall. We provide an installation package, which adds the **VNC** ruleset (port range 5900-65535) and permits access to these ports. This package must be installed on each ESX host; it can be done via CLI or web UI. We'll cover necessary steps for both ways here.
 
 Locations of the VIB installation package or ZIP bundle:
 
