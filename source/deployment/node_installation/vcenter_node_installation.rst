@@ -310,6 +310,38 @@ If the user account that is going to be used in vCenter operations is not declar
 |                                             | was previously created by OpenNebula.                                      |
 +---------------------------------------------+----------------------------------------------------------------------------+
 
+
+.. note::
+    Do not forget to add the proper permissions to the datastores and any resource accesed by your one user
+
+
+Special Permission
+------------------
+
+Opennebula needs access to Customization spec for a successfull monitoring.
+This is a special privilege cause it needs to be applied to vcenter server level.
+It means that if you try to apply the previous ones privileges into a cluster/datacenter
+and their inheritors, opennebula will fail and it will tell you that higher level
+permissions are necessary.
+
+our recommended approach its to create a new group in order to handle this
+single permission.
+
+You can create a role managing all opennebula permissions and other role with **only**
+the next one:
+
++---------------------------------------------+----------------------------------------------------------------------------+
+|                  Privilege                  |                       Notes                                                |
++---------------------------------------------+----------------------------------------------------------------------------+
+| VirtualMachine.Provisioning.ReadCustSpecs   | Required by a virtual machine reconfigure action                           |
++---------------------------------------------+----------------------------------------------------------------------------+
+
+Once you have created the proper role, one way to manage this privilege is
+creating a new group with the new readcustspec role, place the opennebula
+user inside this new group and grant permission over the vcenter instance.
+
+
+
 VNC on ESX hosts
 ================================================================================
 
