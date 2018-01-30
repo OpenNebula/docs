@@ -312,7 +312,7 @@ If the user account that is going to be used in vCenter operations is not declar
 
 
 .. note::
-    Do not forget to add the proper permissions to the datastores and any resource accesed by your one user
+    Do not forget to add the proper permissions to the datastores and any resource accesed by your OpenNebula user
 
 
 Special Permission
