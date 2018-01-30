@@ -310,11 +310,6 @@ If the user account that is going to be used in vCenter operations is not declar
 |                                             | was previously created by OpenNebula.                                      |
 +---------------------------------------------+----------------------------------------------------------------------------+
 
-
-.. note::
-    Do not forget to add the proper permissions to the datastores and any resource accesed by your OpenNebula user
-
-
 Special Permission
 ------------------
 
@@ -328,9 +323,14 @@ Our recommended approach its to create a two roles, one for the general permissi
 | VirtualMachine.Provisioning.ReadCustSpecs   | Required by a virtual machine reconfigure action                           |
 +---------------------------------------------+----------------------------------------------------------------------------+
 
-Once you have created the proper role, one way to manage this privilege is creating a new group with the new readcustspec role, place the OpenNebula user inside this new group and grant permission over the vCenter instance. The user needs to be assigned also to the general role ("opennebulapermissions").
+Once you have created the proper role, one way to manage these privileges is creating two groups. 
 
-
+  - The first group needs to be assigned the **readcustspec** role, place the OpenNebula user inside this group and grant permission over the vCenter instance to the group. 
+  - The second groups needs to be assigned the **opennebulapermissions** role, place the OpenNebula user inside this group and grant permission over the desired cluster to the group. 
+  
+.. note::
+    Do not forget to add the proper permissions to the datastores and any resource accesed by your OpenNebula user
+  
 VNC on ESX hosts
 ================================================================================
 
