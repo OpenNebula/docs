@@ -125,6 +125,40 @@ Sunstone offers a convenient way to manage resources permissions. This can be do
 
 .. _manage_acl:
 
+Locking Resources
+=================
+
+OpenNebula offers the possibility to lock differents types of action (USE, MANAGE, ADMIN) for prevent not intend operations (like delete). For can lock an specific type of action, opennebula offers diferents types of lock:
+
+* **USE**: lock all posible actions with the resource.
+* **MANAGE**: locks manage and admin actions with the resource.
+* **ADMIN**: Only lock admin actions with the resource.
+
+Not all resources can be lock, OpenNebula only allow lock the resources that a user normaly use. These resouces are:
+
+-  ``VM``
+-  ``NET``
+-  ``IMAGE``
+-  ``TEMPLATE``
+-  ``DOCUMENT``
+-  ``VROUTER``
+-  ``MARKETPLACEAPP``
+
+Example:
+
+.. prompt:: bash $ auto
+
+    $ oneimage lock 2 --use --user user
+    $ oneimage delete 2 --user user
+    [one.image.delete] User [4] : Not authorized to perform MANAGE IMAGE [2].
+
+.. prompt:: bash $ auto
+
+    $ oneimage unlock 2 --user user
+
+.. warning:: The user ONEADMIN does not see if the resource is locked.
+
+
 ===================
 Managing ACL Rules
 ===================
