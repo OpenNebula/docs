@@ -192,19 +192,18 @@ Additional Configuration
 * ``QCOW2_OPTIONS``: Custom options for the ``qemu-img`` clone action.
   The qcow2 drivers are a specialization of the shared drivers to work with the qcow2 format for disk images. Images are created and through the ``qemu-img`` command using the original image as backing file. Custom options can be sent to ``qemu-img`` clone action through the variable ``QCOW2_OPTIONS`` in ``/var/lib/one/remotes/tm/tmrc``.
 
-Cooperating System Datastore Transfer Modes
+Combining the shared & SSH Transfer Modes
 --------------------------------------------------------------------------------
 
-It's possible to have multiple Filesystem based System datastores with different
-transfer modes in a cooperating approach. There always have to be a main System
-datastore with ``TM_MAD`` configured same as for the Image datastore. Only
-following combinations are supported:
+When using the shared mode, you can improve VM performance by placing the disks in the host local storage area. In this way, you will have a repository of images (distributed across the hosts using a shared FS) but the VMs running from the local disks. This effectively combines shared and SSH modes above.
 
-+------------+-----------+---------------------------------------------------------------------------+
-|    Main    | Alternate | Description                                                               |
-+============+===========+===========================================================================+
-| ``shared`` | ``ssh``   | VM images are copied from shared storage to local storage.                |
-+------------+-----------+---------------------------------------------------------------------------+
+.. important:: You can still use the pure shared mode in this case. In this way the same image can be deployed in a shared mode or a ssh mode (per VM).
+
+.. warning:: This setup will increase performance at the cost of increasing deployment times.
+
+To configure this scenario, simply configure a shared Image and System datastores as described above (``TM_MAD=shared``). Then add a SSH system datastore (``TM_MAD=ssh``). Any image registered in the Image datastore can now be deployed using the shared or SSH system datastores.
+
+.. warning:: If you added the shared datastores to cluster, you need to add the new SSH system datastore to the very same clusters.
 
 To select the (alternate) deployment mode, add the following attribute to the Virtual Machine template:
 
