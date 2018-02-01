@@ -218,14 +218,9 @@ System Datastore also requires these attributes:
 +=================+===========================================================+===========+
 | ``TYPE``        | ``SYSTEM_DS``                                             | **YES**   |
 +-----------------+-----------------------------------------------------------+-----------+
-| ``TM_MAD``      | ``ceph`` (only with local FS on the DS directory)         | **YES**   |
-|                 |                                                           |           |
-|                 | ``shared`` for shared transfer mode (only with shared FS) |           |
+| ``TM_MAD``      | ``ceph`` (to use the full ceph mode, see above)           | **YES**   |
+|                 | ``ssh`` (to use local host storage, ssh mode above)       |           |
 +-----------------+-----------------------------------------------------------+-----------+
-
-.. note:: Ceph can also work with a System Datastore of type Filesystem in a shared transfer mode, as described :ref:`in the Filesystem Datastore section <fs_ds>`. In that case volatile and swap disks are created as plain files in the System Datastore. Note that apart from the Ceph Cluster you need to setup and mount a shared FS on the System Datastore directory.
-
-.. warning:: The correct transfer mode TM_MAD must be specified for the System Datastore. Otherwise, you can experience the data loss while treating the shared filesystem as a local!
 
 Create a System Datastore in Sunstone or through the CLI, for example:
 
@@ -301,7 +296,7 @@ Default values for the Ceph drivers can be set in ``/var/lib/one/remotes/etc/dat
 Using different modes
 --------------------------------------------------------------------------------
 
-When creating a VM Template you can choose to deploy the disks using the default Ceph mode or the SSH on. Note that the same mode will be used for all disks. To set the deployment mode add the following attribute to the VM template:
+When creating a VM Template you can choose to deploy the disks using the default Ceph mode or the SSH on. Note that the same mode will be used for all disks of the VM. To set the deployment mode add the following attribute to the VM template:
 
 * ``TM_MAD_SYSTEM="ssh"``
 
