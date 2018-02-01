@@ -128,13 +128,13 @@ Sunstone offers a convenient way to manage resources permissions. This can be do
 Locking Resources
 =================
 
-OpenNebula offers the possibility to lock differents types of action (USE, MANAGE, ADMIN) for prevent not intend operations (like delete). For can lock an specific type of action, opennebula offers diferents types of lock:
+OpenNebula can lock actions on a resource to prevent not intended operations, e.g.  to not accidentally delete a VM. By default OpenNebula will lock all operations, but you can provide a fine grain lock by specifying the access level required by the action:
 
-* **USE**: lock all posible actions with the resource.
-* **MANAGE**: locks manage and admin actions with the resource.
-* **ADMIN**: Only lock admin actions with the resource.
+* **USE**: locks all possible actions.
+* **MANAGE**: locks manage and admin actions.
+* **ADMIN**: locks admin actions.
 
-Not all resources can be lock, OpenNebula only allow lock the resources that a user normaly use. These resouces are:
+The following resources can be locked:
 
 -  ``VM``
 -  ``NET``
@@ -148,15 +148,15 @@ Example:
 
 .. prompt:: bash $ auto
 
-    $ oneimage lock 2 --use --user user
-    $ oneimage delete 2 --user user
+    $ oneimage lock 2
+    $ oneimage delete 2
     [one.image.delete] User [4] : Not authorized to perform MANAGE IMAGE [2].
 
 .. prompt:: bash $ auto
 
-    $ oneimage unlock 2 --user user
+    $ oneimage unlock 2
 
-.. warning:: The user ONEADMIN does not see if the resource is locked.
+.. warning:: The user ONEADMIN is not affected by locks and can perform the operation in any case.
 
 
 ===================
