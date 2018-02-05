@@ -9,3 +9,4 @@ The following issues has been solved in 5.4.7:
 
 - `Enable Sunstone VM Log Scrollbar at the end of the file by default <https://github.com/OpenNebula/one/issues/1630>`__.
 - `Accounting tables not ordered by date correctly <https://github.com/OpenNebula/one/issues/1669>`__.
+- `DS quotas shouldn't show the 'system' type <https://github.com/OpenNebula/one/issues/1713>`__.
