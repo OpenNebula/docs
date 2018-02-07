@@ -214,4 +214,4 @@ listed above, with the absolute path specific for your platform.
 Qemu configuration
 --------------------------------------------------------------------------------
 
-Qemu should be configured to not change file ownership. Modify ``/etc/libvirt/qemu.conf`` to include ``dynamic_ownership = 0``. To be able to use the images copied by OpenNebula, change also the user and group under"
+Qemu should be configured to not change file ownership. Modify ``/etc/libvirt/qemu.conf`` to include ``dynamic_ownership = 0``. To be able to use the images copied by OpenNebula, change also the user and group below the dynamic_ownership setting"
