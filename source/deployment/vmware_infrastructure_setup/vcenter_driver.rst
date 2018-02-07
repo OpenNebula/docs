@@ -843,7 +843,7 @@ Here's an example showing how a standard port group or distributed port group is
     :align: center
 
 If you want to import the network and the vnet has vlan id it will show to you in first place.
-Next step is to assign an Adress Range. You can know more about address ranges in the :ref:`Managing Address Ranges <manage_address_ranges>` section.
+Next step is to assign an Address Range. You can know more about address ranges in the :ref:`Managing Address Ranges <manage_address_ranges>` section.
 
 First you have to specify the size of the address pool:
 
