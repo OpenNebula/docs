@@ -828,12 +828,13 @@ Import networks with onevcenter
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The import tool will discover port groups in each datacenter and will show the name of the port group, the port group type (Port Group or Distributed Port Group), the cluster that uses that port group and the OpenNebula cluster ID which this virtual network will be added to.
+
 You will notice that the cluster name have color, this can mean two things:
 
 * Red color, you do not the proper cluster imported into opennebula
 * Blue color, you already have imported the cluster, the cluster id will show you between parentheses
 
-In case that the network had more than 1 vcenter cluster associated, each cluster will show to you in the proper color (see above).
+In case that the network had more than 1 vCenter cluster associated, each cluster will show to you in the proper color (see above).
 
 Here's an example showing how a standard port group or distributed port group is imported using the command-line interface:
 
