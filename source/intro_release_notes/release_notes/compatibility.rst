@@ -38,6 +38,11 @@ Remote scripts configuration
 
 Configuration files from deep inside the remote scripts directory structure ``/var/lib/one/remotes/`` have been moved into dedicated directory ``/var/lib/one/remotes/etc/``. Check all the files on the new path, and apply any necessary changes to your environment.
 
+Open vSwitch
+--------------------------------------------------------------------------------
+
+The ARP Cache Poisoning prevention rules has been more integrated into the filters logic and now works as another layer of security only if ``FILTER_IP_SPOOFING`` and/or ``FILTER_MAC_SPOOFING`` is enabled for the particular Virtual Network. Support for legacy firewall (``BLACK_PORTS_TCP``, ``BLACK_PORTS_UDP``, ``ICMP``) has been removed.
+
 Developers and Integrators
 ================================================================================
 
