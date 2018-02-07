@@ -827,7 +827,13 @@ A vCenter network name is unique inside a datacenter, so it is possible that two
 Import networks with onevcenter
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The import tool will discover port groups in each datacenter and will show the name of the port group, the port group type (Port Group or Distributed Port Group), the cluster that uses that port group, the location of the cluster (so you can differentiate between clusters that may have the same name in different folders) and the OpenNebula cluster ID which this virtual network will be added to.
+The import tool will discover port groups in each datacenter and will show the name of the port group, the port group type (Port Group or Distributed Port Group), the cluster that uses that port group and the OpenNebula cluster ID which this virtual network will be added to.
+You will notice that the cluster name have color, this can mean two things:
+
+* Red color, you do not the proper cluster imported into opennebula
+* Blue color, you already have imported the cluster, the cluster id will show you between parentheses
+
+In case that the network had more than 1 vcenter cluster associated, each cluster will show to you in the proper color (see above).
 
 Here's an example showing how a standard port group or distributed port group is imported using the command-line interface:
 
@@ -835,7 +841,8 @@ Here's an example showing how a standard port group or distributed port group is
     :width: 50%
     :align: center
 
-If you want to import a network you will have to assign an Address Range. You can know more about address ranges in the :ref:`Managing Address Ranges <manage_address_ranges>` section.
+If you want to import the network and the vnet has vlan id it will show to you in first place.
+Next step is to assign an Adress Range. You can know more about address ranges in the :ref:`Managing Address Ranges <manage_address_ranges>` section.
 
 First you have to specify the size of the address pool:
 
@@ -889,7 +896,7 @@ Finally if the network was created successfully you’ll get a message with the 
     :width: 50%
     :align: center
 
-Import networks with onevcenter
+Import networks with Sunstone
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In Sunstone the process is similar, click on Virtual Networks under the Network menu entry and then click on the Import button, a new window will be opened.
