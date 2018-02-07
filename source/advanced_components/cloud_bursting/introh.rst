@@ -4,7 +4,7 @@
 Overview
 ================================================================================
 
-Cloud bursting is a model in which the local resources of a Private Cloud are combined with resources from remote Cloud providers. The remote provider could be a commercial Cloud service, such as Amazon EC2 or Microsoft Azure. Such support for cloud bursting enables highly scalable hosting environments.
+Cloud bursting is a model in which the local resources of a Private Cloud are combined with resources from remote Cloud providers. The remote provider could be a commercial Cloud service, such as Amazon EC2, Microsoft Azure or even OpenNebula based clouds. Such support for cloud bursting enables highly scalable hosting environments.
 
 |image0|
 
@@ -17,7 +17,7 @@ How Should I Read This Chapter
 
 You should be reading this Chapter as part of the :ref:`Advanced Components Guide <advanced_components>` review of that OpenNebula advanced functionality that you are interested in enabling and configuring.
 
-Within this Chapter you can find a guide to configure and use the :ref:`Amazon EC2 driver <ec2g>` and the :ref:`Azure driver <azg>`. Additionally, there is support of IBM SoftLayer available as add-on (ie, not contained in the OpenNebula main distribution) `here <https://github.com/OpenNebula/addon-softlayer>`__.
+Within this Chapter you can find a guide to configure and use the :ref:`Amazon EC2 driver <ec2g>`,  the :ref:`Azure driver <azg>` and the :ref:`OpenNebula driver<oneg>`. Additionally, there is support of IBM SoftLayer available as add-on (ie, not contained in the OpenNebula main distribution) `here <https://github.com/OpenNebula/addon-softlayer>`__.
 
 Once the cloud architecture has been designed the next step would be to learn how to install the :ref:`OpenNebula front-end <opennebula_installation>`.
 

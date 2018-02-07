@@ -1,28 +1,83 @@
 .. _oneg:
 
 ================================================================================
-OpenNebula hybrid Driver
+One-to-One hybrid Driver
 ================================================================================
 
-Description
+Considerations & Limitations
 ================================================================================
 
-Cloud bursting is a model in which the local resources of a Private Cloud are combined with resources from remote Cloud providers. This driver offers the possibility to implement Cloud bursting by deploying Virtual Machines seamlessly on a remote OpenNebula installation.
+- The remote OpenNebula must be accessible from local OpenNebula.
+
+- For the moment not all actions are possible to do with the driver, but allow to execute the basic actions:
+
+    * DEPLOY
+    * POWEROFF
+    * RESUME
+    * REBOOT
+    * RESET
+    * RESTORE
+    * SAVE
+
+- When a users creates a new local VM, needs to know which is the ID of the remote template.
+
+- The users can to add the context attribute to local template, these values, will be copied within VM Template section of the remote machine.
+
+.. warning:: The attribute Files doesn't support.
+
+- All states in local virtual machine have your mirror in the remote virtual machine except the state running of the local virtual machine, this state not indicate that the remote machine is `RUNNING`, the remote virtual machine can be in `PENDING` state.
+
+
+Prerequisites
+================================================================================
+
+The user needs to have an account into remote OpenNebula. This user should have access to the VM Templates that you are going to be exposed to the local OpenNebula cloud.
+
+.. note:: Can check if the user has access to the remote template with the command ``onetemplate list --endpoint <REMOTE_ENDPOINT> --user <REMOTE_USER> --password <REMOTE_PASS>``.
 
 OpenNebula Configuration
 ================================================================================
 
-Configure the remote OpenNebula
+Uncomment the OpenNebula IM and VMM drivers from ``/etc/one/oned.conf`` file in order to use the driver.
+
+.. code::
+
+    IM_MAD = [
+        NAME          = "one",
+        SUNSTONE_NAME = "OpenNebula",
+        EXECUTABLE    = "one_im_sh",
+        ARGUMENTS     = "-c -t 1 -r 0 one" ]
+
+     
+    VM_MAD = [
+        NAME           = "one",
+        SUNSTONE_NAME  = "OpenNebula",
+        EXECUTABLE     = "one_vmm_sh",
+        ARGUMENTS      = "-t 15 -r 0 one",
+        TYPE           = "xml",
+        KEEP_SNAPSHOTS = "no",
+        IMPORTED_VMS_ACTIONS = "terminate, terminate-hard, hold, release, suspend,
+            resume, delete, reboot, reboot-hard, resched, unresched, poweroff,
+            poweroff-hard, disk-attach, disk-detach, nic-attach, nic-detach,
+            snap-create, snap-delete"
+    ]
+
+Driver flags are the same as other drivers:
+
++--------+---------------------+
+| FLAG   | SETs                |
++========+=====================+
+| -t     | Number of threads   |
++--------+---------------------+
+| -r     | Number of retries   |
++--------+---------------------+
+
+Local Host
 --------------------------------------------------------------------------------
 
-Ask the remote OpenNebula administrator to create a new user for you. This user should have access to VM Templates ready to be instantiated.
+First create a new Host with `im` and `vm` drivers set to `opennebula`. ``onehost create <name> -i one -v one``.
 
-Configure the local Host
---------------------------------------------------------------------------------
-
-First create a new Host with `im` and `vm` drivers set to `opennebula`.
-
-Add a new attributes within local host template:
+Add a new attributes within host template:
 
 .. code::
 
@@ -34,9 +89,24 @@ Add a new attributes within local host template:
         MEMORY=0
     ]
 
-Capacity is taken from the user and group quotas of the remote OpenNebula user. Alternatively, you can set a hard limit here
++------------------+---------------------------------------------------------------------------------------------------------------------+
+| ATTRIBUTE        | DESCRIPTION                                                                                                         |
++==================+=====================================================================================================================+
+| ONE_USER         | Remote username                                                                                                     |
++------------------+---------------------------------------------------------------------------------------------------------------------+
+| ONE_PASSWORD     | Remote password for the username                                                                                    |
++------------------+---------------------------------------------------------------------------------------------------------------------+
+| ONE_ENDPOINT     | Remote endpoint url to access                                                                                       |
++------------------+---------------------------------------------------------------------------------------------------------------------+
+| ONE_CAPACITY     | Is taken from the user and group quotas of the remote OpenNebula user. Alternatively, you can set a hard limit here |
++------------------+---------------------------------------------------------------------------------------------------------------------+
 
-Create a local hybrid VM Template
+The user can check if the host has created well with the command ``onehost show <host_id>``
+
+OpenNebula to OpenNebula  Specific Template Attributes
+================================================================================
+
+Local VM Template
 --------------------------------------------------------------------------------
 
 Your hybrid VM Template must contain this section. Set TEMPLATE_ID to the target VM Template ID in the **remote OpenNebula**.
