@@ -210,3 +210,8 @@ listed above, with the absolute path specific for your platform.
     Defaults:oneadmin secure_path = /sbin:/bin:/usr/sbin:/usr/bin
 
     oneadmin ALL=(ALL) NOPASSWD: /bin/true, /bin/false
+
+Qemu configuration
+--------------------------------------------------------------------------------
+
+Qemu should be configured to not change file ownership. Modify ``/etc/libvirt/qemu.conf`` to include ``dynamic_ownership = 0``. To be able to use the images copied by OpenNebula, change also the user and group below the dynamic_ownership setting"
