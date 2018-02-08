@@ -36,7 +36,8 @@ The following configuration attributes can be adjusted in ``/var/lib/one/remotes
 +---------------------+----------------------------------------------------------------------------------+
 |      Parameter      |                                   Description                                    |
 +=====================+==================================================================================+
-| arp_cache_poisoning | Enable ARP Cache Poisoning Prevention Rules.                                     |
+| arp_cache_poisoning | Enable ARP Cache Poisoning Prevention Rules                                      |
+|                     | (effective only if Virtual Network IP/MAC spoofing filters are enabled).         |
 +---------------------+----------------------------------------------------------------------------------+
 
 .. note:: Remember to run ``onehost sync`` to deploy the file to all the nodes.
@@ -79,42 +80,3 @@ VLAN trunking is also supported by adding the following tag to the ``NIC`` eleme
 
 -  ``VLAN_TAGGED_ID``: Specify a range of VLANs to tag, for example: ``1,10,30,32``.
 
-
-OpenFlow Rules
-================================================================================
-
-This section lists the default openflow rules installed in the open vswitch.
-
-Mac-spoofing
---------------------------------------------------------------------------------
-
-These rules prevent any traffic to come out of the port if the MAC address has changed.
-
-.. code::
-
-    in_port=<PORT>,dl_src=<MAC>,priority=40000,actions=normal
-    in_port=<PORT>,priority=39000,actions=normal
-
-IP hijacking
---------------------------------------------------------------------------------
-
-These rules prevent any traffic to come out of the port for IPv4 if an IP address is not configured for a VM
-
-.. code::
-
-    in_port=<PORT>,arp,dl_src=<MAC>priority=45000,actions=drop
-    in_port=<PORT>,arp,dl_src=<MAC>,nw_src=<IP>,priority=46000,actions=normal
-
-Black ports (one rule per port)
---------------------------------------------------------------------------------
-
-.. code::
-
-    tcp,dl_dst=<MAC>,tp_dst=<PORT>,actions=drop
-
-ICMP Drop
---------------------------------------------------------------------------------
-
-.. code::
-
-    icmp,dl_dst=<MAC>,actions=drop
