@@ -6501,8 +6501,6 @@ one.acl.info
 +======+===========+=============================================+
 | IN   | String    | The session string.                         |
 +------+-----------+---------------------------------------------+
-| IN   | Int       | ACL rule ID.                                |
-+------+-----------+---------------------------------------------+
 | OUT  | Boolean   | true or false whenever is successful or not |
 +------+-----------+---------------------------------------------+
 | OUT  | String    | The information string / The error string.  |
