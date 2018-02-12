@@ -8,4 +8,4 @@ Cloud Bursting
    Overview <introh>
    Amazon EC2 Driver <ec2g>
    Azure Driver <azg>
-   OpenNebula hybrid Driver <oneg>
+   OpenNebula Driver <oneg>

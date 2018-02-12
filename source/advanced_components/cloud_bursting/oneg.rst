@@ -7,32 +7,24 @@ One-to-One hybrid Driver
 Considerations & Limitations
 ================================================================================
 
-- You need to setup an user account in the remote OpenNebula cloud. All operations will be mapped to this account in the remote OpenNebula cloud, you may need to consider this to when setting up quotas or access rules for this remote account.
+- You need to setup an user account in the remote OpenNebula cloud. All operations will be mapped to this account in the remote OpenNebula cloud, you may need to consider this when setting up quotas or access rules for this remote account.
 
-- The following operations are supported for VMs in the remote cloud:
-
-    * DEPLOY
-    * POWEROFF
-    * RESUME
-    * REBOOT
-    * RESET
-    * RESTORE
-    * SAVE
+- The following operations are not supported for VMs in the remote cloud: disk operations (attach/detach, snapshots or save), nic operations (attach/detach), migrations or reconfigurations.
 
 - You need to refer the remote VM Templates by their ID, see below for hints to do so.
 
 - Context attribute can be added to the local VM Template, these values will be copied to the remote machine.
 
-.. warning:: The attribute Files is not supported.
+.. warning:: The attribute FILES is not supported.
 
-- All states of local virtual machines mirror those of the remote virtual machines except for running, that may also include pending or any other active states.
+- All states of local virtual machines mirror those of the remote virtual machines except for running, that it may also include pending or any other active states.
 
 Prerequisites
 ================================================================================
 
 An user account needs to be setup in remote OpenNebula. This user should have access to the VM Templates that you are going to expose for hybrid access.
 
-.. note:: Can check if the user has access to the remote template with the command ``onetemplate list --endpoint <REMOTE_ENDPOINT> --user <REMOTE_USER> --password <REMOTE_PASS>``.
+.. note:: You can check if the user has access to the remote template with the command ``onetemplate list --endpoint <REMOTE_ENDPOINT> --user <REMOTE_USER> --password <REMOTE_PASS>``.
 
 OpenNebula Configuration
 ================================================================================
@@ -67,34 +59,33 @@ Driver flags are the same as other drivers:
 | -r     | Number of retries   |
 +--------+---------------------+
 
-Local Host
+Defining a Hybrid OpenNebula Cloud
 --------------------------------------------------------------------------------
 
-First create a new Host with `im` and `vm` drivers set to `opennebula`.
+First create a new Host with `im` and `vm` drivers set to `one`.
 
 .. code::
 
-    onehost create <name> -i one -v one
+    $ onehost create <name> -i one -v one
 
-Add a new attributes within host template:
-
-.. code::
-
-    onehost update <hostid>
+And, now add the user attributes to connect to the hybrid OpenNebula within host template:
 
 .. code::
 
-    ONE_USER=<remote_username>
-    ONE_PASSWORD=<remote_password>
-    ONE_ENDPOINT=<remote_endpoint>
-    ONE_CAPACITY=[
-        CPU=0,
-        MEMORY=0
+    $ onehost update <hostid>
+
+    ONE_USER = <remote_username>
+
+    ONE_PASSWORD = <remote_password>
+    ONE_ENDPOINT = <remote_endpoint>
+    ONE_CAPACITY = [
+        CPU    = 0,
+        MEMORY = 0
     ]
 
-The following table describes what indicates each attribute that the user needs to add.
+The following table describes each supported attribute to configure the hybrid OpenNebula cloud.
 
-.. note:: The attribute ONE_CAPACITY needs to have inside two attributes, CPU and MEMORY, these attributes indicate the quotas for the local host.
+.. note:: The attribute ONE_CAPACITY includes two attributes, CPU and MEMORY, these attributes limit the usage of the remote resources.
 
 +------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
 | ATTRIBUTE        | DESCRIPTION                                                                                                                                     |
@@ -108,69 +99,41 @@ The following table describes what indicates each attribute that the user needs 
 | ONE_CAPACITY     | 0 indicate that the quotas are taken from the user and group quotas of the remote OpenNebula user. Alternatively, you can set a hard limit here |
 +------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
 
-The user can check if the host has created well with the command:
-
-.. code::
-
-    onehost show <host_id>
-
-Example:
-
-.. prompt:: bash $ auto
-
-    $ onehost create hybrid-test -i one -v one
-    $ onehost update hybrid-test
-    $ onehost show hybrid-test
-    ...
-    ONE_CAPACITY=[
-        CPU="0",
-        MEMORY="0" ]
-    ONE_ENDPOINT="http://localhost:2634/RPC2"
-    ONE_PASSWORD="fRJ/xgcpXEiokovNnKwoVw=="
-    ONE_USER="oneadmin"
-    ...
-
-
 OpenNebula to OpenNebula  Specific Template Attributes
 ================================================================================
 
-The following section describes how create a new local template and how relate it with the remote template.
+The following section describes how to create a new local template and map it to the remote template.
 
 Local VM Template
 --------------------------------------------------------------------------------
 
-Firstly, the user needs to know if has access to the remote template. The user can execute the following commands:
+Firstly, find out the remote templates you have access to:
 
 .. prompt:: bash $ auto
 
-    $ onetemplate list --endpoint http://localhost:2634/RPC2 --user user --password pass
-    $ onetemplate show <remote_template_id> --endpoint http://localhost:2634/RPC2 --user user --password pass
+    $ onetemplate list --endpoint http://<hybrid_OpenNebula_cloud>:2633/RPC2 --user <username> --password <pass>
 
-The user needs to create a new local template ``onetemplate create <file>``. To match the reported allocated Host resources with the actual usage in the remote OpenNebula, set the same CPU and MEMORY as the remote Template.
+Now, create a new local template for each remote template you want to use. It is recommended to set the same CPU and MEMORY as the remote Template. For example:
 
-Your hybrid VM Template must contain this section. Set TEMPLATE_ID to the target VM Template ID in the **remote OpenNebula**.
-
-.. code::
-
-    PUBLIC_CLOUD=[
-    TEMPLATE_ID=<remote_template_id>,
-    TYPE="opennebula" ]
-
-Example:
 
 .. prompt:: bash $ auto
 
     $ cat template.txt
-    NAME="hybrid-template"
-    CPU=0.1
-    MEMORY=128
-    PUBLIC_CLOUD=[
-        TEMPLATE_ID="0",
-        TYPE="opennebula" ]
-    SCHED_REQUIREMENTS = "PUBLIC_CLOUD = YES"
+    NAME = "hybrid-template"
+
+    CPU    = 0.1
+    MEMORY = 128
+
+    PUBLIC_CLOUD = [
+        TEMPLATE_ID = "0",
+        TYPE        = "opennebula"
+    ]
+
     CONTEXT=[
-        NETWORK="yes"]
+        NETWORK="yes"
+    ]
 
     $ onetemplate create template.txt
     ID: 0
 
+.. note:: Your hybrid VM Template must set TEMPLATE_ID to the target VM Template ID in the **remote OpenNebula**.
