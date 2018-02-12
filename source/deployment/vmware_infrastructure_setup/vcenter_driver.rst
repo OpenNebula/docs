@@ -1012,3 +1012,22 @@ OpenNebula will search for VMDK and ISO files that haven't been imported yet.
 Select the images you want to import and click on the Import button. The ID of the imported images will be reported.
 
 .. note:: When an image is created using the import tool, the VCENTER_IMPORTED attribute is set to YES automatically. This attribute prevents OpenNebula to delete the file from the vCenter datastore when the image is deleted from OpenNebula, so it can be used to prevent a virtual hard disk to be removed accidentally from a vCenter template.
+
+Migrate vCenter machines from OpenNebula
+================================================================================
+
+vCenter Driver allows you to migrate machines between vcenter clusters, however you will need to fullfill some requirements in order to migrate the machine:
+
+* OpenNebula only supports migration for powered-off machines so be sure to check the state before
+* Every Network attached to the selected machines will need to exist in both vcenter clusters and opennebula clusters
+* Every Datastore that is used by the machine need to exist in both vcenter clusters and opennebula clusters
+
+
+One way to check these requirements is to see if 'AUTOMATIC_REQUIREMENTS' attributte on the selected vm is pointing to the proper OpenNebula clusters.
+Once you have your virtual machines powered off and their networks and datastores belong to the destination cluster, you can perform the migration.
+
+Example using cli:
+
+.. prompt:: bash $ auto
+
+    $ onevm migrate "<VM name>" <destination host id>
