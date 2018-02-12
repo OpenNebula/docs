@@ -13,3 +13,4 @@ The following issues has been solved in 5.4.7:
 - `Doesn't retrieve the capacity unit in volatile disks <https://github.com/OpenNebula/one/issues/1706>`__.
 - `CPU Model broken if not exists CUSTOMIZATION attribute <https://github.com/OpenNebula/one/issues/1716>`__.
 - `Make vip.sh less error prone <https://github.com/OpenNebula/one/issues/1733>`__.
+- `Error importing VM Templates from vCenter with no RP attached <https://github.com/OpenNebula/one/issues/1725>`__.
