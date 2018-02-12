@@ -110,6 +110,8 @@ Cloud Bursting
 +-----------+---------+---------------------------------+
 | azure     | 0.7.9   | :ref:`Azure Driver <azg>`       |
 +-----------+---------+---------------------------------+
+| one-to-one| 1.0.0   | :ref:`OpenNebula Driver <oneg>` |
++-----------+---------+---------------------------------+
 
 .. note:: Generally for all Linux platforms, it is worth noting that gems should be installed with the :ref:`install_gems <ruby_runtime>`, avoiding the platform's package version.
 
