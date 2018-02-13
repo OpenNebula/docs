@@ -1018,7 +1018,7 @@ Migrate vCenter machines from OpenNebula
 
 vCenter Driver allows you to migrate machines between vcenter clusters, however you will need to fullfill some requirements in order to **migrate** the machine:
 
-* OpenNebula normal migration only works for powered-off machines so be sure to check the state before
+* OpenNebula cold migration only works for powered-off machines so be sure to check the state before
 * Every Network attached to the selected machines will need to exist in both vcenter clusters and opennebula clusters
 * Every Datastore that is used by the machine need to exist in both vcenter clusters and opennebula clusters
 
