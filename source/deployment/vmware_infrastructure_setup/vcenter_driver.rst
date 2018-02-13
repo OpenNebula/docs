@@ -1016,18 +1016,29 @@ Select the images you want to import and click on the Import button. The ID of t
 Migrate vCenter machines from OpenNebula
 ================================================================================
 
-vCenter Driver allows you to migrate machines between vcenter clusters, however you will need to fullfill some requirements in order to migrate the machine:
+vCenter Driver allows you to migrate machines between vcenter clusters, however you will need to fullfill some requirements in order to **migrate** the machine:
 
-* OpenNebula only supports migration for powered-off machines so be sure to check the state before
+* OpenNebula normal migration only works for powered-off machines so be sure to check the state before
 * Every Network attached to the selected machines will need to exist in both vcenter clusters and opennebula clusters
 * Every Datastore that is used by the machine need to exist in both vcenter clusters and opennebula clusters
-
-
-One way to check these requirements is to see if 'AUTOMATIC_REQUIREMENTS' attributte on the selected vm is pointing to the proper OpenNebula clusters.
-Once you have your virtual machines powered off and their networks and datastores belong to the destination cluster, you can perform the migration.
 
 Example using cli:
 
 .. prompt:: bash $ auto
 
     $ onevm migrate "<VM name>" <destination host id>
+
+Also vCenter driver allows you to execute **live migration**, this means that instead of power off the machine you have the option of perform migrate action in a running state, however the following requirement list must be fullfiled:
+
+* OpenNebula live migration only works for running machines so be sure to check the state before
+* You need to have vmotion interface enabled in both vCenter clusters otherwise the driver will warn you about compatibility issues
+* Every Network attached to the selected machines will need to exist in both vcenter clusters and opennebula clusters
+* Every Datastore that is used by the machine need to exist in both vcenter clusters and opennebula clusters
+
+Example using cli:
+
+.. prompt:: bash $ auto
+
+    $ onevm migrate --live "<VM name>" <destination host id>
+
+.. Note:: Take a look into 'AUTOMATIC_REQUIREMENTS' attributte on the selected vm and check if is pointing to the proper OpenNebula clusters.
