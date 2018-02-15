@@ -8,7 +8,6 @@ Release Notes 5.4
    :maxdepth: 1
 
    What's New<whats_new>
-   What's a Hotfix release? <what_is_hotfix>
    Resolved Issues in 5.4.1 <resolved_issues_541>
    Resolved Issues in 5.4.2 Hotfix <resolved_issues_542>
    Resolved Issues in 5.4.3 Hotfix <resolved_issues_543>
