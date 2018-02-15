@@ -3,7 +3,7 @@
 Resolved Issues in 5.4.6
 --------------------------------------------------------------------------------
 
-A complete list of solved issues for 5.4.6 can be found in the `project development portal <https://github.com/OpenNebula/one/milestone/7?closed=1>`__ TODO change
+A complete list of solved issues for 5.4.6 can be found in the `project development portal <https://github.com/OpenNebula/one/milestone/8?closed=1>`__ 
 
 The following issues has been solved in 5.4.6:
 
