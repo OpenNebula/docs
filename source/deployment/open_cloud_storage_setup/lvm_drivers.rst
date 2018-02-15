@@ -75,6 +75,8 @@ LVM System Datastores needs to be created with the following values:
 +-----------------+---------------------------------------------------+
 | ``TYPE``        | ``SYSTEM_DS``                                     |
 +-----------------+---------------------------------------------------+
+| ``BRIDGE_LIST`` | List of nodes with access to the LV to monitor it |
++-----------------+---------------------------------------------------+
 
 For example:
 
@@ -84,6 +86,7 @@ For example:
     NAME   = lvm_system
     TM_MAD = fs_lvm
     TYPE   = SYSTEM_DS
+    BRIDGE_LIST = node1.kvm.lvm node2.kvm.lvm
 
     > onedatastore create ds.conf
     ID: 100
