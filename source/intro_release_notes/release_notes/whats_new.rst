@@ -43,6 +43,7 @@ Sunstone
 - **KVM and vCenter more united than ever**, a single view to control the two hypervisors. :ref:`Completely customizable views <suns_views>`.
 - **Scheduled Actions** can now be defined in VM Template create and instantiate dialogs. :ref:`More info <sched_actions_templ>`.
 - **Display quotas in Clod View**, the end-user can see his quotas in real time.
+- **Turkish language (TR)**, now in Sunstone.
 
 |sched_actions|
 
