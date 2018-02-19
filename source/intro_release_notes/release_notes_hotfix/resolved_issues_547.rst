@@ -18,6 +18,3 @@ The following issues has been solved in 5.4.7:
 - `Sunstone VM template wizard resets CPU_MODEL <https://github.com/OpenNebula/one/issues/1747>`__.
 - `Can't resize VM disk <https://github.com/OpenNebula/one/issues/1671>`__.
 - `Can't instantiate VM with volatile image <https://github.com/OpenNebula/one/issues/1612>`__.
-
-In addition, support for the Turkish language has been added:
-- `Turkish (TR) language in Sunstone <https://github.com/OpenNebula/one/issues/1712>`__.
