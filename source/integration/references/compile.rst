@@ -192,7 +192,14 @@ to the ``oneadmin``.
 +---------------+-------------------------------------------------------------+
 | Ceph          | rbd                                                         |
 +---------------+-------------------------------------------------------------+
-| HA            | systemctl * opennebula-flow, service opennebula-flow *      |
+| HA            | systemctl start opennebula-flow,                            |
+|               | systemctl stop opennebula-flow,                             |
+|               | systemctl start opennebula-gate,                            |
+|               | systemctl stop opennebula-gate,                             |
+|               | service opennebula-flow start,                              |
+|               | service opennebula-flow stop,                               |
+|               | service opennebula-gate start,                              |
+|               | service opennebula-gate stop                                |
 +---------------+-------------------------------------------------------------+
 
 Each command has to be specified with the absolute path, which can be
