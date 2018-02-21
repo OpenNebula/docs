@@ -43,6 +43,11 @@ Open vSwitch
 
 The ARP Cache Poisoning prevention rules has been more integrated into the filters logic and now works as another layer of security only if ``FILTER_IP_SPOOFING`` and/or ``FILTER_MAC_SPOOFING`` is enabled for the particular Virtual Network. Support for legacy firewall (``BLACK_PORTS_TCP``, ``BLACK_PORTS_UDP``, ``ICMP``) has been removed.
 
+HA
+--------------------------------------------------------------------------------
+
+Raft hook ``vip.sh`` now controls the OpenNebula Flow and Gate services via the service manager commands. Services are started only if they are enabled in the service manager (this would lead to start of the services on boot in the standalone deployment).
+
 Developers and Integrators
 ================================================================================
 

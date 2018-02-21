@@ -17,7 +17,30 @@ If you want to install it from your package manager, visit the `software menu <h
 * **openssl** development libraries (>= 0.9.8)
 * **ruby** interpreter (>= 1.8.7)
 
-Ubuntu 14.04 & 16.04
+Ubuntu 16.04
+================================================================================
+
+* **bash-completion**
+* **bison**
+* **debhelper (>= 7.0.50~)**
+* **default-jdk**
+* **flex**
+* **javahelper (>= 0.32)**
+* **libmysql++-dev**
+* **libsqlite3-dev**
+* **libssl-dev**
+* **libsystemd-dev**
+* **libws-commons-util-java**
+* **libxml2-dev**
+* **libxmlrpc3-client-java**
+* **libxmlrpc3-common-java**
+* **libxslt1-dev**
+* **libcurl4-openssl-dev**
+* **ruby**
+* **scons**
+* **libxmlrpc-c++8-dev**
+
+Ubuntu 14.04
 ================================================================================
 
 * **bash-completion**
@@ -49,6 +72,7 @@ Debian 8
 * **libmysql++-dev**
 * **libsqlite3-dev**
 * **libssl-dev**
+* **libsystemd-dev**
 * **libws-commons-util-java**
 * **libxml2-dev**
 * **libxmlrpc-c++8-dev**
@@ -73,6 +97,7 @@ CentOS 7
 * **scons**
 * **sqlite-devel**
 * **sqlite-devel**
+* **systemd-devel**
 * **xmlrpc-c**
 * **xmlrpc-c-devel**
 

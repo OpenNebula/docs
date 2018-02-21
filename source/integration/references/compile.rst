@@ -41,6 +41,8 @@ Follow these simple steps to install the OpenNebula software:
 +---------------+--------------------------------------------------------+
 | sunstone      | **yes** if you want to build sunstone minified files   |
 +---------------+--------------------------------------------------------+
+| systemd       | **yes** if you want to build systemd support           |
++---------------+--------------------------------------------------------+
 
 If the following error appears, then you need to remove the option 'new\_xmlrpc=yes' or install xmlrpc-c version >= 1.31:
 
@@ -189,6 +191,15 @@ to the ``oneadmin``.
 | Xen           | xentop, xl, xm                                              |
 +---------------+-------------------------------------------------------------+
 | Ceph          | rbd                                                         |
++---------------+-------------------------------------------------------------+
+| HA            | systemctl start opennebula-flow,                            |
+|               | systemctl stop opennebula-flow,                             |
+|               | systemctl start opennebula-gate,                            |
+|               | systemctl stop opennebula-gate,                             |
+|               | service opennebula-flow start,                              |
+|               | service opennebula-flow stop,                               |
+|               | service opennebula-gate start,                              |
+|               | service opennebula-gate stop                                |
 +---------------+-------------------------------------------------------------+
 
 Each command has to be specified with the absolute path, which can be
