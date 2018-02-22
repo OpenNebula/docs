@@ -44,6 +44,7 @@ Drivers - Storage
 * `#3929 <http://dev.opennebula.org/issues/3929>`_ CEPH_HOST not IPv6 friendly
 * `#3727 <http://dev.opennebula.org/issues/3727>`_ Downloads can fail, but still not return in error
 * `#1763 <http://dev.opennebula.org/issues/1763>`_ User is not notified with error_message in rm action / recoverable actions
+* `#1585  <https://github.com/OpenNebula/one/issues/1585>`_ Resize disk leads to qcow2 corruption
 
 Drivers - VM
 ================================================================================
