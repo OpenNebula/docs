@@ -1,7 +1,7 @@
 .. _rn_hotfix:
 
 ================================================================================
-Release Notes 5.4.8 Hotfix
+Release Notes 5.4.9 Hotfix
 ================================================================================
 
 .. toctree::
@@ -10,3 +10,4 @@ Release Notes 5.4.8 Hotfix
    What is? <what_is_hotfix>
    Resolved Issues in 5.4.7 <resolved_issues_547>
    Resolved Issues in 5.4.8 <resolved_issues_548>
+   Resolved Issues in 5.4.9 <resolved_issues_549>
