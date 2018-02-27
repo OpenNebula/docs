@@ -12,4 +12,5 @@ The following issues has been solved in 5.4.9:
 - `Floating IP lease is not released after router removal <https://github.com/OpenNebula/one/issues/1680>`__.
 - `Broken MEM into VM instantiation <https://github.com/OpenNebula/one/issues/1796>`__.
 - `Broken vCenter REQUIRED_ATTRS in DS creation <https://github.com/OpenNebula/one/issues/1785>`__.
+- `Doesn't retrieve VMs in VMGroup datatable <https://github.com/OpenNebula/one/issues/1800>`__.
 
