@@ -233,23 +233,26 @@ Contextualization Attributes
 Interface Creation Options
 ================================================================================
 
-For 802.1Q and VXLAN drivers you can specify parameters in the VNET template. Option can be overridden or added per network.
+For 802.1Q, VXLAN and Open vSwitch drivers you can specify parameters in the VNET template. Option can be overridden or added per network.
 
 
-+------------------+--------------------------------------------------+
-| Attribute        | Description                                      |
-+==================+==================================================+
-| **CONF**         | Driver configuration options                     |
-+------------------+--------------------------------------------------+
-| **BRIDGE_CONF**  | Parameters for bridge creation                   |
-+------------------+--------------------------------------------------+
-| **IP_LINK_CONF** | Parameters for link creation                     |
-+------------------+--------------------------------------------------+
++---------------------+--------------------------------------------------+
+| Attribute           | Description                                      |
++=====================+==================================================+
+| **CONF**            | Driver configuration options                     |
++---------------------+--------------------------------------------------+
+| **BRIDGE_CONF**     | Parameters for Linux bridge creation             |
++---------------------+--------------------------------------------------+
+| **OVS_BRIDGE_CONF** | Parameters for Open vSwitch bridge creation      |
++---------------------+--------------------------------------------------+
+| **IP_LINK_CONF**    | Parameters for link creation                     |
++---------------------+--------------------------------------------------+
 
 .. code::
 
     CONF="vxlan_mc=239.0.100.0,test=false,validate_vlan_id=true"
     BRIDGE_CONF="sethello=6"
+    OVS_BRIDGE_CONF="stp_enable=true"
     IP_LINK_CONF="tos=10,udpcsum=,udp6zerocsumrx=__delete__"
 
 Options can have empty value when they don't need a parameter. Also the special value "__delete__" can be used to delete parameters set here.

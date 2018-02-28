@@ -16,6 +16,8 @@ OpenNebula supports four different networking modes:
 
 * :ref:`Open vSwitch <openvswitch>`. Similar to the VLAN mode but using an openvswitch instead of a Linux bridge.
 
+* :ref:`Open vSwitch on VXLAN <openvswitch_vxlan>`. Similar to the VXLAN mode but using an openvswitch instead of a Linux bridge.
+
 When you create a new network you will need to add the attribute ``VN_MAD`` to the template, specifying which of the above networking modes you want to use.
 
 .. note::
