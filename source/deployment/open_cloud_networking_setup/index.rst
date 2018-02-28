@@ -11,3 +11,4 @@ Open Cloud Networking Setup
    802.1Q VLAN Networks <hm-vlan>
    VXLAN Networks <vxlan>
    Open vSwitch Networks <openvswitch>
+   Open vSwitch on VXLAN Networks <openvswitch_vxlan>

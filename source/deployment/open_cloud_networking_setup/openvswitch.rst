@@ -39,6 +39,8 @@ The following configuration attributes can be adjusted in ``/var/lib/one/remotes
 | arp_cache_poisoning | Enable ARP Cache Poisoning Prevention Rules                                      |
 |                     | (effective only if Virtual Network IP/MAC spoofing filters are enabled).         |
 +---------------------+----------------------------------------------------------------------------------+
+| ovs_bridge_conf     | *Hash* Options for Open vSwitch bridge creation                                  |
++---------------------+----------------------------------------------------------------------------------+
 
 .. note:: Remember to run ``onehost sync`` to deploy the file to all the nodes.
 
@@ -54,12 +56,14 @@ To create an Open vSwitch network, include the following information:
 +=======================+===================================================================================+========================================+
 | **VN_MAD**            | ovswitch                                                                          | **YES**                                |
 +-----------------------+-----------------------------------------------------------------------------------+----------------------------------------+
-| **BRIDGE**            | Name of the Open vSwitch switch to use                                            | **YES**                                |
+| **PHYDEV**            | Name of the physical network device that will be attached to the bridge           | NO                                     |
 +-----------------------+-----------------------------------------------------------------------------------+----------------------------------------+
-| **VLAN_ID**           | The VLAN ID. If this attribute is not defined a VLAN ID will be generated if      | **NO**                                 |
+| **BRIDGE**            | Name of the Open vSwitch bridge to use                                            | **YES**                                |
++-----------------------+-----------------------------------------------------------------------------------+----------------------------------------+
+| **VLAN_ID**           | The VLAN ID. If this attribute is not defined a VLAN ID will be generated if      | NO                                     |
 |                       | AUTOMATIC_VLAN_ID is set to YES.                                                  |                                        |
 +-----------------------+-----------------------------------------------------------------------------------+----------------------------------------+
-| **AUTOMATIC_VLAN_ID** | If VLAN_ID has been defined, this attribute is ignored.                           | **NO**                                 |
+| **AUTOMATIC_VLAN_ID** | If VLAN_ID has been defined, this attribute is ignored.                           | NO                                     |
 |                       | Set to YES if you want OpenNebula to generate an automatic VLAN ID.               |                                        |
 +-----------------------+-----------------------------------------------------------------------------------+----------------------------------------+
 

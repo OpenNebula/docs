@@ -41,7 +41,7 @@ Configuration files from deep inside the remote scripts directory structure ``/v
 Open vSwitch
 --------------------------------------------------------------------------------
 
-The ARP Cache Poisoning prevention rules has been more integrated into the filters logic and now works as another layer of security only if ``FILTER_IP_SPOOFING`` and/or ``FILTER_MAC_SPOOFING`` is enabled for the particular Virtual Network. Support for legacy firewall (``BLACK_PORTS_TCP``, ``BLACK_PORTS_UDP``, ``ICMP``) has been removed.
+The ARP Cache Poisoning prevention rules has been more integrated into the filters logic and now works as another layer of security only if ``FILTER_IP_SPOOFING`` and/or ``FILTER_MAC_SPOOFING`` is enabled for the particular Virtual Network. Support for legacy firewall (``BLACK_PORTS_TCP``, ``BLACK_PORTS_UDP``, ``ICMP``) has been removed. If network is defined with ``PHYDEV``, the bridge is destroyed when the physical interface is the only one left and created again when needed.
 
 HA
 --------------------------------------------------------------------------------
