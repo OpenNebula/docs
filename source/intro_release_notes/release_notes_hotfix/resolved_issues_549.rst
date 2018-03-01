@@ -13,4 +13,5 @@ The following issues has been solved in 5.4.9:
 - `Broken MEM into VM instantiation <https://github.com/OpenNebula/one/issues/1796>`__.
 - `Broken vCenter REQUIRED_ATTRS in DS creation <https://github.com/OpenNebula/one/issues/1785>`__.
 - `Doesn't retrieve VMs in VMGroup datatable <https://github.com/OpenNebula/one/issues/1800>`__.
+- `Set content-type for oneflow requests. Prevent RangeError when parsing big templates <https://github.com/OpenNebula/one/issues/1560>`__.
 
