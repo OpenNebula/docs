@@ -14,5 +14,5 @@ The following issues has been solved in 5.4.9:
 - `Broken vCenter REQUIRED_ATTRS in DS creation <https://github.com/OpenNebula/one/issues/1785>`__.
 - `Doesn't retrieve VMs in VMGroup datatable <https://github.com/OpenNebula/one/issues/1800>`__.
 - `Set content-type for oneflow requests. Prevent RangeError when parsing big templates <https://github.com/OpenNebula/one/issues/1560>`__.
-- `Fixes Lastpass 'LastPass detected a login form that is insecure' message <https://github.com/OpenNebula/one/pull/325>`__.
+- `Fix 'LastPass detecting a login form that is insecure' message <https://github.com/OpenNebula/one/pull/325>`__.
 
