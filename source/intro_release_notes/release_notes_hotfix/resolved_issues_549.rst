@@ -15,4 +15,5 @@ The following issues has been solved in 5.4.9:
 - `Doesn't retrieve VMs in VMGroup datatable <https://github.com/OpenNebula/one/issues/1800>`__.
 - `Set content-type for oneflow requests. Prevent RangeError when parsing big templates <https://github.com/OpenNebula/one/issues/1560>`__.
 - `Fix 'LastPass detected a login form that is insecure' message <https://github.com/OpenNebula/one/pull/325>`__.
+- `VNet datatable is broken in groupadmin views  <https://github.com/OpenNebula/one/issues/1827>`__.
 
