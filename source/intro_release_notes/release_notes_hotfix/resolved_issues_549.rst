@@ -15,6 +15,8 @@ The following issues has been solved in 5.4.9:
 - `Doesn't retrieve VMs in VMGroup datatable <https://github.com/OpenNebula/one/issues/1800>`__.
 - `Set content-type for oneflow requests. Prevent RangeError when parsing big templates <https://github.com/OpenNebula/one/issues/1560>`__.
 - `Fix 'LastPass detected a login form that is insecure' message <https://github.com/OpenNebula/one/pull/325>`__.
-- `Users can remove VM_RESTRICTED_ATTR feilds <https://github.com/OpenNebula/one/issues/1777>`__.
-- `Sunstone: No way for update VM configuration if it have restricted vector atributes. <https://github.com/OpenNebula/one/issues/1790>`__.
+- `VNet datatable is broken in groupadmin views  <https://github.com/OpenNebula/one/issues/1827>`__.
+- `Users can remove VM_RESTRICTED_ATTR fields <https://github.com/OpenNebula/one/issues/1777>`__.
+- `Sunstone: No way for update VM configuration if it has restricted vector atributes. <https://github.com/OpenNebula/one/issues/1790>`__.
+
 
