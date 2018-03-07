@@ -18,3 +18,4 @@ The following issues has been solved in 5.4.9:
 - `Users can remove VM_RESTRICTED_ATTR fields <https://github.com/OpenNebula/one/issues/1777>`__.
 - `Sunstone: No way for update VM configuration if it has restricted vector atributes. <https://github.com/OpenNebula/one/issues/1790>`__.
 - `VCenter: resolved some problems related to network and disk monitoring. <https://github.com/OpenNebula/one/issues/1793>`__.
+- `VCenter driver should allow you to instantiate templates without mac duplication. <https://github.com/OpenNebula/one/issues/1832>`__.
