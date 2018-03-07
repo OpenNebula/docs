@@ -19,3 +19,4 @@ The following issues has been solved in 5.4.9:
 - `Sunstone: No way for update VM configuration if it has restricted vector atributes. <https://github.com/OpenNebula/one/issues/1790>`__.
 - `VCenter: resolved some problems related to network and disk monitoring. <https://github.com/OpenNebula/one/issues/1793>`__.
 - `VCenter driver should allow template instantiation without mac duplication. <https://github.com/OpenNebula/one/issues/1832>`__.
+- `Floating IP lease is not released after router removal. <https://github.com/OpenNebula/one/issues/1680>`__.
