@@ -233,7 +233,7 @@ For the dashboard, the following widgets can be configured:
         - network
     widgets_one_footer:
 
-Inside ``features`` there are six settings:
+Inside ``features`` there are twelve settings:
 
 * ``showback``: When this is false, all :ref:`Showback <showback>` features are hidden. The monthly report tables, and the cost for new VMs in the create VM wizard.
 * ``secgroups``: If true, the create VM wizard will allow to add security groups to each network interface.
@@ -241,6 +241,12 @@ Inside ``features`` there are six settings:
 * ``instantiate_cpu_factor``: False to not scale the CPU from VCPU. Number [0, 1] to scale.
 * ``instantiate_persistent``: True to show the option to make an instance persistent.
 * ``vcenter_vm_folder``: True to show an input to specify the the VMs and Template path/folder where a vCenter VM will deployed to.
+* ``show_ds_instantiate``: True to show the datastore datatable to instantiate VM.
+* ``show_vmgroup_instantiate``: True to show the vmgroup datatable to instantiate VM.
+* ``show_vnet_instantiate``: True to show the vnet datatable to instantiate VM.
+* ``show_host_instantiate``: True to show the host datatable to instantiate VM.
+* ``show_monitoring_info``: True to show the monitoring info (VM & VRouters).
+* ``show_attributes_info``: True to show the attributes info (VM & VRouters).
 
 .. code-block:: yaml
 
@@ -347,6 +353,8 @@ Features
 * ``instantiate_cpu_factor``: False to not scale the CPU from VCPU. Number [0, 1] to scale.
 * ``instantiate_persistent``: True to show the option to make an instance persistent.
 * ``cloud_vm_create``: True to allow to create machines to cloud users.
+* ``show_monitoring_info``: True to show the monitoring info (VM & VRouters).
+* ``show_attributes_info``: True to show the attributes info (VM & VRouters).
 
 .. code-block:: yaml
 

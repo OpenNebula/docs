@@ -46,6 +46,7 @@ Sunstone
 - **Scheduled Actions** can now be defined in VM Template create and instantiate dialogs. :ref:`More info <sched_actions_templ>`.
 - **Display quotas in Clod View**, the end-user can see his quotas in real time.
 - **Turkish language (TR)**, now in Sunstone.
+- **New global configurations**. To be able to customize Sunstone even more, :ref:`there are new features in the yamls <suns_views_custom>`.
 
 |sched_actions|
 
