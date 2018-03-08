@@ -50,6 +50,10 @@ Sunstone
 
 |sched_actions|
 
+- **Display quotas in Clod View**, the end-user can see his quotas in real time.
+- **Turkish language (TR)**, now in Sunstone.
+- **Icons makeover**, Font Awesome has been updated to lastest version!.
+
 
 vCenter
 --------------------------------------------------------------------------------
