@@ -24,25 +24,27 @@ Follow these simple steps to install the OpenNebula software:
 
    the argument expression [OPTION=VALUE] is used to set non-default values for :
 
-+---------------+--------------------------------------------------------+
-| OPTION        | VALUE                                                  |
-+===============+========================================================+
-| sqlite\_db    | path-to-sqlite-install                                 |
-+---------------+--------------------------------------------------------+
-| sqlite        | **no** if you don't want to build sqlite support       |
-+---------------+--------------------------------------------------------+
-| mysql         | **yes** if you want to build mysql support             |
-+---------------+--------------------------------------------------------+
-| xmlrpc        | path-to-xmlrpc-install                                 |
-+---------------+--------------------------------------------------------+
-| parsers       | **yes** if you want to rebuild flex/bison files        |
-+---------------+--------------------------------------------------------+
-| new\_xmlrpc   | **yes** if you have an xmlrpc-c version >= 1.31        |
-+---------------+--------------------------------------------------------+
-| sunstone      | **yes** if you want to build sunstone minified files   |
-+---------------+--------------------------------------------------------+
-| systemd       | **yes** if you want to build systemd support           |
-+---------------+--------------------------------------------------------+
++----------------+--------------------------------------------------------+
+| OPTION         | VALUE                                                  |
++================+========================================================+
+| sqlite\_db     | path-to-sqlite-install                                 |
++----------------+--------------------------------------------------------+
+| sqlite         | **no** if you don't want to build sqlite support       |
++----------------+--------------------------------------------------------+
+| mysql          | **yes** if you want to build mysql support             |
++----------------+--------------------------------------------------------+
+| xmlrpc         | path-to-xmlrpc-install                                 |
++----------------+--------------------------------------------------------+
+| parsers        | **yes** if you want to rebuild flex/bison files        |
++----------------+--------------------------------------------------------+
+| new\_xmlrpc    | **yes** if you have an xmlrpc-c version >= 1.31        |
++----------------+--------------------------------------------------------+
+| sunstone       | **yes** if you want to build sunstone minified files   |
++----------------+--------------------------------------------------------+
+| systemd        | **yes** if you want to build systemd support           |
++----------------+--------------------------------------------------------+
+| docker_machine | **yes** if you want to build the docker-machine driver |
++----------------+--------------------------------------------------------+
 
 If the following error appears, then you need to remove the option 'new\_xmlrpc=yes' or install xmlrpc-c version >= 1.31:
 
