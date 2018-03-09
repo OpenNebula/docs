@@ -65,6 +65,7 @@ Core
 --------------------------------------------------------------------------------
 
 - **Lock resources**, the user can lock resources (vms, images or networks) to prevent unintended operations.
+- **Relative actions**, the user can schedule relative actiones.
 
 .. |sunstone_dashboard| image:: /images/sunstone_dashboard.png
 .. |sched_actions| image:: /images/sched_actions.png
