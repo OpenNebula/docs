@@ -8,3 +8,4 @@ A complete list of solved issues for 5.4.10 can be found in the `project develop
 The following issues has been solved in 5.4.10:
 
 - `VM instantiate disk size missing MB/GB selector <https://github.com/OpenNebula/one/pull/1848>`__.
+- `Updateconf action does not substitute context attributes <https://github.com/OpenNebula/one/pull/1774>`__.
