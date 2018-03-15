@@ -10,3 +10,6 @@ The following issues has been solved in 5.4.10:
 - `VM instantiate disk size missing MB/GB selector <https://github.com/OpenNebula/one/pull/1848>`__.
 - `Updateconf action does not substitute context attributes <https://github.com/OpenNebula/one/pull/1774>`__.
 - `VM cannot be assigned to vmgroup/roles in firefox <https://github.com/OpenNebula/one/pull/1674>`__.
+- `Inconsistency between CPU and vCPU values <https://github.com/OpenNebula/one/pull/1859>`__.
+- `Broken VMGroup update <https://github.com/OpenNebula/one/pull/1857>`__.
+- `Resize disks of running KVM VMs via libvirt blockresize <https://github.com/OpenNebula/one/pull/1868>`__.
