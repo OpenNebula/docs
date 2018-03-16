@@ -13,3 +13,4 @@ The following issues has been solved in 5.4.10:
 - `Inconsistency between CPU and vCPU values <https://github.com/OpenNebula/one/pull/1859>`__.
 - `Broken VMGroup update <https://github.com/OpenNebula/one/pull/1857>`__.
 - `Resize disks of running KVM VMs via libvirt blockresize <https://github.com/OpenNebula/one/pull/1868>`__.
+- `VM log doesn't escape markup characters <https://github.com/OpenNebula/one/pull/1778>`__.
