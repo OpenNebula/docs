@@ -15,3 +15,4 @@ The following issues has been solved in 5.4.10:
 - `Resize disks of running KVM VMs via libvirt blockresize <https://github.com/OpenNebula/one/pull/1868>`__.
 - `VM log doesn't escape markup characters <https://github.com/OpenNebula/one/pull/1778>`__.
 - `OpenNebula node KVM package as noarch <https://github.com/OpenNebula/one/issues/1877>`__.
+- `Error deleting last snapshot of a persistent VM <https://github.com/OpenNebula/one/issues/1863>`__.
