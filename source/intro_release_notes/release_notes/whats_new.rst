@@ -29,11 +29,13 @@ Hybrid Clouds: Amazon EC2
 
 Hybrid Clouds: One-to-One
 --------------------------------------------------------------------------------
+
 - **One to One**, the users will can deploying VMs on a remote OpenNebula from local OpenNebula. :ref:`Driver one-to-one <oneg>`.
 
 Scheduler
 --------------------------------------------------------------------------------
 
+- **Memory system datastore scale**, This factor scales the VM usage of the system DS with the memory size. :ref:`Scheduler configuration <schg_configuration>`.
 
 Sunstone
 --------------------------------------------------------------------------------
