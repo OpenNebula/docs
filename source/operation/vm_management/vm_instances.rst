@@ -607,12 +607,12 @@ These actions can be deleted or edited using the ``onevm update`` command. The t
 Relative actions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Like in puntual actions, to schedule this kind of actions, also use the option ``--schedule``, but this command also needs more options, these options define the relativity of the action. The options are:
+To schedule relative actions also use the option --schedule. however this command also needs more options to define the relativity of the action.
 
-	- ``--weekly``: defines a relativity weekly, so, the action will be execute all weeks, the days that the user defines.
-	- ``--monthly``: defines a relativity monthly, so, the action will be execute all months, the days that the user defines.
-	- ``--yearly``: defines a relativity yearly, so, the action will be execute all year, the days that the user defines.
-	- ``--hourly``: defines a relativity hourly, so, the action will be execute each 'x' hours.
+	- ``--weekly``: defines a weekly periodicity, so, the action will be execute all weeks, the days that the user defines.
+	- ``--monthly``: defines a monthly periodicity, so, the action will be execute all months, the days that the user defines.
+	- ``--yearly``: defines a yearly periodicity, so, the action will be execute all year, the days that the user defines.
+	- ``--hourly``: defines a hourly periodicity, so, the action will be execute each 'x' hours.
 	- ``--end``: defines when you want that the relative action finishes.
 
 The option ``--weekly``, ``--monthly`` and ``--yearly`` need the number of the days that the users wants execute the action.
