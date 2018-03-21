@@ -16,3 +16,4 @@ The following issues has been solved in 5.4.10:
 - `VM log doesn't escape markup characters <https://github.com/OpenNebula/one/pull/1778>`__.
 - `OpenNebula node KVM package as noarch <https://github.com/OpenNebula/one/issues/1877>`__.
 - `Error deleting last snapshot of a persistent VM <https://github.com/OpenNebula/one/issues/1863>`__.
+- `Tokens should not be used to authenticate with external drivers <https://github.com/OpenNebula/one/issues/1869>`__.
