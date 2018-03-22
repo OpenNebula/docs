@@ -11,6 +11,7 @@ OpenNebula Core
 .. - **New HA model**, providing native HA (based on RAFT consensus algorithm) in OpenNebula components, including Sunstone without :ref:`third party dependencies <frontend_ha_setup>`.
 
 - **Support to set CPU model**: The CPU model can be now set. Available modes are obtained through monitor, and stored in the hosts.
+- **Improved Monitoring**: several synchronization points have been removed from one to improve concurrencry in the monitoring process. Also database connections are now configurable to allow more parallel access to the the database.
 
 Storage
 --------------------------------------------------------------------------------
