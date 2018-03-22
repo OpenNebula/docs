@@ -11,6 +11,7 @@ OpenNebula Core
 .. - **New HA model**, providing native HA (based on RAFT consensus algorithm) in OpenNebula components, including Sunstone without :ref:`third party dependencies <frontend_ha_setup>`.
 
 - **Support to set CPU model**: The CPU model can be now set. Available modes are obtained through monitor, and stored in the hosts.
+- **Lock resources**, the user can lock resources (vms, images or networks) to prevent unintended operations.
 
 Storage
 --------------------------------------------------------------------------------
@@ -63,10 +64,10 @@ vCenter
 - **Multiple cluster network support**: now it is possible to import networks belonging to more than 1 cluster with a better management, also you won't see duplicated networks anymore.
 - **vCenter cluster migration**: migrate your vms between vCenter clusters with OpenNebula.
 
-Core
+Log
 --------------------------------------------------------------------------------
 
-- **Lock resources**, the user can lock resources (vms, images or networks) to prevent unintended operations.
+- **Number of characters**: Now the users can be specify how many characters want to show in the oned.log file.
 
 .. |sunstone_dashboard| image:: /images/sunstone_dashboard.png
 .. |sched_actions| image:: /images/sched_actions.png
