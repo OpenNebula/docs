@@ -54,7 +54,7 @@ Prerequisites
     $ sudo yum install openssl
     ## Ubuntu
     $ sudo apt-get install openssl
-    
+
     # Move to a folder (wherever you prefer, it's better if you choose a private folder to store all yours keys)
     $ mkdir ~/.ssh/azure && cd ~/.ssh/azure
 
@@ -64,7 +64,7 @@ Prerequisites
 
     ## Generate .cer file for Azure
     $ openssl x509 -outform der -in myCert.pem -out myCert.cer
-   
+
     ## You should have now your .pem certificate and your private key
     $ find .
     ==>
@@ -76,15 +76,15 @@ Prerequisites
 - Third, the certificate file (.cer) has to be uploaded to Settings -> Management Certificates Management Certificates can only be accessed from classic Azure portal, if you are using V2 try to:
 
         portal v2 home page -> Azure classic portal -> Settings -> Management Certificates
-        
+
 - In order to allow azure driver to properly authenticate with our Azure account, you need to sign your .pem file, keep the absolute path of the new signed certificate, you will need it for the **pem_management_cert** field inside az_driver.conf:
 
 .. code::
 
     ## Concatenate key and pem certificate (sign with private key)
     $ cat myCert.pem myPrivateKey.key > vOneCloud.pem
- 
- 
+
+
 -  The following gem is required: ``azure``. This gem is automatically installed as part of the :ref:`installation process <ruby_runtime>`. Otherwise, run the ``install_gems`` script as root:
 
 .. prompt:: bash # auto
@@ -191,6 +191,40 @@ These are the attributes that can be used in the PUBLIC_CLOUD section of the tem
 Check an exhaustive list of attributes in the :ref:`Virtual Machine Definition File Reference Section <public_cloud_azure_atts>`.
 
 .. note:: The PUBLIC_CLOUD sections allow for substitutions from template and virtual network variables, the same way as the :ref:`CONTEXT section allows <template_context>`.
+
+.. note:: Valid Azure images to set in the IMAGE atribute of the PUBLIC_CLOUD section can be extracted with the following ruby snippet:
+
+.. code::
+
+   #!/usr/bin/env ruby
+
+   require "azure"
+   require "yaml"
+
+   CONFIG_PATH = "/etc/one/az_driver.conf"
+
+   # Get a list of available virtual machine images
+   def get_image_names
+       vm_image_management = Azure.vm_image_management
+       vm_image_management.list_os_images.each do |image|
+           puts "#{image.os_type}"
+           puts "      locations: #{image.locations}"
+           puts "      name     : #{image.name}"
+           puts
+       end
+   end
+
+   @account = YAML::load(File.read(CONFIG_PATH))
+   _regions = @account['regions']
+   _az = _regions['default']
+
+   Azure.configure do |config|
+             config.management_certificate = _az['pem_management_cert'] || ENV['AZURE_CERT']
+             config.subscription_id        = _az['subscription_id'] || ENV['AZURE_SUB']
+             config.management_endpoint    = _az['management_endpoint'] || ENV['AZURE_ENDPOINT']
+   end
+
+   get_image_names
 
 
 Default values for all these attributes can be defined in the ``/etc/one/az_driver.default`` file.
@@ -361,7 +395,7 @@ Now you can monitor the state of the VM with
     $ onevm list
         ID USER     GROUP    NAME         STAT CPU     MEM        HOSTNAME        TIME
          0 oneadmin oneadmin one-0        runn   0      0K     west-europe    0d 07:03
-         
+
 
 Also you can see information (like IP address) related to the Azure instance launched via the command. The attributes available are:
 
