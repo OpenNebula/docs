@@ -1,14 +1,13 @@
+.. _overview:
+
 ================================================================================
 Overview
 ================================================================================
-OpenNebula Docker machine driver allow you to deploy docker infrastructure over OpenNebula. Docker machine allow us to manage the docker infrastructure deployed.
+
+OpenNebula integration with Docker aims at building a infrastructure fabric managed by OpenNebula that allows to deploy Docker containers.
+
+Coupled with Docker Machine, OpenNebula is able to provision individual or sets of Docker Engines, taking care of all the network and storage provision as it does for regular VMs. With this integratoin, having access to an OpenNebula clouds means being able to remotely deploy Docker container using the resources managed by OpenNebula.
 
 |docker-machine|
-
-How Should I Read This Chapter
-================================================================================
-
-The :ref:`Docker and OpenNebula integration<docker_integration>` section will guide you through the process of integrate Docker machine with OpenNebula.
-
 
 .. |docker-machine| image:: /images/docker_arch.png

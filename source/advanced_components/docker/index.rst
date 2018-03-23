@@ -1,4 +1,4 @@
-.. _ha:
+.. _docker:
 
 ================================================================================
 Docker Machine
@@ -8,4 +8,6 @@ Docker Machine
    :maxdepth: 2
 
    Overview <overview>
-   Docker and OpenNebula integration <docker_integration>
+   Docker Engine Management <docker_engine_management>
+   Docker Machine Plugin References <docker_machine_plugin_references>
+   Docker Swarm <docker_swarm>

@@ -1,69 +1,8 @@
-===========================================
-Docker and OpenNebula integration
-===========================================
+.. _docker_machine_plugin_references:
 
-For docker integration we need to install docker machine and docker at OpenNebula frontend:
-
-.. prompt:: bash # auto
-
-    # curl -L https://github.com/docker/machine/releases/download/v0.14.0/docker-machine-`uname -s`-`uname -m` >/tmp/docker-machine && sudo install /tmp/docker-machine /usr/local/bin/docker-machine
-    # sudo apt-get install docker-ce
-
-Official documentation for Docker Machine is available `here <https://docs.docker.com/machine/>`__.
-
-Usage
-================================================================================
-
-Once we have all the requirements we need to provide docker a user to use for docker-machine with OpenNebula, the user will need permissions to create / manage instances.
-Set up env variables ``ONE_AUTH`` to contain ``user:password`` and ``ONE_XMLRPC`` to point to the OpenNebula cloud.
-
-.. prompt:: bash # auto
-
-    #export ONE_AUTH=/var/lib/one/one_auth
-    #export ONE_XMLRPC=https://<ONE FRONTEND>:2633/RPC2
-
-
-Once you have fulfilled these pre-requisites you can now launch your docker-engine over OpenNebula. 
-
-We can create a host using an OpenNebula registered template:
-
-.. prompt:: bash # auto
-    
-    # docker-machine create --driver opennebula --opennebula-template-id <template-id> --opennebula-network-id <network-id> <host-name>
-
-Or using Boot2Docker image (you can import Boot2Docker image from marketplace):
-
-.. prompt:: bash # auto
-
-    # docker-machine create --driver opennebula --opennebula-network-name <network-name> --opennebula-image-id <image-id> --opennebula-b2d-size <data-size-mb> <name>
-
-.. note::
-
-    Is neccesary to attach a network to the vm in order to docker-machine works. Also is neccesary the ``--opennebula-b2d-size`` in case you use the Boot2Docker image.
-
-
-vCenter
-================================================================================
-
-For the vCenter hypervisor, we recommend using Boot2Docker. You will need to follow these steps first:
-
-- Upload the [Boot2Docker](http://marketplace.opennebula.systems/appliance/56d073858fb81d0315000002) ISO into a Datastore in vCenter.
-- Make sure you have a network defined in vCenter to connect Docker to.
-- Create a Template in vCenter, with the following hardware:
-  - Desired capacity: CPU, Memory.
-  - New CD/DVD Drive (Datastore ISO File): select the Boot2Docker ISO. Make sure you check *Connect At Power On*.
-  - New Hard disk: select the desired capacity for the Docker scratch data.
-  - Do not specify a network, remove it if one was added automatically.
-
-In OpenNebula, you will need to import the template and the desired networks, using the create Host dialog. Make sure you make the network type `ipv4`.
-
-Once you have fulfilled these pre-requisites you can now launch your docker-engine:
-
-.. prompt:: bash # auto
-
-    #docker-machine create --driver opennebula --opennebula-template-id $TEMPLATE_ID --opennebula-network-id $NETWORK_ID b2d
-
-
+====================================
+References
+====================================
 
 Available Driver Options
 ================================================================================
@@ -130,10 +69,10 @@ Available Driver Options
 | `--opennebula-disable-vnc`   | Enabled                     | `ONE_DISABLE_VNC`      |
 +------------------------------+-----------------------------+------------------------+
 
-Using a template
+Using a VM template
 ================================================================================
 
-Using a template means specifying either `--opennebula-template-id` or `--opennebula-template-name`. If you specify either of these two options, the following table applies, indicating what incompatible and what overrideable parameters are available:
+Using a VM template means specifying either `--opennebula-template-id` or `--opennebula-template-name`. If you specify either of these two options, the following table applies, indicating what incompatible and what overrideable parameters are available:
 
 +----------------------------+------------------------------+
 |        Incompatible        |           Override           |
