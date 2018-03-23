@@ -65,7 +65,7 @@ The packages for the OpenNebula front-end and the virtualization host are as fol
 
 .. note::
 
-    The configuration files are located in ``/etc/one`` and ``/var/lib/one/remotes``.
+    The configuration files are located in ``/etc/one`` and ``/var/lib/one/remotes/etc``.
 
 Installing on Debian/Ubuntu
 ---------------------------
