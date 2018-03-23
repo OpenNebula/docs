@@ -168,7 +168,7 @@ XML-RPC Server Configuration
    -  ``%m`` -- method name
    -  ``%u`` -- user id
    -  ``%U`` -- user name
-   -  ``%l`` -- param list
+   -  ``%l[number]`` -- param list and number of characters (optional) to print each parameter, default is 20. Example: %l300
    -  ``%p`` -- user password
    -  ``%g`` -- group id
    -  ``%G`` -- group name

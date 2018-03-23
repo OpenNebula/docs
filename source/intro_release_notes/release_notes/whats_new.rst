@@ -64,10 +64,10 @@ vCenter
 - **Multiple cluster network support**: now it is possible to import networks belonging to more than 1 cluster with a better management, also you won't see duplicated networks anymore.
 - **vCenter cluster migration**: migrate your vms between vCenter clusters with OpenNebula.
 
-Core
+Log
 --------------------------------------------------------------------------------
 
-- **Lock resources**, the user can lock resources (vms, images or networks) to prevent unintended operations.
+- **API request logs**: Now admins can specify how many characters are used to print each parameter in the oned.log.
 
 .. |sunstone_dashboard| image:: /images/sunstone_dashboard.png
 .. |sched_actions| image:: /images/sched_actions.png
