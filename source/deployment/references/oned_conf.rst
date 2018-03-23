@@ -166,7 +166,7 @@ XML-RPC Server Configuration
    -  ``%m`` -- method name
    -  ``%u`` -- user id
    -  ``%U`` -- user name
-   -  ``%l`` -- param list, can be specify the number of characters that the user wants to show in the log; by default is 20. Example: %l30 (30 characters)
+   -  ``%l[number]`` -- param list and number of characters (optional) to print each parameter, default is 20. Example: %l300
    -  ``%p`` -- user password
    -  ``%g`` -- group id
    -  ``%G`` -- group name
