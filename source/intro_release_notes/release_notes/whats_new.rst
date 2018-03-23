@@ -67,7 +67,7 @@ vCenter
 Log
 --------------------------------------------------------------------------------
 
-- **Number of characters**: Now the users can be specify how many characters want to show in the oned.log file.
+- **API request logs**: Now admins can specify how many characters are used to print each parameter in the oned.log.
 
 .. |sunstone_dashboard| image:: /images/sunstone_dashboard.png
 .. |sched_actions| image:: /images/sched_actions.png
