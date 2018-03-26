@@ -27,6 +27,7 @@ Daemon Configuration Attributes
    -  ``user`` (MySQL only): MySQL user's login ID.
    -  ``passwd`` (MySQL only): MySQL user's password.
    -  ``db_name`` (MySQL only): MySQL database name.
+   -  ``connections`` (MySQL only): number of max. connections to MySQL server.
 
 -  ``VNC_PORTS`` : VNC port pool for automatic VNC port assignment, if possible the port will be set to ``START`` + ``VMID``. Refer to the :ref:`VM template reference <template>` for further information:
 
@@ -90,7 +91,8 @@ Example of this section:
     #        PORT    = 0,
     #        USER    = "oneadmin",
     #        PASSWD  = "oneadmin",
-    #        DB_NAME = "opennebula" ]
+    #        DB_NAME = "opennebula",
+    #        CONNECTIONS = 50 ]
 
     VNC_PORTS = [
         START    = 5900
@@ -166,7 +168,7 @@ XML-RPC Server Configuration
    -  ``%m`` -- method name
    -  ``%u`` -- user id
    -  ``%U`` -- user name
-   -  ``%l`` -- param list
+   -  ``%l[number]`` -- param list and number of characters (optional) to print each parameter, default is 20. Example: %l300
    -  ``%p`` -- user password
    -  ``%g`` -- group id
    -  ``%G`` -- group name

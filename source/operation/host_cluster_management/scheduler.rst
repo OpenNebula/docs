@@ -63,6 +63,7 @@ The behavior of the scheduler can be tuned to adapt it to your infrastructure wi
 * ``MAX_HOST``: Maximum number of Virtual Machines dispatched to a given host in each scheduling action (Default: 1)
 * ``LIVE_RESCHEDS``: Perform live (1) or cold migrations (0) when rescheduling a VM
 * ``DEFAULT_SCHED``: Definition of the default scheduling algorithm.
+* ``MEMORY_SYSTEM_DS_SCALE``: This factor scales the VM usage of the system DS with the memory size. This factor can be use to make the scheduler consider the overhead of checkpoint files: system_ds_usage = system_ds_usage + memory_system_ds_scale * memory
 
    * ``RANK``: Arithmetic expression to rank suitable **hosts** based on their attributes.
    * ``POLICY``: A predefined policy, it can be set to:
@@ -124,6 +125,8 @@ Sample Configuration:
     DEFAULT_DS_SCHED = [
        policy = 1
     ]
+
+    MEMORY_SYSTEM_DS_SCALE = 0
 
 Pre-defined Placement Policies
 ------------------------------
