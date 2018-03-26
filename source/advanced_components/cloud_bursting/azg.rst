@@ -56,7 +56,7 @@ Prerequisites
 
     ## Ubuntu
     $ sudo apt-get install openssl
-    
+
     # Move to a folder (wherever you prefer, it's better if you choose a private folder to store all yours keys)
     $ mkdir ~/.ssh/azure && cd ~/.ssh/azure
 
@@ -66,7 +66,7 @@ Prerequisites
 
     ## Generate .cer file for Azure
     $ openssl x509 -outform der -in myCert.pem -out myCert.cer
-   
+
     ## You should have now your .pem certificate and your private key
     $ find .
     ==>
@@ -252,6 +252,42 @@ Default values for all these attributes can be defined in the ``/etc/one/az_driv
       </AZURE>
     </TEMPLATE>
 
+.. note:: Valid Azure images to set in the IMAGE atribute of the PUBLIC_CLOUD section can be extracted with the following ruby snippet:
+
+
+.. code::
+
+   #!/usr/bin/env ruby
+
+   require "azure"
+   require "yaml"
+
+   CONFIG_PATH = "/etc/one/az_driver.conf"
+
+   # Get a list of available virtual machine images
+   def get_image_names
+       vm_image_management = Azure.vm_image_management
+       vm_image_management.list_os_images.each do |image|
+           puts "#{image.os_type}"
+           puts "      locations: #{image.locations}"
+           puts "      name     : #{image.name}"
+           puts
+       end
+   end
+
+   @account = YAML::load(File.read(CONFIG_PATH))
+   _regions = @account['regions']
+   _az = _regions['default']
+
+   Azure.configure do |config|
+             config.management_certificate = _az['pem_management_cert'] || ENV['AZURE_CERT']
+             config.subscription_id        = _az['subscription_id'] || ENV['AZURE_SUB']
+             config.management_endpoint    = _az['management_endpoint'] || ENV['AZURE_ENDPOINT']
+   end
+
+   get_image_names
+
+
 .. _az_auth_attributes:
 
 Azure Auth Attributes
@@ -424,7 +460,7 @@ Now you can monitor the state of the VM with
     $ onevm list
         ID USER     GROUP    NAME         STAT CPU     MEM        HOSTNAME        TIME
          0 oneadmin oneadmin one-0        runn   0      0K     west-europe    0d 07:03
-         
+
 
 Also you can see information (like IP address) related to the Azure instance launched via the command. The attributes available are:
 

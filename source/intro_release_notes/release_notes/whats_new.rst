@@ -11,6 +11,7 @@ OpenNebula Core
 .. - **New HA model**, providing native HA (based on RAFT consensus algorithm) in OpenNebula components, including Sunstone without :ref:`third party dependencies <frontend_ha_setup>`.
 
 - **Support to set CPU model**: The CPU model can be now set. Available modes are obtained through monitor, and stored in the hosts.
+- **Improved Monitoring**: several synchronization points have been removed from one to improve concurrencry in the monitoring process. Also database connections are now configurable to allow more parallel access to the the database.
 
 Storage
 --------------------------------------------------------------------------------
@@ -29,11 +30,13 @@ Hybrid Clouds: Amazon EC2
 
 Hybrid Clouds: One-to-One
 --------------------------------------------------------------------------------
+
 - **One to One**, the users will can deploying VMs on a remote OpenNebula from local OpenNebula. :ref:`Driver one-to-one <oneg>`.
 
 Scheduler
 --------------------------------------------------------------------------------
 
+- **Memory system datastore scale**, This factor scales the VM usage of the system DS with the memory size. :ref:`Scheduler configuration <schg_configuration>`.
 
 Sunstone
 --------------------------------------------------------------------------------
@@ -61,11 +64,12 @@ vCenter
 - **Multiple cluster network support**: now it is possible to import networks belonging to more than 1 cluster with a better management, also you won't see duplicated networks anymore.
 - **vCenter cluster migration**: migrate your vms between vCenter clusters with OpenNebula.
 
-Core
+Log
 --------------------------------------------------------------------------------
 
 - **Lock resources**, the user can lock resources (vms, images or networks) to prevent unintended operations.
 - **Relative actions**, the user can schedule relative actiones.
+- **API request logs**: Now admins can specify how many characters are used to print each parameter in the oned.log.
 
 .. |sunstone_dashboard| image:: /images/sunstone_dashboard.png
 .. |sched_actions| image:: /images/sched_actions.png
