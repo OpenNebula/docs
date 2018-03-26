@@ -67,6 +67,8 @@ vCenter
 Log
 --------------------------------------------------------------------------------
 
+- **Lock resources**, the user can lock resources (vms, images or networks) to prevent unintended operations.
+- **Relative actions**, the user can schedule relative actiones.
 - **API request logs**: Now admins can specify how many characters are used to print each parameter in the oned.log.
 
 .. |sunstone_dashboard| image:: /images/sunstone_dashboard.png

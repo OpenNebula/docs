@@ -560,6 +560,11 @@ Please bear in mind the following ``onevm save`` limitations:
 Scheduling Actions
 ------------------
 
+We have two types of schedule actions, the puntual and the relative actions.
+
+Puntual actions
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 Most of the onevm commands accept the ``--schedule`` option, allowing users to delay the actions until the given date and time.
 
 Here is an usage example:
@@ -580,9 +585,9 @@ Here is an usage example:
     [...]
 
     SCHEDULED ACTIONS
-    ID ACTION        SCHEDULED         DONE MESSAGE
-     0 suspend     09/20 00:00            -
-     1 resume      09/23 14:15            -
+    ID ACTION             SCHEDULED                  REP                  END         DONE MESSAGE
+     0 suspend     09/20 00:00            																							 -
+     1 resume      09/23 14:15            																							 -
 
 These actions can be deleted or edited using the ``onevm update`` command. The time attributes use Unix time internally.
 
@@ -598,6 +603,87 @@ These actions can be deleted or edited using the ``onevm update`` command. The t
       ACTION="resume",
       ID="1",
       TIME="1379938500" ]
+
+Relative actions
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+To schedule relative actions also use the option --schedule. however this command also needs more options to define the relativity of the action.
+
+	- ``--weekly``: defines a weekly periodicity, so, the action will be execute all weeks, the days that the user defines.
+	- ``--monthly``: defines a monthly periodicity, so, the action will be execute all months, the days that the user defines.
+	- ``--yearly``: defines a yearly periodicity, so, the action will be execute all year, the days that the user defines.
+	- ``--hourly``: defines a hourly periodicity, so, the action will be execute each 'x' hours.
+	- ``--end``: defines when you want that the relative action finishes.
+
+The option ``--weekly``, ``--monthly`` and ``--yearly`` need the number of the days that the users wants execute the action.
+
+	- ``--weekly``: days separate with commas between 0 and 6. [0,6]
+	- ``--monthly``: days separate with commas between 1 and 31. [0,31]
+	- ``--weekly``: days separate with commas between 0 and 365. [0,365]
+
+The option ``--hourly`` needs a number with the number of hours.
+
+The option ``--end`` can be a number or a date:
+
+	- Number: defines the number of repetitions.
+	- Date: defines the date that the user wants to finished the action.
+
+Here is an usage example:
+
+.. prompt:: text $ auto
+
+    $ onevm suspend 0 --schedule "09/20" --weekly "1,5" --end 5
+    VM 0: suspend scheduled at 2018-09-20 00:00:00 +0200
+
+    $ onevm resume 0 --schedule "09/23 14:15" --weekly "2,6" --end 5
+    VM 0: resume scheduled at 2018-09-23 14:15:00 +0200
+
+		$ onevm snapshot-create 0 --schedule "09/23" --hourly 10 --end "12/25"
+    VM 0: resume scheduled at 2018-09-23 14:15:00 +0200
+
+    $ onevm show 0
+    VIRTUAL MACHINE 0 INFORMATION
+    ID                  : 0
+    NAME                : one-0
+
+    [...]
+
+    SCHEDULED ACTIONS
+    ID ACTION             SCHEDULED                  REP                  END         DONE MESSAGE
+		 0 suspend          09/23 00:00           Weekly 1,5        After 5 times            -
+ 		 1 resume           09/23 00:00           Weekly 2,6        After 5 times            -
+ 		 2 snapshot-create  09/23 00:00         Each 5 hours        	On 12/25/18            -
+
+These actions can be deleted or edited using the ``onevm update`` command. The time attributes use Unix time internally.
+
+.. prompt:: text $ auto
+
+    $ onevm update 0
+
+    SCHED_ACTION=[
+			ACTION="suspend",
+			DAYS="1,5",
+			END_TYPE="1",
+			END_VALUE="5",
+			ID="0",
+			REP="0",
+			TIME="1537653600" ]
+		SCHED_ACTION=[
+			ACTION="resume",
+			DAYS="2,6",
+			END_TYPE="1",
+			END_VALUE="5",
+			ID="1",
+			REP="0",
+			TIME="1537653600" ]
+		SCHED_ACTION=[
+			ACTION="snapshot-create",
+			DAYS="5",
+			END_TYPE="2",
+  		END_VALUE="1545692400",
+			ID="2",
+			REP="3",
+			TIME="1537653600" ]
 
 |sunstone_schedule_action|
 
