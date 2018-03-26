@@ -7,28 +7,35 @@ CentOS/RHEL 6.x
 
 .. prompt:: bash # auto
 
-    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.4.1/one-context-5.4.1-1.el6.noarch.rpm
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.4.2.1/one-context-5.4.2.1-1.el6.noarch.rpm
 
 CentOS/RHEL 7.x
 ~~~~~~~~~~~~~~~
 
 .. prompt:: bash # auto
 
-    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.4.1/one-context-5.4.1-1.el7.noarch.rpm
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.4.2.1/one-context-5.4.2.1-1.el7.noarch.rpm
 
 OpenSUSE
 ~~~~~~~~
 
 .. prompt:: bash # auto
 
-    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.4.1/one-context-5.4.1-1.suse.noarch.rpm
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.4.2.1/one-context-5.4.2.1-1.suse.noarch.rpm
 
 Debian/Ubuntu/Devuan
 ~~~~~~~~~~~~~~~~~~~~
 
 .. prompt:: bash # auto
 
-    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.4.1/one-context_5.4.1-1.deb
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.4.2.1/one-context_5.4.2.1-1.deb
+
+Alpine Linux
+~~~~~~~~~~~~
+
+.. prompt:: bash # auto
+
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.4.2.1/one-context-5.4.2.1-r1.apk
 
 Windows
 ~~~~~~~
@@ -81,6 +88,3 @@ Windows
 ~~~~~~~
 
 Double-click on the downloaded MSI package icon in the same way you open other documents to install it.
-
-
-
