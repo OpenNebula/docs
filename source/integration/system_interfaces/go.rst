@@ -40,9 +40,6 @@ Go OpenNebula Cloud API cover the resources lists below:
 | Zone         | `zone.go <https://github.com/OpenNebula/one/blob/master/src/oca/go/src/goca/zone.go>`__                        |
 +--------------+----------------------------------------------------------------------------------------------------------------+
 
-
-If it is needed to manage any resources that are not included at that list it could be done by `goca <https://github.com/OpenNebula/one/blob/master/src/oca/go/src/goca/goca.go>`__, the main abstraction for the XML objects and XML-RPC client.
-
 Download
 ================================================================================
 
@@ -108,3 +105,22 @@ The example below show how get the information of a running VM, print its name, 
 
         fmt.Println(template)
     }
+
+Limitations
+================================================================================
+
+Go OpenNebula Cloud API doesn't cover the resources list below:
+
++----------------------+--------------------------------------------------------------------------------------------------------+
+|   Resource           | URL                                                                                                    |
++======================+========================================================================================================+
+| Marketplace          | http://docs.opennebula.org/5.4/integration/system_interfaces/api.html#onemarket                        |
++----------------------+--------------------------------------------------------------------------------------------------------+
+| Marketapp            | http://docs.opennebula.org/5.4/integration/system_interfaces/api.html#onemarketapp                     |
++----------------------+--------------------------------------------------------------------------------------------------------+
+| secgroup             | http://docs.opennebula.org/5.4/integration/system_interfaces/api.html#onesecgroup                      |
++----------------------+--------------------------------------------------------------------------------------------------------+
+| onevmgroup           | http://docs.opennebula.org/5.4/integration/system_interfaces/api.html#onevmgroup                       |
++----------------------+--------------------------------------------------------------------------------------------------------+
+| onevrouter           | http://docs.opennebula.org/5.4/integration/system_interfaces/api.html#onevrouter                       |
++----------------------+--------------------------------------------------------------------------------------------------------+
