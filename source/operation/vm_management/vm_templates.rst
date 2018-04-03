@@ -281,6 +281,25 @@ Use ``onevm terminate`` to shutdown and delete a running VM.
 
 Continue to the :ref:`Managing Virtual Machine Instances Guide <vm_guide_2>` to learn more about the VM Life Cycle, and the available operations that can be performed.
 
+.. _instantiate_as_uid_gid:
+
+Instantiating as a user and/or group
+--------------------------------------------------------------------------------
+
+From Sunstone:
+
+|sunstone_template_instantiate_as_uid_gid|
+
+From the CLI: the ``onetemplate instantiate`` command accepts an options ``--as_uid`` and ``--as_gid`` with the User ID or Group ID, to define which will be the owner or group for the VM.
+
+.. prompt:: text $ auto
+
+    $ onetemplate instantiate 6 --as_uid 2 --as_gid 1
+    VM ID: 0
+
+    $ onevm list
+        ID USER      GROUP    NAME         STAT CPU     MEM        HOSTNAME        TIME
+         0 test_user users    one-0        pend   0      0K                 00 00:00:16
 
 Managing Templates
 ==================
@@ -390,3 +409,4 @@ Sunstone offers an "alias" for ``onetemplate chmod --recursive 640``, the share 
 .. |sunstone_disable_network_conf| image:: /images/sunstone_disable_network_conf.png
 .. |sunstone_admin_instantiate| image:: /images/sunstone_admin_instantiate.png
 .. |sunstone_template_custom_tags| image:: /images/custom_tags.png
+.. |sunstone_template_instantiate_as_uid_gid| image:: /images/instantiate_as_uid_gid.png

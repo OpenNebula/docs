@@ -12,6 +12,7 @@ OpenNebula Core
 
 - **Support to set CPU model**: The CPU model can be now set. Available modes are obtained through monitor, and stored in the hosts.
 - **Improved Monitoring**: several synchronization points have been removed from one to improve concurrencry in the monitoring process. Also database connections are now configurable to allow more parallel access to the the database.
+- **as uid / as gid**: Now the users will can to define which will be the owner or group for a VM when instantiate a Template. :ref:`See more information here <instantiate_as_uid_gid>`.
 
 Storage
 --------------------------------------------------------------------------------
