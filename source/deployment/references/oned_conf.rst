@@ -773,3 +773,44 @@ Sample configuration:
 
     ONEGATE_ENDPOINT = "http://192.168.0.5:5030"
 
+
+Default Permissions for VDC ACL rules
+======================================
+
+Default ACL rules created when resource is added to a VDC. The following attributes configures the permissions granted to the VDC group for each resource types:
+
+-  ``DEFAULT_VDC_HOST_ACL``: permissions granted on hosts added to a VDC.
+-  ``DEFAULT_VDC_NET_ACL``: permissions granted on vnets added to a VDC.
+-  ``DEFAULT_VDC_DATASTORE_ACL``: permissions granted on datastores to a VDC.
+
+-  ``DEFAULT_VDC_CLUSTER_HOST_ACL``: permissions granted to cluster hosts when acluster is added to the VDC.
+-  ``DEFAULT_VDC_CLUSTER_NET_ACL``: permissions granted to cluster vnets when acluster is added to the VDC.
+-  ``DEFAULT_VDC_CLUSTER_DATASTORE_ACL``: permissions granted to cluster datastores when a cluster is added to the VDC.
+
+When defining the permissions you can use "" or "-" to not add any rule to that specific resource. Also you can combine several permissions with "+", for example "MANAGE+USE". Valid permissions are USE, MANAGE or ADMIN.
+
+Example:
+
+.. code-block:: bash
+
+    DEFAULT_VDC_HOST_ACL      = "MANAGE"
+    #Adds @<gid> HOST/#<hid> MANAGE #<zid> when a host is added to the VDC.
+    onevdc addhost <vdc> <zid> <hid>
+
+    DEFAULT_VDC_NET_ACL       = "USE"
+    #Adds @<gid> NET/#<vnetid> USE #<zid> when a vnet is added to the VDC.
+    onevdc addvnet <vdc> <zid> <vnetid>
+
+    DEFAULT_VDC_DATASTORE_ACL = "USE"
+    #Adds @<gid> DATASTORE/#<dsid> USE #<zid> when a vnet is added to the VDC.
+    onevdc adddatastore <vdc> <zid> <dsid>
+
+    DEFAULT_VDC_CLUSTER_HOST_ACL      = "MANAGE"
+    DEFAULT_VDC_CLUSTER_NET_ACL       = "USE"
+    DEFAULT_VDC_CLUSTER_DATASTORE_ACL = "USE"
+    #Adds:
+    #@<gid> HOST/%<cid> MANAGE #<zid>
+    #@<gid> DATASTORE+NET/%<cid> USE #<zid>
+    #when a cluster is added to the VDC.
+    onevdc addcluster <vdc> <zid> <cid>
+
