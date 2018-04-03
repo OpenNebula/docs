@@ -77,7 +77,7 @@ To remove physical resources from the VDC, use the symmetric operations ``delclu
 
 When you assign physical resources to a VDC, users in that VDC's groups will be able to use the Datastores and Virtual Networks. The scheduler will also deploy VMs from that group to any of the VDC Hosts.
 
-If you are familiar with :ref:`ACL rules <manage_acl>`, you can take a look at the rules that are created with ``oneacl list``. These rules are automatically added, and should not be manually edited. They will be removed by the ``onevdc del*`` commands.
+If you are familiar with :ref:`ACL rules <manage_acl>`, you can take a look at the rules that are created with ``oneacl list``. These rules are automatically added, and should not be manually edited. They will be removed by the ``onevdc del*`` commands. The default permissions for these rules can be configured into :ref:`oned.conf <oned_conf>`
 
 Examples
 ================================================================================
