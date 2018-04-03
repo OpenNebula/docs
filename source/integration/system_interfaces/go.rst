@@ -107,7 +107,6 @@ The example below show how get the information of a running VM, print its name, 
     }
 
 Limitations
-================================================================================
 
 Go OpenNebula Cloud API doesn't cover the resources list below:
 
@@ -118,9 +117,9 @@ Go OpenNebula Cloud API doesn't cover the resources list below:
 +----------------------+--------------------------------------------------------------------------------------------------------+
 | Marketapp            | http://docs.opennebula.org/5.4/integration/system_interfaces/api.html#onemarketapp                     |
 +----------------------+--------------------------------------------------------------------------------------------------------+
-| secgroup             | http://docs.opennebula.org/5.4/integration/system_interfaces/api.html#onesecgroup                      |
+| Security Groups      | http://docs.opennebula.org/5.4/integration/system_interfaces/api.html#onesecgroup                      |
 +----------------------+--------------------------------------------------------------------------------------------------------+
-| onevmgroup           | http://docs.opennebula.org/5.4/integration/system_interfaces/api.html#onevmgroup                       |
+| VM Groups            | http://docs.opennebula.org/5.4/integration/system_interfaces/api.html#onevmgroup                       |
 +----------------------+--------------------------------------------------------------------------------------------------------+
-| onevrouter           | http://docs.opennebula.org/5.4/integration/system_interfaces/api.html#onevrouter                       |
+| Virtual Router       | http://docs.opennebula.org/5.4/integration/system_interfaces/api.html#onevrouter                       |
 +----------------------+--------------------------------------------------------------------------------------------------------+
