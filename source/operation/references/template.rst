@@ -637,7 +637,7 @@ The values referred to by **VARIABLE** can be defined :
 .. code::
 
           IP_GEN       = "10.0.0.$VMID"
-          SET_HOSTNAME = $NAME
+          SET_HOSTNAME = "$NAME"
 
 ``$<template_variable>[<attribute>]``: Any single value contained in a multiple value variable in the VM template, like for example:
 
