@@ -50,6 +50,7 @@ Sunstone
 - **Display quotas in Clod View**, the end-user can see his quotas in real time.
 - **Turkish language (TR)**, now in Sunstone.
 - **New global configurations**. To be able to customize Sunstone even more, :ref:`there are new features in the yamls <suns_views_custom>`.
+- **Disk resize in the cloud view**. Now you can resize a disk as a user cloud.
 
 |sched_actions|
 
