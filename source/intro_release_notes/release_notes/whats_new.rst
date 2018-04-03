@@ -13,6 +13,7 @@ OpenNebula Core
 - **Support to set CPU model**: The CPU model can be now set. Available modes are obtained through monitor, and stored in the hosts.
 - **Improved Monitoring**: several synchronization points have been removed from one to improve concurrencry in the monitoring process. Also database connections are now configurable to allow more parallel access to the the database.
 - **Default permission for ACLs**: The uses can specify the default permission for the automatic ACLs. :ref:`oned.conf <oned_conf>`.
+- **Create as uid/gid**: Now users can define which will be the owner or group for a VM when instantiate a Template. :ref:`See more information here <instantiate_as_uid_gid>`.
 
 Storage
 --------------------------------------------------------------------------------
@@ -51,6 +52,7 @@ Sunstone
 - **Display quotas in Clod View**, the end-user can see his quotas in real time.
 - **Turkish language (TR)**, now in Sunstone.
 - **New global configurations**. To be able to customize Sunstone even more, :ref:`there are new features in the yamls <suns_views_custom>`.
+- **Disk resize in the cloud view**. Now you can resize a disk as a user cloud.
 
 |sched_actions|
 
