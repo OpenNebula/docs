@@ -290,7 +290,7 @@ From Sunstone:
 
 |sunstone_template_instantiate_as_uid_gid|
 
-From the CLI: the ``onetemplate instantiate`` command accepts an options ``--as_uid`` and ``--as_gid`` with the User ID or Group ID, to define which will be the owner or group for the VM.
+From the CLI: the ``onetemplate instantiate`` command accepts option ``--as_uid`` and ``--as_gid`` with the User ID or Group ID to define which will be the owner or group for the VM.
 
 .. prompt:: text $ auto
 
