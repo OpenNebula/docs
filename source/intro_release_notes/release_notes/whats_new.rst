@@ -12,6 +12,7 @@ OpenNebula Core
 
 - **Support to set CPU model**: The CPU model can be now set. Available modes are obtained through monitor, and stored in the hosts.
 - **Improved Monitoring**: several synchronization points have been removed from one to improve concurrencry in the monitoring process. Also database connections are now configurable to allow more parallel access to the the database.
+- **Default permission for ACLs**: The uses will can specify the default permission for the automatic ACLs. :ref:`oned.conf <oned_conf>`.
 
 Storage
 --------------------------------------------------------------------------------
