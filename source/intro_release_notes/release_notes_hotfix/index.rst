@@ -1,7 +1,7 @@
 .. _rn_hotfix:
 
 ================================================================================
-Release Notes 5.4.10 Hotfix
+Release Notes 5.4.11 Hotfix
 ================================================================================
 
 .. toctree::
@@ -12,3 +12,4 @@ Release Notes 5.4.10 Hotfix
    Resolved Issues in 5.4.8 <resolved_issues_548>
    Resolved Issues in 5.4.9 <resolved_issues_549>
    Resolved Issues in 5.4.10 <resolved_issues_5410>
+   Resolved Issues in 5.4.11 <resolved_issues_5411>
