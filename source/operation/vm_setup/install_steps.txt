@@ -95,6 +95,3 @@ Windows
 ~~~~~~~
 
 Double-click on the downloaded MSI package icon in the same way you open other documents to install it.
-
-
-
