@@ -8,3 +8,5 @@ A complete list of solved issues for 5.4.11 can be found in the `project develop
 The following issues has been solved in 5.4.11:
 
 - `Groups shouldn't be cached <https://github.com/OpenNebula/one/issues/1920>`__.
+- `System DS migration within the same host removes VM from the host inventory <https://github.com/OpenNebula/one/issues/1797>`__.
+
