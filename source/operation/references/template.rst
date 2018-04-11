@@ -452,6 +452,8 @@ Network Section
 | **MODEL**            | hardware that will emulate this network interface. In KVM you can choose ``virtio`` to select its        | O                  | O                  |
 |                      | specific virtualization IO framework                                                                     |                    |                    |
 +----------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+
+| **FILTER**           | to define a network filtering rule for the interface                                                     | O                  | O                  |
++----------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+
 | **security_groups**  | command separated list of the ids of the security groups to be applied to this interface.                | o                  | \-                 |
 +----------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+
 | **INBOUND_AVG_BW**   | Average bitrate for the interface in kilobytes/second for inbound traffic.                               | O                  | O                  |
