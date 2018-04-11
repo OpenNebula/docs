@@ -82,5 +82,5 @@ Multiple VLANs (VLAN trunking)
 
 VLAN trunking is also supported by adding the following tag to the ``NIC`` element in the VM template or to the virtual network template:
 
--  ``VLAN_TAGGED_ID``: Specify a range of VLANs to tag, for example: ``1,10,30,32``.
+-  ``VLAN_TAGGED_ID``: Specify a range of VLANs to tag, for example: ``1,10,30,32,100-200``.
 
