@@ -12,3 +12,4 @@ The following issues has been solved in 5.4.11:
 - `Error in group create/update with DEFAULT_IMAGE_PERSISTENT_NEW and DEFAULT_IMAGE_PERSISTENT attributes <https://github.com/OpenNebula/one/issues/1328>`__.
 - `UpdateConf should not parse FILES_DS attribute <https://github.com/OpenNebula/one/issues/1952>`__.
 - `ActionManager threads counter not decreased <https://github.com/OpenNebula/one/issues/1941>`__.
+- `Multiple DISK attributes into VM Template section <https://github.com/OpenNebula/one/issues/1947>`__.
