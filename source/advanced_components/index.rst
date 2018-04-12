@@ -14,4 +14,4 @@ Advanced Components Guide
    Application Insight <application_insight/index>
    Public Cloud <public_cloud/index>
    MarketPlace <marketplace/index>
-   Applications Containerization <applications_ontainerization/index>
+   Applications Containerization <applications_containerization/index>
