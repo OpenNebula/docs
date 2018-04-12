@@ -1,10 +1,10 @@
-.. _docker_machine_plugin_references:
+.. _docker_machine_driver_reference:
 
 ====================================
-References
+Docker Machine Driver Reference
 ====================================
 
-Available Driver Options
+Driver Options
 ================================================================================
 
 - ``--opennebula-user``: User identifier to authenticate with
@@ -69,7 +69,7 @@ Available Driver Options
 | `--opennebula-disable-vnc`   | Enabled                     | `ONE_DISABLE_VNC`      |
 +------------------------------+-----------------------------+------------------------+
 
-Using a VM template
+Using Templates
 ================================================================================
 
 Using a VM template means specifying either `--opennebula-template-id` or `--opennebula-template-name`. If you specify either of these two options, the following table applies, indicating what incompatible and what overrideable parameters are available:
