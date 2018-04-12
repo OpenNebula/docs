@@ -113,6 +113,19 @@ Cloud Bursting
 | one-to-one| 1.0.0   | :ref:`OpenNebula Driver <oneg>` |
 +-----------+---------+---------------------------------+
 
+Application Containerization
+--------------------------------------------------------------------------------
+
++------------------------------+--------------------------------------------+
+|             Component        |                  Version                   |
++==============================+============================================+
+| Docker                       | 18.03.0-ce                                 |
++------------------------------+--------------------------------------------+
+| Docker Machine               | 0.13.0                                     |
++------------------------------+--------------------------------------------+
+| Appliance OS                 | Ubuntu 16.04                               |
++------------------------------+--------------------------------------------+
+
 .. note:: Generally for all Linux platforms, it is worth noting that gems should be installed with the :ref:`install_gems <ruby_runtime>`, avoiding the platform's package version.
 
 Frontend Platform Notes
