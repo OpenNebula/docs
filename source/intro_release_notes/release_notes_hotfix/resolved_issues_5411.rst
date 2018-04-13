@@ -15,3 +15,4 @@ The following issues has been solved in 5.4.11:
 - `ActionManager threads counter not decreased <https://github.com/OpenNebula/one/issues/1941>`__.
 - `Multiple DISK attributes into VM Template section <https://github.com/OpenNebula/one/issues/1947>`__.
 - `System DS migration within the same host removes VM from the host inventory <https://github.com/OpenNebula/one/issues/1797>`__.
+- `Support VLAN ID range for VLAN_TAGGED_ID <https://github.com/OpenNebula/one/issues/1865>`__.
