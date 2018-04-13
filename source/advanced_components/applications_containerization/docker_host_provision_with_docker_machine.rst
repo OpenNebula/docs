@@ -65,7 +65,7 @@ This command create a VM in OpenNebula using $IMG_ID as image, $NETWORK_NAME as 
 
 Make sure the network you pass throught $NETWORK_NAME allow Docker Machine to connect to the VM.
 
-You can use many other options for create a VM using the OpenNebula Docker Machine driver they all are available at :ref:`Docker Machine Driver References <docker_machine_driver_reference>` section.
+You can use many other options for create a VM, like create a VM from a template, you can see all the available options at :ref:`Docker Machine Driver References <docker_machine_driver_reference>` section.
 
 Step 5 - Interact with your Docker Engine
 ================================================================================
