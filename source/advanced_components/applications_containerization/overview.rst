@@ -17,7 +17,7 @@ OpenNebula also provides a driver for Docker Machine, which allows the remote pr
 How Should I Read This Chapter
 ================================================================================
 
-We recommend you start reading with the guide about how to use the :ref:`Opennbula Docker application<opennebula_docker_application>` with the OpenNebula CLI and GUI, and continue with the :ref:`Docker Machine guide<docker_host_provision_with_docker_machine>` only if you are interested in remote management of Docker hosts and clusters from your remote Docker client.
+We recommend you start reading with the guide about how to use the :ref:`OpenNebula Docker application<opennebula_docker_application>` with the OpenNebula CLI and GUI, and continue with the :ref:`Docker Machine guide<docker_host_provision_with_docker_machine>` only if you are interested in remote management of Docker hosts and clusters from your remote Docker client.
 
 After reading this chapter you can continue configuring more :ref:`Advanced Components <advanced_components>`.
 
