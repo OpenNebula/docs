@@ -21,7 +21,7 @@ To follow this guide, you will need the following (see the Platform Notes to see
 Step 1 - Install Docker Machine OpenNebula Driver
 ================================================================================
 
-In order to install the Docker Machine OpenNebula Driver just need to install at your fron-end node the package `opennebula-docker`.
+In order to install the Docker Machine OpenNebula Driver just need to install at your front-end node the package `opennebula-docker`.
 
 If you want to use docker in other host just copy the `docker-machine-driver-opennebula` file from the /usr/share/docker_machine path of your frontend.
 
