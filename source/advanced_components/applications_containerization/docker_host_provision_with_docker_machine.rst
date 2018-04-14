@@ -17,6 +17,8 @@ To follow this guide, you will need the following (see the Platform Notes to see
     * A client computer with Docker CLI (the daemon is not required) and Docker Machine installed.
     * Your OpenNebula Cloud must be accessible from your client computer.
     * The OpenNebula Docker application should have been imported into the OpenNebula cloud.
+   
+This guide shows how to specify in the command line all the required attributes to create the Docker Engines. As an alternative you can specify a template registered in OpenNebula, in this case you can see all the available options at :ref:`Docker Machine Driver References <docker_machine_driver_reference>` section.
 
 Step 1 - Install Docker Machine OpenNebula Driver
 ================================================================================
