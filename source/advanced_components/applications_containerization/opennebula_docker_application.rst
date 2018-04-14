@@ -9,7 +9,7 @@ This Guide shows how to use the OpenNebula Docker Application to create and run 
 OpenNebula Docker Appliance
 =========================================================
 
-The Docker Appliance available on the OpenNebula marketplace brings a Docker Engine pre-installed and the contextualization packages configured to create Docker Hosts in a single click. 
+The Docker Appliance available on the OpenNebula marketplace brings a Docker Engine pre-installed and the contextualization packages configured to create Docker Hosts in a single click. Alternatively you can prepare your own image, using your favourite distribution, as long as it’s supported by Docker Machine and it has the latest OpenNebula Contextualization packages.
 
 The Docker Appliance is based on Ubuntu and have installed Docker, you can found more information about ths specific versions at the :ref:`platform notes<uspng>`. In order to access the appliance once it's have been deployed it's necessary to update the template with the network and the password for the root user or the SSH key.
 
