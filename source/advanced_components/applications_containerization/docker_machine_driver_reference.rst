@@ -94,7 +94,7 @@ Using a VM template means specifying either `--opennebula-template-id` or `--ope
 
 If you try to specify an attribute in the *incompatible* list, along with either `--opennebula-template-id` or `--opennebula-template-name`, then `docker-machine` will raise an error. If you specify an attribute in the *override* list, it will use that value instead of what is specified in the template.
 
-The template must have a reference to an image, however, referencing a network is entirely option. It the template has a network, the `--opennebula-network-*` options will override it, using the one in the template by default; if the template doesn't reference any networks, the `docker-machine` user **must** specify one.
+The template must have a reference to an image, however, referencing a network is entirely optional. It the template has a network, the `--opennebula-network-*` options will override it, using the one in the template by default; if the template doesn't reference any networks, the `docker-machine` user **must** specify one.
 
 .. prompt:: bash $ auto
     
