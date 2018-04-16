@@ -23,9 +23,10 @@ This guide shows how to specify in the command line all the required attributes 
 Step 1 - Install Docker Machine OpenNebula Driver
 ================================================================================
 
-In order to install the Docker Machine OpenNebula Driver just need to install at your front-end node the package `opennebula-docker`.
+In order to install the Docker Machine OpenNebula Driver you just need to install at your host the package `opennebula-docker` available `here <https://opennebula.org/software/>`__. 
 
-If you want to use docker in other host just copy the `docker-machine-driver-opennebula` file from the /usr/share/docker_machine path of your frontend.
+In case you already have it installed in other host (like the OpenNebula frontend) you can also copy the `docker-machine-driver-opennebula` file from the /usr/share/docker_machine path of the other host into a folder accessible for the path in your host.
+
 
 Step 2 - Configure Client Machine to Access the OpenNebula Cloud
 ================================================================================
@@ -48,12 +49,6 @@ For vCenter hypervisor you will need to follow this steps:
     * Create a template in vCenter with the desired capacity (CPU, Memory), a new hard disk (select the desired capacity) and new CD/DVD Drive (Datastore    ISO File) with the ISO of the selected OS. Make sure you check Connect At Power On. Do not specify a network.
     * In OpenNebula you will need to import the template and the desired networks. Make sure you make the network type ipv4.
 
-Once you have fulfilled these pre-requisites you can now launch your docker-engine:
-
-    .. prompt:: bash # auto
-
-        # docker-machine create --driver opennebula --opennebula-template-id $TEMPLATE_ID --opennebula-network-id $NETWORK_ID $VM_NAME
-
 Step 4 - Start your First Docker Host
 ================================================================================
 
@@ -67,7 +62,7 @@ This command create a VM in OpenNebula using $IMG_ID as image, $NETWORK_NAME as 
 
 Make sure the network you pass throught $NETWORK_NAME allow Docker Machine to connect to the VM.
 
-You can use many other options for create a VM, like create a VM from a template, you can see all the available options at :ref:`Docker Machine Driver References <docker_machine_driver_reference>` section.
+If you want to use templates, which is neccesary for vCenter you can take a look at the "Using Templates" section of :ref:`Docker Machine Driver References <docker_machine_driver_reference>`.
 
 Step 5 - Interact with your Docker Engine
 ================================================================================
@@ -168,3 +163,31 @@ Activate the host, you can connect your Docker client to the remote host for run
 
 
 You can see how an "*" appears at the active field.
+
+Containers Orchestration Platforms
+================================================================================
+
+Swarm (old)
+--------------------------------------------------------------------------------
+
+(Tested, working) (external) docker swarm is covered on the OpenNebula blog: https://opennebula.org/docker-swarm-with-opennebula/
+
+This has been tested
+
+Swarmkit / Swarm mode
+--------------------------------------------------------------------------------
+(Tested, working) Please work from: https://docs.docker.com/get-started/part4/#create-a-cluster If you have discovery issues, please check your multicast support is OK.
+
+As long as your VM template includes only one network, you should not even need to give --advertise-addr or --listen-addr
+
+rancher
+--------------------------------------------------------------------------------
+(Tested, working) https://opennebula.org/managing-docker-hosts-deployments-with-rancher-and-opennebula/
+
+k8s
+--------------------------------------------------------------------------------
+Unfortunately there is no documentation for this, yet. It is not known if it has been tested.
+
+Autoscaling via OneFlow
+--------------------------------------------------------------------------------
+(Tested, working) A documentation link is missing.
