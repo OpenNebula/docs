@@ -94,4 +94,42 @@ Using a VM template means specifying either `--opennebula-template-id` or `--ope
 
 If you try to specify an attribute in the *incompatible* list, along with either `--opennebula-template-id` or `--opennebula-template-name`, then `docker-machine` will raise an error. If you specify an attribute in the *override* list, it will use that value instead of what is specified in the template.
 
-The template must have a reference to an image, however, referencing a network is entirely option. It the template has a network, the `--opennebula-network-*` options will override it, using the one in the template by default; if the template doesn't reference any networks, the `docker-machine` user **must** specify one.
+The template must have a reference to an image, however, referencing a network is entirely optional. It the template has a network, the `--opennebula-network-*` options will override it, using the one in the template by default; if the template doesn't reference any networks, the `docker-machine` user **must** specify one.
+
+.. prompt:: bash $ auto
+    
+    # A template that references a network doesn't require any --opennebula-network-* attribute:
+    $ docker-machine create --driver opennebula --opennebula-template-id 10 mydockerengine
+
+    # However it can be overridden:
+    $ docker-machine create --driver opennebula --opennebula-template-id 10 --opennebula-network-id 2 mydockerengine
+
+This is what the registered template in OpenNebula may look like:
+
+.. code-block:: bash
+
+    NAME=b2d
+
+    CPU="1"
+    MEMORY="512"
+
+    # The OS Disl
+    DISK=[
+    IMAGE="b2d" ]
+
+    # The volatile disk (only for Boot2Docker)
+    DISK=[
+    FORMAT="raw",
+    SIZE="1024",
+    TYPE="fs" ]
+
+    # The network can be specified in the template or as a parameter
+    NIC=[
+    NETWORK="private" ]
+
+    # VNC
+    GRAPHICS=[
+    LISTEN="0.0.0.0",
+    TYPE="vnc" ]
+
+Note that if there is a CONTEXT section in the template, it will be discarded and replaced with one by docker-machine.
