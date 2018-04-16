@@ -31,7 +31,26 @@ Requirements:
 Considerations & Limitations
 ================================================================================
 
-OpenNebula Sunstone supports Chrome, Firefox and Internet Explorer 11. Other browsers are not supported and may not work well.
+Support Browsers
+--------------------------------------------------------------------------------
+
++---------------------------+-----------------------------------------------------------------------------------------------+
+|          Browser          |                                            Version                                            |
++===========================+===============================================================================================+
+| Chrome                    | 61.0+                                                                                         |
++---------------------------+-----------------------------------------------------------------------------------------------+
+| Firefox                   | 59.0+                                                                                         |
++---------------------------+-----------------------------------------------------------------------------------------------+
+| IE                        | 11+                                                                                           |
++---------------------------+-----------------------------------------------------------------------------------------------+
+
+
+.. note::
+
+    For Windows desktops using **Chrome** or **Firefox** you should disable the option ``touch-events`` of your browser.
+
+    - **Chrome**: chrome://flags -> #touch-events: disabled.
+    - **Firefox**: about:config -> dom.w3c_touch_events: disabled.
 
 .. note:: Internet Explorer is **not** supported with the Compatibility Mode enabled, since it emulates IE7 which is not supported.
 
