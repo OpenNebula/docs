@@ -167,7 +167,7 @@ You can see how an "*" appears at the active field.
 Containers Orchestration Platforms
 ================================================================================
 
-Swarm (old)
+Swarm
 --------------------------------------------------------------------------------
 
 (Tested, working) (external) docker swarm is covered on the OpenNebula blog: https://opennebula.org/docker-swarm-with-opennebula/
@@ -180,11 +180,11 @@ Swarmkit / Swarm mode
 
 As long as your VM template includes only one network, you should not even need to give --advertise-addr or --listen-addr
 
-rancher
+Rancher
 --------------------------------------------------------------------------------
 (Tested, working) https://opennebula.org/managing-docker-hosts-deployments-with-rancher-and-opennebula/
 
-k8s
+Kubernetes
 --------------------------------------------------------------------------------
 Unfortunately there is no documentation for this, yet. It is not known if it has been tested.
 
