@@ -17,3 +17,4 @@ The following issues has been solved in 5.4.11:
 - `System DS migration within the same host removes VM from the host inventory <https://github.com/OpenNebula/one/issues/1797>`__.
 - `Support VLAN ID range for VLAN_TAGGED_ID <https://github.com/OpenNebula/one/issues/1865>`__.
 - `AR Size change in reservations should be disabled in Sunstone <https://github.com/OpenNebula/one/issues/1967>`__.
+- `Do not reset resizes and quotas after a recover --recreate <https://github.com/OpenNebula/one/issues/1398>`__.
