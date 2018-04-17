@@ -17,30 +17,32 @@ Defining a Security Group
 
 A Security Group is composed of several Rules. Each Rule is defined with the following attributes:
 
-+---------------+-----------+---------------------------------------------------------------+---------------------------------------------+
-| Attribute     | Type      | Meaning                                                       | Values                                      |
-+===============+===========+===============================================================+=============================================+
-| **PROTOCOL**  | Mandatory | Defines the protocol of the rule                              | ALL, TCP, UDP, ICMP, IPSEC                  |
-+---------------+-----------+---------------------------------------------------------------+---------------------------------------------+
-| **RULE_TYPE** | Mandatory | Defines the direction of the rule                             | INBOUND, OUTBOUND                           |
-+---------------+-----------+---------------------------------------------------------------+---------------------------------------------+
-| **IP**        | Optional  | If the rule only applies to a specific net. This is the first | A valid IP                                  |
-|               |           | **IP** of the consecutive set of **IPs**. Must be used with   |                                             |
-|               |           | **SIZE**.                                                     |                                             |
-+---------------+-----------+---------------------------------------------------------------+---------------------------------------------+
-| **SIZE**      | Optional  | If the rule only applies to a net. The number of total        | An integer >= 1                             |
-|               |           | consecutive IPs of the network. Use always with **IP**.       |                                             |
-+---------------+-----------+---------------------------------------------------------------+---------------------------------------------+
-| **RANGE**     | Optional  | A Port Range to filter specific ports. Only works with        | (iptables syntax) multiple ports or port    |
-|               |           | **TCP** and **UDP**.                                          | ranges are separated using a comma, and a   |
-|               |           |                                                               | port range is specified using a colon.      |
-|               |           |                                                               | Example: ``22,53,80:90,110,1024:65535``     |
-+---------------+-----------+---------------------------------------------------------------+---------------------------------------------+
-| **ICMP_TYPE** | Optional  | Specific ICMP type of the rule. If a type has multiple codes, | 0,3,4,5,8,9,10,11,12,13,14,17,18            |
-|               |           | it includes all the codes within. This can only be used with  |                                             |
-|               |           | **ICMP**. If omitted the rule will affect the whole **ICMP**  |                                             |
-|               |           | protocol.                                                     |                                             |
-+---------------+-----------+---------------------------------------------------------------+---------------------------------------------+
++----------------+-----------+---------------------------------------------------------------+---------------------------------------------+
+| Attribute      | Type      | Meaning                                                       | Values                                      |
++================+===========+===============================================================+=============================================+
+| **PROTOCOL**   | Mandatory | Defines the protocol of the rule                              | ALL, TCP, UDP, ICMP, IPSEC                  |
++----------------+-----------+---------------------------------------------------------------+---------------------------------------------+
+| **RULE_TYPE**  | Mandatory | Defines the direction of the rule                             | INBOUND, OUTBOUND                           |
++----------------+-----------+---------------------------------------------------------------+---------------------------------------------+
+| **IP**         | Optional  | If the rule only applies to a specific net. This is the first | A valid IP                                  |
+|                |           | **IP** of the consecutive set of **IPs**. Must be used with   |                                             |
+|                |           | **SIZE**.                                                     |                                             |
++----------------+-----------+---------------------------------------------------------------+---------------------------------------------+
+| **SIZE**       | Optional  | If the rule only applies to a net. The number of total        | An integer >= 1                             |
+|                |           | consecutive IPs of the network. Use always with **IP**.       |                                             |
++----------------+-----------+---------------------------------------------------------------+---------------------------------------------+
+| **RANGE**      | Optional  | A Port Range to filter specific ports. Only works with        | (iptables syntax) multiple ports or port    |
+|                |           | **TCP** and **UDP**.                                          | ranges are separated using a comma, and a   |
+|                |           |                                                               | port range is specified using a colon.      |
+|                |           |                                                               | Example: ``22,53,80:90,110,1024:65535``     |
++----------------+-----------+---------------------------------------------------------------+---------------------------------------------+
+| **ICMP_TYPE**  | Optional  | Specific ICMP type of the rule. If a type has multiple codes, | 0,3,4,5,8,9,10,11,12,13,14,17,18            |
+|                |           | it includes all the codes within. This can only be used with  |                                             |
+|                |           | **ICMP**. If omitted the rule will affect the whole **ICMP**  |                                             |
+|                |           | protocol.                                                     |                                             |
++----------------+-----------+---------------------------------------------------------------+---------------------------------------------+
+| **NETWORK_ID** | Optional  | Specify a network ID to which this Security Group will apply  | A valid networkd ID                         |
++----------------+-----------+---------------------------------------------------------------+---------------------------------------------+
 
 To create a Security Group, use the Sunstone web interface, or create a template file following this example:
 
@@ -151,5 +153,3 @@ If the update process needs to be reset, i.e. apply again the rules, you can use
 .. |sg_vnet_assign| image:: /images/sg_vnet_assign.png
 .. |sg_ar_assign| image:: /images/sg_ar_assign.png
 .. |sg_vm_view| image:: /images/sg_vm_view.png
-
-
