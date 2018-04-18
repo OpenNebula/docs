@@ -18,3 +18,6 @@ The following issues has been solved in 5.4.11:
 - `Support VLAN ID range for VLAN_TAGGED_ID <https://github.com/OpenNebula/one/issues/1865>`__.
 - `AR Size change in reservations should be disabled in Sunstone <https://github.com/OpenNebula/one/issues/1967>`__.
 - `Changes in VM Template not saved during update <https://github.com/OpenNebula/one/issues/1939>`__.
+- `Disk SIZE is not a valid integer <https://github.com/OpenNebula/one/issues/1975>`__.
+- `Rollback with SELF datastores does not restore quotas <https://github.com/OpenNebula/one/issues/1985>`__.
+- `Do not reset resizes and quotas after a recover --recreate <https://github.com/OpenNebula/one/issues/1398>`__.
