@@ -21,3 +21,4 @@ The following issues has been solved in 5.4.11:
 - `Disk SIZE is not a valid integer <https://github.com/OpenNebula/one/issues/1975>`__.
 - `Rollback with SELF datastores does not restore quotas <https://github.com/OpenNebula/one/issues/1985>`__.
 - `Do not reset resizes and quotas after a recover --recreate <https://github.com/OpenNebula/one/issues/1398>`__.
+- `Memory overcommitment doesn't support float values <https://github.com/OpenNebula/one/issues/1989>`__.
