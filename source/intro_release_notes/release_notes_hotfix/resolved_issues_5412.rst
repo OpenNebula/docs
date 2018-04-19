@@ -1,0 +1,10 @@
+.. _resolved_issues_5412:
+
+Resolved Issues in 5.4.12
+--------------------------------------------------------------------------------
+
+A complete list of solved issues for 5.4.12 can be found in the `project development portal <https://github.com/OpenNebula/one/milestone/14?closed=1>`__ TODO
+
+The following issues has been solved in 5.4.12:
+
+- `Issue text <https://github.com/OpenNebula/one/issues/XXX>`__.
