@@ -329,6 +329,8 @@ The Raft algorithm can be tuned by several parameters in the configuration file 
 +-----------------------------------------------------------------------------------------------------------------------------------------------------+
 | Raft: Algorithm Attributes                                                                                                                          |
 +============================+========================================================================================================================+
+| ``LIMIT_PURGE``            | Number of DB log records that will be deleted on each purge                                                            |
++----------------------------+------------------------------------------------------------------------------------------------------------------------+
 | ``LOG_RETENTION``          | Number of DB log records kept, it determines the synchronization window across servers and extra storage space needed. |
 +----------------------------+------------------------------------------------------------------------------------------------------------------------+
 | ``LOG_PURGE_TIMEOUT``      | How often applied records are purged according the log retention value. (in seconds)                                   |
