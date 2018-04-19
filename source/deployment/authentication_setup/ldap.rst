@@ -11,7 +11,7 @@ Prerequisites
 
 .. warning:: This Add-on requires the **'net/ldap'** ruby library provided by the 'net-ldap' gem.
 
-This Add-on will not install any Ldap server or configure it in any way. It will not create, delete or modify any entry in the Ldap server it connects to. The only requirement is the ability to connect to an already running Ldap server and being able to perform a successful **ldapbind** operation and have a user able to perform searches of users, therefore no special attributes or values are required in the LDIF entry of the user authenticating.
+This Add-on will not install any LDAP server or configure it in any way. It will not create, delete or modify any entry in the LDAP server it connects to. The only requirement is the ability to connect to an already running LDAP server and being able to perform a successful **ldapbind** operation and have a user able to perform searches of users, therefore no special attributes or values are required in the LDIF entry of the user authenticating.
 
 Configuration
 =============
@@ -33,6 +33,9 @@ Configuration file for auth module is located at ``/etc/one/auth/ldap_auth.conf`
         # Ldap server
         :host: localhost
         :port: 389
+
+        # Connection and authentication timeout
+        #:timeout: 15
 
         # Uncomment this line for tls connections
         #:encryption: :simple_tls
@@ -86,16 +89,43 @@ Configuration file for auth module is located at ``/etc/one/auth/ldap_auth.conf`
      
      
     # List the order the servers are queried
+    #
+    # :order is defined as a list of server names and/or nested lists
+    # of server names (representing the availability group). The servers
+    # in the main list are consulted in the order they are written until
+    # the authentication succeeds. In the nested server lists (avail.
+    # groups), user is authenticated only against the first online server.
+    # If user is passed/refused by the server in the availability group,
+    # no other server is consulted from the same group, but
+    # the authentication process continues with the next server/group in
+    # the main list.
+    #
+    # Examples:
+    #
+    # 1) simple list
+    # :order:
+    #     - server1
+    #     - server2
+    #     - server3
+    #
+    # 2) list with availability group
+    # :order:
+    #     - server1
+    #     - ['server2', 'server3', 'server4']    # availability group
+    #     - server5
+    #
     :order:
         - server 1
         #- server 2
 
-The structure is a hash where any key different to ``:order`` will contain the configuration of one ldap server we want to query. The special key ``:order`` holds an array with the order we want to query the configured servers. Any server not listed in ``:order`` wont be queried.
+The structure is a hash where any key different to ``:order`` will contain the configuration of one LDAP server we want to query. The special key ``:order`` holds an array with the order we want to query the configured servers.
+
+.. note:: Items of the ``:order`` are the server names or nested arrays of server names representing the **availability group**. The items in the ``:order`` are processed one by one until the user is successfully authenticated, or the end of the list is reached. Inside the availability group, only the very first server which can be successfully connected is queried. Any server not listed in ``:order`` won't be queried.
 
 +-----------------------+-------------------------------------------------+
 |        VARIABLE       |                   DESCRIPTION                   |
 +=======================+=================================================+
-| ``:user``             | Name of the user that can query ldap. Do not    |
+| ``:user``             | Name of the user that can query LDAP. Do not    |
 |                       | set it if you can perform queries anonymously   |
 +-----------------------+-------------------------------------------------+
 | ``:password``         | Password for the user defined in ``:user``.     |
@@ -106,15 +136,17 @@ The structure is a hash where any key different to ``:order`` will contain the c
 | ``:encryption``       | Can be set to ``:simple_tls`` if SSL connection |
 |                       | is needed                                       |
 +-----------------------+-------------------------------------------------+
-| ``:host``             | Host name of the ldap server                    |
+| ``:host``             | Host name of the LDAP server                    |
 +-----------------------+-------------------------------------------------+
-| ``:port``             | Port of the ldap server                         |
+| ``:port``             | Port of the LDAP server                         |
++-----------------------+-------------------------------------------------+
+| ``:timeout``          | Connection and authentication timeout           |
 +-----------------------+-------------------------------------------------+
 | ``:base``             | Base leaf where to perform user searches        |
 +-----------------------+-------------------------------------------------+
 | ``:group``            | If set the users need to belong to this group   |
 +-----------------------+-------------------------------------------------+
-| ``:user_field``       | Field in ldap that holds the user name          |
+| ``:user_field``       | Field in LDAP that holds the user name          |
 +-----------------------+-------------------------------------------------+
 | ``:mapping_generate`` | Generate automatically a mapping file. It can   |
 |                       | be disabled in case it needs to be done         |
@@ -136,7 +168,7 @@ The structure is a hash where any key different to ``:order`` will contain the c
 |                       | to a mapped group                               |
 +-----------------------+-------------------------------------------------+
 | ``:rfc2307bis:``      | Set to true when using Active Directory, false  |
-|                       | when using ldap. Make sure you configure        |
+|                       | when using LDAP. Make sure you configure        |
 |                       | ``user_group_field`` and ``group_field``        |
 +-----------------------+-------------------------------------------------+
 
@@ -162,7 +194,7 @@ where
 -  ``<user_dn>`` the DN of the user in the LDAP service
 -  ``ldap_password`` is the password of the user in the LDAP service
 
-Alternatively a user can generate an authentication token using the ``oneuser login`` command, so there is no need to keep the ldap password in a plain file. Simply input the ldap_password when requested. More information on the management of login tokens and ``$ONE_AUTH`` file can be found in :ref:`Managing Users Guide<manage_users_managing_users>`.
+Alternatively a user can generate an authentication token using the ``oneuser login`` command, so there is no need to keep the LDAP password in a plain file. Simply input the ldap_password when requested. More information on the management of login tokens and ``$ONE_AUTH`` file can be found in :ref:`Managing Users Guide<manage_users_managing_users>`.
 
 .. _ldap_dn_with_special_characters:
 
@@ -209,7 +241,7 @@ You can make new users belong to an specific group or groups. To do this a mappi
 
     GROUP_DN="CN=technicians,CN=Groups,DC=example,DC=com"
 
-And in the ldap configuration file we set the ``:mapping_key`` to ``GROUP_DN``. This tells the driver to look for the group DN in that template parameter. This mapping expires the number of seconds specified by ``:mapping_timeout``. This is done so the authentication is not continually querying OpenNebula.
+And in the LDAP configuration file we set the ``:mapping_key`` to ``GROUP_DN``. This tells the driver to look for the group DN in that template parameter. This mapping expires the number of seconds specified by ``:mapping_timeout``. This is done so the authentication is not continually querying OpenNebula.
 
 You can also disable the automatic generation of this file and do the mapping manually. The mapping file is in YAML format and contains a hash where the key is the LDAP's group DN and the value is the ID of the OpenNebula group. For example:
 
