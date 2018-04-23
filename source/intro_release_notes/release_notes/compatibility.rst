@@ -15,6 +15,15 @@ To consider only if upgrading from OpenNebula 5.x.x
 OpenNebula Administrators
 ================================================================================
 
+New behavior of empty attributes
+--------------------------------------------------------------------------------
+
+.. code-block:: yaml
+
+  ATTR = []
+
+Now empty attributes are just ignored or removed when merged. In prior versions produce a parse error or the old value was maintained, so it was impossible to remove attributes from Sunstone.
+
 OpenNebula Daemon
 --------------------------------------------------------------------------------
 
