@@ -17,6 +17,32 @@ If you want to install it from your package manager, visit the `software menu <h
 * **openssl** development libraries (>= 0.9.8)
 * **ruby** interpreter (>= 1.8.7)
 
+Ubuntu 18.04
+================================================================================
+
+* **bash-completion**
+* **bison**
+* **debhelper (>= 7.0.50~)**
+* **default-jdk**
+* **flex**
+* **javahelper (>= 0.32)**
+* **libmysql++-dev**
+* **libsqlite3-dev**
+* **libssl-dev**
+* **libsystemd-dev**
+* **libws-commons-util-java**
+* **libxml2-dev**
+* **libxmlrpc3-client-java**
+* **libxmlrpc3-common-java**
+* **libxslt1-dev**
+* **libcurl4-openssl-dev**
+* **libcurl4**
+* **ruby**
+* **scons**
+* **libxmlrpc-c++8-dev**
+* **golang-1.9-go**
+* **dep**
+
 Ubuntu 16.04
 ================================================================================
 
@@ -66,7 +92,7 @@ Ubuntu 14.04
 * **golang-1.9-go**
 * **dep**
 
-Debian 8
+Debian 8, 9
 ================================================================================
 
 * **bison**
