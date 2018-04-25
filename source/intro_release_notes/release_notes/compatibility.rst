@@ -15,22 +15,24 @@ To consider only if upgrading from OpenNebula 5.x.x
 OpenNebula Administrators
 ================================================================================
 
-New behavior of empty attributes
+New behavior of attributes
 --------------------------------------------------------------------------------
 
-.. code-block:: yaml
+  * Now empty attributes are just ignored or removed when merged. In prior versions produce a parse error or the old value was maintained, so it was impossible to remove attributes from Sunstone.
 
-  ATTR = []
+  .. code-block:: yaml
 
-Now empty attributes are just ignored or removed when merged. In prior versions produce a parse error or the old value was maintained, so it was impossible to remove attributes from Sunstone.
+    ATTR = []
+    
+  * When creating an image DEFAUL_IMAGE_PERSISTENT_NEW can be overrriden by the PERSISTENT value of the new image. Sunstone and CLI provides a way to set this value to overrride the user/group default.
+
+
 
 Ruby OCA Update function
 --------------------------------------------------------------------------------
 
 The behavior of resource ``update`` has changed. If the new template is **nil**, the function will return a XMLRPC error.
 
-OpenNebula Daemon
---------------------------------------------------------------------------------
 
 Remote scripts configuration
 --------------------------------------------------------------------------------
