@@ -24,6 +24,11 @@ New behavior of empty attributes
 
 Now empty attributes are just ignored or removed when merged. In prior versions produce a parse error or the old value was maintained, so it was impossible to remove attributes from Sunstone.
 
+Ruby OCA Update function
+--------------------------------------------------------------------------------
+
+The behavior of resource ``update`` has changed. If the new template is **nil**, the function will return a XMLRPC error.
+
 OpenNebula Daemon
 --------------------------------------------------------------------------------
 
