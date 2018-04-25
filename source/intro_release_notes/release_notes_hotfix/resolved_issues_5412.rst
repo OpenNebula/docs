@@ -3,8 +3,8 @@
 Resolved Issues in 5.4.12
 --------------------------------------------------------------------------------
 
-A complete list of solved issues for 5.4.12 can be found in the `project development portal <https://github.com/OpenNebula/one/milestone/14?closed=1>`__ TODO
+A complete list of solved issues for 5.4.12 can be found in the `project development portal <https://github.com/OpenNebula/one/milestone/15?closed=1>`__ TODO
 
 The following issues has been solved in 5.4.12:
 
-- `Issue text <https://github.com/OpenNebula/one/issues/XXX>`__.
+- `UpdateConf should not parse FILES_DS attribute <https://github.com/OpenNebula/one/issues/1952>`__.
