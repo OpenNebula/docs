@@ -8,3 +8,4 @@ A complete list of solved issues for 5.4.13 can be found in the `project develop
 The following issues has been solved in 5.4.13:
 
 - `Sunstone reloads the page with a group change of a user <https://github.com/OpenNebula/one/issues/2024>`__.
+- `updateconf adds new port on poweroff machines' <https://github.com/OpenNebula/one/issues/2029>`__.
