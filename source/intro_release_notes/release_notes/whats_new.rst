@@ -14,7 +14,7 @@ OpenNebula Core
 - **Improved Monitoring**: several synchronization points have been removed from one to improve concurrencry in the monitoring process. Also database connections are now configurable to allow more parallel access to the the database.
 - **Default permission for VDC ACLs**: Administrator can specify the default permission for the automatic ACLs created when a resource is added to a VDC. :ref:`oned.conf <oned_conf>`.
 - **Create as uid/gid**: Now users can define which will be the owner or group for a VM when instantiating a VM Template. :ref:`See more information here <instantiate_as_uid_gid>`.
-- **zone show -x**: Now users can view all information of HA Federation with the option `-x`.
+
 
 Storage
 --------------------------------------------------------------------------------
@@ -61,19 +61,22 @@ Sunstone
 - **Turkish language (TR)**, now in Sunstone.
 - **Icons makeover**, Font Awesome has been updated to lastest version!.
 
-
 vCenter
 --------------------------------------------------------------------------------
 
 - **Multiple cluster network support**: now it is possible to import networks belonging to more than 1 cluster with a better management, also you won't see duplicated networks anymore.
 - **vCenter cluster migration**: migrate your vms between vCenter clusters with OpenNebula.
 
+API & CLI
+--------------------------------------------------------------------------------
+- **zone show**: users can view all information of HA servers with the option `-x`. The Zone::info_extended() method exposes this functionality to be used by other tools (only in Ruby OCA).
+
 Log
 --------------------------------------------------------------------------------
+- **API request logs**: Now admins can specify how many characters are used to print each parameter in the oned.log.
 
 - **Lock resources**, the user can lock resources (vms, images or networks) to prevent unintended operations.
 - **Relative actions**, the user can schedule relative actiones.
-- **API request logs**: Now admins can specify how many characters are used to print each parameter in the oned.log.
 
 .. |sunstone_dashboard| image:: /images/sunstone_dashboard.png
 .. |sched_actions| image:: /images/sched_actions.png
