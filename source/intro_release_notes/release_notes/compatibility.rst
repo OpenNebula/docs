@@ -61,6 +61,10 @@ Authentication drivers
 --------------------------------------------------------------------------------
 Authentication drivers now accept parameters only on the standard input as the XML document; all custom authentication drivers need to be modified to follow this way. Check the :ref:`authentication driver <devel-auth>` documentation.
 
+Security Groups
+--------------------------------------------------------------------------------
+From now, when the users want to instantiate a Virtual Machine with a VNet also will check the security group that the VNets and their ARs have.
+
 vCenter
 ================================================================================
 
