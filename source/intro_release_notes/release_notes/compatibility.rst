@@ -26,6 +26,9 @@ New behavior of attributes
 
   * When creating an image DEFAUL_IMAGE_PERSISTENT_NEW can be overrriden by the PERSISTENT value of the new image. Sunstone and CLI provides a way to set this value to overrride the user/group default.
 
+Security Groups
+--------------------------------------------------------------------------------
+When creating a VM, OpenNebula will check access to all the security groups involved in the request. This include security groups explicitly set in the NIC as well as security groups in the VNET and its ARs.
 
 
 Ruby OCA Update function
@@ -60,10 +63,6 @@ Developers and Integrators
 Authentication drivers
 --------------------------------------------------------------------------------
 Authentication drivers now accept parameters only on the standard input as the XML document; all custom authentication drivers need to be modified to follow this way. Check the :ref:`authentication driver <devel-auth>` documentation.
-
-Security Groups
---------------------------------------------------------------------------------
-From now on, when instantiating a Virtual Machine with a VNet OpenNebula also will check the security group that the VNets and their ARs have.
 
 vCenter
 ================================================================================
