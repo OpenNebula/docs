@@ -63,7 +63,7 @@ Authentication drivers now accept parameters only on the standard input as the X
 
 Security Groups
 --------------------------------------------------------------------------------
-From now, when the users want to instantiate a Virtual Machine with a VNet also will check the security group that the VNets and their ARs have.
+From now on, when instantiating a Virtual Machine with a VNet OpenNebula also will check the security group that the VNets and their ARs have.
 
 vCenter
 ================================================================================
