@@ -23,7 +23,7 @@ New behavior of attributes
   .. code-block:: yaml
 
     ATTR = []
-    
+
   * When creating an image DEFAUL_IMAGE_PERSISTENT_NEW can be overrriden by the PERSISTENT value of the new image. Sunstone and CLI provides a way to set this value to overrride the user/group default.
 
 
@@ -48,6 +48,11 @@ HA
 --------------------------------------------------------------------------------
 
 Raft hook ``vip.sh`` now controls the OpenNebula Flow and Gate services via the service manager commands. Services are started only if they are enabled in the service manager (this would lead to start of the services on boot in the standalone deployment).
+
+Marketplace
+--------------------------------------------------------------------------------
+
+MD5 attribute from marketplace app images will be carried to the OpenNebula image as FROM_APP_MD5 instead of MD5 as previous versions. This change won't be automatically upgraded, so if needed it must be done manually. This change prevents errors exporting these images as the file might be changed (for instance, if it has been made persistent) and hence the MD5 checksum will yield a different result.
 
 Developers and Integrators
 ================================================================================
