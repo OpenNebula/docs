@@ -36,6 +36,8 @@ The following configuration attributes can be adjusted in ``/var/lib/one/remotes
 +==================+==================================================================================+
 | validate_vlan_id | Set to true to check that no other vlans are connected to the bridge             |
 +------------------+----------------------------------------------------------------------------------+
+| keep_empty_bridge| Set to true to preserve bridges with no virtual interfaces left.                 |
++------------------+----------------------------------------------------------------------------------+
 | bridge_conf      | *Hash* Options for ``brctl``                                                     |
 +------------------+----------------------------------------------------------------------------------+
 | ip_link_conf     | *Hash* Arguments passed to ``ip link add``                                       |
