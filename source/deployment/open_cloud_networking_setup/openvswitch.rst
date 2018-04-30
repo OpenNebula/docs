@@ -39,6 +39,8 @@ The following configuration attributes can be adjusted in ``/var/lib/one/remotes
 | arp_cache_poisoning | Enable ARP Cache Poisoning Prevention Rules                                      |
 |                     | (effective only if Virtual Network IP/MAC spoofing filters are enabled).         |
 +---------------------+----------------------------------------------------------------------------------+
+| keep_empty_bridge   | Set to true to preserve bridges with no virtual interfaces left.                 |
++---------------------+----------------------------------------------------------------------------------+
 | ovs_bridge_conf     | *Hash* Options for Open vSwitch bridge creation                                  |
 +---------------------+----------------------------------------------------------------------------------+
 
