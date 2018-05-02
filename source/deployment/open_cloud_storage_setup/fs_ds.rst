@@ -4,7 +4,7 @@
 Filesystem Datastore
 ================================================================================
 
-The Filesystem Datastore lets you store VM images in a file form.  The use of file-based disk images presents several benefits over device backed disks (e.g. easily backup images, or use of shared FS) although it may less performing in some cases.
+The Filesystem Datastore lets you store VM images in a file form.  The use of file-based disk images presents several benefits over device backed disks (e.g. easily backup images, or use of shared FS) although it may not perform as well in some cases.
 
 Usually it is a good idea to have multiple filesystem datastores to:
 
