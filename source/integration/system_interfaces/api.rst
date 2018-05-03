@@ -17,8 +17,10 @@ All xml-rpc responses share a common structure.
 +--------+-------------+-------------------------------------------------+
 | OUT    | Int         | Error code.                                     |
 +--------+-------------+-------------------------------------------------+
+| OUT    | Int         | Response id.                                    |
++--------+-------------+-------------------------------------------------+
 
-The output will always consist of three values. The first and third ones are fixed, but the second one will contain the String error message only in case of failure. If the method is successful, the returned value may be of another Data Type.
+The output will always consist of three first values. The first and third ones are fixed, but the second one will contain the String error message only in case of failure. If the method is successful, the returned value may be of another Data Type.
 
 The Error Code will contain one of the following values:
 
