@@ -8,17 +8,21 @@ This reference documentation describes the xml-rpc methods exposed by OpenNebula
 
 All xml-rpc responses share a common structure.
 
-+--------+-------------+-------------------------------------------------+
-| Type   | Data Type   | Description                                     |
-+========+=============+=================================================+
-| OUT    | Boolean     | True or false whenever is successful or not.    |
-+--------+-------------+-------------------------------------------------+
-| OUT    | String      | If an error occurs this is the error message.   |
-+--------+-------------+-------------------------------------------------+
-| OUT    | Int         | Error code.                                     |
-+--------+-------------+-------------------------------------------------+
++--------+--------------------+-------------------------------------------------+
+| Type   | Data Type          | Description                                     |
++========+====================+=================================================+
+| OUT    | Boolean            | True or false whenever is successful or not.    |
++--------+--------------------+-------------------------------------------------+
+| OUT    | String/Boolean/Int | If an error occurs this is the error message.   |
++--------+--------------------+-------------------------------------------------+
+| OUT    | Int                | Error code.                                     |
++--------+--------------------+-------------------------------------------------+
+| OUT    | Int                | ID of object related to the error (**failure**) |
++--------+--------------------+-------------------------------------------------+
 
-The output will always consist of three values. The first and third ones are fixed, but the second one will contain the String error message only in case of failure. If the method is successful, the returned value may be of another Data Type.
+Depending on the result of the method the fields should be interpreted as follows:
+  * **success**. First value in the response array will be true. The second will contain the result of the operation (see  below for its meaning for each API call). Third value will be SUCCESS (0x0000).
+  * **failure**. First value in the response array will be false, the second value will be a String describing the error, the third value will be the error code; and the forth value the ID of the object related to the operation.
 
 The Error Code will contain one of the following values:
 
