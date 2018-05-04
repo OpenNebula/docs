@@ -22,14 +22,19 @@ New behavior of attributes
 
   .. code-block:: yaml
 
-    ATTR = []
+    ATTR = []Only valid when the total_bytes_sec_max is set.
 
   * When creating an image DEFAUL_IMAGE_PERSISTENT_NEW can be overrriden by the PERSISTENT value of the new image. Sunstone and CLI provides a way to set this value to overrride the user/group default.
 
 Security Groups
 --------------------------------------------------------------------------------
+
 When creating a VM, OpenNebula will check access to all the security groups involved in the request. This include security groups explicitly set in the NIC as well as security groups in the VNET and its ARs.
 
+Precedence of attributes
+--------------------------------------------------------------------------------
+
+We have implemented a new system of preference for the attribute DRIVER, this new priority is DATASTORE - IMAGE - TEMPLATE, with the TEMPLATE being the most preferred place and the DATASTORE the least preferred place.
 
 Ruby OCA Update function
 --------------------------------------------------------------------------------
