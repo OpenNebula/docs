@@ -22,7 +22,7 @@ New behavior of attributes
 
   .. code-block:: yaml
 
-    ATTR = []Only valid when the total_bytes_sec_max is set.
+    ATTR = []
 
   * When creating an image DEFAUL_IMAGE_PERSISTENT_NEW can be overrriden by the PERSISTENT value of the new image. Sunstone and CLI provides a way to set this value to overrride the user/group default.
 
@@ -31,10 +31,12 @@ Security Groups
 
 When creating a VM, OpenNebula will check access to all the security groups involved in the request. This include security groups explicitly set in the NIC as well as security groups in the VNET and its ARs.
 
-Precedence of attributes
+Precedence of Datastore and Image Attributes & Marketplace import 
 --------------------------------------------------------------------------------
 
-We have implemented a new system of preference for the attribute DRIVER, this new priority is DATASTORE - IMAGE - TEMPLATE, with the TEMPLATE being the most preferred place and the DATASTORE the least preferred place.
+The value precedence has been changed to VM Template (DISK) > Image > Datastore for the following attributes: CLONE_TARGET, LN_TARGET, DISK_TYPE & DRIVER.
+
+Also images imported from a Marketplace do not follow the DRIVER attribute of the MarketPlaceApp as it may conflict with that defined in the Datastore.
 
 Ruby OCA Update function
 --------------------------------------------------------------------------------
