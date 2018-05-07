@@ -73,6 +73,9 @@ Available options are:
 +---------------------------+-----------------------------------------------------------------------------------------------+
 | :one\_xmlrpc              | OpenNebula daemon host and port                                                               |
 +---------------------------+-----------------------------------------------------------------------------------------------+
+| :one\_xmlrpc\_timeout     | Configure the timeout (seconds) for XMLRPC calls from sunstone.                               |
+|                           | See :ref:`Shell Environment variables <manage_users>`                                         |
++---------------------------+-----------------------------------------------------------------------------------------------+
 | :host                     | IP address on which the server will listen on. ``0.0.0.0`` by default.                        |
 +---------------------------+-----------------------------------------------------------------------------------------------+
 | :port                     | Port on which the server will listen. ``9869`` by default.                                    |

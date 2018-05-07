@@ -35,6 +35,10 @@ OpenNebula users should have the following environment variables set, you may wa
 
 URL where the OpenNebula daemon is listening. If it is not set, CLI tools will use the default: ``http://localhost:2633/RPC2``. See the ``PORT`` attribute in the :ref:`Daemon configuration file <oned_conf>` for more information.
 
+**ONE_XMLRPC_TIMEOUT**
+
+Lets you to decide the number of seconds before the xmlrpc request for a operation is canceled.
+
 **ONE_AUTH**
 
 Needs to point to **a file containing a valid authentication key**, it can be:

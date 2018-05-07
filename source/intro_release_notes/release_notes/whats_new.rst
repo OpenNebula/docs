@@ -61,6 +61,15 @@ Sunstone
 - **Turkish language (TR)**, now in Sunstone.
 - **Icons makeover**, Font Awesome has been updated to lastest version!.
 
+
+- **Timeout option for xmlrpc calls**, you can add this new option inside :ref:`sunstone-server.conf <sunstone_setup>`, now it's possible to configure the timeout of OpenNebula XMLRPC for all operations from sunstone.
+
+.. code::
+
+    # sets the timeout for xmlrpc calls to 80 seconds
+    #
+    :one_xmlrpc_timeout: 80
+
 vCenter
 --------------------------------------------------------------------------------
 
