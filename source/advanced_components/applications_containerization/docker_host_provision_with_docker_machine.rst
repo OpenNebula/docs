@@ -23,7 +23,7 @@ This guide shows how to specify in the command line all the required attributes 
 Step 1 - Install Docker Machine OpenNebula Driver
 ================================================================================
 
-In order to install the Docker Machine OpenNebula Driver you just need to install the package `opennebula-docker` available `here <https://opennebula.org/software/>`__ in your desktop.
+In order to install the Docker Machine OpenNebula Driver you just need to install the package `docker-machine-opennebula` available `here <https://opennebula.org/software/>`__ in your desktop.
 
 In case you already have it installed in the OpenNebula frontend (or any other host) you can copy instead the `docker-machine-driver-opennebula` file from the /usr/share/docker_machine path of the frontend into any folder in your desktop that is included in your $PATH.
 
