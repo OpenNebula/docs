@@ -621,7 +621,7 @@ The option ``--weekly``, ``--monthly`` and ``--yearly`` need the number of the d
 	- ``--monthly``: days separate with commas between 1 and 31. [0,31]
 	- ``--weekly``: days separate with commas between 0 and 365. [0,365]
 
-The option ``--hourly`` needs a number with the number of hours.
+The option ``--hourly`` needs a number with the number of hours. [0,168] (1 week)
 
 The option ``--end`` can be a number or a date:
 
@@ -661,29 +661,29 @@ These actions can be deleted or edited using the ``onevm update`` command. The t
     $ onevm update 0
 
     SCHED_ACTION=[
-			ACTION="suspend",
-			DAYS="1,5",
-			END_TYPE="1",
-			END_VALUE="5",
-			ID="0",
-			REP="0",
-			TIME="1537653600" ]
-		SCHED_ACTION=[
-			ACTION="resume",
-			DAYS="2,6",
-			END_TYPE="1",
-			END_VALUE="5",
-			ID="1",
-			REP="0",
-			TIME="1537653600" ]
-		SCHED_ACTION=[
-			ACTION="snapshot-create",
-			DAYS="5",
-			END_TYPE="2",
-  		END_VALUE="1545692400",
-			ID="2",
-			REP="3",
-			TIME="1537653600" ]
+        ACTION="suspend",
+        DAYS="1,5",
+        END_TYPE="1",
+        END_VALUE="5",
+        ID="0",
+        REPEAT="0",
+        TIME="1537653600" ]
+	SCHED_ACTION=[
+        ACTION="resume",
+        DAYS="2,6",
+        END_TYPE="1",
+        END_VALUE="5",
+        ID="1",
+        REPEAT="0",
+        TIME="1537653600" ]
+	SCHED_ACTION=[
+        ACTION="snapshot-create",
+        DAYS="5",
+        END_TYPE="2",
+        END_VALUE="1545692400",
+        ID="2",
+        REPEAT="3",
+        TIME="1537653600" ]
 
 |sunstone_schedule_action|
 

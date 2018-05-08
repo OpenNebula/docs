@@ -1136,4 +1136,38 @@ In Sunstone, the ``USER_INPUTS`` can be ordered with the mouse.
 
 |user_inputs|
 
+Schedule actions Section
+================================================================================
+
+The following attributes can use to define puntual or relative actions for the VM.
+
++-------------------+-----------------------------------------------------------------------------------------------------------------------+
+| Attribute         | Description                                                                                                           |
++===================+=======================================================================================================================+
+| **TIME**          | Time in second that you want to start the action.                                                                     |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+
+| **REPEAT**        | Define the relativity of the action [ WEEKLY = 0 , MONTHLY = 1 , YEARLY = 2 , HOURLY = 3 ].                           |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+
+| **DAYS**          | The value for REPEAT attribute and defines the number of the days or hours that the users want execute the action.    |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+
+| **ACTION**        | The action that will be execute.                                                                                      |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+
+| **END_TYPE**      | When the users want end the action [ NEVER = 0 , NUMBER OF REPETITIONS = 1 , DATE = 2 ].                              |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+
+| **END_TYPE**      | The value for END_TYPE attribute, can be a number or a date.                                                          |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+
+
+Example:
+
+.. code::
+
+    SCHED_ACTION=[
+        ACTION="suspend",
+        DAYS="1,5",
+        END_TYPE="1",
+        END_VALUE="5",
+        ID="0",
+        REPEAT="0",
+        TIME="1537653600" ]
+
 .. |user_inputs| image:: /images/sunstone_user_inputs.png
