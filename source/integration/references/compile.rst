@@ -95,6 +95,8 @@ where *<install\_options>* can be one or more of:
 +--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **-h** | prints installer help                                                                                                                                                        |
 +--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **-e** |install Docker Machine plugin                                                                                                                                                 |
++--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 .. note::
 
@@ -166,6 +168,22 @@ Building Sunstone from Source
 
 Please check the :ref:`Sunstone Development guide <sunstone_dev>` for detailed information
 
+Building Docker Machine Plugin from Source
+================================================================================
+
+Requirements
+--------------------------------------------------------------------------------
+
+* **Go >= 1.9**
+* **dep** (https://github.com/golang/dep)
+
+Scons includes an option to build the Docker Machine Plugin using the `docker_machine` option:
+
+.. prompt:: text $ auto
+
+    scons docker_machine=yes
+
+Once you have builded you can install it running the install.sh with the `-e` option.
 
 Configure sudo for oneadmin
 ================================================================================
