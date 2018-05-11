@@ -153,7 +153,7 @@ The OS system is defined with the ``OS`` vector attribute. The following sub-att
 +------------------+--------------------------------------------------------------------+------------------+---------+
 | **BOOT**         | comma separated list of boot devices types, by order of preference | M                | \-      |
 |                  | (first device in the list is the first device used for boot).      |                  |         |
-|                  | Possible values: ``hd``,\ ``fd``,\ ``cdrom`` ,\ ``network``        |                  |         |
+|                  | Possible values: ``disk#``,\ ``nic#``                              |                  |         |
 +------------------+--------------------------------------------------------------------+------------------+---------+
 
 (!!) Use one of KERNEL\_DS or KERNEL (and INITRD or INITRD\_DS).
