@@ -32,13 +32,17 @@ The following configuration attributes can be adjusted in ``/var/lib/one/remotes
 +==================+===========================================================================================+
 | ipset_maxelem    | Maximal number of entries in the IP set (used for the security group rules)               |
 +------------------+-------------------------------------------------------------------------------------------+
+| keep_empty_bridge| Set to true to preserve bridges with no virtual interfaces left.                          |
++------------------+-------------------------------------------------------------------------------------------+
+| bridge_conf      | *Hash* Options for ``brctl``                                                              |
++------------------+-------------------------------------------------------------------------------------------+
 
 .. _bridged_net:
 
 Defining a Bridged Network
 ================================================================================
 
-To create a 802.1Q network include the following information:
+To create a virtual network include the following information:
 
 +-------------+-------------------------------------------------------------------------+-----------+
 | Attribute   | Value                                                                   | Mandatory |
@@ -48,6 +52,8 @@ To create a 802.1Q network include the following information:
 |             | * ``ebtables`` for Bridged with ebtables isolation                      |           |
 +-------------+-------------------------------------------------------------------------+-----------+
 | **BRIDGE**  | Name of the linux bridge in the nodes                                   |  **YES**  |
++-------------+-------------------------------------------------------------------------+-----------+
+| **PHYDEV**  | Name of the physical network device that will be attached to the bridge |    NO     |
 +-------------+-------------------------------------------------------------------------+-----------+
 
 The following example defines Bridged network using the Security Groups mode:
