@@ -31,7 +31,7 @@ Security Groups
 
 When creating a VM, OpenNebula will check access to all the security groups involved in the request. This include security groups explicitly set in the NIC as well as security groups in the VNET and its ARs.
 
-Precedence of Datastore and Image Attributes & Marketplace import 
+Precedence of Datastore and Image Attributes & Marketplace import
 --------------------------------------------------------------------------------
 
 The value precedence has been changed to VM Template (DISK) > Image > Datastore for the following attributes: CLONE_TARGET, LN_TARGET, DISK_TYPE & DRIVER.
@@ -52,7 +52,12 @@ Configuration files from deep inside the remote scripts directory structure ``/v
 Open vSwitch
 --------------------------------------------------------------------------------
 
-The ARP Cache Poisoning prevention rules has been more integrated into the filters logic and now works as another layer of security only if ``FILTER_IP_SPOOFING`` and/or ``FILTER_MAC_SPOOFING`` is enabled for the particular Virtual Network. Support for legacy firewall (``BLACK_PORTS_TCP``, ``BLACK_PORTS_UDP``, ``ICMP``) has been removed. If network is defined with ``PHYDEV``, the bridge is destroyed when the physical interface is the only one left and created again when needed.
+The ARP Cache Poisoning prevention rules has been more integrated into the filters logic and now works as another layer of security only if ``FILTER_IP_SPOOFING`` and/or ``FILTER_MAC_SPOOFING`` is enabled for the particular Virtual Network. Support for legacy firewall (``BLACK_PORTS_TCP``, ``BLACK_PORTS_UDP``, ``ICMP``) has been removed.
+
+Network drivers
+--------------------------------------------------------------------------------
+
+If a virtual network is defined with ``PHYDEV`` parameter, the missing bridge is created on demand and **destroyed when the physical interface is the only one left**. This behavior can be changed globally via option ``keep_empty_bridge`` inside ``/var/lib/one/remotes/etc/vnm/OpenNebulaNetwork.conf``, or per virtual network via ``CONF`` template attribute. Applies to all KVM network drivers (including ``dummy``, ``fw``, and ``ebtables``). If a bridge was initially created outside the OpenNebula with some configuration (assigned IP address), this state can be lost with the default settings.
 
 HA
 --------------------------------------------------------------------------------
