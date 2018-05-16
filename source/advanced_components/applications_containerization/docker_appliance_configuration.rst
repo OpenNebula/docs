@@ -10,7 +10,7 @@ The Docker Appliance is based on Ubuntu and have installed Docker, you can found
 
 In order to prepare your cloud to serve Docker Engines please follow the next steps.
 
-Step 1 - Create a Template 
+Step 1 - Create a Template
 =========================================================
 
 KVM
@@ -44,7 +44,7 @@ If you want to make any changes in the appliance and save them for latter use, y
 
 |image-persistent|
 
-If you have already run de appliance as non persistent image you can take a look at the step 4 from :ref:`Docker Application Usage <docker_appliance_usage>`
+If you have already run the appliance as non persistent image you can take a look at Step 4 from the :ref:`Docker Application Usage <docker_appliance_usage>` guide.
 
 .. |img-marketplace-kvm| image:: /images/ubuntu1604-docker-kvm-marketplace.png
 .. |img-marketplace-vcenter| image:: /images/ubuntu1604-docker-vcenter-marketplace.png
