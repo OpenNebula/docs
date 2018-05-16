@@ -1,7 +1,7 @@
 .. _ec2qug:
 
 ================================================================================
-OpenNebula EC2 User Guide
+OpenNebula EC2 Usage
 ================================================================================
 
 The `EC2 Query API <http://docs.amazonwebservices.com/AWSEC2/latest/DeveloperGuide/index.html?using-query-api.html>`__ offers the functionality exposed by Amazon EC2: upload images, register them, run, monitor and terminate instances, etc. In short, Query requests are HTTP or HTTPS requests that use the HTTP verb GET or POST and a Query parameter.

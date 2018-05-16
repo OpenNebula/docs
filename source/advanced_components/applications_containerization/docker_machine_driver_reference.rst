@@ -133,3 +133,9 @@ This is what the registered template in OpenNebula may look like:
     TYPE="vnc" ]
 
 Note that if there is a CONTEXT section in the template, it will be discarded and replaced with one by docker-machine.
+
+Not Using Templates
+================================================================================
+
+if you don't specify neither ``-opennebula-template-id`` nor ``--opennebula-template-name``, then you must specify the image: ``--opennebula-image-*``, and the network: ``--opennebula-network-*``, and optionally the other parameters.
+

@@ -7,4 +7,4 @@ Application Insight
 
    Overview <overview>
    OneGate Server Configuration <onegate_configure>
-   Using OneGate <onegate_usage>
+   OneGate Usage <onegate_usage>

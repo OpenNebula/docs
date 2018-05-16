@@ -1,48 +1,21 @@
-.. _opennebula_docker_application:
+.. _docker_appliance_usage:
+
 
 =========================================================
-OpenNebula Docker Application
+Docker Appliance Usage
 =========================================================
 
-This Guide shows how to use the OpenNebula Docker Application to create and run some services as containers.
+In order to use the Docker Appliance it is needed to have the appliance configured at the OpenNebula installation. You can find more info at :ref:`Docker Appliance Configuration <docker_appliance_configuration>`.
 
-OpenNebula Docker Appliance
+Step 1 - Instantiate the template
 =========================================================
 
-The Docker Appliance available on the OpenNebula marketplace brings a Docker Engine pre-installed and the contextualization packages configured to create Docker Hosts in a single click. Alternatively you can prepare your own image, using your favourite distribution, as long as it’s supported by Docker Machine and it has the latest OpenNebula Contextualization packages.
+First of all you need to identify the template. The default name is ``Ubuntu 16.04 with Docker - KVM/vCenter``.
 
-The Docker Appliance is based on Ubuntu and have installed Docker, you can found more information about ths specific versions at the :ref:`platform notes<uspng>`. In order to access the appliance once it's have been deployed it's necessary to update the template with the network and the password for the root user or the SSH key.
+Then you just need to instantiate it and wait for it to be in ``running`` state.
 
-In order to prepare your cloud to serve Docker Engines please follow the next steps.
+|vm-running|
 
-Step 1 - Create a Template and Instantiate the VM
-=========================================================
-
-KVM
----------------------------------------------------------
-
-  Download the appliance from the apps marketplace:
-
-  |img-marketplace-kvm|
-
-  When the appliance is downloaded a template with the same name it's created. It's recomended to update the template with a network for make the vm accessible from outside, set the disk size the root password or the ssh key.
-
-  Once the template have been updated it will be ready be to instantiate.
-
-vCenter
----------------------------------------------------------
-
-  Download the appliance from the apps marketplace:
-
-  |img-marketplace-vcenter|
-
-  Create a vCenter template or update an existing one, the template must have a network for make the vm accessible from outside. Once the template is ready import both the template and the network into OpenNebula.
-
-  From OpenNebula update the template and attach the appliance disk to the vm. Also it's recommended to update the context of the template for set the root password or to include an SSH key.
-
-.. note:: If you want to make any changes in the appliance and save them for latter use, you can set the image as persistent before launching the appliance. After the changes are performed, you need to shut the VM down and remove the persistent option from the image. This way you can create a golden imagen and new instantiations of the appliance won't overwrite it.
-
-|image-persistent|
 
 Step 2 - Running Hello World
 =========================================================
@@ -114,15 +87,38 @@ And update it using the OS packages manager:
     # root@ubuntu:~#apt-get update
     # root@ubuntu:~#apt-get upgrade
 
-Step 4 - Save the Image
+Step 4 - Update a Docker Image
+=========================================================
+
+You can get an existing image and change it:
+
+.. prompt:: bash # auto
+
+    # root@ubuntu:~#docker run -i -t ubuntu /bin/bash
+      Unable to find image 'ubuntu:latest' locally
+      latest: Pulling from library/ubuntu
+      a48c500ed24e: Pull complete 
+      1e1de00ff7e1: Pull complete 
+      0330ca45a200: Pull complete 
+      471db38bcfbf: Pull complete 
+      0b4aba487617: Pull complete 
+      Digest: sha256:c8c275751219dadad8fa56b3ac41ca6cb22219ff117ca98fe82b42f24e1ba64e
+      Status: Downloaded newer image for ubuntu:latest
+    # root@0ac23d115db8:/# apt-get update
+    # root@0ac23d115db8:/# apt-get install ruby-full
+    # root@ubuntu:~#docker commit 0ac23d115db8  one/ubuntu-with-ruby
+      sha256:eefdc54faeb5bafebd27012520a55b70c6818808997be2986d16b85b6c6f56e2
+    # root@ubuntu:~#docker image ls
+      REPOSITORY             TAG                 IMAGE ID            CREATED             SIZE
+      one/ubuntu-with-ruby   latest              eefdc54faeb5        22 seconds ago      79.6MB
+
+
+Step 5 - Save the Image
 =========================================================
 
 If you want to save some changes of a non persistent image you just have to make a disk saveas, this option is available at the storage tab of the VM, this will automatically create a new image with the changes.
 
 |disk-saveas|
 
-
-.. |img-marketplace-kvm| image:: /images/ubuntu1604-docker-kvm-marketplace.png
-.. |img-marketplace-vcenter| image:: /images/ubuntu1604-docker-vcenter-marketplace.png
-.. |image-persistent| image:: /images/ubuntu-docker-image-persistent.png
 .. |disk-saveas| image:: /images/disksaveas-docker.png
+.. |vm-running| image:: /images/docker-appliance-running.png
