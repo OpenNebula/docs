@@ -16,7 +16,7 @@ To follow this guide, you will need the following (see the Platform Notes to see
     * Access to a fully working OpenNebula cloud running version 5.6 or later. You can check this by using any OpenNebula CLI command without parameters.
     * A client computer with Docker CLI (the daemon is not required) and Docker Machine installed.
     * Your OpenNebula Cloud must be accessible from your client computer.
-    * The OpenNebula Docker application available in the Marketplace should have been imported into the OpenNebula cloud.
+    * The OpenNebula Docker application available in the Marketplace should have been imported into the OpenNebula cloud, you can find more information at :ref:`Docker Appliance Configuration <docker_appliance_configuration>`.
    
 This guide shows how to specify in the command line all the required attributes to create the Docker Engines. As an alternative you can specify a template registered in OpenNebula, in this case you can see all the available options at :ref:`Docker Machine Driver References <docker_machine_driver_reference>` section.
 
@@ -56,13 +56,13 @@ For start your first Docker host you just need to use the `docker-machine create
 
 .. prompt:: bash # auto
     
-    #docker-machine create --driver opennebula --opennebula-network-name $NETWORK_NAME --opennebula-image-id $IMG_ID --opennebula-b2d-size $DATA_SIZE_MB $VM_NAME
+    #docker-machine create --driver opennebula --opennebula-template-id $TEMPLATE_ID $VM_NAME
 
-This command create a VM in OpenNebula using $IMG_ID as image, $NETWORK_NAME as network, $DATA_SIZE_MB as disk size and $VM_NAME as the VM name.
+This command create a VM in OpenNebula using $TEMPLATE_ID as the template and $VM_NAME as the VM name.
 
-Make sure the network you pass throught $NETWORK_NAME allow Docker Machine to connect to the VM.
+Make sure the network attached to the template allow Docker Machine to connect to the VM.
 
-If you want to use templates, which is neccesary for vCenter you can take a look at the "Using Templates" section of :ref:`Docker Machine Driver References <docker_machine_driver_reference>`.
+If you want to create a VM without using a template (only for KVM) you can take a look at "Not Using a Template" section from :ref:`Docker Machine Driver References <docker_machine_driver_reference>`.
 
 Step 5 - Interact with your Docker Engine
 ================================================================================
@@ -170,24 +170,18 @@ Containers Orchestration Platforms
 Swarm
 --------------------------------------------------------------------------------
 
-(Tested, working) (external) docker swarm is covered on the OpenNebula blog: https://opennebula.org/docker-swarm-with-opennebula/
-
-This has been tested
+Reference to the OpenNebula `blog <https://opennebula.org/docker-swarm-with-opennebula/>`__ to learn how to use Swarm.
 
 Swarmkit / Swarm mode
 --------------------------------------------------------------------------------
-(Tested, working) Please work from: https://docs.docker.com/get-started/part4/#create-a-cluster If you have discovery issues, please check your multicast support is OK.
+Reference to `Docker documentation <https://docs.docker.com/get-started/part4/#create-a-cluster>`__ for use Swarmkit / Swarm mode. If you have discovery issues, please check your multicast support is OK.
 
 As long as your VM template includes only one network, you should not even need to give --advertise-addr or --listen-addr
 
 Rancher
 --------------------------------------------------------------------------------
-(Tested, working) https://opennebula.org/managing-docker-hosts-deployments-with-rancher-and-opennebula/
-
-Kubernetes
---------------------------------------------------------------------------------
-Unfortunately there is no documentation for this, yet. It is not known if it has been tested.
+Reference to the OpenNebula `blog <https://opennebula.org/managing-docker-hosts-deployments-with-rancher-and-opennebula/>`__ to learn how to use Rancher.
 
 Autoscaling via OneFlow
 --------------------------------------------------------------------------------
-(Tested, working) A documentation link is missing.
+A service of docker machines can be defined in :ref:`OneFlow <appflow_use_cli>`, and the autoscaling mechanisms of OneFlow used to automatically grow/decrease the number of docker machine based on application metrics.

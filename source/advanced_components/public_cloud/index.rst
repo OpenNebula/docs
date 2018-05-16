@@ -7,4 +7,4 @@ Public Cloud
 
    Overview <overview>
    EC2 Server Configuration <ec2qcg>
-   OpenNebula EC2 User Guide <ec2qug>
+   OpenNebula EC2 Usage <ec2qug>

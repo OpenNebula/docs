@@ -1,7 +1,7 @@
  .. _marketapp:
 
 ========================
-Managing MarketPlaceApps
+MarketPlaceApps Usage
 ========================
 
 Overview

@@ -11,4 +11,4 @@ MarketPlace
    OpenNebula Systems MarketPlace <market_one>
    HTTP MarketPlaces <market_http>
    S3 MarketPlaces <market_s3>
-   Using MarketPlaceApps <marketapp>
+   MarketPlaceApps Usage <marketapp>
