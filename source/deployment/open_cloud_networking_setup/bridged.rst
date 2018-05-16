@@ -5,20 +5,21 @@
 Bridged Networking
 ================================================================================
 
-This guide describes how to deploy Bridged networks. In this mode virtual machine traffic is directly bridged through an existing Linux bridge in the nodes. Bridged networks can operate on three different modes depending on the additional traffic filtering made by OpenNebula:
+This guide describes how to deploy Bridged networks. In this mode, the virtual machine traffic is directly bridged through the Linux bridge in the nodes. Bridged networks can operate in four different modes depending on the additional traffic filtering made by the OpenNebula:
 
-* **Dummy**, no filtering is made
-* **Security Group**, iptables rules are installed to implement security groups rules.
-* **ebtables VLAN**, same as above plus additional ebtables rules to isolate (L2) each Virtual Networks.
+* **Dummy Bridged**, no filtering, no bridge setup (legacy no-op driver).
+* **Bridged**, no filtering is made, managed bridge.
+* **Bridged with Security Groups**, iptables rules are installed to implement security groups rules.
+* **Bridged with ebtables VLAN**, same as above plus additional ebtables rules to isolate (L2) each Virtual Networks.
 
 Considerations & Limitations
 ================================================================================
 
 The following needs to be considered regarding traffic isolation:
 
-* In the **Dummy** and **Security Group** modes you can add tagged network interfaces to achieve network isolation. This is the **recommended** deployment strategy in production environments in this mode.
+* In the **Dummy Bridged**, **Bridged** and **Bridged with Security Groups** modes you can add tagged network interfaces to achieve network isolation. This is the **recommended** deployment strategy in production environments in this mode.
 
-* The **ebtables VLAN** mode is targeted to small environments without proper hardware support to implement VLANS. Note that it is limited to /24 networks, and that IP addresses cannot overlap between Virtual Networks. This mode is only recommended for testing purposes.
+* The **Bridged with ebtables VLAN** mode is targeted to small environments without proper hardware support to implement VLANS. Note that it is limited to /24 networks and that IP addresses cannot overlap between Virtual Networks. This mode is only recommended for testing purposes.
 
 .. _bridged_conf:
 
@@ -48,15 +49,17 @@ To create a virtual network include the following information:
 | Attribute   | Value                                                                   | Mandatory |
 +=============+=========================================================================+===========+
 | **VN_MAD**  | * ``dummy`` for the Dummy Bridged mode                                  |  **YES**  |
+|             | * ``bridge`` for the Bridged mode                                       |           |
 |             | * ``fw`` for Bridged with Security Groups                               |           |
 |             | * ``ebtables`` for Bridged with ebtables isolation                      |           |
 +-------------+-------------------------------------------------------------------------+-----------+
 | **BRIDGE**  | Name of the linux bridge in the nodes                                   |  **YES**  |
 +-------------+-------------------------------------------------------------------------+-----------+
 | **PHYDEV**  | Name of the physical network device that will be attached to the bridge |    NO     |
+|             | (does not apply for ``dummy`` driver)                                   |           |
 +-------------+-------------------------------------------------------------------------+-----------+
 
-The following example defines Bridged network using the Security Groups mode:
+The following example defines Bridged network with the Security Groups mode:
 
 .. code::
 

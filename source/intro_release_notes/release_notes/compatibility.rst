@@ -57,7 +57,7 @@ The ARP Cache Poisoning prevention rules has been more integrated into the filte
 Network drivers
 --------------------------------------------------------------------------------
 
-If a virtual network is defined with ``PHYDEV`` parameter, the missing bridge is created on demand and **destroyed when the physical interface is the only one left**. This behavior can be changed globally via option ``keep_empty_bridge`` inside ``/var/lib/one/remotes/etc/vnm/OpenNebulaNetwork.conf``, or per virtual network via ``CONF`` template attribute. Applies to all KVM network drivers (including ``dummy``, ``fw``, and ``ebtables``). If a bridge was initially created outside the OpenNebula with some configuration (assigned IP address), this state can be lost with the default settings.
+If the KVM virtual network is defined with ``PHYDEV`` parameter, the missing bridge is created on demand and **destroyed when the physical interface is the only one left**. This behavior can be changed globally via option ``keep_empty_bridge`` inside ``/var/lib/one/remotes/etc/vnm/OpenNebulaNetwork.conf``, or per virtual network via ``CONF`` template attribute. If a bridge was initially created outside the OpenNebula with some configuration (e.g., assigned IP address), this state can be lost with the OpenNebula default settings. Applies to all KVM network drivers except the ``dummy``.
 
 HA
 --------------------------------------------------------------------------------
