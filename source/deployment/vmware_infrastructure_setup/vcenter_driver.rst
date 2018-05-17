@@ -211,7 +211,7 @@ would be represented as "TestResourcePool/NestedResourcePool":
     VCENTER_RESOURCE_POOL="TestResourcePool/NestedResourcePool"
 
 
-Resource deletion in Opennebula
+Resource deletion in OpenNebula
 --------------------------------------------------------------------------------
 
 There are different behavior of the vCenter resources when deleted in OpenNebula.
@@ -335,7 +335,7 @@ It is generally a good idea to place defaults for vCenter-specific attributes. T
 
 .. _import_vcenter_resources:
 
-Importing vCenter Resources
+vCenter Import Tool
 ================================================================================
 
 vCenter clusters, VM templates, networks, datastores and VMDK files located in vCenter datastores can be easily imported into OpenNebula:
@@ -344,7 +344,7 @@ vCenter clusters, VM templates, networks, datastores and VMDK files located in v
 
 .. prompt:: bash $ auto
 
-    $ onevcenter` <command> [<args>] [<options>]
+    $ onevcenter <command> -o <object type> -h <opennebula host_id> [<options>] [<args]
 
 * Using the Import button in Sunstone.
 
@@ -357,12 +357,23 @@ The Import button will be available once the admin_vcenter view is enabled in Su
 
 .. warning:: The image import operation may take a long time. If you use the Sunstone client and receive a "Cannot contact server: is it running and reachable?" the 30 seconds Sunstone timeout may have been reached. In this case either configure Sunstone to live behind Apache/NGINX or use the CLI tool instead.
 
+
+vCenter resources can be easily imported into OpenNebula, these can be classified:
+
+* hosts
+* datastores
+* networks
+* templates
+* wilds
+* images
+
 .. _vcenter_import_clusters:
 
 Importing vCenter Clusters
 --------------------------------------------------------------------------------
 
 Vcenter cluster is the first thing that you will want to add into your vcenter installation because all other vcenter resources depend on it. OpenNebula will import these clusters as opennebula hosts so you can monitor them easily using Sunstone (Infrastructure/Hosts) or through CLI (onehost).
+Also this is the only step where the authentication is to be required so it's important to assure that the process finishes successfully.
 
 In :ref:`vCenter Node Installation <vcenter_import_host_tool>` we've already explained how a vCenter cluster can be imported from the command-line interface using onevcenter.
 
@@ -420,6 +431,45 @@ In that case should specify the right cluster from the Cluster drop-down menu or
 
 .. _vcenter_import_datastores:
 
+Importing vCenters resources
+--------------------------------------------------------------------------------
+
+Once you have imported your vCenter cluster you can import the rest of the vCenter resources delegating the authentication to the imported OpenNebula host.
+It's important then to check that the imported host is working otherwise you won't be able to import any resource with the host's credentials.
+
+Importation tool operates with similar way in both Sunstone and Command Line Interface it's completely mandatory to have at least one vCenter cluster already working in order to import the rest of the resources, also in some case like images you need to have imported the proper datastore.
+Resources like Networks or Datastores could belong to more than one cluster so the tool will warn you about that situation.
+
+We could differenciate the creation of vCenter resources with OpenNebula in two steps:
+
+* Get concrete information about the vCenter server and the desired kind of resource, **list**:
+
+    - [CLI]      Using onevcenter list -o <resource type> -h <host_id> [additional_info].
+    - [Sunstone] Navigate to the proper section on sunstone and click on import button and select the proper host.
+
+This will show you the list of objects that you can import giving you some information.
+
+* **Import** selecteds resources based on the previous information collected by the first step:
+
+    - [CLI]      Using onevcenter import <desired objects> -o <resource type> -h <host_id> [additional_info].
+
+        There are several ways to perform this operation, in this list an ID column arranging the unimported resources will appear in addition to the REF column, you can use both columns to select certain resoures:
+
+        +---------------------------------+-----------------------------------------------------------------------------------+
+        |   Command (Example)             | Note                                                                              |
+        +---------------------------------+-----------------------------------------------------------------------------------+
+        | onevcenter import ref           | This will import the resource with ref                                            |
+        +---------------------------------+-----------------------------------------------------------------------------------+
+        | onevcenter import 0             | This will import the first resource showd on the list, the resource with IM_ID 0  |
+        +---------------------------------+-----------------------------------------------------------------------------------+
+        | onevcenter import "ref0, ref1"  | This will import both items with refs ref0 and ref1                               |
+        +---------------------------------+-----------------------------------------------------------------------------------+
+        | onevcenter import 0..5          | This will import items with IM_ID 0, 1, 2, 3, 4, 5                                |
+        +---------------------------------+-----------------------------------------------------------------------------------+
+
+    - [Sunstone] Simply select the desired resources (checking any option) from the previous list
+
+
 Importing vCenter Datastores
 --------------------------------------------------------------------------------
 
@@ -446,17 +496,31 @@ Import a datastore with onevcenter
 
 Here's an example showing how a datastore is imported using the command-line interface:
 
-The import tool will discover datastores in each datacenter and will show the name of the datastore, the capacity and OpenNebula cluster IDs which this datastore will be added to.
+First of all we already have one vCenter cluster imported with ID 0.
 
-.. image:: /images/vcenter_create_datastore_step3.png
-    :width: 50%
-    :align: center
+.. prompt:: bash $ auto
+
+    onevcenter list -o datastores -h 0
+
+    # vCenter: vCenter.server
+
+    IMID REF             NAME                                               CLUSTERS
+    0    datastore-15    datastore2                                         [102]
+    1    datastore-11    datastore1                                         []
+    2    datastore-15341 datastore1 (1)                                     [100]
+    3    datastore-16    nfs                                                [102, 100]
+
+The import tool (list) will discover datastores in each datacenter and will show the name of the datastore, the capacity and OpenNebula cluster IDs which this datastore will be added to.
+
+Once you know what datastore you want to import:
+
+.. prompt:: bash $ auto
+
+    onevcenter import datastore-16 -o datastores -h 0
+    ID: 100
+    ID: 101
 
 When you select a datastore, two representations of the same datastore are created in OpenNebula: an IMAGE datastore and a SYSTEM datastore that’s why you can see that two datastores have been created (unless the datastore is a StorageDRS, in that case only a SYSTEM datastore is created.
-
-.. image:: /images/vcenter_create_datastore_step4.png
-    :width: 50%
-    :align: center
 
 Import a datastore with Sunstone
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -563,25 +627,28 @@ Import a template with onevcenter
 
 This would be the process using the **onevcenter** tool.
 
-The name assigned to the template in OpenNebula contains the template's name, the vCenter cluster's name and a 12 character hash that prevents name collisions. That name is used to prevent conflicts when several templates with the same name are found in a vCenter instance. Once the vCenter template has been imported, OpenNebula's name can be changed to a more human-friendly name.
+.. prompt:: bash $ auto
 
-.. prompt:: text $ auto
+    $ onevcenter list -o templates -h 0
 
-    $ onevcenter templates --vcenter <vcenter-host> --vuser <vcenter-username> --vpass <vcenter-password>
+    # vCenter: vcenter.Server
 
-    Connecting to vCenter: <vcenter-host>...done!
+    IMID REF        NAME
+       0 vm-8720    corelinux7 x86_64 with spaces
+       1 vm-9199    one-corelinux7_x86_64
+       2 vm-8663    dist_nic_test
 
-    Looking for VM Templates...done!
+In this example our vcenter.server has 3 templates and they are listed from IM_ID = 0 to 2.
 
-    Do you want to process datacenter Datacenter (y/[n])? y
+Whenever you are ready to import:
 
-    * VM Template found:
-    - Name       : corelinux7_x86_64
-    - Cluster    : devel
-    - Location   : Templates
-    Import this VM template (y/[n])? y
+.. prompt:: bash $ auto
 
-Once you answer yes to import a template you'll be asked several questions and different actions will be taken depending on your answers.
+    onevcenter import vm-1754 -o templates -h 0
+
+    - Template: corelinux7_x86_64
+
+In this section you'll be asked several questions and different actions will be taken depending on your answers.
 
 .. _vcenter_linked_clones_import:
 
@@ -831,16 +898,42 @@ The import tool will discover port groups in each datacenter and will show the n
 
 You will notice that the cluster name have color, this can mean two things:
 
-* Red color, you do not the proper cluster imported into opennebula
-* Blue color, you already have imported the cluster, the cluster id will show you between parentheses
-
-In case that the network had more than 1 vCenter cluster associated, each cluster will show to you in the proper color (see above).
+In case that the network had more than 1 vCenter cluster associated, the list command will show a list of the OpenNebula clusters.
 
 Here's an example showing how a standard port group or distributed port group is imported using the command-line interface:
 
-.. image:: /images/vcenter_import_vnet_step1.png
-    :width: 50%
-    :align: center
+Like always we need first to get the list of the importable objetcs:
+
+.. prompt:: bash $ auto
+
+    $ onevcenter list -o networks -h 0
+
+    # vCenter: vcenter.Server
+
+	IMID REF              NAME                      CLUSTERS
+	0    network-12       VM Network                ["100", "102"]
+	1    network-12245    testing00                 ["100", "102"]
+	2    network-12247    testing03                 ["102"]
+	3    network-12248    testing02                 ["102"]
+	4    network-12246    testing01                 ["100", "102"]
+
+Knowing this information we want to import 'Testing0*' networks (it's pretty normal to have the necesity of import more than one network).
+
+
+
+.. prompt:: bash $ auto
+
+    $ onevcenter import 1..4 -o networks -h 0
+
+or
+
+.. prompt:: bash $ auto
+
+    $ onevcenter import "network-12245, network-12247, network-12246, network-12248" -o networks -h 0
+
+
+Even if the second option (above) is too long it's still very usefull when you want to import a couple of not sequential nets.
+After this you'll be asked several questions and different actions will be taken depending on your answers.
 
 If you want to import the network and the vnet has vlan id it will show to you in first place.
 Next step is to assign an Address Range. You can know more about address ranges in the :ref:`Managing Address Ranges <manage_address_ranges>` section.
@@ -967,24 +1060,31 @@ Import images with onevcenter
 
 The **onevcenter** tool and the Sunstone interface can be used to import this kind of files.
 
-The onevcenter tool needs that an OpenNebula's IMAGE datastore name is specified as an argument (use double quotes if OpenNebula's datastore name has spaces). OpenNebula will browse the datastores and look for VMDK and ISO files.
+The onevcenter tool needs that an OpenNebula's IMAGE datastore name is specified as an argument. OpenNebula will browse the datastores and look for VMDK and ISO files.
+This means that it's mandatory to have the proper vCenter image datastore imported into OpenNebula, we can pass on this information through onevcenter tool with -d option so be sure to check this before the import image operation:
 
-Here's an example showing how a VMDK file can be imported using the command-line interface.
+This is an easy way for check available vcenter datastores:
 
 .. prompt:: bash $ auto
 
-    $ onevcenter images "nfs [vcenter.vcenter5-devel - Datacenter] (IMG)" --vcenter <vcenter-host> --vuser <vcenter-username> --vpass <vcenter-password>
-    Connecting to vCenter: <vcenter-host>...done!
+	onedatastore list | grep -E 'img.*vcenter'
 
-    Looking for Images...done!
+	 100 datastore2(IM       924G 100%  102               1 img  vcenter vcenter on
+	 102 datastore1(IM       924G 88%   -                 0 img  vcenter vcenter on
+	 106 nfs(IMG)            4.5T 39%   100,102          24 img  vcenter vcenter on
 
-    * Image found:
-        - Name      : one-template-vc_slitaz_template - nfs [6609a56658f2]
-        - Path      : one-template-vc_slitaz_template/one-template-vc_slitaz_template.vmdk
-        - Type      : VmDiskFileInfo
-        - Size (MB) : 256
 
-      Import this Image (y/[n])?
+Here's an example showing how a VMDK file can be imported using the command-line interface.
+In this case we are going to use datastore1 (102) and host 0:
+
+.. prompt:: bash $ auto
+
+	onevcenter list -o images -h 0 -d 106
+	# vCenter: vcenter.vcenter65-1
+
+	IMID REF                                 PATH
+  	   0 one-21                              one_223304/21/one-21.vmdk
+	   1 Core-current.iso.iso                one_223304/22/Core-current.iso.iso
 
 Once the image has been imported, it will report the OpenNebula image ID.
 
