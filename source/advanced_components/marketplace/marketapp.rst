@@ -11,6 +11,13 @@ As mentioned in the :ref:`MarketPlace Overview <marketplace_overview>`, a Market
 
 MarketPlaceApps can be managed either using the CLI with the ``onemarketapp`` command or with the Sunstone GUI. In this section we will detail the actions available for MarketPlaceApps in both interfaces. MarketPlaceApps are common OpenNebula objects and respond the the common actions shared by all the OpenNebula objets: `list`, `show`, `create`, `delete`, etc, plus some specific ones.
 
+Requirements
+--------------------------------------------------------------------------------
+This section only apply to vCenter apps.
+
+In order to use a vCenter app it is needed to attach the image to one vCenter VM Template which had been previously imported.  An existing VM Template can be cloned and its disks replaced with the image from the marketplace. Once the VM Template its ready the appliance can be instantiated.
+
+
 Listing MarketPlaceApps
 --------------------------------------------------------------------------------
 

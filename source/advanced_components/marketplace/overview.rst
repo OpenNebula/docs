@@ -106,4 +106,4 @@ After reading this chapter you can continue configuring more :ref:`Advanced Comp
 Hypervisor Compatibility
 ================================================================================
 
-This chapter applies only to KVM.
+This chapter applies to KVM and vCenter.
