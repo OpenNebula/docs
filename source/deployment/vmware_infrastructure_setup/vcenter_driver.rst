@@ -235,8 +235,6 @@ Considerations & Limitations
 +----------------+-----------------------------------------------------+
 |   Operation    |                         Note                        |
 +----------------+-----------------------------------------------------+
-| migrate        | VMs cannot be migrated between ESX clusters         |
-+----------------+-----------------------------------------------------+
 | disk snapshots | Only system snapshots are available for vCenter VMs |
 +----------------+-----------------------------------------------------+
 

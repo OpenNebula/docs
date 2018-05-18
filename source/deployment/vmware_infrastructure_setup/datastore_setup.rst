@@ -295,6 +295,11 @@ In order to delegate the datastore selection to the SDRS cluster you must inform
     :width: 70%
     :align: center
 
+Marketplace with vCenter Datastores
+================================================================================
+
+The vCenter datastores are compatiblees with the OpenNebula HTTP and S3 marketplaces. It's neccesary a generic VM Template. More information about OpenNebula marketplaces can be foud :ref:`here <marketplace_overview>`.
+
 Tuning and Extending
 ================================================================================
 
