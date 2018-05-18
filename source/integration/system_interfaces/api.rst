@@ -6064,6 +6064,26 @@ one.zone.info
 | OUT  | Int       | Error code.                                 |
 +------+-----------+---------------------------------------------+
 
+one.zone.raftstatus
+-------------------
+
+-  **Description**: Retrieves raft status one servers.
+-  **Parameters**
+
++------+-----------+---------------------------------------------+
+| Type | Data Type |                 Description                 |
++======+===========+=============================================+
+| IN   | String    | The session string.                         |
++------+-----------+---------------------------------------------+
+| OUT  | Boolean   | true or false whenever is successful or not |
++------+-----------+---------------------------------------------+
+| OUT  | String    | The information string / The error string.  |
++------+-----------+---------------------------------------------+
+| OUT  | Int       | Error code.                                 |
++------+-----------+---------------------------------------------+
+| OUT  | Int       | ID of the object that cuased the error.     |
++------+-----------+---------------------------------------------+
+
 one.zonepool.info
 ------------------
 
