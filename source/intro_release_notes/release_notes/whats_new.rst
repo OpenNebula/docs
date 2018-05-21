@@ -14,7 +14,7 @@ OpenNebula Core
 - **Improved Monitoring**: several synchronization points have been removed from one to improve concurrencry in the monitoring process. Also database connections are now configurable to allow more parallel access to the the database.
 - **Default permission for VDC ACLs**: Administrator can specify the default permission for the automatic ACLs created when a resource is added to a VDC. :ref:`oned.conf <oned_conf>`.
 - **Create as uid/gid**: Now users can define which will be the owner or group for a VM when instantiating a VM Template. :ref:`See more information here <instantiate_as_uid_gid>`.
-
+- **More IO throttling attributes**: We have added more attribute to define IO throttling support into disk section. :ref:`See more information here <reference_vm_template_disk_section>`.
 
 Storage
 --------------------------------------------------------------------------------
