@@ -244,7 +244,7 @@ DISK
 * ``CACHE``: specifies the optional cache mechanism, possible values are ``default``, ``none``, ``writethrough`` and ``writeback``.
 * ``IO``: set IO policy possible values are ``threads`` and ``native``.
 * ``DISCARD``: controls what to do with trim commands, the options are ``ignore`` or ``unmap``. It can only be used with virtio-scsi.
-* ``IO Throttling support``: You can limit TOTAL/READ/WRITE throughput or IOPS. Also burst control for this IO operations can be set for each disk. See the reference guide for the attribute names and purpose.
+* ``IO Throttling support``: You can limit TOTAL/READ/WRITE throughput or IOPS. Also burst control for this IO operations can be set for each disk. :ref:`See the reference guide for the attribute names and purpose <reference_vm_template_disk_section>`.
 
 NIC
 ~~~
