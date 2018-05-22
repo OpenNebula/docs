@@ -36,7 +36,7 @@ Precedence of Datastore and Image Attributes & Marketplace import
 
 The value precedence has been changed to VM Template (DISK) > Image > Datastore for the following attributes: CLONE_TARGET, LN_TARGET, DISK_TYPE & DRIVER.
 
-Also images imported from a Marketplace do not follow the DRIVER attribute of the MarketPlaceApp as it may conflict with that defined in the Datastore.
+Also images imported from a Marketplace do not follow the DRIVER attribute of the MarketPlaceApp when it may conflict with that defined in the Datastore.
 
 Ruby OCA Update function
 --------------------------------------------------------------------------------
@@ -58,6 +58,8 @@ Network drivers
 --------------------------------------------------------------------------------
 
 If the KVM virtual network is defined with ``PHYDEV`` parameter, the missing bridge is created on demand and **destroyed when the physical interface is the only one left**. This behavior can be changed globally via option ``keep_empty_bridge`` inside ``/var/lib/one/remotes/etc/vnm/OpenNebulaNetwork.conf``, or per virtual network via ``CONF`` template attribute. If a bridge was initially created outside the OpenNebula with some configuration (e.g., assigned IP address), this state can be lost with the OpenNebula default settings. Applies to all KVM network drivers except the ``dummy``.
+
+Note also that the "Bridged" modes are now mapped to the new driver in Sunstone. You can still pick the 5.4 ``dummy`` by choosing a custom driver.
 
 HA
 --------------------------------------------------------------------------------
