@@ -128,6 +128,14 @@ Application Containerization
 
 .. note:: Generally for all Linux platforms, it is worth noting that gems should be installed with the :ref:`install_gems <ruby_runtime>`, avoiding the platform's package version.
 
+
+Certified Infrastructure Scale
+================================================================================
+
+A single instance of OpenNebula (ie, a singled 'oned' process) has been stress tested to cope with 500 hypervisors without performance degradation. This is the maximum recommended configuration for a single instance, and depending on the underlying configuration of storage and networking mainly, it is recommended to switch to a federated scenario for any larger number of hypervisors.
+
+However, there are several OpenNebula users managing significant higher number of hypervisors (in the order of two thousand) with a single instance, this largely depends as mentioned on the storage, networking and also monitoring configuration.
+
 Frontend Platform Notes
 ================================================================================
 
@@ -268,4 +276,3 @@ Installing on Devuan
 Packages for Devuan Jessie 1.0 Beta are provided by Alberto Zuin. You can download them at:
 
 http://downloads.opennebula.org/extra/packages/devuan/
-
