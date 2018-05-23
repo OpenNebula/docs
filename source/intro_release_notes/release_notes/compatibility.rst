@@ -81,6 +81,28 @@ Authentication drivers now accept parameters only on the standard input as the X
 vCenter
 ================================================================================
 
+Imported Names
+--------------------------------------------------------------------------------
+
+Due to the new onevcenter tool and driver changes, OpenNebula names of imported vCenter resources are different. See :ref:`new vCenter import tool <vcenter_new_import_tool>`.
+
+In previous OpenNebula versions imported names were generated using a lot of data (vCenter host, long hash code, datacenter...) that had led to a situation in wich OpenNebula had very longs names ,this made cloud administration difficult in some cases.
+
+That is why you can import right now any vCenter resource by default with the same name, just like the one showed on vSphere application.
+In case of name collision, OpenNebula will resolve the situation adding 2 identification bytes at the end of the name.
+
+.. prompt:: text $ auto
+
+    You have already Imported a OpenNebula host called Cluster
+    You want to import another from other vCenter host with the same name
+
+    First OpenNebula Host with same name : Cluster
+    Second OpenNebula Host with same name: Cluster-2c
+
+Imported Networks
+--------------------------------------------------------------------------------
+It is possible to have imported Port Groups or Distributed Portgroups pointing to more than 1 cluster by default. The old behaviour of OpenNebula allowed to have one OpenNebula network per OpenNebula cluster/vCenter cluster, this has changed by default.
+
 Sunstone
 ================================================================================
 

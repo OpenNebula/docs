@@ -76,6 +76,7 @@ vCenter
 - **Multiple cluster network support**: now it is possible to import networks belonging to more than 1 cluster with a better management, also you won't see duplicated networks anymore.
 - **vCenter cluster migration**: migrate your vms between vCenter clusters with OpenNebula.
 - **vCenter Marketplace**: now it's available the HTTP and S3 Marketplaces for vCenter datastores.
+- **OnevCenter Import tool**: Redesign of the new onevcenter import tool, you can easily import any vCenter resource, including bulk importation see :ref:`vCenter import tool <vcenter_new_import_tool>`.
 
 API & CLI
 --------------------------------------------------------------------------------
