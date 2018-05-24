@@ -31,6 +31,12 @@ Security Groups
 
 When creating a VM, OpenNebula will check access to all the security groups involved in the request. This include security groups explicitly set in the NIC as well as security groups in the VNET and its ARs.
 
+Image LOCK state
+--------------------------------------------------------------------------------
+
+When an operation is being performed on an image it is in LOCK state. Since 5.6, this LOCK state also implies an object lock to prevent for example deleting an image while it is being copied. This means that you may need to manually unlock the image if you want to perform any operation over it (e.g. chown or chmod) while it is being copied.
+
+
 Precedence of Datastore and Image Attributes & Marketplace import
 --------------------------------------------------------------------------------
 
