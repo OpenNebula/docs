@@ -26,7 +26,7 @@ Driver Options
 - ``--opennebula-b2d-size``: Size of the Volatile disk in MB (only for b2d)
 - ``--opennebula-ssh-user``: Set the name of the SSH user
 - ``--opennebula-disable-vnc``: VNC is enabled by default. Disable it with this flag
-- ``--opennebula-start-retries``: number of retries to make for check if the VM is running.
+- ``--opennebula-start-retries``: number of retries to make for check if the VM is running, after each retry the driver sleeps for 2 seconds.
 
 +------------------------------+-----------------------------+------------------------+
 |          CLI Option          | Default Value               |  Environment Variable  |
@@ -69,7 +69,7 @@ Driver Options
 +------------------------------+-----------------------------+------------------------+
 | `--opennebula-disable-vnc`   | Enabled                     | `ONE_DISABLE_VNC`      |
 +------------------------------+-----------------------------+------------------------+
-| `--opennebula-start-retries` | 50                          | `ONE_START_RETRIES`    |
+| `--opennebula-start-retries` | 600                         | `ONE_START_RETRIES`    |
 +------------------------------+-----------------------------+------------------------+
 
 Using Templates
