@@ -87,7 +87,7 @@ Also, you can modify in the same file the default 300 seconds timeout that is wa
 
 .. warning::
 
-    If you were using OpenNebula before 5.4 you may have noticed that there are not AWS credentials in configuration file anymore, this is due security reasons. In 5.4 there is a new secure credentials storage for AWS so you do not need to store sensitive credential data inside your disk. OpenNebula daemon stores the data in an encrypted format.
+    If you were using OpenNebula before 5.5 you may have noticed that there are not AWS credentials in configuration file anymore, this is due security reasons. In 5.5 there is a new secure credentials storage for AWS so you do not need to store sensitive credential data inside your disk. OpenNebula daemon stores the data in an encrypted format.
 
 After OpenNebula is restarted, create a new Host with AWS credentials that uses the ec2 drivers:
 

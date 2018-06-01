@@ -5,7 +5,7 @@
 Compatibility Guide
 ====================
 
-This guide is aimed at OpenNebula 5.4.x users and administrators who want to upgrade to the latest version. The following sections summarize the new features and usage changes that should be taken into account, or prone to cause confusion. You can check the upgrade process in the following :ref:`section <upgrade>`
+This guide is aimed at OpenNebula 5.5.x users and administrators who want to upgrade to the latest version. The following sections summarize the new features and usage changes that should be taken into account, or prone to cause confusion. You can check the upgrade process in the following :ref:`section <upgrade>`
 
 Visit the :ref:`Features list <features>` and the `Release Notes <http://opennebula.org/software/release/>`_ for a comprehensive list of what's new in OpenNebula 5.6.
 
@@ -65,7 +65,7 @@ Network drivers
 
 If the KVM virtual network is defined with ``PHYDEV`` parameter, the missing bridge is created on demand and **destroyed when the physical interface is the only one left**. This behavior can be changed globally via option ``keep_empty_bridge`` inside ``/var/lib/one/remotes/etc/vnm/OpenNebulaNetwork.conf``, or per virtual network via ``CONF`` template attribute. If a bridge was initially created outside the OpenNebula with some configuration (e.g., assigned IP address), this state can be lost with the OpenNebula default settings. Applies to all KVM network drivers except the ``dummy``.
 
-Note also that the "Bridged" modes are now mapped to the new driver in Sunstone. You can still pick the 5.4 ``dummy`` by choosing a custom driver.
+Note also that the "Bridged" modes are now mapped to the new driver ``bridge`` in Sunstone. You can still pick the old ``dummy`` driver by choosing a custom driver.
 
 HA
 --------------------------------------------------------------------------------
