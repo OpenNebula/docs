@@ -104,3 +104,8 @@ If you are interested in adding a VMGroup or DS in vCenter Cloud View, you shoul
 
 - https://github.com/OpenNebula/one/commit/d019485e3d69588a7645fe30114c3b7c135d3065
 - https://github.com/OpenNebula/one/commit/efdffc4723aae3d2b3f524a1e2bb27c81e43b13d
+
+Sunstone addons
+--------------------------------------------------------------------------------
+
+Sunstone now uses directory ``/var/lib/one/sunstone/`` to store the preprocessed frontend source files. If Sunstone is running under the web server (e.g., via Passenger), additional directory permissions may be required for the web server identity to be able to access the ``/var/lib/one/sunstone/`` directory. Please see :ref:`Configuring Sunstone for Large Deployments <suns_advance>`.
