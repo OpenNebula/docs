@@ -4,6 +4,20 @@
 What's New in 5.6
 ================================================================================
 
+OpenNebula 5.6 (XXXX) is the foruth release of the OpenNebula 5 series. A significant effort has been applied in this release to enhance features introduced in 5.4 Medusa, while keeping an eye in implementing those features more demanded by the community. A massive set of improvements happend at the core level to increase robustness and scalability, and a major refactor happened in the vCenter integration, particuarly in the import process, which has been streamlined.
+
+Virtually every component of OpenNebula has been reviewed to target usability and functional improvements, trying to keep API changes to a minimum to avoid disrupting ecosystem components. 
+
+|sunstone_dashboard|
+
+|sched_actions|
+
+
+
+In the following list you can check the highlights of OpenNebula 5.6 (a detailed list of changes can be found :ref:`here <https://github.com/OpenNebula/one/milestone/4?closed=1>`):
+
+
+
 
 OpenNebula Core
 --------------------------------------------------------------------------------
@@ -46,29 +60,16 @@ Sunstone
 
 - **New dashboard**, intuitive, fast and light. The new dashboard will perform better on large deployments.
 
-|sunstone_dashboard|
 
 - **KVM and vCenter more united than ever**, a single view to control the two hypervisors. :ref:`Completely customizable views <suns_views>`.
 - **Scheduled Actions** can now be defined in VM Template create and instantiate dialogs. :ref:`More info <sched_actions_templ>`.
-- **Display quotas in Clod View**, the end-user can see his quotas in real time.
-- **Turkish language (TR)**, now in Sunstone.
 - **New global configurations**. To be able to customize Sunstone even more, :ref:`there are new features in the yamls <suns_views_custom>`.
 - **Disk resize in the cloud view**. Now you can resize a disk as a user cloud.
-
-|sched_actions|
-
 - **Display quotas in Clod View**, the end-user can see his quotas in real time.
 - **Turkish language (TR)**, now in Sunstone.
 - **Icons makeover**, Font Awesome has been updated to lastest version!.
-
-
 - **Timeout option for xmlrpc calls**, you can add this new option inside :ref:`sunstone-server.conf <sunstone_setup>`, now it's possible to configure the timeout of OpenNebula XMLRPC for all operations from sunstone.
 
-.. code::
-
-    # sets the timeout for xmlrpc calls to 80 seconds
-    #
-    :one_xmlrpc_timeout: 80
 
 vCenter
 --------------------------------------------------------------------------------
