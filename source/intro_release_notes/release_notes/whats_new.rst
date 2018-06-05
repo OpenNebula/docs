@@ -4,7 +4,7 @@
 What's New in 5.6
 ================================================================================
 
-OpenNebula 5.6 (Blue Flash) is the fourth major release of the OpenNebula 5 series. A significant effort has been applied in this release to enhance features introduced in 5.4 Medusa, while keeping an eye in implementing those features more demanded by the community. A massive set of improvements happened at the core level to increase robustness and scalability, and a major refactor happened in the vCenter integration, particularly in the import process, which has been streamlined.  Virtually every component of OpenNebula has been reviewed to target usability and functional improvements, trying to keep API changes to a minimum to avoid disrupting ecosystem components. 
+OpenNebula 5.6 (Blue Flash) is the fourth major release of the OpenNebula 5 series. A significant effort has been applied in this release to enhance features introduced in 5.4 Medusa, while keeping an eye in implementing those features more demanded by the community. A massive set of improvements happened at the core level to increase robustness and scalability, and a major refactor happened in the vCenter integration, particularly in the import process, which has been streamlined.  Virtually every component of OpenNebula has been reviewed to target usability and functional improvements, trying to keep API changes to a minimum to avoid disrupting ecosystem components.
 
 In this release several development efforts have been invested in making OpenNebula even better for large scale deployments. This improvements includes both, changes in OpenNebula core to better handle concurrency as well as refined interfaces. Sunstone dashboard has been redesigned to provided sensible information in a more responsive way. Sunstone also features some new styling touches here and there, and it has been updated to version 5 of Fontawesome.
 
@@ -14,17 +14,16 @@ Blue Flash also includes several quality of life improvements for end-users. In 
 
 |sched_actions|
 
-5.6. ends the major redesign on the vCenter driver started in 5.4. The new integration with vCenter features stability and performance improvements, as well as important new features like a extended multicluster support or a redesigned importation workflow with new Sunstone tabs as well as a new CLI. 
+5.6. ends the major redesign on the vCenter driver started in 5.4. The new integration with vCenter features stability and performance improvements, as well as important new features like a extended multicluster support or a redesigned importation workflow with new Sunstone tabs as well as a new CLI.
 
-Following our tradition this OpenNebula release is named after NGC 6905, also known as the :ref:`Blue Flash Nebula <https://en.wikipedia.org/wiki/NGC_6905>`, a planetary nebula in the constellation Delphinus. It was discovered by William Herschel in 1784.
+Following our tradition this OpenNebula release is named after NGC 6905, also known as the `Blue Flash Nebula <https://en.wikipedia.org/wiki/NGC_6905>`__, a planetary nebula in the constellation Delphinus. It was discovered by William Herschel in 1784.
 
 The OpenNebula team is now set to bug-fixing mode. Note that this is a beta release aimed at testers and developers to try the new features, and send a more than welcomed feedback for the final release. Note that being a beta there is no migration path from the previous stable version (5.4.13) nor migration path to the final stable version (5.4.0).
 
-In the following list you can check the highlights of OpenNebula 5.6 (a detailed list of changes can be found :ref:`here <https://github.com/OpenNebula/one/milestone/4?closed=1>`):
+In the following list you can check the highlights of OpenNebula 5.6 (a detailed list of changes can be found `here <https://github.com/OpenNebula/one/milestone/4?closed=1>`__):
 
 OpenNebula Core
 --------------------------------------------------------------------------------
-.. - **New HA model**, providing native HA (based on RAFT consensus algorithm) in OpenNebula components, including Sunstone without :ref:`third party dependencies <frontend_ha_setup>`.
 
 - **Program Periodic VM actions**, the user can schedule periodic actions to be performed regularly in a VM.
 - **Lock resources**, the user can lock resources (VMs, images or networks) to prevent unintended operations.
@@ -38,10 +37,12 @@ OpenNebula Core
 
 Storage
 --------------------------------------------------------------------------------
+
 - **Deploy the images wherever you want**: We have added the possibility to select different deployment modes for Image datastores. For example the same Ceph Image can be used directly from the pool (default ceph mode) or run from the hypervisor local storage (ssh mode). :ref:`More info. <ceph_ds>`. Also shared Filesystem datastores can be combined with the host local storage (ssh mode). :ref:`More info.<fs_ds>`
 
 Networking
 --------------------------------------------------------------------------------
+
 - Better support for security group rules with a large number of ports. :ref:`See configuration options here <bridged_conf>`.
 - **Open vSwitch** rules for the ARP/MAC/IP spoofing filters were refactored.
 - New **Open vSwitch on VXLAN** driver. Driver :ref:`ovswitch_vxlan <openvswitch_vxlan>`.
@@ -49,14 +50,17 @@ Networking
 
 Authentication
 --------------------------------------------------------------------------------
-- **Server Groups for LDAP driver**, when configuring your LDAP driver you can define *availability groups* to reduce the number of authentication requests sent to the LDAP servers, :ref:`more info <ldap_configuration>`.
+
+- **Server Groups for LDAP driver**, when configuring your LDAP driver you can define *availability groups* to reduce the number of authentication requests sent to the LDAP servers, :ref:`more info <ldap>`.
 
 Hybrid Clouds
 --------------------------------------------------------------------------------
+
 - **One to One**, the users will can deploying VMs on a remote OpenNebula from local OpenNebula. :ref:`Driver one-to-one <oneg>`.
 
 Scheduler
 --------------------------------------------------------------------------------
+
 - **Memory system datastore scale**, This factor scales the VM usage of the system DS with the memory size. :ref:`Scheduler configuration <schg_configuration>`.
 
 Sunstone
@@ -76,9 +80,11 @@ Sunstone
 
 vCenter
 --------------------------------------------------------------------------------
-- **Multiple cluster network support**: now it is possible to import networks belonging to more than 1 cluster with a better management, also you won't see duplicated networks anymore.
-- **vCenter cluster migration**: migrate your vms between vCenter clusters with OpenNebula.
-- **vCenter Marketplace**: now it's available the HTTP and S3 Marketplaces for vCenter datastores.
+
+- **Multiple cluster network support**, now it is possible to import :ref:`networks <vcenter_networking_setup>` belonging to more than 1 cluster with a better management, also you won't see duplicated networks anymore.
+- **vCenter cluster migration**, migrate your VMs between :ref:`vCenter clusters <vcenterg>` with OpenNebula.
+- **vCenter Marketplace**, now it's available the HTTP and S3 :ref:`Marketplaces <marketplace>` for vCenter datastores.
+- **Fully revamped import process**, the ref:`import process <vcenterg>` both in Sunstone and in the CLI has been greatly improved.
 
 API & CLI
 --------------------------------------------------------------------------------
