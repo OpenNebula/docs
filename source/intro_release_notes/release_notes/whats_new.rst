@@ -84,7 +84,7 @@ vCenter
 - **Multiple cluster network support**, now it is possible to import :ref:`networks <vcenter_networking_setup>` belonging to more than 1 cluster with a better management, also you won't see duplicated networks anymore.
 - **vCenter cluster migration**, migrate your VMs between :ref:`vCenter clusters <vcenterg>` with OpenNebula.
 - **vCenter Marketplace**, now it's available the HTTP and S3 :ref:`Marketplaces <marketplace>` for vCenter datastores.
-- **Fully revamped import process**, the ref:`import process <vcenter_new_import_tool>` both in Sunstone and in the CLI has been greatly improved.
+- **OnevCenter Import tool**: Redesign of the new onevcenter import tool, you can easily import any vCenter resource, including bulk importation see :ref:`vCenter import tool <vcenter_new_import_tool>`.
 
 API & CLI
 --------------------------------------------------------------------------------

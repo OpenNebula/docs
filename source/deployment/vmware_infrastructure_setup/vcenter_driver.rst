@@ -331,7 +331,7 @@ It is generally a good idea to place defaults for vCenter-specific attributes. T
     </VCENTER>
 
 
-.. _import_vcenter_resources:
+.. _vcenter_new_import_tool:
 
 vCenter Import Tool
 ================================================================================
@@ -370,12 +370,44 @@ vCenter resources can be easily imported into OpenNebula, these can be classifie
 Importing vCenter Clusters
 --------------------------------------------------------------------------------
 
-Vcenter cluster is the first thing that you will want to add into your vcenter installation because all other vcenter resources depend on it. OpenNebula will import these clusters as opennebula hosts so you can monitor them easily using Sunstone (Infrastructure/Hosts) or through CLI (onehost).
+vCenter cluster is the first thing that you will want to add into your vcenter installation because all other vcenter resources depend on it. OpenNebula will import these clusters as opennebula hosts so you can monitor them easily using Sunstone (Infrastructure/Hosts) or through CLI (onehost).
 Also this is the only step where the authentication is to be required so it's important to assure that the process finishes successfully.
 
-In :ref:`vCenter Node Installation <vcenter_import_host_tool>` we've already explained how a vCenter cluster can be imported from the command-line interface using onevcenter.
+Import a cluster with onevcenter
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-However you can also import a cluster from Sunstone. Click on Hosts under the Infrastructure menu entry and then click on the Plus sign, a new window will be opened.
+When you select a vCenter Cluster to be imported, OpenNebula will create an OpenNebula Host that will represent the vCenter Cluster. Also, you'll have to tell OpenNebula in what OpenNebula Cluster you want to group the OpenNebula Host, if you don't select a previously existing cluster, the default action is that OpenNebula will create an OpenNebula cluster for you. A vCenter Cluster may have the same name in different folders and subfolders of a datacenter, OpenNebula will inform you about the location of the vCenter Cluster so you can identify it.
+
+A sample section follows:
+
+.. prompt:: bash $ auto
+
+	$ onevcenter hosts --vcenter <vcenter-host> --vuser <vcenter-username> --vpass <vcenter-password>
+
+	Connecting to vCenter: vcenter.host...done!
+
+	Exploring vCenter resources...done!
+
+	Do you want to process datacenter Datacenter (y/[n])? y
+
+	  * vCenter cluster found:
+		  - Name       : Cluster2
+		  - Location   : /
+		Import cluster (y/[n])? y
+
+		In which OpenNebula cluster do you want the vCenter cluster to be included?
+
+
+		  - ID: 100 - NAME: Cluster
+		  - ID: 101 - NAME: Cluster3
+
+		Specify the ID of the cluster or press Enter if you want OpenNebula to create a new cluster for you:
+
+		OpenNebula host Cluster2 with ID 2 successfully created.
+
+Import a cluster with Sunstone
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+You can also import a cluster from Sunstone. Click on Hosts under the Infrastructure menu entry and then click on the Plus sign, a new window will be opened.
 
 .. image:: /images/vcenter_create_host.png
     :width: 50%
@@ -427,7 +459,7 @@ In that case should specify the right cluster from the Cluster drop-down menu or
 
 .. note:: It's important to understand that OpenNebula will see vCenter Clusters as OpenNebula hosts, and an OpenNebula Cluster is created too when a new vCenter Cluster is imported as an OpenNebula host. All resources from that vCenter cluster (networks and storage) will be automatically imported to that same OpenNebula Cluster.
 
-.. _vcenter_import_datastores:
+.. _vcenter_import_resources:
 
 Importing vCenters resources
 --------------------------------------------------------------------------------
@@ -467,6 +499,20 @@ This will show you the list of objects that you can import giving you some infor
 
     - [Sunstone] Simply select the desired resources (checking any option) from the previous list
 
+Importing all resources with default configuration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In some scenarios you will want to import every resource of any vCenter server, the importation of some resources like could be the networks have an 'interactive' interface due to they require some options. This makes the automated importation a hard way for the administrator. Despite all of this in both Sunstone and onevcenter you can import all the resources from a vCenter host with the default configuration, this makes the labour of importing all resources an easy task.
+
+- [CLI] using onevcenter import_defaults command:
+
+.. prompt:: bash $ auto
+
+    onevcenter import_defaults -o datastores -h 0
+
+This will import all datastores related to the imported OpenNebula host with ID: 0.
+
+- [Sunstone] Click on the first checkbox at the corner of the table.
 
 Importing vCenter Datastores
 --------------------------------------------------------------------------------
@@ -909,15 +955,17 @@ Like always we need first to get the list of the importable objetcs:
     # vCenter: vcenter.Server
 
 	IMID REF              NAME                      CLUSTERS
-	0    network-12       VM Network                ["100", "102"]
-	1    network-12245    testing00                 ["100", "102"]
-	2    network-12247    testing03                 ["102"]
-	3    network-12248    testing02                 ["102"]
-	4    network-12246    testing01                 ["100", "102"]
+	0    network-12       VM Network                [100, 102]
+	1    network-12245    testing00                 [100, 102]
+	2    network-12247    testing03                 [102]
+	3    network-12248    testing02                 [102]
+	4    network-12246    testing01                 [100, 102]
 
-Knowing this information we want to import 'Testing0*' networks (it's pretty normal to have the necesity of import more than one network).
+.. Note:: It is possible to get networks with CLUSTERS column set to -1, this means that there are vCenter clusters related to the network that you don't have already imported depending on how many -1 you are seeing, look at the previous note above.
 
 
+With this information, we now want to import 'Testing0*' networks (it's common to import more than one network).
+Easily with the list command we realize that testing networks are included in IMIDs 1 to 4.
 
 .. prompt:: bash $ auto
 
@@ -928,7 +976,6 @@ or
 .. prompt:: bash $ auto
 
     $ onevcenter import "network-12245, network-12247, network-12246, network-12248" -o networks -h 0
-
 
 Even if the second option (above) is too long it's still very usefull when you want to import a couple of not sequential nets.
 After this you'll be asked several questions and different actions will be taken depending on your answers.
