@@ -25,25 +25,26 @@ In the following list you can check the highlights of OpenNebula 5.6 (a detailed
 OpenNebula Core
 --------------------------------------------------------------------------------
 
-- **Program Periodic VM actions**, the user can schedule periodic actions to be performed regularly in a VM.
-- **Lock resources**, the user can lock resources (VMs, images or networks) to prevent unintended operations.
-- **Create as uid/gid**: Users can define the final owner and/or group for a VM when creating it. :ref:`See more information here <instantiate_as_uid_gid>`.
-- **Improved Monitoring**: several synchronization points have been removed from one to improve concurrency in the monitoring process. Also database connections are now configurable to allow more parallel access to the database.
-- **Default permission for VDC ACLs**: Administrator can specify the default permission for the automatic ACLs created when a resource is added to a VDC. :ref:`oned.conf <oned_conf>`.
-- **More IO throttling attributes**: We have added more attribute to define IO throttling support into disk section. :ref:`See more information here <reference_vm_template_disk_section>`.
-- **Minor Raft enhancements**: It includes a better purge algorithm, improved timeout control as well as extended information to check out the health of the cluster.
-- **Support to set CPU model**: The CPU model can be now set. Available modes are obtained through monitor, and stored in the hosts.
-- **API request logs**: Log format supports a configurable number of characters for API call parameters.
+- **Program Periodic VM actions**, the user can schedule :ref:`periodic actions <vm_guide2_scheduling_actions>` to be performed regularly in a VM.
+- **Lock resources**, the user can :ref:`lock <manage_locks>` resources (VMs, images or networks) to prevent unintended operations.
+- **Create as uid/gid**, users can define the final owner and/or group for a VM when creating it. :ref:`See more information here <instantiate_as_uid_gid>`.
+- **Improved Monitoring**, several synchronization points have been removed from one to improve concurrency in the monitoring process. Also database connections are now configurable to allow more parallel access to the database.
+- **Default permission for VDC ACLs**, administrator can specify the default permission for the automatic ACLs created when a resource is added to a VDC. This can be configured in :ref:`oned.conf <oned_conf>`.
+- **More IO throttling attributes**, more attributes to define IO throttling support into disk section. :ref:`See more information here <reference_vm_template_disk_section>`.
+- **Minor Raft enhancements**, it now includes a better purge algorithm, improved timeout control as well as extended information to check out the health of the cluster.
+- **Support to set CPU model**, the CPU model can be now set. Available modes are obtained through monitor, and stored in the hosts.
+- **API request logs**, log format supports a configurable number of characters for API call parameters.
 
 Storage
 --------------------------------------------------------------------------------
 
-- **Deploy the images wherever you want**: We have added the possibility to select different deployment modes for Image datastores. For example the same Ceph Image can be used directly from the pool (default ceph mode) or run from the hypervisor local storage (ssh mode). :ref:`More info. <ceph_ds>`. Also shared Filesystem datastores can be combined with the host local storage (ssh mode). :ref:`More info.<fs_ds>`
+- **Deploy the images wherever you want**, we have added the possibility to select different deployment modes for Image datastores. For example the same Ceph Image can be used directly from the pool (default ceph mode) or run from the hypervisor local storage (ssh mode). Check :ref:`this guide info for more info<ceph_ds>`.
+- **Shared Filesystem datastores** can be combined with the host local storage (ssh mode),:ref:`more info in this guide<fs_ds>`.
 
 Networking
 --------------------------------------------------------------------------------
 
-- Better support for security group rules with a large number of ports. :ref:`See configuration options here <bridged_conf>`.
+- Better support for **security group** rules with a large number of ports. :ref:`See configuration options here <bridged_conf>`.
 - **Open vSwitch** rules for the ARP/MAC/IP spoofing filters were refactored.
 - New **Open vSwitch on VXLAN** driver. Driver :ref:`ovswitch_vxlan <openvswitch_vxlan>`.
 - New **Bridged drvier** that supports managed Linux bridges :ref:`more info <bridged>`.

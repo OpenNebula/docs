@@ -123,7 +123,7 @@ Sunstone offers a convenient way to manage resources permissions. This can be do
 
 |image3|
 
-.. _manage_acl:
+.. _manage_locks:
 
 Locking Resources
 =================
@@ -158,6 +158,7 @@ Example:
 
 .. warning:: The user ONEADMIN is not affected by locks and can perform the operation in any case.
 
+.. _manage_acl:
 
 ===================
 Managing ACL Rules
