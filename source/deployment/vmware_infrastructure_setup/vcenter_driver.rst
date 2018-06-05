@@ -964,8 +964,8 @@ Like always we need first to get the list of the importable objetcs:
 .. Note:: It is possible to get networks with CLUSTERS column set to -1, this means that there are vCenter clusters related to the network that you don't have already imported depending on how many -1 you are seeing, look at the previous note above.
 
 
-Knowing this information we want to import 'Testing0*' networks (it's pretty normal to have the necesity of import more than one network).
-Easily with list command we realize that testing networks are included in IMIDs 1 to 4.
+With this information, we now want to import 'Testing0*' networks (it's common to import more than one network).
+Easily with the list command we realize that testing networks are included in IMIDs 1 to 4.
 
 .. prompt:: bash $ auto
 
