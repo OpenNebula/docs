@@ -66,7 +66,7 @@ These are the steps needed to finish the preparation and import it to OpenNebula
 * Import in OpenNebula, the datastores where the template's virtual hard disks are located.
 * Import the template in OpenNebula.
 
-The last two steps can be done using Sunstone or the CLI as explained in the :ref:`Import vCenter Resources section <import_vcenter_resources>`
+The last two steps can be done using Sunstone or the CLI as explained in the :ref:`Import vCenter Resources section <vcenter_import_resources>`
 
 .. include:: template.txt
 

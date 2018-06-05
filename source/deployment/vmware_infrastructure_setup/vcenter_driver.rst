@@ -514,6 +514,8 @@ This will import all datastores related to the imported OpenNebula host with ID:
 
 - [Sunstone] Click on the first checkbox at the corner of the table.
 
+.. _vcenter_import_datastores:
+
 Importing vCenter Datastores
 --------------------------------------------------------------------------------
 
