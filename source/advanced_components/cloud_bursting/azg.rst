@@ -158,7 +158,7 @@ If the OpenNebula frontend needs to use a proxy to connect to the public Interne
 
 .. warning::
 
-    If you were using OpenNebula before 5.5 you may have noticed that there are not Microsoft credentials in configuration file anymore, this is due security reasons. In 5.5 there is a new secure credentials storage for Microsoft's accounts so you do not need to store sensitive credential data inside your disk. OpenNebula daemon stores the data in an encrypted format.
+    If you were using OpenNebula before 5.4 you may have noticed that there are not Microsoft credentials in configuration file anymore, this is due security reasons. In 5.4 there is a new secure credentials storage for Microsoft's accounts so you do not need to store sensitive credential data inside your disk. OpenNebula daemon stores the data in an encrypted format.
 
 
 Once the file is saved, OpenNebula needs to be restarted (as ``oneadmin``, do a 'onevm restart'), create a new Host with Microsoft's credentials that uses the AZ drivers:
