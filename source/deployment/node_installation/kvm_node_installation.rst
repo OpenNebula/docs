@@ -99,6 +99,18 @@ You should verify that connecting from the Front-end, as user ``oneadmin``, to t
 
 .. _kvm_node_networking:
 
+If an extra layer of security is needed, it's possible to keep the private key just at the frontend node instead of copy it to all the hypervisor. In this fashion the oneadmin user in the hypervisors won't be able to access other hypervisors. This is achieved by modifying the ``/var/lib/one/.ssh/config`` in the front-end and adding the ``ForwardAgent`` option to the hypervisor hosts for forwarding the key:
+
+.. prompt:: bash $ auto
+
+    $cat /var/lib/one/.ssh/config
+     Host host1
+        User oneadmin
+        ForwardAgent yes
+     Host host2
+        User oneadmin
+        ForwardAgent yes
+
 Step 5. Networking Configuration
 ================================
 

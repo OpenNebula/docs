@@ -287,14 +287,14 @@ Our recommended approach its to create a two roles, one for the general permissi
 | VirtualMachine.Provisioning.ReadCustSpecs   | Required by a virtual machine reconfigure action                           |
 +---------------------------------------------+----------------------------------------------------------------------------+
 
-Once you have created the proper role, one way to manage these privileges is creating two groups. 
+Once you have created the proper role, one way to manage these privileges is creating two groups.
 
-  - The first group needs to be assigned the **readcustspec** role, place the OpenNebula user inside this group and grant permission over the vCenter instance to the group. 
-  - The second groups needs to be assigned the **opennebulapermissions** role, place the OpenNebula user inside this group and grant permission over the desired cluster to the group. 
-  
+  - The first group needs to be assigned the **readcustspec** role, place the OpenNebula user inside this group and grant permission over the vCenter instance to the group.
+  - The second groups needs to be assigned the **opennebulapermissions** role, place the OpenNebula user inside this group and grant permission over the desired cluster to the group.
+
 .. note::
     Do not forget to add the proper permissions to the datastores and any resource accesed by your OpenNebula user
-  
+
 VNC on ESX hosts
 ================================================================================
 
@@ -311,8 +311,8 @@ Locations of the VIB installation package or ZIP bundle:
 * On public download server. In a case of installation problems,
   insecure HTTP access can be used at own risk!
 
-  * https://downloads.opennebula.org/packages/opennebula-5.4.0/fw-vnc-5.4.0.vib
-  * https://downloads.opennebula.org/packages/opennebula-5.4.0/fw-vnc-5.4.0.zip
+  * https://downloads.opennebula.org/packages/opennebula-5.5.80/fw-vnc-5.5.80.vib
+  * https://downloads.opennebula.org/packages/opennebula-5.5.80/fw-vnc-5.5.80.zip
 
 
 .. note::
@@ -393,7 +393,7 @@ to allow the community packages to be installed and proceed with the install.
 .. prompt:: bash $ auto
 
     $ esxcli <connection options> software acceptance set --level=CommunitySupported
-    $ esxcli <connection options> software vib install -v 'https://downloads.opennebula.org/packages/opennebula-5.4.0/fw-vnc-5.4.0.vib'
+    $ esxcli <connection options> software vib install -v 'https://downloads.opennebula.org/packages/opennebula-5.5.80/fw-vnc-5.5.80.vib'
 
 This enables VNC ports for any remote host. You should
 limit access to the VNC only from your OpenNebula Front-end. In this

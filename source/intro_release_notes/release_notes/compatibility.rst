@@ -5,7 +5,7 @@
 Compatibility Guide
 ====================
 
-This guide is aimed at OpenNebula 5.4.x users and administrators who want to upgrade to the latest version. The following sections summarize the new features and usage changes that should be taken into account, or prone to cause confusion. You can check the upgrade process in the following :ref:`section <upgrade>`
+This guide is aimed at OpenNebula 5.5.x users and administrators who want to upgrade to the latest version. The following sections summarize the new features and usage changes that should be taken into account, or prone to cause confusion. You can check the upgrade process in the following :ref:`section <upgrade>`
 
 Visit the :ref:`Features list <features>` and the `Release Notes <http://opennebula.org/software/release/>`_ for a comprehensive list of what's new in OpenNebula 5.6.
 
@@ -30,6 +30,12 @@ Security Groups
 --------------------------------------------------------------------------------
 
 When creating a VM, OpenNebula will check access to all the security groups involved in the request. This include security groups explicitly set in the NIC as well as security groups in the VNET and its ARs.
+
+Image LOCK state
+--------------------------------------------------------------------------------
+
+When an operation is being performed on an image it is in LOCK state. Since 5.6, this LOCK state also implies an object lock to prevent for example deleting an image while it is being copied. This means that you may need to manually unlock the image if you want to perform any operation over it (e.g. chown or chmod) while it is being copied.
+
 
 Precedence of Datastore and Image Attributes & Marketplace import
 --------------------------------------------------------------------------------
@@ -59,7 +65,7 @@ Network drivers
 
 If the KVM virtual network is defined with ``PHYDEV`` parameter, the missing bridge is created on demand and **destroyed when the physical interface is the only one left**. This behavior can be changed globally via option ``keep_empty_bridge`` inside ``/var/lib/one/remotes/etc/vnm/OpenNebulaNetwork.conf``, or per virtual network via ``CONF`` template attribute. If a bridge was initially created outside the OpenNebula with some configuration (e.g., assigned IP address), this state can be lost with the OpenNebula default settings. Applies to all KVM network drivers except the ``dummy``.
 
-Note also that the "Bridged" modes are now mapped to the new driver in Sunstone. You can still pick the 5.4 ``dummy`` by choosing a custom driver.
+Note also that the "Bridged" modes are now mapped to the new driver ``bridge`` in Sunstone. You can still pick the old ``dummy`` driver by choosing a custom driver.
 
 HA
 --------------------------------------------------------------------------------
@@ -120,3 +126,8 @@ If you are interested in adding a VMGroup or DS in vCenter Cloud View, you shoul
 
 - https://github.com/OpenNebula/one/commit/d019485e3d69588a7645fe30114c3b7c135d3065
 - https://github.com/OpenNebula/one/commit/efdffc4723aae3d2b3f524a1e2bb27c81e43b13d
+
+Sunstone addons
+--------------------------------------------------------------------------------
+
+Sunstone now uses directory ``/var/lib/one/sunstone/`` to store the preprocessed frontend source files. If Sunstone is running under the web server (e.g., via Passenger), additional directory permissions may be required for the web server identity to be able to access the ``/var/lib/one/sunstone/`` directory. Please see :ref:`Configuring Sunstone for Large Deployments <suns_advance>`.

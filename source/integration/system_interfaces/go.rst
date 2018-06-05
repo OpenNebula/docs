@@ -113,13 +113,13 @@ Go OpenNebula Cloud API doesn't cover the resources list below:
 +----------------------+--------------------------------------------------------------------------------------------------------+
 |   Resource           | URL                                                                                                    |
 +======================+========================================================================================================+
-| Marketplace          | http://docs.opennebula.org/5.4/integration/system_interfaces/api.html#onemarket                        |
+| Marketplace          | http://docs.opennebula.org/5.5/integration/system_interfaces/api.html#onemarket                        |
 +----------------------+--------------------------------------------------------------------------------------------------------+
-| Marketapp            | http://docs.opennebula.org/5.4/integration/system_interfaces/api.html#onemarketapp                     |
+| Marketapp            | http://docs.opennebula.org/5.5/integration/system_interfaces/api.html#onemarketapp                     |
 +----------------------+--------------------------------------------------------------------------------------------------------+
-| Security Groups      | http://docs.opennebula.org/5.4/integration/system_interfaces/api.html#onesecgroup                      |
+| Security Groups      | http://docs.opennebula.org/5.5/integration/system_interfaces/api.html#onesecgroup                      |
 +----------------------+--------------------------------------------------------------------------------------------------------+
-| VM Groups            | http://docs.opennebula.org/5.4/integration/system_interfaces/api.html#onevmgroup                       |
+| VM Groups            | http://docs.opennebula.org/5.5/integration/system_interfaces/api.html#onevmgroup                       |
 +----------------------+--------------------------------------------------------------------------------------------------------+
-| Virtual Router       | http://docs.opennebula.org/5.4/integration/system_interfaces/api.html#onevrouter                       |
+| Virtual Router       | http://docs.opennebula.org/5.5/integration/system_interfaces/api.html#onevrouter                       |
 +----------------------+--------------------------------------------------------------------------------------------------------+

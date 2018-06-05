@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
-
 require 'colored'
 
 if ARGV.length != 2
@@ -16,7 +15,7 @@ Dir['**/*'].each do |file|
     next unless File.file? file
 
     skip = false
-    %w(_ conf.py release_notes/ locale/ images/ ext/ toc.html).each do |d|
+    %w(_ conf.py release_notes/ locale/ images/ ext/ toc.html opennebula-white.png).each do |d|
         if file.start_with?(d)
             skip = true
             break

@@ -70,6 +70,7 @@ Another thing you have to take into account is the user on which the server will
     $ chgrp www-data /var/lib/one/.one/sunstone_auth
     $ chmod a+x /var/lib/one
     $ chmod a+x /var/lib/one/.one
+    $ chmod a+x /var/lib/one/sunstone
     $ chgrp www-data /var/log/one/sunstone*
     $ chmod g+w /var/log/one/sunstone*
 
