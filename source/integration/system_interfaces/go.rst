@@ -8,8 +8,6 @@ This page contains the OpenNebula Cloud API Specification for Go. It has been de
 
 Go OpenNebula Cloud API cover the resources lists below:
 
-.. tabularcolumns:: |c|c{2cm}|
-
 +--------------+----------------------------------------------------------------------------------------------------------------+
 |   Resource   | URL                                                                                                            |
 +==============+================================================================================================================+
