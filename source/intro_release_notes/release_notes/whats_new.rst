@@ -18,7 +18,7 @@ Blue Flash also includes several quality of life improvements for end-users. In 
 
 Following our tradition this OpenNebula release is named after NGC 6905, also known as the `Blue Flash Nebula <https://en.wikipedia.org/wiki/NGC_6905>`__, a planetary nebula in the constellation Delphinus. It was discovered by William Herschel in 1784.
 
-The OpenNebula team is now set to bug-fixing mode. Note that this is a beta release aimed at testers and developers to try the new features, and send a more than welcomed feedback for the final release. Note that being a beta there is no migration path from the previous stable version (5.4.13) nor migration path to the final stable version (5.4.0).
+The OpenNebula team is now set to bug-fixing mode. Note that this is a beta release aimed at testers and developers to try the new features, and send a more than welcomed feedback for the final release. Note that being a beta there is no migration path from the previous stable version (5.4.6) nor migration path to the final stable version (5.6.0).
 
 In the following list you can check the highlights of OpenNebula 5.6 (a detailed list of changes can be found `here <https://github.com/OpenNebula/one/milestone/4?closed=1>`__):
 
@@ -39,7 +39,7 @@ Storage
 --------------------------------------------------------------------------------
 
 - **Deploy the images wherever you want**, we have added the possibility to select different deployment modes for Image datastores. For example the same Ceph Image can be used directly from the pool (default ceph mode) or run from the hypervisor local storage (ssh mode). Check :ref:`this guide info for more info<ceph_ds>`.
-- **Shared Filesystem datastores** can be combined with the host local storage (ssh mode),:ref:`more info in this guide<fs_ds>`.
+- **Shared Filesystem datastores** can be combined with the host local storage (ssh mode), :ref:`more info in this guide<fs_ds>`.
 
 Networking
 --------------------------------------------------------------------------------
