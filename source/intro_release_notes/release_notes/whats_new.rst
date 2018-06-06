@@ -73,7 +73,7 @@ Sunstone
 - **New global configurations**. To be able to customize Sunstone even more, :ref:`there are new features in the yamls <suns_views_custom>`.
 - **Disk resize in the cloud view**. Now you can resize a disk as a user cloud.
 - **Quotas in cloud view**. Quotas are shown in Cloud view, and marked red when exceeded.
-- **Display quotas in Clod View**, the end-user can see his quotas in real time.
+- **Display quotas in Cloud View**, the end-user can see his quotas in real time.
 - **Turkish language (TR)**, now in Sunstone.
 - **Icons makeover**, Font Awesome has been updated to lastest version!.
 - **Timeout option for xmlrpc calls**, you can add this new option inside :ref:`sunstone-server.conf <sunstone_setup>`, now it's possible to configure the timeout of OpenNebula XMLRPC for all operations from sunstone.
