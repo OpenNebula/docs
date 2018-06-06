@@ -21,7 +21,7 @@ The first step is to decide on the hypervisor that you will use in your cloud in
 
 After having installed the cloud with one hypervisor you may add another hypervisors. You can deploy heterogeneous multi-hypervisor environments managed by a single OpenNebula instance. An advantage of using OpenNebula on VMware is the strategic path to openness as companies move beyond virtualization toward a private cloud. OpenNebula can leverage existing VMware infrastructure, protecting IT investments, and at the same time gradually integrate other open-source hypervisors, therefore avoiding future vendor lock-in and strengthening the negotiating position of the company.
 
-There are other virtualization technologies, like LXC or Xen, supported by the community. Please refer to the `OpenNebula Add-ons Catalog <http://opennebula.org/addons/>`__.
+There are other virtualization technologies, like `LXD <https://opennebula.org/lxdone-lightweight-virtualization-for-opennebula/>`__ or Xen, supported by the community. Please refer to the `OpenNebula Add-ons Catalog <http://opennebula.org/addons/>`__.
 
 |OpenNebula Hypervisors|
 
@@ -43,7 +43,7 @@ Optionally you can setup a :ref:`high available cluster for OpenNebula <frontend
 2.3. Install the Virtualization hosts
 -------------------------------------------------
 
-Now you are ready to **add the virtualization nodes**. The OpenNebula packages bring support for :ref:`KVM <kvm_node>` and :ref:`vCenter <vCenter_node>` nodes. In the case of vCenter, a host represents a vCenter cluster with all its ESX hosts. You can add different hypervisors to the same OpenNebula instance, or any other virtualization technology, like LXC or Xen, supported by the community. Please refer to the `OpenNebula Add-ons Catalog <http://opennebula.org/addons/>`__.
+Now you are ready to **add the virtualization nodes**. The OpenNebula packages bring support for :ref:`KVM <kvm_node>` and :ref:`vCenter <vCenter_node>` nodes. In the case of vCenter, a host represents a vCenter cluster with all its ESX hosts. You can add different hypervisors to the same OpenNebula instance, or any other virtualization technology, like `LXD <https://github.com/OpenNebula/addon-lxdone>`__ or Xen, supported by the community. Please refer to the `OpenNebula Add-ons Catalog <http://opennebula.org/addons/>`__.
 
 Step 3. Set-up Infrastructure and Services
 ===============================================
