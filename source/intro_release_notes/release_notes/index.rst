@@ -21,6 +21,7 @@ Release Notes 5.4
    Resolved Issues in 5.4.11 Hotfix <resolved_issues_5411>
    Resolved Issues in 5.4.12 Hotfix <resolved_issues_5412>
    Resolved Issues in 5.4.13 <resolved_issues_5413>
+   Resolved Issues in 5.4.14 <resolved_issues_5414>
    Platform Notes <platform_notes>
    Compatibility Guide <compatibility>
    Known Issues <known_issues>
