@@ -150,7 +150,14 @@ Similarly to put the host offline:
 
     $ onehost offline 0
 
-The ``flush`` command will mark all the running VMs in the specified host as to be rescheduled, which means that they will be migrated to another server with enough capacity. At the same time, the specified host will be disabled, so no more Virtual Machines are deployed in it. This command is useful to clean a host of running VMs.
+The ``flush`` command will migrate all the running VMs in the specified host to another server with enough capacity. At the same time, the specified host will be disabled, so no more Virtual Machines are deployed in it. This command is useful to clean a host of running VMs. The migration process can be done by a resched action or by a recover delete-recreate action, it can be configured at the ``/etc/one/cli/onehost.yaml`` by setting the field ``default_actions\flush`` to ``delete-recreate`` or to ``resched``. Here is an example:
+
+.. prompt:: bash $ auto
+
+    :default_actions:
+      - :flush: delete-recreate
+
+
 
 Custom Host Tags & Scheduling Policies
 ================================================================================
