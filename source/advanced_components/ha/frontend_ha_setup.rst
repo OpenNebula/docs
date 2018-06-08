@@ -11,8 +11,6 @@ OpenNebula uses a distributed consensus protocol to provide fault-tolerance and 
 
 .. warning:: If you are interested in fail-over protection against hardware and operating system outages within your virtualized IT environment, check the :ref:`Virtual Machines High Availability Guide <ftguide>`.
 
-.. important:: We have detected a problem in the OpenNebula configuration that can be easily fixed changing the value ``RAFT/XMLRPC_TIMEOUT_MS`` to ``0``. After modifying ``/etc/one/oned.conf`` you should restart OpenNebula service.
-
 Raft Overview
 ================================================================================
 
@@ -329,15 +327,17 @@ The Raft algorithm can be tuned by several parameters in the configuration file 
 +-----------------------------------------------------------------------------------------------------------------------------------------------------+
 | Raft: Algorithm Attributes                                                                                                                          |
 +============================+========================================================================================================================+
+| ``LIMIT_PURGE``            | Number of DB log records that will be deleted on each purge.                                                           |
++----------------------------+------------------------------------------------------------------------------------------------------------------------+
 | ``LOG_RETENTION``          | Number of DB log records kept, it determines the synchronization window across servers and extra storage space needed. |
 +----------------------------+------------------------------------------------------------------------------------------------------------------------+
-| ``LOG_PURGE_TIMEOUT``      | How often applied records are purged according the log retention value. (in seconds)                                   |
+| ``LOG_PURGE_TIMEOUT``      | How often applied records are purged according the log retention value. (in seconds).                                  |
 +----------------------------+------------------------------------------------------------------------------------------------------------------------+
 | ``ELECTION_TIMEOUT_MS``    | Timeout to start a election process if no heartbeat or log is received from leader.                                    |
 +----------------------------+------------------------------------------------------------------------------------------------------------------------+
 | ``BROADCAST_TIMEOUT_MS``   | How often heartbeats are sent to  followers.                                                                           |
 +----------------------------+------------------------------------------------------------------------------------------------------------------------+
-| ``XMLRPC_TIMEOUT_MS``      | To timeout raft related API calls                                                                                      |
+| ``XMLRPC_TIMEOUT_MS``      | To timeout raft related API calls. To set an infinite  timeout set this value to 0.                                    |
 +----------------------------+------------------------------------------------------------------------------------------------------------------------+
 
 .. warning::

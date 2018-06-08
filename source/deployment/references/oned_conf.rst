@@ -129,6 +129,29 @@ Control the :ref:`federation capabilities of oned <introf>`. Operation in a fede
         MASTER_ONED = ""
     ]
 
+Raft Configuration Attributes
+================================================================================
+
+The Raft algorithm can be tuned by several parameters in the configuration file ``/etc/one/oned.conf``. Following options are available:
+
+- ``LIMIT_PURGE``: Number of DB log records that will be deleted on each purge.
+- ``LOG_RETENTION``: Number of DB log records kept, it determines the synchronization window across servers and extra storage space needed.
+- ``LOG_PURGE_TIMEOUT``: How often applied records are purged according the log retention value. (in seconds)
+- ``ELECTION_TIMEOUT_MS``: Timeout to start a election process if no heartbeat or log is received from leader.
+- ``BROADCAST_TIMEOUT_MS``: How often heartbeats are sent to  followers.
+- ``XMLRPC_TIMEOUT_MS``: To timeout raft related API calls. To set an infinite  timeout set this value to 0.
+
+.. code-block:: bash
+
+    RAFT = [
+        LIMIT_PURGE          = 100000,
+        LOG_RETENTION        = 500000,
+        LOG_PURGE_TIMEOUT    = 600,
+        ELECTION_TIMEOUT_MS  = 2500,
+        BROADCAST_TIMEOUT_MS = 500,
+        XMLRPC_TIMEOUT_MS    = 450
+    ]
+
 .. _oned_conf_default_showback:
 
 Default Showback Cost
