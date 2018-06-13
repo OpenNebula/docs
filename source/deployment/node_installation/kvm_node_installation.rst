@@ -111,7 +111,7 @@ If an extra layer of security is needed, it's possible to keep the private key j
         User oneadmin
         ForwardAgent yes
 
-.. note:: Remember that is neccesary to have running the ssh-agent with the corrsponging private key imported before OpenNebula is started. You can start ssh-agent by running ``eval "$(ssh-agent -s)"`` and add the private key by running ``ssh-add /var/lib/one/.ssh/id_rsa``.
+.. note:: Remember that is neccesary to have running the ssh-agent with the corresponding private key imported before OpenNebula is started. You can start ssh-agent by running ``eval "$(ssh-agent -s)"`` and add the private key by running ``ssh-add /var/lib/one/.ssh/id_rsa``.
 
 Step 5. Networking Configuration
 ================================
