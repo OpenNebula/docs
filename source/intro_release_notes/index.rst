@@ -9,5 +9,5 @@ Introduction and Release Notes
 
    Concepts and Terminology <concepts_terminology/index>
    Release Notes 5.4.13 <release_notes/index>
-   Release Notes 5.4.14 Hotfix <release_notes_hotfix/index>
+   Release Notes 5.4.15 Hotfix <release_notes_hotfix/index>
    Upgrades <upgrades/index>
