@@ -115,7 +115,8 @@ Available options are:
 |                           | user template                                                                                 |
 +---------------------------+-----------------------------------------------------------------------------------------------+
 | :vnc\_proxy\_port         | Base port for the VNC proxy. The proxy will run on this port as long as Sunstone server       |
-|                           | does. ``29876`` by default.                                                                   |
+|                           | does. ``29876`` by default. Could be prefixed with an address on which the sever will be      |
+|                           | listening (ex: 127.0.0.1:29876).                                                              |
 +---------------------------+-----------------------------------------------------------------------------------------------+
 | :vnc\_proxy\_support\_wss | ``yes``, ``no``, ``only``. If enabled, the proxy will be set up with a certificate and        |
 |                           | a key to use secure websockets. If set to ``only`` the proxy will only accept encrypted       |
@@ -126,6 +127,9 @@ Available options are:
 | :vnc\_proxy\_key          | Full path to key file. Not necessary if key is included in certificate.                       |
 +---------------------------+-----------------------------------------------------------------------------------------------+
 | :vnc\_proxy\_ipv6         | Enable ipv6 for novnc. (true or false)                                                        |
++---------------------------+-----------------------------------------------------------------------------------------------+
+| :vnc\_client\_port        | Port where the vnc JS client will connect.                                                    |
+|                           | If not set, will use the port section of :vnc_proxy_port                                      |
 +---------------------------+-----------------------------------------------------------------------------------------------+
 | :vnc\_request\_password   | Request VNC password for external windows, by default it will not be requested                |
 |                           | (true or false)                                                                               |
