@@ -251,6 +251,15 @@ NIC
 
 * ``TARGET``: name for the tun device created for the VM. It corresponds to the ``ifname`` option of the '-net' argument of the ``kvm`` command.
 * ``SCRIPT``: name of a shell script to be executed after creating the tun device for the VM. It corresponds to the ``script`` option of the '-net' argument of the ``kvm`` command.
+* ``QoS`` to control the network traffic. We can define different kind of controls over network traffic:
+
+    * ``INBOUND_AVG_BW``
+    * ``INBOUND_PEAK_BW``
+    * ``INBOUND_PEAK_KW``
+    * ``OUTBOUND_AVG_BW``
+    * ``OUTBOUND_PEAK_BW``
+    * ``OUTBOUND_PEAK_KW``
+
 * ``MODEL``: ethernet hardware to emulate. You can get the list of available models with this command:
 
 .. prompt:: bash $ auto
@@ -262,6 +271,8 @@ NIC
 .. prompt:: bash $ auto
 
     $ virsh -c qemu:///system nwfilter-list
+
+* ``VIRTIO_QUEUES`` to define how many queues will be used for the communication between CPUs and Network drivers. This attribute only is available with MODEL = 'virtio'.
 
 Graphics
 ~~~~~~~~
