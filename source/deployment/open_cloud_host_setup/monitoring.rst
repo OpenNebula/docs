@@ -45,7 +45,7 @@ To enable this monitoring system ``/etc/one/oned.conf`` must be configured with 
     #    -f  Interval in seconds to flush collected information (default 5)
     #    -t  Number of threads for the server (defult 50)
     #    -i  Time in seconds of the monitorization push cycle. This parameter must
-    #        be smaller than MONITORING_INTERVAL, otherwise push monitorization will
+    #        be smaller than MONITORING_INTERVAL_VM, otherwise push monitorization will
     #        not be effective.
     #-------------------------------------------------------------------------------
     IM_MAD = [
@@ -60,7 +60,7 @@ Valid arguments for this driver are:
 -  **-p**: port number
 -  **-f**: Interval in seconds to flush collected information to OpenNebula (default 5)
 -  **-t**: Number of threads for the collectd server (defult 50)
--  **-i**: Time in seconds of the monitorization push cycle. This parameter must be smaller than MONITORING_INTERVAL (see below), otherwise push monitorization will not be effective.
+-  **-i**: Time in seconds of the monitorization push cycle. This parameter must be smaller than MONITORING_INTERVAL_VM (see below), otherwise push monitorization will not be effective.
 
 **KVM**:
 
@@ -88,13 +88,19 @@ Monitoring Configuration Parameters
 
 OpenNebula allows to customize the general behavior of the whole monitoring subsystem:
 
-+------------------------+-----------------------------------------------------------------------------------------------------------+
-| Parameter              | Description                                                                                               |
-+========================+===========================================================================================================+
-| MONITORING_INTERVAL    | Time in seconds between host and VM monitorization. It must have a value greater than the manager timer   |
-+------------------------+-----------------------------------------------------------------------------------------------------------+
-| HOST_PER_INTERVAL      | Number of hosts monitored in each interval.                                                               |
-+------------------------+-----------------------------------------------------------------------------------------------------------+
++-------------------------------+--------------------------------------------------------------------------------------------------------------+
+| Parameter                     | Description                                                                                                  |
++===============================+==============================================================================================================+
+| MONITORING_INTERVAL_HOST      | Time in seconds between host monitorization. It must have a value greater than the manager timer             |
++-------------------------------+--------------------------------------------------------------------------------------------------------------+
+| MONITORING_INTERVAL_VM        | Time in seconds between VM monitorization. It must have a value greater than the manager timer               |
++-------------------------------+--------------------------------------------------------------------------------------------------------------+
+| MONITORING_INTERVAL_DATASTORE | Time in seconds between Datastore images monitorization. It must have a value greater than the manager timer |
++------------------------+---------------------------------------------------------------------------------------------------------------------+
+| MONITORING_INTERVAL_MARKET    | Time in seconds between marketplace monitorization. It must have a value greater than the manager timer      |
++-------------------------------+--------------------------------------------------------------------------------------------------------------+
+| HOST_PER_INTERVAL             | Number of hosts monitored in each interval.                                                                  |
++-------------------------------+--------------------------------------------------------------------------------------------------------------+
 
 .. _monitoring_troubleshooting:
 
@@ -116,7 +122,7 @@ Every (approximately) ``monitoring_push_cycle`` of seconds OpenNebula is receivi
     Tue May 24 16:22:27 2016 [Z0][InM][D]: Host thost087 (0) successfully monitored.
     Tue May 24 16:22:27 2016 [Z0][VMM][D]: VM 0 successfully monitored: STATE=a CPU=0.0 MEMORY=113544 NETRX=648 NETTX=468
 
-However, if in ``oned.log`` a host is being monitored **actively** periodically (every ``MONITORING_INTERVAL`` seconds) then the monitorization is **not** working correctly:
+However, if in ``oned.log`` a host is being monitored **actively** periodically (every ``MONITORING_INTERVAL_HOST`` seconds) then the monitorization is **not** working correctly:
 
 .. code::
 
