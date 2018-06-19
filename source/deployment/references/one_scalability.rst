@@ -20,8 +20,8 @@ OpenNebula keeps the monitorization history for a defined time in a database tab
 
 These monitorization entries can take quite a bit of storage in your database. The amount of storage used will depend on the size of your cloud, and the following configuration attributes in :ref:`oned.conf <oned_conf>`:
 
--  ``MONITORING_INTERVAL_VMS``: Time in seconds between each monitorization. Default: 60.
--  collectd IM\_MAD ``-i`` argument (KVM only): Time in seconds of the monitorization push cycle. Default: 20.
+-  ``MONITORING_INTERVAL_HOST``: Time in seconds between each monitorization. Default: 180.
+-  collectd IM\_MAD ``-i`` argument (KVM only): Time in seconds of the monitorization push cycle. Default: 60.
 -  ``HOST_MONITORING_EXPIRATION_TIME``: Time, in seconds, to expire monitoring information. Default: 12h.
 -  ``VM_MONITORING_EXPIRATION_TIME``: Time, in seconds, to expire monitoring information. Default: 4h.
 
