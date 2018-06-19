@@ -45,7 +45,7 @@ To enable this monitoring system ``/etc/one/oned.conf`` must be configured with 
     #    -f  Interval in seconds to flush collected information (default 5)
     #    -t  Number of threads for the server (defult 50)
     #    -i  Time in seconds of the monitorization push cycle. This parameter must
-    #        be smaller than MONITORING_INTERVAL_VM, otherwise push monitorization will
+    #        be smaller than MONITORING_INTERVAL_HOST, otherwise push monitorization will
     #        not be effective.
     #-------------------------------------------------------------------------------
     IM_MAD = [
