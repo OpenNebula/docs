@@ -15,6 +15,11 @@ To consider only if upgrading from OpenNebula 5.x.x
 OpenNebula Administrators
 ================================================================================
 
+Fine grain tuning for MONITOR_INTERVAL
+--------------------------------------------------------------------------------
+
+The `MONITOR_INTERVAL` configuration has been split in multiple attributes to fine tune the monitoritzation of each component. If you have changed this value you need to adjust the associated new attribute, most probably `MONITORING_INTERVAL_HOST`.
+
 New behavior of attributes
 --------------------------------------------------------------------------------
 

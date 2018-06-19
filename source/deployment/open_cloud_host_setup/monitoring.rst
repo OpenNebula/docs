@@ -95,7 +95,7 @@ OpenNebula allows to customize the general behavior of the whole monitoring subs
 +-------------------------------+--------------------------------------------------------------------------------------------------------------+
 | MONITORING_INTERVAL_VM        | Time in seconds between VM monitorization. It must have a value greater than the manager timer               |
 +-------------------------------+--------------------------------------------------------------------------------------------------------------+
-| MONITORING_INTERVAL_DATASTORE | Time in seconds between Datastore images monitorization. It must have a value greater than the manager timer |
+| MONITORING_INTERVAL_DATASTORE | Time in seconds between Datastore monitorization. It must have a value greater than the manager timer        |
 +------------------------+---------------------------------------------------------------------------------------------------------------------+
 | MONITORING_INTERVAL_MARKET    | Time in seconds between marketplace monitorization. It must have a value greater than the manager timer      |
 +-------------------------------+--------------------------------------------------------------------------------------------------------------+
