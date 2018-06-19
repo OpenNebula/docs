@@ -60,7 +60,7 @@ Valid arguments for this driver are:
 -  **-p**: port number
 -  **-f**: Interval in seconds to flush collected information to OpenNebula (default 5)
 -  **-t**: Number of threads for the collectd server (defult 50)
--  **-i**: Time in seconds of the monitorization push cycle. This parameter must be smaller than MONITORING_INTERVAL_VM (see below), otherwise push monitorization will not be effective.
+-  **-i**: Time in seconds of the monitorization push cycle. This parameter must be smaller than MONITORING_INTERVAL_HOST (see below), otherwise push monitorization will not be effective.
 
 **KVM**:
 
