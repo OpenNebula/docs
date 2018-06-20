@@ -247,9 +247,9 @@ Inside ``features`` there are twelve settings:
 * ``show_host_instantiate``: True to show the host datatable to instantiate VM.
 * ``show_monitoring_info``: True to show the monitoring info (VM & VRouters).
 * ``show_attributes_info``: True to show the attributes info (VM & VRouters).
-* ``resize_enforce``: If it is set to true, the host capacity will be checked. This will only affect oneadmin requests, regular users resize requests will always be enforced.
-* ``deploy_enforce``.
-* ``migrate_enforce``.
+* ``resize_enforce``: If set to True, the host capacity will be checked. This will only affect oneadmin requests, regular users resize requests will always be enforced.
+* ``deploy_enforce``: If set to True, the host capacity will be checked. This will only affect oneadmin requests, regular users resize requests will always be enforced.
+* ``migrate_enforce``: If set to True, the host capacity will be checked. This will only affect oneadmin requests, regular users resize requests will always be enforced.
 
 .. code-block:: yaml
 
