@@ -82,6 +82,11 @@ Marketplace
 
 MD5 attribute from marketplace app images will be carried to the OpenNebula image as FROM_APP_MD5 instead of MD5 as previous versions. This change won't be automatically upgraded, so if needed it must be done manually. This change prevents errors exporting these images as the file might be changed (for instance, if it has been made persistent) and hence the MD5 checksum will yield a different result.
 
+Image allocate without checks for datastore capacity
+--------------------------------------------------------------------------------
+
+Command `oneimage create` accepts a new parameter `--no_check_capacity` to specify if you want OpenNebula to avoid checking datastore capacity.
+
 Developers and Integrators
 ================================================================================
 
