@@ -85,7 +85,7 @@ MD5 attribute from marketplace app images will be carried to the OpenNebula imag
 Image allocate without checks for datastore capacity
 --------------------------------------------------------------------------------
 
-From now, the command `oneimage create` accepts a new parameter `--no_check_capacity` to specify if you want that OpenNebula checks the datastore capacity.
+Command `oneimage create` accepts a new parameter `--no_check_capacity` to specify if you want OpenNebula to avoid checking datastore capacity.
 
 Developers and Integrators
 ================================================================================
