@@ -72,6 +72,11 @@ If the KVM virtual network is defined with ``PHYDEV`` parameter, the missing bri
 
 Note also that the "Bridged" modes are now mapped to the new driver ``bridge`` in Sunstone. You can still pick the old ``dummy`` driver by choosing a custom driver.
 
+LVM drivers
+--------------------------------------------------------------------------------
+
+:ref:`LVM Drivers <lvm_drivers>` now zero the space when the volume is allocated, resized, and released. This may result in slower processing of the virtual machine states ``PROLOG``, ``DISK_RESIZE``, and ``EPILOG``.
+
 HA
 --------------------------------------------------------------------------------
 
