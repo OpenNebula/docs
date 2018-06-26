@@ -90,6 +90,8 @@ vCenter
 API & CLI
 --------------------------------------------------------------------------------
 - **zone show**: users can view all information of HA servers with the option `-x`. The Zone::info_extended() method exposes this functionality to be used by other tools (only in Ruby OCA).
+- **Improved performance**, slower response times for CLI list operations.
+- **New output** for list operations. Data is shown in a less session, improving user experience. Fitted for large deployments. Shows traditional output if pipe is detected.
 
 
 .. |sunstone_dashboard| image:: /images/sunstone_dashboard.png
