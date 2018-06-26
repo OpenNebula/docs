@@ -34,6 +34,7 @@ OpenNebula Core
 - **Minor Raft enhancements**, it now includes a better purge algorithm, improved timeout control as well as extended information to check out the health of the cluster.
 - **Support to set CPU model**, the CPU model can be now set. Available modes are obtained through monitor, and stored in the hosts.
 - **API request logs**, log format supports a configurable number of characters for API call parameters.
+- **Recover Followers easily**, when a follower falls out of the recovery window, it can be reset with `onezone reset-server` command. You still need to manually backup/recover the database. :ref:`Detailed recovery process here <frontend_ha_recover_servers>`.
 
 Storage
 --------------------------------------------------------------------------------
