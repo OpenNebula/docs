@@ -92,6 +92,11 @@ Image allocate without checks for datastore capacity
 
 Command `oneimage create` accepts a new parameter `--no_check_capacity` to specify if you want OpenNebula to avoid checking datastore capacity.
 
+Snapshots do not reuse snapshot IDs
+--------------------------------------------------------------------------------
+
+The snapshots structure stores the next snapshot ID. So, a new snapshot doesn't reuse an old snapshot ID, even when some are removed.
+
 Developers and Integrators
 ================================================================================
 
