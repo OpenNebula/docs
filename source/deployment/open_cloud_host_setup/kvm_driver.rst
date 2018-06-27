@@ -134,7 +134,7 @@ Working with cgroups (Optional)
 
 Cgroups is a kernel feature that allows to control the number of resources allocated to a given process (among other things). It can be used to enforce the amount of CPU assigned to a VM, as defined in its OpenNebula template (i.e., a VM with CPU=0.5 will get half of the physical CPU cycles than a VM with CPU=1.0). The cgroups are configured **on each hypervisor host (where required), not on the front-end**.
 
-.. note:: In current operating systems running the systemd, the cgroups are enabled and used by libvirt/KVM automatically. No configuration is necessary. The tool ``lscgroup`` (included in distribution package ``libcgroup-tools`` on RHEL/CentOS or ``cgroup-tools`` on Debian/Ubuntu) can to check the cgroups state on your system. The cgroups aren't available if you get an error output of the tool, e.g.:
+.. note:: In current operating systems running the systemd, the cgroups are enabled and used by libvirt/KVM automatically. No configuration is necessary. The tool ``lscgroup`` (included in distribution package ``libcgroup-tools`` on RHEL/CentOS or ``cgroup-tools`` on Debian/Ubuntu) can be used to check the cgroups state on your system. The cgroups aren't available if you get an error output of the tool, e.g.:
 
     .. prompt:: bash $ auto
 
