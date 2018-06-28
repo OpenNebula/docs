@@ -126,6 +126,11 @@ Application Containerization
 | Appliance OS                 | Ubuntu 16.04                               |
 +------------------------------+--------------------------------------------+
 
+VMware Cloud on AWS
+--------------------------------------------------------------------------------
+
+OpenNebula has been validated and is supported on VMware Cloud on AWS. Customers can contact the support team through the commercial support portal to know specific configuration and limitations.
+
 .. note:: Generally for all Linux platforms, it is worth noting that gems should be installed with the :ref:`install_gems <ruby_runtime>`, avoiding the platform's package version.
 
 
