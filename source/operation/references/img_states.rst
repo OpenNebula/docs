@@ -11,8 +11,7 @@ The simplified life-cycle is explained in the :ref:`Virtual Machines Images guid
 List of States
 ================================================================================
 
-In OpenNebula an Image has a variable to define it's state
-OpenNebula's images define it's state using the ``STATE`` variable. The state can be seen from the CLI (``oneimage show``) and from Sunstone (Info panel for the Image). 
+OpenNebula's images define its state using the ``STATE`` variable. The state can be seen from the CLI (``oneimage show``) and from Sunstone (Info panel for the Image). 
 
 +----+-----------------+-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | #  |      State      | Short State Alias |                                                                                                                                                    Meaning                                                                                                                                                    |
