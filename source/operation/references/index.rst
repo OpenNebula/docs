@@ -9,5 +9,6 @@ References
    Virtual Machine Definition Template <template>
    Virtual Machine States Reference <vm_states>
    Image Definition Template <img_template>
+   Image States Reference <img_states>
    Virtual Network Definition Template <vnet_template>
    Command Line Interface <cli>
