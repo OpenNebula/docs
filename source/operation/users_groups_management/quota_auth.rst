@@ -28,6 +28,9 @@ The quota system allows you to track and limit usage on:
 
 * **Images**, you can limit the how many VM instances from a given user/group are using a given image. You can take advantage of this quota when the image contains consumable resources (e.g. software licenses).
 
+
+.. warning:: Only datastore size is consumed when using a ceph backend, system disks will not be affected in this case. The reason is that this kind of datastores use the same space for system and for images, so OpenNebula can not know which space is used in each case.
+
 Defining User/Group Quotas
 ==========================
 
