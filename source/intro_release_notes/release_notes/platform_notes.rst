@@ -281,3 +281,30 @@ Installing on Devuan
 Packages for Devuan Jessie 1.0 Beta are provided by Alberto Zuin. You can download them at:
 
 http://downloads.opennebula.org/extra/packages/devuan/
+
+
+Sunstone
+================================================================================
+
+Support Browsers
+--------------------------------------------------------------------------------
+
++---------------------------+-----------------------------------------------------------------------------------------------+
+|          Browser          |                                            Version                                            |
++===========================+===============================================================================================+
+| Chrome                    | 61.0 - 67.0                                                                                   |
++---------------------------+-----------------------------------------------------------------------------------------------+
+| Firefox                   | 59.0 - 61.0                                                                                   |
++---------------------------+-----------------------------------------------------------------------------------------------+
+| IE                        | 11.0                                                                                          |
++---------------------------+-----------------------------------------------------------------------------------------------+
+
+
+.. note::
+
+    For Windows desktops using **Chrome** or **Firefox** you should disable the option ``touch-events`` of your browser.
+
+    - **Chrome**: chrome://flags -> #touch-events: disabled.
+    - **Firefox**: about:config -> dom.w3c_touch_events: disabled.
+
+.. note:: Internet Explorer is **not** supported with the Compatibility Mode enabled, since it emulates IE7 which is not supported.

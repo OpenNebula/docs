@@ -28,31 +28,6 @@ Requirements:
 -  Websockets-enabled browser (optional): Firefox and Chrome support websockets. In some versions of Firefox manual activation is required. If websockets are not enabled, flash emulation will be used.
 -  Installing the python-numpy package is recommended for a better vnc performance.
 
-Considerations & Limitations
-================================================================================
-
-Support Browsers
---------------------------------------------------------------------------------
-
-+---------------------------+-----------------------------------------------------------------------------------------------+
-|          Browser          |                                            Version                                            |
-+===========================+===============================================================================================+
-| Chrome                    | 61.0+                                                                                         |
-+---------------------------+-----------------------------------------------------------------------------------------------+
-| Firefox                   | 59.0+                                                                                         |
-+---------------------------+-----------------------------------------------------------------------------------------------+
-| IE                        | 11+                                                                                           |
-+---------------------------+-----------------------------------------------------------------------------------------------+
-
-
-.. note::
-
-    For Windows desktops using **Chrome** or **Firefox** you should disable the option ``touch-events`` of your browser.
-
-    - **Chrome**: chrome://flags -> #touch-events: disabled.
-    - **Firefox**: about:config -> dom.w3c_touch_events: disabled.
-
-.. note:: Internet Explorer is **not** supported with the Compatibility Mode enabled, since it emulates IE7 which is not supported.
 
 Configuration
 ================================================================================
