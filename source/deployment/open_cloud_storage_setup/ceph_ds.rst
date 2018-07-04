@@ -284,6 +284,8 @@ An example of datastore:
 
 .. warning:: If you are going to use the TM_MAD_SYSTEM attribute with SSH mode, you need to have an :ref:`SSH type system Datastore <fs_ds>` configured.
 
+.. note:: See :ref:`quotas <quota_auth_ceph_warning>` for more information about quotas over Ceph backend storage.
+
 Additional Configuration
 --------------------------------------------------------------------------------
 
