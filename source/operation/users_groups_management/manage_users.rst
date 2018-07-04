@@ -37,7 +37,7 @@ URL where the OpenNebula daemon is listening. If it is not set, CLI tools will u
 
 **ONE_XMLRPC_TIMEOUT**
 
-Lets you to decide the number of seconds before the xmlrpc request for a operation is canceled.
+Number of seconds to wait before a xmlrpc request timeouts.
 
 **ONE_AUTH**
 
