@@ -298,7 +298,7 @@ In order to delegate the datastore selection to the SDRS cluster you must inform
 Marketplace with vCenter Datastores
 ================================================================================
 
-The vCenter datastores are compatiblees with the OpenNebula HTTP and S3 marketplaces. It's neccesary a generic VM Template. More information about OpenNebula marketplaces can be foud :ref:`here <marketplace_overview>`.
+The vCenter datastores are compatible with OpenNebula HTTP and S3 marketplaces. It's necessary a generic VM Template. More information about OpenNebula marketplaces can be found :ref:`here <marketplace_overview>`.
 
 Tuning and Extending
 ================================================================================
