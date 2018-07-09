@@ -443,7 +443,7 @@ Select the vCenter clusters you want to import and finally click on the Import b
     :width: 50%
     :align: center
 
-You can check that the hosts representing the vCenter clusters have a name containing the cluster name, the vcenter instance name, the datacenter name and a hash that prevents name collisions when several vCenter clusters with the same name are imported. Also you can see that if you select the default datastore, OpenNebula will assign a new OpenNebula cluster with the same name of the imported vCenter cluster.
+You can check that the hosts representing the vCenter clusters have a name containing the cluster name, and if there is name collision with a previously imported vCenter cluster, a string is added to avoid the collision. Also you can see that if you select the default datastore, OpenNebula will assign a new OpenNebula cluster with the same name of the imported vCenter cluster.
 
 .. image:: /images/vcenter_create_host_step5.png
     :width: 50%
@@ -660,7 +660,7 @@ Also a virtual network will be created. The name contains the port group name, t
     :width: 50%
     :align: center
 
-A vCenter template name is only unique inside a folder, so you may have two templates with the same name in different folders inside a datacenter. For that reason OpenNebula will generate a name that prevents collisions. That name contains the template name, the cluster where it’s used, the vcenter instance name and the datacenter where it lives and a 12 character hash that prevents the collision. That name can be changed to a more human-friendly name once the template has been imported. The following screenshot shows an example:
+A vCenter template name is only unique inside a folder, so you may have two templates with the same name in different folders inside a datacenter. If OpenNebula detects a collision it will add a string (based on a SHA1 hash operation on the VM Template characteristics) to the name to prevent name duplication in OpenNebula. The VM Template name in OpenNebula can be changed once it has been imported. The following screenshot shows an example:
 
 .. image:: /images/vcenter_template_import_step6.png
     :width: 50%
@@ -819,8 +819,6 @@ Once the template has been imported you get the template's ID.
     :align: center
 
 
-.. note:: The name assigned to the template in OpenNebula contains the template's name, vCenter cluster's name and a 12 character hash. That name is used to prevent conflicts when several templates with the same name are found in a vCenter instance. Once the vCenter template has been imported, that OpenNebula's name can be changed to a more human-friendly name.
-
 .. note:: A vCenter template is considered that it hasn't been imported if the template's moref and vCenter instance uuid is not found in OpenNebula's template pool.
 
 .. warning:: If OpenNebula does not find new templates, check that you have previously imported the vCenter clusters that contain those templates.
@@ -929,7 +927,7 @@ If there are no OpenNebula Cluster’s ID it means that you haven’t imported a
 .. Note:: Since 5.6 Multicluster networks are supported by OpenNebula, this means that you can import Port groups and Distributed Port groups with more than 1 vcenter cluster. OpenNebula will show up the related vcenter clusters and you should import at least 1 before proceeding with the importation.
           Even if it is possible to import a multicluster network having only 1 vcenter cluster, it is best to take all vcenter clusters related to the network into OpenNebula first (arranging them into opennebula clusters) this will facilitate the network administration.
 
-A vCenter network name is unique inside a datacenter, so it is possible that two networks can be found with the same name in different datacenters and/or vCenter instances. When you import a network, OpenNebula generates a name that avoids collisions. That name contains the port group name, the cluster where it’s used, the vcenter instance name and the datacenter where it lives and a 12 character hash that prevents a collision. That name can be changed to a more human-friendly name once the virtual network has been imported. The following screenshot shows an example:
+A vCenter network name is unique inside a datacenter, so it is possible that two networks can be found with the same name in different datacenters and/or vCenter instances. When you import a network, OpenNebula checks its existing network pool and generates a name that avoids collisions if needed. This name can be changed once the virtual network has been imported. The following screenshot shows an example:
 
 .. image:: /images/vcenter_import_vnet_step0.png
     :width: 50%
@@ -1092,7 +1090,7 @@ A VMDK or ISO file may have the same name in different locations inside the data
 * The size of the VMDK file. This will be the capacity size of the VMDk file as it was seen from a Virtual Machine perspective. For example, a VMDK file may be only a few KBs in size as it may have been thin provisioned, however the size that would report a Virtual Machine, if that file was attached to the VM, would be different and hence the capacity is displayed if it's available otherwise it will display the file's size.
 * The type of the file: VmDiskFileInfo or IsoImageFileInfo.
 
-When you import an image, OpenNebula will generate a name automatically that prevents conflicts if you try to import several files with the same name but that are located in different folders inside the datastore. The name contains the file's name, the datastore's name and a 12 character hash. That name can be changed once the image has been imported. The following is a sample import name:
+When you import an image, OpenNebula will generate a name automatically that prevents conflicts if you try to import several files with the same name but that are located in different folders inside the datastore. This name can be changed once the image has been imported. The following is a sample import name:
 
 .. image:: /images/vcenter_image_import_step0.png
     :width: 50%
