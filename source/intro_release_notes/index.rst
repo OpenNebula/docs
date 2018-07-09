@@ -8,5 +8,5 @@ Introduction and Release Notes
    :maxdepth: 2
 
    Concepts and Terminology <concepts_terminology/index>
-   Release Notes 5.6.0 RC <release_notes/index>
+   Release Notes 5.6.0 <release_notes/index>
    Upgrades <upgrades/index>
