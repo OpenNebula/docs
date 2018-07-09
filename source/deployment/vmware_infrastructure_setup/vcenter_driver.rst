@@ -65,7 +65,7 @@ This a screenshot of a virtual machine browsed by the Managed Object Browser:
     :align: center
 
 
-VMWare VM Templates and OpenNebula
+VMware VM Templates and OpenNebula
 --------------------------------------------------------------------------------
 
 In OpenNebula, Virtual Machines are deployed from VMware VM Templates that **must exist previously in vCenter and must be imported into OpenNebula**. There is a one-to-one relationship between each VMware VM Template and the equivalent OpenNebula VM Template. Users will then instantiate the OpenNebula VM Template and OpenNebula will create a Virtual Machine clone from the vCenter template.
@@ -74,7 +74,7 @@ In OpenNebula, Virtual Machines are deployed from VMware VM Templates that **mus
 
 There is no need to convert your current Virtual Machines or Templates, or import/export them through any process; once ready just save them as VM Templates in vCenter, following `this procedure <http://pubs.vmware.com/vsphere-55/index.jsp?topic=%2Fcom.vmware.vsphere.vm_admin.doc%2FGUID-FE6DE4DF-FAD0-4BB0-A1FD-AFE9A40F4BFE_copy.html>`__ and import it into OpenNebula as explained later in this chapter.
 
-When a VMWare VM Template is imported, OpenNebula will detect any virtual disk and network interface within the template. For each virtual disk, OpenNebula will create an OpenNebula image representing each disk discovered in the template. In the same way, OpenNebula will create a network representation for each standard or distributed port group associated to virtual network interfaces found in the template.
+When a VMware VM Template is imported, OpenNebula will detect any virtual disk and network interface within the template. For each virtual disk, OpenNebula will create an OpenNebula image representing each disk discovered in the template. In the same way, OpenNebula will create a network representation for each standard or distributed port group associated to virtual network interfaces found in the template.
 
 .. warning:: The process that discovers virtual disks and networks and then creates OpenNebula representations take some time depending on the number of discovered resources and the operations that must be performed so be patient.
 
@@ -616,7 +616,7 @@ The **onevcenter** tool and the Sunstone interface can be used to import existin
 
 The import tools (either the onevcenter tool or Sunstone) gives you information about the templates:
 
-* the name of the template
+* the name of the VM Template
 * the vCenter cluster where that template lives
 * a location path that helps to find out where in the VM and Templates vSphere view that template is located.
 
@@ -668,7 +668,7 @@ A vCenter template name is only unique inside a folder, so you may have two temp
 
 .. _vcenter_template_import:
 
-Import a template with onevcenter
+Import a VM Template with onevcenter
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This would be the process using the **onevcenter** tool.
@@ -777,7 +777,7 @@ If you selected a list, you will be asked to select the reference of the default
     The default resource pool presented to the end user is set to "TestResourcePool/NestedResourcePool".
     Press y to agree, or input a new resource pool ([y]/resource pool name)
 
-Import a template with Sunstone
+Import a VM Template with Sunstone
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In Sunstone, click on VMs under the Template menu entry and then click on the Import button, a new window will be opened.
