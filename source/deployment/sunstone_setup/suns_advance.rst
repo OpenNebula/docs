@@ -136,8 +136,12 @@ Next thing we have to do is configure the virtual host that will run our Sunston
          Options -MultiViews
          # Uncomment this if you're on Apache >= 2.4:
          #Require all granted
+         # Comment this if you're on OpenNebula < 5.6.0:
+         Options FollowSymLinks
       </Directory>
     </VirtualHost>
+
+.. note:: It's compulsory to add the ``FollowSymLinks`` option in the virtual host.
 
 .. note:: When you're experiencing login problems you might want to set ``PassengerMaxInstancesPerApp 1`` in your passenger configuration or try memcached since Sunstone does not support sessions across multiple server instances.
 
