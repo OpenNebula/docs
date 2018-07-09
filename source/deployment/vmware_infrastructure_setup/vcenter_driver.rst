@@ -1160,13 +1160,13 @@ Select the images you want to import and click on the Import button. The ID of t
 
 .. note:: When an image is created using the import tool, the VCENTER_IMPORTED attribute is set to YES automatically. This attribute prevents OpenNebula to delete the file from the vCenter datastore when the image is deleted from OpenNebula, so it can be used to prevent a virtual hard disk to be removed accidentally from a vCenter template.
 
-Migrate vCenter machines from OpenNebula
+Migrate vCenter Virtual Machines with OpenNebula
 ================================================================================
 
-vCenter Driver allows you to migrate machines between vcenter clusters, however you will need to fullfill some requirements in order to **migrate** the machine:
+vCenter Driver allows you to migrate machines between vCenter clusters, however you will need to fulfill some requirements in order to **migrate** the machine:
 
 * OpenNebula cold migration only works for powered-off machines so be sure to check the state before
-* Every Network attached to the selected machines will need to exist in both vcenter clusters and opennebula clusters
+* Every Network attached to the selected machines will need to exist in both vCenter clusters and OpenNebula clusters
 * Every Datastore that is used by the machine need to exist in both vcenter clusters and opennebula clusters
 
 Example using cli:
@@ -1175,12 +1175,12 @@ Example using cli:
 
     $ onevm migrate "<VM name>" <destination host id>
 
-Also vCenter driver allows you to execute **live migration**, this means that instead of power off the machine you have the option of perform migrate action in a running state, however the following requirement list must be fullfiled:
+Also vCenter driver allows you to execute **live migration**, this means that instead of power off the machine you have the option of perform migrate action in a running state, however the following requirement list must be fulfilled:
 
 * OpenNebula live migration only works for running machines so be sure to check the state before
-* You need to have vmotion interface enabled in both vCenter clusters otherwise the driver will warn you about compatibility issues
-* Every Network attached to the selected machines will need to exist in both vcenter clusters and opennebula clusters
-* Every Datastore that is used by the machine need to exist in both vcenter clusters and opennebula clusters
+* You need to have vMotion interface enabled in both vCenter clusters otherwise the driver will warn you about compatibility issues
+* Every Network attached to the selected machines will need to exist in both vCenter clusters and OpenNebula clusters
+* Every Datastore that is used by the machine need to exist in both vCenter clusters and OpenNebula clusters
 
 Example using cli:
 
