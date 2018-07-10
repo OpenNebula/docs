@@ -358,12 +358,12 @@ The Import button will be available once the admin_vcenter view is enabled in Su
 
 vCenter resources can be easily imported into OpenNebula, these can be classified:
 
-* hosts
-* datastores
-* networks
-* templates
-* wilds
-* images
+* Hosts
+* Datastores
+* Networks
+* Templates
+* Wilds
+* Images
 
 .. _vcenter_import_clusters:
 
@@ -415,7 +415,7 @@ You can also import a cluster from Sunstone. Click on Hosts under the Infrastruc
 
 In the new window, select VMWare vCenter from the Type drop-down menu.
 
-Introduce the vCenter hostname or IP address and the credentials used to manage the vCenter instance and click on **Get vCenter Clusters**
+Introduce the vCenter hostname or IP address and the credentials used to manage the vCenter instance and click on **Get Clusters**
 
 .. image:: /images/vcenter_create_host_step1.png
     :width: 50%
@@ -461,7 +461,7 @@ In that case should specify the right cluster from the Cluster drop-down menu or
 
 .. _vcenter_import_resources:
 
-Importing vCenters resources
+Importing vCenter resources
 --------------------------------------------------------------------------------
 
 Once you have imported your vCenter cluster you can import the rest of the vCenter resources delegating the authentication to the imported OpenNebula host.
@@ -523,7 +523,7 @@ Virtual hard disks, which are attached to vCenter virtual machines and templates
 
 Once you run the import tool, OpenNebula gives you information about the datastores it founds on each datacenter: the name of the datastore, the capacity of the datastores, and the IDs of OpenNebula Clusters which the vCenter datastores can be assigned to. If there are no OpenNebula Cluster’s IDs it means that you haven’t imported any vCenter cluster that uses this datastore. Although it’s not mandatory that you import vCenter clusters before importing a vCenter datastore you may have later to assign a datastore to an OpenNebula cluster so OpenNebula VMs and Templates can use that datastore.
 
-A vCenter datastore is unique inside a datacenter, so it is possible that two datastores can be found with the same name in different datacenters and/or vCenter instances. When you import a datastore, OpenNebula generates a name that avoids collisions, that name contains the datastore name, the vcenter instance name, the datacenter where it lives and the datastore type between parentheses. That name can be changed once the datastore has been imported to a more human-friendly name. This is sample name:
+A vCenter datastore is unique inside a datacenter, so it is possible that two datastores can be found with the same name in different datacenters and/or vCenter instances. When you import a datastore, OpenNebula generates a name that avoids collisions, that name contains the datastore name, the datastore type between parentheses and, if there was another datastore with that name, a suffix. That name can be changed once the datastore has been imported to a more human-friendly name. This is sample name:
 
 .. image:: /images/vcenter_create_datastore_step1.png
     :width: 35%
@@ -577,15 +577,15 @@ In Sunstone, click on Datastores under the Storage menu entry and then click on 
     :width: 50%
     :align: center
 
-In the new window, introduce the vCenter hostname or IP address and the credentials used to manage the vCenter instance and click on **Get Datastores**
+In the new window, choose a cluster to authenticate you into this vCenter instance and click on **Get Datastores**.
 
 .. image:: /images/vcenter_datastore_import_step2.png
     :width: 50%
     :align: center
 
-When you click on the Get Datastores button and assuming that you’ve entered the right credentials, you’ll get a list of datastores found on each datacenter. You’ll get the name of the datastores, its capacity and the IDs of existing OpenNebula clusters where a datastore will be assigned to. Remember, if OpenNebula Clusters IDs column is empty that means that the import tool could not find an OpenNebula cluster where the datastore can be grouped and you may have to assign it by hand later or you may cancel the datastore import tool action and try to import the vCenter clusters before.
+When you click on the Get Datastores button you’ll get a list of datastores. You’ll get the name of the datastores, its capacity and the IDs of existing OpenNebula clusters where a datastore will be assigned to. Remember, if OpenNebula Clusters IDs column is empty that means that the import tool could not find an OpenNebula cluster where the datastore can be grouped and you may have to assign it by hand later or you may cancel the datastore import tool action and try to import the vCenter clusters before.
 
-OpenNebula will search for datastores that haven't been imported yet. If OpenNebula founds new datastores they will be grouped by the datacenter they belong.
+OpenNebula will search for datastores that haven't been imported yet.
 
 .. image:: /images/vcenter_datastore_import_step3.png
     :width: 50%
@@ -597,7 +597,7 @@ From the list, select the datastore you want to import and finally click on the 
     :width: 50%
     :align: center
 
-Also in the datastore list you can check that an automatic name has been generated containing the datastore name, the vcenter instance name and the datacenter name. Also between parentheses you can find SYS for a SYSTEM datastore, IMG for an IMAGE datastore or StorDRS for a StorageDRS cluster representation. Remember that datastore name can be changed once the datastore has been imported. Finally the datastores have been added to an OpenNebula cluster too if IDs were listed in the OpenNebula Cluster IDs column.
+In the datastore list you can check the datastore name. Also between parentheses you can find SYS for a SYSTEM datastore, IMG for an IMAGE datastore or StorDRS for a StorageDRS cluster representation. Remember that datastore name can be changed once the datastore has been imported. Finally the datastores have been added to an OpenNebula cluster too if IDs were listed in the OpenNebula Cluster IDs column.
 
 .. image:: /images/vcenter_create_datastore_step6.png
     :width: 50%
@@ -786,13 +786,13 @@ In Sunstone, click on VMs under the Template menu entry and then click on the Im
     :width: 50%
     :align: center
 
-In the new window, introduce the vCenter hostname or IP address and the credentials used to manage the vCenter instance and click on **Get vCenter Templates**
+In the new window, choose a cluster to authenticate you into this vCenter instance and click on **Get Templates**.
 
 .. image:: /images/vcenter_template_import_step7.png
     :width: 50%
     :align: center
 
-OpenNebula will search for templates that haven't been imported yet. If OpenNebula founds new templates they will be grouped by the datacenter they belong.
+OpenNebula will search for templates that haven't been imported yet.
 
 .. image:: /images/vcenter_template_import_step8.png
     :width: 50%
@@ -918,9 +918,9 @@ When you import a vCenter port group or distributed port group, OpenNebula will 
 
 The import tool (either the onevcenter tool or Sunstone) gives you information about the found networks on each datacenter:
 
-* the name of the network
-* the type of network (Standard Port Group or Distributed Port Group)
-* the name of the vCenter cluster where the port group is used and the ID of the OpenNebula host referenced to the proper vCenter cluster.
+* The name of the network
+* The type of network (Standard Port Group or Distributed Port Group)
+* The name of the vCenter cluster where the port group is used and the ID of the OpenNebula host referenced to the proper vCenter cluster.
 
 If there are no OpenNebula Cluster’s ID it means that you haven’t imported any vCenter cluster that uses this port group so to import properly the network you should have imported the vcenter cluster first.
 
@@ -1044,14 +1044,13 @@ In Sunstone the process is similar, click on Virtual Networks under the Network 
     :width: 50%
     :align: center
 
-In the new window, introduce the vCenter hostname or IP address and the credentials used to manage the vCenter instance and click on **Get Networks**
+In the new window, choose a cluster to authenticate you into this vCenter instance and click on **Get Networks**.
 
 .. image:: /images/vcenter_network_import_step2.png
     :width: 50%
     :align: center
 
-If OpenNebula founds unimported networks they will be grouped by the datacenter they belong.
-When you click on the Get Networks and assuming that you’ve entered the right credentials, you’ll get a list of port groups found on each datacenter and cluster. You’ll get the name of the port group, its type, the cluster, the location of the cluster and the IDs of an existing OpenNebula cluster which this virtual network will be assigned to. If OpenNebula Clusters ID is -1 that means that the import tool could not find an OpenNebula cluster where the datastore can be grouped and you may have to assign it by hand later or you may cancel the datastore import tool action and try to import the vCenter clusters before.
+When you click on the Get Networks, you’ll get a list of port groups. You’ll get the name of the port group, its type, the cluster, the location of the cluster and the IDs of an existing OpenNebula cluster which this virtual network will be assigned to. If OpenNebula Clusters ID is -1 that means that the import tool could not find an OpenNebula cluster where the datastore can be grouped and you may have to assign it by hand later or you may cancel the datastore import tool action and try to import the vCenter clusters before.
 
 .. image:: /images/vcenter_import_vnet_step3.png
     :width: 50%
@@ -1090,7 +1089,7 @@ A VMDK or ISO file may have the same name in different locations inside the data
 * The size of the VMDK file. This will be the capacity size of the VMDk file as it was seen from a Virtual Machine perspective. For example, a VMDK file may be only a few KBs in size as it may have been thin provisioned, however the size that would report a Virtual Machine, if that file was attached to the VM, would be different and hence the capacity is displayed if it's available otherwise it will display the file's size.
 * The type of the file: VmDiskFileInfo or IsoImageFileInfo.
 
-When you import an image, OpenNebula will generate a name automatically that prevents conflicts if you try to import several files with the same name but that are located in different folders inside the datastore. This name can be changed once the image has been imported. The following is a sample import name:
+When you import an image, OpenNebula generates a name that avoids collisions, that name contains the image name and, if there was another image with that name, a suffix. That name can be changed once the image has been imported to a more human-friendly name. This is sample name:
 
 .. image:: /images/vcenter_image_import_step0.png
     :width: 50%
@@ -1142,7 +1141,7 @@ Images can also be imported from Sunstone. Click on Images under the Storage men
     :width: 50%
     :align: center
 
-In the new window, introduce the vCenter hostname or IP address and the credentials used to manage the vCenter instance. You also have to select the IMAGE datastore where you want to import those images. Click on **Get Images**.
+In the new window, choose a cluster to authenticate you into this vCenter instance and click on **Get Images**.
 
 .. image:: /images/vcenter_image_import_step2.png
     :width: 50%
