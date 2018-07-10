@@ -449,13 +449,12 @@ VIB package can also be installed over vSphere and ESX web UIs.
 
 Repeat for each ESX host.
 
-Changing VNC keymap
--------------------
+Changing default VNC keymap
+---------------------------
 
-It is possible to change the default keymap for your remote virtual machine keyboard.
+It is possible to change the default keymap for the remote virtual machine keyboard.
 
-To use this feature you will have to change your vcenter_driver.default file, located under OpenNebula etc folder.
-An example of choosing a us keymap will be the following:
+To use this feature you will have to change the /etc/one/vcenter_driver.default file. An example of choosing a 'us' keymap will be the following:
 
 .. code::
 
