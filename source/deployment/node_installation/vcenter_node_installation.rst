@@ -448,3 +448,32 @@ VIB package can also be installed over vSphere and ESX web UIs.
     :align: center
 
 Repeat for each ESX host.
+
+Changing default VNC keymap
+---------------------------
+
+It is possible to change the default keymap for the remote virtual machine keyboard.
+
+To use this feature you will have to change the /etc/one/vcenter_driver.default file. An example of choosing a 'us' keymap will be the following:
+
+.. code::
+
+    <VCENTER>
+     <VM>
+       <TEMPLATE>
+         <NIC>
+           <MODEL>vmxnet3</MODEL>
+         </NIC>
+       </TEMPLATE>
+     </VM>
+     <IMAGE>
+       <TEMPLATE>
+         <DEV_PREFIX>sd</DEV_PREFIX>
+         <VCENTER_DISK_TYPE>thin</DISK_TYPE>
+         <VCENTER_ADAPTER_TYPE>lsiLogic</ADAPTER_TYPE>
+         <GRAPHICS>
+            <KEYMAP>ES</KEYMAP>
+         </GRAPHICS>
+       </TEMPLATE>
+     </IMAGE>
+    </VCENTER>
