@@ -18,7 +18,7 @@ Blue Flash also includes several quality of life improvements for end-users. In 
 
 Following our tradition this OpenNebula release is named after NGC 6905, also known as the `Blue Flash Nebula <https://en.wikipedia.org/wiki/NGC_6905>`__, a planetary nebula in the constellation Delphinus. It was discovered by William Herschel in 1784.
 
-The OpenNebula team is now set to bug-fixing mode. Note that this is a beta release aimed at testers and developers to try the new features, and send a more than welcomed feedback for the final release. Note that being a beta there is no migration path from the previous stable version (5.4.6) nor migration path to the final stable version (5.6.0).
+OpenNebula 5.6 Blue Flash is considered to be a stable release and as such it is available to update production environments.
 
 In the following list you can check the highlights of OpenNebula 5.6 (a detailed list of changes can be found `here <https://github.com/OpenNebula/one/milestone/4?closed=1>`__):
 
