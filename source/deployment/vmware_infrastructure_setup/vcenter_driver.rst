@@ -265,12 +265,12 @@ The vCenter virtualization driver configuration file is located in ``/etc/one/vc
 
 Default values for Virtual Machine attributes will be located inside a TEMPLATE element under a VM element while default values for Images (e.g a representation of a VMDK file) will be located inside a TEMPLATE element under an IMAGE element.
 
-So far the following default values for a VM can be set:
+So far the following default values for VM NIC can be set:
 
 +-----------------------+--------------------------------------------------------+--------------------+
 | Attribute             |                      Description                       |     Values         |
 +-----------------------+--------------------------------------------------------+--------------------+
-| MODEL                 | It must be placed inside a NIC element. It will specify| | e1000            |
+| MODEL                 | It will specify                                        | | e1000            |
 |                       | the network interface card model. By default it is set | | e1000e           |
 |                       | to vmxnet3.                                            | | pcnet32          |
 |                       |                                                        | | sriovethernetcard|
@@ -289,6 +289,16 @@ So far the following default values for a VM can be set:
 +-----------------------+--------------------------------------------------------+--------------------+
 | OUTBOUND_PEAK_BW      | Maximum bitrate for the interface in kilobytes/second  |                    |
 |                       | for outbound traffic.                                  |                    |
++-----------------------+--------------------------------------------------------+--------------------+
+
+
+Default attributes for VM GRAPHICS:
+
++-----------------------+--------------------------------------------------------+--------------------+
+| Attribute             |                      Description                       |     Values         |
++-----------------------+--------------------------------------------------------+--------------------+
+| KEYMAP                | It will specify the keymap for a remote access         |                    |
+|                       | through VNC                                            | any keymap code    |
 +-----------------------+--------------------------------------------------------+--------------------+
 
 So far the following default values for an IMAGE can be set:
@@ -319,6 +329,9 @@ It is generally a good idea to place defaults for vCenter-specific attributes. T
                     <MODEL>vmxnet3</MODEL>
                     <INBOUND_AVG_BW>100</INBOUND_AVG_BW>
                 </NIC>
+                <GRAPHICS>
+                    <KEYMAP>US</KEYMAP>
+                </GRAPHICS>
             </TEMPLATE>
         </VM>
         <IMAGE>
@@ -329,7 +342,6 @@ It is generally a good idea to place defaults for vCenter-specific attributes. T
             </TEMPLATE>
         </IMAGE>
     </VCENTER>
-
 
 .. _vcenter_new_import_tool:
 
@@ -614,27 +626,7 @@ The **onevcenter** tool and the Sunstone interface can be used to import existin
 
 .. important:: Before importing a template check that the datastores that hosts the virtual hard disks have been monitored and that they report its size and usage information. You can't create images in a datastore until it's monitored.
 
-The import tools (either the onevcenter tool or Sunstone) gives you information about the templates:
-
-* the name of the VM Template
-* the vCenter cluster where that template lives
-* a location path that helps to find out where in the VM and Templates vSphere view that template is located.
-
-In the following example the template has a location showing Templates.
-
-.. image:: /images/vcenter_template_import_step0.png
-    :width: 50%
-    :align: center
-
-This is where the template is displayed in vSphere:
-
-.. image:: /images/vcenter_template_import_step1.png
-    :width: 35%
-    :align: center
-
-As the Templates folder is shown right beneath Datacenter, OpenNebula shows Templates as its location. If the template was found under a sub folder, the location will show the folder names separated by a slash /. If the location is /, that means that the template is found at the root of the datacenter.
-
-When a template is selected to be imported, you have to note that OpenNebula inspects the template in search for virtual disks and virtual network interface cards.
+The import tools (either the onevcenter tool or Sunstone) gives you information about the templates, when a template is selected to be imported, you have to note that OpenNebula inspects the template in search for virtual disks and virtual network interface cards.
 
 It’s mandatory that you import vCenter datastores used by your vCenter template before importing it, because OpenNebula requires an IMAGE datastore to put the images that represents detected virtual disks. If OpenNebula doesn’t find the datastore the import action will fail.
 
@@ -654,7 +646,7 @@ Indeed after the import operation finishes there will be three images representi
     :width: 50%
     :align: center
 
-Also a virtual network will be created. The name contains the port group name, the name of the template and OpenNebula’s template ID. Note that the virtual network is added automatically to an OpenNebula cluster which contains the vCenter cluster. E.g Cluster ID is 128 in the following screenshot.
+Also a virtual network will be created. The name will be the same as vCenter . Note that the virtual network is added automatically to an OpenNebula cluster which contains the vCenter cluster. E.g This network belongs to two OpenNebula cluters (100, 101) in the following screenshot.
 
 .. image:: /images/vcenter_template_import_step5.png
     :width: 50%
