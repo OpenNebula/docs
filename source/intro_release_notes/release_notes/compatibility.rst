@@ -29,7 +29,7 @@ New behavior of attributes
 
     ATTR = []
 
-  * When creating an image DEFAUL_IMAGE_PERSISTENT_NEW can be overrriden by the PERSISTENT value of the new image. Sunstone and CLI provides a way to set this value to overrride the user/group default.
+  * When creating an image DEFAULT_IMAGE_PERSISTENT_NEW can be overridden by the PERSISTENT value of the new image. Sunstone and CLI provides a way to set this value to override the user/group default.
 
 Security Groups
 --------------------------------------------------------------------------------
