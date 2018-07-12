@@ -19,6 +19,11 @@ Core & System
 * `#763 <https://github.com/OpenNebula/one/issues/763>`_ If an user removes USE or MANAGE rights from VM it cannot access it anymore
 * `#2260 <https://github.com/OpenNebula/one/issues/2260>`_ Re-evaluate the actions that can be supported by a Virtual Router
 * `#1815 <https://github.com/OpenNebula/one/issues/1815>`_ Remove resource references from VDC when erased
+* `#1255 <https://github.com/OpenNebula/one/issues/1255>`_ MANAGE right requirement on image for disk snapshot unjustified with ceph
+* `#1635 <https://github.com/OpenNebula/one/issues/1635>`_ Do not instantiate VM if IP is allocated
+* `#1320 <https://github.com/OpenNebula/one/issues/1320>`_ Implement call to let raft know that a follower's db has been updated
+* `#1312 <https://github.com/OpenNebula/one/issues/1312>`_ VM Save As - Disk advanced params not saved to new template
+* `#1395 <https://github.com/OpenNebula/one/issues/1395>`_ Deleting a group that owns images used by running VMs breaks those VMs
 
 Drivers - Network
 ================================================================================
@@ -32,10 +37,14 @@ Drivers - Storage
 * `#944 <https://github.com/OpenNebula/one/issues/944>`_ CEPH_HOST not IPv6 friendly
 * `#2269 <https://github.com/OpenNebula/one/issues/2269>`_ Clonning images from one Ceph datastore to another
 * `#2246 <https://github.com/OpenNebula/one/issues/2246>`_ VMs created from images inside a Ceph datastore with EC_POOL_NAME are not created in that EC pool
+* `#1286 <https://github.com/OpenNebula/one/issues/1286>`_ Can not flatten image without losting latest state
+* `#1955 <https://github.com/OpenNebula/one/issues/1955>`_ Only 1 Ceph monitor added in libvirt XML when Ceph DISK IMAGE attached (hot-add)
 
 Drivers - VM
 ================================================================================
 
+* `#1157 <https://github.com/OpenNebula/one/issues/1157>`_ Signal timeouts in EC2 driver
+* `#1309 <https://github.com/OpenNebula/one/issues/1309>`_ Improve exception handling azure and ec2 drivers
 
 Drivers - Auth
 ================================================================================
@@ -46,18 +55,22 @@ Packages
 ================================================================================
 
 * `#1703 <https://github.com/OpenNebula/one/issues/1703>`_ Can't attach disk after detaching disk
+* `#1650 <https://github.com/OpenNebula/one/issues/1650>`_ Discrepancies between Opennebula's tarball and the the Github one
+* `#820 <https://github.com/OpenNebula/one/issues/820>`_ Debian package ruby-opennebula doesn't place files into GEM_PATH
+* `#1225 <https://github.com/OpenNebula/one/issues/1225>`_ OneGate Server package is not provided needed gems or install_gems script
 
 OneFlow
 ================================================================================
 
 * `#917 <https://github.com/OpenNebula/one/issues/917>`_ oneflow and oneflow-template ignore the no_proxy environment variable
 * `#668 <https://github.com/OpenNebula/one/issues/668>`_ Scheduled policy start_time cannot be defined as a POSIX time number
-* `#1077 <https://github.com/OpenNebula/one/issues/1077>`_ Throw an error an error if a template update is invalid
+* `#1077 <https://github.com/OpenNebula/one/issues/1077>`_ Throw an error if a template update is invalid
 
 Marketplace
 ================================================================================
 
 * `#1159 <https://github.com/OpenNebula/one/issues/1159>`_ DISPOSE=YES in market_mad/remotes/http/import is not honored
+* `#1666 <https://github.com/OpenNebula/one/issues/1666>`_ Marketplace driver expects always an image to import
 
 Scheduler
 ================================================================================
@@ -68,7 +81,8 @@ Sunstone
 ================================================================================
 
 * `#636 <https://github.com/OpenNebula/one/issues/636>`_ if syslog enabled disable the logs tab in the VM detailed view
-* `#916 <https://github.com/OpenNebula/one/issues/916>`_ sunstone ignores the no_proxy environment variable
+* `#916 <https://github.com/OpenNebula/one/issues/916>`_ Sunstone ignores the no_proxy environment variable
+* `#1532 <https://github.com/OpenNebula/one/issues/1532>`_ Sunstone is killed by OOM Killer when uploading large images
 
 vCenter
 ================================================================================
@@ -81,3 +95,5 @@ vCenter
 * `#2262 <https://github.com/OpenNebula/one/issues/2262>`_ Wait poweron/off to be performed
 * `#1626 <https://github.com/OpenNebula/one/issues/1626>`_ vCenter importer lock file stale and clash
 * `#2084 <https://github.com/OpenNebula/one/issues/2084>`_ vCenter Cache thread safe (thin related)
+* `#1699 <https://github.com/OpenNebula/one/issues/1699>`_ Wild VM monitoring should not return datastores that contain only swap files
+* `#1259 <https://github.com/OpenNebula/one/issues/1259>`_ Premigrator: unmanaged nics from vms are outside the AR of the network
