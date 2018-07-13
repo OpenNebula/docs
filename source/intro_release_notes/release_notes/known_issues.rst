@@ -24,6 +24,7 @@ Core & System
 * `#1320 <https://github.com/OpenNebula/one/issues/1320>`_ Implement call to let raft know that a follower's db has been updated
 * `#1312 <https://github.com/OpenNebula/one/issues/1312>`_ VM Save As - Disk advanced params not saved to new template
 * `#1395 <https://github.com/OpenNebula/one/issues/1395>`_ Deleting a group that owns images used by running VMs breaks those VMs
+* `#2284 <https://github.com/OpenNebula/one/issues/2284>`_ Quotas assignment error
 
 Drivers - Network
 ================================================================================
