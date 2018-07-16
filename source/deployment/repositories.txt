@@ -24,12 +24,6 @@ To add OpenNebula repository on Debian/Ubuntu execute as root:
 
     # wget -q -O- https://downloads.opennebula.org/repo/repo.key | apt-key add -
 
-**Debian 8**
-
-.. prompt:: bash # auto
-
-    # echo "deb https://downloads.opennebula.org/repo/5.6/Debian/8 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
-
 **Debian 9**
 
 .. prompt:: bash # auto
