@@ -2,6 +2,8 @@
 versions:
 - - "Stable"
   - http://docs.opennebula.org/stable
+- - "5.6"
+  - http://docs.opennebula.org/5.6
 - - "5.4"
   - http://docs.opennebula.org/5.4
 - - "5.2"
