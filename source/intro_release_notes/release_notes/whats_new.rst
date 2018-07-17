@@ -14,7 +14,9 @@ Blue Flash also includes several quality of life improvements for end-users. In 
 
 |sched_actions|
 
-5.6. ends the major redesign on the vCenter driver started in 5.4. The new integration with vCenter features stability and performance improvements, as well as important new features like a extended multicluster support or a redesigned importation workflow with new Sunstone tabs as well as a new CLI.
+5.6. ends the major redesign on the vCenter driver started in 5.4. The new integration with vCenter features stability and performance improvements, as well as important new features like a extended multicluster support,  marketplace integration to easily provide content to your cloud and a redesigned importation workflow with new Sunstone tabs as well as a new CLI.
+
+New integrations also bring Docker management. Any OpenNebula cloud can import from the marketplace a VM prepared to act as docker engine, allowing the deployment of Docker applications on top. Also, an integration with Docker Machine is available to seamlessly manage docker engines without having to interact with OpenNebula APIs or interfaces.
 
 Following our tradition this OpenNebula release is named after NGC 6905, also known as the `Blue Flash Nebula <https://en.wikipedia.org/wiki/NGC_6905>`__, a planetary nebula in the constellation Delphinus. It was discovered by William Herschel in 1784.
 
@@ -76,8 +78,8 @@ Sunstone
 - **Quotas in cloud view**. Quotas are shown in Cloud view, and marked red when exceeded.
 - **Display quotas in Cloud View**, the end-user can see his quotas in real time.
 - **Turkish language (TR)**, now in Sunstone.
-- **Icons makeover**, Font Awesome has been updated to lastest version!.
-- **Timeout option for xmlrpc calls**, you can add this new option inside :ref:`sunstone-server.conf <sunstone_setup>`, now it's possible to configure the timeout of OpenNebula XMLRPC for all operations from sunstone.
+- **Icons makeover**, Font Awesome has been updated to latest version!
+- **Timeout option for xmlrpc calls**, you can add this new option inside :ref:`sunstone-server.conf <sunstone_setup>`, now it's possible to configure the timeout of OpenNebula XMLRPC for all operations from Sunstone.
 - **Configurable 'Keep me logged in'**, this option now is configurable in :ref:`sunstone-server.conf <sunstone_setup>`.
 
 vCenter
@@ -87,6 +89,12 @@ vCenter
 - **vCenter cluster migration**, migrate your VMs between :ref:`vCenter clusters <vcenterg>` with OpenNebula.
 - **vCenter Marketplace**, now it's available the HTTP and S3 :ref:`Marketplaces <marketplace>` for vCenter datastores.
 - **OnevCenter Import tool**: Redesign of the new onevcenter import tool, you can easily import any vCenter resource, including bulk importation see :ref:`vCenter import tool <vcenter_new_import_tool>`.
+
+Application Containerization
+-------------------------------------------------------------------------------
+
+- **Docker Appliance**, a :ref:`new image in the Marketplace <docker_appliance_configuration>` (available for KVM and vCenter) brings a Docker Engine pre-installed and the contextualization packages configured to :ref:`create Docker Hosts with a single click <docker_appliance_usage>`.
+- **Docker Machine integration**, enabling :ref:`provision and management of remote Docker hosts with Docker Machine <docker_host_provision_with_docker_machine>` on your OpenNebula cloud
 
 API & CLI
 --------------------------------------------------------------------------------
