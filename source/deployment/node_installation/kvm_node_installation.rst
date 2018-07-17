@@ -26,6 +26,17 @@ Execute the following commands to install the node package and restart libvirt t
     $ sudo yum install opennebula-node-kvm
     $ sudo systemctl restart libvirtd
 
+.. note:: You may benefit from using the more recent and feature-rich enterprise QEMU/KVM release. The differences between the base (``qemu-kvm``) and enterprise (``qemu-kvm-rhev`` on RHEL or ``qemu-kvm-ev`` on CentOS) packages are described on the `Red Hat Customer Portal <https://access.redhat.com/solutions/629513>`__.
+
+    On CentOS 7, the enterprise packages are part of the separate repository. To replace the base packages, follow these steps:
+
+    .. prompt:: bash $ auto
+
+        $ sudo yum install centos-release-qemu-ev
+        $ sudo yum install qemu-kvm-ev
+
+    On RHEL, you need a paid subscription to the Red Hat Virtualization (RHV) or Red Hat OpenStack (RHOS) products. Please follow the RHV `Installation Guide <https://access.redhat.com/documentation/en-us/red_hat_virtualization/>`__.
+
 For further configuration, check the specific guide: :ref:`KVM <kvmg>`.
 
 Installing on Debian/Ubuntu
@@ -111,7 +122,7 @@ If an extra layer of security is needed, it's possible to keep the private key j
         User oneadmin
         ForwardAgent yes
 
-.. note:: Remember that is neccesary to have running the ssh-agent with the corrsponging private key imported before OpenNebula is started. You can start ssh-agent by running ``eval "$(ssh-agent -s)"`` and add the private key by running ``ssh-add /var/lib/one/.ssh/id_rsa``.
+.. note:: Remember that is neccesary to have running the ssh-agent with the corresponding private key imported before OpenNebula is started. You can start ssh-agent by running ``eval "$(ssh-agent -s)"`` and add the private key by running ``ssh-add /var/lib/one/.ssh/id_rsa``.
 
 Step 5. Networking Configuration
 ================================

@@ -114,8 +114,6 @@ In case you are using disks with a cache setting different to ``none`` you may h
 
     MIGRATE_OPTIONS=--unsafe
 
-.. _kvmg_working_with_cgroups_optional:
-
 Configure the Timeouts (Optional)
 --------------------------------------------------------------------------------
 
@@ -129,104 +127,69 @@ Optionally, you can set a timeout for the VM Shutdown operation can be set up. T
     # Uncomment this line to force VM cancellation after shutdown timeout
     #export FORCE_DESTROY=yes
 
+.. _kvmg_working_with_cgroups_optional:
+
 Working with cgroups (Optional)
 --------------------------------------------------------------------------------
 
-.. warning:: This section outlines the configuration and use of cgroups with OpenNebula and libvirt/KVM. Please refer to the cgroups documentation of your Linux distribution for specific details.
+Cgroups is a kernel feature that allows to control the number of resources allocated to a given process (among other things). It can be used to enforce the amount of CPU assigned to a VM, as defined in its OpenNebula template (i.e., a VM with CPU=0.5 will get half of the physical CPU cycles than a VM with CPU=1.0). The cgroups are configured **on each hypervisor host (where required), not on the front-end**.
 
-Cgroups is a kernel feature that allows you to control the amount of resources allocated to a given process (among other things). This feature can be used to enforce the amount of CPU assigned to a VM, as defined in its template. So, thanks to cgroups a VM with CPU=0.5 will get half of the physical CPU cycles than a VM with CPU=1.0.
+.. note:: In current operating systems running the systemd, the cgroups are enabled and used by libvirt/KVM automatically. No configuration is necessary. The tool ``lscgroup`` (included in distribution package ``libcgroup-tools`` on RHEL/CentOS or ``cgroup-tools`` on Debian/Ubuntu) can be used to check the cgroups state on your system. The cgroups aren't available if you get an error output of the tool, e.g.:
 
-Cgroups can be also used to limit the overall amount of physical RAM that the VMs can use, so you can leave always a fraction to the host OS.
+    .. prompt:: bash $ auto
 
-The following outlines the steps need to configure cgroups, this should be **performed in the hosts, not in the front-end**:
+        $ lscgroup
+        cgroups can't be listed: Cgroup is not mounted
 
-* Define where to mount the cgroup controller virtual file systems, at least memory and cpu are needed.
-* (Optional) You may want to limit the total memory devoted to VMs. Create a group for the libvirt processes (VMs) and the total memory you want to assign to them. Be sure to assign libvirt processes to this group, e.g. wih CGROUP\_DAEMON or in cgrules.conf. Example:
+    Follow the documentation of your operating system to enable and configure the cgroups.
 
-.. code::
+Cgroups can be used to limit the overall amount of physical RAM that the VMs can use, so you can leave always a fraction to the host OS. In this case, you may want to set also the ``RESERVED_MEM`` parameter in host or cluster templates.
 
-    # /etc/cgconfig.conf
-
-    group virt {
-            memory {
-                    memory.limit_in_bytes = 5120M;
-            }
-    }
-
-    mount {
-            cpu     = /mnt/cgroups/cpu;
-            memory  = /mnt/cgroups/memory;
-            cpuset  = /mnt/cgroups/cpuset;
-            devices = /mnt/cgroups/devices;
-            blkio   = /mnt/cgroups/blkio;
-            cpuacct = /mnt/cgroups/cpuacct;
-    }
+OpenNebula automatically generates a number of CPU shares proportional to the CPU attribute in the VM template. For example, the host running 2 VMs (ID 73 and 74, with CPU=0.5 and CPU=1) should be configured following way:
 
 .. code::
 
-    # /etc/cgrules.conf
-
-    *:libvirtd       memory          virt/
-
-- Enable cgroups support in libvirt by adding this configuration to ``/etc/libvirt/qemu.conf``:
-
-.. code::
-
-    # /etc/libvirt/qemu.conf
-
-    cgroup_controllers = [ "cpu", "devices", "memory", "blkio", "cpuset", "cpuacct" ]
-    cgroup_device_acl = [
-        "/dev/null", "/dev/full", "/dev/zero",
-        "/dev/random", "/dev/urandom",
-        "/dev/ptmx", "/dev/kvm", "/dev/kqemu",
-        "/dev/rtc","/dev/hpet", "/dev/vfio/vfio"
-    ]
-
--  After configuring the hosts start/restart the cgroups service then restart the libvirtd service.
--  (Optional) If you have limited the amount of memory for VMs, you may want to set ``RESERVED_MEM`` parameter in host or cluster templates.
-
-That's it. OpenNebula automatically generates a number of CPU shares proportional to the CPU attribute in the VM template. For example, consider a host running 2 VMs (73 and 74, with CPU=0.5 and CPU=1) respectively. If everything is properly configured you should see:
-
-.. code::
-
-    /mnt/cgroups/cpu/sysdefault/libvirt/qemu/
+    /sys/fs/cgroup/cpu,cpuacct/machine.slice/
+    |-- cgroup.clone_children
     |-- cgroup.event_control
     ...
     |-- cpu.shares
     |-- cpu.stat
+    |-- machine-qemu\x2d1\x2done\x2d73.scope
+    |   |-- cgroup.clone_children
+    |   |-- cgroup.event_control
+    |   |-- cgroup.procs
+    |   |-- cpu.shares
+    |   ...
+    |   `-- vcpu0
+    |       |-- cgroup.clone_children
+    |       ...
+    |-- machine-qemu\x2d2\x2done\x2d74.scope
+    |   |-- cgroup.clone_children
+    |   |-- cgroup.event_control
+    |   |-- cgroup.procs
+    |   |-- cpu.shares
+    |   ...
+    |   `-- vcpu0
+    |       |-- cgroup.clone_children
+    |       ...
     |-- notify_on_release
-    |-- one-73
-    |   |-- cgroup.clone_children
-    |   |-- cgroup.event_control
-    |   |-- cgroup.procs
-    |   |-- cpu.shares
-    |   ...
-    |   `-- vcpu0
-    |       |-- cgroup.clone_children
-    |       ...
-    |-- one-74
-    |   |-- cgroup.clone_children
-    |   |-- cgroup.event_control
-    |   |-- cgroup.procs
-    |   |-- cpu.shares
-    |   ...
-    |   `-- vcpu0
-    |       |-- cgroup.clone_children
-    |       ...
     `-- tasks
 
-and the cpu shares for each VM:
+with the CPU shares for each VM:
 
-.. code::
+.. prompt:: bash $ auto
 
-    > cat /mnt/cgroups/cpu/sysdefault/libvirt/qemu/one-73/cpu.shares
+    $ cat '/sys/fs/cgroup/cpu,cpuacct/machine.slice/machine-qemu\x2d1\x2done\x2d73.scope/cpu.shares'
     512
-    > cat /mnt/cgroups/cpu/sysdefault/libvirt/qemu/one-74/cpu.shares
+    $ cat '/sys/fs/cgroup/cpu,cpuacct/machine.slice/machine-qemu\x2d2\x2done\x2d74.scope/cpu.shares'
     1024
 
-VCPUs are not pinned so most probably the virtual process will be changing the core it is using. In an ideal case where the VM is alone in the physical host the total amount of CPU consumed will be equal to VCPU plus any overhead of virtualization (for example networking). In case there are more VMs in that physical node and is heavily used then the VMs will compete for physical CPU time. In this case cgroups will do a fair share of CPU time between VMs (a VM with CPU=2 will get double the time as a VM with CPU=1).
+.. note:: The cgroups (directory) layout can be different based on your operating system and configuration. The `libvirt documentation <https://libvirt.org/cgroups.html>`__ describes all the cases and a way the cgroups are managed by libvirt/KVM.
 
-In case you are not overcommiting (CPU=VCPU) all the virtual CPUs will have one physical CPU (even if it's not pinned) so they could consume the number of VCPU assigned minus the virtualization overhead and any process running in the host OS.
+VCPUs are not pinned so most probably the virtual machine's process will be changing the physical cores it is using. In an ideal case where the VM is alone in the physical host the total amount of CPU consumed will be equal to VCPU plus any overhead of virtualization (for example networking). In case there are more VMs in that physical node and is heavily used then the VMs will compete for physical CPU time. In this case, the cgroups will provide a fair share of CPU time between VMs (a VM with CPU=2 will get double the time as a VM with CPU=1).
+
+In case you are not overcommitting (CPU=VCPU) all the virtual CPUs will have one physical CPU (even if it's not pinned) so they could consume the number of VCPU assigned minus the virtualization overhead and any process running in the host OS.
 
 Usage
 ================================================================================
@@ -251,6 +214,15 @@ NIC
 
 * ``TARGET``: name for the tun device created for the VM. It corresponds to the ``ifname`` option of the '-net' argument of the ``kvm`` command.
 * ``SCRIPT``: name of a shell script to be executed after creating the tun device for the VM. It corresponds to the ``script`` option of the '-net' argument of the ``kvm`` command.
+* ``QoS`` to control the network traffic. We can define different kind of controls over network traffic:
+
+    * ``INBOUND_AVG_BW``
+    * ``INBOUND_PEAK_BW``
+    * ``INBOUND_PEAK_KW``
+    * ``OUTBOUND_AVG_BW``
+    * ``OUTBOUND_PEAK_BW``
+    * ``OUTBOUND_PEAK_KW``
+
 * ``MODEL``: ethernet hardware to emulate. You can get the list of available models with this command:
 
 .. prompt:: bash $ auto
@@ -262,6 +234,8 @@ NIC
 .. prompt:: bash $ auto
 
     $ virsh -c qemu:///system nwfilter-list
+
+* ``VIRTIO_QUEUES`` to define how many queues will be used for the communication between CPUs and Network drivers. This attribute only is available with MODEL = 'virtio'.
 
 Graphics
 ~~~~~~~~

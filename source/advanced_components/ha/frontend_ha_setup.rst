@@ -11,8 +11,6 @@ OpenNebula uses a distributed consensus protocol to provide fault-tolerance and 
 
 .. warning:: If you are interested in fail-over protection against hardware and operating system outages within your virtualized IT environment, check the :ref:`Virtual Machines High Availability Guide <ftguide>`.
 
-.. important:: We have detected a problem in the OpenNebula configuration that can be easily fixed changing the value ``RAFT/XMLRPC_TIMEOUT_MS`` to ``0``. After modifying ``/etc/one/oned.conf`` you should restart OpenNebula service.
-
 Raft Overview
 ================================================================================
 
@@ -305,6 +303,24 @@ To remove a server, use the command:
 
 The whole procedure is documented :ref:`above <frontend_ha_setup_add_remove_servers>`.
 
+.. _frontend_ha_recover_servers:
+
+Recovering servers
+================================================================================
+
+When a follower is down for some time it may fall out of the recovery window, i.e. the log may not include all the records needed to bring it up-to-date. In order to recover this server you need to:
+
+* **Leader**: Create a DB backup and copy it to the failed follower. Note that you cannot reuse a previous backup.
+* **Follower**: Stop OpenNebula if running.
+* **Follower**: Restore the DB backup from the leader.
+* **Follower**: Start OpenNebula.
+* **Leader**: Reset the failing follower with:
+
+.. prompt:: bash $ auto
+
+  $ onezone server-reset <zone_id> <server_id_of_failed_follower>
+
+
 Shared data between HA nodes
 ================================================================================
 
@@ -329,17 +345,17 @@ The Raft algorithm can be tuned by several parameters in the configuration file 
 +-----------------------------------------------------------------------------------------------------------------------------------------------------+
 | Raft: Algorithm Attributes                                                                                                                          |
 +============================+========================================================================================================================+
-| ``LIMIT_PURGE``            | Number of DB log records that will be deleted on each purge                                                            |
+| ``LIMIT_PURGE``            | Number of DB log records that will be deleted on each purge.                                                           |
 +----------------------------+------------------------------------------------------------------------------------------------------------------------+
 | ``LOG_RETENTION``          | Number of DB log records kept, it determines the synchronization window across servers and extra storage space needed. |
 +----------------------------+------------------------------------------------------------------------------------------------------------------------+
-| ``LOG_PURGE_TIMEOUT``      | How often applied records are purged according the log retention value. (in seconds)                                   |
+| ``LOG_PURGE_TIMEOUT``      | How often applied records are purged according the log retention value. (in seconds).                                  |
 +----------------------------+------------------------------------------------------------------------------------------------------------------------+
 | ``ELECTION_TIMEOUT_MS``    | Timeout to start a election process if no heartbeat or log is received from leader.                                    |
 +----------------------------+------------------------------------------------------------------------------------------------------------------------+
 | ``BROADCAST_TIMEOUT_MS``   | How often heartbeats are sent to  followers.                                                                           |
 +----------------------------+------------------------------------------------------------------------------------------------------------------------+
-| ``XMLRPC_TIMEOUT_MS``      | To timeout raft related API calls                                                                                      |
+| ``XMLRPC_TIMEOUT_MS``      | To timeout raft related API calls. To set an infinite  timeout set this value to 0.                                    |
 +----------------------------+------------------------------------------------------------------------------------------------------------------------+
 
 .. warning::

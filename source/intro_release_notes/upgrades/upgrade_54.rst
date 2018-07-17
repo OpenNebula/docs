@@ -63,7 +63,7 @@ If you have customized **any** configuration files under ``/etc/one`` we recomme
 
 .. important::
 
-    If you are using a HA setup you need to manually change the value ``RAFT/XMLRPC_TIMEOUT_MS`` to ``0`` before restarting the OpenNebula daemons.
+       Please adjust the XMLRPC_TIMEOUT according to the typical RTT (round-trip-time) of xml-rpc calls across RAFT servers. This value should be 4 or 5 times the average RTT
 
 Database Upgrade
 ================

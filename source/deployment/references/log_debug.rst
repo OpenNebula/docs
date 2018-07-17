@@ -137,7 +137,7 @@ Host errors can be checked executing the ``onehost show`` command:
     MAX CPU               : 0
     USED CPU (REAL)       : 0
     USED CPU (ALLOCATED)  : 0
-    RUNNING VMS           : 0
+    TOTAL VMS             : 0
 
     MONITORING INFORMATION
     ERROR=[

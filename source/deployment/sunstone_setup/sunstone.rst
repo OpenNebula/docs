@@ -28,31 +28,6 @@ Requirements:
 -  Websockets-enabled browser (optional): Firefox and Chrome support websockets. In some versions of Firefox manual activation is required. If websockets are not enabled, flash emulation will be used.
 -  Installing the python-numpy package is recommended for a better vnc performance.
 
-Considerations & Limitations
-================================================================================
-
-Support Browsers
---------------------------------------------------------------------------------
-
-+---------------------------+-----------------------------------------------------------------------------------------------+
-|          Browser          |                                            Version                                            |
-+===========================+===============================================================================================+
-| Chrome                    | 61.0+                                                                                         |
-+---------------------------+-----------------------------------------------------------------------------------------------+
-| Firefox                   | 59.0+                                                                                         |
-+---------------------------+-----------------------------------------------------------------------------------------------+
-| IE                        | 11+                                                                                           |
-+---------------------------+-----------------------------------------------------------------------------------------------+
-
-
-.. note::
-
-    For Windows desktops using **Chrome** or **Firefox** you should disable the option ``touch-events`` of your browser.
-
-    - **Chrome**: chrome://flags -> #touch-events: disabled.
-    - **Firefox**: about:config -> dom.w3c_touch_events: disabled.
-
-.. note:: Internet Explorer is **not** supported with the Compatibility Mode enabled, since it emulates IE7 which is not supported.
 
 Configuration
 ================================================================================
@@ -115,7 +90,8 @@ Available options are:
 |                           | user template                                                                                 |
 +---------------------------+-----------------------------------------------------------------------------------------------+
 | :vnc\_proxy\_port         | Base port for the VNC proxy. The proxy will run on this port as long as Sunstone server       |
-|                           | does. ``29876`` by default.                                                                   |
+|                           | does. ``29876`` by default. Could be prefixed with an address on which the sever will be      |
+|                           | listening (ex: 127.0.0.1:29876).                                                              |
 +---------------------------+-----------------------------------------------------------------------------------------------+
 | :vnc\_proxy\_support\_wss | ``yes``, ``no``, ``only``. If enabled, the proxy will be set up with a certificate and        |
 |                           | a key to use secure websockets. If set to ``only`` the proxy will only accept encrypted       |
@@ -126,6 +102,9 @@ Available options are:
 | :vnc\_proxy\_key          | Full path to key file. Not necessary if key is included in certificate.                       |
 +---------------------------+-----------------------------------------------------------------------------------------------+
 | :vnc\_proxy\_ipv6         | Enable ipv6 for novnc. (true or false)                                                        |
++---------------------------+-----------------------------------------------------------------------------------------------+
+| :vnc\_client\_port        | Port where the vnc JS client will connect.                                                    |
+|                           | If not set, will use the port section of :vnc_proxy_port                                      |
 +---------------------------+-----------------------------------------------------------------------------------------------+
 | :vnc\_request\_password   | Request VNC password for external windows, by default it will not be requested                |
 |                           | (true or false)                                                                               |

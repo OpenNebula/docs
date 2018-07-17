@@ -56,7 +56,7 @@ To display information about a single host the ``show`` command is used:
     TOTAL CPU             : 400
     USED CPU (REAL)       : 28
     USED CPU (ALLOCATED)  : 100
-    RUNNING VMS           : 1
+    TOTAL VMS           : 1
 
     LOCAL SYSTEM DATASTORE #0 CAPACITY
     TOTAL:                : 468.4G
@@ -92,7 +92,7 @@ The information of a host contains:
 * Capacity information (*Host Shares*) for CPU and memory.
 * Local datastore information (*Local System Datastore*) if the Host is configured to use a local datastore (e.g. Filesystem in ssh transfer mode).
 * Monitoring Information, including PCI devices
-* Virtual Machines running on the hosts. *Wild* are virtual machines running on the host but not started by OpenNebula, they can be imported into OpenNebula.
+* Virtual Machines actives on the hosts. *Wild* are virtual machines actives on the host but not started by OpenNebula, they can be imported into OpenNebula.
 
 To see a list of all the hosts:
 
@@ -150,7 +150,14 @@ Similarly to put the host offline:
 
     $ onehost offline 0
 
-The ``flush`` command will mark all the running VMs in the specified host as to be rescheduled, which means that they will be migrated to another server with enough capacity. At the same time, the specified host will be disabled, so no more Virtual Machines are deployed in it. This command is useful to clean a host of running VMs.
+The ``flush`` command will migrate all the active VMs in the specified host to another server with enough capacity. At the same time, the specified host will be disabled, so no more Virtual Machines are deployed in it. This command is useful to clean a host of active VMs. The migration process can be done by a resched action or by a recover delete-recreate action, it can be configured at the ``/etc/one/cli/onehost.yaml`` by setting the field ``default_actions\flush`` to ``delete-recreate`` or to ``resched``. Here is an example:
+
+.. prompt:: bash $ auto
+
+    :default_actions:
+      - :flush: delete-recreate
+
+
 
 Custom Host Tags & Scheduling Policies
 ================================================================================

@@ -10,7 +10,10 @@ Daemon Configuration Attributes
 ===============================
 
 -  ``MANAGER_TIMER`` : Time in seconds the core uses to evaluate periodical functions. MONITORING\_INTERVAL cannot have a smaller value than MANAGER\_TIMER.
--  ``MONITORING_INTERVAL`` : Time in seconds between each monitorization.
+-  ``MONITORING_INTERVA_HOST`` : Time in seconds between each HOST monitorization.
+-  ``MONITORING_INTERVAL_VM`` : Time in seconds between each VMs monitorization.
+-  ``MONITORING_INTERVAL_DATASTORE`` : Time in seconds between each DATASTORE monitorization.
+-  ``MONITORING_INTERVAL_MARKET`` : Time in seconds between each MARKETPLACE monitorization.
 -  ``MONITORING_THREADS`` : Max. number of threads used to process monitor messages
 -  ``HOST_PER_INTERVAL``: Number of hosts monitored in each interval.
 -  ``HOST_MONITORING_EXPIRATION_TIME``: Time, in seconds, to expire monitoring information. Use 0 to disable HOST monitoring recording.
@@ -67,7 +70,11 @@ Example of this section:
 
     #MANAGER_TIMER = 15
 
-    MONITORING_INTERVAL = 60
+    MONITORING_INTERVAL_HOST = 180
+    MONITORING_INTERVAL_VMS  = 180
+    MONITORING_INTERVAL_DATASTORE = 300
+    MONITORING_INTERVAL_MARKET    = 600
+    
     MONITORING_THREADS  = 50
 
     #HOST_PER_INTERVAL               = 15
@@ -129,6 +136,29 @@ Control the :ref:`federation capabilities of oned <introf>`. Operation in a fede
         MODE = "STANDALONE",
         ZONE_ID = 0,
         MASTER_ONED = ""
+    ]
+
+Raft Configuration Attributes
+================================================================================
+
+The Raft algorithm can be tuned by several parameters in the configuration file ``/etc/one/oned.conf``. Following options are available:
+
+- ``LIMIT_PURGE``: Number of DB log records that will be deleted on each purge.
+- ``LOG_RETENTION``: Number of DB log records kept, it determines the synchronization window across servers and extra storage space needed.
+- ``LOG_PURGE_TIMEOUT``: How often applied records are purged according the log retention value. (in seconds)
+- ``ELECTION_TIMEOUT_MS``: Timeout to start a election process if no heartbeat or log is received from leader.
+- ``BROADCAST_TIMEOUT_MS``: How often heartbeats are sent to  followers.
+- ``XMLRPC_TIMEOUT_MS``: To timeout raft related API calls. To set an infinite  timeout set this value to 0.
+
+.. code-block:: bash
+
+    RAFT = [
+        LIMIT_PURGE          = 100000,
+        LOG_RETENTION        = 500000,
+        LOG_PURGE_TIMEOUT    = 600,
+        ELECTION_TIMEOUT_MS  = 2500,
+        BROADCAST_TIMEOUT_MS = 500,
+        XMLRPC_TIMEOUT_MS    = 450
     ]
 
 .. _oned_conf_default_showback:
