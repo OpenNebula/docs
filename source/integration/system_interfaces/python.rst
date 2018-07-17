@@ -3,7 +3,12 @@ PyONE: Open Nebula Python Bindings
 
 PyOne is an implementation of Open Nebula XML-RPC bindings in Python. It has been designed as a wrapper for the XML-RPC methods, with some basic helpers. This means that you should be familiar with the XML-RPC API and the XML formats returned by the OpenNebula core. As stated in the XML-RPC documentation, you can download the XML Schemas (XSD) here.
 
-Configuration
+API Documentation
+================================================================================
+
+You can consult the `doc online </doc/5.7/oca/python/>`__.
+
+Usage
 -------------
 
 You can configure your XML-RPC Server endpoint and credentials in the constructor:
@@ -26,8 +31,6 @@ It is also possible to modify the default connection timeout, but note that the 
 will modify the TCP socket default timeout of your Python VM, ensure that the chosen timeout
 is suitable to any other connections running in your project.
 
-Usage
------
 
 **Making Calls**
 
