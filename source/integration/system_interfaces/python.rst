@@ -1,7 +1,7 @@
 PyONE: Open Nebula Python Bindings
 ==================================
 
-PyOne is an implementation of Open Nebula XML-RPC bindings in Python. It has been designed as a wrapper for the XML-RPC methods, with some basic helpers. This means that you should be familiar with the XML-RPC API and the XML formats returned by the OpenNebula core. As stated in the XML-RPC documentation, you can download the XML Schemas (XSD) here.
+PyOne is an implementation of Open Nebula XML-RPC bindings in Python. It has been designed as a wrapper for the :ref:`XML-RPC methods <api>`, with some basic helpers. This means that you should be familiar with the XML-RPC API and the XML formats returned by the OpenNebula core. As stated in the :ref:`XML-RPC documentation <api>`, you can download the :ref:`XML Schemas (XSD) here <api_xsd_reference>`.
 
 API Documentation
 ================================================================================
@@ -82,8 +82,8 @@ element and it will be translated to XML:
       }
     }, 1)
 
-GenerateDS creates members from most returned parameters, however, some elements in the XSD are marked as anyType
-and GenerateDS cannot generate members automatically, TEMPLATE and USER_TEMPLATE are the common ones. Pyone will
+generateDS creates members from most returned parameters, however, some elements in the XSD are marked as anyType
+and generateDS cannot generate members automatically, TEMPLATE and USER_TEMPLATE are the common ones. Pyone will
 allow accessing its contents as a plain python dictionary.
 
 .. code:: python
