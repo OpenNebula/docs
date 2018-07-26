@@ -11,3 +11,4 @@ The following issues has been solved in 5.6.1:
 - `Migrate vCenter machines provide feedback to oned <https://github.com/OpenNebula/one/issues/2230>`__.
 - `Fixed problem migrating vCenter machines to a cluster with a lot of ESX <https://github.com/OpenNebula/one/issues/2230>`__.
 - `Improve feedback for 'mode' option in Sunstone server <https://github.com/OpenNebula/one/issues/2319>`__.
+- `Accounting data does not display <https://github.com/OpenNebula/one/issues/2315>`__.
