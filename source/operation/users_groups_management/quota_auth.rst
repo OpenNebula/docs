@@ -61,8 +61,16 @@ Compute Quotas. Attribute name: VM
 +------------------+------------------------------------------------------------------------------+
 | CPU              | Maximum CPU capacity that can be requested by user/group VMs                 |
 +------------------+------------------------------------------------------------------------------+
+| RUNNING VMS      | Maximum number of VMs that can be running                                    |
++------------------+------------------------------------------------------------------------------+
+| RUNNING MEMORY   | Maximum memory in MB that can be running by user/group VMs                   |
++------------------+------------------------------------------------------------------------------+
+| RUNNING CPU      | Maximum CPU capacity that can be running by user/group VMs                   |
++------------------+------------------------------------------------------------------------------+
 | SYSTEM_DISK_SIZE | Maximum size (in MB) of system disks that can be requested by user/group VMs |
 +------------------+------------------------------------------------------------------------------+
+
+.. note:: Running quotas will be increased or decreased depending on the state of the Virtual Machine. The states in which the machine is counted as ``ACTIVE`` "Running" are ``ACTIVE`` , ``HOLD``, ``PENDING`` and ``CLONING``.
 
 Network Quotas. Attribute name: NETWORK
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
