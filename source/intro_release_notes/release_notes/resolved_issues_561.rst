@@ -13,3 +13,4 @@ The following issues has been solved in 5.6.1:
 - `Improve feedback for 'mode' option in Sunstone server <https://github.com/OpenNebula/one/issues/2319>`__.
 - `Accounting data does not display <https://github.com/OpenNebula/one/issues/2315>`__.
 - `Spurios syntax help on onehost delete <https://github.com/OpenNebula/one/issues/2254>`__.
+- `No way for hide Lock/Unlock button for VM in Sunstone view <https://github.com/OpenNebula/one/issues/2331>`__.
