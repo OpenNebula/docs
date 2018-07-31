@@ -46,6 +46,7 @@ Execute the following commands to install the node package and restart libvirt t
 
 .. prompt:: bash $ auto
 
+    $ sudo apt-get update
     $ sudo apt-get install opennebula-node
     $ sudo service libvirtd restart # debian
     $ sudo service libvirt-bin restart # ubuntu
