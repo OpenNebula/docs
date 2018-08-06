@@ -3,7 +3,13 @@
 Resolved Issues in 5.6.1
 --------------------------------------------------------------------------------
 
-A complete list of solved issues for 5.6.1 can be found in the `project development portal <https://github.com/OpenNebula/one/milestone/>`__. TODO
+A complete list of solved issues for 5.6.1 can be found in the `project development portal <https://github.com/OpenNebula/one/milestone/17>`__.
+
+The following new features has been backported to 5.6.1:
+
+- List commands use pagination when in an interactive shell, the default pager is set to less but it can be customize through ``ONE_PAGER`` environment vairbale.
+- Order of elements in list API calls (e.g. as in onevm list) can be selected (ascending or descending), see :ref:`the group configuration guide <manage_users_primary_and_secondary_groups>` for details.
+
 
 The following issues has been solved in 5.6.1:
 
