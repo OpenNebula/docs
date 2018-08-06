@@ -185,9 +185,14 @@ Example:
 | DEFAULT_IMAGE_PERSISTENT_NEW | Control the default value for the PERSISTENT attribute on image creation ( |
 |                              | only new images).                                                          |
 +------------------------------+----------------------------------------------------------------------------+
+| API_LIST_ORDER               | Sets order (by ID) of elements in list API calls (e.g. onevm list).        |
+|                              | Values: ASC (ascending order) or DESC (descending order)                   |
++------------------------------+----------------------------------------------------------------------------+
+
+.. note:: These values can be overwritten for each user by placing the desired values in the user template.
 
 If the values are not set the defaults defined in ``oned.conf`` are used.
-
+    
 Example:
 
 .. code::
