@@ -38,6 +38,7 @@ Daemon Configuration Attributes
    - ``reserved``: comma separated list of reserved ports or ranges. Two numbers separated by a colon indicate a range.
 
 -  ``VM_SUBMIT_ON_HOLD`` : Forces VMs to be created on hold state instead of pending. Values: YES or NO.
+-  ``API_LIST_ORDER`` : Sets order (by ID) of elements in list API calls (e.g. onevm list). Values: ASC (ascending order) or DESC (descending order).
 -  ``LOG`` : Configure the logging system
 
    -  ``SYSTEM`` : Can be either ``file`` (default), ``syslog`` or ``std``
@@ -107,8 +108,9 @@ Example of this section:
     ]
 
     #VM_SUBMIT_ON_HOLD = "NO"
+    #API_LIST_ORDER    = "DESC"
 
-.. _oned_conf_federation:
+    .. _oned_conf_federation:
 
 Federation Configuration Attributes
 =================================================
