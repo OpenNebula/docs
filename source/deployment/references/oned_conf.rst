@@ -205,6 +205,8 @@ XML-RPC Server Configuration
    -  ``%g`` -- group id
    -  ``%G`` -- group name
    -  ``%a`` -- auth token
+   -  ``%A`` -- client IP address (only IPv4 supported)
+   -  ``%P`` -- client TCP port
    -  ``%%`` -- %
 
 .. code-block:: bash
