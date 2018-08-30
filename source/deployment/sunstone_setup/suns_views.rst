@@ -358,6 +358,8 @@ Features
 * ``cloud_vm_create``: True to allow to create machines to cloud users.
 * ``show_monitoring_info``: True to show the monitoring info (VM & VRouters).
 * ``show_attributes_info``: True to show the attributes info (VM & VRouters).
+* ``show_attach_disk_advanced``: True to show advanced options in attach disk dialog.
+* ``show_attach_nic_advanced``: True to show advanced options in attach nic dialog.
 
 .. code-block:: yaml
 
