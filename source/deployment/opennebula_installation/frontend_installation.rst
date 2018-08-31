@@ -33,9 +33,18 @@ Step 3. Installing the Software
 Installing on CentOS/RHEL 7
 ---------------------------
 
-Activate the `EPEL <http://fedoraproject.org/wiki/EPEL#How_can_I_use_these_extra_packages.3F>`__ repo before installing.
+Activate the EPEL repo before installing with the following commands:
 
-In RHEL 7 this can be done by following the instructions `here <http://fedoraproject.org/wiki/EPEL#How_can_I_use_these_extra_packages.3F>`__.
+.. prompt:: bash # auto
+
+    # subscription-manager repos --enable rhel-7-server-optional-rpms
+    # subscription-manager repos --enable rhel-7-server-extras-rpms
+
+In RHEL 7 this can be done with the following command:
+
+.. prompt:: bash # auto
+
+    # rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 
 In CentOS 7 this can be done with the following command:
 
