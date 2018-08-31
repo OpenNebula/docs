@@ -33,24 +33,26 @@ Step 3. Installing the Software
 Installing on CentOS/RHEL 7
 ---------------------------
 
-Activate the EPEL repo before installing with the following commands:
+.. note:: Activate the `EPEL <http://fedoraproject.org/wiki/EPEL#How_can_I_use_these_extra_packages.3F>`__ (Extra Packages for Enterprise Linux) repository before installing the OpenNebula.
 
-.. prompt:: bash # auto
+    On CentOS 7, enabling EPEL is as easy as installation of the package with additional repository configuration:
 
-    # subscription-manager repos --enable rhel-7-server-optional-rpms
-    # subscription-manager repos --enable rhel-7-server-extras-rpms
+    .. prompt:: bash # auto
 
-In RHEL 7 this can be done with the following command:
+        # yum install epel-release
 
-.. prompt:: bash # auto
+    On RHEL 7, first you need the RHEL **optional** and **extras** repositories configured:
 
-    # rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+    .. prompt:: bash # auto
 
-In CentOS 7 this can be done with the following command:
+        # subscription-manager repos --enable rhel-7-server-optional-rpms
+        # subscription-manager repos --enable rhel-7-server-extras-rpms
 
-.. prompt:: bash # auto
+    and, then you can enable the EPEL:
 
-    # yum install epel-release
+    .. prompt:: bash # auto
+
+        # rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 
 Install the CentOS/RHEL OpenNebula Front-end with packages from **our repository** by executing the following as root:
 

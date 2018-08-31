@@ -35,12 +35,12 @@ Execute the following commands to install the node package and restart libvirt t
         $ sudo yum install centos-release-qemu-ev
         $ sudo yum install qemu-kvm-ev
 
-    On RHEL, you need a paid subscription to the Red Hat Virtualization (RHV) or Red Hat OpenStack (RHOS) products, follow these steps:
+    On RHEL 7, you need a paid subscription to the Red Hat Virtualization (RHV) or Red Hat OpenStack (RHOS) products, license only for the Red Hat Enterprise Linux isn't enough! You have to check the RHV `Installation Guide <https://access.redhat.com/documentation/en-us/red_hat_virtualization/>`__ for your licensed version. Usually, the following commands should enable and install the enterprise packages:
 
     .. prompt:: bash $ auto
 
-        $ subscription-manager repos --enable rhel-7-server-rhev-mgmt-agent-rpms
-        $ yum install qemu-kvm-rhev
+        $ sudo subscription-manager repos --enable rhel-7-server-rhv-4-mgmt-agent-rpms
+        $ sudo yum install qemu-kvm-rhev
 
 For further configuration, check the specific guide: :ref:`KVM <kvmg>`.
 
