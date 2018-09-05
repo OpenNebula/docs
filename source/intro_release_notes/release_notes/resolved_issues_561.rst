@@ -24,4 +24,5 @@ The following issues has been solved in 5.6.1:
 - `No way for hide Lock/Unlock button for VM in Sunstone view <https://github.com/OpenNebula/one/issues/2331>`__.
 - `Fix for fs_lvm driver when live migrating with shared devices <https://github.com/OpenNebula/one/pull/2344>`__.
 - `Update LDAP driver to use new escaping functionality <https://github.com/OpenNebula/one/pull/2345>`__ (and `issue <https://github.com/OpenNebula/one/issues/2372>`__).
-- `Not checks restricted attributes when try to attach a new disk <https://github.com/OpenNebula/one/issues/2374>`__.
+- `Error when creating a vnet from Sunstone using advanced mode <https://github.com/OpenNebula/one/issues/2348>`__.
+- `Restricted attributes not enforced on attach disk operation <https://github.com/OpenNebula/one/issues/2374>`__.
