@@ -10,8 +10,8 @@ The following new features has been backported to 5.6.1:
 - List commands use pagination when in an interactive shell, the default pager is set to less but it can be customize through ``ONE_PAGER`` environment vairbale.
 - Order of elements in list API calls (e.g. as in onevm list) can be selected (ascending or descending), see :ref:`the group configuration guide <manage_users_primary_and_secondary_groups>` for details.
 - XMLRPC calls can report the client IP and PORT, see :ref:`XML-RPC Server Configuration <oned_conf_xml_rpc_server_configuration>` for details.
+- New quotas for VMS allow you to configure limits for VMs "running", see :ref:`quotas <quota_auth>` for more details.
 - Update Host hook triggers to include all possible states, the states are define :ref:`here <hooks>`.
-
 
 The following issues has been solved in 5.6.1:
 
