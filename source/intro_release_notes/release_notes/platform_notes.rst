@@ -23,7 +23,7 @@ Front-End Components
 +-------------------------+---------------------------------------------------------+-------------------------------------------------------+
 | CentOS                  | 7                                                       | :ref:`Front-End Installation <frontend_installation>` |
 +-------------------------+---------------------------------------------------------+-------------------------------------------------------+
-| Debian                  | 8, 9                                                    | :ref:`Front-End Installation <frontend_installation>` |
+| Debian                  | 9                                                       | :ref:`Front-End Installation <frontend_installation>` |
 +-------------------------+---------------------------------------------------------+-------------------------------------------------------+
 | MariaDB or MySQL        | Version included in the Linux distribution              | :ref:`MySQL Setup <mysql>`                            |
 +-------------------------+---------------------------------------------------------+-------------------------------------------------------+
@@ -53,9 +53,9 @@ KVM Nodes
 +-------------------------+-----------------------------------------------------------+-----------------------------------------+
 | Ubuntu Server           | 14.04 (LTS) , 16.04 (LTS), 18.04 (LTS)                    | :ref:`KVM Driver <kvmg>`                |
 +-------------------------+-----------------------------------------------------------+-----------------------------------------+
-| CentOS/RHEL             | 7                                                         | :ref:`KVM Driver <kvmg>`                |
+| CentOS                  | 7                                                         | :ref:`KVM Driver <kvmg>`                |
 +-------------------------+-----------------------------------------------------------+-----------------------------------------+
-| Debian                  | 8, 9                                                      | :ref:`KVM Driver <kvmg>`                |
+| Debian                  | 9                                                         | :ref:`KVM Driver <kvmg>`                |
 +-------------------------+-----------------------------------------------------------+-----------------------------------------+
 | KVM/Libvirt             | Support for version included in the Linux distribution.   | :ref:`KVM Node Installation <kvm_node>` |
 |                         | For CentOS/RedHat the packages from ``qemu-ev`` are used. |                                         |
@@ -125,6 +125,34 @@ Application Containerization
 +------------------------------+--------------------------------------------+
 | Appliance OS                 | Ubuntu 16.04                               |
 +------------------------------+--------------------------------------------+
+
+Sunstone
+--------------------------------------------------------------------------------
+
++---------------------------+-----------------------------------------------------------------------------------------------+
+|          Browser          |                                            Version                                            |
++===========================+===============================================================================================+
+| Chrome                    | 61.0 - 67.0                                                                                   |
++---------------------------+-----------------------------------------------------------------------------------------------+
+| Firefox                   | 59.0 - 61.0                                                                                   |
++---------------------------+-----------------------------------------------------------------------------------------------+
+| IE                        | 11.0                                                                                          |
++---------------------------+-----------------------------------------------------------------------------------------------+
+
+.. note::
+
+    For Windows desktops using **Chrome** or **Firefox** you should disable the option ``touch-events`` of your browser:
+
+    **Chrome**: chrome://flags -> #touch-events: disabled.
+    **Firefox**: about:config -> dom.w3c_touch_events: disabled.
+
+    Internet Explorer is **not** supported with the Compatibility Mode enabled, since it emulates IE7 which is not supported.
+
+
+VMware Cloud on AWS
+--------------------------------------------------------------------------------
+
+OpenNebula has been validated and is supported on VMware Cloud on AWS. Customers can contact the support team through the commercial support portal to know specific configuration and limitations.
 
 .. note:: Generally for all Linux platforms, it is worth noting that gems should be installed with the :ref:`install_gems <ruby_runtime>`, avoiding the platform's package version.
 

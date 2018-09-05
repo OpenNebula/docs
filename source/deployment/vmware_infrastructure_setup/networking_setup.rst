@@ -46,9 +46,9 @@ You can easily consume vCenter networks using the import tools as explained in t
 Creating Port Groups from OpenNebula
 ================================================================================
 
-OpenNebula can create a vCenter network from a Virtual Network template if the vcenter network driver is used (thanks to the attribute ``VN_MAD=vcenter``).
+OpenNebula can create a vCenter network from a Virtual Network template if the vCenter network driver is used (thanks to the attribute ``VN_MAD=vcenter``).
 
-This is the workflow when you want OpenNebula to create a vCenter network:
+This is the workflow when OpenNebula needs to create a vCenter network:
 
 1. Enable the VNET hooks in OpenNebula's oned configuration file.
 2. Create a new OpenNebula Virtual Network template. Add the required attributes to the template including the OpenNebula's Host ID which represents the vCenter cluster where the network elements will be created.
@@ -209,7 +209,7 @@ In order to create a Virtual Network using the vcenter driver we must select whi
 Physical device
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-If you want to assign uplinks to your switch you can specify the names of the physical network interface cards of your ESXi hosts that will be used. You can use several physical NIC names using a comma between them e.g vmnic0,vmnic1. Note that you must check that two switches cannot share the same physical nics and that you must be sure that the same physical interface name exists and it's available for every ESX host in the cluster.
+If you want to assign uplinks to your switch you can specify the names of the physical network interface cards of your ESXi hosts that will be used. You can use several physical NIC names using a comma between them e.g vmnic0,vmnic1. Note that you must check that two switches cannot share the same physical NIC and that you must be sure that the same physical interface name exists and it's available for every ESX host in the cluster.
 
 Let's see an example. If you want to create a port group in a new virtual switch, we'll first check what physical adapters are free and unassigned in the hosts of my vCenter cluster. I've two hosts in my cluster:
 
@@ -265,6 +265,6 @@ Limitations
 Network monitoring
 ================================================================================
 
-OpenNebula gathers network monitoring info for each VM. Real-time data is retrieved from vCenter thanks to the Performance Manager which collects data every 20 seconds and maintains it for one hour. Real-time samples are used so no changes have to be applied to vCenter's Statistics setings. Network metrics for transmitted and received traffic are provided as an average using KB/s unit.
+OpenNebula gathers network monitoring info for each VM. Real-time data is retrieved from vCenter thanks to the Performance Manager which collects data every 20 seconds and maintains it for one hour. Real-time samples are used so no changes have to be applied to vCenter's Statistics settings. Network metrics for transmitted and received traffic are provided as an average using KB/s unit.
 
 The graphs provided by Sunstone are different from those found in vCenter under the Monitor -> Performance Tab when selecting Realtime in the Time Range drop-down menu or in the Advanced view selecting the Network View. The reason is that Sunstone uses polling time as time reference while vCenter uses sample time on their graphs, so an approximation to the real values aggregating vCenter's samples between polls is needed. As a result, upload and download peaks will be different in value and different peaks between polls won't be depicted. Sunstone's graphs will provide a useful information about networking behaviour which can be examined on vCenter later with greater detail.

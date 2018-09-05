@@ -303,6 +303,24 @@ To remove a server, use the command:
 
 The whole procedure is documented :ref:`above <frontend_ha_setup_add_remove_servers>`.
 
+.. _frontend_ha_recover_servers:
+
+Recovering servers
+================================================================================
+
+When a follower is down for some time it may fall out of the recovery window, i.e. the log may not include all the records needed to bring it up-to-date. In order to recover this server you need to:
+
+* **Leader**: Create a DB backup and copy it to the failed follower. Note that you cannot reuse a previous backup.
+* **Follower**: Stop OpenNebula if running.
+* **Follower**: Restore the DB backup from the leader.
+* **Follower**: Start OpenNebula.
+* **Leader**: Reset the failing follower with:
+
+.. prompt:: bash $ auto
+
+  $ onezone server-reset <zone_id> <server_id_of_failed_follower>
+
+
 Shared data between HA nodes
 ================================================================================
 

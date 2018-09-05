@@ -4,13 +4,9 @@
 Upgrading from OpenNebula 5.6.x
 =================================
 
-.. todo: update
-
 This section describes the installation procedure for systems that are already running a 5.6.x OpenNebula. The upgrade to OpenNebula |version| can be done directly following this section, you don't need to perform intermediate version upgrades. The upgrade will preserve all current users, hosts, resources and configurations; for both Sqlite and MySQL backends.
 
 Read the :ref:`Compatibility Guide <compatibility>` and `Release Notes <http://opennebula.org/software/release/>`_ to know what is new in OpenNebula |version|.
-
-.. warning:: OpenNebula 5.4.1 modifies the existing Sunstone views configuration files ('/etc/one/sunstone-views/') to adjust the column names. Any change made in these files will need to be reapplied after the OpenNebula upgrade.
 
 Upgrading a Federation and High Availability
 ================================================================================
@@ -63,9 +59,10 @@ If you have customized **any** configuration files under ``/etc/one`` we recomme
 #. Edit the **new** files and port all the customizations from the previous version.
 #. You should **never** overwrite the configuration files with older versions.
 
-.. important::
+.. note::
 
-    If you are using a HA setup you need to manually change the value ``RAFT/XMLRPC_TIMEOUT_MS`` to ``0`` before restarting the OpenNebula daemons.
+    Configuration files from inside the remote scripts directory structure ``/var/lib/one/remotes/`` have been moved into dedicated directory ``/var/lib/one/remotes/etc/``. Check all the files on the new path, and apply any necessary changes to your environment.
+
 
 Database Upgrade
 ================

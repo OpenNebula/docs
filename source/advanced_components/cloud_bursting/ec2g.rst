@@ -410,3 +410,39 @@ Importing VMs
 
 VMs running on EC2 that were not launched through OpenNebula can be :ref:`imported in OpenNebula <import_wild_vms>`.
 
+Permissions requirement
+================================================================================
+
+If the user account that is going to be used does not have full permissions here is a table that summarizes the privileges required by ec2 driver.
+
+Service STS
+-----------
+
++---------------------------------------------+-----------------------------------------------------------------------------+
+|                  Privileges                 |                       Resources                                             |
++---------------------------------------------+-----------------------------------------------------------------------------+
+| Write/DecodeAuthorizationMessage            | Support all resources                                                       |
++---------------------------------------------+-----------------------------------------------------------------------------+
+
+Service EC2
+-----------
+
++---------------------------------------------+-----------------------------------------------------------------------------+
+|                  Privileges                 |                       Resources                                             |
++---------------------------------------------+-----------------------------------------------------------------------------+
+| List/DescribeInstances                      | Support all resources                                                       |
++---------------------------------------------+-----------------------------------------------------------------------------+
+| Read/DescribeTags                           | Support all resources                                                       |
++---------------------------------------------+-----------------------------------------------------------------------------+
+| Write/AssociateAddress                      | Support all resources                                                       |
++---------------------------------------------+-----------------------------------------------------------------------------+
+| Write/RunInstances                          | image, instance, key-pair, network-interface, security-group, subnet, volume|
++---------------------------------------------+-----------------------------------------------------------------------------+
+| Write/StartInstances                        | image, instance, key-pair, network-interface, security-group, subnet, volume|
++---------------------------------------------+-----------------------------------------------------------------------------+
+| Write/StopInstances                         | image, instance, key-pair, network-interface, security-group, subnet, volume|
++---------------------------------------------+-----------------------------------------------------------------------------+
+| Write/TerminateInstances                    | image, instance, key-pair, network-interface, security-group, subnet, volume|
++---------------------------------------------+-----------------------------------------------------------------------------+
+| Write/CreateTags                            | instance                                                                    |
++---------------------------------------------+-----------------------------------------------------------------------------+
