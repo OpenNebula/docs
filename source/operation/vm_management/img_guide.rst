@@ -29,6 +29,8 @@ For Virtual Machine disks:
 
 .. note:: Some of the operations described below do not apply to KERNEL, RAMDISK and CONTEXT Images, in particular: clone and persistent.
 
+.. _img_life_cycle_and_states:
+
 Image Life-cycle
 ================
 
