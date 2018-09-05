@@ -195,20 +195,21 @@ Quota limits and usage for each user/group is included as part of its standard i
     USER TEMPLATE
 
 
-    RESOURCE USAGE & QUOTAS
+    VMS USAGE & QUOTAS
 
-    DATASTORE ID  IMAGES (used) IMAGES (limit)    SIZE (used)   SIZE (limit)
-    1                         1              0           1024              0
+              VMS               MEMORY                  CPU     SYSTEM_DISK_SIZE
+      1 /       4        1M /        -      2.00 /        -        0M /        -
 
-    VMS           MEMORY (used) MEMORY (limit)     CPU (used)    CPU (limit)
-    0                      1024              0              1              0
+    VMS USAGE & QUOTAS - RUNNING
 
-    NETWORK ID    LEASES (used) LEASES (limit)
-    1                         1              0
+        RUNNING VMS       RUNNING MEMORY          RUNNING CPU
+        1 /       -        1M /       2M      2.00 /        -
 
-    IMAGE ID        RVMS (used)   RVMS (limit)
-    1                         0              0
-    2                         0              0
+    DATASTORE USAGE & QUOTAS
+
+    NETWORK USAGE & QUOTAS
+
+    IMAGE USAGE & QUOTAS
 
 And for the group:
 
@@ -224,23 +225,21 @@ And for the group:
     2
     3
 
-    RESOURCE USAGE & QUOTAS
+    VMS USAGE & QUOTAS
 
-    DATASTORE ID  IMAGES (used) IMAGES (limit)    SIZE (used)   SIZE (limit)
-    1                         2              0           2048              0
+              VMS               MEMORY                  CPU     SYSTEM_DISK_SIZE
+      1 /       4        1M /        -      2.00 /        -        0M /        -
 
-    VMS           MEMORY (used) MEMORY (limit)     CPU (used)    CPU (limit)
-    0                      2048              0              2              0
+    VMS USAGE & QUOTAS - RUNNING
 
-    NETWORK ID    LEASES (used) LEASES (limit)
-    1                         1              0
-    2                         1              0
+        RUNNING VMS       RUNNING MEMORY          RUNNING CPU
+        1 /       -        1M /       2M      2.00 /        -
 
-    IMAGE ID        RVMS (used)   RVMS (limit)
-    1                         0              0
-    2                         0              0
-    5                         1              0
-    6                         1              0
+    DATASTORE USAGE & QUOTAS
+
+    NETWORK USAGE & QUOTAS
+
+    IMAGE USAGE & QUOTAS
 
 This information is also available through Sunstone as part of the user/group information.
 
