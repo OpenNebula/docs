@@ -11,6 +11,7 @@ The following new features has been backported to 5.6.1:
 - Order of elements in list API calls (e.g. as in onevm list) can be selected (ascending or descending), see :ref:`the group configuration guide <manage_users_primary_and_secondary_groups>` for details.
 - XMLRPC calls can report the client IP and PORT, see :ref:`XML-RPC Server Configuration <oned_conf_xml_rpc_server_configuration>` for details.
 - New quotas for VMS allow you to configure limits for VMs "running", see :ref:`quotas <quota_auth>` for more details.
+- Update Host hook triggers to include all possible states, the states are define :ref:`here <hooks>`.
 
 The following issues has been solved in 5.6.1:
 
@@ -23,3 +24,4 @@ The following issues has been solved in 5.6.1:
 - `No way for hide Lock/Unlock button for VM in Sunstone view <https://github.com/OpenNebula/one/issues/2331>`__.
 - `Fix for fs_lvm driver when live migrating with shared devices <https://github.com/OpenNebula/one/pull/2344>`__.
 - `Update LDAP driver to use new escaping functionality <https://github.com/OpenNebula/one/pull/2345>`__ (and `issue <https://github.com/OpenNebula/one/issues/2372>`__).
+- `Not checks restricted attributes when try to attach a new disk <https://github.com/OpenNebula/one/issues/2374>`__.

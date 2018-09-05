@@ -596,6 +596,8 @@ Host Hooks (HOST\_HOOK) defined by:
    -  **CREATE**, when the Host is created (onehost create)
    -  **ERROR**, when the Host enters the error state
    -  **DISABLE**, when the Host is disabled
+   -  **ENABLE**, when the Host is enabled
+   -  **OFFLINE**, when the Host is offline
 
 -  **command**: path can be absolute or relative to /usr/share/one/hooks
 -  **arguments**: for the hook. You can use the following Host information:
