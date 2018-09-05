@@ -221,7 +221,7 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 - `Best-effort community support <http://forum.opennebula.org>`__ 
 
-- `SLA-based commercial support directly from the developers <http://openneula.pro>`__
+- `SLA-based commercial support directly from the developers <http://opennebula.pro>`__
 
 - :ref:`Integrated tab in Sunstone <commercial_support_sunstone>` to access OpenNebula Systems professional support
 
