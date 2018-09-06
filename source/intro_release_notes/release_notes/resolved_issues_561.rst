@@ -27,3 +27,4 @@ The following issues has been solved in 5.6.1:
 - `Start script base64 enconding fails when using non utf8 characters <https://github.com/OpenNebula/one/issues/2384>`__.
 - `Error when creating a vnet from Sunstone using advanced mode <https://github.com/OpenNebula/one/issues/2348>`__.
 - `Restricted attributes not enforced on attach disk operation <https://github.com/OpenNebula/one/issues/2374>`__.
+- `Improve the dialog when attach nic or instanciated vm in network tab <https://github.com/OpenNebula/one/issues/2394>`__.
