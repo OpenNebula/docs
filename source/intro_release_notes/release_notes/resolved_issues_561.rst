@@ -29,4 +29,5 @@ The following issues has been solved in 5.6.1:
 - `Restricted attributes not enforced on attach disk operation <https://github.com/OpenNebula/one/issues/2374>`__.
 - `Improve the dialog when attach nic or instanciated vm in network tab <https://github.com/OpenNebula/one/issues/2394>`__.
 - `VNC on ESXi Can Break Firewall <https://github.com/OpenNebula/one/issues/1728>`__.
+- `Slow monitoring of the live migrating VMs on destination host <https://github.com/OpenNebula/one/issues/2388>`__.
 - `onehost sync should ignore vCenter hosts <https://github.com/OpenNebula/one/issues/2398>`__.
