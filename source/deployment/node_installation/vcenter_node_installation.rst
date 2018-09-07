@@ -111,7 +111,7 @@ If you need to know how to import vCenter clusters, check :ref:`vCenter import t
 
 Once the vCenter cluster is monitored successfully ON will show as the host status. If ERROR is shown please check connectivity and have a look to the /var/log/one/oned.log file in order to find out the possible cause.
 
-The following variables are added to the OpenNebula hosts representing ESX clusters:
+The following variables are added to OpenNebula hosts representing ESX clusters:
 
 +---------------------+------------------------------------+
 |    Operation        |                Note                |
@@ -328,7 +328,7 @@ VNC range whitelisted on ESX hosts must be specified in the OpenNebula configura
         RESERVED = "5988:5989, 6999, 8000, 8042:8045, 8080, 8100, 8182, 8200, 8300:8302, 8889, 9000, 9080, 12000:65535"
     ]
 
-and, restart the OpenNebula:
+and, restart OpenNebula:
 
 .. prompt:: bash $ auto
 
