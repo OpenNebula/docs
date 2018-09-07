@@ -154,6 +154,8 @@ You should be able now to start OpenNebula as usual, running ``service opennebul
 
 .. warning:: Doing ``onehost sync`` is important. If the monitorization drivers are not updated, the hosts will behave erratically.
 
+.. note:: You can skip this step if you are not using KVM hosts, or any hosts that use remove monitoring probes.
+
 Testing
 =======
 
