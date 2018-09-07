@@ -94,7 +94,7 @@ As a Virtualization driver, the vCenter driver accept a series of parameters tha
 
 See the :ref:`Virtual Machine drivers reference <devel-vmm>` for more information about these parameters, and how to customize and extend the drivers.
 
-OpenNebula needs to be restarted after any change inthe ``/etc/one/oned.conf`` file, this can be done with the following command:
+OpenNebula needs to be restarted after any change in the ``/etc/one/oned.conf`` file, this can be done with the following command:
 
 .. prompt:: bash $ auto
 
@@ -298,7 +298,7 @@ Once you have created the proper role, one way to manage these privileges is cre
 VNC on ESX hosts
 ================================================================================
 
-To enable VNC functionality, you need to allow access to the VNC ports on ESX hosts. By default, access to these ports is filtered by the firewall. We provide an installation package, which adds the **VNC** ruleset (port range 5900-65535) and permits access to these ports. This package must be installed on each ESX host; it can be done via CLI or web UI. We'll cover necessary steps for both ways here.
+To enable VNC functionality, you need to allow access to the VNC ports on ESX hosts. By default, access to these ports is filtered by the firewall. We provide an installation package, which adds the **VNC** ruleset (port range 5900-11999 excluding known reserved ports) and permits access to these ports, also OpenNebula needs to be reconfigured to respect this specific VNC ports range. This package must be installed on each ESX host; it can be done via CLI or web UI. We'll cover necessary steps for both ways here.
 
 Locations of the VIB installation package or ZIP bundle:
 
@@ -318,6 +318,21 @@ Locations of the VIB installation package or ZIP bundle:
 .. note::
 
    Make sure that the ESX hosts are reachable from the OpenNebula Front-end.
+
+VNC range whitelisted on ESX hosts must be specified in the OpenNebula configuration located in ``/etc/one/oned.conf``. Please change the ``VNC_PORTS`` section following way:
+
+.. code::
+
+    VNC_PORTS = [
+        START    = 5900,
+        RESERVED = "5988:5989, 6999, 8000, 8042:8045, 8080, 8100, 8182, 8200, 8300:8302, 8889, 9000, 9080, 12000:65535"
+    ]
+
+and, restart the OpenNebula:
+
+.. prompt:: bash $ auto
+
+    $ sudo systemctl restart opennebula
 
 Using CLI
 ---------
