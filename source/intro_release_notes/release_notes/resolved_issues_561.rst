@@ -28,3 +28,4 @@ The following issues has been solved in 5.6.1:
 - `Error when creating a vnet from Sunstone using advanced mode <https://github.com/OpenNebula/one/issues/2348>`__.
 - `Restricted attributes not enforced on attach disk operation <https://github.com/OpenNebula/one/issues/2374>`__.
 - `Improve the dialog when attach nic or instanciated vm in network tab <https://github.com/OpenNebula/one/issues/2394>`__.
+- `VNC on ESXi Can Break Firewall <https://github.com/OpenNebula/one/issues/1728`__.
