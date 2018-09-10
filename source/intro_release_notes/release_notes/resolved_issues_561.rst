@@ -31,3 +31,4 @@ The following issues has been solved in 5.6.1:
 - `VNC on ESXi Can Break Firewall <https://github.com/OpenNebula/one/issues/1728>`__.
 - `Slow monitoring of the live migrating VMs on destination host <https://github.com/OpenNebula/one/issues/2388>`__.
 - `onehost sync should ignore vCenter hosts <https://github.com/OpenNebula/one/issues/2398>`__.
+- `Unable to query VMs with non ASCII character <https://github.com/OpenNebula/one/issues/2355>`__.
