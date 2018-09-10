@@ -31,7 +31,9 @@ The following issues has been solved in 5.6.1:
 - `VNC on ESXi Can Break Firewall <https://github.com/OpenNebula/one/issues/1728>`__.
 - `Slow monitoring of the live migrating VMs on destination host <https://github.com/OpenNebula/one/issues/2388>`__.
 - `onehost sync should ignore vCenter hosts <https://github.com/OpenNebula/one/issues/2398>`__.
+- `NIC Model is ignored on VM vCenter Template <https://github.com/OpenNebula/one/issues/2293>`__.
 - `Unable to query VMs with non ASCII character <https://github.com/OpenNebula/one/issues/2355>`__.
 - `vCenter unimported resources cache not working as expected <https://github.com/OpenNebula/one/pull/2391>`__.
 - `Wild importation from vCenter host refactor  <https://github.com/OpenNebula/one/issues/2140>`__.
 - `Removing CD-ROM from vCenter imported template breaks the template  <https://github.com/OpenNebula/one/issues/2274>`__.
+- `Error with restricted attributes when instantiating a VM <https://github.com/OpenNebula/one/issues/2402>`__.
