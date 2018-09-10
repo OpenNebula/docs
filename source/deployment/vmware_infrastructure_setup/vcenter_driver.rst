@@ -345,6 +345,17 @@ It is generally a good idea to place defaults for vCenter-specific attributes. T
 
 .. _vcenter_new_import_tool:
 
+Also you have ``/etc/one/vcenter_driver.conf`` where you can define the following attributes:
+
++-------------------------+--------------------------------------------------------+--------------------+
+| Attribute               |                      Description                       |     Value          |
++-------------------------+--------------------------------------------------------+--------------------+
+| vm_poweron_wait_default | Timeout to deploy VMs in vCenter                       |      Integer       |
++-------------------------+--------------------------------------------------------+--------------------+
+| debug_information       | If you want more error information in vCenter driver   | true or false      |
++-------------------------+--------------------------------------------------------+--------------------+
+
+
 vCenter Import Tool
 ================================================================================
 
