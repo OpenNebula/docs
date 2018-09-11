@@ -482,6 +482,8 @@ In that case should specify the right cluster from the Cluster drop-down menu or
 
 .. note:: It's important to understand that OpenNebula will see vCenter Clusters as OpenNebula hosts, and an OpenNebula Cluster is created too when a new vCenter Cluster is imported as an OpenNebula host. All resources from that vCenter cluster (networks and storage) will be automatically imported to that same OpenNebula Cluster.
 
+.. note:: You can define ``VM_PREFIX`` attribute within host template. This attribute means that when you instanciate a VM in this host, all vm will be named begin with ``VM_PREFIX``.
+
 .. _vcenter_import_resources:
 
 Importing vCenter resources
