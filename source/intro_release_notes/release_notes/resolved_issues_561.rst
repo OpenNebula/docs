@@ -13,6 +13,7 @@ The following new features has been backported to 5.6.1:
 - New quotas for VMS allow you to configure limits for VMs "running", see :ref:`quotas <quota_auth>` for more details.
 - Update Host hook triggers to include all possible states, the states are define :ref:`here <hooks>`.
 - 'onezone set' should allow temporary zone changes. See `onezone documentation <http://docs.opennebula.org/doc/5.6/cli/onezone.1.html>`__.
+- The Virtual Machines that are associated to a Virtual Router have all actions allow except nic-attach/dettach. see :ref:`vrouter documentation <vrouter>` for more details.
 
 The following issues has been solved in 5.6.1:
 
