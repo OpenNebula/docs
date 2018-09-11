@@ -343,7 +343,7 @@ It is generally a good idea to place defaults for vCenter-specific attributes. T
         </IMAGE>
     </VCENTER>
 
-.. _vcenter_new_import_tool:
+.. _vcenter_driver_conf:
 
 Also you have ``/etc/one/vcenter_driver.conf`` where you can define the following attributes:
 
@@ -355,6 +355,7 @@ Also you have ``/etc/one/vcenter_driver.conf`` where you can define the followin
 | debug_information       | If you want more error information in vCenter driver   | true or false      |
 +-------------------------+--------------------------------------------------------+--------------------+
 
+.. _vcenter_new_import_tool:
 
 vCenter Import Tool
 ================================================================================
