@@ -243,4 +243,15 @@ Edit ``/etc/one/sunstone-server.conf`` to listen at localhost:9869.
 
 Once the proxy server is started, OpenNebula Sunstone requests using HTTPS URIs can be directed to ``https://cloudserver.org:8443``, that will then be unencrypted, passed to localhost, port 9869, satisfied (hopefully), encrypted again and then passed back to the client.
 
+.. note:: To change serveradmin password, follow the next steps:
+
+    .. prompt:: bash # auto
+
+        #oneuser passwd 1 --sha1 <PASSWORD>
+        #echo 'serveradmin:PASSWORD' > /var/lib/one/.one/oneflow_auth
+        #echo 'serveradmin:PASSWORD' > /var/lib/one/.one/ec2_auth
+        #echo 'serveradmin:PASSWORD' > /var/lib/one/.one/onegate_auth
+        #echo 'serveradmin:PASSWORD' > /var/lib/one/.one/occi_auth
+        #echo 'serveradmin:PASSWORD' > /var/lib/one/.one/sunstone_auth
+
 .. |image0| image:: /images/sunstone_login_x5094.png
