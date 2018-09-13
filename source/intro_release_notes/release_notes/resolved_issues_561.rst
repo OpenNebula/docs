@@ -40,3 +40,4 @@ The following issues has been solved in 5.6.1:
 - `Wild importation from vCenter host refactor  <https://github.com/OpenNebula/one/issues/2140>`__.
 - `Removing CD-ROM from vCenter imported template breaks the template  <https://github.com/OpenNebula/one/issues/2274>`__.
 - `Error with restricted attributes when instantiating a VM <https://github.com/OpenNebula/one/issues/2402>`__.
+- `Onevcenter cli tool few improvements and examples added <https://github.com/OpenNebula/one/issues/2416>`__.
