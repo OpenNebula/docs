@@ -265,4 +265,13 @@ Step 8. Next steps
 
 Now that you have successfully started your OpenNebula service, head over to the :ref:`Node Installation <node_installation>` chapter in order to add hypervisors to your cloud.
 
+.. note:: To change oneadmin password, follow the next steps:
+
+    .. prompt:: bash # auto
+
+        #oneuser passwd 0 <PASSWORD>
+        #echo 'oneadmin:PASSWORD' > /var/lib/one/.one/one_auth
+
+    Test that everything works using `oneuser show`.
+
 .. |image0| image:: /images/debian-opennebula.png
