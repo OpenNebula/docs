@@ -41,3 +41,4 @@ The following issues has been solved in 5.6.1:
 - `Removing CD-ROM from vCenter imported template breaks the template  <https://github.com/OpenNebula/one/issues/2274>`__.
 - `Error with restricted attributes when instantiating a VM <https://github.com/OpenNebula/one/issues/2402>`__.
 - `Onevcenter cli tool few improvements and examples added <https://github.com/OpenNebula/one/issues/2416>`__.
+- `OPENNEBULA_MANAGED deleted when updating a VM Template <https://github.com/OpenNebula/one/issues/2423>`__.
