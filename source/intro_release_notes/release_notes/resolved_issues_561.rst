@@ -42,3 +42,15 @@ The following issues has been solved in 5.6.1:
 - `Error with restricted attributes when instantiating a VM <https://github.com/OpenNebula/one/issues/2402>`__.
 - `Onevcenter cli tool few improvements and examples added <https://github.com/OpenNebula/one/issues/2416>`__.
 - `OPENNEBULA_MANAGED deleted when updating a VM Template <https://github.com/OpenNebula/one/issues/2423>`__.
+
+
+Sunstone Note
+--------------------------------------------------------------------------------
+
+In this release, there is the feature of hiding the lock and unlock buttons in this resources: ``Template``, ``VM``, ``Image``, ``MarketPlace``, ``Network`` and ``VMGroup``. It is enough to add these lines to each of these resources:
+
+.. code-block:: yaml
+
+    actions:
+        Resource.lockU: false
+        Resource.unlock: false
