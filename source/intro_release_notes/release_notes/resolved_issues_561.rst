@@ -43,6 +43,7 @@ The following issues has been solved in 5.6.1:
 - `Onevcenter cli tool few improvements and examples added <https://github.com/OpenNebula/one/issues/2416>`__.
 - `OPENNEBULA_MANAGED deleted when updating a VM Template <https://github.com/OpenNebula/one/issues/2423>`__.
 - `Ceph disk-saveas doesn't respect snapshot ID <https://github.com/OpenNebula/one/issues/2429>`__.
+- `SSH TM disk-saveas doesn't respect snapshot ID <https://github.com/OpenNebula/one/issues/2435>`__.
 
 
 Sunstone Note
