@@ -44,6 +44,7 @@ The following issues has been solved in 5.6.1:
 - `OPENNEBULA_MANAGED deleted when updating a VM Template <https://github.com/OpenNebula/one/issues/2423>`__.
 - `Ceph disk-saveas doesn't respect snapshot ID <https://github.com/OpenNebula/one/issues/2429>`__.
 - `SSH TM disk-saveas doesn't respect snapshot ID <https://github.com/OpenNebula/one/issues/2435>`__.
+- `Unable to update the Running Memory quota <https://github.com/OpenNebula/one/issues/2428>`__.
 
 
 Sunstone Note
