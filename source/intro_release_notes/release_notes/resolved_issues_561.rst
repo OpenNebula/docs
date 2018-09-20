@@ -45,6 +45,7 @@ The following issues has been solved in 5.6.1:
 - `Ceph disk-saveas doesn't respect snapshot ID <https://github.com/OpenNebula/one/issues/2429>`__.
 - `SSH TM disk-saveas doesn't respect snapshot ID <https://github.com/OpenNebula/one/issues/2435>`__.
 - `Unable to update the Running Memory quota <https://github.com/OpenNebula/one/issues/2428>`__.
+- `Monitoring VMs fails when there is not datastore associated <https://github.com/OpenNebula/one/issues/2433>`__.
 
 
 Sunstone Note
