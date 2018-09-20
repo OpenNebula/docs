@@ -36,9 +36,9 @@ Drivers - Storage
 ================================================================================
 
 * `#944 <https://github.com/OpenNebula/one/issues/944>`_ CEPH_HOST not IPv6 friendly
-* `#2269 <https://github.com/OpenNebula/one/issues/2269>`_ Clonning images from one Ceph datastore to another
+* `#2269 <https://github.com/OpenNebula/one/issues/2269>`_ Cloning images from one Ceph datastore to another
 * `#2246 <https://github.com/OpenNebula/one/issues/2246>`_ VMs created from images inside a Ceph datastore with EC_POOL_NAME are not created in that EC pool
-* `#1286 <https://github.com/OpenNebula/one/issues/1286>`_ Can not flatten image without losting latest state
+* `#1286 <https://github.com/OpenNebula/one/issues/1286>`_ Can not flatten image without losing latest state
 * `#1955 <https://github.com/OpenNebula/one/issues/1955>`_ Only 1 Ceph monitor added in libvirt XML when Ceph DISK IMAGE attached (hot-add)
 
 Drivers - VM
@@ -91,10 +91,6 @@ vCenter
 * `#1350 <https://github.com/OpenNebula/one/issues/1350>`_ Template delete recursive operation of templates **instantiated as persistent** does not remove images from the vcenter datastores. Currently these files must be delete manually
 * `#2230 <https://github.com/OpenNebula/one/issues/2230>`_ vCenter driver migrate feedback
 * `#2275 <https://github.com/OpenNebula/one/issues/2275>`_ Remove disk not affected by snap on vCenter
-* `#2274 <https://github.com/OpenNebula/one/issues/2274>`_ Remove CDROM from imported template
 * `#2254 <https://github.com/OpenNebula/one/issues/2254>`_ spurios syntax help on onehost delete
-* `#2262 <https://github.com/OpenNebula/one/issues/2262>`_ Wait poweron/off to be performed
-* `#1626 <https://github.com/OpenNebula/one/issues/1626>`_ vCenter importer lock file stale and clash
 * `#2084 <https://github.com/OpenNebula/one/issues/2084>`_ vCenter Cache thread safe (thin related)
 * `#1699 <https://github.com/OpenNebula/one/issues/1699>`_ Wild VM monitoring should not return datastores that contain only swap files
-* `#1259 <https://github.com/OpenNebula/one/issues/1259>`_ Premigrator: unmanaged nics from vms are outside the AR of the network

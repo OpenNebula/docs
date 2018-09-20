@@ -343,6 +343,18 @@ It is generally a good idea to place defaults for vCenter-specific attributes. T
         </IMAGE>
     </VCENTER>
 
+.. _vcenter_driver_conf:
+
+Also you have ``/etc/one/vcenter_driver.conf`` where you can define the following attributes:
+
++-------------------------+--------------------------------------------------------+--------------------+
+| Attribute               |                      Description                       |     Value          |
++-------------------------+--------------------------------------------------------+--------------------+
+| vm_poweron_wait_default | Timeout to deploy VMs in vCenter                       |      Integer       |
++-------------------------+--------------------------------------------------------+--------------------+
+| debug_information       | If you want more error information in vCenter driver   | true or false      |
++-------------------------+--------------------------------------------------------+--------------------+
+
 .. _vcenter_new_import_tool:
 
 vCenter Import Tool
@@ -470,6 +482,8 @@ Note that if you delete an OpenNebula host representing a vCenter cluster and if
 In that case should specify the right cluster from the Cluster drop-down menu or remove the OpenNebula Cluster so OpenNebula can create the cluster again automatically when the vCenter Cluster is imported.
 
 .. note:: It's important to understand that OpenNebula will see vCenter Clusters as OpenNebula hosts, and an OpenNebula Cluster is created too when a new vCenter Cluster is imported as an OpenNebula host. All resources from that vCenter cluster (networks and storage) will be automatically imported to that same OpenNebula Cluster.
+
+.. note:: You can define ``VM_PREFIX`` attribute within host template. This attribute means that when you instanciate a VM in this host, all vm will be named begin with ``VM_PREFIX``.
 
 .. _vcenter_import_resources:
 

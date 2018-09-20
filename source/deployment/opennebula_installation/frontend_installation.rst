@@ -33,15 +33,26 @@ Step 3. Installing the Software
 Installing on CentOS/RHEL 7
 ---------------------------
 
-Activate the `EPEL <http://fedoraproject.org/wiki/EPEL#How_can_I_use_these_extra_packages.3F>`__ repo before installing.
+.. note:: Activate the `EPEL <http://fedoraproject.org/wiki/EPEL#How_can_I_use_these_extra_packages.3F>`__ (Extra Packages for Enterprise Linux) repository before installing the OpenNebula.
 
-In RHEL 7 this can be done by following the instructions `here <http://fedoraproject.org/wiki/EPEL#How_can_I_use_these_extra_packages.3F>`__.
+    On CentOS 7, enabling EPEL is as easy as installation of the package with additional repository configuration:
 
-In CentOS 7 this can be done with the following command:
+    .. prompt:: bash # auto
 
-.. prompt:: bash # auto
+        # yum install epel-release
 
-    # yum install epel-release
+    On RHEL 7, first you need the RHEL **optional** and **extras** repositories configured:
+
+    .. prompt:: bash # auto
+
+        # subscription-manager repos --enable rhel-7-server-optional-rpms
+        # subscription-manager repos --enable rhel-7-server-extras-rpms
+
+    and, then you can enable the EPEL:
+
+    .. prompt:: bash # auto
+
+        # rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 
 Install the CentOS/RHEL OpenNebula Front-end with packages from **our repository** by executing the following as root:
 
@@ -253,5 +264,14 @@ Step 8. Next steps
 ================================================================================
 
 Now that you have successfully started your OpenNebula service, head over to the :ref:`Node Installation <node_installation>` chapter in order to add hypervisors to your cloud.
+
+.. note:: To change oneadmin password, follow the next steps:
+
+    .. prompt:: bash # auto
+
+        #oneuser passwd 0 <PASSWORD>
+        #echo 'oneadmin:PASSWORD' > /var/lib/one/.one/one_auth
+
+    Test that everything works using `oneuser show`.
 
 .. |image0| image:: /images/debian-opennebula.png

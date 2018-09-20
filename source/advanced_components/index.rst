@@ -8,7 +8,7 @@ Advanced Components Guide
    :maxdepth: 2
 
    Multi-VM Applications and Auto-scaling <application_flow_and_auto-scaling/index>
-   Host and VM High Availability <ha/index>
+   High Availability <ha/index>
    Data Center Federation <data_center_federation/index>
    Cloud Bursting <cloud_bursting/index>
    Application Insight <application_insight/index>

@@ -38,6 +38,7 @@ Daemon Configuration Attributes
    - ``reserved``: comma separated list of reserved ports or ranges. Two numbers separated by a colon indicate a range.
 
 -  ``VM_SUBMIT_ON_HOLD`` : Forces VMs to be created on hold state instead of pending. Values: YES or NO.
+-  ``API_LIST_ORDER`` : Sets order (by ID) of elements in list API calls (e.g. onevm list). Values: ASC (ascending order) or DESC (descending order).
 -  ``LOG`` : Configure the logging system
 
    -  ``SYSTEM`` : Can be either ``file`` (default), ``syslog`` or ``std``
@@ -107,8 +108,9 @@ Example of this section:
     ]
 
     #VM_SUBMIT_ON_HOLD = "NO"
+    #API_LIST_ORDER    = "DESC"
 
-.. _oned_conf_federation:
+    .. _oned_conf_federation:
 
 Federation Configuration Attributes
 =================================================
@@ -203,6 +205,8 @@ XML-RPC Server Configuration
    -  ``%g`` -- group id
    -  ``%G`` -- group name
    -  ``%a`` -- auth token
+   -  ``%A`` -- client IP address (only IPv4 supported)
+   -  ``%P`` -- client TCP port
    -  ``%%`` -- %
 
 .. code-block:: bash
@@ -592,6 +596,8 @@ Host Hooks (HOST\_HOOK) defined by:
    -  **CREATE**, when the Host is created (onehost create)
    -  **ERROR**, when the Host enters the error state
    -  **DISABLE**, when the Host is disabled
+   -  **ENABLE**, when the Host is enabled
+   -  **OFFLINE**, when the Host is offline
 
 -  **command**: path can be absolute or relative to /usr/share/one/hooks
 -  **arguments**: for the hook. You can use the following Host information:

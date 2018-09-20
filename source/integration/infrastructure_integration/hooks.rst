@@ -79,6 +79,8 @@ In the case of Host hooks, the following can be defined:
    -  **CREATE**, when the Host is created (onehost create)
    -  **ERROR**, when the Host enters the error state
    -  **DISABLE**, when the Host is disabled
+   -  **ENABLE**, when the Host is enabled
+   -  **OFFLINE**, when the Host is offline
 
 -  **command** : path can be absolute or relative to ``/var/lib/one/remotes/hooks``
 -  **arguments** : for the hook. You can use the following Host attributes with $

@@ -7387,6 +7387,12 @@ Schemas for Group
                         <xs:element name="CPU_USED" type="xs:string"/>
                         <xs:element name="MEMORY" type="xs:string"/>
                         <xs:element name="MEMORY_USED" type="xs:string"/>
+                        <xs:element name="RUNNING_CPU" type="xs:string"/>
+                        <xs:element name="RUNNING_CPU_USED" type="xs:string"/>
+                        <xs:element name="RUNNING_MEMORY" type="xs:string"/>
+                        <xs:element name="RUNNING_MEMORY_USED" type="xs:string"/>
+                        <xs:element name="RUNNING_VMS" type="xs:string"/>
+                        <xs:element name="RUNNING_VMS_USED" type="xs:string"/>
                         <xs:element name="SYSTEM_DISK_SIZE" type="xs:string"/>
                         <xs:element name="SYSTEM_DISK_SIZE_USED" type="xs:string"/>
                         <xs:element name="VMS" type="xs:string"/>
@@ -7457,6 +7463,12 @@ Schemas for Group
                                 <xs:element name="CPU_USED" type="xs:string"/>
                                 <xs:element name="MEMORY" type="xs:string"/>
                                 <xs:element name="MEMORY_USED" type="xs:string"/>
+                                <xs:element name="RUNNING_CPU" type="xs:string"/>
+                                <xs:element name="RUNNING_CPU_USED" type="xs:string"/>
+                                <xs:element name="RUNNING_MEMORY" type="xs:string"/>
+                                <xs:element name="RUNNING_MEMORY_USED" type="xs:string"/>
+                                <xs:element name="RUNNING_VMS" type="xs:string"/>
+                                <xs:element name="RUNNING_VMS_USED" type="xs:string"/>
                                 <xs:element name="SYSTEM_DISK_SIZE" type="xs:string"/>
                                 <xs:element name="SYSTEM_DISK_SIZE_USED" type="xs:string"/>
                                 <xs:element name="VMS" type="xs:string"/>
@@ -7568,6 +7580,12 @@ Schemas for Group
                                 <xs:element name="CPU_USED" type="xs:string"/>
                                 <xs:element name="MEMORY" type="xs:string"/>
                                 <xs:element name="MEMORY_USED" type="xs:string"/>
+                                <xs:element name="RUNNING_CPU" type="xs:string"/>
+                                <xs:element name="RUNNING_CPU_USED" type="xs:string"/>
+                                <xs:element name="RUNNING_MEMORY" type="xs:string"/>
+                                <xs:element name="RUNNING_MEMORY_USED" type="xs:string"/>
+                                <xs:element name="RUNNING_VMS" type="xs:string"/>
+                                <xs:element name="RUNNING_VMS_USED" type="xs:string"/>
                                 <xs:element name="SYSTEM_DISK_SIZE" type="xs:string"/>
                                 <xs:element name="SYSTEM_DISK_SIZE_USED" type="xs:string"/>
                                 <xs:element name="VMS" type="xs:string"/>
@@ -7642,6 +7660,12 @@ Schemas for Group
                                 <xs:element name="CPU_USED" type="xs:string"/>
                                 <xs:element name="MEMORY" type="xs:string"/>
                                 <xs:element name="MEMORY_USED" type="xs:string"/>
+                                <xs:element name="RUNNING_CPU" type="xs:string"/>
+                                <xs:element name="RUNNING_CPU_USED" type="xs:string"/>
+                                <xs:element name="RUNNING_MEMORY" type="xs:string"/>
+                                <xs:element name="RUNNING_MEMORY_USED" type="xs:string"/>
+                                <xs:element name="RUNNING_VMS" type="xs:string"/>
+                                <xs:element name="RUNNING_VMS_USED" type="xs:string"/>
                                 <xs:element name="SYSTEM_DISK_SIZE" type="xs:string"/>
                                 <xs:element name="SYSTEM_DISK_SIZE_USED" type="xs:string"/>
                                 <xs:element name="VMS" type="xs:string"/>
@@ -8078,6 +8102,12 @@ Schemas for User
                         <xs:element name="CPU_USED" type="xs:string"/>
                         <xs:element name="MEMORY" type="xs:string"/>
                         <xs:element name="MEMORY_USED" type="xs:string"/>
+                        <xs:element name="RUNNING_CPU" type="xs:string"/>
+                        <xs:element name="RUNNING_CPU_USED" type="xs:string"/>
+                        <xs:element name="RUNNING_MEMORY" type="xs:string"/>
+                        <xs:element name="RUNNING_MEMORY_USED" type="xs:string"/>
+                        <xs:element name="RUNNING_VMS" type="xs:string"/>
+                        <xs:element name="RUNNING_VMS_USED" type="xs:string"/>
                         <xs:element name="SYSTEM_DISK_SIZE" type="xs:string"/>
                         <xs:element name="SYSTEM_DISK_SIZE_USED" type="xs:string"/>
                         <xs:element name="VMS" type="xs:string"/>
@@ -8148,6 +8178,12 @@ Schemas for User
                                 <xs:element name="CPU_USED" type="xs:string"/>
                                 <xs:element name="MEMORY" type="xs:string"/>
                                 <xs:element name="MEMORY_USED" type="xs:string"/>
+                                <xs:element name="RUNNING_CPU" type="xs:string"/>
+                                <xs:element name="RUNNING_CPU_USED" type="xs:string"/>
+                                <xs:element name="RUNNING_MEMORY" type="xs:string"/>
+                                <xs:element name="RUNNING_MEMORY_USED" type="xs:string"/>
+                                <xs:element name="RUNNING_VMS" type="xs:string"/>
+                                <xs:element name="RUNNING_VMS_USED" type="xs:string"/>
                                 <xs:element name="SYSTEM_DISK_SIZE" type="xs:string"/>
                                 <xs:element name="SYSTEM_DISK_SIZE_USED" type="xs:string"/>
                                 <xs:element name="VMS" type="xs:string"/>
@@ -8266,6 +8302,12 @@ Schemas for User
                                 <xs:element name="CPU_USED" type="xs:string"/>
                                 <xs:element name="MEMORY" type="xs:string"/>
                                 <xs:element name="MEMORY_USED" type="xs:string"/>
+                                <xs:element name="RUNNING_CPU" type="xs:string"/>
+                                <xs:element name="RUNNING_CPU_USED" type="xs:string"/>
+                                <xs:element name="RUNNING_MEMORY" type="xs:string"/>
+                                <xs:element name="RUNNING_MEMORY_USED" type="xs:string"/>
+                                <xs:element name="RUNNING_VMS" type="xs:string"/>
+                                <xs:element name="RUNNING_VMS_USED" type="xs:string"/>
                                 <xs:element name="SYSTEM_DISK_SIZE" type="xs:string"/>
                                 <xs:element name="SYSTEM_DISK_SIZE_USED" type="xs:string"/>
                                 <xs:element name="VMS" type="xs:string"/>
@@ -8340,6 +8382,12 @@ Schemas for User
                                 <xs:element name="CPU_USED" type="xs:string"/>
                                 <xs:element name="MEMORY" type="xs:string"/>
                                 <xs:element name="MEMORY_USED" type="xs:string"/>
+                                <xs:element name="RUNNING_CPU" type="xs:string"/>
+                                <xs:element name="RUNNING_CPU_USED" type="xs:string"/>
+                                <xs:element name="RUNNING_MEMORY" type="xs:string"/>
+                                <xs:element name="RUNNING_MEMORY_USED" type="xs:string"/>
+                                <xs:element name="RUNNING_VMS" type="xs:string"/>
+                                <xs:element name="RUNNING_VMS_USED" type="xs:string"/>
                                 <xs:element name="SYSTEM_DISK_SIZE" type="xs:string"/>
                                 <xs:element name="SYSTEM_DISK_SIZE_USED" type="xs:string"/>
                                 <xs:element name="VMS" type="xs:string"/>
