@@ -18,7 +18,6 @@ The following new features has been backported to 5.6.1:
 
 The following issues has been solved in 5.6.1:
 
-- `Fix paginated CLI output for onehost show and oneimage show <https://github.com/OpenNebula/one/issues/2445>`__.
 - `User quotas error <https://github.com/OpenNebula/one/issues/2316>`__.
 - `Migrate vCenter machines provide feedback to oned <https://github.com/OpenNebula/one/issues/2230>`__.
 - `Fixed problem migrating vCenter machines to a cluster with a lot of ESX <https://github.com/OpenNebula/one/issues/2230>`__.
