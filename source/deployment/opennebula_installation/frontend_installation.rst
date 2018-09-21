@@ -217,7 +217,7 @@ The OpenNebula logs are located in ``/var/log/one``, you should have at least th
 Sunstone
 --------------------------------------------------------------------------------
 
-Now you can try to log in into Sunstone web interface. To do this point your browser to ``http://<fontend_address>:9869``. If everything is OK you will be greeted with a login page. The user is ``oneadmin`` and the password is the one in the file ``/var/lib/one/.one/one_auth`` in your Front-end.
+Now you can try to log in into Sunstone web interface. To do this point your browser to ``http://<frontend_address>:9869``. If everything is OK you will be greeted with a login page. The user is ``oneadmin`` and the password is the one in the file ``/var/lib/one/.one/one_auth`` in your Front-end.
 
 If the page does not load, make sure you check ``/var/log/one/sunstone.log`` and ``/var/log/one/sunstone.error``. Also, make sure TCP port 9869 is allowed through the firewall.
 
