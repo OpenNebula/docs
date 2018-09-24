@@ -213,7 +213,7 @@ Disk Snapshots
 
 There are two kinds of operations related to disk snapshots:
 
-* ``disk-snapshot-create``, ``disk-snapshot-revert``, ``disk-snapshot-delete``: Allows the user to take snapshots of the disk states and return to them during the VM life-cycle. It is also possible to delete snapshots.
+* ``disk-snapshot-create``, ``disk-snapshot-revert``, ``disk-snapshot-delete``, ``disk-snapshot-rename``: Allows the user to take snapshots of the disk states and return to them during the VM life-cycle. It is also possible to rename or delete snapshots.
 * ``disk-saveas``: Exports VM disk (or a previously created snapshot) to an image. This is a live action.
 
 .. warning:: Disk Snapshots are not supported in vCenter
