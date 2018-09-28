@@ -13,5 +13,4 @@ The following new features has been backported to 5.6.2:
 The following issues has been solved in 5.6.2:
 
 - `Fix paginated CLI output for onehost show and oneimage show <https://github.com/OpenNebula/one/issues/2445>`__.
-- `Description <https://github.com/OpenNebula/one/issues/XXXX>`__.
 - `Monitoring VMs fails when there is not datastore associated <https://github.com/OpenNebula/one/issues/2433>`__.
