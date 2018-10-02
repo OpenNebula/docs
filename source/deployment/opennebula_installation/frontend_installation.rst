@@ -158,7 +158,7 @@ The ``/var/lib/one/.one/one_auth`` fill will have been created with a randomly-g
 
     $ echo "oneadmin:mypassword" > ~/.one/one_auth
 
-.. warning:: This will set the oneadmin password on the first boot. From that point, you must use the :ref:`oneuser passwd <change_credentials>` command to change oneadmin's password.
+.. warning:: This will set the oneadmin password on the first boot. From that point, you must use the `oneuser passwd` command to change oneadmin's password. More information on how to change oneadmin password :ref:`here <change_credentials>`
 
 You are ready to start the OpenNebula daemons. You can use systemctl for Linux distributions which have adopted systemd:
 
@@ -259,9 +259,6 @@ The following table lists some notable paths that are available in your Front-en
 +-------------------------------------+--------------------------------------------------------------------------------------+
 | ``/var/lib/one/remotes/tm/``        | Transfer Manager Driver scripts                                                      |
 +-------------------------------------+--------------------------------------------------------------------------------------+
-
-
-.. _oneadmin_credentials:
 
 Step 8. Next steps
 ================================================================================
