@@ -443,12 +443,17 @@ All the described functionality is available graphically using :ref:`Sunstone <s
 
 .. _change_credentials:
 
-Change credentials for users
+Change credentials for oneadmin or serveradmin
 ================================================================================
 
-For changing the credentials of oneadmin or serveradmin, you have the following links 
-    - :ref:`oneadmin credentials <oneadmin_credentials>`.
-    - :ref:`serveradmin credentials <serveradmin_credentials>`.
+For changing the credentials of oneadmin you have to do the following:
 
-.. note:: After changing the password, you have to restart OpenNebula ``one restart``
+    .. prompt:: bash # auto
+
+        #oneuser passwd 0 <PASSWORD>
+        #echo 'oneadmin:PASSWORD' > /var/lib/one/.one/one_auth
+
+For changing the credentials of serveradmin you have to do the :ref:`following <serveradmin_credentials>`.
+
+.. note:: After changing the password of any user, you have to restart OpenNebula ``one restart``
 
