@@ -158,7 +158,7 @@ The ``/var/lib/one/.one/one_auth`` fill will have been created with a randomly-g
 
     $ echo "oneadmin:mypassword" > ~/.one/one_auth
 
-.. warning:: This will set the oneadmin password on the first boot. From that point, you must use the :ref:`oneuser passwd <manage_users>` command to change oneadmin's password.
+.. warning:: This will set the oneadmin password on the first boot. From that point, you must use the `oneuser passwd` command to change oneadmin's password. More information on how to change oneadmin password :ref:`here <change_credentials>`
 
 You are ready to start the OpenNebula daemons. You can use systemctl for Linux distributions which have adopted systemd:
 

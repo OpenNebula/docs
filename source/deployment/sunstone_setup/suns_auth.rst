@@ -1,5 +1,6 @@
 .. _suns_auth:
 
+
 =================================
 User Security and Authentication
 =================================
@@ -107,6 +108,7 @@ The login screen will not display the username and password fields anymore, as a
 Note that OpenNebula will not verify that the user is holding a valid Kerberos ticket at the time of login: this is expected to be done by the external container of the Sunstone server (normally Apache), whose job is to tell the user's browser that the site requires a valid ticket to login.
 
 .. warning:: Sunstone remote auth method only handles the authentication of the user at the time of login. Authentication of the remote ticket is a complementary setup, which can rely on Apache.
+
 
 Configuring a SSL Proxy
 =======================
@@ -243,6 +245,7 @@ Edit ``/etc/one/sunstone-server.conf`` to listen at localhost:9869.
 
 Once the proxy server is started, OpenNebula Sunstone requests using HTTPS URIs can be directed to ``https://cloudserver.org:8443``, that will then be unencrypted, passed to localhost, port 9869, satisfied (hopefully), encrypted again and then passed back to the client.
 
+.. _serveradmin_credentials:
 .. note:: To change serveradmin password, follow the next steps:
 
     .. prompt:: bash # auto
@@ -253,5 +256,7 @@ Once the proxy server is started, OpenNebula Sunstone requests using HTTPS URIs 
         #echo 'serveradmin:PASSWORD' > /var/lib/one/.one/onegate_auth
         #echo 'serveradmin:PASSWORD' > /var/lib/one/.one/occi_auth
         #echo 'serveradmin:PASSWORD' > /var/lib/one/.one/sunstone_auth
+
+    Restart Sunstone after changing the password.
 
 .. |image0| image:: /images/sunstone_login_x5094.png
