@@ -448,12 +448,13 @@ Change credentials for oneadmin or serveradmin
 
 For changing the credentials of oneadmin you have to do the following:
 
+.. note::
+
     .. prompt:: bash # auto
 
         #oneuser passwd 0 <PASSWORD>
         #echo 'oneadmin:PASSWORD' > /var/lib/one/.one/one_auth
 
+    After changing the password, please restart OpenNebula (make sure the mm_sched process is also restarted)
+
 For changing the credentials of serveradmin you have to do the :ref:`following <serveradmin_credentials>`.
-
-.. note:: After changing the password of any user, you have to restart OpenNebula ``one restart``
-
