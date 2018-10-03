@@ -257,4 +257,6 @@ Once the proxy server is started, OpenNebula Sunstone requests using HTTPS URIs 
         #echo 'serveradmin:PASSWORD' > /var/lib/one/.one/occi_auth
         #echo 'serveradmin:PASSWORD' > /var/lib/one/.one/sunstone_auth
 
+    Restart Sunstone after changing the password.
+
 .. |image0| image:: /images/sunstone_login_x5094.png
