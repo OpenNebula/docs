@@ -15,6 +15,7 @@ The following issues has been solved in 5.6.2:
 - `Fix issue when setting an specific CPU model <https://github.com/OpenNebula/one/issues/1688>`__.
 - `Fix paginated CLI output for onehost show and oneimage show <https://github.com/OpenNebula/one/issues/2445>`__.
 - `Monitoring VMs fails when there is not datastore associated <https://github.com/OpenNebula/one/issues/2433>`__.
+- `Active disk snapshot is missing arrow in Sunstone <https://github.com/OpenNebula/one/issues/2439>`__.
 
 
 Sunstone Note
