@@ -16,3 +16,17 @@ The following issues has been solved in 5.6.2:
 - `Fix paginated CLI output for onehost show and oneimage show <https://github.com/OpenNebula/one/issues/2445>`__.
 - `Monitoring VMs fails when there is not datastore associated <https://github.com/OpenNebula/one/issues/2433>`__.
 - `Active disk snapshot is missing arrow in Sunstone <https://github.com/OpenNebula/one/issues/2439>`__.
+
+
+Sunstone Note
+--------------------------------------------------------------------------------
+
+There is the new VM autorefresh feature, activated by default at 10 seconds. If you want to change the autorefresh value, you must add the following line in ``vms-tab`` in the different views:
+
+.. code-block:: yaml
+
+    actions:
+        VM.refresh: true
+        ...
+        VM.menu_labels: true
+    autorefresh_info: 5000 # ms

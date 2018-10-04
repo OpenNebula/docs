@@ -1,6 +1,7 @@
 .. _manage_users:
 .. _manage_users_users:
 
+
 ==========================
 Managing Users
 ==========================
@@ -154,6 +155,7 @@ The OpenNebula bin files must be added to the path
 
 .. _manage_users_adding_and_deleting_users:
 
+
 Adding and Deleting Users
 ================================================================================
 
@@ -263,6 +265,7 @@ Once configured you will be able to access the OpenNebula API and use the CLI to
 .. note:: OpenNebula does not store the plain password but a hashed version in the database, as show by the oneuser example above.
 
 .. _user_tokens:
+
 
 Tokens
 --------------------------------------------------------------------------------
@@ -436,3 +439,22 @@ All the described functionality is available graphically using :ref:`Sunstone <s
 
 .. |image1| image:: /images/sunstone_user_settings.png
 .. |image2| image:: /images/sunstone_user_list.png
+
+
+.. _change_credentials:
+
+Change credentials for oneadmin or serveradmin
+================================================================================
+
+In order to change the credentials of oneadmin you have to do the following:
+
+.. note::
+
+    .. prompt:: bash # auto
+
+        # oneuser passwd 0 <PASSWORD>
+        # echo 'oneadmin:PASSWORD' > /var/lib/one/.one/one_auth
+
+    After changing the password, please restart OpenNebula (make sure the mm_sched process is also restarted)
+
+In order to change the credentials of serveradmin you have to do the :ref:`follow these steps <serveradmin_credentials>`.
