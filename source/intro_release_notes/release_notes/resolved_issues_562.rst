@@ -16,6 +16,7 @@ The following issues has been solved in 5.6.2:
 - `Fix paginated CLI output for onehost show and oneimage show <https://github.com/OpenNebula/one/issues/2445>`__.
 - `Monitoring VMs fails when there is not datastore associated <https://github.com/OpenNebula/one/issues/2433>`__.
 - `Label icons does not displayed <https://github.com/OpenNebula/one/issues/2473>`__.
+- `Active disk snapshot is missing arrow in Sunstone <https://github.com/OpenNebula/one/issues/2439>`__.
 
 
 Sunstone Note
