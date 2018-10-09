@@ -472,7 +472,7 @@ Sample Application Monitoring Script
     # PUT command
     ################################################################################
      
-    VMID=(source /mnt/context.sh; echo $VMID)
+    VMID=$(source /mnt/context.sh; echo $VMID)
 
     curl -X "PUT" $ONEGATE_ENDPOINT/vm \
         --header "X-ONEGATE-TOKEN: `cat $ONEGATE_TOKEN`" \
