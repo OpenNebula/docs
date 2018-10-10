@@ -787,6 +787,7 @@ Note: By default, the above operations do not check the target host capacity. Yo
    - ``--retry``: retries to perform the current driver action. Optionally the ``--interactive`` can be combined if its a Transfer Manager problem.
    - ``--delete``: Deletes the VM, moving it to the DONE state immediately
    - ``--recreate``: Deletes the VM, and moves it to the PENDING state
+   - ``--delete-db``: Deletes the VM from OpenNebula, moving it to the DONE state immediately. It keeps the VM at the hypervisor.
 
 -  ``migrate`` or ``resched``: A VM in the UNKNOWN state can be booted in a different host manually (``migrate``) or automatically by the scheduler (``resched``). This action must be performed only if the storage is shared, or manually transfered by the administrator. OpenNebula will not perform any action on the storage for this migration.
 
