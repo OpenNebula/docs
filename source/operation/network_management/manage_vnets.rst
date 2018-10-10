@@ -299,6 +299,20 @@ The Virtual Machine will also get a free address from any of the address ranges 
 
 .. warning:: Users can only attach VMs or make reservations from Virtual Networks with **USE** rights on it. See the :ref:`Managing Permissions documentation <chmod>` for more information.
 
+Otherwise you can say to the Scheduler that he should pick the vnet, simply adding the attribute ``NETWORK_MODE = "auto"`` into the ``NIC`` attribute.
+
+.. code::
+
+    NIC = [ NETWORK_MODE = "auto" ]
+
+Also you can add SCHED_REQUIREMENTS and SCHED_RANK when this mode is activated.
+
+.. code::
+
+    NIC = [ NETWORK_MODE = "auto",
+            SCHED_REQUIREMENTS = "INBOUND_AVG_BW<1500",
+            SCHED_RANK = "-USED_LEASES" ]
+
 Configuring the Virtual Machine Network
 ---------------------------------------
 
