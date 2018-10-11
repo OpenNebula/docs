@@ -1,7 +1,7 @@
 .. _rn_hotfix:
 
 ================================================================================
-Release Notes 5.6.2 Hotfix
+Release Notes 5.6.3 Hotfix
 ================================================================================
 
 .. toctree::
@@ -9,3 +9,4 @@ Release Notes 5.6.2 Hotfix
 
    What is? <what_is_hotfix>
    Resolved Issues in 5.6.2 <resolved_issues_562>
+   Resolved Issues in 5.6.3 <resolved_issues_563>
