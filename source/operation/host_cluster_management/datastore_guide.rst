@@ -55,6 +55,8 @@ Also, there are a set of common attributes that can be used in any datastore and
 +------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
 | ``DRIVER``                   | Specific image mapping driver enforcement. If present it overrides image ``DRIVER`` set in the image attributes and VM template. |
 +------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
+| ``COMPATIBLE_SYS_DS``        | Only for IMAGE_DS. Specifies which system datastores are compatible with an image datastore by ID. Ex: "0,100"                   |
++------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
 
 The Files & Kernels Datastore is an special datastore type to store plain files to be used as kernels, ram-disks or context files. :ref:`See here to learn how to define them <file_ds>`.
 
