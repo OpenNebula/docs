@@ -93,4 +93,3 @@ vCenter
 * `#2275 <https://github.com/OpenNebula/one/issues/2275>`_ Remove disk not affected by snap on vCenter
 * `#2254 <https://github.com/OpenNebula/one/issues/2254>`_ spurios syntax help on onehost delete
 * `#2084 <https://github.com/OpenNebula/one/issues/2084>`_ vCenter Cache thread safe (thin related)
-* `#1699 <https://github.com/OpenNebula/one/issues/1699>`_ Wild VM monitoring should not return datastores that contain only swap files

@@ -19,7 +19,7 @@ The following issues has been solved in 5.6.2:
 - `Active disk snapshot is missing arrow in Sunstone <https://github.com/OpenNebula/one/issues/2439>`__.
 - `VCENTER_ESX_HOST fail with DRS in vCenter <https://github.com/OpenNebula/one/issues/2477>`__.
 - `vCenter datastores with spaces does not work properly <https://github.com/OpenNebula/one/issues/2437>`__.
-- `Tm_mad does not allow disks with brackets <https://github.com/OpenNebula/one/issues/2420>`__.
+- `tm_mad does not allow disks with brackets <https://github.com/OpenNebula/one/issues/2420>`__.
 - `vCenter uploader change original filename <https://github.com/OpenNebula/one/issues/2464>`__.
 
 Sunstone Note
