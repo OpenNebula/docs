@@ -45,6 +45,12 @@ Each disk is defined with a DISK attribute. A VM can use three types of disk:
 Network Interfaces
 --------------------------------------------------------------------------------
 
+Network interfaces can be defined in two different ways:
+
+- **Manual selection**: interfaces are attached to a pre-selected Virtual Network. Note that this may require to build multiple templates considering the available networks in each cluster.
+- **Automatic selection**: Virtual networks will be scheduled like other resources needed by the VM (like hosts or datastores). This way, you can hint the type of network the VM will need and it will be automatically selected among those available in the cluster. :ref:`See more details here <vgg_vm_vnets>`.
+
+
 |sunstone_template_create_nic|
 
 Example
