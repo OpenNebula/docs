@@ -269,13 +269,20 @@ To do so, use the 'onevnet hold' and 'onevnet release' commands. By default, the
 
 You see the list of leases on hold with the 'onevnet show' command, they'll show up as used by virtual machine -1, 'V: -1'
 
+.. _vgg_vm_vnets:
+
 Using a Virtual Network
 =======================
 
 Once the Virtual Networks are setup, they can be made available to users based on access rights and ownership. The preferred way to do so is through :ref:`Virtual Data Center abstraction <manage_vdcs>`. By default, all Virtual Networks are automatically available to the group ``users``.
 
-Attach a Virtual Machine to a Virtual Network
----------------------------------------------
+Virtual Network can be used by VMs in two different ways:
+
+- Manual selection: NICs in the VMs are attached to a specific Virtual Network.
+- Automatic selection: Virtual networks are scheduled like other resources needed by the VM (like hosts or datastores). 
+
+Manual Attach a Virtual Machine to a Virtual Network
+----------------------------------------------------
 
 To attach a Virtual Machine to a Virtual Network simply specify its name or ID in the ``NIC`` attribute.  For example, to define VM with a network interface connected to the ``Private`` Virtual Network just include in the template:
 
@@ -299,19 +306,29 @@ The Virtual Machine will also get a free address from any of the address ranges 
 
 .. warning:: Users can only attach VMs or make reservations from Virtual Networks with **USE** rights on it. See the :ref:`Managing Permissions documentation <chmod>` for more information.
 
-Otherwise you can say to the Scheduler that he should pick the vnet, simply adding the attribute ``NETWORK_MODE = "auto"`` into the ``NIC`` attribute.
+Automatic Attach a Virtual Machine to a Virtual Network
+-------------------------------------------------------
+
+You can delay the network selection for each NIC in the VM to the deployment phase. In this case the Scheduler will pick the Virtual Network among the available networks in the host selected to deploy the VM.
+
+This strategy is useful to prepare generic VM templates that can be deployed in multiple OpenNebula clusters.
+
+To set the automatic selection mode, simply add the attribute ``NETWORK_MODE = "auto"`` into the ``NIC`` attribute.
 
 .. code::
 
     NIC = [ NETWORK_MODE = "auto" ]
 
-Also you can add SCHED_REQUIREMENTS and SCHED_RANK when this mode is activated.
+Also you can add SCHED_REQUIREMENTS and SCHED_RANK when this mode is activated. This will let you specify which networks can be used for a specific NIC (``SCHED_REQUIREMENTS``) and what are you preferences (``SCHED_RANK``) to select a network among the suitable ones. 
 
 .. code::
 
     NIC = [ NETWORK_MODE = "auto",
-            SCHED_REQUIREMENTS = "INBOUND_AVG_BW<1500",
+            SCHED_REQUIREMENTS = "TRAFFIC_TYPE = \"public\" & INBOUND_AVG_BW<1500",
             SCHED_RANK = "-USED_LEASES" ]
+
+In this case the scheduler will look for any Virtual Network in the selected cluster with a custom tag ``TRAFFIC_TYPE`` to be equal to ``public`` and ``INBOUND_AVG_BW`` less than 1500. Among all the networks that satisfy these requirements the scheduler will select that with most free leases. 
+
 
 Configuring the Virtual Machine Network
 ---------------------------------------

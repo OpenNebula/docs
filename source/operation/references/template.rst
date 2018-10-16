@@ -482,12 +482,12 @@ Network Section
 +------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+
 | **OUTBOUND_PEAK_KB**   | Data that can be transmitted at peak speed in kilobytes.                                                 | \-                 | O                  |
 +------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+
-| **NETWORK_MODE**       | To say to the Scheduler that he should pick the VNET or not, with the values ( auto or manual ).         | O                  | O                  |
-|                        | By default, the network mode is manual.                                                                  |                    |                    |
+| **NETWORK_MODE**       | To let the Scheduler pick the VNET if set to `auto`), any other value will be ignored                    | O                  | O                  |
+|                        | By default, the network mode is not set.                                                                 |                    |                    |
 +------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+
-| **SCHED_REQUIREMENTS** | Define the requirement when NETMORW_MODE will be "auto".                                                 | O                  | O                  |
+| **SCHED_REQUIREMENTS** | Define the requirement when NETMORW_MODE is `auto`.                                                      | O                  | O                  |
 +------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+
-| **SCHED_RANK**         | Define the rank when NETMORW_MODE will be "auto".                                                        | O                  | O                  |
+| **SCHED_RANK**         | Define the rank when NETMORW_MODE is `auto`.                                                             | O                  | O                  |
 +------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+
 
 .. warning:: The PORTS and ICMP attributes require the firewalling functionality to be configured. Please read the :ref:`firewall configuration guide <firewall>`.
@@ -500,6 +500,9 @@ Example, a VM with two NIC attached to two different networks:
      
     NIC = [ NETWORK     = "Blue",
             NETWORK_UID = 0 ]
+
+    NIC = [ NETWORK_MODE = "auto",
+            SCHED_REQUIREMENTS = "TRAFFIC_TYPE=\"public\"" ]
 
 For more information on setting up virtual networks please check the :ref:`Managing Virtual Networks guide <vgg>`.
 

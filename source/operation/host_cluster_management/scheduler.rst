@@ -18,8 +18,8 @@ The match-making algorithm works as follows:
 * Each disk of a running VM consumes storage from an Image Datastore. The VMs that require more storage than there is currently available are filtered out, and will remain in the ``pending`` state.
 * Those hosts that do not meet the VM requirements (see the :ref:`SCHED_REQUIREMENTS attribute <template_placement_section>`) or do not have enough resources (available CPU and memory) to run the VM are filtered out (see below for more information).
 * The same happens for System Datastores: the ones that do not meet the DS requirements (see the :ref:`SCHED_DS_REQUIREMENTS attribute <template>`) or do not have enough free storage are filtered out.
-* And with the Networks: the ones that do not meet the NIC requirements (see the :ref:`SCHED_REQUIREMENTS attribute for NICs <template>`) or do not have enough free leases are filtered out.
-* The :ref:`SCHED_RANK and SCHED_DS_RANK expressions <template_placement_section>` are evaluated upon the Host and Datastore list using the information gathered by the monitor drivers. Also the :ref:`NIC/SCHED_RANK expression <template_network_section>` are evaluated upon the Network list using the information gathered by the monitor drivers. Any variable reported by the monitor driver (or manually set in the Host, Datastore or Network template) can be included in the rank expressions.
+* Finally if the VM uses automatic network selection, the virtual networks that do not meet the NIC requirements (see the :ref:`SCHED_REQUIREMENTS attribute for NICs <template>`) or do not have enough free leases are filtered out.
+* The :ref:`SCHED_RANK and SCHED_DS_RANK expressions <template_placement_section>` are evaluated upon the Host and Datastore list using the information gathered by the monitor drivers. Also the :ref:`NIC/SCHED_RANK expression <template_network_section>` are evaluated upon the Network list using the information in the Virtual Network template. Any variable reported by the monitor driver (or manually set in the Host, Datastore or Network template) can be included in the rank expressions.
 * Those resources with a higher rank are used first to allocate VMs.
 
 This scheduler algorithm easily allows the implementation of several placement heuristics (see below) depending on the RANK expressions used.
@@ -100,7 +100,7 @@ The behavior of the scheduler can be tuned to adapt it to your infrastructure wi
 |      3 | **Fixed**: Datastores will be ranked according to the PRIORITY attribute found in the Datastore template |
 +--------+----------------------------------------------------------------------------------------------------------+
 
-* ``DEFAULT_NIC_SCHED``: Definition of the default lease scheduling algorithm.
+* ``DEFAULT_NIC_SCHED``: Definition of the default virtual network scheduling algorithm.
 
   * ``RANK``: Arithmetic expression to rank suitable **networks** based on their attributes.
   * ``POLICY``: A predefined policy, it can be set to:
