@@ -157,7 +157,7 @@ You can skip this step entirely if you just want to try out OpenNebula, as it wi
 
 However, if you want to set-up another storage configuration at this stage, like Ceph, NFS, LVM, etc, you should read the :ref:`Open Cloud Storage <storage>` chapter.
 
-Step 8. Adding a Host to OpenNebula
+Step 7. Adding a Host to OpenNebula
 =============================================
 
 In this step we will register the node we have installed in the OpenNebula Front-end, so OpenNebula can launch VMs in it. This step can be done in the CLI **or** in Sunstone, the graphical user interface. Follow just one method, not both, as they accomplish the same.
