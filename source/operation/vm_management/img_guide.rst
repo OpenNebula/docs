@@ -76,9 +76,9 @@ You can also manage your Images using :ref:`Sunstone <sunstone_overview>`, selec
 Create Images
 -------------
 
-The three types of Images can be created from an existing file, but for **datablock** Images you can specify a size and let OpenNebula create an empty Image in the Datastore.
+The three types of Images can be created from an existing file, but for **datablock** and **OS** Images you can specify a size and let OpenNebula create an empty Image in the Datastore.
 
-If you want to create an **OS Image**, you need to prepare a contextualized virtual machine, and extract its disk.
+Another way to create an **OS Image**, is to prepare a contextualized virtual machine, and extract its disk.
 
 Please read first the documentation about :ref:`VM contextualization here <context_overview>`.
 
