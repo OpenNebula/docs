@@ -42,9 +42,8 @@ You should take into account the following technical considerations when using t
 Prerequisites
 ================================================================================
 
--  You must have a working account for `Azure <http://azure.microsoft.com/>`__.
--  You need your Azure credentials (Information on how to manage Azure certificates can be found `here <http://azure.microsoft.com/en-us/documentation/articles/linux-use-ssh-key/>`__. ). The information can be obtained from the `Management Azure page <https://manage.windowsazure.com>`__.
-- First, the Subscription ID, that can be uploaded and retrieved from Settings -> Subscriptions.
+- You must have a working account for `Azure <http://azure.microsoft.com/>`__.
+- First, the Subscription ID, that can be uploaded and retrieved from All services -> Subscriptions.
 - Second, the Management Certificate file, that can be created with the following steps- We need the .pem file (for the ruby gem) and the .cer file (to upload to Azure):
 
 .. code::
@@ -75,10 +74,7 @@ Prerequisites
 
 
 
-- Third, the certificate file (.cer) has to be uploaded to Settings -> Management Certificates can only be accessed from classic Azure portal, if you are using V2 try to:
-
-        portal v2 home page -> Azure classic portal -> Settings -> Management Certificates
-
+- Third, the certificate file (.cer) has to be uploaded to All services -> Subscriptions -> Management certificates
 - In order to allow azure driver to properly authenticate with our Azure account, you need to sign your .pem file:
 
 .. code::
@@ -161,7 +157,7 @@ If the OpenNebula frontend needs to use a proxy to connect to the public Interne
     If you were using OpenNebula before 5.4 you may have noticed that there are not Microsoft credentials in configuration file anymore, this is due security reasons. In 5.4 there is a new secure credentials storage for Microsoft's accounts so you do not need to store sensitive credential data inside your disk. OpenNebula daemon stores the data in an encrypted format.
 
 
-Once the file is saved, OpenNebula needs to be restarted (as ``oneadmin``, do a 'onevm restart'), create a new Host with Microsoft's credentials that uses the AZ drivers:
+Once the file is saved, OpenNebula needs to be restarted, create a new Host with Microsoft's credentials that uses the AZ drivers:
 
 .. prompt:: bash $ auto
 
@@ -196,7 +192,7 @@ In order to deploy an instance in Azure through OpenNebula you must include an P
       INSTANCE_TYPE=ExtraSmall,
       IMAGE=b39f27a8b8c64d52b05eac6a62ebad85__Ubuntu-14_04-LTS-amd64-server-20140606.1-en-us-30GB,
       VM_USER="azuser",
-      VM_PASSWORD="mypassword",
+      VM_PASSWORD="myr@nd0mPass9",
       WIN_RM="https",
       TCP_ENDPOINTS="80",
       SSHPORT=2222
@@ -260,9 +256,6 @@ Default values for all these attributes can be defined in the ``/etc/one/az_driv
    #!/usr/bin/env ruby
 
    require "azure"
-   require "yaml"
-
-   CONFIG_PATH = "/etc/one/az_driver.conf"
 
    # Get a list of available virtual machine images
    def get_image_names
@@ -275,14 +268,9 @@ Default values for all these attributes can be defined in the ``/etc/one/az_driv
        end
    end
 
-   @account = YAML::load(File.read(CONFIG_PATH))
-   _regions = @account['regions']
-   _az = _regions['default']
-
    Azure.configure do |config|
-             config.management_certificate = _az['pem_management_cert'] || ENV['AZURE_CERT']
-             config.subscription_id        = _az['subscription_id'] || ENV['AZURE_SUB']
-             config.management_endpoint    = _az['management_endpoint'] || ENV['AZURE_ENDPOINT']
+             config.management_certificate = '/path-to/azureOne.pem'
+             config.subscription_id        = 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX'
    end
 
    get_image_names
@@ -312,7 +300,7 @@ After successfully executing onehost create with -t option, your default editor 
 
 The first two attributes have the authentication info required by Azure:
 
-- **AZ_ID**: your Microsoft Azure account identifier, found in Azure classic portal -> settings.
+- **AZ_ID**: your Microsoft Azure account identifier, found in All services -> Subscriptions.
 - **AZ_CERT**: The certificate that you signed before, in our example this file is called 'azureOne.pem' you only need to read this file one time to set this attribute and start using Azure:
 
 .. prompt:: bash $ auto

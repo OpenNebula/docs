@@ -331,6 +331,8 @@ The same import mechanism is available graphically through Sunstone. Running and
     :width: 90%
     :align: center
 
+You can revert the import process, and delete de VM just from OpenNebula by using the ``delete-db`` option of ``onevm recover`` command.
+
 Using Sunstone to Manage Hosts
 ================================================================================
 
