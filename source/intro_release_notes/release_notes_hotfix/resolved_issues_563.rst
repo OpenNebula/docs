@@ -14,3 +14,4 @@ The following issues has been solved in 5.6.3:
 
 - `Field size on instantiate is missing on advanced options <https://github.com/OpenNebula/one/issues/2450>`__.
 - `Impossible to create vmgroup using advanced mode <https://github.com/OpenNebula/one/issues/2522>`__.
+- `Impossible to instantiate a VM with RESTRICTED_ATTR DISK/SIZE <https://github.com/OpenNebula/one/issues/2533>`__.
