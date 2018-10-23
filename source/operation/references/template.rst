@@ -727,6 +727,8 @@ Example:
 
 .. _template_placement_section:
 
+.. note:: The ``$`` character can be escaped with ``\`` in order to avoid it to be interpreted.
+
 Placement Section
 ================================================================================
 
