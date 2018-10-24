@@ -20,6 +20,7 @@ The following issues has been solved in 5.6.2:
 - `vCenter datastores with spaces does not work properly <https://github.com/OpenNebula/one/issues/2437>`__.
 - `tm_mad does not allow disks with brackets <https://github.com/OpenNebula/one/issues/2420>`__.
 - `vCenter uploader change original filename <https://github.com/OpenNebula/one/issues/2464>`__.
+- `Network model is not working in vCenter <https://github.com/OpenNebula/one/issues/2474>`__.
 
 Sunstone Note
 --------------------------------------------------------------------------------
