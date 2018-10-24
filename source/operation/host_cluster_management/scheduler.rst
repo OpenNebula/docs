@@ -117,6 +117,8 @@ The behavior of the scheduler can be tuned to adapt it to your infrastructure wi
 |      3 | **Fixed**: Networks will be ranked according to the PRIORITY attribute found in the Network template     |
 +--------+----------------------------------------------------------------------------------------------------------+
 
+* ``DIFFERENT_VNETS``: Defines if Scheduler should be pick the nics on differents virtual networks ("YES") or not ("NO").
+
 The optimal values of the scheduler parameters depend on the hypervisor, storage subsystem and number of physical hosts. The values can be derived by finding out the max number of VMs that can be started in your set up with out getting hypervisor related errors.
 
 Sample Configuration:
