@@ -8,22 +8,25 @@ This guide describes how to enable Network isolation provided through the VXLAN 
 
 The VLAN id will be the same for every interface in a given network, calculated automatically by OpenNebula. It may also be forced by specifying an VLAN_ID parameter in the :ref:`Virtual Network template <vnet_template>`.
 
-Additionally each VLAN has associated a multicast address to encapsulate L2 broadcast and multicast traffic. This address is assigned by default to the 239.0.0.0/8 range as defined by RFC 2365 (Administratively Scoped IP Multicast). In particular the multicast address is obtained by adding the VLAN_ID to the 239.0.0.0/8 base address.
+VLAN default mode is multicast, in that case each VLAN has associated a multicast address to encapsulate L2 broadcast and multicast traffic. This address is assigned by default to the 239.0.0.0/8 range as defined by RFC 2365 (Administratively Scoped IP Multicast). In particular the multicast address is obtained by adding the VLAN_ID to the 239.0.0.0/8 base address.
 
+The other mode is EVPN where multicast is disabled.
 
 Considerations & Limitations
 ================================================================================
 
 This driver works with the default UDP server port 8472.
 
-VXLAN traffic is forwarded to a physical device, this device can be set (optionally) to be a VLAN tagged interface, but in that case you must make sure that the tagged interface is manually created first in all the hosts.
+In multicast mode the VXLAN traffic is forwarded to a physical device, this device can be set (optionally) to be a VLAN tagged interface, but in that case you must make sure that the tagged interface is manually created first in all the hosts.
 
 The physical device that will act as the physical device **must** have an IP.
+
+In EVPN mode you can also switch ``vxlan_tep`` option to ``local_ip`` which specifies the source ip address for outgoing traffic.
 
 Concurrent VXLANs host limit
 --------------------------------------------------------------------------------
 
-Each VXLAN is associated with one multicast group. There is a limit on how many multicast groups can be a physical host member of at the same time. That also means, how many **different** VXLANs can be used on a physical host concurrently. The default value is 20 and can be changed via ``sysctl`` through kernel runtime parameter ``net.ipv4.igmp_max_memberships``.
+In **multicast** mode Each VXLAN is associated with one multicast group. There is a limit on how many multicast groups can be a physical host member of at the same time. That also means, how many **different** VXLANs can be used on a physical host concurrently. The default value is 20 and can be changed via ``sysctl`` through kernel runtime parameter ``net.ipv4.igmp_max_memberships``.
 
 For permanent change to e.g. 150, place following settings inside the ``/etc/sysctl.conf``:
 
@@ -57,7 +60,13 @@ The following configuration attributes can be adjusted in ``/var/lib/one/remotes
 +------------------+----------------------------------------------------------------------------------+
 | Parameter        | Description                                                                      |
 +==================+==================================================================================+
+| vxlan_mode       | Either ``multicast`` (defautl) or ``EVPN``.                                      |
++------------------+----------------------------------------------------------------------------------+
 | vxlan_mc         | Base multicast address for each VLAN. The multicas sddress is vxlan_mc + vlan_id |
++------------------+----------------------------------------------------------------------------------+
+| vxlan_tep        || Either ``dev`` (default) or ``local_ip`` (only applicable in ``EVPN`` mode)     |
+|                  || dev - the PHYDEV device will be used for tunnel endpoint communication          |
+|                  || local_ip - the first IP addr of PHYDEV will be the saddress for outgoing packets|
 +------------------+----------------------------------------------------------------------------------+
 | vxlan_ttl        | Time To Live (TTL) should be > 1 in routed multicast networks (IGMP)             |
 +------------------+----------------------------------------------------------------------------------+
@@ -125,5 +134,4 @@ The following example defines a VXLAN network
     ...
 
 In this scenario, the driver will check for the existence of the ``vxlan50`` bridge. If it doesn't exist it will be created. ``eth0`` will be tagged (``eth0.50``) and attached to ``vxlan50`` (unless it's already attached). Note that eth0 can be a 802.1Q tagged interface if you want to isolate the OpenNebula VXLAN traffic.
-
 
