@@ -29,7 +29,7 @@ Configuring the Scheduling Policies
 
 The policy used to place a VM can be configured in two places:
 
-* For each VM, as defined by the ``SCHED_RANK`` and ``SCHED_DS_RANK`` attributes in the VM template.
+* For each VM, as defined by the ``SCHED_RANK`` and ``SCHED_DS_RANK`` attributes in the VM template. And ``SCHED_RANK`` in each VM NIC.
 * Globally for all the VMs in the ``sched.conf`` file (OpenNebula restart required).
 
 .. _schg_re-scheduling_virtual_machines:
@@ -63,8 +63,12 @@ The behavior of the scheduler can be tuned to adapt it to your infrastructure wi
 * ``MAX_DISPATCH``: Maximum number of Virtual Machines actually dispatched to a host in each scheduling action (Default: 30)
 * ``MAX_HOST``: Maximum number of Virtual Machines dispatched to a given host in each scheduling action (Default: 1)
 * ``LIVE_RESCHEDS``: Perform live (1) or cold migrations (0) when rescheduling a VM
-* ``DEFAULT_SCHED``: Definition of the default scheduling algorithm.
 * ``MEMORY_SYSTEM_DS_SCALE``: This factor scales the VM usage of the system DS with the memory size. This factor can be use to make the scheduler consider the overhead of checkpoint files: system_ds_usage = system_ds_usage + memory_system_ds_scale * memory
+* ``DIFFERENT_VNETS``: When set (YES) the NICs of a VM will be forced to be in different Virtual Networks.
+
+The default scheduling policies for hosts, datastores and virtual networks are defined as follows:
+
+* ``DEFAULT_SCHED``: Definition of the default scheduling algorithm.
 
    * ``RANK``: Arithmetic expression to rank suitable **hosts** based on their attributes.
    * ``POLICY``: A predefined policy, it can be set to:
@@ -108,9 +112,9 @@ The behavior of the scheduler can be tuned to adapt it to your infrastructure wi
 +--------+----------------------------------------------------------------------------------------------------------+
 | POLICY |                                               DESCRIPTION                                                |
 +========+==========================================================================================================+
-|      0 | **Packing**:: Tries to optimize leases usage by selecting the NET with less free leases                  |
+|      0 | **Packing**:: Tries to pack address usage by selecting the virtual networks with less free leases        |
 +--------+----------------------------------------------------------------------------------------------------------+
-|      1 | **Striping**: Tries to optimize I/O by distributing the VMs across networks                              |
+|      1 | **Striping**: Tries to distribute address usage across virtual networks                                  |
 +--------+----------------------------------------------------------------------------------------------------------+
 |      2 | **Custom**: Use a custom RANK                                                                            |
 +--------+----------------------------------------------------------------------------------------------------------+
@@ -144,7 +148,14 @@ Sample Configuration:
        policy = 1
     ]
 
+    DEFAULT_NIC_SCHED = [
+       policy = 1
+    ]
+
     MEMORY_SYSTEM_DS_SCALE = 0
+
+    DIFFERENT_VNETS = YES
+
 
 Pre-defined Placement Policies
 ------------------------------
