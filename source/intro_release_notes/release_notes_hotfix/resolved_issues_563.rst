@@ -18,3 +18,4 @@ The following issues has been solved in 5.6.3:
 - `Fix issue when instantiating a VM with RESTRICTED_ATTR DISK/SIZE <https://github.com/OpenNebula/one/issues/2533>`__.
 - `Fix the amount of memory reported by KVM virtual machines <https://github.com/OpenNebula/one/issues/2179>`__.
 - `Fix ssh disk transfer to prevent inconsistency <https://github.com/OpenNebula/one/issues/2438>`__.
+- `Network model is not working in vCenter <https://github.com/OpenNebula/one/issues/2474>`__.
