@@ -19,3 +19,5 @@ The following issues has been solved in 5.6.3:
 - `Fix the amount of memory reported by KVM virtual machines <https://github.com/OpenNebula/one/issues/2179>`__.
 - `Fix ssh disk transfer to prevent inconsistency <https://github.com/OpenNebula/one/issues/2438>`__.
 - `Network model is not working in vCenter <https://github.com/OpenNebula/one/issues/2474>`__.
+- `VM Template -> Scheduling -> Datastore labels deselect doesn't work <https://github.com/OpenNebula/one/issues/2538>`__.
+- `VM not boot after delete FILE context <https://github.com/OpenNebula/one/issues/2540>`__.
