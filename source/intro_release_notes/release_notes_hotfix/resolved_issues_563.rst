@@ -10,6 +10,7 @@ The following new features has been backported to 5.6.3:
 - `Allow creation of "Empty disk image" for type OS <https://github.com/OpenNebula/one/issues/1089>`__.
 - `VMs can be removed from OpenNebula with the onevm recover command without affecting the running VM. This can be used to re-import existing VMs <https://github.com/OpenNebula/one/issues/1246>`__.
 - `The "$" character can be escaped in VM templates <https://github.com/OpenNebula/one/issues/2456>`__.
+- `Admin should be able to disable Advanced options from Cloud view tabs <https://github.com/OpenNebula/one/issues/1745>`__.
 
 The following issues has been solved in 5.6.3:
 
@@ -19,3 +20,12 @@ The following issues has been solved in 5.6.3:
 - `Fix the amount of memory reported by KVM virtual machines <https://github.com/OpenNebula/one/issues/2179>`__.
 - `Fix ssh disk transfer to prevent inconsistency <https://github.com/OpenNebula/one/issues/2438>`__.
 - `Network model is not working in vCenter <https://github.com/OpenNebula/one/issues/2474>`__.
+
+Sunstone Note
+--------------------------------------------------------------------------------
+
+Advanced options can be hidden. If you want to hide them you need to add the following attributes to false in sunstone-views yamls, it just works on cloud and groupadmin views:
+
+   show_attach_disk_advanced
+
+   show_attach_nic_advanced
