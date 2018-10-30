@@ -22,6 +22,7 @@ The following issues has been solved in 5.6.3:
 - `Fix an issue that prevents Network model to work in vCenter <https://github.com/OpenNebula/one/issues/2474>`__.
 - `Remove unselect button in Sustone selection labels <https://github.com/OpenNebula/one/issues/2538>`__.
 - `Fix an issue that prevents removal of FILE_DS attribute <https://github.com/OpenNebula/one/issues/2540>`__.
+- `vCenter vms do not fail when removing unmanaged nets in parent template <https://github.com/OpenNebula/one/issues/2558>`__.
 
 Sunstone Note
 --------------------------------------------------------------------------------
