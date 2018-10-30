@@ -31,7 +31,7 @@ msgstr ""
 msgid ""
 "This driver requires that the OpenNebula nodes using the Ceph driver must be"
 " part of a running Ceph cluster. More information in `Ceph documentation "
-"<http://ceph.com/docs/master/>`__."
+"<http://docs.ceph.com/docs/master/>`__."
 msgstr ""
 
 #: ../../source/administration/storage/ceph_ds.rst:13
@@ -40,7 +40,7 @@ msgid ""
 "Libvirt and QEMU packages need to be recent enough to have support for Ceph."
 " For Ubuntu systems this is available out of the box, however for CentOS "
 "systems you will need to manually install `this version "
-"<http://ceph.com/packages/qemu-kvm/>`__ of qemu-kvm."
+"<http://docs.ceph.com/packages/qemu-kvm/>`__ of qemu-kvm."
 msgstr ""
 
 #: ../../source/administration/storage/ceph_ds.rst:16
@@ -55,7 +55,7 @@ msgstr ""
 msgid ""
 "The hosts where Ceph datastores based images will be deployed must be part "
 "of a running Ceph cluster. To do so refer to the `Ceph documentation "
-"<http://ceph.com/docs/master/>`__."
+"<http://docs.ceph.com/docs/master/>`__."
 msgstr ""
 
 #: ../../source/administration/storage/ceph_ds.rst:23
@@ -377,7 +377,7 @@ msgstr ""
 
 #: ../../source/administration/storage/ceph_ds.rst:152
 msgid ""
-"If `Cephx <http://ceph.com/docs/master/rados/operations/authentication/>`__ "
+"If `Cephx <http://docs.ceph.com/docs/master/rados/configuration/common/#authentication>`__ "
 "is enabled, there are some special considerations the OpenNebula "
 "administrator must take into account."
 msgstr ""
@@ -422,7 +422,7 @@ msgstr ""
 #: ../../source/administration/storage/ceph_ds.rst:197
 msgid ""
 "You can read more information about this in the Ceph guide `Using libvirt "
-"with Ceph <http://ceph.com/docs/master/rbd/libvirt/>`__."
+"with Ceph <http://docs.ceph.com/docs/master/rbd/libvirt/>`__."
 msgstr ""
 
 #: ../../source/administration/storage/ceph_ds.rst:200
