@@ -6,7 +6,7 @@ Ceph Datastore
 
 The Ceph datastore driver provides OpenNebula users with the possibility of using Ceph block devices as their Virtual Images.
 
-.. warning:: This driver requires that the OpenNebula nodes using the Ceph driver must be Ceph clients of a running Ceph cluster. More information in `Ceph documentation <http://ceph.com/docs/master/>`__.
+.. warning:: This driver requires that the OpenNebula nodes using the Ceph driver must be Ceph clients of a running Ceph cluster. More information in `Ceph documentation <http://docs.ceph.com/docs/master/>`__.
 
 Datastore Layout
 ================================================================================
@@ -165,7 +165,7 @@ Nodes need extra steps to setup credentials in libvirt:
 
   $ rbd ls -p one --id libvirt
 
-You can read more information about this in the Ceph guide `Using libvirt with Ceph <http://ceph.com/docs/master/rbd/libvirt/>`__.
+You can read more information about this in the Ceph guide `Using libvirt with Ceph <http://docs.ceph.com/docs/master/rbd/libvirt/>`__.
 
 * Ancillary virtual machine files like context disks, deployment and checkpoint files are created at the nodes under ``/var/lib/one/datastores/``, make sure that enough storage for these files is provisioned in the nodes.
 
