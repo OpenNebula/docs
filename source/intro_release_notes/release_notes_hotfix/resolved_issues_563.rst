@@ -23,7 +23,7 @@ The following issues has been solved in 5.6.3:
 - `Remove unselect button in Sustone selection labels <https://github.com/OpenNebula/one/issues/2538>`__.
 - `Fix an issue that prevents removal of FILE_DS attribute <https://github.com/OpenNebula/one/issues/2540>`__.
 - `vCenter vms do not fail when removing unmanaged nets in parent template <https://github.com/OpenNebula/one/issues/2558>`__.
-- `Improve vCenter resume and poweroff actions <https://github.com/OpenNebula/one/issues/2552>`__.
+- `Fix resume and poweroff actions when VM states diverge in OpenNebula and vCenter<https://github.com/OpenNebula/one/issues/2552>`__.
 
 Sunstone Note
 --------------------------------------------------------------------------------
