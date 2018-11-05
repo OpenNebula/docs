@@ -1,6 +1,7 @@
 .. _manage_users:
 .. _manage_users_users:
 
+
 ==========================
 Managing Users
 ==========================
@@ -19,8 +20,7 @@ There are different user types in the OpenNebula system:
 * **Infrastructure User** accounts may access most of the functionality offered by OpenNebula to manage resources.
 * **Group Administrators** accounts manage a limited set of resources and users.
 * **Users** access a simplified Sunstone view with limited actions to create new VMs, and perform basic life cycle operations.
-* **Public users** can only access OpenNebula through a public API (EC2), hence they can only use a limited set of functionality and can not access the xml-rpc API directly (nor any application using it like the CLI or Sunstone )
-* User **serveradmin** is also created the first time OpenNebula is started. Its password is created randomly, and this account is used by the :ref:`Sunstone <sunstone>` and :ref:`EC2 <ec2qcg>` servers to interact with OpenNebula.
+* User **serveradmin** is also created the first time OpenNebula is started. Its password is created randomly, and this account is used by the :ref:`Sunstone server<sunstone>` to interact with OpenNebula.
 
 .. note:: The complete OpenNebula approach to user accounts, groups and VDC is explained in more detail in the :ref:`Understanding OpenNebula <understand>` guide.
 
@@ -51,12 +51,16 @@ If ``ONE_AUTH`` is not defined, ``$HOME/.one/one_auth`` will be used instead. If
 
 **ONE_POOL_PAGE_SIZE**
 
-By default the OpenNebula Cloud API (CLI and Sunstone make use of it) paginates some pool responses. By default this size is 2000 but it can be changed with this variable. A numeric value greater that 2 is the pool size. To disable it you can use a non numeric value.
+By default the OpenNebula Cloud API (CLI and Sunstone make use of it) paginates some pool responses. By default this size is 300 but it can be changed with this variable. A numeric value greater that 2 is the pool size. To disable it you can use a non numeric value.
 
 .. prompt:: bash $ auto
 
     $ export ONE_POOL_PAGE_SIZE=5000        # Sets the page size to 5000
     $ export ONE_POOL_PAGE_SIZE=disabled    # Disables pool pagination
+
+**ONE_PAGER**
+
+List commands will send their output through a pager process when in an interactive shell. By default, the pager process is set to ``less`` but it can be change to any other program.
 
 **ONE_LISTCONF**
 
@@ -150,6 +154,7 @@ The OpenNebula bin files must be added to the path
     $ export PATH=$ONE_LOCATION/bin:$PATH
 
 .. _manage_users_adding_and_deleting_users:
+
 
 Adding and Deleting Users
 ================================================================================
@@ -260,6 +265,7 @@ Once configured you will be able to access the OpenNebula API and use the CLI to
 .. note:: OpenNebula does not store the plain password but a hashed version in the database, as show by the oneuser example above.
 
 .. _user_tokens:
+
 
 Tokens
 --------------------------------------------------------------------------------
@@ -419,6 +425,8 @@ As you can see, any user can find out his ID using the ``oneuser show`` command 
 
 Regular users can retrieve their quota and user information in the settings section in the top right corner of the main screen: |image1|
 
+Finally some configuration attributes can be set to tune the behavior of Sunstone or OpenNebula for the user. For a description of these attributes please check :ref:`the group configuration guide <manage_users_primary_and_secondary_groups>`.
+
 .. _manage_users_sunstone:
 
 Managing Users in Sunstone
@@ -431,3 +439,22 @@ All the described functionality is available graphically using :ref:`Sunstone <s
 
 .. |image1| image:: /images/sunstone_user_settings.png
 .. |image2| image:: /images/sunstone_user_list.png
+
+
+.. _change_credentials:
+
+Change credentials for oneadmin or serveradmin
+================================================================================
+
+In order to change the credentials of oneadmin you have to do the following:
+
+.. note::
+
+    .. prompt:: bash # auto
+
+        # oneuser passwd 0 <PASSWORD>
+        # echo 'oneadmin:PASSWORD' > /var/lib/one/.one/one_auth
+
+    After changing the password, please restart OpenNebula (make sure the mm_sched process is also restarted)
+
+In order to change the credentials of serveradmin you have to do the :ref:`follow these steps <serveradmin_credentials>`.

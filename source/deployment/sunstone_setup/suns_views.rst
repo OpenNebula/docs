@@ -358,6 +358,8 @@ Features
 * ``cloud_vm_create``: True to allow to create machines to cloud users.
 * ``show_monitoring_info``: True to show the monitoring info (VM & VRouters).
 * ``show_attributes_info``: True to show the attributes info (VM & VRouters).
+* ``show_attach_disk_advanced``: True to show advanced options in attach disk dialog.
+* ``show_attach_nic_advanced``: True to show advanced options in attach nic dialog.
 
 .. code-block:: yaml
 
@@ -467,6 +469,21 @@ The actions available for a given VM can be customized and extended by modifying
                 VM.disk_snapshot_delete: true
 
 |customizecloudview|
+
+
+Autorefresh
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+VM autorefresh time (ms) of individual VM view. By default at 10 seconds. You must add the following line in ``vms-tab`` in the different views:
+
+.. code-block:: yaml
+
+    actions:
+        VM.refresh: true
+        ...
+        VM.menu_labels: true
+    autorefresh_info: 5000 # ms
+
 
 .. |sunstone_dashboard| image:: /images/sunstone_dashboard.png
 .. |labels_edit| image:: /images/labels_edit.png

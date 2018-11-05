@@ -35,7 +35,12 @@ Execute the following commands to install the node package and restart libvirt t
         $ sudo yum install centos-release-qemu-ev
         $ sudo yum install qemu-kvm-ev
 
-    On RHEL, you need a paid subscription to the Red Hat Virtualization (RHV) or Red Hat OpenStack (RHOS) products. Please follow the RHV `Installation Guide <https://access.redhat.com/documentation/en-us/red_hat_virtualization/>`__.
+    On RHEL 7, you need a paid subscription to the Red Hat Virtualization (RHV) or Red Hat OpenStack (RHOS) products, license only for the Red Hat Enterprise Linux isn't enough! You have to check the RHV `Installation Guide <https://access.redhat.com/documentation/en-us/red_hat_virtualization/>`__ for your licensed version. Usually, the following commands should enable and install the enterprise packages:
+
+    .. prompt:: bash $ auto
+
+        $ sudo subscription-manager repos --enable rhel-7-server-rhv-4-mgmt-agent-rpms
+        $ sudo yum install qemu-kvm-rhev
 
 For further configuration, check the specific guide: :ref:`KVM <kvmg>`.
 
@@ -46,6 +51,7 @@ Execute the following commands to install the node package and restart libvirt t
 
 .. prompt:: bash $ auto
 
+    $ sudo apt-get update
     $ sudo apt-get install opennebula-node
     $ sudo service libvirtd restart # debian
     $ sudo service libvirt-bin restart # ubuntu
@@ -151,7 +157,7 @@ You can skip this step entirely if you just want to try out OpenNebula, as it wi
 
 However, if you want to set-up another storage configuration at this stage, like Ceph, NFS, LVM, etc, you should read the :ref:`Open Cloud Storage <storage>` chapter.
 
-Step 8. Adding a Host to OpenNebula
+Step 7. Adding a Host to OpenNebula
 =============================================
 
 In this step we will register the node we have installed in the OpenNebula Front-end, so OpenNebula can launch VMs in it. This step can be done in the CLI **or** in Sunstone, the graphical user interface. Follow just one method, not both, as they accomplish the same.

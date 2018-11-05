@@ -18,7 +18,8 @@ The match-making algorithm works as follows:
 * Each disk of a running VM consumes storage from an Image Datastore. The VMs that require more storage than there is currently available are filtered out, and will remain in the ``pending`` state.
 * Those hosts that do not meet the VM requirements (see the :ref:`SCHED_REQUIREMENTS attribute <template_placement_section>`) or do not have enough resources (available CPU and memory) to run the VM are filtered out (see below for more information).
 * The same happens for System Datastores: the ones that do not meet the DS requirements (see the :ref:`SCHED_DS_REQUIREMENTS attribute <template>`) or do not have enough free storage are filtered out.
-* The :ref:`SCHED_RANK and SCHED_DS_RANK expressions <template_placement_section>` are evaluated upon the Host and Datastore list using the information gathered by the monitor drivers. Any variable reported by the monitor driver (or manually set in the Host or Datastore template) can be included in the rank expressions.
+* Finally if the VM uses automatic network selection, the virtual networks that do not meet the NIC requirements (see the :ref:`SCHED_REQUIREMENTS attribute for NICs <template>`) or do not have enough free leases are filtered out.
+* The :ref:`SCHED_RANK and SCHED_DS_RANK expressions <template_placement_section>` are evaluated upon the Host and Datastore list using the information gathered by the monitor drivers. Also the :ref:`NIC/SCHED_RANK expression <template_network_section>` are evaluated upon the Network list using the information in the Virtual Network template. Any variable reported by the monitor driver (or manually set in the Host, Datastore or Network template) can be included in the rank expressions.
 * Those resources with a higher rank are used first to allocate VMs.
 
 This scheduler algorithm easily allows the implementation of several placement heuristics (see below) depending on the RANK expressions used.
@@ -28,7 +29,7 @@ Configuring the Scheduling Policies
 
 The policy used to place a VM can be configured in two places:
 
-* For each VM, as defined by the ``SCHED_RANK`` and ``SCHED_DS_RANK`` attributes in the VM template.
+* For each VM, as defined by the ``SCHED_RANK`` and ``SCHED_DS_RANK`` attributes in the VM template. And ``SCHED_RANK`` in each VM NIC.
 * Globally for all the VMs in the ``sched.conf`` file (OpenNebula restart required).
 
 .. _schg_re-scheduling_virtual_machines:
@@ -62,8 +63,12 @@ The behavior of the scheduler can be tuned to adapt it to your infrastructure wi
 * ``MAX_DISPATCH``: Maximum number of Virtual Machines actually dispatched to a host in each scheduling action (Default: 30)
 * ``MAX_HOST``: Maximum number of Virtual Machines dispatched to a given host in each scheduling action (Default: 1)
 * ``LIVE_RESCHEDS``: Perform live (1) or cold migrations (0) when rescheduling a VM
-* ``DEFAULT_SCHED``: Definition of the default scheduling algorithm.
 * ``MEMORY_SYSTEM_DS_SCALE``: This factor scales the VM usage of the system DS with the memory size. This factor can be use to make the scheduler consider the overhead of checkpoint files: system_ds_usage = system_ds_usage + memory_system_ds_scale * memory
+* ``DIFFERENT_VNETS``: When set (YES) the NICs of a VM will be forced to be in different Virtual Networks.
+
+The default scheduling policies for hosts, datastores and virtual networks are defined as follows:
+
+* ``DEFAULT_SCHED``: Definition of the default scheduling algorithm.
 
    * ``RANK``: Arithmetic expression to rank suitable **hosts** based on their attributes.
    * ``POLICY``: A predefined policy, it can be set to:
@@ -99,6 +104,23 @@ The behavior of the scheduler can be tuned to adapt it to your infrastructure wi
 |      3 | **Fixed**: Datastores will be ranked according to the PRIORITY attribute found in the Datastore template |
 +--------+----------------------------------------------------------------------------------------------------------+
 
+* ``DEFAULT_NIC_SCHED``: Definition of the default virtual network scheduling algorithm.
+
+  * ``RANK``: Arithmetic expression to rank suitable **networks** based on their attributes.
+  * ``POLICY``: A predefined policy, it can be set to:
+
++--------+----------------------------------------------------------------------------------------------------------+
+| POLICY |                                               DESCRIPTION                                                |
++========+==========================================================================================================+
+|      0 | **Packing**:: Tries to pack address usage by selecting the virtual networks with less free leases        |
++--------+----------------------------------------------------------------------------------------------------------+
+|      1 | **Striping**: Tries to distribute address usage across virtual networks                                  |
++--------+----------------------------------------------------------------------------------------------------------+
+|      2 | **Custom**: Use a custom RANK                                                                            |
++--------+----------------------------------------------------------------------------------------------------------+
+|      3 | **Fixed**: Networks will be ranked according to the PRIORITY attribute found in the Network template     |
++--------+----------------------------------------------------------------------------------------------------------+
+
 The optimal values of the scheduler parameters depend on the hypervisor, storage subsystem and number of physical hosts. The values can be derived by finding out the max number of VMs that can be started in your set up with out getting hypervisor related errors.
 
 Sample Configuration:
@@ -126,7 +148,14 @@ Sample Configuration:
        policy = 1
     ]
 
+    DEFAULT_NIC_SCHED = [
+       policy = 1
+    ]
+
     MEMORY_SYSTEM_DS_SCALE = 0
+
+    DIFFERENT_VNETS = YES
+
 
 Pre-defined Placement Policies
 ------------------------------

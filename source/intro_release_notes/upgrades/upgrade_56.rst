@@ -59,10 +59,6 @@ If you have customized **any** configuration files under ``/etc/one`` we recomme
 #. Edit the **new** files and port all the customizations from the previous version.
 #. You should **never** overwrite the configuration files with older versions.
 
-.. important::
-
-    If you are using a HA setup you need to manually change the value ``RAFT/XMLRPC_TIMEOUT_MS`` to ``0`` before restarting the OpenNebula daemons.
-
 .. note::
 
     Configuration files from inside the remote scripts directory structure ``/var/lib/one/remotes/`` have been moved into dedicated directory ``/var/lib/one/remotes/etc/``. Check all the files on the new path, and apply any necessary changes to your environment.
@@ -157,6 +153,8 @@ Update the Drivers
 You should be able now to start OpenNebula as usual, running ``service opennebula start`` as ``root``. At this point, as ``oneadmin`` user, execute ``onehost sync`` to update the new drivers in the hosts.
 
 .. warning:: Doing ``onehost sync`` is important. If the monitorization drivers are not updated, the hosts will behave erratically.
+
+.. note:: You can skip this step if you are not using KVM hosts, or any hosts that use remove monitoring probes.
 
 Testing
 =======
