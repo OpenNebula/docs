@@ -164,27 +164,6 @@ For example, to install only requirements for sunstone and ec2 interfaces you'll
 
     oneadmin@frontend: $> ./install_gems sunstone cloud
 
-Python Dependencies
-================================================================================
-
-In order to build the OpenNebula python components need to install the pip package manager.
-
-Build Dependencies:
-
-- **generateds**: to generate the python OCA
-- **pydoc**: to generate the API documentation
-- **setuptools**: to generate python package
-- **wheel**: to generate the python package
-
-Run Dependencies:
-
-- **lxml**: python OCA support
-- **dicttoxml**: python OCA support
-- **xmltodict**: python OCA support
-- **six**: python OCA support
-- **aenum**: python OCA support
-- **tblib**': python OCA support
-
 Building Sunstone from Source
 ================================================================================
 
