@@ -1,6 +1,7 @@
 build
+source/_build
+*.vscode
 *pyc
 source/toc.html
 *.mo
 .DS_Store
-
