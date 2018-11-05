@@ -27,7 +27,9 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 -  :ref:`Programmable VM operations <vm_guide2_scheduling_actions>` allowing users to schedule actions
 
--  Volume hotplugging and :ref:`disk snapshot capabilities <vm_guide_2_disk_snapshots>` and :ref:`disk resizing <vm_guide2_resize_disk>` for KVM virtual machines
+-  Volume and network hotplugging
+
+-  :ref:`Disk snapshot capabilities <vm_guide_2_disk_snapshots>` and :ref:`disk resizing <vm_guide2_resize_disk>` for KVM virtual machines
 
 
 **VIRTUAL NETWORK MANAGEMENT**
@@ -162,7 +164,7 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 - Fully platform independent
 
-- Hypervisor agnostic with broad hypervisor support (:ref:`KVM <kvmg>` and :ref:`VMware vCenter <vcenterg>`) and centralized management of environments with multiple hypervisors
+- Hypervisor agnostic with broad hypervisor support (:ref:`KVM <kvmg>`, :ref:`LXD <lxdmg>` and :ref:`VMware vCenter <vcenterg>`) and centralized management of environments with multiple hypervisors
 
 - :ref:`Broad support for commodity and enterprise-grade hypervisor, monitoring, storage, networking and user management services <uspng>`
 

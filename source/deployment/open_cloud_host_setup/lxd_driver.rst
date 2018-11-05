@@ -24,6 +24,7 @@ There are a number of regular features that are not implemented yet:
 - migration
 - save/restore
 - LVM datastore
+- PCI Passthrough
 
 
 Configuration
