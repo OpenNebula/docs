@@ -72,6 +72,35 @@ This action is used to register a new IP network in the IPAM. The network may be
       OTHER_IPAM_ATTR   = ".mydoamin.com"
     ]
 
+unregister_address_range
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This action is used to unregister an address range from the IPAM.
+
+**Arguments**:
+
+* AddressRange. The AddressRange in XML encoded in Base 64. The XML may contain any of the attributes used to define an AR. Note that OpenNebula uses a free format for objects so you can freely add more and process more (or less) attributes in this action. At least TYPE, IPAM_MAD and SIZE will be present:
+
+.. code::
+
+  <IPAM_DRIVER_ACTION_DATA>
+  <AR>
+    <TYPE>IP4</TYPE>
+    <IP> First IP in the network in '.' notation </IP>
+    <MAC> First MAC in the network in ':' notation </MAC
+    <SIZE>Number of IPs in the network </SIZE>
+    <NETWORK_ADDRESS> Base network address</NETWORK_ADDRESS>
+    <NETWORK_MASK> Network mask</NETWORK_MASK>
+    <GATEWAY> Default gateway for the network</GATEWAY>
+    <DNS> DNS servers, a space separated list of servers</DNS>
+    <GUEST_MTU> Sets the MTU for the NICs in this network</GUEST_MTU>
+    <SEARCH_DOMAIN> for DNS client</SEARCH_DOMAIN>
+  </AR>
+  </IPAM_DRIVER_ACTION_DATA>
+
+* Request ID, used internally to identify this IPAM request.
+
+**Returns**: This scripts MUST exit 0 if no errors we found.
 
 allocate_address
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -9,7 +9,7 @@ This component is in charge of configuring the network in the hypervisors. The p
 Driver Configuration and Description
 ================================================================================
 
-To enable a new network manager driver, the only requirement is to make a new directory with the name of the driver in ``/var/lib/one/remotes/vnm/remotes/<name>`` with three files:
+To enable a new network manager driver, the frist requirement is to make a new directory with the name of the driver in ``/var/lib/one/remotes/vnm/remotes/<name>`` with three files:
 
 -  **Pre**: This driver should perform all the network related actions required before the Virtual Machine starts in a host.
 
@@ -31,6 +31,26 @@ Virtual Machine actions and their relation with Network actions:
 -  **Migrate**: ``pre`` (target host), ``clean`` (source host), ``post`` (target host)
 -  **Attach Nic**: ``pre`` and ``post``
 -  **Detach Nic**: ``clean``
+
+After that you need to define the bridging technology used by the driver at ``/etc/one/oned.conf``. OpenNebula support three differents technologies, **Linux Bridge**, **Open vSwitch** y **vCenter Port Groups**. See the examples below:
+
+.. code-block:: bash
+
+    VN_MAD_CONF = [
+        NAME = "vcenter"
+        BRIDGE_TYPE = "vcenter_port_groups"
+    ]
+
+    VN_MAD_CONF = [
+        NAME = "ovswitch_vxlan"
+        BRIDGE_TYPE = "openvswitch"
+    ]
+
+    VN_MAD_CONF = [
+        NAME = "bridge"
+        BRIDGE_TYPE = "linux"
+    ]
+
 
 Driver Parameters
 ================================================================================
