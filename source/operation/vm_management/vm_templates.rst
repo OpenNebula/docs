@@ -53,23 +53,35 @@ Network interfaces can be defined in two different ways:
 
 |sunstone_template_create_nic|
 
+Network Interfaces Alias
+--------------------------------------------------------------------------------
+
+Network interface alias allows you to have more than one IP on each network interface. This does not create a new physical interface on the VM, it uses the interface which is alias of. An alias can not be attached, detached neither, but when the nic which is alias of is detached, the alias is also detached.
+
+The alias takes a lease from the network which it belongs to. So, for the OpenNebula it is the same as a NIC, it is just different inside the virtual machine.
+
+.. note:: The network of the alias can be different from the network of the nic which is alias of.
+
 Example
 --------------------------------------------------------------------------------
 
-The following example shows a VM Template file with a couple of disks and a network interface, also a VNC section was added.
+The following example shows a VM Template file with a couple of disks and a network interface, also a VNC section and an alias were added.
 
 .. code-block:: none
 
     NAME   = test-vm
     MEMORY = 128
     CPU    = 1
-     
+
     DISK = [ IMAGE  = "Arch Linux" ]
     DISK = [ TYPE     = swap,
              SIZE     = 1024 ]
-     
+
     NIC = [ NETWORK = "Public", NETWORK_UNAME="oneadmin" ]
-     
+
+    NIC = [ NETWORK = "Private", NAME = "private_net" ]
+    NIC_ALIAS = [ NETWORK = "Public", PARENT = "private_net" ]
+
     GRAPHICS = [
       TYPE    = "vnc",
       LISTEN  = "0.0.0.0"]

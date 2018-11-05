@@ -339,6 +339,27 @@ Hypervisors will set the MAC address for the NIC of the Virtual Machines, but no
 
 .. _vgg_vn_reservations:
 
+Attach a Virtual Machine to a Nic Alias
+---------------------------------------
+
+To attach an alias to a VM, you need that the VM has a NIC with ``NAME`` attribute:
+
+.. code::
+
+   NIC = [ NETWORK = "public", NAME = "test" ]
+
+.. note:: If the nic NAME is empty, it will be generated automatically: NIC${NIC_ID}.
+
+After that, you can attach an alias using the following template:
+
+.. code::
+
+   NIC_ALIAS = [ NETWORK = "private", PARENT = "test" ]
+
+.. note:: You can also use the ``onevm`` command using the option ``--alias alias`` so that NIC will be attached as an alias, instead of as a NIC.
+
+.. note:: You can also reference to the parent using the generated name: NIC_ALIAS = [ NETWORK = "private", PARENT = "NIC0" ]
+
 Virtual Network Self-Provisioning: Reservations
 ===============================================
 
