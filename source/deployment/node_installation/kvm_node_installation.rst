@@ -8,6 +8,8 @@ This page shows you how to install OpenNebula from the binary packages.
 
 Using the packages provided in our site is the recommended method, to ensure the installation of the latest version and to avoid possible packages divergences of different distributions. There are two alternatives here: you can add **our package repositories** to your system, or visit the `software menu <http://opennebula.org/software:software>`__ to **download the latest package** for your Linux distribution.
 
+.. _kvm_repo:
+
 Step 1. Add OpenNebula Repositories
 ===================================
 
@@ -65,6 +67,8 @@ SElinux can cause some problems, like not trusting ``oneadmin`` user's SSH crede
     SELINUX=disabled
 
 After this file is changed reboot the machine.
+
+.. _kvm_ssh:
 
 Step 4. Configure Passwordless SSH
 ==================================
@@ -124,6 +128,8 @@ If an extra layer of security is needed, it's possible to keep the private key j
 
 .. note:: Remember that is neccesary to have running the ssh-agent with the corresponding private key imported before OpenNebula is started. You can start ssh-agent by running ``eval "$(ssh-agent -s)"`` and add the private key by running ``ssh-add /var/lib/one/.ssh/id_rsa``.
 
+.. _kvm_net:
+
 Step 5. Networking Configuration
 ================================
 
@@ -144,6 +150,8 @@ You may want to use the simplest network model that corresponds to the :ref:`bri
 
 .. note:: Remember that this is only required in the Hosts, not in the Front-end. Also remember that it is not important the exact name of the resources (``br0``, ``br1``, etc...), however it's important that the bridges and NICs have the same name in all the Hosts.
 
+.. _kvm_storage:
+
 Step 6. Storage Configuration
 =============================
 
@@ -151,7 +159,9 @@ You can skip this step entirely if you just want to try out OpenNebula, as it wi
 
 However, if you want to set-up another storage configuration at this stage, like Ceph, NFS, LVM, etc, you should read the :ref:`Open Cloud Storage <storage>` chapter.
 
-Step 8. Adding a Host to OpenNebula
+.. _kvm_addhost:
+
+Step 7. Adding a Host to OpenNebula
 =============================================
 
 In this step we will register the node we have installed in the OpenNebula Front-end, so OpenNebula can launch VMs in it. This step can be done in the CLI **or** in Sunstone, the graphical user interface. Follow just one method, not both, as they accomplish the same.
@@ -196,10 +206,14 @@ To add a node to the cloud, run this command as ``oneadmin`` in the Front-end:
 
 If the host turns to ``err`` state instead of ``on``, check the ``/var/log/one/oned.log``. Chances are it's a problem with the SSH!
 
+.. _kvm_wild:
+
 Step 8. Import Currently Running VMs (Optional)
 ===============================================
 
 You can skip this step as importing VMs can be done at any moment, however, if you wish to see your previously deployed VMs in OpenNebula you can use the :ref:`import VM <import_wild_vms>` functionality.
+
+.. _kvm_next:
 
 Step 9. Next steps
 ================================================================================
@@ -210,16 +224,9 @@ Otherwise, you are ready to :ref:`start using your cloud <operation_guide>` or y
 
 * :ref:`Authenticaton <authentication>`. (Optional) For integrating OpenNebula with LDAP/AD, or securing it further with other authentication technologies.
 * :ref:`Sunstone <sunstone>`. OpenNebula GUI should be working and accessible at this stage, but by reading this guide you will learn about specific enhanced configurations for Sunstone.
-
-If your cloud is KVM based you should also follow:
-
 * :ref:`Open Cloud Host Setup <vmmg>`.
 * :ref:`Open Cloud Storage Setup <storage>`.
 * :ref:`Open Cloud Networking Setup <nm>`.
-
-If it's VMware based:
-
-* Head over to the :ref:`VMware Infrastructure Setup <vmware_infrastructure_setup_overview>` chapter.
 
 .. |image3| image:: /images/network-02.png
 .. |sunstone_create_host_dialog| image:: /images/sunstone_create_host_dialog.png
