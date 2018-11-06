@@ -164,6 +164,8 @@ For example, to install only requirements for sunstone and ec2 interfaces you'll
 
     oneadmin@frontend: $> ./install_gems sunstone cloud
 
+LXD requires the **fstab** gem in order to deploy images with multiple partitions.
+
 Building Sunstone from Source
 ================================================================================
 
@@ -213,6 +215,8 @@ to the ``oneadmin``.
 +---------------+-------------------------------------------------------------+
 | Ceph          | rbd                                                         |
 +---------------+-------------------------------------------------------------+
+| LXD           | losetup, kpartx, qemu-nbd, mount, umount, df, cp, mkdir     |
++---------------+-------------------------------------------------------------+
 | HA            | systemctl start opennebula-flow,                            |
 |               | systemctl stop opennebula-flow,                             |
 |               | systemctl start opennebula-gate,                            |
@@ -247,3 +251,25 @@ Qemu configuration
 --------------------------------------------------------------------------------
 
 Qemu should be configured to not change file ownership. Modify ``/etc/libvirt/qemu.conf`` to include ``dynamic_ownership = 0``. To be able to use the images copied by OpenNebula, change also the user and group below the dynamic_ownership setting"
+
+LXD configuration
+--------------------------------------------------------------------------------
+Add oneadmin to the lxd and libvirt group:
+
+.. code-block:: bash
+
+    usermod -aG lxd oneadmin
+    usermod -aG libvirt oneadmin
+
+If you plan to user qcow2 images on LXD, then you should load the **nbd** kernel module.
+
+.. code-block:: bash
+
+    modprobe nbd
+
+If you plan to use ceph:
+
+.. code-block:: bash
+
+    echo "rbd default features = 3" >> /etc/ceph/ceph.conf
+
