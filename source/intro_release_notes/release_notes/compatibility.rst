@@ -12,4 +12,4 @@ Visit the :ref:`Features list <features>` and the `Release Notes <http://openneb
 To consider only if upgrading from OpenNebula 5.x.x
 ================================================================================
 
-TODO
+* The virtual machine pool table includes a new column with a short XML description of the VM. This speedups list operations on the VM pool for large deployments. Note that the XML document includes only the most relevant information, you need to perform a show API call or command to get the full information of the VM.
