@@ -24,6 +24,7 @@ The following issues has been solved in 5.6.3:
 - `Fix an issue that prevents removal of FILE_DS attribute <https://github.com/OpenNebula/one/issues/2540>`__.
 - `vCenter vms do not fail when removing unmanaged nets in parent template <https://github.com/OpenNebula/one/issues/2558>`__.
 - `Fix resume and poweroff actions when VM states diverge in OpenNebula and vCenter <https://github.com/OpenNebula/one/issues/2552>`__.
+- `Fix the computation of NETTX/NETRX for boneded and tagged interfaces in KVM driver <https://github.com/OpenNebula/one/issues/1566>`__.
 
 Sunstone Note
 --------------------------------------------------------------------------------
