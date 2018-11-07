@@ -19,3 +19,8 @@ Networking
 Virtual Machine management
 --------------------------------------------------------------------------------
 - New possibility to define a new form to add a NIC to a Virtual Machine, you can set a NIC with new attribute NETWORK_MODE = "auto" and OpenNebula, concretly the Scheduler will pick the NETWORK for this NIC. Also you can define REQUIREMENTS or RANK to pick the NETWORK. More info :ref:`here <vgg_vm_vnets>`.
+
+
+Other Issues Solved
+--------------------------------------------------------------------------------
+- - `Fix issue where a wrong TM_MAD could be used with multiple transfer mode Datastores <https://github.com/OpenNebula/one/issues/2544>`__.
