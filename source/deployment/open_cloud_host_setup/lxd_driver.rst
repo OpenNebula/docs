@@ -91,7 +91,7 @@ Security
 ~~~~~~~~
 Containers can be either `privileged or unprivileged <https://linuxcontainers.org/lxc/security/>`_ and can also allow nested containers. In order to define this setting in the OpenNebula template you should add:
 
-.. code-block:: plain
+.. code::
 
     LXD_SECURITY_PRIVILEGED=true
     LXD_SECURITY_NESTING=true
@@ -102,7 +102,7 @@ Profiles
 ~~~~~~~~
 The LXD daemon may hold several defined profiles. Every container inherits properties by default from the default profile. However you can set a custom profile to inherit from, in the VM template.
 
-.. code-block:: plain
+.. code::
 
     LXD_PROFILE=<profile_name>
 
@@ -175,7 +175,7 @@ If you want to customize the supported images ex. `vmdk` files, the LXD driver h
 
 The mapper basically is a ruby class with two methods defined, a `map` method, which loads a disk file into a system block device, and an `unmap` mehtod, which reverts this ex. 
 
-.. code-block:: plain
+.. code::
 
     disk.qcow2     -> map -> /dev/nbd0
     disk.raw       -> map -> /dev/loop0

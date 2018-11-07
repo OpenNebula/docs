@@ -273,3 +273,48 @@ If you plan to use ceph:
 
     echo "rbd default features = 3" >> /etc/ceph/ceph.conf
 
+Starting OpenNebula
+================================================================================
+
+Setup authentication file.
+
+.. code-block:: bash
+
+    echo '$USER:password' > ~/.one/one_auth
+
+Start the opennebula server
+
+.. code::
+
+    one start
+
+Check it worked
+
+.. code::
+
+    oneuser show
+    USER 0 INFORMATION                                                              
+    ID              : 0                   
+    NAME            : oneadmin            
+    GROUP           : oneadmin            
+    PASSWORD        : 4478db59d30855454ece114e8ccfa5563d21c9bd
+    AUTH_DRIVER     : core                
+    ENABLED         : Yes                 
+
+    TOKENS                                                                          
+
+    USER TEMPLATE                                                                   
+    TOKEN_PASSWORD="f99aab65e58162dc83a0fae59bec074a935c9a68"
+
+    VMS USAGE & QUOTAS                                                              
+
+    VMS USAGE & QUOTAS - RUNNING                                                    
+
+    DATASTORE USAGE & QUOTAS                                                        
+
+    NETWORK USAGE & QUOTAS                                                          
+
+    IMAGE USAGE & QUOTAS
+
+
+
