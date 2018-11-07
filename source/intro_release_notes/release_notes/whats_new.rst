@@ -16,3 +16,8 @@ Sunstone
 Networking
 --------------------------------------------------------------------------------
 - New attribute for the networks called **BRIDGE_TYPE** for defining the brdiging technology used by the driver. More info :ref:`here <devel-nm>`.
+
+
+Other Issues Solved
+--------------------------------------------------------------------------------
+- - `Fix issue where a wrong TM_MAD could be used with multiple transfer mode Datastores <https://github.com/OpenNebula/one/issues/2544>`__.
