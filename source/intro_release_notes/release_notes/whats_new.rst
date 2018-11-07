@@ -18,8 +18,7 @@ Networking
 
 Virtual Machine management
 --------------------------------------------------------------------------------
-- New possibility to define a new form to add a NIC to a Virtual Machine, you can set a NIC with new attribute NETWORK_MODE = "auto" and OpenNebula, concretly the Scheduler will pick the NETWORK for this NIC. Also you can define REQUIREMENTS or RANK to pick the NETWORK. More info :ref:`here <vgg_vm_vnets>`.
-
+- Automatic selection of Virtual Networks for VM NICs. Based on the usual requirements and rank the Scheduler can pick the rigth Network for a NIC. You can use this feature to balance network usage at deployment time or to reduce clutter in your VM Template list, as you do not need to duplicate VM Templates for different networks. More info :ref:`here <vgg_vm_vnets>`.
 
 Other Issues Solved
 --------------------------------------------------------------------------------
