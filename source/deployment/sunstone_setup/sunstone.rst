@@ -259,7 +259,7 @@ Sunstone will calculate the views available to each user using:
   -  The default view, if a user is not listed in the ``users:`` section, nor its group in the ``groups:`` section, the default views will be used.
   -  The default views for group admins, if a group admin user is not listed in the ``users:`` section, nor its group in the ``groups:`` section, the default_groupadmin views will be used.
 
-By default users in the ``oneadmin`` group have access to all views, and users in the ``users`` group can use the ``coud`` view.
+By default users in the ``oneadmin`` group have access to all views, and users in the ``users`` group can use the ``cloud`` view.
 
 The following ``/etc/one/sunstone-views.yaml`` example enables the user (user.yaml) and the cloud (cloud.yaml) views for helen and the cloud (cloud.yaml) view for group cloud-users. If more than one view is available for a given user the first one is the default.
 
