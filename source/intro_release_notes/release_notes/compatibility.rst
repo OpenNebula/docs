@@ -18,4 +18,4 @@ To consider only if upgrading from OpenNebula 5.x.x
 API Changes
 --------------------------------------------------------------------------------
 
-* Deploy action for Virtual Machines accepts an extra template to define the NIC chosen.
+* Deploy action (`one.vm.deploy`) for Virtual Machines accepts an extra template to define the NIC chosen.
