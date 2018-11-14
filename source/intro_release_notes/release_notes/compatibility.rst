@@ -14,3 +14,8 @@ To consider only if upgrading from OpenNebula 5.x.x
 
 * The virtual machine pool table includes a new column with a short XML description of the VM. This speedups list operations on the VM pool for large deployments. Note that the XML document includes only the most relevant information, you need to perform a show API call or command to get the full information of the VM.
 * Listing operations are shorted in descending order by default.
+
+API Changes
+--------------------------------------------------------------------------------
+
+* Deploy action (`one.vm.deploy`) for Virtual Machines accepts an extra template to define the NIC chosen.
