@@ -19,3 +19,5 @@ API Changes
 --------------------------------------------------------------------------------
 
 * Deploy action (`one.vm.deploy`) for Virtual Machines accepts an extra template to define the NIC chosen.
+* Disk snapshot rename action (`one.vm.disksnapshotrename`) allow to rename a disk snapshot.
+* Recover action (`one.vm.recover`) has a new option, **delete-db** for deleting the VM from OpenNebula but keep it running at the hypervisor.
