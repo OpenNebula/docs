@@ -1162,6 +1162,13 @@ Select the images you want to import and click on the Import button. The ID of t
 
 .. note:: When an image is created using the import tool, the VCENTER_IMPORTED attribute is set to YES automatically. This attribute prevents OpenNebula to delete the file from the vCenter datastore when the image is deleted from OpenNebula, so it can be used to prevent a virtual hard disk to be removed accidentally from a vCenter template.
 
+VCENTER_IMPORTED Configuration
+-------------------------------
+
+Whenever you import an vCenter image, either if you import the image directly or you are importing other resources such like templates or wilds, OpenNebula has a default protection mechanism for those images to avoid accidental deletions.
+
+The template attribute VCENTER_IMPORTED prevents OpenNebula to delete the file from vCenter. If you wish to change this behaviour you can change ``/var/lib/one/etc/remotes/vmm/vcenter/vcenterc`` and set DELETE_IMAGES to Yes.
+
 Migrate vCenter Virtual Machines with OpenNebula
 ================================================================================
 
