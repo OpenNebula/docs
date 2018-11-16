@@ -23,6 +23,7 @@ Virtual Machine management
 Sunstone
 ----------------------------------------------------------------------------------
 - Added flag in view configuration yamls to disable animations in the dashboard widgets.
+- Autorefresh is only performed on the information tab of the VirtualMachines.
 
 Other Issues Solved
 --------------------------------------------------------------------------------
