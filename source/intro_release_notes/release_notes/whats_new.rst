@@ -29,3 +29,4 @@ Other Issues Solved
 --------------------------------------------------------------------------------
 - `Fix issue where a wrong TM_MAD could be used with multiple transfer mode Datastores <https://github.com/OpenNebula/one/issues/2544>`__.
 - `Fix issue where only one Ceph monitor was considered on disk attach operations <https://github.com/OpenNebula/one/issues/1955>`__.
+- `Fix install.sh script, add missing options <https://github.com/OpenNebula/one/issues/2001>`__.
