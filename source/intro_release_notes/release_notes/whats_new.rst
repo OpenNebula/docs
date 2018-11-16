@@ -25,6 +25,10 @@ Sunstone
 - Added flag in view configuration yamls to disable animations in the dashboard widgets.
 - Autorefresh is only performed on the information tab of the VirtualMachines.
 
+MarketPlace
+--------------------------------------------------------------------------------
+- When a MarketPlace appliance is imported into a datastore it is converted to/from vmdk/qcow2 as needed.
+
 Other Issues Solved
 --------------------------------------------------------------------------------
 - `Fix issue where a wrong TM_MAD could be used with multiple transfer mode Datastores <https://github.com/OpenNebula/one/issues/2544>`__.
