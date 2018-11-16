@@ -27,7 +27,7 @@ Sunstone
 
 MarketPlace
 --------------------------------------------------------------------------------
-- Now it is posible to migrate images from/to vmdk/qcow2 trough `Marketplace <https://github.com/OpenNebula/one/issues/2320>`__.
+- When a MarketPlace appliance is imported into a datastore it is converted to/from vmdk/qcow2 as needed.
 
 Other Issues Solved
 --------------------------------------------------------------------------------
