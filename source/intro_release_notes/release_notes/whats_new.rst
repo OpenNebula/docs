@@ -25,6 +25,10 @@ Sunstone
 - Added flag in view configuration yamls to disable animations in the dashboard widgets.
 - Autorefresh is only performed on the information tab of the VirtualMachines.
 
+MarketPlace
+--------------------------------------------------------------------------------
+- Now it is posible to migrate images from/to vmdk/qcow2 trough `Marketplace <https://github.com/OpenNebula/one/issues/2320>`__.
+
 Other Issues Solved
 --------------------------------------------------------------------------------
 - `Fix issue where a wrong TM_MAD could be used with multiple transfer mode Datastores <https://github.com/OpenNebula/one/issues/2544>`__.
