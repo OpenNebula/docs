@@ -215,12 +215,13 @@ to the ``oneadmin``.
 +---------------+-------------------------------------------------------------+
 | Ceph          | rbd                                                         |
 +---------------+-------------------------------------------------------------+
-| LXD           | losetup, kpartx, qemu-nbd, mount, umount, df, cp, mkdir     |
+| LXD           | losetup, kpartx, qemu-nbd, mount, umount, df, cp, mkdir,    |
+|               | xfs_growfs, e2fsck, resize2fs                               |
 +---------------+-------------------------------------------------------------+
-| HA            | systemctl start opennebula-flow,                            |
+|               | systemctl start opennebula-flow,                            |
 |               | systemctl stop opennebula-flow,                             |
 |               | systemctl start opennebula-gate,                            |
-|               | systemctl stop opennebula-gate,                             |
+|      HA       | systemctl stop opennebula-gate,                             |
 |               | service opennebula-flow start,                              |
 |               | service opennebula-flow stop,                               |
 |               | service opennebula-gate start,                              |
