@@ -23,6 +23,7 @@ There are a number of regular features that are not implemented yet:
 - snapshots
 - migration
 - save/restore
+- live disk resize
 - LVM datastore
 - PCI Passthrough
 
