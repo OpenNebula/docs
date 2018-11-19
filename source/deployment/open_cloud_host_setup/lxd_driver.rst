@@ -13,14 +13,14 @@ Requirements
 - No hardware support required
 - The guest OS will share the Linux kernel with the virtualization node, so you won't be able to launch any non-Linux OS. 
 
-Bear in mind that although you can spawn containers with any linux distribution, the kernel will be the one in the host, so you can end un having an ArchLinux container wih an Ubuntu kernel. 
+Bear in mind that although you can spawn containers with any linux distribution, the kernel will be the one in the host, so you can end up having an ArchLinux container wih an Ubuntu kernel. 
 
 Considerations & Limitations
 ================================================================================
 
 There are a number of regular features that are not implemented yet:
 
-- snapshot
+- snapshots
 - migration
 - save/restore
 - LVM datastore
@@ -29,6 +29,41 @@ There are a number of regular features that are not implemented yet:
 
 Configuration
 ================================================================================
+There are some interaction options between LXD and OpenNebula configured in ``/var/tmp/one/etc/vmm/lxd/lxdrc``
+
+.. code-block:: yaml
+
+    ################################################################################
+    # VNC Options
+    ################################################################################
+    #
+    # Options to customize the VNC access to the container:
+    #   - :command: to be executed in the VNC terminal.
+    #   - :width: of the terminal
+    #   - :height: of the terminal
+    #   - :timeout: seconds to close the terminal if no input has been received
+    :vnc:
+      :command: /bin/bash
+      :width: 800
+      :height: 600
+      :timeout: 300
+
+    ################################################################################
+    # OpenNebula Configuration Options
+    ################################################################################
+    #
+    # Default path for the datastores. This only need to be change if the 
+    # corresponding value in oned.conf has been modified.
+    :datastore_location: /var/lib/one/datastores
+
+
+    ################################################################################
+    # LXD Options
+    ################################################################################
+    #
+    # Path to containers location to mount the root file systems 
+    :containers: /var/lib/lxd/storage-pools/default/containers
+
 
 LXD daemon
 --------------------------------------------------------------------------------
@@ -46,7 +81,7 @@ LXD interacts with a ceph pool using the krbd through libvirt. The images needs 
 Drivers
 --------------------------------------------------------------------------------
 
-The KVM driver is enabled by default in OpenNebula:
+The LXD driver is enabled by default in OpenNebula:
 
 .. code-block:: ini
 
