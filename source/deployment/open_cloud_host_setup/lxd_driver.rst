@@ -23,7 +23,7 @@ There are a number of regular features that are not implemented yet:
 - snapshots
 - migration
 - save/restore
-- live disk resize
+- live disk resize (offline disk resize not supported on multiple partitions image)
 - LVM datastore
 - PCI Passthrough
 
