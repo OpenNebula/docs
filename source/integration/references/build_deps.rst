@@ -14,6 +14,7 @@ If you want to install it from your package manager, visit the `software menu <h
 * **sqlite3** development libraries (if compiling with sqlite support) (>= 3.6)
 * **mysql** client development libraries (if compiling with mysql support) (>= 5.1)
 * **libxml2** development libraries (>= 2.7)
+* **libvncserver** development libraries (>= 0.9)
 * **openssl** development libraries (>= 0.9.8)
 * **ruby** interpreter (>= 1.8.7)
 
@@ -26,6 +27,7 @@ Ubuntu 18.04
 * **default-jdk**
 * **flex**
 * **javahelper (>= 0.32)**
+* **kpartx**
 * **libmysql++-dev**
 * **libsqlite3-dev**
 * **libssl-dev**
@@ -37,9 +39,9 @@ Ubuntu 18.04
 * **libxslt1-dev**
 * **libcurl4-openssl-dev**
 * **libcurl4**
+* **libvncserver-dev**
 * **ruby**
 * **scons**
-* **kaprtx**
 
 
 Ubuntu 16.04
@@ -51,6 +53,7 @@ Ubuntu 16.04
 * **default-jdk**
 * **flex**
 * **javahelper (>= 0.32)**
+* **kpartx**
 * **libmysql++-dev**
 * **libsqlite3-dev**
 * **libssl-dev**
@@ -61,9 +64,9 @@ Ubuntu 16.04
 * **libxmlrpc3-common-java**
 * **libxslt1-dev**
 * **libcurl4-openssl-dev**
+* **libvncserver-dev**
 * **ruby**
 * **scons**
-* **kaprtx**
 
 Ubuntu 14.04
 ================================================================================
