@@ -25,6 +25,8 @@ The following issues has been solved in 5.6.3:
 - `vCenter vms do not fail when removing unmanaged nets in parent template <https://github.com/OpenNebula/one/issues/2558>`__.
 - `Fix resume and poweroff actions when VM states diverge in OpenNebula and vCenter <https://github.com/OpenNebula/one/issues/2552>`__.
 - `Fix the computation of NETTX/NETRX for boneded and tagged interfaces in KVM driver <https://github.com/OpenNebula/one/issues/1566>`__.
+- `Improve vCenter resume and poweroff actions <https://github.com/OpenNebula/one/issues/2552>`__.
+- `Fix issue regarding saveas operation and CD-ROMs <https://github.com/OpenNebula/one/issues/2610>`__.
 
 Sunstone Note
 --------------------------------------------------------------------------------
