@@ -1160,6 +1160,9 @@ OpenNebula will search for VMDK and ISO files that haven't been imported yet.
 
 Select the images you want to import and click on the Import button. The ID of the imported images will be reported.
 
+
+.. _vcenterc_image:
+
 .. note:: When an image is created using the import tool, the VCENTER_IMPORTED attribute is set to YES automatically. This attribute prevents OpenNebula to delete the file from the vCenter datastore when the image is deleted from OpenNebula, so it can be used to prevent a virtual hard disk to be removed accidentally from a vCenter template. This default behavior can be changed in ``/var/lib/one/etc/remotes/vmm/vcenter/vcenterc`` by setting DELETE_IMAGES to Yes.
 
 Migrate vCenter Virtual Machines with OpenNebula
