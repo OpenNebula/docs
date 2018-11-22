@@ -12,3 +12,4 @@ MarketPlace
    HTTP MarketPlaces <market_http>
    S3 MarketPlaces <market_s3>
    MarketPlaceApps Usage <marketapp>
+   Migrate images to/from KVM / vCenter DS <migrate_images>
