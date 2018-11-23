@@ -39,3 +39,4 @@ Other Issues Solved
 - `Fix issue where only one Ceph monitor was considered on disk attach operations <https://github.com/OpenNebula/one/issues/1955>`__.
 - `Fix install.sh script, add missing options <https://github.com/OpenNebula/one/issues/2001>`__.
 - `Fix issue regarding saveas operation and CD-ROMs <https://github.com/OpenNebula/one/issues/2610>`__.
+- `Fix vcenter persistency with unmanaged disks and imported images <https://github.com/OpenNebula/one/issues/2624>`__.
