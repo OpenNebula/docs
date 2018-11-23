@@ -32,7 +32,7 @@ Virtual Machine actions and their relation with Network actions:
 -  **Attach Nic**: ``pre`` and ``post``
 -  **Detach Nic**: ``clean``
 
-After that you need to define the bridging technology used by the driver at ``/etc/one/oned.conf``. OpenNebula support three differents technologies, **Linux Bridge**, **Open vSwitch** y **vCenter Port Groups**. See the examples below:
+After that you need to define the bridging technology used by the driver at ``/etc/one/oned.conf``. OpenNebula support three differents technologies, **Linux Bridge**, **Open vSwitch** and **vCenter Port Groups**. See the examples below:
 
 .. code-block:: bash
 
@@ -51,6 +51,12 @@ After that you need to define the bridging technology used by the driver at ``/e
         BRIDGE_TYPE = "linux"
     ]
 
+    VN_MAD_CONF = [
+        NAME = "custom"
+        BRIDGE_TYPE = "none"
+    ]
+
+.. note:: Note that you can set BRIDGE_TYPE attribute to ``none`` if you need to leave the bridge empty.
 
 Driver Parameters
 ================================================================================

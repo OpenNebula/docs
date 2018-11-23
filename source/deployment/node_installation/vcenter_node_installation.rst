@@ -101,7 +101,7 @@ Additionally some behavior of the vCenter driver can be configured in the ``/var
 +================+===================================================================+
 | :delete_images | Yes : You can delete the images using OpenNebula.                 |
 |                | No  : VCENTER_IMPORTED attribute will be set on imported images.  |
-|                |       This attribute prevents the image to be deleted.            |
+|                | This attribute prevents the image to be deleted.                  | 
 +----------------+-------------------------------------------------------------------+
 
 OpenNebula needs to be restarted after any change in the ``/etc/one/oned.conf`` file, this can be done with the following command:
