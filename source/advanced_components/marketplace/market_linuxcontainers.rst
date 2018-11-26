@@ -9,12 +9,12 @@ Overview
 
 [Linux Containers image server](https://images.linuxcontainers.org/) hosts a public image server for use by LXC and LXD. It is the default image server on LXD.
 
-OpenNebula's linuxcontainers marketplace enables users to easily downlaod, contextualize and add Linux Container's images to an OpenNebula's image datastore. Linux Containers images are compressed **.tar.xz** files. In order to use them, this marketplace creates an image, where it dumps the content and later uploads it to OpenNebula.
+OpenNebula's linuxcontainers marketplace enables users to easily downlaod, contextualize and add Linux Container's images to an OpenNebula's image datastore. Linux Containers images are compressed **.tar.xz** files. In order to use them, this marketplace creates an image, where it dumps the content and later uploads it to OpenNebula. The marketplace will automatically take care of downloading the correct context package for your image and installing it inside the container. Only [tested platforms](https://github.com/OpenNebula/addon-context-linux#tested-platforms) are supported.
 
 Requirements
 ================================================================================
 
-OpenNebula's frontend needs an Internet connection. Also, you will need aproximately 6GB plus the image size configured (5G by default) on your frontend.
+OpenNebula's frontend needs an Internet connection. This internet connection is used to download the context package from OpenNebula that will be later added to the container. Also, you will need aproximately 6GB plus the image size configured (5G by default) on your frontend.
 
 Configuration
 ================================================================================
