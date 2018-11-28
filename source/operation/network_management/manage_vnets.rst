@@ -122,9 +122,17 @@ Adding and Deleting Virtual Networks
 
 .. note:: This guide uses the CLI command ``onevnet``, but you can also manage your virtual networks using :ref:`Sunstone <sunstone>`. Select the Network tab, and there you will be able to create and manage your virtual networks in a user friendly way.
 
+There are three different ways for creating a network:
+
+- **Creating** the network from scratch.
+- **Making a reservation** from an existing network.
+- **Instantiating** a network template.
+
+End users tipically use the last two ways, instantiation and reservation. The administrator can define a network template for being instantiated later by the end user or create a virtual network where the end user can make a reservation from.
+
 |image0|
 
-To create a new network put its configuration in a file, for example using the contents above, and then execute:
+To create a new network from scratch put its configuration in a file, for example using the contents above, and then execute:
 
 .. code::
 

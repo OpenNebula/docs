@@ -34,7 +34,7 @@ Several parameters can be specified on the marketplace's template:
 +-------------------+--------------------------------------------------------------------+
 | ``FILESYSTEM``    | Filesystem used for the image. Default: ext4                       |
 +-------------------+--------------------------------------------------------------------+
-| ``FORMAT``        | Image format. Default: raw                       |
+| ``FORMAT``        | Image format. Default: raw                                         |
 +-------------------+--------------------------------------------------------------------+
 
 
