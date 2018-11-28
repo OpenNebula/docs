@@ -23,7 +23,6 @@ Execute the following commands to install the node package and restart libvirt t
 .. prompt:: bash $ auto
 
     $ sudo apt-get install opennebula-node-lxd
-    $ gem install fstab # required for multiple partition images
 
 For further configuration check the specific guide: :ref:`LXD <lxdmg>`.
 

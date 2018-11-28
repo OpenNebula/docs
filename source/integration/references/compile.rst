@@ -164,8 +164,6 @@ For example, to install only requirements for sunstone and ec2 interfaces you'll
 
     oneadmin@frontend: $> ./install_gems sunstone cloud
 
-LXD requires the **fstab** gem in order to deploy images with multiple partitions.
-
 Building Sunstone from Source
 ================================================================================
 
