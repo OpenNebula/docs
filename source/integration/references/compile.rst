@@ -214,7 +214,7 @@ to the ``oneadmin``.
 | Ceph          | rbd                                                         |
 +---------------+-------------------------------------------------------------+
 | LXD           | losetup, kpartx, qemu-nbd, mount, umount, df, cp, mkdir,    |
-|               | xfs_growfs, e2fsck, resize2fs                               |
+|               | xfs_growfs, e2fsck, resize2fs, rbd, blkid, cat              |
 +---------------+-------------------------------------------------------------+
 |               | systemctl start opennebula-flow,                            |
 |               | systemctl stop opennebula-flow,                             |
