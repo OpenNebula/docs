@@ -15,6 +15,7 @@ Sunstone
 Networking
 --------------------------------------------------------------------------------
 - New attribute for the networks called **BRIDGE_TYPE** for defining the brdiging technology used by the driver. More info :ref:`here <devel-nm>`.
+- New self-provisioning model for networks, :ref:`Virtual Network Templates <vn_templates>`.
 
 Virtual Machine management
 --------------------------------------------------------------------------------
