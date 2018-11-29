@@ -8,6 +8,7 @@ Infrastructure Integration
    Overview <overview>
    Using Hooks <hooks>
    Virtualization Driver <devel-vmm>
+   Provision Driver <devel-pm>
    Storage Driver <sd>
    Monitoring Driver <devel-im>
    Networking Driver <devel-nm>
