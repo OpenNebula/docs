@@ -53,6 +53,8 @@ Preparing Virtual Network Templates for End-Users
 
 First of all, as ``oneadmin`` user (or any other user who have CREATE permissions fro Virtual Network Templates), create a Virtual Network Template and set all the attributes which need to be fixed at the template like bridge, vlan id, etc.
 
+.. note:: Note that virtual network restricted attributes will be also restricted for virtual network templates.
+
 .. code::
 
     $ cat vn_template.txt
