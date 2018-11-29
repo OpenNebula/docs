@@ -13,7 +13,9 @@ Virtual Network Template Definition
 
 A Virtual Network Template is a representation of a Virtual Network, so a template can be defined by using the same attributes available for a Virtual Network, like address range, security groups, etc. Virtual Network Templates and Virtual Networks also share their required attributes, so depending on what driver is defined at the Virtual Network Template it will need to be defined different attributes. The available network drivers and what their requirements are available :ref:`here <manage_vnets>`, at Physical Network Attributes section.
 
-Here is an example of a Virtual Network Template with on address range:
+Also it's possible to define in which clusters the networks will be in after instantiate the virtual network template by using the ``CLUSTER_IDS`` attribute.
+
+Here is an example of a Virtual Network Template with one address range:
 
 .. code::
 
@@ -23,6 +25,9 @@ Here is an example of a Virtual Network Template with on address range:
     IP="10.0.0.1",
     SIZE="10",
     TYPE="IP4" ]
+    CLUSTER_IDS="1,100"
+
+The networks created by instantiating this template will be on clusters 1 and 100.
 
 Using Virtual Network Templates
 ====================================
