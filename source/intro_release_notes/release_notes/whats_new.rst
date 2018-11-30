@@ -33,6 +33,10 @@ MarketPlace
 --------------------------------------------------------------------------------
 - When a MarketPlace appliance is imported into a datastore it is converted to/from vmdk/qcow2 as needed.
 
+API & CLI
+--------------------------------------------------------------------------------
+- New options for migrating a Virtual Machine, now they also can be migrated via poweroff and poweroff hard.
+
 Other Issues Solved
 --------------------------------------------------------------------------------
 - `Fix issue where a wrong TM_MAD could be used with multiple transfer mode Datastores <https://github.com/OpenNebula/one/issues/2544>`__.
