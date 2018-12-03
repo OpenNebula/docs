@@ -41,3 +41,4 @@ Other Issues Solved
 - `Fix issue regarding saveas operation and CD-ROMs <https://github.com/OpenNebula/one/issues/2610>`__.
 - `Fix vcenter persistency with unmanaged disks and imported images <https://github.com/OpenNebula/one/issues/2624>`__.
 - `Fix issue Sunstone is not showing well security groups for ICMP6 <https://github.com/OpenNebula/one/issues/2580>`__.
+- `Fix issue that prevents to use floating IPs with BRIDGE interfaces <https://github.com/OpenNebula/one/issues/2607>`__.
