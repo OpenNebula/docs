@@ -3316,8 +3316,6 @@ one.secgroup.clone
 +------+------------+------------------------------------------------------------------------------------+
 | IN   | String     | Name for the new security group.                                                   |
 +------+------------+------------------------------------------------------------------------------------+
-| IN   | Int        | The ID of the target datastore. Optional, can be set to -1 to use the current one. |
-+------+------------+------------------------------------------------------------------------------------+
 | OUT  | Boolean    | true or false whenever is successful or not                                        |
 +------+------------+------------------------------------------------------------------------------------+
 | OUT  | Int/String | The new security group ID / The error string.                                      |
