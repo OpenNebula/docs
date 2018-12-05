@@ -6,6 +6,8 @@ Virtual Network Self-Provisioning
 
 End-users can create their own virtual networks in two different ways: making a **reservation** or instantiating a **Virtual Network Template**.
 
+.. _vgg_vn_reservations:
+
 Reservations
 ===============================================
 
