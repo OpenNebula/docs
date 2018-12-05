@@ -77,4 +77,4 @@ A Reservation can be also extended with new addresses. This is, you can add a ne
 Virtual Network Templates
 ===============================================
 
-Virtual Network Templates allow end users to create their own network without knowledge of the underlying infrastructure. Virtual Network Templates, unlike Reservations, allows end user to set the logic attributes, like address ranges, dns server, gateway, etc, of the network as needed. All the information about Virtual Network Templates is available :ref:`here <vn_templates>`.
+Virtual Network Templates allow end users to create their own network without knowledge of the underlying infrastructure. Virtual Network Templates, unlike Reservations, allows end user to set the logic attributes, like address ranges, dns server or gateway of the network. See the :ref:`Virtual Network Templates guide<vn_templates>` for more information.
