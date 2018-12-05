@@ -4,7 +4,7 @@
 Virtual Network Self-Provisioning
 ==================================
 
-There are two main ways of Virtual Network sel-provisionig by the end user, **Reservations** and **Virtual Network Templates**.
+End-users can create their own virtual networks in two different ways: making a **reservation** or instantiating a **Virtual Network Template**.
 
 Reservations
 ===============================================
