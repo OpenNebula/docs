@@ -56,9 +56,9 @@ Network interfaces can be defined in two different ways:
 Network Interfaces Alias
 --------------------------------------------------------------------------------
 
-Network interface alias allows you to have more than one IP on each network interface. This does not create a new physical interface on the VM, it uses the interface which is alias of. An alias can not be attached, detached neither, but when the nic which is alias of is detached, the alias is also detached.
+Network interface alias allows you to have more than one IP on each network interface. This does not create a new virtual interface on the VM. The alias address is added to the network interface. An alias can be attached and detached. Note also that when a nic with an alias is detached, all the associated alias are also detached.
 
-The alias takes a lease from the network which it belongs to. So, for the OpenNebula it is the same as a NIC, it is just different inside the virtual machine.
+The alias takes a lease from the network which it belongs to. So, for the OpenNebula it is the same as a NIC and exposes the same management interface, it is just different in terms of the associated virtual network interface within the VM.
 
 .. note:: The network of the alias can be different from the network of the nic which is alias of.
 
