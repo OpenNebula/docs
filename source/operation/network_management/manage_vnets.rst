@@ -329,26 +329,28 @@ Also you can add SCHED_REQUIREMENTS and SCHED_RANK when this mode is activated. 
 
 In this case the scheduler will look for any Virtual Network in the selected cluster with a custom tag ``TRAFFIC_TYPE`` to be equal to ``public`` and ``INBOUND_AVG_BW`` less than 1500. Among all the networks that satisfy these requirements the scheduler will select that with most free leases. 
 
+.. _vgg_vn_alias:
+
 Attach a Virtual Machine to a NIC Alias
 ---------------------------------------
 
-To attach an alias to a VM, you need that the VM has a NIC with ``NAME`` attribute:
+To attach a NIC alias to a VM you need to refer the parent NIC by its ``NAME`` attribute:
 
 .. code::
 
    NIC = [ NETWORK = "public", NAME = "test" ]
 
-.. note:: If the nic NAME is empty, it will be generated automatically: NIC${NIC_ID}.
-
-After that, you can attach an alias using the following template:
+Then you can attach an alias using a ``NIC_ALIAS`` attribute:
 
 .. code::
 
    NIC_ALIAS = [ NETWORK = "private", PARENT = "test" ]
 
+If the nic ``NAME`` is empty, it will be generated automatically in the form ``NIC${NIC_ID}``. This name can be also used to create an alias, e.g. ``NIC_ALIAS = [ NETWORK = "private", PARENT = "NIC0" ]``
+
 .. note:: You can also use the ``onevm`` command using the option ``--alias alias`` so that NIC will be attached as an alias, instead of as a NIC.
 
-.. note:: You can also reference to the parent using the generated name: NIC_ALIAS = [ NETWORK = "private", PARENT = "NIC0" ]
+.. important:: Any attribute supported by a NIC attribute can be also used in an alias except for ``NETWORK_MODE``. A ``NIC_ALIAS`` network cannot be automatically selected.
 
 Configuring the Virtual Machine Network
 ---------------------------------------
