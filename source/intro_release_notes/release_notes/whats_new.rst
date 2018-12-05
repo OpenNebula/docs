@@ -16,6 +16,8 @@ Networking
 --------------------------------------------------------------------------------
 - New attribute for the networks called **BRIDGE_TYPE** for defining the brdiging technology used by the driver. More info :ref:`here <devel-nm>`.
 
+- Support for NIC Alias. VM's can have more than one IP associated to the same netowrk interface. NIC Alias uses the same interface as regular NIC, e.g. live attach/detach or context support for autoconfiguration. 
+
 Virtual Machine management
 --------------------------------------------------------------------------------
 - Automatic selection of Virtual Networks for VM NICs. Based on the usual requirements and rank the Scheduler can pick the rigth Network for a NIC. You can use this feature to balance network usage at deployment time or to reduce clutter in your VM Template list, as you do not need to duplicate VM Templates for different networks. More info :ref:`here <vgg_vm_vnets>`.
