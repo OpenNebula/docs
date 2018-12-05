@@ -345,6 +345,4 @@ Hypervisors will set the MAC address for the NIC of the Virtual Machines, but no
 
 .. note:: Altenatively a custom external service can configure the Virtual Machine network (e.g. your own DHCP server in a separate virtual machine)
 
-.. _vgg_vn_reservations:
-
 .. |image0| image:: /images/sunstone_vnet_create.png
