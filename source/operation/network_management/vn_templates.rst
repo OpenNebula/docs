@@ -4,16 +4,16 @@
 Virtual Networks Templates
 ===========================
 
-The Virtual Network Templates allows the end user to create virtual networks without knowing the details of the underlying infrastructure. Tipically the administrator defines the virtual network templates with all the required physical attributes and let the end user to add all the logic information like address ranges, gateway, etc.
+The Virtual Network Templates allows the end user to create virtual networks without knowing the details of the underlying infrastructure. Tipically the administrator setsup the templates with the required physical attributes, e.g. driver or physical device information and let the end user to add all the logic information like address ranges or gateway.
 
 Virtual Network Templates can be instantiated several times and shared between multiple users.
 
 Virtual Network Template Definition
 ====================================
 
-A Virtual Network Template is a representation of a Virtual Network, so a template can be defined by using the same attributes available for a Virtual Network, like address range, security groups, etc. Virtual Network Templates and Virtual Networks also share their required attributes, so depending on what driver is defined at the Virtual Network Template it will need to be defined different attributes. The available network drivers and what their requirements are available :ref:`here <manage_vnets>`, at Physical Network Attributes section.
+A Virtual Network Template is a representation of a Virtual Network, so a template can be defined by using the same attributes available for a Virtual Network. Virtual Network Templates and Virtual Networks also share their required attributes depending on driver they are using (see the requirements :ref:`here <manage_vnets>`, Physical Network Attributes section).
 
-Also it's possible to define in which clusters the networks will be in after instantiate the virtual network template by using the ``CLUSTER_IDS`` attribute.
+When a network is created by instantiating a Virtual Network Template is is associated to the default cluster. You can control which clusters the networks will be in with the ``CLUSTER_IDS`` attribute.
 
 Here is an example of a Virtual Network Template with one address range:
 
@@ -32,9 +32,9 @@ The networks created by instantiating this template will be on clusters 1 and 10
 Using Virtual Network Templates
 ====================================
 
-By default the only user allow for creating Virtual Network Templates is ``oneadmin``, if other users need permissions for creating Virtual Network Templates it can be provided by creating a new ACL.
+By default just oneadmin can create Virtual Network Templates, if other users need permissions for creating Virtual Network Templates it can be provided by creating a specific ACL.
 
-Once the Virtual Network Template is created the access to it can be manage by the permissions. For example, if a end user need to instantiate an especific template, it would be enought to give the template **USE** permmission for others. You can find more information about permissions :ref:`here <manage_vnets>`.
+Once the Virtual Network Template is created the access to it can be manage by its permissions. For example, if a end user need to instantiate an especific template, it would be enought to give the template **USE** permmission for others. You can find more :ref:`information about permissions here <manage_vnets>`.
 
 Operations
 ------------------------------------
@@ -92,9 +92,10 @@ Once the Virtual Network Template have been created change the permissions for m
       VN_MAD="bridge"
 
     #check everithing works well
-    $ onevntemplate instantiate 0 --user user
+    $ onevntemplate instantiate 0 --user user --name private
       VN ID: 1
     $ onevnet list
       ID USER            GROUP        NAME                CLUSTERS   BRIDGE   LEASES
-      1  user            users        vntemplate-1        0          virbr0        0
-
+      1  user            users        private             0          virbr0        0
+      
+The network is now ready, user can create VMs and attach their interfaces to the newly created Virtual Network. Simply adding ``NIC = [ NETWORK = private ]`` or selecting it through Sunstone.
