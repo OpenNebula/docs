@@ -7,6 +7,7 @@ What's New in 5.8
 OpenNebula Core
 --------------------------------------------------------------------------------
 - **Rename disk snapshots**, there is available an option for renaming disk snapshots via OCA and CLI.
+- **Migration through poweroff/on cycle**, new options for cold-migrating a Virtual Machine, now they also can be migrated via poweroff and poweroff hard.
 
 Sunstone
 --------------------------------------------------------------------------------
@@ -21,7 +22,7 @@ Networking
 
 Virtual Machine management
 --------------------------------------------------------------------------------
-- Automatic selection of Virtual Networks for VM NICs. Based on the usual requirements and rank the Scheduler can pick the rigth Network for a NIC. You can use this feature to balance network usage at deployment time or to reduce clutter in your VM Template list, as you do not need to duplicate VM Templates for different networks. More info :ref:`here <vgg_vm_vnets>`.
+- **Automatic selection of Virtual Networks** for VM NICs. Based on the usual requirements and rank the Scheduler can pick the rigth Network for a NIC. You can use this feature to balance network usage at deployment time or to reduce clutter in your VM Template list, as you do not need to duplicate VM Templates for different networks. More info :ref:`here <vgg_vm_vnets>`.
 
 vCenter
 --------------------------------------------------------------------------------
@@ -35,6 +36,10 @@ Sunstone
 MarketPlace
 --------------------------------------------------------------------------------
 - When a MarketPlace appliance is imported into a datastore it is converted to/from vmdk/qcow2 as needed.
+
+API & CLI
+--------------------------------------------------------------------------------
+- `one.vm.migrate` now accepts an additional argument to set the type of cold migration (save, poweroff or poweroff hard)
 
 Other Issues Solved
 --------------------------------------------------------------------------------

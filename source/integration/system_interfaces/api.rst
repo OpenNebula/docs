@@ -1333,6 +1333,8 @@ one.vm.migrate
 +------+------------+------------------------------------------------------------------------+
 | IN   | Int        | the target system DS id where we want to migrate the vm.               |
 +------+------------+------------------------------------------------------------------------+
+| IN   | Int        | The migration type (0 save, 1 poweroff, 2 poweroff hard).             |
++------+------------+------------------------------------------------------------------------+
 | OUT  | Boolean    | true or false whenever is successful or not                            |
 +------+------------+------------------------------------------------------------------------+
 | OUT  | Int/String | The VM ID / The error string.                                          |
