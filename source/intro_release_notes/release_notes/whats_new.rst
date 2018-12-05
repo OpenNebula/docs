@@ -15,6 +15,7 @@ Sunstone
 Networking
 --------------------------------------------------------------------------------
 - New attribute for the networks called **BRIDGE_TYPE** for defining the brdiging technology used by the driver. More info :ref:`here <devel-nm>`.
+- New self-provisioning model for networks, :ref:`Virtual Network Templates <vn_templates>`. Users can now instantiate their own virtual networks from predefined templates with their own addressing.
 
 - Support for NIC Alias. VM's can have more than one IP associated to the same netowrk interface. NIC Alias uses the same interface as regular NIC, e.g. live attach/detach or context support for autoconfiguration. More info :ref:`here <vgg_vn_alias>`.
 
