@@ -148,7 +148,7 @@ This script is used to lease an IP address (or addresses). The IP (or IPs)  will
 
 * Request ID, used internally to identify this IPAM request.
 
-**Returns**: This scrit MUST output the leased IP range as defined by the ADDRESS element in template format thourgh STOUT. For example, to lease IPs from 10.0.0.2 to 10.0.0.35 return:
+**Returns**: This script MUST output the leased IP range as defined by the ADDRESS element in template format thourgh STOUT. For example, to lease IPs from 10.0.0.2 to 10.0.0.35 return:
 
 .. code::
 

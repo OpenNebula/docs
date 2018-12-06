@@ -122,9 +122,17 @@ Adding and Deleting Virtual Networks
 
 .. note:: This guide uses the CLI command ``onevnet``, but you can also manage your virtual networks using :ref:`Sunstone <sunstone>`. Select the Network tab, and there you will be able to create and manage your virtual networks in a user friendly way.
 
+There are three different ways for creating a network:
+
+- **Creating** the network from scratch.
+- **Making a reservation** from an existing network.
+- **Instantiating** a network template.
+
+End users tipically use the last two ways, instantiation and reservation. The administrator can define a network template for being instantiated later by the end user or create a virtual network where the end user can make a reservation from.
+
 |image0|
 
-To create a new network put its configuration in a file, for example using the contents above, and then execute:
+To create a new network from scratch put its configuration in a file, for example using the contents above, and then execute:
 
 .. code::
 
@@ -329,6 +337,28 @@ Also you can add SCHED_REQUIREMENTS and SCHED_RANK when this mode is activated. 
 
 In this case the scheduler will look for any Virtual Network in the selected cluster with a custom tag ``TRAFFIC_TYPE`` to be equal to ``public`` and ``INBOUND_AVG_BW`` less than 1500. Among all the networks that satisfy these requirements the scheduler will select that with most free leases. 
 
+.. _vgg_vn_alias:
+
+Attach a Virtual Machine to a NIC Alias
+---------------------------------------
+
+To attach a NIC alias to a VM you need to refer the parent NIC by its ``NAME`` attribute:
+
+.. code::
+
+   NIC = [ NETWORK = "public", NAME = "test" ]
+
+Then you can attach an alias using a ``NIC_ALIAS`` attribute:
+
+.. code::
+
+   NIC_ALIAS = [ NETWORK = "private", PARENT = "test" ]
+
+If the nic ``NAME`` is empty, it will be generated automatically in the form ``NIC${NIC_ID}``. This name can be also used to create an alias, e.g. ``NIC_ALIAS = [ NETWORK = "private", PARENT = "NIC0" ]``
+
+.. note:: You can also use the ``onevm`` command using the option ``--alias alias`` so that NIC will be attached as an alias, instead of as a NIC.
+
+.. important:: Any attribute supported by a NIC attribute can be also used in an alias except for ``NETWORK_MODE``. A ``NIC_ALIAS`` network cannot be automatically selected.
 
 Configuring the Virtual Machine Network
 ---------------------------------------
@@ -336,70 +366,5 @@ Configuring the Virtual Machine Network
 Hypervisors will set the MAC address for the NIC of the Virtual Machines, but not the IP address. The IP configuration inside the guest is performed by the contextualization process, check the :ref:`contextualization guide <context_overview>` to learn how to prepare your Virtual Machines to automatically configure the network
 
 .. note:: Altenatively a custom external service can configure the Virtual Machine network (e.g. your own DHCP server in a separate virtual machine)
-
-.. _vgg_vn_reservations:
-
-Virtual Network Self-Provisioning: Reservations
-===============================================
-
-Virtual Networks implement a simple self-provisioning scheme, that allows users to create their own networks consisting of portions of an existing Virtual Network. Each portion is called a Reservation. To implement this you need to:
-
-- **Define a VNET**, with the desired ARs and configuration attributes. These attributes will be inherited by any Reservation, so the final users do not need to deal with low-level networking details.
-
-- **Setting up access**. In order to make a Reservation, users needs USE rights on the Virtual Network, just as if they would use it to directly to provision IPs from it.
-
-- **Make Reservations**. Users can easily request specific addresses or just a number of addresses from a network. Reservations are placed in a new Virtual Network for the user.
-
-- **Use Reservations**. Reservations are Virtual Networks and offer the same interface, so simply point any Virtual Machine to them. The number of addresses and usage stats are shown also in the same way.
-
-Make and delete Reservations
-----------------------------
-
-To make a reservations just choose the source Virtual Network, the number of addresses and the name of the reservation. For example to reserve 10 addresses from Private and place it on MyVNET just:
-
-.. code::
-
-     $ onevnet reserve Private -n MyVNET -s 10
-     Reservation VNET ID: 7
-
-As a result a new VNET has been created:
-
-.. code::
-
-    $ onevnet list
-    ID USER         GROUP        NAME            CLUSTER    BRIDGE   LEASES
-     0 admin        oneadmin     Private         -          vbr1         10
-     7 helen        users        MyVNET          -          vbr1          0
-
-Note that Private shows 10 address leases in use, those reserved by Virtual Network 7. Also note that both networks share the same configuration, e.g. ``BRIDGE``.
-
-Reservations can include advanced options such as:
-
-- The AR where you want to make the reservation from in the source Virtual Network
-- The starting IP or MAC to make the reservation from
-
-A reservation can be remove just as a regular Virtual Network:
-
-.. code::
-
-   $ onevnet delete MyVNET
-
-Using Reservations
-------------------
-
-To use a reservation you can use it as any other Virtual Network; as they expose the same interface. For example, to attach a virtual machine to the previous Reservation:
-
-.. code::
-
-   NIC = [ NETWORK = "MyVNET"]
-
-Updating Reservations
----------------------
-
-A Reservation can be also extended with new addresses. This is, you can add a new reservation to an existing one. This way a user can refer to its own network with a controlled and deterministic address space.
-
-.. note:: Reservation increase leases counters on the user and group, and they can be limited through a quota.
-
-.. note:: The reservation interface is exposed by Sunstone in a very convenient way.
 
 .. |image0| image:: /images/sunstone_vnet_create.png

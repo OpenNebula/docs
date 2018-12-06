@@ -89,7 +89,7 @@ The installation is done using rubygems (or with your package manager if it is a
 
     $ sudo gem install unicorn
 
-In the directory where Sunstone files reside (``/usr/lib/one/sunstone`` or ``/usr/share/opennebula/sunstone``) there is a file called ``config.ru``. This file is specific for ``rack`` applications and tells how to fun the application. To start a new server using ``unicorn`` you can run this command from that directory:
+In the directory where Sunstone files reside (``/usr/lib/one/sunstone`` or ``/usr/share/opennebula/sunstone``) there is a file called ``config.ru``. This file is specific for ``rack`` applications and tells how to run the application. To start a new server using ``unicorn`` you can run this command from that directory:
 
 .. code::
 

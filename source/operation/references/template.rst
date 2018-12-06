@@ -489,6 +489,14 @@ Network Section
 +------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+
 | **SCHED_RANK**         | Define the rank when NETMORW_MODE is `auto`.                                                             | O                  | O                  |
 +------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+
+| **NAME**               | Name of the nic.                                                                                         | O                  | \-                 |
++------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+
+| **PARENT**             | It is used only on alias, it references the nic which is alias of.                                       | O                  | \-                 |
++------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+
+| **EXTERNAL**           | It is used only on alias, it indicates if the alias is external to the VM or not. If it is set to "yes"  | O                  | \-                 |
+|                        | it will call pre, post, clean and reconfigure actions. If it set to "no" or it is empty, it will just    |                    |                    |
+|                        | call reconfigure action.                                                                                 |                    |                    |
++------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+
 
 .. warning:: The PORTS and ICMP attributes require the firewalling functionality to be configured. Please read the :ref:`firewall configuration guide <firewall>`.
 
@@ -497,12 +505,19 @@ Example, a VM with two NIC attached to two different networks:
 .. code::
 
     NIC = [ NETWORK_ID = 1 ]
-     
+
     NIC = [ NETWORK     = "Blue",
             NETWORK_UID = 0 ]
 
     NIC = [ NETWORK_MODE = "auto",
             SCHED_REQUIREMENTS = "TRAFFIC_TYPE=\"public\"" ]
+
+Example, a VM with two NIC attached, one is an alias of the other one:
+
+.. code::
+
+    NIC = [ NETWORK = "Test", NAME = "TestName" ]
+    NIC_ALIAS = [ NETWORK = "Test", PARENT = "TestName" ]
 
 For more information on setting up virtual networks please check the :ref:`Managing Virtual Networks guide <vgg>`.
 
@@ -624,6 +639,26 @@ Context information is passed to the Virtual Machine via an ISO mounted as a par
 | **ETHx_MTU**                | ``MTU`` value for the interface                                                   | Linux | Linux   | \-  |
 +-----------------------------+-----------------------------------------------------------------------------------+-------+---------+-----+
 | **ETHx_DNS**                | DNS for the network                                                               | O     | O       | \-  |
++-----------------------------+-----------------------------------------------------------------------------------+-------+---------+-----+
+| **ETHx_ALIASy_MAC**         | Used to find the correct interface                                                | O     | \-      | \-  |
++-----------------------------+-----------------------------------------------------------------------------------+-------+---------+-----+
+| **ETHx_ALIASy_IP**          | IPv4 address for the alias                                                        | O     | \-      | \-  |
++-----------------------------+-----------------------------------------------------------------------------------+-------+---------+-----+
+| **ETHx_ALIASy_IPV6**        | IPv6 address for the alias                                                        | Linux | Linux   | \-  |
++-----------------------------+-----------------------------------------------------------------------------------+-------+---------+-----+
+| **ETHx_ALIASy_NETWORK**     | Network address of the alias                                                      | O     | \-      | \-  |
++-----------------------------+-----------------------------------------------------------------------------------+-------+---------+-----+
+| **ETHx_ALIASy_MASK**        | Netowrk mask                                                                      | O     | \-      | \-  |
++-----------------------------+-----------------------------------------------------------------------------------+-------+---------+-----+
+| **ETHx_ALIASy_GATEWAY**     | Default IPv4 gateway for the alias                                                | O     | \-      | \-  |
++-----------------------------+-----------------------------------------------------------------------------------+-------+---------+-----+
+| **ETHx_ALIASy_GATEWAY6**    | Default IPv6 gateway for the alias                                                | Linux | Linux   | \-  |
++-----------------------------+-----------------------------------------------------------------------------------+-------+---------+-----+
+| **ETHx_ALIASy_MTU**         | ``MTU`` value for the alias                                                       | Linux | Linux   | \-  |
++-----------------------------+-----------------------------------------------------------------------------------+-------+---------+-----+
+| **ETHx_ALIASy_DNS**         | DNS for the alias                                                                 | O     | \-      | \-  |
++-----------------------------+-----------------------------------------------------------------------------------+-------+---------+-----+
+| **ETHx_ALIASy_EXTERNAL**    | Indicates if the alias is external to the VM or not                               | O     | \-      | \-  |
 +-----------------------------+-----------------------------------------------------------------------------------+-------+---------+-----+
 | **USERNAME**                | User to be created in the guest OS. If any password attribute is defined (see     | O     | O       | \-  |
 |                             | below) it will change this user (defaults to ``root``).                           |       |         |     |

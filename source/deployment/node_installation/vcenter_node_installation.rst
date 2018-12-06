@@ -94,6 +94,16 @@ As a Virtualization driver, the vCenter driver accept a series of parameters tha
 
 See the :ref:`Virtual Machine drivers reference <devel-vmm>` for more information about these parameters, and how to customize and extend the drivers.
 
+Additionally some behavior of the vCenter driver can be configured in the ``/var/lib/one/remotes/etc/vmm/vcenter/vcenterc``. The parameters that can be changed here are as follows:
+
++----------------+-------------------------------------------------------------------+
+| parameter      | description                                                       |
++================+===================================================================+
+| :delete_images | Yes : You can delete the images using OpenNebula.                 |
+|                | No  : VCENTER_IMPORTED attribute will be set on imported images.  |
+|                | This attribute prevents the image to be deleted.                  | 
++----------------+-------------------------------------------------------------------+
+
 OpenNebula needs to be restarted after any change in the ``/etc/one/oned.conf`` file, this can be done with the following command:
 
 .. prompt:: bash $ auto
