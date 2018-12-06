@@ -45,6 +45,8 @@ Follow these simple steps to install the OpenNebula software:
 +----------------+--------------------------------------------------------+
 | docker_machine | **yes** if you want to build the docker-machine driver |
 +----------------+--------------------------------------------------------+
+| svncterm       | **no** to skip building vnc support for LXD drivers    |
++----------------+--------------------------------------------------------+
 
 If the following error appears, then you need to remove the option 'new\_xmlrpc=yes' or install xmlrpc-c version >= 1.31:
 
@@ -213,8 +215,8 @@ to the ``oneadmin``.
 +---------------+-------------------------------------------------------------+
 | Ceph          | rbd                                                         |
 +---------------+-------------------------------------------------------------+
-| LXD           | losetup, kpartx, qemu-nbd, mount, umount, df, cp, mkdir,    |
-|               | xfs_growfs, e2fsck, resize2fs, rbd, blkid, cat              |
+| LXD           | lsblk, losetup, mount, umount, kpartx, qemu-nbd, mkdir,     |
+|               | cat, blkid, e2fsck, resize2fs, xfs_growfs, rbd              |
 +---------------+-------------------------------------------------------------+
 |               | systemctl start opennebula-flow,                            |
 |               | systemctl stop opennebula-flow,                             |
@@ -230,6 +232,8 @@ Each command has to be specified with the absolute path, which can be
 different for each platform. Commands are started on background, ``sudo``
 needs to be configured **not to require real tty** and any password
 for them.
+
+It is recommended to limit the ``cat`` command as much as possible, an example can be found `here <https://github.com/OpenNebula/one/blob/master/src/vmm_mad/remotes/lib/lxd/catfstab>`_ 
 
 Example configuration
 --------------------------------------------------------------------------------
@@ -265,12 +269,6 @@ If you plan to user qcow2 images on LXD, then you should load the **nbd** kernel
 .. code-block:: bash
 
     modprobe nbd
-
-If you plan to use ceph:
-
-.. code-block:: bash
-
-    echo "rbd default features = 3" >> /etc/ceph/ceph.conf
 
 Starting OpenNebula
 ================================================================================

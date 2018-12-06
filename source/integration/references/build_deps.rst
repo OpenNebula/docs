@@ -86,6 +86,7 @@ Ubuntu 14.04
 * **libxmlrpc3-common-java**
 * **libxslt1-dev**
 * **libcurl4-openssl-dev**
+* **libvncserver-dev**
 * **ruby**
 * **scons**
 * **libxmlrpc-c++8-dev**
@@ -107,6 +108,7 @@ Debian 9
 * **libxmlrpc3-client-java**
 * **libxmlrpc3-common-java**
 * **libxslt1-dev**
+* **libvncserver-dev**
 * **ruby**
 * **scons**
 
@@ -128,6 +130,7 @@ CentOS 7
 * **systemd-devel**
 * **xmlrpc-c**
 * **xmlrpc-c-devel**
+* **libvncserver-devel**
 
 CentOS 6
 ================================================================================
@@ -145,6 +148,7 @@ CentOS 6
 * **sqlite-devel**
 * **xmlrpc-c**
 * **java-1.7.0-openjdk-devel**
+* **libvncserver-devel**
 
 Arch
 ================================================================================
