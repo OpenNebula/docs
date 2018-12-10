@@ -58,19 +58,52 @@ Execute the following commands to install the node package and restart libvirt t
 
 For further configuration check the specific guide: :ref:`KVM <kvmg>`.
 
-Step 3. Disable SElinux in CentOS/RHEL 7
-========================================
+Step 3. SELinux on CentOS/RHEL 7
+================================
 
 .. warning::
     If you are performing an upgrade skip this and the next steps and go back to the upgrade document.
 
-SElinux can cause some problems, like not trusting ``oneadmin`` user's SSH credentials. You can disable it changing in the file ``/etc/selinux/config`` this line:
+SELinux can block some operations initiated by the OpenNebula Front-end, resulting in all the node operations fail completely (e.g., when ``oneadmin`` user's SSH credentials are not trusted) or only individual failures for particular operations with virtual machines. If the administrator isn't experienced in the SELinux configuration, **it's recommended to disable this functionality to avoid unexpected failures**. You can enable SELinux anytime later when you have the installation working.
+
+Disable SELinux (recommended)
+-----------------------------
+
+Change the following line in ``/etc/selinux/config`` to **disable** SELinux:
 
 .. code-block:: bash
 
     SELINUX=disabled
 
-After this file is changed reboot the machine.
+After the change, you have to reboot the machine.
+
+Enable SELinux
+--------------
+
+Change the following line in ``/etc/selinux/config`` to enable SELinux in ``enforcing`` state:
+
+.. code-block:: bash
+
+    SELINUX=enforcing
+
+When changing from the ``disabled`` state, it's necessary to trigger filesystem relabel on the next boot by creating a file ``/.autorelabel``, e.g.:
+
+.. prompt:: bash $ auto
+
+    $ touch /.autorelabel
+
+After the changes, you should reboot the machine.
+
+.. note:: Based on your OpenNebula deployment type, the following may need to be required on your SELinux enabled KVM nodes:
+
+    * package ``util-linux`` newer than 2.23.2-51 installed
+    * SELinux boolean ``virt_use_nfs`` enabled (with datastores on NFS):
+
+    .. prompt:: bash $ auto
+
+        $ sudo setsebool -P virt_use_nfs on
+
+    Follow the `SELinux User's and Administrator's Guide <https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/selinux_users_and_administrators_guide/>`__ for more information on how to configure and troubleshoot the SELinux.
 
 Step 4. Configure Passwordless SSH
 ==================================
