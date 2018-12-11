@@ -102,3 +102,52 @@ provided to better handle those.
   from pyone import MARKETPLACEAPP_STATES
   if app.STATE == MARKETPLACEAPP_STATES.READY:
     # action that assumes app ready
+
+**Exapmles**
+
+.. code:: python
+
+  import pyone
+  one = pyone.OneServer("http://one:2633/RPC2", session="oneadmin:onepass" )
+
+Allocate localhost as new host
+
+.. code:: python
+
+   one.host.allocate('localhost', 'kvm', 'kvm', 0)
+
+See host template
+
+.. code:: python
+
+   host = one.hostpool.info().HOST[0]
+   dict(host.TEMPLATE)
+
+See VM template
+
+.. code:: python
+
+   vm_template = one.templatepool.info(-1, -1, -1).VMTEMPLATE[0]
+   vm_template.get_ID()
+   vm_template.get_NAME()
+
+Instantiate it
+
+.. code:: python
+
+   one.template.instantiate(0, "my_VM")
+
+See it
+
+.. code:: python
+
+   my_vm = one.vmpool.info(-1,-1,-1,-1).VM[0]
+   my_vm.get_ID()
+   my_vm.get_NAME()
+   my_vm.get_TEMPLATE()
+
+Terminate it
+
+.. code:: python
+
+   one.vm.action('terminate', 0)
