@@ -6,17 +6,17 @@ PyOne is an implementation of Open Nebula XML-RPC bindings in Python. It has bee
 API Documentation
 ================================================================================
 
-You can consult the `doc online </doc/5.7/oca/python/>`__.
+You can consult the `doc online </doc/5.7/oca/python/>`__, but as long as the code is generated it is not much usefull, the main source of the documentation is still the `XML-RPC doc <api>`
 
 Usage
 -------------
 
-You can configure your XML-RPC Server endpoint and credentials in the constructor:
+You can configure your XML-RPC Server endpoint and credentials when instantiate the OneServer class:
 
 .. code:: python
 
   import pyone
-  one = pyone.OneServer("http://one/RPC2", session="oneadmin:onepass" )
+  one = pyone.OneServer("http://one:2633/RPC2", session="oneadmin:onepass" )
 
 If you are connecting to a test platform with a self signed certificate you can disable
 certificate verification as:
@@ -25,22 +25,20 @@ certificate verification as:
 
   import pyone
   import ssl
-  one = pyone.OneServer("http://one/RPC2", session="oneadmin:onepass", context=ssl._create_unverified_context() )
+  one = pyone.OneServer("http://one:2633/RPC2", session="oneadmin:onepass", context=ssl._create_unverified_context() )
 
-It is also possible to modify the default connection timeout, but note that the setting
-will modify the TCP socket default timeout of your Python VM, ensure that the chosen timeout
-is suitable to any other connections running in your project.
+It is also possible to modify the default connection timeout, but note that the setting will modify the TCP socket default timeout of your Python VM, ensure that the chosen timeout is suitable to any other connections running in your project.
 
 
 **Making Calls**
 
-Calls match the API documentation provided by Open Nebula:
+Calls match the API documentation provided by OpenNebula:
 
 .. code:: python
 
   import pyone
 
-  one = pyone.OneServer("http://one/RPC2", session="oneadmin:onepass" )
+  one = pyone.OneServer("http://one:2633/RPC2", session="oneadmin:onepass" )
   hostpool = one.hostpool.info()
   host = hostpool.HOST[0]
   id = host.ID
@@ -49,9 +47,7 @@ Note that the session parameter is automatically included as well as the "one." 
 
 **Returned Objects**
 
-The returned types have been generated with generateDS and closely match the XSD specification.
-You can use the XSD specification as primary documentation while your IDE will
-offer code completion as you code or debug.
+The returned types have been generated with generateDS and closely match the XSD specification.  You can use the XSD specification and  XML-RPC as priamry documentation.
 
 .. code:: python
 
@@ -61,8 +57,7 @@ offer code completion as you code or debug.
 
 **Structured Parameters**
 
-When making calls, the library will translate flat dictionaries into attribute=value
-vectors. Such as:
+When making calls, the library will translate flat dictionaries into attribute=value vectors. Such as:
 
 .. code:: python
 
@@ -82,17 +77,14 @@ element and it will be translated to XML:
       }
     }, 1)
 
-generateDS creates members from most returned parameters, however, some elements in the XSD are marked as anyType
-and generateDS cannot generate members automatically, TEMPLATE and USER_TEMPLATE are the common ones. Pyone will
-allow accessing its contents as a plain python dictionary.
+generateDS creates members from most returned parameters, however, some elements in the XSD are marked as anyType and generateDS cannot generate members automatically, TEMPLATE and USER_TEMPLATE are the common ones. Pyone will allow accessing its contents as a plain python dictionary.
 
 .. code:: python
 
   host = one.host.info(0)
   arch = host.TEMPLATE['ARCH']
 
-This makes it possible to read a TEMPLATE as dictionary, modify it and use it as parameter
-for an update method, as following:
+This makes it possible to read a TEMPLATE as dictionary, modify it and use it as parameter for an update method, as following:
 
 .. code:: python
 

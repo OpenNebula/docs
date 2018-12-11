@@ -172,18 +172,19 @@ In order to build the OpenNebula python components need to install the pip packa
 Build Dependencies:
 
 - **generateds**: to generate the python OCA
-- **pydoc**: to generate the API documentation
+- **pdoc**: to generate the API documentation
 - **setuptools**: to generate python package
 - **wheel**: to generate the python package
 
 Run Dependencies:
 
-- **lxml**: python OCA support
-- **dicttoxml**: python OCA support
-- **xmltodict**: python OCA support
-- **six**: python OCA support
 - **aenum**: python OCA support
+- **dicttoxml**: python OCA support
+- **feature**: python OCA support
+- **lxml**: python OCA support
+- **six**: python OCA support
 - **tblib**': python OCA support
+- **xmltodict**: python OCA support
 
 Building Sunstone from Source
 ================================================================================
