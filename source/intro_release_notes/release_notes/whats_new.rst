@@ -39,6 +39,7 @@ MarketPlace
 
 API & CLI
 --------------------------------------------------------------------------------
+- New Python bindings for the OpenNebula Cloud API (OCA). The PyONE addon is now part of the official distribution, more info :ref:`here <python>`
 - `one.vm.migrate` now accepts an additional argument to set the type of cold migration (save, poweroff or poweroff hard)
 
 Other Issues Solved

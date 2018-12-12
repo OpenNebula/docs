@@ -1,3 +1,5 @@
+.. _python:
+
 PyONE: Open Nebula Python Bindings
 ==================================
 
