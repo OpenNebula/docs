@@ -127,6 +127,7 @@ The packages do a ``system-wide`` installation. To create a similar environment,
 Ruby Dependencies
 ================================================================================
 
+
 Ruby version needs to be:
 
 -  **ruby** >= 1.8.7
@@ -162,6 +163,28 @@ For example, to install only requirements for sunstone and ec2 interfaces you'll
 .. prompt:: text $ auto
 
     oneadmin@frontend: $> ./install_gems sunstone cloud
+
+Python Dependencies
+================================================================================
+
+In order to build the OpenNebula python components need to install the pip package manager.
+
+Build Dependencies:
+
+- **generateds**: to generate the python OCA
+- **pdoc**: to generate the API documentation
+- **setuptools**: to generate python package
+- **wheel**: to generate the python package
+
+Run Dependencies:
+
+- **aenum**: python OCA support
+- **dicttoxml**: python OCA support
+- **feature**: python OCA support
+- **lxml**: python OCA support
+- **six**: python OCA support
+- **tblib**': python OCA support
+- **xmltodict**: python OCA support
 
 Building Sunstone from Source
 ================================================================================

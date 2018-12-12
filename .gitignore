@@ -3,4 +3,5 @@ build
 source/toc.html
 *.mo
 .DS_Store
-
+.vscode/
+source/_build/
