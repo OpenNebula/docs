@@ -3,15 +3,21 @@
 PyONE: Open Nebula Python Bindings
 ==================================
 
-PyOne is an implementation of Open Nebula XML-RPC bindings in Python. It has been designed as a wrapper for the :ref:`XML-RPC methods <api>`, with some basic helpers. This means that you should be familiar with the XML-RPC API and the XML formats returned by the OpenNebula core. As stated in the :ref:`XML-RPC documentation <api>`, you can download the :ref:`XML Schemas (XSD) here <api_xsd_reference>`.
+PyONE is an implementation of Open Nebula XML-RPC bindings in Python. It has been designed as a wrapper for the :ref:`XML-RPC methods <api>`, with some basic helpers. This means that you should be familiar with the XML-RPC API and the XML formats returned by the OpenNebula core. As stated in the :ref:`XML-RPC documentation <api>`, you can download the :ref:`XML Schemas (XSD) here <api_xsd_reference>`.
 
 API Documentation
 ================================================================================
 
 You can consult the `doc online </doc/5.7/oca/python/>`__, but as long as the code is generated it is not much useful, the main source of the documentation is still the `XML-RPC doc <api>`
 
+Download and installation
+================================================================================
+
+You can either use the system package ``python-opennebula`` or install it using ``pip install pyone``.
+
+
 Usage
--------------
+================================================================================
 
 You can configure your XML-RPC Server endpoint and credentials when instantiate the OneServer class:
 
@@ -153,3 +159,7 @@ Terminate it
 .. code:: python
 
    one.vm.action('terminate', 0)
+
+Credits
+================================================================================
+Python bindings were ported to upstream from stand-alone PyONE addon made by *Rafael del Valle* `PyONE <https://github.com/OpenNebula/addon-pyone>`
