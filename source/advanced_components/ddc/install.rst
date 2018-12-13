@@ -12,7 +12,7 @@ All functionality is distributed as an optional operating system package ``openn
 
     Supported versions: Ansible 2.5.x or 2.6.x.
 
-1. Tools
+Step 1. Tools
 ========
 
 Installation of tools is as easy as the install of any operating system package. Choose from the sections below based on your operating system. You also need to have installed the OpenNebula :ref:`front-end packages <frontend_installation>`.
@@ -31,7 +31,7 @@ Debian/Ubuntu
 
    $ sudo apt-get install opennebula-provision
 
-2. Ansible
+Step 2. Ansible
 ==========
 
 It's necessary to have Ansible installed. You can use a distribution package if there is a suitable version. Otherwise, you can install the required version via ``pip`` the following way:
