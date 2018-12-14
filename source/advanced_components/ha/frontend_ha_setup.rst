@@ -28,11 +28,6 @@ Whenever the system is modified (e.g. a new VM is added to the system), the *lea
 
 In OpenNebula, read-only operations can be performed through any oned server in the cluster; this means that reads can be arbitrarily stale but generally within the round-trip time of the network.
 
-Database replication
-================================================================================
-
-OpenNebula can manage database replication by itself on HA environments, or can delegate this task to another application. You can select the behavior using the parameter **REPLICATION_MODE** under **RAFT** section from ***oned.conf***. Default value is **ONE**, indicating that OpenNebula manages database replication by generating and distributing SQL Logs. The other option is **DB**, which means that OpenNebula won't replicate changes made to it's database, instead, it assumes that another process is taking care of replication. This is useful when using HA/high-performance DB clusters, like MariaDB Galera Cluster. The rest of OpenNebula's HA features will still work as usual. 
-
 Requirements and Architecture
 ================================================================================
 
