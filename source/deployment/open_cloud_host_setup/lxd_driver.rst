@@ -75,7 +75,7 @@ Drivers
 
 The LXD driver is enabled by default in OpenNebula:
 
-.. code-block:: ini
+.. code-block::  bash
 
     #-------------------------------------------------------------------------------
     #  LXD Virtualization Driver Manager Configuration
