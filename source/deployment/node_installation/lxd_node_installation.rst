@@ -4,16 +4,17 @@
 LXD Node Installation
 =====================
 
-The majority of the steps needed to install the LXD node are similar to KVM, because both rely on a Linux OS. Similar steps will have a link in the name and will be indicated by `Same as KVM`. 
+The majority of the steps needed to install the LXD node are similar to KVM, because both rely on a Linux OS. Similar steps will have a link in the name and will be indicated by `Same as KVM`.
 
-Step 1. :ref:`Add OpenNebula Repositories <kvm_repo>`
+Step 1. Add OpenNebula Repositories
 ========================================================
-Same as KVM
+
+:ref:`Same as KVM <kvm_repo>`
 
 Step 2. Installing the Software
 ===============================
 
-LXD node is supported only in Ubuntu 1804 and 1604 
+LXD node is supported only in Ubuntu 1804 and 1604
 
 Installing on Ubuntu
 ---------------------------
@@ -27,28 +28,33 @@ Execute the following commands to install the node package and restart libvirt t
 For further configuration check the specific guide: :ref:`LXD <lxdmg>`.
 
 
-Step 4. :ref:`Configure Passwordless SSH <kvm_ssh>`
+Step 4. Configure Passwordless SSH
 =====================================================
-Same as KVM
 
-Step 5.  :ref:`Networking Configuration <kvm_net>`
+:ref:`Same as KVM <kvm_ssh>`
+
+Step 5.  Networking Configuration
 =======================================================
-Same as KVM
 
-Step 6.  :ref:`Storage Configuration <kvm_storage>`
+:ref:`Same as KVM <kvm_net>`
+
+Step 6.  Storage Configuration
 =======================================================
-Same as KVM
 
-Step 7. :ref:`Adding a Host to OpenNebula <kvm_addhost>` 
+:ref:`Same as KVM <kvm_storage>`
+
+Step 7. Adding a Host to OpenNebula
 ============================================================
-Same as KVM
+
+:ref:`Same as KVM <kvm_addhost>`
 
 Replace ``kvm`` for ``lxd`` in the CLI and Sunstone
 
-Step 8. :ref:`Import existing containers <kvm_wild>` (Optional)
+Step 8. Import existing containers (Optional)
 =========================================================================
 You can use the :ref:`import VM <import_wild_vms>` functionality if you want to manage pre-exsiting containers. It is required that containers aren't named under the pattern ``one-<id>`` in order to be imported. They need also to have ``limits.cpu.allowance`` ``limits.cpu`` and ``limits.memory`` keys defined, otherwise OpenNebula cannot import them. The `opennebula-node-lxd` package should setup the default template with these values.
 
-Step 9.  :ref:`Next steps <kvm_next>`
+Step 9.  Next steps
 ======================================
-Same as KVM
+
+:ref:`Same as KVM <kvm_next>`
