@@ -4,7 +4,7 @@
 Virtual Networks Templates
 ===========================
 
-The Virtual Network Templates allows the end user to create virtual networks without knowing the details of the underlying infrastructure. Tipically the administrator setsup the templates with the required physical attributes, e.g. driver or physical device information and let the end user to add all the logic information like address ranges or gateway.
+The Virtual Network Templates allows the end user to create virtual networks without knowing the details of the underlying infrastructure. Tipically the administrator sets the templates up with the required physical attributes, e.g. driver or physical device information and let the end user to add all the logic information like address ranges or gateway.
 
 Virtual Network Templates can be instantiated several times and shared between multiple users.
 
