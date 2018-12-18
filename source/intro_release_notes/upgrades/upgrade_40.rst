@@ -122,6 +122,8 @@ If you receive the message “ATTENTION: manual intervention required”, read t
 
 .. note:: Make sure you keep the backup file. If you face any issues, the onedb command can restore this backup, but it won't downgrade databases to previous versions.
 
+.. include:: ../bug2687.txt
+
 Check DB Consistency
 ====================
 
