@@ -8,6 +8,7 @@ OpenNebula Core
 --------------------------------------------------------------------------------
 - **Rename disk snapshots**, there is available an option for renaming disk snapshots via OCA and CLI.
 - **Migration through poweroff/on cycle**, new options for cold-migrating a Virtual Machine, now they also can be migrated via poweroff and poweroff hard.
+- Default configuration values for RAFT has been updated to a more conservative setting.
 
 Sunstone
 --------------------------------------------------------------------------------
