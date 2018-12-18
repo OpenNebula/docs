@@ -1,8 +1,8 @@
 .. _kvm_contextualization:
 
-=====================
-KVM Contextualization
-=====================
+=======================
+Linux Contextualization
+=======================
 
 Prepare the Virtual Machine Image
 =================================

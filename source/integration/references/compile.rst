@@ -45,6 +45,8 @@ Follow these simple steps to install the OpenNebula software:
 +----------------+--------------------------------------------------------+
 | docker_machine | **yes** if you want to build the docker-machine driver |
 +----------------+--------------------------------------------------------+
+| svncterm       | **no** to skip building vnc support for LXD drivers    |
++----------------+--------------------------------------------------------+
 
 If the following error appears, then you need to remove the option 'new\_xmlrpc=yes' or install xmlrpc-c version >= 1.31:
 
@@ -164,27 +166,6 @@ For example, to install only requirements for sunstone and ec2 interfaces you'll
 
     oneadmin@frontend: $> ./install_gems sunstone cloud
 
-Python Dependencies
-================================================================================
-
-In order to build the OpenNebula python components need to install the pip package manager.
-
-Build Dependencies:
-
-- **generateds**: to generate the python OCA
-- **pydoc**: to generate the API documentation
-- **setuptools**: to generate python package
-- **wheel**: to generate the python package
-
-Run Dependencies:
-
-- **lxml**: python OCA support
-- **dicttoxml**: python OCA support
-- **xmltodict**: python OCA support
-- **six**: python OCA support
-- **aenum**: python OCA support
-- **tblib**': python OCA support
-
 Building Sunstone from Source
 ================================================================================
 
@@ -234,10 +215,13 @@ to the ``oneadmin``.
 +---------------+-------------------------------------------------------------+
 | Ceph          | rbd                                                         |
 +---------------+-------------------------------------------------------------+
-| HA            | systemctl start opennebula-flow,                            |
+| LXD           | lsblk, losetup, mount, umount, kpartx, qemu-nbd, mkdir,     |
+|               | cat, blkid, e2fsck, resize2fs, xfs_growfs, rbd              |
++---------------+-------------------------------------------------------------+
+|               | systemctl start opennebula-flow,                            |
 |               | systemctl stop opennebula-flow,                             |
 |               | systemctl start opennebula-gate,                            |
-|               | systemctl stop opennebula-gate,                             |
+|      HA       | systemctl stop opennebula-gate,                             |
 |               | service opennebula-flow start,                              |
 |               | service opennebula-flow stop,                               |
 |               | service opennebula-gate start,                              |
@@ -248,6 +232,8 @@ Each command has to be specified with the absolute path, which can be
 different for each platform. Commands are started on background, ``sudo``
 needs to be configured **not to require real tty** and any password
 for them.
+
+It is recommended to limit the ``cat`` command as much as possible, an example can be found `here <https://github.com/OpenNebula/one/blob/master/src/vmm_mad/remotes/lib/lxd/catfstab>`_ 
 
 Example configuration
 --------------------------------------------------------------------------------
@@ -268,3 +254,64 @@ Qemu configuration
 --------------------------------------------------------------------------------
 
 Qemu should be configured to not change file ownership. Modify ``/etc/libvirt/qemu.conf`` to include ``dynamic_ownership = 0``. To be able to use the images copied by OpenNebula, change also the user and group below the dynamic_ownership setting"
+
+LXD configuration
+--------------------------------------------------------------------------------
+Add oneadmin to the lxd and libvirt group:
+
+.. code-block:: bash
+
+    usermod -aG lxd oneadmin
+    usermod -aG libvirt oneadmin
+
+If you plan to user qcow2 images on LXD, then you should load the **nbd** kernel module.
+
+.. code-block:: bash
+
+    modprobe nbd
+
+Starting OpenNebula
+================================================================================
+
+Setup authentication file.
+
+.. code-block:: bash
+
+    echo '$USER:password' > ~/.one/one_auth
+
+Start the opennebula server
+
+.. code::
+
+    one start
+
+Check it worked
+
+.. code::
+
+    oneuser show
+    USER 0 INFORMATION                                                              
+    ID              : 0                   
+    NAME            : oneadmin            
+    GROUP           : oneadmin            
+    PASSWORD        : 4478db59d30855454ece114e8ccfa5563d21c9bd
+    AUTH_DRIVER     : core                
+    ENABLED         : Yes                 
+
+    TOKENS                                                                          
+
+    USER TEMPLATE                                                                   
+    TOKEN_PASSWORD="f99aab65e58162dc83a0fae59bec074a935c9a68"
+
+    VMS USAGE & QUOTAS                                                              
+
+    VMS USAGE & QUOTAS - RUNNING                                                    
+
+    DATASTORE USAGE & QUOTAS                                                        
+
+    NETWORK USAGE & QUOTAS                                                          
+
+    IMAGE USAGE & QUOTAS
+
+
+

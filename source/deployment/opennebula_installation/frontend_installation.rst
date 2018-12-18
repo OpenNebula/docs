@@ -11,16 +11,40 @@ Using the packages provided in our site is the recommended method, to ensure the
 
 If there are no packages for your distribution, head to the :ref:`Building from Source Code guide <compile>`.
 
-Step 1. Disable SElinux in CentOS/RHEL 7
+Step 1. SELinux on CentOS/RHEL 7
 ================================================================================
 
-SElinux can cause some problems, like not trusting ``oneadmin`` user's SSH credentials. You can disable it changing in the file ``/etc/selinux/config`` this line:
+SELinux can block some operations initiated by the OpenNebula Front-end, which results in their failures. If the administrator isn't experienced in the SELinux configuration, **it's recommended to disable this functionality to avoid unexpected failures**. You can enable SELinux anytime later when you have the installation working.
+
+Disable SELinux (recommended)
+-----------------------------
+
+Change the following line in ``/etc/selinux/config`` to **disable** SELinux:
 
 .. code-block:: bash
 
     SELINUX=disabled
 
-After this file is changed reboot the machine.
+After the change, you have to reboot the machine.
+
+Enable SELinux
+--------------
+
+Change the following line in ``/etc/selinux/config`` to **enable** SELinux in ``enforcing`` state:
+
+.. code-block:: bash
+
+    SELINUX=enforcing
+
+When changing from the ``disabled`` state, it's necessary to trigger filesystem relabel on the next boot by creating a file ``/.autorelabel``, e.g.:
+
+.. prompt:: bash $ auto
+
+    $ touch /.autorelabel
+
+After the changes, you should reboot the machine.
+
+.. note:: Follow the `SELinux User's and Administrator's Guide <https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/selinux_users_and_administrators_guide/>`__ for more information on how to configure and troubleshoot the SELinux.
 
 Step 2. Add OpenNebula Repositories
 ================================================================================
@@ -69,6 +93,7 @@ The packages for the OpenNebula front-end and the virtualization host are as fol
 * **opennebula-sunstone**: :ref:`Sunstone <sunstone>` (the GUI) and the :ref:`EC2 API <introc>`.
 * **opennebula-ruby**: Ruby Bindings.
 * **opennebula-java**: Java Bindings.
+* **python-opennebula**: Python Bindings.
 * **opennebula-gate**: :ref:`OneGate <onegate_overview>` server that enables communication between VMs and OpenNebula.
 * **opennebula-flow**: :ref:`OneFlow <oneflow_overview>` manages services and elasticity.
 * **opennebula-node-kvm**: Meta-package that installs the oneadmin user, libvirt and kvm.
@@ -97,6 +122,7 @@ These are the packages available for these distributions:
 * **opennebula-common**: Provides the user and common files.
 * **ruby-opennebula**: Ruby API.
 * **libopennebula-java**: Java API.
+* **python-opennebula**: Python API.
 * **libopennebula-java-doc**: Java API Documentation.
 * **opennebula-node**: Prepares a node as an opennebula-node.
 * **opennebula-sunstone**: :ref:`Sunstone <sunstone>` (the GUI).

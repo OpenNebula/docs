@@ -8,6 +8,8 @@ This page shows you how to install OpenNebula from the binary packages.
 
 Using the packages provided in our site is the recommended method, to ensure the installation of the latest version and to avoid possible packages divergences of different distributions. There are two alternatives here: you can add **our package repositories** to your system, or visit the `software menu <http://opennebula.org/software:software>`__ to **download the latest package** for your Linux distribution.
 
+.. _kvm_repo:
+
 Step 1. Add OpenNebula Repositories
 ===================================
 
@@ -58,19 +60,54 @@ Execute the following commands to install the node package and restart libvirt t
 
 For further configuration check the specific guide: :ref:`KVM <kvmg>`.
 
-Step 3. Disable SElinux in CentOS/RHEL 7
-========================================
+Step 3. SELinux on CentOS/RHEL 7
+================================
 
 .. warning::
     If you are performing an upgrade skip this and the next steps and go back to the upgrade document.
 
-SElinux can cause some problems, like not trusting ``oneadmin`` user's SSH credentials. You can disable it changing in the file ``/etc/selinux/config`` this line:
+SELinux can block some operations initiated by the OpenNebula Front-end, resulting in all the node operations fail completely (e.g., when ``oneadmin`` user's SSH credentials are not trusted) or only individual failures for particular operations with virtual machines. If the administrator isn't experienced in the SELinux configuration, **it's recommended to disable this functionality to avoid unexpected failures**. You can enable SELinux anytime later when you have the installation working.
+
+Disable SELinux (recommended)
+-----------------------------
+
+Change the following line in ``/etc/selinux/config`` to **disable** SELinux:
 
 .. code-block:: bash
 
     SELINUX=disabled
 
-After this file is changed reboot the machine.
+After the change, you have to reboot the machine.
+
+Enable SELinux
+--------------
+
+Change the following line in ``/etc/selinux/config`` to enable SELinux in ``enforcing`` state:
+
+.. code-block:: bash
+
+    SELINUX=enforcing
+
+When changing from the ``disabled`` state, it's necessary to trigger filesystem relabel on the next boot by creating a file ``/.autorelabel``, e.g.:
+
+.. prompt:: bash $ auto
+
+    $ touch /.autorelabel
+
+After the changes, you should reboot the machine.
+
+.. note:: Based on your OpenNebula deployment type, the following may need to be required on your SELinux enabled KVM nodes:
+
+    * package ``util-linux`` newer than 2.23.2-51 installed
+    * SELinux boolean ``virt_use_nfs`` enabled (with datastores on NFS):
+
+    .. prompt:: bash $ auto
+
+        $ sudo setsebool -P virt_use_nfs on
+
+    Follow the `SELinux User's and Administrator's Guide <https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/selinux_users_and_administrators_guide/>`__ for more information on how to configure and troubleshoot the SELinux.
+
+.. _kvm_ssh:
 
 Step 4. Configure Passwordless SSH
 ==================================
@@ -130,6 +167,8 @@ If an extra layer of security is needed, it's possible to keep the private key j
 
 .. note:: Remember that is neccesary to have running the ssh-agent with the corresponding private key imported before OpenNebula is started. You can start ssh-agent by running ``eval "$(ssh-agent -s)"`` and add the private key by running ``ssh-add /var/lib/one/.ssh/id_rsa``.
 
+.. _kvm_net:
+
 Step 5. Networking Configuration
 ================================
 
@@ -150,12 +189,16 @@ You may want to use the simplest network model that corresponds to the :ref:`bri
 
 .. note:: Remember that this is only required in the Hosts, not in the Front-end. Also remember that it is not important the exact name of the resources (``br0``, ``br1``, etc...), however it's important that the bridges and NICs have the same name in all the Hosts.
 
+.. _kvm_storage:
+
 Step 6. Storage Configuration
 =============================
 
 You can skip this step entirely if you just want to try out OpenNebula, as it will come configured by default in such a way that it uses the local storage of the Front-end to store Images, and the local storage of the hypervisors as storage for the running VMs.
 
 However, if you want to set-up another storage configuration at this stage, like Ceph, NFS, LVM, etc, you should read the :ref:`Open Cloud Storage <storage>` chapter.
+
+.. _kvm_addhost:
 
 Step 7. Adding a Host to OpenNebula
 =============================================
@@ -202,10 +245,14 @@ To add a node to the cloud, run this command as ``oneadmin`` in the Front-end:
 
 If the host turns to ``err`` state instead of ``on``, check the ``/var/log/one/oned.log``. Chances are it's a problem with the SSH!
 
+.. _kvm_wild:
+
 Step 8. Import Currently Running VMs (Optional)
 ===============================================
 
 You can skip this step as importing VMs can be done at any moment, however, if you wish to see your previously deployed VMs in OpenNebula you can use the :ref:`import VM <import_wild_vms>` functionality.
+
+.. _kvm_next:
 
 Step 9. Next steps
 ================================================================================
@@ -216,16 +263,9 @@ Otherwise, you are ready to :ref:`start using your cloud <operation_guide>` or y
 
 * :ref:`Authenticaton <authentication>`. (Optional) For integrating OpenNebula with LDAP/AD, or securing it further with other authentication technologies.
 * :ref:`Sunstone <sunstone>`. OpenNebula GUI should be working and accessible at this stage, but by reading this guide you will learn about specific enhanced configurations for Sunstone.
-
-If your cloud is KVM based you should also follow:
-
 * :ref:`Open Cloud Host Setup <vmmg>`.
 * :ref:`Open Cloud Storage Setup <storage>`.
 * :ref:`Open Cloud Networking Setup <nm>`.
-
-If it's VMware based:
-
-* Head over to the :ref:`VMware Infrastructure Setup <vmware_infrastructure_setup_overview>` chapter.
 
 .. |image3| image:: /images/network-02.png
 .. |sunstone_create_host_dialog| image:: /images/sunstone_create_host_dialog.png

@@ -50,13 +50,13 @@ The minimum recommended specs are for the OpenNebula front-end are:
 
 The maximum number of servers (virtualization hosts) that can be managed by a single OpenNebula instance strongly depends on the performance and scalability of the underlying platform infrastructure, mainly the storage subsystem. The general recommendation is that no more than 500 servers managed by a single instance, but there are users with 1,000 servers in each zone. Related to this, read the section about :ref:`how to tune OpenNebula for large deployments <one_scalability>`.
 
-**KVM nodes**
+**KVM and LXD nodes**
 
-Regarding the dimensions of the KVM virtualization nodes:
+Regarding the dimensions of the Linux virtualization nodes:
 
 - **CPU**: without overcommitment, each CPU core assigned to a VM must exists as a physical CPU core. By example, for a workload of 40 VMs with 2 CPUs, the cloud will need 80 physical CPUs. These 80 physical CPUs can be spread among different hosts: 10 servers with 8 cores each, or 5 server of 16 cores each. With overcommitment, however, CPU dimension can be planned ahead, using the ``CPU`` and ``VCPU`` attributes: ``CPU`` states physical CPUs assigned to the VM, while ``VCPU`` states virtual CPUs to be presented to the guest OS.
 
-- **MEMORY**: Planning for memory is straightforward, as by default *there is no overcommitment of memory* in OpenNebula. It is always a good practice to count 10% of overhead by the hypervisor (this is not an absolute upper limit, it depends on the hypervisor). So, in order to sustain a VM workload of 45 VMs with 2GB of RAM each, 90GB of physical memory is needed. The number of hosts is important, as each one will incur a 10% overhead due to the hypervisors. For instance, 10 hypervisors with 10GB RAM each will contribute with 9GB each (10% of 10GB = 1GB), so they will be able to sustain the estimated workload. The rule of thumb is having at least 1GB per core, but this also depends on the expected workload.
+- **MEMORY**: Planning for memory is straightforward, as by default *there is no overcommitment of memory* in OpenNebula. It is always a good practice to count 10% of overhead by the hypervisor (this is not an absolute upper limit, it depends on the hypervisor, however, since containers have a very low overhead, this metric is negligible for LXD nodes). So, in order to sustain a VM workload of 45 VMs with 2GB of RAM each, 90GB of physical memory is needed. The number of hosts is important, as each one will incur a 10% overhead due to the hypervisors. For instance, 10 hypervisors with 10GB RAM each will contribute with 9GB each (10% of 10GB = 1GB), so they will be able to sustain the estimated workload. The rule of thumb is having at least 1GB per core, but this also depends on the expected workload.
 
 **Storage**
 
@@ -107,7 +107,7 @@ Virtualization Hosts
 
 The hosts are the physical machines that will run the VMs. There are several certified platforms to act as nodes for each version of OpenNebula. Refer to the :ref:`platform notes <uspng>` and chose the one that better fits your needs. The Virtualization Subsystem is the component in charge of talking with the hypervisor installed in the hosts and taking the actions needed for each step in the VM life-cycle.
 
-OpenNebula natively supports one open source hypervisor, the :ref:`KVM <kvmg>` hypervisor, and OpenNebula is configured by default to interact with hosts running KVM.
+OpenNebula natively supports two open source hypervisor, the :ref:`KVM <kvmg>` and :ref:`LXD <lxdmg>`, and OpenNebula is configured by default to interact with hosts running KVM, there are some extra tweaks required to setup LXD.
 
 Ideally, the configuration of the nodes will be homogeneous in terms of the software components installed, the oneadmin administration user, accessible storage and network connectivity. This may not always be the case, and homogeneous hosts can be grouped in OpenNebula :ref:`clusters <cluster_guide>`
 

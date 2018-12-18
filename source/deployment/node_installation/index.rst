@@ -9,5 +9,6 @@ Node Installation
 
    Overview <overview>
    KVM Node Installation <kvm_node_installation>
+   LXD Node Installation <lxd_node_installation>
    vCenter Node Installation <vcenter_node_installation>
    Verify your Installation <verify>

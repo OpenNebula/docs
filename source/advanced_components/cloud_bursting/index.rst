@@ -1,3 +1,5 @@
+.. _cloud_bursting:
+
 ==============
 Cloud Bursting
 ==============
