@@ -1,0 +1,32 @@
+.. important::
+
+    There is a `bug #2687 <https://github.com/OpenNebula/one/issues/2687>`__ in database migration script which doesn't persist the calculated next snapshot IDs for existing image and VM disk snapshots. After upgrade to 5.6.x, you have to manually apply the `database patch <https://downloads.opennebula.org/packages/opennebula-5.6.0/patches/next_snapshot.rb>`__ (MD5: b7661a3bc4fa3768e6e0ff59e698f7e9). Otherwise, the OpenNebula may lose evidence of existing image/VM disk snapshots when new a one is taken.
+
+    Steps to apply the patch:
+
+    1. **Download patch**
+
+    .. prompt:: bash $ auto
+
+         $ wget https://downloads.opennebula.org/packages/opennebula-5.6.0/patches/next_snapshot.rb
+
+    2. **Stop OpenNebula**
+
+    .. prompt:: bash $ auto
+
+         $ service opennebula stop
+
+    3. **Apply patch**
+
+    The connection parameters have to be supplied as the command line options, see the :ref:`onedb manpage <cli>` for more information.
+
+    .. prompt:: bash $ auto
+
+         $ onedb patch next_snapshot.rb [database connection parameters]
+
+
+    4. **Start OpenNebula**
+
+    .. prompt:: bash $ auto
+
+         $ service opennebula start

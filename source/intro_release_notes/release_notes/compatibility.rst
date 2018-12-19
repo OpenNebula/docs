@@ -97,6 +97,8 @@ Snapshots do not reuse snapshot IDs
 
 The snapshots structure stores the next snapshot ID. So, a new snapshot doesn't reuse an old snapshot ID, even when some are removed.
 
+.. include:: ../bug2687.txt
+
 Developers and Integrators
 ================================================================================
 
