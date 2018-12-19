@@ -152,6 +152,8 @@ If everything goes well, you should get an output similar to this one:
 
 .. note:: Make sure you keep the backup file. If you face any issues, the onedb command can restore this backup, but it won't downgrade databases to previous versions.
 
+.. include:: ../bug2687.txt
+
 Check DB Consistency
 ====================
 
