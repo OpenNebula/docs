@@ -6,7 +6,7 @@ Hosts
 
 In order to use your existing physical nodes, you have to add them to the system as OpenNebula Hosts. To add a host only its hostname and type is needed. Hosts are usually organized in Clusters, you can read more about it in the :ref:`Managing Clusters <cluster_guide>` guide.
 
-.. warning:: Before adding a KVM host check that you can ssh to it without being prompt for a password.
+.. warning:: Before adding a Linux host check that you can ssh to it without being prompt for a password.
 
 
 Create and Delete Hosts

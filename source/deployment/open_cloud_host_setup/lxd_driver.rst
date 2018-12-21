@@ -13,7 +13,9 @@ Requirements
 - No hardware support required
 - The guest OS will share the Linux kernel with the virtualization node, so you won't be able to launch any non-Linux OS. 
 
-Bear in mind that although you can spawn containers with any linux distribution, the kernel will be the one in the host, so you can end up having an ArchLinux container wih an Ubuntu kernel. 
+Bear in mind that although you can spawn containers with any linux distribution, the kernel will be the one in the host, so you can end up having an ArchLinux container wih an Ubuntu kernel.
+
+The LXD drivers support using LXD through snap packages, if there is a snap installed, it will detect it and use that installation path. 
 
 Considerations & Limitations
 ================================================================================
@@ -23,10 +25,16 @@ There are a number of regular features that are not implemented yet:
 - snapshots
 - live migration
 - save/restore
-- live disk resize (offline disk resize not supported on multiple partitions image)
+- live disk resize
 - LVM datastore
 - PCI Passthrough
 
+
+- **offline disk resize**:
+    - not supported on multiple partition images
+    - only supported **xfs** and **ext4** filesystems
+- **datablocks**: Datablocks created on OpenNebula will need to be formatted before being attached to a container
+- **multiple partition images**: One of the partitions must have a valid `/etc/fstab` to mount the partitions 
 
 Configuration
 ================================================================================
@@ -62,13 +70,6 @@ LXD daemon
 
 Every existing container should have defined the following limits: ``limits.cpu`` ``limits.vcpu`` and ``limits.memory``. The opennebula-node-lxd package sets the default profile with these limits to ``100%``, ``1`` and ``512MB``.
 
-Ceph
-----
-LXD interacts with a ceph pool using the krbd through libvirt. The images needs to meet a specific set of features or the drivers won't map them into a valid rbd device. If you plan to use a ceph datastore, issue:
-
-.. code-block:: bash
-
-    echo "rbd default features = 3" >> /etc/ceph/ceph.conf"
 
 Drivers
 --------------------------------------------------------------------------------
@@ -140,7 +141,13 @@ Disks
 ~~~~~
 Attached disks are handled by ``type: disk`` devices in the container, this works different from KVM in such a way that `the disk is mounted on the LXD host and then the mountpoint is passed-through the container in an user defined mountpoint <https://help.ubuntu.com/lts/serverguide/lxd.html.en#lxd-container-config>`_ .
 
-.. TODO Explain differnt supported disk types and mapping process. raw vs qcow2 vs rbd. Single vs Multiple partitions
+The disk_attaching process, on a high level descriptions follows:
+    - There is an image file whose contents should be visible inside a container directory
+    - In order to tell LXD to handle a disk, this file should be mounted on a host directory, ``$DATASTORE_LOCATION/$system_datastore_id/$vm_id/mapper/disk.$disk_id``
+    - The disk can be of different types, currently, the supported ones are **raw** and **qcow2** image files, and ceph **rbd**.
+    - In order to be mounted, first, each image needs to be mapped to a host device
+    -  Depending on the image type, a different utility will be used, ``losetup`` for **raw** images, ``qemu-nbd`` for **qcow2** images and ``rbd-nbd`` for ceph rbd.
+    - If the image has multiple partitions, each partition will be mounted until an ``/etc/fstab`` file is found and each partition with a valid filesystem will be mounted accordingly.
 
 Additional Attributes
 ~~~~~~~~~~~~~~~~~~~~~
@@ -155,7 +162,7 @@ The **raw** attribute offers the end user the possibility of passing by attribut
 Importing VMs
 -------------
 
-LXD can deploy contianers without any resource limitation, however, OpenNebula cannot create a VM without a stated capacity, thus the wild containers should have these keys defined. Once imported, the contianers will benefit from:
+LXD can deploy containers without any resource limitation, however, OpenNebula cannot create a VM without a stated capacity, thus the wild containers should have these keys defined. Once imported, the containers will benefit from:
 
 - start
 - stop `hard also`
@@ -174,7 +181,7 @@ Since LXD doesn't require virtualization extensions, it can peacefully coexist a
 
 Images
 -------
-The LXD drivers can create contianers from images in the same format as KVM, that is block devices in a file.
+The LXD drivers can create containers from images in the same format as KVM, ex. a qcow2 image.
 
 Create your own image
 ~~~~~~~~~~~~~~~~~~~~~
@@ -193,12 +200,29 @@ We will create a container using the LXD CLI and dump it into a block device in 
     # umount $block
     # losetup -d $block
 
-Now the image is ready to be used. Note that you can use any linux standard filesystem / partition layout as a base image for the contianer. This enables you to easily import images from raw lxc, root partitions from KVM images or proxmox templates. 
+Now the image is ready to be used, you can also use ``qemu-img`` to convert image format. Note that you can use any linux standard filesystem / partition layout as a base image for the contianer. This enables you to easily import images from raw lxc, root partitions from KVM images or proxmox templates. 
 
 Use a linuxcontainers.org Marketplace
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. TODO Explain this add link to documentation
+Every regular LXD setup comes by default with a public image server read access in order to pull container images from. 
+
+.. prompt:: bash # auto
+
+    # lxc remote list
+    +-----------------+------------------------------------------+---------------+-----------+--------+--------+
+    |      NAME       |                   URL                    |   PROTOCOL    | AUTH TYPE | PUBLIC | STATIC |
+    +-----------------+------------------------------------------+---------------+-----------+--------+--------+
+    | images          | https://images.linuxcontainers.org       | simplestreams |           | YES    | NO     |
+    +-----------------+------------------------------------------+---------------+-----------+--------+--------+
+    | local (default) | unix://                                  | lxd           | tls       | NO     | YES    |
+    +-----------------+------------------------------------------+---------------+-----------+--------+--------+
+    | ubuntu          | https://cloud-images.ubuntu.com/releases | simplestreams |           | YES    | YES    |
+    +-----------------+------------------------------------------+---------------+-----------+--------+--------+
+    | ubuntu-daily    | https://cloud-images.ubuntu.com/daily    | simplestreams |           | YES    | YES    |
+    +-----------------+------------------------------------------+---------------+-----------+--------+--------+
+
+OpenNebula can leverage the existing **images** server by using it as a backend for a :ref:`Marketplace <market_lxd>`.. 
 
 Use a KVM disk image
 ~~~~~~~~~~~~~~~~~~~~
@@ -210,13 +234,13 @@ Custom storage backends
 ~~~~~~~~~~~~~~~~~~~~~~~
 If you want to customize the supported images ex. `vmdk` files, the LXD driver has some modules called mappers which allow the driver to interact with several image formats like ``raw``, ``qcow2`` and ``rbd`` devices.
 
-The mapper basically is a ruby class with two methods defined, a `map` method, which loads a disk file into a system block device, and an `unmap` mehtod, which reverts this ex.
+The mapper basically is a ruby class with two methods defined, a ``do_map`` method, which loads a disk file into a system block device, and an ``do_unmap`` mehtod, which reverts this ex.
 
 .. code::
 
     disk.qcow2     -> map -> /dev/nbd0
     disk.raw       -> map -> /dev/loop0
-    one/one-7-54-0 -> map -> /dev/rbd0
+    one/one-7-54-0 -> map -> /dev/nbd0
 
 However thigs can get tricky when dealing with images with a partition table, you can check the code of the mapper devices `here <https://github.com/OpenNebula/one/blob/master/src/vmm_mad/remotes/lib/lxd/mapper/>`_.
 

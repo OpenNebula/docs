@@ -24,6 +24,8 @@ Virtual Machine management
 --------------------------------------------------------------------------------
 - **Automatic selection of Virtual Networks** for VM NICs. Based on the usual requirements and rank the Scheduler can pick the rigth Network for a NIC. You can use this feature to balance network usage at deployment time or to reduce clutter in your VM Template list, as you do not need to duplicate VM Templates for different networks. More info :ref:`here <vgg_vm_vnets>`.
 
+- **LXD hypervisor**. OpenNebula can now manage LXD containers the same way Virtual Machines are managed. Setup a LXD host and use the already present Linux network and storage stack. There are virtualization and monitorization drivers allowing this feature and also a new MarketPlace with a public LXD image server backend.
+
 vCenter
 --------------------------------------------------------------------------------
 - Added new configuration file vcenterc, allow you to change the default behaviour in the proccess of image importation. More info :ref:`here <vcenterc_image>`.
@@ -36,6 +38,7 @@ Sunstone
 MarketPlace
 --------------------------------------------------------------------------------
 - When a MarketPlace appliance is imported into a datastore it is converted to/from vmdk/qcow2 as needed.
+- Added  :ref:`LXD MarketPlace <market_lxd>`.
 
 API & CLI
 --------------------------------------------------------------------------------

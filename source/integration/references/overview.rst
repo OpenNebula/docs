@@ -16,4 +16,4 @@ After this Chapter, if you are interested in extending the OpenNebula functional
 Hypervisor Compatibility
 ================================================================================
 
-All the Sections of this Chapter applies to KVM, LXD and vCenter hypervisors.
+All the Sections of this Chapter applies to all hypervisors.

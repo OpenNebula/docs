@@ -22,8 +22,3 @@ You should be reading this Chapter if you are trying to extend OpenNebula functi
 You can proceed to any of the following sections depending on which component you want to understand and extend the :ref:`virtualization system <devel-vmm>` (with a separate Section for :ref:`cloud bursting <devel_cloudbursting>`), the :ref:`storage system <sd>`, the :ref:`information system <devel-im>`, the :ref:`authentication system <auth_overview>`, the :ref:`network system <devel-nm>` or the :ref:`marketplace drivers <devel-market>`. Also you might be interested in the :ref:`Hook mechanism <hooks>`, a powerful way of integrating OpenNebua within your datacenter processes.
 
 After this Chapter, congratulations! You finished OpenNebula.
-
-Hypervisor Compatibility
-================================================================================
-
-All the Sections of this Chapter applies to both KVM and vCenter hypervisors.

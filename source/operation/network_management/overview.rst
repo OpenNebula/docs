@@ -15,9 +15,9 @@ Hypervisor Compatibility
 +-------------------------------------------------+-----------------------------------------------+
 |                     Section                     |                 Compatibility                 |
 +=================================================+===============================================+
-| :ref:`Virtual Networks <manage_vnets>`          | This Section applies to both KVM and vCenter. |
+| :ref:`Virtual Networks <manage_vnets>`          | This Section applies to all Hypervisors       |
 +-------------------------------------------------+-----------------------------------------------+
-| :ref:`Security Groups <security_groups>`        | This Section applies to KVM.                  |
+| :ref:`Security Groups <security_groups>`        | This Section applies to KVM and LXD           |
 +-------------------------------------------------+-----------------------------------------------+
-| :ref:`Virtual Routers <vrouter>`                | This Section applies to both KVM and vCenter. |
+| :ref:`Virtual Routers <vrouter>`                | This Section applies to all Hypervisors       |
 +-------------------------------------------------+-----------------------------------------------+

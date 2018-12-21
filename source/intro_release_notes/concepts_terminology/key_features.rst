@@ -15,9 +15,9 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 - :ref:`Simple, clean, intuitive GUI for cloud consumers <cloud_view>` to allow non-IT end users to easily create, deploy and manage compute, storage and network resources
 
 
-**VIRTUAL MACHINE MANAGEMENT**
+**VIRTUAL MACHINE AND CONTAINER MANAGEMENT**
 
-- Virtual infrastructure management adjusted to enterprise data centers with full control, monitoring and accounting of virtual  resources
+- Virtual infrastructure management adjusted to enterprise data centers with full control, monitoring and accounting of virtual resources
 
 - Virtual machine image management through :ref:`catalogs of disk images <img_guide>` (termed datastores) with OS installations, persistent data sets or empty data blocks that are created within the datastore
 
@@ -29,7 +29,9 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 -  Volume and network hotplugging
 
--  :ref:`Disk snapshot capabilities <vm_guide_2_disk_snapshots>` and :ref:`disk resizing <vm_guide2_resize_disk>` for KVM virtual machines
+-  :ref:`Disk snapshot capabilities <vm_guide_2_disk_snapshots>` and :ref:`disk resizing <vm_guide2_resize_disk>` for KVM and LXD instances
+
+- LXD Containers are treated the same way as VMs in OpenNebula and support most of the VM features. 
 
 
 **VIRTUAL NETWORK MANAGEMENT**
@@ -40,7 +42,7 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 - :ref:`Virtual routers <vrouter>`
 
-- :ref:`Security Groups <security_groups>` to define firewall rules and apply them to KVM Virtual Machines
+- :ref:`Security Groups <security_groups>` to define firewall rules and apply them to KVM and LXD instances
 
 
 **APPLICATION CONFIGURATION AND INSIGHT**
@@ -152,7 +154,7 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 - Persistent database backend with support for high availability configurations
 
-- :ref:`Configurable behavior in the event of host or KVM VM failure <ftguide>` to provide easy to use and cost-effective failover solutions
+- :ref:`Configurable behavior in the event of host or KVM/LXD instance failure <ftguide>` to provide easy to use and cost-effective failover solutions
 
 
 **CLOUD BURSTING**

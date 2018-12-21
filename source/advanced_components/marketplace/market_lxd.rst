@@ -1,4 +1,4 @@
-.. _market_linuxcontainers:
+.. _market_lxd:
 
 ==============================
 Linuxcontainers MarketPlace

@@ -8,7 +8,7 @@ OpenNebula uses a method called contextualization to send information to the VM 
 
 How Should I Read This Chapter
 ================================================================================
-Before reading this chapter, you should have already installed your :ref:`Frontend <frontend_installation>`, the :ref:`KVM and Hosts <kvm_node>` or :ref:`vCenter node <vcenter_node>` and have an OpenNebula cloud up and running with at least one virtualization node.
+Before reading this chapter, you should have already installed your :ref:`Frontend <frontend_installation>`, the :ref:`KVM Hosts <kvm_node>`, :ref:`LXD Hosts <lxd_node>` or :ref:`vCenter node <vcenter_node>` and have an OpenNebula cloud up and running with at least one virtualization node.
 
 To enable the use of contextualization there are two steps that you need to perform:
 
@@ -27,7 +27,7 @@ Hypervisor Compatibility
 +--------------------------------------------------------------+-----------------------------------------------+
 | :ref:`vCenter Contextualization <vcenter_contextualization>` | This Section applies to vCenter.              |
 +--------------------------------------------------------------+-----------------------------------------------+
-| :ref:`Adding Content to your Cloud <add_content>`            | This Section applies to both KVM and vCenter. |
+| :ref:`Adding Content to your Cloud <add_content>`            | This Section applies to all hypervisors.      |
 +--------------------------------------------------------------+-----------------------------------------------+
 
 
