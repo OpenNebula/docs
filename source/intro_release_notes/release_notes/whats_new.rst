@@ -8,6 +8,7 @@ OpenNebula Core
 --------------------------------------------------------------------------------
 - **Rename disk snapshots**, there is available an option for renaming disk snapshots via OCA and CLI.
 - **Migration through poweroff/on cycle**, new options for cold-migrating a Virtual Machine, now they also can be migrated via poweroff and poweroff hard.
+- Default configuration values for RAFT has been updated to a more conservative setting.
 
 Sunstone
 --------------------------------------------------------------------------------
@@ -55,3 +56,5 @@ Other Issues Solved
 - `Fix issue Sunstone is not showing well security groups for ICMP6 <https://github.com/OpenNebula/one/issues/2580>`__.
 - `Fix issue that prevents to use floating IPs with BRIDGE interfaces <https://github.com/OpenNebula/one/issues/2607>`__.
 - `Fix issue with disk-saveas on ubuntu 18.04 <https://github.com/OpenNebula/one/issues/2646>`__.
+- `Fix issue with sensitive group-membership matching in LDAP auth <https://github.com/OpenNebula/one/issues/2677>`__.
+- `Make use of HTTPS by default in OpenNebula MarketPlace <https://github.com/OpenNebula/one/issues/2668>`__.

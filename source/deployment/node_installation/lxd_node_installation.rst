@@ -60,7 +60,7 @@ Step 7. Adding a Host to OpenNebula
 
 Replace ``kvm`` for ``lxd`` in the CLI and Sunstone
 
-Step 8. Import existing containers (Optional)
+Step 8. Import Existing Containers (Optional)
 =========================================================================
 You can use the :ref:`import VM <import_wild_vms>` functionality if you want to manage pre-exsiting containers. It is required that containers aren't named under the pattern ``one-<id>`` in order to be imported. They need also to have ``limits.cpu.allowance`` ``limits.cpu`` and ``limits.memory`` keys defined, otherwise OpenNebula cannot import them. The `opennebula-node-lxd` package should setup the default template with these values.
 
