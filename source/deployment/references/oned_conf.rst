@@ -475,7 +475,7 @@ The configuration for each driver is defined in the TM\_MAD\_CONF section. These
 
 - **ds_migrate**: set if system datastore migrations are allowed for this TM. Only useful for system datastore TMs.
 
-- **allow_orphans**: Snapshots can live without parents
+- **allow_orphans**: Snapshots can live without parents. It allow three values YES, NO and MIXED. The last mode, MIXED, allow to create orphans snapshots but taking in count some dependencies which can appers after making a revert snapshot action at Ceph datastores.
 
 Sample configuration:
 
