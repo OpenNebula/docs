@@ -146,6 +146,8 @@ This can be done either in Sunstone or through the CLI, for example to create a 
     $ onedatastore create systemds.txt
     ID: 101
 
+.. note:: When different system datastore are available the TM_MAD_SYSTEM attribute will be set after picking the datastore.
+
 Create an Image Datastore
 --------------------------------------------------------------------------------
 In the same way, to create an Image Datastore you need to set:

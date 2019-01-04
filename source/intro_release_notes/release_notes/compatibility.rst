@@ -24,3 +24,8 @@ XMLRPC API Changes
 Authentication Drivers
 ================================================================================
 * LDAP user names are case insensitive, the driver now follows this convention. The fsck operation will warn about multiple users with different casing colliding in the same LDAP user account.
+
+OpenNebula Core
+================================================================================
+
+* When different system datastore are available the TM_MAD_SYSTEM attribute will be set after picking the datastore.
