@@ -1,8 +1,8 @@
 .. _ddc_install:
 
-============
-Installation
-============
+=========================
+OneProvision Installation
+=========================
 
 All functionality is distributed as an optional operating system package ``opennebula-provision``, which must be installed on your **frontend alongside with the server packages**.
 

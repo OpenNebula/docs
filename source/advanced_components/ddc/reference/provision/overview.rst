@@ -1,10 +1,10 @@
-.. _ddc_provision:
+.. _ddc_provision_overview:
 
 =========
 Provision
 =========
 
-The provision is a process of allocating new physical resources from the remote providers. :ref:`Provision drivers <ddc_driver>` are used for communication with the remote providers. Credentials for the communication and parameters of the required provision (hardware, operating system, IPs, etc.) need to be specified. All these information are stored in the :ref:`provision template <ddc_provision_template>` file and passed to the ``oneprovision create`` command.
+The provision is a process of allocating new physical resources from the remote providers. :ref:`Provision drivers <ddc_provision_driver>` are used for communication with the remote providers. Credentials for the communication and parameters of the required provision (hardware, operating system, IPs, etc.) need to be specified. All these information are stored in the :ref:`provision template <ddc_provision_template>` file and passed to the ``oneprovision create`` command.
 
 In this chapter, we'll describe the format and content of the provision template.
 

@@ -1,8 +1,8 @@
 .. _ddc_config_overview:
 
-========
-Overview
-========
+=============
+Configuration
+=============
 
 Newly provisioned physical resources are mostly running only a base operating system without any additional services. Hosts need to pass the configuration phase to setup the additional software repositories, install packages, and configure and run necessary services to comply with the intended host purpose. This configuration process is fully handled by the ``oneprovision`` tool as part of the initial deployment (``oneprovision create``) or independent run anytime later (``oneprovision configure``).
 

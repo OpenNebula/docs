@@ -1,4 +1,4 @@
-.. _ddc_driver:
+.. _ddc_provision_driver:
 
 =================
 Provision Drivers

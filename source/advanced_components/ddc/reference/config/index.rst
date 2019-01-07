@@ -1,8 +1,8 @@
 .. _ddc_config:
 
-=============
-Configuration
-=============
+=======================
+Configuration Reference
+=======================
 
 .. toctree::
    :maxdepth: 2

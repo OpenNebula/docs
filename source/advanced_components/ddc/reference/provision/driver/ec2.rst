@@ -1,4 +1,4 @@
-.. _ddc_driver_ec2:
+.. _ddc_provision_driver_ec2:
 
 =================
 Amazon EC2 Driver
