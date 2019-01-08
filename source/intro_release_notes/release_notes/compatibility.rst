@@ -29,3 +29,4 @@ OpenNebula Core
 ================================================================================
 
 * When different system datastore are available the TM_MAD_SYSTEM attribute will be set after picking the datastore.
+* Images are not locked when creating, so the metadata can be update while the image is download, but in order to be able to delete the image while it's in LOCKED state the user needs ADMIN permmissions over the image.
