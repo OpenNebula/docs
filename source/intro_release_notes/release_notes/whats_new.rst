@@ -29,6 +29,7 @@ Virtual Machine management
 vCenter
 --------------------------------------------------------------------------------
 - Added new configuration file vcenterc, allow you to change the default behaviour in the proccess of image importation. More info :ref:`here <vcenterc_image>`.
+- It is possible to change boot order devices updating the vm template. More info :ref:`here <template_os_and_boot_options_section>`.
 
 Sunstone
 ----------------------------------------------------------------------------------
@@ -48,6 +49,8 @@ API & CLI
 Other Issues Solved
 --------------------------------------------------------------------------------
 - `Fix issue where a wrong TM_MAD could be used with multiple transfer mode Datastores <https://github.com/OpenNebula/one/issues/2544>`__.
+- `Fix issue about vm monitoring desynchronization in vCenter driver <https://github.com/OpenNebula/one/issues/2552>`__.
+- `Fix issue about removing unmanaged nics in vCenter driver <https://github.com/OpenNebula/one/issues/2558>`__.
 - `Fix issue where only one Ceph monitor was considered on disk attach operations <https://github.com/OpenNebula/one/issues/1955>`__.
 - `Fix install.sh script, add missing options <https://github.com/OpenNebula/one/issues/2001>`__.
 - `Fix issue regarding saveas operation and CD-ROMs <https://github.com/OpenNebula/one/issues/2610>`__.
