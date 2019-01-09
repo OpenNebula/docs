@@ -28,4 +28,5 @@ Authentication Drivers
 OpenNebula Core
 ================================================================================
 
-* When different system datastore are available the TM_MAD_SYSTEM attribute will be set after picking the datastore.
+* When different system datastores are available the TM_MAD_SYSTEM attribute is automatically set to the DS chosen by the scheduler.
+* Images are not locked on creation so the metadata can be updated while the image is being downloaded but. In order to delete the image while it's in LOCKED state the user needs ADMIN permmissions over the image.
