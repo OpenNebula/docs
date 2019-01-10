@@ -151,7 +151,7 @@ The OS system is defined with the ``OS`` vector attribute. The following sub-att
 +------------------+--------------------------------------------------------------------+------------------+---------+
 | **BOOTLOADER**   | path to the bootloader executable                                  | O                | \-      |
 +------------------+--------------------------------------------------------------------+------------------+---------+
-| **BOOT**         | comma separated list of boot devices types, by order of preference | M                | \-      |
+| **BOOT**         | comma separated list of boot devices types, by order of preference | M                | O       |
 |                  | (first device in the list is the first device used for boot).      |                  |         |
 |                  | Possible values: ``disk#``,\ ``nic#``                              |                  |         |
 +------------------+--------------------------------------------------------------------+------------------+---------+

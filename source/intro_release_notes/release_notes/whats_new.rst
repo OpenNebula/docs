@@ -8,6 +8,7 @@ OpenNebula Core
 --------------------------------------------------------------------------------
 - **Rename disk snapshots**, there is available an option for renaming disk snapshots via OCA and CLI.
 - **Migration through poweroff/on cycle**, new options for cold-migrating a Virtual Machine, now they also can be migrated via poweroff and poweroff hard.
+- **Mixed mode** for ``ALLOW_ORPHAN`` attribute which take care of the dependcies between snapshots after revert actions at Ceph datastores.
 - Default configuration values for RAFT has been updated to a more conservative setting.
 
 Sunstone
@@ -30,6 +31,7 @@ Virtual Machine management
 vCenter
 --------------------------------------------------------------------------------
 - Added new configuration file vcenterc, allow you to change the default behaviour in the proccess of image importation. More info :ref:`here <vcenterc_image>`.
+- It is possible to change boot order devices updating the vm template. More info :ref:`here <template_os_and_boot_options_section>`.
 
 Sunstone
 ----------------------------------------------------------------------------------
@@ -45,10 +47,13 @@ API & CLI
 --------------------------------------------------------------------------------
 - New Python bindings for the OpenNebula Cloud API (OCA). The PyONE addon is now part of the official distribution, more info :ref:`here <python>`
 - `one.vm.migrate` now accepts an additional argument to set the type of cold migration (save, poweroff or poweroff hard)
+- XSD files has been updated and completed
 
 Other Issues Solved
 --------------------------------------------------------------------------------
 - `Fix issue where a wrong TM_MAD could be used with multiple transfer mode Datastores <https://github.com/OpenNebula/one/issues/2544>`__.
+- `Fix issue about vm monitoring desynchronization in vCenter driver <https://github.com/OpenNebula/one/issues/2552>`__.
+- `Fix issue about removing unmanaged nics in vCenter driver <https://github.com/OpenNebula/one/issues/2558>`__.
 - `Fix issue where only one Ceph monitor was considered on disk attach operations <https://github.com/OpenNebula/one/issues/1955>`__.
 - `Fix install.sh script, add missing options <https://github.com/OpenNebula/one/issues/2001>`__.
 - `Fix issue regarding saveas operation and CD-ROMs <https://github.com/OpenNebula/one/issues/2610>`__.
@@ -58,3 +63,4 @@ Other Issues Solved
 - `Fix issue with disk-saveas on ubuntu 18.04 <https://github.com/OpenNebula/one/issues/2646>`__.
 - `Fix issue with sensitive group-membership matching in LDAP auth <https://github.com/OpenNebula/one/issues/2677>`__.
 - `Make use of HTTPS by default in OpenNebula MarketPlace <https://github.com/OpenNebula/one/issues/2668>`__.
+- `Fix issue about restoring erasure-coded Ceph VM image from shanshot <https://github.com/OpenNebula/one/issues/2476>`__.

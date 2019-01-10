@@ -88,13 +88,10 @@ Sunstone
 vCenter
 ================================================================================
 
-* `#1350 <https://github.com/OpenNebula/one/issues/1350>`_ Template delete recursive operation of templates **instantiated as persistent** does not remove images from the vcenter datastores. Currently these files must be delete manually
-* `#2230 <https://github.com/OpenNebula/one/issues/2230>`_ vCenter driver migrate feedback
+* `#2672 <https://github.com/OpenNebula/one/issues/2672>`_ Snapshots are not working properly
 * `#2275 <https://github.com/OpenNebula/one/issues/2275>`_ Remove disk not affected by snap on vCenter
-* `#2274 <https://github.com/OpenNebula/one/issues/2274>`_ Remove CDROM from imported template
 * `#2254 <https://github.com/OpenNebula/one/issues/2254>`_ spurios syntax help on onehost delete
-* `#2262 <https://github.com/OpenNebula/one/issues/2262>`_ Wait poweron/off to be performed
-* `#1626 <https://github.com/OpenNebula/one/issues/1626>`_ vCenter importer lock file stale and clash
 * `#2084 <https://github.com/OpenNebula/one/issues/2084>`_ vCenter Cache thread safe (thin related)
+* `#2530 <https://github.com/OpenNebula/one/issues/2530>`_ StorageDRS is not working properly
 * `#1699 <https://github.com/OpenNebula/one/issues/1699>`_ Wild VM monitoring should not return datastores that contain only swap files
 * `#1259 <https://github.com/OpenNebula/one/issues/1259>`_ Premigrator: unmanaged nics from vms are outside the AR of the network

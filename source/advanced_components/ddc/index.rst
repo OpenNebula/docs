@@ -1,3 +1,5 @@
+.. _ddc:
+
 ==========================
 Disaggregated Data Centers
 ==========================
@@ -6,8 +8,6 @@ Disaggregated Data Centers
    :maxdepth: 2
 
    Overview <overview>
-   Installation <install>
-   Usage <usage>
-   Provision <provision>
-   Configuration <config/index>
-   Drivers <driver/index>
+   OneProvision Installation <install>
+   OneProvision Basic Usage <usage>
+   Provision and Configuration Reference <reference/index>

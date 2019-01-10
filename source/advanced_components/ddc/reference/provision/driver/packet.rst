@@ -1,4 +1,4 @@
-.. _ddc_driver_packet:
+.. _ddc_provision_driver_packet:
 
 =============
 Packet Driver

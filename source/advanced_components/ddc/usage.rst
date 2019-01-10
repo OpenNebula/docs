@@ -1,8 +1,8 @@
 .. _ddc_usage:
 
-===========
-Basic Usage
-===========
+========================
+OneProvision Basic Usage
+========================
 
 Operations with the physical resources are performed using the installed ``oneprovision`` tool. Create a new provision, manage (reboot, reset, power off, resume) the existing provisions, and delete the provision at the end. The user experience is very same as you know from other OpenNebula CLI tools.
 
