@@ -33,6 +33,7 @@ There are a number of regular features that are not implemented yet:
 - **offline disk resize**:
     - not supported on multiple partition images
     - only supported **xfs** and **ext4** filesystems
+        - resizing **ext4** on Ubuntu16.04 will fail due to outdated `e2fsck` package
 - **datablocks**: Datablocks created on OpenNebula will need to be formatted before being attached to a container
 - **multiple partition images**: One of the partitions must have a valid `/etc/fstab` to mount the partitions 
 
