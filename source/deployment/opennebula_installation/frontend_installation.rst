@@ -125,6 +125,14 @@ As root execute:
 
     # /usr/share/one/install_gems
 
+.. warning::
+    The `Bundler <https://bundler.io/>`__ (Ruby application dependencies management tool) is installed by ``install_gems`` if missing. Installation can fail, as the latest versions might be incompatible with older Ruby versions. You have to install a suitable version of Bundler manually and run ``install_gems`` again. As root execute:
+
+    .. prompt:: bash # auto
+
+        # gem install bundler --version '< 2'
+        # /usr/share/one/install_gems
+
 The previous script is prepared to detect common Linux distributions and install the required libraries. If it fails to find the packages needed in your system, manually install these packages:
 
 * sqlite3 development library
