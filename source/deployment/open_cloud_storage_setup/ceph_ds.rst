@@ -8,6 +8,9 @@ The Ceph datastore driver provides OpenNebula users with the possibility of usin
 
 .. warning:: This driver requires that the OpenNebula nodes using the Ceph driver must be Ceph clients of a running Ceph cluster. More information in `Ceph documentation <http://ceph.com/docs/master/>`__.
 
+.. note:: LXD drivers require the rbd-nbd package installed in order to handle rbd images
+
+
 Datastore Layout
 ================================================================================
 

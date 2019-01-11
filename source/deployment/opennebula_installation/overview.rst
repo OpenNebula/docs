@@ -4,7 +4,7 @@
 Overview
 ================================================================================
 
-The Front-end is the central part of an OpenNebula installation. This is the machine where the server software is installed and where you connect to manage your cloud. It can be a physical node or a Virtual Machine.
+The Front-end is the central part of an OpenNebula installation. This is the machine where the server software is installed and where you connect to manage your cloud. It can be a physical node or a virtual instance.
 
 How Should I Read This Chapter
 ================================================================================
@@ -23,9 +23,9 @@ Hypervisor Compatibility
 +-------------------------------------------------------+-----------------------------------------------+
 |                        Section                        |                 Compatibility                 |
 +=======================================================+===============================================+
-| :ref:`Front-end Installation <frontend_installation>` | This Section applies to both KVM and vCenter. |
+| :ref:`Front-end Installation <frontend_installation>` | This Section applies to all hypervisors       |
 +-------------------------------------------------------+-----------------------------------------------+
-| :ref:`MySQL Setup <mysql_setup>`                      | This Section applies to both KVM and vCenter. |
+| :ref:`MySQL Setup <mysql_setup>`                      | This Section applies to all hypervisors       |
 +-------------------------------------------------------+-----------------------------------------------+
-| :ref:`Scheduler <schg>`                               | This Section applies to both KVM and vCenter. |
+| :ref:`Scheduler <schg>`                               | This Section applies to all hypervisors       |
 +-------------------------------------------------------+-----------------------------------------------+

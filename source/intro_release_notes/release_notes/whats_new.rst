@@ -41,6 +41,8 @@ Virtual Machine Management
 --------------------------------------------------------------------------------
 - **Automatic selection of Virtual Networks** for VM NICs. Based on the usual requirements and rank the Scheduler can pick the right Network for a NIC. You can use this feature to balance network usage at deployment time or to reduce clutter in your VM Template list, as you do not need to duplicate VM Templates for different networks. More info :ref:`here <vgg_vm_vnets>`.
 
+- **LXD hypervisor**. OpenNebula can now manage LXD containers the same way Virtual Machines are managed. Setup a LXD host and use the already present Linux network and storage stack. There are virtualization and monitorization drivers allowing this feature and also a new MarketPlace with a public LXD image server backend.
+
 vCenter
 --------------------------------------------------------------------------------
 - Added new configuration file vcenterrc, allow you to change the default behaviour in the process of image importation. More info :ref:`here <vcenterc_image>`.
@@ -50,6 +52,7 @@ vCenter
 MarketPlace
 --------------------------------------------------------------------------------
 - When a MarketPlace appliance is imported into a datastore it is converted to/from vmdk/qcow2 as needed.
+- Added  :ref:`LXD MarketPlace <market_lxd>`.
 
 API & CLI
 --------------------------------------------------------------------------------
@@ -74,5 +77,3 @@ Other Issues Solved
 - `Fix issue with sensitive group-membership matching in LDAP auth <https://github.com/OpenNebula/one/issues/2677>`__.
 - `Make use of HTTPS by default in OpenNebula MarketPlace <https://github.com/OpenNebula/one/issues/2668>`__.
 - `Fix issue about restoring erasure-coded Ceph VM image from shanshot <https://github.com/OpenNebula/one/issues/2476>`__.
-- `Fix issue that prevents to update image metadata while in LOCKED state <https://github.com/OpenNebula/one/issues/2770>`__.
-- `Fix issue with Bundler installation with old Ruby <https://github.com/OpenNebula/one/issues/2778>`__.

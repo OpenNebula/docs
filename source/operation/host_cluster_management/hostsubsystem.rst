@@ -24,5 +24,6 @@ You should read all the guides in this chapter to familiarize with these objects
 Hypervisor Compatibility
 ================================================================================
 
-These guides are compatible with both KVM and vCenter hypervisors.
+These guides are compatible with all hypervisors.
 
+.. note:: Linux hosts will be mentioned when the information is applicable to LXD and KVM

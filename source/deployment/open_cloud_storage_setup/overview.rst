@@ -61,7 +61,10 @@ After reading this chapter you should read the :ref:`Open Cloud Networking <nm>`
 Hypervisor Compatibility
 ================================================================================
 
-This chapter applies only to KVM.
+This chapter applies to KVM and LXD.
+
+.. note:: LXD Drivers only support Filesystem and Ceph
+
 
 Follow the :ref:`vCenter Storage <vcenter_ds>` section for a similar guide for vCenter.
 

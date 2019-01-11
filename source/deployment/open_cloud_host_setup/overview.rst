@@ -23,6 +23,6 @@ After reading this chapter, you should read the :ref:`Open Cloud Storage <storag
 Hypervisor Compatibility
 ================================================================================
 
-This chapter applies only to KVM and LXD.
+This chapter applies to KVM and LXD.
 
 Follow the :ref:`vCenter Node <vcenter_node>` section for a similar guide for vCenter.

@@ -44,4 +44,4 @@ From these guides you should read at least the ones for **Users**, **Groups** an
 Hypervisor Compatibility
 ================================================================================
 
-These guides are compatible with both KVM and vCenter hypervisors.
+These guides are compatible with all hypervisors.

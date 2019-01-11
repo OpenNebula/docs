@@ -61,6 +61,17 @@ KVM Nodes
 |                         | For CentOS/RedHat the packages from ``qemu-ev`` are used. |                                         |
 +-------------------------+-----------------------------------------------------------+-----------------------------------------+
 
+KVM Nodes
+--------------------------------------------------------------------------------
+
++-------------------------+-----------------------------------------------------------+-----------------------------------------+
+|        Component        |                          Version                          |             More information            |
++=========================+===========================================================+=========================================+
+| Ubuntu Server           | 16.04 (LTS), 18.04 (LTS), 18.10 (stable)                  | :ref:`LXD Driver <lxdmg>`               |
++-------------------------+-----------------------------------------------------------+-----------------------------------------+
+| LXD                     | Support for LXD >= 3.0.0, either snap or system package   | :ref:`LXD Node Installation <lxd_node>` |
++-------------------------+-----------------------------------------------------------+-----------------------------------------+
+
 Open Cloud Networking Infrastructure
 --------------------------------------------------------------------------------
 
@@ -173,6 +184,10 @@ The following applies to all Front-Ends:
 * For **cloud bursting**, a newer nokogiri gem than the one packed by current distros is required. If you are planning to use cloud bursting, you need to install nokogiri >= 1.4.4 prior to run ``install_gems``: ``# sudo gem install nokogiri -v 1.4.4``.
 * Only **ruby versions >= 1.9.3 are supported**.
 
+Ubuntu 18.10 Platform Notes
+--------------------------------------------------------------------------------
+LXD comes by default as an installed snap package. There are `issues <https://forum.snapcraft.io/t/how-can-i-use-snap-when-i-dont-use-home-user/3352> `_ when `$HOME` is not inside **/home** which affects **oneadmin** user whose `$HOME` is **/var/lib/one** resulting in oneadmin being unable to use lxc commands. Almost 100% of the LXD driver code uses REST to interact with LXD, however some features and the ability to manage the host as oneadmin will be crippled when using 1810. To fix this one should run oneadmin commands using sudo.
+
 Ubuntu 18.04 Platform Notes
 --------------------------------------------------------------------------------
 
@@ -181,6 +196,15 @@ Essential Ruby library xmlrpc is missing from Ruby 2.4.0 and above. The library 
 .. code::
 
     # sudo gem install xmlrpc
+
+Ubuntu 16.04 Platform Notes
+--------------------------------------------------------------------------------
+
+By default it comes with lxd 2, lxd3 should be installed from **xenial-backports**. Make sure you have `backports enabled in sources.list <https://help.ubuntu.com/community/UbuntuBackports>`_ 
+
+.. code-block:: bash
+
+    # apt-get -t xenial-backports install lxd
 
 
 CentOS 7.0 Platform Notes

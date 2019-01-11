@@ -124,7 +124,8 @@ These are the packages available for these distributions:
 * **libopennebula-java**: Java API.
 * **python-opennebula**: Python API.
 * **libopennebula-java-doc**: Java API Documentation.
-* **opennebula-node**: Prepares a node as an opennebula-node.
+* **opennebula-node**: Prepares a node as an opennebula KVM node.
+* **opennebula-node-lxd**: Prepares a node as an opennebula LXD node.
 * **opennebula-sunstone**: :ref:`Sunstone <sunstone>` (the GUI).
 * **opennebula-tools**: Command Line interface.
 * **opennebula-gate**: :ref:`OneGate <onegate_overview>` server that enables communication between VMs and OpenNebula.
