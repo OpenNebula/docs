@@ -19,7 +19,7 @@ Front-End Components
 +=========================+=========================================================+=======================================================+
 | RedHat Enterprise Linux | 7                                                       | :ref:`Front-End Installation <frontend_installation>` |
 +-------------------------+---------------------------------------------------------+-------------------------------------------------------+
-| Ubuntu Server           | 14.04 (LTS), 16.04 (LTS), 18.04 (LTS)                   | :ref:`Front-End Installation <frontend_installation>` |
+| Ubuntu Server           | 16.04 (LTS), 18.04 (LTS)                                | :ref:`Front-End Installation <frontend_installation>` |
 +-------------------------+---------------------------------------------------------+-------------------------------------------------------+
 | CentOS                  | 7                                                       | :ref:`Front-End Installation <frontend_installation>` |
 +-------------------------+---------------------------------------------------------+-------------------------------------------------------+
@@ -40,7 +40,7 @@ vCenter Nodes
 +-----------+---------------------------------------+-------------------------------------------------+
 | Component |                Version                |                 More information                |
 +===========+=======================================+=================================================+
-| vCenter   | 5.5/6.0/6.5, managing ESX 5.5/6.0/6.5 | :ref:`vCenter Node Installation <vcenter_node>` |
+| vCenter   | 6.0/6.5/6,7, managing ESX 6.0/6.5/6.7 | :ref:`vCenter Node Installation <vcenter_node>` |
 +-----------+---------------------------------------+-------------------------------------------------+
 
 KVM Nodes
@@ -51,7 +51,7 @@ KVM Nodes
 +=========================+===========================================================+=========================================+
 | RedHat Enterprise Linux | 7                                                         | :ref:`KVM Driver <kvmg>`                |
 +-------------------------+-----------------------------------------------------------+-----------------------------------------+
-| Ubuntu Server           | 14.04 (LTS) , 16.04 (LTS), 18.04 (LTS)                    | :ref:`KVM Driver <kvmg>`                |
+| Ubuntu Server           | 16.04 (LTS), 18.04 (LTS)                                  | :ref:`KVM Driver <kvmg>`                |
 +-------------------------+-----------------------------------------------------------+-----------------------------------------+
 | CentOS                  | 7                                                         | :ref:`KVM Driver <kvmg>`                |
 +-------------------------+-----------------------------------------------------------+-----------------------------------------+
@@ -183,11 +183,6 @@ Essential Ruby library xmlrpc is missing from Ruby 2.4.0 and above. The library 
     # sudo gem install xmlrpc
 
 
-Ubuntu 14.04 Platform Notes
---------------------------------------------------------------------------------
-
-Package ruby-ox shouldn't be installed as it contains a version of the gem incompatible with the CLI
-
 CentOS 7.0 Platform Notes
 --------------------------------------------------------------------------------
 
@@ -262,6 +257,11 @@ Unsupported Platforms Notes
 ================================================================================
 
 .. warning:: Use the following distributions at your own risk. They are not officially supported by OpenNebula.
+
+Ubuntu 14.04 Platform Notes
+--------------------------------------------------------------------------------
+
+Package ruby-ox shouldn't be installed as it contains a version of the gem incompatible with the CLI
 
 CentOS 6.5 Usage Platform Notes
 --------------------------------------------------------------------------------
