@@ -81,7 +81,7 @@ MarketPlaces store the actual MarketPlaceApp images. How they do so depends on t
 |                           |        | that API like `Ceph Object Gateway S3                              |
 |                           |        | <http://docs.ceph.com/docs/master/radosgw/s3/>`__                  |
 +---------------------------+--------+--------------------------------------------------------------------+
-| :ref:`S3 <market_lxd>`    | No     | Enables creating base images from `the public LXD image repository |
+| :ref:`LXD <market_lxd>`   | No     | Enables creating base images from `the public LXD image repository |
 |                           |        | <https://images.linuxcontainers.org>`_                             |
 +---------------------------+--------+--------------------------------------------------------------------+
 
