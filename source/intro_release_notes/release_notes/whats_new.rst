@@ -8,7 +8,7 @@ OpenNebula 5.8 (Edge) is the fifth major release of the OpenNebula 5 series. A s
 
 - Support for LXD This enables low resource containers orchestration, which are ideal to run in low consumption devices closer to the customers.
 - Automatic NIC selection. This enhancement of the OpenNebula scheduler will alleviate the burden of VM/container Template management in edge environments where the remote hosts can be potentially heterogeneous, with different network configurations.
-- Distributed Data Center. This feature is key for the edge cloud. OpenNebula now offers the ability to use bare metal providers to build remote clusters in a breeze, without needing to change the workload nature. We are confident that this is a killer feature that sets OpenNebula apart from the direct competitors in the space.
+- Distributed Data Centers. This feature is key for the edge cloud. OpenNebula now offers the ability to use bare metal providers to build remote clusters in a breeze, without needing to change the workload nature. We are confident that this is a killer feature that sets OpenNebula apart from the direct competitors in the space.
 - Scalability improvements. Orchestrating an edge cloud will be demanding in terms of number of VMs, containers and hypervisors to manage. OpenNebula 5.8 brings to the table a myriad of improvements in terms of monitoring, pool management and GUI, to deliver a smooth user experience in large scale environments.
 
 
@@ -57,6 +57,7 @@ MarketPlace
 API & CLI
 --------------------------------------------------------------------------------
 - New Python bindings for the OpenNebula Cloud API (OCA). The PyONE addon is now part of the official distribution, more info :ref:`here <python>`
+- **Distributed Data Centers** provide tools to build and grow your cloud on bare-metal cloud providers. More info :ref:`here <ddc>`.
 - `one.vm.migrate` now accepts an additional argument to set the type of cold migration (save, poweroff or poweroff hard)
 - XSD files has been updated and completed
 - Pagination can be disabled using ``no-pager`` option.
