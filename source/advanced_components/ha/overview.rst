@@ -15,7 +15,7 @@ Hypervisor Compatibility
 +-----------------------------------------------------+-----------------------------------------------+
 |                       Section                       |                 Compatibility                 |
 +=====================================================+===============================================+
-| :ref:`Front-end HA Setup <frontend_ha_setup>`       | This Section applies to both KVM and vCenter. |
+| :ref:`Front-end HA Setup <frontend_ha_setup>`       | This Section applies to all Hypervisors.      |
 +-----------------------------------------------------+-----------------------------------------------+
-| :ref:`Virtual Machines High Availability <ftguide>` | This Section applies only to KVM.             |
+| :ref:`Virtual Machines High Availability <ftguide>` | This Section applies only to KVM and LXD.     |
 +-----------------------------------------------------+-----------------------------------------------+

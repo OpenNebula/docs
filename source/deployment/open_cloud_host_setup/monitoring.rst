@@ -33,6 +33,9 @@ To enable this monitoring system ``/etc/one/oned.conf`` must be configured with 
 
 ``collectd`` must be enabled both for KVM:
 
+.. note:: every setting is also aplicable to LXD
+
+
 .. code::
 
     #-------------------------------------------------------------------------------

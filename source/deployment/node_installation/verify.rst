@@ -8,7 +8,7 @@ This chapter ends with this optional section, where you will be able to test you
 
 You should only follow the specific subsection for your hypervisor.
 
-KVM based Cloud Verification
+KVM/LXD based Cloud Verification
 ================================================================================
 
 The goal of this subsection is to launch a small Virtual Machine, in this case a TTYLinux (which is a very small Virtual Machine just for testing purposes).
@@ -122,7 +122,7 @@ After this chapter, you are ready to :ref:`start using your cloud <operation_gui
 * :ref:`Authenticaton <authentication>`. (Optional) For integrating OpenNebula with LDAP/AD, or securing it further with other authentication technologies.
 * :ref:`Sunstone <sunstone>`. OpenNebula GUI should working and accessible at this stage, but by reading this guide you will learn about specific enhanced configurations for Sunstone.
 
-If your cloud is KVM based you should also follow:
+If your cloud is KVM/LXD based you should also follow:
 
 * :ref:`Open Cloud Host Setup <vmmg>`.
 * :ref:`Open Cloud Storage Setup <storage>`.

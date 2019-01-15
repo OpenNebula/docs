@@ -14,18 +14,28 @@ Step 1. Add OpenNebula Repositories
 Step 2. Installing the Software
 ===============================
 
-LXD node is supported only in Ubuntu 1804 and 1604
+LXD node is only supported on Ubuntu 1810, 1804 and 1604
+
+.. note:: Ubuntu **1810** uses lxd snap package by default
+.. note:: On Ubuntu **1604** you must install lxd3 from **xenial-backports**
 
 Installing on Ubuntu
 ---------------------------
 
-Execute the following commands to install the node package and restart libvirt to use the OpenNebula provided configuration file:
+Install LXD node setup package:
 
 .. prompt:: bash $ auto
 
     $ sudo apt-get install opennebula-node-lxd
 
-For further configuration check the specific guide: :ref:`LXD <lxdmg>`.
+Run the following to use ceph storage drivers
+
+.. prompt:: bash $ auto
+
+    $ sudo apt-get install rbd-nbd
+
+
+For further configuration check the specific guide: :ref:`LXD <lxdmg>`. 
 
 
 Step 4. Configure Passwordless SSH

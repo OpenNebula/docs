@@ -6,6 +6,6 @@ Virtual Machine Setup
    :maxdepth: 2
 
    Overview <context_overview>
-   KVM Contextualization <kvm>
+   Linux Contextualization <kvm>
    vCenter Contextualization and Customization <vcenter>
    Adding Content to Your Cloud <add_content>

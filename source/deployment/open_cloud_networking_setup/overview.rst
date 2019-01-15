@@ -39,4 +39,4 @@ After reading this chapter you can complete your OpenNebula installation by opti
 Hypervisor Compatibility
 ================================================================================
 
-This chapter applies only to KVM.
+This chapter applies to KVM and LXD.
