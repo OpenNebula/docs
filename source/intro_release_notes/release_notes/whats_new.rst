@@ -64,10 +64,12 @@ Other Issues Solved
 - `Fix issue where a wrong TM_MAD could be used with multiple transfer mode Datastores <https://github.com/OpenNebula/one/issues/2544>`__.
 - `Fix issue about vm monitoring desynchronization in vCenter driver <https://github.com/OpenNebula/one/issues/2552>`__.
 - `Fix issue about removing unmanaged nics in vCenter driver <https://github.com/OpenNebula/one/issues/2558>`__.
+- `Fix issue vCenter driver performs too much reconfigure calls when a machine is deployed <https://github.com/OpenNebula/one/issues/2649>`__.
+- `Fix issue where delete recursive operation of templates instantiated as persistent does not remove images from the vCenter datastores <https://github.com/OpenNebula/one/issues/1350>`__.
 - `Fix issue where only one Ceph monitor was considered on disk attach operations <https://github.com/OpenNebula/one/issues/1955>`__.
 - `Fix install.sh script, add missing options <https://github.com/OpenNebula/one/issues/2001>`__.
 - `Fix issue regarding saveas operation and CD-ROMs <https://github.com/OpenNebula/one/issues/2610>`__.
-- `Fix vcenter persistency with unmanaged disks and imported images <https://github.com/OpenNebula/one/issues/2624>`__.
+- `Fix vCenter persistency with unmanaged disks and imported images <https://github.com/OpenNebula/one/issues/2624>`__.
 - `Fix issue Sunstone is not showing well security groups for ICMP6 <https://github.com/OpenNebula/one/issues/2580>`__.
 - `Fix issue that prevents to use floating IPs with BRIDGE interfaces <https://github.com/OpenNebula/one/issues/2607>`__.
 - `Fix issue with disk-saveas on ubuntu 18.04 <https://github.com/OpenNebula/one/issues/2646>`__.
