@@ -62,6 +62,8 @@ By default the OpenNebula Cloud API (CLI and Sunstone make use of it) paginates 
 
 List commands will send their output through a pager process when in an interactive shell. By default, the pager process is set to ``less`` but it can be change to any other program.
 
+The pagination can be disabled using the argument ``--no-pager``. It sets the ONE_PAGER variable to ``cat``.
+
 **ONE_LISTCONF**
 
 Allows the user to use an alternate layout to displays lists. The layouts are defined in ``/etc/one/cli/onevm.yaml``.
