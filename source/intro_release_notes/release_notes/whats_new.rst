@@ -6,15 +6,15 @@ What's New in 5.8
 
 OpenNebula 5.8 (Edge) is the fifth major release of the OpenNebula 5 series. A significant effort has been applied in this release to enhance features introduced in 5.6 Blue Flash, while keeping an eye in implementing those features more demanded by the community. A major highlight of Edge is its focus to support computing on the Edge, bringing the processing power of VMs closer to the consumers to reduce latency. In this regards, Edge comes with the following major features:
 
-- Support for LXD This enables low resource containers orchestration, which are ideal to run in low consumption devices closer to the customers.
+- Support for LXD. This enables low resource container orchestration.  LXD containers are ideal to run in low consumption devices closer to the customers.
 - Automatic NIC selection. This enhancement of the OpenNebula scheduler will alleviate the burden of VM/container Template management in edge environments where the remote hosts can be potentially heterogeneous, with different network configurations.
 - Distributed Data Centers. This feature is key for the edge cloud. OpenNebula now offers the ability to use bare metal providers to build remote clusters in a breeze, without needing to change the workload nature. We are confident that this is a killer feature that sets OpenNebula apart from the direct competitors in the space.
-- Scalability improvements. Orchestrating an edge cloud will be demanding in terms of number of VMs, containers and hypervisors to manage. OpenNebula 5.8 brings to the table a myriad of improvements in terms of monitoring, pool management and GUI, to deliver a smooth user experience in large scale environments.
+- Scalability improvements. Orchestrating an edge cloud will be demanding in terms of the number of VMs, containers and hypervisors to manage. OpenNebula 5.8 brings to the table a myriad of improvements to the monitoring, pool management and GUI, to deliver a smooth user experience in large scale environments.
 
 
 This OpenNebula release is named after the edges of nebulas. Nebulas are diffuse objects, and their edges can be considered vacuum. However, they are very thick, so they appear to be dense. This is the aim of OpenNebula 5.8, to provide computing power on a wide geographic surface to offer services closer to customers, building a cloud managed from a single portal over very thin infrastructure. There's an `Edge Nebula <http://freelancer.wikia.com/wiki/Edge_Nebula>` on the Freelancer videogame.
 
-The OpenNebula team is now set to bug-fixing mode. Note that this is a beta release aimed at testers and developers to try the new features, and send a more than welcomed feedback for the final release. Note that being a beta there is no migration path from the previous stable version (5.6.1) nor migration path to the final stable version (5.8.0). A <a href=https://github.com/OpenNebula/one/milestone/9>list of open issues</a> can be found in the GitHub development portal.
+The OpenNebula team is now transitioning to "bug-fixing mode". Note that this is a beta release aimed at testers and developers to try the new features, and send a more than welcomed feedback for the final release. Also note that being a beta, there is no migration path from the previous stable version (5.6.1) nor migration path to the final stable version (5.8.0). A <a href=https://github.com/OpenNebula/one/milestone/9>list of open issues</a> can be found in the GitHub development portal.
 
 
 OpenNebula Core
