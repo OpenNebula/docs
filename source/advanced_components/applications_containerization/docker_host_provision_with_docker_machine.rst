@@ -18,14 +18,14 @@ To follow this guide, you will need the following (see the Platform Notes to see
     * Your OpenNebula Cloud must be accessible from your client computer.
     * The OpenNebula Docker application available in the Marketplace should have been imported into the OpenNebula cloud, you can find more information at :ref:`Docker Appliance Configuration <docker_appliance_configuration>`.
 
-This guide shows how to specify in the command line all the required attributes to create the Docker Engines. As an alternative you can specify a template registered in OpenNebula, in this case you can see all the available options at :ref:`Docker Machine Driver References <docker_machine_driver_reference>` section.
+This guide shows how to specify all the required command line  attributes to create the Docker Engines. As an alternative you can specify a template registered in OpenNebula, in this case you can see all the available options at :ref:`Docker Machine Driver References <docker_machine_driver_reference>` section.
 
 Step 1 - Install Docker Machine OpenNebula Driver
 ================================================================================
 
 In order to install the Docker Machine OpenNebula Driver you just need to install the package `docker-machine-opennebula` available `here <https://opennebula.org/software/>`__ in your desktop.
 
-In case you already have it installed in the OpenNebula frontend (or any other host) you can copy instead the `docker-machine-driver-opennebula` file from the /usr/share/docker_machine path of the frontend into any folder in your desktop that is included in your $PATH.
+In case you already have it installed in the OpenNebula frontend (or any other host) you instead can copy the `docker-machine-driver-opennebula` file from the /usr/share/docker_machine path of the frontend into any folder of your desktop that is included in your $PATH.
 
 
 Step 2 - Configure Client Machine to Access the OpenNebula Cloud
@@ -52,22 +52,22 @@ For vCenter hypervisor you will need to follow these steps to be able to use Doc
 Step 4 - Start your First Docker Host
 ================================================================================
 
-For start your first Docker host you just need to use the `docker-machine create` command:
+To start your first Docker host you just need to use the `docker-machine create` command:
 
 .. prompt:: bash # auto
 
     #docker-machine create --driver opennebula --opennebula-template-id $TEMPLATE_ID $VM_NAME
 
-This command create a VM in OpenNebula using $TEMPLATE_ID as the template and $VM_NAME as the VM name.
+This command creates a VM in OpenNebula using $TEMPLATE_ID as the template and $VM_NAME as the VM name.
 
-Make sure the network attached to the template allow Docker Machine to connect to the VM.
+Make sure the network attached to the template allows Docker Machine to connect to the VM.
 
 If you want to create a VM without using a template (only for KVM) you can take a look at "Not Using a Template" section from :ref:`Docker Machine Driver References <docker_machine_driver_reference>`.
 
 Step 5 - Interact with your Docker Engine
 ================================================================================
 
-You can list or the VMs deployed by docker machine:
+You can list the VMs deployed by docker machine:
 
 .. prompt:: bash # auto
 
@@ -149,7 +149,7 @@ Connect to the host via SSH:
         CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                      PORTS               NAMES
         787b15395f48        hello-world         "/hello"            16 seconds ago      Exited (0) 15 seconds ago                       upbeat_bardeen
 
-Activate the host, you can connect your Docker client to the remote host for run docker commands:
+Activate the host, you can connect your Docker client to the remote host to run docker commands:
 
 .. prompt:: bash # auto
 
