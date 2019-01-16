@@ -1182,6 +1182,18 @@ Example using cli:
 
     $ onevm migrate "<VM name>" <destination host id>
 
+During a cold migration you can change target datastore (migrate disks) for disks belonging to the VM that will be migrated. This is useful for rebalancing resources usage among datastores.
+
+Example using cli:
+
+.. prompt:: bash $ auto
+
+    $ onevm migrate "<VM name>" <destination host id> <destination datastore id>
+
+Limitations when changing system datastore during a cold migration:
+
+* It is not recommended to migrate to a different datastore VMs with managed disks. Disks created by OpenNebula (managed) are created on a specific folder on the datastore. After a migration, vCenter will move that disk from that folder to the VM folder, changing the path, which is not updated by OpenNebula. This means that some operations can fail later on, like a disk back-up.
+
 Also vCenter driver allows you to execute **live migration**, this means that instead of power off the machine you have the option of perform migrate action in a running state, however the following requirement list must be fulfilled:
 
 * OpenNebula live migration only works for running machines so be sure to check the state before
