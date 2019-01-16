@@ -48,6 +48,7 @@ vCenter
 - Added new configuration file vcenterrc, allow you to change the default behaviour in the process of image importation. More info :ref:`here <vcenterc_image>`.
 - It is possible to change boot order devices updating the vm template. More info :ref:`here <template_os_and_boot_options_section>`.
 - VM migration between clusters and datastores is now supported, :ref:`check here <vcenter_migrate>`.
+- It is possible to migrate images from KVM to vCenter or vice versa.
 
 MarketPlace
 --------------------------------------------------------------------------------
