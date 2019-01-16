@@ -9,40 +9,7 @@ Overview
 
 OpenNebula allows the management of hybrid environments, offering end-users a self-service portal to consume resources from both VMware-based infrastructures and KVM based ones in a transparent way to the user.
 
-We are going to show you both transition below step-by-step trough Sunstone:
-
-VMDK Image to QCOW2 Datastore
---------------------------------------------------------------------------------
-
-Here is how it works. We have a vmdk image within MarketPlace and we want to use it in KVM:
-
-1. Go to MarketPlace and select the image, then click on **Download Button**.
-
-.. image:: /images/market_migrate_vmdk_qcow2_1.png
-    :width: 90%
-    :align: center
-
-.. warning::
-
-    When the destination image datastore is qcow2/raw you **must** define the attribute ``DRIVER=qcow2`` or ``DRIVER=raw``, respectively, in order to convert the image. If not, the image will be download without any change.
-
-2. Select the destination datastore.
-
-.. image:: /images/market_migrate_vmdk_qcow2_2.png
-    :width: 90%
-    :align: center
-
-3. Create a template in order to use the new image.
-
-.. image:: /images/market_migrate_vmdk_qcow2_3.png
-    :width: 90%
-    :align: center
-
-4. Instantiate the template and check that it works.
-
-.. image:: /images/market_migrate_vmdk_qcow2_4.png
-    :width: 90%
-    :align: center
+We are going to show you the transition below step-by-step trough Sunstone:
 
 QCOW2 Image to VMDK Datastore
 --------------------------------------------------------------------------------
