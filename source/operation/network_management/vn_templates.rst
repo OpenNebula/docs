@@ -4,7 +4,7 @@
 Virtual Networks Templates
 ===========================
 
-The Virtual Network Templates allows the end user to create virtual networks without knowing the details of the underlying infrastructure. Tipically the administrator sets the templates up with the required physical attributes, e.g. driver or physical device information and let the end user to add all the logic information like address ranges or gateway.
+The Virtual Network Templates allows the end user to create virtual networks without knowing the details of the underlying infrastructure. Typically the administrator sets the templates up with the required physical attributes, e.g. driver or physical device information and let the end user to add all the logic information like address ranges or gateway.
 
 Virtual Network Templates can be instantiated several times and shared between multiple users.
 
@@ -34,7 +34,7 @@ Using Virtual Network Templates
 
 By default just oneadmin can create Virtual Network Templates, if other users need permissions for creating Virtual Network Templates it can be provided by creating a specific ACL.
 
-Once the Virtual Network Template is created the access to it can be manage by its permissions. For example, if a end user needs to instantiate an especific template, it would be enought to give the template **USE** permmission for others. You can find more :ref:`information about permissions here <manage_vnets>`.
+Once the Virtual Network Template is created the access to it can be managed by its permissions. For example, if a end user needs to instantiate an specific template, it would be enough to give the template **USE** permmission for others. You can find more :ref:`information about permissions here <manage_vnets>`.
 
 Operations
 ------------------------------------
@@ -69,7 +69,7 @@ First of all, as ``oneadmin`` user (or any other user who have CREATE permission
     $ onevntemplate create vn_template.txt
       ID: 0
 
-Once the Virtual Network Template have been created change the permissions for make it available for the users you want. In the example below all the user will be able to instantiate the template:
+Once the Virtual Network Template has been created, change the permissions to make it available for the users you want. In the example below all the users will be able to instantiate the template:
 
 .. code::
 
@@ -91,11 +91,11 @@ Once the Virtual Network Template have been created change the permissions for m
       BRIDGE="virbr0"
       VN_MAD="bridge"
 
-    #check everithing works well
+    #check everything works well
     $ onevntemplate instantiate 0 --user user --name private
       VN ID: 1
     $ onevnet list
       ID USER            GROUP        NAME                CLUSTERS   BRIDGE   LEASES
       1  user            users        private             0          virbr0        0
       
-The network is now ready, user can create VMs and attach their interfaces to the newly created Virtual Network. Simply adding ``NIC = [ NETWORK = private ]`` or selecting it through Sunstone.
+The network is now ready, users can create VMs and attach their interfaces to the newly created Virtual Network. Simply adding ``NIC = [ NETWORK = private ]`` or selecting it through Sunstone.
