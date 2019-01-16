@@ -116,7 +116,7 @@ You can get an existing image and change it:
 Step 5 - Save the Image
 =========================================================
 
-If you want to save changes like the ones performed in Step 3 and Step 4, the disk saveas functionality can be used to save this image as a new one. This option is available at the storage tab of the VM, cwitthis will automatically create a new image with the performed changes.
+If you want to save changes like the ones performed in Step 3 and Step 4, the disk saveas functionality can be used to save this image as a new one. This option is available at the storage tab of the VM, this will automatically create a new image with the performed changes.
 
 |disk-saveas|
 
