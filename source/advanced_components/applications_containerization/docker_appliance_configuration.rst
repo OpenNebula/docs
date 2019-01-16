@@ -20,7 +20,7 @@ KVM
 
   |img-marketplace-kvm|
 
-  When the appliance is downloaded a template with the same name it's created. It's recomended to update the template with a network for make the vm accessible from outside, set the disk size the root password or the ssh key.
+  When the appliance is downloaded a template with the same name it's created. It's recomended to update the template with a network for make the vm accessible from outside, set the disk size, the root password or the ssh key.
 
   You can also create a template and include the appliance image in it.
 
@@ -40,7 +40,7 @@ vCenter
 Step 2 - Customize The Template
 =========================================================
 
-If you want to make any changes in the appliance and save them for latter use, you can set the image as persistent before launching the appliance. After the changes are performed, you need to shut the VM down and remove the persistent option from the image. This way you can create a golden imagen and new instantiations of the appliance won't overwrite it.
+If you want to make any changes in the appliance and save them for latter use, you can set the image as persistent before launching the appliance. After the changes are performed, you need to shut the VM down and remove the persistent option from the image. This way you can create a golden image and new instances of the appliance won't overwrite it.
 
 |image-persistent|
 
