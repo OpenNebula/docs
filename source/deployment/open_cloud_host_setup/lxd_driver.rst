@@ -171,12 +171,12 @@ LXD can deploy containers without any resource limitation, however, OpenNebula c
 - attach/detach_nic
 - vnc connection
 
-But won't get any benefit from storage related actions since they don't have a valid image in the datastore. If you delete the imported container it will become wild again.
+Containers won't get any benefit from storage related actions since they don't have a valid image in the datastore. If you delete the imported container it will become wild again.
 
 Tuning & Extending
 ==================
 
-Mutli-hypervisor
+Multi-hypervisor
 ----------------
 Since LXD doesn't require virtualization extensions, it can peacefully coexist alongside KVM or other HVM hypervisor in the same virtualization node.
 
@@ -201,7 +201,7 @@ We will create a container using the LXD CLI and dump it into a block device in 
     # umount $block
     # losetup -d $block
 
-Now the image is ready to be used, you can also use ``qemu-img`` to convert image format. Note that you can use any linux standard filesystem / partition layout as a base image for the contianer. This enables you to easily import images from raw lxc, root partitions from KVM images or proxmox templates. 
+Now the image is ready to be used, you can also use ``qemu-img`` to convert the image format. Note that you can use any linux standard filesystem / partition layout as a base image for the contianer. This enables you to easily import images from raw lxc, root partitions from KVM images or proxmox templates. 
 
 Use a linuxcontainers.org Marketplace
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -243,7 +243,7 @@ The mapper basically is a ruby class with two methods defined, a ``do_map`` meth
     disk.raw       -> map -> /dev/loop0
     one/one-7-54-0 -> map -> /dev/nbd0
 
-However thigs can get tricky when dealing with images with a partition table, you can check the code of the mapper devices `here <https://github.com/OpenNebula/one/blob/master/src/vmm_mad/remotes/lib/lxd/mapper/>`_.
+However things can get tricky when dealing with images with a partition table, you can check the code of the mapper devices `here <https://github.com/OpenNebula/one/blob/master/src/vmm_mad/remotes/lib/lxd/mapper/>`_.
 
 .. TODO Review with latest format, include a simple mapper
 
