@@ -7,7 +7,7 @@ Migrate images to/from KVM / vCenter DS
 Overview
 --------------------------------------------------------------------------------
 
-OpenNebula allows the management of hybrid environments, offering end-users a self-service portal to consume resources from both VMware-based infrastructures and KVM based ones in a transparent way to the user.
+OpenNebula allows the management of hybrid environments, offering end-users a self-service portal to consume resources from both VMware-based infrastructures and KVM based ones to the user in a transparent way.
 
 We are going to show you both transition below step-by-step trough Sunstone:
 
@@ -47,7 +47,7 @@ Here is how it works. We have a vmdk image within MarketPlace and we want to use
 QCOW2 Image to VMDK Datastore
 --------------------------------------------------------------------------------
 
-The process is very similar to the described aboved.
+The process is very similar to the one described above.
 
 1. Go to MarketPlace and select the image in qcow2 format to be used in a vCenter cluster, then click on **Download Button**.
 
@@ -93,22 +93,22 @@ The process is very similar to the described aboved.
     :width: 90%
     :align: center
 
-In vcenter:
+In vCenter:
 
 .. image:: /images/market_migrate_qcow2_vmdk_8.png
     :width: 90%
     :align: center
 
-How was implemented
+How it was implemented
 --------------------------------------------------------------------------------
 
-Everytime the image that we selected from MarketPlace is downloaded to the frontend. Then, when the download process finish, is convert with ``qemu-img convert`` tool as follow:
+Everytime the image that we selected from MarketPlace is downloaded to the frontend. Then, when the download process is finished, it is converted with the ``qemu-img convert`` tool as follows:
 
 .. prompt:: bash $ auto
 
     qemu-img convert -f <original_type> -O <destination_type> <original_file> <destination_file>
 
-Then, the destination file is send to the destination datastore.
+Then, the file is sent to the destination datastore.
 
 Limitations and restrictions
 --------------------------------------------------------------------------------
