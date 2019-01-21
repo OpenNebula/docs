@@ -79,3 +79,4 @@ Other Issues Solved
 - `Fix issue with sensitive group-membership matching in LDAP auth <https://github.com/OpenNebula/one/issues/2677>`__.
 - `Make use of HTTPS by default in OpenNebula MarketPlace <https://github.com/OpenNebula/one/issues/2668>`__.
 - `Fix issue about restoring erasure-coded Ceph VM image from shanshot <https://github.com/OpenNebula/one/issues/2476>`__.
+- `Fix CPU_MODEL can't be changed <https://github.com/OpenNebula/one/issues/2820>`__.
