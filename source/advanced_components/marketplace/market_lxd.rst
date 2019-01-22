@@ -37,7 +37,21 @@ Several parameters can be specified on the marketplace's template:
 | ``FORMAT``        | Image format. Default: raw                                         |
 +-------------------+--------------------------------------------------------------------+
 
+For example the following template will create a working marketplace with the default values:
 
+.. code-block:: none
+
+NAME="Linux Containers"
+MARKET_MAD="linuxcontainers"
+DESCRIPTION="MarketPlace for the public image server fo LXC at linuxcontainers.org"
+
+Save this contents on a file (e.g. lxcmarket) and create the market with:
+
+.. prompt:: text $ auto
+
+ $ onemarket create lxcmarket
+
+Note, you can also use Sunstone and input the previous values through the UI.
 
 Tuning & Extending
 ==================
