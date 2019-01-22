@@ -52,7 +52,7 @@ vCenter
 MarketPlace
 --------------------------------------------------------------------------------
 - When a MarketPlace appliance is imported into a datastore it is converted f needed from qcow2/raw to vmdk.
-- Added new :ref:`LXD MarketPlace <market_lxd>`. A sample LXD marketplace will be created in new installations. You can easily create one for existing deployments following the instructions in the :ref:`maketplace guide <market_lxd>'.
+- Added new :ref:`LXD MarketPlace <market_lxd>`. A sample LXD marketplace will be created in new installations. You can easily create one for existing deployments following the instructions in the :ref:`maketplace guide <market_lxd>`.
 
 API & CLI
 --------------------------------------------------------------------------------
