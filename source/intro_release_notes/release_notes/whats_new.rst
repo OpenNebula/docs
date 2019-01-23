@@ -67,7 +67,12 @@ Other Issues Solved
 - `Fix issue where a wrong TM_MAD could be used with multiple transfer mode Datastores <https://github.com/OpenNebula/one/issues/2544>`__.
 - `Fix issue about vm monitoring desynchronization in vCenter driver <https://github.com/OpenNebula/one/issues/2552>`__.
 - `Fix issue about removing unmanaged nics in vCenter driver <https://github.com/OpenNebula/one/issues/2558>`__.
+- `Fix issue not displaying stacktrace in vCenter driver <https://github.com/OpenNebula/one/issues/1826>`__.
+- `Fix issue that makes possible to add network interfaces to vCenter templates without any network <https://github.com/OpenNebula/one/issues/2828>`__.
+- `Fix issue deploying vCenter templates with unmanaged distributed nic does not work <https://github.com/OpenNebula/one/issues/2835>`__.
+- `Fix issue vCenter driver driver do not allow to remove duplicated unmanaged nics from template <https://github.com/OpenNebula/one/issues/2833>`__.
 - `Fix issue vCenter driver performs too much reconfigure calls when a machine is deployed <https://github.com/OpenNebula/one/issues/2649>`__.
+- `Fix issue Nic model is ignored on vCenter template <https://github.com/OpenNebula/one/issues/2293>`__.
 - `Fix issue where delete recursive operation of templates instantiated as persistent does not remove images from the vCenter datastores <https://github.com/OpenNebula/one/issues/1350>`__.
 - `Fix issue where only one Ceph monitor was considered on disk attach operations <https://github.com/OpenNebula/one/issues/1955>`__.
 - `Fix install.sh script, add missing options <https://github.com/OpenNebula/one/issues/2001>`__.
