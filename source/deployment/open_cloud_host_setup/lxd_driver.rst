@@ -66,6 +66,12 @@ There are some interaction options between LXD and OpenNebula configured in ``/v
     # corresponding value in oned.conf has been modified.
     :datastore_location: /var/lib/one/datastores
 
+In case of a more complex cgroup configuration the containers cgroup could be placed in separate slice instead of default root cgroup. You can configure it via an environmental variable
+
+.. code-block:: bash
+
+    export LXC_CGROUP_PREFIX=system.slice
+
 LXD daemon
 --------------------------------------------------------------------------------
 
