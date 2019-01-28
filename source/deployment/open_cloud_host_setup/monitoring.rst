@@ -2,7 +2,7 @@
 .. _imudppushg:
 
 ====================
-Monitoring 
+Monitoring
 ====================
 
 This section provides an overview of the OpenNebula monitoring subsystem. The monitoring subsystem gathers information relative to the Hosts and the Virtual Machines, such as the Host status, basic performance indicators, as well as Virtual Machine status and capacity consumption. This information is collected by executing a set of static probes provided by OpenNebula. The output of these probes is sent to OpenNebula using a push mechanism.
@@ -17,6 +17,8 @@ OpenNebula starts a ``collectd`` daemon running in the Front-end that listens fo
 |image0|
 
 If the agent stops in a specific Host, OpenNebula will detect that no monitorization data is received from that hosts and will restart the probe with SSH.
+
+Apart from the periodical monitoring some specific drivers (SSH and LVM transfer managers) will trigger sending the data instantly when an action is finished. This is done by sending the HUP signal to the collectd client on the host.
 
 Requirements
 ============

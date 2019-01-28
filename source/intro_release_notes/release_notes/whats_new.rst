@@ -51,7 +51,7 @@ vCenter
 
 MarketPlace
 --------------------------------------------------------------------------------
-- When a MarketPlace appliance is imported into a datastore it is converted f needed from qcow2/raw to vmdk.
+- When a MarketPlace appliance is imported into a datastore it is converted if needed from qcow2/raw to vmdk.
 - Added new :ref:`LXD MarketPlace <market_lxd>`. A sample LXD marketplace will be created in new installations. You can easily create one for existing deployments following the instructions in the :ref:`maketplace guide <market_lxd>`.
 
 API & CLI
@@ -61,6 +61,10 @@ API & CLI
 - `one.vm.migrate` now accepts an additional argument to set the type of cold migration (save, poweroff or poweroff hard)
 - XSD files has been updated and completed
 - Pagination can be disabled using ``no-pager`` option.
+
+Storage
+--------------------------------------------------------------------------------
+- Free space of the KVM hypervisor is now updated faster for SSH and LVM transfer managers by sending HUP signal to collectd client.
 
 Other Issues Solved
 --------------------------------------------------------------------------------
