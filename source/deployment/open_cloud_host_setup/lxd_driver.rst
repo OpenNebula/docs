@@ -141,7 +141,7 @@ The LXD daemon may hold several defined profiles. Every container inherits prope
 
     LXD_PROFILE=<profile_name>
 
-Bear in mind that the template will override any matching key with the profile.
+Bear in mind that the template will override any matching key with the profile. If the profile is not found on the node, the default profile will be applied and an error will appear on the VM log.
 
 
 Disks
