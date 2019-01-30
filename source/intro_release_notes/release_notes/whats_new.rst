@@ -23,6 +23,7 @@ OpenNebula Core
 - **Migration through poweroff/on cycle**, new options for cold-migrating a Virtual Machine, now they can also be migrated via poweroff and poweroff hard.
 - **Mixed mode** for ``ALLOW_ORPHAN`` attribute which takes care of the dependencies between snapshots after revert actions at Ceph datastores.
 - Default configuration values for RAFT have been updated to a more conservative setting.
+- **Search for virtual machines** there is available a new option for searching VMs using ``onevm list`` command or ``one.vmpool.info`` API call.
 
 Sunstone
 --------------------------------------------------------------------------------
