@@ -292,6 +292,9 @@ So far the following default values for VM NIC can be set:
 +-----------------------+--------------------------------------------------------+--------------------+
 
 
+.. note:: You can use the template attribute NIC_DEFAULT/MODEL for set a default nic model into your deployed machines, take into account that NIC/MODEL have preference and priority, if you don't explicitly set any of these values vCenter driver will grab the model from vCenter driver defaults file (managed nics) or will be delegated by vCenter itself (unmanaged nics).
+
+
 Default attributes for VM GRAPHICS:
 
 +-----------------------+--------------------------------------------------------+--------------------+
