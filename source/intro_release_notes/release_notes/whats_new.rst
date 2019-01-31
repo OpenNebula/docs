@@ -91,3 +91,4 @@ Other Issues Solved
 - `Fix issue about restoring erasure-coded Ceph VM image from shanshot <https://github.com/OpenNebula/one/issues/2476>`__.
 - `Fix CPU_MODEL can't be changed <https://github.com/OpenNebula/one/issues/2820>`__.
 - `Fix KVM probe of machines models stuck <https://github.com/OpenNebula/one/issues/2842>`__.
+- `Fix create/update of .monitor for local DS monitoring <https://github.com/OpenNebula/one/issues/2767>`__.
