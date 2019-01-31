@@ -33,7 +33,6 @@ There are a number of regular features that are not implemented yet:
 - **offline disk resize**:
     - not supported on multiple partition images
     - only supported **xfs** and **ext4** filesystems
-        - resizing **ext4** on Ubuntu16.04 will fail due to outdated `e2fsck` package
 - **datablocks**: Datablocks created on OpenNebula will need to be formatted before being attached to a container
 - **multiple partition images**: One of the partitions must have a valid `/etc/fstab` to mount the partitions 
 
@@ -143,6 +142,7 @@ The LXD daemon may hold several defined profiles. Every container inherits prope
 
 Bear in mind that the template will override any matching key with the profile. If the profile is not found on the node, the default profile will be applied and an error will appear on the VM log.
 
+A probe will run in each node reporting to the frontend which profiles exist on the node in order for them to be easilty applied without having to manually look for them.
 
 Disks
 ~~~~~
