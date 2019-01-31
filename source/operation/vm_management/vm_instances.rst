@@ -156,6 +156,43 @@ and details about it can be obtained with ``show``:
      SEQ        HOSTNAME REASON           START        TIME       PTIME
        0         testbed   none  09/28 06:48:18 00 00:07:23 00 00:00:00
 
+.. _vm_search:
+
+Searching VM Instances...
+---------------------------
+
+You can search for VM instances by using the ``--search`` option of the ``onevm list`` command. This is specially usefull on large environments with many VMs. The filter must be in a KEY=VALUE format and will return all the VMs which fit the filter.
+
+The KEY must be in the VM template section or be one of the following:
+
+    - UNAME
+    - GNAME
+    - NAME
+    - LAST_POLL
+    - PREV_STATE
+    - PREV_LCM_STATE
+    - RESCHED
+    - STIME
+    - ETIME
+    - DEPLOY_ID
+
+For example, for searching a VM with a specific MAC addres:
+
+.. prompt:: text $ auto
+
+    $onevm list --search MAC=02:00:0c:00:4c:dd
+     ID    USER     GROUP    NAME    STAT UCPU UMEM HOST TIME
+     21005 oneadmin oneadmin test-vm pend    0   0K      1d 23h11
+
+Equivalently if there are more than one VM instance that matches the result they will be shown. for example, VMs with a given NAME:
+
+.. prompt:: text $ auto
+
+    $onevm list --search NAME=test-vm
+     ID    USER     GROUP    NAME    STAT UCPU UMEM HOST TIME
+     21005 oneadmin oneadmin test-vm pend    0   0K       1d 23h13
+     2100  oneadmin oneadmin test-vm pend    0   0K      12d 17h59
+
 Terminating VM Instances...
 ---------------------------
 
