@@ -18,7 +18,7 @@ OpenNebula starts a ``collectd`` daemon running in the Front-end that listens fo
 
 If the agent stops in a specific Host, OpenNebula will detect that no monitorization data is received from that hosts and will restart the probe with SSH.
 
-Apart from the periodical monitoring some specific drivers (SSH and LVM transfer managers) will trigger sending the data instantly when an action is finished. This is done by sending the HUP signal to the collectd client on the host.
+Apart from the periodical monitoring some specific drivers (SSH and LVM transfer managers) will trigger sending the data instantly when an action is finished. This is done by sending the HUP signal to the collectd client on the host. You can trigger the information update manually with the ```onehost forceupdate command```.
 
 Requirements
 ============
