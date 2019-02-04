@@ -277,12 +277,10 @@ The **raw** attribute offers the end user the possibility of passing by attribut
       RAW = [ type = "kvm",
               data = "<devices><serial type=\"pty\"><source path=\"/dev/pts/5\"/><target port=\"0\"/></serial><console type=\"pty\" tty=\"/dev/pts/5\"><source path=\"/dev/pts/5\"/><target port=\"0\"/></console></devices>" ]
 
-.. _libvirt_metadata:
-
 Libvirt metadata
 ~~~~~~~~~~~~~~~~~~~~~
 
-During the Libvirt xml creationt there is some metadata included with OpenNebula information, the specific attributes are listed below:
+The following OpenNebula information is added to the metadata section of the Libvirt domain, the specific attributes are listed below:
 
    - system_datastore
    - name
@@ -294,9 +292,9 @@ During the Libvirt xml creationt there is some metadata included with OpenNebula
    - stime
    - deployment_time
 
-The fields correspond whit their values at the XML representation of the VM at OpenNebula. ``opennebula_version`` and ``deployment_time`` are not present on this representation they correspond whit the OpenNebula version used during the deployment and deployment time at epoch format.
+They correspond to their values OpenNebula equivalents for the XML representation of the VM. ``opennebula_version`` and ``deployment_time`` are the OpenNebula version used during the deployment and deployment time at epoch format, respectively.
 
-Also the VM name is included at Libvirt XML ``title`` field, so if the ``--title`` option is used for listing the Libvirt domains the VM name will be shown whit the domain name.
+Also the VM name is included at Libvirt XML ``title`` field, so if the ``--title`` option is used for listing the Libvirt domains the VM name will be shown with the domain name.
 
 Disk/Nic Hotplugging
 --------------------
