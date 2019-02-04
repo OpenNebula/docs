@@ -66,6 +66,7 @@ API & CLI
 Storage
 --------------------------------------------------------------------------------
 - Free space of the KVM hypervisor is now updated faster for SSH and LVM transfer managers by sending HUP signal to collectd client, :ref:`see more here <imudppushg>`. Additionally, you can trigger an information update manually with the ```onehost forceupdate``` command.
+- LVM drviers supports configurable zero'ing of allocated volumes to prevent data leaks to other VMs, :ref:`see more here <lvm_driver_conf>`.
 
 Other Issues Solved
 --------------------------------------------------------------------------------
