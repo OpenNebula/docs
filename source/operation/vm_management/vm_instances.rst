@@ -193,6 +193,8 @@ Equivalently if there are more than one VM instance that matches the result they
      21005 oneadmin oneadmin test-vm pend    0   0K       1d 23h13
      2100  oneadmin oneadmin test-vm pend    0   0K      12d 17h59
 
+.. warning:: This feature is only available for **MySQL** backend with a version higher or equal than **5.6**.
+
 Terminating VM Instances...
 ---------------------------
 
