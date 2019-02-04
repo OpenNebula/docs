@@ -24,6 +24,7 @@ OpenNebula Core
 - **Mixed mode** for ``ALLOW_ORPHAN`` attribute which takes care of the dependencies between snapshots after revert actions at Ceph datastores.
 - Default configuration values for RAFT have been updated to a more conservative setting.
 - **Search for virtual machines** there is available a new option for searching VMs using ``onevm list`` command or ``one.vmpool.info`` API call. Find out how to search VM instances :ref:`here <vm_search>`.
+- **Metadata information** is included at Libvirt XML. Find more information :ref:`here <libvirt_metadata>`.
 
 Sunstone
 --------------------------------------------------------------------------------
