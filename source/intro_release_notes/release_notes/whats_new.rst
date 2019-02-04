@@ -92,3 +92,4 @@ Other Issues Solved
 - `Fix CPU_MODEL can't be changed <https://github.com/OpenNebula/one/issues/2820>`__.
 - `Fix KVM probe of machines models stuck <https://github.com/OpenNebula/one/issues/2842>`__.
 - `Fix create/update of .monitor for local DS monitoring <https://github.com/OpenNebula/one/issues/2767>`__.
+- `Clear VM DEPLOY ID attribute <https://github.com/OpenNebula/one/issues/2641>`
