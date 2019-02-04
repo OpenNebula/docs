@@ -70,6 +70,7 @@ Storage
 Other Issues Solved
 --------------------------------------------------------------------------------
 - `Fix issue where a wrong TM_MAD could be used with multiple transfer mode Datastores <https://github.com/OpenNebula/one/issues/2544>`__.
+- `Fix issue about saving as template virtual machines with vCenter driver <https://github.com/OpenNebula/one/issues/1299>`__.
 - `Fix issue about vm monitoring desynchronization in vCenter driver <https://github.com/OpenNebula/one/issues/2552>`__.
 - `Fix issue about removing unmanaged nics in vCenter driver <https://github.com/OpenNebula/one/issues/2558>`__.
 - `Fix issue not displaying stacktrace in vCenter driver <https://github.com/OpenNebula/one/issues/1826>`__.
