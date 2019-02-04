@@ -34,3 +34,12 @@ OpenNebula Core
 KVM Drivers
 =================================================================================
 * oned.conf needs to be updated to set KEEP_SNAPSHOTS to yes in oned.conf for the KVM driver. Note that this change will be only available for new VMs. Existing VMs would not be able to revert a pre-upgrade snapshots after a migration.
+
+Packages
+=================================================================================
+* All Ruby gem dependencies should be installed in required versions only via ``/usr/share/one/install_gems``. To avoid version mismatch, the OpenNebula packages for Ubuntu and Debian now conflict with the following distribution packages:
+
+  - thin
+  - ruby-rack
+  - ruby-rack-protection
+  - ruby-sinatra
