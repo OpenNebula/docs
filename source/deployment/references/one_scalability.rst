@@ -71,6 +71,8 @@ To disable pagination we can use a non numeric value:
 
 This environment variable can be also used for Sunstone.
 
+Also, one of the main barriers to scale opennebula is list operations on large pools. Since OpenNebula 5.8, pools are listed in a *summarized* form. However we recommend to make use of the search operation to reduce the pool sizes returned by oned. The search operation is available for the VM pool since version 5.8.
+
 Driver Tuning
 =============
 
