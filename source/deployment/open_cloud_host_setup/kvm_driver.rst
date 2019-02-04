@@ -123,7 +123,7 @@ Optionally, you can set a timeout for the VM Shutdown operation can be set up. T
 
     # Seconds to wait after shutdown until timeout
     export SHUTDOWN_TIMEOUT=300
-     
+
     # Uncomment this line to force VM cancellation after shutdown timeout
     #export FORCE_DESTROY=yes
 
@@ -276,6 +276,25 @@ The **raw** attribute offers the end user the possibility of passing by attribut
 
       RAW = [ type = "kvm",
               data = "<devices><serial type=\"pty\"><source path=\"/dev/pts/5\"/><target port=\"0\"/></serial><console type=\"pty\" tty=\"/dev/pts/5\"><source path=\"/dev/pts/5\"/><target port=\"0\"/></console></devices>" ]
+
+Libvirt metadata
+~~~~~~~~~~~~~~~~~~~~~
+
+The following OpenNebula information is added to the metadata section of the Libvirt domain, the specific attributes are listed below:
+
+   - system_datastore
+   - name
+   - uname
+   - uid
+   - gname
+   - gid
+   - opennebula_version
+   - stime
+   - deployment_time
+
+They correspond to their values OpenNebula equivalents for the XML representation of the VM. ``opennebula_version`` and ``deployment_time`` are the OpenNebula version used during the deployment and deployment time at epoch format, respectively.
+
+Also the VM name is included at Libvirt XML ``title`` field, so if the ``--title`` option is used for listing the Libvirt domains the VM name will be shown with the domain name.
 
 Disk/Nic Hotplugging
 --------------------

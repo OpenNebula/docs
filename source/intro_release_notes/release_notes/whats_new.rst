@@ -25,6 +25,10 @@ OpenNebula Core
 - Default configuration values for RAFT have been updated to a more conservative setting.
 - **Search for virtual machines** there is available a new option for searching VMs using ``onevm list`` command or ``one.vmpool.info`` API call. Find out how to search VM instances :ref:`here <vm_search>`.
 
+KVM Driver
+----------------------------------------------------------------------------------
+- **Metadata information** with OpenNebula information is included in the Libvirt domain XML, :ref:`see here <libvirt_metadata>`.
+
 Sunstone
 --------------------------------------------------------------------------------
 - **More customization**, now the admin can disable the VM advanced options in the :ref:`Cloud View dialogs <cloud_view_config>`.
