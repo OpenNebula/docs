@@ -81,11 +81,12 @@ You have to download them to a directory that we will later refer. In this examp
 
     $ mkdir packages
     $ cd packages
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.6.0/one-context-5.6.0-1.el6.noarch.rpm
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.6.0/one-context-5.6.0-1.el7.noarch.rpm
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.6.0/one-context-5.6.0-1.suse.noarch.rpm
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.6.0/one-context_5.6.0-1.deb
-    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.6.0/one-context-5.6.0-r1.apk
+    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.7.80/one-context-5.7.80-1.el6.noarch.rpm
+    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.7.80/one-context-5.7.80-1.el7.noarch.rpm
+    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.7.80/one-context-5.7.80-1.suse.noarch.rpm
+    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.7.80/one-context_5.7.80-1.deb
+    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.7.80/one-context-5.7.80-r1.apk
+    $ wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.7.80/one-context-5.7.80_1.txz
     $ cd ..
 
 
