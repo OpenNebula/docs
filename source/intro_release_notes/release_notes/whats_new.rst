@@ -71,6 +71,7 @@ Storage
 --------------------------------------------------------------------------------
 - Free space of the KVM hypervisor is now updated faster for SSH and LVM transfer managers by sending HUP signal to collectd client, :ref:`see more here <imudppushg>`. Additionally, you can trigger an information update manually with the ```onehost forceupdate``` command.
 - LVM drivers supports configurable zero'ing of allocated volumes to prevent data leaks to other VMs, :ref:`see more here <lvm_driver_conf>`.
+- Attaching volatile disk to the VM running on the LVM datastore is now correctly created as logical volume.
 
 Other Issues Solved
 --------------------------------------------------------------------------------
