@@ -20,7 +20,7 @@ XMLRPC API Changes
 * Deploy action (`one.vm.deploy`) for Virtual Machines accepts an extra template to define the NIC chosen.
 * Disk snapshot rename action (`one.vm.disksnapshotrename`) allow to rename a disk snapshot.
 * Recover action (`one.vm.recover`) has a new option, **delete-db** for deleting the VM from OpenNebula but keep it running at the hypervisor.
-* Lock action (`one.resource.lock`) now return the ID of the resource on success, instead of a boolean value. 
+* Lock action (`one.resource.lock`) now return the ID of the resource on success, instead of a boolean value. In case of failure an error of type ACTION is returned.
 
 Authentication Drivers
 ================================================================================
