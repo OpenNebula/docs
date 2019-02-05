@@ -28,6 +28,7 @@ There are a number of regular features that are not implemented yet:
 - live disk resize
 - LVM datastore
 - PCI Passthrough
+- volatile filesystems
 
 
 - **offline disk resize**:
@@ -52,7 +53,7 @@ There are some interaction options between LXD and OpenNebula configured in ``/v
     #   - :height: of the terminal
     #   - :timeout: seconds to close the terminal if no input has been received
     :vnc:
-      :command: /bin/bash
+      :command: /bin/login
       :width: 800
       :height: 600
       :timeout: 300
@@ -64,6 +65,9 @@ There are some interaction options between LXD and OpenNebula configured in ``/v
     # Default path for the datastores. This only need to be change if the 
     # corresponding value in oned.conf has been modified.
     :datastore_location: /var/lib/one/datastores
+
+.. important:: The **command** parameter under **vnc** dictates which command will appear in noVNC when entering a container. Having ``/bin/bash`` will skip the login
+
 
 In case of a more complex cgroup configuration the containers cgroup could be placed in separate slice instead of default root cgroup. You can configure it via an environmental variable
 
