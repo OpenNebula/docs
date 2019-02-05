@@ -108,3 +108,4 @@ Other Issues Solved
 - `Fix VCENTER_ESX_HOST fail with DRS in vCenter <https://github.com/OpenNebula/one/issues/2477>`__.
 - `Fix Case senstive labels in Sunstone <https://github.com/OpenNebula/one/issues/1333>`__.
 - `Fix Allow creation of "Empty disk image" for type OS  in Sunstone <https://github.com/OpenNebula/one/issues/1089>`__.
+- `Fix auth tokens login in Sunstone, so group scope is preserved <https://github.com/OpenNebula/one/issues/2575>`__.
