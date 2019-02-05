@@ -84,14 +84,20 @@ Sunstone
 * `#636 <https://github.com/OpenNebula/one/issues/636>`_ if syslog enabled disable the logs tab in the VM detailed view
 * `#916 <https://github.com/OpenNebula/one/issues/916>`_ Sunstone ignores the no_proxy environment variable
 * `#1532 <https://github.com/OpenNebula/one/issues/1532>`_ Sunstone is killed by OOM Killer when uploading large images
+* `#1637 <https://github.com/OpenNebula/one/issues/1637>`_ No notification on failed live migration
+* `#2845 <https://github.com/OpenNebula/one/issues/2845>`_ Sunstone template instantiate needs CREATE permissions.
+* `#2623: <https://github.com/OpenNebula/one/issues/2623>`_ Can't remove resources from VDC
+* `#2845: <https://github.com/OpenNebula/one/issues/2845>`_ Sunstone template instantiate needs CREATE permissions
+* `#2763: <https://github.com/OpenNebula/one/issues/2763>`_ vCenter information VM attributes cannot be deleted
+* `#2412: <https://github.com/OpenNebula/one/issues/2412>`_ Poweroff all VM on the host provides bridge interface disable
+* `#1662: <https://github.com/OpenNebula/one/issues/1662>`_ Showback hours slightly innacurate
+
 
 vCenter
 ================================================================================
 
 * `#2672 <https://github.com/OpenNebula/one/issues/2672>`_ Snapshots are not working properly
 * `#2275 <https://github.com/OpenNebula/one/issues/2275>`_ Remove disk not affected by snap on vCenter
-* `#2254 <https://github.com/OpenNebula/one/issues/2254>`_ spurios syntax help on onehost delete
 * `#2084 <https://github.com/OpenNebula/one/issues/2084>`_ vCenter Cache thread safe (thin related)
 * `#2530 <https://github.com/OpenNebula/one/issues/2530>`_ StorageDRS is not working properly
-* `#1699 <https://github.com/OpenNebula/one/issues/1699>`_ Wild VM monitoring should not return datastores that contain only swap files
-* `#1259 <https://github.com/OpenNebula/one/issues/1259>`_ Premigrator: unmanaged nics from vms are outside the AR of the network
+* `#2335 <https://github.com/OpenNebula/one/issues/2335>`_ Update memoize cache

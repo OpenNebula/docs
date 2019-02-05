@@ -206,7 +206,7 @@ Essential Ruby library xmlrpc is missing from Ruby 2.4.0 and above. The library 
 Ubuntu 16.04 Platform Notes
 --------------------------------------------------------------------------------
 
-By default it comes with lxd 2, lxd3 should be installed from **xenial-backports**. Make sure you have `backports enabled in sources.list <https://help.ubuntu.com/community/UbuntuBackports>`_ 
+By default it comes with lxd 2, lxd3 should be installed from **xenial-backports**. Make sure you have `backports enabled in sources.list <https://help.ubuntu.com/community/UbuntuBackports>`_
 
 .. code-block:: bash
 

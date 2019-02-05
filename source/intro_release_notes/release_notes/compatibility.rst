@@ -12,7 +12,7 @@ Visit the :ref:`Features list <features>` and the `Release Notes <http://openneb
 OpenNebula API & Database Schema
 ================================================================================
 
-* The virtual machine pool table includes a new column with a short XML description of the VM. This speedups list operations on the VM pool for large deployments. Note that the XML document includes only the most relevant information, you need to perform a show API call or command to get the full information of the VM.
+* The virtual machine pool table includes a new column with a short XML description of the VM. This speeds up list operations on the VM pool for large deployments. Note that the XML document includes only the most relevant information, you need to perform a show API call or command to get the full information of the VM.
 
 XMLRPC API Changes
 --------------------------------------------------------------------------------
@@ -29,7 +29,7 @@ OpenNebula Core
 ================================================================================
 
 * When different system datastores are available the TM_MAD_SYSTEM attribute is automatically set to the DS chosen by the scheduler.
-* Images are not locked on creation so the metadata can be updated while the image is being downloaded but. In order to delete the image while it's in LOCKED state the user needs ADMIN permmissions over the image.
+* Images are not locked on creation so the metadata can be updated while the image is being downloaded but. In order to delete the image while it's in LOCKED state the user needs ADMIN permissions over the image.
 
 KVM Drivers
 =================================================================================

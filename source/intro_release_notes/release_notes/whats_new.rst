@@ -14,7 +14,7 @@ OpenNebula 5.8 (Edge) is the fifth major release of the OpenNebula 5 series. A s
 
 This OpenNebula release is named after the edges of nebulas. Nebulas are diffuse objects, and their edges can be considered vacuum. However, they are very thick, so they appear to be dense. This is the aim of OpenNebula 5.8, to provide computing power on a wide geographic surface to offer services closer to customers, building a cloud managed from a single portal over very thin infrastructure. There's an `Edge Nebula <http://freelancer.wikia.com/wiki/Edge_Nebula>`__ on the Freelancer videogame.
 
-The OpenNebula team is now transitioning to "bug-fixing mode". Note that this is a beta release aimed at testers and developers to try the new features, and send a more than welcomed feedback for the final release. Also note that being a beta, there is no migration path from the previous stable version (5.6.1) nor migration path to the final stable version (5.8.0). A `list of open issues <https://github.com/OpenNebula/one/milestone/9>`__ can be found in the GitHub development portal.
+The OpenNebula team is now transitioning to "bug-fixing mode". Note that this is a second beta release aimed at testers and developers to try the new features, and send a more than welcomed feedback for the final release. Also note that being a beta, there is no migration path from the previous stable version (5.6.1) nor migration path to the final stable version (5.8.0). A `list of open issues <https://github.com/OpenNebula/one/milestone/9>`__ can be found in the GitHub development portal.
 
 
 OpenNebula Core
@@ -70,7 +70,7 @@ API & CLI
 Storage
 --------------------------------------------------------------------------------
 - Free space of the KVM hypervisor is now updated faster for SSH and LVM transfer managers by sending HUP signal to collectd client, :ref:`see more here <imudppushg>`. Additionally, you can trigger an information update manually with the ```onehost forceupdate``` command.
-- LVM drviers supports configurable zero'ing of allocated volumes to prevent data leaks to other VMs, :ref:`see more here <lvm_driver_conf>`.
+- LVM drivers supports configurable zero'ing of allocated volumes to prevent data leaks to other VMs, :ref:`see more here <lvm_driver_conf>`.
 
 Other Issues Solved
 --------------------------------------------------------------------------------
@@ -98,4 +98,12 @@ Other Issues Solved
 - `Fix CPU_MODEL can't be changed <https://github.com/OpenNebula/one/issues/2820>`__.
 - `Fix KVM probe of machines models stuck <https://github.com/OpenNebula/one/issues/2842>`__.
 - `Fix create/update of .monitor for local DS monitoring <https://github.com/OpenNebula/one/issues/2767>`__.
-- `Clear VM DEPLOY ID attribute <https://github.com/OpenNebula/one/issues/2641>`
+- `Fix recover recreate on vCenter: Clear VM DEPLOY ID attribute <https://github.com/OpenNebula/one/issues/2641>`__-
+- `Fix remove unmanaged nics leads to vm failure in vCenter <https://github.com/OpenNebula/one/issues/2558>`__.
+- `Impossible to create vmgroup using advanced mode <https://github.com/OpenNebula/one/issues/2522>`__.
+- `Fix restricted attr disk/size in Sunstone <https://github.com/OpenNebula/one/issues/2533>`__.
+- `vCenter: invalidState exception using vm actions <https://github.com/OpenNebula/one/issues/2552>`__.
+- `Fix Network model is not working in vCenter <https://github.com/OpenNebula/one/issues/2474>`__.
+- `Fix VCENTER_ESX_HOST fail with DRS in vCenter <https://github.com/OpenNebula/one/issues/2477>`__.
+- `Fix Case senstive labels in Sunstone <https://github.com/OpenNebula/one/issues/1333>`__.
+- `Fix Allow creation of "Empty disk image" for type OS  in Sunstone <https://github.com/OpenNebula/one/issues/1089>`__.
