@@ -109,3 +109,4 @@ Other Issues Solved
 - `Fix Case senstive labels in Sunstone <https://github.com/OpenNebula/one/issues/1333>`__.
 - `Fix Allow creation of "Empty disk image" for type OS  in Sunstone <https://github.com/OpenNebula/one/issues/1089>`__.
 - `Fix auth tokens login in Sunstone, so group scope is preserved <https://github.com/OpenNebula/one/issues/2575>`__.
+- `Fix save as template, so disk advanced params are saved in the new template <https://github.com/OpenNebula/one/issues/1312>`__.
