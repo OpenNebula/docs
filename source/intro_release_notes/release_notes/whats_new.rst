@@ -19,6 +19,10 @@ This OpenNebula release is named after the edges of nebulas. Nebulas are diffuse
 The OpenNebula team is now transitioning to "bug-fixing mode". Note that this is a second beta release aimed at testers and developers to try the new features, and send a more than welcomed feedback for the final release. Also note that being a beta, there is no migration path from the previous stable version (5.6.1) nor migration path to the final stable version (5.8.0). A `list of open issues <https://github.com/OpenNebula/one/milestone/9>`__ can be found in the GitHub development portal.
 
 
+.. image:: /images/lxd_screenshot.png
+    :width: 90%
+    :align: center
+
 OpenNebula Core
 --------------------------------------------------------------------------------
 - **Rename disk snapshots**, there is now an option available for renaming disk snapshots via OCA and CLI.
