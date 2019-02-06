@@ -93,7 +93,7 @@ In VMWare there are two types of cloning operations:
 * The Linked Clone. A linked clone is a copy of a template that shares virtual disks with the parent template in an ongoing manner. This conserves disk space, and allows multiple virtual machines to use the same software installation.
 
 When the **onevcenter** tool is used to import a vCenter template, as explained later, you'll be able to specify if you want to use linked clones when the template is imported. Note that if you want to use linked clones, OpenNebula has to create delta disks on top of the virtual disks that are attached to the template. This operation will modify the template so you may prefer that OpenNebula creates a copy of the template and modify that template instead, the onevcenter tool will allow you to choose what you prefer to do.
-
+ry Datastore that is used by the machine need to exist in both vCenter clusters and OpenNebula clus
 .. important:: Linked clone disks cannot be resized.
 
 .. note:: Sunstone does not allow you to specify if you want to use Linked Clones as the operations involved are heavy enough to keep them out of the GUI.
@@ -1172,42 +1172,67 @@ Select the images you want to import and click on the Import button. The ID of t
 
 Migrate vCenter Virtual Machines with OpenNebula
 ================================================================================
+vCenter Driver allows you to migrate machines between vCenter clusters however you will need to fulfill some requirements in order in each case to migrate the machine.
 
-vCenter Driver allows you to migrate machines between vCenter clusters, however you will need to fulfill some requirements in order to **migrate** the machine:
+Also vCenter driver allows you to execute **live migration**, this means that instead of power off the machine you have the option of perform migrate action in a running state.
 
-* OpenNebula cold migration only works for powered-off machines so be sure to check the state before
+The next table summarize the cases but a section showing limitations and requirements can be found below.
+
++------------+------------------------------------------+-------------------------+
+| migration  | Hosts                                    | Datastores              |
++============+==========================================+=========================+
+| **COLD**   | All cases supported                      | only unmanaged disks    |
++------------+------------------------------------------+-------------------------+
+| **LIVE**   | All cases supported                      | only unmanaged disks    |
++------------+------------------------------------------+-------------------------+
+
+Between Hosts
+-------------
+
+Requirements
+~~~~~~~~~~~~
 * Every Network attached to the selected machines will need to exist in both vCenter clusters and OpenNebula clusters
-* Every Datastore that is used by the machine need to exist in both vcenter clusters and opennebula clusters
+* Every Datastore that is used by the machine need to exist in both vCenter clusters and OpenNebula clusters
 
-Example using cli:
+.. Note:: Take a look into 'AUTOMATIC_REQUIREMENTS' attributte on the selected vm and check if is pointing to the proper OpenNebula clusters.
+
+**Additional requirements for live migration:**
+
+* You need to have vMotion interface enabled in both vCenter clusters otherwise the driver will warn you about compatibility issues
+* OpenNebula live migration only works for running machines so be sure to check the state before
+
+Example cases using cli:
 
 .. prompt:: bash $ auto
 
     $ onevm migrate "<VM name>" <destination host id>
 
-During a cold migration you can change target datastore (migrate disks) for disks belonging to the VM that will be migrated. This is useful for rebalancing resources usage among datastores.
+.. prompt:: bash $ auto
 
-Example using cli:
+    $ onevm migrate --live "<VM name>" <destination host id>
+
+
+Between Datastores
+------------------
+
+You can change target datastore (migrate disks) for disks belonging to the VM that will be migrated. This is useful for rebalancing resources usage among datastores.
+
+Requirements
+~~~~~~~~~~~~
+* Every Datastore that is used by the machine need to exist in both vCenter clusters and opennebula clusters
+
+Limitations
+~~~~~~~~~~~
+* **It is not possible to migrate to a different datastore VMs with any managed disk**. Disks created by OpenNebula (managed) are created on a specific folder on the datastore. After a migration, vCenter will move that disk from that folder to the VM folder, changing the path, which is not updated by OpenNebula. This means that some operations can fail later on, like a disk back-up.
+
+
+Example cases using cli:
 
 .. prompt:: bash $ auto
 
     $ onevm migrate "<VM name>" <destination host id> <destination datastore id>
 
-Limitations when changing system datastore during a cold migration:
-
-* It is not recommended to migrate to a different datastore VMs with managed disks. Disks created by OpenNebula (managed) are created on a specific folder on the datastore. After a migration, vCenter will move that disk from that folder to the VM folder, changing the path, which is not updated by OpenNebula. This means that some operations can fail later on, like a disk back-up.
-
-Also vCenter driver allows you to execute **live migration**, this means that instead of power off the machine you have the option of perform migrate action in a running state, however the following requirement list must be fulfilled:
-
-* OpenNebula live migration only works for running machines so be sure to check the state before
-* You need to have vMotion interface enabled in both vCenter clusters otherwise the driver will warn you about compatibility issues
-* Every Network attached to the selected machines will need to exist in both vCenter clusters and OpenNebula clusters
-* Every Datastore that is used by the machine need to exist in both vCenter clusters and OpenNebula clusters
-
-Example using cli:
-
 .. prompt:: bash $ auto
 
-    $ onevm migrate --live "<VM name>" <destination host id>
+    $ onevm migrate --live "<VM name>" <destination host id> <destination datastore id>
 
-.. Note:: Take a look into 'AUTOMATIC_REQUIREMENTS' attributte on the selected vm and check if is pointing to the proper OpenNebula clusters.
