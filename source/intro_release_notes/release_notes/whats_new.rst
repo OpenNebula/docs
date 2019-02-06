@@ -4,6 +4,8 @@
 What's New in 5.8
 ================================================================================
 
+**This is the beta 2 (5.7.85) release of OpenNebula 5.8**
+
 OpenNebula 5.8 (Edge) is the fifth major release of the OpenNebula 5 series. A significant effort has been applied in this release to enhance features introduced in 5.6 Blue Flash, while keeping an eye in implementing those features more demanded by the community. A major highlight of Edge is its focus to support computing on the Edge, bringing the processing power of VMs closer to the consumers to reduce latency. In this regards, Edge comes with the following major features:
 
 - Support for LXD. This enables low resource container orchestration.  LXD containers are ideal to run in low consumption devices closer to the customers.
