@@ -2053,7 +2053,7 @@ one.vmpool.info
 +------+-----------+-----------------------------------------------------------------------+
 | OUT  | Boolean   | true or false whenever is successful or not                           |
 +------+-----------+-----------------------------------------------------------------------+
-| OUT  | String    | Version of the VM Pool whit a short VM body documents.                |
+| OUT  | String    | Version of the VM Pool with a short VM body documents.                |
 +------+-----------+-----------------------------------------------------------------------+
 | OUT  | Int       | Error code.                                                           |
 +------+-----------+-----------------------------------------------------------------------+
