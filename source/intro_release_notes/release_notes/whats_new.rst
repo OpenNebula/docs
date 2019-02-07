@@ -30,6 +30,7 @@ OpenNebula Core
 - **Mixed mode** for ``ALLOW_ORPHAN`` attribute which takes care of the dependencies between snapshots after revert actions at Ceph datastores.
 - Default configuration values for RAFT have been updated to a more conservative setting.
 - **Search for virtual machines**, a new option for searching VMs using ``onevm list`` command or ``one.vmpool.info`` API call is available. Find out how to search VM instances :ref:`here <vm_search>`.
+- The ``one.vmpool.info`` call now returns a reduce version of the VMs body in order to achive better performance on large environments whit a large number of VMs.
 
 KVM Driver
 ----------------------------------------------------------------------------------
