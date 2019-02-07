@@ -1173,49 +1173,93 @@ Select the images you want to import and click on the Import button. The ID of t
 Migrate vCenter Virtual Machines with OpenNebula
 ================================================================================
 
-vCenter Driver allows you to migrate machines between vCenter clusters, however you will need to fulfill some requirements in order to **migrate** the machine:
+vCenter Driver allows migration of VMs between different vCenter clusters (ie, OpenNebula hosts) and/or. Depending on the type of migration (cold, the VM is powered off, or saved; or live, the VM is migrated while running), or the target (cluster and/or datastore), several requirements needs to be met in order to migrate the machine.
 
-* OpenNebula cold migration only works for powered-off machines so be sure to check the state before
-* Every Network attached to the selected machines will need to exist in both vCenter clusters and OpenNebula clusters
-* Every Datastore that is used by the machine need to exist in both vcenter clusters and opennebula clusters
+The next table summarize the general limitations, detailed limitation explanation and requirements can be found in sections below.
 
-Example using cli:
++----------------+---------------------+-------------------------------+
+| Migration Type |        Hosts        |           Datastores          |
++================+=====================+===============================+
+| **COLD**       | All cases supported | Only VMs with unmanaged disks |
++----------------+---------------------+-------------------------------+
+| **LIVE**       | All cases supported | Only VMs with unmanaged disks |
++----------------+---------------------+-------------------------------+
+
+
+Migrating a VM Between vCenter Clusters (OpenNebula Hosts)
+----------------------------------------------------------
+
+Requirements (both live and cold migrations)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* Every Network attached to the selected VMs need to exists in both vCenter clusters and OpenNebula clusters
+* Every Datastore that is used by the VM need to exist in both vCenter clusters and OpenNebula clusters
+* Target OpenNebula host can specify a ESX_MIGRATION_LIST attribute:
+    - If not specified, target ESX host is not explicitly declared and migration may fail
+    - If set to an empty string (""), OpenNebula will randomly chose a target ESX from all the ESXs that belong to the vCenter target cluster
+    - If set to a space-separated list of ESX hostnames (that need to beling to the vCenter target cluster), OpenNebula will randomly chose a target ESX from the list
+
+.. Note:: A good place to check if the VM meets the OpenNebula requirements is to peep into the 'AUTOMATIC_REQUIREMENTS' attribute of the and check if it includes the target OpenNebula clusters (remember, a cluster in OpenNebula is a collection of hosts, virtual networks and datastores, a cluster in vCenter is represented as a host in OpenNebula).
+
+Requirements (only live migrations)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* vMotion interface enabled in both vCenter clusters (otherwise the driver will warn about compatibility issues)
+* OpenNebula live migration only works for running VMs so be sure to check the state before
+
+Usage (CLI)
+~~~~~~~~~~~
+
+**Cold Migration**
 
 .. prompt:: bash $ auto
 
     $ onevm migrate "<VM name>" <destination host id>
 
-During a cold migration you can change target datastore (migrate disks) for disks belonging to the VM that will be migrated. This is useful for rebalancing resources usage among datastores.
-
-Example using cli:
-
-.. prompt:: bash $ auto
-
-    $ onevm migrate "<VM name>" <destination host id> <destination datastore id>
-
-Limitations when changing system datastore during a cold migration:
-
-* It is not recommended to migrate to a different datastore VMs with managed disks. Disks created by OpenNebula (managed) are created on a specific folder on the datastore. After a migration, vCenter will move that disk from that folder to the VM folder, changing the path, which is not updated by OpenNebula. This means that some operations can fail later on, like a disk back-up.
-
-Also vCenter driver allows you to execute **live migration**, this means that instead of power off the machine you have the option of perform migrate action in a running state, however the following requirement list must be fulfilled:
-
-* OpenNebula live migration only works for running machines so be sure to check the state before
-* You need to have vMotion interface enabled in both vCenter clusters otherwise the driver will warn you about compatibility issues
-* Every Network attached to the selected machines will need to exist in both vCenter clusters and OpenNebula clusters
-* Every Datastore that is used by the machine need to exist in both vCenter clusters and OpenNebula clusters
-
-Example using cli:
+**Live Migration**
 
 .. prompt:: bash $ auto
 
     $ onevm migrate --live "<VM name>" <destination host id>
 
-.. Note:: Take a look into 'AUTOMATIC_REQUIREMENTS' attributte on the selected vm and check if is pointing to the proper OpenNebula clusters.
 
-Live Migration with a different target datastore is also supported. Depending on configurations, it is probable that vCenter's DRS do not return a suitable host on the cluster. If that it the case, you will get the following error:
+Migrating a VM Between Datastores
+---------------------------------
+
+On a VM migration, target datastore can be changed. Disks belonging to the VM will be migrated to the target datastore. This is useful for rebalancing resources usage among datastores.
+
+In the case of Live Migration with a different target datastore, depending on configurations, it is likely that vCenter's DRS do not return a suitable host on the cluster. If that it the case, you will get the following error:
 
 .. prompt:: bash $ auto
 
    $ Cannot migrate VM InvalidArgument: A specified parameter was not correct: spec.pool
 
-For this case a new feature has been enabled to allow OpenNebula to randomly select a host. A new host tag has been enabled, called **ESX_MIGRATION_LIST** that contains vCenter ESXI server's hostname from the host(s) that will be considered suitable for migration by the administrator, separated by spaces. This tag's value can be empty, in this case OpenNebula will randomly choose a host from the destination cluster pool.
+For this case a new feature has been enabled to allow OpenNebula to select a host, bypassing DRS recommendation. A new host tag has been enabled, called **ESX_MIGRATION_LIST** that contains vCenter ESXI server's hostname from the host(s) that will be considered suitable for migration by the administrator, separated by spaces. This tag's value can be empty, in this case OpenNebula will randomly choose a host from the destination cluster pool.
+
+Requirements (both cold and live migrations)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* Every Datastore that is used by the VM needs to exist in both vCenter clusters and OpenNebula clusters
+
+Limitations
+~~~~~~~~~~~
+
+* **It is not possible to migrate to a different datastore VMs with any managed disk**. Disks added to the VM by OpenNebula (managed disks) are created on a specific folder on the datastore, not on the VM folder. After a migration, vCenter will move that disk from that folder to the VM folder, changing the path, which is not updated by OpenNebula. This means that some operations can fail later on, like disk back-up. For this reason, DS migrations of these VMs are disallowed.
+
+
+Usage (CLI)
+~~~~~~~~~~~
+
+**Cold Migration**
+
+.. prompt:: bash $ auto
+
+    $ onevm migrate "<VM name>" <destination host id> <destination datastore id>
+
+**Live Migration**
+
+.. prompt:: bash $ auto
+
+    $ onevm migrate --live "<VM name>" <destination host id> <destination datastore id>
+
+

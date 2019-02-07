@@ -12,7 +12,7 @@ Visit the :ref:`Features list <features>` and the `Release Notes <http://openneb
 OpenNebula API & Database Schema
 ================================================================================
 
-* The virtual machine pool table includes a new column with a short XML description of the VM. This speedups list operations on the VM pool for large deployments. Note that the XML document includes only the most relevant information, you need to perform a show API call or command to get the full information of the VM.
+* The virtual machine pool table includes a new column with a short XML description of the VM. This speeds up list operations on the VM pool for large deployments. Note that the XML document includes only the most relevant information, you need to perform a show API call or command to get the full information of the VM.
 
 XMLRPC API Changes
 --------------------------------------------------------------------------------
@@ -20,6 +20,7 @@ XMLRPC API Changes
 * Deploy action (`one.vm.deploy`) for Virtual Machines accepts an extra template to define the NIC chosen.
 * Disk snapshot rename action (`one.vm.disksnapshotrename`) allow to rename a disk snapshot.
 * Recover action (`one.vm.recover`) has a new option, **delete-db** for deleting the VM from OpenNebula but keep it running at the hypervisor.
+* Lock action (`one.resource.lock`) now return the ID of the resource on success, instead of a boolean value. In case of failure an error of type ACTION is returned.
 
 Authentication Drivers
 ================================================================================
@@ -29,8 +30,21 @@ OpenNebula Core
 ================================================================================
 
 * When different system datastores are available the TM_MAD_SYSTEM attribute is automatically set to the DS chosen by the scheduler.
-* Images are not locked on creation so the metadata can be updated while the image is being downloaded but. In order to delete the image while it's in LOCKED state the user needs ADMIN permmissions over the image.
+* Images are not locked on creation so the metadata can be updated while the image is being downloaded but. In order to delete the image while it's in LOCKED state the user needs ADMIN permissions over the image.
 
 KVM Drivers
 =================================================================================
 * oned.conf needs to be updated to set KEEP_SNAPSHOTS to yes in oned.conf for the KVM driver. Note that this change will be only available for new VMs. Existing VMs would not be able to revert a pre-upgrade snapshots after a migration.
+
+LVM Datastore Drivers
+=================================================================================
+* Volatile disks are now created as logical volume instead of a file.
+
+Packages
+=================================================================================
+* All Ruby gem dependencies should be installed in required versions only via ``/usr/share/one/install_gems``. To avoid version mismatch, the OpenNebula packages for Ubuntu and Debian now conflict with the following distribution packages:
+
+  - thin
+  - ruby-rack
+  - ruby-rack-protection
+  - ruby-sinatra

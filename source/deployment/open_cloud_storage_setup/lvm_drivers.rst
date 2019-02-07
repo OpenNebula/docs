@@ -127,4 +127,26 @@ For example, the following examples illustrates the creation of an LVM datastore
 .. |image0| image:: /images/fs_lvm_datastore.png
 
 
+.. _lvm_driver_conf:
 
+Driver Configuration
+--------------------------------------------------------------------------------
+By default the LVM driver will zero any LVM volume so VM data cannot leak to other instances. However, this process takes some time and my delay the deployment of a VM. The behavior of the driver can be configured in the file ``/var/lib/one/remotes/etc/fs_lvm/fs_lvm.conf``, in particular:
+
++------------------------+---------------------------------------------------+
+|    Attribute           |                   Description                     |
++========================+===================================================+
+| ``ZERO_LVM_ON_CREATE`` | Zero LVM volumes when they are created/resized    |
++------------------------+---------------------------------------------------+
+| ``ZERO_LVM_ON_DELETE`` | Zero LVM volumes when VM disks are deleted        |
++------------------------+---------------------------------------------------+
+
+Example:
+
+.. code::
+
+    #  Zero LVM volumes on creation or resizing                                      
+    ZERO_LVM_ON_CREATE=no                     
+                                                                                  
+    #  Zero LVM volumes on delete, when the VM disks are disposed                    
+    ZERO_LVM_ON_DELETE=yes 
