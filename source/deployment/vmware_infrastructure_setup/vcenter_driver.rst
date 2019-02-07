@@ -1211,3 +1211,11 @@ Example using cli:
     $ onevm migrate --live "<VM name>" <destination host id>
 
 .. Note:: Take a look into 'AUTOMATIC_REQUIREMENTS' attributte on the selected vm and check if is pointing to the proper OpenNebula clusters.
+
+Live Migration with a different target datastore is also supported. Depending on configurations, it is probable that vCenter's DRS do not return a suitable host on the cluster. If that it the case, you will get the following error:
+
+.. prompt:: bash $ auto
+
+   $ Cannot migrate VM InvalidArgument: A specified parameter was not correct: spec.pool
+
+For this case a new feature has been enabled to allow OpenNebula to randomly select a host. A new host tag has been enabled, called **ESX_MIGRATION_LIST** that contains vCenter ESXI server's hostname from the host(s) that will be considered suitable for migration by the administrator, separated by spaces. This tag's value can be empty, in this case OpenNebula will randomly choose a host from the destination cluster pool.
