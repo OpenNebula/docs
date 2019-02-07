@@ -646,19 +646,19 @@ Context information is passed to the Virtual Machine via an ISO mounted as a par
 +-----------------------------+-----------------------------------------------------------------------------------+-------+---------+-----+
 | **ETHx_ALIASy_IPV6**        | IPv6 address for the alias                                                        | Linux | Linux   | \-  |
 +-----------------------------+-----------------------------------------------------------------------------------+-------+---------+-----+
-| **ETHx_ALIASy_NETWORK**     | Network address of the alias                                                      | O     | \-      | \-  |
+| **ETHx_ALIASy_NETWORK**     | Network address of the alias                                                      | O     | O       | \-  |
 +-----------------------------+-----------------------------------------------------------------------------------+-------+---------+-----+
-| **ETHx_ALIASy_MASK**        | Netowrk mask                                                                      | O     | \-      | \-  |
+| **ETHx_ALIASy_MASK**        | Netowrk mask                                                                      | O     | O       | \-  |
 +-----------------------------+-----------------------------------------------------------------------------------+-------+---------+-----+
-| **ETHx_ALIASy_GATEWAY**     | Default IPv4 gateway for the alias                                                | O     | \-      | \-  |
+| **ETHx_ALIASy_GATEWAY**     | Default IPv4 gateway for the alias                                                | O     | O       | \-  |
 +-----------------------------+-----------------------------------------------------------------------------------+-------+---------+-----+
 | **ETHx_ALIASy_GATEWAY6**    | Default IPv6 gateway for the alias                                                | Linux | Linux   | \-  |
 +-----------------------------+-----------------------------------------------------------------------------------+-------+---------+-----+
 | **ETHx_ALIASy_MTU**         | ``MTU`` value for the alias                                                       | \-    | \-      | \-  |
 +-----------------------------+-----------------------------------------------------------------------------------+-------+---------+-----+
-| **ETHx_ALIASy_DNS**         | DNS for the alias                                                                 | O     | \-      | \-  |
+| **ETHx_ALIASy_DNS**         | DNS for the alias                                                                 | O     | O       | \-  |
 +-----------------------------+-----------------------------------------------------------------------------------+-------+---------+-----+
-| **ETHx_ALIASy_EXTERNAL**    | Indicates if the alias is external to the VM or not                               | O     | \-      | \-  |
+| **ETHx_ALIASy_EXTERNAL**    | Indicates if the alias is external to the VM or not                               | O     | O       | \-  |
 +-----------------------------+-----------------------------------------------------------------------------------+-------+---------+-----+
 | **USERNAME**                | User to be created in the guest OS. If any password attribute is defined (see     | O     | O       | \-  |
 |                             | below) it will change this user (defaults to ``root``).                           |       |         |     |
