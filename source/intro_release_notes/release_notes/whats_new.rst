@@ -29,7 +29,7 @@ OpenNebula Core
 - **Migration through poweroff/on cycle**, new options for cold-migrating a Virtual Machine, now they can also be migrated via poweroff and poweroff hard.
 - **Mixed mode** for ``ALLOW_ORPHAN`` attribute which takes care of the dependencies between snapshots after revert actions at Ceph datastores.
 - Default configuration values for RAFT have been updated to a more conservative setting.
-- **Search for virtual machines** there is available a new option for searching VMs using ``onevm list`` command or ``one.vmpool.info`` API call. Find out how to search VM instances :ref:`here <vm_search>`.
+- **Search for virtual machines**, a new option for searching VMs using ``onevm list`` command or ``one.vmpool.info`` API call is available. Find out how to search VM instances :ref:`here <vm_search>`.
 
 KVM Driver
 ----------------------------------------------------------------------------------
@@ -116,3 +116,4 @@ Other Issues Solved
 - `Fix Allow creation of "Empty disk image" for type OS  in Sunstone <https://github.com/OpenNebula/one/issues/1089>`__.
 - `Fix auth tokens login in Sunstone, so group scope is preserved <https://github.com/OpenNebula/one/issues/2575>`__.
 - `Fix save as template, so disk advanced params are saved in the new template <https://github.com/OpenNebula/one/issues/1312>`__.
+- `Wild VM monitoring should not return datastores that contain only swap file <https://github.com/OpenNebula/one/issues/1699>`__.
