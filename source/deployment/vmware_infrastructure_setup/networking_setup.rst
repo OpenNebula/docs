@@ -259,6 +259,11 @@ Limitations
 
 **Security groups.** Security Groups are not supported by the vSphere Switch mode.
 
+**Network alias.** It is possible to use network interface alias with vCenter, however if you attach an alias when the vm is running the action will take action on the next reboot (OpenNebula deploy). If you do not want to reboot the machine you can manually execute the next command on the machine prompt:
+
+.. prompt:: bash $ auto
+
+    $ /usr/sbin/one-contextd all reconfigure
 
 .. _network_monitoring:
 
