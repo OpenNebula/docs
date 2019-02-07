@@ -21,7 +21,7 @@ XMLRPC API Changes
 * Disk snapshot rename action (`one.vm.disksnapshotrename`) allow to rename a disk snapshot.
 * Recover action (`one.vm.recover`) has a new option, **delete-db** for deleting the VM from OpenNebula but keep it running at the hypervisor.
 * Lock action (`one.resource.lock`) now return the ID of the resource on success, instead of a boolean value. In case of failure an error of type ACTION is returned.
-* Now `one.vmpool.info` return a reduce version of the VMs body, in order to improve the download timing.
+* `one.vmpool.info` return a short version of the VM body documents, in order improve the scalability on large environments. Note that the new search functionality of the vmpool can further aliviate this issues.
 
 Authentication Drivers
 ================================================================================
