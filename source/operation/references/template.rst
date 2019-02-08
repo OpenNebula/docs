@@ -685,6 +685,10 @@ Context information is passed to the Virtual Machine via an ISO mounted as a par
 
 .. note::
 
+  Limitations apply in vCenter alias for :ref:`attach/detach nic operations <vcenter_networking_limitations>`.
+
+.. note::
+
   If more than one of the password changing attributes listed above is defined, only the one with highest priority will be applied. The priority is the same as the order of appearance in this table.
 
 The values referred to by **VARIABLE** can be defined :

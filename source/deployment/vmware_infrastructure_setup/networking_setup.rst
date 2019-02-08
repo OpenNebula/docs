@@ -249,6 +249,7 @@ Address Ranges
 
 In order to create your Virtual Network you must also add an Address Range in the Addresses tab. Please visit the :ref:`Virtual Network Definition <vnet_template>` section.
 
+.. _vcenter_networking_limitations:
 
 Limitations
 --------------------------------------------------------------------------------
