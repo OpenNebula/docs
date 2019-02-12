@@ -118,3 +118,5 @@ Other Issues Solved
 - `Fix auth tokens login in Sunstone, so group scope is preserved <https://github.com/OpenNebula/one/issues/2575>`__.
 - `Fix save as template, so disk advanced params are saved in the new template <https://github.com/OpenNebula/one/issues/1312>`__.
 - `Wild VM monitoring should not return datastores that contain only swap file <https://github.com/OpenNebula/one/issues/1699>`__.
+- `Fix issue opens the tab of the form where the error is located in virtual networks update <https://github.com/OpenNebula/one/issues/2711>`__.
+- `Fix issue displays the network selection form on virtual routers <https://github.com/OpenNebula/one/issues/2905>`__.
