@@ -9,4 +9,5 @@ Playbooks
 
    Overview <overview>
    Playbook 'default' <default>
+   Playbook 'default_lxd' <default_lxd>
    Playbook 'vxlan_packet' <vxlan_packet>
