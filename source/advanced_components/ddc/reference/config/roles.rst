@@ -66,14 +66,24 @@ Role opennebula-node-kvm
 
 Installs the OpenNebula node-kvm package, optionally configures the KVM module for the nested virtualization, and ensures the libvirt is enabled and running.
 
-==================================== ======= ===========
-Parameter                            Default Description
-==================================== ======= ===========
-``opennebula_node_kvm_use_ev``       False   Whether to use the ev package for kvm
-``opennebula_node_kvm_param_nested`` False   Enable nested KVM virtualization
-``opennebula_node_kvm_manage_kvm``   True    Enable KVM configuration
-``opennebula_node_kvm_rhev_repo``    True    Name of Red Hat EV repository
-==================================== ======= ===========
+==================================== ================ ===========
+Parameter                            Default          Description
+==================================== ================ ===========
+``opennebula_node_kvm_use_ev``       False            Whether to use the ev package for kvm
+``opennebula_node_kvm_param_nested`` False            Enable nested KVM virtualization
+``opennebula_node_kvm_manage_kvm``   True             Enable KVM configuration
+``opennebula_node_kvm_rhev_repo``    True             Name of Red Hat EV repository
+``opennebula_node_selinux_booleans`` ``virt_use_nfs`` SELinux booleans to configure
+==================================== ================ ===========
+
+Role opennebula-node-lxd
+------------------------
+
+.. !!! Description and parameters needs to be IN SYNC WITH THE ROLE CONTENT !!!
+
+Installs the opennebula-node-lxd package.
+
+No parameters.
 
 Role opennebula-p2p-vxlan
 -------------------------
@@ -103,11 +113,11 @@ Configures the OpenNebula package repository for the particular version.
 ======================================= ========================================== ===========
 Parameter                               Default                                    Description
 ======================================= ========================================== ===========
-``opennebula_repository_version``       5.6                                        OpenNebula repository version
+``opennebula_repository_version``       5.7                                        OpenNebula repository version
 ``opennebula_repository_base``          ``https://downloads.opennebula.org/repo/`` Repository of the OpenNebula packages
                                         ``{{ opennebula_repository_version }}``
-``opennebula_repository_gpgcheck``      yes                                        Enable gpg check for the packages
-``opennebula_repository_repo_gpgcheck`` yes                                        Enable gpg check for the repos (RHEL/CentOS only)
+``opennebula_repository_gpgcheck``      yes                                        Enable GPG check for the packages
+``opennebula_repository_repo_gpgcheck`` yes                                        Enable GPG check for the repos (RHEL/CentOS only)
 ======================================= ========================================== ===========
 
 Role opennebula-ssh

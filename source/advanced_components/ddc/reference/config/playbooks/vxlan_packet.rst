@@ -95,7 +95,7 @@ In the OpenNebula, the :ref:`virtual network <manage_vnets>` for the virtual mac
 
     NAME        = "private"
     VN_MAD      = "dummy"
-    BRIDGE      = "vxlan100"
+    BRIDGE      = "vxbr100"
     MTU         = 1450
     DESCRIPTION = "Private networking"
 
@@ -124,7 +124,7 @@ Parameter                              Value                                    
 ``bridged_networking_static_netmask``  255.255.255.0                              Netmask of the bridge
 ``opennebula_node_kvm_use_ev``         **True** or False                          Whether to use the ev package for kvm
 ``opennebula_node_kvm_param_nested``   True or **False**                          Enable nested KVM virtualization
-``opennebula_repository_version``      5.6                                        OpenNebula repository version
+``opennebula_repository_version``      5.7                                        OpenNebula repository version
 ``opennebula_repository_base``         ``https://downloads.opennebula.org/repo/`` Repository of the OpenNebula packages
                                        ``{{ opennebula_repository_version }}``
 =====================================  ========================================== ===========

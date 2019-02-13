@@ -1,17 +1,17 @@
-.. _ddc_config_playbooks_default:
+.. _ddc_config_playbooks_default_lxd:
 
-==================
-Playbook 'default'
-==================
+======================
+Playbook 'default_lxd'
+======================
 
 .. note::
 
     **Description:**
-    KVM host with host-only networking and NAT
+    LXD host with host-only networking and NAT
 
 This configuration prepares the host with
 
-* KVM hypervisor
+* LXD hypervisor
 * network 1: bridge ``br0`` for the private host-only networking and NAT
 * masquerade (NAT) to allow VMs from **network 1** access the public services
 
@@ -76,8 +76,6 @@ Parameter                              Value                                    
 =====================================  ========================================== ===========
 ``bridged_networking_static_ip``       192.168.150.1                              IP address of the bridge
 ``bridged_networking_static_netmask``  255.255.255.0                              Netmask of the bridge
-``opennebula_node_kvm_use_ev``         **True** or False                          Whether to use the ev package for kvm
-``opennebula_node_kvm_param_nested``   True or **False**                          Enable nested KVM virtualization
 ``opennebula_repository_version``      5.7                                        OpenNebula repository version
 ``opennebula_repository_base``         ``https://downloads.opennebula.org/repo/`` Repository of the OpenNebula packages
                                        ``{{ opennebula_repository_version }}``
@@ -93,7 +91,7 @@ The roles and tasks are applied during the configuration in the following order:
 1. **python** - check and install Python required for Ansible
 2. **ddc** - general asserts and cleanups
 3. **opennebula-repository** - setup OpenNebula package repository
-4. **opennebula-node-kvm** - install OpenNebula node KVM package
+4. **opennebula-node-lxd** - install OpenNebula node LXD package
 5. **opennebula-ssh** - deploy local SSH keys for the remote oneadmin
 6. **tuntap** - create TAP ``tap0`` interface
 7. **bridged-networking** - bridge Linux bridge ``br0`` with TAP interface
@@ -104,7 +102,6 @@ with the following configuration overrides to the :ref:`roles defaults <ddc_conf
 =================================== =====
 Parameter                           Value
 =================================== =====
-``opennebula_node_kvm_use_ev``      true
 ``bridged_networking_iface``        tap0
 ``bridged_networking_iface_manage`` false
 ``bridged_networking_static_ip``    192.168.150.1
