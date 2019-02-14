@@ -13,6 +13,7 @@ OpenNebula API & Database Schema
 ================================================================================
 
 * The virtual machine pool table includes a new column with a short XML description of the VM. This speeds up list operations on the VM pool for large deployments. Note that the XML document includes only the most relevant information, you need to perform a show API call or command to get the full information of the VM.
+* The VM pool includes two new indexes, a full-text-search index to perform VM searches on any attribute and an oid-state index to speed-up state based queries.
 
 XMLRPC API Changes
 --------------------------------------------------------------------------------
