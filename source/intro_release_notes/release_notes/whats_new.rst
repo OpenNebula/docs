@@ -39,7 +39,10 @@ Sunstone
 - **More customization**, now the admin can disable the VM advanced options in the :ref:`Cloud View dialogs <cloud_view_config>`.
 - Added flag in view configuration yamls to disable animations in the dashboard widgets.
 - Autorefresh has been removed
-- New relative :ref:`scheduled actions <vm_guide2_scheduling_actions>` dialog.
+
+Scheduling
+------------------------------------------------------------------------------
+- **VM actions** can be specified relative to the VM start :ref:`scheduled actions <vm_guide2_scheduling_actions>`, for example: terminate this VM after a month of being created.
 
 Networking
 --------------------------------------------------------------------------------
@@ -57,8 +60,8 @@ vCenter
 --------------------------------------------------------------------------------
 - Added new configuration file vcenterrc, to allow you to change the default behaviour in the process of image importation. More info :ref:`here <vcenterc_image>`.
 - It is now possible to change boot order devices updating the vm template. More info :ref:`here <template_os_and_boot_options_section>`.
-- VM migration between clusters and datastores is now supported, :ref:`check here <vcenter_migrate>`.
-- It is now possible to migrate images from KVM to vCenter or vice versa. More info :ref:`here <migrate_images>`.
+- **VM migration between clusters and datastores** is now supported, :ref:`check here <vcenter_migrate>`.
+- It is now possible to **migrate images from KVM to vCenter or vice versa**. More info :ref:`here <migrate_images>`.
 
 MarketPlace
 --------------------------------------------------------------------------------
