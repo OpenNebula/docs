@@ -39,6 +39,7 @@ Sunstone
 - **More customization**, now the admin can disable the VM advanced options in the :ref:`Cloud View dialogs <cloud_view_config>`.
 - Added flag in view configuration yamls to disable animations in the dashboard widgets.
 - Autorefresh has been removed
+- New relative :ref:`scheduled actions <vm_guide2_scheduling_actions>` dialog.
 
 Networking
 --------------------------------------------------------------------------------
