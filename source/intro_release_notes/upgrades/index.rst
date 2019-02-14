@@ -8,6 +8,7 @@ Upgrading
    :maxdepth: 1
 
    Overview <overview>
+   Upgrading from 5.8.x <upgrade_58>
    Upgrading from 5.6.x <upgrade_56>
    Upgrading from 5.4.x <upgrade_54>
    Upgrading from 5.2.x <upgrade_52>

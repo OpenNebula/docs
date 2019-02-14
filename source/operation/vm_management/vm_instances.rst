@@ -596,12 +596,12 @@ Please bear in mind the following ``onevm save`` limitations:
 
 .. _vm_guide2_scheduling_actions:
 
-Scheduling Actions
-------------------
+Scheduled Actions
+-----------------
 
-We have two types of schedule actions, the puntual and the relative actions.
+We have two types of schedule actions, punctual and relative actions. Punctual actions can also be periodic.
 
-Puntual actions
+One-Time Punctual Actions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Most of the onevm commands accept the ``--schedule`` option, allowing users to delay the actions until the given date and time.
@@ -643,10 +643,10 @@ These actions can be deleted or edited using the ``onevm update`` command. The t
       ID="1",
       TIME="1379938500" ]
 
-Relative actions
+Periodic Punctual Actions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To schedule relative actions also use the option --schedule. however this command also needs more options to define the relativity of the action.
+To schedule periodic actions also use the option --schedule. However this command also needs more options to define the periodicity of the action.
 
 	- ``--weekly``: defines a weekly periodicity, so, the action will be execute all weeks, the days that the user defines.
 	- ``--monthly``: defines a monthly periodicity, so, the action will be execute all months, the days that the user defines.
@@ -723,6 +723,26 @@ These actions can be deleted or edited using the ``onevm update`` command. The t
         ID="2",
         REPEAT="3",
         TIME="1537653600" ]
+
+
+Relative Actions
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Scheduled actions can be also relative to the Start Time of the VM. That is, it can be set on a VM Template, and apply to the number of seconds after the VM is instantiated.
+
+For instance, a VM Template with the following SCHED_ACTION will spawn VMs that will automatically shutdown after 1 hour of being instantiated.
+
+.. prompt:: text $ auto
+
+    $ onetemplate update 0
+
+    SCHED_ACTION=[
+       ACTION="terminate",
+       ID="0",
+       TIME="+3600" ]
+
+
+This functionality is present graphically in Sunstone in the VM Template creation and update dialog, and in the VM Actions tab:
 
 |sunstone_schedule_action|
 
