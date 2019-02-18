@@ -14,7 +14,7 @@ OpenNebula's linuxcontainers marketplace enables users to easily downlaod, conte
 Requirements
 ================================================================================
 
-OpenNebula's frontend needs an Internet connection. This internet connection is used to download the context package from OpenNebula that will be later added to the container. Also, you will need aproximately 6GB plus the image size configured (5G by default) on your frontend.
+OpenNebula's frontend needs an Internet connection. This internet connection is used to download the context package from OpenNebula that will be later added to the container. Also, you will need aproximately 6GB plus the image size configured on your frontend.
 
 Configuration
 ================================================================================
@@ -30,7 +30,7 @@ Several parameters can be specified on the marketplace's template:
 +-------------------+--------------------------------------------------------------------+
 | ``ENDPOINT``      | The URL of the Market. Default: https://images.linuxcontainers.org |
 +-------------------+--------------------------------------------------------------------+
-| ``IMAGE_SIZE_MB`` | Size in MB for the image holding the rootfs. Default: 5120         |
+| ``IMAGE_SIZE_MB`` | Size in MB for the image holding the rootfs. Default: 1024         |
 +-------------------+--------------------------------------------------------------------+
 | ``FILESYSTEM``    | Filesystem used for the image. Default: ext4                       |
 +-------------------+--------------------------------------------------------------------+
