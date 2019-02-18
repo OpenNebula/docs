@@ -43,7 +43,7 @@ The OpenNebula frontend already ships with a configured LXD marketplace.
 
 |image2|
 
-.. code-block:: none
+.. code-block:: text
 
 NAME="Linux Containers"
 MARKET_MAD="linuxcontainers"
