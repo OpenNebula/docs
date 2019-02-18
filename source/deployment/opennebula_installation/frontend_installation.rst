@@ -93,7 +93,7 @@ The packages for the OpenNebula front-end and the virtualization host are as fol
 * **opennebula-sunstone**: :ref:`Sunstone <sunstone>` (the GUI) and the :ref:`EC2 API <introc>`.
 * **opennebula-ruby**: Ruby Bindings.
 * **opennebula-java**: Java Bindings.
-* **python-opennebula**: Python Bindings.
+* **python-pyone**: Python Bindings.
 * **opennebula-gate**: :ref:`OneGate <onegate_overview>` server that enables communication between VMs and OpenNebula.
 * **opennebula-flow**: :ref:`OneFlow <oneflow_overview>` manages services and elasticity.
 * **opennebula-node-kvm**: Meta-package that installs the oneadmin user, libvirt and kvm.
@@ -122,7 +122,7 @@ These are the packages available for these distributions:
 * **opennebula-common**: Provides the user and common files.
 * **ruby-opennebula**: Ruby API.
 * **libopennebula-java**: Java API.
-* **python-opennebula**: Python API.
+* **python-pyone**: Python API.
 * **libopennebula-java-doc**: Java API Documentation.
 * **opennebula-node**: Prepares a node as an opennebula KVM node.
 * **opennebula-node-lxd**: Prepares a node as an opennebula LXD node.
