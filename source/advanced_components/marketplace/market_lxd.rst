@@ -37,7 +37,11 @@ Several parameters can be specified on the marketplace's template:
 | ``FORMAT``        | Image format. Default: raw                                         |
 +-------------------+--------------------------------------------------------------------+
 
-For example the following template will create a working marketplace with the default values:
+The OpenNebula frontend already ships with a configured LXD marketplace.
+
+|image1|
+
+|image2|
 
 .. code-block:: none
 
@@ -58,4 +62,5 @@ Tuning & Extending
 
 System administrators and integrators are encouraged to modify these drivers in order to integrate them with their datacenter. Please refer to the :ref:`Market Driver Development <devel-market>` guide to learn about the driver details.
 
-.. |image0| image:: /images/market1306.png
+.. |image1| image:: /images/lxd_market1.png
+.. |image2| image:: /images/lxd_market2.png
