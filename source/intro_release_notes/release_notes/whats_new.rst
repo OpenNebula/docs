@@ -122,3 +122,5 @@ Other Issues Solved
 - `Wild VM monitoring should not return datastores that contain only swap file <https://github.com/OpenNebula/one/issues/1699>`__.
 - `Sunstone dialog automatically select the tab where the error is located in virtual networks update <https://github.com/OpenNebula/one/issues/2711>`__.
 - `Fix issue in VR instantiation dialog preventing network selection <https://github.com/OpenNebula/one/issues/2905>`__.
+- `Fix performance of the SQL query used to purge the replication log <https://github.com/OpenNebula/one/issues/2966>`__.
+
