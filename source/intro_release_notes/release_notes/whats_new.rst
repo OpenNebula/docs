@@ -110,16 +110,16 @@ Other Issues Solved
 - `Fix create/update of .monitor for local DS monitoring <https://github.com/OpenNebula/one/issues/2767>`__.
 - `Fix recover recreate on vCenter: Clear VM DEPLOY ID attribute <https://github.com/OpenNebula/one/issues/2641>`__-
 - `Fix remove unmanaged nics leads to vm failure in vCenter <https://github.com/OpenNebula/one/issues/2558>`__.
-- `Impossible to create vmgroup using advanced mode <https://github.com/OpenNebula/one/issues/2522>`__.
+- `Fix issue that prevents creating a vmgroup using advanced mode <https://github.com/OpenNebula/one/issues/2522>`__.
 - `Fix restricted attr disk/size in Sunstone <https://github.com/OpenNebula/one/issues/2533>`__.
-- `vCenter: invalidState exception using vm actions <https://github.com/OpenNebula/one/issues/2552>`__.
+- `Fix invalidState exception using vm actions in vCenter <https://github.com/OpenNebula/one/issues/2552>`__.
 - `Fix Network model is not working in vCenter <https://github.com/OpenNebula/one/issues/2474>`__.
 - `Fix VCENTER_ESX_HOST fail with DRS in vCenter <https://github.com/OpenNebula/one/issues/2477>`__.
 - `Fix Case senstive labels in Sunstone <https://github.com/OpenNebula/one/issues/1333>`__.
 - `Fix Allow creation of "Empty disk image" for type OS  in Sunstone <https://github.com/OpenNebula/one/issues/1089>`__.
 - `Fix auth tokens login in Sunstone, so group scope is preserved <https://github.com/OpenNebula/one/issues/2575>`__.
 - `Fix save as template, so disk advanced params are saved in the new template <https://github.com/OpenNebula/one/issues/1312>`__.
-- `Wild VM monitoring should not return datastores that contain only swap file <https://github.com/OpenNebula/one/issues/1699>`__.
+- `Fix wild VM monitoring to not return datastores that contains only swap file <https://github.com/OpenNebula/one/issues/1699>`__.
 - `Sunstone dialog automatically select the tab where the error is located in virtual networks update <https://github.com/OpenNebula/one/issues/2711>`__.
 - `Fix issue in VR instantiation dialog preventing network selection <https://github.com/OpenNebula/one/issues/2905>`__.
 - `Fix performance of the SQL query used to purge the replication log <https://github.com/OpenNebula/one/issues/2966>`__.
