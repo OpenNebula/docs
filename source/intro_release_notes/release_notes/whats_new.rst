@@ -94,7 +94,7 @@ Other Issues Solved
 - `Fix issue vCenter driver driver do not allow to remove duplicated unmanaged nics from template <https://github.com/OpenNebula/one/issues/2833>`__.
 - `Fix issue vCenter driver performs too much reconfigure calls when a machine is deployed <https://github.com/OpenNebula/one/issues/2649>`__.
 - `Fix issue Nic model is ignored on vCenter template <https://github.com/OpenNebula/one/issues/2293>`__.
-- `Fix issue where delete recursive operation of templates instantiated as persistent does not remove images from the vCenter datastores <https://github.com/OpenNebula/one/issues/1350>`__.
+- `Fix issue that does not remove images in vCenter datastores when recursive deleting a templates instantiated as persistent <https://github.com/OpenNebula/one/issues/1350>`__.
 - `Fix issue where only one Ceph monitor was considered on disk attach operations <https://github.com/OpenNebula/one/issues/1955>`__.
 - `Fix install.sh script, add missing options <https://github.com/OpenNebula/one/issues/2001>`__.
 - `Fix issue regarding saveas operation and CD-ROMs <https://github.com/OpenNebula/one/issues/2610>`__.
