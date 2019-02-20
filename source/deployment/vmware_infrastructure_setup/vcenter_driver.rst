@@ -241,6 +241,7 @@ Considerations & Limitations
 * **No Security Groups**: Firewall rules as defined in Security Groups cannot be enforced in vCenter VMs.
 * **No files in context**: Passing entire files to VMs is not supported, but all the other CONTEXT sections will be honored.
 * Image names cannot contain spaces.
+* Detach disks operations are not supported in VMs with system snapshots. Since vCenter snapshots considers disks and are tied to them, disks cannot be removed afterwards.
 * vCenter credential password cannot have more than 22 characters.
 * If you are running Sunstone using nginx/apache you will have to forward the following headers to be able to interact with vCenter, HTTP_X_VCENTER_USER, HTTP_X_VCENTER_PASSWORD and HTTP_X_VCENTER_HOST (or, alternatively, X_VCENTER_USER, X_VCENTER_PASSWORD and X_VCENTER_HOST). For example in nginx you have to add the following attrs to the server section of your nginx file: (underscores_in_headers on; proxy_pass_request_headers on;).
 
@@ -1175,17 +1176,6 @@ Migrate vCenter Virtual Machines with OpenNebula
 
 vCenter Driver allows migration of VMs between different vCenter clusters (ie, OpenNebula hosts) and/or. Depending on the type of migration (cold, the VM is powered off, or saved; or live, the VM is migrated while running), or the target (cluster and/or datastore), several requirements needs to be met in order to migrate the machine.
 
-The next table summarize the general limitations, detailed limitation explanation and requirements can be found in sections below.
-
-+----------------+---------------------+-------------------------------+
-| Migration Type |        Hosts        |           Datastores          |
-+================+=====================+===============================+
-| **COLD**       | All cases supported | Only VMs with unmanaged disks |
-+----------------+---------------------+-------------------------------+
-| **LIVE**       | All cases supported | Only VMs with unmanaged disks |
-+----------------+---------------------+-------------------------------+
-
-
 Migrating a VM Between vCenter Clusters (OpenNebula Hosts)
 ----------------------------------------------------------
 
@@ -1232,12 +1222,6 @@ Requirements (both cold and live migrations)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * Every Datastore that is used by the VM needs to exist in both vCenter clusters and OpenNebula clusters
-
-Limitations
-~~~~~~~~~~~
-
-* **It is not possible to migrate to a different datastore VMs with any managed disk**. Disks added to the VM by OpenNebula (managed disks) are created on a specific folder on the datastore, not on the VM folder. After a migration, vCenter will move that disk from that folder to the VM folder, changing the path, which is not updated by OpenNebula. This means that some operations can fail later on, like disk back-up. For this reason, DS migrations of these VMs are disallowed.
-
 
 Usage (CLI)
 ~~~~~~~~~~~
