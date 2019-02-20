@@ -29,23 +29,19 @@ Core & System
 Drivers - Network
 ================================================================================
 
-* `#792 <https://github.com/OpenNebula/one/issues/792>`_ Review the Open vSwitch flows
 * `#954 <https://github.com/OpenNebula/one/issues/954>`_ NIC defaults not honoured in attach NIC
 
 Drivers - Storage
 ================================================================================
 
-* `#944 <https://github.com/OpenNebula/one/issues/944>`_ CEPH_HOST not IPv6 friendly
-* `#2269 <https://github.com/OpenNebula/one/issues/2269>`_ Clonning images from one Ceph datastore to another
 * `#2246 <https://github.com/OpenNebula/one/issues/2246>`_ VMs created from images inside a Ceph datastore with EC_POOL_NAME are not created in that EC pool
-* `#1286 <https://github.com/OpenNebula/one/issues/1286>`_ Can not flatten image without losting latest state
+* `#1286 <https://github.com/OpenNebula/one/issues/1286>`_ Can not flatten image without losing latest state
 * `#1955 <https://github.com/OpenNebula/one/issues/1955>`_ Only 1 Ceph monitor added in libvirt XML when Ceph DISK IMAGE attached (hot-add)
 
 Drivers - VM
 ================================================================================
 
 * `#1157 <https://github.com/OpenNebula/one/issues/1157>`_ Signal timeouts in EC2 driver
-* `#1309 <https://github.com/OpenNebula/one/issues/1309>`_ Improve exception handling azure and ec2 drivers
 
 Drivers - Auth
 ================================================================================
@@ -65,13 +61,11 @@ OneFlow
 
 * `#917 <https://github.com/OpenNebula/one/issues/917>`_ oneflow and oneflow-template ignore the no_proxy environment variable
 * `#668 <https://github.com/OpenNebula/one/issues/668>`_ Scheduled policy start_time cannot be defined as a POSIX time number
-* `#1077 <https://github.com/OpenNebula/one/issues/1077>`_ Throw an error if a template update is invalid
 
 Marketplace
 ================================================================================
 
 * `#1159 <https://github.com/OpenNebula/one/issues/1159>`_ DISPOSE=YES in market_mad/remotes/http/import is not honored
-* `#1666 <https://github.com/OpenNebula/one/issues/1666>`_ Marketplace driver expects always an image to import
 
 Scheduler
 ================================================================================
@@ -84,14 +78,8 @@ Sunstone
 * `#636 <https://github.com/OpenNebula/one/issues/636>`_ if syslog enabled disable the logs tab in the VM detailed view
 * `#916 <https://github.com/OpenNebula/one/issues/916>`_ Sunstone ignores the no_proxy environment variable
 * `#1532 <https://github.com/OpenNebula/one/issues/1532>`_ Sunstone is killed by OOM Killer when uploading large images
-* `#1637 <https://github.com/OpenNebula/one/issues/1637>`_ No notification on failed live migration
-* `#2845 <https://github.com/OpenNebula/one/issues/2845>`_ Sunstone template instantiate needs CREATE permissions.
-* `#2623: <https://github.com/OpenNebula/one/issues/2623>`_ Can't remove resources from VDC
-* `#2845: <https://github.com/OpenNebula/one/issues/2845>`_ Sunstone template instantiate needs CREATE permissions
-* `#2763: <https://github.com/OpenNebula/one/issues/2763>`_ vCenter information VM attributes cannot be deleted
 * `#2412: <https://github.com/OpenNebula/one/issues/2412>`_ Poweroff all VM on the host provides bridge interface disable
 * `#1662: <https://github.com/OpenNebula/one/issues/1662>`_ Showback hours slightly innacurate
-
 
 vCenter
 ================================================================================
