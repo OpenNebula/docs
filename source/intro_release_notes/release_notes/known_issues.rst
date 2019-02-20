@@ -97,6 +97,5 @@ vCenter
 ================================================================================
 
 * `#2275 <https://github.com/OpenNebula/one/issues/2275>`_ Remove disk not affected by snap on vCenter
-* `#2084 <https://github.com/OpenNebula/one/issues/2084>`_ vCenter Cache thread safe (thin related)
 * `#2530 <https://github.com/OpenNebula/one/issues/2530>`_ StorageDRS is not working properly
-* `#2335 <https://github.com/OpenNebula/one/issues/2335>`_ Update memoize cache
+
