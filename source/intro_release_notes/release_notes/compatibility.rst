@@ -38,6 +38,10 @@ KVM Drivers
 =================================================================================
 * oned.conf needs to be updated to set KEEP_SNAPSHOTS to yes in oned.conf for the KVM driver. Note that this change will be only available for new VMs. Existing VMs would not be able to revert a pre-upgrade snapshots after a migration.
 
+vCenter Drivers
+=================================================================================
+* New VM migration (host and DS) functionality may require ESX_MIGRATION_LIST parameter added to the target host. Check :ref:`here <vcenter_migrate>` for details.
+
 LVM Datastore Drivers
 =================================================================================
 * Volatile disks are now created as logical volume instead of a file.

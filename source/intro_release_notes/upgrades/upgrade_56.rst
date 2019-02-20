@@ -112,6 +112,8 @@ If everything goes well, you should get an output similar to this one:
 
 .. note:: Make sure you keep the backup file. If you face any issues, the onedb command can restore this backup, but it won't downgrade databases to previous versions.
 
+.. note:: vCenter VM disks managed by OpenNebula will be retagged in the vCenter VMs extraConfig. It is important that the front-end has access to the vCenter servers managed by OpenNebula in this DB upgrade process.
+
 Check DB Consistency
 ====================
 

@@ -11,15 +11,13 @@ OpenNebula 5.8 (Edge) is the fifth major release of the OpenNebula 5 series. A s
 - Distributed Data Centers. This feature is key for the edge cloud. OpenNebula now offers the ability to use bare metal providers to build remote clusters in a breeze, without needing to change the workload nature. We are confident that this is a killer feature that sets OpenNebula apart from the direct competitors in the space.
 - Scalability improvements. Orchestrating an edge cloud will be demanding in terms of the number of VMs, containers and hypervisors to manage. OpenNebula 5.8 brings to the table a myriad of improvements to the monitoring, pool management and GUI, to deliver a smooth user experience in large scale environments.
 
-
-This OpenNebula release is named after the edges of nebulas. Nebulas are diffuse objects, and their edges can be considered vacuum. However, they are very thick, so they appear to be dense. This is the aim of OpenNebula 5.8, to provide computing power on a wide geographic surface to offer services closer to customers, building a cloud managed from a single portal over very thin infrastructure. There's an `Edge Nebula <http://freelancer.wikia.com/wiki/Edge_Nebula>`__ on the Freelancer videogame.
-
-The OpenNebula team is now transitioning to "bug-fixing mode". Note that this is a second beta release aimed at testers and developers to try the new features, and send a more than welcomed feedback for the final release. Also note that being a beta, there is no migration path from the previous stable version (5.6.1) nor migration path to the final stable version (5.8.0). A `list of open issues <https://github.com/OpenNebula/one/milestone/9>`__ can be found in the GitHub development portal.
-
-
 .. image:: /images/lxd_screenshot.png
     :width: 90%
     :align: center
+
+This OpenNebula release is named after the edges of nebulas. Nebulas are diffuse objects, and their edges can be considered vacuum. However, they are very thick, so they appear to be dense. This is the aim of OpenNebula 5.8, to provide computing power on a wide geographic surface to offer services closer to customers, building a cloud managed from a single portal over very thin infrastructure. There's an `Edge Nebula <http://freelancer.wikia.com/wiki/Edge_Nebula>`__ on the Freelancer videogame.
+
+OpenNebula 5.8 Edge is considered to be a stable release and as such it is available to update production environments.
 
 OpenNebula Core
 --------------------------------------------------------------------------------
@@ -28,11 +26,13 @@ OpenNebula Core
 - **Mixed mode** for ``ALLOW_ORPHAN`` attribute which takes care of the dependencies between snapshots after revert actions at Ceph datastores.
 - Default configuration values for RAFT have been updated to a more conservative setting.
 - **Search for virtual machines**, a new option for searching VMs using ``onevm list`` command or ``one.vmpool.info`` API call is available. Find out how to search VM instances :ref:`here <vm_search>`.
-- The ``one.vmpool.info`` call now returns a reduce version of the VMs body in order to achive better performance on large environments whit a large number of VMs.
+- The ``one.vmpool.info`` call now returns a reduce version of the VMs body in order to achieve better performance on large environments whit a large number of VMs.
 
 KVM Driver
 ----------------------------------------------------------------------------------
 - **Metadata information** with OpenNebula information is included in the Libvirt domain XML, :ref:`see here <libvirt_metadata>`.
+
+
 
 Sunstone
 --------------------------------------------------------------------------------
