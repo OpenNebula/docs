@@ -123,4 +123,4 @@ Other Issues Solved
 - `Sunstone dialog automatically select the tab where the error is located in virtual networks update <https://github.com/OpenNebula/one/issues/2711>`__.
 - `Fix issue in VR instantiation dialog preventing network selection <https://github.com/OpenNebula/one/issues/2905>`__.
 - `Fix performance of the SQL query used to purge the replication log <https://github.com/OpenNebula/one/issues/2966>`__.
-
+- `Add limitation in documentation for vCenter snapshots and tm_mad <https://github.com/OpenNebula/one/issues/2672>`__.
