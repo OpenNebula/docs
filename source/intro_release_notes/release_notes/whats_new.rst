@@ -103,7 +103,6 @@ Other Issues Solved
 - `Fix issue that prevents to use floating IPs with BRIDGE interfaces <https://github.com/OpenNebula/one/issues/2607>`__.
 - `Fix issue with disk-saveas on ubuntu 18.04 <https://github.com/OpenNebula/one/issues/2646>`__.
 - `Fix issue with sensitive group-membership matching in LDAP auth <https://github.com/OpenNebula/one/issues/2677>`__.
-- `Make use of HTTPS by default in OpenNebula MarketPlace <https://github.com/OpenNebula/one/issues/2668>`__.
 - `Fix issue about restoring erasure-coded Ceph VM image from shanshot <https://github.com/OpenNebula/one/issues/2476>`__.
 - `Fix CPU_MODEL can't be changed <https://github.com/OpenNebula/one/issues/2820>`__.
 - `Fix KVM probe of machines models stuck <https://github.com/OpenNebula/one/issues/2842>`__.
@@ -120,7 +119,10 @@ Other Issues Solved
 - `Fix auth tokens login in Sunstone, so group scope is preserved <https://github.com/OpenNebula/one/issues/2575>`__.
 - `Fix save as template, so disk advanced params are saved in the new template <https://github.com/OpenNebula/one/issues/1312>`__.
 - `Fix wild VM monitoring to not return datastores that contains only swap file <https://github.com/OpenNebula/one/issues/1699>`__.
-- `Sunstone dialog automatically select the tab where the error is located in virtual networks update <https://github.com/OpenNebula/one/issues/2711>`__.
 - `Fix issue in VR instantiation dialog preventing network selection <https://github.com/OpenNebula/one/issues/2905>`__.
 - `Fix performance of the SQL query used to purge the replication log <https://github.com/OpenNebula/one/issues/2966>`__.
+- `Fix persistent managed disk problem with snapshots <https://github.com/OpenNebula/one/issues/2951>`__.
+- `Sunstone dialog automatically select the tab where the error is located in virtual networks update <https://github.com/OpenNebula/one/issues/2711>`__.
+- `Make use of HTTPS by default in OpenNebula MarketPlace <https://github.com/OpenNebula/one/issues/2668>`__.
+- `Change managed disk model of vCenter driver <https://github.com/OpenNebula/one/issues/2944>`__.
 - `Add limitation in documentation for vCenter snapshots and tm_mad <https://github.com/OpenNebula/one/issues/2672>`__.
