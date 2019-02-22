@@ -22,7 +22,7 @@ This section covers available commands of the ``oneprovision`` tool.
 Create
 ------
 
-Deployment of new a provision is a 4 steps process:
+Deployment of a new provision is a 4 steps process:
 
 1. **Create**. OpenNebula provision objects (cluster, hosts, datastores, networks) are created.
 2. :ref:`Provision <ddc_provision>`. Resources are allocated on the remote provider (e.g. use provider's API to get clean new hosts).
