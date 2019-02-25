@@ -25,19 +25,20 @@ All code for the Ansible (tasks, roles, playbooks) is installed into ``/usr/shar
     /usr/share/one/oneprovision/ansible
     |-- inventories
     |   |-- default
-    |   `-- vxlan_packet
+    |   `-- static_vxlan
     |-- roles
     |   |-- bridged-networking
     |   |-- ddc
     |   |-- iptables
     |   |-- opennebula-node-kvm
+    |   |-- opennebula-node-lxd
     |   |-- opennebula-p2p-vxlan
     |   |-- opennebula-repository
     |   |-- opennebula-ssh
     |   |-- python
     |   `-- tuntap
     |-- default.yml
-    `-- vxlan_packet.yml
+    `-- static_packet.yml
 
 Description:
 

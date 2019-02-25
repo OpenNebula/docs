@@ -1,4 +1,4 @@
-.. _ddc_provision_driver_packet:
+.. _ddc_driver_packet:
 
 =============
 Packet Driver
@@ -43,7 +43,6 @@ Example of minimal Packet provision template:
 .. code::
 
     ---
-    version: 2
     name: myprovision
 
     defaults:

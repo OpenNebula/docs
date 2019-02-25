@@ -1,4 +1,4 @@
-.. _ddc_provision_driver_ec2:
+.. _ddc_driver_ec2:
 
 =================
 Amazon EC2 Driver
@@ -72,7 +72,6 @@ Example of minimal EC2 provision template:
 
 
     ---
-    version: 2
     name: myprovision
 
     defaults:
