@@ -15,7 +15,7 @@ Template
 
 **Provision template** is a YAML formatted file with parameters specifying the new physical resources to be provisioned. Contains:
 
-* header (version, name, configuration playbook, parent template)
+* header (name, configuration playbook, parent template)
 * global default parameters for
 
   * remote connection (SSH),
@@ -29,9 +29,8 @@ Example:
 .. code::
 
     ---
-    version: 2
     name: myprovision
-    playbook: vxlan_packet
+    playbook: default
 
     # Global defaults:
     defaults:
@@ -95,24 +94,25 @@ Example:
 Header
 ------
 
-+-----------------+--------------------+------------------------------------------------+
-| Parameter       | Default            | Description                                    |
-+=================+====================+================================================+
-| ``version``     | ``2``              | Template version, only ``2`` supported.        |
-+-----------------+--------------------+------------------------------------------------+
-| ``name``        | none               | Name of provision.                             |
-+-----------------+--------------------+------------------------------------------------+
-| ``playbook``    | ``default``        | Ansible Playbook used for hosts configuration. |
-|                 |                    | Supported values: ``default``,                 |
-|                 |                    | ``vxlan_packet``                               |
-+-----------------+--------------------+------------------------------------------------+
-| ``extends``     | none               | Path to parent template.                       |
-+-----------------+--------------------+------------------------------------------------+
-
-Please, see the base playbooks documentation:
-
-* :ref:`default <ddc_config_playbooks_default>`
-* :ref:`vxlan_packet <ddc_config_playbooks_vxlan_packet>`
++-----------------+--------------------+-----------------------------------------------------------------------------------------------------------------+
+| Parameter       | Default            | Description                                                                                                     |
++=================+====================+=================================================================================================================+
+| ``name``        | none               | Name of provision.                                                                                              |
++-----------------+--------------------+-----------------------------------------------------------------------------------------------------------------+
+| ``playbook``    | ``default``        | Ansible playbook used for hosts configuration.                                                                  |
+|                 |                    | Provide the custom **absolute filename**, or one                                                                |
+|                 |                    | of predefined:                                                                                                  |
+|                 |                    |                                                                                                                 |
+|                 |                    | - :ref:`default <ddc_config_playbooks_default>`                                                                 |
+|                 |                    | - :ref:`default_lxd <ddc_config_playbooks_default_lxd>`                                                         |
+|                 |                    | - :ref:`static_vxlan <ddc_config_playbooks_static_vxlan>`                                                       |
++-----------------+--------------------+-----------------------------------------------------------------------------------------------------------------+
+| ``extends``     | none               | Parent template to include and extend. Provide the custom                                                       |
+|                 |                    | **absolute filename**, or one of predefined:                                                                    |
+|                 |                    |                                                                                                                 |
+|                 |                    | - :ref:`/usr/share/one/oneprovision/templates/default.yaml <ddc_provision_templates_default>`                   |
+|                 |                    | - :ref:`/usr/share/one/oneprovision/templates/static_vxlan.yaml <ddc_provision_templates_static_vxlan>`         |
++-----------------+--------------------+-----------------------------------------------------------------------------------------------------------------+
 
 Shared sections
 ---------------
@@ -145,17 +145,14 @@ provision
 
 This section contains parameters for the provisioning driver. Most parameters are specific for each driver, the only valid common parameters are:
 
-+-----------------+--------------------------------------+-------------------------------------------+
-| Parameter       | Default                              | Description                               |
-+=================+======================================+===========================================+
-| ``driver``      | none, needs to be specified          | Host provision driver.                    |
-|                 |                                      | Supported values: ``packet``, ``ec2``     |
-+-----------------+--------------------------------------+-------------------------------------------+
-
-Please, see the driver specific pages with the parameters:
-
-* :ref:`Packet <ddc_driver_packet_params>`
-* :ref:`Amazon EC2 <ddc_driver_ec2_params>`
++-----------------+--------------------------------------+-----------------------------------------------+
+| Parameter       | Default                              | Description                                   |
++=================+======================================+===============================================+
+| ``driver``      | none, needs to be specified          | Host provision driver. Options:               |
+|                 |                                      |                                               |
+|                 |                                      | - :ref:`packet <ddc_driver_packet>`           |
+|                 |                                      | - :ref:`ec2 <ddc_driver_ec2>`                 |
++-----------------+--------------------------------------+-----------------------------------------------+
 
 .. _ddc_provision_template_configuration:
 

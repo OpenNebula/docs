@@ -19,8 +19,8 @@ This configuration prepares the host with
 
     If more physical hosts are created, the private traffic of the virtual machines isn't routed between them. Virtual machines on different hosts are isolated although sharing the same private address space! This is the simplest configuration type.
 
-Networking 1
-============
+Networking 1 (host-only with NAT)
+=================================
 
 On the physical host, the IP configuration of prepared bridge ``br0`` (with TAP interface ``tap0``) is same on all hosts:
 
@@ -28,6 +28,7 @@ On the physical host, the IP configuration of prepared bridge ``br0`` (with TAP 
 Parameter     Value
 ============= =================
 Interface     ``br0``
+Slave         ``tap0``
 IP address    ``192.168.150.1``
 Netmask       ``255.255.255.0``
 ============= =================
@@ -41,6 +42,37 @@ IP address    any from range ``192.168.150.2 - 192.168.150.254``
 Netmask       ``255.255.255.0``
 Gateway (NAT) ``192.168.150.1``
 ============= =================
+
+Create OpenNebula Virtual Network
+---------------------------------
+
+From Provision Template
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Put the full network definition into your provision template:
+
+.. code::
+
+    networks:
+      - name: "nat"
+        vn_mad: dummy
+        bridge: br0
+        dns: "8.8.8.8 8.8.4.4"
+        gateway: "192.168.150.1"
+        description: "Host-only networking with NAT"
+        ar:
+          - ip: "192.168.150.2"
+            size: 253
+            type: IP4
+
+or, just easily extend the shipped template with above definition by setting the ``extends`` attribute in the provision template:
+
+.. code::
+
+    extends: /usr/share/one/oneprovision/templates/default.yaml
+
+Manually
+~~~~~~~~
 
 In the OpenNebula, the :ref:`virtual network <manage_vnets>` for the virtual machines can be defined by the following template:
 
@@ -76,7 +108,7 @@ Parameter                              Value                                    
 =====================================  ========================================== ===========
 ``bridged_networking_static_ip``       192.168.150.1                              IP address of the bridge
 ``bridged_networking_static_netmask``  255.255.255.0                              Netmask of the bridge
-``opennebula_repository_version``      5.7                                        OpenNebula repository version
+``opennebula_repository_version``      5.8                                        OpenNebula repository version
 ``opennebula_repository_base``         ``https://downloads.opennebula.org/repo/`` Repository of the OpenNebula packages
                                        ``{{ opennebula_repository_version }}``
 =====================================  ========================================== ===========

@@ -1,7 +1,7 @@
-.. _ddc_config_playbooks_vxlan_packet:
+.. _ddc_config_playbooks_static_vxlan:
 
 =======================
-Playbook 'vxlan_packet'
+Playbook 'static_vxlan'
 =======================
 
 .. note::
@@ -40,6 +40,37 @@ Netmask       ``255.255.255.0``
 Gateway (NAT) ``192.168.150.1``
 ============= =================
 
+Create OpenNebula Virtual Network
+---------------------------------
+
+From Provision Template
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Put the first network definition into your provision template:
+
+.. code::
+
+    networks:
+      - name: "nat"
+        vn_mad: dummy
+        bridge: br0
+        dns: "8.8.8.8 8.8.4.4"
+        gateway: "192.168.150.1"
+        description: "Host-only networking with NAT"
+        ar:
+          - ip: "192.168.150.2"
+            size: 253
+            type: IP4
+
+or, just easily extend the shipped template with both network definitions by setting the ``extends`` attribute in the provision template:
+
+.. code::
+
+    extends: /usr/share/one/oneprovision/templates/static_vxlan.yaml
+
+Manually
+~~~~~~~~
+
 In the OpenNebula, the :ref:`virtual network <manage_vnets>` for the virtual machines can be defined by the following template:
 
 .. code::
@@ -74,7 +105,7 @@ Parameter     Value
 ============= =================
 Interface     ``vxbr100``
 Slave         ``vxlan100``
-Physical      ``bond0:0``
+Physical      ``bond0:0`` or ``eth0``
 IP address    none
 Netmask       none
 ============= =================
@@ -88,6 +119,36 @@ IP address    any from range ``192.168.160.2 - 192.168.160.254``
 Netmask       ``255.255.255.0``
 Gateway (NAT) none
 ============= =================
+
+Create OpenNebula Virtual Network
+---------------------------------
+
+From Provision Template
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Put the second network definition into your provision template:
+
+.. code::
+
+    networks:
+      - name:        "private"
+        vn_mad:      "dummy"
+        bridge:      "vxbr100"
+        mtu:         "1450"
+        description: "Private networking"
+        ar:
+          - ip:   "192.168.160.2"
+            size: "253"
+            type: "IP4"
+
+or, just easily extend the shipped template with both network definitions by setting the ``extends`` attribute in the provision template:
+
+.. code::
+
+    extends: /usr/share/one/oneprovision/templates/static_vxlan.yaml
+
+Manually
+~~~~~~~~
 
 In the OpenNebula, the :ref:`virtual network <manage_vnets>` for the virtual machines can be defined by the following template:
 
@@ -124,7 +185,7 @@ Parameter                              Value                                    
 ``bridged_networking_static_netmask``  255.255.255.0                              Netmask of the bridge
 ``opennebula_node_kvm_use_ev``         **True** or False                          Whether to use the ev package for kvm
 ``opennebula_node_kvm_param_nested``   True or **False**                          Enable nested KVM virtualization
-``opennebula_repository_version``      5.7                                        OpenNebula repository version
+``opennebula_repository_version``      5.8                                        OpenNebula repository version
 ``opennebula_repository_base``         ``https://downloads.opennebula.org/repo/`` Repository of the OpenNebula packages
                                        ``{{ opennebula_repository_version }}``
 =====================================  ========================================== ===========
@@ -158,9 +219,9 @@ Parameter                                 Value
 ``iptables_masquerade_enabled``           true
 ``iptables_base_rules_strict``            false
 ``opennebula_p2p_vxlan_bridge``           vxbr100
-``opennebula_p2p_vxlan_phydev``           bond0:0
+``opennebula_p2p_vxlan_phydev``           bond0:0 or eth0
 ``opennebula_p2p_vxlan_vxlan_vni``        100
 ``opennebula_p2p_vxlan_vxlan_dev``        vxlan100
-``opennebula_p2p_vxlan_vxlan_local_ip``   autodetect IPv4 address on bond0:0
-``opennebula_p2p_vxlan_remotes``          autodetect list of IPv4 on bond0:0 from all hosts
+``opennebula_p2p_vxlan_vxlan_local_ip``   autodetect IPv4 address on bond0:0 or eth0
+``opennebula_p2p_vxlan_remotes``          autodetect list of IPv4 on bond0:0 or eth0 from all hosts
 ========================================= =====
