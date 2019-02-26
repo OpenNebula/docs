@@ -93,10 +93,11 @@ If everything goes well, you should get an output similar to this one:
     $ onedb upgrade -v -u oneadmin -d opennebula
     MySQL Password:
     Version read:
-    Shared tables 4.11.80 : OpenNebula 4.12.1 daemon bootstrap
-    Local tables  4.11.80 : OpenNebula 4.12.1 daemon bootstrap
+    Shared tables 5.6.0 : Database migrated from 5.5.80 to 5.6.0 (OpenNebula 5.6.0) by onedb command.
+    Local tables  5.6.0 : Database migrated from 5.5.80 to 5.6.0 (OpenNebula 5.6.0) by onedb command.
 
-    MySQL dump stored in /var/lib/one/mysql_localhost_opennebula.sql
+    Warning: Using a password on the command line interface can be insecure.
+    MySQL dump stored in /var/lib/one/mysql_localhost_opennebula_2019-2-26_16:18:59.sql
     Use 'onedb restore' or restore the DB using the mysql command:
     mysql -u user -h server -P port db_name < backup_file
 
@@ -106,11 +107,12 @@ If everything goes well, you should get an output similar to this one:
 
     >>> Running migrators for local tables
       ...
-      > Done in 41.93s
+      > Done in 0.00s
 
-    Database migrated from 4.11.80 to 4.13.80 (OpenNebula 4.13.80) by onedb command.
+    Database migrated from 5.6.0 to 5.8.0 (OpenNebula 5.8.0) by onedb command.
 
-    Total time: 41.93s
+    Total time: 342.99s
+   
 
 .. note:: Make sure you keep the backup file. If you face any issues, the onedb command can restore this backup, but it won't downgrade databases to previous versions.
 
