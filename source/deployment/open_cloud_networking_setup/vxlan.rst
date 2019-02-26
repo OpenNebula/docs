@@ -133,7 +133,7 @@ By default VXLAN relies on multicast to discover tunnel endpoints, alternatively
 
 Configuring the Hypervisors
 --------------------------------------------------------------------------------
-The hypervisor needs to run a BGP EVPN capable routing software like `FFRouting (FRR) <https://frrouting.org/>`_. Its main purpose is to send BGP updates with the MAC address and IP (optional) for each VXLAN tunnel endpoint (i.e. the VM interfaces in the VXLAN network) running in the host. The updates needs to be distributed to all the other hypervisors and so to achieve route reachability. This second step is usually performed by one or more BGP route reflectors.
+The hypervisor needs to run a BGP EVPN capable routing software like `FFRouting (FRR) <https://frrouting.org/>`_. Its main purpose is to send BGP updates with the MAC address and IP (optional) for each VXLAN tunnel endpoint (i.e. the VM interfaces in the VXLAN network) running in the host. The updates needs to be distributed to all other hypervisors in the cloud to achieve full route reachability. This second step is usually performed by one or more BGP route reflectors.
 
 As an example, consider to hypervisors 10.4.4.11 and 10.4.4.12, and a route reflector at 10.4.4.13. The FRR configuration file for the hypervisors could be (to announce all VXLAN networks):
 
