@@ -36,6 +36,7 @@ There are a number of regular features that are not implemented yet:
     - only supported **xfs** and **ext4** filesystems
 - **datablocks**: Datablocks created on OpenNebula will need to be formatted before being attached to a container
 - **multiple partition images**: One of the partitions must have a valid `/etc/fstab` to mount the partitions 
+- ``lxc exec $container -- login`` in a centos container doesn't outputs the login shell 
 
 Configuration
 ================================================================================
