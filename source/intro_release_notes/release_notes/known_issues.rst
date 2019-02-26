@@ -10,22 +10,6 @@ CLI
 * `#781 <https://github.com/OpenNebula/one/issues/781>`_ Different ruby versions need different time formats
 * `#841 <https://github.com/OpenNebula/one/issues/841>`_ Wrong headers when output is piped for oneacct and oneshowback
 
-Core & System
-================================================================================
-
-* `#937 <https://github.com/OpenNebula/one/issues/937>`_ An image can be used twice by a VM, but this breaks the used/ready logic
-* `#1243 <https://github.com/OpenNebula/one/issues/1243>`_ Hybrid VMs in poweroff --> terminate are not removed from public cloud provider
-* `#1184 <https://github.com/OpenNebula/one/issues/1184>`_ PUBLIC_CLOUD variables do not accept ','
-* `#763 <https://github.com/OpenNebula/one/issues/763>`_ If an user removes USE or MANAGE rights from VM it cannot access it anymore
-* `#2260 <https://github.com/OpenNebula/one/issues/2260>`_ Re-evaluate the actions that can be supported by a Virtual Router
-* `#1815 <https://github.com/OpenNebula/one/issues/1815>`_ Remove resource references from VDC when erased
-* `#1255 <https://github.com/OpenNebula/one/issues/1255>`_ MANAGE right requirement on image for disk snapshot unjustified with ceph
-* `#1635 <https://github.com/OpenNebula/one/issues/1635>`_ Do not instantiate VM if IP is allocated
-* `#1320 <https://github.com/OpenNebula/one/issues/1320>`_ Implement call to let raft know that a follower's db has been updated
-* `#1312 <https://github.com/OpenNebula/one/issues/1312>`_ VM Save As - Disk advanced params not saved to new template
-* `#1395 <https://github.com/OpenNebula/one/issues/1395>`_ Deleting a group that owns images used by running VMs breaks those VMs
-* `#2284 <https://github.com/OpenNebula/one/issues/2284>`_ Quotas assignment error
-
 Drivers - Network
 ================================================================================
 
@@ -66,11 +50,6 @@ Marketplace
 ================================================================================
 
 * `#1159 <https://github.com/OpenNebula/one/issues/1159>`_ DISPOSE=YES in market_mad/remotes/http/import is not honored
-
-Scheduler
-================================================================================
-
-* `#629 <https://github.com/OpenNebula/one/issues/629>`_ If more than one scheduled actions fit in a scheduler cycle, the behavior is unexpected
 
 Sunstone
 ================================================================================
