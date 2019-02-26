@@ -135,7 +135,7 @@ Configuring the Hypervisors
 --------------------------------------------------------------------------------
 The hypervisor needs to run a BGP EVPN capable routing software like `FFRouting (FRR) <https://frrouting.org/>`_. Its main purpose is to send BGP updates with the MAC address and IP (optional) for each VXLAN tunnel endpoint (i.e. the VM interfaces in the VXLAN network) running in the host. The updates needs to be distributed to all other hypervisors in the cloud to achieve full route reachability. This second step is usually performed by one or more BGP route reflectors.
 
-As an example, consider to hypervisors 10.4.4.11 and 10.4.4.12, and a route reflector at 10.4.4.13. The FRR configuration file for the hypervisors could be (to announce all VXLAN networks):
+As an example, consider two hypervisors 10.4.4.11 and 10.4.4.12, and a route reflector at 10.4.4.13. The FRR configuration file for the hypervisors could be (to announce all VXLAN networks):
 
 .. code::
 
@@ -189,9 +189,10 @@ Note that this a simple scenario using the same configuration for all the VNIs. 
 Configuring OpenNebula
 --------------------------------------------------------------------------------
 
-You need to update `/var/lib/one/remotes/vnm/OpenNebulaNetwork.conf` file to:
-1. Set BGP EVPN as the control plane for your BUM traffic, `vxlan_mode`.
-2. Select the hypervisor is going to send the traffic to the VTEP. This can be either `dev`, to forward the traffic through the `PHY_DEV` interface defined in the Virtual Network template, or `local_ip` to route the traffic using the first IP configured in `PHY_DEV`.
+You need to update ``/var/lib/one/remotes/vnm/OpenNebulaNetwork.conf`` file to:
+
+1. Set BGP EVPN as the control plane for your BUM traffic, ``vxlan_mode``.
+2. Select the hypervisor is going to send the traffic to the VTEP. This can be either ``dev``, to forward the traffic through the ``PHY_DEV`` interface defined in the Virtual Network template, or ``local_ip`` to route the traffic using the first IP configured in ``PHY_DEV``.
 3. Finally you may want to add the nolearning option to the VXLAN link.
 
 .. code::
