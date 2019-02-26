@@ -127,3 +127,88 @@ The following example defines a VXLAN network
 In this scenario, the driver will check for the existence of the ``vxlan50`` bridge. If it doesn't exist it will be created. ``eth0`` will be tagged (``eth0.50``) and attached to ``vxlan50`` (unless it's already attached). Note that eth0 can be a 802.1Q tagged interface if you want to isolate the OpenNebula VXLAN traffic.
 
 
+Using VXLAN with BGP EVPN
+================================================================================
+By default VXLAN relies on multicast to discover tunnel endpoints, alternatively you can use MP-BGP EVPN for the control plane and hence increase the scalability of your network. This section describes the main configuration steps to deploy such setup.
+
+Configuring the Hypervisors
+--------------------------------------------------------------------------------
+The hypervisor needs to run a BGP EVPN capable routing software like `FFRouting (FRR) <https://frrouting.org/>`_. Its main purpose is to send BGP updates with the MAC address and IP (optional) for each VXLAN tunnel endpoint (i.e. the VM interfaces in the VXLAN network) running in the host. The updates needs to be distributed to all the other hypervisors and so to achieve route reachability. This second step is usually performed by one or more BGP route reflectors.
+
+As an example, consider to hypervisors 10.4.4.11 and 10.4.4.12, and a route reflector at 10.4.4.13. The FRR configuration file for the hypervisors could be (to announce all VXLAN networks):
+
+.. code::
+
+   router bgp 7675
+    bgp router-id 10.4.4.11
+    no bgp default ipv4-unicast
+    neighbor 10.4.4.13 remote-as 7675
+    neighbor 10.4.4.13  capability extended-nexthop
+    address-family l2vpn evpn
+     neighbor 10.4.4.13 activate
+     advertise-all-vni
+    exit-address-family
+   exit
+
+And the reflector for our AS 7675, and hypervisors in 10.4.4.0/24:
+
+.. code::
+
+   router bgp 7675
+     bgp router-id 10.4.4.13
+     bgp cluster-id 10.4.4.13
+     no bgp default ipv4-unicast
+     neighbor kvm_hosts peer-group
+     neighbor kvm_hosts remote-as 7675
+     neighbor kvm_hosts capability extended-nexthop
+     neighbor kvm_hosts update-source 10.4.4.13
+     bgp listen range 10.4.4.0/24 peer-group kvm_hosts
+     address-family l2vpn evpn
+      neighbor fabric activate
+      neighbor fabric route-reflector-client
+     exit-address-family
+   exit
+
+Note that this a simple scenario using the same configuration for all the VNIs. Once the routing software is configure you should see the updates in each hypervisor for the VMs running in it, for example:
+
+.. code::
+
+   10.4.4.11# show bgp evpn route
+      Network          Next Hop            Metric LocPrf Weight Path
+   Route Distinguisher: 10.4.4.11:2
+   *> [2]:[0]:[0]:[48]:[02:00:0a:03:03:c9]
+                       10.4.4.11                          32768 i
+   *> [3]:[0]:[32]:[10.4.4.11]
+                      10.4.4.11                           32768 i
+   Route Distinguisher: 10.4.4.12:2
+   *>i[2]:[0]:[0]:[48]:[02:00:0a:03:03:c8]
+                      10.4.4.12                0    100      0 i
+   *>i[3]:[0]:[32]:[10.4.4.12]
+                      10.4.4.12                0    100      0 i
+
+Configuring OpenNebula
+--------------------------------------------------------------------------------
+
+You need to update `/var/lib/one/remotes/vnm/OpenNebulaNetwork.conf` file to:
+1. Set BGP EVPN as the control plane for your BUM traffic, `vxlan_mode`.
+2. Select the hypervisor is going to send the traffic to the VTEP. This can be either `dev`, to forward the traffic through the `PHY_DEV` interface defined in the Virtual Network template, or `local_ip` to route the traffic using the first IP configured in `PHY_DEV`.
+3. Finally you may want to add the nolearning option to the VXLAN link.
+
+.. code::
+
+   # Multicast protocol for multi destination BUM traffic. Options:
+   #   - multicast, for IP multicast
+   #   - evpn, for BGP EVPN control plane
+   :vxlan_mode: evpn
+
+   # Tunnel endpoint communication type. Only for evpn vxlan_mode.
+   #   - dev, tunnel endpoint communication is sent to PHYDEV
+   #   - local_ip, first ip addr of PHYDEV is used as address for the communiation
+   :vxlan_tep: local_ip
+
+   # Additional ip link options, uncomment the following to disable learning for
+   # EVPN mode
+   :ip_link_conf:
+       :nolearning:
+
+After updating the configuration file do not forget to run `onehost sync -f` to distribute the changes.
