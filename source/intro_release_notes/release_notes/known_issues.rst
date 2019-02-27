@@ -15,7 +15,7 @@ There is an issue where the database upgrade process can drop some XML attribute
 
 If you want to obtain the right listing information after the upgrade, please replace the file ``/usr/lib/one/ruby/onedb/local/5.6.0_to_5.7.80.rb`` `with the one you can download here. <https://raw.githubusercontent.com/OpenNebula/one/one-5.8/src/onedb/local/5.6.0_to_5.7.80.rb>`__
 
-Debian & Ubuntu: Phusion Passenger Pacakge Conflict
+Debian & Ubuntu: Phusion Passenger Package Conflict
 ================================================================================
 
-Phusion Passenger, used to run the Sunstone inside the Apache or NGINX, can't be installed from the packages available for Debian and Ubuntu due to conflicting dependencies. Passenger must be installed manually, follow the (`documentation <https://www.phusionpassenger.com/library/walkthroughs/deploy/ruby/ownserver/apache/oss/rubygems_norvm/install_passenger.html>`__).
+Phusion Passenger, used to run the Sunstone inside the Apache or NGINX, can't be installed from the packages available for Debian and Ubuntu due to conflicting dependencies. Passenger must be installed manually, `follow the documentation <https://www.phusionpassenger.com/library/walkthroughs/deploy/ruby/ownserver/apache/oss/rubygems_norvm/install_passenger.html>`__.
