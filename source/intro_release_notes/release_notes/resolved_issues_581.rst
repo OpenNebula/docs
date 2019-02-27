@@ -12,3 +12,4 @@ The following new features has been backported to 5.8.1:
 The following issues has been solved in 5.8.1:
 
 - `Add timepicker in relative scheduled actions <https://github.com/OpenNebula/one/issues/2961>`__.
+- `Fix an issue that could make oned to crash when creating a Virtual Network <https://github.com/OpenNebula/one/issues/2985>`__.
