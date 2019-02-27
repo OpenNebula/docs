@@ -36,6 +36,7 @@ There are a number of regular features that are not implemented yet:
     - only supported **xfs** and **ext4** filesystems
 - **datablocks**: Datablocks created on OpenNebula will need to be formatted before being attached to a container
 - **multiple partition images**: One of the partitions must have a valid `/etc/fstab` to mount the partitions 
+- ``lxc exec $container -- login`` in a centos container doesn't outputs the login shell 
 
 Configuration
 ================================================================================
@@ -67,7 +68,6 @@ There are some interaction options between LXD and OpenNebula configured in ``/v
     :datastore_location: /var/lib/one/datastores
 
 .. important:: The **command** parameter under **vnc** dictates which command will appear in noVNC when entering a container. Having ``/bin/bash`` will skip the login
-
 
 In case of a more complex cgroup configuration the containers cgroup could be placed in separate slice instead of default root cgroup. You can configure it via an environmental variable
 
@@ -124,6 +124,13 @@ LXD Specific Attributes
 -----------------------
 
 The following are template attributes specific to LXD, please refer to the :ref:`template reference documentation <template>` for a complete list of the attributes supported to define a VM.
+
+VNC
+~~~
+
+The VNC connection seen on Sunstone is the output of the execution of a command run via ``lxc exec``, by default this command is ``login`` and it's configured on a per-node basis by the **lxdrc** file. In order to change it you can set it under ``GRAPHICS`` with the ``COMMAND`` key.
+
+|image1|
 
 Security
 ~~~~~~~~
@@ -257,3 +264,4 @@ However things can get tricky when dealing with images with a partition table, y
 
 .. TODO Review with latest format, include a simple mapper
 
+.. |image1| image:: /images/vncterm_command.png

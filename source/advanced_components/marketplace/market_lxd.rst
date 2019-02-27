@@ -9,12 +9,13 @@ Overview
 
 `Linux Containers image server <https://images.linuxcontainers.org/>`__ hosts a public image server for use by LXC and LXD. It is the default image server on LXD.
 
-OpenNebula's linuxcontainers marketplace enables users to easily downlaod, contextualize and add Linux Container's images to an OpenNebula's image datastore. Linux Containers images are compressed **.tar.xz** files. In order to use them, this marketplace creates an image, where it dumps the content and later uploads it to OpenNebula. The marketplace will automatically take care of downloading the correct context package for your image and installing it inside the container. Only `tested platforms <https://github.com/OpenNebula/addon-context-linux#tested-platforms>`__ are supported.
+OpenNebula's linuxcontainers marketplace enables users to easily download, contextualize and add Linux Container's images to an OpenNebula's image datastore. Linux Containers images are compressed **.tar.xz** files. In order to use them, this marketplace creates an image, where it dumps the content and later uploads it to OpenNebula. The marketplace will automatically take care of downloading the correct context package for your image and installing it inside the container. The marketplace also creates a VM template with a set of required values and usability ones.
 
 Requirements
 ================================================================================
 
-OpenNebula's frontend needs an Internet connection. This internet connection is used to download the context package from OpenNebula that will be later added to the container. Also, you will need aproximately 6GB plus the image size configured on your frontend.
+- OpenNebula's frontend needs an Internet connection to https://images.linuxcontainers.org and https://github.com
+- Aproximately 6GB of storage plus the container image size configured on your frontend
 
 Configuration
 ================================================================================
@@ -37,13 +38,19 @@ Several parameters can be specified on the marketplace's template:
 | ``FORMAT``        | Image format. Default: raw                                         |
 +-------------------+--------------------------------------------------------------------+
 
-For example the following template will create a working marketplace with the default values:
+The OpenNebula frontend already ships with a configured LXD marketplace.
 
-.. code-block:: none
+|image1|
 
-NAME="Linux Containers"
-MARKET_MAD="linuxcontainers"
-DESCRIPTION="MarketPlace for the public image server fo LXC at linuxcontainers.org"
+|image2|
+
+The following template will create a working marketplace with the default values:
+
+.. code-block:: text
+
+    NAME="Linux Containers"
+    MARKET_MAD="linuxcontainers"
+    DESCRIPTION="MarketPlace for the public image server fo LXC at linuxcontainers.org"
 
 Save this contents on a file (e.g. lxcmarket) and create the market with:
 
@@ -51,11 +58,12 @@ Save this contents on a file (e.g. lxcmarket) and create the market with:
 
  $ onemarket create lxcmarket
 
-Note, you can also use Sunstone and input the previous values through the UI.
+You can also use Sunstone and input the previous values through the UI.
 
 Tuning & Extending
 ==================
 
 System administrators and integrators are encouraged to modify these drivers in order to integrate them with their datacenter. Please refer to the :ref:`Market Driver Development <devel-market>` guide to learn about the driver details.
 
-.. |image0| image:: /images/market1306.png
+.. |image1| image:: /images/lxd_market1.png
+.. |image2| image:: /images/lxd_market2.png
