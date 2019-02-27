@@ -13,8 +13,15 @@ Step 1. Start a VM with the OS you want to Customize
 Supported contextualization packages are available for the following OS's:
 
 * **CentOS/RHEL** >= 6
-* **Debian** >= 6
-* **Ubuntu** >= 11.10
+* **Fedora** >= 28
+* **Amazon Linux** >= 2
+* **SUSE Linux Enterprise Server** >= 12 SP3
+* **openSUSE** == 42.3, 15
+* **Debian** >= 8
+* **Devuan** >= 1
+* **Ubuntu** >= 14.04
+* **Alpine Linux** >= 3.6
+* **FreeBSD** >= 11.2
 * **Windows** >= 7
 * **Windows Server** >= 2008
 
