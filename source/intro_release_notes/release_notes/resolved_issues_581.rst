@@ -14,3 +14,5 @@ The following issues has been solved in 5.8.1:
 - `Add timepicker in relative scheduled actions <https://github.com/OpenNebula/one/issues/2961>`__.
 - `Fix an issue that could make oned to crash when creating a Virtual Network <https://github.com/OpenNebula/one/issues/2985>`__.
 - `Fix an issue with the generation of the short body at the DB migrator <https://github.com/OpenNebula/one/issues/2995>`__.
+- `Fix an issue with oneprovision batch mode <https://github.com/OpenNebula/one/issues/2964>`__.
+- `Fix an issue wiwth oneprovision ansible errors <https://github.com/OpenNebula/one/issues/3002>`__.
