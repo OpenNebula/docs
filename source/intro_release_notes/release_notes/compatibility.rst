@@ -12,8 +12,8 @@ Visit the :ref:`Features list <features>` and the `Release Notes <http://openneb
 Network Driver actions interface
 --------------------------------
 
-- The old argument 1 ``vm xml template`` now comes by ``stdin``
+The way arguments are passed to the pre/post/clean/update_sg has changed as follows:
 
+- The old argument 1 ``vm xml template`` it is now sent through by ``stdin``
 - The old argument 2 ``vm deploy id`` now is argument 1
-
-- There is no argument 2
+- There is no argument 2 
