@@ -17,3 +17,5 @@ The way arguments are passed to the pre/post/clean/update_sg has changed as foll
 - The old argument 1 ``vm xml template`` it is now sent through by ``stdin``
 - The old argument 2 ``vm deploy id`` now is argument 1
 - There is no argument 2 
+
+This change has been introduced `because of this bug <https://github.com/OpenNebula/one/issues/2851>`_.
