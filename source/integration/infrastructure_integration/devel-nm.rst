@@ -61,9 +61,9 @@ After that you need to define the bridging technology used by the driver at ``/e
 Driver Parameters
 ================================================================================
 
-All three driver actions have a first parameter which is the XML VM template encoded in base64 format.
+All three driver actions receive the **XML VM template** encoded in base64 format by ``stdin`` and a parameter which is the **deploy-id** of the Virtual Machine e.g.: ``one-17``.
 
-Additionally the ``post`` driver has a second parameter which is the deploy-id of the Virtual Machine e.g.: ``one-17``.
+The ``clean`` action doesn't require **deploy-id**
 
 The 802.1Q Driver
 ================================================================================
