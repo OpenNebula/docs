@@ -19,3 +19,8 @@ Debian & Ubuntu: Phusion Passenger Package Conflict
 ================================================================================
 
 Phusion Passenger, used to run the Sunstone inside the Apache or NGINX, can't be installed from the packages available for Debian and Ubuntu due to conflicting dependencies. Passenger must be installed manually, `follow the documentation <https://www.phusionpassenger.com/library/walkthroughs/deploy/ruby/ownserver/apache/oss/rubygems_norvm/install_passenger.html>`__.
+
+LXD VNC - Login process
+===============================================================================
+
+For some operating system versions the login process does not work through the ``lxc exec`` command. This may fail the login into the container through VNC. You can change the VNC command to be executed to start your VNC session (e.g. to /bin/bash) `as explained here <http://docs.opennebula.org/5.8/deployment/open_cloud_host_setup/lxd_driver.html#configuration>`_.
