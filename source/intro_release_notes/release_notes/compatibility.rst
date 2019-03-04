@@ -11,7 +11,6 @@ Visit the :ref:`Features list <features>` and the `Release Notes <http://openneb
 
 Network Driver actions interface
 --------------------------------
-
 The way arguments are passed to the pre/post/clean/update_sg has changed as follows:
 
 - The old argument 1 ``vm xml template`` it is now sent through by ``stdin``
@@ -19,3 +18,8 @@ The way arguments are passed to the pre/post/clean/update_sg has changed as foll
 - There is no argument 2 
 
 This change has been introduced `because of this bug <https://github.com/OpenNebula/one/issues/2851>`_.
+
+Password Hashing Algorithm Update
+---------------------------------
+User passwords and login tokens are now generated using SHA256 instead of SHA1. OpenNebula core will update users passwords
+in the database when they first login in the system. It is recommened to request your users to login after the upgrade.
