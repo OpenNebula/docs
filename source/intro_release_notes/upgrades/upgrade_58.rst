@@ -164,12 +164,11 @@ Since 5.8 passwords and tokens are generated using SHA256. OpenNebula will updat
 
 Update the Drivers
 ==================
-
- At this point, as ``oneadmin`` user, execute ``onehost sync`` to update the new drivers in the hosts.
+At this point, as ``oneadmin`` user, execute ``onehost sync`` to update the new drivers in the hosts.
 
 .. warning:: Doing ``onehost sync`` is important. If the monitorization drivers are not updated, the hosts will behave erratically.
 
-.. note:: You can skip this step if you are not using KVM hosts, or any hosts that use remove monitoring probes.
+.. note:: You can skip this step if you are using just vCenter based hosts.
 
 Testing
 =======
