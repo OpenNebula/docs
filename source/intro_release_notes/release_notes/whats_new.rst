@@ -4,8 +4,9 @@
 What's New in 5.9
 ================================================================================
 
-
-
+OpenNebula Core
+================================================================================
+- **Update hashing algorithm**, now passwords and login tokens are hashed using sha256 instead of sha1. Also csrftoken is now hashed with SHA256 instead of MD5
 
 Other Issues Solved
 ================================================================================
