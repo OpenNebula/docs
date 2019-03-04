@@ -40,7 +40,7 @@ There are a number of regular features that are not implemented yet:
 
 Configuration
 ================================================================================
-There are some interaction options between LXD and OpenNebula configured in ``/var/tmp/one/etc/vmm/lxd/lxdrc``
+There are some interaction options between LXD and OpenNebula configured in ``/var/lib/one/remotes/etc/vmm/lxd/lxdrc``
 
 .. code-block:: yaml
 
