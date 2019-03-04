@@ -148,11 +148,24 @@ In order for the system to re-read the configuration files you should issue the 
 .. prompt:: text # auto
 
     # systemctl daemon-reload
+    
+    
+Start OpenNebula
+================
+You should be able now to start OpenNebula as usual, running ``service opennebula start`` as ``root``.
+
+Update ServerAdmin password to SHA256
+=====================================
+Since 5.8 passwords and tokens are generated using SHA256. OpenNebula will update the DB automatically for your regular users (including oneadmin). However, you need manually trigger the update for serveradmin. You can do so, with:
+
+.. prompt:: text # auto
+
+    $ oneuser passwd --sha256 serveradmin `cat /var/lib/one/.one/sunstone_auth|cut -f2 -d':'`
 
 Update the Drivers
 ==================
 
-You should be able now to start OpenNebula as usual, running ``service opennebula start`` as ``root``. At this point, as ``oneadmin`` user, execute ``onehost sync`` to update the new drivers in the hosts.
+ At this point, as ``oneadmin`` user, execute ``onehost sync`` to update the new drivers in the hosts.
 
 .. warning:: Doing ``onehost sync`` is important. If the monitorization drivers are not updated, the hosts will behave erratically.
 
