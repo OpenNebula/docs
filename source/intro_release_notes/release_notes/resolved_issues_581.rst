@@ -18,4 +18,5 @@ The following issues has been solved in 5.8.1:
 - `Fix an issue with oneprovision ansible errors <https://github.com/OpenNebula/one/issues/3002>`__.
 - `Fix an issue with oneprovision custom ansible connection parameters <https://github.com/OpenNebula/one/issues/3005>`__.
 - `Fix an issue where VIRTIO_SCSI_QUEUES parameter is not updated through Update Configuration <https://github.com/OpenNebula/one/issues/2880>`__.
-- `FIx an issue in MarketPlace where obsolote apps weren't deleted <https://github.com/OpenNebula/one/issues/3017>`__.
+- `Fix an issue in MarketPlace where obsolote apps weren't deleted <https://github.com/OpenNebula/one/issues/3017>`__.
+- `Fix an issue that prevents qcow2 datastores to work in ssh mode. You need to trigger a datastore update (e.g. onedatastore update <ds_id>, and exit without changes will do) to load the new attributes <https://github.com/OpenNebula/one/issues/3038>`__.
