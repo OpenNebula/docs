@@ -330,11 +330,7 @@ The agent package needed in the Guest OS is available in most distributions. Is 
 * http://wiki.libvirt.org/page/Qemu_guest_agent
 * http://wiki.qemu.org/Features/QAPI/GuestAgent
 
-To enable the communication channel with the guest agent this line must be present in ``/etc/one/vmm_exec/vmm_exec_kvm.conf``:
-
-.. code::
-
-    RAW = "<devices><channel type='unix'><source mode='bind'/><target type='virtio' name='org.qemu.guest_agent.0'/></channel></devices>"
+The communication channel with guest agent is enabled in the domain XML when the ``GUEST_AGENT`` feature is selected in the VM Template.
 
 Importing VMs
 -------------
