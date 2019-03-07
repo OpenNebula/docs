@@ -87,3 +87,98 @@ Sunstone Tuning
 ===============
 
 Please refer to guide about :ref:`Configuring Sunstone for Large Deployments <suns_advance>`.
+
+Frontend (oned) Scalability
+===========================
+
+There are several aspects that can limit the scalability of a cloud from the storage to the network backend. This guide focus on the scale limits of oned, the controller component, for a single OpenNebula zone. The limits recommended here are associated to a given API load, you may consider to reduce or increase the limits based on your actual API requests. Notice that the maximum number of servers (virtualization hosts) that can be managed by a single OpenNebula instance strongly depends on the performance and scalability of the underlying platform infrastructure, mainly the storage subsystem.
+
+The following results have been obtained with synthetic workloads that stresses oned running on a physical server with the following specifications:
+
++----------------------+---------------------------------------------------------+
+| CPU model:           | Intel(R) Atom(TM) CPU C2550 @ 2.40GHz, 4 cores, no HT   |
++----------------------+---------------------------------------------------------+
+| RAM:                 | 8GB, DDR3, 1600 MT/s, single channel                    |
++----------------------+---------------------------------------------------------+
+| HDD:                 | INTEL SSDSC2BB150G7                                     |
++----------------------+---------------------------------------------------------+
+| OS:                  | Ubuntu 18.04                                            |
++----------------------+---------------------------------------------------------+
+| OpenNebula:          | Version 5.8                                             |
++----------------------+---------------------------------------------------------+
+| Database:            | MariaDB v10.1 with default configurations               |
++----------------------+---------------------------------------------------------+
+
+In a single zone, OpenNebula (oned) can work with the following limits:
+
++--------------------------+-----------------------------------------------------+
+| Number of hosts          | 2500                                                |
++--------------------------+-----------------------------------------------------+
+| Number of VMs            | 10000                                               |
++--------------------------+-----------------------------------------------------+
+| Average VM template size | 7 KB                                                |
++--------------------------+-----------------------------------------------------+
+
+In these conditions, with a host monitoring interval of 125 seconds (20 monitoring messages/second), the response time in seconds of the oned process for the most common XMLRPC calls are shown below:
+
++---------------------------------------------------------------------------------------+
+|                               Response Time (seconds)                                 |
++-----------------------+---------------------+--------------------+--------------------+
+| API Call - ratio      | API Load: 10 req/s  | API Load: 20 req/s | API Load: 30 req/s |
++-----------------------+---------------------+--------------------+--------------------+
+| host.info (30%)       | 0.06                | 0.50               | 0.54               |
++-----------------------+---------------------+--------------------+--------------------+
+| Hostpool.info (10%)   | 0.14                | 0.41               | 0.43               |
++-----------------------+---------------------+--------------------+--------------------+
+| vm.info (30%)         | 0.07                | 0.57               | 0.51               |
++-----------------------+---------------------+--------------------+--------------------+
+| vmpool.info (30%)     | 1.23                | 2.13               | 4.18               |
++-----------------------+---------------------+--------------------+--------------------+
+
+Host Scalability - Monitoring
+=============================
+
+The number of VMs (or containers) a node can run is limited by the monitoring probes. In this section we have evaluated the performance of the monitoring probes for the KVM and LXD drivers. The host characteristics are the following:
+
++---------------+--------------------------------------------------------+
+| CPU model:    | Intel(R) Atom(TM) CPU C2550 @ 2.40GHz, 4 cores, no HT  |
++---------------+--------------------------------------------------------+
+| RAM:          | 8GB, DDR3, 1600 MT/s, single channel                   |
++---------------+--------------------------------------------------------+
+| HDD:          | INTEL SSDSC2BB150G7                                    |
++---------------+--------------------------------------------------------+
+| OS:           | Ubuntu 18.04                                           |
++---------------+--------------------------------------------------------+
+| Hypervisor:   | Libvirt (4.0), Qemu (2.11), lxd (3.03)                 |
++---------------+--------------------------------------------------------+
+
+Containers and VMs settings used for monitoring tests:
+
++-------------+-------------------+-------+----------------------+--------------+
+| Hypervisor  | OS                | RAM   | Monitor time per VM  | Max. VM/host |
++-------------+-------------------+-------+----------------------+--------------+
+| KVM         | None (empty disk) | 32MB  | 0.42                 | 250          |
++-------------+-------------------+-------+----------------------+--------------+
+| LXD         | Alpine            | 32MB  | 0.1                  | 250          |
++-------------+-------------------+-------+----------------------+--------------+
+
+Note that there may be other factors that may limit the number of VMs / containers running in a single host.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
