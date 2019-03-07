@@ -48,7 +48,7 @@ The minimum recommended specs are for the OpenNebula front-end are:
 | Network   | 2 NICS                            |
 +-----------+-----------------------------------+
 
-The maximum number of servers (virtualization hosts) that can be managed by a single OpenNebula instance strongly depends on the performance and scalability of the underlying platform infrastructure, mainly the storage subsystem. The general recommendation is that no more than 500 servers managed by a single instance, but there are users with 1,000 servers in each zone. Related to this, read the section about :ref:`how to tune OpenNebula for large deployments <one_scalability>`.
+The maximum number of servers (virtualization hosts) that can be managed by a single OpenNebula instance strongly depends on the performance and scalability of the underlying platform infrastructure, mainly the storage subsystem. The general recommendation is that no more than 2,500 servers and 10,000 VMs managed by a single instance. Related to this, read the section about :ref:`how to tune OpenNebula for large deployments <one_scalability>`.
 
 **KVM nodes**
 
