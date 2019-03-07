@@ -474,13 +474,13 @@ Network Section
 +------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+
 | **INBOUND_PEAK_BW**    | Maximum bitrate for the interface in kilobytes/second for inbound traffic.                               | O                  | O                  |
 +------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+
-| **INBOUND_PEAK_KB**    | Data that can be transmitted at peak speed in kilobytes.                                                 | O                  | O                  |
+| **INBOUND_PEAK_KB**    | Data that can be transmitted at peak speed in kilobytes.                                                 | O                  | \-                 |
 +------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+
 | **OUTBOUND_AVG_BW**    | Average bitrate for the interface in kilobytes/second for outbound traffic.                              | O                  | O                  |
 +------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+
-| **OUTBOUND_PEAK_BW**   | Maximum bitrate for the interface in kilobytes/second for outbound traffic.                              | \-                 | O                  |
+| **OUTBOUND_PEAK_BW**   | Maximum bitrate for the interface in kilobytes/second for outbound traffic.                              | O                  | O                  |
 +------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+
-| **OUTBOUND_PEAK_KB**   | Data that can be transmitted at peak speed in kilobytes.                                                 | \-                 | O                  |
+| **OUTBOUND_PEAK_KB**   | Data that can be transmitted at peak speed in kilobytes.                                                 | O                  | \-                 |
 +------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+
 | **NETWORK_MODE**       | To let the Scheduler pick the VNET if set to `auto`), any other value will be ignored                    | O                  | O                  |
 |                        | By default, the network mode is not set.                                                                 |                    |                    |
