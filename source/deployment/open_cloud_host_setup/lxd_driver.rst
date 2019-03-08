@@ -212,6 +212,7 @@ We will create a container using the LXD CLI and dump it into a block device in 
 
     # truncate -s 2G container.img
     # block=$(losetup --find --show container.img)
+    # mkfs.ext4 $block
     # mount $block /mnt
     # lxc init my-container ubuntu:18.04
     # cp -rpa /var/lib/lxd/containers/my-container/rootfs/* /mnt

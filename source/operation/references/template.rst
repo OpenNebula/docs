@@ -129,32 +129,32 @@ The OS system is defined with the ``OS`` vector attribute. The following sub-att
 
 **Note** the hypervisor column states that the attribute is **O**\ ptional, **M**\ andatory, or ``-`` not supported for that hypervisor
 
-+------------------+--------------------------------------------------------------------+------------------+---------+
-| OS Sub-Attribute |                            Description                             |       KVM        | vCenter |
-+==================+====================================================================+==================+=========+
-| **ARCH**         | CPU architecture to virtualize                                     | M (default i686) | \-      |
-+------------------+--------------------------------------------------------------------+------------------+---------+
-| **MACHINE**      | libvirt machine type. Check libvirt capabilities for the list of   | O                | \-      |
-|                  | available machine types.                                           |                  |         |
-+------------------+--------------------------------------------------------------------+------------------+---------+
-| **KERNEL**       | path to the OS kernel to boot the image in the host                | O                | \-      |
-+------------------+--------------------------------------------------------------------+------------------+---------+
-| **KERNEL\_DS**   | image to be used as kernel (see !!)                                | O                | \-      |
-+------------------+--------------------------------------------------------------------+------------------+---------+
-| **INITRD**       | path to the initrd image in the host                               | O (for kernel)   | \-      |
-+------------------+--------------------------------------------------------------------+------------------+---------+
-| **INITRD\_DS**   | image to be used as ramdisk (see !!)                               | O (for kernel)   | \-      |
-+------------------+--------------------------------------------------------------------+------------------+---------+
-| **ROOT**         | device to be mounted as root                                       | O (for kernel)   | \-      |
-+------------------+--------------------------------------------------------------------+------------------+---------+
-| **KERNEL\_CMD**  | arguments for the booting kernel                                   | O (for kernel)   | \-      |
-+------------------+--------------------------------------------------------------------+------------------+---------+
-| **BOOTLOADER**   | path to the bootloader executable                                  | O                | \-      |
-+------------------+--------------------------------------------------------------------+------------------+---------+
-| **BOOT**         | comma separated list of boot devices types, by order of preference | M                | O       |
-|                  | (first device in the list is the first device used for boot).      |                  |         |
-|                  | Possible values: ``disk#``,\ ``nic#``                              |                  |         |
-+------------------+--------------------------------------------------------------------+------------------+---------+
++------------------+--------------------------------------------------------------------+------------------+---------+---------+
+| OS Sub-Attribute |                            Description                             |       KVM        | vCenter |   LXD   |
++==================+====================================================================+==================+=========+=========+
+| **ARCH**         | CPU architecture to virtualize                                     | M (default i686) | \-      | \-      |
++------------------+--------------------------------------------------------------------+------------------+---------+---------+
+| **MACHINE**      | libvirt machine type. Check libvirt capabilities for the list of   | O                | \-      | \-      |
+|                  | available machine types.                                           |                  |         |         |
++------------------+--------------------------------------------------------------------+------------------+---------+---------+
+| **KERNEL**       | path to the OS kernel to boot the image in the host                | O                | \-      | \-      |
++------------------+--------------------------------------------------------------------+------------------+---------+---------+
+| **KERNEL\_DS**   | image to be used as kernel (see !!)                                | O                | \-      | \-      |
++------------------+--------------------------------------------------------------------+------------------+---------+---------+
+| **INITRD**       | path to the initrd image in the host                               | O (for kernel)   | \-      | \-      |
++------------------+--------------------------------------------------------------------+------------------+---------+---------+
+| **INITRD\_DS**   | image to be used as ramdisk (see !!)                               | O (for kernel)   | \-      | \-      |
++------------------+--------------------------------------------------------------------+------------------+---------+---------+
+| **ROOT**         | device to be mounted as root                                       | O (for kernel)   | \-      | \-      |
++------------------+--------------------------------------------------------------------+------------------+---------+---------+
+| **KERNEL\_CMD**  | arguments for the booting kernel                                   | O (for kernel)   | \-      | \-      |
++------------------+--------------------------------------------------------------------+------------------+---------+---------+
+| **BOOTLOADER**   | path to the bootloader executable                                  | O                | \-      | \-      |
++------------------+--------------------------------------------------------------------+------------------+---------+---------+
+| **BOOT**         | comma separated list of boot devices types, by order of preference | M                | O       | O       |
+|                  | (first device in the list is the first device used for boot).      |                  |         |         |
+|                  | Possible values: ``disk#``,\ ``nic#``                              |                  |         |         |
++------------------+--------------------------------------------------------------------+------------------+---------+---------+
 
 (!!) Use one of KERNEL\_DS or KERNEL (and INITRD or INITRD\_DS).
 
@@ -188,13 +188,13 @@ This section (``CPU_MODEL``) configures the hardware configuration of the CPU ex
 **Note** the hypervisor column states that the attribute is **O**\ ptional or ``-`` not supported for that hypervisor
 
 
-+-------------------------+----------------------------------------------------------+-----+---------+
-| Sub-Attribute           | Description                                              | KVM | vCenter |
-+=========================+==========================================================+=====+=========+
-| **MODEL**               | The CPU model exposed to the guest. host-passthrough is  | O   | \-      |
-|                         | the same model as the host. Available modes are stored   |     |         |
-|                         | in the host information and obtained through monitor.    |     |         |
-+-------------------------+----------------------------------------------------------+-----+---------+
++-------------------------+----------------------------------------------------------+-----+---------+---------+
+| Sub-Attribute           | Description                                              | KVM | vCenter |   LXD   |
++=========================+==========================================================+=====+=========+=========+
+| **MODEL**               | The CPU model exposed to the guest. host-passthrough is  | O   | \-      | \-      |
+|                         | the same model as the host. Available modes are stored   |     |         |         |
+|                         | in the host information and obtained through monitor.    |     |         |         |
++-------------------------+----------------------------------------------------------+-----+---------+---------+
 
 Features Section
 ================================================================================
@@ -203,30 +203,30 @@ This section configures the features enabled for the VM.
 
 **Note** the hypervisor column states that the attribute is **O**\ ptional or ``-`` not supported for that hypervisor
 
-+-------------------------+----------------------------------------------------------+-----+---------+
-| Sub-Attribute           | Description                                              | KVM | vCenter |
-+=========================+==========================================================+=====+=========+
-| **PAE**                 | Physical address extension mode allows 32-bit guests to  | O   | \-      |
-|                         | address more than 4 GB of memory                         |     |         |
-+-------------------------+----------------------------------------------------------+-----+---------+
-| **ACPI**                | Useful for power management, for example, with KVM       | O   | \-      |
-|                         | guests it is required for graceful shutdown to work      |     |         |
-+-------------------------+----------------------------------------------------------+-----+---------+
-| **APIC**                | Enables the advanced programmable IRQ management. Useful | O   | \-      |
-|                         | for SMP machines.                                        |     |         |
-+-------------------------+----------------------------------------------------------+-----+---------+
-| **LOCALTIME**           | The guest clock will be synchronized to the host's       | O   | \-      |
-|                         | configured timezone when booted. Useful for Windows VMs  |     |         |
-+-------------------------+----------------------------------------------------------+-----+---------+
-| **HYPERV**              | Add hyperv extensions to the VM. The options can be      | O   | \-      |
-|                         | configured in the driver configuration, HYPERV_OPTIONS   |     |         |
-+-------------------------+----------------------------------------------------------+-----+---------+
-| **GUEST_AGENT**         | Enables the QEMU Guest Agent communication. This only    | O   | \-      |
-|                         | creates the socket inside the VM, the Guest Agent itself |     |         |
-|                         | must be installed and started in the VM.                 |     |         |
-+-------------------------+----------------------------------------------------------+-----+---------+
-| **VIRTIO_SCSI_QUEUES**  | Numer of vCPU queues for the virtio-scsi controller.     | O   | \-      |
-+-------------------------+----------------------------------------------------------+-----+---------+
++-------------------------+----------------------------------------------------------+-----+---------+---------+
+| Sub-Attribute           | Description                                              | KVM | vCenter |   LXD   |
++=========================+==========================================================+=====+=========+=========+
+| **PAE**                 | Physical address extension mode allows 32-bit guests to  | O   | \-      | \-      |
+|                         | address more than 4 GB of memory                         |     |         |         |
++-------------------------+----------------------------------------------------------+-----+---------+---------+
+| **ACPI**                | Useful for power management, for example, with KVM       | O   | \-      | \-      |
+|                         | guests it is required for graceful shutdown to work      |     |         |         |
++-------------------------+----------------------------------------------------------+-----+---------+---------+
+| **APIC**                | Enables the advanced programmable IRQ management. Useful | O   | \-      | \-      |
+|                         | for SMP machines.                                        |     |         |         |
++-------------------------+----------------------------------------------------------+-----+---------+---------+
+| **LOCALTIME**           | The guest clock will be synchronized to the host's       | O   | \-      | \-      |
+|                         | configured timezone when booted. Useful for Windows VMs  |     |         |         |
++-------------------------+----------------------------------------------------------+-----+---------+---------+
+| **HYPERV**              | Add hyperv extensions to the VM. The options can be      | O   | \-      | \-      |
+|                         | configured in the driver configuration, HYPERV_OPTIONS   |     |         |         |
++-------------------------+----------------------------------------------------------+-----+---------+---------+
+| **GUEST_AGENT**         | Enables the QEMU Guest Agent communication. This only    | O   | \-      | \-      |
+|                         | creates the socket inside the VM, the Guest Agent itself |     |         |         |
+|                         | must be installed and started in the VM.                 |     |         |         |
++-------------------------+----------------------------------------------------------+-----+---------+---------+
+| **VIRTIO_SCSI_QUEUES**  | Numer of vCPU queues for the virtio-scsi controller.     | O   | \-      | \-      |
++-------------------------+----------------------------------------------------------+-----+---------+---------+
 
 .. code::
 
@@ -254,82 +254,82 @@ Persistent and Clone Disks
 
 **Note** the hypervisor column states that the attribute is **O**\ ptional, **M**\ andatory, or ``-`` not supported for that hypervisor
 
-+-------------------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
-| DISK Sub-Attribute                  | Description                                                                  | KVM                                | vCenter                             |
-+=====================================+==============================================================================+====================================+=====================================+
-| **IMAGE\_ID**                       | ID of the Image to use                                                       | M (no IMAGE)                       | M (no IMAGE)                        |
-+-------------------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
-| **IMAGE**                           | Name of the Image to use                                                     | M(no IMAGE\_ID)                    | M (no IMAGE\_ID)                    |
-+-------------------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
-| **IMAGE\_UID**                      | To select the IMAGE of a given user by her ID                                | O                                  | O                                   |
-+-------------------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
-| **IMAGE\_UNAME**                    | To select the IMAGE of a given user by her NAME                              | O                                  | O                                   |
-+-------------------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
-| **DEV\_PREFIX**                     | Prefix for the emulated device this image will be mounted at. For instance,  | O                                  | O                                   |
-|                                     | ``hd``, ``sd``, or ``vd`` for KVM virtio. If omitted, the dev\_prefix        |                                    |                                     |
-|                                     | attribute of the `Image <img_template>`__ will be used                       |                                    |                                     |
-+-------------------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
-| **TARGET**                          | Device to map image disk. If set, it will overwrite the default device       | O                                  | \-                                  |
-|                                     | mapping.                                                                     |                                    |                                     |
-+-------------------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
-| **DRIVER**                          | Specific image mapping driver                                                | O e.g.: ``raw``, ``qcow2``         | \-                                  |
-+-------------------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
-| **CACHE**                           | Selects the cache mechanism for the disk. Values are ``default``, ``none``,  | O                                  | \-                                  |
-|                                     | ``writethrough``, ``writeback``, ``directsync`` and ``unsafe``. More info in |                                    |                                     |
-|                                     | the `libvirt documentation                                                   |                                    |                                     |
-|                                     | <http://libvirt.org/formatdomain.html#elementsDevices>`__                    |                                    |                                     |
-+-------------------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
-| **READONLY**                        | Set how the image is exposed by the hypervisor                               | O e.g.: ``yes``, ``no``. This      | \-                                  |
-|                                     |                                                                              | attribute should only be used for  |                                     |
-|                                     |                                                                              | special storage configurations     |                                     |
-+-------------------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
-| **IO**                              | Set IO policy. Values are ``threads``, ``native``                            | O (Needs qemu 1.1)                 | \-                                  |
-+-------------------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
-| **TOTAL_BYTES_SEC**,                | IO throttling attributes for the disk. They are specified in bytes or IOPS   | O (Needs qemu 1.1)                 | \-                                  |
-| **READ_BYTES_SEC**,                 | (IO Operations) and can be specified for the total (read+write) or specific  |                                    |                                     |
-| **WRITE_BYTES_SEC**                 | for read or write. Total and read or write can not be used at the same time. |                                    |                                     |
-| **TOTAL_IOPS_SEC**,                 | By default these parameters are only allowed to be used by oneadmin.         |                                    |                                     |
-| **READ_IOPS_SEC**,                  |                                                                              |                                    |                                     |
-| **WRITE_IOPS_SEC**                  |                                                                              |                                    |                                     |
-+-------------------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
-| **TOTAL_BYTES_SEC_MAX**,            | Maximum IO throttling attributes for the disk. They are specified in bytes   | O (Needs qemu 1.1)                 | \-                                  |
-| **READ_BYTES_SEC_MAX**,             | or IOPS (IO Operations) and can be specified for the total (read+write)      |                                    |                                     |
-| **WRITE_BYTES_SEC_MAX**             | or specific for read or write. Total and read or write can not be used at    |                                    |                                     |
-| **TOTAL_IOPS_SEC_MAX**,             | the same time.                                                               |                                    |                                     |
-| **READ_IOPS_SEC_MAX**,              | By default these parameters are only allowed to be used by oneadmin.         |                                    |                                     |
-| **WRITE_IOPS_SEC_MAX**              |                                                                              |                                    |                                     |
-+-------------------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
-| **TOTAL_BYTES_SEC_MAX_LENGTH**,     | Maximum length IO throttling attributes for the disk. They are specified     | O (Needs qemu 1.1)                 | \-                                  |
-| **READ_BYTES_SEC_MAX_LENGTH**,      | in bytes or IOPS (IO Operations) and can be specified for the total          |                                    |                                     |
-| **WRITE_BYTES_SEC_MAX_LENGTH**      | (read+write) or specific for read or write. Total and read or write can not  |                                    |                                     |
-| **TOTAL_IOPS_SEC_MAX_LENGTH**,      | be used at the same time.                                                    |                                    |                                     |
-| **READ_IOPS_SEC_MAX_LENGTH**,       | By default these parameters are only allowed to be used by oneadmin.         |                                    |                                     |
-| **WRITE_IOPS_SEC_MAX_LENGTH**       |                                                                              |                                    |                                     |
-+-------------------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
-| **VCENTER_ADAPTER_TYPE**            | Possible values (careful with the case): lsiLogic, ide, busLogic. More       | \-                                 | O (can be inherited from Datastore) |
-|                                     | information `in the VMware documentation <http://pubs.vmware.com/vsphere-60/ |                                    |                                     |
-|                                     | index.jsp#com.vmware.wssdk.apiref.doc/vim.VirtualDiskManager.VirtualDiskAdap |                                    |                                     |
-|                                     | terType.html>`__                                                             |                                    |                                     |
-+-------------------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
-| **DISK_TYPE**                       | This is the type of the supporting media for the image. Values:              | O                                  | M (can be inherited from Datastore) |
-|                                     | a block device (``BLOCK``) an ISO-9660 file or readonly block device         |                                    | FILE is the only accepted value     |
-|                                     | (``CDROM``)  or a plain file (``FILE``)                                      |                                    |                                     |
-+-------------------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
-| **VCENTER_DISK_TYPE**               | Possible values (careful with the case): lsiLogic, ide, busLogic. More       | \-                                 | O (can be inherited from Datastore) |
-|                                     | information `in the VMware documentation <http://pubs.vmware.com/vsphere-60/ |                                    |                                     |
-|                                     | index.jsp#com.vmware.wssdk.apiref.doc/vim.VirtualDiskManager.VirtualDiskAdap |                                    |                                     |
-|                                     | terType.html>`__                                                             |                                    |                                     |
-+-------------------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
-| **DISCARD**                         | Controls what's done with with trim commands to the disk, the values can be  | O (only with virtio-scsi)          | \-                                  |
-|                                     | ``ignore`` or ``discard``.                                                   |                                    |                                     |
-+-------------------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
-| **VCENTER_DS_REF**                  | vCenter datastore's managed object reference                                 | \-                                 | M (can be inherited from Datastore) |
-+-------------------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
-| **VCENTER_INSTANCE_ID**             | vCenter intance uuid                                                         | \-                                 | M (can be inherited from Datastore) |
-+-------------------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
-| **OPENNEBULA_MANAGED**              | If set to yes, in vCenter this DISK represents a virtual disk that was       | \-                                 | O (can be inherited from Datastore) |
-|                                     | imported when a template or wild VM was imported.                            |                                    |                                     |
-+-------------------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+
++-------------------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+-------------------------------------+
+| DISK Sub-Attribute                  | Description                                                                  | KVM                                | vCenter                             | LXD                                 |
++=====================================+==============================================================================+====================================+=====================================+=====================================+
+| **IMAGE\_ID**                       | ID of the Image to use                                                       | M (no IMAGE)                       | M (no IMAGE)                        | M (no IMAGE)                        |
++-------------------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+-------------------------------------+
+| **IMAGE**                           | Name of the Image to use                                                     | M(no IMAGE\_ID)                    | M (no IMAGE\_ID)                    | M (no IMAGE\_ID)                    |
++-------------------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+-------------------------------------+
+| **IMAGE\_UID**                      | To select the IMAGE of a given user by her ID                                | O                                  | O                                   | O                                   |
++-------------------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+-------------------------------------+
+| **IMAGE\_UNAME**                    | To select the IMAGE of a given user by her NAME                              | O                                  | O                                   | O                                   |
++-------------------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+-------------------------------------+
+| **DEV\_PREFIX**                     | Prefix for the emulated device this image will be mounted at. For instance,  | O                                  | O                                   | \-                                  |
+|                                     | attribute of the `Image <img_template>`__ will be used                       |                                    |                                     |                                     |
++-------------------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+-------------------------------------+
+| **TARGET**                          | Device to map image disk. If set, it will overwrite the default device       | O                                  | \-                                  | O (where to mount the image inside  |
+|                                     | ``hd``, ``sd``, or ``vd`` for KVM virtio. If omitted, the dev\_prefix        |                                    |                                     | the container e.g.: ``/mnt``. Only  |
+|                                     | mapping.                                                                     |                                    |                                     | applies fot non root devices        |
++-------------------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+-------------------------------------+
+| **DRIVER**                          | Specific image mapping driver                                                | O e.g.: ``raw``, ``qcow2``         | \-                                  | \-                                  |
++-------------------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+-------------------------------------+
+| **CACHE**                           | Selects the cache mechanism for the disk. Values are ``default``, ``none``,  | O                                  | \-                                  | \-                                  |
+|                                     | ``writethrough``, ``writeback``, ``directsync`` and ``unsafe``. More info in |                                    |                                     |                                     |
+|                                     | the `libvirt documentation                                                   |                                    |                                     |                                     |
+|                                     | <http://libvirt.org/formatdomain.html#elementsDevices>`__                    |                                    |                                     |                                     |
++-------------------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+-------------------------------------+
+| **READONLY**                        | Set how the image is exposed by the hypervisor                               | O e.g.: ``yes``, ``no``. This      | \-                                  | O                                   |
+|                                     |                                                                              | attribute should only be used for  |                                     |                                     |
+|                                     |                                                                              | special storage configurations     |                                     |                                     |
++-------------------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+-------------------------------------+
+| **IO**                              | Set IO policy. Values are ``threads``, ``native``                            | O (Needs qemu 1.1)                 | \-                                  | \-                                  |
++-------------------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+-------------------------------------+
+| **TOTAL_BYTES_SEC**,                | IO throttling attributes for the disk. They are specified in bytes or IOPS   | O (Needs qemu 1.1)                 | \-                                  | O                                   |
+| **READ_BYTES_SEC**,                 | (IO Operations) and can be specified for the total (read+write) or specific  |                                    |                                     |                                     |
+| **WRITE_BYTES_SEC**                 | for read or write. Total and read or write can not be used at the same time. |                                    |                                     |                                     |
+| **TOTAL_IOPS_SEC**,                 | By default these parameters are only allowed to be used by oneadmin.         |                                    |                                     |                                     |
+| **READ_IOPS_SEC**,                  |                                                                              |                                    |                                     |                                     |
+| **WRITE_IOPS_SEC**                  |                                                                              |                                    |                                     |                                     |
++-------------------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+-------------------------------------+
+| **TOTAL_BYTES_SEC_MAX**,            | Maximum IO throttling attributes for the disk. They are specified in bytes   | O (Needs qemu 1.1)                 | \-                                  | O                                   |
+| **READ_BYTES_SEC_MAX**,             | or IOPS (IO Operations) and can be specified for the total (read+write)      |                                    |                                     |                                     |
+| **WRITE_BYTES_SEC_MAX**             | or specific for read or write. Total and read or write can not be used at    |                                    |                                     |                                     |
+| **TOTAL_IOPS_SEC_MAX**,             | the same time.                                                               |                                    |                                     |                                     |
+| **READ_IOPS_SEC_MAX**,              | By default these parameters are only allowed to be used by oneadmin.         |                                    |                                     |                                     |
+| **WRITE_IOPS_SEC_MAX**              |                                                                              |                                    |                                     |                                     |
++-------------------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+-------------------------------------+
+| **TOTAL_BYTES_SEC_MAX_LENGTH**,     | Maximum length IO throttling attributes for the disk. They are specified     | O (Needs qemu 1.1)                 | \-                                  | O                                   |
+| **READ_BYTES_SEC_MAX_LENGTH**,      | in bytes or IOPS (IO Operations) and can be specified for the total          |                                    |                                     |                                     |
+| **WRITE_BYTES_SEC_MAX_LENGTH**      | (read+write) or specific for read or write. Total and read or write can not  |                                    |                                     |                                     |
+| **TOTAL_IOPS_SEC_MAX_LENGTH**,      | be used at the same time.                                                    |                                    |                                     |                                     |
+| **READ_IOPS_SEC_MAX_LENGTH**,       | By default these parameters are only allowed to be used by oneadmin.         |                                    |                                     |                                     |
+| **WRITE_IOPS_SEC_MAX_LENGTH**       |                                                                              |                                    |                                     |                                     |
++-------------------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+-------------------------------------+
+| **VCENTER_ADAPTER_TYPE**            | Possible values (careful with the case): lsiLogic, ide, busLogic. More       | \-                                 | O (can be inherited from Datastore) | \-                                  |
+|                                     | information `in the VMware documentation <http://pubs.vmware.com/vsphere-60/ |                                    |                                     |                                     |
+|                                     | index.jsp#com.vmware.wssdk.apiref.doc/vim.VirtualDiskManager.VirtualDiskAdap |                                    |                                     |                                     |
+|                                     | terType.html>`__                                                             |                                    |                                     |                                     |
++-------------------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+-------------------------------------+
+| **DISK_TYPE**                       | This is the type of the supporting media for the image. Values:              | O                                  | M (can be inherited from Datastore) | O                                   |
+|                                     | a block device (``BLOCK``) an ISO-9660 file or readonly block device         |                                    | FILE is the only accepted value     |                                     |
+|                                     | (``CDROM``)  or a plain file (``FILE``)                                      |                                    |                                     |                                     |
++-------------------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+-------------------------------------+
+| **VCENTER_DISK_TYPE**               | Possible values (careful with the case): lsiLogic, ide, busLogic. More       | \-                                 | O (can be inherited from Datastore) | \-                                  |
+|                                     | information `in the VMware documentation <http://pubs.vmware.com/vsphere-60/ |                                    |                                     |                                     |
+|                                     | index.jsp#com.vmware.wssdk.apiref.doc/vim.VirtualDiskManager.VirtualDiskAdap |                                    |                                     |                                     |
+|                                     | terType.html>`__                                                             |                                    |                                     |                                     |
++-------------------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+-------------------------------------+
+| **DISCARD**                         | Controls what's done with with trim commands to the disk, the values can be  | O (only with virtio-scsi)          | \-                                  | \-                                  |
+|                                     | ``ignore`` or ``discard``.                                                   |                                    |                                     |                                     |
++-------------------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+-------------------------------------+
+| **VCENTER_DS_REF**                  | vCenter datastore's managed object reference                                 | \-                                 | M (can be inherited from Datastore) | \-                                  |
++-------------------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+-------------------------------------+
+| **VCENTER_INSTANCE_ID**             | vCenter intance uuid                                                         | \-                                 | M (can be inherited from Datastore) | \-                                  |
++-------------------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+-------------------------------------+
+| **OPENNEBULA_MANAGED**              | If set to yes, in vCenter this DISK represents a virtual disk that was       | \-                                 | O (can be inherited from Datastore) | \-                                  |
+|                                     | imported when a template or wild VM was imported.                            |                                    |                                     |                                     |
++-------------------------------------+------------------------------------------------------------------------------+------------------------------------+-------------------------------------+-------------------------------------+
 
 
 .. _template_volatile_disks_section:
@@ -337,6 +337,9 @@ Persistent and Clone Disks
 
 Volatile DISKS
 --------------------------------------------------------------------------------
+
+.. warning:: Not supported on LXD
+
 
 +--------------------------+-----------------------------------------------------------------------------------+-------------------------------+-----------+
 |  DISK Sub-Attribute      |                                   Description                                     |              KVM              | vCenter   |
@@ -442,61 +445,61 @@ Because this VM did not declare a CONTEXT or any disk using a CDROM Image, the f
 Network Section
 ================================================================================
 
-+------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+
-| NIC Sub-Attribute      | Description                                                                                              | KVM                | vCenter            |
-+========================+==========================================================================================================+====================+====================+
-| **NETWORK\_ID**        | ID of the network to attach this device, as defined by ``onevnet``. Use if no NETWORK                    | M (No NETWORK)     | M (No NETWORK)     |
-+------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+
-| **NETWORK**            | Name of the network to use (of those owned by user). Use if no NETWORK\_ID                               | M (No NETWORK\_ID) | M (No NETWORK\_ID) |
-+------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+
-| **NETWORK\_UID**       | To select the NETWORK of a given user by her ID                                                          | O                  | O                  |
-+------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+
-| **NETWORK\_UNAME**     | To select the NETWORK of a given user by her NAME                                                        | O                  | O                  |
-+------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+
-| **IP**                 | Request an specific IP from the ``NETWORK``                                                              | O                  | O                  |
-+------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+
-| **MAC\***              | Request an specific HW address from the network interface                                                | O                  | O                  |
-+------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+
-| **BRIDGE**             | Name of the bridge the network device is going to be attached to.                                        | O                  | O                  |
-+------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+
-| **TARGET**             | name for the tun device created for the VM                                                               | O                  | O                  |
-+------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+
-| **SCRIPT**             | name of a shell script to be executed after creating the tun device for the VM                           | O                  | O                  |
-+------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+
-| **MODEL**              | hardware that will emulate this network interface. In KVM you can choose ``virtio`` to select its        | O                  | O                  |
-|                        | specific virtualization IO framework                                                                     |                    |                    |
-+------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+
-| **FILTER**             | to define a network filtering rule for the interface                                                     | O                  | O                  |
-+------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+
-| **SECURITY_GROUPS**    | command separated list of the ids of the security groups to be applied to this interface.                | O                  | \-                 |
-+------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+
-| **INBOUND_AVG_BW**     | Average bitrate for the interface in kilobytes/second for inbound traffic.                               | O                  | O                  |
-+------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+
-| **INBOUND_PEAK_BW**    | Maximum bitrate for the interface in kilobytes/second for inbound traffic.                               | O                  | O                  |
-+------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+
-| **INBOUND_PEAK_KB**    | Data that can be transmitted at peak speed in kilobytes.                                                 | O                  | \-                 |
-+------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+
-| **OUTBOUND_AVG_BW**    | Average bitrate for the interface in kilobytes/second for outbound traffic.                              | O                  | O                  |
-+------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+
-| **OUTBOUND_PEAK_BW**   | Maximum bitrate for the interface in kilobytes/second for outbound traffic.                              | O                  | O                  |
-+------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+
-| **OUTBOUND_PEAK_KB**   | Data that can be transmitted at peak speed in kilobytes.                                                 | O                  | \-                 |
-+------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+
-| **NETWORK_MODE**       | To let the Scheduler pick the VNET if set to `auto`), any other value will be ignored                    | O                  | O                  |
-|                        | By default, the network mode is not set.                                                                 |                    |                    |
-+------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+
-| **SCHED_REQUIREMENTS** | Define the requirement when NETMORW_MODE is `auto`.                                                      | O                  | O                  |
-+------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+
-| **SCHED_RANK**         | Define the rank when NETMORW_MODE is `auto`.                                                             | O                  | O                  |
-+------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+
-| **NAME**               | Name of the nic.                                                                                         | O                  | \-                 |
-+------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+
-| **PARENT**             | It is used only on alias, it references the nic which is alias of.                                       | O                  | \-                 |
-+------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+
-| **EXTERNAL**           | It is used only on alias, it indicates if the alias is external to the VM or not. If it is set to "yes"  | O                  | \-                 |
-|                        | it will call pre, post, clean and reconfigure actions. If it set to "no" or it is empty, it will just    |                    |                    |
-|                        | call reconfigure action.                                                                                 |                    |                    |
-+------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+
++------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+--------------------+
+| NIC Sub-Attribute      | Description                                                                                              | KVM                | vCenter            | LXD                |
++========================+==========================================================================================================+====================+====================+====================+
+| **NETWORK\_ID**        | ID of the network to attach this device, as defined by ``onevnet``. Use if no NETWORK                    | M (No NETWORK)     | M (No NETWORK)     | M (No NETWORK)     |
++------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+--------------------+
+| **NETWORK**            | Name of the network to use (of those owned by user). Use if no NETWORK\_ID                               | M (No NETWORK\_ID) | M (No NETWORK\_ID) | M (No NETWORK\_ID) |
++------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+--------------------+
+| **NETWORK\_UID**       | To select the NETWORK of a given user by her ID                                                          | O                  | O                  | O                  |
++------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+--------------------+
+| **NETWORK\_UNAME**     | To select the NETWORK of a given user by her NAME                                                        | O                  | O                  | O                  |
++------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+--------------------+
+| **IP**                 | Request an specific IP from the ``NETWORK``                                                              | O                  | O                  | O                  |
++------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+--------------------+
+| **MAC\***              | Request an specific HW address from the network interface                                                | O                  | O                  | O                  |
++------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+--------------------+
+| **BRIDGE**             | Name of the bridge the network device is going to be attached to.                                        | O                  | O                  | O                  |
++------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+--------------------+
+| **TARGET**             | name for the tun device created for the VM                                                               | O                  | O                  | O                  |
++------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+--------------------+
+| **SCRIPT**             | name of a shell script to be executed after creating the tun device for the VM                           | O                  | O                  | O                  |
++------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+--------------------+
+| **MODEL**              | hardware that will emulate this network interface. In KVM you can choose ``virtio`` to select its        | O                  | O                  | \-                 |
+|                        | specific virtualization IO framework                                                                     |                    |                    |                    |
++------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+--------------------+
+| **FILTER**             | to define a network filtering rule for the interface                                                     | O                  | O                  | O                  |
++------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+--------------------+
+| **SECURITY_GROUPS**    | command separated list of the ids of the security groups to be applied to this interface.                | O                  | \-                 | \-                 |
++------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+--------------------+
+| **INBOUND_AVG_BW**     | Average bitrate for the interface in kilobytes/second for inbound traffic.                               | O                  | O                  | O                  |
++------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+--------------------+
+| **INBOUND_PEAK_BW**    | Maximum bitrate for the interface in kilobytes/second for inbound traffic.                               | O                  | O                  | O                  |
++------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+--------------------+
+| **INBOUND_PEAK_KB**    | Data that can be transmitted at peak speed in kilobytes.                                                 | O                  | \-                 | \-                 |
++------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+--------------------+
+| **OUTBOUND_AVG_BW**    | Average bitrate for the interface in kilobytes/second for outbound traffic.                              | O                  | O                  | O                  |
++------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+--------------------+
+| **OUTBOUND_PEAK_BW**   | Maximum bitrate for the interface in kilobytes/second for outbound traffic.                              | O                  | O                  | O                  |
++------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+--------------------+
+| **OUTBOUND_PEAK_KB**   | Data that can be transmitted at peak speed in kilobytes.                                                 | O                  | \-                 | \-                 |
++------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+--------------------+
+| **NETWORK_MODE**       | To let the Scheduler pick the VNET if set to `auto`), any other value will be ignored                    | O                  | O                  | O                  |
+|                        | By default, the network mode is not set.                                                                 |                    |                    |                    |
++------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+--------------------+
+| **SCHED_REQUIREMENTS** | Define the requirement when NETMORW_MODE is `auto`.                                                      | O                  | O                  | O                  |
++------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+--------------------+
+| **SCHED_RANK**         | Define the rank when NETMORW_MODE is `auto`.                                                             | O                  | O                  | O                  |
++------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+--------------------+
+| **NAME**               | Name of the nic.                                                                                         | O                  | \-                 | \-                 |
++------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+--------------------+
+| **PARENT**             | It is used only on alias, it references the nic which is alias of.                                       | O                  | \-                 | \-                 |
++------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+--------------------+
+| **EXTERNAL**           | It is used only on alias, it indicates if the alias is external to the VM or not. If it is set to "yes"  | O                  | \-                 | \-                 |
+|                        | it will call pre, post, clean and reconfigure actions. If it set to "no" or it is empty, it will just    |                    |                    |                    |
+|                        | call reconfigure action.                                                                                 |                    |                    |                    |
++------------------------+----------------------------------------------------------------------------------------------------------+--------------------+--------------------+--------------------+
 
 .. warning:: The PORTS and ICMP attributes require the firewalling functionality to be configured. Please read the :ref:`firewall configuration guide <firewall>`.
 
@@ -542,23 +545,30 @@ The following I/O interfaces can be defined for a VM:
 
 **Note** the hypervisor column states that the attribute is **O**\ ptional, **M**\ andatory, or ``-`` not supported for that hypervisor
 
-+--------------+--------------------------------------------------------------------------------------+-----+---------+
-|  Attribute   |                                     Description                                      | KVM | vCenter |
-+==============+======================================================================================+=====+=========+
-| **INPUT**    | Define input devices, available sub-attributes:                                      | O   | \-      |
-|              |                                                                                      |     |         |
-|              | * **TYPE**: values are ``mouse`` or ``tablet``                                       |     |         |
-|              | * **BUS**: values are ``usb``, ``ps2``                                               |     |         |
-+--------------+--------------------------------------------------------------------------------------+-----+---------+
-| **GRAPHICS** | Wether the VM should export its graphical display and how, available sub-attributes: | O   | O       |
-|              |                                                                                      |     |         |
-|              | * **TYPE**: values: ``vnc``, ``sdl``, ``spice``                                      |     |         |
-|              | * **LISTEN**: IP to listen on.                                                       |     |         |
-|              | * **PORT**: port for the VNC server                                                  |     |         |
-|              | * **PASSWD**: password for the VNC server                                            |     |         |
-|              | * **KEYMAP**: keyboard configuration locale to use in the VNC display                |     |         |
-|              | * **RANDOM_PASSWD**: if "YES", generate a random password for each VM                |     |         |
-+--------------+--------------------------------------------------------------------------------------+-----+---------+
++--------------+--------------------------------------------------------------------------------------+-----+---------+---------+
+|  Attribute   |                                     Description                                      | KVM | vCenter | LXD     |
++==============+======================================================================================+=====+=========+=========+
+| **INPUT**    | Define input devices, available sub-attributes:                                      | O   | \-      | \-      |
+|              |                                                                                      |     |         |         |
+|              | * **TYPE**: values are ``mouse`` or ``tablet``                                       |     |         |         |
+|              | * **BUS**: values are ``usb``, ``ps2``                                               |     |         |         |
+|              |                                                                                      |     |         |         |
++--------------+--------------------------------------------------------------------------------------+-----+---------+---------+
+| **GRAPHICS** | Wether the VM should export its graphical display and how, available sub-attributes: | O   | O       | O       |
+|              |                                                                                      |     |         |         |
+|              +--------------------------------------------------------------------------------------+-----+---------+---------+
+|              | * **TYPE**: values: ``vnc``, ``sdl``, ``spice``                                      |     |         | O (vnc) |
+|              +--------------------------------------------------------------------------------------+-----+---------+---------+
+|              | * **LISTEN**: IP to listen on.                                                       |     |         | O       |
+|              +--------------------------------------------------------------------------------------+-----+---------+---------+
+|              | * **PORT**: port for the VNC server                                                  |     |         | O       |
+|              +--------------------------------------------------------------------------------------+-----+---------+---------+
+|              | * **PASSWD**: password for the VNC server                                            |     |         | O       |
+|              +--------------------------------------------------------------------------------------+-----+---------+---------+
+|              | * **KEYMAP**: keyboard configuration locale to use in the VNC display                |     |         | \-      |
+|              +--------------------------------------------------------------------------------------+-----+---------+---------+
+|              | * **RANDOM_PASSWD**: if "YES", generate a random password for each VM                |     |         | O       |
++--------------+--------------------------------------------------------------------------------------+-----+---------+---------+
 
 Example:
 
@@ -583,7 +593,7 @@ Context information is passed to the Virtual Machine via an ISO mounted as a par
 **Note** the hypervisor column states that the attribute is **O**\ ptional, ``-`` not supported for that hypervisor or only valid for **Linux** guests.
 
 +-----------------------------------+-----------------------------------------------------------------------------------+-------+---------+-----+
-|             Attribute             |                                    Description                                    |  KVM  | vCenter | EC2 |
+|             Attribute             |                                    Description                                    |KVM/LXD| vCenter | EC2 |
 +===================================+===================================================================================+=======+=========+=====+
 | **VARIABLE**                      | Variables that store values related to this virtual machine or others . The name  | O     | O       | O   |
 |                                   | of the variable is arbitrary (in the example, we use hostname).                   |       |         |     |
@@ -1081,15 +1091,15 @@ You can also tune several low-level hypervisor attributes.
 
 The ``RAW`` attribute (optional) section of the VM template is used pass VM information directly to the underlying hypervisor. Anything placed in the data attribute gets passed straight to the hypervisor unmodified.
 
-+-------------------+---------------------------------------------------+-----+---------+
-| RAW     Attribute |                    Description                    | KVM | vCenter |
-+===================+===================================================+=====+=========+
-| **TYPE**          | Possible values are: ``kvm``, ``xen``, ``vmware`` | O   | \-      |
-+-------------------+---------------------------------------------------+-----+---------+
-| **DATA**          | Raw data to be passed directly to the hypervisor  | O   | \-      |
-+-------------------+---------------------------------------------------+-----+---------+
-| **DATA\_VMX**     | Raw data to be added directly to the .vmx file    | \-  | \-      |
-+-------------------+---------------------------------------------------+-----+---------+
++-------------------+---------------------------------------------------+-----+---------+---------+
+| RAW     Attribute |                    Description                    | KVM | vCenter | LXD     |
++===================+===================================================+=====+=========+=========+
+| **TYPE**          | Possible values are: ``kvm``, ``lxd``, ``vmware`` | O   | \-      | O       |
++-------------------+---------------------------------------------------+-----+---------+---------+
+| **DATA**          | Raw data to be passed directly to the hypervisor  | O   | \-      | O       |
++-------------------+---------------------------------------------------+-----+---------+---------+
+| **DATA\_VMX**     | Raw data to be added directly to the .vmx file    | \-  | \-      | \-      |
++-------------------+---------------------------------------------------+-----+---------+---------+
 
 Example:
 
@@ -1102,13 +1112,13 @@ Example:
 
 .. _emulator_override:
 
-Additionally the following can be also set for each hypervisor as specified:
+Additionally the following can be also set for KVM
 
-+-------------------+---------------------------------------------------+-----+---------+
-|         Attribute |                    Description                    | KVM | vCenter |
-+===================+===================================================+=====+=========+
-| **EMULATOR**      | Path to the emulator binary to use with this VM   | O   | \-      |
-+-------------------+---------------------------------------------------+-----+---------+
++-------------------+---------------------------------------------------+
+|         Attribute |                    Description                    |
++===================+===================================================+
+| **EMULATOR**      | Path to the emulator binary to use with this VM   |
++-------------------+---------------------------------------------------+
 
 Example:
 
