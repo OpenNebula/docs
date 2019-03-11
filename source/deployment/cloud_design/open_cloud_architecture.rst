@@ -59,7 +59,7 @@ Regarding the dimensions of the Linux virtualization nodes:
 - **MEMORY**: Planning for memory is straightforward, as by default *there is no overcommitment of memory* in OpenNebula. It is always a good practice to count 10% of overhead by the hypervisor (this is not an absolute upper limit, it depends on the hypervisor, however, since containers have a very low overhead, this metric is negligible for LXD nodes). So, in order to sustain a VM workload of 45 VMs with 2GB of RAM each, 90GB of physical memory is needed. The number of hosts is important, as each one will incur a 10% overhead due to the hypervisors. For instance, 10 hypervisors with 10GB RAM each will contribute with 9GB each (10% of 10GB = 1GB), so they will be able to sustain the estimated workload. The rule of thumb is having at least 1GB per core, but this also depends on the expected workload.
 
 **LXD nodes**
-Since LXD avoids using virtual hardware, the marging of resources dedicated to the hypervisor are mucho lower when compared to KVM. There is no exact figure but you can get an idea from `this resource usage comparison vs KVM <https://insights.ubuntu.com/2015/05/18/lxd-crushes-kvm-in-density-and-speed/>`_ 
+Since LXD avoids using virtual hardware, the amount of resources dedicated to the hypervisor are much lower when compared to KVM. There is no exact figure but you can get an idea from `this resource usage comparison vs KVM <https://insights.ubuntu.com/2015/05/18/lxd-crushes-kvm-in-density-and-speed/>`_ 
 
 **Storage**
 
