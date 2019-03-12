@@ -8,8 +8,6 @@ The Ceph datastore driver provides OpenNebula users with the possibility of usin
 
 .. warning:: This driver requires that the OpenNebula nodes using the Ceph driver must be Ceph clients of a running Ceph cluster. More information in `Ceph documentation <http://ceph.com/docs/master/>`__.
 
-.. note:: LXD drivers require the rbd-nbd package installed in order to handle rbd images
-
 
 Datastore Layout
 ================================================================================
@@ -175,6 +173,20 @@ You can read more information about this in the Ceph guide `Using libvirt with C
 * If you are going to use the SSH mode, you have to take into account the space needed for the system datastore ``/var/lib/one/datastores/<ds_id>`` where ``ds_id`` is the ID of the System Datastore.
 
 .. _ceph_ds_templates:
+
+LXD Node settings
+--------------------------------------------------------------------------------
+Skip these steps if your virtualization node is KVM. 
+
+Install rbd-nbd
+
+.. code-block:: bash
+
+    apt install rbd-nbd
+
+
+.. warning:: The rbd backend of the LXD drivers `requires ceph Luminous and kernel 4.15 <https://github.com/OpenNebula/one/issues/2998>`_  
+
 
 OpenNebula Configuration
 ================================================================================
