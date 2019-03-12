@@ -52,6 +52,11 @@ Drivers - Auth
 
 * `#1761 <https://github.com/OpenNebula/one/issues/1761>`_ RAFT sync leads to Duplicate key on case sensitive login
 
+Drivers - Hosts
+================================================================================
+
+* Problem updating remotes in hosts: `scp: error: unexpected filename: .`.
+
 Packages
 ================================================================================
 
