@@ -23,3 +23,4 @@ The following issues has been solved in 5.8.1:
 - `Fix bug in vcenter_downloader failing to download vcenter images <https://github.com/OpenNebula/one/issues/3044>`__.
 - `Packaged Passenger can't be installed <https://github.com/OpenNebula/one/issues/2994>`__.
 - `Fix and issue in MarketPlace where all apps needs an image to import <https://github.com/OpenNebula/one/issues/1666>`__.
+- `Fix and issue in Linuxcontainers MarketPlace that didn't update the appliance list <https://github.com/OpenNebula/one/issues/3060>`__.
