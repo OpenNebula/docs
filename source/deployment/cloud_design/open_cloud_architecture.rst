@@ -39,14 +39,16 @@ The minimum recommended specs are for the OpenNebula front-end are:
 +-----------+-----------------------------------+
 | Resources | Minimum Recommended configuration |
 +===========+===================================+
-| Memory    | 2 GB                              |
+| Memory    | 8 GB                              |
 +-----------+-----------------------------------+
-| CPU       | 1 CPU (2 cores)                   |
+| CPU       | 1 CPU (4 cores)                   |
 +-----------+-----------------------------------+
 | Disk Size | 100 GB                            |
 +-----------+-----------------------------------+
 | Network   | 2 NICS                            |
 +-----------+-----------------------------------+
+
+Please take into account that these recommendations are meant as a guidance and may be relaxed or increased depending on the size and workload of your cloud. 
 
 The maximum number of servers (virtualization hosts) that can be managed by a single OpenNebula instance strongly depends on the performance and scalability of the underlying platform infrastructure, mainly the storage subsystem. The general recommendation is that no more than 2,500 servers and 10,000 VMs managed by a single instance. Related to this, read the section about :ref:`how to tune OpenNebula for large deployments <one_scalability>`.
 
