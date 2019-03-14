@@ -26,3 +26,4 @@ The following issues has been solved in 5.8.1:
 - `Fix and issue in Linuxcontainers MarketPlace that didn't update the appliance list <https://github.com/OpenNebula/one/issues/3060>`__.
 - `Fix an issue with LXD VNC connection in Ubuntu 1810 <https://github.com/OpenNebula/one/issues/3069>`_.
 - `Fix an issue in provision with retry option <https://github.com/OpenNebula/one/issues/3068>`__.
+- `Fix an issue where LXD marketplace was opening too many connections. <https://github.com/OpenNebula/one/issues/3014>`_  
