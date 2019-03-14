@@ -43,4 +43,8 @@ Qcow2 image datastores are compatible with SSH system datastore (SSH transfer mo
 
 3. Restart OpenNebula
 4. Force the update of the qcow2 image datastores by executing ``onedatastore update <datastore_id>``. Simply save the file as is, OpenNebula will add the extra attributes for you.
-  
+
+NIC alias and IP spoofing rules
+================================================================================
+
+For NIC alias the IP spoofing rules are not triggered when the VM is created nor when the interface is attached. If you have configured IP spoofing for your virtual networks be aware that those will not be honored by NIC ALIAS interfaces.
