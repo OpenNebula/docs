@@ -29,3 +29,4 @@ The following issues has been solved in 5.8.1:
 - `Fix an issue where LXD marketplace was opening too many connections. <https://github.com/OpenNebula/one/issues/3014>`_
 - `Fix authentication errors due to misapplied LXD snap patch <https://github.com/OpenNebula/one/issues/3029>`_
 - `Fix an error when monitoring the size of a ceph pool if it has quotas <https://github.com/OpenNebula/one/issues/1232>`_
+- `Fix return code for oned <https://github.com/OpenNebula/one/issues/3088>`_
