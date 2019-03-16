@@ -1,12 +1,12 @@
 .. _one_scalability:
 
 =============================================
-Scalability Tests and Tuning
+Scalability Testing and Tuning
 =============================================
 
 Determining the scalability of your cloud and how to improve it requires balancing many variables. There are several aspects that can limit the scalability of a cloud from the storage to the network backend, and no one solution meets everyone’s scalability goals. This guide firstly presents the scale limits of a single OpenNebula instance (single zone), and then provides some recommendations to tune your deployment for large scale. To extend the scale of your cloud beyond these limits, you can horizontally scale your cloud by adding new OpenNebula zones within a :ref:`federated deployment <introf>`. The largest OpenNebula deployment consists of 16 data center and 300,000 cores.
 
-Scalability tests
+Scalability Testing
 ==========================================
 
 Front-end (oned) Scalability
@@ -39,9 +39,10 @@ In a single zone, OpenNebula (oned) can work with the following limits:
 | Average VM template size | 7 KB                                                |
 +--------------------------+-----------------------------------------------------+
 
-In production environments, the maximum number of servers (virtualization hosts) that can be managed by a single OpenNebula instance strongly depends on the performance and scalability of the underlying platform infrastructure. We do not recommend exceeding in the same installation the number of servers (2,500) and VMs (10,000), as well as 30 API load req/s at the same time to avoid excessive slowness of the system.
+In production environments, we do not recommend exceeding in the same installation this number of servers (2,500) and VMs (10,000), as well as 30 API load req/s to avoid excessive slowness of the system. Better performance can be achieved with specific tuning of other components like the DB, or better hardware.
 
-The four most common API calls were used to stress the core at the same time in approximately the same ratio experienced on real deployments. Total amount of API calls per second used were: 10, 20 and 30. In these conditions, with a host monitoring interval of 20 hosts/second), the response time in seconds of the oned process for the most common XMLRPC calls are shown below:
+The four most common API calls were used to stress the core at the same time in approximately the same ratio experienced on real deployments. Total amount of API calls per second used were: 10, 20 and 30. In these conditions, with a host monitoring interval of 20 hosts/second, in a pool with 2500 hosts and a monitoring period on each host of 125 seconds, the response time in seconds of the oned process for the most common XMLRPC calls are shown below:
+
 
 +---------------------------------------------------------------------------------------+
 |                               Response Time (seconds)                                 |
@@ -76,13 +77,26 @@ The number of VMs (or containers) a virtualization node can run is limited by th
 
 Containers and VMs settings used for monitoring tests:
 
-+-------------+-------------------+-------+----------------------+--------------+
-| Hypervisor  | OS                | RAM   | Monitor time per VM  | Max. VM/host |
-+-------------+-------------------+-------+----------------------+--------------+
-| KVM         | None (empty disk) | 32MB  | 0.42                 | 250          |
-+-------------+-------------------+-------+----------------------+--------------+
-| LXD         | Alpine            | 32MB  | 0.1                  | 250          |
-+-------------+-------------------+-------+----------------------+--------------+
++-------------+-------------------+-------+------------+--------------+
+| Hypervisor  | OS                | RAM   | CPU        | Max. VM/host |
++-------------+-------------------+-------+------------+--------------+
+| KVM         | None (empty disk) | 32MB  | 0.1        | 250          |
++-------------+-------------------+-------+------------+--------------+
+| LXD         | Alpine            | 32MB  | 0.1        | 250          |
++-------------+-------------------+-------+------------+--------------+
+
+Note: 250 instances were deployed for both hypervisors because both templates were created with the same amount of resources. This made allocated resources grow at the same rate so the scheduler instantiated same amount of KVM VMs than LXD containers. It is worth noticing that the overhead on KVM VMs is bigger than on LXD containers, so this last technology allows for bigger density when compared to KVM VMs, as shown on `this report <https://blog.ubuntu.com/2015/05/18/lxd-crushes-kvm-in-density-and-speed>`_.
+
+Monitoring times for each type of instance are shown below:
+
++-------------+----------------------------------------+
+| Hypervisor  | Monitoring time (seconds) per instance |
++-------------+----------------------------------------+
+| KVM         | 0.42                                   |
++-------------+----------------------------------------+
+| LXD         | 0.1                                    |
++-------------+----------------------------------------+
+
 
 Note that there may be other factors that may limit the number of VMs / containers running in a single host.
 
@@ -101,11 +115,10 @@ In both environments, our scalability testing achieves the monitoring of tens of
 Core Tuning
 ---------------------------
 
-OpenNebula keeps the monitorization history for a defined time in a database table. These values are then used to draw the plots in Sunstone.
-These monitorization entries can take quite a bit of storage in your database. The amount of storage used will depend on the size of your cloud, and the following configuration attributes in :ref:`oned.conf <oned_conf>`:
+OpenNebula keeps the monitoring history for a defined time in a database table. These values are then used to draw the plots in Sunstone. These monitoring entries can take quite a bit of storage in your database. The amount of storage used will depend on the size of your cloud, and the following configuration attributes in :ref:`oned.conf <oned_conf>`:
 
--  ``MONITORING_INTERVAL_HOST``: Time in seconds between each monitorization. Default: 180.
--  collectd IM\_MAD ``-i`` argument (KVM only): Time in seconds of the monitorization push cycle. Default: 60.
+-  ``MONITORING_INTERVAL_HOST``: Time in seconds between each monitoring cycle. Default: 180.
+-  collectd IM\_MAD ``-i`` argument (KVM only): Time in seconds of the monitoring push cycle. Default: 60.
 -  ``HOST_MONITORING_EXPIRATION_TIME``: Time, in seconds, to expire monitoring information. Default: 12h.
 -  ``VM_MONITORING_EXPIRATION_TIME``: Time, in seconds, to expire monitoring information. Default: 4h.
 
