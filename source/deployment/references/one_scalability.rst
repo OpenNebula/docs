@@ -4,7 +4,9 @@
 Scalability Testing and Tuning
 =============================================
 
-Determining the scalability of your cloud and how to improve it requires balancing many variables. There are several aspects that can limit the scalability of a cloud from the storage to the network backend, and no one solution meets everyone’s scalability goals. This guide firstly presents the scale limits of a single OpenNebula instance (single zone), and then provides some recommendations to tune your deployment for large scale. To extend the scale of your cloud beyond these limits, you can horizontally scale your cloud by adding new OpenNebula zones within a :ref:`federated deployment <introf>`. The largest OpenNebula deployment consists of 16 data center and 300,000 cores.
+Determining the scalability of your cloud and how to improve it requires balancing many variables. There are several aspects that can limit the scalability of a cloud from the storage to the network backend, and no one solution meets everyone’s scalability goals. This guide firstly presents the scale limits of a single OpenNebula instance (single zone), and then provides some recommendations to tune your deployment for large scale. 
+
+The general recommendation is to have no more than 2,500 servers and 10,000 VMs managed by a single instance. Better performance and higher scalability can be achieved with specific tuning of other components like the DB, or better hardware. In any case, to grow the size of your cloud beyond these limits, you can horizontally scale your cloud by adding new OpenNebula zones within a :ref:`federated deployment <introf>`. The largest OpenNebula deployment consists of 16 data center and 300,000 cores.
 
 Scalability Testing
 ==========================================
