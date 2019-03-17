@@ -34,16 +34,16 @@ The following results have been obtained with synthetic workloads that stress on
 In a single zone, OpenNebula (oned) can work with the following limits:
 
 +--------------------------+-----------------------------------------------------+
-| Number of hosts          | 2500                                                |
+| Number of hosts          | 2,500                                                |
 +--------------------------+-----------------------------------------------------+
-| Number of VMs            | 10000                                               |
+| Number of VMs            | 10,000                                               |
 +--------------------------+-----------------------------------------------------+
 | Average VM template size | 7 KB                                                |
 +--------------------------+-----------------------------------------------------+
 
 In production environments, we do not recommend exceeding in the same installation this number of servers (2,500) and VMs (10,000), as well as 30 API load req/s to avoid excessive slowness of the system. Better performance can be achieved with specific tuning of other components like the DB, or better hardware.
 
-The four most common API calls were used to stress the core at the same time in approximately the same ratio experienced on real deployments. Total amount of API calls per second used were: 10, 20 and 30. In these conditions, with a host monitoring interval of 20 hosts/second, in a pool with 2500 hosts and a monitoring period on each host of 125 seconds, the response time in seconds of the oned process for the most common XMLRPC calls are shown below:
+The four most common API calls were used to stress the core at the same time in approximately the same ratio experienced on real deployments. Total amount of API calls per second used were: 10, 20 and 30. In these conditions, with a host monitoring interval of 20 hosts/second, in a pool with 2,500 hosts and a monitoring period on each host of 125 seconds, the response times in seconds of the oned process for the most common XMLRPC calls are shown below:
 
 
 +---------------------------------------------------------------------------------------+
@@ -87,7 +87,7 @@ Containers and VMs settings used for monitoring tests:
 | LXD         | Alpine            | 32MB  | 0.1        | 250          |
 +-------------+-------------------+-------+------------+--------------+
 
-Note: 250 instances were deployed for both hypervisors because both templates were created with the same amount of resources. This made allocated resources grow at the same rate so the scheduler instantiated same amount of KVM VMs than LXD containers. It is worth noticing that the overhead on KVM VMs is bigger than on LXD containers, so this last technology allows for bigger density when compared to KVM VMs, as shown on `this report <https://blog.ubuntu.com/2015/05/18/lxd-crushes-kvm-in-density-and-speed>`_.
+Note: 250 instances were deployed for both types of hypervisor because both templates were created with the same capacity requirements. This made allocated resources grow at the same rate so the scheduler instantiated same amount of KVM VMs than LXD containers. It is worth noticing that the overhead on KVM VMs is bigger than on LXD containers, so this last hypervisor technology allows for bigger density when compared to KVM, as shown on `this report <https://blog.ubuntu.com/2015/05/18/lxd-crushes-kvm-in-density-and-speed>`_.
 
 Monitoring times for each type of instance are shown below:
 
@@ -100,7 +100,7 @@ Monitoring times for each type of instance are shown below:
 +-------------+----------------------------------------+
 
 
-Note that there may be other factors that may limit the number of VMs / containers running in a single host.
+Note that there may be other factors that limit the number of VMs / containers running in a single host.
 
 Tuning for Large Scale
 ==================================
@@ -133,15 +133,15 @@ Each monitoring entry will be around 2 KB for each Host, and 4 KB for each VM. T
 +=======================+===================+===========+===========+
 | 20s                   | 12h               | 200       | 850 MB    |
 +-----------------------+-------------------+-----------+-----------+
-| 20s                   | 24h               | 1000      | 8.2 GB    |
+| 20s                   | 24h               | 1,000      | 8.2 GB    |
 +-----------------------+-------------------+-----------+-----------+
 
 +-----------------------+-----------------+---------+-----------+
 | Monitoring interval   | VM expiration   | # VMs   | Storage   |
 +=======================+=================+=========+===========+
-| 20s                   | 4h              | 2000    | 1.8 GB    |
+| 20s                   | 4h              | 2,000    | 1.8 GB    |
 +-----------------------+-----------------+---------+-----------+
-| 20s                   | 24h             | 10000   | 7 GB      |
+| 20s                   | 24h             | 10,000   | 7 GB      |
 +-----------------------+-----------------+---------+-----------+
 
 .. _one_scalability_api_tuning:
@@ -156,7 +156,7 @@ For large deployments with lots of xmlprc calls the default values for the xmlpr
      MAX_CONN = 240
      MAX_CONN_BACKLOG = 480
 
-The core is able to paginate some pool answers. This makes the memory consumption decrease and in some cases the parsing faster. By default the pagination value is 2000 objects but can be changed using the environment variable ``ONE_POOL_PAGE_SIZE``. It should be bigger that 2. For example, to list VMs with a page size of 5000 we can use:
+The core is able to paginate some pool answers. This makes the memory consumption decrease and in some cases the parsing faster. By default the pagination value is 2,000 objects but can be changed using the environment variable ``ONE_POOL_PAGE_SIZE``. It should be bigger that 2. For example, to list VMs with a page size of 5,000 we can use:
 
  .. prompt:: text $ auto
  
