@@ -19,6 +19,8 @@ This OpenNebula release is named after the edges of nebulas. Nebulas are diffuse
 
 OpenNebula 5.8 Edge is considered to be a stable release and as such it is available to update production environments.
 
+In the following list you can check the highlights of OpenNebula 5.8 (a detailed list of changes can be found `here <https://github.com/OpenNebula/one/milestone/9?closed=1>`__):
+
 OpenNebula Core
 --------------------------------------------------------------------------------
 - **Rename disk snapshots**, there is now an option available for renaming disk snapshots via OCA and CLI.
