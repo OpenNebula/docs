@@ -30,3 +30,4 @@ The following issues has been solved in 5.8.1:
 - `Fix authentication errors due to misapplied LXD snap patch <https://github.com/OpenNebula/one/issues/3029>`_
 - `Fix an error when monitoring the size of a ceph pool if it has quotas <https://github.com/OpenNebula/one/issues/1232>`_
 - `Fix return code for oned <https://github.com/OpenNebula/one/issues/3088>`_
+- `Fix svncterm child process exit routine so it does not segfault <https://github.com/OpenNebula/one/issues/3052>`_
