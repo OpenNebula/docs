@@ -31,3 +31,4 @@ The following issues has been solved in 5.8.1:
 - `Fix an error when monitoring the size of a ceph pool if it has quotas <https://github.com/OpenNebula/one/issues/1232>`_
 - `Fix return code for oned <https://github.com/OpenNebula/one/issues/3088>`_
 - `Fix svncterm child process exit routine so it does not segfault <https://github.com/OpenNebula/one/issues/3052>`_
+- `Check vCenter cluster health in monitoring <https://github.com/OpenNebula/one/issues/2968>`_
