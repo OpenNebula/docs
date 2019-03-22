@@ -31,3 +31,7 @@ The following issues has been solved in 5.8.1:
 - `Fix an error when monitoring the size of a ceph pool if it has quotas <https://github.com/OpenNebula/one/issues/1232>`_
 - `Fix return code for oned <https://github.com/OpenNebula/one/issues/3088>`_
 - `Fix svncterm child process exit routine so it does not segfault <https://github.com/OpenNebula/one/issues/3052>`_
+- `Fix LXD misbehaving when having an openvswitch nic <https://github.com/OpenNebula/one/issues/3058>`_
+- `Fix XFS LXD images faling to be replicated due to having the same fs uuid <https://github.com/OpenNebula/one/issues/3103>`_
+- `Fix LXD storage error handling when deploy failed to start the container <https://github.com/OpenNebula/one/issues/3098>`_
+- `Updated ceph requirements for LXD setups <https://github.com/OpenNebula/one/issues/2998>`_
