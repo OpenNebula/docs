@@ -7,11 +7,12 @@ A complete list of solved issues for 5.8.1 can be found in the `project developm
 
 The following new features has been backported to 5.8.1:
 
-- Description. See `link <http://>`__.
+- Add timepicker in relative scheduled actions. See `link <https://github.com/OpenNebula/one/issues/2961>>`__.
+- Check vCenter cluster health in monitoring. See `<https://github.com/OpenNebula/one/issues/2968>`_
+- Updated ceph requirements for LXD setups. See `<https://github.com/OpenNebula/one/issues/2998>`_
 
 The following issues has been solved in 5.8.1:
 
-- `Add timepicker in relative scheduled actions <https://github.com/OpenNebula/one/issues/2961>`__.
 - `Fix an issue that could make oned to crash when creating a Virtual Network <https://github.com/OpenNebula/one/issues/2985>`__.
 - `Fix an issue with the generation of the short body at the DB migrator <https://github.com/OpenNebula/one/issues/2995>`__.
 - `Fix an issue with oneprovision batch mode <https://github.com/OpenNebula/one/issues/2964>`__.
@@ -31,9 +32,6 @@ The following issues has been solved in 5.8.1:
 - `Fix an error when monitoring the size of a ceph pool if it has quotas <https://github.com/OpenNebula/one/issues/1232>`_
 - `Fix return code for oned <https://github.com/OpenNebula/one/issues/3088>`_
 - `Fix svncterm child process exit routine so it does not segfault <https://github.com/OpenNebula/one/issues/3052>`_
-- `Check vCenter cluster health in monitoring <https://github.com/OpenNebula/one/issues/2968>`_
 - `Fix LXD misbehaving when having an openvswitch nic <https://github.com/OpenNebula/one/issues/3058>`_
 - `Fix XFS LXD images faling to be replicated due to having the same fs uuid <https://github.com/OpenNebula/one/issues/3103>`_
 - `Fix LXD storage error handling when deploy failed to start the container <https://github.com/OpenNebula/one/issues/3098>`_
-- `Updated ceph requirements for LXD setups <https://github.com/OpenNebula/one/issues/2998>`_
-
