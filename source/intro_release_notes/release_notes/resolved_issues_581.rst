@@ -35,3 +35,4 @@ The following issues has been solved in 5.8.1:
 - `Fix LXD misbehaving when having an openvswitch nic <https://github.com/OpenNebula/one/issues/3058>`_
 - `Fix XFS LXD images faling to be replicated due to having the same fs uuid <https://github.com/OpenNebula/one/issues/3103>`_
 - `Fix LXD storage error handling when deploy failed to start the container <https://github.com/OpenNebula/one/issues/3098>`_
+- `Fix leader transition for big log sizes <https://github.com/OpenNebula/one/issues/3123>`_
