@@ -7,7 +7,7 @@ A complete list of solved issues for 5.8.1 can be found in the `project developm
 
 The following new features has been backported to 5.8.1:
 
-- Add timepicker in relative scheduled actions. See `link <https://github.com/OpenNebula/one/issues/2961>>`__.
+- Add timepicker in relative scheduled actions. See `link <https://github.com/OpenNebula/one/issues/2961>`__.
 - Check vCenter cluster health in monitoring. See `<https://github.com/OpenNebula/one/issues/2968>`_
 - Updated ceph requirements for LXD setups. See `<https://github.com/OpenNebula/one/issues/2998>`_
 
@@ -37,3 +37,4 @@ The following issues has been solved in 5.8.1:
 - `Fix LXD storage error handling when deploy failed to start the container <https://github.com/OpenNebula/one/issues/3098>`_
 - `Fix an issue so hourly sched action executes just one time <https://github.com/OpenNebula/one/issues/3119>`__.
 - `Fix leader transition for big log sizes <https://github.com/OpenNebula/one/issues/3123>`_
+- `Fix missing wait_for_completion in some vCenter async tasks <https://github.com/OpenNebula/one/issues/3125>`_
