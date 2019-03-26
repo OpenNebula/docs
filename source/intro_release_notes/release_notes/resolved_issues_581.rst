@@ -40,3 +40,4 @@ The following issues has been solved in 5.8.1:
 - `Fix leader transition for big log sizes <https://github.com/OpenNebula/one/issues/3123>`_
 - `Fix missing wait_for_completion in some vCenter async tasks <https://github.com/OpenNebula/one/issues/3125>`_
 - `Fix an issue with LXD raw images on NFS datastores <https://github.com/OpenNebula/one/issues/3127>`_
+- `Fix typo in oneflow CLI <https://github.com/OpenNebula/one/issues/3086>`__.
