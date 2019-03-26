@@ -41,3 +41,4 @@ The following issues has been solved in 5.8.1:
 - `Fix missing wait_for_completion in some vCenter async tasks <https://github.com/OpenNebula/one/issues/3125>`_
 - `Fix an issue with LXD raw images on NFS datastores <https://github.com/OpenNebula/one/issues/3127>`_
 - `Fix typo in oneflow CLI <https://github.com/OpenNebula/one/issues/3086>`__.
+- `Fix an issue of LVM datastore when LV remove was called on frontend for undeployed VM <https://github.com/OpenNebula/one/issues/2981>`_

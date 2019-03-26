@@ -76,6 +76,7 @@ LVM System Datastores needs to be created with the following values:
 | ``TYPE``        | ``SYSTEM_DS``                                     |
 +-----------------+---------------------------------------------------+
 | ``BRIDGE_LIST`` | List of nodes with access to the LV to monitor it |
+|                 | and also used when deleting the LV.               |
 +-----------------+---------------------------------------------------+
 
 For example:
