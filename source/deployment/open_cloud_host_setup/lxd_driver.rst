@@ -20,6 +20,9 @@ The LXD drivers support using LXD through snap packages, if there is a snap inst
 Considerations & Limitations
 ================================================================================
 
+Host issues
+-----------
+
 There are a number of regular features that are not implemented yet:
 
 - snapshots
@@ -30,13 +33,15 @@ There are a number of regular features that are not implemented yet:
 - PCI Passthrough
 - volatile filesystems
 
-
 - **offline disk resize**:
     - not supported on multiple partition images
     - only supported **xfs** and **ext4** filesystems
 - **datablocks**: Datablocks created on OpenNebula will need to be formatted before being attached to a container
-- **multiple partition images**: One of the partitions must have a valid `/etc/fstab` to mount the partitions 
-- ``lxc exec $container -- login`` in a centos container doesn't outputs the login shell 
+
+Guest issues
+------------
+- **multiple partition images**: One of the partitions must have a valid `/etc/fstab` to mount the partitions
+- ``lxc exec $container -- login`` in a centos container doesn't output the login shell
 
 Configuration
 ================================================================================
