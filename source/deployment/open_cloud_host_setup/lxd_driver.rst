@@ -42,7 +42,6 @@ Guest issues
 ------------
 - **multiple partition images**: One of the partitions must have a valid `/etc/fstab` to mount the partitions
 - ``lxc exec $container -- login`` in a centos container doesn't output the login shell
-- `Centos6 LXD market app fails to correclty set hostname contextualization <https://github.com/OpenNebula/one/issues/3132>`_
 
 Configuration
 ================================================================================
