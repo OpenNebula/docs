@@ -178,6 +178,8 @@ onevm
 | list                 | one.vmpool.info           | VM:USE            |
 | top                  |                           |                   |
 +----------------------+---------------------------+-------------------+
+| list                 | one.vmpool.infoextended   | VM:USE            |
++----------------------+---------------------------+-------------------+
 | --                   | one.vm.monitoring         | VM:USE            |
 +----------------------+---------------------------+-------------------+
 | lock                 | one.vm.lock               | VM:MANAGE         |
@@ -2031,6 +2033,82 @@ one.vm.unlock
 +------+------------+-------------------------------------------------------------------------------------------------------+
 
 one.vmpool.info
+--------------------------------------------------------------------------------
+
+-  **Description**: Retrieves information for all or part of the VMs in the pool.
+-  **Parameters**
+
++------+-----------+-----------------------------------------------------------------------+
+| Type | Data Type |                              Description                              |
++======+===========+=======================================================================+
+| IN   | String    | The session string.                                                   |
++------+-----------+-----------------------------------------------------------------------+
+| IN   | Int       | Filter flag                                                           |
+|      |           |                                                                       |
+|      |           | * **-4**: Resources belonging to the user's primary group             |
+|      |           | * **-3**: Resources belonging to the user                             |
+|      |           | * **-2**: All resources                                               |
+|      |           | * **-1**: Resources belonging to the user and any of his groups       |
+|      |           | * **>= 0**: UID User's Resources                                      |
++------+-----------+-----------------------------------------------------------------------+
+| IN   | Int       | When the next parameter is >= -1 this is the Range start ID.          |
+|      |           | Can be -1. For smaller values this is the offset used for pagination. |
++------+-----------+-----------------------------------------------------------------------+
+| IN   | Int       | For values >= -1 this is the Range end ID. Can be -1 to get until the |
+|      |           | last ID. For values < -1 this is the page size used for pagination.   |
++------+-----------+-----------------------------------------------------------------------+
+| IN   | Int       | VM state to filter by.                                                |
++------+-----------+-----------------------------------------------------------------------+
+| IN   | String    | Filter in KEY=VALUE format.                                           |
++------+-----------+-----------------------------------------------------------------------+
+| OUT  | Boolean   | true or false whenever is successful or not                           |
++------+-----------+-----------------------------------------------------------------------+
+| OUT  | String    | Version of the VM Pool with a short VM body documents.                |
++------+-----------+-----------------------------------------------------------------------+
+| OUT  | Int       | Error code.                                                           |
++------+-----------+-----------------------------------------------------------------------+
+| OUT  | Int       | ID of the object that caused the error.                               |
++------+-----------+-----------------------------------------------------------------------+
+
+The range can be used to retrieve a subset of the pool, from the 'start' to the 'end' ID. To retrieve the complete pool, use ``(-1, -1)``; to retrieve all the pool from a specific ID to the last one, use ``(<id>, -1)``, and to retrieve the first elements up to an ID, use ``(0, <id>)``.
+
+The state filter can be one of the following:
+
++-------+---------------------------+
+| Value |           State           |
++=======+===========================+
+|    -2 | Any state, including DONE |
++-------+---------------------------+
+|    -1 | Any state, except DONE    |
++-------+---------------------------+
+|     0 | INIT                      |
++-------+---------------------------+
+|     1 | PENDING                   |
++-------+---------------------------+
+|     2 | HOLD                      |
++-------+---------------------------+
+|     3 | ACTIVE                    |
++-------+---------------------------+
+|     4 | STOPPED                   |
++-------+---------------------------+
+|     5 | SUSPENDED                 |
++-------+---------------------------+
+|     6 | DONE                      |
++-------+---------------------------+
+|     8 | POWEROFF                  |
++-------+---------------------------+
+|     9 | UNDEPLOYED                |
++-------+---------------------------+
+|    10 | CLONING                   |
++-------+---------------------------+
+|    11 | CLONING_FAILURE           |
++-------+---------------------------+
+
+.. warning::
+
+  Value 7 is reserved for FAILED VMs for compatibility reasons.
+
+one.vmpool.infoextended
 --------------------------------------------------------------------------------
 
 -  **Description**: Retrieves information for all or part of the VMs in the pool.
