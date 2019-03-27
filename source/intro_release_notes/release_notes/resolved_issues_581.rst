@@ -11,6 +11,7 @@ The following new features has been backported to 5.8.1:
 - `Check vCenter cluster health in monitoring <https://github.com/OpenNebula/one/issues/2968>`_
 - `Updated ceph requirements for LXD setups <https://github.com/OpenNebula/one/issues/2998>`_
 - `Improved loggig in LXD actions <https://github.com/OpenNebula/one/issues/3099>`_
+- `New API call: one.vmpool.infoextended <https://github.com/OpenNebula/one/issues/3076>`__.
 
 The following issues has been solved in 5.8.1:
 
