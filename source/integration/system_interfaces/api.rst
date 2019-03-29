@@ -39,6 +39,10 @@ The Error Code will contain one of the following values:
 +--------+----------------+-----------------------------------------------------------------------+
 | 0x2000 | INTERNAL       | Internal error, e.g. the resource could not be loaded from the DB.    |
 +--------+----------------+-----------------------------------------------------------------------+
+| 0x4000 | ALLOCATE       | The resource cannot be allocated.                                     |
++--------+----------------+-----------------------------------------------------------------------+
+| 0x8000 | LOCKED         | The resource is locked.                                               |
++--------+----------------+-----------------------------------------------------------------------+
 
 .. note:: All methods expect a session string associated to the connected user as the first parameter. It has to be formed with the contents of the ONE\_AUTH file, which will be ``<username>:<password>`` with the default 'core' auth driver.
 
