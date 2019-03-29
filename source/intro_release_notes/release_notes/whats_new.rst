@@ -40,6 +40,7 @@ Sunstone
 - Added flag in view configuration yamls to disable animations in the dashboard widgets.
 - Autorefresh has been removed
 - New relative :ref:`scheduled actions <vm_guide2_scheduling_actions>` dialog.
+- Added input for command to be executed in the LXD container through a VNC terminal
 
 Networking
 --------------------------------------------------------------------------------
@@ -119,3 +120,6 @@ Other Issues Solved
 - `Wild VM monitoring should not return datastores that contain only swap file <https://github.com/OpenNebula/one/issues/1699>`__.
 - `Sunstone dialog automatically select the tab where the error is located in virtual networks update <https://github.com/OpenNebula/one/issues/2711>`__.
 - `Fix issue in VR instantiation dialog preventing network selection <https://github.com/OpenNebula/one/issues/2905>`__.
+- `Fix issue hides other labels that are not from lxd when a new vm template is created <https://github.com/OpenNebula/one/issues/3026>`__.
+- `Fix issue loading VM template with set showback in false <https://github.com/OpenNebula/one/issues/3007>`__.
+- `Fix issue does not show the datastores table when a new VM template is downloaded<https://github.com/OpenNebula/one/issues/3066>`__.
