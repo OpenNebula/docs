@@ -45,3 +45,4 @@ The following issues has been solved in 5.8.1:
 - `Fix GOCA monitoring methods <https://github.com/OpenNebula/one/issues/3144>`_
 - `Purge of Debian package should not remove the sqlite database <https://github.com/OpenNebula/packages/issues/64>`_
 - `Ensure OpenNebula services are stopped on upgrade/install <https://github.com/OpenNebula/packages/issues/58>`_
+- `Fix and issue which broke the new endlines from templates <https://github.com/OpenNebula/one/issues/2515>`__.
