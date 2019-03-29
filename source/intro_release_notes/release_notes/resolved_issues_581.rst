@@ -11,6 +11,7 @@ The following new features has been backported to 5.8.1:
 - `Check vCenter cluster health in monitoring <https://github.com/OpenNebula/one/issues/2968>`_
 - `Updated ceph requirements for LXD setups <https://github.com/OpenNebula/one/issues/2998>`_
 - `Improved loggig in LXD actions <https://github.com/OpenNebula/one/issues/3099>`_
+- `New API call: one.vmpool.infoextended <https://github.com/OpenNebula/one/issues/3076>`__.
 
 The following issues has been solved in 5.8.1:
 
@@ -42,3 +43,7 @@ The following issues has been solved in 5.8.1:
 - `Fix an issue with LXD raw images on NFS datastores <https://github.com/OpenNebula/one/issues/3127>`_
 - `Fix typo in oneflow CLI <https://github.com/OpenNebula/one/issues/3086>`__.
 - `Fix an issue with provision cleanup timeout <https://github.com/OpenNebula/one/issues/3136>`__.
+- `Fix an issue of LVM datastore when LV remove was called on frontend for undeployed VM <https://github.com/OpenNebula/one/issues/2981>`_
+- `Fix GOCA monitoring methods <https://github.com/OpenNebula/one/issues/3144>`_
+- `Purge of Debian package should not remove the sqlite database <https://github.com/OpenNebula/packages/issues/64>`_
+- `Ensure OpenNebula services are stopped on upgrade/install <https://github.com/OpenNebula/packages/issues/58>`_
