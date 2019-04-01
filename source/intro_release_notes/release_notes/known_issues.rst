@@ -23,11 +23,17 @@ Phusion Passenger, used to run the Sunstone inside the Apache or NGINX, can't be
 LXD VNC - Login process
 ===============================================================================
 
-For some operating system versions the login process does not work through the ``lxc exec`` command. This may fail the login into the container through VNC. You can change the VNC command to be executed to start your VNC session (e.g. to /bin/bash) `as explained here <http://docs.opennebula.org/5.8/deployment/open_cloud_host_setup/lxd_driver.html#configuration>`_.
+For some operating system versions `the login process does not work through the lxc exec command <https://github.com/OpenNebula/one/issues/3019>`_ . This may fail the login into the container through VNC. You can change the VNC command to be executed to start your VNC session (e.g. to /bin/bash) `as explained here <http://docs.opennebula.org/5.8/deployment/open_cloud_host_setup/lxd_driver.html#configuration>`_.
+
+
 
 Centos6 KVM market app boots into emergency runlevel when used as a LXD image
 ================================================================================
-A workaround for this issue is to manually input ``telinit 3``. The full description is `here <https://github.com/OpenNebula/one/issues/3023>`_ 
+A workaround for this issue is to manually input ``telinit 3``. The full description is `here <https://github.com/OpenNebula/one/issues/3023>`_
+
+Centos6 LXD market app fails to correclty set hostname contextualization
+=========================================================================
+The behavior and workaround is described `here <https://github.com/OpenNebula/one/issues/3132>`_
 
 Qcow2 Image Datastores and SSH transfer mode
 ================================================================================
