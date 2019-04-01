@@ -792,6 +792,8 @@ Custom attributes can be added to a VM to store metadata related to this specifi
     USER TEMPLATE
     ROOT_GENERATED_PASSWORD="1234"
 
+.. note:: The attributes can be deleted usisng the command ``onevm update <VM_ID> --delete-template ROOT_GENERATED_PASSWORD``
+
 Manage VM Permissions
 ---------------------
 

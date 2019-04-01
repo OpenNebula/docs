@@ -224,6 +224,8 @@ After creating a Virtual Network, you can use the ``onevnet update`` command to 
 
 Also the name of the Virtual Network can be changed with ``onevnet rename`` command.
 
+You can use the command ``onevnet update <VNET_ID> --delete-template ATTR`` to delete any attribute.
+
 .. _manage_address_ranges:
 
 Managing Address Ranges

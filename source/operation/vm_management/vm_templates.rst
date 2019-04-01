@@ -365,6 +365,8 @@ It is possible to update a template by using the ``onetemplate update``. This wi
 
     $ onetemplate update 3
 
+.. note:: The attributes can be deleted usisng the command ``onetemplate update <TEMPLATE_ID> --delete-template ATTR``
+
 Sharing Templates
 --------------------
 

@@ -307,7 +307,7 @@ Tokens can be listed  by doing:
          ID EGID  EGROUP     EXPIRATION
     3ea673b 100   groupB     2016-09-03 03:58:51
     c33ff10 100   groupB     expired
-    f836893 *1    users      forever
+    f836893 1    users      forever
 
 The asterisk in the EGID column means that the user's primary group is 1 and that the token is not group specific.
 
@@ -359,7 +359,7 @@ Usage example:
          ID EGID  EGROUP     EXPIRATION
     3ea673b 100   groupB     2016-09-03 03:58:51
     c33ff10 100   groupB     expired
-    f65c772 *1    users      2016-09-03 04:20:56
+    f65c772 1    users      2016-09-03 04:20:56
     [...]
 
     $ onetokenset 3e
@@ -389,6 +389,8 @@ The ``USER TEMPLATE`` section can hold any arbitrary data. You can use the ``one
     USER TEMPLATE
     DEPARTMENT=IT
     EMAIL=user@company.com
+
+.. note:: The attributes can be deleted using the command ``oneuser update <USER_ID> --delete-template DEPARTMENT``
 
 These attributes can be later used in the :ref:`Virtual Machine Contextualization <template_context>`. For example, using contextualization the user's public ssh key can be automatically installed in the VM:
 

@@ -172,6 +172,8 @@ For example to label a host as *production* we can add a custom tag *TYPE*:
 	...
     TYPE="production"
 
+.. note:: The attributes can be deleted usisng the command ``onehost update <HOST_ID> --delete-template TYPE``
+
 This tag can be used at a later time for scheduling purposes by adding the following section in a VM template:
 
 .. code-block:: bash
