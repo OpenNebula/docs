@@ -49,8 +49,10 @@ The following issues has been solved in 5.8.1:
 - `Purge of Debian package should not remove the sqlite database <https://github.com/OpenNebula/packages/issues/64>`_
 - `Ensure OpenNebula services are stopped on upgrade/install <https://github.com/OpenNebula/packages/issues/58>`_
 - `Fix and issue which broke the new endlines from templates <https://github.com/OpenNebula/one/issues/2515>`__.
-- `Fix issue hides other labels that are not from lxd when a new vm template is created <https://github.com/OpenNebula/one/issues/3026>`__.
-- `Fix issue loading VM template with set showback in false <https://github.com/OpenNebula/one/issues/3007>`__.
-- `Fix issue does not show the datastores table when a new VM template is downloaded <https://github.com/OpenNebula/one/issues/3066>`__.
+- `Fix Suntone VM template dialog for LXD to hide not applicable labels <https://github.com/OpenNebula/one/issues/3026>`__.
+- `Fix issue loading VM template when showback is set to false in view configuration file <https://github.com/OpenNebula/one/issues/3007>`__.
+- `Fix issue that does not show the datastores table when a new VM template is downloaded <https://github.com/OpenNebula/one/issues/3066>`__.
 - `Fix GOCA response to remove unused boolean <https://github.com/OpenNebula/one/issues/3114>`__.
 - `Fix error management in GOCA client struct <https://github.com/OpenNebula/one/issues/2678>`__.
+- `Fix missing API error codes in GOCA <https://github.com/OpenNebula/one/issues/3149>`__.
+- `Fix missing clone parameter for template instantiate in GOCA <https://github.com/OpenNebula/one/issues/3151>`__.
