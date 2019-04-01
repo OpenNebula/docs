@@ -12,6 +12,7 @@ The following new features has been backported to 5.8.1:
 - `Updated ceph requirements for LXD setups <https://github.com/OpenNebula/one/issues/2998>`_
 - `Improved loggig in LXD actions <https://github.com/OpenNebula/one/issues/3099>`_
 - `New API call: one.vmpool.infoextended <https://github.com/OpenNebula/one/issues/3076>`__.
+- Added input for command to be executed in the LXD container through a VNC terminal
 
 The following issues has been solved in 5.8.1:
 
@@ -48,3 +49,6 @@ The following issues has been solved in 5.8.1:
 - `Purge of Debian package should not remove the sqlite database <https://github.com/OpenNebula/packages/issues/64>`_
 - `Ensure OpenNebula services are stopped on upgrade/install <https://github.com/OpenNebula/packages/issues/58>`_
 - `Fix and issue which broke the new endlines from templates <https://github.com/OpenNebula/one/issues/2515>`__.
+- `Fix issue hides other labels that are not from lxd when a new vm template is created <https://github.com/OpenNebula/one/issues/3026>`__.
+- `Fix issue loading VM template with set showback in false <https://github.com/OpenNebula/one/issues/3007>`__.
+- `Fix issue does not show the datastores table when a new VM template is downloaded<https://github.com/OpenNebula/one/issues/3066>`__.
