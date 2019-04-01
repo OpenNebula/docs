@@ -51,4 +51,5 @@ The following issues has been solved in 5.8.1:
 - `Fix and issue which broke the new endlines from templates <https://github.com/OpenNebula/one/issues/2515>`__.
 - `Fix issue hides other labels that are not from lxd when a new vm template is created <https://github.com/OpenNebula/one/issues/3026>`__.
 - `Fix issue loading VM template with set showback in false <https://github.com/OpenNebula/one/issues/3007>`__.
-- `Fix issue does not show the datastores table when a new VM template is downloaded<https://github.com/OpenNebula/one/issues/3066>`__.
+- `Fix issue does not show the datastores table when a new VM template is downloaded <https://github.com/OpenNebula/one/issues/3066>`__.
+- `Fix GOCA response to remove unused boolean <https://github.com/OpenNebula/one/issues/3114>`__.
