@@ -56,3 +56,4 @@ The following issues has been solved in 5.8.1:
 - `Fix error management in GOCA client struct <https://github.com/OpenNebula/one/issues/2678>`__.
 - `Fix missing API error codes in GOCA <https://github.com/OpenNebula/one/issues/3149>`__.
 - `Fix missing clone parameter for template instantiate in GOCA <https://github.com/OpenNebula/one/issues/3151>`__.
+- `Fix segmentation fault error when trying to start OpenNebula in MASTER mode without a DB bootstrapped <https://github.com/OpenNebula/one/issues/3161s>`__.
