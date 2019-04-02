@@ -13,9 +13,7 @@ How Should I Read This Chapter
 
 You should be reading this Chapter if you are trying to automate tasks in your deployed OpenNebula cloud, and you have already read all of the previous guides.
 
-This Chapter introduces the OpenNebula interfaces:
-
-* **System interfaces** expose the full functionality of OpenNebula and are mainly used to adapt and tune the behavior of OpenNebula to the target infrastructure:
+This Chapter introduces the OpenNebula system interfaces:
 
   * The XML-RPC interface is the primary interface for OpenNebula, exposing all the functionality to interface the OpenNebula daemon. Through the XML-RPC interface you can control and manage any OpenNebula resource, including VMs, Virtual Networks, Images, Users, Hosts and Clusters. Use the XML-RPC interface if you are developing specialized libraries for Cloud applications or you need a low-level interface with the OpenNebula core. A full reference in the :ref:`XML-RPC reference Section <api>`.
   * The OpenNebula Cloud API provides a simplified and convenient way to interface with the OpenNebula core XMLRPC API. The OCA interfaces exposes the same functionality as that of the XML-RPC interface. OpenNebula includes four language bindings for OCA: :ref:`Ruby <ruby>`, :ref:`JAVA <java>`, :ref:`Golang <go>` and :ref:`Python <python>`.
