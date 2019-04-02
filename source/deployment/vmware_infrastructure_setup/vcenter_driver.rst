@@ -1174,7 +1174,7 @@ Select the images you want to import and click on the Import button. The ID of t
 Migrate vCenter Virtual Machines with OpenNebula
 ================================================================================
 
-vCenter Driver allows migration of VMs between different vCenter clusters (ie, OpenNebula hosts) and/or. Depending on the type of migration (cold, the VM is powered off, or saved; or live, the VM is migrated while running), or the target (cluster and/or datastore), several requirements needs to be met in order to migrate the machine.
+vCenter Driver allows migration of VMs between different vCenter clusters (ie, OpenNebula hosts) and/or different datastores. Depending on the type of migration (cold, the VM is powered off, or saved; or live, the VM is migrated while running), or the target (cluster and/or datastore), several requirements needs to be met in order to migrate the machine.
 
 Migrating a VM Between vCenter Clusters (OpenNebula Hosts)
 ----------------------------------------------------------
@@ -1189,7 +1189,7 @@ Requirements (both live and cold migrations)
     - If set to an empty string (""), OpenNebula will randomly chose a target ESX from all the ESXs that belong to the vCenter target cluster
     - If set to a space-separated list of ESX hostnames (that need to beling to the vCenter target cluster), OpenNebula will randomly chose a target ESX from the list
 
-.. Note:: A good place to check if the VM meets the OpenNebula requirements is to peep into the 'AUTOMATIC_REQUIREMENTS' attribute of the and check if it includes the target OpenNebula clusters (remember, a cluster in OpenNebula is a collection of hosts, virtual networks and datastores, a cluster in vCenter is represented as a host in OpenNebula).
+.. Note:: A good place to check if the VM meets the OpenNebula requirements is to peep into the 'AUTOMATIC_REQUIREMENTS' attribute of the Virtual Machine (this can be reviewed in the Template info tab) and check if it includes the target OpenNebula clusters (remember, a cluster in OpenNebula is a collection of hosts, virtual networks and datastores, a cluster in vCenter is represented as a host in OpenNebula).
 
 Requirements (only live migrations)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
