@@ -31,3 +31,4 @@ Hypervisor Compatibility
 All the Sections of this Chapter applies to both KVM and vCenter hypervisors.
 
 .. |image0| image:: /images/opennebula_interfaces.png
+   :scale: 75 %
