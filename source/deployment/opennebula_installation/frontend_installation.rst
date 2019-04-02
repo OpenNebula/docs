@@ -287,6 +287,28 @@ The following table lists some notable paths that are available in your Front-en
 | ``/var/lib/one/remotes/tm/``        | Transfer Manager Driver scripts                                                      |
 +-------------------------------------+--------------------------------------------------------------------------------------+
 
+Firewall configuration
+--------------------------------------------------------------------------------
+
+The list below shows the ports used by OpenNebula, these ports needs to be open for OpenNebula to work properly:
+
++-------------------------------------+-------------------------------------------------------------------------------------------------------------+
+|                 Port                |                     Description                                                                             |
++=====================================+=============================================================================================================+
+| ``9869``                            | Sunstone server.                                                                                            |
++-------------------------------------+-------------------------------------------------------------------------------------------------------------+
+| ``29876``                           | VNC proxy port, used for translating and redirecting VNC connections to the hypervisors.                    |
++-------------------------------------+-------------------------------------------------------------------------------------------------------------+
+| ``2633``                            | OpenNebula daemon, main XML-RPC API endpoint.                                                               |
++-------------------------------------+-------------------------------------------------------------------------------------------------------------+
+| ``2474``                            | OneFlow server. This port only needs to be opened if OneFlow server is used.                                |
++-------------------------------------+-------------------------------------------------------------------------------------------------------------+
+| ``5030``                            | OneGate server. This port only needs to be opened if OneGate server is used.                                |
++-------------------------------------+-------------------------------------------------------------------------------------------------------------+
+
+OpenNebula connects to the hypervisors through ssh (port 22). Additionally ``oned`` may connect to OpenNebula Marketplace (``https://marketplace.opennebula.systems/``) and Linux Containers Makerplace (``https://images.linuxcontainers.org``) to get a list of available appliances. You should open outgoing connections to these ports and protocols. Note: These are the default ports, each component can be configure to bind to specific ports or use a HTTP Proxy.
+
+
 Step 8. Next steps
 ================================================================================
 
