@@ -308,7 +308,7 @@ The list below shows the ports used by OpenNebula, this ports needs to be open i
 
 **MarketPlace**
 
-OpenNebula gets the apps from the community marketplace and from linuxcontiners.org via HTTP. These marketplaces can be deleted in case they are not needed. 
+OpenNebula gets some MarketPlace apps from the community marketplace and from linuxcontiners.org via HTTP. These marketplaces can be deleted in case they are not needed. 
 
 Step 8. Next steps
 ================================================================================
