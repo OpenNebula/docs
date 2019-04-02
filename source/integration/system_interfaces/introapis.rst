@@ -6,8 +6,6 @@ Overview
 
 OpenNebula has been designed to be easily adapted to any infrastructure and easily extended with new components. The result is a modular system that can implement a variety of Cloud architectures and can interface with multiple datacenter services. In this Guide we review the main interfaces of OpenNebula, their use and give pointers to additional documentation for each one.
 
-We have classified the interfaces in two categories: end-user cloud and system interfaces.
-
 |image0|
 
 How Should I Read This Chapter
