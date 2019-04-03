@@ -8,6 +8,7 @@ OpenNebula Core
 ================================================================================
 - **Update hashing algorithm**, now passwords and login tokens are hashed using sha256 instead of sha1. Also csrftoken is now hashed with SHA256 instead of MD5
 - `FILTER is now a VM_RESTRICTED attribute <https://github.com/OpenNebula/one/issues/3092>`__.
+- `An option to delete attibutes from object's template has been added. This option has also been added to the onegate server/client <https://github.com/OpenNebula/one/issues/1414>`__.
 
 Other Issues Solved
 ================================================================================
