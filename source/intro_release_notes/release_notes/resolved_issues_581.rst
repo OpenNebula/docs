@@ -10,11 +10,11 @@ The following new features has been backported to 5.8.1:
 - `Add timepicker in relative scheduled actions <https://github.com/OpenNebula/one/issues/2961>`__.
 - `Check vCenter cluster health in monitoring <https://github.com/OpenNebula/one/issues/2968>`__.
 - `Updated ceph requirements for LXD setups <https://github.com/OpenNebula/one/issues/2998>`__.
-- `Improved loggin in LXD actions <https://github.com/OpenNebula/one/issues/3099>`__.
+- `Extended logs in LXD actions with the native container log <https://github.com/OpenNebula/one/issues/3099>`__.
 - `New API call: one.vmpool.infoextended <https://github.com/OpenNebula/one/issues/3076>`__.
 - `Implemented nested filters AND and OR when filtering from CLI <https://github.com/OpenNebula/one/issues/2505>`__.
-- Added input for command to be executed in the LXD container through a VNC terminal
-- `Added sunstone banner official support <https://github.com/OpenNebula/one/issues/3167>`__. 
+- `Added input for command to be executed in the LXD container through a VNC terminal <https://github.com/OpenNebula/one/issues/3020>`__.
+- `Added sunstone banner official support <https://github.com/OpenNebula/one/issues/3167>`__.
 
 The following issues has been solved in 5.8.1:
 
@@ -61,6 +61,7 @@ The following issues has been solved in 5.8.1:
 - `Fix segmentation fault error when trying to start OpenNebula in MASTER mode without a DB bootstrapped <https://github.com/OpenNebula/one/issues/3161s>`__.
 - `Validate RPC argument when a server is added to a zone <https://github.com/OpenNebula/one/issues/2603>`__.
 - `Fix LXD market apps import procedure <https://github.com/OpenNebula/one/issues/3164>`__
+- `Fix misleading non persistent message in instantiate message <https://github.com/OpenNebula/one/issues/3095>`__
 - `Fix issue hides other labels that are not from lxd when a new vm template is created <https://github.com/OpenNebula/one/issues/3026>`__.
 - `Fix issue loading VM template with set showback in false <https://github.com/OpenNebula/one/issues/3007>`__.
 - `Fix issue change zone using sunstone + passenger <https://github.com/OpenNebula/one/issues/3157>`
