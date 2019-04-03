@@ -10,10 +10,10 @@ The following new features has been backported to 5.8.1:
 - `Add timepicker in relative scheduled actions <https://github.com/OpenNebula/one/issues/2961>`__.
 - `Check vCenter cluster health in monitoring <https://github.com/OpenNebula/one/issues/2968>`__.
 - `Updated ceph requirements for LXD setups <https://github.com/OpenNebula/one/issues/2998>`__.
-- `Improved loggin in LXD actions <https://github.com/OpenNebula/one/issues/3099>`__.
+- `Extended logs in LXD actions with the native container log <https://github.com/OpenNebula/one/issues/3099>`__.
 - `New API call: one.vmpool.infoextended <https://github.com/OpenNebula/one/issues/3076>`__.
 - `Implemented nested filters AND and OR when filtering from CLI <https://github.com/OpenNebula/one/issues/2505>`__.
-- Added input for command to be executed in the LXD container through a VNC terminal
+- `Added input for command to be executed in the LXD container through a VNC terminal <https://github.com/OpenNebula/one/issues/3020>`__.
 
 The following issues has been solved in 5.8.1:
 
