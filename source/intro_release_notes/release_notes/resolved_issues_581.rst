@@ -14,6 +14,7 @@ The following new features has been backported to 5.8.1:
 - `New API call: one.vmpool.infoextended <https://github.com/OpenNebula/one/issues/3076>`__.
 - `Implemented nested filters AND and OR when filtering from CLI <https://github.com/OpenNebula/one/issues/2505>`__.
 - `Added input for command to be executed in the LXD container through a VNC terminal <https://github.com/OpenNebula/one/issues/3020>`__.
+- `Added sunstone banner official support <https://github.com/OpenNebula/one/issues/3167>`__.
 
 The following issues has been solved in 5.8.1:
 
@@ -61,3 +62,7 @@ The following issues has been solved in 5.8.1:
 - `Validate RPC argument when a server is added to a zone <https://github.com/OpenNebula/one/issues/2603>`__.
 - `Fix LXD market apps import procedure <https://github.com/OpenNebula/one/issues/3164>`__
 - `Fix misleading non persistent message in instantiate message <https://github.com/OpenNebula/one/issues/3095>`__
+- `Fix issue hides other labels that are not from lxd when a new vm template is created <https://github.com/OpenNebula/one/issues/3026>`__.
+- `Fix issue loading VM template with set showback in false <https://github.com/OpenNebula/one/issues/3007>`__.
+- `Fix issue change zone using sunstone + passenger <https://github.com/OpenNebula/one/issues/3157>`__.
+- `Fix issue does not show the datastores table when a new VM template is downloaded <https://github.com/OpenNebula/one/issues/3066>`__.
