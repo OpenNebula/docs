@@ -60,3 +60,4 @@ The following issues has been solved in 5.8.1:
 - `Fix segmentation fault error when trying to start OpenNebula in MASTER mode without a DB bootstrapped <https://github.com/OpenNebula/one/issues/3161s>`__.
 - `Validate RPC argument when a server is added to a zone <https://github.com/OpenNebula/one/issues/2603>`__.
 - `Fix LXD market apps import procedure <https://github.com/OpenNebula/one/issues/3164>`__
+- `Fix misleading non persistent message in instantiate message <https://github.com/OpenNebula/one/issues/3095>`__
