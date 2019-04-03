@@ -64,5 +64,5 @@ The following issues has been solved in 5.8.1:
 - `Fix misleading non persistent message in instantiate message <https://github.com/OpenNebula/one/issues/3095>`__
 - `Fix issue hides other labels that are not from lxd when a new vm template is created <https://github.com/OpenNebula/one/issues/3026>`__.
 - `Fix issue loading VM template with set showback in false <https://github.com/OpenNebula/one/issues/3007>`__.
-- `Fix issue change zone using sunstone + passenger <https://github.com/OpenNebula/one/issues/3157>`
+- `Fix issue change zone using sunstone + passenger <https://github.com/OpenNebula/one/issues/3157>`__.
 - `Fix issue does not show the datastores table when a new VM template is downloaded <https://github.com/OpenNebula/one/issues/3066>`__.
