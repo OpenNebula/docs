@@ -81,7 +81,7 @@ There are some attributes required for KVM to boot a VM. You can set a suitable 
 * ``HYPERV``: to enable hyperv extensions.
 * ``SPICE``: to add default devices for SPICE.
 
-.. warning:: These values are only used during VM creation, for other actions like nic or disk attach/detach the default values must be set in ``/var/lib/one/remotes/etc/vmm/kvm/kvmrc``. For more info check :ref:`Files and Parameters <files_and_parameters>` section.
+.. warning:: These values are only used during VM creation, for other actions like nic or disk attach/detach the default values must be set in ``/var/lib/one/remotes/etc/vmm/kvm/kvmrc``. For more info check :ref:`Files and Parameters <kvmg_files_and_parameters>` section.
 
 For example:
 
@@ -412,7 +412,7 @@ After this update the remote files in the nodes and restart opennebula:
     $ onehost sync --force
     $ sudo systemctl restart opennebula
 
-.. _files_and_parameters:
+.. _kvmg_files_and_parameters:
 
 Files and Parameters
 --------------------
