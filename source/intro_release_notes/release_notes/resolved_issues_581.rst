@@ -15,6 +15,7 @@ The following new features has been backported to 5.8.1:
 - `Implemented nested filters AND and OR when filtering from CLI <https://github.com/OpenNebula/one/issues/2505>`__.
 - `Added input for command to be executed in the LXD container through a VNC terminal <https://github.com/OpenNebula/one/issues/3020>`__.
 - `Added sunstone banner official support <https://github.com/OpenNebula/one/issues/3167>`__.
+- `Remove disk not affected by snap on vCenter <https://github.com/OpenNebula/one/issues/2275>`__.
 
 The following issues has been solved in 5.8.1:
 
