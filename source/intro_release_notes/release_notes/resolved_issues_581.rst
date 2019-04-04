@@ -66,3 +66,4 @@ The following issues has been solved in 5.8.1:
 - `Fix issue loading VM template with set showback in false <https://github.com/OpenNebula/one/issues/3007>`__.
 - `Fix issue change zone using sunstone + passenger <https://github.com/OpenNebula/one/issues/3157>`__.
 - `Fix issue does not show the datastores table when a new VM template is downloaded <https://github.com/OpenNebula/one/issues/3066>`__.
+- `Fix Packet provision of CentOS 7 on c2.medium fails <https://github.com/OpenNebula/one/issues/3080>`__.
