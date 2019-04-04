@@ -11,7 +11,7 @@ The following new features has been backported to 5.8.1:
 - `Check vCenter cluster health in monitoring <https://github.com/OpenNebula/one/issues/2968>`__.
 - `Updated ceph requirements for LXD setups <https://github.com/OpenNebula/one/issues/2998>`__.
 - `Extended logs in LXD actions with the native container log <https://github.com/OpenNebula/one/issues/3099>`__.
-- `New API call: one.vmpool.infoextended <https://github.com/OpenNebula/one/issues/3076>`__.
+- `New API call one_vmpool_infoextended <https://github.com/OpenNebula/one/issues/3076>`__.
 - `Implemented nested filters AND and OR when filtering from CLI <https://github.com/OpenNebula/one/issues/2505>`__.
 - `Added input for command to be executed in the LXD container through a VNC terminal <https://github.com/OpenNebula/one/issues/3020>`__.
 - `Added sunstone banner official support <https://github.com/OpenNebula/one/issues/3167>`__.
@@ -24,8 +24,8 @@ The following issues has been solved in 5.8.1:
 - `Fix an issue with oneprovision ansible errors <https://github.com/OpenNebula/one/issues/3002>`__.
 - `Fix an issue with oneprovision custom ansible connection parameters <https://github.com/OpenNebula/one/issues/3005>`__.
 - `Fix an issue where VIRTIO_SCSI_QUEUES parameter is not updated through Update Configuration <https://github.com/OpenNebula/one/issues/2880>`__.
-- `Fix an issue in MarketPlace where obsolote apps weren't deleted <https://github.com/OpenNebula/one/issues/3017>`__.
-- `Fix an issue that prevents qcow2 datastores to work in ssh mode. You need to trigger a datastore update (e.g. onedatastore update <ds_id>, and exit without changes will do) to load the new attributes <https://github.com/OpenNebula/one/issues/3038>`__.
+- `Fix an issue in MarketPlace where obsolote apps were not deleted <https://github.com/OpenNebula/one/issues/3017>`__.
+- `Fix an issue that prevents qcow2 datastores to work in ssh mode <https://github.com/OpenNebula/one/issues/3038>`__.
 - `Fix bug in vcenter_downloader failing to download vcenter images <https://github.com/OpenNebula/one/issues/3044>`__.
 - `Packaged Passenger can't be installed <https://github.com/OpenNebula/one/issues/2994>`__.
 - `Fix and issue in MarketPlace where all apps needs an image to import <https://github.com/OpenNebula/one/issues/1666>`__.
