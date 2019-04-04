@@ -8,12 +8,13 @@ A complete list of solved issues for 5.8.1 can be found in the `project developm
 The following new features has been backported to 5.8.1:
 
 - `Add timepicker in relative scheduled actions <https://github.com/OpenNebula/one/issues/2961>`__.
-- `Check vCenter cluster health in monitoring <https://github.com/OpenNebula/one/issues/2968>`_
-- `Updated ceph requirements for LXD setups <https://github.com/OpenNebula/one/issues/2998>`_
-- `Improved loggin in LXD actions <https://github.com/OpenNebula/one/issues/3099>`_
-- `New API call: one.vmpool.infoextended <https://github.com/OpenNebula/one/issues/3076>`__.
-- `Implemented nested filters AND and OR when filtering from CLI <https://github.com/OpenNebula/one/issues/2505>`_
-- Added input for command to be executed in the LXD container through a VNC terminal
+- `Check vCenter cluster health in monitoring <https://github.com/OpenNebula/one/issues/2968>`__.
+- `Updated ceph requirements for LXD setups <https://github.com/OpenNebula/one/issues/2998>`__.
+- `Extended logs in LXD actions with the native container log <https://github.com/OpenNebula/one/issues/3099>`__.
+- `New API call one_vmpool_infoextended <https://github.com/OpenNebula/one/issues/3076>`__.
+- `Implemented nested filters AND and OR when filtering from CLI <https://github.com/OpenNebula/one/issues/2505>`__.
+- `Added input for command to be executed in the LXD container through a VNC terminal <https://github.com/OpenNebula/one/issues/3020>`__.
+- `Added sunstone banner official support <https://github.com/OpenNebula/one/issues/3167>`__.
 
 The following issues has been solved in 5.8.1:
 
@@ -23,8 +24,8 @@ The following issues has been solved in 5.8.1:
 - `Fix an issue with oneprovision ansible errors <https://github.com/OpenNebula/one/issues/3002>`__.
 - `Fix an issue with oneprovision custom ansible connection parameters <https://github.com/OpenNebula/one/issues/3005>`__.
 - `Fix an issue where VIRTIO_SCSI_QUEUES parameter is not updated through Update Configuration <https://github.com/OpenNebula/one/issues/2880>`__.
-- `Fix an issue in MarketPlace where obsolote apps weren't deleted <https://github.com/OpenNebula/one/issues/3017>`__.
-- `Fix an issue that prevents qcow2 datastores to work in ssh mode. You need to trigger a datastore update (e.g. onedatastore update <ds_id>, and exit without changes will do) to load the new attributes <https://github.com/OpenNebula/one/issues/3038>`__.
+- `Fix an issue in MarketPlace where obsolote apps were not deleted <https://github.com/OpenNebula/one/issues/3017>`__.
+- `Fix an issue that prevents qcow2 datastores to work in ssh mode <https://github.com/OpenNebula/one/issues/3038>`__.
 - `Fix bug in vcenter_downloader failing to download vcenter images <https://github.com/OpenNebula/one/issues/3044>`__.
 - `Packaged Passenger can't be installed <https://github.com/OpenNebula/one/issues/2994>`__.
 - `Fix and issue in MarketPlace where all apps needs an image to import <https://github.com/OpenNebula/one/issues/1666>`__.
@@ -60,3 +61,9 @@ The following issues has been solved in 5.8.1:
 - `Fix segmentation fault error when trying to start OpenNebula in MASTER mode without a DB bootstrapped <https://github.com/OpenNebula/one/issues/3161s>`__.
 - `Validate RPC argument when a server is added to a zone <https://github.com/OpenNebula/one/issues/2603>`__.
 - `Fix LXD market apps import procedure <https://github.com/OpenNebula/one/issues/3164>`__
+- `Fix misleading non persistent message in instantiate message <https://github.com/OpenNebula/one/issues/3095>`__
+- `Fix issue hides other labels that are not from lxd when a new vm template is created <https://github.com/OpenNebula/one/issues/3026>`__.
+- `Fix issue loading VM template with set showback in false <https://github.com/OpenNebula/one/issues/3007>`__.
+- `Fix issue change zone using sunstone + passenger <https://github.com/OpenNebula/one/issues/3157>`__.
+- `Fix issue does not show the datastores table when a new VM template is downloaded <https://github.com/OpenNebula/one/issues/3066>`__.
+- `Fix Packet provision of CentOS 7 on c2.medium fails <https://github.com/OpenNebula/one/issues/3080>`__.
