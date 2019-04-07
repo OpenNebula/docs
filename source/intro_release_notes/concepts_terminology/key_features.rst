@@ -67,7 +67,7 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 - Powerful :ref:`Command Line Interface <cli>` that resembles typical UNIX commands applications
 
-- :ref:`Easy-to-use Sunstone Graphical Interface <sunstone>` providing usage graphics and statistics with cloudwatch-like functionality, :ref:`remote acccess through VNC or SPICE <remote_access_sunstone>`, different system views for different roles, catalog access, multiple-zone management...
+- :ref:`Easy-to-use Sunstone Graphical Interface <sunstone>` providing usage graphics and statistics with cloudwatch-like functionality, :ref:`remote access through VNC or SPICE <remote_access_sunstone>`, different system views for different roles, catalog access, multiple-zone management...
 
 - :ref:`Sunstone is easily customizable <suns_views>` to define multiple cloud views for different user groups
 
