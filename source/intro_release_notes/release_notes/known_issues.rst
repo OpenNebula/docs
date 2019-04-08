@@ -9,7 +9,7 @@ A complete list of `known issues for OpenNebula is maintained here <https://gith
 This page will be updated with relevant information about bugs affecting OpenNebula, as well as possible workarounds until a patch is officially published.
 
 
-LXD GuestOS issues
+LXD Guest OS issues
 ================================================================================
 
 The following issues have been detected for several Linux OS versions when running in a LXD container:
@@ -17,6 +17,11 @@ The following issues have been detected for several Linux OS versions when runni
 * Centos6 KVM market app boots into emergency runlevel when used as a LXD image. A workaround for this issue is to manually input ``telinit 3``. The full description is `here <https://github.com/OpenNebula/one/issues/3023>`__.
 * Centos6 LXD market app fails to correclty set hostname contextualization. The behavior and workaround is described `here <https://github.com/OpenNebula/one/issues/3132>`__.
 * Gentoo LXD market app not imported correclty- The content of the image seems truncated when dumping the linux fs into the block. More info `here <https://github.com/OpenNebula/one/issues/3049>`__.
+
+LXD Host issues
+================================================================================
+
+Sometimes after a container is powered off, `LXD doesn't remove the host-side NIC of the veth pair <https://github.com/OpenNebula/one/issues/3189>`__
 
 Qcow2 Image Datastores and SSH transfer mode
 ================================================================================
