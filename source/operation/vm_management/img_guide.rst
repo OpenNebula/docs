@@ -326,7 +326,7 @@ Once the VM is deployed and changes are made to its disk, you can save those cha
 * **Disk snapshots**, a snapshot of the disk state is saved, you can later revert to this saved state.
 * **Disk save\_as**, the disk is copied to a new Image in the datastore. A new virtual machine can be started from it. The disk must be in a consistent state during the save\_as operation (e.g. by unmounting the disk from the VM).
 
-A detailed description of this process is :ref:`described in section Vritual Machine Instances <vm_guide_2_disk_snapshots>`
+A detailed description of this process is :ref:`described in section Virtual Machine Instances <vm_guide_2_disk_snapshots>`
 
 .. _img_guide_files:
 
