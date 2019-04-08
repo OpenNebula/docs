@@ -26,7 +26,7 @@ LXD VNC - Login process
 For some operating system versions `the login process does not work through the lxc exec command <https://github.com/OpenNebula/one/issues/3019>`_ . This may fail the login into the container through VNC. You can change the VNC command to be executed to start your VNC session (e.g. to /bin/bash) `as explained here <http://docs.opennebula.org/5.8/deployment/open_cloud_host_setup/lxd_driver.html#configuration>`__.
 
 
-LXD GuestOS issues
+LXD Guest OS issues
 ================================================================================
 
 The following issues have been detected for several Linux OS versions when running in a LXD container:
@@ -34,6 +34,11 @@ The following issues have been detected for several Linux OS versions when runni
 * Centos6 KVM market app boots into emergency runlevel when used as a LXD image. A workaround for this issue is to manually input ``telinit 3``. The full description is `here <https://github.com/OpenNebula/one/issues/3023>`__.
 * Centos6 LXD market app fails to correclty set hostname contextualization. The behavior and workaround is described `here <https://github.com/OpenNebula/one/issues/3132>`__.
 * Gentoo LXD market app not imported correclty- The content of the image seems truncated when dumping the linux fs into the block. More info `here <https://github.com/OpenNebula/one/issues/3049>`__.
+
+LXD Host issues
+================================================================================
+
+Sometimes after a container is powered off, `LXD doesn't remove the host-side NIC of the veth pair <https://github.com/OpenNebula/one/issues/3189>`__
 
 Qcow2 Image Datastores and SSH transfer mode
 ================================================================================
