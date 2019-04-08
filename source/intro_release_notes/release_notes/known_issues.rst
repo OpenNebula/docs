@@ -8,24 +8,6 @@ A complete list of `known issues for OpenNebula is maintained here <https://gith
 
 This page will be updated with relevant information about bugs affecting OpenNebula, as well as possible workarounds until a patch is officially published.
 
-Upgrade Process
-================================================================================
-
-There is an issue where the database upgrade process can drop some XML attributes in the listing column. This issue only impacts on the list operations, including the Sunstone VM list, and the XML data returned by the ``onevm list`` command and ``one.vmpool.info`` API call. This data is updated and fixed by oned as it refreshes the VM information.
-
-If you want to obtain the right listing information after the upgrade, please replace the file ``/usr/lib/one/ruby/onedb/local/5.6.0_to_5.7.80.rb`` `with the one you can download here. <https://raw.githubusercontent.com/OpenNebula/one/one-5.8/src/onedb/local/5.6.0_to_5.7.80.rb>`__
-
-Debian & Ubuntu: Phusion Passenger Package Conflict
-================================================================================
-
-Phusion Passenger, used to run the Sunstone inside the Apache or NGINX, can't be installed from the packages available for Debian and Ubuntu due to conflicting dependencies. Passenger must be installed manually, `follow the documentation <https://www.phusionpassenger.com/library/walkthroughs/deploy/ruby/ownserver/apache/oss/rubygems_norvm/install_passenger.html>`__.
-
-LXD VNC - Login process
-===============================================================================
-
-For some operating system versions `the login process does not work through the lxc exec command <https://github.com/OpenNebula/one/issues/3019>`_ . This may fail the login into the container through VNC. You can change the VNC command to be executed to start your VNC session (e.g. to /bin/bash) `as explained here <http://docs.opennebula.org/5.8/deployment/open_cloud_host_setup/lxd_driver.html#configuration>`__.
-
-
 LXD Guest OS issues
 ================================================================================
 
@@ -62,4 +44,4 @@ Qcow2 image datastores are compatible with SSH system datastore (SSH transfer mo
 NIC alias and IP spoofing rules
 ================================================================================
 
-For NIC alias the IP spoofing rules are not triggered when the VM is created nor when the interface is attached. If you have configured IP spoofing for your virtual networks be aware that those will not be honored by NIC ALIAS interfaces.
+For NIC alias the IP spoofing rules are not triggered when the VM is created nor when the interface is attached. If you have configured IP spoofing for your virtual networks be aware that those will not be honored by NIC ALIAS interfaces. More info `here <https://github.com/OpenNebula/one/issues/3079>`__.

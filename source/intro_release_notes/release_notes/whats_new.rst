@@ -34,8 +34,6 @@ KVM Driver
 ----------------------------------------------------------------------------------
 - **Metadata information** with OpenNebula information is included in the Libvirt domain XML, :ref:`see here <libvirt_metadata>`.
 
-
-
 Sunstone
 --------------------------------------------------------------------------------
 - **More customization**, now the admin can disable the VM advanced options in the :ref:`Cloud View dialogs <cloud_view_config>`.
