@@ -140,13 +140,18 @@ By default the LVM driver will zero any LVM volume so VM data cannot leak to oth
 +------------------------+---------------------------------------------------+
 | ``ZERO_LVM_ON_DELETE`` | Zero LVM volumes when VM disks are deleted        |
 +------------------------+---------------------------------------------------+
+| ``DD_BLOCK_SIZE``      | Block size for `dd` operations (default: 64kB)    |
++------------------------+---------------------------------------------------+
 
 Example:
 
 .. code::
 
-    #  Zero LVM volumes on creation or resizing                                      
-    ZERO_LVM_ON_CREATE=no                     
-                                                                                  
-    #  Zero LVM volumes on delete, when the VM disks are disposed                    
-    ZERO_LVM_ON_DELETE=yes 
+    #  Zero LVM volumes on creation or resizing
+    ZERO_LVM_ON_CREATE=no
+
+    #  Zero LVM volumes on delete, when the VM disks are disposed
+    ZERO_LVM_ON_DELETE=yes
+
+    #  Block size for the dd commands
+    DD_BLOCK_SIZE=32M

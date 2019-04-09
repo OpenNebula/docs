@@ -176,7 +176,7 @@ You can read more information about this in the Ceph guide `Using libvirt with C
 
 LXD Node settings
 --------------------------------------------------------------------------------
-Skip these steps if your virtualization node is KVM. 
+Skip these steps if your virtualization node is KVM.
 
 Install rbd-nbd
 
@@ -185,7 +185,7 @@ Install rbd-nbd
     apt install rbd-nbd
 
 
-.. warning:: The rbd backend of the LXD drivers `requires ceph Luminous and kernel 4.15 <https://github.com/OpenNebula/one/issues/2998>`_  
+.. warning:: The rbd backend of the LXD drivers `requires ceph Luminous and kernel 4.15 <https://github.com/OpenNebula/one/issues/2998>`_
 
 
 OpenNebula Configuration
@@ -310,6 +310,7 @@ Default values for the Ceph drivers can be set in ``/var/lib/one/remotes/etc/dat
 * ``POOL_NAME``: Default volume group
 * ``STAGING_DIR``: Default path for image operations in the storage bridges
 * ``RBD_FORMAT``: Default format for RBD volumes.
+* ``DD_BLOCK_SIZE``: Block size for `dd` operations (default: 64kB).
 
 Using different modes
 --------------------------------------------------------------------------------
