@@ -11,8 +11,7 @@ The following new features has been backported to 5.8.2:
 
 The following issues has been solved in 5.8.2:
 
-- `Issue description <https://github.com/OpenNebula/one/issues/XXXXX>`__.
-
 - `LXD now loads nbds_max param from running kernel module configuration <https://github.com/OpenNebula/one/issues/3177>`__
 - `Fixed issues with LXD shutdown <https://github.com/OpenNebula/one/issues/3175>`__
 - `Fix an issue with LXD and symlinked system datastores <https://github.com/OpenNebula/one/issues/3190>`__
+- `Remove disk not affected by snap on vCenter <https://github.com/OpenNebula/one/issues/2275>`__.
