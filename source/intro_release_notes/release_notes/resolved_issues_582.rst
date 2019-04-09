@@ -15,3 +15,4 @@ The following issues has been solved in 5.8.2:
 - `Fixed issues with LXD shutdown <https://github.com/OpenNebula/one/issues/3175>`__
 - `Fix an issue with LXD and symlinked system datastores <https://github.com/OpenNebula/one/issues/3190>`__
 - `Remove disk not affected by snap on vCenter <https://github.com/OpenNebula/one/issues/2275>`__.
+- `Manage nils macs in fsck <https://github.com/OpenNebula/one/issues/3206>`__.
