@@ -13,6 +13,10 @@ Storage
 --------------------------------------------------------------------------------
 - `Allows user to modify block size for dd commands used for Ceph, Fs and LVM datastore drivers <https://github.com/OpenNebula/one/issues/2808>`_.
 
+Networking
+--------------------------------------------------------------------------------
+- `Extend network action with hooks <https://github.com/OpenNebula/one/issues/2451>`_.
+
 Other Issues Solved
 ================================================================================
 - `Fixes an issue that makes the network drivers fail when a large number of secturiy groups rules are used <https://github.com/OpenNebula/one/issues/2851>`_.
