@@ -7,7 +7,7 @@ A complete list of solved issues for 5.8.2 can be found in the `project developm
 
 The following new features has been backported to 5.8.2:
 
-- `Issue description <https://github.com/OpenNebula/one/issues/XXXXX>`__.
+- `Centralized credentials for vCenter resources <https://github.com/OpenNebula/one/issues/1408>`__.
 
 The following issues has been solved in 5.8.2:
 
@@ -17,3 +17,4 @@ The following issues has been solved in 5.8.2:
 - `Remove disk not affected by snap on vCenter <https://github.com/OpenNebula/one/issues/2275>`__.
 - `Manage nils macs in fsck <https://github.com/OpenNebula/one/issues/3206>`__.
 - `Fix issue add persistent image via sunstone <https://github.com/OpenNebula/one/issues/3018>__.
+
