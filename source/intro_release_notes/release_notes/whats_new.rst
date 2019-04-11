@@ -16,3 +16,4 @@ Storage
 Other Issues Solved
 ================================================================================
 - `Fixes an issue that makes the network drivers fail when a large number of secturiy groups rules are used <https://github.com/OpenNebula/one/issues/2851>`_.
+- `Fixes cleanup and offline migration issues for LVM storage driver <https://github.com/OpenNebula/one/issues/2352> <https://github.com/OpenNebula/one/issues/2359>`_.
