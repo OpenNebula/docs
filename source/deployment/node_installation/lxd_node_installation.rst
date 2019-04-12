@@ -19,8 +19,24 @@ LXD node is only supported on Ubuntu 1810, 1804 and 1604
 .. note:: Ubuntu **1810** uses lxd snap package by default
 .. note:: On Ubuntu **1604** you must install lxd3 from **xenial-backports**
 
+You can choose the Installation method of LXD. Currently there is only supported snap and apt packages. We strongly recommend using using apt whenever possible since `snapd cripples oneadmin when using the lxc CLI <https://bugs.launchpad.net/ubuntu/+source/snapd/+bug/1758449>`_  and autorefreshes lxd snap packages whenever there is an update available on the channel. 
+
+Keep in mind to install **lxd-3.0.x**, since stable builds are monthly released and might add a change that breaks the integration with OpenNebula.
+
 Installing on Ubuntu
 ---------------------------
+
+.. prompt:: bash $ auto
+
+    $ sudo apt-get install lxd
+
+If using snapd
+
+.. prompt:: bash $ auto
+
+    $ sudo apt-get install snapd
+    $ sudo snap install lxd --channel=3.0/stable
+
 
 Install LXD node setup package:
 
@@ -35,7 +51,7 @@ Run the following to use ceph storage drivers
     $ sudo apt-get install rbd-nbd
 
 
-For further configuration check the specific guide: :ref:`LXD <lxdmg>`. 
+For further configuration check the specific guide: :ref:`LXD <lxdmg>`.
 
 
 Step 4. Configure Passwordless SSH
