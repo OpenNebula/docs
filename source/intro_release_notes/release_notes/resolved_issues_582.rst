@@ -19,3 +19,5 @@ The following issues has been solved in 5.8.2:
 - `Display only user available virtual routers in virtual networks body <https://github.com/OpenNebula/one/issues/3208>`__.
 - `Fix issue add persistent image via sunstone <https://github.com/OpenNebula/one/issues/3018>`__.
 - `Fix unresponsive OpenNebula right after start <https://github.com/OpenNebula/one/issues/3182>`__.
+- `DetachNic method should receive an integer by parameter instead of a string <https://github.com/OpenNebula/one/issues/3235>`__.
+
