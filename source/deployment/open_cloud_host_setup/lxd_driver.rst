@@ -13,7 +13,7 @@ Requirements
 - No hardware support required
 - The guest OS will share the Linux kernel with the virtualization node, so you won't be able to launch any non-Linux OS. 
 
-Bear in mind that although you can spawn containers with any linux distribution, the kernel will be the one in the host, so you can end up having an ArchLinux container wih an Ubuntu kernel.
+Bear in mind that although you can spawn containers with any linux distribution, the kernel will be the one in the host, so you can end up having an ArchLinux container with an Ubuntu kernel.
 
 The LXD drivers support using LXD through snap packages, if there is a snap installed, it will detect it and use that installation path. 
 
