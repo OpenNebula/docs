@@ -76,7 +76,7 @@ Another thing you have to take into account is the user on which the server will
 
 We advise to use Passenger in your installation but we will show you how to run Sunstone inside unicorn web server as an example.
 
-For more information on web servers that support rack and more information about it you can check the `rack documentation <http://rack.rubyforge.org/doc/>`__ page. You can alternatively check a `list of ruby web servers <https://www.ruby-toolbox.com/categories/web_servers>`__.
+For more information on web servers that support rack and more information about it you can check the `rack documentation <https://www.rubydoc.info/github/rack/rack/>`__ page. You can alternatively check a `list of ruby web servers <https://www.ruby-toolbox.com/categories/web_servers>`__.
 
 Running Sunstone with Unicorn
 -----------------------------
