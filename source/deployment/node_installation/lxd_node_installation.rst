@@ -22,10 +22,13 @@ Keep in mind to run **lxd-3.0.x**, since stable builds are monthly released and 
 
 .. warning:: lxd2 is not supported
 .. note:: Ubuntu **1810** uses lxd 3.0 snap package
+.. note:: Ubuntu **1804** packs by default with lxd3
+.. warning:: Ubuntu **1604** packs by default with lxd2
+
 
 Installing on Ubuntu
 ---------------------------
-Ubuntu 1604, by default packs with lxd2, upgrade to lxd3 from **xenial-backports** if using apt
+On Ubuntu 1604 make sure to upgrade lxd2 to lxd3 from **xenial-backports** if using apt
 
 .. prompt:: bash $ auto
 
