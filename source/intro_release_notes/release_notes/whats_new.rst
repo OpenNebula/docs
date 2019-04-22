@@ -17,3 +17,4 @@ Storage
 Other Issues Solved
 ================================================================================
 - `Fixes an issue that makes the network drivers fail when a large number of secturiy groups rules are used <https://github.com/OpenNebula/one/issues/2851>`_.
+- `Add running quotas to fsck and refactor the code <https://github.com/OpenNebula/one/issues/3082>`__.
