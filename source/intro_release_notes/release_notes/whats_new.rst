@@ -15,7 +15,7 @@ Storage
 
 Networking
 --------------------------------------------------------------------------------
-- `Extend network action with hooks <https://github.com/OpenNebula/one/issues/2451>`_.
+- `Extend network driver actions with customizable hooks <https://github.com/OpenNebula/one/issues/2451>`_.
 
 Other Issues Solved
 ================================================================================
