@@ -21,4 +21,5 @@ The following issues has been solved in 5.8.2:
 - `Fix unresponsive OpenNebula right after start <https://github.com/OpenNebula/one/issues/3182>`__.
 - `Fix DetachNic method to receive an integer by parameter instead of a string <https://github.com/OpenNebula/one/issues/3235>`__.
 - `Fix an issue in provision cleanup option <https://github.com/OpenNebula/one/issues/3234>`__.
-- `Fix cleanup and offline migration issues for LVM storage driver <https://github.com/OpenNebula/one/issues/2352>`_.
+- `Fix cleanup and offline migration issues for LVM storage driver <https://github.com/OpenNebula/one/issues/2352>`__.
+- `Fix fsck to compute running quotas <https://github.com/OpenNebula/one/issues/3082>`__.
