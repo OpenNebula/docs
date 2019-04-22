@@ -21,9 +21,9 @@ To enable a new network manager driver, the frist requirement is to make a new d
 
 .. warning:: Remember that any change in the ``/var/lib/one/remotes`` directory won't be effective in the Hosts until you execute, as oneadmin: ``onehost sync -f``
 
-Actions support the execution of hooks after the main action is executed succesfully. In order to create an action hook you need to create an **action.d** directory, inside the particular networking driver directory. Files found in that directory will be run in an alphabetical order, excluding the ones oneadmin cannot run due to lack of permissions. If the main action fails the hooks won't be run. If a hook fails the VM will enter in **FAILURE** state if it hasn't been deployed yet, if it has, it will enter in **STOPPED** state. 
+Default driver actions support the execution of hooks after the main action is succesfully executed. In order to create an action hook you need to place your custom configuration scripts in the corresponding **action.d** directory, inside the target networking driver directory. Files found in that directory will be run in an alphabetical order, excluding the ones oneadmin cannot run due to lack of permissions. If the main action fails the hooks won't be run. If a hook fails the corresponding network actions will be consider as a **FAILURE** and the VM will change its state accordingly. Note that the scripts will receive the same information as the main action through stdin.
 
-For example, this is the directory tree of the bridge driver synced to a virtualization node 
+For example, this is the directory tree of the bridge driver synced to a virtualization node with some custom scripts 
 
 .. code-block:: text
 
@@ -31,27 +31,16 @@ For example, this is the directory tree of the bridge driver synced to a virtual
     ./
     ├── clean
     ├── clean.d
-    │   ├── 01_ruby1
-    │   ├── 02_bash1
-    │   ├── 03_ruby_crash
-    │   ├── 04_exit1.sh
-    │   └── 05_nox
+    │   ├── 01_del_fdb
+    │   ├── 02_del_routes
     ├── post
     ├── post.d
-    │   ├── 01_ruby1
-    │   ├── 02_bash1
-    │   ├── 03_ruby_crash
-    │   ├── 04_exit1.sh
-    │   └── 05_nox
+    │   ├── 01_add_fdb
+    │   ├── 02_add_routes
     ├── pre
     ├── pre.d
-    │   ├── 01_ruby1
-    │   ├── 02_bash1
-    │   ├── 03_ruby_crash
-    │   ├── 04_exit1.sh
-    │   └── 05_nox
+    │   ├── 01_update_router
     └── update_sg
-
 
 Virtual Machine actions and their relation with Network actions:
 
