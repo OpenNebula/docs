@@ -692,6 +692,9 @@ Context information is passed to the Virtual Machine via an ISO mounted as a par
 +-----------------------------------+-----------------------------------------------------------------------------------+-------+---------+-----+
 | **EC2_PUBLIC_KEY**                | Same as **SSH_PUBLIC_KEY**                                                        | Linux | Linux   | O   |
 +-----------------------------------+-----------------------------------------------------------------------------------+-------+---------+-----+
+| **SECURETTY**                     | If set to ``NO`` it will disable securetty validation on PAM. If set to ``YES``   | Linux | Linux   | O   |
+|                                   | it will restore system defaults. Defaults: LXD -> ``YES``, KVM -> ``NO``.         | Linux | Linux   | O   |
++-----------------------------------+-----------------------------------------------------------------------------------+-------+---------+-----+
 
 .. note::
 
