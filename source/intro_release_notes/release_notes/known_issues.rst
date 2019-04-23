@@ -23,6 +23,27 @@ LXD Host issues
 
 Sometimes after a container is powered off, `LXD doesn't remove the host-side NIC of the veth pair <https://github.com/OpenNebula/one/issues/3189>`__
 
+It could be handled by using a custom lxc hook
+
+.. code-block:: text
+
+    root@lxd_node:# cat /usr/share/lxc/config/common.conf.d/custom.conf
+    lxc.hook.post-stop = /usr/share/lxc/hooks/delete-static-veths
+
+    root@lxd_node:# cat /usr/share/lxc/hooks/delete-static-veths
+    #!/usr/bin/env bash
+    # https://github.com/lxc/lxc/issues/2878
+
+    LXC_INTERFACES=$(ip link show | sed -n -E "s/^[0-9]+: ($LXC_NAME-[0-9]+)@.*/\1/p")
+    if [ -z "$LXC_INTERFACES" ]; then
+    exit 0
+    fi
+
+    for interface in $LXC_INTERFACES; do
+    ip link set $interface down
+    ip link delete $interface
+    done
+
 Qcow2 Image Datastores and SSH transfer mode
 ================================================================================
 
