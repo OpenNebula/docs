@@ -21,7 +21,7 @@ You can install LXD via apt or snapd. We strongly recommend using using apt when
 Keep in mind to run **lxd-3.0.x**, since stable builds are monthly released and might add a change that breaks the integration with OpenNebula.
 
 .. warning:: lxd2 is not supported
-.. note:: Ubuntu **1810** uses lxd 3.0 snap package
+.. note:: Ubuntu **1810** uses lxd snap package (3.0/stable channel)
 .. note:: Ubuntu **1804** packs by default with lxd3
 .. warning:: Ubuntu **1604** packs by default with lxd2
 
@@ -34,7 +34,12 @@ On Ubuntu 1604 make sure to upgrade lxd2 to lxd3 from **xenial-backports** if us
 
     $ sudo apt-get install opennebula-node-lxd
 
-.. note:: When installing **opennebula-node-lxd**, if an apt installation of lxd isn't detected, snapd will be installed and then the LTS LXD snap package.
+To setup the LXD node via snapd make sure there is no lxd installed on the system and issue the following:
+
+.. prompt:: bash $ auto
+
+    apt-get install snapd
+    apt-get install --no-install-recommends opennebula-node-lxd
 
 Run the following to use ceph storage drivers
 
