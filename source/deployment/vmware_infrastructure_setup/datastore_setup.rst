@@ -61,7 +61,7 @@ The scheduler chooses the datastore according to the configuration in the /etc/o
 * By default it tries to optimize storage usage by selecting the datastore with less free space.
 * It can optimize I/O by distributing the VMs across available datastores.
 
-The vCenter datastore in OpenNebula is tied to a vCenter instance in the sense that all operations to be performed in the datastore are going to be performed through the vCenter instance and credentials stored in the datastore's template.
+The vCenter datastore in OpenNebula is tied to a vCenter instance in the sense that all operations to be performed in the datastore are going to be performed through the vCenter instance, using the credentials defined on that instance.
 
 vCenter datastores can be represented in OpenNebula to achieve the following VM operations:
 
@@ -70,8 +70,6 @@ vCenter datastores can be represented in OpenNebula to achieve the following VM 
   - :ref:`Create empty datablocks<vcenter_create_datablock>`
   - Clone VMDKs images
   - Delete VMDK images
-
-.. important:: Note that if you change the vCenter credentials (e.g password change) you will have to update the OpenNebula datastore's template and provide the new credentials so OpenNebula can continue performing vCenter operations.
 
 OpenNebula Clusters
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
