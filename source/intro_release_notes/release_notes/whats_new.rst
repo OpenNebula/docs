@@ -18,6 +18,10 @@ Networking
 --------------------------------------------------------------------------------
 - `Extend network driver actions with customizable hooks <https://github.com/OpenNebula/one/issues/2451>`_.
 
+OneFlow & OneGate
+-------------------------------------------------------------------------------
+- `Option to delete attibutes from VM user template via onegate <https://github.com/OpenNebula/one/issues/1414>`__.
+
 Other Issues Solved
 ================================================================================
 - `Fixes an issue that makes the network drivers fail when a large number of secturiy groups rules are used <https://github.com/OpenNebula/one/issues/2851>`_.
