@@ -24,3 +24,4 @@ The following issues has been solved in 5.8.2:
 - `Fix cleanup and offline migration issues for LVM storage driver <https://github.com/OpenNebula/one/issues/2352>`__.
 - `Fix fsck to compute running quotas <https://github.com/OpenNebula/one/issues/3082>`__.
 - `Fix an error in fsck when reparing network-cluster relationships <https://github.com/OpenNebula/one/issues/3263>`__.
+- `Fix Shutdown doesn't check VM status in vcenter <https://github.com/OpenNebula/one/issues/3134>`__.
