@@ -23,3 +23,4 @@ The following issues has been solved in 5.8.2:
 - `Fix an issue in provision cleanup option <https://github.com/OpenNebula/one/issues/3234>`__.
 - `Fix cleanup and offline migration issues for LVM storage driver <https://github.com/OpenNebula/one/issues/2352>`__.
 - `Fix fsck to compute running quotas <https://github.com/OpenNebula/one/issues/3082>`__.
+- `Fix an error in fsck when reparing network-cluster relationships <https://github.com/OpenNebula/one/issues/3263>`__.
