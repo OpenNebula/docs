@@ -149,9 +149,9 @@ For example, the master Virtual Machine can change the ``ACTIVE`` attribute from
 Deleting attribute from VM Information
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-The Virtual Machine can delete the information of itself or other Virtual Machine of the Service.
+The Virtual Machine can delete attributes from its own template or from other Virtual Machines in its Service.
 
-For example, the master Virtual Machine can delete the ``ACTIVE`` attribute from one Virtual Machine to another one.
+For example, to erase the ``ACTIVE`` attribute from Virtual Machine 9 you can execute the following in any Service VM:
 
 .. code::
 
