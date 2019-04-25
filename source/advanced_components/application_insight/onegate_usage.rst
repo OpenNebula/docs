@@ -146,6 +146,38 @@ For example, the master Virtual Machine can change the ``ACTIVE`` attribute from
       }
     }
 
+Deleting attribute from VM Information
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+The Virtual Machine can delete attributes from its own template or from other Virtual Machines in its Service.
+
+For example, to erase the ``ACTIVE`` attribute from Virtual Machine 9 you can execute the following in any Service VM:
+
+.. code::
+
+    $ onegate vm update 9 --erase ACTIVE
+    $ onegate vm show 9 --json
+    {
+      "VM": {
+        "NAME": "slave_0_(service_1)",
+        "ID": "9",
+        "STATE": "3",
+        "LCM_STATE": "3",
+        "USER_TEMPLATE": {
+          "FROM_APP": "4fc76a938fb81d3517000003",
+          "FROM_APP_NAME": "ttylinux - kvm",
+          "LOGO": "images/logos/linux.png",
+          "ROLE_NAME": "slave",
+          "SERVICE_ID": "1"
+        },
+        "TEMPLATE": {
+          "NIC": [
+
+           ]
+        }
+      }
+    }
+
 Self-Configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
