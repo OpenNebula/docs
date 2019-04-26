@@ -7,7 +7,7 @@ A complete list of solved issues for 5.8.2 can be found in the `project developm
 
 The following new features has been backported to 5.8.2:
 
-- `Issue description <https://github.com/OpenNebula/one/issues/XXXXX>`__.
+- `Centralized credentials for vCenter resources <https://github.com/OpenNebula/one/issues/1408>`__.
 
 The following issues has been solved in 5.8.2:
 
@@ -24,3 +24,5 @@ The following issues has been solved in 5.8.2:
 - `Fix cleanup and offline migration issues for LVM storage driver <https://github.com/OpenNebula/one/issues/2352>`__.
 - `Fix fsck to compute running quotas <https://github.com/OpenNebula/one/issues/3082>`__.
 - `Fix PCI release during migration process <https://github.com/OpenNebula/one/issues/3230>`__.
+- `Fix an error in fsck when reparing network-cluster relationships <https://github.com/OpenNebula/one/issues/3263>`__.
+- `Fix shutdown doesn't check VM status in vcenter <https://github.com/OpenNebula/one/issues/3134>`__.
