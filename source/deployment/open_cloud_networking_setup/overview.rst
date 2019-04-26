@@ -24,7 +24,7 @@ When you create a new network you will need to add the attribute ``VN_MAD`` to t
 
     Security Groups are not supported by the Open vSwitch mode.
 
-Each network driver has 3 different actions (pre/post/clean) that ocurr depending on what stage of the life cycle the VM is currently at. Each one of those actions :ref:`can be extended with custom programs <devel-nm>` by placing executable files inside the corresponding **action.d** directory inside any of the network drivers directory.
+Each network driver has 3 different configuration actions executed before (`pre`) and after(`post`) the VM is booted, and when the VM leaves (`clean`) the host. Each one of those driver actions :ref:`can be extended with custom programs <devel-nm>` by placing executable files inside the corresponding action folders (`pre.d`, `post.d` and `clean.d`) within the network driver directory.
 
 Finally, the networking stack of OpenNebula can be integrated with an external IP
 address manager (IPAM). To do so, you need to develop the needed glue, :ref:`for more details refer to the IPAM driver guide. <devel-ipam>`
