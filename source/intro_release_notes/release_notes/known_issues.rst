@@ -67,3 +67,10 @@ NIC alias and IP spoofing rules
 ================================================================================
 
 For NIC alias the IP spoofing rules are not triggered when the VM is created nor when the interface is attached. If you have configured IP spoofing for your virtual networks be aware that those will not be honored by NIC ALIAS interfaces. More info `here <https://github.com/OpenNebula/one/issues/3079>`__.
+
+LOCK mark for VMs in Sunstone
+================================================================================
+
+There was a bug which makes disappear the LOCK mark for VMs in Sunstone. This bug have been fixed but in order to let the fix take effect the VM short body must be regenerated, for achieving that it's necessary to make an operation over the VM, like power-off resume the VM or just run update command without modifying any field.
+
+This is only necessary when updating to 5.8.2 from 5.8.x.
