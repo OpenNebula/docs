@@ -71,6 +71,6 @@ For NIC alias the IP spoofing rules are not triggered when the VM is created nor
 LOCK mark for VMs in Sunstone
 ================================================================================
 
-There was a bug which makes disappear the LOCK mark for VMs in Sunstone. This bug have been fixed but in order to let the fix take effect the VM short body must be regenerated, for achieving that it's necessary to make an operation over the VM, like power-off resume the VM or just run update command without modifying any field.
+There is a bug which makes disappear the LOCK highlight for VMs in Sunstone. This bug has been fixed but to let the fix take effect it's necessary to force a VM DB update. You can trigger this update with a state change or a template update without modifying any field.
 
 This is only necessary when updating to 5.8.2 from 5.8.x.
