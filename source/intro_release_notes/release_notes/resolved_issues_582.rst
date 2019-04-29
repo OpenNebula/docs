@@ -8,6 +8,7 @@ A complete list of solved issues for 5.8.2 can be found in the `project developm
 The following new features has been backported to 5.8.2:
 
 - `Centralized credentials for vCenter resources <https://github.com/OpenNebula/one/issues/1408>`__.
+- `Enhance vCenter driver actions pool calls <https://github.com/OpenNebula/one/issues/1896>`__.
 
 The following issues has been solved in 5.8.2:
 
