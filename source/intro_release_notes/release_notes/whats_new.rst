@@ -1,7 +1,7 @@
 .. _whats_new:
 
 ================================================================================
-What's New in 5.9
+What's New in 5.10
 ================================================================================
 
 OpenNebula Core
@@ -19,7 +19,7 @@ Networking
 - `Extend network driver actions with customizable hooks <https://github.com/OpenNebula/one/issues/2451>`_.
 
 OneFlow & OneGate
--------------------------------------------------------------------------------
+===============================================================================
 - `Option to delete attibutes from VM user template via onegate <https://github.com/OpenNebula/one/issues/1414>`__.
 
 Other Issues Solved
