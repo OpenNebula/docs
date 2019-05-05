@@ -68,6 +68,11 @@ NIC alias and IP spoofing rules
 
 For NIC alias the IP spoofing rules are not triggered when the VM is created nor when the interface is attached. If you have configured IP spoofing for your virtual networks be aware that those will not be honored by NIC ALIAS interfaces. More info `here <https://github.com/OpenNebula/one/issues/3079>`__.
 
+OpenvSwitch and IP spoofing rules
+================================================================================
+The drop flows created by the OpenvSwitch driver when IP spoofing is enabled in the virtual network, prevent the VM from responding properly. More info `here <https://github.com/OpenNebula/one/issues/3189>`__.
+
+
 LOCK mark for VMs in Sunstone
 ================================================================================
 
