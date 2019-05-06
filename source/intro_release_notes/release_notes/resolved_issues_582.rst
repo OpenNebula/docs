@@ -10,6 +10,7 @@ The following new features has been backported to 5.8.2:
 - `Centralized credentials for vCenter resources <https://github.com/OpenNebula/one/issues/1408>`__.
 - `Enhance vCenter driver actions pool calls <https://github.com/OpenNebula/one/issues/1896>`__.
 - `Read driver action on attach_disk using STDIN for vcenter drivers <https://github.com/OpenNebula/one/issues/3292>`__.
+- `Manage IPs when a VM is imported from vCenter <https://github.com/OpenNebula/one/issues/3112`__.
 
 The following issues has been solved in 5.8.2:
 
