@@ -8,6 +8,9 @@ A complete list of solved issues for 5.8.2 can be found in the `project developm
 The following new features has been backported to 5.8.2:
 
 - `Centralized credentials for vCenter resources <https://github.com/OpenNebula/one/issues/1408>`__.
+- `Enhance vCenter driver actions pool calls <https://github.com/OpenNebula/one/issues/1896>`__.
+- `Read driver action on attach_disk using STDIN for vcenter drivers <https://github.com/OpenNebula/one/issues/3292>`__.
+- `Manage IPs when a VM is imported from vCenter <https://github.com/OpenNebula/one/issues/3112`__.
 
 The following issues has been solved in 5.8.2:
 
@@ -27,3 +30,6 @@ The following issues has been solved in 5.8.2:
 - `Fix an error in fsck when reparing network-cluster relationships <https://github.com/OpenNebula/one/issues/3263>`__.
 - `Fix shutdown doesn't check VM status in vcenter <https://github.com/OpenNebula/one/issues/3134>`__.
 - `Add IP6_LINK and IP6_GLOBAL attributes to VM short body <https://github.com/OpenNebula/one/issues/3296>`__.
+- `Fix lock VM highlight in Sunstone <https://github.com/OpenNebula/one/issues/3193>`__.
+- `Fix an issue with the DB upgrade for federated OpenNebulas <https://github.com/OpenNebula/one/issues/2758>`__.
+- `Fix an issue for resume operation with FS LVM drivers <https://github.com/OpenNebula/one/issues/3246>`__.
