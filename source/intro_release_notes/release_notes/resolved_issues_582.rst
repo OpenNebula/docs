@@ -30,3 +30,5 @@ The following issues has been solved in 5.8.2:
 - `Fix an error in fsck when reparing network-cluster relationships <https://github.com/OpenNebula/one/issues/3263>`__.
 - `Fix shutdown doesn't check VM status in vcenter <https://github.com/OpenNebula/one/issues/3134>`__.
 - `Fix lock VM highlight in Sunstone <https://github.com/OpenNebula/one/issues/3193>`__.
+- `Fix an issue with the DB upgrade for federated OpenNebulas <https://github.com/OpenNebula/one/issues/2758>`__.
+- `Fix an issue for resume operation with FS LVM drivers <https://github.com/OpenNebula/one/issues/3246>`__.
