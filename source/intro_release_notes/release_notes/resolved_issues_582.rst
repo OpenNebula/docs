@@ -33,4 +33,4 @@ The following issues has been solved in 5.8.2:
 - `Fix lock VM highlight in Sunstone <https://github.com/OpenNebula/one/issues/3193>`__.
 - `Fix an issue with the DB upgrade for federated OpenNebulas <https://github.com/OpenNebula/one/issues/2758>`__.
 - `Fix an issue for resume operation with FS LVM drivers <https://github.com/OpenNebula/one/issues/3246>`__.
-- `Ruby 2.5 stream closed in another thread <https://github.com/OpenNebula/one/issues/3229>`__.
+- `Fix an error in onehost sync command and Ruby 2.5 (default in Ubuntu 18.04, 18.10 and Debian 10) <https://github.com/OpenNebula/one/issues/3229>`__.
