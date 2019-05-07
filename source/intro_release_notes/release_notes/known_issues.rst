@@ -67,3 +67,8 @@ NIC alias and IP spoofing rules
 ================================================================================
 
 For NIC alias the IP spoofing rules are not triggered when the VM is created nor when the interface is attached. If you have configured IP spoofing for your virtual networks be aware that those will not be honored by NIC ALIAS interfaces. More info `here <https://github.com/OpenNebula/one/issues/3079>`__.
+
+Custom attributes in short body
+================================================================================
+
+The hypervisors dependent custom attributes stored in the VM template are not included in the short body. Due to this short body is used for print information in Sunstone, this information wont be shown. More information can be found `here <https://github.com/OpenNebula/one/issues/3308>`__.
