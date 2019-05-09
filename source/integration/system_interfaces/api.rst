@@ -6951,7 +6951,7 @@ one.acl.addrule
 | OUT  | Int        | Error code.                                                           |
 +------+------------+-----------------------------------------------------------------------+
 
-To build the hex. numbers required to create a new rule we recommend you to read the `ruby <http://dev.opennebula.org/projects/opennebula/repository/revisions/master/entry/src/oca/ruby/OpenNebula/Acl.rb>`__ or `java <http://dev.opennebula.org/projects/opennebula/repository/revisions/master/entry/src/oca/java/src/org/opennebula/client/acl/Acl.java>`__ code.
+To build the hex. numbers required to create a new rule we recommend you to read the `ruby <https://github.com/OpenNebula/one/blob/master/src/oca/ruby/opennebula/acl.rb>`__ or `java <https://github.com/OpenNebula/one/blob/master/src/oca/java/src/org/opennebula/client/acl/Acl.java>`__ code.
 
 one.acl.delrule
 ---------------
