@@ -6,7 +6,7 @@ This section describes the installation procedure for systems that are already r
 
 Read the :ref:`Compatibility Guide <compatibility>` and `Release Notes <http://opennebula.org/software/release/>`_ to know what is new in OpenNebula |version|.
 
-.. warning:: If you are using the vCenter drivers, there is a manual intervention required in order to upgrade to OpenNebula 5.4.
+.. warning:: If you are using the vCenter drivers, there is a manual intervention required in order to upgrade to the latest version of OpenNebula.
 
 Upgrading a Federation
 ================================================================================
@@ -16,8 +16,8 @@ If you have two or more 5.2.x OpenNebulas working as a :ref:`Federation <introf>
 The steps to follow are:
 
 1. Stop the MySQL replication in all the slaves and master zone. The MySQL replication is no longer needed. 
-2. Upgrade the **master** zone to 5.4 version
-3. Upgrade the **slaves** zones to 5.4 version
+2. Upgrade the **master** zone to the latest version
+3. Upgrade the **slaves** zones to the latest version
 4. Replicate the state of the shared tables from the master zone into each slave zone.
  
 During steps 1 and 2 the slave OpenNebula's can be running, and users can keep accessing them if each zone has a local Sunstone instance. However all the shared database tables (users, groups, ACL...) will not be updated in the slaves zones till step 3 is completed.
