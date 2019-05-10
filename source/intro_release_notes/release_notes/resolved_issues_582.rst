@@ -12,6 +12,7 @@ The following new features has been backported to 5.8.2:
 - `Read driver action on attach_disk using STDIN for vcenter drivers <https://github.com/OpenNebula/one/issues/3292>`__.
 - `Manage IPs when a VM is imported from vCenter <https://github.com/OpenNebula/one/issues/3112>`__.
 - `Catch monitor errors on vCenter driver <https://github.com/OpenNebula/one/issues/2453>`__.
+- `Add methods to update memoize cache <https://github.com/OpenNebula/one/issues/2335>`__.
 
 The following issues has been solved in 5.8.2:
 
@@ -37,3 +38,4 @@ The following issues has been solved in 5.8.2:
 - `Fix an error in onehost sync command and Ruby 2.5 (default in Ubuntu 18.04, 18.10 and Debian 10) <https://github.com/OpenNebula/one/issues/3229>`__.
 - `Fix error multiple entries for a VF nic in sunstone <https://github.com/OpenNebula/one/issues/3101>`__.
 - `Fix sunstone banner flash briefly <https://github.com/OpenNebula/one/issues/3213>`__.
+- `Fix an error when removing OpenvSwitch flows <https://github.com/OpenNebula/one/issues/3305>`__.

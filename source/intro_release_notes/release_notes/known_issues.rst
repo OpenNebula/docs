@@ -68,6 +68,11 @@ NIC alias and IP spoofing rules
 
 For NIC alias the IP spoofing rules are not triggered when the VM is created nor when the interface is attached. If you have configured IP spoofing for your virtual networks be aware that those will not be honored by NIC ALIAS interfaces. More info `here <https://github.com/OpenNebula/one/issues/3079>`__.
 
+Monitoring information not showing on VM list in Sunstone
+================================================================================
+
+vCenter and Amazon drivers store some guest IP addresses in the monitoring section of the VM. This information is no longer sent as part as the VM pool data and it will not be shown in Sunstone list table. Note that this information can be still queried in the detailed view of the VM. More information can be found `here <https://github.com/OpenNebula/one/issues/3308>`__.
+
 LOCK mark for VMs in Sunstone
 ================================================================================
 
