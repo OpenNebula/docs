@@ -12,6 +12,7 @@ The following new features has been backported to 5.8.2:
 - `Read driver action on attach_disk using STDIN for vcenter drivers <https://github.com/OpenNebula/one/issues/3292>`__.
 - `Manage IPs when a VM is imported from vCenter <https://github.com/OpenNebula/one/issues/3112>`__.
 - `Add methods to update memoize cache <https://github.com/OpenNebula/one/issues/2335>`__.
+- `Add info extended VM data in sunstone <https://github.com/OpenNebula/one/issues/3308>`__. For more info on how to activate this feature, check the ```:get_extended_vm_info``` configuration attribute :ref:`here <sunstone_sunstone_server_conf>`.
 
 The following issues has been solved in 5.8.2:
 
