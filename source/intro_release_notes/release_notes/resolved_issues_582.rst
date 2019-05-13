@@ -40,3 +40,5 @@ The following issues has been solved in 5.8.2:
 - `Fix sunstone banner flash briefly <https://github.com/OpenNebula/one/issues/3213>`__.
 - `Fix an error when removing OpenvSwitch flows <https://github.com/OpenNebula/one/issues/3305>`__.
 - `Fix imported templates being forced to use a specific MAC <https://github.com/OpenNebula/one/issues/3326>`__.
+- `Fix opennebula-node-lxd dependencies, allow LXD snap snap on Ubuntu LTS <https://github.com/OpenNebula/packages/issues/65>`__.
+- `LXD package polishments <https://github.com/OpenNebula/packages/issues/70>`__.
