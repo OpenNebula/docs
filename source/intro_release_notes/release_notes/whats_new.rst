@@ -6,7 +6,7 @@ What's New in 5.8
 
 OpenNebula 5.8 (Edge) is the fifth major release of the OpenNebula 5 series. A significant effort has been applied in this release to enhance features introduced in 5.6 Blue Flash, while keeping an eye in implementing those features more demanded by the community. A major highlight of Edge is its focus to support computing on the Edge, bringing the processing power of VMs closer to the consumers to reduce latency. In this regards, Edge comes with the following major features:
 
-- Support for LXD. This enables low resource container orchestration.  LXD containers are ideal to run in low consumption devices closer to the customers.
+- Support for LXD. This enables low resource container orchestration. LXD containers are ideal to run in low consumption devices closer to the customers.
 - Automatic NIC selection. This enhancement of the OpenNebula scheduler will alleviate the burden of VM/container Template management in edge environments where the remote hosts can be potentially heterogeneous, with different network configurations.
 - Distributed Data Centers. This feature is key for the edge cloud. OpenNebula now offers the ability to use bare metal providers to build remote clusters in a breeze, without needing to change the workload nature. We are confident that this is a killer feature that sets OpenNebula apart from the direct competitors in the space.
 - Scalability improvements. Orchestrating an edge cloud will be demanding in terms of the number of VMs, containers and hypervisors to manage. OpenNebula 5.8 brings to the table a myriad of improvements to the monitoring, pool management and GUI, to deliver a smooth user experience in large scale environments.
