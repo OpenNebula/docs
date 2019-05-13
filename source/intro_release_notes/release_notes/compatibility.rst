@@ -24,6 +24,8 @@ XMLRPC API Changes
 * Lock action (`one.resource.lock`) now return the ID of the resource on success, instead of a boolean value. In case of failure an error of type ACTION is returned.
 * `one.vmpool.info` return a short version of the VM body documents, in order improve the scalability on large environments. Note that the new search functionality of the vmpool can further aliviate this issues.
 
+.. note:: The old behavior of `one.vmpool.info` call can be achieved via `one.vmpool.infoextended`. If an hypervisor different from KVM or LXD is used some attributes used by Sunstone can be unavailable with `one.vmpool.info` (:ref:`more info <monitoring_information_not_showing_on_vm_list_in_sunstone>`), for this case, Sunstone can be forced to use the extended pool, check the ```:get_extended_vm_info``` configuration attribute :ref:`here <sunstone_sunstone_server_conf>`.
+
 Authentication Drivers
 ================================================================================
 * LDAP user names are case insensitive, the driver now follows this convention. The fsck operation will warn about multiple users with different casing colliding in the same LDAP user account.
