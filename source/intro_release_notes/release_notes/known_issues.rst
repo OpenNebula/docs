@@ -68,6 +68,8 @@ NIC alias and IP spoofing rules
 
 For NIC alias the IP spoofing rules are not triggered when the VM is created nor when the interface is attached. If you have configured IP spoofing for your virtual networks be aware that those will not be honored by NIC ALIAS interfaces. More info `here <https://github.com/OpenNebula/one/issues/3079>`__.
 
+.. _monitoring_information_not_showing_on_vm_list_in_sunstone:
+
 Monitoring information not showing on VM list in Sunstone
 ================================================================================
 
