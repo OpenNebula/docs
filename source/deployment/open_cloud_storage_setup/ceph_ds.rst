@@ -220,6 +220,9 @@ To use your Ceph cluster with the OpenNebula, you need to define a System and Im
 +------------------+---------------------------------------------------------+-----------+
 | ``EC_POOL_NAME`` | Name of Ceph erasure coded pool                         | NO        |
 +------------------+---------------------------------------------------------+-----------+
+| ``CEPH_TRASH``   | Enables `trash` feature on given datastore (Luminous+), | NO        |
+|                  | values: `yes|no`                                        |           |
++------------------+---------------------------------------------------------+-----------+
 
 .. note:: You may add another Image and System Datastores pointing to other pools with different allocation/replication policies in Ceph.
 

@@ -33,6 +33,7 @@ Storage
 - **Custom block size for Datablocks**, to allow users to modify block size for dd commands used for :ref:`Ceph <ceph_ds>`, :ref:`Fs <fs_ds>` and :ref:`LVM datastore drivers <lvm_drivers>`.
 - **Configurable VM monitoring**, you can configure the frequency to monitor VM disk usage in datastores drivers (:ref:`Fs <fs_ds>` and :ref:`LVM <lvm_drivers>`). Check :ref:`the oned.conf reference guide <oned_conf>`.
 - **Extensible mixed modes**, different TM drivers can be easily combined by implementing custom driver actions for any combination. Check the :ref:`storage integration guide for more details <mixed-tm-modes>`.
+- `Allows user to enable trash for Ceph <https://github.com/OpenNebula/one/issues/3147>`_.
 
 Networking
 --------------------------------------------------------------------------------
