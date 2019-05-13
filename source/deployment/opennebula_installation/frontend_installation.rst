@@ -126,6 +126,7 @@ These are the packages available for these distributions:
 * **libopennebula-java-doc**: Java API Documentation.
 * **opennebula-node**: Prepares a node as an opennebula KVM node.
 * **opennebula-node-lxd**: Prepares a node as an opennebula LXD node.
+* **opennebula-lxd-snap**: Installs LXD snap (only on Ubuntu 16.04 and 18.04).
 * **opennebula-sunstone**: :ref:`Sunstone <sunstone>` (the GUI).
 * **opennebula-tools**: Command Line interface.
 * **opennebula-gate**: :ref:`OneGate <onegate_overview>` server that enables communication between VMs and OpenNebula.
