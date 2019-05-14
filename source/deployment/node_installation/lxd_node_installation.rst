@@ -4,7 +4,7 @@
 LXD Node Installation
 =====================
 
-The majority of the steps needed to install the LXD node are similar to KVM, because both rely on a Linux OS. Similar steps will have a link in the name and will be indicated by `Same as KVM`.
+The majority of the steps needed to install the LXD node are similar to KVM because both rely on a Linux OS. Similar steps will have a link in the name and will be indicated by **"Same as KVM"**.
 
 Step 1. Add OpenNebula Repositories
 ========================================================
@@ -14,28 +14,71 @@ Step 1. Add OpenNebula Repositories
 Step 2. Installing the Software
 ===============================
 
-LXD node is only supported on Ubuntu 1810, 1804 and 1604
+LXD node is only supported on Ubuntu **16.04, 18.04, 18.10**.
 
-.. note:: Ubuntu **1810** uses lxd snap package by default
-.. note:: On Ubuntu **1604** you must install lxd3 from **xenial-backports**
+.. warning::
+
+    Only **LXD 3.0.x** releases are supported, LXD 2.x and older are not compatible.
 
 Installing on Ubuntu
----------------------------
+--------------------
 
-Install LXD node setup package:
+It's recommended to use LXD shipped as a distribution package (via APT) on Ubuntu 16.04 and 18.04 whenever possible as `snap may be broken for oneadmin when using the LXC CLI <https://bugs.launchpad.net/ubuntu/+source/snapd/+bug/1758449>`_, and snap based installations are automatically refreshed whenever there is an update available on the channel. Since Ubuntu 18.10, LXD is shipped only as a snap and managed by distribution transitional package.
+
+.. note::
+
+    **Since OpenNebula 5.8.2**. New meta-package **opennebula-lxd-snap** is provided for Ubuntu 16.04 and 18.04 to manage the LXD snap installation. User can choose between LXD shipped as distribution package **lxd** or LXD snap installed with **opennebula-lxd-snap** by manually installing the preferred one in advance. On Ubuntu 18.10, the LXD snap installation is done directly by **opennebula-node-lxd**. Please note we don't overwrite any already installed LXD snap.
+
+.. warning::
+
+    LXD versions packaged in Ubuntu:
+
+    * Ubuntu 16.04 - **incompatible LXD 2.0**, in xenial-backports LXD 3.0
+    * Ubuntu 18.04 - LXD 3.0
+    * Ubuntu 18.10 - lxd is a transitional package to install LXD snap (3.0/stable channel)
+
+    On **Ubuntu 16.04** you have to enable **xenial-backports** with regular priority to have access to the supported package with LXD 3.0!
+
+
+**Ubuntu 16.04**
 
 .. prompt:: bash $ auto
 
     $ sudo apt-get install opennebula-node-lxd
 
-Run the following to use ceph storage drivers
+or, use LXD installed as snap (**since OpenNebula 5.8.2**):
+
+.. prompt:: bash $ auto
+
+    $ sudo apt-get install opennebula-lxd-snap opennebula-node-lxd
+
+**Ubuntu 18.04**
+
+.. prompt:: bash $ auto
+
+    $ sudo apt-get install opennebula-node-lxd
+
+or, use LXD installed as snap (**since OpenNebula 5.8.2**):
+
+.. prompt:: bash $ auto
+
+    $ sudo apt-get install opennebula-lxd-snap opennebula-node-lxd
+
+**Ubuntu 18.10**
+
+.. prompt:: bash $ auto
+
+    $ sudo apt-get install opennebula-node-lxd
+
+**Optionals for all**
+
+To be able to use the Ceph storage drivers, you might need to install additional package with command:
 
 .. prompt:: bash $ auto
 
     $ sudo apt-get install rbd-nbd
 
-
-For further configuration check the specific guide: :ref:`LXD <lxdmg>`. 
+For further configuration check the specific guide: :ref:`LXD <lxdmg>`.
 
 
 Step 4. Configure Passwordless SSH

@@ -127,6 +127,12 @@ Available options are:
 +---------------------------+-----------------------------------------------------------------------------------------------+
 | :keep\_me\_logged         | True to display 'Keep me logged in' option in Sunstone login.                                 |
 +---------------------------+-----------------------------------------------------------------------------------------------+
+| :get\_extended\_vm\_info  | True to display IP in table by requesting the extended vm pool to oned                        |
++---------------------------+-----------------------------------------------------------------------------------------------+
+
+.. note:: To use Sunstone with IPv6 only systems and thin HTTP sever, use the full IPv6 address in the field `:host`. If you need to set the localhost address (::1) or the unspecified address (::) please use the following:
+
+          Example: :host: 0::1, :host: 0::0
 
 .. note:: To use Sunstone with IPv6 only systems and thin HTTP sever, use the full IPv6 address in the field `:host`. If you need to set the localhost address (::1) or the unspecified address (::) please use the following:
 
