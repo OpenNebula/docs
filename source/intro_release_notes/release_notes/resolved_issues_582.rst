@@ -43,3 +43,4 @@ The following issues has been solved in 5.8.2:
 - `Fix imported templates being forced to use a specific MAC <https://github.com/OpenNebula/one/issues/3326>`__.
 - `Fix opennebula-node-lxd dependencies, allow LXD snap snap on Ubuntu LTS <https://github.com/OpenNebula/packages/issues/65>`__.
 - `LXD package polishments <https://github.com/OpenNebula/packages/issues/70>`__.
+- `Fix Sunstone support token configuration not working behind a proxy <https://github.com/OpenNebula/one/issues/3331>`__.
