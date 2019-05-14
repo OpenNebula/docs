@@ -1,5 +1,5 @@
 ================================================================================
-OpenNebula 5.8.2 Documentation
+OpenNebula 5.8 Documentation
 ================================================================================
 
 .. _entry_point:
@@ -15,4 +15,3 @@ OpenNebula 5.8.2 Documentation
 
 .. raw:: html
    :file: toc.html
-
