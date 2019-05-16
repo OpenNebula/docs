@@ -1237,3 +1237,17 @@ Usage (CLI)
 .. prompt:: bash $ auto
 
     $ onevm migrate --live "<VM name>" <destination host id> <destination datastore id>
+
+
+Driver tuning
+================================================================================
+
+Some aspects of the driver behavior can be configured on */var/lib/one/remotes/etc/vmm/vcenter/vcenterrc*: 
+
+* **delete_images**: Allows OpenNebula to delete imported vCenter images. Default: **no**.
+
+* **vm_poweron_wait_default**: Timeout for deploy action. Default: **300**.
+
+* **debug_information**: Provides more verbose logs. Default: **false**.
+
+* **retries**: Some driver actions support a retry if a failure occurs. This parameter will set the amount of retries. Default: **3**.
