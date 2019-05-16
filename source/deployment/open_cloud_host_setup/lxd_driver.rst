@@ -31,7 +31,6 @@ There are a number of regular features that are not implemented yet:
 - live disk resize
 - LVM datastore
 - PCI Passthrough
-- volatile filesystems
 
 - **offline disk resize**:
     - not supported on multiple partition images
@@ -59,16 +58,22 @@ There are some interaction options between LXD and OpenNebula configured in ``/v
     #   - :height: of the terminal
     #   - :timeout: seconds to close the terminal if no input has been received
     :vnc:
-      :command: /bin/login
-      :width: 800
-      :height: 600
-      :timeout: 300
-
+          :command: /bin/login
+          :width: 800
+          :height: 600
+          :timeout: 300
+    ##############################################################################
+    # Mapper Options
+    ##############################################################################
+    #
+    # Default filesystem format for LXD-driver formatted disks. Value should be
+    # the same as would be in mkfs -t $filesystem $device
+    :filesystem: ext4
     ################################################################################
     # OpenNebula Configuration Options
     ################################################################################
     #
-    # Default path for the datastores. This only need to be change if the 
+    # Default path for the datastores. This only need to be change if the
     # corresponding value in oned.conf has been modified.
     :datastore_location: /var/lib/one/datastores
 
