@@ -1251,3 +1251,5 @@ Some aspects of the driver behavior can be configured on */var/lib/one/remotes/e
 * **debug_information**: Provides more verbose logs. Default: **false**.
 
 * **retries**: Some driver actions support a retry if a failure occurs. This parameter will set the amount of retries. Default: **3**.
+
+* **retry_interval**: Amount of time to wait between retry attempts (seconds). Default: **1**.
