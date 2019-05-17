@@ -302,7 +302,8 @@ Main template extends the datastores and network with one EC2 host:
 
     ---
     name: example6
-    extends: example-ds_vnets.yaml
+    extends:
+      - example-ds_vnets.yaml
 
     defaults:
       provision:
