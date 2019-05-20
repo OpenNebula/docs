@@ -27,7 +27,7 @@ It's recommended to use LXD shipped as a distribution package (via APT) on Ubunt
 
 .. note::
 
-    **Since OpenNebula 5.8.2**. New meta-package **opennebula-lxd-snap** is provided for Ubuntu 16.04 and 18.04 to manage the LXD snap installation. User can choose between LXD shipped as distribution package **lxd** or LXD snap installed with **opennebula-lxd-snap** by manually installing the preferred one in advance. On Ubuntu 18.10, the LXD snap installation is done directly by **opennebula-node-lxd**. Please note we don't overwrite any already installed LXD snap.
+    **Since OpenNebula 5.8.2**. New meta-package **opennebula-lxd-snap** is provided for Ubuntu 16.04 and 18.04 to manage the LXD snap installation. User can choose between LXD shipped as distribution package **lxd** or LXD snap installed with **opennebula-lxd-snap** by manually installing the preferred one in advance. **When no package is chosen, packaged LXD is preferably taken even though there is an existing snap installation!** On Ubuntu 18.10, the LXD snap installation is done directly by **opennebula-node-lxd**. Please note we don't overwrite any already installed LXD snap.
 
 .. warning::
 
@@ -39,6 +39,7 @@ It's recommended to use LXD shipped as a distribution package (via APT) on Ubunt
 
     On **Ubuntu 16.04** you have to enable **xenial-backports** with regular priority to have access to the supported package with LXD 3.0!
 
+Check the deployment options below and handle carefully the installation in the environments where LXD already installed and used!
 
 **Ubuntu 16.04**
 
