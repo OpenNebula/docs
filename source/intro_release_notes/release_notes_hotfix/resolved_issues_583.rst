@@ -11,4 +11,4 @@ The following new features has been backported to 5.8.3:
 
 The following issues has been solved in 5.8.3:
 
-- `Updated ceph pools space usage monitoring  <https://github.com/OpenNebula/one/issues/3222>`__.
+- `Fix Ceph monitoring when using erasure code pools <https://github.com/OpenNebula/one/issues/3222>`__.
