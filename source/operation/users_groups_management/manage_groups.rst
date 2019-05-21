@@ -192,7 +192,7 @@ Example:
 .. note:: These values can be overwritten for each user by placing the desired values in the user template.
 
 If the values are not set the defaults defined in ``oned.conf`` are used.
-    
+
 Example:
 
 .. code::
