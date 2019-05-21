@@ -139,7 +139,7 @@ Available options are:
           Example: :host: 0::1, :host: 0::0
 
 
-Sunstone behaviour can also be configured through the user template:
+Sunstone behaviour can also be configured through the user template (within a SUNSTONE=[] vector value. For instance SUNSTONE=[TABLE_ORDER="asc"]):
 
 +---------------------------+-------------------------------------------------------------------+
 |           Option          |                            Description                            |
