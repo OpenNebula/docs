@@ -239,7 +239,6 @@ Considerations & Limitations
 +----------------+-----------------------------------------------------+
 
 * **No Security Groups**: Firewall rules as defined in Security Groups cannot be enforced in vCenter VMs.
-* **No files in context**: Passing entire files to VMs is not supported, but all the other CONTEXT sections will be honored.
 * Image names cannot contain spaces.
 * Detach disks operations are not supported in VMs with system snapshots. Since vCenter snapshots considers disks and are tied to them, disks cannot be removed afterwards.
 * vCenter credential password cannot have more than 22 characters.
