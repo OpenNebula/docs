@@ -8,6 +8,7 @@ A complete list of solved issues for 5.8.3 can be found in the `project developm
 The following new features has been backported to 5.8.3:
 
 - `Implement retry on vCenter driver actions <https://github.com/OpenNebula/one/issues/3337>`__.
+- `Allow FILES in vCenter context <https://github.com/OpenNebula/one/issues/964>`__.
 
 The following issues has been solved in 5.8.3:
 
