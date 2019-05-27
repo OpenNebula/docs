@@ -17,3 +17,5 @@ The following issues has been solved in 5.8.3:
 - `Fix wild VM import process to not default to host 0 <https://github.com/OpenNebula/one/issues/3281>`__.
 - `Fix Sunstone support token configuration not working behind a proxy <https://github.com/OpenNebula/one/issues/3331>`__.
 - `Fix NIC Alias id generation to be consecutive <https://github.com/OpenNebula/one/issues/3357>`__.
+- `Fix onedb fsck to not remove NIC Alias from Address Range leases <https://github.com/OpenNebula/one/issues/3362>`__.
+
