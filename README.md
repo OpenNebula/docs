@@ -10,7 +10,7 @@ You are encouraged to fork this repo and send us pull requests!
 Building
 --------
 
-Install dependencies: ``pip install sphinx sphinx_rtd_theme sphinx-prompt``.
+Install dependencies: ``pip install sphinx sphinx_rtd_theme sphinx-prompt pyyaml``.
 
 Build the documentation by running ``make html``.
 [More information](http://sphinx-doc.org/).
