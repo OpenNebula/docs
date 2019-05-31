@@ -20,3 +20,4 @@ The following issues has been solved in 5.8.3:
 - `Fix onedb fsck to not remove NIC Alias from Address Range leases <https://github.com/OpenNebula/one/issues/3362>`__.
 - `Fix onedb purge-done to not eat too much ram <https://github.com/OpenNebula/one/issues/3269>`__.
 - `Fix missing datastores when import appliance from marketplace <https://github.com/OpenNebula/one/issues/3368>`__.
+- `Fix missing DEPLOY_ID when import Wilds VM <https://github.com/OpenNebula/one/issues/3057>`__.
