@@ -9,6 +9,7 @@ The following new features has been backported to 5.8.3:
 
 - `Implement retry on vCenter driver actions <https://github.com/OpenNebula/one/issues/3337>`__.
 - `Allow FILES in vCenter context <https://github.com/OpenNebula/one/issues/964>`__.
+- `Allow alternative search base for ldap groups <https://github.com/OpenNebula/one/issues/3366>`__.
 
 The following issues has been solved in 5.8.3:
 
@@ -21,3 +22,4 @@ The following issues has been solved in 5.8.3:
 - `Fix onedb purge-done to not eat too much ram <https://github.com/OpenNebula/one/issues/3269>`__.
 - `Fix missing datastores when import appliance from marketplace <https://github.com/OpenNebula/one/issues/3368>`__.
 - `Fix missing DEPLOY_ID when import Wilds VM <https://github.com/OpenNebula/one/issues/3057>`__.
+- `Fix error in onegate when trying to make an operation in an specific VM <https://github.com/OpenNebula/one/issues/2047>`__.

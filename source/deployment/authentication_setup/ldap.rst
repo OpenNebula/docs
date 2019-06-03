@@ -43,6 +43,9 @@ Configuration file for auth module is located at ``/etc/one/auth/ldap_auth.conf`
         # base hierarchy where to search for users and groups
         :base: 'dc=domain'
      
+        # alternative base hierarchy where to search for groups instead of :base:
+        #:group_base: 'ou=groups,dc=domain'
+
         # group the users need to belong to. If not set any user will do
         #:group: 'cn=cloud,ou=groups,dc=domain'
      
@@ -143,6 +146,9 @@ The structure is a hash where any key different to ``:order`` will contain the c
 | ``:timeout``          | Connection and authentication timeout           |
 +-----------------------+-------------------------------------------------+
 | ``:base``             | Base leaf where to perform user searches        |
++-----------------------+-------------------------------------------------+
+| ``:group_base``       | Alternative base leaf where to perform group    |
+|                       | searches instead of in :base                    |
 +-----------------------+-------------------------------------------------+
 | ``:group``            | If set the users need to belong to this group   |
 +-----------------------+-------------------------------------------------+
