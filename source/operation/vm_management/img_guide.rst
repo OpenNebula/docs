@@ -160,7 +160,7 @@ Limitations when Uploading Images from Sunstone
 
 Image file upload to the server via the client browser is possible. The process is as follow:
 
--  Step 1: The client uploads the whole image file to the server in a temporal file in the ``tpmdir`` folder specified in the configuration.
+-  Step 1: The client uploads the whole image file to the server in a temporal file in the ``tmpdir`` folder specified in the configuration.
 -  Step 2: OpenNebula registers an Image setting the PATH to that temporal file.
 -  Step 3: OpenNebula copies the image file to the datastore.
 -  Step 4: The temporal file is deleted and the request returns successfully to the user (a message pops up indicating that Image was uploaded correctly).
