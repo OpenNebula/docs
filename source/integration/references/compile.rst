@@ -192,7 +192,7 @@ To build run following:
 
 .. prompt:: text $ auto
 
-    root@frontend:~/ $> cd src/oca/pyton
+    root@frontend:~/ $> cd src/oca/python
     root@frontend:~/ $> make
     root@frontend:~/ $> make dist
     root@frontend:~/ $> make install
