@@ -1,4 +1,4 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenNebula 4.6\n"
@@ -419,7 +419,7 @@ msgstr ""
 #: ../../source/user/virtual_resource_management/img_guide.rst:152
 msgid ""
 "Step 1: The client uploads the whole image to the server in a temporal file "
-"in the ``tpmdir`` folder specified in the configuration."
+"in the ``tmpdir`` folder specified in the configuration."
 msgstr ""
 
 #: ../../source/user/virtual_resource_management/img_guide.rst:153
