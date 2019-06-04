@@ -34,6 +34,8 @@ Ubuntu 18.04
 * **libsystemd-dev**
 * **libws-commons-util-java**
 * **libxml2-dev**
+* **libxmlrpc-core-c3-dev**
+* **libxmlrpc-c++8-dev** 
 * **libxmlrpc3-client-java**
 * **libxmlrpc3-common-java**
 * **libxslt1-dev**
@@ -42,7 +44,8 @@ Ubuntu 18.04
 * **libvncserver-dev**
 * **ruby**
 * **scons**
-
+Use this command to install all libraries 
+sudo apt-get install libxmlrpc-core-c3-dev  libxmlrpc-c++8-dev bash-completion bison debhelper default-jdk flex javahelper kpartx libmysql++-dev libsqlite3-dev libssl-dev libsystemd-dev libws-commons-util-java libxml2-dev libxmlrpc3-client-java libxmlrpc3-common-java libxslt1-dev libcurl4-openssl-dev libcurl4 libvncserver-dev ruby scons
 
 Ubuntu 16.04
 ================================================================================
