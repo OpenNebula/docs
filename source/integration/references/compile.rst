@@ -309,7 +309,7 @@ Setup authentication file.
 
 .. code-block:: bash
 
-    echo '$USER:password' > ~/.one/one_auth
+    echo 'USER:password' > ~/.one/one_auth
 
 Start the opennebula server
 
