@@ -12,6 +12,10 @@ The following new features has been backported to 5.8.3:
 - `Allow alternative search base for ldap groups <https://github.com/OpenNebula/one/issues/3366>`__.
 - `Show the federation index in onezone list command <https://github.com/OpenNebula/one/issues/3378>`__.
 
+.. note::
+
+    If you want to enable this column, please update your `/etc/one/cli/onezone.yaml <https://github.com/OpenNebula/one/blob/master/src/cli/etc/onezone.yaml>`__.
+
 The following issues has been solved in 5.8.3:
 
 - `Fix Ceph monitoring when using erasure code pools <https://github.com/OpenNebula/one/issues/3222>`__.
