@@ -19,3 +19,4 @@ The following issues has been solved in 5.8.3:
 - `Fix NIC Alias id generation to be consecutive <https://github.com/OpenNebula/one/issues/3357>`__.
 - `Fix onedb fsck to not remove NIC Alias from Address Range leases <https://github.com/OpenNebula/one/issues/3362>`__.
 - `Fix onedb purge-done to not eat too much ram <https://github.com/OpenNebula/one/issues/3269>`__.
+- `Update LXD recontextualization execution <https://github.com/OpenNebula/one/issues/3390>`__.
