@@ -26,3 +26,4 @@ The following issues has been solved in 5.8.3:
 - `Fix missing DEPLOY_ID when import Wilds VM <https://github.com/OpenNebula/one/issues/3057>`__.
 - `Fix error in onegate when trying to make an operation in an specific VM <https://github.com/OpenNebula/one/issues/2047>`__.
 - `Fix an error that propagates local quota information to other zones <https://github.com/OpenNebula/one/issues/3409>`__.
+- `Fix LXD not handling mapping exceptions properly <https://github.com/OpenNebula/one/issues/3406>`__.
