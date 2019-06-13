@@ -94,7 +94,7 @@ As a Virtualization driver, the vCenter driver accept a series of parameters tha
 
 See the :ref:`Virtual Machine drivers reference <devel-vmm>` for more information about these parameters, and how to customize and extend the drivers.
 
-Additionally some behavior of the vCenter driver can be configured in the ``/var/lib/one/remotes/etc/vmm/vcenter/vcenterc``. The parameters that can be changed here are as follows:
+Additionally some behavior of the vCenter driver can be configured in the ``/var/lib/one/remotes/etc/vmm/vcenter/vcenterrc``. The parameters that can be changed here are as follows:
 
 +----------------+-------------------------------------------------------------------+
 | parameter      | description                                                       |
