@@ -181,6 +181,8 @@ Database Tuning
 
 For non test installations use MySQL database. sqlite is too slow for more than a couple hosts and a few VMs.
 
+Be sure to review the :ref:`recommended maintenance procedures <mysql_maintenance>` for the MySQL database backend.
+
 Sunstone Tuning
 ---------------------------
 
