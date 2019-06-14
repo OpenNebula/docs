@@ -129,6 +129,8 @@ Available options are:
 +---------------------------+-----------------------------------------------------------------------------------------------+
 | :get\_extended\_vm\_info  | True to display IP in table by requesting the extended vm pool to oned                        |
 +---------------------------+-----------------------------------------------------------------------------------------------+
+| :allow\_vnc\_federation   | True to display VNC icons in fedetarion                                                       |
++---------------------------+-----------------------------------------------------------------------------------------------+
 
 .. note:: To use Sunstone with IPv6 only systems and thin HTTP sever, use the full IPv6 address in the field `:host`. If you need to set the localhost address (::1) or the unspecified address (::) please use the following:
 
