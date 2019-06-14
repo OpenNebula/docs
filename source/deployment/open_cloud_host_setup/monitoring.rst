@@ -93,19 +93,21 @@ Monitoring Configuration Parameters
 
 OpenNebula allows to customize the general behavior of the whole monitoring subsystem:
 
-+-------------------------------+--------------------------------------------------------------------------------------------------------------+
-| Parameter                     | Description                                                                                                  |
-+===============================+==============================================================================================================+
-| MONITORING_INTERVAL_HOST      | Time in seconds between host monitorization. It must have a value greater than the manager timer             |
-+-------------------------------+--------------------------------------------------------------------------------------------------------------+
-| MONITORING_INTERVAL_VM        | Time in seconds between VM monitorization. It must have a value greater than the manager timer               |
-+-------------------------------+--------------------------------------------------------------------------------------------------------------+
-| MONITORING_INTERVAL_DATASTORE | Time in seconds between Datastore monitorization. It must have a value greater than the manager timer        |
-+------------------------+---------------------------------------------------------------------------------------------------------------------+
-| MONITORING_INTERVAL_MARKET    | Time in seconds between marketplace monitorization. It must have a value greater than the manager timer      |
-+-------------------------------+--------------------------------------------------------------------------------------------------------------+
-| HOST_PER_INTERVAL             | Number of hosts monitored in each interval.                                                                  |
-+-------------------------------+--------------------------------------------------------------------------------------------------------------+
++-------------------------------+-------------------------------------------------------------------------------------------------------------------------+
+| Parameter                     | Description                                                                                                             |
++===============================+=========================================================================================================================+
+| MONITORING_INTERVAL_HOST      | Time in seconds between host monitorization. It must have a value greater than the manager timer                        |
++-------------------------------+-------------------------------------------------------------------------------------------------------------------------+
+| MONITORING_INTERVAL_DB_UPDATE | Time in seconds between DB writes of VM monitoring information. -1 to disable DB updating and 0 to write every update   |
++-------------------------------+-------------------------------------------------------------------------------------------------------------------------+
+| MONITORING_INTERVAL_VM        | Time in seconds between VM monitorization. It must have a value greater than the manager timer                          |
++-------------------------------+-------------------------------------------------------------------------------------------------------------------------+
+| MONITORING_INTERVAL_DATASTORE | Time in seconds between Datastore monitorization. It must have a value greater than the manager timer                   |
++-------------------------------+-------------------------------------------------------------------------------------------------------------------------+
+| MONITORING_INTERVAL_MARKET    | Time in seconds between marketplace monitorization. It must have a value greater than the manager timer                 |
++-------------------------------+-------------------------------------------------------------------------------------------------------------------------+
+| HOST_PER_INTERVAL             | Number of hosts monitored in each interval.                                                                             |
++-------------------------------+-------------------------------------------------------------------------------------------------------------------------+
 
 .. _monitoring_troubleshooting:
 
