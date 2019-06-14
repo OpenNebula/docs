@@ -70,3 +70,23 @@ Using OpenNebula with MySQL
 ===========================
 
 After this installation and configuration process you can use OpenNebula as usual.
+
+MySQL database maintenance
+===========================
+
+For an optimal database performance there are some tasks that should be done periodically depending on the load of the environment. They are listed below.
+
+Search index
+----------------------
+
+In order to be able to search VMs by different attributes, OpenNebula's database have a `FTS index <https://dev.mysql.com/doc/refman/5.6/en/innodb-fulltext-index.html>`__, the size of this index can increase fast depending on the cloud load. For freeing some space it is needed to perform the following maintenance task periodically:
+
+.. code::
+
+   alter table vm_pool drop index ftidx;
+   alter table vm_pool add fulltext index ftidx (search_token);
+
+VMs in DONE state
+----------------------
+
+When a VM is terminated OpenNebula change it's state to DONE but it keep the VM in the database in case the VM information is required in the future (e.g. to generate accounting reports). In order to reduce the size of the VM table, it is recommended to periodically delete the VM in DONE state when not needed. For this task it is available the `onedb purge-done <http://docs.opennebula.org/5.8/deployment/references/onedb.html#onedb-purge-done>`__ tool.
