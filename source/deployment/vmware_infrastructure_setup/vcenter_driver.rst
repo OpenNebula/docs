@@ -256,6 +256,11 @@ vCenter impose some limitations and its behavior may differ from vCenter 5.5 to 
 - You cannot perform the disk save as operation unless the VM is powered off.
 - You cannot resize disks.
 
+IDE Device limitations
+--------------------------------------------------------------------------------
+
+IDE bus uses the Master/Slave architecture. It's no possible having a Slave device without a Master. Opennebula always add the IDE device in the first available IDE taking care about this architecture, but removing any IDE device is possible, so you must take care about no delete a Master device when a Slave is still present. If you do that the Instance will not boot. 
+
 .. _vcenter_default_config_file:
 
 Configuring
