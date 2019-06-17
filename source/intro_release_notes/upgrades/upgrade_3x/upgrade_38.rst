@@ -1,16 +1,16 @@
 
 =================================
-Upgrading from OpenNebula 4.0.x
+Upgrading from OpenNebula 3.8.x
 =================================
 
-This section describes the installation procedure for systems that are already running a 4.0.x OpenNebula. The upgrade to OpenNebula |version| can be done directly following this section, you don't need to perform intermediate version upgrades. The upgrade will preserve all current users, hosts, resources and configurations; for both Sqlite and MySQL backends.
+This section describes the installation procedure for systems that are already running a 3.8.x OpenNebula. The upgrade to OpenNebula |version| can be done directly following this section, you don't need to perform intermediate version upgrades. The upgrade will preserve all current users, hosts, resources and configurations; for both Sqlite and MySQL backends.
 
-Read the Compatibility Guide `for 4.2 <http://archives.opennebula.org/documentation:archives:rel4.2:compatibility>`_, `4.4 <http://docs.opennebula.org/4.4/release_notes44/compatibility.html>`_, `4.6 <http://docs.opennebula.org/4.6/release_notes/release_notes/compatibility.html>`_, `4.8 <http://docs.opennebula.org/4.8/release_notes/release_notes/compatibility.html>`_, `4.10 <http://docs.opennebula.org/4.10/release_notes/release_notes/compatibility.html>`_, `4.12 <http://docs.opennebula.org/4.12/release_notes/release_notes/compatibility.html>`_, `4.14 <http://docs.opennebula.org/4.14/release_notes/release_notes/compatibility.html>`_, `5.0 <http://docs.opennebula.org/5.0/intro_release_notes/release_notes/compatibility.html>`_ and |compatibility|, and the `Release Notes <http://opennebula.org/software/release/>`_ to know what is new in OpenNebula |version|.
+Read the Compatibility Guide for `4.0 <http://archives.opennebula.org/documentation:archives:rel4.0:compatibility>`_, `4.2 <http://archives.opennebula.org/documentation:archives:rel4.2:compatibility>`_, `4.4 <http://docs.opennebula.org/4.4/release_notes44/compatibility.html>`_, `4.6 <http://docs.opennebula.org/4.6/release_notes/release_notes/compatibility.html>`_, `4.8 <http://docs.opennebula.org/4.8/release_notes/release_notes/compatibility.html>`_, `4.10 <http://docs.opennebula.org/4.10/release_notes/release_notes/compatibility.html>`_, `4.12 <http://docs.opennebula.org/4.12/release_notes/release_notes/compatibility.html>`_, `4.14 <http://docs.opennebula.org/4.14/release_notes/release_notes/compatibility.html>`_, `5.0 <http://docs.opennebula.org/5.0/intro_release_notes/release_notes/compatibility.html>`_ and |compatibility|, and the `Release Notes <http://opennebula.org/software/release/>`_ to know what is new in OpenNebula |version|.
 
 .. warning:: With the new :ref:`multi-system DS <system_ds_multiple_system_datastore_setups>` functionality, it is now required that the system DS is also part of the cluster. If you are using System DS 0 for Hosts inside a Cluster, any VM saved (stop, suspend, undeploy) **will not be able to be resumed after the upgrade process**.
 
 .. warning::
-    Two drivers available in 4.0 are now discontinued: **ganglia** and **iscsi**.
+    Two drivers available in 3.8 are now discontinued: **ganglia** and **iscsi**.
 
     -  **iscsi** drivers have been moved out of the main OpenNebula distribution and are available (although not supported) as an `addon <https://github.com/OpenNebula/addon-iscsi>`__.
     -  **ganglia** drivers have been moved out of the main OpenNebula distribution and are available (although not supported) as an `addon <https://github.com/OpenNebula/addon-ganglia>`__.
@@ -68,7 +68,7 @@ Follow the :ref:`Platform Notes <uspng>` and the :ref:`Installation guide <ignc>
 
 Make sure to run the ``install_gems`` tool, as the new OpenNebula version may have different gem requirements.
 
-It is highly recommended **not to keep** your current ``oned.conf``, and update the ``oned.conf`` file shipped with OpenNebula |version| to your setup. If for any reason you plan to preserve your current ``oned.conf`` file, read the :ref:`Compatibility Guide <compatibility>` and the complete oned.conf reference for `4.0 <http://opennebula.org/documentation:archives:rel4.0:oned_conf>`__ and :ref:`5.0 <oned_conf>` versions.
+It is highly recommended **not to keep** your current ``oned.conf``, and update the ``oned.conf`` file shipped with OpenNebula |version| to your setup. If for any reason you plan to preserve your current ``oned.conf`` file, read the :ref:`Compatibility Guide <compatibility>` and the complete oned.conf reference for `3.8 <http://opennebula.org/documentation:archives:rel3.8:oned_conf>`__ and :ref:`5.0 <oned_conf>` versions.
 
 Database Upgrade
 ================
@@ -81,7 +81,7 @@ You can upgrade the existing DB with the 'onedb' command. You can specify any Sq
 
 .. note::
 
-    If you have a MAC_PREFIX in :ref:`oned.conf <oned_conf>` different than the default ``02:00``, open 
+    If you have a MAC_PREFIX in :ref:`oned.conf <oned_conf>` different than the default ``02:00``, open
     ``/usr/lib/one/ruby/onedb/local/4.5.80_to_4.7.80.rb`` and change the value of the ``ONEDCONF_MAC_PREFIX`` constant.
 
 After you install the latest OpenNebula, and fix any possible conflicts in oned.conf, you can issue the 'onedb upgrade -v' command. The connection parameters have to be supplied with the command line options, see the :ref:`onedb manpage <cli>` for more information. Some examples:
@@ -101,24 +101,113 @@ If everything goes well, you should get an output similar to this one:
     $ onedb upgrade -v -u oneadmin -d opennebula
     MySQL Password:
     Version read:
-    Shared tables 4.4.0 : OpenNebula 4.4.0 daemon bootstrap
-    Local tables  4.4.0 : OpenNebula 4.4.0 daemon bootstrap
+    Shared tables 3.8.0 : OpenNebula 3.8.0 daemon bootstrap
+    Local tables  3.8.0 : OpenNebula 3.8.0 daemon bootstrap
+
+    MySQL dump stored in /var/lib/one/mysql_localhost_opennebula.sql
+    Use 'onedb restore' or restore the DB using the mysql command:
+    mysql -u user -h server -P port db_name < backup_file
+
 
     >>> Running migrators for shared tables
+      > Running migrator /usr/lib/one/ruby/onedb/shared/3.8.0_to_3.8.1.rb
+      > Done in 0.36s
+
+      > Running migrator /usr/lib/one/ruby/onedb/shared/3.8.1_to_3.8.2.rb
+      > Done in 0.00s
+
+      > Running migrator /usr/lib/one/ruby/onedb/shared/3.8.2_to_3.8.3.rb
+      > Done in 0.00s
+
+      > Running migrator /usr/lib/one/ruby/onedb/shared/3.8.3_to_3.8.4.rb
+      > Done in 0.56s
+
+      > Running migrator /usr/lib/one/ruby/onedb/shared/3.8.4_to_3.8.5.rb
+      > Done in 0.00s
+
+      > Running migrator /usr/lib/one/ruby/onedb/shared/3.8.5_to_3.9.80.rb
+
+    ATTENTION: manual intervention required
+    Virtual Machine deployment files have been moved from /var/lib/one to
+    /var/lib/one/vms. You need to move these files manually:
+
+        $ mv /var/lib/one/[0-9]* /var/lib/one/vms
+
+      > Done in 1.10s
+
+      > Running migrator /usr/lib/one/ruby/onedb/shared/3.9.80_to_3.9.90.rb
+
+    ATTENTION: manual intervention required
+    IM and VM MADS have been renamed in oned.conf. To keep your
+    existing hosts working, you need to duplicate the drivers with the
+    old names.
+
+    For example, for kvm you will have IM_MAD "kvm" and VM_MAD "kvm", so you
+    need to add IM_MAD "im_kvm" and VM_MAD "vmm_kvm"
+
+    IM_MAD = [
+          name       = "kvm",
+          executable = "one_im_ssh",
+          arguments  = "-r 0 -t 15 kvm" ]
+
+
+    IM_MAD = [
+          name       = "im_kvm",
+          executable = "one_im_ssh",
+          arguments  = "-r 0 -t 15 kvm" ]
+
+    VM_MAD = [
+        name       = "kvm",
+        executable = "one_vmm_exec",
+        arguments  = "-t 15 -r 0 kvm",
+        default    = "vmm_exec/vmm_exec_kvm.conf",
+        type       = "kvm" ]
+
+    VM_MAD = [
+        name       = "vmm_kvm",
+        executable = "one_vmm_exec",
+        arguments  = "-t 15 -r 0 kvm",
+        default    = "vmm_exec/vmm_exec_kvm.conf",
+        type       = "kvm" ]
+
+      > Done in 0.41s
+
+      > Running migrator /usr/lib/one/ruby/onedb/shared/3.9.90_to_4.0.0.rb
+      > Done in 0.00s
+
+      > Running migrator /usr/lib/one/ruby/onedb/shared/4.0.0_to_4.0.1.rb
+      > Done in 0.00s
+
+      > Running migrator /usr/lib/one/ruby/onedb/shared/4.0.1_to_4.1.80.rb
+      > Done in 0.09s
+
+      > Running migrator /usr/lib/one/ruby/onedb/shared/4.1.80_to_4.2.0.rb
+      > Done in 0.00s
+
+      > Running migrator /usr/lib/one/ruby/onedb/shared/4.2.0_to_4.3.80.rb
+      > Done in 0.68s
+
+      > Running migrator /usr/lib/one/ruby/onedb/shared/4.3.80_to_4.3.85.rb
+      > Done in 0.00s
+
+      > Running migrator /usr/lib/one/ruby/onedb/shared/4.3.85_to_4.3.90.rb
+      > Done in 0.00s
+
+      > Running migrator /usr/lib/one/ruby/onedb/shared/4.3.90_to_4.4.0.rb
+      > Done in 0.00s
+
       > Running migrator /usr/lib/one/ruby/onedb/shared/4.4.0_to_4.4.1.rb
       > Done in 0.00s
 
       > Running migrator /usr/lib/one/ruby/onedb/shared/4.4.1_to_4.5.80.rb
-      > Done in 0.75s
+      > Done in 0.39s
 
-    Database migrated from 4.4.0 to 4.5.80 (OpenNebula 4.5.80) by onedb command.
+    Database migrated from 3.8.0 to 4.5.80 (OpenNebula 4.5.80) by onedb command.
 
     >>> Running migrators for local tables
     Database already uses version 4.5.80
-    Total time: 0.77s
 
-
-If you receive the message “ATTENTION: manual intervention required”, read the section :ref:`Manual Intervention Required <upgrade_40_manual_intervention_required>` below.
+    Total time: 3.60s
 
 .. note:: Make sure you keep the backup file. If you face any issues, the onedb command can restore this backup, but it won't downgrade databases to previous versions.
 
@@ -143,6 +232,109 @@ Then execute the following command:
     mysql -u user -h server -P port db_name < backup_file
 
     Total errors found: 0
+
+Virtual Machine Directories
+=================================
+
+.. note:: Only for OpenNebula versions < 3.8.3
+
+If you are upgrading from a version **lower than 3.8.3**, you need to move the Virtual Machine deployment files from '/var/lib/one' to '/var/lib/one/vms':
+
+.. code::
+
+    $ mv /var/lib/one/[0-9]* /var/lib/one/vms
+
+Driver Names
+============================
+
+OpenNebula default driver names have changed in the configuration file. Now the names of the vmm and im drivers are not prepended by the type of driver:
+
+* vmm_kvm → kvm
+* vmm_xen → xen
+* vmm_vmware → vmware
+* vmm_ec2 → ec2
+* vmm_dummy → dummy
+* im_kvm → kvm
+* im_xen → xen
+* im_vmware → vmware
+* im_ec2 → ec2
+* im_ganglia → ganglia
+* im_dummy → dummy
+
+To keep your existing hosts working, you need to duplicate the drivers with the old names.
+
+For example, for kvm you will have IM_MAD ``kvm`` and VM_MAD ``kvm``, so you need to add IM_MAD ``im_kvm`` and VM_MAD ``vmm_kvm``
+
+.. code::
+
+    IM_MAD = [
+          name       = "kvm",
+          executable = "one_im_ssh",
+          arguments  = "-r 3 -t 15 kvm" ]
+
+    IM_MAD = [
+          name       = "im_kvm",
+          executable = "one_im_ssh",
+          arguments  = "-r 3 -t 15 kvm" ]
+
+    VM_MAD = [
+        name       = "kvm",
+        executable = "one_vmm_exec",
+        arguments  = "-t 15 -r 0 kvm",
+        default    = "vmm_exec/vmm_exec_kvm.conf",
+        type       = "kvm" ]
+
+    VM_MAD = [
+        name       = "vmm_kvm",
+        executable = "one_vmm_exec",
+        arguments  = "-t 15 -r 0 kvm",
+        default    = "vmm_exec/vmm_exec_kvm.conf",
+        type       = "kvm" ]
+
+Manual Intervention Required
+============================
+
+.. note:: Ignore this section if onedb didn't output the following message
+
+If you have a datastore configured to use a tm driver not included in the OpenNebula distribution, the onedb upgrade command will show you this message:
+
+.. code::
+
+    ATTENTION: manual intervention required
+
+    The Datastore <id> <name> is using the
+    custom TM MAD '<tm_mad>'. You will need to define new
+    configuration parameters in oned.conf for this driver, see
+    http://opennebula.org/documentation:rel4.4:upgrade
+
+Since OpenNebula 4.4, each tm\_mad driver has a TM\_MAD\_CONF section in oned.conf. If you developed the driver, it should be fairly easy to define the required information looking at the existing ones:
+
+.. code::
+
+    # The  configuration for each driver is defined in TM_MAD_CONF. These
+    # values are used when creating a new datastore and should not be modified
+    # since they define the datastore behaviour.
+    #   name      : name of the transfer driver, listed in the -d option of the
+    #               TM_MAD section
+    #   ln_target : determines how the persistent images will be cloned when
+    #               a new VM is instantiated.
+    #       NONE: The image will be linked and no more storage capacity will be used
+    #       SELF: The image will be cloned in the Images datastore
+    #       SYSTEM: The image will be cloned in the System datastore
+    #   clone_target : determines how the non persistent images will be
+    #                  cloned when a new VM is instantiated.
+    #       NONE: The image will be linked and no more storage capacity will be used
+    #       SELF: The image will be cloned in the Images datastore
+    #       SYSTEM: The image will be cloned in the System datastore
+    #   shared : determines if the storage holding the system datastore is shared
+    #            among the different hosts or not. Valid values: "yes" or "no"
+     
+    TM_MAD_CONF = [
+        name        = "lvm",
+        ln_target   = "NONE",
+        clone_target= "SELF",
+        shared      = "yes"
+    ]
 
 Update the Drivers
 ==================
@@ -209,50 +401,4 @@ The workaround is to temporarily change the oneadmin's password to an ASCII stri
 
     mysql> SET PASSWORD = PASSWORD('newpass');
 
-.. _upgrade_40_manual_intervention_required:
-
-Manual Intervention Required
-============================
-
-If you have a datastore configured to use a tm driver not included in the OpenNebula distribution, the onedb upgrade command will show you this message:
-
-.. code::
-
-    ATTENTION: manual intervention required
-
-    The Datastore <id> <name> is using the
-    custom TM MAD '<tm_mad>'. You will need to define new
-    configuration parameters in oned.conf for this driver, see
-    http://opennebula.org/documentation:rel4.4:upgrade
-
-Since OpenNebula 4.4, each tm\_mad driver has a TM\_MAD\_CONF section in oned.conf. If you developed the driver, it should be fairly easy to define the required information looking at the existing ones:
-
-.. code::
-
-    # The  configuration for each driver is defined in TM_MAD_CONF. These
-    # values are used when creating a new datastore and should not be modified
-    # since they define the datastore behaviour.
-    #   name      : name of the transfer driver, listed in the -d option of the
-    #               TM_MAD section
-    #   ln_target : determines how the persistent images will be cloned when
-    #               a new VM is instantiated.
-    #       NONE: The image will be linked and no more storage capacity will be used
-    #       SELF: The image will be cloned in the Images datastore
-    #       SYSTEM: The image will be cloned in the System datastore
-    #   clone_target : determines how the non persistent images will be
-    #                  cloned when a new VM is instantiated.
-    #       NONE: The image will be linked and no more storage capacity will be used
-    #       SELF: The image will be cloned in the Images datastore
-    #       SYSTEM: The image will be cloned in the System datastore
-    #   shared : determines if the storage holding the system datastore is shared
-    #            among the different hosts or not. Valid values: "yes" or "no"
-     
-    TM_MAD_CONF = [
-        name        = "lvm",
-        ln_target   = "NONE",
-        clone_target= "SELF",
-        shared      = "yes"
-    ]
-
-
-.. include:: version.txt
+.. include:: ../version.txt

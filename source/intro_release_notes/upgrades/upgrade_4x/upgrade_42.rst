@@ -76,7 +76,7 @@ You can upgrade the existing DB with the 'onedb' command. You can specify any Sq
 
 .. note::
 
-    If you have a MAC_PREFIX in :ref:`oned.conf <oned_conf>` different than the default ``02:00``, open 
+    If you have a MAC_PREFIX in :ref:`oned.conf <oned_conf>` different than the default ``02:00``, open
     ``/usr/lib/one/ruby/onedb/local/4.5.80_to_4.7.80.rb`` and change the value of the ``ONEDCONF_MAC_PREFIX`` constant.
 
 After you install the latest OpenNebula, and fix any possible conflicts in oned.conf, you can issue the 'onedb upgrade -v' command. The connection parameters have to be supplied with the command line options, see the :ref:`onedb manpage <cli>` for more information. Some examples:
@@ -250,4 +250,4 @@ Since OpenNebula 4.4, each tm\_mad driver has a TM\_MAD\_CONF section in oned.co
     ]
 
 
-.. include:: version.txt
+.. include:: ../version.txt
