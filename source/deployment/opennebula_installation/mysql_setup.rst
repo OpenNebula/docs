@@ -71,6 +71,8 @@ Using OpenNebula with MySQL
 
 After this installation and configuration process you can use OpenNebula as usual.
 
+.. _mysql_maintenance:
+
 MySQL database maintenance
 ===========================
 
