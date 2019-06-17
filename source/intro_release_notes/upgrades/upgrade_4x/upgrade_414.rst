@@ -286,4 +286,4 @@ The workaround is to temporarily change the oneadmin's password to an ASCII stri
 
     mysql> SET PASSWORD = PASSWORD('newpass');
 
-.. include:: version.txt
+.. include:: ../version.txt

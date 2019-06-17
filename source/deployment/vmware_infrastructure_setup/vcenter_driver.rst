@@ -239,7 +239,6 @@ Considerations & Limitations
 +----------------+-----------------------------------------------------+
 
 * **No Security Groups**: Firewall rules as defined in Security Groups cannot be enforced in vCenter VMs.
-* **No files in context**: Passing entire files to VMs is not supported, but all the other CONTEXT sections will be honored.
 * Image names cannot contain spaces.
 * Detach disks operations are not supported in VMs with system snapshots. Since vCenter snapshots considers disks and are tied to them, disks cannot be removed afterwards.
 * vCenter credential password cannot have more than 22 characters.
@@ -256,6 +255,11 @@ vCenter impose some limitations and its behavior may differ from vCenter 5.5 to 
 - If despite the previous point you try to detach a disk while the VM is powered on, OpenNebula will not allow this action. If you detach the disk while the VM is in POWEROFF OpenNebula will remove the DISK element but the disk won't be removed from vCenter.
 - You cannot perform the disk save as operation unless the VM is powered off.
 - You cannot resize disks.
+
+IDE Device limitations
+--------------------------------------------------------------------------------
+
+IDE bus uses the Master/Slave architecture. It's no possible having a Slave device without a Master. Opennebula always add the IDE device in the first available IDE taking care about this architecture, but removing any IDE device is possible, so you must take care about no delete a Master device when a Slave is still present. If you do that the Instance will not boot. 
 
 .. _vcenter_default_config_file:
 
