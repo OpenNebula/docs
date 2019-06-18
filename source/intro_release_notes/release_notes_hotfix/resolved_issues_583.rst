@@ -14,6 +14,7 @@ The following new features has been backported to 5.8.3:
 - `Show the VNC icons in sunstone federations <https://github.com/OpenNebula/one/issues/3428>`__.  For more info on how to activate this feature, check the ```:allow_vnc_federation``` configuration attribute :ref:`here <sunstone_sunstone_server_conf>`
 - `Add an option to configure write frecuency of monitoring VM data to the DB <https://github.com/OpenNebula/one/issues/1324>`__.
 - `noVNC updated to v1.0 <https://github.com/OpenNebula/one/issues/2346>`__.
+- `Add Default Zone Endpoint for users <https://github.com/OpenNebula/one/issues/3335>`__.
 
 The following issues has been solved in 5.8.3:
 
