@@ -171,6 +171,113 @@ To disable pagination we can use a non numeric value:
 This environment variable can be also used for Sunstone.
 Also, one of the main barriers to scale opennebula is the list operation on large pools. Since OpenNebula 5.8, vm pool is listed in a *summarized* form. However we recommend to make use of the search operation to reduce the pool size returned by oned. The search operation is available for the VM pool since version 5.8.
 
+OpenNebula Read-only API SERVER
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Introduction
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In order to scale OpenNebula, it is recommended to balance client requests across multiple oned processes. This can be achieved by either using existing RAFT followers or adding oned’s in an API SERVER only mode.
+
+When oned is started in read-only (or cache) mode it resolves any read-only operation by accessing directly the database. In particular, the following API calls are served directly by the server in cache mode:
+
+
+    +-------------------------+-------------------------+-------------------------+
+    | one.vmpool.info         | one.clusterpool.info    |  one.group.info         |
+    +-------------------------+-------------------------+-------------------------+
+    | one.vmpool.accounting   | one.zonepool.info       |  one.user.info          |
+    +-------------------------+-------------------------+-------------------------+
+    | one.vmpool.showback     | one.secgrouppool.info   |  one.datastore.info     |
+    +-------------------------+-------------------------+-------------------------+
+    | one.vmpool.monitoring   | one.vdcpool.info        |  one.cluster.info       |
+    +-------------------------+-------------------------+-------------------------+
+    | one.templatepool.info   | one.vrouterpool.info    |  one.document.info      |
+    +-------------------------+-------------------------+-------------------------+
+    | one.vnpool.info         | one.marketpool.info     |  one.zone.info          |
+    +-------------------------+-------------------------+-------------------------+
+    | one.vntemplatepool.info | one.marketapppool.info  |  one.secgroup.info      |
+    +-------------------------+-------------------------+-------------------------+
+    | one.imagepool.info      | one.vmgrouppool.info    |  one.vdc.info           |
+    +-------------------------+-------------------------+-------------------------+
+    | one.hostpool.info       | one.template.info       |  one.vrouter.info       |
+    +-------------------------+-------------------------+-------------------------+
+    | one.hostpool.monitoring | one.vn.info             |  one.market.info        |
+    +-------------------------+-------------------------+-------------------------+
+    | one.groupool.info       | one.vntemplate.info     |  one.marketapp.info     |
+    +-------------------------+-------------------------+-------------------------+
+    | one.userpool.info       | one.image.info          |  one.vmgroup.info       |
+    +-------------------------+-------------------------+-------------------------+
+    | one.datastorepool.info  | one.host.info           |  one.zone.raftstatus    |
+    +-------------------------+-------------------------+-------------------------+
+
+.. note:: read-only operations enforce any ACL restriction or ownership checks.
+
+Any other API call is forwarded to the active oned process, in this case the cache server is acting as a simple proxy. The architecture recommended to be used with the cache server is depicted in the following figure:
+
+|scala|
+
+When the Master oned is actually a RAFT cluster you can simply point the API servers to the VIP address of the cluster. Note also that the mysql server in each RAFT server should be configured to listen on the VIP address to let the API servers query the database.
+
+Configuration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To configure an API server you need to:
+
+    1. Install the OpenNebula packages in the server
+    2. Update the oned.conf file so it points to the master oned and Database:
+
+.. code-block:: text
+
+    DB = [ BACKEND = "mysql",
+	    SERVER  = "set IP of mysql server",
+	    PORT = 0,
+	    USER = "oneadmin",
+	    PASSWD = "oneadmin",
+	    DB_NAME = "opennebula",
+	    CONNECTIONS = 50
+
+    FEDERATION = [
+	    MODE          = "CACHE",
+	    ZONE_ID       = 0,
+	    SERVER_ID     = -1,
+	    MASTER_ONED   = "set the XML-RPC endpoint of master oned"
+
+Note also that you may need to tune the number of connections to the DB, increasing it in the mysql server and adjusting the number in the cache servers considering that the overall number of connections are shared by all the servers.
+
+Load Balancing
+~~~~~~~~~~~~~~
+
+Alternatively you may want to set up a load balancer that balances client requests across API servers. HAProxy is a good fit for this task.In this scenario, we are assuming 1 OpenNebula server plus two OpenNebula cache servers. The load balancer is listening on another server on port 2633, and will forward connections to the three OpenNebula servers composing the cluster. This is the relevant fragment of the required HAProxy configuration for an scenario like the one described:
+
+.. code-block:: text
+
+    frontend OpenNebula
+    bind 0.0.0.0:2633
+    stats enable
+    mode tcp
+    default_backend one_nodes
+
+    backend one_nodes
+    mode tcp
+    stats enable
+    balance roundrobin
+    server opennebula1 10.134.236.10:2633 check
+    server opennebula2 10.134.236.11:2633 check
+    server opennebula3 10.134.236.12:2633 check
+
+Server entries must be modified and stats section is optional.
+
+Optionally, a second load balancer can be added on another server, and an active-passive redundancy protocol, like VRRP, can be set between both load balancer nodes for high availability.
+
+To connect to the cluster from another server you can use one of the two following options, or both:
+
+- Using the CLI: Create ONE_XMLRPC variable with the new endpoint. Ex:
+
+``export ONE_XMLRPC=http://ENDPOINT_IP:2633/RPC2``
+
+- Using Sunstone: Modify one_xmlrpc on /etc/one/sunstone-server.conf
+
+New endpoint will be the load balancer address.
+
 Driver Tuning
 ------------------------
 
@@ -189,4 +296,4 @@ Sunstone Tuning
 Please refer to guide about :ref:`Configuring Sunstone for Large Deployments <suns_advance>`.
 
 
-
+.. |scala| image:: /images/one_scalability.jpg
