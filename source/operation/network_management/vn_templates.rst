@@ -97,5 +97,7 @@ Once the Virtual Network Template has been created, change the permissions to ma
     $ onevnet list
       ID USER            GROUP        NAME                CLUSTERS   BRIDGE   LEASES
       1  user            users        private             0          virbr0        0
-      
+
 The network is now ready, users can create VMs and attach their interfaces to the newly created Virtual Network. Simply adding ``NIC = [ NETWORK = private ]`` or selecting it through Sunstone.
+
+.. note:: Note that for using the newly created Virtual Network, the user needs to define an Address Range either during the Virtual Network Template instantiation or just updating the Virtual Network.
