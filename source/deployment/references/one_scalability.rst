@@ -171,10 +171,8 @@ To disable pagination we can use a non numeric value:
 This environment variable can be also used for Sunstone.
 Also, one of the main barriers to scale opennebula is the list operation on large pools. Since OpenNebula 5.8, vm pool is listed in a *summarized* form. However we recommend to make use of the search operation to reduce the pool size returned by oned. The search operation is available for the VM pool since version 5.8.
 
-OpenNebula Read-only API SERVER
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Introduction
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Scaling the API SERVER
+~~~~~~~~~~~~~~~~~~~~~~
 
 In order to scale OpenNebula, it is recommended to balance client requests across multiple oned processes. This can be achieved by either using existing RAFT followers or adding oned’s in an API SERVER only mode.
 
