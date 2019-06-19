@@ -51,6 +51,11 @@ Disk images are transferred between the Image and System datastores by the trans
 | iSCSI libvirt | * **iscsi**, images are iSCSI targets                             |
 +---------------+-------------------------------------------------------------------+
 
+OpenNebula is also integrated with the following storage back-ends with storage drivers developed by the community and with enterprise support by the corresponding vendor.
+
+- `Linstor <https://github.com/OpenNebula/addon-linstor>`__ - to allow for highly available storage using DRBD9 and Linstor.
+- `StorPool <https://github.com/OpenNebula/addon-storpool>`__ - to build hyperconverged cloud architectures.
+
 How Should I Read This Chapter
 ================================================================================
 
