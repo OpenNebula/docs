@@ -12,3 +12,4 @@ The following new features has been backported to 5.8.4:
 The following issues has been solved in 5.8.4:
 
 - `Fix container status inconsistency during boot <https://github.com/OpenNebula/one/issues/3389>`__.
+- `Fix an issue that prevents admin to change other permissions when ENABLE_OTHER_PERMISSIONS=NO <https://github.com/OpenNebula/one/issues/2563>`__.
