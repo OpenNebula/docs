@@ -97,3 +97,10 @@ In order to remove the index while a new release reduces the indexing and allevi
 
 
 More information can be found `here <https://github.com/OpenNebula/one/issues/3393>`__.
+
+Sunstone Disk Update for vCenter
+================================
+
+Updating a VM Template of a VM for vCenter fails if a disk's image is changed. This is due to missing JavaScript requires.
+
+More information can be found `here <https://github.com/OpenNebula/one/issues/3335>`__.
