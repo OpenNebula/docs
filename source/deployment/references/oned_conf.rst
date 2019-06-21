@@ -14,6 +14,7 @@ Daemon Configuration Attributes
 -  ``MONITORING_INTERVAL_VM`` : Time in seconds between each VMs monitorization.
 -  ``MONITORING_INTERVAL_DATASTORE`` : Time in seconds between each DATASTORE monitorization.
 -  ``MONITORING_INTERVAL_MARKET`` : Time in seconds between each MARKETPLACE monitorization.
+-  ``MONITORING_INTERVAL_DB_UPDATE``: Time in seconds between DB writes of VM monitoring information. -1 to disable DB updating and 0 to write every update.
 -  ``MONITORING_THREADS`` : Max. number of threads used to process monitor messages
 -  ``HOST_PER_INTERVAL``: Number of hosts monitored in each interval.
 -  ``HOST_MONITORING_EXPIRATION_TIME``: Time, in seconds, to expire monitoring information. Use 0 to disable HOST monitoring recording.

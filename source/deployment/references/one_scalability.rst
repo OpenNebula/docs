@@ -4,7 +4,7 @@
 Scalability Testing and Tuning
 =============================================
 
-Determining the scalability of your cloud and how to improve it requires balancing many variables. There are several aspects that can limit the scalability of a cloud from the storage to the network backend, and no one solution meets everyone’s scalability goals. This guide firstly presents the scale limits of a single OpenNebula instance (single zone), and then provides some recommendations to tune your deployment for large scale. 
+Determining the scalability of your cloud and how to improve it requires balancing many variables. There are several aspects that can limit the scalability of a cloud from the storage to the network backend, and no one solution meets everyone’s scalability goals. This guide firstly presents the scale limits of a single OpenNebula instance (single zone), and then provides some recommendations to tune your deployment for large scale.
 
 The general recommendation is to have no more than 2,500 servers and 10,000 VMs managed by a single instance. Better performance and higher scalability can be achieved with specific tuning of other components like the DB, or better hardware. In any case, to grow the size of your cloud beyond these limits, you can horizontally scale your cloud by adding new OpenNebula zones within a :ref:`federated deployment <introf>`. The largest OpenNebula deployment consists of 16 data center and 300,000 cores.
 
@@ -119,10 +119,15 @@ Core Tuning
 
 OpenNebula keeps the monitoring history for a defined time in a database table. These values are then used to draw the plots in Sunstone. These monitoring entries can take quite a bit of storage in your database. The amount of storage used will depend on the size of your cloud, and the following configuration attributes in :ref:`oned.conf <oned_conf>`:
 
--  ``MONITORING_INTERVAL_HOST``: Time in seconds between each monitoring cycle. Default: 180.
+-  ``MONITORING_INTERVAL_HOST``: Time in seconds between each monitoring cycle. Default: 180. This parameter sets the timeout to pro-actively restart the monitoring probe in the standard ``udp-push`` model.
 -  collectd IM\_MAD ``-i`` argument (KVM only): Time in seconds of the monitoring push cycle. Default: 60.
 -  ``HOST_MONITORING_EXPIRATION_TIME``: Time, in seconds, to expire monitoring information. Default: 12h.
 -  ``VM_MONITORING_EXPIRATION_TIME``: Time, in seconds, to expire monitoring information. Default: 4h.
+-  ``VM_MONITORING_EXPIRATION_TIME``: Time, in seconds, to expire monitoring information. Default: 4h.
+-  ``MONITORING_INTERVAL_DB_UPDATE``: Time in seconds between DB writes of VM monitoring information. Default: 0 (write every update).
+
+
+.. important:: It is highly recommended to increase de ``MONITORING_INTERVAL_DB_UPDATE`` and the ``IM_MAD-collectd`` ``-i`` argument when running more than 5K VMs to not overload DB write threads. Usually a slow response time from the API when running a high number of VMs is caused by this.
 
 If you don’t use Sunstone, you may want to disable the monitoring history, setting both expiration times to 0.
 
