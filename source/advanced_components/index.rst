@@ -16,3 +16,4 @@ Advanced Components Guide
    MarketPlace <marketplace/index>
    Applications Containerization <applications_containerization/index>
    Disaggregated Data Centers <ddc/index>
+   NUMA and CPU Pinning <numa/numa>
