@@ -140,6 +140,11 @@ Note that you need to allocate hugepages of the desired sizes in the hypervisor.
 
 OpenNebula will look for a host with enough free pages of the requested size to allocate the VM. The resources of each virtual node will be placed as close as possible to the node providing the hugepages.
 
+PCI passthrough
+================================================================================
+
+The scheduling process is slightly modified when a pinned VM includes PCI passthrough devices. In this case the NUMA nodes where the PCI devices are attached to are prioritized to pin the VM vCPUs and memory to speed-up I/O operations. No additional configuration is needed.
+
 A Complete Example
 ================================================================================
 
