@@ -110,8 +110,8 @@ In this case OpenNebula will generate an entry for each NUMA node, extending the
 
 .. code::
 
-   NUMA_NODE = [ MEMORY = 1024, TOTAL_CPUS = 4 ]
-   NUMA_NODE = [ MEMORY = 1024, TOTAL_CPUS = 4 ]
+   NUMA_NODE = [ MEMORY = 512, TOTAL_CPUS = 4 ]
+   NUMA_NODE = [ MEMORY = 512, TOTAL_CPUS = 4 ]
 
 The *in-guest* OS view is for this example:
 
