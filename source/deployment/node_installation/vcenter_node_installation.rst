@@ -94,7 +94,7 @@ As a Virtualization driver, the vCenter driver accept a series of parameters tha
 
 See the :ref:`Virtual Machine drivers reference <devel-vmm>` for more information about these parameters, and how to customize and extend the drivers.
 
-Additionally some behavior of the vCenter driver can be configured in the ``/var/lib/one/remotes/etc/vmm/vcenter/vcenterc``. The parameters that can be changed here are as follows:
+Additionally some behavior of the vCenter driver can be configured in the ``/var/lib/one/remotes/etc/vmm/vcenter/vcenterrc``. The parameters that can be changed here are as follows:
 
 +----------------+-------------------------------------------------------------------+
 | parameter      | description                                                       |
@@ -165,123 +165,123 @@ If the user account that is going to be used in vCenter operations is not declar
 +---------------------------------------------+----------------------------------------------------------------------------+
 |                  Privileges                 |                       Notes                                                |
 +---------------------------------------------+----------------------------------------------------------------------------+
-| VirtualMachine.Interact.DeviceConnection    | Required by a virtual machine reconfigure action                           |
-+---------------------------------------------+----------------------------------------------------------------------------+
-| VirtualMachine.Interact.SetCDMedia          | Required by a virtual machine reconfigure action                           |
-+---------------------------------------------+----------------------------------------------------------------------------+
-| VirtualMachine.Interact.SetFloppyMedia      | Required by a virtual machine reconfigure action                           |
-+---------------------------------------------+----------------------------------------------------------------------------+
-| VirtualMachine.Config.Rename                | Required by a virtual machine reconfigure action                           |
-+---------------------------------------------+----------------------------------------------------------------------------+
-| VirtualMachine.Config.Annotation            | Required by a virtual machine reconfigure action                           |
-+---------------------------------------------+----------------------------------------------------------------------------+
-| VirtualMachine.Config.AddExistingDisk       | Required by a virtual machine reconfigure action                           |
-+---------------------------------------------+----------------------------------------------------------------------------+
-| VirtualMachine.Config.AddNewDisk            | Required by a virtual machine reconfigure action                           |
-+---------------------------------------------+----------------------------------------------------------------------------+
-| VirtualMachine.Config.RemoveDisk            | Required by a virtual machine reconfigure action                           |
-+---------------------------------------------+----------------------------------------------------------------------------+
-| VirtualMachine.Config.CPUCount              | Required by a virtual machine reconfigure action                           |
-+---------------------------------------------+----------------------------------------------------------------------------+
-| VirtualMachine.Config.Memory                | Required by a virtual machine reconfigure action                           |
-+---------------------------------------------+----------------------------------------------------------------------------+
-| VirtualMachine.Config.RawDevice             | Required by a virtual machine reconfigure action                           |
-+---------------------------------------------+----------------------------------------------------------------------------+
-| VirtualMachine.Config.AddRemoveDevice       | Required by a virtual machine reconfigure action                           |
-+---------------------------------------------+----------------------------------------------------------------------------+
-| VirtualMachine.Config.Settings              | Required by a virtual machine reconfigure action                           |
-+---------------------------------------------+----------------------------------------------------------------------------+
-| VirtualMachine.Config.AdvancedConfig        | Required by a virtual machine reconfigure action                           |
-+---------------------------------------------+----------------------------------------------------------------------------+
-| VirtualMachine.Config.SwapPlacement         | Required by a virtual machine reconfigure action                           |
-+---------------------------------------------+----------------------------------------------------------------------------+
-| VirtualMachine.Config.HostUSBDevice         | Required by a virtual machine reconfigure action                           |
-+---------------------------------------------+----------------------------------------------------------------------------+
-| VirtualMachine.Config.DiskExtend            | Required by a virtual machine reconfigure action                           |
-+---------------------------------------------+----------------------------------------------------------------------------+
-| VirtualMachine.Config.ChangeTracking        | Required by a virtual machine reconfigure action                           |
-+---------------------------------------------+----------------------------------------------------------------------------+
-| VirtualMachine.Provisioning.ReadCustSpecs   | Required by a virtual machine reconfigure action                           |
-+---------------------------------------------+----------------------------------------------------------------------------+
-| VirtualMachine.Inventory.CreateFromExisting | Required by a virtual machine reconfigure action                           |
-+---------------------------------------------+----------------------------------------------------------------------------+
-| VirtualMachine.Inventory.CreateNew          | Required by a virtual machine reconfigure action                           |
-+---------------------------------------------+----------------------------------------------------------------------------+
-| VirtualMachine.Inventory.Move               | Required by a virtual machine reconfigure action                           |
-+---------------------------------------------+----------------------------------------------------------------------------+
-| VirtualMachine.Inventory.Register           | Required by a virtual machine reconfigure action                           |
-+---------------------------------------------+----------------------------------------------------------------------------+
-| VirtualMachine.Inventory.Remove             | Required by a virtual machine reconfigure action                           |
-+---------------------------------------------+----------------------------------------------------------------------------+
-| VirtualMachine.Inventory.Unregister         | Required by a virtual machine reconfigure action                           |
-+---------------------------------------------+----------------------------------------------------------------------------+
-| VirtualMachine.Inventory.Delete             | Required to delete a virtual machine                                       |
-+---------------------------------------------+----------------------------------------------------------------------------+
-| VirtualMachine.Provisioning.DeployTemplate  | Required to deploy a virtual machine from a particular template            |
-+---------------------------------------------+----------------------------------------------------------------------------+
-| VirtualMachine.Provisioning.CloneTemplate   | Required to create a copy of a particular template                         |
-+---------------------------------------------+----------------------------------------------------------------------------+
-| VirtualMachine.Interact.PowerOn             | Required to power on a virtual machine                                     |
-+---------------------------------------------+----------------------------------------------------------------------------+
-| VirtualMachine.Interact.PowerOff            | Required to power off or shutdown a virtual machine                        |
-+---------------------------------------------+----------------------------------------------------------------------------+
-| VirtualMachine.Interact.Suspend             | Required to suspend a virtual machine                                      |
-+---------------------------------------------+----------------------------------------------------------------------------+
-| VirtualMachine.Interact.Reset               | Required to reset/reboot a VM's guest Operating System                     |
-+---------------------------------------------+----------------------------------------------------------------------------+
-| VirtualMachine.Inventory.Delete             | Required to delete a virtual machine or template                           |
-+---------------------------------------------+----------------------------------------------------------------------------+
-| VirtualMachine.State.CreateSnapshot         | Required to create a new snapshot of a virtual machine.                    |
-+---------------------------------------------+----------------------------------------------------------------------------+
-| VirtualMachine.State.RemoveSnapshot         | Required to remove snapshots from a virtual machine                        |
-+---------------------------------------------+----------------------------------------------------------------------------+
-| VirtualMachine.State.RevertToSnapshot       | Required to revert a virtual machine to a particular snapshot              |
-+---------------------------------------------+----------------------------------------------------------------------------+
-| Resource.AssignVirtualMachineToResourcePool | Required to assign a resource pool to a virtual machine                    |
-+---------------------------------------------+----------------------------------------------------------------------------+
-| Resource.ApplyRecommendation                | On all Storage Pods (Storage DRS cluster) represented by OpenNebula        |
-+---------------------------------------------+----------------------------------------------------------------------------+
 | Datastore.AllocateSpace                     | On all VMFS datastores represented by OpenNebula                           |
-+---------------------------------------------+----------------------------------------------------------------------------+
-| Datastore.LowLevelFileOperations            | On all VMFS datastores represented by OpenNebula                           |
-+---------------------------------------------+----------------------------------------------------------------------------+
-| Datastore.RemoveFile                        | On all VMFS datastores represented by OpenNebula                           |
 +---------------------------------------------+----------------------------------------------------------------------------+
 | Datastore.Browse                            | On all VMFS datastores represented by OpenNebula                           |
 +---------------------------------------------+----------------------------------------------------------------------------+
 | Datastore.FileManagement                    | On all VMFS datastores represented by OpenNebula                           |
 +---------------------------------------------+----------------------------------------------------------------------------+
-| Network.Assign                              | Required on any network the Virtual Machine will be connected to           |
+| Datastore.LowLevelFileOperations            | On all VMFS datastores represented by OpenNebula                           |
 +---------------------------------------------+----------------------------------------------------------------------------+
-| System.Read                                 | Required to rename Uplink port group for a distributed switch only if you  |
-|                                             | want OpenNebula to create distributed virtual switches.                    |
+| Datastore.RemoveFile                        | On all VMFS datastores represented by OpenNebula                           |
 +---------------------------------------------+----------------------------------------------------------------------------+
-| Host.Config.Network                         | Required an all **ESX hosts** where you want OpenNebula to create, update  |
-|                                             | or delete virtual switches and port groups                                 |
+| DVPortgroup.CanUse                          | Required to connect a VirtualEthernetAdapter to a distributed virtual port |
+|                                             | group either it was created in vSphere or created by OpenNebula            |
++---------------------------------------------+----------------------------------------------------------------------------+
+| DVPortgroup.Create                          | Required if you want OpenNebula to create distributed port groups          |
++---------------------------------------------+----------------------------------------------------------------------------+
+| DVPortgroup.Delete                          | Required if you want OpenNebula to destroy a distributed port group that   |
+|                                             | was previously created by OpenNebula.                                      |
++---------------------------------------------+----------------------------------------------------------------------------+
+| DVPortgroup.Modify                          | Required if you want OpenNebula to create distributed port groups          |
 +---------------------------------------------+----------------------------------------------------------------------------+
 | DVSwitch.CanUse                             | Required to connect a VirtualEthernetAdapter to a distributed virtual      |
 |                                             | switch either it was created in vSphere or created by OpenNebula           |
 +---------------------------------------------+----------------------------------------------------------------------------+
 | DVSwitch.Create                             | Required if you want OpenNebula to create distributed virtual switches     |
 +---------------------------------------------+----------------------------------------------------------------------------+
-| DVSwitch.HostOp                             | Required if you want OpenNebula to create distributed virtual switches     |
-+---------------------------------------------+----------------------------------------------------------------------------+
-| DVSwitch.PortSetting                        | Required if you want OpenNebula to create distributed virtual switches     |
-+---------------------------------------------+----------------------------------------------------------------------------+
-| DVSwitch.Modify                             | Required if you want OpenNebula to create distributed virtual switches     |
-+---------------------------------------------+----------------------------------------------------------------------------+
 | DVSwitch.Delete                             | Required if you want OpenNebula to destroy a distributed virtual switches  |
 |                                             | that was previously created by OpenNebula.                                 |
 +---------------------------------------------+----------------------------------------------------------------------------+
-| DVPortgroup.Create                          | Required if you want OpenNebula to create distributed port groups          |
+| DVSwitch.HostOp                             | Required if you want OpenNebula to create distributed virtual switches     |
 +---------------------------------------------+----------------------------------------------------------------------------+
-| DVPortgroup.CanUse                          | Required to connect a VirtualEthernetAdapter to a distributed virtual port |
-|                                             | group either it was created in vSphere or created by OpenNebula            |
+| DVSwitch.Modify                             | Required if you want OpenNebula to create distributed virtual switches     |
 +---------------------------------------------+----------------------------------------------------------------------------+
-| DVSwitch.Modify                             | Required if you want OpenNebula to create distributed port groups          |
+| DVSwitch.PortSetting                        | Required if you want OpenNebula to create distributed virtual switches     |
 +---------------------------------------------+----------------------------------------------------------------------------+
-| DVPortgroup.Delete                          | Required if you want OpenNebula to destroy a distributed port group that   |
-|                                             | was previously created by OpenNebula.                                      |
+| Host.Config.Network                         | Required an all **ESX hosts** where you want OpenNebula to create, update  |
+|                                             | or delete virtual switches and port groups                                 |
++---------------------------------------------+----------------------------------------------------------------------------+
+| Network.Assign                              | Required on any network the Virtual Machine will be connected to           |
++---------------------------------------------+----------------------------------------------------------------------------+
+| Resource.ApplyRecommendation                | On all Storage Pods (Storage DRS cluster) represented by OpenNebula        |
++---------------------------------------------+----------------------------------------------------------------------------+
+| Resource.AssignVirtualMachineToResourcePool | Required to assign a resource pool to a virtual machine                    |
++---------------------------------------------+----------------------------------------------------------------------------+
+| Resource.ColdMigrate                        | Required to migrate powered on virtual machine                             |
++---------------------------------------------+----------------------------------------------------------------------------+
+| Resource.HotMigrate                         | Required to migrate powered off virtual machine                            |
++---------------------------------------------+----------------------------------------------------------------------------+
+| System.Read                                 | Required to rename Uplink port group for a distributed switch only if you  |
+|                                             | want OpenNebula to create distributed virtual switches.                    |
++---------------------------------------------+----------------------------------------------------------------------------+
+| VirtualMachine.Config.AddExistingDisk       | Required by a virtual machine reconfigure action                           |
++---------------------------------------------+----------------------------------------------------------------------------+
+| VirtualMachine.Config.AddNewDisk            | Required by a virtual machine reconfigure action                           |
++---------------------------------------------+----------------------------------------------------------------------------+
+| VirtualMachine.Config.AddRemoveDevice       | Required by a virtual machine reconfigure action                           |
++---------------------------------------------+----------------------------------------------------------------------------+
+| VirtualMachine.Config.AdvancedConfig        | Required by a virtual machine reconfigure action                           |
++---------------------------------------------+----------------------------------------------------------------------------+
+| VirtualMachine.Config.Annotation            | Required by a virtual machine reconfigure action                           |
++---------------------------------------------+----------------------------------------------------------------------------+
+| VirtualMachine.Config.ChangeTracking        | Required by a virtual machine reconfigure action                           |
++---------------------------------------------+----------------------------------------------------------------------------+
+| VirtualMachine.Config.CPUCount              | Required by a virtual machine reconfigure action                           |
++---------------------------------------------+----------------------------------------------------------------------------+
+| VirtualMachine.Config.DiskExtend            | Required by a virtual machine reconfigure action                           |
++---------------------------------------------+----------------------------------------------------------------------------+
+| VirtualMachine.Config.HostUSBDevice         | Required by a virtual machine reconfigure action                           |
++---------------------------------------------+----------------------------------------------------------------------------+
+| VirtualMachine.Config.Memory                | Required by a virtual machine reconfigure action                           |
++---------------------------------------------+----------------------------------------------------------------------------+
+| VirtualMachine.Config.RawDevice             | Required by a virtual machine reconfigure action                           |
++---------------------------------------------+----------------------------------------------------------------------------+
+| VirtualMachine.Config.RemoveDisk            | Required by a virtual machine reconfigure action                           |
++---------------------------------------------+----------------------------------------------------------------------------+
+| VirtualMachine.Config.Rename                | Required by a virtual machine reconfigure action                           |
++---------------------------------------------+----------------------------------------------------------------------------+
+| VirtualMachine.Config.Settings              | Required by a virtual machine reconfigure action                           |
++---------------------------------------------+----------------------------------------------------------------------------+
+| VirtualMachine.Config.SwapPlacement         | Required by a virtual machine reconfigure action                           |
++---------------------------------------------+----------------------------------------------------------------------------+
+| VirtualMachine.Interact.DeviceConnection    | Required by a virtual machine reconfigure action                           |
++---------------------------------------------+----------------------------------------------------------------------------+
+| VirtualMachine.Interact.PowerOff            | Required to power off or shutdown a virtual machine                        |
++---------------------------------------------+----------------------------------------------------------------------------+
+| VirtualMachine.Interact.PowerOn             | Required to power on a virtual machine                                     |
++---------------------------------------------+----------------------------------------------------------------------------+
+| VirtualMachine.Interact.Reset               | Required to reset/reboot a VM's guest Operating System                     |
++---------------------------------------------+----------------------------------------------------------------------------+
+| VirtualMachine.Interact.SetCDMedia          | Required by a virtual machine reconfigure action                           |
++---------------------------------------------+----------------------------------------------------------------------------+
+| VirtualMachine.Interact.SetFloppyMedia      | Required by a virtual machine reconfigure action                           |
++---------------------------------------------+----------------------------------------------------------------------------+
+| VirtualMachine.Interact.Suspend             | Required to suspend a virtual machine                                      |
++---------------------------------------------+----------------------------------------------------------------------------+
+| VirtualMachine.Inventory.Create             | Required by a virtual machine reconfigure action                           |
++---------------------------------------------+----------------------------------------------------------------------------+
+| VirtualMachine.Inventory.CreateFromExisting | Required by a virtual machine reconfigure action                           |
++---------------------------------------------+----------------------------------------------------------------------------+
+| VirtualMachine.Inventory.Delete             | Required to delete a virtual machine                                       |
++---------------------------------------------+----------------------------------------------------------------------------+
+| VirtualMachine.Inventory.Move               | Required by a virtual machine reconfigure action                           |
++---------------------------------------------+----------------------------------------------------------------------------+
+| VirtualMachine.Inventory.Register           | Required by a virtual machine reconfigure action                           |
++---------------------------------------------+----------------------------------------------------------------------------+
+| VirtualMachine.Inventory.Unregister         | Required by a virtual machine reconfigure action                           |
++---------------------------------------------+----------------------------------------------------------------------------+
+| VirtualMachine.Provisioning.CloneTemplate   | Required to create a copy of a particular template                         |
++---------------------------------------------+----------------------------------------------------------------------------+
+| VirtualMachine.Provisioning.DeployTemplate  | Required to deploy a virtual machine from a particular template            |
++---------------------------------------------+----------------------------------------------------------------------------+
+| VirtualMachine.Provisioning.ReadCustSpecs   | Required by a virtual machine reconfigure action                           |
++---------------------------------------------+----------------------------------------------------------------------------+
+| VirtualMachine.State.CreateSnapshot         | Required to create a new snapshot of a virtual machine.                    |
++---------------------------------------------+----------------------------------------------------------------------------+
+| VirtualMachine.State.RemoveSnapshot         | Required to remove snapshots from a virtual machine                        |
++---------------------------------------------+----------------------------------------------------------------------------+
+| VirtualMachine.State.RevertToSnapshot       | Required to revert a virtual machine to a particular snapshot              |
 +---------------------------------------------+----------------------------------------------------------------------------+
 
 Special Permission

@@ -36,6 +36,7 @@ Ubuntu 18.04
 * **libxml2-dev**
 * **libxmlrpc3-client-java**
 * **libxmlrpc3-common-java**
+* **libxmlrpc-c++8-dev**
 * **libxslt1-dev**
 * **libcurl4-openssl-dev**
 * **libcurl4**
