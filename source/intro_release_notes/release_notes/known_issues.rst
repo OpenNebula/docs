@@ -107,3 +107,12 @@ Federation master overrides quotas on slave zones
 Defined quotas on slave zones get overridden by the same quota if it is defined on master zone.
 
 More information can be found `here <https://github.com/OpenNebula/one/issues/3409>`__.
+
+CLI warning message
+===================
+
+Using some CLI commands in Ubuntu 18.04, due to ruby and gems version, you may see this message:
+
+`warning: constant ::Fixnum is deprecated`
+
+As a workaround you can use `export RUBYOPT="-W0`, this will disable the warning message (but, take in account that it will disable all warning messages from ruby)
