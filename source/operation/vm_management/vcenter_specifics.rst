@@ -63,6 +63,7 @@ The monitoring attributes retrieved from a vCenter VM are:
 - VCENTER_VMWARETOOLS_RUNNING_STATUS: The status of VMWare Tools software or Open VM Tools software.
 - VCENTER_VMWARETOOLS_VERSION: The version of the VMWare Tools or Open VM Tools.
 - VCENTER_VMWARETOOLS_VERSION_STATUS: The status version of the VMWare Tools or Open VM Tools.
+- VCENTER_HA: The status of the vSphere HA (High Availability).
 - NETTX: Bytes transmitted.
 - NETRX: Bytes received.
 - DISKRDBYTES: VM disks read bytes
