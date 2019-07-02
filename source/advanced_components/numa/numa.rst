@@ -111,6 +111,9 @@ When the VM is created a ``NUMA_NODE`` stanza is set for each node. For the prev
    NUMA_NODE = [ MEMORY = 2048, TOTAL_CPUS = 4 ]
    NUMA_NODE = [ MEMORY = 2048, TOTAL_CPUS = 4 ]
 
+Asymmetric topology
+~~~~~~~~~~~~~~~~~~~
+
 The ``NUMA_NODE`` attribute can be used to define asymmetric configurations, for example:
 
 .. code::
@@ -118,7 +121,7 @@ The ``NUMA_NODE`` attribute can be used to define asymmetric configurations, for
    MEMORY = 3072
    VCPU = 6
    CPU  = 6
-   TOPOLOGY = [ NUM_NODES = 2, PIN_POLICY = 'CORE' ]
+   TOPOLOGY = [ NUM_NODES = 2, PIN_POLICY = CORE ]
    NUMA_NODE = [ MEMORY = 1024, TOTAL_CPUS = 4 ]
    NUMA_NODE = [ MEMORY = 2048, TOTAL_CPUS = 4 ]
 
