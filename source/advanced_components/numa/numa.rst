@@ -220,7 +220,7 @@ Summary of Virtual Topology Attributes
 +--------------------+---------------------------------------------------------------------+
 | HUGEPAGE_SIZE      | Size of the hugepages (MB). If not defined no hugepages will be used|
 +--------------------+---------------------------------------------------------------------+
-| MEMORY_MAPPING     | Control if the memory is to be mapped ``shared`` or ``private``     |
+| MEMORY_ACCESS      | Control if the memory is to be mapped ``shared`` or ``private``     |
 +--------------------+---------------------------------------------------------------------+
 
 Configuring the Host
