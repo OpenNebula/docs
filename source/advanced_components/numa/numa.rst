@@ -140,6 +140,9 @@ The *in-guest* OS view is for this example:
      0:  10  20 
      1:  20  10 
 
+Asymmetric topology
+--------------------------------------------------------------------------------
+
 For some applications you may need an asymmetric NUMA configuration, i.e. not distributing the VM resources evenly across the nodes. You can define each node configuration by manually setting the ``NUMA_NODE`` attributes. For example:
 
 .. code::
@@ -147,7 +150,7 @@ For some applications you may need an asymmetric NUMA configuration, i.e. not di
    MEMORY = 3072
    VCPU = 6
    CPU  = 6
-   TOPOLOGY = [ PIN_POLICY = 'CORE', SOCKETS = 2 ]
+   TOPOLOGY = [ PIN_POLICY = CORE, SOCKETS = 2 ]
 
    NUMA_NODE = [ MEMORY = 1024, TOTAL_CPUS = 2 ]
    NUMA_NODE = [ MEMORY = 2048, TOTAL_CPUS = 4 ]
@@ -294,21 +297,6 @@ The VM is deployed in a hypervisor with the following characteristics, 1 node, 8
    node distances:
    node   0
      0:  10
-
-Asymmetric topology
-~~~~~~~~~~~~~~~~~~~
-
-The ``NUMA_NODE`` attribute can be used to define asymmetric configurations, for example:
-
-.. code::
-
-   MEMORY = 3072
-   VCPU = 6
-   CPU  = 6
-   TOPOLOGY = [ NUM_NODES = 2, PIN_POLICY = CORE ]
-   NUMA_NODE = [ MEMORY = 1024, TOTAL_CPUS = 4 ]
-   NUMA_NODE = [ MEMORY = 2048, TOTAL_CPUS = 4 ]
-
 
 and 8G of memory with a total of 2048 2M hugepages:
 
