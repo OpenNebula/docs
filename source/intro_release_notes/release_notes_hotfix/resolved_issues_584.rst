@@ -14,4 +14,6 @@ The following issues has been solved in 5.8.4:
 - `Fix container status inconsistency during boot <https://github.com/OpenNebula/one/issues/3389>`__.
 - `Fix an issue that prevents admin to change other permissions when ENABLE_OTHER_PERMISSIONS=NO <https://github.com/OpenNebula/one/issues/2563>`__.
 - `Replace Sunstone dependencies over git protocol <https://github.com/OpenNebula/one/issues/3451>`__.
+- `Show if vCenter cluster have activated DRS and/or HA <https://github.com/OpenNebula/one/issues/3438>`__.
+- `Put right drivers when importing market app to vCenter DS <https://github.com/OpenNebula/one/issues/3444>`__.
 - `Fix error when try delete image in vCenter using nfs. <https://github.com/OpenNebula/one/issues/3463>`__.
