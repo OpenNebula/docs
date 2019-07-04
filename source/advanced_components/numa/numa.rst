@@ -90,7 +90,8 @@ and the associated guest OS view:
    node   0 
      0:  10 
 
-.. important:: When defining a custom CPU Topology you need to set the number of sockets, cores and threads, and it should match the total number of vCPUS, i.e. ``VCPU = SOCKETS * CORES * THREAD``. 
+.. important:: When defining a custom CPU Topology you need to set the number of sockets, cores and threads, and it should match the total number of vCPUS, i.e. ``VCPU = SOCKETS * CORES * THREAD``.
+
 
 NUMA Topology
 --------------------------------------------------------------------------------
@@ -188,6 +189,12 @@ For example to run a 2 NUMA node VM with 8 vCPUS and 4G of memory, using the ``T
 
 .. important:: For pinned VMs the CPU (assigned hypervisor capacity) is automatically set to the vCPU number. No overcommitment is allowed for pinned workloads.
 
+
+Pinning on LXD
+--------------
+From the LXD perspective, only logical cores are perceived when assigning CPU resource to containers. The driver will only pin the cores assigned to the VM to the container, regardless of the complexity of the Topology. The only required addition to pin CPUs on containers, would be ``TOPOLOGY = [ PIN_POLICY = thread]``
+
+
 PCI Passthrough
 --------------------------------------------------------------------------------
 
@@ -203,6 +210,9 @@ To enable the use of hugepages for the memory allocation of the VM just add the 
 	TOPOLOGY = [ HUGEPAGE_SIZE = 2 ]
 
 OpenNebula will look for a host with enough free pages of the requested size to allocate the VM. The resources of each virtual node will be placed as close as possible to the node providing the hugepages.
+
+.. note:: Not supported on LXD
+
 
 Summary of Virtual Topology Attributes
 ================================================================================
