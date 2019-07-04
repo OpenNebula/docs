@@ -192,7 +192,7 @@ For example to run a 2 NUMA node VM with 8 vCPUS and 4G of memory, using the ``T
 
 Pinning on LXD
 --------------
-From the LXD perspective, only logical cores are perceived when assigning CPU resource to containers. The driver will only pin the cores assigned to the VM to the container, regardless of the complexity of the Topology. The only required addition to pin CPUs on containers, would be ``TOPOLOGY = [ PIN_POLICY = thread]``
+From the LXD perspective, only logical cores are perceived when assigning CPU resource to containers. The driver will only pin the cores assigned to the VM to the container, regardless of the complexity of the topology. The only required addition to pin CPUs on containers, would be ``TOPOLOGY = [ PIN_POLICY = <thread|core> ]``
 
 
 PCI Passthrough
