@@ -30,4 +30,4 @@ CLI
 Other Issues Solved
 ================================================================================
 - `Fixes an issue that makes the network drivers fail when a large number of secturiy groups rules are used <https://github.com/OpenNebula/one/issues/2851>`_.
-- `Remove resource reference from VDC, when resource erased <https://github.com/OpenNebula/one/issues/1815>`_.
+- `Remove resource reference from VDC when resource is erased <https://github.com/OpenNebula/one/issues/1815>`_.
