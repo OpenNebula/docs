@@ -166,7 +166,7 @@ Nodes need extra steps to setup credentials in libvirt:
 
   $ rbd ls -p one --id libvirt
 
-You can read more information about this in the Ceph guide `Using libvirt with Ceph <http://ceph.com/docs/master/rbd/libvirt/>`__.
+You can read more information about this in the Ceph guide `Using libvirt with Ceph <http://docs.ceph.com/docs/master/rbd/libvirt/>`__.
 
 * Ancillary virtual machine files like context disks, deployment and checkpoint files are created at the nodes under ``/var/lib/one/datastores/``, make sure that enough storage for these files is provisioned in the nodes.
 
