@@ -60,3 +60,66 @@ Example of minimal Packet provision template:
         vm_mad: kvm
         provision:
           hostname: "host1"
+
+
+Public Networking
+=================
+
+.. note::
+
+    Feature available since **OpenNebula 5.8.5** only.
+
+OpenNebula provides means to allow the public networking for the Virtual Machines running on OpenNebula managed hosts on Packet.
+
+.. important::
+
+    The functionality can be used **only for external NIC aliases** (secondary addresses) of the virtual machines and only if all following drivers and hook are configured:
+
+    * IPAM driver for :ref:`Packet <ddc_ipam_packet>`
+    * Hook for :ref:`NIC Alias IP <ddc_hooks_alias_ip>`
+    * Virtual Network :ref:`NAT Mapping Driver for Aliased NICs <ddc_vnet_alias_sdnat>`
+
+It's expected that you have the private host-only network in the OpenNebula and Linux bridge configured with the private IP address on the host. Any IP Masquerade (NAT) should be disabled not to clash with the SNAT / DNAT ad-hoc rules created by :ref:`NAT Mapping Driver for Aliased NICs <ddc_vnet_alias_sdnat>`.
+
+Example provision template with network-only related configuration:
+
+.. code::
+
+    ---
+    playbook: default
+
+    defaults:
+      provision:
+        driver: packet
+        packet_token: ********************************
+        packet_project: ************************************
+        facility: ams1
+        plan: baremetal_0
+        os: ubuntu_18_04
+      configuration:
+        iptables_masquerade_enabled: False
+
+    networks:
+      - name: "host-only"
+        vn_mad: dummy
+        bridge: br0
+        dns: "8.8.8.8 8.8.4.4"
+        gateway: "192.168.150.1"
+        description: "Host-only networking"
+        ar:
+          - ip: "192.168.150.2"
+            size: 253
+            type: IP4
+
+      - name: "public"
+        vn_mad: alias_sdnat
+        external: yes
+        description: "Public networking"
+        ar:
+          - size: 2
+            type: IP4
+            ipam_mad: packet
+            packet_ip_type: public_ipv4
+            facility: ams1
+            packet_token: ********************************
+            packet_project: ********************************
