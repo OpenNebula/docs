@@ -17,3 +17,4 @@ The following issues has been solved in 5.8.4:
 - `Show if vCenter cluster have activated DRS and/or HA <https://github.com/OpenNebula/one/issues/3438>`__.
 - `Put right drivers when importing market app to vCenter DS <https://github.com/OpenNebula/one/issues/3444>`__.
 - `Fix error when try delete image in vCenter using nfs. <https://github.com/OpenNebula/one/issues/3463>`__.
+- `Do not automatically mark new snapshots as active in ALLOW_ORPHANS=mixed. <https://github.com/OpenNebula/one/issues/3468>`__.
