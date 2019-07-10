@@ -9,3 +9,6 @@ Provision and Configuration Reference
 
    Provision <provision/index>
    Configuration <config/index>
+   IPAM driver <ipam/index>
+   Hooks <hooks/index>
+   VNet alias driver <vnet_driver/alias_driver>
