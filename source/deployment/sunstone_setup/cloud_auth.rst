@@ -146,3 +146,7 @@ Whereas a user with a **server\_**\ \* driver must use this token format:
 
 The core daemon understands a request with this authentication session token as "perform this operation on behalf of target_user". The ``secret`` part of the token is signed with one of the two mechanisms explained before.
 
+Two Factor Authentication
+-------------------------
+
+To use the 2fa use the following :ref:`Link <2f_auth>`
