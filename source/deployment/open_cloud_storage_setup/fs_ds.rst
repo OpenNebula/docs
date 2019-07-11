@@ -27,6 +27,9 @@ The Filesystem datastore can be used with three different transfer modes, descri
 * **qcow2**, like *shared* but specialized for the qcow2 format
 
 
+.. warning:: Bind mounts for datastores `aren't supported on LXD deployments <https://github.com/OpenNebula/one/issues/3494#issuecomment-510174200>`__.
+
+
 Datastore Layout
 ================================================================================
 Images are saved into the corresponding datastore directory (``/var/lib/one/datastores/<DATASTORE ID>``). Also, for each running virtual machine there is a directory (named after the ``VM ID``) in the corresponding System Datastore. These directories contain the VM disks and additional files, e.g. checkpoint or snapshots.
