@@ -19,3 +19,4 @@ The following issues has been solved in 5.8.4:
 - `Fix error when try delete image in vCenter using nfs. <https://github.com/OpenNebula/one/issues/3463>`__.
 - `Do not automatically mark new snapshots as active in ALLOW_ORPHANS=mixed. <https://github.com/OpenNebula/one/issues/3468>`__.
 - `Added basic support to Opaque Networks. <https://github.com/OpenNebula/one/issues/1256>`__.
+- `Fix issue leaving undeleted block devices after VM termination on Ceph Fs in some cases <https://github.com/OpenNebula/one/issues/3478>`_.
