@@ -16,5 +16,7 @@ The following issues has been solved in 5.8.4:
 - `Replace Sunstone dependencies over git protocol <https://github.com/OpenNebula/one/issues/3451>`__.
 - `Show if vCenter cluster have activated DRS and/or HA <https://github.com/OpenNebula/one/issues/3438>`__.
 - `Put right drivers when importing market app to vCenter DS <https://github.com/OpenNebula/one/issues/3444>`__.
-- `Fix error when try delete image in vCenter using nfs. <https://github.com/OpenNebula/one/issues/3463>`__.
-- `Clean onevcenter tool error messages. <https://github.com/OpenNebula/one/issues/3439>`__.
+- `Fix error when try delete image in vCenter using nfs <https://github.com/OpenNebula/one/issues/3463>`__.
+- `Clean onevcenter tool error messages <https://github.com/OpenNebula/one/issues/3439>`__.
+- `Do not automatically mark new snapshots as active in ALLOW_ORPHANS=mixed <https://github.com/OpenNebula/one/issues/3468>`__.
+- `Added basic support to Opaque Networks <https://github.com/OpenNebula/one/issues/1256>`__.
