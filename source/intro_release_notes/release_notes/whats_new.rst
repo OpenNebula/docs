@@ -25,11 +25,11 @@ Sunstone
 
 OneFlow & OneGate
 ===============================================================================
-- `Option to delete attibutes from VM user template via onegate <https://github.com/OpenNebula/one/issues/1414>`__.
+- :ref:`Option to delete attibutes from VM user template via onegate <onegate_usage>`.
 
 CLI
 ================================================================================
-- `Add new cli options to allow better output parsing <https://github.com/OpenNebula/one/issues/688>`__.
+- :ref:`Add new cli options to allow better output parsing <cli>`. Check **adjust**, **expand** and **size** new options.
 
 Other Issues Solved
 ================================================================================
