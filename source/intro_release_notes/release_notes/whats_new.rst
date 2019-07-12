@@ -19,6 +19,10 @@ Networking
 --------------------------------------------------------------------------------
 - `Extend network driver actions with customizable hooks <https://github.com/OpenNebula/one/issues/2451>`_.
 
+Sunstone
+--------------------------------------------------------------------------------
+- :ref:`Added Two Factor Authentication <2f_auth>`.
+
 OneFlow & OneGate
 ===============================================================================
 - `Option to delete attibutes from VM user template via onegate <https://github.com/OpenNebula/one/issues/1414>`__.
