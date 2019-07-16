@@ -24,3 +24,4 @@ The following issues has been solved in 5.8.4:
 - `Do not automatically mark new snapshots as active in ALLOW_ORPHANS=mixed <https://github.com/OpenNebula/one/issues/3468>`__.
 - `Added fedora to auto-contextualized images from LXD marketplace <https://github.com/OpenNebula/addon-context-linux/issues/169>`__.
 - `Exclude untested LXD apps from LXD marketplace <https://github.com/OpenNebula/one/issues/3467>`__.
+- `Fix AUTOMATIC_DS_REQUIREMENTS for TM driver names that require quotes <https://github.com/OpenNebula/one/issues/3513>`__.
