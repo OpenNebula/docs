@@ -50,9 +50,10 @@ Located under ``/var/lib/one/remotes/datastore/<ds_mad>``
 
 -  **monitor**: monitors a datastore
 
-   -  **ARGUMENTS**: ``datastore_action_dump image_id``
+   -  **ARGUMENTS**: ``datastore_action_dump image_id monitor_vm_disks``
    -  **RETURNS**: ``monitor data``
    -  ``datastore_image_dump`` is an XML dump of the driver action encoded in Base 64. See a decoded :ref:`example <sd_dump>`.
+   -  ``monitor_vm_disks`` should monitor also VM disk usage (0 - no, 1 - yes).
    -  ``monitor data`` The monitoring information of the datastore, namely “USED\_MB=...\\nTOTAL\_MB=...\\nFREE\_MB=...” which are respectively the used size of the datastore in MB, the total capacity of the datastore in MB and the available space in the datastore in MB.
 
 -  **snap_delete**: Deletes a snapshot of a persistent image.
