@@ -14,7 +14,7 @@ OpenNebula Core
 Storage
 --------------------------------------------------------------------------------
 - `Allows user to modify block size for dd commands used for Ceph, Fs and LVM datastore drivers <lvm_driver>`_.
-- `Configurable monitoring of VM disk usage in datastore <https://github.com/OpenNebula/one/issues/2765>`_.
+- `Configurable monitoring of VM disk usage in system datastores drivers (fs and fs_lvm) <https://github.com/OpenNebula/one/issues/2765>`_.
 
 Networking
 --------------------------------------------------------------------------------
