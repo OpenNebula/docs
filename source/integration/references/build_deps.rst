@@ -127,7 +127,6 @@ CentOS 7
 * **ruby**
 * **scons**
 * **sqlite-devel**
-* **sqlite-devel**
 * **systemd-devel**
 * **xmlrpc-c**
 * **xmlrpc-c-devel**
