@@ -498,6 +498,50 @@ Decoded Example
         </DATASTORE>
     </DS_DRIVER_ACTION_DATA>
 
+    <DS_DRIVER_ACTION_DATA>
+        <DATASTORE>
+            <ID>0</ID>
+            <UID>0</UID>
+            <GID>0</GID>
+            <UNAME>oneadmin</UNAME>
+            <GNAME>oneadmin</GNAME>
+            <NAME>system</NAME>
+            <PERMISSIONS>
+                <OWNER_U>1</OWNER_U>
+                <OWNER_M>1</OWNER_M>
+                <OWNER_A>0</OWNER_A>
+                <GROUP_U>1</GROUP_U>
+                <GROUP_M>0</GROUP_M>
+                <GROUP_A>0</GROUP_A>
+                <OTHER_U>0</OTHER_U>
+                <OTHER_M>0</OTHER_M>
+                <OTHER_A>0</OTHER_A>
+            </PERMISSIONS>
+            <DS_MAD><![CDATA[-]]></DS_MAD>
+            <TM_MAD><![CDATA[qcow2]]></TM_MAD>
+            <BASE_PATH><![CDATA[/var/lib/one//datastores/0]]></BASE_PATH>
+            <TYPE>1</TYPE>
+            <DISK_TYPE>0</DISK_TYPE>
+            <STATE>0</STATE>
+            <CLUSTERS>
+                <ID>0</ID>
+            </CLUSTERS>
+            <TOTAL_MB>31998</TOTAL_MB>
+            <FREE_MB>12650</FREE_MB>
+            <USED_MB>17694</USED_MB>
+            <IMAGES></IMAGES>
+            <TEMPLATE>
+                <ALLOW_ORPHANS><![CDATA[NO]]></ALLOW_ORPHANS>
+                <DS_MIGRATE><![CDATA[YES]]></DS_MIGRATE>
+                <SHARED><![CDATA[YES]]></SHARED>
+                <TM_MAD><![CDATA[qcow2]]></TM_MAD>
+                <TYPE><![CDATA[SYSTEM_DS]]></TYPE>
+            </TEMPLATE>
+        </DATASTORE>
+        <DATASTORE_LOCATION>/var/lib/one//datastores</DATASTORE_LOCATION>
+        <MONITOR_VM_DISKS>1</MONITOR_VM_DISKS>
+    </DS_DRIVER_ACTION_DATA>
+
 Export XML
 ================================================================================
 
