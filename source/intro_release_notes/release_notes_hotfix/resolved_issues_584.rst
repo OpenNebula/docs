@@ -26,3 +26,4 @@ The following issues has been solved in 5.8.4:
 - `Exclude untested LXD apps from LXD marketplace <https://github.com/OpenNebula/one/issues/3467>`__.
 - `Fix AUTOMATIC_DS_REQUIREMENTS for TM driver names that require quotes <https://github.com/OpenNebula/one/issues/3513>`__.
 - `Add meaningful log when host fencing isn't configured yet <https://github.com/OpenNebula/one/issues/2282>`__.
+- `Fix error when detaching a NIC Alias, so the alias variables weren't removed from the context.sh file <https://github.com/OpenNebula/one/issues/3484>`__.
