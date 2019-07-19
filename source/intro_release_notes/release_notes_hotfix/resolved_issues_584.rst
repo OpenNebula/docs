@@ -27,3 +27,5 @@ The following issues has been solved in 5.8.4:
 - `Fix AUTOMATIC_DS_REQUIREMENTS for TM driver names that require quotes <https://github.com/OpenNebula/one/issues/3513>`__.
 - `Add meaningful log when host fencing isn't configured yet <https://github.com/OpenNebula/one/issues/2282>`__.
 - `Fix error when detaching a NIC Alias, so the alias variables weren't removed from the context.sh file <https://github.com/OpenNebula/one/issues/3484>`__.
+- `Fix create a VM group without roles in Sunstone <https://github.com/OpenNebula/one/issues/3336>`_.
+- `Fix disappear hypervisor selector when use KVM view <https://github.com/OpenNebula/one/issues/3435>`_.
