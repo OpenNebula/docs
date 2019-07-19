@@ -51,7 +51,7 @@ Using Open vSwtich and DPDK
 
 There are no additional changes, simply:
 
-* Create your networks using the ``ovswitch`` driver, :ref:`more details here <openvswtich>`.
+* Create your networks using the ``ovswitch`` driver, :ref:`more details here <openvswitch>`.
 * Make sure that the NIC model is set to ``virtio``. This setting can be added as a default in ``/etc/one/vmm_exec/vmm_exec_kvm.conf``.
 
 You can verify that the VMs are using the vhost interface by looking at their domain definition in the host. You should see something like:
