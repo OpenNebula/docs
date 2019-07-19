@@ -12,3 +12,4 @@ Open Cloud Networking Setup
    VXLAN Networks <vxlan>
    Open vSwitch Networks <openvswitch>
    Open vSwitch on VXLAN Networks <openvswitch_vxlan>
+   Open vSwitch and DPDK datapath <openvswitch_dpdk>
