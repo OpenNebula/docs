@@ -131,10 +131,13 @@ Available options are:
 +---------------------------+-----------------------------------------------------------------------------------------------+
 | :allow\_vnc\_federation   | True to display VNC icons in fedetarion                                                       |
 +---------------------------+-----------------------------------------------------------------------------------------------+
+<<<<<<< HEAD
 
 .. note:: To use Sunstone with IPv6 only systems and thin HTTP sever, use the full IPv6 address in the field `:host`. If you need to set the localhost address (::1) or the unspecified address (::) please use the following:
 
           Example: :host: 0::1, :host: 0::0
+=======
+>>>>>>> one-5.8-maintenance
 
 .. note:: To use Sunstone with IPv6 only systems and thin HTTP sever, use the full IPv6 address in the field `:host`. If you need to set the localhost address (::1) or the unspecified address (::) please use the following:
 
@@ -158,6 +161,29 @@ Sunstone behaviour can also be configured through the user template (within a SU
 | DEFAULT_ZONE_ENDPOINT     | Default zone at Sunstone login. Defaults to the local zone        |
 +---------------------------+-------------------------------------------------------------------+
 
+
+.. note:: To use Sunstone with IPv6 only systems and thin HTTP sever, use the full IPv6 address in the field `:host`. If you need to set the localhost address (::1) or the unspecified address (::) please use the following:
+
+          Example: :host: 0::1, :host: 0::0
+
+
+Sunstone behaviour can also be configured through the user template (within a SUNSTONE=[] vector value. For instance SUNSTONE=[TABLE_ORDER="asc"]):
+
++---------------------------+-------------------------------------------------------------------+
+|           Option          |                            Description                            |
++---------------------------+-------------------------------------------------------------------+
+| DISPLAY_NAME              | Name of the user that will appear in Sunstone                     |
++---------------------------+-------------------------------------------------------------------+
+| TABLE_ORDER               | Asc (ascending) or Desc (descending)                              |
++---------------------------+-------------------------------------------------------------------+
+| DEFAULT_VIEW              | Name of the default view (as appearing in /etc7on/sunstone-views) |
++---------------------------+-------------------------------------------------------------------+
+| TABLE_DEFAULT_PAGE_LENGTH | Default lenght of Sunstone datatables' pages                      |
++---------------------------+-------------------------------------------------------------------+
+| LANG                      | Sunstone language (defaults to en_US)                             |
++---------------------------+-------------------------------------------------------------------+
+| DEFAULT_ZONE_ENDPOINT     | Default zone at Sunstone login. Defaults to the local zone        |
++---------------------------+-------------------------------------------------------------------+
 
 Starting Sunstone
 --------------------------------------------------------------------------------
