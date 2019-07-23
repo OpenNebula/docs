@@ -78,26 +78,6 @@ LOCK mark for VMs in Sunstone
 There is a bug which makes disappear the LOCK highlight for VMs in Sunstone. This bug has been fixed but to let the fix take effect it's necessary to force a VM DB update. You can trigger this update with a state change or a template update without modifying any field.
 
 This is only necessary when updating to 5.8.2 from 5.8.x.
-<<<<<<< HEAD
-
-FSCK network problem
-================================================================================
-
-There are two bugs affecting the onedb fsck command related to networks. These bugs have been fixed, so please replace your fsck/network.rb file (located in /usr/lib/one/ruby/onedb/fsck) by https://github.com/OpenNebula/one/blob/master/src/onedb/fsck/network.rb
-
-DB Size Increase due to FTS index
-=================================
-
-FTS index used for VM searching is consuming too much disk size.
-
-In order to remove the index while a new release reduces the indexing and alleviates the issue, run the following SQL sentence in your MySQL OpenNebula DB:
-
-.. code::
-
-   ALTER TABLE vm_pool DROP INDEX ftidx;
-
-
-More information can be found `here <https://github.com/OpenNebula/one/issues/3393>`__.
 
 Sunstone Disk Update for vCenter
 ================================
@@ -114,5 +94,3 @@ Using some CLI commands in Ubuntu 18.04, due to ruby and gems version, you may s
 `warning: constant ::Fixnum is deprecated`
 
 As a workaround you can use `export RUBYOPT="-W0`, this will disable the warning message (but, take in account that it will disable all warning messages from ruby)
-=======
->>>>>>> one-5.8-maintenance
