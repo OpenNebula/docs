@@ -11,4 +11,5 @@ The following new features has been backported to 5.8.5:
 
 The following issues has been solved in 5.8.5:
 
-- `Description <https://github.com/OpenNebula/one/issues/XXXX>`__.
+- `Fixed vnm clean not running after failed deploy <https://github.com/OpenNebula/one/issues/3540>`__.
+
