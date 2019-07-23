@@ -1,7 +1,7 @@
 .. _rn_hotfix:
 
 ================================================================================
-Release Notes 5.8.4 Hotfix
+Release Notes 5.8.5 Hotfix
 ================================================================================
 
 .. toctree::
@@ -11,4 +11,5 @@ Release Notes 5.8.4 Hotfix
    Resolved Issues in 5.8.2 <resolved_issues_582>
    Resolved Issues in 5.8.3 <resolved_issues_583>
    Resolved Issues in 5.8.4 <resolved_issues_584>
+   Resolved Issues in 5.8.5 <resolved_issues_585>
    Known Issues <known_issues_hotfix>
