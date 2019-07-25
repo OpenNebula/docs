@@ -21,27 +21,6 @@ To enable a new network manager driver, the frist requirement is to make a new d
 
 .. warning:: Remember that any change in the ``/var/lib/one/remotes`` directory won't be effective in the Hosts until you execute, as oneadmin: ``onehost sync -f``
 
-Default driver actions support the execution of hooks after the main action is succesfully executed. In order to create an action hook you need to place your custom configuration scripts in the corresponding **action.d** directory, inside the target networking driver directory. Files found in that directory will be run in an alphabetical order, excluding the ones oneadmin cannot run due to lack of permissions. If the main action fails the hooks won't be run. If a hook fails the corresponding network actions will be consider as a **FAILURE** and the VM will change its state accordingly. Note that the scripts will receive the same information as the main action through stdin.
-
-For example, this is the directory tree of the bridge driver synced to a virtualization node with some custom scripts 
-
-.. code-block:: text
-
-    root@ubuntu1804-lxd-ssh-6ee11-2:/var/tmp/one/vnm/bridge# tree ./
-    ./
-    ├── clean
-    ├── clean.d
-    │   ├── 01_del_fdb
-    │   ├── 02_del_routes
-    ├── post
-    ├── post.d
-    │   ├── 01_add_fdb
-    │   ├── 02_add_routes
-    ├── pre
-    ├── pre.d
-    │   ├── 01_update_router
-    └── update_sg
-
 Virtual Machine actions and their relation with Network actions:
 
 -  **Deploy**: ``pre`` and ``post``
@@ -78,6 +57,32 @@ After that you need to define the bridging technology used by the driver at ``/e
     ]
 
 .. note:: Note that you can set BRIDGE_TYPE attribute to ``none`` if you need to leave the bridge empty.
+
+.. _devel-nm-hook:
+
+Driver Customization
+================================================================================
+
+Default driver actions support the execution of hooks after the main action is succesfully executed. In order to create an action hook you need to place your custom configuration scripts in the corresponding **action.d** directory, inside the target networking driver directory. Files found in that directory will be run in an alphabetical order, excluding the ones oneadmin cannot run due to lack of permissions. If the main action fails the hooks won't be run. If a hook fails the corresponding network actions will be consider as a **FAILURE** and the VM will change its state accordingly. Note that the scripts will receive the same information as the main action through stdin.
+
+For example, this is the directory tree of the bridge driver synced to a virtualization node with some custom scripts 
+
+.. code-block:: text
+
+    root@ubuntu1804-lxd-ssh-6ee11-2:/var/tmp/one/vnm/bridge# tree ./
+    ./
+    ├── clean
+    ├── clean.d
+    │   ├── 01_del_fdb
+    │   ├── 02_del_routes
+    ├── post
+    ├── post.d
+    │   ├── 01_add_fdb
+    │   ├── 02_add_routes
+    ├── pre
+    ├── pre.d
+    │   ├── 01_update_router
+    └── update_sg
 
 Driver Parameters
 ================================================================================
