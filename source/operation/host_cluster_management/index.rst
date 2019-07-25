@@ -10,3 +10,4 @@ Hosts and Clusters Management
    Clusters <cluster_guide>
    Scheduler <scheduler>
    Datastores <datastore_guide>
+   NUMA and CPU Pinning <numa>

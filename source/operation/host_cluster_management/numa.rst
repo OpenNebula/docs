@@ -270,6 +270,7 @@ In this output, the string ``X- X- -- --`` represents the NUMA allocation: each 
 
 .. note:: If you want to use hugepages of a given size you need to allocate them first. This can be done either at boot time or dynamically. Also you may need need to mount the `hugetlbfs` filesystem. Please refer to your OS documentation to learn how to do this.
 
+You can also isolate some hypervisor CPUS from the NUMA scheduler. Isolated CPUs will not be used to pin any VM. The isolated CPUs are defined with the ``ISOLCPUS`` attribute, the attribute is a comma separated list of CPU IDs. For example ``ISOLCPUS="0,5"`` will isolated CPUs 0,5 and hence will not be used to pin any VM.
 
 A Complete Example
 ================================================================================
