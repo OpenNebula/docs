@@ -38,7 +38,7 @@ Sunstone
 
 OneFlow & OneGate
 ===============================================================================
-- **Remve attributes from VMs**, the onegate server API supports a new option to delete attributes from VM user template :ref:`via onegate command <onegate_usage>`.
+- **Remove attributes from VMs**, the onegate server API supports a new option to delete attributes from VM user template :ref:`via onegate command <onegate_usage>`.
 
 CLI
 ================================================================================
