@@ -16,7 +16,7 @@ The following issues has been solved in 5.8.4:
 - `Replace Sunstone dependencies over git protocol <https://github.com/OpenNebula/one/issues/3451>`__.
 - `Put right drivers when importing market app to vCenter DS <https://github.com/OpenNebula/one/issues/3444>`__.
 - `Improve error messages on vcenter deploy. <https://github.com/OpenNebula/one/issues/1302>`__.
-- `Fix error when try delete image in vCenter using NFS. <https://github.com/OpenNebula/one/issues/3463>`__.
+- `Fix error when try delete image in vCenter using NFS <https://github.com/OpenNebula/one/issues/3463>`__.
 - `Added basic support to NSX opaque networks. <https://github.com/OpenNebula/one/issues/1256>`__.
 - `Fix issue leaving undeleted block devices after VM termination on Ceph FS in some cases <https://github.com/OpenNebula/one/issues/3478>`_.
 - `Clean onevcenter tool error messages <https://github.com/OpenNebula/one/issues/3439>`__.
