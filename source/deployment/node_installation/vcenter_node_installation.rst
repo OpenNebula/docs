@@ -43,7 +43,7 @@ Additionally, to enable VNC access to the spawned Virtual Machines, the Front-en
 Step 2: Configure the drivers in the Front-end (oned.conf) [Optional]
 --------------------------------------------------------------------------------
 
-The following sections in the ``/etc/one/oned.conf`` file describe the information and virutalization drivers for vCenter, which are enabled by default:
+The following sections in the ``/etc/one/oned.conf`` file describe the information and virtualization drivers for vCenter, which are enabled by default:
 
 .. code::
 
