@@ -25,7 +25,7 @@ Other minor features in OpenNebula core:
 Storage
 --------------------------------------------------------------------------------
 - **Custom block size for Datablocks**, to allow users to modify block size for dd commands used for :ref:`Ceph <ceph_ds>`, :ref:`Fs <fs_ds>` and :ref:`LVM datastore drivers <lvm_drivers>`.
-- **Configurable VM monitoring**, you can configure the frecuency to monitor VM disk usage in datastores drivers (:ref:`Fs <fs_ds>` and :ref:`LVM <lvm_drivers>`). Check :ref:`the oned.conf reference guide <oned_conf>`.
+- **Configurable VM monitoring**, you can configure the frequency to monitor VM disk usage in datastores drivers (:ref:`Fs <fs_ds>` and :ref:`LVM <lvm_drivers>`). Check :ref:`the oned.conf reference guide <oned_conf>`.
 
 Networking
 --------------------------------------------------------------------------------
@@ -38,11 +38,11 @@ Sunstone
 
 OneFlow & OneGate
 ===============================================================================
-- :ref:`Option to delete attibutes from VM user template via onegate <onegate_usage>`.
+- **Remve attributes from VMs**, the onegate server API supports a new option to delete attributes from VM user template :ref:`via onegate command <onegate_usage>`.
 
 CLI
 ================================================================================
-- :ref:`Add new cli options to allow better output parsing <cli>`. Check **adjust**, **expand** and **size** new options.
+- **Better output for CLI tools**, new options to adjust and expand the output to the terminal size, also it allow better parsing of output, :ref:`check the documentation (expand, adjust and size attributes) for more details <cli>`.
 
 Other Issues Solved
 ================================================================================
