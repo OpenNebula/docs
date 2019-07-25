@@ -86,3 +86,147 @@ VLAN trunking is also supported by adding the following tag to the ``NIC`` eleme
 
 -  ``VLAN_TAGGED_ID``: Specify a range of VLANs to tag, for example: ``1,10,30,32,100-200``.
 
+.. _openvswitch_vxlan:
+
+
+Using Open vSwitch on VXLAN Networks
+================================================================================
+
+This section describes how to use `Open vSwitch <http://openvswitch.org/>`__ on VXLAN networks. To use VXLAN you need to use a specialized version of the Open vSwtich driver above that incorporates the features of the :ref:`VXLAN <vxlan>` driver. It's necessary to be familiar with these two drivers, their configuration options, benefits, and drawbacks.
+
+The VXLAN overlay network is used as a base with the Open vSwitch (instead of regular Linux bridge) on top. Traffic on the lowest level is isolated by the VXLAN encapsulation protocol, and Open vSwitch still allows to use the second level isolation by 802.1Q VLAN tags **inside the encapsulated traffic**. Main isolation is always provided by VXLAN, not 802.1Q VLANs. If 802.1Q is required to isolate the VXLAN, the driver needs to be configured with user-created 802.1Q tagged physical interface.
+
+This hierarchy is important to understand.
+
+OpenNebula Configuration
+--------------------------------------------------------------------------------
+
+There is no configuration specific to this driver, except the options specified above and in the :ref:`VXLAN guide <vxlan>`.
+
+Defining an Open vSwitch - VXLAN Network
+--------------------------------------------------------------------------------
+
+To create a network include the following information:
+
++-----------------------------+-------------------------------------------------------------------------+-----------+
+| Attribute                   | Value                                                                   | Mandatory |
++=============================+=========================================================================+===========+
+| **VN_MAD**                  | ovswitch_vxlan                                                          |  **YES**  |
++-----------------------------+-------------------------------------------------------------------------+-----------+
+| **PHYDEV**                  | Name of the physical network device that will be attached to the bridge.|  **YES**  |
++-----------------------------+-------------------------------------------------------------------------+-----------+
+| **BRIDGE**                  | Name of the Open vSwitch bridge to use                                  |  NO       |
++-----------------------------+-------------------------------------------------------------------------+-----------+
+| **OUTER_VLAN_ID**           | The outer VXLAN network ID.                                             |  NO       |
++-----------------------------+-------------------------------------------------------------------------+-----------+
+| **AUTOMATIC_OUTER_VLAN_ID** | If OUTER_VLAN_ID has been defined, this attribute is ignored.           |  NO       |
+|                             | Set to YES if you want OpenNebula to generate an automatic ID.          |           |
++-----------------------------+-------------------------------------------------------------------------+-----------+
+| **VLAN_ID**                 | The inner 802.1Q VLAN ID. If this attribute is not defined a VLAN ID    |  NO       |
+|                             | will be generated if AUTOMATIC_VLAN_ID is set to YES.                   |           |
++-----------------------------+-------------------------------------------------------------------------+-----------+
+| **AUTOMATIC_VLAN_ID**       | If VLAN_ID has been defined, this attribute is ignored.                 |  NO       |
+|                             | Set to YES if you want OpenNebula to generate an automatic VLAN ID.     |           |
++-----------------------------+-------------------------------------------------------------------------+-----------+
+| **MTU**                     | The MTU for the VXLAN interface and bridge                              |  NO       |
++-----------------------------+-------------------------------------------------------------------------+-----------+
+
+The following example defines an Open vSwitch network
+
+.. code::
+
+    NAME    = "ovsvx_net"
+    VN_MAD  = "ovswitch_vxlan"
+    PHYDEV  = eth0
+    BRIDGE  = ovsvxbr0.10000
+    OUTER_VLAN_ID = 10000  # VXLAN VNI
+    VLAN_ID = 50           # optional
+    ...
+
+In this scenario, the driver will check for the existence of bridge ``ovsvxbr0.10000``.  If it doesn't exist, it will be created. Also, the VXLAN interface ``eth0.10000`` will be created and attached to the Open vSwitch bridge ``ovsvxbr0.10000``. When a virtual machine is instantiated, its bridge ports will be tagged with 802.1Q VLAN 50.
+
+.. _openvswitch_dpdk:
+
+
+Open vSwitch with DPDK
+================================================================================
+
+This section describes how to use a DPDK datapath with the Open vSwitch drivers. When using the DPDK backend, the OpenNebula drivers will automatically configure the bridges and ports accordingly.
+
+.. warning:: This section is only relevant for KVM guests
+
+Requirements & Limitations
+--------------------------------------------------------------------------------
+
+Please consider the following when using the DPDK datapath for Open vSwitch:
+
+* An Open vSwitch version compiled with DPDK support is required.
+* This mode cannot be combined with non-DPDK switches.
+* The VMs need to use the virtio interface for its NICs.
+* Although not needed to make it work, you'd probably be interested in configuring NUMA pinning and hugepages in your hosts. :ref:`You can read more here <numa>`.
+
+OpenNebula Configuration
+--------------------------------------------------------------------------------
+
+Follow these steps to configure OpenNebula:
+
+* **Select the DPDK backend for the switches**. Edit the configuration of the openvswtich driver in ``/ect/one/oned.conf`` to read:
+
+.. code:: bash
+
+   VN_MAD_CONF = [
+       NAME = "ovswitch",
+       BRIDGE_TYPE = "openvswitch_dpdk"
+   ]
+
+After making this change you need to restart OpenNebula
+
+* **Set the datapath type for the bridges**. Edit the bridge configuration options in ``/var/lib/one/remotes/etc/OpenNebulaNetwork.conf``:
+
+.. code:: bash
+
+   :ovs_bridge_conf:
+       :datapath_type: netdev
+
+After making this change you need to synchronize the changes with your hosts using the ``onehost sync`` command.
+
+Note that the sockets used by the vhost interface are created in the VM directory (``/var/lib/one/datastores/<ds_id>/<vm_id>``) and named after the switch port.
+
+Using DPDK in your Virtual Networks
+--------------------------------------------------------------------------------
+
+There are no additional changes, simply:
+
+* Create your networks using the ``ovswitch`` driver, :ref:`see above <openvswitch>`.
+* Make sure that the NIC model is set to ``virtio``. This setting can be added as a default in ``/etc/one/vmm_exec/vmm_exec_kvm.conf``.
+
+You can verify that the VMs are using the vhost interface by looking at their domain definition in the host. You should see something like:
+
+.. code:: bash
+
+   <domain type='kvm' id='417'>
+     <name>one-10</name>
+     ...
+     <devices>
+       ...
+       <interface type='vhostuser'>
+         <mac address='02:00:c0:a8:7a:02'/>
+         <source type='unix' path='/var/lib/one//datastores/0/10/one-10-0' mode='server'/>
+         <target dev='one-10-0'/>
+         <model type='virtio'/>
+         <alias name='net0'/>
+         <address type='pci' domain='0x0000' bus='0x00' slot='0x03' function='0x0'/>
+       </interface>
+     ...
+   </domain>
+
+And the associated port in the bridge using the qemu vhost interface:
+
+.. code:: bash
+
+    Bridge br0
+        Port "one-10-0"
+            Interface "one-10-0"
+                type: dpdkvhostuserclient
+                options: {vhost-server-path="/var/lib/one//datastores/0/10/one-10-0"}
+
