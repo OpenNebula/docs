@@ -500,7 +500,7 @@ This can also be achieved from Sunstone, both in Cloud and Admin View, at the ti
 Updating VM Configuration
 --------------------------------------------------------------------------------
 
-Some of the VM configuration attributes defined in the VM Template can be updated after the VM is created. If the VM is not running, the ``onevm updateconf`` command will allow you to change the following attributes:
+Some of the VM configuration attributes defined in the VM Template can be updated after the VM is created. The ``onevm updateconf`` command will allow you to change the following attributes:
 
 +--------------+-------------------------------------------------------------------------+
 |  Attribute   |                              Sub-attributes                             |
@@ -519,6 +519,8 @@ Some of the VM configuration attributes defined in the VM Template can be update
 +--------------+-------------------------------------------------------------------------+
 
 .. note:: Visit the :ref:`Virtual Machine Template reference <template>` for a complete description of each attribute
+
+.. warning:: If the VM is running, the action may fail and the context will not be changed. You can try to manualy trigger the action again.
 
 In Sunstone this action is inside the 'Conf' VM panel:
 
