@@ -86,6 +86,20 @@ element and it will be translated to XML:
       }
     }, 1)
 
+However, this might be limiting when you want to add 2 entries with same name. In such cases you need to pass the template directly in OpenNebula template format:
+
+.. code:: python
+
+  one.template.allocate(
+    '''NAME="test100"
+       MEMORY="1024"
+       DISK=[ IMAGE_ID= "1" ]
+       DISK=[ IMAGE_ID= "2" ]
+       CPU="1"
+       VCPU="2"
+    ''')
+
+
 generateDS creates members from most returned parameters, however, some elements in the XSD are marked as anyType and generateDS cannot generate members automatically, TEMPLATE and USER_TEMPLATE are the common ones. Pyone will allow accessing its contents as a plain python dictionary.
 
 .. code:: python
