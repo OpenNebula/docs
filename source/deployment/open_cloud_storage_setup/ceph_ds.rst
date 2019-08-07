@@ -33,6 +33,8 @@ For example, consider a system using an Image and System Datastore backed by a C
 
 .. note:: In this case context disk and auxiliar files (deployment description and checkpoints) are stored locally in the nodes.
 
+.. _ceph-ssh-mode:
+
 SSH Mode
 --------------------------------------------------------------------------------
 In this mode, the associated rbd file for each disk is exported to a file and stored in the local file system of the hypervisor.

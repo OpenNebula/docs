@@ -198,6 +198,8 @@ Additional Configuration
   The qcow2 drivers are a specialization of the shared drivers to work with the qcow2 format for disk images. Images are created and through the ``qemu-img`` command using the original image as backing file. Custom options can be sent to ``qemu-img`` clone action through the variable ``QCOW2_OPTIONS`` in ``/var/lib/one/remotes/tm/tmrc``.
 * ``DD_BLOCK_SIZE``: Block size for `dd` operations (default: 64kB) could be set in ``/var/lib/one/remotes/etc/datastore/fs/fs.conf``.
 
+.. _shared-ssh-mode:
+
 Combining the shared & SSH Transfer Modes
 --------------------------------------------------------------------------------
 

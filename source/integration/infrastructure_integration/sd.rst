@@ -297,6 +297,21 @@ The monitor_ds.sh probe from the IM, if the ``.monitor`` file is present (e.g. `
 
 The script is responsible from getting the information from all disks of all VMs in the datastore in that node.
 
+.. _mixed-tm-modes:
+
+Mixed Transfere modes
+================================================================================
+
+Certain types of TM can be used in so called *mixed mode* and allow different types of image and system datastore drivers to work together.
+
+The following combinations are supported by default:
+
+- **CEPH** + **SSH** described in :ref:`Ceph SSH mode <ceph-ssh-mode>`
+- **Qcow2/shared** + **SSH** described in :ref:`Qcow2/shared SSH mode <shared-ssh-mode>`
+
+The support in oned is generic, in a *mixed mode* every TM action (such as ``clone`` or ``delete``) is suffixed with the driver name of the system DS in use. For example, an action like ``clone.ssh`` is actually invoked in CEPH + SSH mode. The driver first tries to find the complete action script, including the system DS suffix (e.g. ``ceph/clone.ssh``) and only if that does not exist fallbacks to the default (``ceph/clone``). 
+
+In this way other combinations can be easily added.
 
 An Example VM
 ================================================================================
