@@ -301,14 +301,16 @@ The script is responsible from getting the information from all disks of all VMs
 Mixed Transfere modes
 ================================================================================
 
-Certain types of TM can be used in so called *mixed mode* and allow different types of image and system datastores to work together.
+Certain types of TM can be used in so called *mixed mode* and allow different types of image and system datastore drivers to work together.
 
-Following combinations are implemented
+The following combinations are supported by default:
 
 - **CEPH** + **SSH** described in :ref:`Ceph SSH mode <ceph-ssh-mode>`
 - **Qcow2/shared** + **SSH** described in :ref:`Qcow2/shared SSH mode <shared-ssh-mode>`
 
-Altough the support in oned is generic. Which means that to every TM action which oned is executing (such as ``clone`` or ``delete``...) a suffix is added, saying which type of system DS is used. So, in fact action like ``clone.ssh`` is actually recived by `one_tm.rb` from oned. This daemon first tries to find action script with the suffix (such as ``ceph/clone.ssh``) and only if that does not exist fallback to default (``ceph/clone``). In this manner other combinations could be easily added.
+The support in oned is generic, in a *mixed mode* every TM action (such as ``clone`` or ``delete``) is suffixed with the driver name of the system DS in use. For example, an action like ``clone.ssh`` is actually invoked in CEPH + SSH mode. The driver first tries to find the complete action script, including the system DS suffix (e.g. ``ceph/clone.ssh``) and only if that does not exist fallbacks to the default (``ceph/clone``). 
+
+In this way other combinations can be easily added.
 
 An Example VM
 ================================================================================
