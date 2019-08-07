@@ -297,6 +297,7 @@ The monitor_ds.sh probe from the IM, if the ``.monitor`` file is present (e.g. `
 
 The script is responsible from getting the information from all disks of all VMs in the datastore in that node.
 
+.. _mixed-tm-modes:
 
 Mixed Transfere modes
 ================================================================================
