@@ -9,8 +9,8 @@ CentOS/RHEL 6.x
 
     # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.9.0/one-context-5.9.0-1.el6.noarch.rpm
 
-CentOS/RHEL 7.x
-~~~~~~~~~~~~~~~
+CentOS/Fedora/RHEL 7.x
+~~~~~~~~~~~~~~~~~~~~~~
 
 .. prompt:: bash # auto
 
