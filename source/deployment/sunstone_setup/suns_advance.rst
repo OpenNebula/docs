@@ -114,6 +114,17 @@ You can find more information about the configuration options in the `unicorn do
 Running Sunstone with Passenger in Apache
 -----------------------------------------
 
+.. warning::
+
+    Since OpenNebula 5.10, all required Ruby gems are packaged and installed into a dedicated directory ``/usr/share/one/gems-dist/`` symlinked to ``/usr/share/one/gems/``. Check the details in :ref:`Front-end Installation <ruby_runtime>`.
+
+    If the symlinked location is preserved, the shipped Ruby gems are used exclusively. It might be necessary to force the Ruby running inside the web server to use the dedicated locations by configuring ``GEMS_HOME`` and ``GEMS_PATH`` environment variables. For example, by putting following settings into your Apache configuration:
+
+    .. code-block:: apache
+
+        SetEnv GEM_PATH /usr/share/one/gems/
+        SetEnv GEM_HOME /usr/share/one/gems/
+
 `Phusion Passenger <https://www.phusionpassenger.com/>`__ is a module for `Apache <http://httpd.apache.org/>`__ and `Nginx <http://nginx.org/en/>`__ web servers that runs ruby rack applications. This can be used to run Sunstone server and will manage all its life cycle. If you are already using one of these servers or just feel comfortable with one of them we encourage you to use this method. This kind of deployment adds better concurrency and lets us add an https endpoint.
 
 We will provide the instructions for Apache web server but the steps will be similar for nginx following `Passenger documentation <https://www.phusionpassenger.com/support#documentation>`__.
@@ -127,6 +138,11 @@ Next thing we have to do is configure the virtual host that will run our Sunston
     <VirtualHost *:80>
       ServerName sunstone-server
       PassengerUser oneadmin
+      # For OpenNebula >= 5.10, variables configuring dedicated directory
+      # with shipped Ruby gems must be set if these gems weren't explicitly
+      # disabled (by removing specified directory symlink).
+      SetEnv GEM_PATH /usr/share/one/gems/
+      SetEnv GEM_HOME /usr/share/one/gems/
       # !!! Be sure to point DocumentRoot to 'public'!
       DocumentRoot /usr/lib/one/sunstone/public
       <Directory /usr/lib/one/sunstone/public>
@@ -205,6 +221,11 @@ And generate the keytab for http service, here is an example with Passenger:
     <VirtualHost *:80>
       ServerName sunstone-server
       PassengerUser oneadmin
+      # For OpenNebula >= 5.10, variables configuring dedicated directory
+      # with shipped Ruby gems must be set if these gems weren't explicitly
+      # disabled (by removing specified directory symlink).
+      SetEnv GEM_PATH /usr/share/one/gems/
+      SetEnv GEM_HOME /usr/share/one/gems/
       # !!! Be sure to point DocumentRoot to 'public'!
       DocumentRoot /usr/lib/one/sunstone/public
       <Directory /usr/lib/one/sunstone/public>

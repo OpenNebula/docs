@@ -91,13 +91,17 @@ The packages for the OpenNebula front-end and the virtualization host are as fol
 * **opennebula**: Command Line Interface.
 * **opennebula-server**: Main OpenNebula daemon, scheduler, etc.
 * **opennebula-sunstone**: :ref:`Sunstone <sunstone>` (the GUI) and the :ref:`EC2 API <introc>`.
+* **opennebula-gate**: :ref:`OneGate <onegate_overview>` server that enables communication between VMs and OpenNebula.
+* **opennebula-flow**: :ref:`OneFlow <oneflow_overview>` manages services and elasticity.
+* **opennebula-provision**: :ref:`OneProvision <ddc_overview>` deploys new clusters on remote bare-metal cloud providers.
+* **opennebula-node-kvm**: Meta-package that installs the oneadmin user, libvirt and kvm.
+* **opennebula-common**: Common files for OpenNebula packages.
+* **opennebula-rubygems**: Metapackage with dependency on all required Ruby gems.
+* **opennebula-rubygem-$NAME**: Package with Ruby gem ``$NAME``.
+* **opennebula-debuginfo**: Package with debug information.
 * **opennebula-ruby**: Ruby Bindings.
 * **opennebula-java**: Java Bindings.
 * **python-pyone**: Python Bindings.
-* **opennebula-gate**: :ref:`OneGate <onegate_overview>` server that enables communication between VMs and OpenNebula.
-* **opennebula-flow**: :ref:`OneFlow <oneflow_overview>` manages services and elasticity.
-* **opennebula-node-kvm**: Meta-package that installs the oneadmin user, libvirt and kvm.
-* **opennebula-common**: Common files for OpenNebula packages.
 
 .. note::
 
@@ -117,33 +121,52 @@ To install OpenNebula on a Debian/Ubuntu Front-end using packages from **our rep
 
 These are the packages available for these distributions:
 
-|image0|
-
+* **opennebula**: OpenNebula Daemon.
 * **opennebula-common**: Provides the user and common files.
-* **ruby-opennebula**: Ruby API.
-* **libopennebula-java**: Java API.
-* **python-pyone**: Python API.
-* **libopennebula-java-doc**: Java API Documentation.
+* **opennebula-tools**: Command Line interface.
+* **opennebula-sunstone**: :ref:`Sunstone <sunstone>` (the GUI).
+* **opennebula-gate**: :ref:`OneGate <onegate_overview>` server that enables communication between VMs and OpenNebula.
+* **opennebula-flow**: :ref:`OneFlow <oneflow_overview>` manages services and elasticity.
+* **opennebula-provision**: :ref:`OneProvision <ddc_overview>` deploys new clusters on remote bare-metal cloud providers.
 * **opennebula-node**: Prepares a node as an opennebula KVM node.
 * **opennebula-node-lxd**: Prepares a node as an opennebula LXD node.
 * **opennebula-lxd-snap**: Installs LXD snap (only on Ubuntu 16.04 and 18.04).
-* **opennebula-sunstone**: :ref:`Sunstone <sunstone>` (the GUI).
-* **opennebula-tools**: Command Line interface.
-* **opennebula-gate**: :ref:`OneGate <onegate_overview>` server that enables communication between VMs and OpenNebula.
-* **opennebula-flow**: :ref:`OneFlow <oneflow_overview>` manages services and elasticity.
-* **opennebula**: OpenNebula Daemon.
+* **opennebula-rubygems**: Metapackage with dependency on all required Ruby gems.
+* **opennebula-rubygem-$NAME**: Package with Ruby gem ``$NAME``.
+* **opennebula-dbgsym**: Package with debug information.
+* **ruby-opennebula**: Ruby API.
+* **libopennebula-java**: Java API.
+* **libopennebula-java-doc**: Java API Documentation.
+* **python-pyone**: Python API.
 
 .. note::
 
-    Besides ``/etc/one``, the following files are marked as configuration files:
-
-    * ``/var/lib/one/remotes/etc/datastore/ceph/ceph.conf``
-    * ``/var/lib/one/remotes/etc/vnm/OpenNebulaNetwork.conf``
+    The configuration files are located in ``/etc/one`` and ``/var/lib/one/remotes/etc``.
 
 .. _ruby_runtime:
 
-Step 4. Ruby Runtime Installation
+Step 4. Ruby Runtime Installation (Optional)
 ================================================================================
+
+.. warning::
+
+    Since OpenNebula 5.10, this step is **optional** and all required Ruby gems are provided as a set of **opennebula-rubygem-$NAME** packages and **opennebula-rubygems** metapackage. Ruby gems are installed into a dedicated directory ``/usr/share/one/gems-dist/``, but OpenNebula uses them via (symlinked) location ``/usr/share/one/gems/`` which points to the ``gems-dist/`` directory. When ``gems/`` directory (by default) exists, OpenNebula uses the gems inside **exclusively** by removing any other system Ruby gems locations from the search paths!
+
+    .. prompt:: bash # auto
+
+        # ls -lad /usr/share/one/gems*
+        lrwxrwxrwx 1 root root    9 Aug 13 11:41 /usr/share/one/gems -> gems-dist
+        drwxr-xr-x 9 root root 4096 Aug 13 11:41 /usr/share/one/gems-dist
+
+    If you want to use the system-wide Ruby gems instead of the packaged ones, remove the symlink ``/usr/share/one/gems/`` and install all required dependencies with ``install_gems`` script described below. Removed ``/usr/share/one/gems/`` symlink **won't be created again on next OpenNebula upgrade**. OpenNebula shipped Ruby gems can't be uninstalled, but their use can be disabled by removing the ``/usr/share/one/gems/`` symlink.
+
+    If additional Ruby gems are needed by a custom drivers or hooks, they must be installed into the introduced dedicated directory. For example, set gem name in ``$GEM_NAME`` and run under privileged user root:
+
+    .. prompt:: bash # auto
+
+        # export GEM_PATH=/usr/share/one/gems/
+        # export GEM_HOME=/usr/share/one/gems/
+        # gem install --no-document --conservative $GEM_NAME
 
 Some OpenNebula components need Ruby libraries. OpenNebula provides a script that installs the required gems as well as some development libraries packages needed.
 
@@ -151,6 +174,7 @@ As root execute:
 
 .. prompt:: bash # auto
 
+    # test -L /usr/share/one/gems && unlink /usr/share/one/gems
     # /usr/share/one/install_gems
 
 The previous script is prepared to detect common Linux distributions and install the required libraries. If it fails to find the packages needed in your system, manually install these packages:
