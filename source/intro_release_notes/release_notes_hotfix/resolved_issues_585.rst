@@ -7,7 +7,7 @@ A complete list of solved issues for 5.8.5 can be found in the `project developm
 
 The following new features has been backported to 5.8.5:
 
-- `Description <https://github.com/OpenNebula/one/issues/XXXX>`__.
+- `Packet Public Networking <https://github.com/OpenNebula/one/issues/3042>`__.
 
 The following issues has been solved in 5.8.5:
 
