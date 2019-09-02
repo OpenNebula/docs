@@ -858,6 +858,15 @@ If the VM supports VNC or Spice and is ``running``, then the VNC icon on the Vir
 
 |image8|
 
+.. note:: In LXD instances, VNC access is provided through a command executed via ``lxc exec <container> -- <command>``. By default this command is ``/bin/login`` and it can be updated by editing **/var/tmp/one/etc/vmm/lxd/lxdrc** in the LXD node.
+
+The command can also be set for each container, by updating the ``GRAPHICS`` section in the VM template.
+
+|lxd_vnc|
+
+.. warning:: It is advised for RPM distros to update the command since it doesn't work when running it through ``lxc exec``. For example, a valid command would be ``/bin/bash``. Keep in mind it grants a root shell inside the container.
+
+
 The Sunstone documentation contains a section on :ref:`VNC troubleshooting <sunstone_vnc_troubleshooting>`.
 
 Information for Developers and Integrators
@@ -888,3 +897,4 @@ Information for Developers and Integrators
 .. |sunstone_schedule_action| image:: /images/sunstone_schedule_action.png
 .. |sunstone_updateconf_1| image:: /images/sunstone_updateconf_1.png
 .. |sunstone_updateconf_2| image:: /images/sunstone_updateconf_2.png
+.. |lxd_vnc| image:: /images/lxd_vnc.png
