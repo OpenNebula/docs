@@ -15,3 +15,4 @@ The following issues has been solved in 5.8.5:
 - `Fix spoofing rules for VMs running on the same hypervisor <https://github.com/OpenNebula/one/issues/3556>`__.
 - `Fix network driver post operation with LXD on snap based setups <https://github.com/OpenNebula/one/issues/3596>`__.
 - `Fix volatile disk type on LVM datastore <https://github.com/OpenNebula/one/issues/3203>`__.
+- `Fix error when using xml paginated list commands in CLI <https://github.com/OpenNebula/one/issues/3628>`__.
