@@ -17,7 +17,8 @@ OpenNebula Core
 - **Update hashing algorithm**, now passwords and login tokens are hashed using sha256 instead of sha1. Also csrftoken is now hashed with SHA256 instead of MD5
 - **NUMA and CPU pinning**, you can define virtual NUMA topologies and pin them to specific hypervisor resources. NUMA and pinning is an important feature to improve the performance of specific workloads. :ref:`You can read more here <numa>`.
 - **Live update of context information**, running VMs can update its context information and trigger the contextualization scripts in the guests, :ref:`see here <vm_updateconf>`.
-- **Uniform thread-safe random generator**, for random numbers use Mersenne Twister generator with uniform distribution`.
+- **Uniform thread-safe random generator**, for random numbers use Mersenne Twister generator with uniform distribution.
+- **Unified objects' secrets handling**, secrets are encrypted and decrypted in core, drivers get secrets decrypted `see <https://github.com/OpenNebula/one/issues/3064>`.
 
 Other minor features in OpenNebula core:
 
