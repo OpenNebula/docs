@@ -58,3 +58,4 @@ Other Issues Solved
 - `Remove resource reference from VDC when resource is erased <https://github.com/OpenNebula/one/issues/1815>`_.
 - `Validate disk-snapshot-id cli parameter to prevent confusing conversion <https://github.com/OpenNebula/one/issues/3579>`_.
 - `Fix *Argument list too long* error in migrate action <https://github.com/OpenNebula/one/issues/3373>`_.
+- `Make onegate client compatible with old servers <https://github.com/OpenNebula/one/issues/3572>`__.
