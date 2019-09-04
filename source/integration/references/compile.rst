@@ -235,7 +235,7 @@ to the ``oneadmin``.
 +===============+=============================================================+
 | miscellaneous | mkfs, sync, mkswap                                          |
 +---------------+-------------------------------------------------------------+
-| networking    | brctl, ebtables, iptables, ip6tables, ip, ipset, arping     |
+| networking    | ebtables, iptables, ip6tables, ip, ipset, arping            |
 +---------------+-------------------------------------------------------------+
 | LVM           | lvcreate, lvremove, lvs, vgdisplay, lvchange, lvscan        |
 +---------------+-------------------------------------------------------------+
@@ -265,7 +265,7 @@ different for each platform. Commands are started on background, ``sudo``
 needs to be configured **not to require real tty** and any password
 for them.
 
-It is recommended to limit the ``cat`` command as much as possible, an example can be found `here <https://github.com/OpenNebula/one/blob/master/src/vmm_mad/remotes/lib/lxd/catfstab>`_ 
+It is recommended to limit the ``cat`` command as much as possible, an example can be found `here <https://github.com/OpenNebula/one/blob/master/src/vmm_mad/remotes/lib/lxd/catfstab>`_
 
 Example configuration
 --------------------------------------------------------------------------------

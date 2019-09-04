@@ -1,4 +1,4 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenNebula 4.6\n"
@@ -72,7 +72,7 @@ msgstr ""
 #: ../../source/administration/networking/hm-vlan.rst:29
 msgid ""
 "The ``sudoers`` file must be configured so ``oneadmin`` can execute "
-"``vconfig``, ``brctl`` and ``ip`` in the hosts."
+"``vconfig`` and ``ip`` in the hosts."
 msgstr ""
 
 #: ../../source/administration/networking/hm-vlan.rst:30

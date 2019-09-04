@@ -182,10 +182,15 @@ You may want to use the simplest network model that corresponds to the :ref:`bri
 
 .. prompt:: bash $ auto
 
-    $ brctl show
-    bridge name bridge id         STP enabled interfaces
-    br0        8000.001e682f02ac no          eth0
-    br1        8000.001e682f02ad no          eth1
+    $ ip link show type bridge
+    4: br0: ...
+    5: br1: ...
+
+    $ ip link show master br0
+    2: eth0: ...
+
+    $ ip link show master br1
+    3: eth1: ...
 
 .. note:: Remember that this is only required in the Hosts, not in the Front-end. Also remember that it is not important the exact name of the resources (``br0``, ``br1``, etc...), however it's important that the bridges and NICs have the same name in all the Hosts.
 

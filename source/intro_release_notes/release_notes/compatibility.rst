@@ -19,6 +19,10 @@ The way arguments are passed to the pre/post/clean/update_sg has changed as foll
 
 This change has been introduced `because of this bug <https://github.com/OpenNebula/one/issues/2851>`_.
 
+Bridge Interface options
+------------------------
+As ``Bridge utils (brctl)`` bacame obsolete they were replaced by ``ip-route2``. Bridge options for ``ip command`` could be specified in ``:ip_bridge_conf`` but for backward compatibility the section ``:bridge_conf`` is still accepted and options are transformed to the ``ip-route2`` format.
+
 Password Hashing Algorithm Update
 ---------------------------------
 User passwords and login tokens are now generated using SHA256 instead of SHA1. OpenNebula core will update users passwords
