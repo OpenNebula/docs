@@ -53,6 +53,10 @@ Packaging
 - **Packaged all required Ruby gems**, installation is now done only from operating system packages and ``install_gems`` is not necessary to run after each installation or upgrade anymore, :ref:`check the front-end installation <ruby_runtime>`.
 - `Debian and Ubuntu debug packages <https://github.com/OpenNebula/packages/issues/55>`_, debugging information for the OpenNebula server are now dedicated package **opennebula-dbgsym**.
 
+IPAM Drivers
+================================================================================
+- IPAM driver scripts now recieve the template of the AR via STDIN instead of via arguments, :ref:`see more details <devel-ipam>`.
+
 Other Issues Solved
 ================================================================================
 - `Fixes an issue that makes the network drivers fail when a large number of secturiy groups rules are used <https://github.com/OpenNebula/one/issues/2851>`_.
