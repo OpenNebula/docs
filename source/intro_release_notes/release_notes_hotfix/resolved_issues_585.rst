@@ -22,3 +22,4 @@ The following issues has been solved in 5.8.5:
 - `Fix connection via NoVNC to vn with password <https://github.com/OpenNebula/one/issues/3597>`__.
 - `Fix select cluster using button "cluster" in Vnets has effect <https://github.com/OpenNebula/one/issues/3217>`__.
 - `Fix counter groups by VM in cloud view <https://github.com/OpenNebula/one/issues/3120>`__.
+- `Renamed Affinity column in VM Groups <https://github.com/OpenNebula/one/issues/3599>`__.
