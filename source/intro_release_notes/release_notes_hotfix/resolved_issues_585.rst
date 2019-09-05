@@ -19,4 +19,5 @@ The following issues has been solved in 5.8.5:
 - `Fix build with sqlite=no <https://github.com/OpenNebula/one/issues/3585>`__.
 - `Fix error when using xml paginated list commands in CLI <https://github.com/OpenNebula/one/issues/3628>`__.
 - `Fix output format of "oneflow-template show" command <https://github.com/OpenNebula/one/issues/3607>`__.
+- `Fix connection via NoVNC to vn with password <https://github.com/OpenNebula/one/issues/3597>`__.
 
