@@ -21,3 +21,4 @@ The following issues has been solved in 5.8.5:
 - `Fix output format of "oneflow-template show" command <https://github.com/OpenNebula/one/issues/3607>`__.
 - `Fix connection via NoVNC to vn with password <https://github.com/OpenNebula/one/issues/3597>`__.
 - `Fix counter groups by VM in cloud view <https://github.com/OpenNebula/one/issues/3120>`__.
+- `Renamed Affinity column in VM Groups <https://github.com/OpenNebula/one/issues/3599>`__.
