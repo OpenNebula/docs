@@ -24,3 +24,4 @@ The following issues has been solved in 5.8.5:
 - `Fix counter groups by VM in cloud view <https://github.com/OpenNebula/one/issues/3120>`__.
 - `Renamed Affinity column in VM Groups <https://github.com/OpenNebula/one/issues/3599>`__.
 - `Fix ipv6 address replaced by "--" <https://github.com/OpenNebula/one/issues/3241>`__.
+- `Error importing vm due to guest.net.ipConfig property <https://github.com/OpenNebula/one/issues/3563>`__.
