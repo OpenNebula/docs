@@ -35,6 +35,7 @@ Networking
 --------------------------------------------------------------------------------
 - **DPDK Support**, the Open vSwitch drivers include an option to support DPDK datapaths, :ref:`read more here <openvswitch_dpdk>`.
 - **Extensible Network Drivers**, You can extend network driver actions with customizable hooks, :ref:`see more details <devel-nm-hook>`.
+- **Deprecate brctl**, ip-route2  toolset replaces brctl to manage bridges for the KVM/LXD networking.
 
 Sunstone
 --------------------------------------------------------------------------------
