@@ -34,3 +34,8 @@ Packages
 OpenNebula now ships with distribution packages for all required Ruby gems, executing of the ``install_gems`` script after installation or upgrade is not necessary anymore. Ruby dependencies are installed into a dedicated directory ``/usr/share/one/gems-dist/`` and OpenNebula uses them exclusively via symlinked location ``/usr/share/one/gems/``. **System-wide Ruby gems are not used anymore!** Any Ruby gems needed by the custom drivers need to be installed again into a new dedicated location. Check the details in :ref:`Front-end Installation <ruby_runtime>`.
 
 If Sunstone is running via Passenger in Apache, it might be necessary to set ``GEMS_HOME`` and ``GEMS_PATH`` environment variables to ``/usr/share/one/gems/`` to force the Ruby running inside the web server to use these new location. Check the details in :ref:`Sunstone for Large Deployments <suns_advance>`.
+
+IPAM Drivers
+------------
+
+IPAM driver scripts now recieve the template of the AR via STDIN instead of via arguments.

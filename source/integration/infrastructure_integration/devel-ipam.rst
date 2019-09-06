@@ -19,7 +19,7 @@ register_address_range
 
 This action is used to register a new IP network in the IPAM. The network may be selected from a pool of free networks or if an specific network is requested its availability maybe checked by the IPAM driver. The IPAM driver must return an OpenNebula AddressRange definition, potentially augmented with network specific variables to be used by VMs (e.g. ``GATEWAY``, ``NETWORK_MASK``...)
 
-**Arguments**:
+**STDIN Argument**:
 
 * AddressRange. The AddressRange (IP network) request in XML encoded in Base 64. The XML may contain any of the attributes used to define an AR. Note that OpenNebula uses a free format for objects so you can freely add more and process more (or less) attributes in this action. At least TYPE, IPAM_MAD and SIZE will be present:
 
@@ -39,6 +39,8 @@ This action is used to register a new IP network in the IPAM. The network may be
     <SEARCH_DOMAIN> for DNS client</SEARCH_DOMAIN>
   </AR>
   </IPAM_DRIVER_ACTION_DATA>
+
+**Arguments**:
 
 * Request ID, used internally to identify this IPAM request.
 
@@ -77,7 +79,7 @@ unregister_address_range
 
 This action is used to unregister an address range from the IPAM.
 
-**Arguments**:
+**STDIN Argument**:
 
 * AddressRange. The AddressRange in XML encoded in Base 64. The XML may contain any of the attributes used to define an AR. Note that OpenNebula uses a free format for objects so you can freely add more and process more (or less) attributes in this action. At least TYPE, IPAM_MAD and SIZE will be present:
 
@@ -98,6 +100,8 @@ This action is used to unregister an address range from the IPAM.
   </AR>
   </IPAM_DRIVER_ACTION_DATA>
 
+**Arguments**:
+
 * Request ID, used internally to identify this IPAM request.
 
 **Returns**: This scripts MUST exit 0 if no errors we found.
@@ -106,7 +110,7 @@ allocate_address
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 This script is used to register an specific IP address (or addresses) as used. The IP (or IPs)  will be used by an OpenNebula VM and should not be allocated to any other host in the network.
 
-**Arguments**:
+**STDIN Argument**:
 
 * AddressRange and Address. The AddressRange (IP network) and address request in XML, encoded in Base 64. The XML will contain the AR as defined by the previous action; and the address request:
 
@@ -123,6 +127,8 @@ This script is used to register an specific IP address (or addresses) as used. T
   </ADDRESS>
   </IPAM_DRIVER_ACTION_DATA>
 
+**Arguments**:
+
 * Request ID, used internally to identify this IPAM request.
 
 **Returns**: This scripts MUST exit 0 if the address is free.
@@ -131,7 +137,7 @@ get_address
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 This script is used to lease an IP address (or addresses). The IP (or IPs)  will be used by an OpenNebula VM and should not be allocated to any other host in the network.
 
-**Arguments**:
+**STDIN Argument**:
 
 * AddressRange and Address. The AddressRange (IP network) and address request in XML, encoded in Base 64. The XML will contain the AR as defined by the previous action; and the address request:
 
@@ -145,6 +151,8 @@ This script is used to lease an IP address (or addresses). The IP (or IPs)  will
     <SIZE> Number of IPs to allocate, in a continous range from the firs IP</SIZE>
   </ADDRESS>
   </IPAM_DRIVER_ACTION_DATA>
+
+**Arguments**:
 
 * Request ID, used internally to identify this IPAM request.
 
@@ -160,9 +168,12 @@ free_address
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 This script is used to free an specific IP address (or addresses). The IP (or IPs)  are no longer in use by OpenNebula VMs or reservations.
 
-**Arguments**:
+**STDIN Argument**:
 
 * AddressRange and Address. Same as in ``allocate_address``.
+
+**Arguments**:
+
 * Request ID, used internally to identify this IPAM request.
 
 **Returns**: This scripts MUST exit 0 if the address is free.
