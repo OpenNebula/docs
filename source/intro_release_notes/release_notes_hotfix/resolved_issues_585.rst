@@ -26,3 +26,4 @@ The following issues has been solved in 5.8.5:
 - `Fixed LXD marketplace apps VM_TEMPLATE update via Susntone  <https://github.com/OpenNebula/one/issues/3559>`__.
 - `Fix ipv6 address replaced by "--" <https://github.com/OpenNebula/one/issues/3241>`__.
 - `Error importing vm due to guest.net.ipConfig property <https://github.com/OpenNebula/one/issues/3563>`__.
+- `Fixed issues with several apps failing to contextualize <https://github.com/OpenNebula/one/issues/3663>`__.
