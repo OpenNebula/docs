@@ -396,7 +396,7 @@ These attributes can be later used in the :ref:`Virtual Machine Contextualizatio
 
     ssh_key = "$USER[SSH_KEY]"
 
-``USER_TEMPLATE`` section can be used to specify ``VM_USE_OPERATIONS``, ``VM_MANAGE_OPERATIONS`` amd ``VM_ADMIN_OPERATIONS`` for specific user. For description of these attributes see :ref:`VM Operations Permissions <oned_conf_vm_operations>`
+The User template can be used to customize the access rights for the ``VM_USE_OPERATIONS``, ``VM_MANAGE_OPERATIONS`` and ``VM_ADMIN_OPERATIONS``. For a description of these attributes see :ref:`VM Operations Permissions <oned_conf_vm_operations>`
 
 Manage your Own User
 ================================================================================
