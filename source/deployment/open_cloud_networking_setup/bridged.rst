@@ -35,7 +35,9 @@ The following configuration attributes can be adjusted in ``/var/lib/one/remotes
 +------------------+-------------------------------------------------------------------------------------------+
 | keep_empty_bridge| Set to true to preserve bridges with no virtual interfaces left.                          |
 +------------------+-------------------------------------------------------------------------------------------+
-| bridge_conf      | *Hash* Options for ``brctl``                                                              |
+| bridge_conf      | *Hash* Options for ``brctl`` (deprecated, will be translated to ip-route2 options)        |
++------------------+-------------------------------------------------------------------------------------------+
+| ip_bridge_conf   | *Hash* Options for ip-route2 ``ip link add <bridge> type bridge ...``                     |
 +------------------+-------------------------------------------------------------------------------------------+
 
 .. _bridged_net:

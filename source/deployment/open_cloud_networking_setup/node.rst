@@ -25,10 +25,16 @@ For example, a node with two networks one for public IP addresses (attached to e
 
 .. prompt:: bash $ auto
 
-    $ brctl show
-    bridge name bridge id         STP enabled interfaces
-    br0        8000.001e682f02ac no          eth0
-    br1        8000.001e682f02ad no          eth1
+    $ ip link show type bridge
+    4: br0: ...
+    5: br1: ...
+
+    $ ip link show master br0
+    2: eth0: ...
+
+    $ ip link show master br1
+    3: eth1: ...
+
 
 .. note:: It is recommended that this configuration is made persistent. Please refer to the network configuration guide of your system to do so.
 

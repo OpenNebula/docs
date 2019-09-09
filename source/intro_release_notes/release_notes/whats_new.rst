@@ -19,6 +19,7 @@ OpenNebula Core
 - **Live update of context information**, running VMs can update its context information and trigger the contextualization scripts in the guests, :ref:`see here <vm_updateconf>`.
 - **Uniform thread-safe random generator**, for random numbers use Mersenne Twister generator with uniform distribution.
 - **VM operations configurable at user and group level**, use attributes ``VM_USE_OPERATIONS``, ``VM_MANAGE_OPERATIONS`` and ``VM_ADMIN_OPERATIONS`` in user or group template, :ref:`more information <oned_conf_vm_operations>`
+- **Unified objects' secrets handling**, secrets are encrypted and decrypted in core, drivers get secrets decrypted `see <https://github.com/OpenNebula/one/issues/3064>`.
 
 Other minor features in OpenNebula core:
 
@@ -35,6 +36,7 @@ Networking
 --------------------------------------------------------------------------------
 - **DPDK Support**, the Open vSwitch drivers include an option to support DPDK datapaths, :ref:`read more here <openvswitch_dpdk>`.
 - **Extensible Network Drivers**, You can extend network driver actions with customizable hooks, :ref:`see more details <devel-nm-hook>`.
+- **Deprecate brctl**, ip-route2  toolset replaces brctl to manage bridges for the KVM/LXD networking.
 
 Sunstone
 --------------------------------------------------------------------------------
@@ -52,6 +54,10 @@ Packaging
 ================================================================================
 - **Packaged all required Ruby gems**, installation is now done only from operating system packages and ``install_gems`` is not necessary to run after each installation or upgrade anymore, :ref:`check the front-end installation <ruby_runtime>`.
 - `Debian and Ubuntu debug packages <https://github.com/OpenNebula/packages/issues/55>`_, debugging information for the OpenNebula server are now dedicated package **opennebula-dbgsym**.
+
+IPAM Drivers
+================================================================================
+- IPAM driver scripts now recieve the template of the AR via STDIN instead of via arguments, :ref:`see more details <devel-ipam>`.
 
 Other Issues Solved
 ================================================================================

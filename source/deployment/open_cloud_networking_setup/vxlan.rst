@@ -54,33 +54,35 @@ It is possible specify the start VLAN ID by configuring ``/etc/one/oned.conf``:
 
 The following configuration attributes can be adjusted in ``/var/lib/one/remotes/etc/vnm/OpenNebulaNetwork.conf``:
 
-+------------------+----------------------------------------------------------------------------------+
-| Parameter        | Description                                                                      |
-+==================+==================================================================================+
-| vxlan_mc         | Base multicast address for each VLAN. The multicas sddress is vxlan_mc + vlan_id |
-+------------------+----------------------------------------------------------------------------------+
-| vxlan_ttl        | Time To Live (TTL) should be > 1 in routed multicast networks (IGMP)             |
-+------------------+----------------------------------------------------------------------------------+
-| validate_vlan_id | Set to true to check that no other vlans are connected to the bridge             |
-+------------------+----------------------------------------------------------------------------------+
-| keep_empty_bridge| Set to true to preserve bridges with no virtual interfaces left.                 |
-+------------------+----------------------------------------------------------------------------------+
-| bridge_conf      | *Hash* Options for ``brctl``                                                     |
-+------------------+----------------------------------------------------------------------------------+
-| ip_link_conf     | *Hash* Arguments passed to ``ip link add``                                       |
-+------------------+----------------------------------------------------------------------------------+
++------------------+-------------------------------------------------------------------------------------+
+| Parameter        | Description                                                                         |
++==================+=====================================================================================+
+| vxlan_mc         | Base multicast address for each VLAN. The multicas sddress is vxlan_mc + vlan_id    |
++------------------+-------------------------------------------------------------------------------------+
+| vxlan_ttl        | Time To Live (TTL) should be > 1 in routed multicast networks (IGMP)                |
++------------------+-------------------------------------------------------------------------------------+
+| validate_vlan_id | Set to true to check that no other vlans are connected to the bridge                |
++------------------+-------------------------------------------------------------------------------------+
+| keep_empty_bridge| Set to true to preserve bridges with no virtual interfaces left.                    |
++------------------+-------------------------------------------------------------------------------------+
+| bridge_conf      | *Hash* Options for ``brctl`` (deprecated, will be translated to ip-route2 options)  |
++------------------+-------------------------------------------------------------------------------------+
+| ip_bridge_conf   | *Hash* Options for ip-route2 ``ip link add <bridge> type bridge ...``               |
++------------------+-------------------------------------------------------------------------------------+
+| ip_link_conf     | *Hash* Arguments passed to ``ip link add``                                          |
++------------------+-------------------------------------------------------------------------------------+
 
 Example:
 
 .. code::
 
-	# These options will execute brctl commands with these values. For example,
-	# this option will execute:
-	#
-	#     brctl stp <bridge name> on
-	#
-	:bridge_conf:
-	    :stp: on
+    # Following options will be added when creating bridge. For example:
+    #
+    #     ip link add name <bridge name> type bridge stp_state 1
+    #
+    # :ip_bridge_conf:
+    #     :stp_state: on
+
 
 	# These options will be added to the ip link add command. For example:
 	#
