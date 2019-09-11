@@ -1,8 +1,8 @@
 .. _kvm_contextualization:
 
-=======================
-Linux Contextualization
-=======================
+============================
+Open Cloud Contextualization
+============================
 
 Prepare the Virtual Machine Image
 =================================
@@ -10,20 +10,7 @@ Prepare the Virtual Machine Image
 Step 1. Start a VM with the OS you want to Customize
 ----------------------------------------------------
 
-Supported contextualization packages are available for the following OS's:
-
-* **CentOS/RHEL** >= 6
-* **Fedora** >= 28
-* **Amazon Linux** >= 2
-* **SUSE Linux Enterprise Server** >= 12 SP3
-* **openSUSE** == 42.3, 15
-* **Debian** >= 8
-* **Devuan** >= 1
-* **Ubuntu** >= 14.04
-* **Alpine Linux** >= 3.6
-* **FreeBSD** >= 11.2
-* **Windows** >= 7
-* **Windows Server** >= 2008
+Supported contextualization packages are available for the OS's described in the :ref:`platform notes <context_supported_platforms>`.
 
 .. include:: install_steps.txt
 
@@ -48,4 +35,3 @@ If you are using OpenNebula to prepare the image you can use the command ``onevm
 Using sunstone web interface you can find the option in the Virtual Machine storage tab.
 
 .. include:: template.txt
-

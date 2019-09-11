@@ -23,13 +23,7 @@ Prepare the Virtual Machine Image
 Step 1. Start a VM with the OS you want to Customize
 ----------------------------------------------------
 
-Supported contextualization packages are available for the following OS's:
-
-* **CentOS/RHEL** >= 6
-* **Debian** >= 6
-* **Ubuntu** >= 11.10
-* **Windows** >= 7
-* **Windows Server** >= 2008
+Supported contextualization packages are available for the OS's described in the :ref:`platform notes <context_supported_platforms>`.
 
 If you already happen to have a VM or Template in vCenter with the installed OS you can start it and prepare it to be used with OpenNebula. Alternatively you can start an installation process with the OS media.
 

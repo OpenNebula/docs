@@ -23,11 +23,9 @@ Hypervisor Compatibility
 +--------------------------------------------------------------+-----------------------------------------------+
 |                           Section                            |                 Compatibility                 |
 +==============================================================+===============================================+
-| :ref:`Linux Contextualization <kvm_contextualization>`       | This Section applies to KVM and LXD.          |
+| :ref:`Open Cloud Contextualization <kvm_contextualization>`  | This Section applies to KVM and LXD.          |
 +--------------------------------------------------------------+-----------------------------------------------+
 | :ref:`vCenter Contextualization <vcenter_contextualization>` | This Section applies to vCenter.              |
 +--------------------------------------------------------------+-----------------------------------------------+
 | :ref:`Adding Content to your Cloud <add_content>`            | This Section applies to all hypervisors.      |
 +--------------------------------------------------------------+-----------------------------------------------+
-
-
