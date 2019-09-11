@@ -19,7 +19,7 @@ OpenNebula Core
 - **Live update of context information**, running VMs can update its context information and trigger the contextualization scripts in the guests, :ref:`see here <vm_updateconf>`.
 - **Uniform thread-safe random generator**, for random numbers use Mersenne Twister generator with uniform distribution.
 - **VM operations configurable at user and group level**, use attributes ``VM_USE_OPERATIONS``, ``VM_MANAGE_OPERATIONS`` and ``VM_ADMIN_OPERATIONS`` in user or group template, :ref:`more information <oned_conf_vm_operations>`
-- **Unified objects' secrets handling**, secrets are encrypted and decrypted in core, drivers get secrets decrypted `see <https://github.com/OpenNebula/one/issues/3064>`.
+- **Unified objects' secrets handling**, secrets are encrypted and decrypted in core, drivers get secrets decrypted `see here <https://github.com/OpenNebula/one/issues/3064>`__.
 
 Other minor features in OpenNebula core:
 
@@ -65,3 +65,4 @@ Other Issues Solved
 - `Remove resource reference from VDC when resource is erased <https://github.com/OpenNebula/one/issues/1815>`_.
 - `Validate disk-snapshot-id cli parameter to prevent confusing conversion <https://github.com/OpenNebula/one/issues/3579>`_.
 - `Fix *Argument list too long* error in migrate action <https://github.com/OpenNebula/one/issues/3373>`_.
+- `Fix cluster CPU/MEM reservations <https://github.com/OpenNebula/one/issues/3630>`_.
