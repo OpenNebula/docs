@@ -37,7 +37,7 @@ The policy used to place a VM can be configured in two places:
 Re-Scheduling Virtual Machines
 ------------------------------
 
-When a VM is in the running state it can be rescheduled. By issuing the ``onevm resched`` command the VM's recheduling flag is set. In a subsequent scheduling interval, the VM will be consider for rescheduling, if:
+When a VM is in the running or poweroff state it can be rescheduled. By issuing the ``onevm resched`` command the VM's recheduling flag is set. In a subsequent scheduling interval, the VM will be consider for rescheduling, if:
 
 * There is a suitable host for the VM.
 * The VM is not already running in it.
