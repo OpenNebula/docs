@@ -29,4 +29,5 @@ The following issues has been solved in 5.8.5:
 - `Error importing vm due to guest.net.ipConfig property <https://github.com/OpenNebula/one/issues/3563>`__.
 - `Fixed issues with several apps failing to contextualize <https://github.com/OpenNebula/one/issues/3663>`__.
 - `Improve error message when running fsck and oneadmin doesn't exist <https://github.com/OpenNebula/one/issues/2248>`__.
+- `Fix select image using checkbox in marketplaceapp table <https://github.com/OpenNebula/one/issues/3621>`__.
 - `Fix "undefined" in IPv6 alias address<https://github.com/OpenNebula/one/issues/3626>`__.
