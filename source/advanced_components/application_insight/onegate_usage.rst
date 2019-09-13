@@ -186,7 +186,7 @@ There are several actions to adapt the Service to a given situation. Actions on 
 Performing actions on a VM
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-The following actions can be performed in any of the Virtual Machines of the Service. 
+The following actions can be performed in any of the Virtual Machines of the Service.
 
 * ``onegate vm resume``: Resumes the execution of the a saved VM. Valid states: STOPPED, SUSPENDED, UNDEPLOYED, POWEROFF
 * ``onegate vm stop``: Stops a running VM. The VM state is saved and transferred back to the front-end along with the disk files. Valid states: RUNNING
@@ -194,8 +194,8 @@ The following actions can be performed in any of the Virtual Machines of the Ser
 * ``onegate vm terminate``: Terminates the given VM. The VM life cycle will end. With --hard it unplugs the VM. Valid states: any except those with a pending driver response
 * ``onegate vm reboot``: Reboots the given VM, this is equivalent to execute the reboot command from the VM console. The VM will be ungracefully rebooted if --hard is used. Valid states: RUNNING
 * ``onegate vm poweroff``: Powers off the given VM. The VM will remain in the poweroff state, and can be powered on with the ``onegate vm resume`` command. Valid states: RUNNING
-* ``onegate vm resched``: Sets the rescheduling flag for the VM. The VM will be moved to a different host based on the scheduling policies. Valid states: RUNNING
-* ``onegate vm unresched``:  Unsets the rescheduling flag for the VM. Valid states: RUNNING
+* ``onegate vm resched``: Sets the rescheduling flag for the VM. The VM will be moved to a different host based on the scheduling policies. Valid states: RUNNING, POWEROFF
+* ``onegate vm unresched``:  Unsets the rescheduling flag for the VM. Valid states: RUNNING, POWEROFF
 * ``onegate vm hold``: Sets the given VM on hold. A VM on hold is not scheduled until it is released. Valid states: PENDING
 * ``onegate vm release``: Releases a VM on hold. See `onegate vm hold` Valid states: HOLD
 

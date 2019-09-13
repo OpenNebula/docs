@@ -20,6 +20,7 @@ OpenNebula Core
 - **Uniform thread-safe random generator**, for random numbers use Mersenne Twister generator with uniform distribution.
 - **VM operations configurable at user and group level**, use attributes ``VM_USE_OPERATIONS``, ``VM_MANAGE_OPERATIONS`` and ``VM_ADMIN_OPERATIONS`` in user or group template, :ref:`more information <oned_conf_vm_operations>`
 - **Unified objects' secrets handling**, secrets are encrypted and decrypted in core, drivers get secrets decrypted `see here <https://github.com/OpenNebula/one/issues/3064>`__.
+- **Allow VM reschedule in poweroff state**, `see here <https://github.com/OpenNebula/one/issues/3298>`__.
 
 Other minor features in OpenNebula core:
 
