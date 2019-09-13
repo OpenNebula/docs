@@ -782,7 +782,8 @@ OpenNebula encrypts these attributes:
 - on object create (onehost/onevm/onevnet create)
 - on object update (onehost/onevm/onevnet update)
 
-To decrypt the attribute you need to use `info` method with `true` as a parameter. Drivers will get the information decrypted.
+To decrypt the attribute you need to use `info` API method with `true` as a parameter. You can decrypt the attributes using the ``--decrypt`` option for ``onevm show``, ``onehost show`` and ``onevnet show``.
+
 
 Inherited Attributes Configuration
 ==================================
