@@ -625,6 +625,9 @@ Context information is passed to the Virtual Machine via an ISO mounted as a par
 +-----------------------------------+-----------------------------------------------------------------------------------+-------+---------+-----+
 | **DNS\_HOSTNAME**                 | ``YES`` to set the VM hostname to the reverse dns name (from the first IP)        | Linux | Linux   | \-  |
 +-----------------------------------+-----------------------------------------------------------------------------------+-------+---------+-----+
+| **EC2\_HOSTNAME**                 | ``YES`` to set the VM hostname based on main IP in format ``ip-A.B.C.D``          | Linux | Linux   | \-  |
+|                                   | (defaults to ``NO`` on non-EC2, and is always enabled on EC2).                    |       |         |     |
++-----------------------------------+-----------------------------------------------------------------------------------+-------+---------+-----+
 | **GATEWAY\_IFACE**                | This variable can be set to the interface number you want to configure the        | Linux | Linux   | \-  |
 |                                   | gateway. It is useful when several networks have GATEWAY parameter and you want   |       |         |     |
 |                                   | yo choose the one that configures it. For example to set the first interface to   |       |         |     |
@@ -693,7 +696,11 @@ Context information is passed to the Virtual Machine via an ISO mounted as a par
 | **EC2_PUBLIC_KEY**                | Same as **SSH_PUBLIC_KEY**                                                        | Linux | Linux   | O   |
 +-----------------------------------+-----------------------------------------------------------------------------------+-------+---------+-----+
 | **SECURETTY**                     | If set to ``NO`` it will disable securetty validation on PAM. If set to ``YES``   | Linux | Linux   | O   |
-|                                   | it will restore system defaults. Defaults: LXD -> ``YES``, KVM -> ``NO``.         | Linux | Linux   | O   |
+|                                   | it will restore system defaults. Defaults: LXD -> ``YES``, KVM -> ``NO``.         |       |         |     |
++-----------------------------------+-----------------------------------------------------------------------------------+-------+---------+-----+
+| **TIMEZONE**                      | Time zone to set. On Linux, the name must match the zone file name relative to    | O     | O       | O   |
+|                                   | ``/usr/share/zoneinfo/`` (e.g. ``US/Central``). On Windows, the name must match   |       |         |     |
+|                                   | supported zone listed by ``tzutil /l`` (e.g. ``Central Standard Time``).          |       |         |     |
 +-----------------------------------+-----------------------------------------------------------------------------------+-------+---------+-----+
 
 .. note::
