@@ -1,4 +1,4 @@
-.. _resolved_issues_585:
+esolved_issues_585:
 
 Resolved Issues in 5.8.5
 --------------------------------------------------------------------------------
@@ -32,4 +32,4 @@ The following issues has been solved in 5.8.5:
 - `Fix duplicate nics in boot configuration VM <https://github.com/OpenNebula/one/issues/3101>`__.
 - `Fix select image using checkbox in marketplaceapp table <https://github.com/OpenNebula/one/issues/3621>`__.
 - `Fix "undefined" in IPv6 alias address <https://github.com/OpenNebula/one/issues/3626>`__.
-- `Check snapshot ID before revert <https://github.com/OpenNebula/one/issues/3687>`__.
+- `Fix missing snapshot ID in driver when it does not exist, affects revert operation <https://github.com/OpenNebula/one/issues/3687>`__.
