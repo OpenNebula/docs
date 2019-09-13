@@ -65,7 +65,7 @@ Example of this section:
     #*******************************************************************************
     # Daemon configuration attributes
     #*******************************************************************************
-     
+
     LOG = [
       SYSTEM      = "file",
       DEBUG_LEVEL = 3
@@ -214,7 +214,7 @@ XML-RPC Server Configuration
     #*******************************************************************************
     # XML-RPC server configuration
     #*******************************************************************************
-     
+
     #MAX_CONN           = 15
     #MAX_CONN_BACKLOG   = 15
     #KEEPALIVE_TIMEOUT  = 15
@@ -248,7 +248,7 @@ Sample configuration:
     #*******************************************************************************
     # Physical Networks configuration
     #*******************************************************************************
-     
+
     NETWORK_SIZE = 254
 
     MAC_PREFIX   = "02:00"
@@ -307,9 +307,9 @@ Sample configuration:
     # Image Repository Configuration
     #*******************************************************************************
     #DATASTORE_LOCATION  = /var/lib/one/datastores
-          
+
     DATASTORE_CAPACITY_CHECK = "yes"
-     
+
     DEFAULT_IMAGE_TYPE    = "OS"
     DEFAULT_DEVICE_PREFIX = "hd"
 
@@ -416,7 +416,7 @@ Sample configuration:
     #-------------------------------------------------------------------------------
     # Virtualization Driver Configuration
     #-------------------------------------------------------------------------------
-     
+
     VM_MAD = [
         NAME           = "kvm",
         SUNSTONE_NAME  = "KVM",
@@ -452,7 +452,7 @@ Sample configuration:
     #-------------------------------------------------------------------------------
     # Transfer Manager Driver Configuration
     #-------------------------------------------------------------------------------
-     
+
     TM_MAD = [
         EXECUTABLE = "one_tm",
         ARGUMENTS = "-t 15 -d dummy,lvm,shared,fs_lvm,qcow2,ssh,ceph,dev,vcenter,iscsi_libvirt"
@@ -490,7 +490,7 @@ Sample configuration:
         shared        = "yes",
         allow_orphans = "no"
     ]
-     
+
     TM_MAD_CONF = [
         name        = "shared",
         ln_target   = "NONE",
@@ -612,7 +612,7 @@ Sample configuration:
 
 .. code-block:: bash
 
-     
+
     VM_HOOK = [
       name      = "advanced_hook",
       on        = "CUSTOM",
@@ -644,11 +644,11 @@ Sample configuration:
         executable = "one_auth_mad",
         authn = "ssh,x509,ldap,server_cipher,server_x509"
     ]
-     
+
     SESSION_EXPIRATION_TIME = 900
-     
+
     #ENABLE_OTHER_PERMISSIONS = "YES"
-     
+
     DEFAULT_UMASK = 177
 
 
@@ -724,12 +724,12 @@ Sample configuration:
     VM_RESTRICTED_ATTR = "DISK_COST"
     VM_RESTRICTED_ATTR = "PCI"
     VM_RESTRICTED_ATTR = "USER_INPUTS"
-     
+
     #VM_RESTRICTED_ATTR = "RANK"
     #VM_RESTRICTED_ATTR = "SCHED_RANK"
     #VM_RESTRICTED_ATTR = "REQUIREMENTS"
     #VM_RESTRICTED_ATTR = "SCHED_REQUIREMENTS"
-     
+
     IMAGE_RESTRICTED_ATTR = "SOURCE"
 
     VNET_RESTRICTED_ATTR = "VN_MAD"
@@ -747,6 +747,42 @@ OpenNebula evaluates these attributes:
 - on VM template instantiate (onetemplate instantiate)
 - on VM create (onevm create)
 - on VM attach nic (onevm nic-attach) (for example to forbid users to use NIC/MAC)
+
+Encrypted Attributes Configuration
+==================================
+
+These attributes are encrypted and decrypted by the OpenNebula core, the supported attributes are:
+
+- **HOST\_ENCRYPTED\_ATTR**
+- **VM\_ENCRYPTED\_ATTR**: these attributes apply also to the user template.
+- **VNET\_ENCRYPTED\_ATTR**: these attributes apply also to address ranges which belong to the virtual network.
+
+Sample configuration:
+
+.. code-block:: bash
+
+    HOST_ENCRYPTED_ATTR = "EC2_ACCESS"
+    HOST_ENCRYPTED_ATTR = "EC2_SECRET"
+    HOST_ENCRYPTED_ATTR = "AZ_ID"
+    HOST_ENCRYPTED_ATTR = "AZ_CERT"
+    HOST_ENCRYPTED_ATTR = "VCENTER_PASSWORD"
+    HOST_ENCRYPTED_ATTR = "NSX_PASSWORD"
+    HOST_ENCRYPTED_ATTR = "ONE_PASSWORD"
+
+    VM_ENCRYPTED_ATTR = "ONE_PASSWORD"
+    VM_ENCRYPTED_ATTR = "CONTEXT/ADMIN_PASSWORD"
+
+    VNET_ENCRYPTED_ATTR = "PROVISION/PACKET_TOKEN"
+    VNET_ENCRYPTED_ATTR = "PROVISION/PACKET_PROJECT"
+    
+    VNET_ENCRYPTED_ATTR = "AR/PROVISION/PACKET_PROJECT"
+
+OpenNebula encrypts these attributes:
+
+- on object create (onehost/onevm/onevnet create)
+- on object update (onehost/onevm/onevnet update)
+
+To decrypt the attribute you need to use `info` API method with `true` as a parameter. You can decrypt the attributes using the ``--decrypt`` option for ``onevm show``, ``onehost show`` and ``onevnet show``.
 
 
 Inherited Attributes Configuration
