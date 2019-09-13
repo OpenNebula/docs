@@ -774,6 +774,8 @@ Sample configuration:
 
     VNET_ENCRYPTED_ATTR = "PROVISION/PACKET_TOKEN"
     VNET_ENCRYPTED_ATTR = "PROVISION/PACKET_PROJECT"
+    
+    VNET_ENCRYPTED_ATTR = "AR/PROVISION/PACKET_PROJECT"
 
 OpenNebula encrypts these attributes:
 
