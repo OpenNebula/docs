@@ -62,6 +62,11 @@ Packaging
 ================================================================================
 - **Packaged all required Ruby gems**, installation is now done only from operating system packages and ``install_gems`` is not necessary to run after each installation or upgrade anymore, :ref:`check the front-end installation <ruby_runtime>`.
 - `Debian and Ubuntu debug packages <https://github.com/OpenNebula/packages/issues/55>`_, debugging information for the OpenNebula server are now dedicated package **opennebula-dbgsym**.
+- `Build optimizations <https://github.com/OpenNebula/one/issues/779>`_, packages build respects the proposed compiler and linker parameters of each platform with additional hardening features.
+- `Node packages revert changes on uninstall <https://github.com/OpenNebula/one/issues/3443>`_, configuration changes in libvirt made during the KVM node package install. are reverted on uninstall.
+- Avoid `node_modules files in Sunstone package <https://github.com/OpenNebula/packages/issues/81>`_, built-time only data were dropped from distribution package.
+- `Sunstone package should not provide empty /var/lib/one/sunstone/main.js <https://github.com/OpenNebula/packages/issues/54>`_, temporary file with initially empty content is not contained in the package, but created by post-install scripts.
+- `Datastores directories contained in the package <https://github.com/OpenNebula/packages/issues/68>`_, initial datastores directories are not contained in the package anymore.
 
 IPAM Drivers
 ================================================================================
