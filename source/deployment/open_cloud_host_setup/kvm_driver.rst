@@ -72,7 +72,7 @@ Driver Defaults
 There are some attributes required for KVM to boot a VM. You can set a suitable defaults for them so, all the VMs get needed values. These attributes are set in ``/etc/one/vmm_exec/vmm_exec_kvm.conf``. The following can be set for KVM:
 
 * ``EMULATOR``: path to the kvm executable.
-* ``OS``: attributes ``KERNEL``, ``INITRD``, ``BOOT``, ``ROOT``, ``KERNEL_CMD``, ``MACHINE`` and ``ARCH``.
+* ``OS``: attributes ``KERNEL``, ``INITRD``, ``BOOT``, ``ROOT``, ``KERNEL_CMD``, ``MACHINE``,  ``ARCH`` and ``SD_DISK_BUS``.
 * ``VCPU``
 * ``FEATURES``: attributes ``ACPI``, ``PAE``.
 * ``DISK``: attributes ``DRIVER`` and ``CACHE``. All disks will use that driver and caching algorithm.

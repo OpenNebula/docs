@@ -155,6 +155,9 @@ The OS system is defined with the ``OS`` vector attribute. The following sub-att
 |                  | (first device in the list is the first device used for boot).      |                  |         |         |
 |                  | Possible values: ``disk#``,\ ``nic#``                              |                  |         |         |
 +------------------+--------------------------------------------------------------------+------------------+---------+---------+
+| **SD_DISK_BUS**  | bus for disks with **sd** prefix, either ``scsi`` or ``sata``,     | O                | \-      | \-      |
+|                  | if attribute is missing, libvirt chooses itself                    |                  |         |         |
++------------------+--------------------------------------------------------------------+------------------+---------+---------+
 
 (!!) Use one of KERNEL\_DS or KERNEL (and INITRD or INITRD\_DS).
 
@@ -614,6 +617,8 @@ Context information is passed to the Virtual Machine via an ISO mounted as a par
 | **START\_SCRIPT\_BASE64**         | The same as ``START_SCRIPT`` but encoded in Base64                                | O     | O       | O   |
 +-----------------------------------+-----------------------------------------------------------------------------------+-------+---------+-----+
 | **TARGET**                        | device to attach the context ISO.                                                 | O     | \-      | \-  |
++-----------------------------------+-----------------------------------------------------------------------------------+-------+---------+-----+
+| **DEV\_PREFIX**                   | device prefix for the context ISO, either ``sd``, or ``hd``                       | O     | \-      | \-  |
 +-----------------------------------+-----------------------------------------------------------------------------------+-------+---------+-----+
 | **TOKEN**                         | ``YES`` to create a token.txt file for :ref:`OneGate monitorization               | O     | O       | O   |
 |                                   | <onegate_usage>`                                                                  |       |         |     |
