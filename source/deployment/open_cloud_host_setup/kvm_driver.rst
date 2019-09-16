@@ -75,6 +75,7 @@ There are some attributes required for KVM to boot a VM. You can set a suitable 
 * ``OS``: attributes ``KERNEL``, ``INITRD``, ``BOOT``, ``ROOT``, ``KERNEL_CMD``, ``MACHINE``,  ``ARCH`` and ``SD_DISK_BUS``.
 * ``VCPU``
 * ``FEATURES``: attributes ``ACPI``, ``PAE``.
+* ``CPU_MODEL``: attribute ``MODEL``.
 * ``DISK``: attributes ``DRIVER`` and ``CACHE``. All disks will use that driver and caching algorithm.
 * ``NIC``: attribute ``FILTER``.
 * ``RAW``: to add libvirt attributes to the domain XML file.
