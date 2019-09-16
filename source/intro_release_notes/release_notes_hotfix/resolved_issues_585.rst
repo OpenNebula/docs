@@ -33,3 +33,4 @@ The following issues has been solved in 5.8.5:
 - `Fix select image using checkbox in marketplaceapp table <https://github.com/OpenNebula/one/issues/3621>`__.
 - `Fix "undefined" in IPv6 alias address <https://github.com/OpenNebula/one/issues/3626>`__.
 - `Fix missing snapshot ID in driver when it does not exist, affects revert operation <https://github.com/OpenNebula/one/issues/3687>`__.
+- `Fix show vCenter ID in VLAN <https://github.com/OpenNebula/one/issues/3087>`__.
