@@ -21,6 +21,7 @@ OpenNebula Core
 - **VM operations configurable at user and group level**, use attributes ``VM_USE_OPERATIONS``, ``VM_MANAGE_OPERATIONS`` and ``VM_ADMIN_OPERATIONS`` in user or group template, :ref:`more information <oned_conf_vm_operations>`
 - **Unified objects' secrets handling**, secrets are encrypted and decrypted in core, drivers get secrets decrypted `see here <https://github.com/OpenNebula/one/issues/3064>`__.
 - **Allow VM reschedule in poweroff state**, `see here <https://github.com/OpenNebula/one/issues/3298>`__.
+- **System wide CPU model configuration**, default cpu model for kvm could be set in config file :ref:`see here <kvmg_default_attributes>`.
 
 Other minor features in OpenNebula core:
 
