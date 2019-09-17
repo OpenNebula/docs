@@ -21,6 +21,7 @@ OpenNebula Core
 - **VM operations configurable at user and group level**, use attributes ``VM_USE_OPERATIONS``, ``VM_MANAGE_OPERATIONS`` and ``VM_ADMIN_OPERATIONS`` in user or group template, :ref:`more information <oned_conf_vm_operations>`
 - **Unified objects' secrets handling**, secrets are encrypted and decrypted in core, drivers get secrets decrypted `see here <https://github.com/OpenNebula/one/issues/3064>`__.
 - **Allow VM reschedule in poweroff state**, `see here <https://github.com/OpenNebula/one/issues/3298>`__.
+- **System wide CPU model configuration**, default cpu model for kvm could be set in config file :ref:`see here <kvmg_default_attributes>`.
 
 Other minor features in OpenNebula core:
 
@@ -62,6 +63,11 @@ Packaging
 ================================================================================
 - **Packaged all required Ruby gems**, installation is now done only from operating system packages and ``install_gems`` is not necessary to run after each installation or upgrade anymore, :ref:`check the front-end installation <ruby_runtime>`.
 - `Debian and Ubuntu debug packages <https://github.com/OpenNebula/packages/issues/55>`_, debugging information for the OpenNebula server are now dedicated package **opennebula-dbgsym**.
+- `Build optimizations <https://github.com/OpenNebula/one/issues/779>`_, packages build respects the proposed compiler and linker parameters of each platform with additional hardening features.
+- `Node packages revert changes on uninstall <https://github.com/OpenNebula/one/issues/3443>`_, configuration changes in libvirt made during the KVM node package install. are reverted on uninstall.
+- Avoid `node_modules files in Sunstone package <https://github.com/OpenNebula/packages/issues/81>`_, built-time only data were dropped from distribution package.
+- `Sunstone package should not provide empty /var/lib/one/sunstone/main.js <https://github.com/OpenNebula/packages/issues/54>`_, temporary file with initially empty content is not contained in the package, but created by post-install scripts.
+- `Datastores directories contained in the package <https://github.com/OpenNebula/packages/issues/68>`_, initial datastores directories are not contained in the package anymore.
 
 IPAM Drivers
 ================================================================================
@@ -75,3 +81,5 @@ Other Issues Solved
 - `Fix *Argument list too long* error in migrate action <https://github.com/OpenNebula/one/issues/3373>`_.
 - `Fix cluster CPU/MEM reservations <https://github.com/OpenNebula/one/issues/3630>`_.
 - `Fix issue with wrong controller for multiple scsi disks <https://github.com/OpenNebula/one/issues/2971>`_.
+- `Fix issue with Context ISO device vs. KVM models <https://github.com/OpenNebula/one/issues/2587>`_.
+- `Fix delete IPAM address ranges when deleting the vnet <https://github.com/OpenNebula/one/issues/3070>`__.
