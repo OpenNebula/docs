@@ -80,5 +80,6 @@ Other Issues Solved
 - `Validate disk-snapshot-id cli parameter to prevent confusing conversion <https://github.com/OpenNebula/one/issues/3579>`_.
 - `Fix *Argument list too long* error in migrate action <https://github.com/OpenNebula/one/issues/3373>`_.
 - `Fix cluster CPU/MEM reservations <https://github.com/OpenNebula/one/issues/3630>`_.
+- `Fix issue with wrong controller for multiple scsi disks <https://github.com/OpenNebula/one/issues/2971>`_.
 - `Fix issue with Context ISO device vs. KVM models <https://github.com/OpenNebula/one/issues/2587>`_.
 - `Fix delete IPAM address ranges when deleting the vnet <https://github.com/OpenNebula/one/issues/3070>`__.
