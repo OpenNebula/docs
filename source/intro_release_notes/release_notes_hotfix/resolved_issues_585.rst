@@ -36,3 +36,4 @@ The following issues has been solved in 5.8.5:
 - `Fix duplicated option in onedb CLI command <https://github.com/OpenNebula/one/issues/3696>`__.
 - `Fix save deploy mode VM Sunstone <https://github.com/OpenNebula/one/issues/3303>`__.
 - `Fix show vCenter ID in VLAN <https://github.com/OpenNebula/one/issues/3087>`__.
+- `Fix delete IPAM address ranges when deleting the vnet <https://github.com/OpenNebula/one/issues/3070>`__.
