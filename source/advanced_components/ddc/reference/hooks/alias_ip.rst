@@ -18,31 +18,52 @@ This hook ensures the IPAM managed IP addresses are assigned to the physical hos
     * Hook for :ref:`NIC Alias IP <ddc_hooks_alias_ip>`
     * Virtual Network :ref:`NAT Mapping Driver for Aliased NICs <ddc_vnet_alias_sdnat>`
 
-To enable hook, add the following sections into your ``oned.conf`` configuration file:
+To enable hooks, you have to create the following hooks using the command ``onehook create``:
 
 .. code::
 
-    VM_HOOK = [
-        name      = "alias_ip_running",
-        on        = "RUNNING",
-        command   = "alias_ip/alias_ip.rb",
-        arguments = "$ID $TEMPLATE"
-    ]
+    $ cat running_hook
 
-    VM_HOOK = [
-        name      = "alias_ip_hotplug",
-        on        = "CUSTOM",
-        state     = "ACTIVE",
-        lcm_state = "HOTPLUG_NIC",
-        command   = "alias_ip/alias_ip.rb",
-        arguments = "$ID $TEMPLATE"
-    ]
+    ARGUMENTS       = "$TEMPLATE"
+    ARGUMENTS_STDIN = "yes"
+    COMMAND         = "alias_ip/alias_ip.rb"
+    LCM_STATE       = "RUNNING"
+    NAME            = "alias_ip_running"
+    REMOTE          = "NO"
+    RESOURCE        = "VM"
+    STATE           = "ACTIVE"
+    TYPE            = "state"
 
-    VM_HOOK = [
-        name      = "alias_ip_done",
-        on        = "DONE",
-        command   = "alias_ip/alias_ip.rb",
-        arguments = "$ID $TEMPLATE"
-    ]
+    $ onehook create running_hook
 
-After that, you have to restart OpenNebula so the change takes effect.
+.. code::
+
+    $ cat hotplug_hook
+
+    ARGUMENTS       = "$TEMPLATE"
+    ARGUMENTS_STDIN = "yes"
+    COMMAND         = "alias_ip/alias_ip.rb"
+    LCM_STATE       = "HOTPLUG_NIC"
+    NAME            = "alias_ip_hotplug"
+    ON              = "CUSTOM"
+    REMOTE          = "NO"
+    RESOURCE        = "VM"
+    STATE           = "ACTIVE"
+    TYPE            = "state"
+
+    $ onehook create hotplug_hook
+
+.. code::
+
+    $ cat done_hook
+
+    ARGUMENTS       = "$TEMPLATE"
+    ARGUMENTS_STDIN = "yes"
+    COMMAND         = "alias_ip/alias_ip.rb"
+    NAME            = "alias_ip_done"
+    ON              = "DONE"
+    REMOTE          = "NO"
+    RESOURCE        = "VM"
+    TYPE            = "state"
+
+    $ onehook create done_hook
