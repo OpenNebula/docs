@@ -39,3 +39,8 @@ IPAM Drivers
 ------------
 
 IPAM driver scripts now recieve the template of the AR via STDIN instead of via arguments.
+
+OpenNebula Core
+------------
+
+The ``DEFAULT_DEVICE_PREFIX`` configuration variable is now set to ``sd`` by default.
