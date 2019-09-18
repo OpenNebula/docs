@@ -70,7 +70,9 @@ VMware VM Templates and OpenNebula
 
 In OpenNebula, Virtual Machines are deployed from VMware VM Templates that **must exist previously in vCenter and must be imported into OpenNebula**. There is a one-to-one relationship between each VMware VM Template and the equivalent OpenNebula VM Template. Users will then instantiate the OpenNebula VM Template and OpenNebula will create a Virtual Machine clone from the vCenter template.
 
-.. note:: After a VM Template is cloned and booted into a vCenter Cluster it can access VMware advanced features and it can be managed through the OpenNebula provisioning portal -to control the life-cycle, add/remove NICs, make snapshots- or through vCenter (e.g. to move the VM to another datastore or migrate it to another ESX). OpenNebula will poll vCenter to detect these changes and update its internal representation accordingly.
+.. note:: VMs launched in vCenter through OpenNebula can access VMware advanced features and it can be managed through the OpenNebula provisioning portal -to control the life-cycle, add/remove NICs, make snapshots- or through vCenter (e.g. to move the VM to another datastore or migrate it to another ESX). OpenNebula will poll vCenter to detect these changes and update its internal representation accordingly.
+
+.. note:: Changes to the VM Template in vCenter (like for instance migrate its disk to another datastore) are not supported. If any change is made to the vCenter VM Template, it needs to be reimported into OpenNebula.
 
 There is no need to convert your current Virtual Machines or Templates, or import/export them through any process; once ready just save them as VM Templates in vCenter, following `this procedure <http://pubs.vmware.com/vsphere-55/index.jsp?topic=%2Fcom.vmware.vsphere.vm_admin.doc%2FGUID-FE6DE4DF-FAD0-4BB0-A1FD-AFE9A40F4BFE_copy.html>`__ and import it into OpenNebula as explained later in this chapter.
 
@@ -1241,7 +1243,7 @@ Usage (CLI)
 Driver tuning
 ================================================================================
 
-Some aspects of the driver behavior can be configured on */var/lib/one/remotes/etc/vmm/vcenter/vcenterrc*: 
+Some aspects of the driver behavior can be configured on */var/lib/one/remotes/etc/vmm/vcenter/vcenterrc*:
 
 * **delete_images**: Allows OpenNebula to delete imported vCenter images. Default: **no**.
 
