@@ -68,6 +68,7 @@ Packaging
 - Avoid `node_modules files in Sunstone package <https://github.com/OpenNebula/packages/issues/81>`_, built-time only data were dropped from distribution package.
 - `Sunstone package should not provide empty /var/lib/one/sunstone/main.js <https://github.com/OpenNebula/packages/issues/54>`_, temporary file with initially empty content is not contained in the package, but created by post-install scripts.
 - `Datastores directories contained in the package <https://github.com/OpenNebula/packages/issues/68>`_, initial datastores directories are not contained in the package anymore.
+- Lower `services restart interval <https://github.com/OpenNebula/one/issues/3183>`_, decreases limit for automatic restart of core services and consistently sets automatic restart to all services.
 
 IPAM Drivers
 ================================================================================
