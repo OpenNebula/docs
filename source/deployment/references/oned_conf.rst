@@ -753,6 +753,8 @@ Encrypted Attributes Configuration
 
 These attributes are encrypted and decrypted by the OpenNebula core, the supported attributes are:
 
+- **CLUSTER\_ENCRYPTED\_ATTR**
+- **DATASTORE\_ENCRYPTED\_ATTR**
 - **HOST\_ENCRYPTED\_ATTR**
 - **VM\_ENCRYPTED\_ATTR**: these attributes apply also to the user template.
 - **VNET\_ENCRYPTED\_ATTR**: these attributes apply also to address ranges which belong to the virtual network.
@@ -760,6 +762,10 @@ These attributes are encrypted and decrypted by the OpenNebula core, the support
 Sample configuration:
 
 .. code-block:: bash
+
+    CLUSTER_ENCRYPTED_ATTR = "PROVISION/PACKET_TOKEN"
+
+    DATASTORE_ENCRYPTED_ATTR = "PROVISION/PACKET_TOKEN"
 
     HOST_ENCRYPTED_ATTR = "EC2_ACCESS"
     HOST_ENCRYPTED_ATTR = "EC2_SECRET"
@@ -774,13 +780,13 @@ Sample configuration:
 
     VNET_ENCRYPTED_ATTR = "PROVISION/PACKET_TOKEN"
     VNET_ENCRYPTED_ATTR = "PROVISION/PACKET_PROJECT"
-    
+
     VNET_ENCRYPTED_ATTR = "AR/PROVISION/PACKET_PROJECT"
 
 OpenNebula encrypts these attributes:
 
-- on object create (onehost/onevm/onevnet create)
-- on object update (onehost/onevm/onevnet update)
+- on object create (onecluster/onedatastore/onehost/onevm/onevnet create)
+- on object update (onecluster/onedatastore/onehost/onevm/onevnet update)
 
 To decrypt the attribute you need to use `info` API method with `true` as a parameter. You can decrypt the attributes using the ``--decrypt`` option for ``onevm show``, ``onehost show`` and ``onevnet show``.
 
