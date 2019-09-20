@@ -11,20 +11,23 @@ Host Failures
 
 When OpenNebula detects that a host is down, a hook can be triggered to deal with the situation. OpenNebula comes with a script out-of-the-box that can act as a hook to be triggered when a host enters the ERROR state. This can very useful to limit the downtime of a service due to a hardware failure, since it can redeploy the VMs on another host.
 
-Let's see how to configure ``/etc/one/oned.conf`` to set up this Host hook, to be triggered in the ERROR state. The following should be uncommented in the mentioned configuration file:
+To set up this Host hook, to be triggered in the ERROR state, you need to create it using the following template and command:
 
 .. code::
 
-    #-------------------------------------------------------------------------------
-    HOST_HOOK = [
-        name      = "error",
-        on        = "ERROR",
-        command   = "ft/host_error.rb",
-        arguments = "$ID -m -p 5",
-        remote    = "no" ]
-    #-------------------------------------------------------------------------------
+    $ cat /usr/share/one/examples/host_hooks/error_hook
 
-We are defining a host hook, named ``error``, that will execute the script ``ft/host_error.rb`` locally with the following arguments:
+    ARGUMENTS = "$TEMPLATE -m -p 5"
+    COMMAND   = "ft/host_error.rb"
+    NAME      = "host_error"
+    STATE     = "ERROR"
+    REMOTE    = "no"
+    RESOURCE  = HOST
+    TYPE      = state
+
+    $ onehook create /usr/share/one/examples/host_hooks/error_hook
+
+We are defining a host hook, named ``host_error``, that will execute the script ``ft/host_error.rb`` locally with the following arguments:
 
 +--------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 |      Argument      |                                                                                      Description                                                                                      |
