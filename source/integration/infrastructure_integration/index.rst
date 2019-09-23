@@ -7,6 +7,7 @@ Infrastructure Integration
 
    Overview <overview>
    Using Hooks <hooks>
+   Event Message Qeue <event_message_qeue>
    Virtualization Driver <devel-vmm>
    Provision Driver <devel-pm>
    Storage Driver <sd>
