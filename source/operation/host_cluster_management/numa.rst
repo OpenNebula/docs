@@ -272,6 +272,15 @@ In this output, the string ``X- X- -- --`` represents the NUMA allocation: each 
 
 You can also isolate some hypervisor CPUS from the NUMA scheduler. Isolated CPUs will not be used to pin any VM. The isolated CPUs are defined with the ``ISOLCPUS`` attribute, the attribute is a comma separated list of CPU IDs. For example ``ISOLCPUS="0,5"`` will isolated CPUs 0,5 and hence will not be used to pin any VM.
 
+
+CPU Pinning and Overcommitment
+--------------------------------------------------------------------------------
+
+When using a pinned policy overcommitment is disabled by default (``CPU = 1`` in the VM template). However, some scenarios may require to fix the CPU thread where a VM is running while letting more VMs run in the very same CPU thread.
+
+You can configure the number of VMS per physical thread for each host by setting the ``VMS_THREAD`` (defaults to 1) variable in the host template. For example ``VMS_THREAD = 4`` will pin up to 4 VMS per physical thread in each core.
+
+
 A Complete Example
 ================================================================================
 
