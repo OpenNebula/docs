@@ -276,10 +276,11 @@ You can also isolate some hypervisor CPUS from the NUMA scheduler. Isolated CPUs
 CPU Pinning and Overcommitment
 --------------------------------------------------------------------------------
 
-When using a pinned policy overcommitment is disabled by default (``CPU = 1`` in the VM template). However, some scenarios may require to fix the CPU thread where a VM is running while letting more VMs run in the very same CPU thread.
+When using a pinned policy, overcommitment is disabled by default (``CPU = 1`` in the VM template). However, some scenarios may require to fix the CPU thread where a VM is running while letting more VMs run in the very same CPU thread.
 
 You can configure the number of VMS per physical thread for each host by setting the ``VMS_THREAD`` (defaults to 1) variable in the host template. For example ``VMS_THREAD = 4`` will pin up to 4 VMS per physical thread in each core.
 
+.. important:: When using overcommitment and NUMA you need to set the host overcommitment in the same way, so the total CPU number accounts for the new ``VMS_THREAD`` value. For example, a host with 8 CPUs (``TOTAL_CPU=800``) and ``VMS_THREAD=4`` need to overcommit the CPU number so the ``TOTAL_CPU`` at most 3200 (8 * 4 = 32 CPUs, max.). You can do this with the ``RESERVED_CPU`` attribute for the host, ``RESERVED_CPU = "-2400"`` in this case (``3200 = 800 - (-2400``).
 
 A Complete Example
 ================================================================================
