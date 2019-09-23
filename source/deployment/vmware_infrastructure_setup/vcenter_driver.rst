@@ -433,6 +433,8 @@ A sample section follows:
 
 		OpenNebula host Cluster2 with ID 2 successfully created.
 
+.. note:: If the vCenter is using a port other than the default port, you can use the --port command.
+
 Import a cluster with Sunstone
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 You can also import a cluster from Sunstone. Click on Hosts under the Infrastructure menu entry and then click on the Plus sign, a new window will be opened.
@@ -443,7 +445,7 @@ You can also import a cluster from Sunstone. Click on Hosts under the Infrastruc
 
 In the new window, select VMWare vCenter from the Type drop-down menu.
 
-Introduce the vCenter hostname or IP address and the credentials used to manage the vCenter instance and click on **Get Clusters**
+Introduce the vCenter hostname (the <SERVER>:<PORT> notation can be used for non default ports) or IP address and the credentials used to manage the vCenter instance and click on **Get Clusters**
 
 .. image:: /images/vcenter_create_host_step1.png
     :width: 50%
