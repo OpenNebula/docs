@@ -69,6 +69,7 @@ Packaging
 - `Sunstone package should not provide empty /var/lib/one/sunstone/main.js <https://github.com/OpenNebula/packages/issues/54>`_, temporary file with initially empty content is not contained in the package, but created by post-install scripts.
 - `Datastores directories contained in the package <https://github.com/OpenNebula/packages/issues/68>`_, initial datastores directories are not contained in the package anymore.
 - Lower `services restart interval <https://github.com/OpenNebula/one/issues/3183>`_, decreases limit for automatic restart of core services and consistently sets automatic restart to all services.
+- `Augeas lens for oned.conf <https://github.com/OpenNebula/one/pull/3741>`_, server package contains Augeas lens to manipulate ``oned.conf``-like files.
 
 IPAM Drivers
 ================================================================================
