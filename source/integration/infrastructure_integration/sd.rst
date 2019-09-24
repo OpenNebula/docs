@@ -299,7 +299,7 @@ The script is responsible from getting the information from all disks of all VMs
 
 .. _mixed-tm-modes:
 
-Mixed Transfere modes
+Mixed Transfer modes
 ================================================================================
 
 Certain types of TM can be used in so called *mixed mode* and allow different types of image and system datastore drivers to work together.
@@ -323,7 +323,7 @@ Consider a VM with two disks:
     NAME   = vm01
     CPU    = 0.1
     MEMORY = 64
-     
+
     DISK   = [ IMAGE_ID = 0 ] # non-persistent disk
     DISK   = [ IMAGE_ID = 1 ] # persistent disk
 

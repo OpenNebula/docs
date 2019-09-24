@@ -7,6 +7,7 @@ Infrastructure Integration
 
    Overview <overview>
    Using Hooks <hooks>
+   Hook Manager Events <hook_manager_events>
    Virtualization Driver <devel-vmm>
    Provision Driver <devel-pm>
    Storage Driver <sd>

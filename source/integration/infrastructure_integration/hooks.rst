@@ -4,192 +4,409 @@
 Using Hooks
 ================================================================================
 
-The Hook Manager present in OpenNebula enables the triggering of custom scripts tied to a change in state in a particular resource, being that a Host or a Virtual Machine. This opens a wide area of automation for system administrators to tailor their cloud infrastructures.
+The Hook subsystem enables the execution of custom scripts tied to a change in state in a particular resource, or API call. This opens a wide area of automation for system administrators to tailor their cloud infrastructures. It also features a logging mechanism that allows a convenient way to query the execution history or to retry the execution of a given hook.
+
+Overview
+================================================================================
+
+The hook subsystem has two main components:
+
+- **Hook Manager Driver**: it receives information about every event triggered by oned and publishes it to an event queue. Custom components can also use this queue to subscribe to oned events, :ref:`more information here <hook_manager_events>`.
+- **Hook Execution Manager** (HEM): It registers itself to the events that triggers the hooks defined in the system. When an event is received it takes care of executing the corresponding hook command.
+
+|hook-subsystem|
+
+Both components are started together with the OpenNebula daemon. Note that, provided the network communication is secure, you can grant network access to the event queue and hence deploy HEM in a different server.
 
 Configuration
 ================================================================================
 
-Hook Manager configuration is set in ``/etc/one/oned.conf``. Hooks can be tied to changes in host or virtual machine states, and they can be executed locally to the OpenNebula front-end and remotely in the relevant worker node.
+Hook Manager
+--------------------------------------------------------------------------------
 
-In general, hook definition in ``/etc/one/oned.conf`` has two paremeters:
+Hook Manager configuration is set in ``HM_MAD`` section in ``/etc/one/oned.conf``. The configuration attributes are described below:
 
--  **executable**: path of the hook driver executable, can be an absolute path or relative to ``/usr/lib/one/mads``
++-------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Parameter   | Description                                                                                                                                                               |
++=============+===========================================================================================================================================================================+
+| Executable  | Path of the hook driver executable, can be an absolute path or relative to $ONE_LOCATION/lib/mads (or /usr/lib/one/mads/ if OpenNebula was installed in /)                |
++-------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Arguments   | Arguments for the driver executable, the following values are supported:                                                                                                  |
+|             |                                                                                                                                                                           |
+|             | - ``--publisher-port``, ``-p``: The port where the Hook Manager will publish the events reported by oned.                                                                 |
+|             | - ``--logger-port``,    ``-l``: The port where the Hook Manager will receive information about hook executions.                                                           |
+|             | - ``--hwm``,            ``-h``: The HWM value for the publisher socket, more information can be found `here <http://zguide.zeromq.org/page:all#High-Water-Marks>`__.      |
+|             | - ``--bind``,           ``-b``: Address to bind the publisher socket.                                                                                                     |
++-------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
--  **arguments**: for the driver executable, can be an absolute path or relative to ``/etc/one/``
+Hook Execution Manager
+--------------------------------------------------------------------------------
 
-Hooks for VirtualMachines
+Hook Execution Manager configuration is set in ``/etc/one/onehem-server.conf``:
+
++-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Parameter             | Description                                                                                                                                                               |
++=======================+===========================================================================================================================================================================+
+| debug_level           | Set the log debug level shown in ``/var/log/one/onehem-server.log``                                                                                                       |
++-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| hook_base_path        | Base location to look for hook scripts when commands use a relative path (default value ``/var/lib/one/remotes/hooks``)                                                   |
++-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| subscriber_endpoint   | To subscribe for OpenNebula events, must match those in ``HM_MAD`` section of ``oned.conf``.                                                                              |
++-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| replier_endpoint      | To send hook execution results (reply to events) to oned, it must match those in ``HM_MAD`` section of ``oned.conf``.                                                     |
++-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| concurrency           | Number of hooks executed simultaneously.                                                                                                                                  |
++-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Hook Log
+--------------------------------------------------------------------------------
+
+You can check the execution results of a hook using the hook log. The hook log stores a record for each execution including the standard output and error of the command, as well as the arguments used. This information is used to retry the execution of a given record.
+
+The number of execution log records stored in the database for each hook can be configured in `oned.conf`. For example, to keep only the last 10 execution records of each hook use ``LOG_RETENTION = 10``. This value can be tuned taking into account the number of hooks and how many times hooks are executed:
+
+.. code::
+
+    HOOK_LOG_CONF = [
+        LOG_RETENTION = 10 ]
+
+
+Hook Types
 ================================================================================
 
-In the case of VirtualMachine hooks, the following can be defined:
+There are two types of hooks, **API hooks** (triggered on API calls) and **State hooks** (triggered on state change). The main attributes for both types are described in the table below:
 
--  **name** : for the hook, useful to track the hook (OPTIONAL)
--  **on** : when the hook should be executed,
++-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Option                | Mandatory | Description                                                                                                                                                    |
++=======================+===========+================================================================================================================================================================+
+| NAME                  | YES       | The name of the hook.                                                                                                                                          |
++-----------------------+-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| COMMAND               | YES       | The command that will be executed when hook is triggered. Typically a path to a script.                                                                        |
++-----------------------+-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ARGUMENTS             | NO        | The arguments that will be passed to the script when the hook is triggered.                                                                                    |
++-----------------------+-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ARGUMENTS_STDIN       | NO        | If ``yes`` the ARGUMENTS will be passed through STDIN instead of as command line arguments.                                                                    |
++-----------------------+-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| TYPE                  | YES       | The hook type either ``api`` or ``state``.                                                                                                                     |
++-----------------------+----------++----------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-   -  **CREATE**, when the VM is created (onevm create)
-   -  **RUNNING**, after the VM is successfully booted
-   -  **SHUTDOWN**, after the VM is shutdown
-   -  **STOP**, after the VM is stopped (including VM image transfers)
-   -  **DONE**, after the VM is destroyed or shutdown
-   -  **UNKNOWN**, when the VM enters the unknown state
-   -  **CUSTOM**, user defined specific STATE and LCM\_STATE combination of states to trigger the hook.
+.. _api_hooks:
 
--  **command** : path can be absolute or relative to ``/var/lib/one/remotes/hooks``
--  **arguments** : for the hook. You can access the following VM attributes with $
+API Hooks
+--------------------------------------------------------------------------------
 
-   -  **$ID**, the ID of the VM that triggered the hook execution
-   -  **$TEMPLATE**, the template of the VM that triggered the hook, in xml and base64 encoded
-   -  **$PREV\_STATE**, the previous STATE of the Virtual Machine
-   -  **$PREV\_LCM\_STATE**, the previous LCM STATE of the Virtual Machine
+The API hooks are triggered after the execution of an API call. The specific attributes for API hooks are listed below:
 
--  **remote** : values,
++-----------------------+-----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Option                | Mandatory | Description                                                                                                                                                   |
++=======================+===========+===============================================================================================================================================================+
+| CALL                  | YES       | The API call which trigger the hook. For more info about API calls please check :ref:`XML-RPC API section. <api>`                                             |
++-----------------------+-----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-   -  **YES**, The hook is executed in the host where the VM was allocated
-   -  **NO**, The hook is executed in the OpenNebula server (default)
+For API hooks, the ``$API`` keyword can be used in the ``ARGUMENTS`` attribute to get the information about the API call. If ``$API`` is used, a base64-encoded XML document containing the API call arguments and result will be passed to the hook command. The schema of the XML is `defined here <https://github.com/OpenNebula/one/blob/master/share/doc/xsd/api_info.xsd>`__.
 
-The following is an example of a hook tied to the DONE state of a VM:
+.. note:: If the API method defined in ``CALL`` is an ``allocate`` or ``delete``, the ``$API`` document will also include the template of the corresponding resource.
 
-.. code::
-
-    VM_HOOK = [
-        name      = "notify_done",
-        on        = "DONE",
-        command   = "notify.rb",
-        arguments = "$ID $TEMPLATE" ]
-
-Or an more advanced example:
+The following example defines an API hook that executes the command ``/var/lib/one/remotes/hooks/log_new_user.rb`` whenever a new user is created:
 
 .. code::
 
-    VM_HOOK = [
-      name      = "advanced_hook",
-      on        = "CUSTOM",
-      state     = "ACTIVE",
-      lcm_state = "BOOT_UNKNOWN",
-      command   = "log.rb",
-      arguments = "$ID $PREV_STATE $PREV_LCM_STATE" ]
+    NAME      = hook-API
+    TYPE      = api
+    COMMAND   = "log_new_user.rb"
+    ARGUMENTS = $API
+    CALL      = "one.user.allocate"
+    ARGUMENTS_STDIN = yes
 
-Hooks for Hosts
+.. _state_hooks:
+
+State Hooks
+--------------------------------------------------------------------------------
+
+The state hooks are only available for **Hosts** and **Virtual Machines** and they are triggered on specific state transitions. The specific attributes to define state hooks are:
+
++-----------------------+-----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Option                | Mandatory | Description                                                                                                                                                                     |
++=======================+===========+=================================================================================================================================================================================+
+| RESOURCE              | YES       | Type of the resource, supported values are ``HOST`` and ``VM``.                                                                                                                 |
++-----------------------+-----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| REMOTE                | NO        | If ``yes`` the hook will be executed in the host that triggered the hook (for Host hooks) or in the host where the VM is running (for VM hooks)                                 |
++-----------------------+-----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| STATE                 | YES       | The state that triggers the hook.                                                                                                                                               |
++-----------------------+-----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| LCM_STATE             | YES       | The LCM state that triggers the hook (Only for VM hooks)                                                                                                                        |
++-----------------------+-----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ON                    | YES       | For ``RESOURCE=VM``, shortcut to define common ``STATE``/``LCM_STATE`` pairs. Supported values are: CREATE, RUNNING, SHUTDOWN, STOP, DONE, UNKNOWN, CUSTOM                      |
++-----------------------+-----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+.. warning:: Note that ``ON`` is mandatory for VM hooks, use ``ON=CUSTOM`` with ``STATE`` and ``LCM_STATE`` to define hooks on specific state transitions.
+
+For state hooks, ``$TEMPLATE`` can be used in the ``ARGUMENTS`` attribute to get the template (in XML format, base64 encoded) of the resource which triggered the hook. The XSD schema files for the XML document of each object are available `here <https://github.com/OpenNebula/one/tree/master/share/doc/xsd>`__
+
+The following examples define two state hooks for VMs and hosts:
+
+.. code::
+
+    # VM
+    NAME = hook-vm
+    TYPE = state
+    COMMAND = new_vm.rb
+    ARGUMENTS = $TEMPLATE
+    ON = PROLOG
+    RESOURCE = VM
+
+    # HOST
+    NAME = hook-host
+    TYPE = state
+    COMMAND = host-disabled.rb
+    STATE = DISABLED
+    RESOURCE = HOST
+    REMOTE = yes
+
+.. note:: More info about VM and Host states can be found :ref:`here <vm_states>` and :ref:`here <host_states>`
+
+Managing Hooks
 ================================================================================
 
-In the case of Host hooks, the following can be defined:
+Hooks can be managed via the CLI through the ``onehook`` command and via the API. This section describes the common operations to control the life-cycle of a hook using the CLI.
 
--  **name** : for the hook, useful to track the hook (OPTIONAL)
--  **on** : when the hook should be executed,
+Creating Hooks
+--------------------------------------------------------------------------------
 
-   -  **CREATE**, when the Host is created (onehost create)
-   -  **ERROR**, when the Host enters the error state
-   -  **DISABLE**, when the Host is disabled
-
--  **command** : path can be absolute or relative to ``/var/lib/one/remotes/hooks``
--  **arguments** : for the hook. You can use the following Host attributes with $
-
-   -  **$ID**, the ID of the Host that triggered the hook execution
-   -  **$TEMPLATE**, the full Host information, in xml and base64 encoded
-
--  **remote** : values,
-
-   -  **YES**, The hook is executed in the host
-   -  **NO**, The hook is executed in the OpenNebula server (default)
-
-The following is an example of a hook tied to the ERROR state of a Host:
+In order to create a new hook you need to create a hook template:
 
 .. code::
 
-    #*******************************************************************************
-    # Fault Tolerance Hooks
-    #*******************************************************************************
-    # This hook is used to perform recovery actions when a host fails.
-    # Script to implement host failure tolerance
-    #   One of the following modes must be chosen
-    #           -m resched VMs to another host. (Only for images in shared storage!)
-    #           -r recreate VMs running in the host. State will be lost.
-    #           -d delete VMs running in the host
-    #
-    #   Additional flags
-    #           -f resubmit suspended and powered off VMs (only for recreate)
-    #           -p <n> avoid resubmission if host comes back after n monitoring
-    #                 cycles. 0 to disable it. Default is 2.
-    #           -u disables fencing. Fencing is enabled by default. Don't disable it
-    #                 unless you are very sure about what you're doing
-    #*******************************************************************************
-    
-    HOST_HOOK = [
-        name      = "error",
-        on        = "ERROR",
-        command   = "ft/host_error.rb",
-        arguments = "$ID -m -p 5",
-        remote    = "no" ]
-    #-------------------------------------------------------------------------------
+   $ cat > hook.tmpl << EOF
+        NAME      = hook-vm
+        TYPE      = state
+        COMMAND   = vm-pending.rb
+        ARGUMENTS = "\$TEMPLATE pending"
+        ON        = CUSTOM
+        RESOURCE  = VM
+        STATE     = PENDING
+        LCM_STATE = LCM_INIT
+    EOF
 
-.. note::
-    In the case when the resched VMs mode is selected (-m) but the host is wrongly recognized as failed (for example due to failure of the management network) it is essential to have properly configured and working ft/fence_host.sh. Otherwiseit is possible to have data coruption because the old still running VM  and the new VM both will write to the shared disk.
+Then, simply create the hook by running the following command:
 
-Other Hooks
+.. code::
+
+    $ onehook create hook.tmpl
+      ID: 0
+
+We have just created a hook which will be triggered each time a VM switch to PENDING state.
+
+Checking Hook Execution
+--------------------------------------------------------------------------------
+
+We can check the execution records of a hook by accessing its detailed information. For example, to get the execution history of the previous hook use ``onehook show 0``:
+
+.. code::
+
+    $ onevm create --cpu 1 --memory 2 --name test
+      ID: 0
+    $ onehook show 0
+      HOOK 0 INFORMATION
+      ID                : 0
+      NAME              : hook-vm
+      TYPE              : state
+      LOCK              : None
+
+      HOOK TEMPLATE
+      ARGUMENTS="$TEMPLATE pending"
+      COMMAND="vm-pending.rb"
+      LCM_STATE="LCM_INIT"
+      REMOTE="NO"
+      RESOURCE="VM"
+      STATE="PENDING"
+
+      EXECUTION LOG
+        ID    TIMESTAMP    EXECUTION
+        0     09/23 15:10  ERROR (255)
+
+We can see that there is an execution which have failed with error code 255. To get more information about a specific execution use the ``-e`` option:
+
+.. code::
+
+    $ onehook show 0 -e 0
+      HOOK 0 INFORMATION
+      ID                : 0
+      NAME              : hook-vm
+      TYPE              : state
+      LOCK              : None
+
+      HOOK EXECUTION RECORD
+      EXECUTION ID      : 0
+      TIMESTAMP         : 09/23 15:10:38
+      COMMAND           : /var/lib/one/remotes/hooks/vm-pending.rb PFZNPgogIDxJR...8+CjwvVk0+ pending
+      ARGUMENTS         :
+      <VM>
+      <ID>0</ID>
+      <UID>0</UID>
+      <GID>0</GID>
+      <UNAME>oneadmin</UNAME>
+      <GNAME>oneadmin</GNAME>
+      <NAME>test</NAME>
+      <PERMISSIONS>
+          <OWNER_U>1</OWNER_U>
+          <OWNER_M>1</OWNER_M>
+          <OWNER_A>0</OWNER_A>
+          <GROUP_U>0</GROUP_U>
+          <GROUP_M>0</GROUP_M>
+          <GROUP_A>0</GROUP_A>
+          <OTHER_U>0</OTHER_U>
+          <OTHER_M>0</OTHER_M>
+          <OTHER_A>0</OTHER_A>
+      </PERMISSIONS>
+      <LAST_POLL>0</LAST_POLL>
+      <STATE>1</STATE>
+      <LCM_STATE>0</LCM_STATE>
+      <PREV_STATE>1</PREV_STATE>
+      <PREV_LCM_STATE>0</PREV_LCM_STATE>
+      <RESCHED>0</RESCHED>
+      <STIME>1569244238</STIME>
+      <ETIME>0</ETIME>
+      <DEPLOY_ID/>
+      <MONITORING/>
+      <TEMPLATE>
+          <AUTOMATIC_REQUIREMENTS><![CDATA[!(PUBLIC_CLOUD = YES) & !(PIN_POLICY = PINNED)]]></AUTOMATIC_REQUIREMENTS>
+          <CPU><![CDATA[1]]></CPU>
+          <MEMORY><![CDATA[2]]></MEMORY>
+          <VMID><![CDATA[0]]></VMID>
+      </TEMPLATE>
+      <USER_TEMPLATE/>
+      <HISTORY_RECORDS/>
+      </VM> pending
+      EXIT CODE         : 255
+
+      EXECUTION STDOUT
+
+
+      EXECUTION STDERR
+      ERROR MESSAGE --8<------
+      Internal error No such file or directory - /var/lib/one/remotes/hooks/vm-pending.rb
+      ERROR MESSAGE ------>8--
+
+The ``EXECUTION STDERR`` message shows the reason for the hook execution failure, the script does not exists:
+
+.. code::
+
+    Internal error No such file or directory - /var/lib/one/remotes/hooks/vm-pending.rb
+
+.. important:: The hook log can be queried and filtered by several criteria using ``onehook log``. More info about ``onehook log`` command can be found running ``onehook log --help``.
+
+Retrying Hook Executions
+--------------------------------------------------------------------------------
+
+We are going to fix the previous error, let's first create the ``vm-pending.rb`` script, and then retry the hook execution.
+
+.. note:: Note that any hook execution can be retried regardless of it result.
+
+.. code::
+
+    $ vim /var/lib/one/remotes/hooks/vm-pending.rb
+      #!/usr/bin/ruby
+      puts "Executed!"
+
+    $ chmod 760 /var/lib/one/remotes/hooks/vm-pending.rb
+    $ onehook retry 0 0
+    $ onehook show 0
+      HOOK 0 INFORMATION
+      ID                : 0
+      NAME              : hook-vm
+      TYPE              : state
+      LOCK              : None
+
+      HOOK TEMPLATE
+      ARGUMENTS="$TEMPLATE pending"
+      COMMAND="vm-pending.rb"
+      LCM_STATE="LCM_INIT"
+      REMOTE="NO"
+      RESOURCE="VM"
+      STATE="PENDING"
+
+      EXECUTION LOG
+      ID       TIMESTAMP    RC    EXECUTION
+      0        09/23 15:10  255   ERROR
+      1        09/23 15:59    0   SUCCESS
+
+Note the last successful execution record!
+
+.. important:: When a hook execution is retried the same execution context is used, i.e. arguments and $TEMPLATE/$API values.
+
+Developing Hooks
 ================================================================================
 
-Other OpenNebula entities like Virtual Networks, Users, Groups and Images can be hooked on creation and removal. These hooks are specified with the following variables in oned.conf:
+First thing you need to decide is the type of hook you are interested in, being it API or STATE hooks. Each type of hook is triggered by a different event and requires/provides different runtime information.
 
--  **VNET\_HOOK**, for virtual networks
--  **USER\_HOOK**, for users
--  **GROUP\_HOOK**, for groups
--  **IMAGE\_HOOK**, for disk images.
+In this section you'll find two simple script hooks (in ruby) for each type. This examples are good starting points for developing custom hooks.
 
-These hooks are always executed on the front-end and are defined by the following attributes
+API Hook example
+--------------------------------------------------------------------------------
 
--  **name** : for the hook, useful to track the hook (OPTIONAL)
--  **on** : when the hook should be executed,
+This script prints to stdout the result of one.user.create API call and the username of new user.
 
-   -  **CREATE**, when the object (virtual network, user, group or image) is created
-   -  **REMOVE**, when the object is removed from the DB
+.. code-block:: ruby
 
--  **command** : path can be absolute or relative to ``/var/lib/one/remotes/hooks``
--  **arguments** : for the hook. You can use the following Host attributes with $
+    #!/usr/bin/ruby
 
-   -  **$ID**, the ID of the Host that triggered the hook execution
-   -  **$TEMPLATE**, the full Host information, in xml and base64 encoded
+    require 'base64'
+    require 'nokogiri'
 
-The following is an example of a hook that sends and email to a new register user:
+    #api_info= Nokogiri::XML(Base64::decode64(STDIN.gets.chomp)) for reading from STDIN
+    api_info = Nokogiri::XML(Base64::decode64(ARGV[0]))
 
-.. code::
+    success = api_info.xpath("/CALL_INFO/RESULT").text.to_i == 1
+    uname   = api_info.xpath('//PARAMETER[TYPE="IN" and POSITION=2]/VALUE').text
+
+    if !success
+        puts "Failing to create user"
+        exit -1
+    end
+
+    puts "User #{uname} successfully created"
 
 
-    USER_HOOK = [
-        name      = "mail",
-        on        = "CREATE",
-        command   = "email2user.rb",
-        arguments = "$ID $TEMPLATE"]
 
-.. note::
+State Hook example (HOST)
+--------------------------------------------------------------------------------
 
-    In a :ref:`Federation <introf>`, **USER** and **GROUP** hooks can only be defined in the **master** OpenNebula. Because the slaves will rely the user and group actions to the master, they will only be triggered once, in the master. The hooks for any other resource are defined locally for each OpenNebula instance.
+This script prints to stdout the ID of the user that invoked one.host.create API call and the ID of the new host.
 
-Developing your Hooks
-================================================================================
+.. code-block:: ruby
 
-The execution of each hook is tied to the object that trigger the event. The data of the object can be passed to the hook through the $ID and the $TEMPLATE variables:
+    #!/usr/bin/ruby
 
--  $TEMPLATE will give you the full output of the corresponding show command in XML and base64 encoding. This can be easily deal with in any language. If you are using bash for your scripts you may be interested in the xpath.rb util, check the following example:
+    require 'base64'
+    require 'nokogiri'
 
-.. code::
+    #host_template = Nokogiri::XML(Base64::decode64(STDIN.gets.chomp)) for reading from STDIN
+    host_template = Nokogiri::XML(Base64::decode64(ARGV[0]))
 
-    #!/bin/bash
-    # Argument hook for virtual network add to oned.conf
-    # VNET_HOOK = [
-    #   name="bash_arguments",
-    #   on="CREATE",
-    #   command=<path_to_this_file>,
-    #   arguments="$TEMPLATE" ]
-     
-    XPATH=/var/lib/one/remotes/datastore/xpath.rb
-    T64=$1
-     
-    USER_NAME=`$XPATH -b $T64 UNAME`
-    OWNER_USE_PERMISSION=`$XPATH -b $T64 PERMISSIONS/OWNER_U`
-     
-    #UNAME and PERMISSIONS/OWNER_U are the XPATH for the attributes without the root element
+    host_id = host_template.xpath("//ID").text.to_i
+    uid   = host_template.xpath("//UID").text.to_i
 
--  $ID you can use the ID of the object to retrieve more information or to perform an action over the object. (e.g. onevm hold $ID)
+    puts "User #{uid} created Host #{host_id}"
 
-A good starting point is the :ref:`hook that implements the Virtual Machine High Availability <ftguide>`, that uses the OpenNebula Cloud API to implement the HA functionality of VMs when the host that are running on crashes.
+State Hook example (VM)
+--------------------------------------------------------------------------------
 
-Note that within the hook you can further interact with OpenNebula to retrieve more information, or perform any other action.
+.. code-block:: ruby
+
+    #!/usr/bin/ruby
+
+    require 'base64'
+    require 'nokogiri'
+
+    #vm_template = Nokogiri::XML(Base64::decode64(STDIN.gets.chomp)) for reading from STDIN
+    vm_template = Nokogiri::XML(Base64::decode64(ARGV[0]))
+
+    vm_id = vm_template.xpath("//ID").text.to_i
+    uid   = vm_template.xpath("//UID").text.to_i
+
+    puts "User #{uid} created VM #{vm_id}"
+
+.. note:: Note that any command can be specified in ``COMMAND``, for debugging. (``COMMAND="/usr/bin/echo"``) can be very helpfull.
+
+.. |hook-subsystem| image:: /images/hooks-subsystem-architecture.png

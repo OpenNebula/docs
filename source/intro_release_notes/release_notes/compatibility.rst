@@ -44,3 +44,20 @@ OpenNebula Core
 ---------------
 
 The ``DEFAULT_DEVICE_PREFIX`` configuration variable is now set to ``sd`` by default.
+
+Hooks
+---------------
+
+.. TODO Extend this section with to link to the upgrade guide with specific upgrade instructions for each hook
+
+.. TODO Extend upgrade guide with detailed examples to upgrade hooks
+
+Hooks are not managed via oned.conf anymore. Currently the hooks need to be created by using the API or CLI so any hook defined in the oned.conf will need to be created.
+
+Also, the hooks definition has changed. Currently the only way to set a Hook for other resources than VM or Host is via :ref:`API Hooks <api_hooks>` (e.g `ON=CREATE` hook for user now will be an API hook for `one.user.allocate` call).
+
+The hooks for VMs and Hosts are defined the same way than before, but it's needed to define a hook template and create it as mentioned before. More info about State Hooks are available :ref:`here <state_hooks>`
+
+The ``$ID`` attribute is not supported anymore so the ID of the resource must be retrieved from the resource template.
+
+
