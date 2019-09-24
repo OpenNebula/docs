@@ -106,7 +106,7 @@ The API Hooks are triggered when a determined API call arrives to oned. The cust
 | CALL                  | YES       | The API call which trigger the hook. For more info about API calls please check :ref:`XML-RPC API section. <api>`                                             |
 +-----------------------+-----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-When an API Hook is defined, ``$API`` can be used inside ``ARGUMENTS`` attribute to send information about the API call. If ``$API`` is used, a base64 encoded xml document containing the value of the API call arguments and the output of the call will be pass to the script/command defined in ``COMMAND`` attribute. The schema of the XML is defined here: <TODO LINK XSD DOCUMENT>
+When an API Hook is defined, ``$API`` can be used inside ``ARGUMENTS`` attribute to send information about the API call. If ``$API`` is used, a base64 encoded xml document containing the value of the API call arguments and the output of the call will be pass to the script/command defined in ``COMMAND`` attribute. The schema of the XML is defined `here <https://github.com/OpenNebula/one/blob/master/share/doc/xsd/api_info.xsd>`__.
 
 .. note:: If the API call defined in ``CALL`` corresponds with an ``allocate`` or ``delete`` call and ``$API`` is used,  the template of the resource will be sent along with the API call information.
 
@@ -144,7 +144,7 @@ The State Hooks are only available for **Hosts** and **Virtual Machines** and th
 
 .. warning:: Note that ``ON`` attribute is mandatory when ``RESOURCE=VM``, if a value different from ``CUSTOM`` is specified, ``STATE`` and ``LCM_STATE`` can be avoided. Use ``ON=CUSTOM`` with ``STATE`` and ``LCM_STATE`` for defining hooks which will be triggered in states different than the ones supported by ``ON``.
 
-For State Hooks, ``$TEMPLATE`` can be used inside ``ARGUMENTS`` attribute to send the template (in XML format) of the resource which triggered the hook to the hook script/command.
+For State Hooks, ``$TEMPLATE`` can be used inside ``ARGUMENTS`` attribute to send the template (in XML format) of the resource which triggered the hook to the hook script/command. The XSD which define the XML of the object returned with $TEMPLATE are available `here <https://github.com/OpenNebula/one/tree/master/share/doc/xsd>`__
 
 .. note:: The resource template sent to the script/command when $TEMPLATE is used will be encoded using base64.
 

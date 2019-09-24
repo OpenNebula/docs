@@ -31,14 +31,14 @@ There is two different types of EVENT messages, the one representing a API event
 | STATE (VM)    | ``EVENT STATE VM/<STATE>/<LCM_STATE>`` (e.g ``EVENT STATE VM/PENDING/LCM_INIT``)                                    |
 +---------------+---------------------------------------------------------------------------------------------------------------------+
 
-The content of an event message is an XML document containing information related to the event, the XSD representing this content are available here:
+The content of an event message is an XML document containing information related to the event, the XSD representing this content are available `here <https://github.com/OpenNebula/one/tree/master/share/doc/xsd>`__.
 
 
 
 Retry Messages Format
 ---------------------------
 
-The key format of the retry messages is just the word ``RETRY``, no more info is needed in the key. The retry messages content is an XML file with information about the execution to retry. The XSD representing this content is available here:
+The key format of the retry messages is just the word ``RETRY``, no more info is needed in the key. The retry messages content is an XML file with information about the execution to retry. The XSD representing this content is available `here <https://github.com/OpenNebula/one/tree/master/share/doc/xsd>`__.
 
 Subscriber script example
 ===========================
