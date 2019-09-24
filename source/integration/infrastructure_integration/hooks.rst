@@ -13,7 +13,7 @@ The hook subsystem allows to manage the hooks dynamically (create, delete, updat
 
 The hook subsystem have 2 main components:
 
-- **Hook Manager Driver**: it receive information about every event triggered in oned a publish it in the event queue. This queue can be used for developing external components, more information is available :ref:`here<event_message_queue>`.
+- **Hook Manager Driver**: it receive information about every event triggered in oned a publish it in the event queue. This queue can be used for developing external components, more information is available :ref:`here <hook_manager_events>`.
 - **Hook Execution Manager** (HEM): It load all the hooks of the system and subscribe to the event of each hooks, when an event is received in the HEM it take care of executing the corresponding hook with the conditions defined for it.
 
 |hook-subsystem|
@@ -93,6 +93,8 @@ There are two Hook Types, **API hooks** and **State Hooks** they have some commo
 | TYPE                  | YES       | The hook type either ``api`` or ``state``.                                                                                                                     |
 +-----------------------+----------++----------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
+.. _api_hooks:
+
 API Hooks
 --------------------------------------------------------------------------------
 
@@ -101,7 +103,7 @@ The API Hooks are triggered when a determined API call arrives to oned. The cust
 +-----------------------+-----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Option                | Mandatory | Description                                                                                                                                                   |
 +=======================+===========+===============================================================================================================================================================+
-| CALL                  | YES       | The API call which trigger the hook. For more info about API calls please check :ref:`XML-RPC API section.<api>`                                              |
+| CALL                  | YES       | The API call which trigger the hook. For more info about API calls please check :ref:`XML-RPC API section. <api>`                                             |
 +-----------------------+-----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 When an API Hook is defined, ``$API`` can be used inside ``ARGUMENTS`` attribute to send information about the API call. If ``$API`` is used, a base64 encoded xml document containing the value of the API call arguments and the output of the call will be pass to the script/command defined in ``COMMAND`` attribute. The schema of the XML is defined here: <TODO LINK XSD DOCUMENT>
@@ -118,6 +120,8 @@ Here can be found an example of API hook which does use the $API option:
     ARGUMENTS = $API
     CALL      = "one.user.allocate"
     ARGUMENTS_STDIN = yes
+
+.. _state_hooks:
 
 State Hooks
 --------------------------------------------------------------------------------
@@ -164,7 +168,7 @@ Here can be found an example of a State Hook for a VM and a Host:
     RESOURCE = HOST
     REMOTE = yes
 
-.. note:: More info about VM and Host state can be found :ref:`here<vm_states>` and :ref:`here<host_states>`
+.. note:: More info about VM and Host state can be found :ref:`here <vm_states>` and :ref:`here <host_states>`
 
 Managing Hooks
 ================================================================================

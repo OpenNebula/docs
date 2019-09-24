@@ -931,6 +931,35 @@ onevntemplate
 | unlock                | one.vntemplate.unlock      | VNTEMPLATE:MANAGE         |
 +-----------------------+----------------------------+---------------------------+
 
+onehook
+--------------------------------------------------------------------------------
+
++-----------------------+----------------------------+---------------------------+
+| onevntemplate command |      XML-RPC Method        |      Auth. Request        |
++=======================+============================+===========================+
+| update                | one.hook.update            | HOOK:MANAGE               |
++-----------------------+----------------------------+---------------------------+
+| create                | one.hook.allocate          | HOOK:CREATE               |
++-----------------------+----------------------------+---------------------------+
+| delete                | one.hook.delete            | HOOK:MANAGE               |
++-----------------------+----------------------------+---------------------------+
+| show                  | one.hook.info              | HOOK:USE                  |
++-----------------------+----------------------------+---------------------------+
+| rename                | one.hook.rename            | HOOK:MANAGE               |
++-----------------------+----------------------------+---------------------------+
+| list                  | one.hook.info              | HOOK:USE                  |
+|                       |                            |                           |
+| top                   |                            |                           |
++-----------------------+----------------------------+---------------------------+
+| lock                  | one.hook.lock              | HOOK:MANAGE               |
++-----------------------+----------------------------+---------------------------+
+| unlock                | one.hook.unlock            | HOOK:MANAGE               |
++-----------------------+----------------------------+---------------------------+
+| retry                 | one.hook.unlock            | HOOK:MANAGE               |
++-----------------------+----------------------------+---------------------------+
+| log                   | one.hooklog.info           | HOOK:-                    |
++-----------------------+----------------------------+---------------------------+
+
 Actions for Templates Management
 ================================================================================
 
@@ -7317,2121 +7346,261 @@ one.vntemplatepool.info
 
 The range can be used to retrieve a subset of the pool, from the 'start' to the 'end' ID. To retrieve the complete pool, use ``(-1, -1)``; to retrieve all the pool from a specific ID to the last one, use ``(<id>, -1)``, and to retrieve the first elements up to an ID, use ``(0, <id>)``.
 
+Actions for Hooks Management
+================================================================================
+
+one.hook.allocate
+--------------------------------------------------------------------------------
+
+-  **Description**: Allocates a new Hook in OpenNebula.
+-  **Parameters**
+
++------+------------+--------------------------------------------------------------------------------------------------+
+| Type | Data Type  |                                          Description                                             |
++======+============+==================================================================================================+
+| IN   | String     | The session string.                                                                              |
++------+------------+--------------------------------------------------------------------------------------------------+
+| IN   | String     | A string containing the hook contents. Syntax can be the usual ``attribute=value`` or XML.       |
++------+------------+--------------------------------------------------------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not                                                      |
++------+------------+--------------------------------------------------------------------------------------------------+
+| OUT  | Int/String | The allocated resource ID / The error string.                                                    |
++------+------------+--------------------------------------------------------------------------------------------------+
+| OUT  | Int        | Error code.                                                                                      |
++------+------------+--------------------------------------------------------------------------------------------------+
+
+one.hook.delete
+--------------------------------------------------------------------------------
+
+-  **Description**: Deletes the given hook from the pool.
+-  **Parameters**
+
++------+------------+-------------------------------------------------------------+
+| Type | Data Type  |                         Description                         |
++======+============+=============================================================+
+| IN   | String     | The session string.                                         |
++------+------------+-------------------------------------------------------------+
+| IN   | Int        | The object ID.                                              |
++------+------------+-------------------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not                 |
++------+------------+-------------------------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.                         |
++------+------------+-------------------------------------------------------------+
+| OUT  | Int        | Error code.                                                 |
++------+------------+-------------------------------------------------------------+
+| OUT  | Int        | ID of the object that caused the error.                     |
++------+------------+-------------------------------------------------------------+
+
+one.hook.update
+--------------------------------------------------------------------------------
+
+-  **Description**: Replaces the hook contents.
+-  **Parameters**
+
++------+------------+-----------------------------------------------------------------------------------------------------------+
+| Type | Data Type  |                                           Description                                                     |
++======+============+===========================================================================================================+
+| IN   | String     | The session string.                                                                                       |
++------+------------+-----------------------------------------------------------------------------------------------------------+
+| IN   | Int        | The object ID.                                                                                            |
++------+------------+-----------------------------------------------------------------------------------------------------------+
+| IN   | String     | The new hook contents. Syntax can be the usual ``attribute=value`` or XML.                                |
++------+------------+-----------------------------------------------------------------------------------------------------------+
+| IN   | Int        | Update type: **0**: replace the whole hook template. **1**: Merge new hook template with the existing one.|
++------+------------+-----------------------------------------------------------------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not                                                               |
++------+------------+-----------------------------------------------------------------------------------------------------------+
+| OUT  | Int/String | The resource ID / The error string.                                                                       |
++------+------------+-----------------------------------------------------------------------------------------------------------+
+| OUT  | Int        | Error code.                                                                                               |
++------+------------+-----------------------------------------------------------------------------------------------------------+
+
+one.hook.rename
+--------------------------------------------------------------------------------
+
+-  **Description**: Renames a hook.
+-  **Parameters**
+
++------+------------+---------------------------------------------+
+| Type | Data Type  |                 Description                 |
++======+============+=============================================+
+| IN   | String     | The session string.                         |
++------+------------+---------------------------------------------+
+| IN   | Int        | The object ID.                              |
++------+------------+---------------------------------------------+
+| IN   | String     | The new name.                               |
++------+------------+---------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not.|
++------+------------+---------------------------------------------+
+| OUT  | Int/String | The VM ID / The error string.               |
++------+------------+---------------------------------------------+
+| OUT  | Int        | Error code.                                 |
++------+------------+---------------------------------------------+
+| OUT  | Int        | ID of the object that caused the error.     |
++------+------------+---------------------------------------------+
+
+one.hook.info
+--------------------------------------------------------------------------------
+
+-  **Description**: Retrieves information for the hook.
+-  **Parameters**
+
++------+-----------+--------------------------------------------------------------------------------------------------------+
+| Type | Data Type |                                              Description                                               |
++======+===========+========================================================================================================+
+| IN   | String    | The session string.                                                                                    |
++------+-----------+--------------------------------------------------------------------------------------------------------+
+| IN   | Int       | The object ID.                                                                                         |
++------+-----------+--------------------------------------------------------------------------------------------------------+
+| IN   | Boolean   | optional flag to decrypt contained secrets, valid only for admin                                       |
++------+-----------+--------------------------------------------------------------------------------------------------------+
+| OUT  | Boolean   | true or false whenever is successful or not                                                            |
++------+-----------+--------------------------------------------------------------------------------------------------------+
+| OUT  | String    | The information string / The error string.                                                             |
++------+-----------+--------------------------------------------------------------------------------------------------------+
+| OUT  | Int       | Error code.                                                                                            |
++------+-----------+--------------------------------------------------------------------------------------------------------+
+| OUT  | Int       | ID of the object that caused the error.                                                                |
++------+-----------+--------------------------------------------------------------------------------------------------------+
+
+one.hook.lock
+--------------------------------------------------------------------------------
+
+-  **Description**: Locks a hook.
+-  **Parameters**
+
++------+-----------+--------------------------------------------------------------------------------------------------------+
+| Type | Data Type |                                              Description                                               |
++======+===========+========================================================================================================+
+| IN   | String    | The session string.                                                                                    |
++------+-----------+--------------------------------------------------------------------------------------------------------+
+| IN   | Int       | The object ID.                                                                                         |
++------+-----------+--------------------------------------------------------------------------------------------------------+
+| IN   | Int       | Lock level: use (1), manage (2), admin (3), all (4)                                                    |
++------+-----------+--------------------------------------------------------------------------------------------------------+
+| OUT  | Boolean   | true or false whenever is successful or not                                                            |
++------+-----------+--------------------------------------------------------------------------------------------------------+
+| OUT  | Int       | The ID of the resource.                                                                                |
++------+-----------+--------------------------------------------------------------------------------------------------------+
+| OUT  | Int       | Error code.                                                                                            |
++------+-----------+--------------------------------------------------------------------------------------------------------+
+| OUT  | Int       | ID of the object that caused the error.                                                                |
++------+------------+-------------------------------------------------------------------------------------------------------+
+
+one.hook.unlock
+--------------------------------------------------------------------------------
+
+-  **Description**: Unlocks a hook.
+-  **Parameters**
+
++------+-----------+--------------------------------------------------------------------------------------------------------+
+| Type | Data Type |                                              Description                                               |
++======+===========+========================================================================================================+
+| IN   | String    | The session string.                                                                                    |
++------+-----------+--------------------------------------------------------------------------------------------------------+
+| IN   | Int       | The object ID.                                                                                         |
++------+-----------+--------------------------------------------------------------------------------------------------------+
+| OUT  | Boolean   | true or false whenever is successful or not                                                            |
++------+-----------+--------------------------------------------------------------------------------------------------------+
+| OUT  | Int       | The ID of the resource.                                                                                |
++------+-----------+--------------------------------------------------------------------------------------------------------+
+| OUT  | Int       | Error code.                                                                                            |
++------+-----------+--------------------------------------------------------------------------------------------------------+
+| OUT  | Int       | ID of the object that caused the error.                                                                |
++------+------------+-------------------------------------------------------------------------------------------------------+
+
+one.hook.retry
+--------------------------------------------------------------------------------
+
+-  **Description**: Retries a hook execution.
+-  **Parameters**
+
++------+-----------+--------------------------------------------------------------------------------------------------------+
+| Type | Data Type |                                              Description                                               |
++======+===========+========================================================================================================+
+| IN   | String    | The session string.                                                                                    |
++------+-----------+--------------------------------------------------------------------------------------------------------+
+| IN   | Int       | The object ID.                                                                                         |
++------+-----------+--------------------------------------------------------------------------------------------------------+
+| IN   | Int       | The execution ID.                                                                                      |
++------+-----------+--------------------------------------------------------------------------------------------------------+
+| OUT  | Boolean   | true or false whenever is successful or not                                                            |
++------+-----------+--------------------------------------------------------------------------------------------------------+
+| OUT  | Int       | The ID of the resource.                                                                                |
++------+-----------+--------------------------------------------------------------------------------------------------------+
+| OUT  | Int       | Error code.                                                                                            |
++------+-----------+--------------------------------------------------------------------------------------------------------+
+| OUT  | Int       | ID of the object that caused the error.                                                                |
++------+------------+-------------------------------------------------------------------------------------------------------+
+
+one.hookpool.info
+--------------------------------------------------------------------------------
+
+-  **Description**: Retrieves information for all or part of the Resources in the pool.
+-  **Parameters**
+
++------+-----------+-----------------------------------------------------------------------+
+| Type | Data Type |                              Description                              |
++======+===========+=======================================================================+
+| IN   | String    | The session string.                                                   |
++------+-----------+-----------------------------------------------------------------------+
+| IN   | Int       | Filter flag                                                           |
+|      |           |                                                                       |
+|      |           | * **-4**: Resources belonging to the user's primary group             |
+|      |           | * **-3**: Resources belonging to the user                             |
+|      |           | * **-2**: All resources                                               |
+|      |           | * **-1**: Resources belonging to the user and any of his groups       |
+|      |           | * **>= 0**: UID User's Resources                                      |
++------+-----------+-----------------------------------------------------------------------+
+| IN   | Int       | When the next parameter is >= -1 this is the Range start ID.          |
+|      |           | Can be -1. For smaller values this is the offset used for pagination. |
++------+-----------+-----------------------------------------------------------------------+
+| IN   | Int       | For values >= -1 this is the Range end ID. Can be -1 to get until the |
+|      |           | last ID. For values < -1 this is the page size used for pagination.   |
++------+-----------+-----------------------------------------------------------------------+
+| OUT  | Boolean   | true or false whenever is successful or not                           |
++------+-----------+-----------------------------------------------------------------------+
+| OUT  | String    | The information string / The error string.                            |
++------+-----------+-----------------------------------------------------------------------+
+| OUT  | Int       | Error code.                                                           |
++------+-----------+-----------------------------------------------------------------------+
+| OUT  | Int       | ID of the object that caused the error.                               |
++------+-----------+-----------------------------------------------------------------------+
+
+The range can be used to retrieve a subset of the pool, from the 'start' to the 'end' ID. To retrieve the complete pool, use ``(-1, -1)``; to retrieve all the pool from a specific ID to the last one, use ``(<id>, -1)``, and to retrieve the first elements up to an ID, use ``(0, <id>)``.
+
 .. _api_xsd_reference:
+
+one.hooklog.info
+--------------------------------------------------------------------------------
+
+-  **Description**: Retrieves information from the hook execution log.
+-  **Parameters**
+
++------+-----------+-----------------------------------------------------------------------+
+| Type | Data Type |                              Description                              |
++======+===========+=======================================================================+
+| IN   | String    | The session string.                                                   |
++------+-----------+-----------------------------------------------------------------------+
+| IN   | Int       | Minimun date for filtering hook execution log records.                |
++------+-----------+-----------------------------------------------------------------------+
+| IN   | Int       | Maximum date for filtering hook execution log records.                |
++------+-----------+-----------------------------------------------------------------------+
+| IN   | Int       | Hook id for filtering hook execution log records.                     |
++------+-----------+-----------------------------------------------------------------------+
+| IN   | Int       | Hook execution return code (``-1`` ERROR, ``0`` ALL , ``1`` SUCCESS). |
++------+-----------+-----------------------------------------------------------------------+
+| OUT  | Boolean   | true or false whenever is successful or not                           |
++------+-----------+-----------------------------------------------------------------------+
+| OUT  | String    | The information string / The error string.                            |
++------+-----------+-----------------------------------------------------------------------+
+| OUT  | Int       | Error code.                                                           |
++------+-----------+-----------------------------------------------------------------------+
+| OUT  | Int       | ID of the object that caused the error.                               |
++------+-----------+-----------------------------------------------------------------------+
 
 XSD Reference
 =============
 
-The XML schemas describe the XML returned by the one.\*.info methods
+The XML schemas describe the XML returned by the one.*.info methods can be found `here <https://github.com/OpenNebula/one/tree/master/share/doc/xsd>`
 
-Schemas for Cluster
--------------------
-
-.. code-block:: xml
-
-    <?xml version="1.0" encoding="UTF-8"?>
-    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-      targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
-      <xs:element name="CLUSTER">
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element name="ID" type="xs:integer"/>
-            <xs:element name="NAME" type="xs:string"/>
-            <xs:element name="HOSTS">
-                  <xs:complexType>
-                    <xs:sequence>
-                      <xs:element name="ID" type="xs:integer" minOccurs="0" maxOccurs="unbounded"/>
-                    </xs:sequence>
-                  </xs:complexType>
-            </xs:element>
-            <xs:element name="DATASTORES">
-                  <xs:complexType>
-                    <xs:sequence>
-                      <xs:element name="ID" type="xs:integer" minOccurs="0" maxOccurs="unbounded"/>
-                    </xs:sequence>
-                  </xs:complexType>
-            </xs:element>
-            <xs:element name="VNETS">
-                  <xs:complexType>
-                    <xs:sequence>
-                      <xs:element name="ID" type="xs:integer" minOccurs="0" maxOccurs="unbounded"/>
-                    </xs:sequence>
-                  </xs:complexType>
-            </xs:element>
-            <xs:element name="TEMPLATE" type="xs:anyType"/>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-    </xs:schema>
-
-.. code-block:: xml
-
-    <?xml version="1.0" encoding="UTF-8"?>
-    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-      targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
-      <xs:include schemaLocation="cluster.xsd"/>
-      <xs:element name="CLUSTER_POOL">
-        <xs:complexType>
-          <xs:sequence maxOccurs="1" minOccurs="1">
-            <xs:element ref="CLUSTER" maxOccurs="unbounded" minOccurs="0"/>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-    </xs:schema>
-
-Schemas for Datastore
----------------------
-
-.. code-block:: xml
-
-    <?xml version="1.0" encoding="UTF-8"?>
-    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://opennebula.org/XMLSchema" elementFormDefault="qualified" targetNamespace="http://opennebula.org/XMLSchema">
-      <xs:element name="DATASTORE">
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element name="ID" type="xs:integer"/>
-            <xs:element name="UID" type="xs:integer"/>
-            <xs:element name="GID" type="xs:integer"/>
-            <xs:element name="UNAME" type="xs:string"/>
-            <xs:element name="GNAME" type="xs:string"/>
-            <xs:element name="NAME" type="xs:string"/>
-            <xs:element name="PERMISSIONS" minOccurs="0" maxOccurs="1">
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="OWNER_U" type="xs:integer"/>
-                  <xs:element name="OWNER_M" type="xs:integer"/>
-                  <xs:element name="OWNER_A" type="xs:integer"/>
-                  <xs:element name="GROUP_U" type="xs:integer"/>
-                  <xs:element name="GROUP_M" type="xs:integer"/>
-                  <xs:element name="GROUP_A" type="xs:integer"/>
-                  <xs:element name="OTHER_U" type="xs:integer"/>
-                  <xs:element name="OTHER_M" type="xs:integer"/>
-                  <xs:element name="OTHER_A" type="xs:integer"/>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-            <xs:element name="DS_MAD" type="xs:string"/>
-            <xs:element name="TM_MAD" type="xs:string"/>
-            <xs:element name="BASE_PATH" type="xs:string"/>
-            <xs:element name="TYPE" type="xs:integer"/>
-            <xs:element name="DISK_TYPE" type="xs:integer"/>
-            <xs:element name="STATE" type="xs:integer"/>
-            <xs:element name="CLUSTERS">
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="ID" type="xs:integer" minOccurs="0" maxOccurs="unbounded"/>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-            <xs:element name="TOTAL_MB" type="xs:integer"/>
-            <xs:element name="FREE_MB" type="xs:integer"/>
-            <xs:element name="USED_MB" type="xs:integer"/>
-            <xs:element name="IMAGES">
-                  <xs:complexType>
-                    <xs:sequence>
-                      <xs:element name="ID" type="xs:integer" minOccurs="0" maxOccurs="unbounded"/>
-                    </xs:sequence>
-                  </xs:complexType>
-            </xs:element>
-            <xs:element name="TEMPLATE" type="xs:anyType"/>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-    </xs:schema>
-
-.. code-block:: xml
-
-    <?xml version="1.0" encoding="UTF-8"?>
-    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-      targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
-      <xs:include schemaLocation="datastore.xsd"/>
-      <xs:element name="DATASTORE_POOL">
-        <xs:complexType>
-          <xs:sequence maxOccurs="1" minOccurs="1">
-            <xs:element ref="DATASTORE" maxOccurs="unbounded" minOccurs="0"/>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-    </xs:schema>
-
-Schemas for Group
------------------
-
-.. code-block:: xml
-
-    <?xml version="1.0" encoding="UTF-8"?>
-    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-      targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
-      <xs:element name="GROUP">
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element name="ID" type="xs:integer"/>
-            <xs:element name="NAME" type="xs:string"/>
-            <xs:element name="TEMPLATE" type="xs:anyType"/>
-            <xs:element name="USERS">
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="ID" type="xs:integer" minOccurs="0" maxOccurs="unbounded"/>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-            <xs:element name="ADMINS">
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="ID" type="xs:integer" minOccurs="0" maxOccurs="unbounded"/>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-            <xs:element name="DATASTORE_QUOTA" minOccurs="0" maxOccurs="1">
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="DATASTORE" minOccurs="0" maxOccurs="unbounded">
-                  <xs:complexType>
-                    <xs:sequence>
-                      <xs:element name="ID" type="xs:string"/>
-                      <xs:element name="IMAGES" type="xs:string"/>
-                      <xs:element name="IMAGES_USED" type="xs:string"/>
-                      <xs:element name="SIZE" type="xs:string"/>
-                      <xs:element name="SIZE_USED" type="xs:string"/>
-                    </xs:sequence>
-                  </xs:complexType>
-                  </xs:element>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-            <xs:element name="NETWORK_QUOTA" minOccurs="0" maxOccurs="1">
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="NETWORK" minOccurs="0" maxOccurs="unbounded">
-                  <xs:complexType>
-                    <xs:sequence>
-                      <xs:element name="ID" type="xs:string"/>
-                      <xs:element name="LEASES" type="xs:string"/>
-                      <xs:element name="LEASES_USED" type="xs:string"/>
-                    </xs:sequence>
-                  </xs:complexType>
-                  </xs:element>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-            <xs:element name="VM_QUOTA" minOccurs="0" maxOccurs="1">
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="VM" minOccurs="0" maxOccurs="1">
-                    <xs:complexType>
-                      <xs:sequence>
-                        <xs:element name="CPU" type="xs:string"/>
-                        <xs:element name="CPU_USED" type="xs:string"/>
-                        <xs:element name="MEMORY" type="xs:string"/>
-                        <xs:element name="MEMORY_USED" type="xs:string"/>
-                        <xs:element name="RUNNING_CPU" type="xs:string"/>
-                        <xs:element name="RUNNING_CPU_USED" type="xs:string"/>
-                        <xs:element name="RUNNING_MEMORY" type="xs:string"/>
-                        <xs:element name="RUNNING_MEMORY_USED" type="xs:string"/>
-                        <xs:element name="RUNNING_VMS" type="xs:string"/>
-                        <xs:element name="RUNNING_VMS_USED" type="xs:string"/>
-                        <xs:element name="SYSTEM_DISK_SIZE" type="xs:string"/>
-                        <xs:element name="SYSTEM_DISK_SIZE_USED" type="xs:string"/>
-                        <xs:element name="VMS" type="xs:string"/>
-                        <xs:element name="VMS_USED" type="xs:string"/>
-                      </xs:sequence>
-                    </xs:complexType>
-                  </xs:element>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-            <xs:element name="IMAGE_QUOTA" minOccurs="0" maxOccurs="1">
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="IMAGE" minOccurs="0" maxOccurs="unbounded">
-                    <xs:complexType>
-                      <xs:sequence>
-                        <xs:element name="ID" type="xs:string"/>
-                        <xs:element name="RVMS" type="xs:string"/>
-                        <xs:element name="RVMS_USED" type="xs:string"/>
-                      </xs:sequence>
-                    </xs:complexType>
-                  </xs:element>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-            <xs:element name="DEFAULT_GROUP_QUOTAS">
-              <xs:complexType>
-                <xs:sequence>
-                    <xs:element name="DATASTORE_QUOTA" minOccurs="0" maxOccurs="1">
-                      <xs:complexType>
-                        <xs:sequence>
-                          <xs:element name="DATASTORE" minOccurs="0" maxOccurs="unbounded">
-                          <xs:complexType>
-                            <xs:sequence>
-                              <xs:element name="ID" type="xs:string"/>
-                              <xs:element name="IMAGES" type="xs:string"/>
-                              <xs:element name="IMAGES_USED" type="xs:string"/>
-                              <xs:element name="SIZE" type="xs:string"/>
-                              <xs:element name="SIZE_USED" type="xs:string"/>
-                            </xs:sequence>
-                          </xs:complexType>
-                          </xs:element>
-                        </xs:sequence>
-                      </xs:complexType>
-                    </xs:element>
-                    <xs:element name="NETWORK_QUOTA" minOccurs="0" maxOccurs="1">
-                      <xs:complexType>
-                        <xs:sequence>
-                          <xs:element name="NETWORK" minOccurs="0" maxOccurs="unbounded">
-                          <xs:complexType>
-                            <xs:sequence>
-                              <xs:element name="ID" type="xs:string"/>
-                              <xs:element name="LEASES" type="xs:string"/>
-                              <xs:element name="LEASES_USED" type="xs:string"/>
-                            </xs:sequence>
-                          </xs:complexType>
-                          </xs:element>
-                        </xs:sequence>
-                      </xs:complexType>
-                    </xs:element>
-                    <xs:element name="VM_QUOTA" minOccurs="0" maxOccurs="1">
-                      <xs:complexType>
-                        <xs:sequence>
-                          <xs:element name="VM" minOccurs="0" maxOccurs="1">
-                            <xs:complexType>
-                              <xs:sequence>
-                                <xs:element name="CPU" type="xs:string"/>
-                                <xs:element name="CPU_USED" type="xs:string"/>
-                                <xs:element name="MEMORY" type="xs:string"/>
-                                <xs:element name="MEMORY_USED" type="xs:string"/>
-                                <xs:element name="RUNNING_CPU" type="xs:string"/>
-                                <xs:element name="RUNNING_CPU_USED" type="xs:string"/>
-                                <xs:element name="RUNNING_MEMORY" type="xs:string"/>
-                                <xs:element name="RUNNING_MEMORY_USED" type="xs:string"/>
-                                <xs:element name="RUNNING_VMS" type="xs:string"/>
-                                <xs:element name="RUNNING_VMS_USED" type="xs:string"/>
-                                <xs:element name="SYSTEM_DISK_SIZE" type="xs:string"/>
-                                <xs:element name="SYSTEM_DISK_SIZE_USED" type="xs:string"/>
-                                <xs:element name="VMS" type="xs:string"/>
-                                <xs:element name="VMS_USED" type="xs:string"/>
-                              </xs:sequence>
-                            </xs:complexType>
-                          </xs:element>
-                        </xs:sequence>
-                      </xs:complexType>
-                    </xs:element>
-                    <xs:element name="IMAGE_QUOTA" minOccurs="0" maxOccurs="1">
-                      <xs:complexType>
-                        <xs:sequence>
-                          <xs:element name="IMAGE" minOccurs="0" maxOccurs="unbounded">
-                            <xs:complexType>
-                              <xs:sequence>
-                                <xs:element name="ID" type="xs:string"/>
-                                <xs:element name="RVMS" type="xs:string"/>
-                                <xs:element name="RVMS_USED" type="xs:string"/>
-                              </xs:sequence>
-                            </xs:complexType>
-                          </xs:element>
-                        </xs:sequence>
-                      </xs:complexType>
-                    </xs:element>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-    </xs:schema>
-
-.. code-block:: xml
-
-    <?xml version="1.0" encoding="UTF-8"?>
-    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-      targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
-      <xs:element name="GROUP_POOL">
-        <xs:complexType>
-          <xs:sequence maxOccurs="1" minOccurs="1">
-            <xs:choice maxOccurs="unbounded" minOccurs="0">
-              <xs:element name="GROUP" maxOccurs="unbounded" minOccurs="0">
-                <xs:complexType>
-                  <xs:sequence>
-                    <xs:element name="ID" type="xs:integer"/>
-                    <xs:element name="NAME" type="xs:string"/>
-                    <xs:element name="TEMPLATE" type="xs:anyType"/>
-                    <xs:element name="USERS">
-                      <xs:complexType>
-                        <xs:sequence>
-                          <xs:element name="ID" type="xs:integer" minOccurs="0" maxOccurs="unbounded"/>
-                        </xs:sequence>
-                      </xs:complexType>
-                    </xs:element>
-                    <xs:element name="ADMINS">
-                      <xs:complexType>
-                        <xs:sequence>
-                          <xs:element name="ID" type="xs:integer" minOccurs="0" maxOccurs="unbounded"/>
-                        </xs:sequence>
-                      </xs:complexType>
-                    </xs:element>
-                  </xs:sequence>
-                </xs:complexType>
-              </xs:element>
-              <xs:element name="QUOTAS" maxOccurs="unbounded" minOccurs="0">
-                <xs:complexType>
-                  <xs:sequence>
-                    <xs:element name="ID" type="xs:integer"/>
-                    <xs:element name="DATASTORE_QUOTA" minOccurs="0" maxOccurs="1">
-                      <xs:complexType>
-                        <xs:sequence>
-                          <xs:element name="DATASTORE" minOccurs="0" maxOccurs="unbounded">
-                          <xs:complexType>
-                            <xs:sequence>
-                              <xs:element name="ID" type="xs:string"/>
-                              <xs:element name="IMAGES" type="xs:string"/>
-                              <xs:element name="IMAGES_USED" type="xs:string"/>
-                              <xs:element name="SIZE" type="xs:string"/>
-                              <xs:element name="SIZE_USED" type="xs:string"/>
-                            </xs:sequence>
-                          </xs:complexType>
-                          </xs:element>
-                        </xs:sequence>
-                      </xs:complexType>
-                    </xs:element>
-                    <xs:element name="NETWORK_QUOTA" minOccurs="0" maxOccurs="1">
-                      <xs:complexType>
-                        <xs:sequence>
-                          <xs:element name="NETWORK" minOccurs="0" maxOccurs="unbounded">
-                          <xs:complexType>
-                            <xs:sequence>
-                              <xs:element name="ID" type="xs:string"/>
-                              <xs:element name="LEASES" type="xs:string"/>
-                              <xs:element name="LEASES_USED" type="xs:string"/>
-                            </xs:sequence>
-                          </xs:complexType>
-                          </xs:element>
-                        </xs:sequence>
-                      </xs:complexType>
-                    </xs:element>
-                    <xs:element name="VM_QUOTA" minOccurs="0" maxOccurs="1">
-                      <xs:complexType>
-                        <xs:sequence>
-                          <xs:element name="VM" minOccurs="0" maxOccurs="1">
-                            <xs:complexType>
-                              <xs:sequence>
-                                <xs:element name="CPU" type="xs:string"/>
-                                <xs:element name="CPU_USED" type="xs:string"/>
-                                <xs:element name="MEMORY" type="xs:string"/>
-                                <xs:element name="MEMORY_USED" type="xs:string"/>
-                                <xs:element name="RUNNING_CPU" type="xs:string"/>
-                                <xs:element name="RUNNING_CPU_USED" type="xs:string"/>
-                                <xs:element name="RUNNING_MEMORY" type="xs:string"/>
-                                <xs:element name="RUNNING_MEMORY_USED" type="xs:string"/>
-                                <xs:element name="RUNNING_VMS" type="xs:string"/>
-                                <xs:element name="RUNNING_VMS_USED" type="xs:string"/>
-                                <xs:element name="SYSTEM_DISK_SIZE" type="xs:string"/>
-                                <xs:element name="SYSTEM_DISK_SIZE_USED" type="xs:string"/>
-                                <xs:element name="VMS" type="xs:string"/>
-                                <xs:element name="VMS_USED" type="xs:string"/>
-                              </xs:sequence>
-                            </xs:complexType>
-                          </xs:element>
-                        </xs:sequence>
-                      </xs:complexType>
-                    </xs:element>
-                    <xs:element name="IMAGE_QUOTA" minOccurs="0" maxOccurs="1">
-                      <xs:complexType>
-                        <xs:sequence>
-                          <xs:element name="IMAGE" minOccurs="0" maxOccurs="unbounded">
-                            <xs:complexType>
-                              <xs:sequence>
-                                <xs:element name="ID" type="xs:string"/>
-                                <xs:element name="RVMS" type="xs:string"/>
-                                <xs:element name="RVMS_USED" type="xs:string"/>
-                              </xs:sequence>
-                            </xs:complexType>
-                          </xs:element>
-                        </xs:sequence>
-                      </xs:complexType>
-                    </xs:element>
-                  </xs:sequence>
-                </xs:complexType>
-              </xs:element>
-            </xs:choice>
-            <xs:element name="DEFAULT_GROUP_QUOTAS" minOccurs="1" maxOccurs="1">
-              <xs:complexType>
-                <xs:sequence>
-                    <xs:element name="DATASTORE_QUOTA" minOccurs="0" maxOccurs="1">
-                      <xs:complexType>
-                        <xs:sequence>
-                          <xs:element name="DATASTORE" minOccurs="0" maxOccurs="unbounded">
-                          <xs:complexType>
-                            <xs:sequence>
-                              <xs:element name="ID" type="xs:string"/>
-                              <xs:element name="IMAGES" type="xs:string"/>
-                              <xs:element name="IMAGES_USED" type="xs:string"/>
-                              <xs:element name="SIZE" type="xs:string"/>
-                              <xs:element name="SIZE_USED" type="xs:string"/>
-                            </xs:sequence>
-                          </xs:complexType>
-                          </xs:element>
-                        </xs:sequence>
-                      </xs:complexType>
-                    </xs:element>
-                    <xs:element name="NETWORK_QUOTA" minOccurs="0" maxOccurs="1">
-                      <xs:complexType>
-                        <xs:sequence>
-                          <xs:element name="NETWORK" minOccurs="0" maxOccurs="unbounded">
-                          <xs:complexType>
-                            <xs:sequence>
-                              <xs:element name="ID" type="xs:string"/>
-                              <xs:element name="LEASES" type="xs:string"/>
-                              <xs:element name="LEASES_USED" type="xs:string"/>
-                            </xs:sequence>
-                          </xs:complexType>
-                          </xs:element>
-                        </xs:sequence>
-                      </xs:complexType>
-                    </xs:element>
-                    <xs:element name="VM_QUOTA" minOccurs="0" maxOccurs="1">
-                      <xs:complexType>
-                        <xs:sequence>
-                          <xs:element name="VM" minOccurs="0" maxOccurs="1">
-                            <xs:complexType>
-                              <xs:sequence>
-                                <xs:element name="CPU" type="xs:string"/>
-                                <xs:element name="CPU_USED" type="xs:string"/>
-                                <xs:element name="MEMORY" type="xs:string"/>
-                                <xs:element name="MEMORY_USED" type="xs:string"/>
-                                <xs:element name="RUNNING_CPU" type="xs:string"/>
-                                <xs:element name="RUNNING_CPU_USED" type="xs:string"/>
-                                <xs:element name="RUNNING_MEMORY" type="xs:string"/>
-                                <xs:element name="RUNNING_MEMORY_USED" type="xs:string"/>
-                                <xs:element name="RUNNING_VMS" type="xs:string"/>
-                                <xs:element name="RUNNING_VMS_USED" type="xs:string"/>
-                                <xs:element name="SYSTEM_DISK_SIZE" type="xs:string"/>
-                                <xs:element name="SYSTEM_DISK_SIZE_USED" type="xs:string"/>
-                                <xs:element name="VMS" type="xs:string"/>
-                                <xs:element name="VMS_USED" type="xs:string"/>
-                              </xs:sequence>
-                            </xs:complexType>
-                          </xs:element>
-                        </xs:sequence>
-                      </xs:complexType>
-                    </xs:element>
-                    <xs:element name="IMAGE_QUOTA" minOccurs="0" maxOccurs="1">
-                      <xs:complexType>
-                        <xs:sequence>
-                          <xs:element name="IMAGE" minOccurs="0" maxOccurs="unbounded">
-                            <xs:complexType>
-                              <xs:sequence>
-                                <xs:element name="ID" type="xs:string"/>
-                                <xs:element name="RVMS" type="xs:string"/>
-                                <xs:element name="RVMS_USED" type="xs:string"/>
-                              </xs:sequence>
-                            </xs:complexType>
-                          </xs:element>
-                        </xs:sequence>
-                      </xs:complexType>
-                    </xs:element>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-    </xs:schema>
-
-Schemas for VDC
------------------
-
-.. code-block:: xml
-
-    <?xml version="1.0" encoding="UTF-8"?>
-    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-      targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
-      <xs:element name="VDC">
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element name="ID" type="xs:integer"/>
-            <xs:element name="NAME" type="xs:string"/>
-            <xs:element name="GROUPS">
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="ID" type="xs:integer" minOccurs="0" maxOccurs="unbounded"/>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-            <xs:element name="CLUSTERS">
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="CLUSTER" minOccurs="0" maxOccurs="unbounded">
-                    <xs:complexType>
-                      <xs:sequence>
-                        <xs:element name="ZONE_ID" type="xs:integer"/>
-                        <xs:element name="CLUSTER_ID" type="xs:integer"/>
-                      </xs:sequence>
-                    </xs:complexType>
-                  </xs:element>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-            <xs:element name="HOSTS">
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="HOST" minOccurs="0" maxOccurs="unbounded">
-                    <xs:complexType>
-                      <xs:sequence>
-                        <xs:element name="ZONE_ID" type="xs:integer"/>
-                        <xs:element name="HOST_ID" type="xs:integer"/>
-                      </xs:sequence>
-                    </xs:complexType>
-                  </xs:element>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-            <xs:element name="DATASTORES">
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="DATASTORE" minOccurs="0" maxOccurs="unbounded">
-                    <xs:complexType>
-                      <xs:sequence>
-                        <xs:element name="ZONE_ID" type="xs:integer"/>
-                        <xs:element name="DATASTORE_ID" type="xs:integer"/>
-                      </xs:sequence>
-                    </xs:complexType>
-                  </xs:element>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-            <xs:element name="VNETS">
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="VNET" minOccurs="0" maxOccurs="unbounded">
-                    <xs:complexType>
-                      <xs:sequence>
-                        <xs:element name="ZONE_ID" type="xs:integer"/>
-                        <xs:element name="VNET_ID" type="xs:integer"/>
-                      </xs:sequence>
-                    </xs:complexType>
-                  </xs:element>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-            <xs:element name="TEMPLATE" type="xs:anyType"/>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-    </xs:schema>
-
-.. code-block:: xml
-
-    <?xml version="1.0" encoding="UTF-8"?>
-    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-      targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
-      <xs:include schemaLocation="vdc.xsd"/>
-      <xs:element name="VDC_POOL">
-        <xs:complexType>
-          <xs:sequence maxOccurs="1" minOccurs="1">
-            <xs:element ref="VDC" maxOccurs="unbounded" minOccurs="0"/>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-    </xs:schema>
-
-Schemas for Host
-----------------
-
-.. code-block:: xml
-
-    <?xml version="1.0" encoding="UTF-8"?>
-    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://opennebula.org/XMLSchema" elementFormDefault="qualified" targetNamespace="http://opennebula.org/XMLSchema">
-      <xs:element name="HOST">
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element name="ID" type="xs:integer"/>
-            <xs:element name="NAME" type="xs:string"/>
-            <!-- STATE values
-
-              INIT                 = 0  Initial state for enabled hosts
-              MONITORING_MONITORED = 1  Monitoring the host (from monitored)
-              MONITORED            = 2  The host has been successfully monitored
-              ERROR                = 3  An error ocurrer while monitoring the host
-              DISABLED             = 4  The host is disabled
-              MONITORING_ERROR     = 5  Monitoring the host (from error)
-              MONITORING_INIT      = 6  Monitoring the host (from init)
-              MONITORING_DISABLED  = 7  Monitoring the host (from disabled)
-              OFFLINE              = 8  The host is totally offline
-            -->
-            <xs:element name="STATE" type="xs:integer"/>
-            <xs:element name="IM_MAD" type="xs:string"/>
-            <xs:element name="VM_MAD" type="xs:string"/>
-            <xs:element name="LAST_MON_TIME" type="xs:integer"/>
-            <xs:element name="CLUSTER_ID" type="xs:integer"/>
-            <xs:element name="CLUSTER" type="xs:string"/>
-            <xs:element name="HOST_SHARE">
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="DISK_USAGE" type="xs:integer"/>
-                  <xs:element name="MEM_USAGE" type="xs:integer"/>
-                  <!-- ^^ KB, Usage of MEMORY calculated by ONE as the summatory MEMORY requested by all VMs running in the host   -->
-                  <xs:element name="CPU_USAGE" type="xs:integer"/>
-                  <!-- ^^ Percentage, Usage of CPU calculated by ONE as the summatory CPU requested by all VMs running in the host   -->
-                  <xs:element name="MAX_DISK" type="xs:integer"/>
-                  <xs:element name="MAX_MEM" type="xs:integer"/>
-                  <!-- ^^ KB, Total memory in the host   -->
-                  <xs:element name="MAX_CPU" type="xs:integer"/>
-                  <!-- ^^ Percentage, Total CPU in the host (# cores * 100)  -->
-                  <xs:element name="FREE_DISK" type="xs:integer"/>
-                  <xs:element name="FREE_MEM" type="xs:integer"/>
-                  <!-- ^^ KB, Free MEMORY returned by the probes   -->
-                  <xs:element name="FREE_CPU" type="xs:integer"/>
-                  <!-- ^^ Percentage, Free CPU as returned by the probes   -->
-                  <xs:element name="USED_DISK" type="xs:integer"/>
-                  <xs:element name="USED_MEM" type="xs:integer"/>
-                  <!-- ^^ KB, Memory used by all host processes (including VMs) over a total of MAX_MEM   -->
-                  <xs:element name="USED_CPU" type="xs:integer"/>
-                  <!-- ^^ Percentage of CPU used by all host processes (including VMs) over a total of # cores * 100   -->
-                  <xs:element name="RUNNING_VMS" type="xs:integer"/>
-                  <xs:element name="DATASTORES">
-                    <xs:complexType>
-                      <xs:sequence>
-                        <xs:element name="DS" minOccurs="0" maxOccurs="unbounded">
-                          <xs:complexType>
-                            <xs:all>
-                              <xs:element name="ID" type="xs:integer"/>
-                              <xs:element name="FREE_MB" type="xs:integer"/>
-                              <xs:element name="TOTAL_MB" type="xs:integer"/>
-                              <xs:element name="USED_MB" type="xs:integer"/>
-                            </xs:all>
-                          </xs:complexType>
-                        </xs:element>
-                      </xs:sequence>
-                    </xs:complexType>
-                  </xs:element>
-                  <xs:element name="PCI_DEVICES">
-                    <xs:complexType>
-                      <xs:sequence>
-                        <xs:element name="PCI" type="xs:anyType" minOccurs="0" maxOccurs="unbounded"/>
-                      </xs:sequence>
-                    </xs:complexType>
-                  </xs:element>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-            <xs:element name="VMS">
-                  <xs:complexType>
-                    <xs:sequence>
-                      <xs:element name="ID" type="xs:integer" minOccurs="0" maxOccurs="unbounded"/>
-                    </xs:sequence>
-                  </xs:complexType>
-            </xs:element>
-            <xs:element name="TEMPLATE" type="xs:anyType"/>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-    </xs:schema>
-
-.. code-block:: xml
-
-    <?xml version="1.0" encoding="UTF-8"?>
-    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-      targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
-      <xs:include schemaLocation="host.xsd"/>
-      <xs:element name="HOST_POOL">
-        <xs:complexType>
-          <xs:sequence maxOccurs="1" minOccurs="1">
-            <xs:element ref="HOST" maxOccurs="unbounded" minOccurs="0"/>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-    </xs:schema>
-
-Schemas for Image
------------------
-
-.. code-block:: xml
-
-    <?xml version="1.0" encoding="UTF-8"?>
-    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://opennebula.org/XMLSchema" elementFormDefault="qualified" targetNamespace="http://opennebula.org/XMLSchema">
-      <xs:element name="IMAGE">
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element name="ID" type="xs:integer"/>
-            <xs:element name="UID" type="xs:integer"/>
-            <xs:element name="GID" type="xs:integer"/>
-            <xs:element name="UNAME" type="xs:string"/>
-            <xs:element name="GNAME" type="xs:string"/>
-            <xs:element name="NAME" type="xs:string"/>
-            <xs:element name="PERMISSIONS" minOccurs="0" maxOccurs="1">
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="OWNER_U" type="xs:integer"/>
-                  <xs:element name="OWNER_M" type="xs:integer"/>
-                  <xs:element name="OWNER_A" type="xs:integer"/>
-                  <xs:element name="GROUP_U" type="xs:integer"/>
-                  <xs:element name="GROUP_M" type="xs:integer"/>
-                  <xs:element name="GROUP_A" type="xs:integer"/>
-                  <xs:element name="OTHER_U" type="xs:integer"/>
-                  <xs:element name="OTHER_M" type="xs:integer"/>
-                  <xs:element name="OTHER_A" type="xs:integer"/>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-            <xs:element name="TYPE" type="xs:integer"/>
-            <xs:element name="DISK_TYPE" type="xs:integer"/>
-            <xs:element name="PERSISTENT" type="xs:integer"/>
-            <xs:element name="REGTIME" type="xs:integer"/>
-            <xs:element name="SOURCE" type="xs:string"/>
-            <xs:element name="PATH" type="xs:string"/>
-            <xs:element name="FSTYPE" type="xs:string"/>
-            <xs:element name="SIZE" type="xs:integer"/>
-
-            <!-- STATE values,
-              INIT      = 0, Initialization state
-              READY     = 1, Image ready to use
-              USED      = 2, Image in use
-              DISABLED  = 3, Image can not be instantiated by a VM
-              LOCKED    = 4, FS operation for the Image in process
-              ERROR     = 5, Error state the operation FAILED
-              CLONE     = 6, Image is being cloned
-              DELETE    = 7, DS is deleting the image
-              USED_PERS = 8, Image is in use and persistent
-              LOCKED_USED = 9,      FS operation in progress, VMs waiting
-              LOCKED_USED_PERS = 10 FS operation in progress, VMs waiting. Persistent
-            -->
-            <xs:element name="STATE" type="xs:integer"/>
-            <xs:element name="RUNNING_VMS" type="xs:integer"/>
-            <xs:element name="CLONING_OPS" type="xs:integer"/>
-            <xs:element name="CLONING_ID" type="xs:integer"/>
-            <xs:element name="TARGET_SNAPSHOT" type="xs:integer"/>
-            <xs:element name="DATASTORE_ID" type="xs:integer"/>
-            <xs:element name="DATASTORE" type="xs:string"/>
-            <xs:element name="VMS">
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="ID" type="xs:integer" minOccurs="0" maxOccurs="unbounded"/>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-            <xs:element name="CLONES">
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="ID" type="xs:integer" minOccurs="0" maxOccurs="unbounded"/>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-            <xs:element name="APP_CLONES">
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="ID" type="xs:integer" minOccurs="0" maxOccurs="unbounded"/>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-            <xs:element name="TEMPLATE" type="xs:anyType"/>
-            <xs:element name="SNAPSHOTS">
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="SNAPSHOT" minOccurs="0" maxOccurs="unbounded">
-                    <xs:complexType>
-                      <xs:sequence>
-                        <xs:element name="CHILDREN" type="xs:string" minOccurs="0" maxOccurs="1"/>
-                        <xs:element name="ACTIVE" type="xs:string" minOccurs="0" maxOccurs="1"/>
-                        <xs:element name="DATE" type="xs:integer"/>
-                        <xs:element name="ID" type="xs:integer"/>
-                        <xs:element name="NAME" type="xs:string" minOccurs="0" maxOccurs="1"/>
-                        <xs:element name="PARENT" type="xs:integer"/>
-                        <xs:element name="SIZE" type="xs:integer"/>
-                      </xs:sequence>
-                    </xs:complexType>
-                  </xs:element>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-    </xs:schema>
-
-.. code-block:: xml
-
-    <?xml version="1.0" encoding="UTF-8"?>
-    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-      targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
-      <xs:include schemaLocation="image.xsd"/>
-      <xs:element name="IMAGE_POOL">
-        <xs:complexType>
-          <xs:sequence maxOccurs="1" minOccurs="1">
-            <xs:element ref="IMAGE" maxOccurs="unbounded" minOccurs="0"/>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-    </xs:schema>
-
-Schemas for User
-----------------
-
-.. code-block:: xml
-
-    <?xml version="1.0" encoding="UTF-8"?>
-    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-      targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
-      <xs:element name="USER">
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element name="ID" type="xs:integer"/>
-            <xs:element name="GID" type="xs:integer"/>
-            <xs:element name="GROUPS">
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="ID" type="xs:integer" minOccurs="1" maxOccurs="unbounded"/>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-            <xs:element name="GNAME" type="xs:string"/>
-            <xs:element name="NAME" type="xs:string"/>
-            <xs:element name="PASSWORD" type="xs:string"/>
-            <xs:element name="AUTH_DRIVER" type="xs:string"/>
-            <xs:element name="ENABLED" type="xs:integer"/>
-            <xs:element name="LOGIN_TOKEN" minOccurs="0" maxOccurs="unbounded">
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="TOKEN" type="xs:string"/>
-                  <xs:element name="EXPIRATION_TIME" type="xs:integer"/>
-                  <xs:element name="EGID" type="xs:integer"/>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-            <xs:element name="TEMPLATE" type="xs:anyType"/>
-            <xs:element name="DATASTORE_QUOTA" minOccurs="0" maxOccurs="1">
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="DATASTORE" minOccurs="0" maxOccurs="unbounded">
-                  <xs:complexType>
-                    <xs:sequence>
-                      <xs:element name="ID" type="xs:string"/>
-                      <xs:element name="IMAGES" type="xs:string"/>
-                      <xs:element name="IMAGES_USED" type="xs:string"/>
-                      <xs:element name="SIZE" type="xs:string"/>
-                      <xs:element name="SIZE_USED" type="xs:string"/>
-                    </xs:sequence>
-                  </xs:complexType>
-                  </xs:element>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-            <xs:element name="NETWORK_QUOTA" minOccurs="0" maxOccurs="1">
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="NETWORK" minOccurs="0" maxOccurs="unbounded">
-                  <xs:complexType>
-                    <xs:sequence>
-                      <xs:element name="ID" type="xs:string"/>
-                      <xs:element name="LEASES" type="xs:string"/>
-                      <xs:element name="LEASES_USED" type="xs:string"/>
-                    </xs:sequence>
-                  </xs:complexType>
-                  </xs:element>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-            <xs:element name="VM_QUOTA" minOccurs="0" maxOccurs="1">
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="VM" minOccurs="0" maxOccurs="1">
-                    <xs:complexType>
-                      <xs:sequence>
-                        <xs:element name="CPU" type="xs:string"/>
-                        <xs:element name="CPU_USED" type="xs:string"/>
-                        <xs:element name="MEMORY" type="xs:string"/>
-                        <xs:element name="MEMORY_USED" type="xs:string"/>
-                        <xs:element name="RUNNING_CPU" type="xs:string"/>
-                        <xs:element name="RUNNING_CPU_USED" type="xs:string"/>
-                        <xs:element name="RUNNING_MEMORY" type="xs:string"/>
-                        <xs:element name="RUNNING_MEMORY_USED" type="xs:string"/>
-                        <xs:element name="RUNNING_VMS" type="xs:string"/>
-                        <xs:element name="RUNNING_VMS_USED" type="xs:string"/>
-                        <xs:element name="SYSTEM_DISK_SIZE" type="xs:string"/>
-                        <xs:element name="SYSTEM_DISK_SIZE_USED" type="xs:string"/>
-                        <xs:element name="VMS" type="xs:string"/>
-                        <xs:element name="VMS_USED" type="xs:string"/>
-                      </xs:sequence>
-                    </xs:complexType>
-                  </xs:element>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-            <xs:element name="IMAGE_QUOTA" minOccurs="0" maxOccurs="1">
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="IMAGE" minOccurs="0" maxOccurs="unbounded">
-                    <xs:complexType>
-                      <xs:sequence>
-                        <xs:element name="ID" type="xs:string"/>
-                        <xs:element name="RVMS" type="xs:string"/>
-                        <xs:element name="RVMS_USED" type="xs:string"/>
-                      </xs:sequence>
-                    </xs:complexType>
-                  </xs:element>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-            <xs:element name="DEFAULT_USER_QUOTAS">
-              <xs:complexType>
-                <xs:sequence>
-                    <xs:element name="DATASTORE_QUOTA" minOccurs="0" maxOccurs="1">
-                      <xs:complexType>
-                        <xs:sequence>
-                          <xs:element name="DATASTORE" minOccurs="0" maxOccurs="unbounded">
-                          <xs:complexType>
-                            <xs:sequence>
-                              <xs:element name="ID" type="xs:string"/>
-                              <xs:element name="IMAGES" type="xs:string"/>
-                              <xs:element name="IMAGES_USED" type="xs:string"/>
-                              <xs:element name="SIZE" type="xs:string"/>
-                              <xs:element name="SIZE_USED" type="xs:string"/>
-                            </xs:sequence>
-                          </xs:complexType>
-                          </xs:element>
-                        </xs:sequence>
-                      </xs:complexType>
-                    </xs:element>
-                    <xs:element name="NETWORK_QUOTA" minOccurs="0" maxOccurs="1">
-                      <xs:complexType>
-                        <xs:sequence>
-                          <xs:element name="NETWORK" minOccurs="0" maxOccurs="unbounded">
-                          <xs:complexType>
-                            <xs:sequence>
-                              <xs:element name="ID" type="xs:string"/>
-                              <xs:element name="LEASES" type="xs:string"/>
-                              <xs:element name="LEASES_USED" type="xs:string"/>
-                            </xs:sequence>
-                          </xs:complexType>
-                          </xs:element>
-                        </xs:sequence>
-                      </xs:complexType>
-                    </xs:element>
-                    <xs:element name="VM_QUOTA" minOccurs="0" maxOccurs="1">
-                      <xs:complexType>
-                        <xs:sequence>
-                          <xs:element name="VM" minOccurs="0" maxOccurs="1">
-                            <xs:complexType>
-                              <xs:sequence>
-                                <xs:element name="CPU" type="xs:string"/>
-                                <xs:element name="CPU_USED" type="xs:string"/>
-                                <xs:element name="MEMORY" type="xs:string"/>
-                                <xs:element name="MEMORY_USED" type="xs:string"/>
-                                <xs:element name="RUNNING_CPU" type="xs:string"/>
-                                <xs:element name="RUNNING_CPU_USED" type="xs:string"/>
-                                <xs:element name="RUNNING_MEMORY" type="xs:string"/>
-                                <xs:element name="RUNNING_MEMORY_USED" type="xs:string"/>
-                                <xs:element name="RUNNING_VMS" type="xs:string"/>
-                                <xs:element name="RUNNING_VMS_USED" type="xs:string"/>
-                                <xs:element name="SYSTEM_DISK_SIZE" type="xs:string"/>
-                                <xs:element name="SYSTEM_DISK_SIZE_USED" type="xs:string"/>
-                                <xs:element name="VMS" type="xs:string"/>
-                                <xs:element name="VMS_USED" type="xs:string"/>
-                              </xs:sequence>
-                            </xs:complexType>
-                          </xs:element>
-                        </xs:sequence>
-                      </xs:complexType>
-                    </xs:element>
-                    <xs:element name="IMAGE_QUOTA" minOccurs="0" maxOccurs="1">
-                      <xs:complexType>
-                        <xs:sequence>
-                          <xs:element name="IMAGE" minOccurs="0" maxOccurs="unbounded">
-                            <xs:complexType>
-                              <xs:sequence>
-                                <xs:element name="ID" type="xs:string"/>
-                                <xs:element name="RVMS" type="xs:string"/>
-                                <xs:element name="RVMS_USED" type="xs:string"/>
-                              </xs:sequence>
-                            </xs:complexType>
-                          </xs:element>
-                        </xs:sequence>
-                      </xs:complexType>
-                    </xs:element>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-    </xs:schema>
-
-.. code-block:: xml
-
-    <?xml version="1.0" encoding="UTF-8"?>
-    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-      targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
-      <xs:element name="USER_POOL">
-        <xs:complexType>
-          <xs:sequence maxOccurs="1" minOccurs="1">
-            <xs:choice maxOccurs="unbounded" minOccurs="0">
-              <xs:element name="USER" maxOccurs="unbounded" minOccurs="0">
-                <xs:complexType>
-                  <xs:sequence>
-                    <xs:element name="ID" type="xs:integer"/>
-                    <xs:element name="GID" type="xs:integer"/>
-                    <xs:element name="GROUPS">
-                      <xs:complexType>
-                        <xs:sequence>
-                          <xs:element name="ID" type="xs:integer" minOccurs="1" maxOccurs="unbounded"/>
-                        </xs:sequence>
-                      </xs:complexType>
-                    </xs:element>
-                    <xs:element name="GNAME" type="xs:string"/>
-                    <xs:element name="NAME" type="xs:string"/>
-                    <xs:element name="PASSWORD" type="xs:string"/>
-                    <xs:element name="AUTH_DRIVER" type="xs:string"/>
-                    <xs:element name="ENABLED" type="xs:integer"/>
-                    <xs:element name="LOGIN_TOKEN" minOccurs="0" maxOccurs="unbounded">
-                      <xs:complexType>
-                        <xs:sequence>
-                          <xs:element name="TOKEN" type="xs:string"/>
-                          <xs:element name="EXPIRATION_TIME" type="xs:integer"/>
-                          <xs:element name="EGID" type="xs:integer"/>
-                        </xs:sequence>
-                      </xs:complexType>
-                    </xs:element>
-                    <xs:element name="TEMPLATE" type="xs:anyType"/>
-                  </xs:sequence>
-                </xs:complexType>
-              </xs:element>
-              <xs:element name="QUOTAS" maxOccurs="unbounded" minOccurs="0">
-                <xs:complexType>
-                  <xs:sequence>
-                    <xs:element name="ID" type="xs:integer"/>
-                    <xs:element name="DATASTORE_QUOTA" minOccurs="0" maxOccurs="1">
-                      <xs:complexType>
-                        <xs:sequence>
-                          <xs:element name="DATASTORE" minOccurs="0" maxOccurs="unbounded">
-                          <xs:complexType>
-                            <xs:sequence>
-                              <xs:element name="ID" type="xs:string"/>
-                              <xs:element name="IMAGES" type="xs:string"/>
-                              <xs:element name="IMAGES_USED" type="xs:string"/>
-                              <xs:element name="SIZE" type="xs:string"/>
-                              <xs:element name="SIZE_USED" type="xs:string"/>
-                            </xs:sequence>
-                          </xs:complexType>
-                          </xs:element>
-                        </xs:sequence>
-                      </xs:complexType>
-                    </xs:element>
-                    <xs:element name="NETWORK_QUOTA" minOccurs="0" maxOccurs="1">
-                      <xs:complexType>
-                        <xs:sequence>
-                          <xs:element name="NETWORK" minOccurs="0" maxOccurs="unbounded">
-                          <xs:complexType>
-                            <xs:sequence>
-                              <xs:element name="ID" type="xs:string"/>
-                              <xs:element name="LEASES" type="xs:string"/>
-                              <xs:element name="LEASES_USED" type="xs:string"/>
-                            </xs:sequence>
-                          </xs:complexType>
-                          </xs:element>
-                        </xs:sequence>
-                      </xs:complexType>
-                    </xs:element>
-                    <xs:element name="VM_QUOTA" minOccurs="0" maxOccurs="1">
-                      <xs:complexType>
-                        <xs:sequence>
-                          <xs:element name="VM" minOccurs="0" maxOccurs="1">
-                            <xs:complexType>
-                              <xs:sequence>
-                                <xs:element name="CPU" type="xs:string"/>
-                                <xs:element name="CPU_USED" type="xs:string"/>
-                                <xs:element name="MEMORY" type="xs:string"/>
-                                <xs:element name="MEMORY_USED" type="xs:string"/>
-                                <xs:element name="RUNNING_CPU" type="xs:string"/>
-                                <xs:element name="RUNNING_CPU_USED" type="xs:string"/>
-                                <xs:element name="RUNNING_MEMORY" type="xs:string"/>
-                                <xs:element name="RUNNING_MEMORY_USED" type="xs:string"/>
-                                <xs:element name="RUNNING_VMS" type="xs:string"/>
-                                <xs:element name="RUNNING_VMS_USED" type="xs:string"/>
-                                <xs:element name="SYSTEM_DISK_SIZE" type="xs:string"/>
-                                <xs:element name="SYSTEM_DISK_SIZE_USED" type="xs:string"/>
-                                <xs:element name="VMS" type="xs:string"/>
-                                <xs:element name="VMS_USED" type="xs:string"/>
-                              </xs:sequence>
-                            </xs:complexType>
-                          </xs:element>
-                        </xs:sequence>
-                      </xs:complexType>
-                    </xs:element>
-                    <xs:element name="IMAGE_QUOTA" minOccurs="0" maxOccurs="1">
-                      <xs:complexType>
-                        <xs:sequence>
-                          <xs:element name="IMAGE" minOccurs="0" maxOccurs="unbounded">
-                            <xs:complexType>
-                              <xs:sequence>
-                                <xs:element name="ID" type="xs:string"/>
-                                <xs:element name="RVMS" type="xs:string"/>
-                                <xs:element name="RVMS_USED" type="xs:string"/>
-                              </xs:sequence>
-                            </xs:complexType>
-                          </xs:element>
-                        </xs:sequence>
-                      </xs:complexType>
-                    </xs:element>
-                  </xs:sequence>
-                </xs:complexType>
-              </xs:element>
-            </xs:choice>
-            <xs:element name="DEFAULT_USER_QUOTAS">
-              <xs:complexType>
-                <xs:sequence>
-                    <xs:element name="DATASTORE_QUOTA" minOccurs="0" maxOccurs="1">
-                      <xs:complexType>
-                        <xs:sequence>
-                          <xs:element name="DATASTORE" minOccurs="0" maxOccurs="unbounded">
-                          <xs:complexType>
-                            <xs:sequence>
-                              <xs:element name="ID" type="xs:string"/>
-                              <xs:element name="IMAGES" type="xs:string"/>
-                              <xs:element name="IMAGES_USED" type="xs:string"/>
-                              <xs:element name="SIZE" type="xs:string"/>
-                              <xs:element name="SIZE_USED" type="xs:string"/>
-                            </xs:sequence>
-                          </xs:complexType>
-                          </xs:element>
-                        </xs:sequence>
-                      </xs:complexType>
-                    </xs:element>
-                    <xs:element name="NETWORK_QUOTA" minOccurs="0" maxOccurs="1">
-                      <xs:complexType>
-                        <xs:sequence>
-                          <xs:element name="NETWORK" minOccurs="0" maxOccurs="unbounded">
-                          <xs:complexType>
-                            <xs:sequence>
-                              <xs:element name="ID" type="xs:string"/>
-                              <xs:element name="LEASES" type="xs:string"/>
-                              <xs:element name="LEASES_USED" type="xs:string"/>
-                            </xs:sequence>
-                          </xs:complexType>
-                          </xs:element>
-                        </xs:sequence>
-                      </xs:complexType>
-                    </xs:element>
-                    <xs:element name="VM_QUOTA" minOccurs="0" maxOccurs="1">
-                      <xs:complexType>
-                        <xs:sequence>
-                          <xs:element name="VM" minOccurs="0" maxOccurs="1">
-                            <xs:complexType>
-                              <xs:sequence>
-                                <xs:element name="CPU" type="xs:string"/>
-                                <xs:element name="CPU_USED" type="xs:string"/>
-                                <xs:element name="MEMORY" type="xs:string"/>
-                                <xs:element name="MEMORY_USED" type="xs:string"/>
-                                <xs:element name="RUNNING_CPU" type="xs:string"/>
-                                <xs:element name="RUNNING_CPU_USED" type="xs:string"/>
-                                <xs:element name="RUNNING_MEMORY" type="xs:string"/>
-                                <xs:element name="RUNNING_MEMORY_USED" type="xs:string"/>
-                                <xs:element name="RUNNING_VMS" type="xs:string"/>
-                                <xs:element name="RUNNING_VMS_USED" type="xs:string"/>
-                                <xs:element name="SYSTEM_DISK_SIZE" type="xs:string"/>
-                                <xs:element name="SYSTEM_DISK_SIZE_USED" type="xs:string"/>
-                                <xs:element name="VMS" type="xs:string"/>
-                                <xs:element name="VMS_USED" type="xs:string"/>
-                              </xs:sequence>
-                            </xs:complexType>
-                          </xs:element>
-                        </xs:sequence>
-                      </xs:complexType>
-                    </xs:element>
-                    <xs:element name="IMAGE_QUOTA" minOccurs="0" maxOccurs="1">
-                      <xs:complexType>
-                        <xs:sequence>
-                          <xs:element name="IMAGE" minOccurs="0" maxOccurs="unbounded">
-                            <xs:complexType>
-                              <xs:sequence>
-                                <xs:element name="ID" type="xs:string"/>
-                                <xs:element name="RVMS" type="xs:string"/>
-                                <xs:element name="RVMS_USED" type="xs:string"/>
-                              </xs:sequence>
-                            </xs:complexType>
-                          </xs:element>
-                        </xs:sequence>
-                      </xs:complexType>
-                    </xs:element>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-    </xs:schema>
-
-Schemas for Virtual Machine
----------------------------
-
-.. code-block:: xml
-
-    <?xml version="1.0" encoding="UTF-8"?>
-    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-      targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
-      <xs:element name="VM">
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element name="ID" type="xs:integer"/>
-            <xs:element name="UID" type="xs:integer"/>
-            <xs:element name="GID" type="xs:integer"/>
-            <xs:element name="UNAME" type="xs:string"/>
-            <xs:element name="GNAME" type="xs:string"/>
-            <xs:element name="NAME" type="xs:string"/>
-            <xs:element name="PERMISSIONS" minOccurs="0" maxOccurs="1">
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="OWNER_U" type="xs:integer"/>
-                  <xs:element name="OWNER_M" type="xs:integer"/>
-                  <xs:element name="OWNER_A" type="xs:integer"/>
-                  <xs:element name="GROUP_U" type="xs:integer"/>
-                  <xs:element name="GROUP_M" type="xs:integer"/>
-                  <xs:element name="GROUP_A" type="xs:integer"/>
-                  <xs:element name="OTHER_U" type="xs:integer"/>
-                  <xs:element name="OTHER_M" type="xs:integer"/>
-                  <xs:element name="OTHER_A" type="xs:integer"/>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-            <xs:element name="LAST_POLL" type="xs:integer"/>
-
-            <!-- STATE values,
-            see http://docs.opennebula.org/stable/user/references/vm_states.html
-            -->
-            <xs:element name="STATE" type="xs:integer"/>
-
-            <!-- LCM_STATE values, this sub-state is relevant only when STATE is
-                 ACTIVE (4)
-            see http://docs.opennebula.org/stable/user/references/vm_states.html
-            -->
-            <xs:element name="LCM_STATE" type="xs:integer"/>
-            <xs:element name="PREV_STATE" type="xs:integer"/>
-            <xs:element name="PREV_LCM_STATE" type="xs:integer"/>
-            <xs:element name="RESCHED" type="xs:integer"/>
-            <xs:element name="STIME" type="xs:integer"/>
-            <xs:element name="ETIME" type="xs:integer"/>
-            <xs:element name="DEPLOY_ID" type="xs:string"/>
-            <xs:element name="MONITORING">
-            <!--
-              <xs:complexType>
-                <xs:all>
-                  <- Percentage of 1 CPU consumed (two fully consumed cpu is 200) ->
-                  <xs:element name="CPU" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
-
-                  <- MEMORY consumption in kilobytes ->
-                  <xs:element name="MEMORY" type="xs:integer" minOccurs="0" maxOccurs="1"/>
-
-                  <- NETTX: Sent bytes to the network ->
-                  <xs:element name="NETTX" type="xs:integer" minOccurs="0" maxOccurs="1"/>
-
-                  <- NETRX: Received bytes from the network ->
-                  <xs:element name="NETRX" type="xs:integer" minOccurs="0" maxOccurs="1"/>
-                </xs:all>
-              </xs:complexType>
-            -->
-            </xs:element>
-            <xs:element name="TEMPLATE" type="xs:anyType"/>
-            <xs:element name="USER_TEMPLATE" type="xs:anyType"/>
-            <xs:element name="HISTORY_RECORDS">
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="HISTORY" maxOccurs="unbounded" minOccurs="0">
-                    <xs:complexType>
-                      <xs:sequence>
-                        <xs:element name="OID" type="xs:integer"/>
-                        <xs:element name="SEQ" type="xs:integer"/>
-                        <xs:element name="UID" type="xs:integer"/>
-                        <xs:element name="GID" type="xs:integer"/>
-                        <xs:element name="REQUEST_ID" type="xs:string"/>
-                        <xs:element name="HOSTNAME" type="xs:string"/>
-                        <xs:element name="HID" type="xs:integer"/>
-                        <xs:element name="CID" type="xs:integer"/>
-                        <xs:element name="STIME" type="xs:integer"/>
-                        <xs:element name="ETIME" type="xs:integer"/>
-                        <xs:element name="VM_MAD" type="xs:string"/>
-                        <xs:element name="TM_MAD" type="xs:string"/>
-                        <xs:element name="DS_ID" type="xs:integer"/>
-                        <xs:element name="PSTIME" type="xs:integer"/>
-                        <xs:element name="PETIME" type="xs:integer"/>
-                        <xs:element name="RSTIME" type="xs:integer"/>
-                        <xs:element name="RETIME" type="xs:integer"/>
-                        <xs:element name="ESTIME" type="xs:integer"/>
-                        <xs:element name="EETIME" type="xs:integer"/>
-
-                        <!-- ACTION values:
-                          NONE_ACTION             = 0
-                          MIGRATE_ACTION          = 1
-                          LIVE_MIGRATE_ACTION     = 2
-                          SHUTDOWN_ACTION         = 3
-                          SHUTDOWN_HARD_ACTION    = 4
-                          UNDEPLOY_ACTION         = 5
-                          UNDEPLOY_HARD_ACTION    = 6
-                          HOLD_ACTION             = 7
-                          RELEASE_ACTION          = 8
-                          STOP_ACTION             = 9
-                          SUSPEND_ACTION          = 10
-                          RESUME_ACTION           = 11
-                          BOOT_ACTION             = 12
-                          DELETE_ACTION           = 13
-                          DELETE_RECREATE_ACTION  = 14
-                          REBOOT_ACTION           = 15
-                          REBOOT_HARD_ACTION      = 16
-                          RESCHED_ACTION          = 17
-                          UNRESCHED_ACTION        = 18
-                          POWEROFF_ACTION         = 19
-                          POWEROFF_HARD_ACTION    = 20
-                          DISK_ATTACH_ACTION      = 21
-                          DISK_DETACH_ACTION      = 22
-                          NIC_ATTACH_ACTION       = 23
-                          NIC_DETACH_ACTION       = 24
-                          DISK_SNAPSHOT_CREATE_ACTION = 25
-                          DISK_SNAPSHOT_DELETE_ACTION = 26
-                          TERMINATE_ACTION        = 27
-                          TERMINATE_HARD_ACTION   = 28
-                          DISK_RESIZE_ACTION      = 29
-                          DEPLOY_ACTION           = 30
-                          CHOWN_ACTION            = 31
-                          CHMOD_ACTION            = 32
-                          UPDATECONF_ACTION       = 33
-                          RENAME_ACTION           = 34
-                          RESIZE_ACTION           = 35
-                          UPDATE_ACTION           = 36
-                          SNAPSHOT_CREATE_ACTION  = 37
-                          SNAPSHOT_DELETE_ACTION  = 38
-                          SNAPSHOT_REVERT_ACTION  = 39
-                          DISK_SAVEAS_ACTION      = 40
-                          DISK_SNAPSHOT_REVERT_ACTION = 41
-                          RECOVER_ACTION          = 42
-                          RETRY_ACTION            = 43
-                          MONITOR_ACTION          = 44
-                        -->
-                        <xs:element name="ACTION" type="xs:integer"/>
-                      </xs:sequence>
-                    </xs:complexType>
-                  </xs:element>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-            <xs:element name="SNAPSHOTS" minOccurs="0" maxOccurs="unbounded">
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="DISK_ID" type="xs:integer"/>
-                  <xs:element name="SNAPSHOT" minOccurs="0" maxOccurs="unbounded">
-                    <xs:complexType>
-                      <xs:sequence>
-                        <xs:element name="ACTIVE" type="xs:string" minOccurs="0" maxOccurs="1"/>
-                        <xs:element name="CHILDREN" type="xs:string" minOccurs="0" maxOccurs="1"/>
-                        <xs:element name="DATE" type="xs:integer"/>
-                        <xs:element name="ID" type="xs:integer"/>
-                        <xs:element name="NAME" type="xs:string" minOccurs="0" maxOccurs="1"/>
-                        <xs:element name="PARENT" type="xs:integer"/>
-                        <xs:element name="SIZE" type="xs:integer"/>
-                      </xs:sequence>
-                    </xs:complexType>
-                  </xs:element>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-    </xs:schema>
-
-.. code-block:: xml
-
-    <?xml version="1.0" encoding="UTF-8"?>
-    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified"
-        targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
-        <xs:include schemaLocation="vm.xsd"/>
-        <xs:element name="VM_POOL">
-            <xs:complexType>
-                <xs:sequence maxOccurs="1" minOccurs="1">
-                    <xs:element ref="VM" maxOccurs="unbounded" minOccurs="0"/>
-                </xs:sequence>
-            </xs:complexType>
-        </xs:element>
-    </xs:schema>
-
-Schemas for Virtual Machine Template
-------------------------------------
-
-.. code-block:: xml
-
-    <?xml version="1.0" encoding="UTF-8"?>
-    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://opennebula.org/XMLSchema" elementFormDefault="qualified" targetNamespace="http://opennebula.org/XMLSchema">
-      <xs:element name="VMTEMPLATE">
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element name="ID" type="xs:integer"/>
-            <xs:element name="UID" type="xs:integer"/>
-            <xs:element name="GID" type="xs:integer"/>
-            <xs:element name="UNAME" type="xs:string"/>
-            <xs:element name="GNAME" type="xs:string"/>
-            <xs:element name="NAME" type="xs:string"/>
-            <xs:element name="PERMISSIONS" minOccurs="1" maxOccurs="1">
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="OWNER_U" type="xs:integer"/>
-                  <xs:element name="OWNER_M" type="xs:integer"/>
-                  <xs:element name="OWNER_A" type="xs:integer"/>
-                  <xs:element name="GROUP_U" type="xs:integer"/>
-                  <xs:element name="GROUP_M" type="xs:integer"/>
-                  <xs:element name="GROUP_A" type="xs:integer"/>
-                  <xs:element name="OTHER_U" type="xs:integer"/>
-                  <xs:element name="OTHER_M" type="xs:integer"/>
-                  <xs:element name="OTHER_A" type="xs:integer"/>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-            <xs:element name="REGTIME" type="xs:integer"/>
-            <xs:element name="TEMPLATE" type="xs:anyType"/>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-    </xs:schema>
-
-.. code-block:: xml
-
-    <?xml version="1.0" encoding="UTF-8"?>
-    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-      targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
-      <xs:include schemaLocation="vmtemplate.xsd"/>
-      <xs:element name="VMTEMPLATE_POOL">
-        <xs:complexType>
-          <xs:sequence maxOccurs="1" minOccurs="1">
-            <xs:element ref="VMTEMPLATE" maxOccurs="unbounded" minOccurs="0"/>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-    </xs:schema>
-
-Schemas for Virtual Network
----------------------------
-
-
-.. code-block:: xml
-
-    <?xml version="1.0" encoding="UTF-8"?>
-    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-      targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
-      <xs:element name="VNET">
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element name="ID" type="xs:integer"/>
-            <xs:element name="UID" type="xs:integer"/>
-            <xs:element name="GID" type="xs:integer"/>
-            <xs:element name="UNAME" type="xs:string"/>
-            <xs:element name="GNAME" type="xs:string"/>
-            <xs:element name="NAME" type="xs:string"/>
-            <xs:element name="PERMISSIONS" minOccurs="0" maxOccurs="1">
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="OWNER_U" type="xs:integer"/>
-                  <xs:element name="OWNER_M" type="xs:integer"/>
-                  <xs:element name="OWNER_A" type="xs:integer"/>
-                  <xs:element name="GROUP_U" type="xs:integer"/>
-                  <xs:element name="GROUP_M" type="xs:integer"/>
-                  <xs:element name="GROUP_A" type="xs:integer"/>
-                  <xs:element name="OTHER_U" type="xs:integer"/>
-                  <xs:element name="OTHER_M" type="xs:integer"/>
-                  <xs:element name="OTHER_A" type="xs:integer"/>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-            <xs:element name="CLUSTERS">
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="ID" type="xs:integer" minOccurs="0" maxOccurs="unbounded"/>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-            <xs:element name="BRIDGE" type="xs:string"/>
-            <xs:element name="PARENT_NETWORK_ID" type="xs:string"/>
-            <xs:element name="VN_MAD" type="xs:string"/>
-            <xs:element name="PHYDEV" type="xs:string"/>
-            <xs:element name="VLAN_ID" type="xs:string"/>
-            <xs:element name="VLAN_ID_AUTOMATIC" type="xs:string"/>
-            <xs:element name="USED_LEASES" type="xs:integer"/>
-            <xs:element name="VROUTERS">
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="ID" type="xs:integer" minOccurs="0" maxOccurs="unbounded"/>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-            <xs:element name="TEMPLATE" type="xs:anyType"/>
-            <xs:element name="AR_POOL">
-              <xs:complexType>
-                <xs:sequence minOccurs="0">
-                  <xs:element name="AR" minOccurs="0" maxOccurs="unbounded">
-                    <xs:complexType>
-                      <xs:sequence>
-                        <xs:element name="AR_ID" type="xs:string"/>
-                        <xs:element name="GLOBAL_PREFIX" type="xs:string" minOccurs="0"/>
-                        <xs:element name="IP" type="xs:string" minOccurs="0"/>
-                        <xs:element name="MAC" type="xs:string"/>
-                        <xs:element name="PARENT_NETWORK_AR_ID" type="xs:string" minOccurs="0"/>
-                        <xs:element name="SIZE" type="xs:integer"/>
-                        <xs:element name="TYPE" type="xs:string"/>
-                        <xs:element name="ULA_PREFIX" type="xs:string" minOccurs="0"/>
-                        <xs:element name="VN_MAD" type="xs:string" minOccurs="0"/>
-                        <xs:element name="MAC_END" type="xs:string" minOccurs="0"/>
-                        <xs:element name="IP_END" type="xs:string" minOccurs="0"/>
-                        <xs:element name="IP6_ULA" type="xs:string" minOccurs="0"/>
-                        <xs:element name="IP6_ULA_END" type="xs:string" minOccurs="0"/>
-                        <xs:element name="IP6_GLOBAL" type="xs:string" minOccurs="0"/>
-                        <xs:element name="IP6_GLOBAL_END" type="xs:string" minOccurs="0"/>
-                        <xs:element name="USED_LEASES" type="xs:string"/>
-                        <xs:element name="LEASES" minOccurs="0" maxOccurs="1">
-                          <xs:complexType>
-                            <xs:sequence>
-                              <xs:element name="LEASE" minOccurs="0" maxOccurs="unbounded">
-                                <xs:complexType>
-                                  <xs:all>
-                                    <xs:element name="IP" type="xs:string" minOccurs="0"/>
-                                    <xs:element name="IP6_GLOBAL" type="xs:string" minOccurs="0"/>
-                                    <xs:element name="IP6_LINK" type="xs:string" minOccurs="0"/>
-                                    <xs:element name="IP6_ULA" type="xs:string" minOccurs="0"/>
-                                    <xs:element name="MAC" type="xs:string"/>
-                                    <xs:element name="VM" type="xs:integer" minOccurs="0"/>
-                                    <xs:element name="VNET" type="xs:integer" minOccurs="0"/>
-                                    <xs:element name="VROUTER" type="xs:integer" minOccurs="0"/>
-                                  </xs:all>
-                                </xs:complexType>
-                              </xs:element>
-                            </xs:sequence>
-                          </xs:complexType>
-                        </xs:element>
-                      </xs:sequence>
-                    </xs:complexType>
-                  </xs:element>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-    </xs:schema>
-
-.. code-block:: xml
-
-    <?xml version="1.0" encoding="UTF-8"?>
-    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-      targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
-      <xs:include schemaLocation="vnet.xsd"/>
-      <xs:element name="VNET_POOL">
-        <xs:complexType>
-          <xs:sequence maxOccurs="1" minOccurs="1">
-            <xs:element name="VNET" maxOccurs="unbounded" minOccurs="0">
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="ID" type="xs:integer"/>
-                  <xs:element name="UID" type="xs:integer"/>
-                  <xs:element name="GID" type="xs:integer"/>
-                  <xs:element name="UNAME" type="xs:string"/>
-                  <xs:element name="GNAME" type="xs:string"/>
-                  <xs:element name="NAME" type="xs:string"/>
-                  <xs:element name="PERMISSIONS" minOccurs="0" maxOccurs="1">
-                    <xs:complexType>
-                      <xs:sequence>
-                        <xs:element name="OWNER_U" type="xs:integer"/>
-                        <xs:element name="OWNER_M" type="xs:integer"/>
-                        <xs:element name="OWNER_A" type="xs:integer"/>
-                        <xs:element name="GROUP_U" type="xs:integer"/>
-                        <xs:element name="GROUP_M" type="xs:integer"/>
-                        <xs:element name="GROUP_A" type="xs:integer"/>
-                        <xs:element name="OTHER_U" type="xs:integer"/>
-                        <xs:element name="OTHER_M" type="xs:integer"/>
-                        <xs:element name="OTHER_A" type="xs:integer"/>
-                      </xs:sequence>
-                    </xs:complexType>
-                  </xs:element>
-                  <xs:element name="CLUSTERS">
-                    <xs:complexType>
-                      <xs:sequence>
-                        <xs:element name="ID" type="xs:integer" minOccurs="0" maxOccurs="unbounded"/>
-                      </xs:sequence>
-                    </xs:complexType>
-                  </xs:element>
-                  <xs:element name="BRIDGE" type="xs:string"/>
-                  <xs:element name="PARENT_NETWORK_ID" type="xs:string"/>
-                  <xs:element name="VN_MAD" type="xs:string"/>
-                  <xs:element name="PHYDEV" type="xs:string"/>
-                  <xs:element name="VLAN_ID" type="xs:string"/>
-                  <xs:element name="VLAN_ID_AUTOMATIC" type="xs:string"/>
-                  <xs:element name="USED_LEASES" type="xs:integer"/>
-                  <xs:element name="VROUTERS">
-                    <xs:complexType>
-                      <xs:sequence>
-                        <xs:element name="ID" type="xs:integer" minOccurs="0" maxOccurs="unbounded"/>
-                      </xs:sequence>
-                    </xs:complexType>
-                  </xs:element>
-                  <xs:element name="TEMPLATE" type="xs:anyType"/>
-                  <xs:element name="AR_POOL">
-                    <xs:complexType>
-                      <xs:sequence minOccurs="0">
-                        <xs:element name="AR" minOccurs="0" maxOccurs="unbounded">
-                          <xs:complexType>
-                            <xs:sequence>
-                              <xs:element name="ALLOCATED" type="xs:string" minOccurs="0"/>
-                              <xs:element name="AR_ID" type="xs:string"/>
-                              <xs:element name="GLOBAL_PREFIX" type="xs:string" minOccurs="0"/>
-                              <xs:element name="IP" type="xs:string" minOccurs="0"/>
-                              <xs:element name="MAC" type="xs:string"/>
-                              <xs:element name="PARENT_NETWORK_AR_ID" type="xs:string" minOccurs="0"/>
-                              <xs:element name="SIZE" type="xs:integer"/>
-                              <xs:element name="TYPE" type="xs:string"/>
-                              <xs:element name="ULA_PREFIX" type="xs:string" minOccurs="0"/>
-                              <xs:element name="VN_MAD" type="xs:string" minOccurs="0"/>
-                            </xs:sequence>
-                          </xs:complexType>
-                        </xs:element>
-                      </xs:sequence>
-                    </xs:complexType>
-                  </xs:element>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-    </xs:schema>
-
-Schemas for Accounting
-----------------------
-
-.. code-block:: xml
-
-    <?xml version="1.0" encoding="UTF-8"?>
-    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-      targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
-
-      <xs:element name="HISTORY_RECORDS">
-        <xs:complexType>
-          <xs:sequence maxOccurs="1" minOccurs="1">
-            <xs:element ref="HISTORY" maxOccurs="unbounded" minOccurs="0"/>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-
-      <xs:element name="HISTORY">
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element name="OID" type="xs:integer"/>
-            <xs:element name="SEQ" type="xs:integer"/>
-            <xs:element name="HOSTNAME" type="xs:string"/>
-            <xs:element name="HID" type="xs:integer"/>
-            <xs:element name="CID" type="xs:integer"/>
-            <xs:element name="STIME" type="xs:integer"/>
-            <xs:element name="ETIME" type="xs:integer"/>
-            <xs:element name="VM_MAD" type="xs:string"/>
-            <xs:element name="TM_MAD" type="xs:string"/>
-            <xs:element name="DS_ID" type="xs:integer"/>
-            <xs:element name="PSTIME" type="xs:integer"/>
-            <xs:element name="PETIME" type="xs:integer"/>
-            <xs:element name="RSTIME" type="xs:integer"/>
-            <xs:element name="RETIME" type="xs:integer"/>
-            <xs:element name="ESTIME" type="xs:integer"/>
-            <xs:element name="EETIME" type="xs:integer"/>
-
-            <!-- REASON values:
-              NONE  = 0 History record is not closed yet
-              ERROR = 1 History record was closed because of an error
-              USER  = 2 History record was closed because of a user action
-            -->
-            <xs:element name="REASON" type="xs:integer"/>
-
-            <!-- ACTION values:
-              NONE_ACTION             = 0
-              MIGRATE_ACTION          = 1
-              LIVE_MIGRATE_ACTION     = 2
-              SHUTDOWN_ACTION         = 3
-              SHUTDOWN_HARD_ACTION    = 4
-              UNDEPLOY_ACTION         = 5
-              UNDEPLOY_HARD_ACTION    = 6
-              HOLD_ACTION             = 7
-              RELEASE_ACTION          = 8
-              STOP_ACTION             = 9
-              SUSPEND_ACTION          = 10
-              RESUME_ACTION           = 11
-              BOOT_ACTION             = 12
-              DELETE_ACTION           = 13
-              DELETE_RECREATE_ACTION  = 14
-              REBOOT_ACTION           = 15
-              REBOOT_HARD_ACTION      = 16
-              RESCHED_ACTION          = 17
-              UNRESCHED_ACTION        = 18
-              POWEROFF_ACTION         = 19
-              POWEROFF_HARD_ACTION    = 20
-              DISK_ATTACH_ACTION      = 21
-              DISK_DETACH_ACTION      = 22
-              NIC_ATTACH_ACTION       = 23
-              NIC_DETACH_ACTION       = 24
-              DISK_SNAPSHOT_CREATE_ACTION = 25
-              DISK_SNAPSHOT_DELETE_ACTION = 26
-              TERMINATE_ACTION        = 27
-              TERMINATE_HARD_ACTION   = 28
-            -->
-            <xs:element name="ACTION" type="xs:integer"/>
-
-            <xs:element name="VM">
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="ID" type="xs:integer"/>
-                  <xs:element name="UID" type="xs:integer"/>
-                  <xs:element name="GID" type="xs:integer"/>
-                  <xs:element name="UNAME" type="xs:string"/>
-                  <xs:element name="GNAME" type="xs:string"/>
-                  <xs:element name="NAME" type="xs:string"/>
-                  <xs:element name="PERMISSIONS" minOccurs="0" maxOccurs="1">
-                    <xs:complexType>
-                      <xs:sequence>
-                        <xs:element name="OWNER_U" type="xs:integer"/>
-                        <xs:element name="OWNER_M" type="xs:integer"/>
-                        <xs:element name="OWNER_A" type="xs:integer"/>
-                        <xs:element name="GROUP_U" type="xs:integer"/>
-                        <xs:element name="GROUP_M" type="xs:integer"/>
-                        <xs:element name="GROUP_A" type="xs:integer"/>
-                        <xs:element name="OTHER_U" type="xs:integer"/>
-                        <xs:element name="OTHER_M" type="xs:integer"/>
-                        <xs:element name="OTHER_A" type="xs:integer"/>
-                      </xs:sequence>
-                    </xs:complexType>
-                  </xs:element>
-                  <xs:element name="LAST_POLL" type="xs:integer"/>
-
-                  <!-- STATE values,
-                  see http://docs.opennebula.org/stable/user/references/vm_states.html
-                  -->
-                  <xs:element name="STATE" type="xs:integer"/>
-
-                  <!-- LCM_STATE values, this sub-state is relevant only when STATE is
-                       ACTIVE (4)
-                  see http://docs.opennebula.org/stable/user/references/vm_states.html
-                  -->
-                  <xs:element name="LCM_STATE" type="xs:integer"/>
-                  <xs:element name="PREV_STATE" type="xs:integer"/>
-                  <xs:element name="PREV_LCM_STATE" type="xs:integer"/>
-                  <xs:element name="RESCHED" type="xs:integer"/>
-                  <xs:element name="STIME" type="xs:integer"/>
-                  <xs:element name="ETIME" type="xs:integer"/>
-                  <xs:element name="DEPLOY_ID" type="xs:string"/>
-                  <xs:element name="MONITORING">
-                  <!--
-                    <xs:complexType>
-                      <xs:all>
-                        <- Percentage of 1 CPU consumed (two fully consumed cpu is 200) ->
-                        <xs:element name="CPU" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
-
-                        <- MEMORY consumption in kilobytes ->
-                        <xs:element name="MEMORY" type="xs:integer" minOccurs="0" maxOccurs="1"/>
-
-                        <- NETTX: Sent bytes to the network ->
-                        <xs:element name="NETTX" type="xs:integer" minOccurs="0" maxOccurs="1"/>
-
-                        <- NETRX: Received bytes from the network ->
-                        <xs:element name="NETRX" type="xs:integer" minOccurs="0" maxOccurs="1"/>
-                      </xs:all>
-                    </xs:complexType>
-                  -->
-                  </xs:element>
-                  <xs:element name="TEMPLATE" type="xs:anyType"/>
-                  <xs:element name="USER_TEMPLATE" type="xs:anyType"/>
-                  <xs:element name="HISTORY_RECORDS">
-                  </xs:element>
-                  <xs:element name="SNAPSHOTS" minOccurs="0" maxOccurs="unbounded">
-                    <xs:complexType>
-                      <xs:sequence>
-                        <xs:element name="DISK_ID" type="xs:integer"/>
-                        <xs:element name="SNAPSHOT" minOccurs="0" maxOccurs="unbounded">
-                          <xs:complexType>
-                            <xs:sequence>
-                              <xs:element name="ACTIVE" type="xs:string" minOccurs="0" maxOccurs="1"/>
-                              <xs:element name="CHILDREN" type="xs:string" minOccurs="0" maxOccurs="1"/>
-                              <xs:element name="DATE" type="xs:integer"/>
-                              <xs:element name="ID" type="xs:integer"/>
-                              <xs:element name="NAME" type="xs:string" minOccurs="0" maxOccurs="1"/>
-                              <xs:element name="PARENT" type="xs:integer"/>
-                              <xs:element name="SIZE" type="xs:integer"/>
-                            </xs:sequence>
-                          </xs:complexType>
-                        </xs:element>
-                      </xs:sequence>
-                    </xs:complexType>
-                  </xs:element>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-    </xs:schema>
-
-
-Schemas for Marketplace
---------------------------------------------------------------------------------
-
-.. code-block:: xml
-
-    <?xml version="1.0" encoding="UTF-8"?>
-    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-      targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
-      <xs:element name="MARKETPLACE">
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element name="ID" type="xs:integer"/>
-            <xs:element name="UID" type="xs:integer"/>
-            <xs:element name="GID" type="xs:integer"/>
-            <xs:element name="UNAME" type="xs:string"/>
-            <xs:element name="GNAME" type="xs:string"/>
-            <xs:element name="NAME" type="xs:string"/>
-            <xs:element name="MARKET_MAD" type="xs:string"/>
-            <xs:element name="ZONE_ID" type="xs:string"/>
-            <xs:element name="TOTAL_MB" type="xs:integer"/>
-            <xs:element name="FREE_MB" type="xs:integer"/>
-            <xs:element name="USED_MB" type="xs:integer"/>
-            <xs:element name="MARKETPLACEAPPS">
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="ID" type="xs:integer" minOccurs="0" maxOccurs="unbounded"/>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-            <xs:element name="PERMISSIONS" minOccurs="0" maxOccurs="1">
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="OWNER_U" type="xs:integer"/>
-                  <xs:element name="OWNER_M" type="xs:integer"/>
-                  <xs:element name="OWNER_A" type="xs:integer"/>
-                  <xs:element name="GROUP_U" type="xs:integer"/>
-                  <xs:element name="GROUP_M" type="xs:integer"/>
-                  <xs:element name="GROUP_A" type="xs:integer"/>
-                  <xs:element name="OTHER_U" type="xs:integer"/>
-                  <xs:element name="OTHER_M" type="xs:integer"/>
-                  <xs:element name="OTHER_A" type="xs:integer"/>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-            <xs:element name="TEMPLATE" type="xs:anyType"/>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-    </xs:schema>
-
-.. code-block:: xml
-
-    <?xml version="1.0" encoding="UTF-8"?>
-    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified"
-        targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
-        <xs:include schemaLocation="marketplace.xsd"/>
-        <xs:element name="MARKETPLACE_POOL">
-            <xs:complexType>
-                <xs:sequence maxOccurs="1" minOccurs="1">
-                    <xs:element ref="MARKETPLACE" maxOccurs="unbounded" minOccurs="0"/>
-                </xs:sequence>
-            </xs:complexType>
-        </xs:element>
-    </xs:schema>
-
-Schemas for Marketplace App
---------------------------------------------------------------------------------
-
-.. code-block:: xml
-
-    <?xml version="1.0" encoding="UTF-8"?>
-    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-      targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
-      <xs:element name="MARKETPLACEAPP">
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element name="ID" type="xs:integer"/>
-            <xs:element name="UID" type="xs:integer"/>
-            <xs:element name="GID" type="xs:integer"/>
-            <xs:element name="UNAME" type="xs:string"/>
-            <xs:element name="GNAME" type="xs:string"/>
-            <xs:element name="REGTIME" type="xs:integer"/>
-            <xs:element name="NAME" type="xs:string"/>
-            <xs:element name="ZONE_ID" type="xs:string"/>
-            <xs:element name="ORIGIN_ID" type="xs:string"/>
-            <xs:element name="SOURCE" type="xs:string"/>
-            <xs:element name="MD5" type="xs:string"/>
-            <xs:element name="SIZE" type="xs:integer"/>
-            <xs:element name="DESCRIPTION" type="xs:string"/>
-            <xs:element name="VERSION" type="xs:string"/>
-            <xs:element name="FORMAT" type="xs:string"/>
-            <xs:element name="APPTEMPLATE64" type="xs:string"/>
-            <xs:element name="MARKETPLACE_ID" type="xs:integer"/>
-            <xs:element name="MARKETPLACE" type="xs:string"/>
-            <xs:element name="STATE" type="xs:integer"/>
-            <xs:element name="TYPE" type="xs:integer"/>
-            <xs:element name="PERMISSIONS" minOccurs="0" maxOccurs="1">
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="OWNER_U" type="xs:integer"/>
-                  <xs:element name="OWNER_M" type="xs:integer"/>
-                  <xs:element name="OWNER_A" type="xs:integer"/>
-                  <xs:element name="GROUP_U" type="xs:integer"/>
-                  <xs:element name="GROUP_M" type="xs:integer"/>
-                  <xs:element name="GROUP_A" type="xs:integer"/>
-                  <xs:element name="OTHER_U" type="xs:integer"/>
-                  <xs:element name="OTHER_M" type="xs:integer"/>
-                  <xs:element name="OTHER_A" type="xs:integer"/>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-            <xs:element name="TEMPLATE" type="xs:anyType"/>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-    </xs:schema>
-
-.. code-block:: xml
-
-    <?xml version="1.0" encoding="UTF-8"?>
-    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified"
-        targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
-        <xs:include schemaLocation="marketplaceapp.xsd"/>
-        <xs:element name="MARKETPLACEAPP_POOL">
-            <xs:complexType>
-                <xs:sequence maxOccurs="1" minOccurs="1">
-                    <xs:element ref="MARKETPLACEAPP" maxOccurs="unbounded" minOccurs="0"/>
-                </xs:sequence>
-            </xs:complexType>
-        </xs:element>
-    </xs:schema>
-
-Schemas for Virtual Router
---------------------------------------------------------------------------------
-
-.. code-block:: xml
-
-    <?xml version="1.0" encoding="UTF-8"?>
-    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-      targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
-      <xs:element name="VROUTER">
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element name="ID" type="xs:integer"/>
-            <xs:element name="UID" type="xs:integer"/>
-            <xs:element name="GID" type="xs:integer"/>
-            <xs:element name="UNAME" type="xs:string"/>
-            <xs:element name="GNAME" type="xs:string"/>
-            <xs:element name="NAME" type="xs:string"/>
-            <xs:element name="PERMISSIONS" minOccurs="0" maxOccurs="1">
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="OWNER_U" type="xs:integer"/>
-                  <xs:element name="OWNER_M" type="xs:integer"/>
-                  <xs:element name="OWNER_A" type="xs:integer"/>
-                  <xs:element name="GROUP_U" type="xs:integer"/>
-                  <xs:element name="GROUP_M" type="xs:integer"/>
-                  <xs:element name="GROUP_A" type="xs:integer"/>
-                  <xs:element name="OTHER_U" type="xs:integer"/>
-                  <xs:element name="OTHER_M" type="xs:integer"/>
-                  <xs:element name="OTHER_A" type="xs:integer"/>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-            <xs:element name="VMS">
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="ID" type="xs:integer" minOccurs="0" maxOccurs="unbounded"/>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-            <xs:element name="TEMPLATE" type="xs:anyType"/>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-    </xs:schema>
-
-.. code-block:: xml
-
-    <?xml version="1.0" encoding="UTF-8"?>
-    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified"
-        targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
-        <xs:include schemaLocation="vrouter.xsd"/>
-        <xs:element name="VROUTER_POOL">
-            <xs:complexType>
-                <xs:sequence maxOccurs="1" minOccurs="1">
-                    <xs:element ref="VROUTER" maxOccurs="unbounded" minOccurs="0"/>
-                </xs:sequence>
-            </xs:complexType>
-        </xs:element>
-    </xs:schema>
-
-Schemas for Virtual Machine Group
---------------------------------------------------------------------------------
-
-.. code-block:: xml
-
-    <?xml version="1.0" encoding="UTF-8"?>
-    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-      targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
-      <xs:element name="VM_GROUP">
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element name="ID" type="xs:integer"/>
-            <xs:element name="UID" type="xs:integer"/>
-            <xs:element name="GID" type="xs:integer"/>
-            <xs:element name="UNAME" type="xs:string"/>
-            <xs:element name="GNAME" type="xs:string"/>
-            <xs:element name="NAME" type="xs:string"/>
-            <xs:element name="PERMISSIONS" minOccurs="0" maxOccurs="1">
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="OWNER_U" type="xs:integer"/>
-                  <xs:element name="OWNER_M" type="xs:integer"/>
-                  <xs:element name="OWNER_A" type="xs:integer"/>
-                  <xs:element name="GROUP_U" type="xs:integer"/>
-                  <xs:element name="GROUP_M" type="xs:integer"/>
-                  <xs:element name="GROUP_A" type="xs:integer"/>
-                  <xs:element name="OTHER_U" type="xs:integer"/>
-                  <xs:element name="OTHER_M" type="xs:integer"/>
-                  <xs:element name="OTHER_A" type="xs:integer"/>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-            <xs:element name="ROLES">
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="ROLE" maxOccurs="unbounded" minOccurs="0">
-                    <xs:complexType>
-                      <xs:sequence>
-                        <xs:element name="ID" type="xs:integer"/>
-                        <xs:element name="NAME" type="xs:string" maxOccurs="1" minOccurs="0"/>
-                        <xs:element name="POLICY" type="xs:string" maxOccurs="1" minOccurs="0"/>
-                        <!-- POLICY values:
-                          AFFINED
-                          ANTI_AFFINED
-                        -->
-                        <xs:element name="HOST_AFFINED" type="xs:string" maxOccurs="1" minOccurs="0"/>
-                        <xs:element name="HOST_ANTI_AFFINED" type="xs:string" maxOccurs="1" minOccurs="0"/>
-                      </xs:sequence>
-                    </xs:complexType>
-                  </xs:element>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-            <xs:element name="TEMPLATE" type="xs:anyType"/>
-            <!-- POLICY values:
-              AFFINED      = "<list of roles>"
-              ANTI_AFFINED = "<list of roles>"
-            -->
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-    </xs:schema>
-
-.. code-block:: xml
-
-    <?xml version="1.0" encoding="UTF-8"?>
-    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified"
-        targetNamespace="http://opennebula.org/XMLSchema" xmlns="http://opennebula.org/XMLSchema">
-        <xs:include schemaLocation="vrouter.xsd"/>
-        <xs:element name="VM_GROUP_POOL">
-            <xs:complexType>
-                <xs:sequence maxOccurs="1" minOccurs="1">
-                    <xs:element ref="VM_GROUP" maxOccurs="unbounded" minOccurs="0"/>
-                </xs:sequence>
-            </xs:complexType>
-        </xs:element>
-    </xs:schema>
