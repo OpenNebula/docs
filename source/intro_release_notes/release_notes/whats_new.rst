@@ -22,6 +22,7 @@ OpenNebula Core
 - **Unified objects' secrets handling**, secrets are encrypted and decrypted in core, drivers get secrets decrypted `see here <https://github.com/OpenNebula/one/issues/3064>`__.
 - **Allow VM reschedule in poweroff state**, `see here <https://github.com/OpenNebula/one/issues/3298>`__.
 - **System wide CPU model configuration**, default cpu model for kvm could be set in config file :ref:`see here <kvmg_default_attributes>`.
+- **KVM configuration per Host or Cluster**, all :ref:`kvm default attributes <kvmg_default_attributes>` can be overriden in Cluster and Host.
 
 Other minor features in OpenNebula core:
 
