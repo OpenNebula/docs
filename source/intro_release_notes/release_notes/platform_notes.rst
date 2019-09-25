@@ -19,7 +19,7 @@ Front-End Components
 +=========================+=========================================================+=======================================================+
 | RedHat Enterprise Linux | 7                                                       | :ref:`Front-End Installation <frontend_installation>` |
 +-------------------------+---------------------------------------------------------+-------------------------------------------------------+
-| Ubuntu Server           | 16.04 (LTS), 18.04 (LTS)                                | :ref:`Front-End Installation <frontend_installation>` |
+| Ubuntu Server           | 16.04 (LTS), 18.04 (LTS), 19.04                         | :ref:`Front-End Installation <frontend_installation>` |
 +-------------------------+---------------------------------------------------------+-------------------------------------------------------+
 | CentOS                  | 7                                                       | :ref:`Front-End Installation <frontend_installation>` |
 +-------------------------+---------------------------------------------------------+-------------------------------------------------------+
@@ -51,7 +51,7 @@ KVM Nodes
 +=========================+===========================================================+=========================================+
 | RedHat Enterprise Linux | 7                                                         | :ref:`KVM Driver <kvmg>`                |
 +-------------------------+-----------------------------------------------------------+-----------------------------------------+
-| Ubuntu Server           | 16.04 (LTS), 18.04 (LTS)                                  | :ref:`KVM Driver <kvmg>`                |
+| Ubuntu Server           | 16.04 (LTS), 18.04 (LTS), 19.04                           | :ref:`KVM Driver <kvmg>`                |
 +-------------------------+-----------------------------------------------------------+-----------------------------------------+
 | CentOS                  | 7                                                         | :ref:`KVM Driver <kvmg>`                |
 +-------------------------+-----------------------------------------------------------+-----------------------------------------+
@@ -225,6 +225,12 @@ The following applies to all Front-Ends:
 * XML-RPC tuning parameters (``MAX_CONN``, ``MAX_CONN_BACKLOG``, ``KEEPALIVE_TIMEOUT``, ``KEEPALIVE_MAX_CONN`` and ``TIMEOUT``) are only available with packages distributed by us as they are compiled with a newer xmlrpc-c library.
 * For **cloud bursting**, a newer nokogiri gem than the one packed by current distros is required. If you are planning to use cloud bursting, you need to install nokogiri >= 1.4.4 prior to run ``install_gems``: ``# sudo gem install nokogiri -v 1.4.4``.
 * Only **ruby versions >= 1.9.3 are supported**.
+
+Ubuntu 19.04 Platform Notes
+--------------------------------------------------------------------------------
+
+See 18.10 notes below for LXD installation notes.
+
 
 Ubuntu 18.10 Platform Notes
 --------------------------------------------------------------------------------
