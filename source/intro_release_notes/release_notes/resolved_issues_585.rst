@@ -5,12 +5,12 @@ Resolved Issues in 5.8.5
 
 A complete list of solved issues for 5.8.5 can be found in the `project development portal <https://github.com/OpenNebula/one/milestone/29>`__.
 
-The following new features has been backported to 5.8.5:
+The following new features have been backported to 5.8.5:
 
-- `Packet Public Networking <https://github.com/OpenNebula/one/issues/3042>`__.
+- :ref:`Packet Public Networking <ddc_ipam_packet>`.
 - `Command to add FTS index <https://github.com/OpenNebula/one/issues/3530>`__.
 
-The following issues has been solved in 5.8.5:
+The following issues have been solved in 5.8.5:
 
 - `Fix vnm clean phase not running after failed deploy <https://github.com/OpenNebula/one/issues/3540>`__.
 - `Fix spoofing rules for VMs running on the same hypervisor <https://github.com/OpenNebula/one/issues/3556>`__.
