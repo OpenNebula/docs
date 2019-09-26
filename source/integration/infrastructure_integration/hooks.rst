@@ -351,6 +351,14 @@ This script prints to stdout the result of one.user.create API call and the user
 
 .. code-block:: ruby
 
+    # Hook template
+    #
+    # NAME = user-create
+    # TYPE = api
+    # COMMAND = "user_create_hook.rb"
+    # ARGUMENTS = "$API"
+    # CALL = "one.user.allocate"
+
     #!/usr/bin/ruby
 
     require 'base64'
@@ -378,6 +386,15 @@ This script prints to stdout the ID of the user that invoked one.host.create API
 
 .. code-block:: ruby
 
+    # Hook template
+    #
+    #NAME = hook-error
+    #TYPE = state
+    #COMMAND = hook_error.rb
+    #ARGUMENTS="$TEMPLATE"
+    #STATE = ERROR
+    #RESOURCE = HOST
+
     #!/usr/bin/ruby
 
     require 'base64'
@@ -387,14 +404,22 @@ This script prints to stdout the ID of the user that invoked one.host.create API
     host_template = Nokogiri::XML(Base64::decode64(ARGV[0]))
 
     host_id = host_template.xpath("//ID").text.to_i
-    uid   = host_template.xpath("//UID").text.to_i
 
-    puts "User #{uid} created Host #{host_id}"
+    puts "Host #{host_id} is in error state!!"
 
 State Hook example (VM)
 --------------------------------------------------------------------------------
 
 .. code-block:: ruby
+
+    # Hook template
+    #
+    #NAME = vm-prolog
+    #TYPE = state
+    #COMMAND = vm_prolog.rb
+    #ARGUMENTS = $TEMPLATE
+    #ON = PROLOG
+    #RESOURCE = VM
 
     #!/usr/bin/ruby
 
@@ -405,9 +430,8 @@ State Hook example (VM)
     vm_template = Nokogiri::XML(Base64::decode64(ARGV[0]))
 
     vm_id = vm_template.xpath("//ID").text.to_i
-    uid   = vm_template.xpath("//UID").text.to_i
 
-    puts "User #{uid} created VM #{vm_id}"
+    puts "VM #{vm_id} is in PROLOG state"
 
 .. note:: Note that any command can be specified in ``COMMAND``, for debugging. (``COMMAND="/usr/bin/echo"``) can be very helpfull.
 
