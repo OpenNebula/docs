@@ -86,3 +86,4 @@ Other Issues Solved
 - `Fix issue with wrong controller for multiple scsi disks <https://github.com/OpenNebula/one/issues/2971>`_.
 - `Fix issue with Context ISO device vs. KVM models <https://github.com/OpenNebula/one/issues/2587>`_.
 - `Fix delete IPAM address ranges when deleting the vnet <https://github.com/OpenNebula/one/issues/3070>`__.
+- `Fix add and remove cluster in datastore's table <https://github.com/OpenNebula/one/issues/3594>`__.
