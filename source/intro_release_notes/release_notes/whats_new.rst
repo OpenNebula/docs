@@ -73,6 +73,7 @@ Packaging
 - `Datastores directories contained in the package <https://github.com/OpenNebula/packages/issues/68>`_, initial datastores directories are not contained in the package anymore.
 - Lower `services restart interval <https://github.com/OpenNebula/one/issues/3183>`_, decreases limit for automatic restart of core services and consistently sets automatic restart to all services.
 - `Augeas lens for oned.conf <https://github.com/OpenNebula/one/pull/3741>`_, server package contains Augeas lens to manipulate ``oned.conf``-like files.
+- Optional python bindings are now build also for python3 -- `python3-pyone <https://github.com/OpenNebula/packages/issues/106>`_ >
 
 IPAM Drivers
 ================================================================================

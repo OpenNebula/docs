@@ -14,7 +14,7 @@ You can consult the `doc online </doc/5.9/oca/python/>`__, but as long as the co
 Download and installation
 ================================================================================
 
-You can either use the system package ``python-pyone`` or install it using ``pip install pyone``.
+You can either use the system package ``python-pyone`` / ``python3-pyone`` or install it using ``pip install pyone``.
 
 
 Usage
