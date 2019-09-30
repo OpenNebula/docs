@@ -102,6 +102,7 @@ The packages for the OpenNebula front-end and the virtualization host are as fol
 * **opennebula-ruby**: Ruby Bindings.
 * **opennebula-java**: Java Bindings.
 * **python-pyone**: Python Bindings.
+* **python3-pyone**: Python3 Bindings.
 
 .. note::
 
@@ -138,6 +139,7 @@ These are the packages available for these distributions:
 * **libopennebula-java**: Java API.
 * **libopennebula-java-doc**: Java API Documentation.
 * **python-pyone**: Python API.
+* **python3-pyone**: Python3 Bindings.
 
 .. note::
 
