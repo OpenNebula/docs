@@ -203,6 +203,8 @@ You can use the ``oneimage list`` command to check the available images in the r
 
 To get complete information about an Image, use ``oneimage show``, or list Images continuously with ``oneimage top``.
 
+.. note:: Orphan images (i.e images not referenced by any template) can be shown with ``oneimage orphans`` command.
+
 Sharing Images
 -----------------
 
