@@ -106,7 +106,7 @@ For example:
 
 .. note::
 
-  These values can be overriden in the VM Template
+  These values can be overriden in the Cluster, Host and VM Template
 
 Live-Migration for Other Cache settings
 --------------------------------------------------------------------------------
