@@ -233,31 +233,27 @@ to the ``oneadmin``.
 +---------------+-------------------------------------------------------------+
 | Section       | Commands                                                    |
 +===============+=============================================================+
-| miscellaneous | mkfs, sync, mkswap                                          |
-+---------------+-------------------------------------------------------------+
-| networking    | ebtables, iptables, ip6tables, ip, ipset, arping            |
+| networking    | ebtables, iptables, ip6tables, ip, ipset                    |
 +---------------+-------------------------------------------------------------+
 | LVM           | lvcreate, lvremove, lvs, vgdisplay, lvchange, lvscan        |
 +---------------+-------------------------------------------------------------+
-| iSCSI         | iscsiadm, tgt-admin, tgtadm                                 |
-+---------------+-------------------------------------------------------------+
 | Open vSwitch  | ovs-ofctl, ovs-vsctl                                        |
-+---------------+-------------------------------------------------------------+
-| Xen           | xentop, xl, xm                                              |
 +---------------+-------------------------------------------------------------+
 | Ceph          | rbd                                                         |
 +---------------+-------------------------------------------------------------+
 | LXD           | lsblk, losetup, mount, umount, kpartx, qemu-nbd, mkdir,     |
-|               | cat, blkid, e2fsck, resize2fs, xfs_growfs, rbd              |
+|               | blkid, e2fsck, resize2fs, xfs_growfs, rbd, rbd-nbd          |
+|               | /snap/bin/lxd, /usr/bin/catfstab                            |
 +---------------+-------------------------------------------------------------+
-|               | systemctl start opennebula-flow,                            |
+| HA            | systemctl start opennebula-flow,                            |
 |               | systemctl stop opennebula-flow,                             |
 |               | systemctl start opennebula-gate,                            |
-|      HA       | systemctl stop opennebula-gate,                             |
+|               | systemctl stop opennebula-gate,                             |
 |               | service opennebula-flow start,                              |
 |               | service opennebula-flow stop,                               |
 |               | service opennebula-gate start,                              |
-|               | service opennebula-gate stop                                |
+|               | service opennebula-gate stop,                               |
+|               | arping                                                      |
 +---------------+-------------------------------------------------------------+
 
 Each command has to be specified with the absolute path, which can be
@@ -265,7 +261,12 @@ different for each platform. Commands are started on background, ``sudo``
 needs to be configured **not to require real tty** and any password
 for them.
 
-It is recommended to limit the ``cat`` command as much as possible, an example can be found `here <https://github.com/OpenNebula/one/blob/master/src/vmm_mad/remotes/lib/lxd/catfstab>`_
+The main sudoers file suitable for the front-end with distribution-specific
+command paths can be created by the sudoers generator
+`sudo_commands.rb <https://github.com/OpenNebula/one/tree/master/share/sudoers>`_.
+You only need to ensure that all listed commands are already installed on
+your system so that the generator can detect their filesystem location.
+Generated sudo commands aliases must be enabled additionally.
 
 Example configuration
 --------------------------------------------------------------------------------
