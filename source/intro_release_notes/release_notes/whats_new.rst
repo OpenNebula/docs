@@ -92,3 +92,4 @@ Other Issues Solved
 - `Fix delete IPAM address ranges when deleting the vnet <https://github.com/OpenNebula/one/issues/3070>`__.
 - `Fix multiple click to back button when instantiate multiple VM <https://github.com/OpenNebula/one/issues/3715>`__.
 - `Fix add and remove cluster in datastore's table <https://github.com/OpenNebula/one/issues/3594>`__.
+- `Fix remove resource from VDC if this is removed from your infrastructure <https://github.com/OpenNebula/one/issues/2623>`__.
