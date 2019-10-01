@@ -7,18 +7,14 @@ LXD Driver
 `LXD <https://linuxcontainers.org/lxd/>`__ is a daemon which provides a REST API to drive **LXC** containers. Containers are lightweight OS-level Virtualization instances, they behave like Virtual Machines but don't suffer from hardware emulation processing penalties by sharing the kernel with the host.
 
 Requirements
-================================================================================
+============
+The LXD driver support using LXD through snap packages, if there is a snap installed, it will detect it and use that installation path. 
 
-- The host needs to be an Ubuntu system > 1604. 
-- No hardware support required
-- The guest OS will share the Linux kernel with the virtualization node, so you won't be able to launch any non-Linux OS. 
-
-Bear in mind that although you can spawn containers with any linux distribution, the kernel will be the one in the host, so you can end up having an ArchLinux container with an Ubuntu kernel.
-
-The LXD drivers support using LXD through snap packages, if there is a snap installed, it will detect it and use that installation path. 
+The host needs to be an Ubuntu system > 1604 or Debian > 10.
 
 Considerations & Limitations
 ================================================================================
+The guest OS will share the Linux kernel with the virtualization node, so you won't be able to launch any non-Linux OS. 
 
 There are a number of regular features that are not implemented yet:
 
@@ -67,7 +63,6 @@ There are some interaction options between LXD and OpenNebula configured in ``/v
     # corresponding value in oned.conf has been modified.
     :datastore_location: /var/lib/one/datastores
 
-.. important:: The **command** parameter under **vnc** dictates which command will appear in noVNC when entering a container. Having ``/bin/bash`` will skip the login
 
 In case of a more complex cgroup configuration the containers cgroup could be placed in separate slice instead of default root cgroup. You can configure it via an environmental variable
 
@@ -262,6 +257,16 @@ The mapper basically is a ruby class with two methods defined, a ``do_map`` meth
     one/one-7-54-0 -> map -> /dev/nbd0
 
 However things can get tricky when dealing with images with a partition table, you can check the code of the mapper devices `here <https://github.com/OpenNebula/one/blob/master/src/vmm_mad/remotes/lib/lxd/mapper/>`_.
+
+Troubleshooting
+==================
+Bear in mind that although you can spawn containers with any linux distribution, the kernel will be the one in the host, so you can end up having an ArchLinux container with an Ubuntu kernel.
+
+The oneadmin user has his ``$HOME`` in a non ``/home/$USER`` location. This prevents the oneadmin user from properly using the LXD CLI due to a snap limitation. You can prefix the command with sudo to issue it.
+
+The command parameter in the VNC configuration dictates which command will appear in noVNC when entering a container. Having ``/bin/bash`` will skip the user login and gain root access on the container.
+
+If you experience `reboot issues <https://github.com/OpenNebula/one/issues/3189>`_ you can apply a network hook patch by making executable the file ``/var/lib/one/remotes/vnm/<net_driver>/clean.d/lxd_clean.rb`` and issuing ``onehost sync``. The patch is aplicable per network driver.
 
 .. TODO Review with latest format, include a simple mapper
 
