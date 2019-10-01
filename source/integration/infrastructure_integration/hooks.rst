@@ -433,6 +433,6 @@ State Hook example (VM)
 
     puts "VM #{vm_id} is in PROLOG state"
 
-.. note:: Note that any command can be specified in ``COMMAND``, for debugging. (``COMMAND="/usr/bin/echo"``) can be very helpfull.
+.. note:: Note that any command can be specified in ``COMMAND``, for debugging. (``COMMAND="/usr/bin/echo"``) can be very helpful.
 
 .. |hook-subsystem| image:: /images/hooks-subsystem-architecture.png
