@@ -211,6 +211,8 @@ Virtual Network Tips
 
 * There are no need to plan all your IP assignment plan beforehand, ARs can be added and modified after the Virtual Network is created, see below.
 
+* Orphan vnets (i.e images not referenced by any template) can be shown with ``onevnet orphans`` command.
+
 Updating a Virtual Network
 ==========================
 

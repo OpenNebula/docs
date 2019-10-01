@@ -62,6 +62,7 @@ CLI
 - **Better output for CLI tools**, new options to adjust and expand the output to the terminal size, also it allow better parsing of output, :ref:`check the documentation (expand, adjust and size attributes) for more details <cli>`.
 - **Show raw ACL string in oneacl**, the full string of each rule can be shown. It's disabled by default :ref:`check oneacl for more information <cli>`.
 - **Show orphan images** by using ``oneimage orphans`` commands.
+- **Show orphan vnets** by using ``onevnet orphans`` commands.
 
 Packaging
 ================================================================================
