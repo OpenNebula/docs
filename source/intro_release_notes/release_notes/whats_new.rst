@@ -23,6 +23,7 @@ OpenNebula Core
 - **Allow VM reschedule in poweroff state**, `see here <https://github.com/OpenNebula/one/issues/3298>`__.
 - **System wide CPU model configuration**, default cpu model for kvm could be set in config file :ref:`see here <kvmg_default_attributes>`.
 - **KVM configuration per Host or Cluster**, all :ref:`kvm default attributes <kvmg_default_attributes>` can be overriden in Cluster and Host.
+- **Revamped Hook System**, a more flexible and powerful hook system has been developed for 5.10. Now you can hook on any :ref:`API call <api_hooks>` as well as :ref:`state changes <state_hooks>`
 
 Other minor features in OpenNebula core:
 
