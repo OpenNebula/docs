@@ -266,7 +266,7 @@ The oneadmin user has his ``$HOME`` in a non ``/home/$USER`` location. This prev
 
 The command parameter in the VNC configuration dictates which command will appear in noVNC when entering a container. Having ``/bin/bash`` will skip the user login and gain root access on the container.
 
-If you experience `reboot issues <https://github.com/OpenNebula/one/issues/3189>`_ you can apply a network hook patch by making executable the file ``/var/lib/one/remotes/vnm/<net_driver>/clean.d/lxd_clean.rb`` and issuing ``onehost sync``. The patch is aplicable per network driver.
+If you experience `reboot issues <https://github.com/OpenNebula/one/issues/3189>`_ you can apply a network hook patch by making executable the file ``/var/lib/one/remotes/vnm/<net_driver>/clean.d/lxd_clean.rb`` and issuing ``onehost sync --force``. The patch is aplicable per network driver.
 
 .. TODO Review with latest format, include a simple mapper
 
