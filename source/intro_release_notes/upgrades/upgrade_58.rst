@@ -32,7 +32,19 @@ Backup the configuration files located in **/etc/one** and **/var/lib/one/remote
 
 Step 4. Upgrade to the New Version
 --------------------------------------------------------------------------------
-.. TODO Include specific CLI instructions to update OpenNebula like yum update opennebula, or apt-get update opennebula...
+
+Ubuntu/Debian
+
+.. prompt:: text # auto
+
+    # apt-get install --only-udpate opennebula opennebula-sunstone opennebula-gate opennebula-flow python-pyone
+
+CentOS
+
+.. prompt:: text # auto
+
+    # yum upgrade opennebula-server opennebula-sunstone opennebula-ruby opennebula-gate opennebula-flow
+
 
 Step 5. Update Configuration Files
 --------------------------------------------------------------------------------
@@ -92,9 +104,26 @@ First update the virtualization, storage and networking drivers, as ``oneadmin``
 
 Then log into you hypervisor hosts and update the opennebula-node packages:
 
-.. TODO include CLI instructions for KVM apt-get install opennebula-node-kvm....
-.. TODO include CLI instructions for LXD, any snap related thing that need to be mentioned?
+Ubuntu/Debian
 
+.. prompt:: text # auto
+
+    # apt-get install --only-upgrade opennebula-node
+    # service libvirtd restart # debian
+    # service libvirt-bin restart # ubuntu
+
+If upgrading the LXD drivers on Ubuntu
+
+.. prompt:: text # auto
+
+    # apt-get install --only-upgrade opennebula-node-lxd
+
+CentOS
+
+.. prompt:: text # auto
+
+    # yum upgrade opennebula-node-kvm
+    # systemctl restart libvirtd
 
 Upgrading High Availability Clusters
 ================================================================================
