@@ -260,13 +260,9 @@ However things can get tricky when dealing with images with a partition table, y
 
 Troubleshooting
 ==================
-Bear in mind that although you can spawn containers with any linux distribution, the kernel will be the one in the host, so you can end up having an ArchLinux container with an Ubuntu kernel.
-
-The oneadmin user has his ``$HOME`` in a non ``/home/$USER`` location. This prevents the oneadmin user from properly using the LXD CLI due to a snap limitation. You can prefix the command with sudo to issue it.
-
-The command parameter in the VNC configuration dictates which command will appear in noVNC when entering a container. Having ``/bin/bash`` will skip the user login and gain root access on the container.
-
-If you experience `reboot issues <https://github.com/OpenNebula/one/issues/3189>`_ you can apply a network hook patch by making executable the file ``/var/lib/one/remotes/vnm/<net_driver>/clean.d/lxd_clean.rb`` and issuing ``onehost sync --force``. The patch is aplicable per network driver.
+- The oneadmin user has his ``$HOME`` in a non ``/home/$USER`` location. This prevents the oneadmin account from properly using the LXD CLI due to a snap limitation. You can use sudo to use other account to run lxd commands.
+- The command parameter in the VNC configuration dictates which command will appear in noVNC when entering a container. Having ``/bin/bash`` will skip the user login and gain root access on the container.
+- If you experience `reboot issues <https://github.com/OpenNebula/one/issues/3189>`_ you can apply a network hook patch by making executable the file ``chmod +x /var/lib/one/remotes/vnm/<net_driver>/clean.d/lxd_clean.rb`` and issuing ``onehost sync --force``. This have to be done for all network drivers used in your cloud.
 
 .. TODO Review with latest format, include a simple mapper
 
