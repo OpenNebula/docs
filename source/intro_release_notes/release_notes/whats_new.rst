@@ -100,3 +100,4 @@ Other Issues Solved
 - `Change order columns in services instances view <https://github.com/OpenNebula/one/issues/1400>`__.
 - `Fix send requeriments when a template is instantiated in user view <https://github.com/OpenNebula/one/issues/3803>`__.
 - `Fix lose NIC index in VM networks <https://github.com/OpenNebula/one/issues/3358>`__.
+- `Fix sunstone submit context in Virtual Network Template form <https://github.com/OpenNebula/one/issues/3753>`__.
