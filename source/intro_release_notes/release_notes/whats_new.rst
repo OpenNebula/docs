@@ -23,6 +23,7 @@ OpenNebula Core
 - **Allow VM reschedule in poweroff state**, `see here <https://github.com/OpenNebula/one/issues/3298>`__.
 - **System wide CPU model configuration**, default cpu model for kvm could be set in config file :ref:`see here <kvmg_default_attributes>`.
 - **KVM configuration per Host or Cluster**, all :ref:`kvm default attributes <kvmg_default_attributes>` can be overriden in Cluster and Host.
+- **Revamped Hook System**, a more flexible and powerful hook system has been developed for 5.10. Now you can hook on any :ref:`API call <api_hooks>` as well as :ref:`state changes <state_hooks>`
 
 Other minor features in OpenNebula core:
 
@@ -61,6 +62,8 @@ CLI
 ================================================================================
 - **Better output for CLI tools**, new options to adjust and expand the output to the terminal size, also it allow better parsing of output, :ref:`check the documentation (expand, adjust and size attributes) for more details <cli>`.
 - **Show raw ACL string in oneacl**, the full string of each rule can be shown. It's disabled by default :ref:`check oneacl for more information <cli>`.
+- **Show orphan images** by using ``oneimage orphans`` commands.
+- **Show orphan vnets** by using ``onevnet orphans`` commands.
 
 Packaging
 ================================================================================
@@ -93,3 +96,4 @@ Other Issues Solved
 - `Fix multiple click to back button when instantiate multiple VM <https://github.com/OpenNebula/one/issues/3715>`__.
 - `Fix add and remove cluster in datastore's table <https://github.com/OpenNebula/one/issues/3594>`__.
 - `Fix remove resource from VDC <https://github.com/OpenNebula/one/issues/2623>`__.
+- `Fix empty scheduled action id when is 0 <https://github.com/OpenNebula/one/issues/3109>`__.
