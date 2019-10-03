@@ -95,5 +95,8 @@ Other Issues Solved
 - `Fix delete IPAM address ranges when deleting the vnet <https://github.com/OpenNebula/one/issues/3070>`__.
 - `Fix multiple click to back button when instantiate multiple VM <https://github.com/OpenNebula/one/issues/3715>`__.
 - `Fix add and remove cluster in datastore's table <https://github.com/OpenNebula/one/issues/3594>`__.
+- `Fix remove resource from VDC <https://github.com/OpenNebula/one/issues/2623>`__.
 - `Fix empty scheduled action id when is 0 <https://github.com/OpenNebula/one/issues/3109>`__.
 - `Change order columns in services instances view <https://github.com/OpenNebula/one/issues/1400>`__.
+- `Fix send requeriments when a template is instantiated in user view <https://github.com/OpenNebula/one/issues/3803>`__.
+- `Fix lose NIC index in VM networks <https://github.com/OpenNebula/one/issues/3358>`__.
