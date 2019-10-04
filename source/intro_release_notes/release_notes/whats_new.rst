@@ -100,4 +100,4 @@ Other Issues Solved
 - `Change order columns in services instances view <https://github.com/OpenNebula/one/issues/1400>`__.
 - `Fix send requeriments when a template is instantiated in user view <https://github.com/OpenNebula/one/issues/3803>`__.
 - `Fix lose NIC index in VM networks <https://github.com/OpenNebula/one/issues/3358>`__.
-- `Fix FILES_DS template variable disappears if update the configuration <https://github.com/OpenNebula/one/issues/1375>`__.
+- `Fix FILES_DS template variable disappears if the configuration is updated <https://github.com/OpenNebula/one/issues/1375>`__.
