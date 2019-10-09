@@ -78,6 +78,7 @@ Packaging
 - `Augeas lens for oned.conf <https://github.com/OpenNebula/one/pull/3741>`_, server package contains Augeas lens to manipulate ``oned.conf``-like files.
 - Optional Python bindings are now build also for Python 3 -- package `python3-pyone <https://github.com/OpenNebula/packages/issues/106>`_.
 - `Reviewed sudo-enabled commands <https://github.com/OpenNebula/one/issues/3046>`_, obsolete sudo-enabled commands were removed and rest commands are now enabled by each installed OpenNebula component package (server, node KVM, node LXD) to provide more fine-grained security.
+- Packaged files and directories have more restricted ownership and permissions across all platforms, see `here <https://github.com/OpenNebula/one/issues/3814>`_.
 
 IPAM Drivers
 ================================================================================
