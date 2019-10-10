@@ -256,7 +256,10 @@ You will need to configure a new virtual host in nginx. Depending on the operati
 
             ### Proxy requests to upstream
             location / {
-                     proxy_pass http://sunstone;
+                    proxy_pass              http://sunstone;
+                    proxy_set_header        X-Real-IP $remote_addr;
+                    proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+                    proxy_set_header        X-Forwarded-Proto $scheme;
             }
     }
 
