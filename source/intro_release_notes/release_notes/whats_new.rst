@@ -103,3 +103,4 @@ Other Issues Solved
 - `Fix lose NIC index in VM networks <https://github.com/OpenNebula/one/issues/3358>`__.
 - `Fix sunstone submit context in Virtual Network Template form <https://github.com/OpenNebula/one/issues/3753>`__.
 - `Fix FILES_DS template variable disappears if the configuration is updated <https://github.com/OpenNebula/one/issues/1375>`__.
+- `Fix wrong running quotas values when disk-snapshot create <https://github.com/OpenNebula/one/issues/3826>`__.
