@@ -26,8 +26,8 @@ Before proceeding, make sure you don't have any VMs in a transient state (prolog
 
 Now you are ready to stop OpenNebula and any other related services you may have running, e.g. Sunstone or OneFlow. Use preferably the system tools, like `systemctl` or `service` as `root` in order to stop the services.
 
-Upgrade to the New Version
-===========================
+Upgrade frontend to the New Version
+===================================
 
 Upgrade the OpenNebula software using the package manager of your OS. Refer to the Installation guide :ref:`Installation guide <ignc>` for a complete list of the OpenNebula packages installed in your system.
 
@@ -54,6 +54,25 @@ In order for the system to re-read the configuration files you should issue the 
 .. prompt:: text # auto
 
     # systemctl daemon-reload
+
+Upgrade KVM hosts to New Version
+================================
+
+Upgrade the OpenNebula node KVM packages, using the package manager of your OS.
+
+For example, in a rpm based Linux distribution simply execute:
+
+.. prompt:: bash
+
+   yum update opennebula-node-kvm
+
+For deb based distros use:
+
+.. prompt:: bash
+
+   apt-get update
+   apt-get install opennebula-node-kvm
+
 
 Update the Drivers
 ==================
