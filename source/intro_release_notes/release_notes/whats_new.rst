@@ -104,3 +104,5 @@ Other Issues Solved
 - `Fix sunstone submit context in Virtual Network Template form <https://github.com/OpenNebula/one/issues/3753>`__.
 - `Fix FILES_DS template variable disappears if the configuration is updated <https://github.com/OpenNebula/one/issues/1375>`__.
 - `Fix wrong running quotas values when disk-snapshot create <https://github.com/OpenNebula/one/issues/3826>`__.
+- `Fix escape of backslash in XML documents for the onedb command <https://github.com/OpenNebula/one/issues/3806>`__.
+
