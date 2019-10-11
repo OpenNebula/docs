@@ -19,15 +19,15 @@ Upgrading a Federation and High Availability
 You need to perform the following steps in all the HA nodes and all zones. You can upgrade the servers one by one to not incur in any downtime.
 
 
-Stop OpenNebula Services
-========================
+Step 1 Stop OpenNebula services
+===============================
 
 Before proceeding, make sure you don't have any VMs in a transient state (prolog, migr, epil, save). Wait until these VMs get to a final state (runn, suspended, stopped, done). Check the :ref:`Managing Virtual Machines guide <vm_guide_2>` for more information on the VM life-cycle.
 
 Now you are ready to stop OpenNebula and any other related services you may have running, e.g. Sunstone or OneFlow. Use preferably the system tools, like `systemctl` or `service` as `root` in order to stop the services.
 
-Upgrade frontend to the New Version
-===================================
+Step 2 Upgrade frontend to the new version
+==========================================
 
 Upgrade the OpenNebula software using the package manager of your OS. Refer to the Installation guide :ref:`Installation guide <ignc>` for a complete list of the OpenNebula packages installed in your system.
 
@@ -44,7 +44,7 @@ For deb based distros use:
    apt-get update
    apt-get install opennebula
 
-Reload Start Scripts
+Step 3 Reload start scripts
 ================================
 
 Follow this section if you are using a `systemd` base distribution, like CentOS 7+, Ubuntu 16.04+, etc.
@@ -55,10 +55,12 @@ In order for the system to re-read the configuration files you should issue the 
 
     # systemctl daemon-reload
 
-Upgrade KVM hosts to New Version
-================================
+Step 4 Upgrade hypervisors to the new version
+=============================================
 
-Upgrade the OpenNebula node KVM packages, using the package manager of your OS.
+You can skip this section for vCenter hosts.
+
+Upgrade the OpenNebula node KVM or LXD packages, using the package manager of your OS.
 
 For example, in a rpm based Linux distribution simply execute:
 
@@ -73,6 +75,7 @@ For deb based distros use:
    apt-get update
    apt-get install opennebula-node-kvm
 
+.. note:: If you are using LXD the package is opennebula-node-lxd
 
 Update the Drivers
 ==================
