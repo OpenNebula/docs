@@ -145,12 +145,12 @@ Follow Steps 3 to 7 described in the previous Section (Upgrading Single Front-en
   Use 'onedb restore' or restore the DB using the mysql command:
   mysql -u user -h server -P port db_name < backup_file
 
-Step 2. Upgrade OpenNebula in the Followers
+Step 3. Upgrade OpenNebula in the Followers
 --------------------------------------------------------------------------------
 
 Upgrade OpenNebula packages as described in Step 4 in the previous section (Upgrading Single Front-end deployments)
 
-Step 3. Replicate Database and configuration
+Step 4. Replicate Database and configuration
 --------------------------------------------------------------------------------
 
 Copy the database backup of the leader to each follower and restore it:
@@ -170,18 +170,18 @@ Synchronize the configuration files to the followers:
 
   $ rsync -r /var/lib/one/remotes/etc root@<follower_ip>:/var/lib/one/remotes
 
-Step 4. Start OpenNebula in the Leader and Followers
+Step 5. Start OpenNebula in the Leader and Followers
 --------------------------------------------------------------------------------
 
 Start OpenNebula in the followers as described in Step 8 in the previous section (Upgrading Single Front-end deployments).
 
 
-Step 5. Check Cluster Health
+Step 6. Check Cluster Health
 --------------------------------------------------------------------------------
 
 At this point ``onezone show`` command should render all the followers active and in sync with the leader.
 
-Step 6. Update the Hypervisors (KVM & LXD)
+Step 7. Update the Hypervisors (KVM & LXD)
 --------------------------------------------------------------------------------
 
 Finally upgrade the hypervisors as described in Step 9 in the previous section (Upgrading Single Front-end deployments).
@@ -290,4 +290,3 @@ If for any reason you need to restore your previous OpenNebula, follow these ste
 -  With OpenNebula |version| still installed, restore the DB backup using 'onedb restore -f'
 -  Uninstall OpenNebula |version|, and install again your previous version.
 -  Copy back the backup of /etc/one you did to restore your configuration.
-

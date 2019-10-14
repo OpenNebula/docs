@@ -330,4 +330,3 @@ It is recommended that you disable PolicyKit for Libvirt:
   unix_sock_ro_perms = "0770"
   unix_sock_rw_perms = "0770"
   ...
-
