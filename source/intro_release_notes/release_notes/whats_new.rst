@@ -106,4 +106,5 @@ Other Issues Solved
 - `Fix wrong running quotas values when disk-snapshot create <https://github.com/OpenNebula/one/issues/3826>`__.
 - `Fix escape of backslash in XML documents for the onedb command <https://github.com/OpenNebula/one/issues/3806>`__.
 - `Add migrate power off in sunstone view yamls files <https://github.com/OpenNebula/one/issues/3215>`__.
+- `Fix preserve attributes in Virtual Machine Template <https://github.com/OpenNebula/one/issues/3832>`__.
 
