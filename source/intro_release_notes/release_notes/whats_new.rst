@@ -12,6 +12,20 @@ What's New in 5.10
    - `<one-to-two line description <http://github.com/OpenNebula/one/issues/#>`__.
 
 
+OpenNebula 5.10 (Boomerang) is the sixth major release of the OpenNebula 5 series. Main focus have been to enforce functionality to manage NFVs (as well as other workloads) to impulse OpenNebula as the default orchestrator of choice to build clouds in the edge and in environments where network performance is key. Also this focus on networking explains the new NSX integration over VMware infrastructures, which enables very interesting use cases in vSphere. The highlights of Boomerang are:
+
+  - **NUMA and CPU pinning**, define in which NUMA node VMs are going to be deployed.
+  - **NSX integration**, create and consume NSX networks from within OpenNebula.
+  - **Revamped hook subsystem**, hook a script for any API call or change of state in any VM or host resource.
+  - **DPDK support**, dramatically increase performance in network hungry, densely packed VMs.
+  - **2FA Authentication** for Sunstone.
+
+As usual, OpenNebula 5.10 codename refers to a nebula, in this case the `Boomerang Nebula <https://en.wikipedia.org/wiki/Boomerang_Nebula>`__, a protoplanetary nebula located 5,000 light-years away from Earth in the constellation Centaurus. It is also known as the Bow Tie Nebula and catalogued as LEDA 3074547. The nebula's temperature is measured at 1 K (−272.15 °C; −457.87 °F) making it the coolest natural place currently known in the Universe. Same as OpenNebula in the IaaS space :)
+
+The OpenNebula team is now transitioning to "bug-fixing mode". Note that this is a first beta release aimed at testers and developers to try the new features, and send a more than welcomed feedback for the final release. Also note that being a beta, there is no migration path from the previous stable version (5.8.5) nor migration path to the final stable version (5.10.0). A list of open issues can be found in the `GitHub development portal <https://github.com/OpenNebula/one/milestone/23>`__.
+
+In the following list you can check the highlights of OpenNebula 5.10 (a detailed list of changes can be found `here <https://github.com/OpenNebula/one/milestone/23?closed=1>`__):
+
 OpenNebula Core
 ================================================================================
 - **Update hashing algorithm**, now passwords and login tokens are hashed using sha256 instead of sha1. Also csrftoken is now hashed with SHA256 instead of MD5
@@ -107,4 +121,3 @@ Other Issues Solved
 - `Fix escape of backslash in XML documents for the onedb command <https://github.com/OpenNebula/one/issues/3806>`__.
 - `Add migrate power off in sunstone view yamls files <https://github.com/OpenNebula/one/issues/3215>`__.
 - `Fix preserve attributes in Virtual Machine Template <https://github.com/OpenNebula/one/issues/3832>`__.
-
