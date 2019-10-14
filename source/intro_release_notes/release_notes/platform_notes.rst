@@ -23,7 +23,7 @@ Front-End Components
 +-------------------------+---------------------------------------------------------+-------------------------------------------------------+
 | CentOS                  | 7                                                       | :ref:`Front-End Installation <frontend_installation>` |
 +-------------------------+---------------------------------------------------------+-------------------------------------------------------+
-| Debian                  | 9                                                       | :ref:`Front-End Installation <frontend_installation>` |
+| Debian                  | 9, 10                                                   | :ref:`Front-End Installation <frontend_installation>` |
 +-------------------------+---------------------------------------------------------+-------------------------------------------------------+
 | MariaDB or MySQL        | Version included in the Linux distribution              | :ref:`MySQL Setup <mysql>`                            |
 +-------------------------+---------------------------------------------------------+-------------------------------------------------------+
@@ -55,7 +55,7 @@ KVM Nodes
 +-------------------------+-----------------------------------------------------------+-----------------------------------------+
 | CentOS                  | 7                                                         | :ref:`KVM Driver <kvmg>`                |
 +-------------------------+-----------------------------------------------------------+-----------------------------------------+
-| Debian                  | 9                                                         | :ref:`KVM Driver <kvmg>`                |
+| Debian                  | 9, 10                                                     | :ref:`KVM Driver <kvmg>`                |
 +-------------------------+-----------------------------------------------------------+-----------------------------------------+
 | KVM/Libvirt             | Support for version included in the Linux distribution.   | :ref:`KVM Node Installation <kvm_node>` |
 |                         | For CentOS/RedHat the packages from ``qemu-ev`` are used. |                                         |
@@ -67,9 +67,9 @@ LXD Nodes
 +-------------------------+-----------------------------------------------------------+-----------------------------------------+
 |        Component        |                          Version                          |             More information            |
 +=========================+===========================================================+=========================================+
-| Ubuntu Server           | 16.04 (LTS), 18.04 (LTS), 18.10 (stable)                  | :ref:`LXD Driver <lxdmg>`               |
+| Ubuntu Server           | 16.04 (LTS), 18.04 (LTS), 19.04                           | :ref:`LXD Driver <lxdmg>`               |
 +-------------------------+-----------------------------------------------------------+-----------------------------------------+
-| LXD                     | Support for LXD >= 3.0.0, either snap or system package   | :ref:`LXD Node Installation <lxd_node>` |
+| LXD                     | Support for LXD = 3.0.x either snap or system package     | :ref:`LXD Node Installation <lxd_node>` |
 +-------------------------+-----------------------------------------------------------+-----------------------------------------+
 
 .. _context_supported_platforms:
@@ -226,21 +226,6 @@ The following applies to all Front-Ends:
 * For **cloud bursting**, a newer nokogiri gem than the one packed by current distros is required. If you are planning to use cloud bursting, you need to install nokogiri >= 1.4.4 prior to run ``install_gems``: ``# sudo gem install nokogiri -v 1.4.4``.
 * Only **ruby versions >= 1.9.3 are supported**.
 
-Ubuntu 19.04 Platform Notes
---------------------------------------------------------------------------------
-
-See 18.10 notes below for LXD installation notes.
-
-
-Ubuntu 18.10 Platform Notes
---------------------------------------------------------------------------------
-LXD comes by default as an installed snap package. There are `issues <https://forum.snapcraft.io/t/how-can-i-use-snap-when-i-dont-use-home-user/3352>`_ when ``$HOME`` is not inside ``/home`` which affects **oneadmin** user whose ``$HOME`` is ``/var/lib/one`` resulting in oneadmin being unable to use lxc commands. Almost 100% of the LXD driver code uses REST to interact with LXD, however some features and the ability to manage the host as oneadmin will be crippled when using 1810. To fix this, one should run oneadmin commands using sudo.
-
-**snapd** installs LXD with different **id mappings**, the default profile configured by **opennebula-node-lxd** package sets up the adequate configuration, when applying a different profile to a container ensure this one has the correct id mappings. A quick way to ensure this, is cloning the default profile via:
-
-.. code-block:: bash
-
-    # lxc profile copy default new_profile
 
 Ubuntu 18.04 Platform Notes
 --------------------------------------------------------------------------------
