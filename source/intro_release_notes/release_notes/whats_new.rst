@@ -11,6 +11,7 @@ What's New in 5.10
    Minor features are added in a separate block in each section as:
    - `<one-to-two line description <http://github.com/OpenNebula/one/issues/#>`__.
 
+**This is the release candidate (5.9.90) release of OpenNebula 5.10**
 
 OpenNebula 5.10 (Boomerang) is the sixth major release of the OpenNebula 5 series. Main focus have been to enforce functionality to manage NFVs (as well as other workloads) to impulse OpenNebula as the default orchestrator of choice to build clouds in the edge and in environments where network performance is key. Also this focus on networking explains the new NSX integration over VMware infrastructures, which enables very interesting use cases in vSphere. The highlights of Boomerang are:
 

@@ -152,7 +152,7 @@ Step 4. Ruby Runtime Installation (Optional)
 
 .. warning::
 
-    Since OpenNebula 5.9.80, this step is **optional** and all required Ruby gems are provided as a set of **opennebula-rubygem-$NAME** packages and **opennebula-rubygems** metapackage. Ruby gems are installed into a dedicated directory ``/usr/share/one/gems-dist/``, but OpenNebula uses them via (symlinked) location ``/usr/share/one/gems/`` which points to the ``gems-dist/`` directory. When ``gems/`` directory (by default) exists, OpenNebula uses the gems inside **exclusively** by removing any other system Ruby gems locations from the search paths!
+    Since OpenNebula 5.10, this step is **optional** and all required Ruby gems are provided as a set of **opennebula-rubygem-$NAME** packages and **opennebula-rubygems** metapackage. Ruby gems are installed into a dedicated directory ``/usr/share/one/gems-dist/``, but OpenNebula uses them via (symlinked) location ``/usr/share/one/gems/`` which points to the ``gems-dist/`` directory. When ``gems/`` directory (by default) exists, OpenNebula uses the gems inside **exclusively** by removing any other system Ruby gems locations from the search paths!
 
     .. prompt:: bash # auto
 
