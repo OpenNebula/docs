@@ -19,9 +19,9 @@ Front-End Components
 +=========================+=========================================================+=======================================================+
 | RedHat Enterprise Linux | 7                                                       | :ref:`Front-End Installation <frontend_installation>` |
 +-------------------------+---------------------------------------------------------+-------------------------------------------------------+
-| Ubuntu Server           | 16.04 (LTS), 18.04 (LTS), 19.04                         | :ref:`Front-End Installation <frontend_installation>` |
-+-------------------------+---------------------------------------------------------+-------------------------------------------------------+
 | CentOS                  | 7                                                       | :ref:`Front-End Installation <frontend_installation>` |
++-------------------------+---------------------------------------------------------+-------------------------------------------------------+
+| Ubuntu Server           | 16.04 (LTS), 18.04 (LTS), 19.04                         | :ref:`Front-End Installation <frontend_installation>` |
 +-------------------------+---------------------------------------------------------+-------------------------------------------------------+
 | Debian                  | 9, 10                                                   | :ref:`Front-End Installation <frontend_installation>` |
 +-------------------------+---------------------------------------------------------+-------------------------------------------------------+
@@ -29,7 +29,7 @@ Front-End Components
 +-------------------------+---------------------------------------------------------+-------------------------------------------------------+
 | SQLite                  | Version included in the Linux distribution              | Default DB, no configuration needed                   |
 +-------------------------+---------------------------------------------------------+-------------------------------------------------------+
-| Ruby Gems               | Versions installed by packages and install_gems utility | :ref:`front-end installation <ruby_runtime>`          |
+| Ruby Gems               | Versions installed by packages or install_gems utility  | :ref:`front-end installation <ruby_runtime>`          |
 +-------------------------+---------------------------------------------------------+-------------------------------------------------------+
 | Corosync+Pacemaker      | Version included in the Linux distribution              | :ref:`Front-end HA Setup <oneha>`                     |
 +-------------------------+---------------------------------------------------------+-------------------------------------------------------+
@@ -55,9 +55,9 @@ KVM Nodes
 +=========================+===========================================================+=========================================+
 | RedHat Enterprise Linux | 7                                                         | :ref:`KVM Driver <kvmg>`                |
 +-------------------------+-----------------------------------------------------------+-----------------------------------------+
-| Ubuntu Server           | 16.04 (LTS), 18.04 (LTS), 19.04                           | :ref:`KVM Driver <kvmg>`                |
-+-------------------------+-----------------------------------------------------------+-----------------------------------------+
 | CentOS                  | 7                                                         | :ref:`KVM Driver <kvmg>`                |
++-------------------------+-----------------------------------------------------------+-----------------------------------------+
+| Ubuntu Server           | 16.04 (LTS), 18.04 (LTS), 19.04                           | :ref:`KVM Driver <kvmg>`                |
 +-------------------------+-----------------------------------------------------------+-----------------------------------------+
 | Debian                  | 9, 10                                                     | :ref:`KVM Driver <kvmg>`                |
 +-------------------------+-----------------------------------------------------------+-----------------------------------------+
@@ -73,6 +73,8 @@ LXD Nodes
 +=========================+===========================================================+=========================================+
 | Ubuntu Server           | 16.04 (LTS), 18.04 (LTS), 19.04                           | :ref:`LXD Driver <lxdmg>`               |
 +-------------------------+-----------------------------------------------------------+-----------------------------------------+
+| Debian                  | 10                                                        | :ref:`LXD Driver <lxdmg>`               |
++-------------------------+-----------------------------------------------------------+-----------------------------------------+
 | LXD                     | Support for LXD = 3.0.x either snap or system package     | :ref:`LXD Node Installation <lxd_node>` |
 +-------------------------+-----------------------------------------------------------+-----------------------------------------+
 
@@ -86,25 +88,25 @@ Linux Contextualization Packages
 +==============================+============================+==========================================================================================+
 | Amazon Linux                 | 2                          | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
 +------------------------------+----------------------------+------------------------------------------------------------------------------------------+
-| CentOS                       | 6, 7                       | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
+| CentOS                       | 6, 7, 8                    | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
 +------------------------------+----------------------------+------------------------------------------------------------------------------------------+
-| Red Hat Enterprise Linux     | 7,8                        | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
+| Red Hat Enterprise Linux     | 7, 8                       | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
 +------------------------------+----------------------------+------------------------------------------------------------------------------------------+
 | Fedora                       | 29, 30                     | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
 +------------------------------+----------------------------+------------------------------------------------------------------------------------------+
-| openSUSE                     | 12 SP3                     | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
+| openSUSE                     | 15, Tumbleweed             | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
 +------------------------------+----------------------------+------------------------------------------------------------------------------------------+
 | SUSE Linux Enterprise Server | 12 SP3                     | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
 +------------------------------+----------------------------+------------------------------------------------------------------------------------------+
-| Debian                       | 8, 9 , 10                  | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
+| Debian                       | 8, 9, 10                   | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
 +------------------------------+----------------------------+------------------------------------------------------------------------------------------+
-| Devuan                       | 1, 2                       | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
+| Devuan                       | 2                          | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
 +------------------------------+----------------------------+------------------------------------------------------------------------------------------+
 | Ubuntu                       | 14.04, 16.04, 18.04, 19.04 | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
 +------------------------------+----------------------------+------------------------------------------------------------------------------------------+
-| Alpine Linux                 | 3.8, 3.8, 3.9, 3.10        | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
+| Alpine Linux                 | 3.8, 3.9, 3.10             | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
 +------------------------------+----------------------------+------------------------------------------------------------------------------------------+
-| FreeBSD                      | 11.2, 12.0                 | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
+| FreeBSD                      | 11.3, 12.0                 | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
 +------------------------------+----------------------------+------------------------------------------------------------------------------------------+
 
 Windows Contextualization Packages
@@ -143,7 +145,8 @@ Open Cloud Storage Infrastructure
 +-----------+--------------------------------------------+-------------------------------------+
 | LVM2      | Version included in the Linux distribution | :ref:`LVM Drivers <lvm_drivers>`    |
 +-----------+--------------------------------------------+-------------------------------------+
-| Ceph      | Hammer (LTS) v0.94, Jewel v10.2.0          | :ref:`The Ceph Datastore <ceph_ds>` |
+| Ceph      | Jewel v10.2.x, Luminous v12.2.x,           | :ref:`The Ceph Datastore <ceph_ds>` |
+|           | Mimic v13.2.x, Nautilus v14.2.x            |                                     |
 +-----------+--------------------------------------------+-------------------------------------+
 
 Authentication
@@ -152,7 +155,7 @@ Authentication
 +------------------------------+--------------------------------------------+----------------------------------------+
 |             Component        |                  Version                   |            More information            |
 +==============================+============================================+========================================+
-| net-ldap ruby library        | 0.12.1                                     | :ref:`LDAP Authentication <ldap>`      |
+| net-ldap ruby library        | 0.12.1 or 0.16.1                           | :ref:`LDAP Authentication <ldap>`      |
 +------------------------------+--------------------------------------------+----------------------------------------+
 | openssl                      | Version included in the Linux distribution | :ref:`x509 Authentication <x509_auth>` |
 +------------------------------+--------------------------------------------+----------------------------------------+
@@ -160,15 +163,15 @@ Authentication
 Cloud Bursting
 --------------------------------------------------------------------------------
 
-+-----------+---------+---------------------------------+
-| Component | Version |         More information        |
-+===========+=========+=================================+
-| aws-sdk   | 2.5.10  | :ref:`Amazon EC2 Driver <ec2g>` |
-+-----------+---------+---------------------------------+
-| azure     | 0.7.9   | :ref:`Azure Driver <azg>`       |
-+-----------+---------+---------------------------------+
-| one-to-one| 1.0.0   | :ref:`OpenNebula Driver <oneg>` |
-+-----------+---------+---------------------------------+
++-----------+----------+---------------------------------+
+| Component | Version  |         More information        |
++===========+==========+=================================+
+| aws-sdk   | 2.11.330 | :ref:`Amazon EC2 Driver <ec2g>` |
++-----------+----------+---------------------------------+
+| azure     | 0.7.10   | :ref:`Azure Driver <azg>`       |
++-----------+----------+---------------------------------+
+| one-to-one| 1.0.0    | :ref:`OpenNebula Driver <oneg>` |
++-----------+----------+---------------------------------+
 
 Application Containerization
 --------------------------------------------------------------------------------
@@ -178,7 +181,7 @@ Application Containerization
 +==============================+============================================+
 | Docker                       | 18.03.0-ce                                 |
 +------------------------------+--------------------------------------------+
-| Docker Machine               | 0.13.0                                     |
+| Docker Machine               | 0.14.0                                     |
 +------------------------------+--------------------------------------------+
 | Appliance OS                 | Ubuntu 16.04                               |
 +------------------------------+--------------------------------------------+
@@ -211,13 +214,13 @@ VMware Cloud on AWS
 
 OpenNebula has been validated and is supported on VMware Cloud on AWS. Customers can contact the support team through the commercial support portal to know specific configuration and limitations.
 
-.. note:: Generally for all Linux platforms, it is worth noting that gems should be installed with the :ref:`install_gems <ruby_runtime>`, avoiding the platform's package version.
+.. note:: Generally for all Linux platforms, it is worth noting that Ruby gems should be used from packages shipped with the OpenNebula or installed with the :ref:`install_gems <ruby_runtime>` utility. Avoid using Ruby gems versions shipped with your platform.
 
 
 Certified Infrastructure Scale
 ================================================================================
 
-A single instance of OpenNebula (ie, a singled 'oned' process) has been stress tested to cope with 500 hypervisors without performance degradation. This is the maximum recommended configuration for a single instance, and depending on the underlying configuration of storage and networking mainly, it is recommended to switch to a federated scenario for any larger number of hypervisors.
+A single instance of OpenNebula (ie, a single ``oned`` process) has been stress tested to cope with 500 hypervisors without performance degradation. This is the maximum recommended configuration for a single instance, and depending on the underlying configuration of storage and networking mainly, it is recommended to switch to a federated scenario for any larger number of hypervisors.
 
 However, there are several OpenNebula users managing significant higher number of hypervisors (in the order of two thousand) with a single instance, this largely depends as mentioned on the storage, networking and also monitoring configuration.
 
@@ -227,38 +230,21 @@ Frontend Platform Notes
 The following applies to all Front-Ends:
 
 * XML-RPC tuning parameters (``MAX_CONN``, ``MAX_CONN_BACKLOG``, ``KEEPALIVE_TIMEOUT``, ``KEEPALIVE_MAX_CONN`` and ``TIMEOUT``) are only available with packages distributed by us as they are compiled with a newer xmlrpc-c library.
-* For **cloud bursting**, a newer nokogiri gem than the one packed by current distros is required. If you are planning to use cloud bursting, you need to install nokogiri >= 1.4.4 prior to run ``install_gems``: ``# sudo gem install nokogiri -v 1.4.4``.
-* Only **ruby versions >= 1.9.3 are supported**.
-
-
-Ubuntu 18.04 Platform Notes
---------------------------------------------------------------------------------
-
-Essential Ruby library xmlrpc is missing from Ruby 2.4.0 and above. The library is required by many OpenNebula parts and also the CLI tools. To get the missing library, gem ``xmlrpc`` needs to be installed via tool :ref:`install_gems <ruby_runtime>`, or the ``gem`` command:
-
-.. code::
-
-    # sudo gem install xmlrpc
+* Only **Ruby versions >= 2.0 are supported**.
 
 Ubuntu 16.04 Platform Notes
 --------------------------------------------------------------------------------
 
-By default it comes with lxd 2, lxd3 should be installed from **xenial-backports**. Make sure you have `backports enabled in sources.list <https://help.ubuntu.com/community/UbuntuBackports>`_
+By default it comes with LXD 2, LXD 3 should be installed from **xenial-backports**. Make sure you have `backports enabled in sources.list <https://help.ubuntu.com/community/UbuntuBackports>`_
 
-.. code-block:: bash
+.. prompt:: bash # auto
 
     # apt-get -t xenial-backports install lxd
 
-Resizing **ext4** filesystems of LXD containers will fail due to outdated `e2fsck` package
+Resizing **ext4** filesystems of LXD containers will fail due to outdated ``e2fsck`` package
 
 CentOS 7.0 Platform Notes
 --------------------------------------------------------------------------------
-
-This distribution lacks some packaged ruby libraries. This makes some components unusable until they are installed. In the front-end, just after package installation these commands should be executed as root to install extra dependencies:
-
-.. code::
-
-    # /usr/share/one/install_gems
 
 When using Apache to serve Sunstone, it is required that you disable or comment the ``PrivateTMP=yes`` directive in ``/usr/lib/systemd/system/httpd.service``.
 
@@ -290,14 +276,14 @@ CentOS/RedHat 7.0 Platform Notes
 Ruby Dependencies
 ~~~~~~~~~~~~~~~~~
 
-In order to install ruby dependencies, the Server Optional channel needs to be enabled. Please refer to `RedHat documentation <https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/>`__ to enable the channel.
+In order to install Ruby dependencies on RHEL, the Server Optional channel needs to be enabled. Please refer to `RedHat documentation <https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/>`__ to enable the channel.
 
-Alternatively, use CentOS 7 repositories to install ruby dependencies.
+Alternatively, use CentOS 7 repositories to install Ruby dependencies.
 
 Libvirt Version
 ~~~~~~~~~~~~~~~
 
-The libvirt/qemu packages used in the testing infrastructure are the ones in the ``qemu-ev`` repository. To add this repository you can install the following packages:
+The libvirt/QEMU packages used in the testing infrastructure are the ones in the ``qemu-ev`` repository. To add this repository you can install the following packages:
 
 .. prompt:: bash # auto
 
