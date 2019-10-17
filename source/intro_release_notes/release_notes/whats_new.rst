@@ -103,6 +103,12 @@ IPAM Drivers
 ================================================================================
 - IPAM driver scripts now recieve the template of the AR via STDIN instead of via arguments, :ref:`see more details <devel-ipam>`.
 
+
+KVM Monitoring Drivers
+================================================================================
+
+- `KVM monitor scripts return host CPU model <https://github.com/OpenNebula/one/issues/3851>`__.
+
 Other Issues Solved
 ================================================================================
 - `Fixes an issue that makes the network drivers fail when a large number of secturiy groups rules are used <https://github.com/OpenNebula/one/issues/2851>`_.
