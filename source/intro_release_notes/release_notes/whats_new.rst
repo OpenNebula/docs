@@ -132,3 +132,4 @@ Other Issues Solved
 - `Fix escape of backslash in XML documents for the onedb command <https://github.com/OpenNebula/one/issues/3806>`__.
 - `Add migrate power off in sunstone view yamls files <https://github.com/OpenNebula/one/issues/3215>`__.
 - `Fix preserve attributes in Virtual Machine Template <https://github.com/OpenNebula/one/issues/3832>`__.
+- `Fix hide the create button when it not have options <https://github.com/OpenNebula/one/issues/3614>`__.
