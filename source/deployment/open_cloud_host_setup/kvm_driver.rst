@@ -239,6 +239,7 @@ NIC
     $ virsh -c qemu:///system nwfilter-list
 
 * ``VIRTIO_QUEUES`` to define how many queues will be used for the communication between CPUs and Network drivers. This attribute only is available with MODEL = 'virtio'.
+* ``MRG_BUF`` for enabling merge rx buffers.
 
 Graphics
 ~~~~~~~~
