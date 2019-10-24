@@ -286,8 +286,7 @@ Tokens
 
 Furthermore, if the user belongs to multiple groups, a token can be associated to one of those groups, and when the user operates with that token he will be effectively in that group, i.e. he will only see the resources that belong to that group, and when creating a resource it will be placed in that group.
 
-Create a token
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*Create a token*
 
 Any user can create a token:
 
@@ -304,8 +303,7 @@ The expiration time of the token is by default 10h (36000 seconds). When request
 
 The token can be created associated with one of the group the user belongs to. If the user logins with that token, he will be effectively **only** in that group, and will only be allowed to see the resources that belong to that group, as opposed to the default token, which allows access to all the resources available to the groups that the user belongs to. In order to specify a group, the option ``--group <id|group>`` can be used. When a group specific token is used, any newly created resource will be placed in that group.
 
-List the tokens
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*List the tokens*
 
 Tokens can be listed  by doing:
 
@@ -321,8 +319,7 @@ Tokens can be listed  by doing:
 
 The asterisk in the EGID column means that the user's primary group is 1 and that the token is not group specific.
 
-Set (enable) a token
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*Set (enable) a token*
 
 A token can be enabled by doing:
 
@@ -332,8 +329,7 @@ A token can be enabled by doing:
     export ONE_AUTH=/var/lib/one/.one/5ad20d96-964a-4e09-b550-9c29855e6457.token; export ONE_EGID=-1
     $ export ONE_AUTH=/var/lib/one/.one/5ad20d96-964a-4e09-b550-9c29855e6457.token; export ONE_EGID=-1
 
-Delete a token
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*Delete a token*
 
 A token can be removed similarly, by doing:
 
@@ -342,8 +338,7 @@ A token can be removed similarly, by doing:
     $ oneuser token-delete b6
     Token removed.
 
-Convenience bash functions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*Convenience bash functions*
 
 The file ``/usr/share/one/onetoken.sh``, contains two convenience functions: ``onetokencreate`` and ``onetokenset``.
 
