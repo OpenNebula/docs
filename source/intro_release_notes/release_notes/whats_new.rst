@@ -72,6 +72,7 @@ vCenter
 
 - `All VMM driver actions receive relevant information through stdin, saving oned calls and thus enhancing performance <https://github.com/OpenNebula/one/issues/1896>`__.
 - `The possibility to change the port used when OpenNebula connects to vSphere's API <https://github.com/OpenNebula/one/issues/1208>`__.
+- `Fixes an issue that causes VMware VM import to fail when it has disks with the same name in multiple datastores <https://github.com/OpenNebula/one/issues/3818>`__.
 
 OneFlow & OneGate
 ===============================================================================
