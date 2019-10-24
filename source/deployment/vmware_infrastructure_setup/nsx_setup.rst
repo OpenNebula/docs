@@ -58,7 +58,7 @@ You can add the cluster in two ways, as usual:
 
 3.1.1 Import from Sunstone
 """"""""""""""""""""""""""
-.. image:: /images/nsx_import_cluster_sunstone.png
+.. figure:: /images/nsx_import_cluster_sunstone.png
     :align: center
 
 3.1.2 Import from CLI
@@ -91,7 +91,7 @@ You can read that information going to:
 
 And clicking on the desired OpenNebula Host, you find the following information under Attributes section
 
-.. image:: /images/nsx_autodiscover_01.png
+.. figure:: /images/nsx_autodiscover_01.png
     :align: center
 
 
@@ -116,12 +116,12 @@ A new tab called “NSX” is showing now into the Host:
 
 And click on desired host.
 
-.. image:: /images/nsx_setting_nsx_credentials_01.png
+.. figure:: /images/nsx_setting_nsx_credentials_01.png
     :align: center
 
 Click on NSX tab and introduce NSX credentials
 
-.. image:: /images/nsx_setting_nsx_credentials_02.png
+.. figure:: /images/nsx_setting_nsx_credentials_02.png
     :align: center
 
 And click on Submit
@@ -135,7 +135,7 @@ Now NSX credentials are saved and you can now read two new attributes:
     - **NSX_USER**: NSX Manager user
     - **NSX_PASSWORD**: NSX Manager Encrypted password
 
-.. image:: /images/nsx_setting_nsx_credentials_03.png
+.. figure:: /images/nsx_setting_nsx_credentials_03.png
     :align: center
 
 Remind that you cannot create Transport Zones from OpenNebula and it’s a requirement having them created. You can add new Transport Zones from NSX Manager and OpenNebula will detect them after next monitor execution.
@@ -150,7 +150,7 @@ To check NSX status can read the NSX_STATUS attribute, you can find it into:
 
 And click on desired host and look into “Attributes” section
 
-.. image:: /images/nsx_status.png
+.. figure:: /images/nsx_status.png
     :align: center
 
 If everything works properly you will be able to read two attributes:
