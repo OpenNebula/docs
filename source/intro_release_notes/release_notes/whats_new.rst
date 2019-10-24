@@ -72,7 +72,7 @@ vCenter
 
 - `All VMM driver actions receive relevant information through stdin, saving oned calls and thus enhancing performance <https://github.com/OpenNebula/one/issues/1896>`__.
 - `The possibility to change the port used when OpenNebula connects to vSphere's API <https://github.com/OpenNebula/one/issues/1208>`__.
-- `Fixes an issue that causes missing parameters when import a vcenter network. <https://github.com/OpenNebula/one/issues/3567>`__.
+- `Fixes an issue that causes missing parameters when import a vcenter network <https://github.com/OpenNebula/one/issues/3567>`__.
 
 OneFlow & OneGate
 ===============================================================================
