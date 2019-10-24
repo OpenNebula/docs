@@ -310,6 +310,8 @@ KVM supports hotplugging to the ``virtio`` and the ``SCSI`` buses. For disks, th
 * ``vd``: ``virtio`` (recommended).
 * ``sd``: ``SCSI`` (default).
 
+.. note:: Hotplugging is not supported for CDROM and floppy.
+
 If ``TARGET`` is passed instead of ``DEV_PREFIX`` the same rules apply (what happens behind the scenes is that OpenNebula generates a ``TARGET`` based on the ``DEV_PREFIX`` if no ``TARGET`` is provided).
 
 The defaults for the newly attached disks and NICs are in ``/var/lib/one/remotes/etc/vmm/kvm/kvmrc``. The relevant parameters are prefixed with ``DEFAULT_ATTACH_`` and explained in the `Files and Parameters`_ below.

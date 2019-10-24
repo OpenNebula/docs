@@ -24,6 +24,16 @@ There are different user types in the OpenNebula system:
 
 .. note:: The complete OpenNebula approach to user accounts, groups and VDC is explained in more detail in the :ref:`Understanding OpenNebula <understand>` guide.
 
+Characters limitations
+----------------------
+When defining user names and passwords consider the following invalid characters
+
+.. code-block:: text
+
+
+    username = [" ", ":", "\t", "\n", "\v", "\f", "\r"]
+    password = [" ", "\t", "\n", "\v", "\f", "\r"]
+
 .. _manage_users_shell:
 
 Shell Environment
