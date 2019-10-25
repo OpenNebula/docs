@@ -5,6 +5,8 @@
 Virtual Networks
 ================
 
+.. contents:: Table of contents
+
 A host is connected to one or more networks that are available to the virtual machines through the corresponding bridges. OpenNebula allows the creation of Virtual Networks by mapping them on top of the physical ones.
 
 .. _vgg_vn_model:
@@ -374,6 +376,7 @@ Hypervisors will set the MAC address for the NIC of the Virtual Machines, but no
 
 NSX Specific
 ============
+
 This section desribes how to create a vnet in OpenNebula that reference to a logical switch in NSX-V or NSX-T
 
 
@@ -502,6 +505,9 @@ Importing existing **logical switches**
 ---------------------------------------
 This section describes how to import logical switches, for both NSX-T and NSX-V. The procedure is the same as other vcenter networks.
 
+Importing from Sunstone
+^^^^^^^^^^^^^^^^^^^^^^^
+
     - To import a Logical Switch go to:
 
         Network > Virtual Networks > Import
@@ -526,6 +532,9 @@ This section describes how to import logical switches, for both NSX-T and NSX-V.
         - VCENTER_PORTGROUP_TYPE: “Opaque Network” or “Distributed Port Group”
         - NSX_ID: network id on NSX
 
+Importing from CLI
+^^^^^^^^^^^^^^^^^^
+The import process from CLI is the same as others vcenter networks. For more details go to: :ref:`import_network_onevcenter`
 
 Deleting **logical switches**
 -----------------------------

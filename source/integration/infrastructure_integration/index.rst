@@ -17,4 +17,5 @@ Infrastructure Integration
    Cloud Bursting Driver <devel-cloudbursting>
    Market Driver <devel-market>
    IPAM Driver <devel-ipam>
+   vCenter Driver <vcenter_driver>
    NSX Driver <nsx_driver>

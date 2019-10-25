@@ -3,6 +3,8 @@
 NSX Setup
 =========
 
+.. contents:: Table of Contents
+
 1. NSX Networking Overview
 --------------------------
 
