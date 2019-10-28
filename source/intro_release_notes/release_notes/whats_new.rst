@@ -140,3 +140,4 @@ Other Issues Solved
 - `Fix preserve attributes in Virtual Machine Template <https://github.com/OpenNebula/one/issues/3832>`__.
 - `Fix hide the create button when it not have options <https://github.com/OpenNebula/one/issues/3614>`__.
 - `Fix parse error in VM descriptions with spaces <https://github.com/OpenNebula/one/issues/3232>`__.
+- `Fix error on resize VM disk in Firefox <https://github.com/OpenNebula/one/issues/3883>`__.
