@@ -142,3 +142,4 @@ Other Issues Solved
 - `Fix parse error in VM descriptions with spaces <https://github.com/OpenNebula/one/issues/3232>`__.
 - `Fix error on resize VM disk in Firefox <https://github.com/OpenNebula/one/issues/3883>`__.
 - `Fix only show update if the version is stable <https://github.com/OpenNebula/one/issues/3870>`__.
+- `Fix update CPU model in VM config view <https://github.com/OpenNebula/one/issues/3858>`__.
