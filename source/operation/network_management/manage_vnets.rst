@@ -547,3 +547,12 @@ The process of attaching a logical switch to a VM is the same as others vnets.
 Detaching **logical switches** to VMs
 -------------------------------------
 The process of detaching a logical switch to a VM is the same as others vnets.
+
+
+Limitations
+-----------
+At this time not all attributes are available at creation time:
+    - OpenNebula cannot create universal logical switches
+    - OpenNebula cannot change IP discovery and MAC learning.
+
+NSX-V creates a standard port group called "none" when creating an EDGE or DLR. This network has no host attached so OpenNebula will not be able to import it.
