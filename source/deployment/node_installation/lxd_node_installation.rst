@@ -14,7 +14,7 @@ Step 1. Add OpenNebula Repositories
 Step 2. Installing the Software
 ===============================
 
-LXD node is only supported on Ubuntu **16.04, 18.04, 18.10, 1904** and **Debian 10**.
+LXD node is only supported on Ubuntu **16.04, 18.04, 19.04, 19.10** and **Debian 10**.
 
 .. warning::
 
@@ -35,7 +35,7 @@ It's recommended to use LXD shipped as a distribution package (via APT) on Ubunt
 
     * Ubuntu 16.04 - **incompatible LXD 2.0**, in xenial-backports LXD 3.0
     * Ubuntu 18.04 - LXD 3.0
-    * Ubuntu 18.10 - lxd is a transitional package to install LXD snap (3.0/stable channel)
+    * Ubuntu >= 19.04 - lxd is a transitional package to install LXD snap (3.0/stable channel)
 
     On **Ubuntu 16.04** you have to enable **xenial-backports** with regular priority to have access to the supported package with LXD 3.0!
 
@@ -65,7 +65,7 @@ or, use LXD installed as snap (**since OpenNebula 5.8.2**):
 
     $ sudo apt-get install opennebula-lxd-snap opennebula-node-lxd
 
-**Ubuntu >= 18.10 and Debian >= 10**
+**Ubuntu >= 19.04 and Debian >= 10**
 
 .. prompt:: bash $ auto
 
