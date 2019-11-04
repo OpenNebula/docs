@@ -143,3 +143,4 @@ Other Issues Solved
 - `Fix error on resize VM disk in Firefox <https://github.com/OpenNebula/one/issues/3883>`__.
 - `Fix only show update if the version is stable <https://github.com/OpenNebula/one/issues/3870>`__.
 - `Fix update CPU model in VM config view <https://github.com/OpenNebula/one/issues/3858>`__.
+- `Add the possibility of exclude some addresses from the HTTP proxy <https://github.com/OpenNebula/one/issues/916>`__.
