@@ -74,7 +74,6 @@ vCenter
 - `The possibility to change the port used when OpenNebula connects to vSphere's API <https://github.com/OpenNebula/one/issues/1208>`__.
 - `Fixes an issue that causes missing parameters when import a vcenter network <https://github.com/OpenNebula/one/issues/3567>`__.
 - `Fixes an issue that causes VMware VM import to fail when it has disks with the same name in multiple datastores <https://github.com/OpenNebula/one/issues/3818>`__.
-- `The possibility of exclude some addresses through the proxy if this is defined <https://github.com/OpenNebula/one/issues/916>`__.
 
 OneFlow & OneGate
 ===============================================================================
@@ -144,3 +143,4 @@ Other Issues Solved
 - `Fix error on resize VM disk in Firefox <https://github.com/OpenNebula/one/issues/3883>`__.
 - `Fix only show update if the version is stable <https://github.com/OpenNebula/one/issues/3870>`__.
 - `Fix update CPU model in VM config view <https://github.com/OpenNebula/one/issues/3858>`__.
+- `Add the possibility of exclude some addresses from the HTTP proxy <https://github.com/OpenNebula/one/issues/916>`__.
