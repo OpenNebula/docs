@@ -74,6 +74,7 @@ vCenter
 - `The possibility to change the port used when OpenNebula connects to vSphere's API <https://github.com/OpenNebula/one/issues/1208>`__.
 - `Fixes an issue that causes missing parameters when import a vcenter network <https://github.com/OpenNebula/one/issues/3567>`__.
 - `Fixes an issue that causes VMware VM import to fail when it has disks with the same name in multiple datastores <https://github.com/OpenNebula/one/issues/3818>`__.
+- `The possibility of exclude some addresses through the proxy if this is defined <https://github.com/OpenNebula/one/issues/916>`__.
 
 OneFlow & OneGate
 ===============================================================================
