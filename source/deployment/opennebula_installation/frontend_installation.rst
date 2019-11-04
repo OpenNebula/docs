@@ -11,7 +11,7 @@ Using the packages provided in our site is the recommended method, to ensure the
 
 If there are no packages for your distribution, head to the :ref:`Building from Source Code guide <compile>`.
 
-Step 1. SELinux on CentOS/RHEL 7
+Step 1. SELinux on CentOS/RHEL
 ================================================================================
 
 SELinux can block some operations initiated by the OpenNebula Front-end, which results in their failures. If the administrator isn't experienced in the SELinux configuration, **it's recommended to disable this functionality to avoid unexpected failures**. You can enable SELinux anytime later when you have the installation working.
@@ -54,29 +54,60 @@ Step 2. Add OpenNebula Repositories
 Step 3. Installing the Software
 ================================================================================
 
-Installing on CentOS/RHEL 7
----------------------------
+Installing on CentOS/RHEL
+-------------------------
 
-.. note:: Activate the `EPEL <http://fedoraproject.org/wiki/EPEL#How_can_I_use_these_extra_packages.3F>`__ (Extra Packages for Enterprise Linux) repository before installing the OpenNebula.
+OpenNebula depends on packages, which are not part of base repositories.
+Following repositories have to be enabled before installation:
 
-    On CentOS 7, enabling EPEL is as easy as installation of the package with additional repository configuration:
+* `EPEL <https://fedoraproject.org/wiki/EPEL>`__
+* only RHEL 7: **optional** and **extras** RHEL repositories
+* only CentOS/RHEL 8: `CERT Forensics Tools <https://forensics.cert.org>`__
 
-    .. prompt:: bash # auto
+Repository EPEL
+^^^^^^^^^^^^^^^
 
-        # yum install epel-release
+On **CentOS**, enabling EPEL is as easy as installation of the package with additional repository configuration:
 
-    On RHEL 7, first you need the RHEL **optional** and **extras** repositories configured:
+.. prompt:: bash # auto
+
+    # yum install epel-release
+
+.. note:: On **RHEL 7**, you need the RHEL **optional** and **extras** repositories configured first:
 
     .. prompt:: bash # auto
 
         # subscription-manager repos --enable rhel-7-server-optional-rpms
         # subscription-manager repos --enable rhel-7-server-extras-rpms
 
-    and, then you can enable the EPEL:
+On **RHEL 7**, you enable EPEL by running:
 
-    .. prompt:: bash # auto
+.. prompt:: bash # auto
 
-        # rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+    # rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+
+On **RHEL 8**, you enable EPEL by running:
+
+.. prompt:: bash # auto
+
+    # rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+
+Repository CERT Forensics Tools (only CentOS/RHEL 8)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+At the time of **OpenNebula 5.9.90** release, the EPEL 8 is still missing zeromq
+packages required to install and run OpenNebula. As a temporary solution,
+we recommend enabling also `CERT Forensics Tools <https://forensics.cert.org>`__
+which contains the required packages.
+
+On **CentOS/RHEL 8**, you enable CERT Forensics Tools by running:
+
+.. prompt:: bash # auto
+
+    # rpm -ivh https://forensics.cert.org/cert-forensics-tools-release-el8.rpm
+
+Install OpenNebula
+^^^^^^^^^^^^^^^^^^
 
 Install the CentOS/RHEL OpenNebula Front-end with packages from **our repository** by executing the following as root:
 

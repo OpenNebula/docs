@@ -28,21 +28,24 @@ Execute the following commands to install the node package and restart libvirt t
     $ sudo yum install opennebula-node-kvm
     $ sudo systemctl restart libvirtd
 
-.. note:: You may benefit from using the more recent and feature-rich enterprise QEMU/KVM release. The differences between the base (``qemu-kvm``) and enterprise (``qemu-kvm-rhev`` on RHEL or ``qemu-kvm-ev`` on CentOS) packages are described on the `Red Hat Customer Portal <https://access.redhat.com/solutions/629513>`__.
+Newer QEMU/KVM (only CentOS/RHEL 7)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-    On CentOS 7, the enterprise packages are part of the separate repository. To replace the base packages, follow these steps:
+You may benefit from using the more recent and feature-rich enterprise QEMU/KVM release. The differences between the base (``qemu-kvm``) and enterprise (``qemu-kvm-rhev`` on RHEL or ``qemu-kvm-ev`` on CentOS) packages are described on the `Red Hat Customer Portal <https://access.redhat.com/solutions/629513>`__.
 
-    .. prompt:: bash $ auto
+On **CentOS 7**, the enterprise packages are part of the separate repository. To replace the base packages, follow these steps:
 
-        $ sudo yum install centos-release-qemu-ev
-        $ sudo yum install qemu-kvm-ev
+.. prompt:: bash $ auto
 
-    On RHEL 7, you need a paid subscription to the Red Hat Virtualization (RHV) or Red Hat OpenStack (RHOS) products, license only for the Red Hat Enterprise Linux isn't enough! You have to check the RHV `Installation Guide <https://access.redhat.com/documentation/en-us/red_hat_virtualization/>`__ for your licensed version. Usually, the following commands should enable and install the enterprise packages:
+    $ sudo yum install centos-release-qemu-ev
+    $ sudo yum install qemu-kvm-ev
 
-    .. prompt:: bash $ auto
+On **RHEL 7**, you need a paid subscription to the Red Hat Virtualization (RHV) or Red Hat OpenStack (RHOS) products, license only for the Red Hat Enterprise Linux isn't enough! You have to check the RHV `Installation Guide <https://access.redhat.com/documentation/en-us/red_hat_virtualization/>`__ for your licensed version. Usually, the following commands should enable and install the enterprise packages:
 
-        $ sudo subscription-manager repos --enable rhel-7-server-rhv-4-mgmt-agent-rpms
-        $ sudo yum install qemu-kvm-rhev
+.. prompt:: bash $ auto
+
+    $ sudo subscription-manager repos --enable rhel-7-server-rhv-4-mgmt-agent-rpms
+    $ sudo yum install qemu-kvm-rhev
 
 For further configuration, check the specific guide: :ref:`KVM <kvmg>`.
 
@@ -60,8 +63,8 @@ Execute the following commands to install the node package and restart libvirt t
 
 For further configuration check the specific guide: :ref:`KVM <kvmg>`.
 
-Step 3. SELinux on CentOS/RHEL 7
-================================
+Step 3. SELinux on CentOS/RHEL
+==============================
 
 .. warning::
     If you are performing an upgrade skip this and the next steps and go back to the upgrade document.
