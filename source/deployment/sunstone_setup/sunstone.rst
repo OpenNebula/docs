@@ -129,6 +129,10 @@ Available options are:
 +---------------------------+-----------------------------------------------------------------------------------------------+
 | :allow\_vnc\_federation   | True to display VNC icons in federation                                                       |
 +---------------------------+-----------------------------------------------------------------------------------------------+
+| :http\_proxy              | Proxy server for HTTP Traffic.                                                                |
++---------------------------+-----------------------------------------------------------------------------------------------+
+| :no\_proxy                | Patterns for IP addresses or domain names that shouldn’t use the proxy                        |
++---------------------------+-----------------------------------------------------------------------------------------------+
 
 .. note:: To use Sunstone with IPv6 only systems and thin HTTP sever, use the full IPv6 address in the field `:host`. If you need to set the localhost address (::1) or the unspecified address (::) please use the following:
 
