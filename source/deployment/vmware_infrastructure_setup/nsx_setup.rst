@@ -3,12 +3,7 @@
 NSX Setup
 =========
 
-.. contents:: Table of Contents
-
-1. NSX Networking Overview
---------------------------
-
-NSX is the Network and Security software from VMware that enable your virtual cloud network to connect and protect applications across your data center, multi-cloud, bare metal, and container infrastructure. VMware NSX Data Center delivers a complete L2-L7 networking and security virtualization platform — providing you with the agility, automation, and dramatic cost savings that come with a software-only solution.
+NSX is the Network and Security software from VMware that enables a virtual cloud network to connect and protect applications across data centers, multi-clouds, bare metal, and container infrastructures. VMware NSX Data Center delivers a complete L2-L7 networking and security virtualization platform — providing agility, automation, and dramatic cost savings that come with a software-only solution.
 
 OpenNebula can manage NSX-V and NSX-T logical switches in the following ways:
 
@@ -18,74 +13,86 @@ OpenNebula can manage NSX-V and NSX-T logical switches in the following ways:
     - Attaching logical switches, created or imported, to VMs.
     - Detaching logical switches, created or imported to VMs.
 
-For more information about the NSX Driver go to: :ref:`nsx_driver`
+Requirements
+------------
 
+NSX Manager
+^^^^^^^^^^^
 
-2. Requirements
----------------
+The NSX appliance must be deployed with only one IP Address. OpenNebula installation must be able to connect to NSX Manager with the needed credentials.
 
-2.1 NSX Manager
-^^^^^^^^^^^^^^^
-You must have the appliance deployed with only one IP Address. Opennebula installation must be able to connect to NSX Manager with the needed credentials.
+Controller nodes
+^^^^^^^^^^^^^^^^
 
-2.2 Controller nodes
-^^^^^^^^^^^^^^^^^^^^
-You must have at least one controller node deployed.
+At least one controller node must be deployed.
 
-2.3 ESXi Hosts
+ESXi Hosts
+^^^^^^^^^^
+
+ All ESXi of the cluster must be prepared for NSX.
+
+Transport Zone
 ^^^^^^^^^^^^^^
-You must have all ESXi of the cluster prepared for NSX.
 
-2.4 Transport Zone
-^^^^^^^^^^^^^^^^^^
-You must have at least one transport zone created.
+At least one transport zone must be created.
 
-2.5 Logical Switches
-^^^^^^^^^^^^^^^^^^^^
-Is not mandatory to have any logical switch before start using opennebula NSX-V integration, but is recommendable to test that logical switches are working properly, creating a logical switch from vCenter into a Transport Zone, and attaching it into two VMs to test that overlay network is working.
+Logical Switches
+^^^^^^^^^^^^^^^^
 
+It is not mandatory to have any logical switch before start using opennebula NSX-V integration, but is recommendable to test that logical switches are working properly, creating a logical switch from vCenter into a Transport Zone, and attaching it into two VMs to test that overlay network is working.
+
+.. _nsx_limitations:
+
+NSX Driver Limitations
+----------------------
+
+- Cannot create/modify/delete Transport Zones
+- All parameters are not available when creating Logical Switches
+- Universal Logical Switches are not supported
+- Only support one NSX Manager per vCenter Server
+- The process of preparing a NSX cluster must be done from NSX Manager
+- Imported networks work with vcenter id instead of nsx id
 
 .. _nsx_adding_nsx_manager:
 
-3. Adding NSX Manager into OpenNebula
--------------------------------------
-This is an semi-automatic process. When a vCenter is connected to a NSX Manager, OpenNebula in the next monitoring execution will detect that NSX installation, and a new tab called “NSX” will show in the UI allowing you to configure the User and Password to connect to NSX Manager.
-The same process is applied when importing a new vcenter cluster that is prepared to work with NSX-V or NSX-T.
-In this section we will show you how to configure OpenNebula to start working with NSX, doing the complete process from import a vCenter Cluster to check that OpenNebula gets NSX information.
+Adding NSX Manager into OpenNebula
+-----------------------------------
 
-3.1 Adding vCenter cluster into OpenNebula
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+This is a semi-automatic process. When a vCenter is connected to a NSX Manager, OpenNebula in the next monitoring execution will detect it and a new tab called “NSX” will show in the UI allowing the configuration of the credentials (User and Password) needed to connect to NSX Manager. The same process is applied when importing a new vcenter cluster that is prepared to work with NSX-V or NSX-T.
+
+This section details how to configure OpenNebula to start working with NSX, doing the complete process ranging from importing a vCenter Cluster to checking that OpenNebula gets NSX information correctly
+
+Adding vCenter cluster into OpenNebula
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 The first step is to add a ESXi cluster to OpenNebula, this cluster must have all the requirements to work with NSX-V or NSX-T.
 You can add the cluster in two ways, as usual:
 
-3.1.1 Import from Sunstone
-""""""""""""""""""""""""""
+Import from Sunstone
+""""""""""""""""""""
+
 .. figure:: /images/nsx_import_cluster_sunstone.png
     :align: center
 
-3.1.2 Import from CLI
-"""""""""""""""""""""
+Import from CLI:
+""""""""""""""""
 .. prompt:: bash $ auto
 
     $ onevcenter hosts --vcenter <vcenter_fqdn> --vuser <vcenter_user> --vpass <vcenter_password>
 
-3.2 Check hooks
-^^^^^^^^^^^^^^^
-When you import a vcenter cluster, two hooks should be created:
+Check hooks
+^^^^^^^^^^^
+
+Once a vCenter cluster is imported into OpenNebula, two hooks are created:
 
     - vcenter_net_create
     - vcenter_net_delete
 
-Before continue make sure the hooks are correctly created. If any of these hooks are not created you can create it manually.
+For more information about list, create and delete these vCenter hooks go to: :ref:`vcenter_hooks`.
 
-For more information about list, create and delete these vcenter hooks go to: :ref:`vcenter_hooks`
+Check NSX Manager autodiscovered attributes
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-
-
-If there aren't any of the hooks listed above, you'll have to register manually
-
-3.3 Check NSX Manager autodiscovered attributes
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 After you have a vcenter cluster imported, wait until monitor process detect if there is a NSX Manager registered for that cluster.
 You can read that information going to:
 
@@ -108,8 +115,8 @@ If a NSX Manager exists, you will have the next attributes:
 You have a more detailed explanation of these parameters into the NSX attributes section nsx-non-editable-attributes_
 The next step is introduce NSX Manager credentials.
 
-3.3 Setting NSX Manager Credentials
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Setting NSX Manager Credentials
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Once you have imported a vcenter cluster as OpenNebula Host and checked that NSX parameters are discovered, the next step is to introduce NSX credentials.
 A new tab called “NSX” is showing now into the Host:
@@ -143,8 +150,9 @@ Now NSX credentials are saved and you can now read two new attributes:
 Remind that you cannot create Transport Zones from OpenNebula and it’s a requirement having them created. You can add new Transport Zones from NSX Manager and OpenNebula will detect them after next monitor execution.
 
 
-3.4 Checking NSX Status
-^^^^^^^^^^^^^^^^^^^^^^^
+Checking NSX Status
+^^^^^^^^^^^^^^^^^^^
+
 You have a OpenNebula Host, that is, a vCenter cluster, which is prepared to work with NSX, you have discovered its NSX Manager and introduce credentials, so the last step is checking that it’s working properly.
 To check NSX status can read the NSX_STATUS attribute, you can find it into:
 
@@ -162,8 +170,8 @@ If everything works properly you will be able to read two attributes:
 
 .. _nsx-non-editable-attributes:
 
-4. NSX non editable attributes
-------------------------------
+NSX non editable attributes
+---------------------------
 
 These attributes are autodiscovered, so it not supported modify them.
 
@@ -197,8 +205,8 @@ These attributes are autodiscovered, so it not supported modify them.
 | NSX_VERSION           | STRING     |                                   | NSX Installed version                                                                     |
 +-----------------------+------------+-----------------------------------+-------------------------------------------------------------------------------------------+
 
-5. NSX editable attributes
---------------------------
+NSX editable attributes
+-----------------------
 
 These parameters have to be introduced manually from NSX tab
 
@@ -210,7 +218,7 @@ These parameters have to be introduced manually from NSX tab
 | **NSX_PASSWORD**          |  STRING     |     YES      | NSX Manager password |
 +---------------------------+-------------+--------------+----------------------+
 
-6. Limitations
+Drriver tuning
 --------------
 
-Go to :ref:`nsx_limitations`
+Drivers can be easily customized please refer to :ref:`NSX Driver Section <nsx_driver>` in the :ref:`Integration Guide <integration_guide>`.

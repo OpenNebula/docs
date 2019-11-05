@@ -66,17 +66,3 @@ In the last release, at this time, only Logical Switches are supported, but the 
 In the image below is shown which components are intended to be supported by OpenNebula through its NSX Driver.
 
 .. figure:: /images/nsx_driver_managed_components.png
-
-
-.. _nsx_limitations:
-
-NSX Driver Limitations
-----------------------
-At this time there are the next limitations:
-
-    - Cannot create/modify/delete Transport Zones
-    - All parameters are not available when creating Logical Switches
-    - Universal Logical Switches are not supported
-    - Only support one NSX Manager per vCenter Server
-    - The process of preparing a NSX cluster must be done from NSX Manager
-    - Imported networks work with vcenter id instead of nsx id

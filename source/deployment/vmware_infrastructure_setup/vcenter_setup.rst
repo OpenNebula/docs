@@ -1,10 +1,12 @@
 .. _vcenterg:
 .. _vcenter_setup:
 
-vCenter setup
-=============
+vCenter Driver Setup
+====================
 
-.. contents:: Table of content
+The vCenter Driver is the responsible for all the integration of OpenNebula with VMware based infrastructures. All the interaciton between OpenNebula and vSphere is channeled through the vCenter API, except for the VNC console connection where Sunstone server (more specifically, the noVNC server) contacts with the ESX hypervisors directly.
+
+This section lays out the actions needed to incorporate VMware resources to an OpenNebula cloud.
 
 vCenter Import Tool
 --------------------------------------------------------------------------------
@@ -888,9 +890,94 @@ Usage (CLI)
 
     $ onevm migrate --live "<VM name>" <destination host id> <destination datastore id>
 
+.. _vcenter_hooks:
+
+vCenter Hooks
+-------------
+
+OpenNebula has two hooks to manage networks in vCenter and :ref:`NSX <nsx_setup>`.
+
++----------------------+--------------------------------------------------------+
+| Hook Name            | Hook Description                                       |
++======================+========================================================+
+| vcenter_net_create   | Allows you to create / import vCenter and NSX networks |
++----------------------+--------------------------------------------------------+
+| vcenter_net_delete   | Allows you to delete vCenter and NSX networks          |
++----------------------+--------------------------------------------------------+
+
+These hooks should be created automatically when you add a vCenter cluster. If accidentially deleted, they can be created again manually.
+
+Go to `Create vCenter Hooks`_ and follow the steps to create a new hook.
+
+.. note:: Detailed information about how hooks work is available :ref:`here <hooks>`.
+
+
+List vCenter Hooks
+~~~~~~~~~~~~~~~~~~
+
+Type the next command to list registered hooks:
+
+.. prompt:: bash $ auto
+
+    $ onehook list
+
+The output of the command should be something like this:
+
+.. image:: /images/nsx_hook_list.png
+
+
+Create vCenter Hooks
+~~~~~~~~~~~~~~~~~~~~~
+
+The following command can be used to create a new hook:
+
+.. prompt:: bash $ auto
+
+    $ onehook create <template_file>
+
+where template file is the name of the file that contains the hook template information.
+
+The hook template for network creation is:
+
+.. prompt:: bash $ auto
+
+    NAME = vcenter_net_create
+    TYPE = api
+    COMMAND = vcenter/create_vcenter_net.rb
+    CALL = "one.vn.allocate"
+    ARGUMENTS = "$API"
+    ARGUMENTS_STDIN = yes
+
+The latest version <https://raw.githubusercontent.com/OpenNebula/one/master/share/hooks/vcenter/templates/create_vcenter_net.tmpl>`__
+
+.. _vcenter_net_delete_template:
+
+The hook template for network deletion is:
+
+.. prompt:: bash $ auto
+
+    NAME = vcenter_net_delete
+    TYPE = api
+    COMMAND = vcenter/delete_vcenter_net.rb
+    CALL = "one.vn.delete"
+    ARGUMENTS = "$API"
+    ARGUMENTS_STDIN = yes
+
+The latest version of the hook delete template can be found `here <https://raw.githubusercontent.com/OpenNebula/one/master/share/hooks/vcenter/templates/delete_vcenter_net.tmpl>`__
+
+Delete vCenter Hooks
+~~~~~~~~~~~~~~~~~~~~
+
+A hook can be deleted if its ID is known. The ID can be retrieved using onehook list, and then deleted using the following command.
+
+.. prompt:: bash $ auto
+
+    $ onehook delete <hook_id>
 
 Driver tuning
 ================================================================================
+
+Drivers can be easily customized please refer to :ref:`vCenter Driver Section <vcenter_driver>` in the :ref:`Integration Guide <integration_guide>`.
 
 Some aspects of the driver behavior can be configured on */var/lib/one/remotes/etc/vmm/vcenter/vcenterrc*:
 

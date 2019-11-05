@@ -9,5 +9,4 @@ VMware Infrastructure Setup
    vCenter Driver <vcenter_setup>
    vCenter Datastore <datastore_setup>
    vCenter Networking <networking_setup>
-   vCenter Hooks <vcenter_hooks>
    NSX Setup <nsx_setup>
