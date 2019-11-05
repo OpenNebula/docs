@@ -14,9 +14,10 @@ Probe Location
 The default probes are installed in the frontend in the following path:
 
 -  **KVM**: ``/var/lib/one/remotes/im/kvm-probes.d``
+-  **LXD**: ``/var/lib/one/remotes/im/lxd-probes.d``
 -  **vCenter, EC2 and Azure**: ``/var/lib/one/remotes/im/<hypervisor>.d``
 
-In the case of ``KVM``, the probes are distributed to the hosts, therefore if the probes are changed, they **must** be distributed to the hosts by running ``onehost sync``.
+In the case of ``KVM`` and ``LXD``, the probes are distributed to the hosts, therefore if the probes are changed, they **must** be distributed to the hosts by running ``onehost sync``.
 
 General Probe Structure
 ================================================================================
@@ -46,9 +47,9 @@ The drivers receive the following parameters:
 | 6          | **host\_name**: name of the host                                                                |
 +------------+-------------------------------------------------------------------------------------------------+
 
-Take into account that in shell script the parameters start at 1 (``$1``) and in ruby start at 0 (``ARGV[0]``). For shell script you can use this snippet to get the parameters:
+Consider that in shell script the parameters starts at 1 (``$1``) and in ruby starts at 0 (``ARGV[0]``). For shell script you can use this snippet to get the parameters:
 
-.. code::
+.. code-block:: bash
 
     hypervisor=$1
     datastore_location=$2
@@ -90,7 +91,7 @@ You can add any key and value you want to use later in ``RANK`` and ``REQUIREMEN
 
 For example, a probe that gets memory information about a host could be something like:
 
-.. code::
+.. code-block:: bash
 
     #!/bin/bash
      
@@ -162,7 +163,7 @@ The first line (``VM_POLL=YES``) is used to indicate OpenNebula that VM informat
 
 For example here is a simple script to get qemu/kvm VMs status from libvirt. As before, check the scripts from OpenNebula for a complete example:
 
-.. code::
+.. code-block:: bash
 
     #!/bin/bash
      
@@ -257,7 +258,7 @@ Creating a New IM Driver
 Choosing the Execution Engine
 --------------------------------------------------------------------------------
 
-OpenNebula provides two IM probe execution engines: ``one_im_sh`` and ``one_im_ssh``. ``one_im_sh`` is used to execute probes in the frontend, for example ``vcenter`` uses this engine as it collects data via an API call executed in the frontend. On the other hand, ``one_im_ssh`` is used when probes need to be run remotely in the hosts, which is the case for ``KVM``.
+OpenNebula provides two IM probe execution engines: ``one_im_sh`` and ``one_im_ssh``. ``one_im_sh`` is used to execute probes in the frontend, for example ``vcenter`` uses this engine as it collects data via an API call executed in the frontend. On the other hand, ``one_im_ssh`` is used when probes need to be run remotely in the hosts, which is the case for ``KVM`` and ``LXD``.
 
 Populating the Probes
 --------------------------------------------------------------------------------
