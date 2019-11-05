@@ -29,13 +29,13 @@ The Import button will be available once the admin_vcenter view is enabled in Su
 .. warning:: The image import operation may take a long time. If you use the Sunstone client and receive a "Cannot contact server: is it running and reachable?" the 30 seconds Sunstone timeout may have been reached. In this case either configure Sunstone to live behind Apache/NGINX or use the CLI tool instead.
 
 
-vCenter resources can be easily imported into OpenNebula, these can be classified:
+Following vCenter resources can be easily imported into OpenNebula:
 
-* Hosts
+* vCenter clusters (modelled as OpenNebula Hosts)
 * Datastores
 * Networks
-* Templates
-* Wilds
+* VM Templates
+* Wild VMs (VMs launched outside of OpenNebula)
 * Images
 
 .. _vcenter_import_clusters:
@@ -43,7 +43,7 @@ vCenter resources can be easily imported into OpenNebula, these can be classifie
 Importing vCenter Clusters
 --------------------------------------------------------------------------------
 
-vCenter cluster is the first thing that you will want to add into your vcenter installation because all other vcenter resources depend on it. OpenNebula will import these clusters as opennebula hosts so you can monitor them easily using Sunstone (Infrastructure/Hosts) or through CLI (onehost).
+vCenter cluster is the first thing that you will want to add into your vCenter installation because all other vCcenter resources depend on it. OpenNebula will import these clusters as OpenNebul hosts so you can monitor them easily using Sunstone (Infrastructure/Hosts) or through CLI (onehost).
 Also this is the only step where the authentication is to be required so it's important to assure that the process finishes successfully.
 
 Import a cluster with onevcenter
@@ -78,7 +78,7 @@ A sample section follows:
 
 		OpenNebula host Cluster2 with ID 2 successfully created.
 
-.. note:: If the vCenter is using a port other than the default port, you can use the --port command.
+.. note:: If vCenter is using a port other than the default port, you can use the --port command.
 
 Import a cluster with Sunstone
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
