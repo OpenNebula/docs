@@ -144,3 +144,5 @@ Other Issues Solved
 - `Fix only show update if the version is stable <https://github.com/OpenNebula/one/issues/3870>`__.
 - `Fix update CPU model in VM config view <https://github.com/OpenNebula/one/issues/3858>`__.
 - `Fix showing uplinks as networks in vcenter hosts <https://github.com/OpenNebula/one/issues/3839>`__.
+- `Add the possibility of exclude some addresses from the HTTP proxy <https://github.com/OpenNebula/one/issues/916>`__.
+- `Fix show error when disable support endpoint <https://github.com/OpenNebula/one/issues/3268>`__.
