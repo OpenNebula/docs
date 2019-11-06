@@ -27,7 +27,7 @@ If you want to associate OpenNebula's virtual networks to vSphere's port groups:
 
 
 Consuming existing vCenter port groups
-================================================================================
+--------------------------------------
 
 Existing vCenter networks can be represented using OpenNebula Virtual Networks, taking into account that the BRIDGE attribute of the Virtual Network needs to match the name of the Network (port group) defined in vCenter.
 
@@ -44,7 +44,7 @@ You can easily consume vCenter networks using the import tools as explained in t
 .. _vcenter_enhanced_networking:
 
 Creating Port Groups from OpenNebula
-================================================================================
+------------------------------------
 
 OpenNebula can create a vCenter network from a Virtual Network template if the vCenter network driver is used (thanks to the attribute ``VN_MAD=vcenter``).
 
@@ -56,33 +56,15 @@ This is the workflow when OpenNebula needs to create a vCenter network:
 4. The Virtual Network will be automatically assigned to the OpenNebula cluster which includes the vCenter cluster represented as an OpenNebula host.
 5. The hooks works asynchronously so you may have to refresh the Virtual Network information until you find the VCENTER_NET_STATE attribute. If it completes the actions successfully that attribute will be set to READY and hence you can use it from VMs and templates. If the hook fails VCENTER_NET_STATE will be set to ERROR and the VCENTER_NET_ERROR attribute will offer more information.
 
-Enabling the VNET hooks
---------------------------------------------------------------------------------
-
-If you want to use the vcenter network driver you must uncomment or add the following lines to the oned.conf configuration file:
-
-.. code::
-
-    VNET_HOOK = [
-        name      = "vcenter_net_create",
-        on        = "CREATE",
-        command   = "vcenter/create_vcenter_net.rb",
-        arguments = "$ID $TEMPLATE"]
-
-    VNET_HOOK = [
-        name      = "vcenter_net_delete",
-        on        = "REMOVE",
-        command   = "vcenter/delete_vcenter_net.rb",
-        arguments = "$ID $TEMPLATE"]
-
-.. note:: If you don't want OpenNebula to remove the vCenter network elements when a Virtual Network is deleted, remove the VNET_HOOK associated to the REMOVE action.
-
-.. warning:: You'll have to restart the oned service so these changes are applied.
-
-This hooks are the scripts responsible of creating the vCenter network elements and deleting them when the OpenNebula Virtual Network template is deleted.
-
 Hooks information
 --------------------------------------------------------------------------------
+
+As soon as the first vCenter cluster is created, two hooks are registered in OpenNebula to deal with network creation and deletion.
+
+- vcenter_net_create
+- vcenter_net_delete
+
+These hooks are the scripts responsible of creating the vCenter network elements and deleting them when the OpenNebula Virtual Network template is deleted.
 
 The creation hook performs the following actions for each ESX host found in the cluster assigned to the template if a standard port group has been chosen:
 
@@ -268,10 +250,12 @@ Limitations
 
     $ /usr/sbin/one-contextd all reconfigure
 
+**Importing networks.** OpenNebula won't import a network if it not belongs to any host. In the case of distributed port groups if DVS has no host attached to it.
+
 .. _network_monitoring:
 
 Network monitoring
-================================================================================
+------------------
 
 OpenNebula gathers network monitoring info for each VM. Real-time data is retrieved from vCenter thanks to the Performance Manager which collects data every 20 seconds and maintains it for one hour. Real-time samples are used so no changes have to be applied to vCenter's Statistics settings. Network metrics for transmitted and received traffic are provided as an average using KB/s unit.
 

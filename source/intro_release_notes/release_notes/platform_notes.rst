@@ -17,11 +17,11 @@ Front-End Components
 +-------------------------+---------------------------------------------------------+-------------------------------------------------------+
 |        Component        |                         Version                         |                    More information                   |
 +=========================+=========================================================+=======================================================+
-| RedHat Enterprise Linux | 7                                                       | :ref:`Front-End Installation <frontend_installation>` |
+| RedHat Enterprise Linux | 7, 8                                                    | :ref:`Front-End Installation <frontend_installation>` |
 +-------------------------+---------------------------------------------------------+-------------------------------------------------------+
-| CentOS                  | 7                                                       | :ref:`Front-End Installation <frontend_installation>` |
+| CentOS                  | 7, 8                                                    | :ref:`Front-End Installation <frontend_installation>` |
 +-------------------------+---------------------------------------------------------+-------------------------------------------------------+
-| Ubuntu Server           | 16.04 (LTS), 18.04 (LTS), 19.04                         | :ref:`Front-End Installation <frontend_installation>` |
+| Ubuntu Server           | 16.04 (LTS), 18.04 (LTS), 19.04, 19.10                  | :ref:`Front-End Installation <frontend_installation>` |
 +-------------------------+---------------------------------------------------------+-------------------------------------------------------+
 | Debian                  | 9, 10                                                   | :ref:`Front-End Installation <frontend_installation>` |
 +-------------------------+---------------------------------------------------------+-------------------------------------------------------+
@@ -53,11 +53,11 @@ KVM Nodes
 +-------------------------+-----------------------------------------------------------+-----------------------------------------+
 |        Component        |                          Version                          |             More information            |
 +=========================+===========================================================+=========================================+
-| RedHat Enterprise Linux | 7                                                         | :ref:`KVM Driver <kvmg>`                |
+| RedHat Enterprise Linux | 7, 8                                                      | :ref:`KVM Driver <kvmg>`                |
 +-------------------------+-----------------------------------------------------------+-----------------------------------------+
-| CentOS                  | 7                                                         | :ref:`KVM Driver <kvmg>`                |
+| CentOS                  | 7, 8                                                      | :ref:`KVM Driver <kvmg>`                |
 +-------------------------+-----------------------------------------------------------+-----------------------------------------+
-| Ubuntu Server           | 16.04 (LTS), 18.04 (LTS), 19.04                           | :ref:`KVM Driver <kvmg>`                |
+| Ubuntu Server           | 16.04 (LTS), 18.04 (LTS), 19.04, 19.10                    | :ref:`KVM Driver <kvmg>`                |
 +-------------------------+-----------------------------------------------------------+-----------------------------------------+
 | Debian                  | 9, 10                                                     | :ref:`KVM Driver <kvmg>`                |
 +-------------------------+-----------------------------------------------------------+-----------------------------------------+
@@ -71,7 +71,7 @@ LXD Nodes
 +-------------------------+-----------------------------------------------------------+-----------------------------------------+
 |        Component        |                          Version                          |             More information            |
 +=========================+===========================================================+=========================================+
-| Ubuntu Server           | 16.04 (LTS), 18.04 (LTS), 19.04                           | :ref:`LXD Driver <lxdmg>`               |
+| Ubuntu Server           | 16.04 (LTS), 18.04 (LTS), 19.04, 19.10                    | :ref:`LXD Driver <lxdmg>`               |
 +-------------------------+-----------------------------------------------------------+-----------------------------------------+
 | Debian                  | 10                                                        | :ref:`LXD Driver <lxdmg>`               |
 +-------------------------+-----------------------------------------------------------+-----------------------------------------+
@@ -270,7 +270,7 @@ The following items apply to all distributions:
 
     DISK = [ driver = "qcow2", cache = "writethrough" ]
 
-CentOS/RedHat 7.0 Platform Notes
+CentOS/RedHat 7 Platform Notes
 --------------------------------------------------------------------------------
 
 Ruby Dependencies
@@ -289,6 +289,26 @@ The libvirt/QEMU packages used in the testing infrastructure are the ones in the
 
     # yum install centos-release-qemu-ev
     # yum install qemu-kvm-ev
+
+Disable PolicyKit for Libvirt
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+It is recommended that you disable PolicyKit for Libvirt:
+
+.. prompt:: bash # auto
+
+  $ cat /etc/libvirt/libvirtd.conf
+  ...
+  auth_unix_ro = "none"
+  auth_unix_rw = "none"
+  unix_sock_group = "oneadmin"
+  unix_sock_ro_perms = "0770"
+  unix_sock_rw_perms = "0770"
+  ...
+
+
+CentOS/RedHat 8 Platform Notes
+--------------------------------------------------------------------------------
 
 Disable PolicyKit for Libvirt
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -4,7 +4,7 @@
 Hook Manager Events
 ===========================
 
-The Hook Manager publish the OpenNebula events over a `ZeroMQ publisher socket <http://zguide.zeromq.org/page:all#Getting-the-Message-Out>`__. This can be used for developing custom components that suscribe to specific events to perform custom actions.
+The Hook Manager publish the OpenNebula events over a `ZeroMQ publisher socket <http://zguide.zeromq.org/page:all#Getting-the-Message-Out>`__. This can be used for developing custom components that subscribe to specific events to perform custom actions.
 
 Hook Manager Messages
 ===========================
@@ -26,9 +26,13 @@ There are two different types of EVENT messages, representing API and state even
 +===============+=====================================================================================================================+
 | API           | ``EVENT API <API_CALL> <SUCCESS>`` (e.g. ``EVENT API one.vm.allocate 1` or `Key: EVENT API one.hook.info 0``)       |
 +---------------+---------------------------------------------------------------------------------------------------------------------+
-| STATE (HOST)  | ``EVENT STATE HOST/<HOST_STATE>/`` (e.g. ``EVENT STATE HOST/INIT/``)                                                |
+| STATE (HOST)  | ``EVENT STATE HOST/<STATE>/`` (e.g. ``EVENT STATE HOST/INIT/``)                                                     |
+|               |                                                                                                                     |
+|               | ``EVENT HOST <HOST_ID>/<STATE>/`` (e.g. ``EVENT HOST 0/INIT/``)                                                     |
 +---------------+---------------------------------------------------------------------------------------------------------------------+
 | STATE (VM)    | ``EVENT STATE VM/<STATE>/<LCM_STATE>`` (e.g. ``EVENT STATE VM/PENDING/LCM_INIT``)                                   |
+|               |                                                                                                                     |
+|               | ``EVENT VM <VM_ID>/<STATE>/<LCM_STATE>`` (e.g. ``EVENT VM 0/PENDING/LCM_INIT``)                                     |
 +---------------+---------------------------------------------------------------------------------------------------------------------+
 
 Keys are used to subscribe to specific events. Note also that you do not need to specify the whole key, form example ``EVENT STATE HOST/ERROR/`` will suscribe for state changes to ``ERROR`` on the hosts, while ``EVENT STATE HOST/`` will suscribe for all state changes of the hosts.

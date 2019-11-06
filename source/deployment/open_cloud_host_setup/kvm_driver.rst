@@ -310,6 +310,8 @@ KVM supports hotplugging to the ``virtio`` and the ``SCSI`` buses. For disks, th
 * ``vd``: ``virtio`` (recommended).
 * ``sd``: ``SCSI`` (default).
 
+.. note:: Hotplugging is not supported for CDROM and floppy.
+
 If ``TARGET`` is passed instead of ``DEV_PREFIX`` the same rules apply (what happens behind the scenes is that OpenNebula generates a ``TARGET`` based on the ``DEV_PREFIX`` if no ``TARGET`` is provided).
 
 The defaults for the newly attached disks and NICs are in ``/var/lib/one/remotes/etc/vmm/kvm/kvmrc``. The relevant parameters are prefixed with ``DEFAULT_ATTACH_`` and explained in the `Files and Parameters`_ below.
@@ -447,6 +449,8 @@ The parameters that can be changed here are as follows:
 | ``SHUTDOWN_TIMEOUT``                          | Seconds to wait after shutdown until timeout                                                                                                                                                                    |
 +-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``VIRSH_RETRIES``                             | Number of "virsh" command retries when required. Currently used in detach-interface and restore.                                                                                                                |
++-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``SYNC_TIME``                                 | Trigger VM time synchronization from RTC on resume and after migration. QEMU guest agent must be running. Valid values: ``no`` (default) or ``yes``.                                                            |
 +-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``FORCE_DESTROY``                             | Force VM cancellation after shutdown timeout                                                                                                                                                                    |
 +-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+

@@ -72,6 +72,8 @@ vCenter
 
 - `All VMM driver actions receive relevant information through stdin, saving oned calls and thus enhancing performance <https://github.com/OpenNebula/one/issues/1896>`__.
 - `The possibility to change the port used when OpenNebula connects to vSphere's API <https://github.com/OpenNebula/one/issues/1208>`__.
+- `Fixes an issue that causes missing parameters when import a vcenter network <https://github.com/OpenNebula/one/issues/3567>`__.
+- `Fixes an issue that causes VMware VM import to fail when it has disks with the same name in multiple datastores <https://github.com/OpenNebula/one/issues/3818>`__.
 
 OneFlow & OneGate
 ===============================================================================
@@ -109,6 +111,10 @@ KVM Monitoring Drivers
 
 - `KVM monitor scripts return host CPU model <https://github.com/OpenNebula/one/issues/3851>`__.
 
+KVM Virtualization Driver
+================================================================================
+- A new option to sync time in guests has been added, :ref:`see more details <kvmg>`.
+
 Other Issues Solved
 ================================================================================
 - `Fixes an issue that makes the network drivers fail when a large number of secturiy groups rules are used <https://github.com/OpenNebula/one/issues/2851>`_.
@@ -133,3 +139,12 @@ Other Issues Solved
 - `Add migrate power off in sunstone view yamls files <https://github.com/OpenNebula/one/issues/3215>`__.
 - `Fix preserve attributes in Virtual Machine Template <https://github.com/OpenNebula/one/issues/3832>`__.
 - `Fix libvirt race condition when detaching network interface <https://github.com/OpenNebula/one/issues/3873>`__.
+- `Fix hide the create button when it not have options <https://github.com/OpenNebula/one/issues/3614>`__.
+- `Fix parse error in VM descriptions with spaces <https://github.com/OpenNebula/one/issues/3232>`__.
+- `Fix error on resize VM disk in Firefox <https://github.com/OpenNebula/one/issues/3883>`__.
+- `Fix only show update if the version is stable <https://github.com/OpenNebula/one/issues/3870>`__.
+- `Fix update CPU model in VM config view <https://github.com/OpenNebula/one/issues/3858>`__.
+- `Fix showing uplinks as networks in vcenter hosts <https://github.com/OpenNebula/one/issues/3839>`__.
+- `Add the possibility of exclude some addresses from the HTTP proxy <https://github.com/OpenNebula/one/issues/916>`__.
+- `Improve performance for large fileset containers <https://github.com/OpenNebula/one/issues/3880>`__.
+- `Fix show error when disable OpenNebula Systems support endpoint <https://github.com/OpenNebula/one/issues/3268>`__.

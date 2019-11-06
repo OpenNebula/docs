@@ -277,7 +277,7 @@ All OpenNebula datastores are actively monitoring, and the scheduler will refuse
 .. _storage_drs_pods:
 
 Datastore clusters with Storage DRS
-================================================================================
+-----------------------------------
 
 Thanks to OpenNebula’s scheduler, you can manage your datastores clusters with load distribution but you may already be using `vCenter’s Storage DRS <http://pubs.vmware.com/vsphere-60/index.jsp?topic=%2Fcom.vmware.vsphere.hostclient.doc%2FGUID-598DF695-107E-406B-9C95-0AF961FC227A.html>`__ capabilities. Storage DRS allows you to manage the aggregated resources of a datastore cluster. If you're using Storage DRS, OpenNebula can delegate the decision of selecting a datastore to the Storage DRS cluster (SDRS) but as this behavior interferes with OpenNebula’s scheduler and vSphere’s API impose some restrictions, there will be some limitations in StorageDRS support in OpenNebula.
 
@@ -295,12 +295,12 @@ In order to delegate the datastore selection to the SDRS cluster you must inform
     :align: center
 
 Marketplace with vCenter Datastores
-================================================================================
+-----------------------------------
 
 The vCenter datastores are compatible with OpenNebula HTTP and S3 marketplaces. It's necessary a generic VM Template. More information about OpenNebula marketplaces can be found :ref:`here <marketplace_overview>`.
 
 Tuning and Extending
-================================================================================
+--------------------
 
 Drivers can be easily customized please refer to the specific guide for each datastore driver or to the :ref:`Storage subsystem developer's guide <sd>`.
 
