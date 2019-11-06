@@ -824,15 +824,15 @@ Select the images you want to import and click on the Import button. The ID of t
 .. _vcenter_migrate:
 
 Migrate vCenter Virtual Machines with OpenNebula
-================================================================================
+------------------------------------------------
 
 vCenter Driver allows migration of VMs between different vCenter clusters (ie, OpenNebula hosts) and/or different datastores. Depending on the type of migration (cold, the VM is powered off, or saved; or live, the VM is migrated while running), or the target (cluster and/or datastore), several requirements needs to be met in order to migrate the machine.
 
 Migrating a VM Between vCenter Clusters (OpenNebula Hosts)
-----------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Requirements (both live and cold migrations)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 * Every Network attached to the selected VMs need to exists in both vCenter clusters and OpenNebula clusters
 * Every Datastore that is used by the VM need to exist in both vCenter clusters and OpenNebula clusters
@@ -844,13 +844,13 @@ Requirements (both live and cold migrations)
 .. Note:: A good place to check if the VM meets the OpenNebula requirements is to peep into the 'AUTOMATIC_REQUIREMENTS' attribute of the Virtual Machine (this can be reviewed in the Template info tab) and check if it includes the target OpenNebula clusters (remember, a cluster in OpenNebula is a collection of hosts, virtual networks and datastores, a cluster in vCenter is represented as a host in OpenNebula).
 
 Requirements (only live migrations)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 * vMotion interface enabled in both vCenter clusters (otherwise the driver will warn about compatibility issues)
 * OpenNebula live migration only works for running VMs so be sure to check the state before
 
 Usage (CLI)
-~~~~~~~~~~~
+^^^^^^^^^^^
 
 **Cold Migration**
 
@@ -866,17 +866,17 @@ Usage (CLI)
 
 
 Migrating a VM Between Datastores
----------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 On a VM migration, target datastore can be changed. Disks belonging to the VM will be migrated to the target datastore. This is useful for rebalancing resources usage among datastores.
 
 Requirements (both cold and live migrations)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 * Every Datastore that is used by the VM needs to exist in both vCenter clusters and OpenNebula clusters
 
 Usage (CLI)
-~~~~~~~~~~~
+^^^^^^^^^^^
 
 **Cold Migration**
 
@@ -975,7 +975,7 @@ A hook can be deleted if its ID is known. The ID can be retrieved using onehook 
     $ onehook delete <hook_id>
 
 Driver tuning
-================================================================================
+-------------
 
 Drivers can be easily customized please refer to :ref:`vCenter Driver Section <vcenter_driver>` in the :ref:`Integration Guide <integration_guide>`.
 

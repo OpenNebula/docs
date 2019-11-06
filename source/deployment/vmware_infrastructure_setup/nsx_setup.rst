@@ -58,7 +58,7 @@ NSX Driver Limitations
 Adding NSX Manager into OpenNebula
 -----------------------------------
 
-This is a semi-automatic process. When a vCenter is connected to a NSX Manager, OpenNebula in the next monitoring execution will detect it and a new tab called “NSX” will show in the UI allowing the configuration of the credentials (User and Password) needed to connect to NSX Manager. The same process is applied when importing a new vcenter cluster that is prepared to work with NSX-V or NSX-T.
+This is a semi-automatic process. When vCenter is connected to a NSX Manager, OpenNebula in the next monitoring execution will detect it and a new tab called “NSX” will show in the UI allowing the configuration of the credentials (User and Password) needed to connect to NSX Manager. The same process is applied when importing a new vcenter cluster that is prepared to work with NSX-V or NSX-T.
 
 This section details how to configure OpenNebula to start working with NSX, doing the complete process ranging from importing a vCenter Cluster to checking that OpenNebula gets NSX information correctly
 
@@ -88,58 +88,52 @@ Once a vCenter cluster is imported into OpenNebula, two hooks are created:
     - vcenter_net_create
     - vcenter_net_delete
 
-For more information about list, create and delete these vCenter hooks go to: :ref:`vcenter_hooks`.
+For more information about list, create and delete these vCenter hooks go to :ref:`vcenter_hooks`.
 
 Check NSX Manager autodiscovered attributes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-After you have a vcenter cluster imported, wait until monitor process detect if there is a NSX Manager registered for that cluster.
-You can read that information going to:
+After a vCenter cluster is imported and monitor cycle finalises, the NSX Manager registered for that cluster is detected. You can read that information going to:
 
-    Infrasctructure > Hosts
+    Infrastructure > Hosts
 
-And clicking on the desired OpenNebula Host, you find the following information under Attributes section
+And clicking on the desired OpenNebula Host, the following information is available under Attributes section
 
 .. figure:: /images/nsx_autodiscover_01.png
     :align: center
 
-
-
-If a NSX Manager exists, you will have the next attributes:
+In particular the following attributes are retrieved:
 
     - **NSX_MANAGER**: Containing the url for that NSX Manager
     - **NSX_TYPE**: Indicating if it’s NSX-V or NSX-T
     - **NSX_VERSION**: Version of that NSX Manager
     - **NSX_STATUS**: Describing the status of the last nsx manager check
 
-You have a more detailed explanation of these parameters into the NSX attributes section nsx-non-editable-attributes_
-The next step is introduce NSX Manager credentials.
+You have a more detailed explanation of these parameters in the :ref:`NSX attributes section <nsx-non-editable-attributes>`.
 
 Setting NSX Manager Credentials
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Once you have imported a vcenter cluster as OpenNebula Host and checked that NSX parameters are discovered, the next step is to introduce NSX credentials.
-A new tab called “NSX” is showing now into the Host:
+Once a vCenter cluster is imported as an OpenNebula Host, the next step is to introduce the NSX credentials. A new tab called “NSX” is showing now into the Host:
 
     Infrastructure > Hosts
 
-And click on desired host.
+After clicking on the relevant host:
 
 .. figure:: /images/nsx_setting_nsx_credentials_01.png
     :align: center
 
-Click on NSX tab and introduce NSX credentials
+Click on NSX tab and introduce NSX credentials:
 
 .. figure:: /images/nsx_setting_nsx_credentials_02.png
     :align: center
 
-And click on Submit
-When submit, credentials are validated against NSX Manager.
+And click on Submit, after which credentials are validated against NSX Manager.
 
     - If the credentials are valid a message is shown and credentials are saved.
     - If the credentials are invalid an error is shown
 
-Now NSX credentials are saved and you can now read two new attributes:
+Now NSX credentials are saved in two new attributes:
 
     - **NSX_USER**: NSX Manager user
     - **NSX_PASSWORD**: NSX Manager Encrypted password
@@ -147,14 +141,12 @@ Now NSX credentials are saved and you can now read two new attributes:
 .. figure:: /images/nsx_setting_nsx_credentials_03.png
     :align: center
 
-Remind that you cannot create Transport Zones from OpenNebula and it’s a requirement having them created. You can add new Transport Zones from NSX Manager and OpenNebula will detect them after next monitor execution.
-
+Remind that Transport Zones cannot be created from OpenNebula and it’s a requirement having them created. However, adding Transport Zones in NSX Manager is supported, OpenNebula will detect them after the following monitor cycle.
 
 Checking NSX Status
 ^^^^^^^^^^^^^^^^^^^
 
-You have a OpenNebula Host, that is, a vCenter cluster, which is prepared to work with NSX, you have discovered its NSX Manager and introduce credentials, so the last step is checking that it’s working properly.
-To check NSX status can read the NSX_STATUS attribute, you can find it into:
+To check NSX status, proceed to:
 
     Infrastructure > Hosts
 
@@ -163,7 +155,7 @@ And click on desired host and look into “Attributes” section
 .. figure:: /images/nsx_status.png
     :align: center
 
-If everything works properly you will be able to read two attributes:
+If everything works properly the next two attributes will show up:
 
     - **NSX_STATUS** = OK
     - **NSX_TRANSPORT_ZONES** = Containing the Transport zones availables.
@@ -173,14 +165,14 @@ If everything works properly you will be able to read two attributes:
 NSX non editable attributes
 ---------------------------
 
-These attributes are autodiscovered, so it not supported modify them.
+These attributes are autodiscovered and they cannot be modified manually.
 
 +-----------------------+------------+-----------------------------------+-------------------------------------------------------------------------------------------+
 | Attribute             | Type       | Value                             | Description                                                                               |
 +=======================+============+===================================+===========================================================================================+
-| NSX_LABEL             | STRING     | "NSX - Manager" | "NSX-T Manager" | Laber for NSX Manager type                                                                |
+| NSX_LABEL             | STRING     | "NSX - Manager" | "NSX-T Manager" | Label for NSX Manager type                                                                |
 +-----------------------+------------+-----------------------------------+-------------------------------------------------------------------------------------------+
-| NSX_MANAGER           | STRING     | URL of endpoint                   | Endpoint containing the NSX Manager URL. Opennebula must reach that url to send commands  |
+| NSX_MANAGER           | STRING     | URL of endpoint                   | Endpoint containing the NSX Manager URL. OpenNebula must reach that url to send commands  |
 +-----------------------+------------+-----------------------------------+-------------------------------------------------------------------------------------------+
 | NSX_STATUS            | STRING     | Possible values are:              | Describe the latest NSX status                                                            |
 +-----------------------+------------+-----------------------------------+-------------------------------------------------------------------------------------------+
@@ -218,7 +210,7 @@ These parameters have to be introduced manually from NSX tab
 | **NSX_PASSWORD**          |  STRING     |     YES      | NSX Manager password |
 +---------------------------+-------------+--------------+----------------------+
 
-Drriver tuning
---------------
+Driver tuning
+-------------
 
 Drivers can be easily customized please refer to :ref:`NSX Driver Section <nsx_driver>` in the :ref:`Integration Guide <integration_guide>`.
