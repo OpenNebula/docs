@@ -250,6 +250,8 @@ Limitations
 
     $ /usr/sbin/one-contextd all reconfigure
 
+**Importing networks.** OpenNebula won't import a network if it not belongs to any host. In the case of distributed port groups if DVS has no host attached to it.
+
 .. _network_monitoring:
 
 Network monitoring
