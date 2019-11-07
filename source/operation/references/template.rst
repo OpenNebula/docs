@@ -1295,3 +1295,24 @@ Example:
      MEMORY_ACCESS = "shared",
      NUMA_NODES    = "2",
      PIN_POLICY    = "THREAD" ]
+     
+Asymmetric NUMA configurations, i.e. not distributing the VM resources evenly across the nodes, can be defined manually setting the NUMA_NODE attribute:
+
++---------------------+---------------------------------------------------------------------+
++ NUMA_NODE attribute | Meaning                                                             |
++=====================+=====================================================================+
+| MEMORY              | Memory allocated in the node, in MB                                 |
++---------------------+---------------------------------------------------------------------+
+| TOTAL_CPUS          | Total number of CPU units, CORE*THREADS                             |
++---------------------+---------------------------------------------------------------------+
+
+For example:
+
+.. code::
+
+   TOPOLOGY = [ PIN_POLICY = CORE, SOCKETS = 2 ]
+
+   NUMA_NODE = [ MEMORY = 1024, TOTAL_CPUS = 2 ]
+   NUMA_NODE = [ MEMORY = 2048, TOTAL_CPUS = 4 ]
+    
+Please :ref:`check the NUMA guide <numa>` for more information.
