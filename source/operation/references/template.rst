@@ -1265,10 +1265,10 @@ Example:
 
 .. |user_inputs| image:: /images/sunstone_user_inputs.png
 
-Numa topology Section
+NUMA topology Section
 ================================================================================
 
-The following attributes can use to define a numa topology for the VM.
+The following attributes can use to define a NUMA topology for the VM.
 
 +--------------------+---------------------------------------------------------------------+
 + TOPOLOGY attribute | Meaning                                                             |
