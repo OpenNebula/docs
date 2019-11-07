@@ -1264,3 +1264,34 @@ Example:
         TIME="1537653600" ]
 
 .. |user_inputs| image:: /images/sunstone_user_inputs.png
+
+Numa topology Section
+================================================================================
+
+The following attributes can use to define a numa topology for the VM.
+
++--------------------+---------------------------------------------------------------------+
++ TOPOLOGY attribute | Meaning                                                             |
++====================+=====================================================================+
+| PIN_POLICY         | vCPU pinning preference: ``CORE``, ``THREAD``, ``SHARED``, ``NONE`` |
++--------------------+---------------------------------------------------------------------+
+| SOCKETS            | Number of sockets or NUMA nodes.                                    |
++--------------------+---------------------------------------------------------------------+
+| CORES              | Number of cores per node                                            |
++--------------------+---------------------------------------------------------------------+
+| THREADS            | Number of threads per core                                          |
++--------------------+---------------------------------------------------------------------+
+| HUGEPAGE_SIZE      | Size of the hugepages (MB). If not defined no hugepages will be used|
++--------------------+---------------------------------------------------------------------+
+| MEMORY_ACCESS      | Control if the memory is to be mapped ``shared`` or ``private``     |
++--------------------+---------------------------------------------------------------------+
+
+Example:
+
+.. code::
+
+   TOPOLOGY = [
+     HUGEPAGE_SIZE = "2",
+     MEMORY_ACCESS = "shared",
+     NUMA_NODES    = "2",
+     PIN_POLICY    = "THREAD" ]
