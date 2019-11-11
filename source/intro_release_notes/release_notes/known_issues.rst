@@ -8,11 +8,6 @@ A complete list of `known issues for OpenNebula is maintained here <https://gith
 
 This page will be updated with relevant information about bugs affecting OpenNebula, as well as possible workarounds until a patch is oficially published.
 
-LXD Guest OS issues
-================================================================================
-
-Sometimes after a container is powered off, `LXD doesn't remove the host-side NIC of the veth pair <https://github.com/OpenNebula/one/issues/3189>`__. You can fix this if it happens in your setup by `adding a cleanup action <http://docs.opennebula.org/5.9/deployment/open_cloud_host_setup/lxd_driver.html#troubleshooting>`_  for LXD in the network drivers.
-
 NIC alias and IP spoofing rules
 ================================================================================
 

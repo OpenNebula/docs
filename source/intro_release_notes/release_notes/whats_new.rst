@@ -27,7 +27,7 @@ OpenNebula 5.10 (Boomerang) is the sixth major release of the OpenNebula 5 serie
 
 As usual, OpenNebula 5.10 codename refers to a nebula, in this case the `Boomerang Nebula <https://en.wikipedia.org/wiki/Boomerang_Nebula>`__, a protoplanetary nebula located 5,000 light-years away from Earth in the constellation Centaurus. It is also known as the Bow Tie Nebula and catalogued as LEDA 3074547. The nebula's temperature is measured at 1 K (-272.15 °C; -457.87 °F) making it the coolest natural place currently known in the Universe. Same as OpenNebula in the IaaS space :)
 
-The OpenNebula team is now transitioning to "bug-fixing mode". Note that this is a first beta release aimed at testers and developers to try the new features, and send a more than welcomed feedback for the final release. Also note that being a beta, there is no migration path from the previous stable version (5.8.5) nor migration path to the final stable version (5.10.0). A list of open issues can be found in the `GitHub development portal <https://github.com/OpenNebula/one/milestone/23>`__.
+The OpenNebula team is now transitioning to "bug-fixing mode". Note that this is a 5.10 release candidate aimed at testers and developers to try the new features, and send a more than welcomed feedback for the final release. Also note that there is no migration path from the previous stable version (5.8.5) nor migration path to the final stable version (5.10.0). A list of open issues can be found in the `GitHub development portal <https://github.com/OpenNebula/one/milestone/23>`__.
 
 In the following list you can check the highlights of OpenNebula 5.10 (a detailed list of changes can be found `here <https://github.com/OpenNebula/one/milestone/23?closed=1>`__):
 
