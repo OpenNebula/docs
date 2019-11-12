@@ -7,7 +7,7 @@ To add OpenNebula repository execute the following as root:
 
 .. prompt:: bash # auto
 
-    # cat << EOT > /etc/yum.repos.d/opennebula.repo
+    # cat << "EOT" > /etc/yum.repos.d/opennebula.repo
     [opennebula]
     name=opennebula
     baseurl=https://downloads.opennebula.org/repo/5.9/CentOS/7/$basearch
@@ -21,7 +21,7 @@ To add OpenNebula repository execute the following as root:
 
 .. prompt:: bash # auto
 
-    # cat << EOT > /etc/yum.repos.d/opennebula.repo
+    # cat << "EOT" > /etc/yum.repos.d/opennebula.repo
     [opennebula]
     name=opennebula
     baseurl=https://downloads.opennebula.org/repo/5.9/CentOS/8/$basearch
