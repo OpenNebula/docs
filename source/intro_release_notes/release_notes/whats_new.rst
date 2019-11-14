@@ -148,3 +148,4 @@ Other Issues Solved
 - `Add the possibility of exclude some addresses from the HTTP proxy <https://github.com/OpenNebula/one/issues/916>`__.
 - `Improve performance for large fileset containers <https://github.com/OpenNebula/one/issues/3880>`__.
 - `Fix show error when disable OpenNebula Systems support endpoint <https://github.com/OpenNebula/one/issues/3268>`__.
+- `Fix Race condition when two migrate actions are executed simultaneously over the same VM <https://github.com/OpenNebula/one/issues/3936>`__.
