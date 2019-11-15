@@ -51,6 +51,8 @@ Hook Execution Manager configuration is set in ``/etc/one/onehem-server.conf``:
 +-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | hook_base_path        | Base location to look for hook scripts when commands use a relative path (default value ``/var/lib/one/remotes/hooks``)                                                   |
 +-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| remote_hook_base_path | Base location to look for hook scripts when commands use a relative path and ``REMOTE="yes"`` is specified (default value ``'/var/tmp/one/hooks'``)                       |
++-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | subscriber_endpoint   | To subscribe for OpenNebula events, must match those in ``HM_MAD`` section of ``oned.conf``.                                                                              |
 +-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | replier_endpoint      | To send hook execution results (reply to events) to oned, it must match those in ``HM_MAD`` section of ``oned.conf``.                                                     |
