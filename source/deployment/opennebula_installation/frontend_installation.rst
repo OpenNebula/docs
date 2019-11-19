@@ -94,6 +94,17 @@ Install OpenNebula
 
 Install the CentOS/RHEL OpenNebula Front-end with packages from **our repository** by executing the following as root:
 
+.. note::
+
+   On CentOS/RHEL 8, the essential packages ``openpgm`` and ``openpgm-devel``
+   are still part of the EPEL testing repository, which is not enabled
+   by default. Before installing OpenNebula, you have to first install
+   these packages by running;
+
+   .. prompt:: bash # auto
+
+       # yum install --enablerepo=epel-testing openpgm openpgm-devel
+
 .. prompt:: bash # auto
 
     # yum install opennebula-server opennebula-sunstone opennebula-ruby opennebula-gate opennebula-flow
