@@ -100,6 +100,7 @@ Packaging
 - Optional Python bindings are now build also for Python 3 -- package `python3-pyone <https://github.com/OpenNebula/packages/issues/106>`_.
 - `Reviewed sudo-enabled commands <https://github.com/OpenNebula/one/issues/3046>`_, obsolete sudo-enabled commands were removed and rest commands are now enabled by each installed OpenNebula component package (server, node KVM, node LXD) to provide more fine-grained security.
 - Packaged files and directories have more restricted ownership and permissions across all platforms, see `here <https://github.com/OpenNebula/one/issues/3814>`_.
+- Added new dependency on ``libssl-dev`` into ``install_gems`` on Debian-like systems, see `here <https://github.com/OpenNebula/one/issues/3954>`__.
 
 IPAM Drivers
 ================================================================================
