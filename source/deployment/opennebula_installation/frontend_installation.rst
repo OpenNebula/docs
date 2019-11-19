@@ -121,6 +121,17 @@ Some OpenNebula components need Ruby libraries. OpenNebula provides a script tha
 
 As root execute:
 
+.. warning::
+
+   On Ubuntu (and possibly Debian) systems, the Ruby libraries installation
+   might fail when processing ``mysql2`` gem due to new unhandled dependency.
+   Before running ``install_gems``, please first manually install
+   ``libssl-dev`` package by running:
+
+   .. prompt:: bash # auto
+
+       # apt-get install libssl-dev
+
 .. prompt:: bash # auto
 
     # /usr/share/one/install_gems
