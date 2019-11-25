@@ -86,7 +86,7 @@ The example below show how get the information of a running VM, print its name, 
     func main() {
         conf := goca.NewConfig("user", "password_or_token", "endpoint")
 
-        client := goca.NewClient(conf)
+        client := goca.NewDefaultClient(conf)
         controller := goca.NewController(client)
 
         id, _ := strconv.Atoi(os.Args[1])
