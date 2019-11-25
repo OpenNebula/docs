@@ -264,6 +264,4 @@ Troubleshooting
 - The command parameter in the VNC configuration dictates which command will appear in noVNC when entering a container. Having ``/bin/bash`` will skip the user login and gain root access on the container.
 - If you experience `reboot issues <https://github.com/OpenNebula/one/issues/3189>`_ you can apply a network hook patch by copying the file ``/usr/share/one/examples/network_hooks/99-lxd_clean.rb`` to ``/var/lib/one/remotes/vnm/<network_driver>/clean.d`` and issuing ``onehost sync --force``. This have to be done for all network drivers used in your cloud.
 
-.. TODO Review with latest format, include a simple mapper
-
 .. |image1| image:: /images/vncterm_command.png
