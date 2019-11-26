@@ -1,4 +1,4 @@
 
-.. |version| replace:: 5.9
-.. |compatibility| replace:: :ref:`5.9 <compatibility>`
-.. |onedconf| replace:: :ref:`5.9 <oned_conf>`
+.. |version| replace:: 5.10
+.. |compatibility| replace:: :ref:`5.10 <compatibility>`
+.. |onedconf| replace:: :ref:`5.10 <oned_conf>`

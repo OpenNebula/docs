@@ -2,8 +2,8 @@
 versions:
 - - "Stable"
   - http://docs.opennebula.org/stable
-- - "5.9"
-  - http://docs.opennebula.org/5.9
+- - "5.10"
+  - http://docs.opennebula.org/5.10
 - - "5.8"
   - http://docs.opennebula.org/5.8
 - - "5.6"
@@ -19,12 +19,12 @@ versions:
 
 downloads:
 - - "Intro and Release Notes"
-  - "http://docs.opennebula.org/pdf/5.9/opennebula_5.9_intro_release_notes.pdf"
+  - "http://docs.opennebula.org/pdf/5.10/opennebula_5.10_intro_release_notes.pdf"
 - - "Deployment Guide"
-  - "http://docs.opennebula.org/pdf/5.9/opennebula_5.9_deployment_guide.pdf"
+  - "http://docs.opennebula.org/pdf/5.10/opennebula_5.10_deployment_guide.pdf"
 - - "Operation Guide"
-  - "http://docs.opennebula.org/pdf/5.9/opennebula_5.9_operation_guide.pdf"
+  - "http://docs.opennebula.org/pdf/5.10/opennebula_5.10_operation_guide.pdf"
 - - "Advanced Components"
-  - "http://docs.opennebula.org/pdf/5.9/opennebula_5.9_advanced_components_guide.pdf"
+  - "http://docs.opennebula.org/pdf/5.10/opennebula_5.10_advanced_components_guide.pdf"
 - - "Integration Guide"
-  - "http://docs.opennebula.org/pdf/5.9/opennebula_5.9_integration_guide.pdf"
+  - "http://docs.opennebula.org/pdf/5.10/opennebula_5.10_integration_guide.pdf"
