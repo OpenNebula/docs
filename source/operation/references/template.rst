@@ -704,6 +704,8 @@ Context information is passed to the Virtual Machine via an ISO mounted as a par
 |                                   | ``/usr/share/zoneinfo/`` (e.g. ``US/Central``). On Windows, the name must match   |       |         |     |
 |                                   | supported zone listed by ``tzutil /l`` (e.g. ``Central Standard Time``).          |       |         |     |
 +-----------------------------------+-----------------------------------------------------------------------------------+-------+---------+-----+
+| **GROW_ROOTFS**                   | If set to ``NO``, the automatic root filesystem growing will be disabled.         | Linux | Linux   | O   |
++-----------------------------------+-----------------------------------------------------------------------------------+-------+---------+-----+
 
 .. note::
 
@@ -1295,7 +1297,7 @@ Example:
      MEMORY_ACCESS = "shared",
      NUMA_NODES    = "2",
      PIN_POLICY    = "THREAD" ]
-     
+
 Asymmetric NUMA configurations, i.e. not distributing the VM resources evenly across the nodes, can be defined manually setting the NUMA_NODE attribute:
 
 +---------------------+---------------------------------------------------------------------+
@@ -1314,5 +1316,5 @@ For example:
 
    NUMA_NODE = [ MEMORY = 1024, TOTAL_CPUS = 2 ]
    NUMA_NODE = [ MEMORY = 2048, TOTAL_CPUS = 4 ]
-    
+
 Please :ref:`check the NUMA guide <numa>` for more information.
