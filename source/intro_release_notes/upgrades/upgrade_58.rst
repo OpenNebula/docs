@@ -52,7 +52,7 @@ If you haven't modified any configuration files, you can skip this step and proc
 
 In order to update the configuration files with your existing customizations you'll need to:
 
-#. Compare the old and new configuration files: ``diff -ur /etc/one.YYYY-MM-DD /etc/one`` and ``diff -ur /var/lib/one/etc.YYYY-MM-DD /var/lib/one/etc``. You can use graphical diff-tools like ``meld`` to compare both directories, which are very useful in this step.
+#. Compare the old and new configuration files: ``diff -ur /etc/one.YYYY-MM-DD /etc/one`` and ``diff -ur /var/lib/one/remotes/etc.YYYY-MM-DD /var/lib/one/remotes/etc``. You can use graphical diff-tools like ``meld`` to compare both directories, which are very useful in this step.
 #. Edit the **new** files and port all the customizations from the previous version.
 
 Step 6. Upgrade the Database version
@@ -92,9 +92,18 @@ Now you should be able to start OpenNebula as usual, running ``service opennebul
 
 At this point OpenNebula will continue the monitoring and management of your previous Hosts and VMs.  As a measure of caution, look for any error messages in oned.log, and check that all drivers are loaded successfully. You may also try some  **show** subcommand for some resources to check everything is working (e.g. ``onehost show``, or ``onevm show``).
 
+Step 9. Update ServerAdmin password to SHA256
+--------------------------------------------------------------------------------
 
-Step 9. Update the Hypervisors (LXD & KVM only)
------------------------------------------------
+Since 5.8 passwords and tokens are generated using SHA256. OpenNebula will update the DB automatically for your regular users (including oneadmin). However, you need manually trigger the update for serveradmin. You can do so, with:
+
+.. prompt:: text # auto
+
+    $ oneuser passwd --sha256 serveradmin `cat /var/lib/one/.one/sunstone_auth|cut -f2 -d':'`
+
+
+Step 10. Update the Hypervisors (LXD & KVM only)
+------------------------------------------------
 
 First update the virtualization, storage and networking drivers, as ``oneadmin`` user execute:
 
