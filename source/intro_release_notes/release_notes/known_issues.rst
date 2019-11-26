@@ -13,6 +13,11 @@ NIC alias and IP spoofing rules
 
 For NIC alias the IP spoofing rules are not triggered when the VM is created nor when the interface is attached. If you have configured IP spoofing for your virtual networks be aware that those will not be honored by NIC ALIAS interfaces. More info `here <https://github.com/OpenNebula/one/issues/3079>`__.
 
+Wilds with snapshots in vCenter
+================================================================================
+
+Currently, OpenNebula does not support importing a Wild with snapshot into vCenter. Before importing a Wild in vCenter you must remove all snapshots. More information can be found `here <https://github.com/OpenNebula/one/issues/1268>`__.
+
 CLI warning message
 ===================
 
