@@ -16,8 +16,8 @@ CentOS/RHEL 7.x
 
     # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.10.0/one-context-5.10.0-1.el7.noarch.rpm
 
-CentOS/RHEL 8.x and Fedora
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+CentOS/RHEL 8.x and Fedora 29+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. prompt:: bash # auto
 
@@ -83,8 +83,8 @@ CentOS/RHEL 7
     # yum install -y epel-release
     # yum install -y one-context-[0-9]*el7*rpm
 
-CentOS/RHEL 7 and Fedora
-~~~~~~~~~~~~~~~~~~~~~~~~
+CentOS/RHEL 8 and Fedora 29+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. prompt:: bash # auto
 
