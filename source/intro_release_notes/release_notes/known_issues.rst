@@ -26,3 +26,8 @@ Using some CLI commands in Ubuntu 18.04, due to ruby and gems version, you may s
 `warning: constant ::Fixnum is deprecated`
 
 As a workaround you can use `export RUBYOPT="-W0`, this will disable the warning message (but, take in account that it will disable all warning messages from ruby)
+
+Hook Events content
+===================
+
+If the XML returned as ``OUT`` parameter inside the ``HOOK_MESSAGE`` xml body contains a ``CDATA`` section it will make the XML parse fails as described in https://github.com/OpenNebula/one/issues/3996.
