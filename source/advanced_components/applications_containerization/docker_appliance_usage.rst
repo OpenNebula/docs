@@ -10,7 +10,7 @@ In order to use the Docker Appliance it is needed to have the appliance configur
 Step 1 - Instantiate the template
 =========================================================
 
-First of all you need to identify the template. The default name is ``Ubuntu 16.04 with Docker - KVM/vCenter``.
+First of all you need to identify the template. The default name is ``Ubuntu 16.04 with Docker``.
 
 Then you just need to instantiate it and wait for it to be in ``running`` state.
 
