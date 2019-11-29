@@ -14,7 +14,7 @@ Upgrading Single Front-end Deployments
 
 Step 1. Check Virtual Machine Status
 --------------------------------------------------------------------------------
-Before proceeding, make sure you don't have any VMs in a transient state (prolog, migr, epil, save). Wait until these VMs get to a final state (runn, suspended, stopped, done). Check the :ref:`Managing Virtual Machines guide <vm_guide_2>` for more information on the VM life-cycle.
+Before proceeding, make sure you don't have any VMs in a transient state (prolog, migr, epil, save). Wait until these VMs get to a final state (running, suspended, stopped, done). Check the :ref:`Managing Virtual Machines guide <vm_guide_2>` for more information on the VM life-cycle.
 
 Step 2. Stop OpenNebula
 --------------------------------------------------------------------------------
