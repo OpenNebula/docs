@@ -11,4 +11,4 @@ The following new features has been backported to 5.10.1:
 
 The following issues has been solved in 5.10.1:
 
-- `Hooks chardata nesting problem <https://github.com/OpenNebula/one/issues/3996>`__.
+- `Fix Hook messages to not nest CDATA tags <https://github.com/OpenNebula/one/issues/3996>`__.
