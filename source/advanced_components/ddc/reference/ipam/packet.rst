@@ -8,7 +8,7 @@ Packet IPAM driver
 
     Feature available since **OpenNebula 5.8.5** only.
 
-This IPAM driver is responsible for managing the public IPv4 ranges on Packet as IPv4 Address Ranges withing the OpenNebula Virtual Networks. Manages full lifecycles of the Address Range from allocation of new custom range to its releasing. Read more about :ref:`IPAM Driver <devel-ipam>` in the Integration Guide.
+This IPAM driver is responsible for managing the public IPv4 ranges on Packet as IPv4 Address Ranges within the OpenNebula Virtual Networks. Manages full lifecycles of the Address Range from allocation of new custom range to its releasing. Read more about :ref:`IPAM Driver <devel-ipam>` in the Integration Guide.
 
 .. important::
 
