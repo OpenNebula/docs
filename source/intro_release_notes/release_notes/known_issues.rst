@@ -31,3 +31,8 @@ Hook Events content
 ===================
 
 If the XML returned as ``OUT`` parameter inside the ``HOOK_MESSAGE`` xml body contains a ``CDATA`` section it will make the XML parse fails as described in https://github.com/OpenNebula/one/issues/3996.
+
+LXD marketplace URL error
+=========================
+
+There is `an error <https://github.com/OpenNebula/one/issues/4005>`__  when exporting a LXD virtual appliance to the image datastore. You can `update /var/lib/one/remotes/market/linuxcontainers/monitor <https://github.com/OpenNebula/one/pull/4008>`__ delete the LXD marketplace and add a new one.
