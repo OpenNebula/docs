@@ -21,7 +21,7 @@ A cloud architecture is defined by three components: storage, networking and vir
 -  **Datastores** that hold the base images of the VMs.
 -  Physical **networks** used to support basic services such as interconnection of the storage servers and OpenNebula control operations, and VLANs for the VMs.
 
-OpenNebula presents a highly modular architecture that offers broad support for commodity and enterprise-grade hypervisor, monitoring, storage, networking and user management services. This Section briefly describes the different choices that you can make for the management of the different subsystems. If your specific services are not supported we recommend to check the drivers available in the `Add-on Catalog <http://opennebula.org/addons:catalog>`__. We also provide information and support about how to develop new drivers.
+OpenNebula presents a highly modular architecture that offers broad support for commodity and enterprise-grade hypervisor, monitoring, storage, networking and user management services. This Section briefly describes the different choices that you can make for the management of the different subsystems. If your specific services are not supported we recommend to check the drivers available in the `Add-on Catalog <https://github.com/OpenNebula/one/wiki/Add_ons-Catalog>`__. We also provide information and support about how to develop new drivers.
 
 .. _dimensioning_the_cloud:
 
@@ -48,7 +48,7 @@ The minimum recommended specs are for the OpenNebula front-end are:
 | Network   | 2 NICS                            |
 +-----------+-----------------------------------+
 
-Please take into account that these recommendations are meant as a guidance and may be relaxed or increased depending on the size and workload of your cloud. 
+Please take into account that these recommendations are meant as a guidance and may be relaxed or increased depending on the size and workload of your cloud.
 
 The maximum number of servers (virtualization hosts) that can be managed by a single OpenNebula instance strongly depends on the performance and scalability of the underlying platform infrastructure, mainly the storage subsystem. The general recommendation is that no more than 2,500 servers and 10,000 VMs managed by a single instance. Related to this, read the section about :ref:`how to tune OpenNebula for large deployments <one_scalability>`.
 
@@ -61,7 +61,7 @@ Regarding the dimensions of the Linux virtualization nodes:
 - **MEMORY**: Planning for memory is straightforward, as by default *there is no overcommitment of memory* in OpenNebula. It is always a good practice to count 10% of overhead by the hypervisor (this is not an absolute upper limit, it depends on the hypervisor, however, since containers have a very low overhead, this metric is negligible for LXD nodes). So, in order to sustain a VM workload of 45 VMs with 2GB of RAM each, 90GB of physical memory is needed. The number of hosts is important, as each one will incur a 10% overhead due to the hypervisors. For instance, 10 hypervisors with 10GB RAM each will contribute with 9GB each (10% of 10GB = 1GB), so they will be able to sustain the estimated workload. The rule of thumb is having at least 1GB per core, but this also depends on the expected workload.
 
 **LXD nodes**
-Since LXD avoids using virtual hardware, the amount of resources dedicated to the hypervisor are much lower when compared to KVM. There is no exact figure but you can get an idea from `this resource usage comparison vs KVM <https://insights.ubuntu.com/2015/05/18/lxd-crushes-kvm-in-density-and-speed/>`_ 
+Since LXD avoids using virtual hardware, the amount of resources dedicated to the hypervisor are much lower when compared to KVM. There is no exact figure but you can get an idea from `this resource usage comparison vs KVM <https://insights.ubuntu.com/2015/05/18/lxd-crushes-kvm-in-density-and-speed/>`_
 
 **Storage**
 
