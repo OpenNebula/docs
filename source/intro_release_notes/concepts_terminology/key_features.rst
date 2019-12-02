@@ -31,7 +31,7 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 -  :ref:`Disk snapshot capabilities <vm_guide_2_disk_snapshots>` and :ref:`disk resizing <vm_guide2_resize_disk>` for KVM and LXD instances
 
-- LXD Containers are treated the same way as VMs in OpenNebula and support most of the VM features. 
+- LXD Containers are treated the same way as VMs in OpenNebula and support most of the VM features.
 
 
 **VIRTUAL NETWORK MANAGEMENT**
@@ -76,9 +76,9 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 - Access to the public `OpenNebula Systems Marketplace <http://marketplace.opennebula.systems>`__ with a catalog of :ref:`OpenNebula-ready <context_overview>` cloud images
 
-- Create your private centralized catalog (external satastore) of cloud applications (images and templates) 
+- Create your private centralized catalog (external satastore) of cloud applications (images and templates)
 
-- Move VM images and templates across different types of datastores within the same OpenNebula instance  
+- Move VM images and templates across different types of datastores within the same OpenNebula instance
 
 - Share VM images in Federation environments across several OpenNebula instances
 
@@ -119,7 +119,7 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 - A :ref:`VDC (Virtual Data Center) <manage_vdcs>` is a fully-isolated virtual infrastructure environment where a Group of users, optionally under the control of the group admin, can create and manage compute and storage capacity
 
-- There is a pre-configured :ref:`Sunstone view for group admins<vdc_admin_view>` 
+- There is a pre-configured :ref:`Sunstone view for group admins<vdc_admin_view>`
 
 
 **CAPACITY AND PERFORMANCE MANAGEMENT**
@@ -130,7 +130,7 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 - :ref:`Customizable and highly scalable monitoring system <mon>` and also can be integrated with external data center monitoring tools.
 
-- Powerful and flexible :ref:`scheduler <schg>` for the definition of workload and resource-aware allocation policies such as packing, striping, load-aware, affinity-aware…  
+- Powerful and flexible :ref:`scheduler <schg>` for the definition of workload and resource-aware allocation policies such as packing, striping, load-aware, affinity-aware…
 
 - Definition of groups of related VMs and set :ref:`VM affinity <vmgroups>` rules across them.
 
@@ -170,7 +170,7 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 - :ref:`Broad support for commodity and enterprise-grade hypervisor, monitoring, storage, networking and user management services <uspng>`
 
-- `Packages for major Linux distributions <http://opennebula.org/software/>`__ 
+- `Packages for major Linux distributions <http://opennebula.org/software/>`__
 
 
 **CUSTOMIZATION AND INTEGRATION**
@@ -187,7 +187,7 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 - OneFlow API to create, control and monitor :ref:`multi-tier applications or services composed of interconnected Virtual Machines <appflow_api>`.
 
-- `OpenNebula Add-on Catalog <http://opennebula.org/addons:addons>`_ with components enhancing the functionality provided by OpenNebula
+- `OpenNebula Add-on Catalog <https://github.com/OpenNebula/one/wiki/Add_ons-Catalog>`_ with components enhancing the functionality provided by OpenNebula
 
 - :ref:`Configuration and tuning parameters <oned_conf>` to adjust behavior of the cloud management instance to the requirements of the environment and use cases
 
@@ -214,16 +214,16 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 **QUALITY ASSURANCE**
 
-- `Internal quality assurance process for functionality, scalability, performance, robustness and stability <http://opennebula.org/software/testing/>`__ 
+- `Internal quality assurance process for functionality, scalability, performance, robustness and stability <http://opennebula.org/software/testing/>`__
 
-- `Technology matured through an active and engaged large community <http://opennebula.org/community/>`__ 
+- `Technology matured through an active and engaged large community <http://opennebula.org/community/>`__
 
 - Scalability, reliability and performance tested on many massive scalable production deployments consisting of hundreds of thousands of cores and VMs
 
 
 **PRODUCT SUPPORT**
 
-- `Best-effort community support <http://forum.opennebula.org>`__ 
+- `Best-effort community support <http://forum.opennebula.org>`__
 
 - `SLA-based commercial support directly from the developers <http://opennebula.pro>`__
 
@@ -235,10 +235,3 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 -  *Not all platform configurations exhibit a similar performance and stability*
 -  *The features may change to offer users more features and integration with other virtualization and cloud components*
 -  *The features may change due to changes in the functionality provided by underlying virtualization services*
-
-
-
-
-
-
-

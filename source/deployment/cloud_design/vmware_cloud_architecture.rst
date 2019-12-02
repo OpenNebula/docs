@@ -26,7 +26,7 @@ A cloud architecture is defined by three components: storage, networking and vir
 -  **Datastores** that hold the base images of the VMs.
 -  Physical **networks** used to support basic services such as interconnection of the VMs.
 
-OpenNebula presents a highly modular architecture that offers broad support for commodity and enterprise-grade hypervisor, monitoring, storage, networking and user management services. This Section briefly describes the different choices that you can make for the management of the different subsystems. If your specific services are not supported we recommend to check the drivers available in the `Add-on Catalog <http://opennebula.org/addons:catalog>`__. We also provide information and support about how to develop new drivers.
+OpenNebula presents a highly modular architecture that offers broad support for commodity and enterprise-grade hypervisor, monitoring, storage, networking and user management services. This Section briefly describes the different choices that you can make for the management of the different subsystems. If your specific services are not supported we recommend to check the drivers available in the `Add-on Catalog <https://github.com/OpenNebula/one/wiki/Add_ons-Catalog>`__. We also provide information and support about how to develop new drivers.
 
 Dimensioning the Cloud
 ================================================================================
