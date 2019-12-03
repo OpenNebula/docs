@@ -30,4 +30,4 @@ As a workaround you can use `export RUBYOPT="-W0`, this will disable the warning
 Drivers - Storage
 =================
 
-* `#4002 <https://github.com/OpenNebula/one/issues/4002>`_ Missing directory creation for VMs running from persistant image on shared FS datastore
+`VM directory is not created when running from persistant image on shared FS datastore <https://github.com/OpenNebula/one/issues/4002>`_. This can be fixed by `applying this patch <https://github.com/OpenNebula/one/commit/eb73ce30080b19cccde491631458182016c2560d>`_ to the driver script `/var/lib/one/remotes/tm/shared/ln`.
