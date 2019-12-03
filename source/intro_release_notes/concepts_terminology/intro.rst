@@ -19,9 +19,9 @@ The first step is to decide on the hypervisor that you will use in your cloud in
 
 -  **Cloud Management on VMware vCenter**. Other companies use OpenNebula to provide a multi-tenant, cloud-like provisioning layer on top of VMware vCenter. These deployments are looking for provisioning, elasticity and multi-tenancy cloud features like virtual data centers provisioning, datacenter federation or hybrid cloud computing to connect in-house infrastructures with public clouds, while the infrastructure is managed by already familiar tools for infrastructure management and operation, such as vSphere and vCenter Operations Manager.
 
--  **Containerization with LXD**. Containers are the next step towards virtualization. They have a minimal memory footprint and skip the compute intensive and sometimes unacceptable performance degradation inherent to hardware emulation. You can have a very high density of containers per virtualization node and run workloads close to bare-metal metrics. LXD focuses con system containers, instead of similar technolgies like Docker, which focuses on application containers.
+-  **Containerization with LXD**. Containers are the next step towards virtualization. They have a minimal memory footprint and skip the compute intensive and sometimes unacceptable performance degradation inherent to hardware emulation. You can have a very high density of containers per virtualization node and run workloads close to bare-metal metrics. LXD focuses on system containers, instead of similar technologies like Docker, which focuses on application containers.
 
-After having installed the cloud with one hypervisor you may add another hypervisors. You can deploy heterogeneous multi-hypervisor environments managed by a single OpenNebula instance. An advantage of using OpenNebula on VMware is the strategic path to openness as companies move beyond virtualization toward a private cloud. OpenNebula can leverage existing VMware infrastructure, protecting IT investments, and at the same time gradually integrate other open-source hypervisors, therefore avoiding future vendor lock-in and strengthening the negotiating position of the company.
+After having installed the cloud with one hypervisor you may add other hypervisors. You can deploy heterogeneous multi-hypervisor environments managed by a single OpenNebula instance. An advantage of using OpenNebula on VMware is the strategic path to openness as companies move beyond virtualization toward a private cloud. OpenNebula can leverage existing VMware infrastructure, protecting IT investments, and at the same time gradually integrate other open-source hypervisors, therefore avoiding future vendor lock-in and strengthening the negotiating position of the company.
 
 There are other virtualization technologies, like Xen, supported by the community. Please refer to the `OpenNebula Add-ons Catalog <https://github.com/OpenNebula/one/wiki/Add_ons-Catalog>`__.
 
@@ -33,12 +33,12 @@ Step 2. Design and Install the Cloud
 2.1. Design the Cloud Architecture
 --------------------------------------------------
 
-In order to get the most out of an OpenNebula Cloud, we recommend that you create a plan with the features, performance, scalability, and high availability characteristics you want in your deployment. We have prepared **Cloud Architecture Design guides** for :ref:`KVM and LXD <open_cloud_architecture>` and :ref:`vCenter <vmware_cloud_architecture>` to help you plan an OpenNebula installation, so you can easily architect your deployment and understand the technologies involved in the management of virtualized resources and their relationship. These guides have been created from the collective information and experiences from hundreds of users and cloud client engagements. Besides main logical components and interrelationships, this guides document software products, configurations, and requirements of infrastructure platforms recommended for a smooth OpenNebula installation.
+In order to get the most out of an OpenNebula Cloud, we recommend that you create a plan with the features, performance, scalability, and high availability characteristics you want in your deployment. We have prepared **Cloud Architecture Design guides** for :ref:`KVM and LXD <open_cloud_architecture>` and :ref:`vCenter <vmware_cloud_architecture>` to help you plan an OpenNebula installation, so you can easily architect your deployment and understand the technologies involved in the management of virtualized resources and their relationship. These guides have been created from the collective information and experiences from hundreds of users and cloud client engagements. Besides the main logical components and interrelationships, these guides document software products, configurations, and requirements of infrastructure platforms recommended for a smooth OpenNebula installation.
 
 2.2. Install the Front-end
 --------------------------------------------------
 
-Next step is the **installation of OpenNebula in the cloud front-end**. This :ref:`installation process <frontend_installation>` is the same for any underlying hypervisor.
+The next step is the **installation of OpenNebula in the cloud front-end**. This :ref:`installation process <frontend_installation>` is the same for any underlying hypervisor.
 
 Optionally you can setup a :ref:`high available cluster for OpenNebula <frontend_ha_setup>` for OpenNebula to reduce downtime of core OpenNebula services, and :ref:`configure a MySQL backend <mysql>` as an alternative to the default Sqlite backend if you are planning a large-scale infrastructure.
 
@@ -82,35 +82,35 @@ Before configuring multi-tenancy and defining the provisioning model of your clo
 
 -  Regarding the **underlying infrastructure**, OpenNebula provides complete functionality for the management of the :ref:`physical hosts <host_guide>` and :ref:`clusters <cluster_guide>` in the cloud. A Cluster is a group of Hosts that can have associated Datastores and Virtual Networks.
 
--  Regarding **user management**, OpenNebula features advanced multi-tenancy with powerful :ref:`users and groups management <manage_users>`, an :ref:`Access Control List <manage_acl>` mechanism allowing different role management with fine grain permission granting over any resource, :ref:`resource quota management <quota_auth>` to track and limit computing, storage and networking utilization, and a configurable :ref:`accounting  <accounting>` and :ref:`showback  <showback>` systems to visualize and report resource usage data and to allow their integration with chargeback and billing platforms, or to guarantee fair share of resources among users.
+-  Regarding **user management**, OpenNebula features advanced multi-tenancy with powerful :ref:`users and groups management <manage_users>`, an :ref:`Access Control List <manage_acl>` mechanism allowing different role management with fine grain permission granting over any resource, :ref:`resource quota management <quota_auth>` to track and limit computing, storage and networking utilization, and a configurable :ref:`accounting  <accounting>` and :ref:`showback  <showback>` system to visualize and report resource usage data and to allow their integration with chargeback and billing platforms, or to guarantee fair share of resources among users.
 
--  Last but not least, you can define :ref:`VDCs <manage_vdcs>` (Virtual Data Center) as assignments of one or several user groups to a pool of physical resources. While clusters are used to group physical resources according to common characteristics such as networking topology or physical location, Virtual Data Centers (VDCs) allow to create “logical” pools of resources (which could belong to different clusters and cones) and allocate them to user groups.
+-  Last but not least, you can define :ref:`VDCs <manage_vdcs>` (Virtual Data Center) as assignments of one or several user groups to a pool of physical resources. While clusters are used to group physical resources according to common characteristics such as networking topology or physical location, Virtual Data Centers (VDCs) allow creating “logical” pools of resources (which could belong to different clusters and zones) and allocate them to user groups.
 
 4.2. Manage Virtual Resources
 --------------------------------------------------
 
 Now everything is ready for operation. OpenNebula provides full control to manage virtual resources.
 
--  **Virtual machine image management** that allows to store :ref:`disk images in catalogs <img_guide>` (termed datastores), that can be then used to define VMs or shared with other users. The images can be OS installations, persistent data sets or empty data blocks that are created within the datastore.
+-  **Virtual machine image management** that allows storing :ref:`disk images in catalogs <img_guide>` (termed datastores), that can then be used to define VMs or shared with other users. The images can be OS installations, persistent data sets or empty data blocks that are created within the datastore.
 
--  **Virtual network management** of :ref:`Virtual networks <vgg>` that can be organized in network catalogs, and provide means to interconnect virtual machines. This kind of resources can be defined as IPv4, IPv6, or mixed networks, and can be used to achieve full isolation between virtual networks. Networks can be easily interconnected by using :ref:`virtual routers <vrouter>` and KVM and LXD users can also dynamically configure :ref:`security groups <security_groups>`
+-  **Virtual network management** of :ref:`Virtual networks <vgg>` that can be organized in network catalogs, and provide means to interconnect virtual machines. This kind of resource can be defined as IPv4, IPv6, or mixed networks, and can be used to achieve full isolation between virtual networks. Networks can be easily interconnected by using :ref:`virtual routers <vrouter>` and KVM and LXD users can also dynamically configure :ref:`security groups <security_groups>`
 
--  **Virtual machine template management** with :ref:`template catalog <vm_guide>` system that allows to register :ref:`virtual machine <vm_guide_2>` definitions in the system, to be instantiated later as virtual machine instances.
+-  **Virtual machine template management** with a :ref:`template catalog <vm_guide>` system that allows registering :ref:`virtual machine <vm_guide_2>` definitions in the system, to be instantiated later as virtual machine instances.
 
--  **Virtual machine instance management** with a number of operations that can be performed to control lifecycle of the :ref:`virtual machine instances <vm_guide_2>`, such as migration (live and cold), stop, resume, cancel, power-off, etc.
+-  **Virtual machine instance management** with a number of operations that can be performed to control the lifecycle of the :ref:`virtual machine instances <vm_guide_2>`, such as migration (live and cold), stop, resume, cancel, power-off, etc.
 
-Several :ref:`reference guides <overview_references_operation>` are provided for more information about definition files, templates and CLI.
+Several :ref:`reference guides <overview_references_operation>` are provided for more information about definition files, templates and the CLI.
 
 4.3. Create Virtual Machines
 --------------------------------------------------
 
-One of the most important aspects of the cloud is the **preparation of the images** for our users. OpenNebula uses a method called :ref:`contextualization <context_overview>` to send information to the VM at boot time. Its most basic usage is to share networking configuration and login credentials with the VM so it can be configured. More advanced cases can be starting a custom script on VM boot or preparing configuration to use :ref:`OpenNebula Gate <onegate_usage>`.
+One of the most important aspects of the cloud is the **preparation of the images** for our users. OpenNebula uses a method called :ref:`contextualization <context_overview>` to send information to the VM at boot time. Its most basic usage is to share networking configuration and login credentials with the VM so it can be configured. More advanced cases can be starting a custom script on VM boot, or preparing a configuration to use :ref:`OpenNebula Gate <onegate_usage>`.
 
 
 Step 5. Install Advanced Components
 ===============================================
 
-This step is optional and only for advanced users. We recommend you familiarize with OpenNebula before installing these components.
+This step is optional and only for advanced users. We recommend you familiarize yourself with OpenNebula before installing these components.
 
 OpenNebula brings the following advanced components:
 
@@ -126,7 +126,7 @@ OpenNebula brings the following advanced components:
 
 -  **Cloud bursting** gives support to build a :ref:`hybrid cloud <introh>`, an extension of a private cloud to combine local resources with resources from remote cloud providers. A whole public cloud provider can be encapsulated as a local resource to be able to use extra computational capacity to satisfy peak demands. Out of the box connectors are shipped to support :ref:`Amazon EC2 <ec2g>` and :ref:`Microsoft Azure <azg>` cloudbursting.
 
--  :ref:`Disaggregated Data Centers <ddc_overview>` provides tools to build and grow the physical infrastructure with resources from public bare-metal cloud providers, e.g. :ref:`Amazon EC2 <ddc_driver_ec2>` and :ref:`Packet <ddc_driver_packet>`. New physical machines are allocated from the provider, configured to run the hypervisor and added into the OpenNebula as new clusters with hosts, datastores and virtual networks.
+-  :ref:`Disaggregated Data Centers <ddc_overview>` provides tools to build and grow the physical infrastructure with resources from public bare-metal cloud providers, e.g. :ref:`Amazon EC2 <ddc_driver_ec2>` and :ref:`Packet <ddc_driver_packet>`. New physical machines are allocated from the provider, configured to run the hypervisor and added into OpenNebula as new clusters with hosts, datastores and virtual networks.
 
 Step 6. Integrate with other Components
 ===============================================
@@ -137,7 +137,7 @@ Because no two clouds are the same, OpenNebula provides many different interface
 
 -  **Modular and extensible architecture** with :ref:`customizable plug-ins <intro_integration>` for integration with any third-party data center infrastructure platform for :ref:`storage <sd>`, :ref:`monitoring <devel-im>`, :ref:`networking <devel-nm>`, :ref:`authentication <devel-auth>`, :ref:`virtualization <devel-vmm>`, :ref:`cloud bursting <devel_cloudbursting>` and :ref:`market <devel-market>`.
 
--  **API for integration** with higher level tools such as billing, self-service portals... that offers all the rich functionality of the OpenNebula core, with bindings for :ref:`ruby <ruby>` and :ref:`java <java>` and :ref:`XMLRPC API <api>`,
+-  **API for integration** with higher level tools such as billing, self-service portals... that offers all the rich functionality of the OpenNebula core, with bindings for :ref:`ruby <ruby>` and :ref:`java <java>` and :ref:`XML-RPC API <api>`,
 
 -  **OneFlow API** to create, control and monitor :ref:`multi-tier applications or services composed of interconnected Virtual Machines <appflow_api>`.
 

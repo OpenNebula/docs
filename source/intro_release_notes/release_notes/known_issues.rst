@@ -6,12 +6,12 @@ Known Issues
 
 A complete list of `known issues for OpenNebula is maintained here <https://github.com/OpenNebula/one/issues?q=is%3Aopen+is%3Aissue+label%3A%22Type%3A+Bug%22+label%3A%22Status%3A+Accepted%22>`__.
 
-This page will be updated with relevant information about bugs affecting OpenNebula, as well as possible workarounds until a patch is oficially published.
+This page will be updated with relevant information about bugs affecting OpenNebula, as well as possible workarounds until a patch is officially published.
 
 NIC alias and IP spoofing rules
 ================================================================================
 
-For NIC alias the IP spoofing rules are not triggered when the VM is created nor when the interface is attached. If you have configured IP spoofing for your virtual networks be aware that those will not be honored by NIC ALIAS interfaces. More info `here <https://github.com/OpenNebula/one/issues/3079>`__.
+For a NIC alias the IP spoofing rules are not triggered when the VM is created nor when the interface is attached. If you have configured IP spoofing for your virtual networks be aware that those will not be honored by NIC ALIAS interfaces. More info `here <https://github.com/OpenNebula/one/issues/3079>`__.
 
 Wilds with snapshots in vCenter
 ================================================================================
@@ -31,7 +31,7 @@ As a workaround you can use `export RUBYOPT="-W0`, this will disable the warning
 Hook Events content
 ===================
 
-If the XML returned as ``OUT`` parameter inside the ``HOOK_MESSAGE`` xml body contains a ``CDATA`` section it will make the XML parse fails as described in https://github.com/OpenNebula/one/issues/3996.
+If the XML returned as the ``OUT`` parameter inside the ``HOOK_MESSAGE`` XML body contains a ``CDATA`` section it will make the XML parse fails as described in https://github.com/OpenNebula/one/issues/3996.
 
 
 LXD marketplace URL error
