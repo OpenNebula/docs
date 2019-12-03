@@ -26,3 +26,8 @@ Using some CLI commands in Ubuntu 18.04, due to ruby and gems version, you may s
 `warning: constant ::Fixnum is deprecated`
 
 As a workaround you can use `export RUBYOPT="-W0`, this will disable the warning message (but, take in account that it will disable all warning messages from ruby)
+
+Drivers - Storage
+=================
+
+* `#4002 <https://github.com/OpenNebula/one/issues/4002>`_ Missing directory creation for VMs running from persistant image on shared FS datastore
