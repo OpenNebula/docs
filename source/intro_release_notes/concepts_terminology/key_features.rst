@@ -36,7 +36,7 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 **VIRTUAL NETWORK MANAGEMENT**
 
-- :ref:`Advanced network virtualization capabilities <vgg>` with traffic isolation, address reservation, flexible defintion of address ranges to accommodate any address distribution, definition of generic attributes to define multi-tier services...
+- :ref:`Advanced network virtualization capabilities <vgg>` with traffic isolation, address reservation, flexible definition of address ranges to accommodate any address distribution, definition of generic attributes to define multi-tier services...
 
 - :ref:`IPv6 support <manage_vnets>` with definition site and global unicast addresses
 
@@ -76,7 +76,7 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 - Access to the public `OpenNebula Systems Marketplace <http://marketplace.opennebula.systems>`__ with a catalog of :ref:`OpenNebula-ready <context_overview>` cloud images
 
-- Create your private centralized catalog (external satastore) of cloud applications (images and templates)
+- Create your private centralized catalog (external datastore) of cloud applications (images and templates)
 
 - Move VM images and templates across different types of datastores within the same OpenNebula instance
 
@@ -124,7 +124,7 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 **CAPACITY AND PERFORMANCE MANAGEMENT**
 
-- :ref:`Host management <host_guide>` with complete functionality for the management of the virtualziation nodes in the cloud
+- :ref:`Host management <host_guide>` with complete functionality for the management of the virtualization nodes in the cloud
 
 - Dynamic creation of :ref:`Clusters <cluster_guide>` as pools of hosts that share datastores and virtual networks for load balancing, high availability, and high performance computing
 
@@ -177,7 +177,7 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 - :ref:`Modular and extensible architecture <intro_integration>` to fit into any existing datacenter
 
-- Customizable drivers for the main subsystems to easily leverage existing IT infrastructure and system management products: :ref:`storage <sd>`, :ref:`monitoring <devel-im>`, :ref:`networking <devel-nm>`, :ref:`authentication <devel-auth>`, :ref:`virtualziation <devel-vmm>`, :ref:`cloud bursting <devel_cloudbursting>` and :ref:`market <devel-market>`
+- Customizable drivers for the main subsystems to easily leverage existing IT infrastructure and system management products: :ref:`storage <sd>`, :ref:`monitoring <devel-im>`, :ref:`networking <devel-nm>`, :ref:`authentication <devel-auth>`, :ref:`virtualization <devel-vmm>`, :ref:`cloud bursting <devel_cloudbursting>` and :ref:`market <devel-market>`
 
 - :ref:`API for integration with higher level tools <introapis>` such as billing, self-service portals…
 

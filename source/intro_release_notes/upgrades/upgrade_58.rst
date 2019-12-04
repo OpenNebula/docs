@@ -2,7 +2,7 @@
 Upgrading from OpenNebula 5.8.x
 =================================
 
-This section describes the installation procedure for systems that are already running a 5.8.x OpenNebula. The upgrade to OpenNebula |version| can be done directly following this section, you don't need to perform intermediate version upgrades. The upgrade will preserve all current users, hosts, resources and configurations; for both Sqlite and MySQL backends.
+This section describes the installation procedure for systems that are already running a 5.8.x OpenNebula. The upgrade to OpenNebula |version| can be done directly following this section; you don't need to perform intermediate version upgrades. The upgrade will preserve all current users, hosts, resources and configurations, for both Sqlite and MySQL backends.
 
 Read the :ref:`Compatibility Guide <compatibility>` and `Release Notes <http://opennebula.org/software/release/>`_ to know what is new in OpenNebula |version|.
 
@@ -16,12 +16,12 @@ Before proceeding, make sure you don't have any VMs in a transient state (prolog
 
 Step 2. Stop OpenNebula
 --------------------------------------------------------------------------------
-Stop OpenNebula and any other related services you may have running: OneFlow, EC2, and Sunstone. Use preferably the system tools, like `systemctl` or `service` as `root` in order to stop the services.
+Stop OpenNebula and any other related services you may have running: OneFlow, EC2, and Sunstone. Preferably use the system tools, like `systemctl` or `service` as `root` in order to stop the services.
 
 
 Step 3. Backup OpenNebula Configuration
 --------------------------------------------------------------------------------
-Backup the configuration files located in **/etc/one** and **/var/lib/one/remotes/etc**. You don't need to do a manual backup of your database, the onedb command will perform one automatically.
+Backup the configuration files located in **/etc/one** and **/var/lib/one/remotes/etc**. You don't need to do a manual backup of your database, the ``onedb`` command will perform one automatically.
 
 .. prompt:: text # auto
 
@@ -35,7 +35,7 @@ Ubuntu/Debian
 
 .. prompt:: text # auto
 
-    # apt-get install --only-udpate opennebula opennebula-sunstone opennebula-gate opennebula-flow python-pyone
+    # apt-get install --only-update opennebula opennebula-sunstone opennebula-gate opennebula-flow python-pyone
 
 CentOS
 
@@ -46,7 +46,7 @@ CentOS
 
 Step 5. Update Configuration Files
 --------------------------------------------------------------------------------
-If you haven't modified any configuration files, you can skip this step and procceed to the next one.
+If you haven't modified any configuration files, you can skip this step and proceed to the next one.
 
 In order to update the configuration files with your existing customizations you'll need to:
 
@@ -57,7 +57,7 @@ Step 6. Upgrade the Database version
 --------------------------------------------------------------------------------
 .. note:: Make sure at this point that OpenNebula is not running. If you installed from packages, the service may have been started automatically.
 
-Simply run the 'onedb upgrade -v' command. The connection parameters have to be supplied with the command line options, see the :ref:`onedb manpage <cli>` for more information. For example:
+Simply run the ``onedb upgrade -v`` command. The connection parameters have to be supplied with the command line options, see the :ref:`onedb manpage <cli>` for more information. For example:
 
 .. prompt:: text $ auto
 
@@ -65,7 +65,7 @@ Simply run the 'onedb upgrade -v' command. The connection parameters have to be 
 
 Step 7. Check DB Consistency
 --------------------------------------------------------------------------------
-First, move the |version| backup file created by the upgrade command to a safe place. If you face any issues, the onedb command can restore this backup, but it won't downgrade databases to previous versions. Then execute the `onedb fsck` command providing the same connection parameter used during the database upgrade:
+First, move the |version| backup file created by the upgrade command to a safe place. If you face any issues, the ``onedb`` command can restore this backup, but it won't downgrade databases to previous versions. Then execute the ``onedb fsck`` command, providing the same connection parameter used during the database upgrade:
 
 .. code::
 
@@ -80,7 +80,7 @@ First, move the |version| backup file created by the upgrade command to a safe p
 Step 8. Start OpenNebula
 --------------------------------------------------------------------------------
 
-Make the system to re-read the service configuration files of the new packages:
+Make the system re-read the service configuration files of the new packages:
 
 .. prompt:: text # auto
 
@@ -88,12 +88,12 @@ Make the system to re-read the service configuration files of the new packages:
 
 Now you should be able to start OpenNebula as usual, running ``service opennebula start`` as ``root``. Do not forget to restart also any associated service like Sunstone, OneGate or OneFlow.
 
-At this point OpenNebula will continue the monitoring and management of your previous Hosts and VMs.  As a measure of caution, look for any error messages in oned.log, and check that all drivers are loaded successfully. You may also try some  **show** subcommand for some resources to check everything is working (e.g. ``onehost show``, or ``onevm show``).
+At this point OpenNebula will continue the monitoring and management of your previous Hosts and VMs.  As a measure of caution, look for any error messages in ``oned.log``, and check that all drivers are loaded successfully. You may also try some  **show** subcommand for some resources to check everything is working (e.g. ``onehost show``, or ``onevm show``).
 
 Step 9. Update ServerAdmin password to SHA256
 --------------------------------------------------------------------------------
 
-Since 5.8 passwords and tokens are generated using SHA256. OpenNebula will update the DB automatically for your regular users (including oneadmin). However, you need manually trigger the update for serveradmin. You can do so, with:
+Since 5.8 passwords and tokens are generated using SHA256. OpenNebula will update the DB automatically for your regular users (including oneadmin). However, you need to do the update for serveradmin manually. You can do so, with:
 
 .. prompt:: text # auto
 
@@ -103,13 +103,13 @@ Since 5.8 passwords and tokens are generated using SHA256. OpenNebula will updat
 Step 10. Update the Hypervisors (LXD & KVM only)
 ------------------------------------------------
 
-First update the virtualization, storage and networking drivers, as ``oneadmin`` user execute:
+First update the virtualization, storage and networking drivers.  As the ``oneadmin`` user execute:
 
 .. prompt:: text $ auto
 
    $ onehost sync
 
-Then log into you hypervisor hosts and update the opennebula-node packages:
+Then log into your hypervisor hosts and update the ``opennebula-node`` packages:
 
 Ubuntu/Debian
 
@@ -186,7 +186,7 @@ Start OpenNebula in the followers as described in Step 8 in the previous section
 Step 6. Check Cluster Health
 --------------------------------------------------------------------------------
 
-At this point ``onezone show`` command should render all the followers active and in sync with the leader.
+At this point the ``onezone show`` command should display all the followers active and in sync with the leader.
 
 Step 7. Update the Hypervisors (KVM & LXD)
 --------------------------------------------------------------------------------
@@ -204,15 +204,15 @@ This version of OpenNebula does not upgrade the shared database schema. The fede
 Update your Hooks
 ================================================================================
 
-Hooks are no longer defined in ``oned.conf``, you need to recreate any hook you are using in the OpenNebula database. Specific upgrade actions for each hook type are described below.
+Hooks are no longer defined in ``oned.conf``. You need to recreate any hook you are using in the OpenNebula database. Specific upgrade actions for each hook type are described below.
 
 RAFT/HA Hooks
 --------------------------------------------------------------------------------
-HA Hooks keep working as they did in previous versions. For design reasons, these are the only hooks which need to be define in oned.conf and cannot be managed via API or CLI. You should preserve your previsous configuration in oned.conf.
+HA Hooks keep working as they did in previous versions. For design reasons, these are the only hooks which need to be defined in ``oned.conf`` and cannot be managed via the API or CLI. You should preserve your previous configuration in ``oned.conf``.
 
 Fault Tolerance Hooks
 --------------------------------------------------------------------------------
-In order to migrate fault tolerance hooks just follow the steps defined in :ref:`Fault Tolerance guide <ftguide>`.
+In order to migrate fault tolerance hooks, just follow the steps defined in :ref:`Fault Tolerance guide <ftguide>`.
 
 vCenter Hooks
 --------------------------------------------------------------------------------
@@ -220,7 +220,7 @@ The vCenter Hooks, used for creating virtual networks, will be created automatic
 
 Custom Hooks
 --------------------------------------------------------------------------------
-Custom Hooks migration strongly depend on the use case trying to solve with the hook. Below there is a list of examples which represent the most common use cases.
+Custom Hooks migration strongly depends on your use case for the hook. Below there is a list of examples which represent the most common use cases.
 
 - Create/Remove hooks. Corresponds to the legacy ``ON=CREATE`` and ``ON=REMOVE`` hooks
 
@@ -235,6 +235,7 @@ These hooks are now triggered by an API hook on the corresponding create/delete 
        arguments = "$ID $TEMPLATE"]
 
 Now, in OpenNebula 5.10, you need to create the following hook template:
+
 
 .. code::
 
@@ -260,7 +261,7 @@ More information on defining :ref:`API Hooks can be found here <api_hooks>`.
 
 - State hooks
 
-If there is a hook defined for a Host or VM state change, the hook template have to be inferred from the Hook definition in the 5.8 ``oned.conf`` file, see the example below:
+If there is a hook defined for a Host or VM state change, the hook template has to be inferred from the Hook definition in the 5.8 ``oned.conf`` file; see the example below:
 
 .. code::
 
@@ -294,6 +295,6 @@ Restoring the Previous Version
 
 If for any reason you need to restore your previous OpenNebula, follow these steps:
 
--  With OpenNebula |version| still installed, restore the DB backup using 'onedb restore -f'
+-  With OpenNebula |version| still installed, restore the DB backup using ``onedb restore -f``
 -  Uninstall OpenNebula |version|, and install again your previous version.
--  Copy back the backup of /etc/one you did to restore your configuration.
+-  Copy back the backup of ``/etc/one`` you did to restore your configuration.
