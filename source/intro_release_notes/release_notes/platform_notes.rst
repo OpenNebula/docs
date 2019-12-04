@@ -214,7 +214,7 @@ VMware Cloud on AWS
 
 OpenNebula has been validated and is supported on VMware Cloud on AWS. Customers can contact the support team through the commercial support portal to know specific configuration and limitations.
 
-.. note:: Generally for all Linux platforms, it is worth noting that Ruby gems should be used from packages shipped with the OpenNebula or installed with the :ref:`install_gems <ruby_runtime>` utility. Avoid using Ruby gems versions shipped with your platform.
+.. note:: Generally for all Linux platforms, it is worth noting that Ruby gems should be used from packages shipped with OpenNebula or installed with the :ref:`install_gems <ruby_runtime>` utility. Avoid using Ruby gems versions shipped with your platform.
 
 
 Certified Infrastructure Scale
@@ -222,33 +222,33 @@ Certified Infrastructure Scale
 
 A single instance of OpenNebula (ie, a single ``oned`` process) has been stress tested to cope with 500 hypervisors without performance degradation. This is the maximum recommended configuration for a single instance, and depending on the underlying configuration of storage and networking mainly, it is recommended to switch to a federated scenario for any larger number of hypervisors.
 
-However, there are several OpenNebula users managing significant higher number of hypervisors (in the order of two thousand) with a single instance, this largely depends as mentioned on the storage, networking and also monitoring configuration.
+However, there are several OpenNebula users managing significant higher numbers of hypervisors (on the order of two thousand) with a single instance. This largely depends, as mentioned, on the storage, networking and also monitoring configuration.
 
 Frontend Platform Notes
 ================================================================================
 
 The following applies to all Front-Ends:
 
-* XML-RPC tuning parameters (``MAX_CONN``, ``MAX_CONN_BACKLOG``, ``KEEPALIVE_TIMEOUT``, ``KEEPALIVE_MAX_CONN`` and ``TIMEOUT``) are only available with packages distributed by us as they are compiled with a newer xmlrpc-c library.
+* XML-RPC tuning parameters (``MAX_CONN``, ``MAX_CONN_BACKLOG``, ``KEEPALIVE_TIMEOUT``, ``KEEPALIVE_MAX_CONN`` and ``TIMEOUT``) are only available with packages distributed by us, as they are compiled with a newer xmlrpc-c library.
 * Only **Ruby versions >= 2.0 are supported**.
 
 Ubuntu 16.04 Platform Notes
 --------------------------------------------------------------------------------
 
-By default it comes with LXD 2, LXD 3 should be installed from **xenial-backports**. Make sure you have `backports enabled in sources.list <https://help.ubuntu.com/community/UbuntuBackports>`_
+By default it comes with LXD 2. LXD 3 should be installed from **xenial-backports**. Make sure you have `backports enabled in sources.list <https://help.ubuntu.com/community/UbuntuBackports>`_
 
 .. prompt:: bash # auto
 
     # apt-get -t xenial-backports install lxd
 
-Resizing **ext4** filesystems of LXD containers will fail due to outdated ``e2fsck`` package
+Resizing **ext4** filesystems of LXD containers will fail due to the outdated ``e2fsck`` package.
 
 CentOS 7.0 Platform Notes
 --------------------------------------------------------------------------------
 
 When using Apache to serve Sunstone, it is required that you disable or comment the ``PrivateTMP=yes`` directive in ``/usr/lib/systemd/system/httpd.service``.
 
-There is an automatic job that removes all data from ``/var/tmp/``, in order to disable this, please edit the ``/usr/lib/tmpfiles.d/tmp.conf`` and remove the line that removes ``/var/tmp``.
+There is an automatic job that removes all data from ``/var/tmp/``. In order to disable this, please edit the ``/usr/lib/tmpfiles.d/tmp.conf`` and remove the line that removes ``/var/tmp``.
 
 There is a bug in libvirt that the prevents the use of the save/restore mechanism if ``cpu_model`` is set to ``'host-passthrough'`` via ``RAW``. The `work around if needed is described in this issue <http://dev.opennebula.org/issues/4204>`__.
 
@@ -263,8 +263,10 @@ Nodes Platform Notes
 
 The following items apply to all distributions:
 
-* Since OpenNebula 4.14 there is a new monitoring probe that gets information about PCI devices. By default it retrieves all the PCI devices in a host. To limit the PCI devices that it gets info and appear in ``onehost show`` refer to :ref:`kvm_pci_passthrough`.
-* When using qcow2 storage drivers you can make sure that the data is written to disk when doing snapshots setting its ``cache`` parameter to ``writethrough``. This change will make writes slower than other cache modes but safer. To do this edit the file ``/etc/one/vmm_exec/vmm_exec_kvm.conf`` and change the line for ``DISK``:
+* Since OpenNebula 4.14 there is a new monitoring probe that gets
+  information about PCI devices. By default it retrieves all the PCI
+  devices in a host. To limit the PCI devices for which it gets info and appear in ``onehost show`` refer to :ref:`kvm_pci_passthrough`.
+* When using qcow2 storage drivers you can make sure that the data is written to disk when doing snapshots setting the ``cache`` parameter to ``writethrough``. This change will make writes slower than other cache modes but safer. To do this edit the file ``/etc/one/vmm_exec/vmm_exec_kvm.conf`` and change the line for ``DISK``:
 
 .. code::
 
@@ -283,7 +285,7 @@ Alternatively, use CentOS 7 repositories to install Ruby dependencies.
 Libvirt Version
 ~~~~~~~~~~~~~~~
 
-The libvirt/QEMU packages used in the testing infrastructure are the ones in the ``qemu-ev`` repository. To add this repository you can install the following packages:
+The libvirt/QEMU packages used in the testing infrastructure are the ones in the ``qemu-ev`` repository. To add this repository on CentOS, you can install the following packages:
 
 .. prompt:: bash # auto
 

@@ -10,7 +10,7 @@ OpenNebula Components
 -  **Front-end**: Machine running the OpenNebula services.
 -  **Host**: Physical machine running a supported hypervisor. See the :ref:`Host subsystem <hostsubsystem>`.
 -  **Cluster**: Pool of hosts that share datastores and virtual networks. Clusters are used for load balancing, high availability, and high performance computing.
--  **Datastore**: Storage medium used as disk images repository or to hold images for running VMs.
+-  **Datastore**: Storage medium used as a repository for disk images or to hold images for running VMs.
 -  **Sunstone**: OpenNebula web interface. Learn more about :ref:`Sunstone <sunstone>`
 -  **Self-Service** OpenNebula web interfaced towards the end user. It is implemented by configuring a user view of the Sunstone Portal.
 -  **EC2 Service**: Server that enables the management of OpenNebula with EC2 interface. Learn more about :ref:`EC2 Service <ec2qcg>`.
