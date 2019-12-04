@@ -116,3 +116,7 @@ Using some CLI commands in Ubuntu 18.04, due to ruby and gems version, you may s
 `warning: constant ::Fixnum is deprecated`
 
 As a workaround you can use `export RUBYOPT="-W0`, this will disable the warning message (but, take in account that it will disable all warning messages from ruby)
+
+System VM Snapshots
+====================
+`When a VM system snapshot is deleted <https://github.com/OpenNebula/one/issues/4018>`_ the associated metadata for other snapshots of that VM get corrupted. This breaks the snapshots preventing the VM to revert to other saved snapshot states. Note: This issue affects KVM and qcow2 datastores.
