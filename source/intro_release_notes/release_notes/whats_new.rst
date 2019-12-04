@@ -70,10 +70,10 @@ Sunstone
 vCenter
 ===============================================================================
 
-- `All VMM driver actions receive relevant information through stdin, saving oned calls and thus enhancing performance <https://github.com/OpenNebula/one/issues/1896>`__.
-- `The possibility to change the port used when OpenNebula connects to vSphere's API <https://github.com/OpenNebula/one/issues/1208>`__.
-- `Fixes an issue that causes missing parameters when import a vcenter network <https://github.com/OpenNebula/one/issues/3567>`__.
-- `Fixes an issue that causes VMware  VM import to fail when it has disks with the same name in multiple datastores <https://github.com/OpenNebula/one/issues/3818>`__.
+- `All VMM driver actions receive relevant information through stdin, saving oned calls and thus enhancing performance`__.
+- `The possibility to change the port used when OpenNebula connects to vSphere's API` <http://docs.opennebula.org/5.10/deployment/vmware_infrastructure_setup/vcenter_setup.html#importing-vcenter-clusters>__.
+- `**NSX integration**: discover and setup NSX Manager <http://docs.opennebula.org/5.10/deployment/vmware_infrastructure_setup/nsx_setup.html>__.
+- `**NSX integration**: create and consume NSX networks from within OpenNebula <http://docs.opennebula.org/5.10/operation/network_management/manage_vnets.html#nsx-specific>__.
 
 OneFlow & OneGate
 ===============================================================================
