@@ -86,7 +86,7 @@ For example:
     NAME   = lvm_system
     TM_MAD = fs_lvm
     TYPE   = SYSTEM_DS
-    BRIDGE_LIST = node1.kvm.lvm node2.kvm.lvm
+    BRIDGE_LIST = "node1.kvm.lvm node2.kvm.lvm"
 
     > onedatastore create ds.conf
     ID: 100
