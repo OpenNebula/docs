@@ -45,4 +45,4 @@ Shared Storage Drivers
 System VM Snapshots
 ====================
 
-`When a VM system snapshot is deleted <https://github.com/OpenNebula/one/issues/4018>`_ the associated metadata for other snapshots of that VM get corrupted. This breaks the snapshots preventing the VM to revert to other saved snapshot states. Note: This issue affects KVM and qcow2 datastores.
+`When a VM system snapshot is deleted <https://github.com/OpenNebula/one/issues/4017>`_ the associated metadata for other snapshots of that VM get corrupted. This breaks the snapshots preventing the VM to revert to other saved snapshot states. Note: This issue affects KVM and qcow2 datastores.
