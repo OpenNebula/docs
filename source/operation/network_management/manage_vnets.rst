@@ -509,7 +509,7 @@ This section describes how to import logical switches, for both NSX-T and NSX-V.
 
 In the list of available networks to import, it will only show NSX-V and NSX-T (Opaque networks) if NSX_STATUS = OK.
 
-Anyway you can list all NSX networks, represented into vCenter server, without having the host attribute NSX_STATUS = OK through the next CLI command:
+In any case, all NSX networks (represented in vCenter) can be listed without having the host attribute NSX_STATUS = OK using the following CLI command:
 
 .. code::
 
