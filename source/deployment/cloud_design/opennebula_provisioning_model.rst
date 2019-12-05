@@ -20,7 +20,7 @@ For example, you could have two Data Centers in different geographic locations, 
 The Organizational Perspective
 ================================================================================
 
-Users are organized into Groups (similar to what other environments call Projects, Domains, Tenants...). A Group is an authorization boundary that can be seen as a business unit if you are considering it as a private cloud or as a complete new company if it is a public cloud. While Clusters are used to group Physical Resources according to common characteristics such as networking topology or physical location, Virtual Data Centers (VDCs) allow to create "logical" pools of Physical Resources (which could belong to different Clusters and Zones) and allocate them to user Groups. 
+Users are organized into Groups (similar to what other environments call Projects, Domains, Tenants...). A Group is an authorization boundary that can be seen as a business unit if you are considering it as a private cloud or as a complete new company if it is a public cloud. While Clusters are used to group Physical Resources according to common characteristics such as networking topology or physical location, Virtual Data Centers (VDCs) allow creating "logical" pools of Physical Resources (which could belong to different Clusters and Zones) and allocate them to user Groups. 
  
 A VDC is a fully-isolated virtual infrastructure environment where a Group of users (or optionally several Groups of users), under the control of a Group admin, can create and manage compute and storage capacity. The users in the Group, including the Group admin, would only see the virtual resources and not the underlying physical infrastructure. The Physical Resources allocated to the Group are managed by the cloud administrator through a VDC. These resources grouped in the VDC can be dedicated exclusively to the Group, providing isolation at the physical level too.
 
@@ -66,7 +66,7 @@ OpenNebula has three predefined User roles to implement three typical enterprise
 * Simple cloud provisioning model
 * Advanced cloud provisioning model
 
-In these three scenarios, Cloud Administrators manage the physical infrastructure, creates Users and VDCs, prepares base templates and images for Users, etc
+In these three scenarios, Cloud Administrators manage the physical infrastructure, create Users and VDCs, prepare base templates and images for Users, etc.
 
 Cloud Administrators typically access the cloud using the CLI or the Admin View of Sunstone.
 
@@ -78,7 +78,7 @@ Cloud Administrators typically access the cloud using the CLI or the Admin View 
 |                  | * Creates and manages Multi-VM Applications (Services)                                                                                                   |
 |                  | * Creates new Groups and VDCs                                                                                                                            |
 |                  | * Assigns Groups and physical resources to a VDC and sets quota limits                                                                                   |
-|                  | * Defines base instance types to be used by the users. These types define the capacity of the VMs (memory, cpu and additional storage) and connectivity. |
+|                  | * Defines base instance types to be used by the users. These types define the capacity of the VMs (memory, CPU and additional storage) and connectivity. |
 |                  | * Prepare VM images to be used by the users                                                                                                              |
 |                  | * Monitor the status and health of the cloud                                                                                                             |
 |                  | * Generate activity reports                                                                                                                              |
