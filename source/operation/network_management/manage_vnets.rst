@@ -377,7 +377,9 @@ Hypervisors will set the MAC address for the NIC of the Virtual Machines, but no
 NSX Specific
 ============
 
-This section desribes how to create a vnet in OpenNebula that reference to a logical switch in NSX-V or NSX-T
+This section describes how to create a vnet in OpenNebula that reference a logical switch in NSX-V or NSX-T.
+
+.. warning:: NSX_STATUS must be OK before a logical switch created, imported or deleted.
 
 
 Creating a new **logical switch**
@@ -504,6 +506,14 @@ After create the network you can follow the steps defined above to check that th
 Importing existing **logical switches**
 ---------------------------------------
 This section describes how to import logical switches, for both NSX-T and NSX-V. The procedure is the same as other vcenter networks.
+
+In the list of available networks to import, it will only show NSX-V and NSX-T (Opaque networks) if NSX_STATUS = OK.
+
+In any case, all NSX networks (represented in vCenter) can be listed without having the host attribute NSX_STATUS = OK using the following CLI command:
+
+.. code::
+
+    onevcenter list_all -o networks -h <host_id>
 
 Importing from Sunstone
 ^^^^^^^^^^^^^^^^^^^^^^^
