@@ -377,9 +377,9 @@ Hypervisors will set the MAC address for the NIC of the Virtual Machines, but no
 NSX Specific
 ============
 
-This section desribes how to create a vnet in OpenNebula that reference to a logical switch in NSX-V or NSX-T.
+This section describes how to create a vnet in OpenNebula that reference a logical switch in NSX-V or NSX-T.
 
-Remember that NSX_STATUS must be OK, before you can create, import or delete a logical switch.
+.. warning:: NSX_STATUS must be OK before a logical switch created, imported or deleted.
 
 
 Creating a new **logical switch**
