@@ -63,6 +63,56 @@ Simply run the ``onedb upgrade -v`` command. The connection parameters have to b
 
     $ onedb upgrade -v -S localhost -u oneadmin -p oneadmin -d opennebula
 
+Step 6.1 Possible character set issues
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If you get something like ``Table and database charset (latin1, utf8mb4) differs`` after performing the command above. 
+
+Check the encoding of the opennebula DB tables with the following queries:
+
+.. code-block::
+
+    select CCSA.character_set_name FROM information_schema.`TABLES` T, information_schema.`COLLATION_CHARACTER_SET_APPLICABILITY` CCSA WHERE CCSA.collation_name = T.table_collation AND T.table_schema = "opennebula" AND T.table_name = "system_attributes"
+
+
+Example output:
+
+.. code-block::
+
+    MariaDB [opennebula]> select CCSA.character_set_name FROM information_schema.`TABLES` T,    information_schema.`COLLATION_CHARACTER_SET_APPLICABILITY` CCSA WHERE CCSA.collation_name = T.table_collation AND T.table_schema =     "opennebula" AND T.table_name = "system_attributes"
+        -> ;
+    +--------------------+
+    | character_set_name |
+    +--------------------+
+    | utf8mb4            |
+    +--------------------+
+    1 row in set (0.00 sec)
+
+Check the database encoding:
+
+.. code-block::
+
+    select default_character_set_name FROM information_schema.SCHEMATA where schema_name = "opennebula"
+
+Example output
+
+.. code-block::
+
+    MariaDB [opennebula]> select default_character_set_name FROM information_schema.SCHEMATA where schema_name = "opennebula"
+    -> ;
+    +----------------------------+
+    | default_character_set_name |
+    +----------------------------+
+    | latin1                    |
+    +----------------------------+
+    1 row in set (0.00 sec)
+
+Then, change the database encoding to match the one on the system properties table:
+
+.. code-block::
+
+    ALTER DATABASE opennebula CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
 Step 7. Check DB Consistency
 --------------------------------------------------------------------------------
 First, move the |version| backup file created by the upgrade command to a safe place. If you face any issues, the ``onedb`` command can restore this backup, but it won't downgrade databases to previous versions. Then execute the ``onedb fsck`` command, providing the same connection parameter used during the database upgrade:
