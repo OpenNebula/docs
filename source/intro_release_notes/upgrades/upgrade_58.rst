@@ -70,14 +70,14 @@ If the upgrade command outputs a message similar to: ``Table and database charse
 
 First, check the encoding of the opennebula DB tables with the following query:
 
-.. code-block::
+.. code-block:: sql
 
     select CCSA.character_set_name FROM information_schema.`TABLES` T, information_schema.`COLLATION_CHARACTER_SET_APPLICABILITY` CCSA WHERE CCSA.collation_name = T.table_collation AND T.table_schema = "opennebula" AND T.table_name = "system_attributes"
 
 
 Example output:
 
-.. code-block::
+.. code-block:: sql
 
     MariaDB [opennebula]> select CCSA.character_set_name FROM information_schema.`TABLES` T,    information_schema.`COLLATION_CHARACTER_SET_APPLICABILITY` CCSA WHERE CCSA.collation_name = T.table_collation AND T.table_schema =     "opennebula" AND T.table_name = "system_attributes"
         -> ;
@@ -90,13 +90,13 @@ Example output:
 
 Now, check the database encoding:
 
-.. code-block::
+.. code-block:: sql
 
     select default_character_set_name FROM information_schema.SCHEMATA where schema_name = "opennebula"
 
 Example output
 
-.. code-block::
+.. code-block:: sql
 
     MariaDB [opennebula]> select default_character_set_name FROM information_schema.SCHEMATA where schema_name = "opennebula"
     -> ;
@@ -109,7 +109,7 @@ Example output
 
 Then, change the database encoding to match the one on the system properties table, in our example from latin1 to utf8mb4:
 
-.. code-block::
+.. code-block:: sql
 
     ALTER DATABASE opennebula CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
