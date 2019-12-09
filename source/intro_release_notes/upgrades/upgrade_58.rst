@@ -66,9 +66,9 @@ Simply run the ``onedb upgrade -v`` command. The connection parameters have to b
 Step 6.1 Possible character set issues
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-If you get something like ``Table and database charset (latin1, utf8mb4) differs`` after performing the command above. 
+If the upgrade command outputs a message similar to: ``Table and database charset (latin1, utf8mb4) differs``. You'll need to adjust the encoding of your database to match that used by the tables. This may happen when upgrading your MySQL version.
 
-Check the encoding of the opennebula DB tables with the following queries:
+First, check the encoding of the opennebula DB tables with the following query:
 
 .. code-block::
 
@@ -88,7 +88,7 @@ Example output:
     +--------------------+
     1 row in set (0.00 sec)
 
-Check the database encoding:
+Now, check the database encoding:
 
 .. code-block::
 
@@ -107,7 +107,7 @@ Example output
     +----------------------------+
     1 row in set (0.00 sec)
 
-Then, change the database encoding to match the one on the system properties table:
+Then, change the database encoding to match the one on the system properties table, in our example from latin1 to utf8mb4:
 
 .. code-block::
 
