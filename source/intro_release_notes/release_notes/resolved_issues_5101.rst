@@ -7,7 +7,7 @@ A complete list of solved issues for 5.10.1 can be found in the `project develop
 
 The following new features has been backported to 5.10.1:
 
-- `Description <https://github.com/OpenNebula/one/issues/XXXX>`__.
+- `Add append option to onedb change-body <https://github.com/OpenNebula/one/issues/3999>`__.
 
 The following issues has been solved in 5.10.1:
 
