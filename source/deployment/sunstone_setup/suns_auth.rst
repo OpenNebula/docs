@@ -282,7 +282,7 @@ Once the proxy server is started, OpenNebula Sunstone requests using HTTPS URIs 
 
     .. prompt:: bash # auto
 
-        #oneuser passwd 1 --sha1 <PASSWORD>
+        #oneuser passwd 1 --sha256 <PASSWORD>
         #echo 'serveradmin:PASSWORD' > /var/lib/one/.one/oneflow_auth
         #echo 'serveradmin:PASSWORD' > /var/lib/one/.one/ec2_auth
         #echo 'serveradmin:PASSWORD' > /var/lib/one/.one/onegate_auth
