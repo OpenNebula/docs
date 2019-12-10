@@ -7,7 +7,7 @@ Sunstone Installation & Configuration
 Requirements
 ================================================================================
 
-You must have an OpenNebula site properly configured and running to use OpenNebula Sunstone, be sure to check the :ref:`OpenNebula Installation and Configuration Guides <design_and_installation_guide>` to set up your private cloud first. This section also assumes that you are familiar with the configuration and use of OpenNebula.
+You must have an OpenNebula site properly configured and running to use OpenNebula Sunstone. Be sure to check the :ref:`OpenNebula Installation and Configuration Guides <design_and_installation_guide>` to set up your private cloud first. This section also assumes that you are familiar with the configuration and use of OpenNebula.
 
 OpenNebula Sunstone was installed during the OpenNebula installation. If you followed the :ref:`installation guide <ignc>` then you already have all ruby gem requirements. Otherwise, run the ``install_gem`` script as root:
 
@@ -17,7 +17,7 @@ OpenNebula Sunstone was installed during the OpenNebula installation. If you fol
 
 .. _remote_access_sunstone:
 
-The Sunstone Operation Center offers the possibility of starting a VNC/SPICE session to a Virtual Machine. This is done by using a VNC/SPICE websocket-based client (noVNC) on the client side and a VNC proxy translating and redirecting the connections on the server-side.
+The Sunstone Operation Center offers the possibility of starting a VNC/SPICE session to a Virtual Machine. This is done by using a VNC/SPICE websocket-based client (noVNC) on the client side and a VNC proxy translating and redirecting the connections on the server side.
 
 .. warning:: The SPICE Web client is a prototype and is limited in function. More information of this component can be found in the following `link <http://www.spice-space.org/page/Html5>`__
 
@@ -25,8 +25,8 @@ The Sunstone Operation Center offers the possibility of starting a VNC/SPICE ses
 
 Requirements:
 
--  Websockets-enabled browser (optional): Firefox and Chrome support websockets. In some versions of Firefox manual activation is required. If websockets are not enabled, flash emulation will be used.
--  Installing the python-numpy package is recommended for a better vnc performance.
+-  Websockets-enabled browser (optional): Firefox and Chrome support websockets. In some versions of Firefox manual activation is required. If websockets are not enabled, Flash emulation will be used.
+-  Installing the python-numpy package is recommended for better VNC performance.
 
 
 Configuration
@@ -51,11 +51,11 @@ Available options are:
 | :one\_xmlrpc\_timeout     | Configure the timeout (seconds) for XMLRPC calls from sunstone.                               |
 |                           | See :ref:`Shell Environment variables <manage_users>`                                         |
 +---------------------------+-----------------------------------------------------------------------------------------------+
-| :host                     | IP address on which the server will listen on. ``0.0.0.0`` by default.                        |
+| :host                     | IP address on which the server will listen. ``0.0.0.0`` by default.                        |
 +---------------------------+-----------------------------------------------------------------------------------------------+
 | :port                     | Port on which the server will listen. ``9869`` by default.                                    |
 +---------------------------+-----------------------------------------------------------------------------------------------+
-| :sessions                 | Method of keeping user sessions. It can be ``memory`` or ``memcache``. For server that spawn  |
+| :sessions                 | Method of keeping user sessions. It can be ``memory`` or ``memcache``. For servers that spawn |
 |                           | more than one process (like Passenger or Unicorn) ``memcache`` should be used                 |
 +---------------------------+-----------------------------------------------------------------------------------------------+
 | :memcache\_host           | Host where ``memcached`` server resides                                                       |
@@ -86,7 +86,7 @@ Available options are:
 |                           | "opennebula" auth.                                                                            |
 +---------------------------+-----------------------------------------------------------------------------------------------+
 | :lang                     | Default language for the Sunstone interface. This is the default language that will           |
-|                           | be used if user has not defined a variable LANG with a different valid value its              |
+|                           | be used if user has not defined a variable LANG with a different valid value in               |
 |                           | user template                                                                                 |
 +---------------------------+-----------------------------------------------------------------------------------------------+
 | :vnc\_proxy\_port         | Base port for the VNC proxy. The proxy will run on this port as long as Sunstone server       |
@@ -101,15 +101,15 @@ Available options are:
 +---------------------------+-----------------------------------------------------------------------------------------------+
 | :vnc\_proxy\_key          | Full path to key file. Not necessary if key is included in certificate.                       |
 +---------------------------+-----------------------------------------------------------------------------------------------+
-| :vnc\_proxy\_ipv6         | Enable ipv6 for novnc. (true or false)                                                        |
+| :vnc\_proxy\_ipv6         | Enable IPv6 for novnc. (true or false)                                                        |
 +---------------------------+-----------------------------------------------------------------------------------------------+
-| :vnc\_client\_port        | Port where the vnc JS client will connect.                                                    |
+| :vnc\_client\_port        | Port where the VNC JS client will connect.                                                    |
 |                           | If not set, will use the port section of :vnc_proxy_port                                      |
 +---------------------------+-----------------------------------------------------------------------------------------------+
-| :vnc\_request\_password   | Request VNC password for external windows, by default it will not be requested                |
+| :vnc\_request\_password   | Request VNC password for external windows. By default it will not be requested                |
 |                           | (true or false)                                                                               |
 +---------------------------+-----------------------------------------------------------------------------------------------+
-| :table\_order             | Default table order, resources get ordered by ID in ``asc`` or ``desc`` order.                |
+| :table\_order             | Default table order. Resources get ordered by ID in ``asc`` or ``desc`` order.                |
 +---------------------------+-----------------------------------------------------------------------------------------------+
 | :marketplace\_username    | Username credential to connect to the Marketplace.                                            |
 +---------------------------+-----------------------------------------------------------------------------------------------+
@@ -138,12 +138,12 @@ Available options are:
 
           Example: :host: 0::1, :host: 0::0
 
-.. note:: To use Sunstone with IPv6 only systems and thin HTTP sever, use the full IPv6 address in the field `:host`. If you need to set the localhost address (::1) or the unspecified address (::) please use the following:
+.. note:: To use Sunstone with IPv6-only systems and thin HTTP sever, use the full IPv6 address in the field `:host`. If you need to set the localhost address (::1) or the unspecified address (::) please use the following:
 
           Example: :host: 0::1, :host: 0::0
 
 
-Sunstone behaviour can also be configured through the user template (within a SUNSTONE=[] vector value. For instance SUNSTONE=[TABLE_ORDER="asc"]):
+Sunstone behavior can also be configured through the user template (within a SUNSTONE=[] vector value, for instance SUNSTONE=[TABLE_ORDER="asc"]):
 
 +---------------------------+-------------------------------------------------------------------+
 |           Option          |                            Description                            |
@@ -152,9 +152,9 @@ Sunstone behaviour can also be configured through the user template (within a SU
 +---------------------------+-------------------------------------------------------------------+
 | TABLE_ORDER               | Asc (ascending) or Desc (descending)                              |
 +---------------------------+-------------------------------------------------------------------+
-| DEFAULT_VIEW              | Name of the default view (as appearing in /etc7on/sunstone-views) |
+| DEFAULT_VIEW              | Name of the default view (as appearing in ``/etc7on/sunstone-views``) |
 +---------------------------+-------------------------------------------------------------------+
-| TABLE_DEFAULT_PAGE_LENGTH | Default lenght of Sunstone datatables' pages                      |
+| TABLE_DEFAULT_PAGE_LENGTH | Default length of Sunstone datatables' pages                      |
 +---------------------------+-------------------------------------------------------------------+
 | LANG                      | Sunstone language (defaults to en_US)                             |
 +---------------------------+-------------------------------------------------------------------+
@@ -164,7 +164,7 @@ Sunstone behaviour can also be configured through the user template (within a SU
 Starting Sunstone
 --------------------------------------------------------------------------------
 
-To start Sunstone just issue the following command as oneadmin
+To start Sunstone, just issue the following command as oneadmin
 
 .. prompt:: bash # auto
 
@@ -214,23 +214,23 @@ VNC Troubleshooting
 
 When clicking the VNC icon, the process of starting a session begins:
 
--  A request is made and if a VNC session is possible, Sunstone server will add the VM Host to the list of allowed vnc session targets and create a random token associated to it.
+-  A request is made, and if a VNC session is possible, the Sunstone server will add the VM Host to the list of allowed vnc session targets and create a random token associated to it.
 -  The server responds with the session token, then a ``noVNC`` dialog pops up.
--  The VNC console embedded in this dialog will try to connect to the proxy either using websockets (default) or emulating them using ``Flash``. Only connections providing the right token will be successful. The token expires and cannot be reused.
+-  The VNC console embedded in this dialog will try to connect to the proxy, either using websockets (default) or emulating them using Flash. Only connections providing the right token will be successful. The token expires and cannot be reused.
 
-There can be multiple reasons that may prevent noVNC from correctly connecting to the machines. Here's a checklist of common problems:
+There can be multiple reasons for noVNC not correctly connecting to the machines. Here's a checklist of common problems:
 
--  noVNC requires Python >= 2.5 for the websockets proxy to work. You may also need additional modules as ``python2<version>-numpy``.
+-  noVNC requires Python >= 2.5 for the websockets proxy to work. You may also need additional modules, such as ``python2<version>-numpy``.
 -  You can retrieve useful information from ``/var/log/one/novnc.log``
 -  You must have a ``GRAPHICS`` section in the VM template enabling VNC, as stated in the documentation. Make sure the attribute ``IP`` is set correctly (``0.0.0.0`` to allow connections from everywhere), otherwise, no connections will be allowed from the outside.
 -  Your browser must support websockets, and have them enabled. This is the default in current Chrome and Firefox, but former versions of Firefox (i.e. 3.5) required manual activation. Otherwise Flash emulation will be used.
--  Make sure there are not firewalls blocking the connections. The proxy will redirect the websocket data from the VNC proxy port to the ``VNC`` port stated in the template of the VM. The value of the proxy port is defined in ``sunstone-server.conf``.
--  Make sure that you can connect directly from Sunstone frontend to the VM using a normal VNC client tools such as ``vncviewer``.
--  When using secure websockets, make sure that your certificate and key (if not included in certificate) are correctly set in Sunstone configuration files. Note that your certificate must be valid and trusted for the wss connection to work. If you are working with a certicificate that it is not accepted by the browser, you can manually add it to the browser trust-list visiting ``https://sunstone.server.address:vnc_proxy_port``. The browser will warn that the certificate is not secure and prompt you to manually trust it.
+-  Make sure there are no firewalls blocking the connections. The proxy will redirect the websocket data from the VNC proxy port to the ``VNC`` port stated in the template of the VM. The value of the proxy port is defined in ``sunstone-server.conf``.
+-  Make sure that you can connect directly from the Sunstone frontend to the VM using a normal VNC client tool, such as ``vncviewer``.
+-  When using secure websockets, make sure that your certificate and key (if not included in the certificate) are correctly set in the Sunstone configuration files. Note that your certificate must be valid and trusted for the wss connection to work. If you are working with a certificate that it is not accepted by the browser, you can manually add it to the browser trust list by visiting ``https://sunstone.server.address:vnc_proxy_port``. The browser will warn that the certificate is not secure and prompt you to manually trust it.
 -  If your connection is very, very, very slow, there might be a token expiration issue. Please try the manual proxy launch as described below to check it.
--  Doesn't work yet? Try launching Sunstone, killing the websockify proxy and relaunching the proxy manually in a console window with the command that is logged at the beginning of ``/var/log/one/novnc.log``. You must generate a lock file containing the PID of the python process in ``/var/lock/one/.novnc.lock`` Leave it running and click on the VNC icon on Sunstone for the same VM again. You should see some output from the proxy in the console and hopefully the cause of why the connection does not work.
--  Please contact the support forum only when you have gone through the suggestion above and provide full sunstone logs, shown errors and any relevant information of your infrastructure (if there are Firewalls etc)
-- The message "SecurityError: The operation is insecure." is usually related to a Same-Origin-Policy problem.  If you have Sunstone TLS secured and try to connect to an insecure websocket for VNC, Firefox blocks that. For Firefox, you need to have both connections secured to not get this error. And don't use a self-signed certificate for the server, this would raise the error again (you can setup your own little CA, that works, but don't use a self-signed server certificate). The other option would be to go into the Firefox config (about:config) and set "network.websocket.allowInsecureFromHTTPS" to "true".
+-  Doesn't work yet? Try launching Sunstone, killing the websockify proxy and relaunching the proxy manually in a console window with the command that is logged at the beginning of ``/var/log/one/novnc.log``. You must generate a lock file containing the PID of the python process in ``/var/lock/one/.novnc.lock`` Leave it running and click on the VNC icon on Sunstone for the same VM again. You should see some output from the proxy in the console and hopefully the reason the connection does not work.
+-  Please contact the support forum only when you have gone through the suggestions, above and provide full sunstone logs, errors shown, and any relevant information on your infrastructure (if there are Firewalls etc.).
+- The message "SecurityError: The operation is insecure." is usually related to a Same-Origin-Policy problem.  If you have Sunstone TLS-secured and try to connect to an insecure websocket for VNC, Firefox blocks that. For Firefox, you need to have both connections secured to not get this error. And don't use a self-signed certificate for the server, this would raise the error again (you can setup your own little CA, that works, but don't use a self-signed server certificate). The other option would be to go into the Firefox config (about:config) and set ``network.websocket.allowInsecureFromHTTPS`` to ``true``.
 
 Tuning & Extending
 ==================
@@ -238,9 +238,9 @@ Tuning & Extending
 Internationalization and Languages
 --------------------------------------------------------------------------------
 
-Sunstone supports multiple languages. If you want to contribute a new language, make corrections or complete a translation, you can visit our:
+Sunstone supports multiple languages. If you want to contribute a new language, make corrections, or complete a translation, you can visit our:
 
--  `Transifex poject page <https://www.transifex.com/projects/p/one/>`__
+-  `Transifex project page <https://www.transifex.com/projects/p/one/>`__
 
 Translating through Transifex is easy and quick. All translations should be submitted via Transifex.
 
@@ -269,7 +269,7 @@ The VM Templates have an image logo to identify the guest OS. To modify the list
 Branding the Sunstone Portal
 --------------------------------------------------------------------------------
 
-You can easily add you logos to the login and main screens by updating the ``logo:`` attribute as follows:
+You can easily add your logos to the login and main screens by updating the ``logo:`` attribute as follows:
 
 -  The login screen is defined in the ``/etc/one/sunstone-views.yaml``.
 -  The logo of the main UI screen is defined for each view in :ref:`the view yaml file <suns_views>`.
@@ -287,12 +287,12 @@ Sunstone will calculate the views available to each user using:
 - From all the groups the user belongs to, the views defined inside each group are combined and presented to the user
 - If no views are available from the user's group, the defaults would be fetched from ``/etc/one/sunstone-views.yaml``. Here, views can be defined for:
 
-  -  Each user (``users:`` section), list each user and the set of views available for her.
-  -  Each group (``groups:`` section), list the set of views for the group.
-  -  The default view, if a user is not listed in the ``users:`` section, nor its group in the ``groups:`` section, the default views will be used.
-  -  The default views for group admins, if a group admin user is not listed in the ``users:`` section, nor its group in the ``groups:`` section, the default_groupadmin views will be used.
+  -  Each user (``users:`` section): list each user and the set of views available for her.
+  -  Each group (``groups:`` section): list the set of views for the group.
+  -  The default view: if a user is not listed in the ``users:`` section, nor its group in the ``groups:`` section, the default views will be used.
+  -  The default views for group admins: if a group admin user is not listed in the ``users:`` section, nor its group in the ``groups:`` section, the default_groupadmin views will be used.
 
-By default users in the ``oneadmin`` group have access to all views, and users in the ``users`` group can use the ``cloud`` view.
+By default, users in the ``oneadmin`` group have access to all views, and users in the ``users`` group can use the ``cloud`` view.
 
 The following ``/etc/one/sunstone-views.yaml`` example enables the user (user.yaml) and the cloud (cloud.yaml) views for helen and the cloud (cloud.yaml) view for group cloud-users. If more than one view is available for a given user the first one is the default.
 
@@ -316,7 +316,7 @@ The following ``/etc/one/sunstone-views.yaml`` example enables the user (user.ya
 A Different Endpoint for Each View
 --------------------------------------------------------------------------------
 
-OpenNebula :ref:`Sunstone views <suns_views>` can be adapted to deploy a different endpoint for each kind of user. For example if you want an endpoint for the admins and a different one for the cloud users. You will just have to deploy a :ref:`new sunstone server <suns_advance>` and set a default view for each sunstone instance:
+OpenNebula :ref:`Sunstone views <suns_views>` can be adapted to deploy a different endpoint for each kind of user. For example if you want an endpoint for the admins and a different one for the cloud users. You just have to deploy a :ref:`new sunstone server <suns_advance>` and set a default view for each sunstone instance:
 
 .. code::
 
