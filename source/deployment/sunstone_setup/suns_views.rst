@@ -4,9 +4,9 @@
 Sunstone Views
 ================================================================================
 
-The OpenNebula Sunstone Views can be grouped into two different layouts. On one hand, the classic Sunstone layout exposes a complete view of the cloud, allowing administrators and advanced users to have full control of any physical or virtual resource of the cloud. On the other hand, the cloud layout exposes a simplified version of the cloud where end-users will be able to manage any virtual resource of the cloud, without taking care of the physical resources management.
+The OpenNebula Sunstone Views can be grouped into two different layouts. On one hand, the classic Sunstone layout exposes a complete view of the cloud, allowing administrators and advanced users to have full control of any physical or virtual resource of the cloud. On the other hand, the cloud layout exposes a simplified version of the cloud, where end-users will be able to manage any virtual resource of the cloud without taking care of physical resource management.
 
-Using the OpenNebula Sunstone Views you will be able to provide a simplified UI aimed at end-users of an OpenNebula cloud. The OpenNebula Sunstone Views are fully customizable, so you can easily enable or disable specific information tabs or action buttons. :ref:`You can define multiple views for different user groups <suns_views_define_new>`. You can define multiple views for different user groups. Each view defines a set of UI components so each user just accesses and views the relevant parts of the cloud for her role. Default views:
+Using the OpenNebula Sunstone Views you will be able to provide a simplified UI aimed at end-users of an OpenNebula cloud. The OpenNebula Sunstone Views are fully customizable, so you can easily enable or disable specific information tabs or action buttons. :ref:`You can define multiple views for different user groups <suns_views_define_new>`. You can define multiple views for different user groups. Each view defines a set of UI components, so each user just accesses and views the relevant parts of the cloud for her role. Default views:
 
 - :ref:`Admin View <vcenter_view>`.
 - :ref:`Group Admin View <groupadmin_view>`.
@@ -21,7 +21,7 @@ These views are in 3 directories **kvm**, **vcenter** and **mixed** that Openneb
 * ``/etc/one/sunstone-views/mixed`` to manage both hypervisors in the same view.
 
 
-To choose the views you just have to change the configuration parameter **mode** in ``sunstone-server.conf``.
+To choose the views, you just have to change the configuration parameter **mode** in ``sunstone-server.conf``.
 
 .. code-block:: yaml
 
@@ -55,9 +55,9 @@ Based on the Admin View. It provides control of all the resources belonging to a
 Cloud View
 --------------------------------------------------------------------------------
 
-This is a simplified view mainly intended for end-users that just require a portal where they can provision new virtual machines easily from pre-defined Templates. For more information about this view, please check the ``/etc/one/sunstone-views/*/cloud.yaml`` file.
+This is a simplified view, mainly intended for end-users that just require a portal where they can provision new virtual machines easily from pre-defined Templates. For more information about this view, please check the ``/etc/one/sunstone-views/*/cloud.yaml`` file.
 
-In this scenario the cloud administrator must prepare a set of templates and images and make them available to the cloud users. These Templates must be ready to be instantiated. Before using them, users can optionally customize the VM capacity, add new network interfaces and provide values required by the template.  Thereby, the user doesn't have to know any details of the infrastructure such as networking or storage. For more information on how to configure this scenario see :ref:`this section <cloud_view>`
+In this scenario the cloud administrator must prepare a set of templates and images and make them available to the cloud users. These Templates must be ready to be instantiated. Before using them, users can optionally customize the VM capacity, add new network interfaces, and provide values required by the template.  Thereby, the user doesn't have to know any details of the infrastructure, such as networking or storage. For more information on how to configure this scenario see :ref:`this section <cloud_view>`
 
 |cloud_dash|
 
@@ -66,7 +66,7 @@ In this scenario the cloud administrator must prepare a set of templates and ima
 User View
 --------------------------------------------------------------------------------
 
-Based on the Admin View, it is an advanced user view. It is intended for users that need access to more actions that the limited set available in the cloud view. Users will not be able to manage nor retrieve the hosts and clusters of the cloud. They will be able to see Datastores and Virtual Networks in order to use them when creating a new Image or Virtual Machine, but they will not be able to create new ones. Details can be configured in the ``/etc/one/sunstone-views/*/user.yaml`` file.
+Based on the Admin View; it is an advanced user view. It is intended for users that need access to more actions than the limited set available in the cloud view. Users will not be able to manage nor retrieve the hosts and clusters of the cloud. They will be able to see Datastores and Virtual Networks in order to use them when creating a new Image or Virtual Machine, but they will not be able to create new ones. Details can be configured in the ``/etc/one/sunstone-views/*/user.yaml`` file.
 
 |sunstone_user_dashboard|
 
@@ -75,7 +75,7 @@ Based on the Admin View, it is an advanced user view. It is intended for users t
 Configuring Access to the Views
 ================================================================================
 
-By default, the ``admin`` view is only available to the ``oneadmin`` group. New users will be included in the ``users`` group and will use the default ``cloud`` view. The views assigned to a given group can be defined in the group creation form or updating an existing group to implement different OpenNebula models. For more information on the different OpenNebula models please check the :ref:`Understanding OpenNebula documentation <understand>`.
+By default, the ``admin`` view is only available to the ``oneadmin`` group. New users will be included in the ``users`` group and will use the default ``cloud`` view. The views assigned to a given group can be defined in the group creation form or by updating an existing group to implement different OpenNebula models. For more information on the different OpenNebula models please check the :ref:`Understanding OpenNebula documentation <understand>`.
 
 |sunstone_group_defview|
 
@@ -90,12 +90,12 @@ Sunstone users can change their current view from the top-right drop-down menu:
 
 They can also configure several options from the settings tab:
 
--  Views: change between the different available views
+-  Views: change between the different available views.
 -  Language: select the language that they want to use for the UI.
 -  Use secure websockets for VNC: Try to connect using secure websockets when starting VNC sessions.
--  Display Name: If the user wishes to customize the username that is shown in Sunstone it is possible to so by adding a special parameter named ``SUNSTONE/DISPLAY_NAME`` with the desired value. It is worth noting that Cloud Administrators may want to automate this with a hook on user create in order to fetch the user name from outside OpenNebula.
+-  Display Name: If the user wishes to customize the username that is shown in Sunstone, it is possible to so by adding a special parameter named ``SUNSTONE/DISPLAY_NAME`` with the desired value. It is worth noting that Cloud Administrators may want to automate this with a hook on user create in order to fetch the user name from outside OpenNebula.
 
-These options are saved in the user template, as well as other hidden settings like for instance the attribute that lets Sunstone remember the number of items displayed in the datatables per user. If not defined, defaults from ``/etc/one/sunstone-server.conf`` are taken.
+These options are saved in the user template, as well as other hidden settings, like for instance the attribute that lets Sunstone remember the number of items displayed in the datatables per user. If not defined, defaults from ``/etc/one/sunstone-server.conf`` are taken.
 
 |views_settings|
 
@@ -106,7 +106,7 @@ Labels
 ================================================================================
 |labels_edit|
 
-Labels can be defined for most of the OpenNebula resources from the admin view. Each resource will store the labels information in its own template, thus it can be easily edited from the CLI or Sunstone. This feature enables the possibility to group the different resources under a given label and filter them in the admin and cloud views. The user will be able to easily find the template she wants to instantiate or select a set of resources to apply a given action.
+Labels can be defined for most of the OpenNebula resources from the admin view. Each resource will store the label information in its own template, thus it can be easily edited from the CLI or Sunstone. This feature enables the possibility to group the different resources under a given label and filter them in the admin and cloud views. The user will be able to easily find the template she wants to instantiate, or select a set of resources to apply a given action.
 
 |labels_filter|
 
@@ -116,13 +116,13 @@ To create a label hierarchy, use the '/' character. For example, you could have 
 
 Persistent Labels
 ================================================================================
-You can also create persistent labels, these types of labels will not be deleted even when they have no associated resources. To define the persistent tags we have 2 options, definining them as system tags, including them in the file ``/etc/one/sunstone-views.yaml`` or adding them to the user's template, this second form can be done through the CLI or through the sunstone interface, doing Click on padlock already created tags.
+You can also create persistent labels. These types of labels will not be deleted even when they have no associated resources. To define persistent tags we have 2 options, defining them as system tags, and including them in the file ``/etc/one/sunstone-views.yaml`` or adding them to the user's template. This second form can be done through the CLI or through the sunstone interface, doing Click on the padlock of already-created tags.
 
 |labels_persis|
 
 User Labels
 --------------------------------------------------------------------------------
-This labels will be saved in the user's template when the user do click on padlock, this labels are easily editable from the CLI or Sunstone interface. And the following template when you save a label in the user's template
+These labels will be saved in the user's template when the user clicks on the padlock. These labels are easily editable from the CLI or Sunstone interface. Add the following template when you save a label in the user's template
 
 .. code-block:: none
 
@@ -132,7 +132,7 @@ This labels will be saved in the user's template when the user do click on padlo
 
 System Labels
 --------------------------------------------------------------------------------
-These labels are defined in ``/etc/one/sunstone-views.yaml``, you can separate them per groups of users or introduce them into default section.
+These labels are defined in ``/etc/one/sunstone-views.yaml``. You can separate them per groups of users or introduce them into the default section.
 
 .. code-block:: yaml
 
@@ -188,7 +188,7 @@ The name of the view will be the filename without the yaml extension.
     `-- sunstone-views.yaml
     ...
 
-.. note:: The easiest way to create a custom view is to copy the ``admin.yaml`` or ``cloud.yaml`` file and then harden it as needed.
+.. note:: The easiest way to create a custom view is to copy the ``admin.yaml`` or ``cloud.yaml`` file and modify it as needed.
 
 Admin View Customization
 --------------------------------------------------------------------------------
@@ -196,8 +196,8 @@ Admin View Customization
 
 The contents of a view file specifies the logos, links, confirm actions, group filter, enabled features, visible tabs, and enabled actions.
 
-* `small_logo`: Image path to customize the Sunstone logo in admin views. By default OpenNebula logo.
-* `provission_logo`: Image path to customize the Sunstone logo in user views. By default OpenNebula logo.
+* `small_logo`: Image path to customize the Sunstone logo in admin views. By default, the OpenNebula logo.
+* `provision_logo`: Image path to customize the Sunstone logo in user views. By default, the OpenNebula logo.
 * `link_logo`: External URL below the logo.
 * `text_link_logo`: Text link for link_logo.
 * `confirm_vms`: If true, the user will need to confirm the actions on a VM.
@@ -208,7 +208,7 @@ For the dashboard, the following widgets can be configured:
 .. code-block:: yaml
 
     # The following widgets can be used inside any of the '_per_row' settings
-    # bellow. As the name suggest, the widgets will be scaled to fit one,
+    # below. As the name suggests, the widgets will be scaled to fit one,
     # two, or three per row. The footer uses the widgets at full size, i.e.
     # one per row.
     #
@@ -236,20 +236,20 @@ For the dashboard, the following widgets can be configured:
 Inside ``features`` there are twelve settings:
 
 * ``showback``: When this is false, all :ref:`Showback <showback>` features are hidden. The monthly report tables, and the cost for new VMs in the create VM wizard.
-* ``secgroups``: If true, the create VM wizard will allow to add security groups to each network interface.
+* ``secgroups``: If true, the create VM wizard will allow adding security groups to each network interface.
 * ``instantiate_hide_cpu``: If true, hide the CPU setting in the VM creation dialog.
 * ``instantiate_cpu_factor``: False to not scale the CPU from VCPU. Number [0, 1] to scale.
 * ``instantiate_persistent``: True to show the option to make an instance persistent.
-* ``vcenter_vm_folder``: True to show an input to specify the the VMs and Template path/folder where a vCenter VM will deployed to.
-* ``show_ds_instantiate``: True to show the datastore datatable to instantiate VM.
-* ``show_vmgroup_instantiate``: True to show the vmgroup datatable to instantiate VM.
-* ``show_vnet_instantiate``: True to show the vnet datatable to instantiate VM.
-* ``show_host_instantiate``: True to show the host datatable to instantiate VM.
-* ``show_monitoring_info``: True to show the monitoring info (VM & VRouters).
-* ``show_attributes_info``: True to show the attributes info (VM & VRouters).
-* ``resize_enforce``: If set to True, the host capacity will be checked. This will only affect oneadmin requests, regular users resize requests will always be enforced.
-* ``deploy_enforce``: If set to True, the host capacity will be checked. This will only affect oneadmin requests, regular users resize requests will always be enforced.
-* ``migrate_enforce``: If set to True, the host capacity will be checked. This will only affect oneadmin requests, regular users resize requests will always be enforced.
+* ``vcenter_vm_folder``: True to show an input to specify the VMs and Template path/folder where a vCenter VM will be deployed.
+* ``show_ds_instantiate``: True to show the datastore datatable to instantiate the VM.
+* ``show_vmgroup_instantiate``: True to show the vmgroup datatable to instantiathe VM.
+* ``show_vnet_instantiate``: True to show the vnet datatable to instantiate the VM.
+* ``show_host_instantiate``: True to show the host datatable to instantiate the VM.
+* ``show_monitoring_info``: True to show monitoring info (VM & VRouters).
+* ``show_attributes_info``: True to show attributes info (VM & VRouters).
+* ``resize_enforce``: If set to True, the host capacity will be checked. This will only affect oneadmin requests; limits on regular users' resize requests will always be enforced.
+* ``deploy_enforce``: If set to True, the host capacity will be checked. This will only affect oneadmin requests; limits on regular users' resize requests will always be enforced.
+* ``migrate_enforce``: If set to True, the host capacity will be checked. This will only affect oneadmin requests; limits on regular users' resize requests will always be enforced.
 
 .. code-block:: yaml
 
@@ -261,7 +261,7 @@ Inside ``features`` there are twelve settings:
         # on the VM creation dialog
         secgroups: true
 
-This file also defines the tabs available in the view (note: tab is one of the main sections of the UI, those in the left-side menu). Each tab can be enabled or disabled by updating the ``enabled_tabs:`` attribute. For example to disable the Clusters tab, comment the ``clusters-tab`` entry:
+This file also defines the tabs available in the view. (Note: the tabs is one of the main sections of the UI, those in the left-side menu.) Each tab can be enabled or disabled by updating the ``enabled_tabs:`` attribute. For example to disable the Clusters tab, comment out the ``clusters-tab`` entry:
 
 .. code-block:: yaml
 
@@ -300,11 +300,11 @@ This file also defines the tabs available in the view (note: tab is one of the m
 
 Each tab can be tuned by selecting:
 
--  The individual resource tabs available (``panel_tabs:`` attribute) in the tab, these are the tabs activated when an object is selected (e.g. the information, or capacity tabs in the Virtual Machines tab).
+-  The individual resource tabs available (``panel_tabs:`` attribute) in the tab; these are the tabs activated when an object is selected (e.g. the information, or capacity tabs in the Virtual Machines tab).
 -  The columns shown in the main information table (``table_columns:`` attribute).
 -  The action buttons available to the view (``actions:`` attribute).
 
-The attributes in each of the above sections should be self-explanatory. As an example, the following section defines a simplified datastore tab, without the info panel_tab and no action buttons:
+The attributes in each of the above sections should be self-explanatory. As an example, the following section defines a simplified datastore tab, without the info panel tab and no action buttons:
 
 .. code-block:: yaml
 
@@ -345,21 +345,21 @@ The attributes in each of the above sections should be self-explanatory. As an e
 Cloud View Customization
 --------------------------------------------------------------------------------
 
-The cloud layout can also be customized by changing the corresponding ``/etc/one/sunstone-views/`` yaml files. In this file you can customize the options available when instantiating a new template, the dashboard setup or the resources available for cloud users.
+The cloud layout can also be customized by changing the corresponding ``/etc/one/sunstone-views/`` yaml files. In this file you can customize the options available when instantiating a new template, the dashboard setup, or the resources available for cloud users.
 
 Features
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* ``showback``: When this is false, all :ref:`Showback <showback>` features are hidden. The monthly report tables, and the cost for new VMs in the create VM wizard.
-* ``secgroups``: If true, the create VM wizard will allow to add security groups to each network interface.
+* ``showback``: When this is false, all :ref:`Showback <showback>` features are hidden: the monthly report tables, and the cost for new VMs in the create VM wizard.
+* ``secgroups``: If true, the create VM wizard will allow adding security groups to each network interface.
 * ``instantiate_hide_cpu``: If true, hide the CPU setting in the VM creation dialog.
 * ``instantiate_cpu_factor``: False to not scale the CPU from VCPU. Number [0, 1] to scale.
 * ``instantiate_persistent``: True to show the option to make an instance persistent.
-* ``cloud_vm_create``: True to allow to create machines to cloud users.
+* ``cloud_vm_create``: True to allow creating machines by cloud users.
 * ``show_monitoring_info``: True to show the monitoring info (VM & VRouters).
 * ``show_attributes_info``: True to show the attributes info (VM & VRouters).
-* ``show_attach_disk_advanced``: True to show advanced options in attach disk dialog.
-* ``show_attach_nic_advanced``: True to show advanced options in attach nic dialog.
+* ``show_attach_disk_advanced``: True to show advanced options in the attach disk dialog.
+* ``show_attach_nic_advanced``: True to show advanced options in the attach NIC dialog.
 
 .. code-block:: yaml
 
@@ -367,7 +367,7 @@ Features
         # True to show showback monthly reports, and VM cost
         showback: true
 
-        # Allows to change the security groups for each network interface
+        # Allows changing the security groups for each network interface
         # on the VM creation dialog
         secgroups: true
 
@@ -387,7 +387,7 @@ The list of VMs is always visible. The list of :ref:`VM Templates <vm_templates>
 Dashboard
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The dashboard can be configured to show user's quotas, group quotas, overview of user VMs, overview of group VMs
+The dashboard can be configured to show users' quotas, group quotas, overview of user VMs, and an overview of group VMs.
 
 .. code-block:: yaml
 
@@ -474,7 +474,7 @@ The actions available for a given VM can be customized and extended by modifying
 Autorefresh
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-VM autorefresh time (ms) of individual VM view. By default at 10 seconds. You must add the following line in ``vms-tab`` in the different views:
+VM autorefresh time (ms) of the individual VM view. By default, 10 seconds. You must add the following line in ``vms-tab`` in the different views:
 
 .. code-block:: yaml
 

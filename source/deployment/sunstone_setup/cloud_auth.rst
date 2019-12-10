@@ -6,7 +6,7 @@ Cloud Servers Authentication
 
 OpenNebula ships with two servers: :ref:`Sunstone <sunstone>` and :ref:`EC2 <ec2qcg>`. When a user interacts with one of them, the server authenticates the request and then forwards the requested operation to the OpenNebula daemon.
 
-The forwarded requests between the servers and the core daemon include the original user name, and are signed with the credentials of an special ``server`` user.
+The forwarded requests between the servers and the core daemon include the original user name, and are signed with the credentials of a special ``server`` user.
 
 In this guide this request forwarding mechanism is explained, and how it is secured with a symmetric-key algorithm or x509 certificates.
 
@@ -15,9 +15,9 @@ Server Users
 
 The :ref:`Sunstone <sunstone>` and :ref:`EC2 <ec2qcg>` services communicate with the core using a ``server`` user. OpenNebula creates the **serveradmin** account at bootstrap, with the authentication driver **server\_cipher** (symmetric key).
 
-This ``server`` user uses a special authentication mechanism that allows the servers to perform an operation on behalf of other user.
+This ``server`` user uses a special authentication mechanism that allows the servers to perform an operation on behalf of another user.
 
-You can strengthen the security of the requests from the servers to the core daemon changing the serveruser's driver to **server\_x509**. This is specially relevant if you are running your server in a machine other than the frontend.
+You can strengthen the security of the requests from the servers to the core daemon by changing the serveruser's driver to **server\_x509**. This is specially relevant if you are running your server in a machine other than the frontend.
 
 Please note that you can have as many users with a **server\_**\ \* driver as you need. For example, you may want to have Sunstone configured with a user with **server\_x509** driver, and EC2 with **server\_cipher**.
 
@@ -52,9 +52,9 @@ You must update the configuration files in ``/var/lib/one/.one`` if you change t
     $ cat /var/lib/one/.one/sunstone_auth
     serveradmin:1612b78a4843647a4b541346f678f9e1b43bbcf9
 
-.. warning:: ``serveradmin`` password is hashed in the database. You can use the ``--sha256`` flag when issuing ``oneuser passwd`` command for this user.
+.. warning:: The ``serveradmin`` password is hashed in the database. You can use the ``--sha256`` flag when issuing ``oneuser passwd`` command for this user.
 
-.. warning:: When Sunstone is running in a different machine than oned you should use an SSL connection. This can be archived with an SSL proxy like stunnel or apache/nginx acting as proxy. After securing OpenNebula XMLRPC connection configure Sunstone to use https with the proxy port:
+.. warning:: When Sunstone is running in a different machine than oned you should use an SSL connection. This can be archived with an SSL proxy like stunnel or apache/nginx acting as proxy. After securing the OpenNebula XML-RPC connection, configure Sunstone to use https with the proxy port:
 
 .. code-block:: yaml
 
@@ -109,7 +109,7 @@ Then edit the relevant configuration file in ``/etc/one``:
 Configure
 ---------
 
-To trust the serveradmin certificate, ``/etc/one/auth/cert.pem`` if you used the default path, the CA's certificate must be added to the ``ca_dir`` defined in ``/etc/one/auth/x509_auth.conf``. See the :ref:`x509 Authentication guide for more information <x509_auth>`.
+To trust the serveradmin certificate (``/etc/one/auth/cert.pem`` if you used the default path) the CA's certificate must be added to the ``ca_dir`` defined in ``/etc/one/auth/x509_auth.conf``. See the :ref:`x509 Authentication guide for more information <x509_auth>`.
 
 .. prompt:: bash $ auto
 
@@ -138,7 +138,7 @@ OpenNebula users with the driver **server\_cipher** or **server\_x509** use a sp
 
     username:secret
 
-Whereas a user with a **server\_**\ \* driver must use this token format:
+whereas a user with a **server\_**\ \* driver must use this token format:
 
 .. code::
 
@@ -149,4 +149,4 @@ The core daemon understands a request with this authentication session token as 
 Two Factor Authentication
 -------------------------
 
-To use the 2fa use the following :ref:`Link <2f_auth>`
+To use 2FA see the following :ref:`Link <2f_auth>`

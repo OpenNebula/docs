@@ -10,12 +10,12 @@ By default Sunstone works with the core authentication method (user and password
 Authentication Methods
 ======================
 
-Authentication is two-folded:
+Authentication is two-fold:
 
-* **Web client and Sunstone server**. Authentication is based on the credentials stored in the OpenNebula database for the user. Depending on the type of this credentials the authentication method can be: sunstone, x509 and opennebula (supporting LDAP or other custom methods).
-* **Sunstone server and OpenNebula core**. The requests of a user are forwarded to the core daemon, including the original user name. Each request is signed with the credentials of an special ``server`` user. This authentication mechanism is based either in symmetric key cryptography (default) or x509 certificates. Details on how to configure these methods can be found in the :ref:`Cloud Authentication section <cloud_auth>`.
+* **Web client and Sunstone server**. Authentication is based on the credentials stored in the OpenNebula database for the user. Depending on the type of these credentials the authentication method can be: sunstone, x509 and opennebula (supporting LDAP or other custom methods).
+* **Sunstone server and OpenNebula core**. The requests of a user are forwarded to the core daemon, including the original user name. Each request is signed with the credentials of a special ``server`` user. This authentication mechanism is based either on symmetric key cryptography (default) or x509 certificates. Details on how to configure these methods can be found in the :ref:`Cloud Authentication section <cloud_auth>`.
 
-The following sections details the client-to-Sunstone server authentication methods.
+The following sections detail the client-to-Sunstone server authentication methods.
 
 Basic Auth
 ----------
@@ -31,7 +31,7 @@ To enable this login method, set the ``:auth:`` option of ``/etc/one/sunstone-se
 OpenNebula Auth
 ---------------
 
-Using this method the credentials included in the header will be sent to the OpenNebula core and the authentication will be delegated to the OpenNebula auth system, using the specified driver for that user. Therefore any OpenNebula auth driver can be used through this method to authenticate the user (i.e: LDAP). The sunstone configuration is:
+Using this method the credentials included in the header will be sent to the OpenNebula core, and the authentication will be delegated to the OpenNebula auth system using the specified driver for that user. Therefore any OpenNebula auth driver can be used through this method to authenticate the user (e.g. LDAP). The sunstone configuration is:
 
 .. code-block:: yaml
 
@@ -42,7 +42,7 @@ x509 Auth
 
 This method performs the login to OpenNebula based on a x509 certificate DN (Distinguished Name). The DN is extracted from the certificate and matched to the password value in the user database.
 
-The user password has to be changed running one of the following commands:
+The user password has to be changed by running one of the following commands:
 
 .. prompt:: bash $ auto
 
@@ -76,15 +76,15 @@ The login screen will not display the username and password fields anymore, as a
 
 |image0|
 
-Note that OpenNebula will not verify that the user is holding a valid certificate at the time of login: this is expected to be done by the external container of the Sunstone server (normally Apache), whose job is to tell the user's browser that the site requires a user certificate and to check that the certificate is consistently signed by the chosen Certificate Authority (CA).
+Note that OpenNebula will not verify that the user is holding a valid certificate at the time of login: this is expected to be done by the external container of the Sunstone server (normally Apache), whose job is to tell the user's browser that the site requires a user certificate, and to check that the certificate is consistently signed by the chosen Certificate Authority (CA).
 
-.. warning:: Sunstone x509 auth method only handles the authentication of the user at the time of login. Authentication of the user certificate is a complementary setup, which can rely on Apache.
+.. warning:: The Sunstone x509 auth method only handles the authentication of the user at the time of login. Authentication of the user certificate is a complementary setup, which can rely on Apache.
 
 Remote Auth
 -----------
 
-This method is similar to x509 auth. It performs the login to OpenNebula based on a Kerberos ``REMOTE_USER``. The ``USER@DOMAIN`` is extracted from ``REMOTE_USER`` variable and matched to the password value in the user database. To use Kerberos authentication users needs to be configured with the public driver. Note that this will prevent users to authenticate through the XML-RPC interface, only Sunstone access will be granted to these users.
-To update existing users to use the Kerberos authentication change the driver to public and update the password as follows:
+This method is similar to x509 auth. It performs the login to OpenNebula based on a Kerberos ``REMOTE_USER``. The ``USER@DOMAIN`` is extracted from the ``REMOTE_USER`` variable and matched to the password value in the user database. To use Kerberos authentication, users need to be configured with the public driver. Note that this will prevent users authenticating through the XML-RPC interface; only Sunstone access will be granted to these users.
+To update existing users to use Kerberos authentication, change the driver to public and update the password as follows:
 
 .. prompt:: bash $ auto
 
@@ -102,11 +102,11 @@ To enable this login method, set the ``:auth:`` option of ``/etc/one/sunstone-se
 
         :auth: remote
 
-The login screen will not display the username and password fields anymore, as all information is fetched from Kerberos server or a remote authentication service.
+The login screen will not display the username and password fields anymore, as all information is fetched from the Kerberos server or a remote authentication service.
 
 Note that OpenNebula will not verify that the user is holding a valid Kerberos ticket at the time of login: this is expected to be done by the external container of the Sunstone server (normally Apache), whose job is to tell the user's browser that the site requires a valid ticket to login.
 
-.. warning:: Sunstone remote auth method only handles the authentication of the user at the time of login. Authentication of the remote ticket is a complementary setup, which can rely on Apache.
+.. warning:: The Sunstone remote auth method only handles the authentication of the user at the time of login. Authentication of the remote ticket is a complementary setup, which can rely on Apache.
 
 .. _2f_auth:
 
@@ -115,9 +115,9 @@ Two Factor Authentication
 
 With this method, not only does it request a username and password, it also requires a token generated by any of these applications: `Google Authentication <https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en>`__, `Authy <https://authy.com/download/>`__ or `Microsoft Authentication <https://www.microsoft.com/en-us/p/microsoft-authenticator/9nblgggzmcj6?activetab=pivot:overviewtab>`__.
 
-To enable this means you must follow the following steps:
+To enable this, you must follow these steps:
 
--  Log in suntone select menu **Setting**, Inside find and select the tab **Auth**
+-  Log in sunstone, and select menu **Setting**. Inside find and select the tab **Auth**
 
 |image_setting|
 
@@ -125,39 +125,39 @@ To enable this means you must follow the following steps:
 
 |image_setting_auth|
 
--  A modal will appear with a qr, it must be scanned with the App `Google Authentication <https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en>`__, `Authy <https://authy.com/download/>`__ or `Microsoft Authentication <https://www.microsoft.com/en-us/p/microsoft-authenticator/9nblgggzmcj6?activetab=pivot:overviewtab>`__. it will generate a 6-character code which you must place in the code input
+-  A window will appear with a QR code. It must be scanned with the app `Google Authentication <https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en>`__, `Authy <https://authy.com/download/>`__ or `Microsoft Authentication <https://www.microsoft.com/en-us/p/microsoft-authenticator/9nblgggzmcj6?activetab=pivot:overviewtab>`__. That will generate a 6-character code which you must place in the code input field.
 
 |image_setting_2fa|
 
-internally sunstone adds the field **TWO_FACTOR_AUTH_SECRET**
+Internally sunstone adds the field **TWO_FACTOR_AUTH_SECRET**.
 
 |image_template_user_auth|
 
--  For disable the 2FA, go to the setting, Auth and select the button disable
+-  To disable 2FA, go to the setting, Auth and select the button **disable**.
 
 |image_setting_auth_disable|
 
 
 
-Configuring a SSL Proxy
-=======================
+Configuring an SSL Proxy
+========================
 
-OpenNebula Sunstone runs natively just on normal HTTP connections. If the extra security provided by SSL is needed, a proxy can be set up to handle the SSL connection that forwards the petition to the Sunstone server and takes back the answer to the client.
+OpenNebula Sunstone runs natively just on normal HTTP connections. If the extra security provided by SSL is needed, a proxy can be set up to handle the SSL connection that forwards the request to the Sunstone server and returns the answer to the client.
 
 This set up needs:
 
 -  A server certificate for the SSL connections
 -  An HTTP proxy that understands SSL
--  OpenNebula Sunstone configuration to accept petitions from the proxy
+-  OpenNebula Sunstone configuration to accept requests from the proxy
 
-If you want to try out the SSL setup easily, you can find in the following lines an example to set a self-signed certificate to be used by a web server configured to act as an HTTP proxy to a correctly configured OpenNebula Sunstone.
+If you want to try out the SSL setup easily, the following lines provide an example to set a self-signed certificate to be used by a web server configured to act as an HTTP proxy to a correctly configured OpenNebula Sunstone.
 
 Let's assume the server where the proxy is going to be started is called ``cloudserver.org``. Therefore, the steps are:
 
 Step 1: Server Certificate (Snakeoil)
 -------------------------------------
 
-We are going to generate a snakeoil certificate. If using an Ubuntu system follow the next steps (otherwise your milleage may vary, but not a lot):
+We are going to generate a snakeoil certificate. If using an Ubuntu system follow the next steps (otherwise your mileage may vary, but not a lot):
 
 -  Install the ``ssl-cert`` package
 
@@ -171,7 +171,7 @@ We are going to generate a snakeoil certificate. If using an Ubuntu system follo
 
     # /usr/sbin/make-ssl-cert generate-default-snakeoil
 
--  As we are using lighttpd, we need to append the private key with the certificate to obtain a server certificate valid to lighttpd
+-  As we are using lighttpd, we need to append the private key to the certificate to obtain a server certificate valid to lighttpd
 
 .. prompt:: bash # auto
 
@@ -263,7 +263,7 @@ You will need to configure a new virtual host in nginx. Depending on the operati
             }
     }
 
-The IP address and port number used in ``upstream`` must be the one of the server Sunstone is running on. On typical installations the nginx master process is run as user root so you don't need to modify the HTTPS port.
+The IP address and port number used in ``upstream`` must be the ones the server Sunstone is running on. On typical installations the nginx master process is run as user root so you don't need to modify the HTTPS port.
 
 Step 3: Sunstone Configuration
 ------------------------------
@@ -278,7 +278,7 @@ Edit ``/etc/one/sunstone-server.conf`` to listen at localhost:9869.
 Once the proxy server is started, OpenNebula Sunstone requests using HTTPS URIs can be directed to ``https://cloudserver.org:8443``, that will then be unencrypted, passed to localhost, port 9869, satisfied (hopefully), encrypted again and then passed back to the client.
 
 .. _serveradmin_credentials:
-.. note:: To change serveradmin password, follow the next steps:
+.. note:: To change the serveradmin password, follow the next steps:
 
     .. prompt:: bash # auto
 
