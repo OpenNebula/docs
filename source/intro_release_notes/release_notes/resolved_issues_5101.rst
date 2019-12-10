@@ -18,3 +18,4 @@ The following issues has been solved in 5.10.1:
 - `Fix shared VM instantiation on shared FS datastores <https://github.com/OpenNebula/one/issues/4002>`__.
 - `Fix system snapshot revert operation in KVM for VMs with deleted snapshots <https://github.com/OpenNebula/one/issues/4017>`__.
 - `Fix SD_DISK_BUS being removed after updating context <https://github.com/OpenNebula/one/issues/4025>`__.
+- `Fix boot failures when the CD are already ejected <https://github.com/OpenNebula/one/issues/4026>`__.
