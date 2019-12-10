@@ -8,7 +8,7 @@ This guide will show you how to develop a new driver for OpenNebula to interact 
 
 OpenNebula comes with an internal user/password way of authentication, this is called ``core``. To be able to use other auth methods there is a system that performs authentication with external systems. Authentication drivers are responsible of getting the user credentials from OpenNebula database and login and answer whether the authentication is correct or not.
 
-In the OpenNebula database there are two values saved for every user, this is ``username`` and ``password``. When the driver used for authentication is core (authenticated without an external auth driver) the password value holds the SHA1 hash of the user's password. In case we are using other authentication method this ``password`` field can contain any other information we can use to recognize a user, for example, for x509 authentication this field contains the user's public key.
+In the OpenNebula database there are two values saved for every user, this is ``username`` and ``password``. When the driver used for authentication is core (authenticated without an external auth driver) the password value holds the SHA256 hash of the user's password. In case we are using other authentication method this ``password`` field can contain any other information we can use to recognize a user, for example, for x509 authentication this field contains the user's public key.
 
 Authentication Driver
 ================================================================================
