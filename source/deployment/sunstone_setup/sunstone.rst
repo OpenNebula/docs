@@ -51,7 +51,7 @@ Available options are:
 | :one\_xmlrpc\_timeout     | Configure the timeout (seconds) for XMLRPC calls from sunstone.                               |
 |                           | See :ref:`Shell Environment variables <manage_users>`                                         |
 +---------------------------+-----------------------------------------------------------------------------------------------+
-| :host                     | IP address on which the server will listen. ``0.0.0.0`` by default.                        |
+| :host                     | IP address on which the server will listen. ``0.0.0.0`` by default.                           |
 +---------------------------+-----------------------------------------------------------------------------------------------+
 | :port                     | Port on which the server will listen. ``9869`` by default.                                    |
 +---------------------------+-----------------------------------------------------------------------------------------------+
@@ -152,7 +152,8 @@ Sunstone behavior can also be configured through the user template (within a SUN
 +---------------------------+-------------------------------------------------------------------+
 | TABLE_ORDER               | Asc (ascending) or Desc (descending)                              |
 +---------------------------+-------------------------------------------------------------------+
-| DEFAULT_VIEW              | Name of the default view (as appearing in ``/etc7on/sunstone-views``) |
+| DEFAULT_VIEW              | Name of the default view (as appearing in                         |
+|                           | ``/etc7on/sunstone-views``)                                       |
 +---------------------------+-------------------------------------------------------------------+
 | TABLE_DEFAULT_PAGE_LENGTH | Default length of Sunstone datatables' pages                      |
 +---------------------------+-------------------------------------------------------------------+
