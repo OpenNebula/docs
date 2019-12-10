@@ -7,7 +7,7 @@ A complete list of solved issues for 5.10.1 can be found in the `project develop
 
 The following new features have been backported to 5.10.1:
 
-- `Auto-contextualize centos 8 from LXD marketplace <https://github.com/OpenNebula/one/issues/4007>`__.
+- `Add support for Centos 8 auto-contextualization from LXD marketplace <https://github.com/OpenNebula/one/issues/4007>`__.
 
 The following issues has been solved in 5.10.1:
 
