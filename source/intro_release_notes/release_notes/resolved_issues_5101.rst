@@ -5,9 +5,9 @@ Resolved Issues in 5.10.1
 
 A complete list of solved issues for 5.10.1 can be found in the `project development portal <https://github.com/OpenNebula/one/milestone/30>`__.
 
-The following new features has been backported to 5.10.1:
+The following new features have been backported to 5.10.1:
 
-- `Description <https://github.com/OpenNebula/one/issues/XXXX>`__.
+- `Auto-contextualize centos 8 from LXD marketplace <https://github.com/OpenNebula/one/issues/4007>`__.
 
 The following issues has been solved in 5.10.1:
 
