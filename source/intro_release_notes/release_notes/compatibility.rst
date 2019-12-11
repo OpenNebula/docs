@@ -21,7 +21,7 @@ This change has been introduced `because of this bug <https://github.com/OpenNeb
 
 Bridge Interface options
 ------------------------
-As ``Bridge utils (brctl)`` bacame obsolete they were replaced by ``ip-route2``. Bridge options for ``ip command`` could be specified in ``:ip_bridge_conf`` but for backward compatibility the section ``:bridge_conf`` is still accepted and options are transformed to the ``ip-route2`` format.
+As ``Bridge utils (brctl)`` became obsolete they were replaced by ``ip-route2``. Bridge options for ``ip command`` could be specified in ``:ip_bridge_conf`` but for backward compatibility the section ``:bridge_conf`` is still accepted and options are transformed to the ``ip-route2`` format.
 
 Password Hashing Algorithm Update
 ---------------------------------
