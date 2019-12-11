@@ -4,19 +4,19 @@
 LDAP Authentication
 ====================
 
-The LDAP Authentication add-on permits users to have the same credentials as in LDAP, so effectively centralizing authentication. Enabling it will let any correctly authenticated LDAP user to use OpenNebula.
+The LDAP Authentication add-on permits users to have the same credentials as in LDAP, so effectively centralizing authentication. Enabling it will let any correctly authenticated LDAP user use OpenNebula.
 
 Prerequisites
 =============
 
-.. warning:: This Add-on requires the **'net/ldap'** ruby library provided by the 'net-ldap' gem.
+.. warning:: This Add-on requires the **'net/ldap'** ruby library provided by the '**net-ldap**' gem.
 
-This Add-on will not install any LDAP server or configure it in any way. It will not create, delete or modify any entry in the LDAP server it connects to. The only requirement is the ability to connect to an already running LDAP server and being able to perform a successful **ldapbind** operation and have a user able to perform searches of users, therefore no special attributes or values are required in the LDIF entry of the user authenticating.
+This Add-on will not install any LDAP server or configure it in any way. It will not create, delete or modify any entry in the LDAP server it connects to. The only requirement is the ability to connect to an already running LDAP server, perform a successful **ldapbind** operation, and have a user able to perform searches of users. Therefore no special attributes or values are required in the LDIF entry of the user authenticating.
 
 Configuration
 =============
 
-Configuration file for auth module is located at ``/etc/one/auth/ldap_auth.conf``. This is the default configuration:
+The configuration file for the auth module is located at ``/etc/one/auth/ldap_auth.conf``. This is the default configuration:
 
 .. code-block:: yaml
 
@@ -123,7 +123,7 @@ Configuration file for auth module is located at ``/etc/one/auth/ldap_auth.conf`
 
 The structure is a hash where any key different to ``:order`` will contain the configuration of one LDAP server we want to query. The special key ``:order`` holds an array with the order we want to query the configured servers.
 
-.. note:: Items of the ``:order`` are the server names or nested arrays of server names representing the **availability group**. The items in the ``:order`` are processed one by one until the user is successfully authenticated, or the end of the list is reached. Inside the availability group, only the very first server which can be successfully connected is queried. Any server not listed in ``:order`` won't be queried.
+.. note:: Items of the ``:order`` are the server names, or nested arrays of server names, representing the **availability group**. The items in the ``:order`` are processed one by one until the user is successfully authenticated, or the end of the list is reached. Inside the availability group, only the very first server which can be successfully connected to is queried. Any server not listed in ``:order`` won't be queried.
 
 +-----------------------+-------------------------------------------------+
 |        VARIABLE       |                   DESCRIPTION                   |
@@ -148,13 +148,13 @@ The structure is a hash where any key different to ``:order`` will contain the c
 | ``:base``             | Base leaf where to perform user searches        |
 +-----------------------+-------------------------------------------------+
 | ``:group_base``       | Alternative base leaf where to perform group    |
-|                       | searches instead of in :base                    |
+|                       | searches instead of in ``:base``                |
 +-----------------------+-------------------------------------------------+
-| ``:group``            | If set the users need to belong to this group   |
+| ``:group``            | If set, the users need to belong to this group  |
 +-----------------------+-------------------------------------------------+
 | ``:user_field``       | Field in LDAP that holds the user name          |
 +-----------------------+-------------------------------------------------+
-| ``:mapping_generate`` | Generate automatically a mapping file. It can   |
+| ``:mapping_generate`` | Automatically generate a mapping file. It can   |
 |                       | be disabled in case it needs to be done         |
 |                       | manually                                        |
 +-----------------------+-------------------------------------------------+
@@ -169,8 +169,8 @@ The structure is a hash where any key different to ``:order`` will contain the c
 |                       | the mapped group                                |
 +-----------------------+-------------------------------------------------+
 | ``:mapping_default``  | Default group used when no mapped group is      |
-|                       | found. Set to false in case you don't want the  |
-|                       | user to be authorized if it does not belong     |
+|                       | found. Set to ``false`` in case you don't want  |
+|                       | the user to be authorized if they do not belong |
 |                       | to a mapped group                               |
 +-----------------------+-------------------------------------------------+
 | ``:rfc2307bis:``      | Set to true when using Active Directory, false  |
@@ -187,9 +187,9 @@ To enable ``ldap`` authentication the described parameters should be configured.
 User Management
 ===============
 
-Using LDAP authentication module the administrator doesn't need to create users with ``oneuser`` command as this will be automatically done.
+Using the LDAP authentication module, the administrator doesn't need to create users with ``oneuser`` command, as this will be automatically done.
 
-Users can store their credentials into ``$ONE_AUTH`` file (usually ``$HOME/.one/one_auth``) in this fashion:
+Users can store their credentials into the ``$ONE_AUTH`` file (usually ``$HOME/.one/one_auth``) in this fashion:
 
 .. code-block:: bash
 
@@ -200,16 +200,16 @@ where
 -  ``<user_dn>`` the DN of the user in the LDAP service
 -  ``ldap_password`` is the password of the user in the LDAP service
 
-Alternatively a user can generate an authentication token using the ``oneuser login`` command, so there is no need to keep the LDAP password in a plain file. Simply input the ldap_password when requested. More information on the management of login tokens and ``$ONE_AUTH`` file can be found in :ref:`Managing Users Guide<manage_users_managing_users>`.
+Alternatively a user can generate an authentication token using the ``oneuser login`` command, so there is no need to keep the LDAP password in a plain file. Simply input the LDAP password when requested. More information on the management of login tokens and the ``$ONE_AUTH`` file can be found in :ref:`Managing Users Guide<manage_users_managing_users>`.
 
 .. _ldap_dn_with_special_characters:
 
-DN's With Special Characters
-----------------------------
+DNs With Special Characters
+---------------------------
 
-When the user dn or password contains blank spaces the LDAP driver will escape them so they can be used to create OpenNebula users. Therefore, users needs to set up their ``$ONE_AUTH`` file accordingly.
+When the user DN or password contains blank spaces, the LDAP driver will escape them so they can be used to create OpenNebula users. Therefore, users need to set up their ``$ONE_AUTH`` file accordingly.
 
-Users can easily create escaped $ONE\_AUTH tokens with the command ``oneuser encode <user> [<password>]``, as an example:
+Users can easily create escaped ``$ONE_AUTH`` tokens with the command ``oneuser encode <user> [<password>]``, as an example:
 
 .. prompt:: bash $ auto
 
@@ -225,15 +225,15 @@ Active Directory
 
 LDAP Auth drivers are able to connect to Active Directory. You will need:
 
--  Active Directory server with support for simple user/password authentication.
--  User with read permissions in the Active Directory user's tree.
+-  An Active Directory server with support for simple user/password authentication.
+-  A user with read permissions in the Active Directory users tree.
 
 You will need to change the following values in the configuration file (``/etc/one/auth/ldap_auth.conf``):
 
--  ``:user``: the Active Directory user with read permissions in the user's tree plus the domain. For example for user **Administrator** at domain **win.opennebula.org** you specify it as ``Administrator@win.opennebula.org``
+-  ``:user``: the Active Directory user with read permissions in the users tree plus the domain. For example for user **Administrator** at domain **win.opennebula.org** you specify it as ``Administrator@win.opennebula.org``
 -  ``:password``: password of this user
 -  ``:host``: hostname or IP of the Domain Controller
--  ``:base``: base DN to search for users. You need to decompose the full domain name and use each part as DN component. Example, for ``win.opennebula.org`` you will get the base DN: DN=win,DN=opennebula,DN=org
+-  ``:base``: base DN to search for users. You need to decompose the full domain name and use each part as a DN component. Example, for ``win.opennebula.org`` you will get the base DN: DN=win,DN=opennebula,DN=org
 -  ``:user_field``: set it to ``sAMAccountName``
 
 .. _ldap_group_mapping:
@@ -241,13 +241,13 @@ You will need to change the following values in the configuration file (``/etc/o
 Group Mapping
 =============
 
-You can make new users belong to an specific group or groups. To do this a mapping is generated from the LDAP group to an existing OpenNebula group. This system uses a mapping file specified by ``:mapping_file`` parameter and resides in OpenNebula ``var`` directory. The mapping file can be generated automatically using data in the group template that tells which LDAP group maps to that specific group. For example we can add in the group template this line:
+You can make new users belong to a specific group or groups. To do this a mapping is generated from the LDAP group to an existing OpenNebula group. This system uses a mapping file specified by the ``:mapping_file`` parameter and resides in the OpenNebula ``var`` directory. The mapping file can be generated automatically using data in the group template that defines which LDAP group maps to that specific group. For example we can add in the group template this line:
 
 .. code-block:: bash
 
     GROUP_DN="CN=technicians,CN=Groups,DC=example,DC=com"
 
-And in the LDAP configuration file we set the ``:mapping_key`` to ``GROUP_DN``. This tells the driver to look for the group DN in that template parameter. This mapping expires the number of seconds specified by ``:mapping_timeout``. This is done so the authentication is not continually querying OpenNebula.
+and in the LDAP configuration file we set the ``:mapping_key`` to ``GROUP_DN``. This tells the driver to look for the group DN in that template parameter. This mapping expires after the number of seconds specified by ``:mapping_timeout``. This is done so the authentication is not continually querying OpenNebula.
 
 You can also disable the automatic generation of this file and do the mapping manually. The mapping file is in YAML format and contains a hash where the key is the LDAP's group DN and the value is the ID of the OpenNebula group. For example:
 
@@ -256,7 +256,7 @@ You can also disable the automatic generation of this file and do the mapping ma
     CN=technicians,CN=Groups,DC=example,DC=com: '100'
     CN=Domain Admins,CN=Users,DC=example,DC=com: '101'
 
-When several servers are configured you should have different ``:mapping_key`` and ``:mapping_file`` values for each one so they don't collide. For example:
+When several servers are configured, you should have different ``:mapping_key`` and ``:mapping_file`` values for each one so they don't collide. For example:
 
 .. code-block:: yaml
 
@@ -268,27 +268,27 @@ When several servers are configured you should have different ``:mapping_key`` a
         :mapping_file: external.yaml
         :mapping_key: EXTERNAL_GROUP_DN
 
-And in the OpenNebula group template you can define two mappings, one for each server:
+and in the OpenNebula group template you can define two mappings, one for each server:
 
 .. code-block:: bash
 
     INTERNAL_GROUP_DN="CN=technicians,CN=Groups,DC=internal,DC=com"
     EXTERNAL_GROUP_DN="CN=staff,DC=other-company,DC=com"
 
-.. note:: If the map is updated (e.g. you change the LDAP DB) the user groups will be updated next time the user is authenticated. Also note that a user maybe using a login token that needs to expire to this changes to take effect. The max. life time of a token can be set in oned.conf per each driver. If you want the OpenNebula core not to update user groups (and control group assigment from OpenNebula) update ``DRIVER_MANAGED_GROUPS`` in the ``ldap`` ``AUTH_MAD_CONF`` configuration attribute.
+.. note:: If the map is updated (e.g. you change the LDAP DB) the user groups will be updated next time the user is authenticated. Also note that a user may be using a login token that needs to expire for this change to take effect. The maximum lifetime of a token can be set in ``oned.conf`` for each driver. If you want the OpenNebula core not to update user groups (and control group assignment from OpenNebula) update ``DRIVER_MANAGED_GROUPS`` in the ``ldap`` ``AUTH_MAD_CONF`` configuration attribute.
 
 Enabling LDAP auth in Sunstone
 ==============================
 
-Update the ``/etc/one/sunstone-server.conf`` :auth parameter to use the ``opennebula``:
+Update the ``/etc/one/sunstone-server.conf`` ``:auth`` parameter to use ``opennebula``:
 
 .. code-block:: yaml
 
         :auth: opennebula
 
-Using this method the credentials provided in the login screen will be sent to the OpenNebula core and the authentication will be delegated to the OpenNebula auth system, using the specified driver for that user. Therefore any OpenNebula auth driver can be used through this method to authenticate the user (i.e: LDAP).
+Using this method, the credentials provided in the login screen will be sent to the OpenNebula core, and the authentication will be delegated to the OpenNebula auth system using the specified driver for that user. Therefore any OpenNebula auth driver can be used through this method to authenticate the user (e.g. LDAP).
 
-To automatically encode credentials as explained in :ref:`DN's with special characters <ldap_dn_with_special_characters>` section also add this parameter to sunstone configuration:
+To automatically encode credentials as explained in the :ref:`DN's with special characters <ldap_dn_with_special_characters>` section, also add this parameter to the sunstone configuration:
 
 .. code-block:: yaml
 

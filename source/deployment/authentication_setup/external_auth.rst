@@ -4,14 +4,14 @@
 Overview
 ========
 
-OpenNebula comes by default with an internal user/password authentication system, see the :ref:`Users & Groups Subsystem guide <auth_overview>` for more information. You can enable an external Authentication driver.
+OpenNebula comes by default with an internal user/password authentication system; see the :ref:`Users & Groups Subsystem guide <auth_overview>` for more information. You can enable an external Authentication driver.
 
 Authentication
 ==============
 
 |image0|
 
-In the figure to the right of this text you can see three authentication configurations you can customize in OpenNebula.
+In this figure you can see three authentication configurations you can customize in OpenNebula.
 
 a) CLI/API Authentication
 -------------------------
@@ -26,7 +26,7 @@ You can choose from the following authentication drivers to access OpenNebula fr
 b) Sunstone Authentication
 --------------------------
 
-By default any authentication driver configured to work with OpenNebula can be used out-of-the-box with Sunstone. Additionally you can add SSL security to Sunstone as described in the :ref:`Sunstone documentation <suns_auth>`
+By default, any authentication driver configured to work with OpenNebula can be used out-of-the-box with Sunstone. Additionally you can add TLS security to Sunstone as described in the :ref:`Sunstone documentation <suns_auth>`
 
 c) Servers Authentication
 -------------------------
@@ -43,7 +43,7 @@ The forwarded requests are encrypted by default using a Symmetric Key mechanism.
 How Should I Read This Chapter
 ================================================================================
 
-When designing the architecture of your cloud you will have to choose where to store user's credentials. Different authentication methods can be configured at the same time and selected per user basis. One big distinction between the different authentication methods is the ability to be used by API, CLI and/or only Sunstone (web interface).
+When designing the architecture of your cloud you will have to choose where to store users' credentials. Different authentication methods can be configured at the same time and selected on a per user basis. One big distinction between the different authentication methods is the ability to be used by API, CLI and/or only Sunstone (the web interface).
 
 Can be used with API, CLI and Sunstone:
 
