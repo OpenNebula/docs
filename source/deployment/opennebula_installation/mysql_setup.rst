@@ -5,23 +5,23 @@
 MySQL Setup
 ==============
 
-The MySQL/MariaDB back-end is an alternative to the default SQLite back-end. In this guide and in the rest of OpenNebula's documentation and configuration files we will refer to this database as the MySQL, however OpenNebula you can use either MySQL or MariaDB.
+The MySQL/MariaDB back-end is an alternative to the default SQLite back-end. In this guide and in the rest of OpenNebula's documentation and configuration files we will refer to this database as MySQL. However, OpenNebula can use either MySQL or MariaDB.
 
 The two back-ends cannot coexist (SQLite and MySQL), and you will have to decide which one is going to be used while planning your OpenNebula installation.
 
-.. note:: If you are planning to install OpenNebula with MySQL back-end, please follow this guide *prior* to start OpenNebula the first time to avoid problems with oneadmin and serveradmin credentials.
+.. note:: If you are planning to install OpenNebula with MySQL back-end, please follow this guide *prior* to starting OpenNebula the first time to avoid problems with oneadmin and serveradmin credentials.
 
 .. _mysql_installation:
 
 Installation
 ============
 
-First of all, you need a working MySQL server. You can either deploy one for the OpenNebula installation or reuse any existing MySQL already deployed and accessible by the Front-end.
+First of all, you need a working MySQL server. You can either deploy one for the OpenNebula installation or reuse any existing MySQL already deployed and accessible by the Frontend.
 
 Configuring MySQL
 -----------------
 
-You need to add a new user and grant it privileges on the ``opennebula`` database. This new database doesn't need to exist, OpenNebula will create it the first time you run it.
+You need to add a new user and grant it privileges on the ``opennebula`` database. This new database doesn't need to exist as OpenNebula will create it the first time it runs.
 
 Assuming you are going to use the default values, log in to your MySQL server and issue the following commands:
 
@@ -46,7 +46,7 @@ Now configure the transaction isolation level:
 Configuring OpenNebula
 ----------------------
 
-Before you run OpenNebula for the first time, you need to set in :ref:`oned.conf <oned_conf>` the connection details, and the database you have granted privileges on.
+Before you run OpenNebula for the first time, you need to set in the :ref:`oned.configuration <oned_conf>` the connection details, and the database you have granted privileges on.
 
 .. code::
 
@@ -76,12 +76,12 @@ After this installation and configuration process you can use OpenNebula as usua
 MySQL database maintenance
 ===========================
 
-For an optimal database performance there are some tasks that should be done periodically depending on the load of the environment. They are listed below.
+For an optimal database performance improvement there are some tasks that should be done periodically, depending on the load of the environment. They are listed below.
 
 Search index
 ----------------------
 
-In order to be able to search VMs by different attributes, OpenNebula's database have a `FTS index <https://dev.mysql.com/doc/refman/5.6/en/innodb-fulltext-index.html>`__, the size of this index can increase fast depending on the cloud load. For freeing some space it is needed to perform the following maintenance task periodically:
+In order to be able to search for VMs by different attributes, OpenNebula's database has an `FTS index <https://dev.mysql.com/doc/refman/5.6/en/innodb-fulltext-index.html>`__. The size of this index can increase fast, depending on the cloud load. To free some space, perform the following maintenance task periodically:
 
 .. code::
 
@@ -91,4 +91,4 @@ In order to be able to search VMs by different attributes, OpenNebula's database
 VMs in DONE state
 ----------------------
 
-When a VM is terminated OpenNebula change it's state to DONE but it keep the VM in the database in case the VM information is required in the future (e.g. to generate accounting reports). In order to reduce the size of the VM table, it is recommended to periodically delete the VM in DONE state when not needed. For this task it is available the `onedb purge-done <http://docs.opennebula.org/5.8/deployment/references/onedb.html#onedb-purge-done>`__ tool.
+When a VM is terminated, OpenNebula changes its state to DONE but it keeps the VM in the database in case the VM information is required in the future (e.g. to generate accounting reports). In order to reduce the size of the VM table, it is recommended to periodically delete the VMs in the DONE state when not needed. For this task the `onedb purge-done <http://docs.opennebula.org/5.8/deployment/references/onedb.html#onedb-purge-done>`__ tool is available.
