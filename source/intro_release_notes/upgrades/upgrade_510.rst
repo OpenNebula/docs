@@ -29,7 +29,7 @@ Now you are ready to stop OpenNebula and any other related services you may have
 Step 2 Upgrade frontend to the new version
 ==========================================
 
-Upgrade the OpenNebula software using the package manager of your OS. Refer to the Installation guide :ref:`Installation guide <ignc>` for a complete list of the OpenNebula packages installed in your system.
+Upgrade the OpenNebula software using the package manager of your OS. Refer to the :ref:`Installation guide <ignc>` for a complete list of the OpenNebula packages installed in your system. Package repos need to be pointing to the latest version (|version|).
 
 For example, in a rpm based Linux distribution simply execute:
 
@@ -95,4 +95,3 @@ Restoring the Previous Version
 ==============================
 
 If for any reason you need to restore your previous OpenNebula, simply uninstall OpenNebula |version|, and install again your previous version. After that, update the drivers as described above.
-

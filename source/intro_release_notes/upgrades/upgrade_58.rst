@@ -31,6 +31,8 @@ Backup the configuration files located in **/etc/one** and **/var/lib/one/remote
 Step 4. Upgrade to the New Version
 --------------------------------------------------------------------------------
 
+Upgrade the OpenNebula software using the package manager of your OS. Refer to the :ref:`Installation guide <ignc>` for a complete list of the OpenNebula packages installed in your system. Package repos need to be pointing to the latest version (|version|).
+
 Ubuntu/Debian
 
 .. prompt:: text # auto
