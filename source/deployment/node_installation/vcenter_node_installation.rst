@@ -4,11 +4,11 @@
 vCenter Node Installation
 ================================================================================
 
-This Section lays out the requirements configuration needed in the vCenter and ESX instances in order to be managed by OpenNebula.
+This Section lays out the configuration requirements needed in the vCenter and ESX instances in order to be managed by OpenNebula.
 
-The VMware vCenter drivers enable OpenNebula to access one or more vCenter servers that manages one or more ESX Clusters. Each ESX Cluster is presented in OpenNebula as an aggregated hypervisor, i.e. as an OpenNebula Host. This means that the representation is one OpenNebula Host per ESX Cluster.
+The VMware vCenter drivers enable OpenNebula to access one or more vCenter servers that manage one or more ESX Clusters. Each ESX Cluster is presented in OpenNebula as an aggregated hypervisor, i.e. as an OpenNebula Host. This means that the representation is one OpenNebula Host per ESX Cluster.
 
-Note that OpenNebula scheduling decisions are therefore made at ESX Cluster level, vCenter then uses the DRS component to select the actual ESX host and Datastore to deploy the Virtual Machine.
+Note that OpenNebula scheduling decisions are therefore made at ESX Cluster level. vCenter then uses the DRS component to select the actual ESX host and Datastore to deploy the Virtual Machine.
 
 Requirements
 ================================================================================
@@ -16,13 +16,13 @@ Requirements
 The following must be met for a functional vCenter environment:
 
 * vCenter 5.5, 6.0 and/or 6.5, with at least one cluster aggregating at least one ESX 5.5, 6.0 and/or 6.5 host.
-* Define a vCenter user for OpenNebula. This vCenter user (let's call her ``oneadmin``) needs to have access to the ESX clusters that OpenNebula will manage. In order to avoid problems, the hassle free approach is to **declare this oneadmin user as Administrator**. Alternatively, in some enterprise environments declaring the user as Administrator is not allowed, in that case, you will need to grant permissions to perform some tasks. A table with the permissions requires is found at the end of this chapter.
+* Define a vCenter user for OpenNebula. This vCenter user (let's call her ``oneadmin``) needs to have access to the ESX clusters that OpenNebula will manage. In order to avoid problems, the hassle free approach is to **declare this oneadmin user as Administrator**. However, in some enterprise environments declaring the user as Administrator is not allowed. In that case, you will need to grant permissions to perform some tasks. A table with the permissions required is found at the end of this chapter.
 * All ESX hosts belonging to the same ESX cluster to be exposed to OpenNebula **must** share at least one datastore among them.
-* The ESX cluster **should** have DRS enabled. DRS is not required but it is recommended. OpenNebula does not schedule to the granularity of ESX hosts, DRS is needed to select the actual ESX host within the cluster, otherwise the VM will be launched in the ESX where the VM template has been created.
-* If virtual standard switches are used, check that those switches exist in every ESX hosts belonging to the same ESX cluster, so the network represented by a port group can be used by a VM, no matter in what ESX host it's running. If you use distributed virtual switches, check that ESX hosts have been added to switches.
+* The ESX cluster **should** have DRS enabled. DRS is not required but it is recommended. As OpenNebula does not schedule to the granularity of ESX hosts, DRS is needed to select the actual ESX host within the cluster, otherwise the VM will be launched in the ESX where the VM template has been created.
+* If virtual standard switches are used, check that those switches exist in every ESX host belonging to the same ESX cluster, so the network represented by a port group can be used by a VM, no matter in what ESX host it's running. If you use distributed virtual switches, check that ESX hosts have been added to switches.
 * To enable VNC functionality, please check the detailed information in section `VNC on ESX hosts`_ below.
 
-.. important:: OpenNebula will **NOT** modify any vCenter configuration with some exceptions, the creation of virtual switches and port groups if the vcenter network driver is used and the creation of images for VMDK and/or ISO files.
+.. important:: OpenNebula will **NOT** modify any vCenter configuration with some exceptions, the creation of virtual switches and port groups if the vcenter network driver is used, and the creation of images for VMDK and/or ISO files.
 
 .. note:: For security reasons, you may define different users to access different ESX Clusters. A different user can be defined in OpenNebula per ESX cluster, which is encapsulated in OpenNebula as an OpenNebula host.
 
@@ -38,7 +38,7 @@ The OpenNebula Front-end needs network connectivity to all the vCenters that it 
 
 Additionally, to enable VNC access to the spawned Virtual Machines, the Front-end also needs network connectivity to all the ESX hosts
 
-.. warning:: OpenNebula uses port 443 to communicate with vCenter instances. Port 443 is the default port used by vCenter so unless you're filtering that port or you've configured a different port to listen for connections from the vSphere Web Client, OpenNebula will be able to connect with the right credentials.
+.. warning:: OpenNebula uses port 443 to communicate with vCenter instances. Port 443 is the default port used by vCenter, so unless you're filtering that port, or you've configured a different port to listen for connections from the vSphere Web Client, OpenNebula will be able to connect with the right credentials.
 
 Step 2: Configure the drivers in the Front-end (oned.conf) [Optional]
 --------------------------------------------------------------------------------
@@ -82,7 +82,7 @@ The following sections in the ``/etc/one/oned.conf`` file describe the informati
     ]
     #-------------------------------------------------------------------------------
 
-As a Virtualization driver, the vCenter driver accept a series of parameters that control their execution. The parameters allowed are:
+As a Virtualization driver, the vCenter driver accepts a series of parameters that control its execution. The parameters allowed are:
 
 +----------------+-------------------------------------------------------------------+
 | parameter      | description                                                       |
@@ -101,10 +101,10 @@ Additionally some behavior of the vCenter driver can be configured in the ``/var
 +================+===================================================================+
 | :delete_images | Yes : You can delete the images using OpenNebula.                 |
 |                | No  : VCENTER_IMPORTED attribute will be set on imported images.  |
-|                | This attribute prevents the image to be deleted.                  |
+|                | This attribute prevents the image being deleted.                  |
 +----------------+-------------------------------------------------------------------+
 
-OpenNebula needs to be restarted after any change in the ``/etc/one/oned.conf`` file, this can be done with the following command:
+OpenNebula needs to be restarted after any change in the ``/etc/one/oned.conf`` file. This can be done with the following command:
 
 .. prompt:: bash $ auto
 
@@ -119,7 +119,7 @@ OpenNebula ships with a powerful CLI tool to import vCenter clusters, VM Templat
 
 If you need to know how to import vCenter clusters, check :ref:`vCenter import tool <vcenter_import_clusters>`.
 
-Once the vCenter cluster is monitored successfully ON will show as the host status. If ERROR is shown please check connectivity and have a look to the /var/log/one/oned.log file in order to find out the possible cause.
+Once the vCenter cluster is monitored successfully, ON will show as the host status. If ERROR is shown please check connectivity and have a look to the ``/var/log/one/oned.log`` file in order to find out the possible cause.
 
 The following variables are added to OpenNebula hosts representing ESX clusters:
 
@@ -282,9 +282,9 @@ If the user account that is going to be used in vCenter operations is not declar
 Special Permission
 ------------------
 
-The above permissions except one can be set at the Cluster level. However, OpenNebula needs access to Customization spec for a successfull monitoring. This is a special privilege cause it needs to be applied to vCenter server level. It means that if you try to apply the previous privileges into a cluster/datacenter and their inheritors, OpenNebula will fail and it will tell you that higher level permissions are necessary.
+The above permissions, except one, can be set at the Cluster level. However, OpenNebula needs access to the Customization spec for successful monitoring. This is a special privilege because it needs to be applied to vCenter server level. It means that if you try to apply the previous privileges into a cluster/datacenter and their inheritors, OpenNebula will fail and it will tell you that higher level permissions are necessary.
 
-Our recommended approach its to create a two roles, one for the general permissions ("opennebulapermissions") that can be applied in the Cluster level, and another to handle this single permission. This way, you can create a role managing all OpenNebula permissions and other role (called for instance readcustspec) with **only** the next one:
+Our recommended approach its to create two roles, one for the general permissions ("opennebulapermissions") that can be applied in the Cluster level, and another to handle this single permission. This way, you can create a role managing all OpenNebula permissions and another role (called for instance readcustspec) with **only** the next one:
 
 +---------------------------------------------+---------------------------------------------+----------------------------------------------------------------------------+
 |               Privileges ID                 |             Privilege name                  |                       Notes                                                |
@@ -294,16 +294,16 @@ Our recommended approach its to create a two roles, one for the general permissi
 
 Once you have created the proper role, one way to manage these privileges is creating two groups.
 
-  - The first group needs to be assigned the **readcustspec** role, place the OpenNebula user inside this group and grant permission over the vCenter instance to the group.
-  - The second groups needs to be assigned the **opennebulapermissions** role, place the OpenNebula user inside this group and grant permission over the desired cluster to the group.
+  - The first group needs to be assigned the **readcustspec** role. Place the OpenNebula user inside this group and grant permission over the vCenter instance to the group.
+  - The second groups needs to be assigned the **opennebulapermissions** role. Place the OpenNebula user inside this group and grant permission over the desired cluster to the group.
 
 .. note::
-    Do not forget to add the proper permissions to the datastores and any resource accesed by your OpenNebula user
+    Do not forget to add the proper permissions to the datastores and any resource accessed by your OpenNebula user.
 
 VNC on ESX hosts
 ================================================================================
 
-To enable VNC functionality, you need to allow access to the VNC ports on ESX hosts. By default, access to these ports is filtered by the firewall. We provide an installation package, which adds the **VNC** ruleset (port range 5900-11999 excluding known reserved ports) and permits access to these ports, also OpenNebula needs to be reconfigured to respect this specific VNC ports range. This package must be installed on each ESX host; it can be done via CLI or web UI. We'll cover necessary steps for both ways here.
+To enable VNC functionality, you need to allow access to the VNC ports on ESX hosts. By default, access to these ports is filtered by the firewall. We provide an installation package, which adds the **VNC** ruleset (port range 5900-11999 excluding known reserved ports) and permits access to these ports. Also OpenNebula needs to be reconfigured to respect this specific VNC ports range. This package must be installed on each ESX host; it can be done via CLI or web UI. We'll cover the necessary steps for both ways here.
 
 Locations of the VIB installation package or ZIP bundle:
 
@@ -313,8 +313,8 @@ Locations of the VIB installation package or ZIP bundle:
   * **opennebula-server** on RHEL/CentOS
   * **opennebula** on Debian and Ubuntu.
 
-* On public download server. In a case of installation problems,
-  insecure HTTP access can be used at own risk!
+* On the public download server. In a case of installation problems,
+  insecure HTTP access can be used at your own risk!
 
   * https://downloads.opennebula.org/packages/opennebula-5.11.80/fw-vnc-5.11.80.vib
   * https://downloads.opennebula.org/packages/opennebula-5.11.80/fw-vnc-5.11.80.zip
@@ -324,7 +324,7 @@ Locations of the VIB installation package or ZIP bundle:
 
    Make sure that the ESX hosts are reachable from the OpenNebula Front-end.
 
-VNC range whitelisted on ESX hosts must be specified in the OpenNebula configuration located in ``/etc/one/oned.conf``. Please change the ``VNC_PORTS`` section following way:
+The VNC range whitelisted on ESX hosts must be specified in the OpenNebula configuration located in ``/etc/one/oned.conf``. Please change the ``VNC_PORTS`` section following way:
 
 .. code::
 
@@ -430,9 +430,9 @@ Repeat for each ESX host.
 Using UI
 --------
 
-VIB package can also be installed over vSphere and ESX web UIs.
+The VIB package can also be installed over vSphere and ESX web UIs.
 
-* Allow custom VIB package to be installed (in the vSphere client)
+* Allow the custom VIB package to be installed (in the vSphere client)
 
   * Login the vSphere client
   * Go to Home -> Inventories -> Hosts and Clusters
@@ -445,7 +445,7 @@ VIB package can also be installed over vSphere and ESX web UIs.
     :width: 50%
     :align: center
 
-* Install VIB package (in the ESX host UI)
+* Install the VIB package (in the ESX host UI)
 
   * Login the ESX host UI
   * Go to Help -> Update in top right corner
