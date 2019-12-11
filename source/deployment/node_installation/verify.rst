@@ -28,7 +28,7 @@ The Hosts that you have registered should be in ON status.
 Step 2. Import an appliance from the MarketPlace.
 --------------------------------------------------------------------------------
 
-We need to add an Image to our Cloud. To do so we can do so by navigating to Storage -> Apps in the left side menu (1). You will see a list of Appliances, you can filter by ``tty kvm`` (2) in order to find the one we are going to use in this guide. After that select it (3) and click to cloud button (4) in order to import it.
+We need to add an Image to our Cloud. We can do so by navigating to Storage -> Apps in the left side menu (1). You will see a list of Appliances, and you can filter by ``tty kvm`` (2) in order to find the one we are going to use in this guide. After that select it (3) and click to cloud button (4) in order to import it.
 
 |sunstone_import_marketapp|
 
@@ -43,7 +43,7 @@ Navigate now to the Storage -> Images tab and refresh until the Status of the Im
 Step 3. Instantiate a VM
 --------------------------------------------------------------------------------
 
-Navigate to Templates -> VMs, then select the ``ttylinux - kvm`` template that has been created and click on the "Instantiate".
+Navigate to Templates -> VMs, then select the ``ttylinux - kvm`` template that has been created and click on "Instantiate".
 
 |sunstone_instantiate_template|
 
@@ -58,7 +58,7 @@ Navigate to Instances -> VMs. You will see that after a while the VM switches to
 
 |sunstone_vm_running|
 
-If the VM fails, click on the VM and then in the ``Log`` tab to see why it failed. Alternatively, you can look at the log file ``/var/log/one/<vmid>.log``.
+If the VM fails, click on the VM and then the ``Log`` tab to see why. Alternatively, you can look at the log file ``/var/log/one/<vmid>.log``.
 
 Step 5. Adding Network connectivity to your VM
 --------------------------------------------------------------------------------
@@ -81,7 +81,7 @@ In order to verify the correct installation of your OpenNebula cloud, follow the
 Step 1. Import a Datastore
 --------------------------------------------------------------------------------
 
-Your vCenter VM templates use virtual disks and those virtual disks are stored in datastores. You must import into OpenNebula those vcenter datastores that contains the virtual disks.
+Your vCenter VM templates use virtual disks, and those virtual disks are stored in datastores. You must import into OpenNebula those vcenter datastores that contain the virtual disks.
 
 Follow the steps to import datastores as described in the :ref:`vCenter Import Datastores Section <vcenter_import_datastores>`
 
@@ -112,15 +112,15 @@ Once the VM is running, click on the VNC blue icon, and if you can see a console
     :width: 90%
     :align: center
 
-The next step would be to further configure the OpenNebula cloud to suits your needs. You can learn more in the :ref:`VMware Infrastructure Setup <vmware_infrastructure_setup_overview>` guide.
+The next step would be to further configure the OpenNebula cloud to suit your needs. You can learn more in the :ref:`VMware Infrastructure Setup <vmware_infrastructure_setup_overview>` guide.
 
 Next steps
 ================================================================================
 
 After this chapter, you are ready to :ref:`start using your cloud <operation_guide>` or you could configure more components:
 
-* :ref:`Authenticaton <authentication>`. (Optional) For integrating OpenNebula with LDAP/AD, or securing it further with other authentication technologies.
-* :ref:`Sunstone <sunstone>`. OpenNebula GUI should working and accessible at this stage, but by reading this guide you will learn about specific enhanced configurations for Sunstone.
+* :ref:`Authenticating <authentication>`. (Optional) For integrating OpenNebula with LDAP/AD, or securing it further with other authentication technologies.
+* :ref:`Sunstone <sunstone>`. The OpenNebula GUI should be working and accessible at this stage, but by reading this guide you will learn about specific enhanced configurations for Sunstone.
 
 If your cloud is KVM/LXD based you should also follow:
 
