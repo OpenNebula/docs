@@ -7,14 +7,14 @@ Front-end Installation
 
 This page shows you how to install OpenNebula from the binary packages.
 
-Using the packages provided in our site is the recommended method, to ensure the installation of the latest version and to avoid possible packages divergences of different distributions. There are two alternatives here: you can add **our package repositories** to your system, or visit the `software menu <http://opennebula.org/software:software>`__ to **download the latest package** for your Linux distribution.
+Using the packages provided on our site is the recommended method, to ensure the installation of the latest version, and to avoid possible package divergences with different distributions. There are two alternatives here: you can add **our package repositories** to your system, or visit the `software menu <http://opennebula.org/software>`__ to **download the latest package** for your Linux distribution.
 
 If there are no packages for your distribution, head to the :ref:`Building from Source Code guide <compile>`.
 
 Step 1. SELinux on CentOS/RHEL
 ================================================================================
 
-SELinux can block some operations initiated by the OpenNebula Front-end, which results in their failures. If the administrator isn't experienced in the SELinux configuration, **it's recommended to disable this functionality to avoid unexpected failures**. You can enable SELinux anytime later when you have the installation working.
+SELinux can block some operations initiated by the OpenNebula Front-end, which results in failures. If the administrator isn't experienced in SELinux configuration, **it's recommended to disable this functionality to avoid unexpected failures**. You can enable SELinux anytime later when you have the installation working.
 
 Disable SELinux (recommended)
 -----------------------------
@@ -44,7 +44,7 @@ When changing from the ``disabled`` state, it's necessary to trigger filesystem 
 
 After the changes, you should reboot the machine.
 
-.. note:: Follow the `SELinux User's and Administrator's Guide <https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/selinux_users_and_administrators_guide/>`__ for more information on how to configure and troubleshoot the SELinux.
+.. note:: Follow the `SELinux User's and Administrator's Guide <https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/selinux_users_and_administrators_guide/>`__ for more information on how to configure and troubleshoot SELinux.
 
 Step 2. Add OpenNebula Repositories
 ================================================================================
@@ -57,8 +57,8 @@ Step 3. Installing the Software
 Installing on CentOS/RHEL
 -------------------------
 
-OpenNebula depends on packages, which are not part of base repositories.
-Following repositories have to be enabled before installation:
+OpenNebula depends on packages which are not in the base repositories.
+The following repositories have to be enabled before installation:
 
 * only RHEL 7: **optional** and **extras** RHEL repositories
 * `EPEL <https://fedoraproject.org/wiki/EPEL>`__ (Extra Packages for Enterprise Linux)
@@ -100,7 +100,7 @@ Install the CentOS/RHEL OpenNebula Front-end with packages from **our repository
 
 **CentOS/RHEL Package Description**
 
-The packages for the OpenNebula front-end and the virtualization host are as follows:
+The packages for the OpenNebula frontend and the virtualization host are as follows:
 
 * **opennebula**: Command Line Interface.
 * **opennebula-server**: Main OpenNebula daemon, scheduler, etc.
@@ -166,7 +166,7 @@ Step 4. Ruby Runtime Installation (Optional)
 
 .. warning::
 
-    Since OpenNebula 5.10, this step is **optional** and all required Ruby gems are provided as a set of **opennebula-rubygem-$NAME** packages and **opennebula-rubygems** metapackage. Ruby gems are installed into a dedicated directory ``/usr/share/one/gems-dist/``, but OpenNebula uses them via (symlinked) location ``/usr/share/one/gems/`` which points to the ``gems-dist/`` directory. When ``gems/`` directory (by default) exists, OpenNebula uses the gems inside **exclusively** by removing any other system Ruby gems locations from the search paths!
+    Since OpenNebula 5.10, this step is **optional** and all required Ruby gems are provided as a set of **opennebula-rubygem-$NAME** packages and **opennebula-rubygems** metapackage. Ruby gems are installed into a dedicated directory ``/usr/share/one/gems-dist/``, but OpenNebula uses them via (symlinked) location ``/usr/share/one/gems/`` which points to the ``gems-dist/`` directory. When the ``gems/`` directory (by default) exists, OpenNebula uses the gems inside **exclusively** by removing any other system Ruby gems locations from the search paths!
 
     .. prompt:: bash # auto
 
@@ -174,9 +174,9 @@ Step 4. Ruby Runtime Installation (Optional)
         lrwxrwxrwx 1 root root    9 Aug 13 11:41 /usr/share/one/gems -> gems-dist
         drwxr-xr-x 9 root root 4096 Aug 13 11:41 /usr/share/one/gems-dist
 
-    If you want to use the system-wide Ruby gems instead of the packaged ones, remove the symlink ``/usr/share/one/gems/`` and install all required dependencies with ``install_gems`` script described below. Removed ``/usr/share/one/gems/`` symlink **won't be created again on next OpenNebula upgrade**. OpenNebula shipped Ruby gems can't be uninstalled, but their use can be disabled by removing the ``/usr/share/one/gems/`` symlink.
+    If you want to use the system-wide Ruby gems instead of the packaged ones, remove the symlink ``/usr/share/one/gems/`` and install all required dependencies with the ``install_gems`` script described below. The removed ``/usr/share/one/gems/`` symlink **won't be created again on the next OpenNebula upgrade**. OpenNebula-shipped Ruby gems can't be uninstalled, but their use can be disabled by removing the ``/usr/share/one/gems/`` symlink.
 
-    If additional Ruby gems are needed by a custom drivers or hooks, they must be installed into the introduced dedicated directory. For example, set gem name in ``$GEM_NAME`` and run under privileged user root:
+    If additional Ruby gems are needed by custom drivers or hooks, they must be installed into the introduced dedicated directory. For example, set gem name in ``$GEM_NAME`` and run under privileged user root:
 
     .. prompt:: bash # auto
 
@@ -184,7 +184,7 @@ Step 4. Ruby Runtime Installation (Optional)
         # export GEM_HOME=/usr/share/one/gems/
         # gem install --no-document --conservative $GEM_NAME
 
-Some OpenNebula components need Ruby libraries. OpenNebula provides a script that installs the required gems as well as some development libraries packages needed.
+Some OpenNebula components need Ruby libraries. OpenNebula provides a script that installs the required gems as well as some development library packages needed.
 
 As root execute:
 
@@ -203,20 +203,20 @@ The previous script is prepared to detect common Linux distributions and install
 * gcc and g++
 * make
 
-If you want to install only a set of gems for an specific component read :ref:`Building from Source Code <compile>` where it is explained in more depth.
+If you want to install only a set of gems for a specific component, read :ref:`Building from Source Code <compile>` where it is explained in more depth.
 
 Step 5. Enabling MySQL/MariaDB (Optional)
 ================================================================================
 
-You can skip this step if you just want to deploy OpenNebula as quickly as possible. However if you are deploying this for production or in a more serious environment, make sure you read the :ref:`MySQL Setup <mysql_setup>` section.
+You can skip this step if you just want to deploy OpenNebula as quickly as possible. However if you are deploying this for production, or in a more serious environment, make sure you read the :ref:`MySQL Setup <mysql_setup>` section.
 
-Note that it **is** possible to switch from SQLite to MySQL, but since it's more cumbersome to migrate databases, we suggest that if in doubt, use MySQL from the start.
+Note that it **is** possible to switch from SQLite to MySQL, but since it's more cumbersome to migrate databases, we suggest that, if in doubt, use MySQL from the start.
 
 Step 6. Starting OpenNebula
 ================================================================================
 
 .. warning::
-    If you are performing an upgrade skip this and the next steps and go back to the upgrade document.
+    If you are performing an upgrade, skip this and the next steps and go back to the upgrade document.
 
 Log in as the ``oneadmin`` user follow these steps:
 
@@ -226,7 +226,7 @@ The ``/var/lib/one/.one/one_auth`` fill will have been created with a randomly-g
 
     $ echo "oneadmin:mypassword" > ~/.one/one_auth
 
-.. warning:: This will set the oneadmin password on the first boot. From that point, you must use the `oneuser passwd` command to change oneadmin's password. More information on how to change oneadmin password :ref:`here <change_credentials>`
+.. warning:: This will set the oneadmin password on the first boot. From that point, you must use the `oneuser passwd` command to change oneadmin's password. More information on how to change the oneadmin password is :ref:`here <change_credentials>`.
 
 You are ready to start the OpenNebula daemons. You can use systemctl for Linux distributions which have adopted systemd:
 
@@ -278,21 +278,21 @@ If you get an error message, then the OpenNebula daemon could not be started pro
     $ oneuser show
     Failed to open TCP connection to localhost:2633 (Connection refused - connect(2) for "localhost" port 2633)
 
-The OpenNebula logs are located in ``/var/log/one``, you should have at least the files ``oned.log`` and ``sched.log``, the core and scheduler logs. Check ``oned.log`` for any error messages, marked with ``[E]``.
+The OpenNebula logs are located in ``/var/log/one``. You should have at least the files ``oned.log`` and ``sched.log``, the core and scheduler logs. Check ``oned.log`` for any error messages, marked with ``[E]``.
 
 .. _verify_frontend_section_sunstone:
 
 Sunstone
 --------------------------------------------------------------------------------
 
-Now you can try to log in into Sunstone web interface. To do this point your browser to ``http://<frontend_address>:9869``. If everything is OK you will be greeted with a login page. The user is ``oneadmin`` and the password is the one in the file ``/var/lib/one/.one/one_auth`` in your Front-end.
+Now you can try to log in to Sunstone web interface. To do this, point your browser to ``http://<frontend_address>:9869``. If everything is OK you will be greeted with a login page. The user is ``oneadmin`` and the password is the one in the file ``/var/lib/one/.one/one_auth`` in your Front-end.
 
 If the page does not load, make sure you check ``/var/log/one/sunstone.log`` and ``/var/log/one/sunstone.error``. Also, make sure TCP port 9869 is allowed through the firewall.
 
 Directory Structure
 --------------------------------------------------------------------------------
 
-The following table lists some notable paths that are available in your Front-end after the installation:
+The following table lists some notable paths that are available in your Frontend after the installation:
 
 +-------------------------------------+--------------------------------------------------------------------------------------+
 |                 Path                |                                     Description                                      |
@@ -331,7 +331,7 @@ The following table lists some notable paths that are available in your Front-en
 Firewall configuration
 --------------------------------------------------------------------------------
 
-The list below shows the ports used by OpenNebula, these ports needs to be open for OpenNebula to work properly:
+The list below shows the ports used by OpenNebula. These ports need to be open for OpenNebula to work properly:
 
 +-------------------------------------+-------------------------------------------------------------------------------------------------------------+
 |                 Port                |                     Description                                                                             |
@@ -347,7 +347,7 @@ The list below shows the ports used by OpenNebula, these ports needs to be open 
 | ``5030``                            | OneGate server. This port only needs to be opened if OneGate server is used.                                |
 +-------------------------------------+-------------------------------------------------------------------------------------------------------------+
 
-OpenNebula connects to the hypervisors through ssh (port 22). Additionally ``oned`` may connect to OpenNebula Marketplace (``https://marketplace.opennebula.systems/``) and Linux Containers Makerplace (``https://images.linuxcontainers.org``) to get a list of available appliances. You should open outgoing connections to these ports and protocols. Note: These are the default ports, each component can be configure to bind to specific ports or use a HTTP Proxy.
+OpenNebula connects to the hypervisors through ssh (port 22). Additionally ``oned`` may connect to the OpenNebula Marketplace (``https://marketplace.opennebula.systems/``) and Linux Containers Makerplace (``https://images.linuxcontainers.org``) to get a list of available appliances. You should open outgoing connections to these ports and protocols. Note: These are the default ports; each component can be configure to bind to specific ports or use an HTTP Proxy.
 
 
 Step 8. Next steps
