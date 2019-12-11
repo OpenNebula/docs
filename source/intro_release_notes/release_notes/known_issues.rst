@@ -27,21 +27,6 @@ Using some CLI commands in Ubuntu 18.04, due to ruby and gems version, you may s
 
 As a workaround you can use `export RUBYOPT="-W0`, this will disable the warning message (but, take in account that it will disable all warning messages from ruby)
 
-Hook Events content
-===================
-
-If the XML returned as ``OUT`` parameter inside the ``HOOK_MESSAGE`` xml body contains a ``CDATA`` section it will make the XML parse fails as described in https://github.com/OpenNebula/one/issues/3996.
-
-LXD marketplace URL error
-=========================
-
-There is `an error <https://github.com/OpenNebula/one/issues/4005>`__  when exporting a LXD virtual appliance to the image datastore. You can `update /var/lib/one/remotes/market/linuxcontainers/monitor <https://github.com/OpenNebula/one/pull/4008>`__ delete the LXD marketplace and add a new one.
-
-Shared Storage Drivers
-======================
-
-`VM directory is not created when running from persistant image on shared FS datastore <https://github.com/OpenNebula/one/issues/4002>`_. This can be fixed by `applying this patch <https://github.com/OpenNebula/one/commit/eb73ce30080b19cccde491631458182016c2560d>`_ to the driver script `/var/lib/one/remotes/tm/shared/ln`.
-
 System VM Snapshots
 ====================
 
