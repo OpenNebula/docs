@@ -4,41 +4,41 @@
 x509 Authentication
 ====================
 
-This guide will show you how to enable and use the x509 certificates authentication with OpenNebula. The x509 certificates can be used in two different ways in OpenNebula.
+This guide will show you how to enable and use x509 certificates authentication with OpenNebula. The x509 certificates can be used in two different ways in OpenNebula.
 
-The first option that is explained in this guide enables us to use certificates with the CLI. In this case the user will generate a login token with his private key, OpenNebula will validate the certificate and decrypt the token to authenticate the user.
+The first option that is explained in this guide enables us to use certificates with the CLI. In this case the user will generate a login token with their private key. OpenNebula will validate the certificate and decrypt the token to authenticate the user.
 
-The second option enables us to use certificates with Sunstone and the Public Cloud servers included in OpenNebula. In this case the authentication is leveraged to Apache or any other SSL capable HTTP proxy that has to be configured by the administrator. If this certificate is validated the server will encrypt those credentials using a server certificate and will send the token to OpenNebula.
+The second option enables us to use certificates with Sunstone and the Public Cloud servers included in OpenNebula. In this case the authentication is delegated to Apache or any other TLS-capable HTTP proxy configured by the administrator. If this certificate is validated, the server will encrypt those credentials using a server certificate and will send the token to OpenNebula.
 
 Requirements
 ============
 
-If you want to use the x509 certificates with Sunstone or one of the Public Clouds, you must deploy a SSL capable HTTP proxy on top of them in order to handle the certificate validation.
+If you want to use x509 certificates with Sunstone or one of the Public Clouds, you must deploy a TLS-capable HTTP proxy on top of them in order to handle the certificate validation.
 
 Considerations & Limitations
 ============================
 
-The X509 driver uses the certificate DN as user passwords. The x509 driver will remove any space in the certificate DN. This may cause problems in the unlikely situation that you are using a CA signing certificate subjects that only differ in spaces.
+The X509 driver handles the certificate DN like user passwords. It will remove any space in the certificate DN. This may cause problems in the unlikely situation that you are using a CA signing certificate subjects that only differ in spaces.
 
 Configuration
 =============
 
 The following table summarizes the available options for the x509 driver (``/etc/one/auth/x509_auth.conf``):
 
-+-----------------+---------------------------------------------------------+
-|     VARIABLE    |                          VALUE                          |
-+=================+=========================================================+
-| **:ca\_dir**    | Path to the trusted CA directory. It should contain the |
-|                 | trusted CA's for the server, each CA certificate should |
-|                 | be name CA\_hash.0                                      |
-+-----------------+---------------------------------------------------------+
-| **:check\_crl** | By default, if you place CRL files in the CA directory  |
-|                 | in the form CA\_hash.r0, OpenNebula will check them.    |
-|                 | You can enforce CRL checking by defining :check\_crl,   |
-|                 | i.e. authentication will fail if no CRL file is found.  |
-|                 | You can always disable this feature by moving or        |
-|                 | renaming .r0 files                                      |
-+-----------------+---------------------------------------------------------+
++-----------------+----------------------------------------------------------+
+|     VARIABLE    |                          VALUE                           |
++=================+==========================================================+
+| **:ca\_dir**    | Path to the trusted CA directory. It should contain the  |
+|                 | trusted CAs for the server. Each CA certificate should   |
+|                 | be named <CA\_hash>.0                                    |
++-----------------+----------------------------------------------------------+
+| **:check\_crl** | By default, if you place CRL files in the CA directory   |
+|                 | in the form <CA\_hash>.r0, OpenNebula will check them.   |
+|                 | You can enforce CRL checking by defining ``:check_crl``, |
+|                 | i.e. authentication will fail if no CRL file is found.   |
+|                 | You can always disable this feature by moving or         |
+|                 | renaming ``.r0`` files                                   |
++-----------------+----------------------------------------------------------+
 
 Follow these steps to change oneadmin's authentication method to x509:
 
@@ -50,7 +50,7 @@ Follow these steps to change oneadmin's authentication method to x509:
 
     $ oneuser chauth 0 x509 --x509 --cert /tmp/newcert.pem
 
--  :ref:`Add trusted CA certificates <x509_auth_add_and_remove_trusted_ca_certificates>` to the certificates directory
+-  :ref:`Add trusted CA certificates <x509_auth_add_and_remove_trusted_ca_certificates>` to the certificates directory:
 
 .. prompt:: bash $ auto
 
@@ -59,7 +59,7 @@ Follow these steps to change oneadmin's authentication method to x509:
 
     $ sudo cp cacert.pem /etc/one/auth/certificates/78d0bbd8.0
 
--  :ref:`Create a login <x509_auth_user_login>` for oneadmin using the --x509 option. This token has a default expiration time set to 1 hour, you can change this value using the option --time.
+-  :ref:`Create a login <x509_auth_user_login>` for oneadmin using the ``--x509`` option. This token has a default expiration time set to 1 hour. You can change that value using the option ``--time``.
 
 .. prompt:: bash $ auto
 
@@ -67,7 +67,7 @@ Follow these steps to change oneadmin's authentication method to x509:
     Enter PEM pass phrase:
     export ONE_AUTH=/home/oneadmin/.one/one_x509
 
--  Set ONE\_AUTH to the x509 login file
+-  Set ``ONE_AUTH`` to the x509 login file
 
 .. prompt:: bash $ auto
 
@@ -81,7 +81,7 @@ Usage
 Add and Remove Trusted CA Certificates
 --------------------------------------
 
-You need to copy all trusted CA certificates to the certificates directory, renaming each of them as ``<CA_hash>.0``. The hash can be obtained with the openssl command:
+You need to copy all trusted CA certificates to the certificates directory, renaming each of them as <CA\_hash>.0. The hash can be obtained with the ``openssl`` command:
 
 .. prompt:: bash $ auto
 
@@ -92,18 +92,18 @@ You need to copy all trusted CA certificates to the certificates directory, rena
 
 To stop trusting a CA, simply remove its certificate from the certificates directory.
 
-This process can be done without restarting OpenNebula, the driver will look for the certificates each time an authentication request is made.
+This process can be done without restarting OpenNebula; the driver will look for the certificates each time an authentication request is made.
 
 Create New Users
 ----------------
 
-The users requesting a new account have to send their certificate, signed by a trusted CA, to the administrator. The following command will create a new user with username 'newuser', assuming that the user's certificate is saved in the file /tmp/newcert.pem:
+Users requesting a new account have to send their certificate, signed by a trusted CA, to the administrator. The following command will create a new user with username ``newuser``, assuming that the user's certificate is saved in the file ``/tmp/newcert.pem``:
 
 .. prompt:: bash $ auto
 
     $ oneuser create newuser --x509 --cert /tmp/newcert.pem
 
-This command will create a new user whose password contains the subject DN of his certificate. Therefore if the subject DN is known by the administrator the user can be created as follows:
+This command will create a new user whose password contains the subject DN of their certificate. Therefore, if the subject DN is known by the administrator, the user can be created as follows:
 
 .. prompt:: bash $ auto
 
@@ -128,7 +128,7 @@ You can change the authentication method of an existing user to x509 with the fo
 
     $ oneuser chauth <id|name> x509 --x509 "user_subject_DN"
 
-You can also map multiple certificates to the same OpenNebula account. Just add each certificate DN separated with '\|' to the password field.
+You can also map multiple certificates to the same OpenNebula account. Just add each certificate DN separated by `|` to the password field:
 
 .. prompt:: bash $ auto
 
@@ -139,7 +139,7 @@ You can also map multiple certificates to the same OpenNebula account. Just add 
 User Login
 ----------
 
-Users must execute the 'oneuser login' command to generate a login token. The token will be stored in the $ONE\_AUTH environment variable. The command requires the OpenNebula username, and the authentication method (``--x509`` in this case).
+Users must execute the ``oneuser login`` command to generate a login token. The token will be stored in the ``ONE_AUTH`` environment variable. The command requires the OpenNebula username, and the authentication method (``--x509`` in this case).
 
 .. prompt:: bash $ auto
 
@@ -165,7 +165,7 @@ OpenNebula is configured to use x509 authentication by default. You can customiz
 Enabling x509 auth in Sunstone
 ==============================
 
-Update the ``/etc/one/sunstone-server.conf`` :auth parameter to use the ``x509`` auth:
+Update the ``/etc/one/sunstone-server.conf`` :auth parameter to use ``x509`` auth:
 
 .. code-block:: yaml
 

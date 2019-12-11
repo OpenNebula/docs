@@ -4,7 +4,7 @@
 SSH Authentication
 ================================================================================
 
-This guide will show you how to enable and use the SSH authentication for the OpenNebula CLI. Using this authentication method, users login to OpenNebula with a token encrypted with their private ssh keys.
+This guide will show you how to enable and use the SSH authentication for the OpenNebula CLI. Using this authentication method, users log in to OpenNebula with a token encrypted with their private SSH keys.
 
 Requirements
 ============
@@ -22,7 +22,7 @@ Configuration
 OpenNebula Configuration
 ------------------------
 
-The Auth MAD and ssh authentication is enabled by default. In case it does not work make sure that the authentication method is in the list of enabled methods.
+The Auth MAD with ``ssh`` authentication is enabled by default. In case it does not work, make sure that the authentication method is in the list of enabled methods.
 
 .. code-block:: bash
 
@@ -39,13 +39,13 @@ Usage
 Create New Users
 ----------------
 
-This authentication method uses standard ssh RSA key pairs for authentication. Users can create these files **if they don't exist** using this command:
+This authentication method uses standard SSH RSA key pairs for authentication. Users can create these files **if they don't exist** using this command:
 
 .. prompt:: bash $ auto
 
     $ ssh-keygen -t rsa
 
-OpenNebula commands look for the files generated at the standard location (``$HOME/.ssh/id_rsa``) so it is a good idea not to change the default path. It is also a good idea to protect the private key with a password.
+OpenNebula commands look for the files generated in the standard location (``$HOME/.ssh/id_rsa``), so it is a good idea not to change the default path. It is also a good idea to protect the private key with a password.
 
 The users requesting a new account have to generate a public key and send it to the administrator. The way to extract it is the following:
 
@@ -59,9 +59,9 @@ The users requesting a new account have to generate a public key and send it to 
     1XIdpVrjCFL0fdN53L0aU7kTE9VNEXRxK8sPv1Nfx+FQWpX/HtH8ICs5WREsZGmXPAO/IkrSpMVg5taS
     jie9JAQOMesjFIwgTWBUh6cNXuYsQ/5wIwIBIw==
 
-The string written to the console must be sent to the administrator, so the can create the new user in a similar way as the default user/password authentication users.
+The string written to the console must be sent to the administrator so they can create the new user in a similar way to the default user/password authentication users.
 
-The following command will create a new user with username 'newuser', assuming that the previous public key is saved in the text file /tmp/pub\_key:
+The following command will create a new user with username ``newuser``, assuming that the previous public key is saved in the text file ``/tmp/pub\_key``:
 
 .. prompt:: bash $ auto
 
@@ -69,7 +69,7 @@ The following command will create a new user with username 'newuser', assuming t
 
 Instead of using the ``--read-file`` option, the public key could be specified as the second parameter.
 
-If the administrator has access to the user's **private ssh key**, he can create new users with the following command:
+If the administrator has access to the user's **private ssh key**, they can create new users with the following command:
 
 .. prompt:: bash $ auto
 
@@ -90,13 +90,13 @@ As with the ``create`` command, you can specify the public key as the second par
 User Login
 ----------
 
-Users must execute the 'oneuser login' command to generate a login token. The token will be stored in the $ONE\_AUTH environment variable. The command requires the OpenNebula username, and the authentication method (``--ssh`` in this case).
+Users must execute the ``oneuser login`` command to generate a login token. The token will be stored in the ``$ONE_AUTH`` environment variable. The command requires the OpenNebula username, and the authentication method (``--ssh`` in this case).
 
 .. prompt:: bash $ auto
 
     $ oneuser login newuser --ssh
 
-The default ssh key is assumed to be in ``~/.ssh/id_rsa``, otherwise the path can be specified with the ``--key`` option.
+The default SSH key is assumed to be in ``~/.ssh/id_rsa``, otherwise the path can be specified with the ``--key`` option.
 
-The generated token has a default **expiration time** of 10 hour. You can change that with the ``--time`` option.
+The generated token has a default **expiration time** of 10 hours. You can change that with the ``--time`` option.
 
