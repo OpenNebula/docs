@@ -6,7 +6,7 @@ Platform Notes
 
 This page will show you the specific considerations at the time of using an OpenNebula cloud, according to the different supported platforms.
 
-This is the list of the individual platform components that have been through the complete `OpenNebula Quality Assurance and Certification Process <http://opennebula.org/software:testing>`__.
+This is the list of the individual platform components that have been through the complete `OpenNebula Quality Assurance and Certification Process <https://github.com/OpenNebula/one/wiki/Quality-Assurance>`__.
 
 Certified Components Version
 ================================================================================
