@@ -11,5 +11,4 @@ The following new features has been backported to 5.10.2:
 
 The following issues has been solved in 5.10.2:
 
-- `Fix DESCRIPTION OF FIXED ISSUE <https://github.com/OpenNebula/one/issues/XXXX>`__.
-
+- `Fix onedb purge-done problem with end-time <https://github.com/OpenNebula/one/issues/4050>`__.
