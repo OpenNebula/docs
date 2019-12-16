@@ -13,5 +13,5 @@ The following new features has been backported to 5.10.2:
 
 The following issues has been solved in 5.10.2:
 
+- `Fix onedb purge-done problem with end-time <https://github.com/OpenNebula/one/issues/4050>`__.
 - `Fix bash 4.4 warnings about null byte <https://github.com/OpenNebula/one/issues/1690>`__.
-
