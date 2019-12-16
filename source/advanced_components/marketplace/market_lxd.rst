@@ -7,20 +7,20 @@ Linux Containers MarketPlace
 Overview
 ================================================================================
 
-`Linux Containers image server <https://images.linuxcontainers.org/>`__ hosts a public image server for use by LXC and LXD. It is the default image server on LXD.
+The `Linux Containers image server <https://images.linuxcontainers.org/>`__ hosts a public image server for use by LXC and LXD. It is the default image server for LXD.
 
-OpenNebula's linuxcontainers marketplace enables users to easily download, contextualize and add Linux Container's images to an OpenNebula's image datastore. Linux Containers images are compressed **.tar.xz** files. In order to use them, this marketplace creates an image, where it dumps the content and later uploads it to OpenNebula. The marketplace will automatically take care of downloading the correct context package for your image and installing it inside the container. The marketplace also creates a VM template with a set of required values and usability ones. There is a log file (``/var/log/chroot.log``) inside the imported app filesystem which shows information about the operations done during the app setup process, in case of issues it could be a source of information.
+OpenNebula's linuxcontainers marketplace enables users to easily download, contextualize and add Linux Containers images to an OpenNebula image datastore. Linux Containers images are compressed ``.tar.xz`` files. In order to use them, this marketplace creates an image, where it dumps the content, and later uploads it to OpenNebula. The marketplace will automatically take care of downloading the correct context package for your image and installing it inside the container. The marketplace also creates a VM template with a set of required and optional values. There is a log file (``/var/log/chroot.log``) inside the imported app filesystem which shows information about the operations done during the app setup process; in case of issues it could be a source of information.
 
 Requirements
 ================================================================================
 
 - OpenNebula's frontend needs an Internet connection to https://images.linuxcontainers.org and https://github.com
-- Aproximately 6GB of storage plus the container image size configured on your frontend
+- Approximately 6GB of storage plus the container image size configured on your frontend
 
 Configuration
 ================================================================================
 
-Several parameters can be specified on the marketplace's template:
+Several parameters can be specified in the marketplace's template:
 
 +-------------------+-----------------------------------------------------+----------------------------------------+
 |   Attribute       |                         Description                 |                Default                 |
