@@ -86,6 +86,11 @@ FSCK network problem
 
 There are two bugs affecting the onedb fsck command related to networks. These bugs have been fixed, so please replace your fsck/network.rb file (located in /usr/lib/one/ruby/onedb/fsck) by https://github.com/OpenNebula/one/blob/master/src/onedb/fsck/network.rb
 
+Onedb purge-done problem
+========================
+
+There is a bug when running the command with end-time parameter. The bug has been fixed, you can find information about it `here <https://github.com/OpenNebula/one/issues/4050>`__.
+
 DB Size Increase due to FTS index
 =================================
 
