@@ -299,7 +299,7 @@ Now, in OpenNebula 5.10, you need to create the following hook template:
 
 and define the hook with ``onehook create`` command.
 
-.. important:: VMs are created upon two API calls one.vm.allocate and one.template.instantiate you have to hook on both calls to emulate the ON=CREATE hook for VMs.
+.. important:: To emulate the ``ON=CREATE`` hook for VMs a state hook can be defined for ``state=INIT`` and ``lcm_state=LCM_INIT``. See section `State hooks` below.
 
 In general, any create/remove hook can be migrated using the following template:
 
