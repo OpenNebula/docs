@@ -9,11 +9,11 @@ Considerations & Limitations
 
 You should take into account the following technical considerations when using the Microsoft Azure (AZ) cloud with OpenNebula:
 
--  There is no direct access to the hypervisor, so it cannot be monitored (we don't know where the VM is running on the Azure cloud).
+-  There is no direct access to the hypervisor, so it cannot be monitored. (We don't know where the VM is running on the Azure cloud.)
 
 -  The usual OpenNebula functionality for snapshotting, hot-plugging, or migration is not available with Azure.
 
--  By default OpenNebula will always launch Small (1 CPU, 1792 MB RAM) instances, unless otherwise specified. The following table is an excerpt of all the instance types available in Azure, a more exhaustive list can be found (and edited) in ``/etc/one/az_driver.conf``.
+-  By default, OpenNebula will always launch Small (1 CPU, 1792 MB RAM) instances, unless otherwise specified. The following table is an excerpt of all the instance types available in Azure. A more exhaustive list can be found (and edited) in ``/etc/one/az_driver.conf``.
 
 +------------+--------------+-----------------+
 |    Name    | CPU Capacity | Memory Capacity |
@@ -44,7 +44,7 @@ Prerequisites
 
 - You must have a working account for `Azure <http://azure.microsoft.com/>`__.
 - First, the Subscription ID, that can be uploaded and retrieved from All services -> Subscriptions.
-- Second, the Management Certificate file, that can be created with the following steps- We need the .pem file (for the ruby gem) and the .cer file (to upload to Azure):
+- Second, the Management Certificate file, that can be created with the following steps. We need the ``.pem`` file (for the ruby gem) and the ``.cer`` file (to upload to Azure):
 
 .. code::
 
@@ -56,7 +56,7 @@ Prerequisites
     ## Ubuntu
     $ sudo apt-get install openssl
 
-    # Move to a folder (wherever you prefer, it's better if you choose a private folder to store all yours keys)
+    # Move to a folder (wherever you prefer, but it's best to choose a private folder to store all your keys)
     $ mkdir ~/.ssh/azure && cd ~/.ssh/azure
 
     ## Create certificate
@@ -74,15 +74,15 @@ Prerequisites
 
 
 
-- Third, the certificate file (.cer) has to be uploaded to All services -> Subscriptions -> Management certificates
-- In order to allow azure driver to properly authenticate with our Azure account, you need to sign your .pem file:
+- Third, the certificate file (``.cer``) has to be uploaded to All services -> Subscriptions -> Management certificates
+- In order to allow the Azure driver to authenticate properly with our Azure account, you need to sign your ``.pem`` file:
 
 .. code::
 
     ## Concatenate key and pem certificate (sign with private key)
     $ cat myCert.pem myPrivateKey.key > azureOne.pem
 
-azureOne.pem is the result of your signed cert, OpenNebula does not need you to store this cert in any certain location of the OpenNebula front-end filesystem, please keep it safe. Remember that you will need to read it in the host creation process. We'll talk about how perform this action later.
+``azureOne.pem`` is the resulting signed certificate. OpenNebula does not need you to store this in any specific location of the OpenNebula front-end filesystem, but please keep it safe. Remember that you will need to read it in the host creation process. We'll talk about how to perform this action later.
 
 -  The following gem is required: ``azure``. This gem is automatically installed as part of the :ref:`installation process <ruby_runtime>`. Otherwise, run the ``install_gems`` script as root:
 
@@ -93,7 +93,7 @@ azureOne.pem is the result of your signed cert, OpenNebula does not need you to 
 OpenNebula Configuration
 ================================================================================
 
-Uncomment the Azure AZ IM and VMM drivers from ``/etc/one/oned.conf`` file in order to use the driver.
+Uncomment the Azure AZ IM and VMM drivers from the ``/etc/one/oned.conf`` file in order to use the driver.
 
 .. code::
 
@@ -110,15 +110,15 @@ Uncomment the Azure AZ IM and VMM drivers from ``/etc/one/oned.conf`` file in or
 
 Driver flags are the same as other drivers:
 
-+------+----------------------------------------------------------------------+
-| FLAG |                                 SETs                                 |
-+======+======================================================================+
-| -t   | Number of threads, i.e. number of actions performed at the same time |
-+------+----------------------------------------------------------------------+
-| -r   | Number of retries when contacting Azure service                      |
-+------+----------------------------------------------------------------------+
++----------+----------------------------------------------------------------------+
+| FLAG     |                                 SETs                                 |
++==========+======================================================================+
+| ``-t``   | Number of threads, i.e. number of actions performed at the same time |
++----------+----------------------------------------------------------------------+
+| ``-r``   | Number of retries when contacting Azure service                      |
++----------+----------------------------------------------------------------------+
 
-Azure driver has his own configuration file with a few options ready to customize, take a look inside your opennebula etc folder, edit the file ``/etc/one/az_driver.conf``:
+The Azure driver has its own configuration file with a few options ready to customize. Edit ``/etc/one/az_driver.conf``:
 
 .. code::
 
@@ -141,23 +141,23 @@ Azure driver has his own configuration file with a few options ready to customiz
             memory: 14.0
         ...
 
-In the above file, each instance_type represents the physical resources that Azure will serve.
+In the above file, each ``instance_type`` represents the physical resources that Azure will serve.
 
-If the OpenNebula frontend needs to use a proxy to connect to the public Internet you also need to configure the proxy in that file. The parameter is called ``proxy_uri``. Authenticated proxies are not supported, that is, the ones that require user name and password. For example, if the proxy is in ``10.0.0.1`` and its port is ``8080`` the configuration line should read:
+If the OpenNebula frontend needs to use a proxy to connect to the public Internet you also need to configure the proxy in that file. The parameter is called ``proxy_uri``. Authenticated proxies are not supported, that is ones that require user name and password. For example, if the proxy is on ``10.0.0.1`` and its port is ``8080`` the configuration line should read:
 
 .. code::
 
     proxy_uri: http://10.0.0.1:8080
 
 
-.. warning:: ``instance_types`` section shows us the machines that Azure is able to provide, the azure driver will retrieve this kind of information so it's better to not change it unless you are aware of your actions.
+.. warning:: The ``instance_types`` section lists the machines that Azure is able to provide. The Azure driver will retrieve this kind of information, so it's better not to change it unless you know what you are doing.
 
 .. warning::
 
-    If you were using OpenNebula before 5.4 you may have noticed that there are not Microsoft credentials in configuration file anymore, this is due security reasons. In 5.4 there is a new secure credentials storage for Microsoft's accounts so you do not need to store sensitive credential data inside your disk. OpenNebula daemon stores the data in an encrypted format.
+    If you were using OpenNebula before 5.4 you may have noticed that there are no Microsoft credentials in the configuration file anymore. This is for security reasons. In 5.4 there is a new secure credentials storage for Microsoft accounts, so you do not need to store sensitive credential data on disk. The OpenNebula daemon stores the data in an encrypted format.
 
 
-Once the file is saved, OpenNebula needs to be restarted, create a new Host with Microsoft's credentials that uses the AZ drivers:
+Once the file is saved, OpenNebula needs to be restarted. Create a new Host with Microsoft credentials that uses the AZ drivers:
 
 .. prompt:: bash $ auto
 
@@ -165,9 +165,9 @@ Once the file is saved, OpenNebula needs to be restarted, create a new Host with
 
 .. note::
 
-    ``-t`` is needed to specify what type of remote provider host we want to set up, if you've followed all the instruction properly your default editor should show in your screen asking for the credentials and other mandatory data that will allow you to communicate with Azure.
+    ``-t`` is needed to specify what type of remote provider host we want to set up. If you've followed all the instructions properly, your default editor should appear, asking for the credentials and other mandatory data that will allow you to communicate with Azure.
 
-Once you have opened your editor you can look for additional help at the top of your screen, you have more information in :ref:`Azure Auth template Attributes <az_auth_attributes>` section. The basic three variables you have to set are: ``AZ_ID``, ``AZ_CERT`` and ``REGION_NAME``.
+Once you have opened your editor you can look for additional help at the top of your screen. There is more information in the :ref:`Azure Auth template Attributes <az_auth_attributes>` section. The basic three variables you have to set are: ``AZ_ID``, ``AZ_CERT`` and ``REGION_NAME``.
 
 
 .. _azure_specific_template_attributes:
@@ -175,7 +175,7 @@ Once you have opened your editor you can look for additional help at the top of 
 Azure Specific Template Attributes
 ================================================================================
 
-In order to deploy an instance in Azure through OpenNebula you must include an PUBLIC_CLOUD section in the virtual machine template. This is an example of a virtual machine template that can be deployed in our local resources or in Azure.
+In order to deploy an instance in Azure through OpenNebula, you must include an Azure PUBLIC_CLOUD section in the virtual machine template. This is an example of a virtual machine template that can be deployed in our local resources or in Azure.
 
 .. code::
 
@@ -201,9 +201,7 @@ In order to deploy an instance in Azure through OpenNebula you must include an P
     #Add this if you want this VM to only go to the West EuropeAzure cloud
     #SCHED_REQUIREMENTS = 'HOSTNAME = "west-europe"'
 
-These are the attributes that can be used in the PUBLIC_CLOUD section of the template for TYPE "AZURE":
-
-Check an exhaustive list of attributes in the :ref:`Virtual Machine Definition File Reference Section <public_cloud_azure_atts>`.
+These are the attributes that can be used in the PUBLIC_CLOUD section of the template for TYPE "AZURE", There is an exhaustive list of attributes in the :ref:`Virtual Machine Definition File Reference Section <public_cloud_azure_atts>`.
 
 .. note:: The PUBLIC_CLOUD sections allow for substitutions from template and virtual network variables, the same way as the :ref:`CONTEXT section allows <template_context>`.
 
@@ -281,7 +279,7 @@ Default values for all these attributes can be defined in the ``/etc/one/az_driv
 Azure Auth Attributes
 --------------------------------------------------------------------------------
 
-After successfully executing onehost create with -t option, your default editor will open. An example follows of how you can complete this area:
+After successfully executing ``onehost create`` with the ``-t`` option, your default editor will open. An example follows of how you can complete  the information:
 
 .. code::
 
@@ -300,38 +298,38 @@ After successfully executing onehost create with -t option, your default editor 
 
 The first two attributes have the authentication info required by Azure:
 
-- **AZ_ID**: your Microsoft Azure account identifier, found in All services -> Subscriptions.
-- **AZ_CERT**: The certificate that you signed before, in our example this file is called 'azureOne.pem' you only need to read this file one time to set this attribute and start using Azure:
+- **AZ_ID**: Your Microsoft Azure account identifier, found in All services -> Subscriptions.
+- **AZ_CERT**: The certificate that you signed before. In our example this file is called 'azureOne.pem'. You only need to read this file once to set the attribute and start using Azure:
 
 .. prompt:: bash $ auto
 
     $ cat ~/.ssh/azure/azureOne.pem
 
-- Copy the content into your system clipboard without any mistake selecting all the text (ctrl + Shift + c if you are under normal linux terminal).
+- Copy the content into your system clipboard without any mistake selecting all the text (ctrl + Shift + c if you are using a typical desktop).
 
-- Paste into AZ_CERT value, make sure you are inside quotes without leaving any blankspace.
+- Paste that into the AZ_CERT value. Make sure it is inside quotes, without leaving any blank space.
 
 
-This information will be encrypted as soon as the host is created. In the host template the values of the ``AZ_ID`` and ``AZ_CERT`` attributes will be encrypted to maintain a secure way in your future communication with azure.
+This information will be encrypted as soon as the host is created. In the host template the values of the ``AZ_ID`` and ``AZ_CERT`` attributes will be encrypted to maintain your future communication with Azure securely.
 
-- **REGION_NAME**: it's the name of Azure region that your account uses to deploy machines. You can check Microsoft's site to know more about the region availability `Regions Azure page <https://azure.microsoft.com/es-es/regions/>`__.
+- **REGION_NAME**: The name of the Azure region that your account uses to deploy machines. You can check Microsoft's `Regions Azure page <https://azure.microsoft.com/es-es/regions/>`__ to find more about the region availability.
 
 In the example the region is set to `West Europe`.
 
-- **CAPACITY**: This attribute sets the size and number of Azure machines that your OpenNebula host will handle, you can see ``instance_types`` section in ``azure_driver.conf`` file to know the supported names. Remember that its mandatory to capitalize the names (``Small`` => ``SMALL``).
+- **CAPACITY**: This attribute sets the size and number of Azure machines that your OpenNebula host will handle.   See the ``instance_types`` section in the ``azure_driver.conf`` file for the supported names. Remember that it is mandatory to capitalize the names (``Small`` => ``SMALL``).
 
 .. _azg_multi_az_site_region_account_support:
 
 Multi Azure Location/Account Support
 ================================================================================
 
-It is possible to define various Azure hosts to allow OpenNebula the managing of different Azure locations or different Azure accounts. OpenNebula choses the datacenter in which to launch the VM in the following way:
+It is possible to define various Azure hosts to allow OpenNebula to manage different Azure locations or different Azure accounts. OpenNebula chooses the datacenter in which to launch the VM in the following way:
 
-- if the VM description contains the LOCATION attribute, then OpenNebula knows that the VM needs to be launch in this Azure location
-- if the name of the host matches the region name (remember, this is the same as an Azure location), then OpenNebula knows that the VMs sent to this host needs to be launched in that Azure datacenter
-- if the VM doesn't have a LOCATION attribute, and the host name doesn't match any of the defined regions, then the default region is picked.
+- If the VM description contains the LOCATION attribute, then OpenNebula knows that the VM needs to be launched in this Azure location.
+- If the name of the host matches the region name (remember, this is the same as an Azure location), then OpenNebula knows that the VMs sent to this host needs to be launched in that Azure datacenter.
+- If the VM doesn't have a LOCATION attribute, and the host name doesn't match any of the defined regions, then the default region is picked.
 
-When you create a new host the credentials and endpoint for that host are retrieved from the ``/etc/one/az_driver.conf`` file using the host name. Therefore, if you want to add a new host to manage a different datacenter, i.e. ``west-europe``, just add your credentials and the capacity limits to the the ``west-europe`` section in the conf file, and specify that name (west-europe) when creating the new host.
+When you create a new host, the credentials and endpoint for that host are retrieved from the ``/etc/one/az_driver.conf`` file using the host name. Therefore, if you want to add a new host to manage a different datacenter, i.e. ``west-europe``, just add your credentials and the capacity limits to the ``west-europe`` section in the configuration file, and specify that name (``west-europe``) when creating the new host.
 
 .. code::
 
@@ -353,9 +351,9 @@ After that, create a new Host with the ``west-europe`` name:
 
     $ onehost create west-europe -i az -v az
 
-If the Host name does not match any regions key, the ``default`` will be used.
+If the Host name does not match any region key, the ``default`` will be used.
 
-You can define a different Azure section in your template for each Azure host, so with one template you can define different VMs depending on which host it is scheduled, just include a LOCATION attribute in each PUBLIC_CLOUD section:
+You can define a different Azure section in your template for each Azure host, so with one template you can define different VMs depending on which host it is scheduled. Just include a LOCATION attribute in each PUBLIC_CLOUD section:
 
 .. code::
 
@@ -405,7 +403,7 @@ An example of a hybrid template:
                      LOCATION="west-europe"
     ]
 
-OpenNebula will use the first portion (from NAME to NIC) in the above template when the VM is scheduled to a local virtualization node, and the PUBLIC_CLOUD section of TYPE="AZURE" when the VM is scheduled to an Azure node (ie, when the VM is going to be launched in Azure).
+OpenNebula will use the first portion (from NAME to NIC) in the above template when the VM is scheduled to a local virtualization node, and the PUBLIC_CLOUD section of TYPE="AZURE" when the VM is scheduled to an Azure node (i.e. when the VM is going to be launched in Azure).
 
 Testing
 ================================================================================
@@ -543,14 +541,14 @@ The Azure drivers return a probe with the value PRIORITY = -1. This can be used 
         policy = 4
     ]
 
-The local hosts will have a priority of 0 by default, but you could set any value manually with the 'onehost/onecluster update' command.
+The local hosts will have a priority of 0 by default, but you could set any value manually with the ``onehost update`` or ``onecluster update`` commands.
 
-There are two other parameters that you may want to adjust in sched.conf:
+There are two other parameters that you may want to adjust in ``sched.conf``:
 
 -  MAX_DISPATCH: Maximum number of Virtual Machines actually dispatched to a host in each scheduling action
 -  MAX_HOST: Maximum number of Virtual Machines dispatched to a given host in each scheduling action
 
-In a scheduling cycle, when MAX\_HOST number of VMs have been deployed to a host, it is discarded for the next pending VMs.
+In a scheduling cycle, when MAX_HOST VMs have been deployed to a host, the host is discarded for the following pending VMs.
 
 For example, having this configuration:
 
@@ -559,9 +557,9 @@ For example, having this configuration:
 -  2 Hosts: 1 in the local infrastructure, and 1 using the Azure drivers
 -  2 pending VMs
 
-The first VM will be deployed in the local host. The second VM will have also sort the local host with higher priority, but because 1 VMs was already deployed, the second VM will be launched in Azure.
+The first VM will be deployed in the local host. The second VM will have also sort the local host with higher priority, but because 1 VM was already deployed, the second VM will be launched in Azure.
 
-A quick way to ensure that your local infrastructure will be always used before the Azure hosts is to **set MAX\_DISPATH to the number of local hosts**.
+A quick way to ensure that your local infrastructure will always be used before the Azure hosts is to **set MAX_DISPATCH to the number of local hosts**.
 
 Force a Local or Remote Deployment
 --------------------------------------------------------------------------------
@@ -583,4 +581,4 @@ To force a VM deployment in a Azure host, use:
 Importing VMs
 ================================================================================
 
-VMs running on Azure that were not launched through OpenNebula can be :ref:`imported in OpenNebula <import_wild_vms>`.
+VMs running on Azure that were not launched through OpenNebula can be :ref:`imported into OpenNebula <import_wild_vms>`.
