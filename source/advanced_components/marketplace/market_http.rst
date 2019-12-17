@@ -7,18 +7,18 @@ HTTP MarketPlace
 Overview
 ================================================================================
 
-MarketPlaces of `HTTP` make use of a conventional HTTP server to expose the images (MarketPlaceApps) uploaded to a MarketPlace of this kind. The image will be placed in a specific directory that must be configured to be exposed by HTTP.
+`HTTP` MarketPlaces make use of a conventional HTTP server to expose the images (MarketPlaceApps) uploaded to the MarketPlace. The image will be placed in a specific directory that must be configured to be accessible by HTTP.
 
 This is a fully supported MarketPlace with all the implemented features.
 
 Requirements
 ================================================================================
 
-A web-server should be deployed either in the Frontend or in a node reachable by the Frontend. A directory that will be used to store the uploaded images (MarketPlaceApps) should be configured to have the desired available space, and the web-server must be configured in order to grant HTTP access to that directory.
+A web server should be deployed either in the Frontend or in a node reachable by the Frontend. A directory that will be used to store the uploaded images (MarketPlaceApps) should be configured to have the necessary space available, and the web server must be configured to grant HTTP access to that directory.
 
-It is recommended to use either `Apache <https://httpd.apache.org/>`__ or `NGINX <https://www.nginx.com/>`__ as they are known to work properly with the potentially large size of the MarketPlaceApp files. However, other web servers may work as long as they're capable to handle the load.
+It is recommended to use either `Apache <https://httpd.apache.org/>`__ or `NGINX <https://www.nginx.com/>`__, as they are known to work properly with the potentially large size of the MarketPlaceApp files. However, other web servers may work, as long as they can handle the load.
 
-The web-server should be deployed by the administrator before registering the MarketPlace.
+The web server should be deployed by the administrator before registering the MarketPlace.
 
 Configuration
 ================================================================================
@@ -32,14 +32,14 @@ These are the configuration attributes of a MarketPlace template of the `HTTP` k
 +-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``MARKET_MAD``  | Must be ``http``                                                                                                                                                        |
 +-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``PUBLIC_DIR``  | (**Required**) Absolute directory path to place images, the document root for http server, in the Frontend or in the hosts pointed at by the ``BRIDGE_LIST`` directive. |
+| ``PUBLIC_DIR``  | (**Required**) Absolute directory path to place images (the HTTP server document root) in the Frontend or in the hosts pointed at by the ``BRIDGE_LIST`` directive.     |
 +-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``BASE_URL``    | (**Required**) URL base to generate MarketPlaceApp endpoints.                                                                                                           |
 +-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``BRIDGE_LIST`` | (Optional) Comma separated list of servers to access the public directory. If not defined, public directory will be local to the Frontend.                              |
+| ``BRIDGE_LIST`` | (Optional) Comma-separated list of servers to access the public directory. If not defined, the public directory will be local to the Frontend.                          |
 +-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-For example, the following examples illustrates the creation of an MarketPlace:
+For example, the following examples illustrate the creation of a MarketPlace:
 
 .. prompt:: bash $ auto
 
