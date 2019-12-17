@@ -1,22 +1,22 @@
 .. _migrate_images:
 
-=======================================
-Migrate images to/from KVM / vCenter DS
-=======================================
+=====================================
+Migrate images to/from KVM/vCenter DS
+=====================================
 
 Overview
 --------------------------------------------------------------------------------
 
-OpenNebula allows the management of hybrid environments, offering end-users a self-service portal to consume resources from both VMware-based infrastructures and KVM based ones to the user in a transparent way.
+OpenNebula allows the management of hybrid environments, offering end-users a self-service portal to consume resources from both VMware-based infrastructures and KVM-based ones in a transparent way.
 
-We are going to show you both transition below step-by-step trough Sunstone:
+We are going to show you both conversions below, step-by-step, through Sunstone:
 
 VMDK Image to QCOW2 Datastore
 --------------------------------------------------------------------------------
 
 Here is how it works. We have a vmdk image within MarketPlace and we want to use it in KVM:
 
-1. Go to MarketPlace and select the image, then click on **Download Button**.
+1. Go to MarketPlace and select the image, then click on the **Import into Datastore** button (with the cloud and arrow icon).
 
 .. image:: /images/market_migrate_vmdk_qcow2_1.png
     :width: 90%
@@ -24,7 +24,7 @@ Here is how it works. We have a vmdk image within MarketPlace and we want to use
 
 .. warning::
 
-    When the destination image datastore is qcow2/raw you **must** define the attribute ``DRIVER=qcow2`` or ``DRIVER=raw``, respectively, in order to convert the image. If not, the image will be download without any change.
+    When the destination image datastore is qcow2 or raw, you **must** define the attribute ``DRIVER=qcow2`` or ``DRIVER=raw``, respectively, in order to convert the image, otherwise it will be downloaded without any change.  To do so, visit the **Templates** tab for the image, and use the edit icon button to alter the **App template** before download.
 
 2. Select the destination datastore.
 
@@ -49,7 +49,7 @@ QCOW2 Image to VMDK Datastore
 
 The process is very similar to the one described above.
 
-1. Go to MarketPlace and select the image in qcow2 format to be used in a vCenter cluster, then click on **Download Button**.
+1. Go to MarketPlace and select the image in qcow2 format to be used in a vCenter cluster, then click on the **Import into Datastore** button.
 
 .. image:: /images/market_migrate_qcow2_vmdk_1.png
     :width: 90%
@@ -57,7 +57,7 @@ The process is very similar to the one described above.
 
 .. note::
 
-    In this case, when you import a vcenter datastore is automatically set ``DRIVER=vcenter`` so we dont need to define **DRIVER** attribute.
+    In this case, when you import to a vcenter datastore ``DRIVER=vcenter`` is set automatically, so you don't need to define the **DRIVER** attribute.
 
 2. Select the destination image datastore.
 
@@ -65,7 +65,7 @@ The process is very similar to the one described above.
     :width: 90%
     :align: center
 
-3. When we download a vmdk image from the marketplace, a template is automatically created along with the image. However, we need a template with a valid vcenter ref for your cloud. You need to define an empty template in vcenter and import it in OpenNebula.
+3. When we download a vmdk image from the marketplace, a template is automatically created along with the image. However, we need a template with a valid vcenter reference for your cloud. We need to define an empty template in vcenter and import it into OpenNebula.
 
 .. image:: /images/market_migrate_qcow2_vmdk_3.png
     :width: 90%
@@ -102,13 +102,13 @@ In vCenter:
 How it was implemented
 --------------------------------------------------------------------------------
 
-Everytime the image that we selected from MarketPlace is downloaded to the frontend. Then, when the download process is finished, it is converted with the ``qemu-img convert`` tool as follows:
+When the image that we selected from the MarketPlace is downloaded to the frontend, and the download process is finished, it is converted with the ``qemu-img convert`` tool as follows:
 
 .. prompt:: bash $ auto
 
     qemu-img convert -f <original_type> -O <destination_type> <original_file> <destination_file>
 
-Then, the file is sent to the destination datastore.
+Then the file is sent to the destination datastore.
 
 Limitations and restrictions
 --------------------------------------------------------------------------------
