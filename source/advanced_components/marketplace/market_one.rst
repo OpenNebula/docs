@@ -7,9 +7,11 @@ OpenNebula Systems MarketPlace
 Overview
 ================================================================================
 
-OpenNebula Systems provides a public and official MarketPlace, universally available to all OpenNebulas. The OpenNebula Marketplace is a catalog of virtual appliances ready to run in OpenNebula environments available at `http://marketplace.opennebula.systems <http://marketplace.opennebula.systems>`__. It no longer accepts third-party contributions.
+OpenNebula Systems provides a public and official MarketPlace, universally available to all instances of OpenNebula with access to internet. The OpenNebula Marketplace is a catalog of virtual appliances ready to run in OpenNebula environments available at `http://marketplace.opennebula.systems <http://marketplace.opennebula.systems>`__.
 
 You can also connect to MarketPlaces deployed with the `OpenNebula Add-on AppMarket <https://github.com/OpenNebula/addon-appmarket>`__. Such AppMarkets which are already deployed can still be used, but they are now deprecated in favor of :ref:`HTTP MarketPlaces <market_http>`.
+
+|image0|
 
 Requirements
 ================================================================================
@@ -57,3 +59,5 @@ Tuning & Extending
 ==================
 
 System administrators and integrators are encouraged to modify these drivers in order to integrate them with their datacenter. Please refer to the :ref:`Market Driver Development <devel-market>` guide to learn about the driver details.
+
+.. |image0| image:: /images/market1306.png
