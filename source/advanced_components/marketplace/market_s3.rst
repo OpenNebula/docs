@@ -7,12 +7,12 @@ S3 MarketPlace
 Overview
 ================================================================================
 
-This MarketPlace uses an S3 API-capable service as the backend. This means MarketPlaceApp images will be stored in the official `AWS S3 service <https://aws.amazon.com/s3/>`__ , or in services that implement that API like `Ceph Object Gateway S3 <http://docs.ceph.com/docs/master/radosgw/s3/>`__.
+This MarketPlace uses an S3 API-capable service as the backend. This means MarketPlaceApp images will be stored in the official `AWS S3 service <https://aws.amazon.com/s3/>`__ , or in services that implement that API, like `Ceph Object Gateway S3 <http://docs.ceph.com/docs/master/radosgw/s3/>`__.
 
 Limitations
 ================================================================================
 
-Since the S3 API does not provide the available space, this space is hard-coded into the driver file, limiting it to 1TB. See below to learn how to change the default value.
+Since the S3 API does not provide a value for available space, this space is hard-coded into the driver file, limiting it to 1TB. See below to learn how to change the default value.
 
 Requirements
 ================================================================================
@@ -44,18 +44,18 @@ These are the configuration attributes of a MarketPlace template of the `S3` kin
 +-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``REGION``            | (**Required**) The region to connect to. If you are using Ceph-S3 any value here will work.                                                                                                        |
 +-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``ENDPOINT``          | (Optional) This is only required if you are connecting to a service other than Amazon AWS S3 service. Preferably don't use an endpoint that includes the bucket as leading part of the host's url. |
+| ``ENDPOINT``          | (Optional) This is only required if you are connecting to a service other than Amazon AWS S3. Preferably don't use an endpoint that includes the bucket as the leading part of the host's URL.     |
 +-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``SIGNATURE_VERSION`` | (Optional) Leave blank for Amazon AWS S3 service. If connecting to Ceph S3 it **must** be ``s3``.                                                                                                  |
 +-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``FORCE_PATH_STYLE``  | (Optional) Leave blank for Amazon AWS S3 service. If connecting to Ceph S3 it **must** be ``YES``.                                                                                                 |
 +-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``TOTAL_MB``          | (Optional) This parameter defines the Total size of the MarketPlace in MB. It defaults to ``1024 GB``.                                                                                             |
+| ``TOTAL_MB``          | (Optional) This parameter defines the total size of the MarketPlace in MB. It defaults to ``1024 GB``.                                                                                             |
 +-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``READ_LENGTH``       | (Optional) Split the file into chunks of this size (in MB). You should **never** user a quantity larger than `100`. Defaults to `32` (MB).                                                         |
 +-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-For example, the following examples illustrates the creation of an MarketPlace:
+For example, the following examples illustrate the creation of a MarketPlace:
 
 .. prompt:: bash $ auto
 
