@@ -9,13 +9,13 @@ Considerations & Limitations
 
 You should take into account the following technical considerations when using the EC2 cloud with OpenNebula:
 
--  There is no direct access to the hypervisor, so it cannot be monitored (we don't know where the VM is running on the EC2 cloud).
+-  There is no direct access to the hypervisor, so it cannot be monitored. (We don't know where the VM is running on the EC2 cloud.)
 
 -  The usual OpenNebula functionality for snapshotting, hot-plugging, or migration is not available with EC2.
 
 -  By default OpenNebula will always launch m1.small instances, unless otherwise specified.
 
--  Monitoring of VMs in EC2 is done through CloudWatch. Only information related to the consumption of CPU and Networking (both inbound and outbound) is collected, since CloudWatch does not offer information of guest memory consumption.
+-  Monitoring of VMs in EC2 is done through CloudWatch. Only information related to the consumption of CPU and Networking (both inbound and outbound) is collected, since CloudWatch does not offer information about guest memory consumption.
 
 Please refer to the EC2 documentation to obtain more information about Amazon instance types and image management:
 
@@ -31,7 +31,7 @@ Prerequisites
 OpenNebula Configuration
 ================================================================================
 
-Uncomment the EC2 IM and VMM drivers from ``/etc/one/oned.conf`` file in order to use the driver.
+Uncomment the EC2 IM and VMM drivers from the ``/etc/one/oned.conf`` file in order to use the driver.
 
 .. code::
 
@@ -48,17 +48,17 @@ Uncomment the EC2 IM and VMM drivers from ``/etc/one/oned.conf`` file in order t
 
 Driver flags are the same as other drivers:
 
-+--------+---------------------+
-| FLAG   | SETs                |
-+========+=====================+
-| -t     | Number of threads   |
-+--------+---------------------+
-| -r     | Number of retries   |
-+--------+---------------------+
++------------+---------------------+
+| FLAG       | SETs                |
++============+=====================+
+| ``-t``     | Number of threads   |
++------------+---------------------+
+| ``-r``     | Number of retries   |
++------------+---------------------+
 
 .. _ec2_driver_conf:
 
-First of all we take a look over our ec2_driver_conf file located in ``/etc/one/ec2_driver.conf``:
+First of all, we take a look over our ``/etc/one/ec2_driver_conf`` file:
 
 .. code::
 
@@ -71,25 +71,25 @@ First of all we take a look over our ec2_driver_conf file located in ``/etc/one/
         ...
 
 
-You can define an http proxy if the OpenNebula Frontend does not have access to the internet:
+You can define an HTTP proxy if the OpenNebula Frontend does not have access to the internet:
 
 .. code::
 
     proxy_uri: http://...
 
-Also, you can modify in the same file the default 300 seconds timeout that is waited for the VM to be in the EC2 running state in case you also want to attach to the instance a elastic ip:
+Also, you can modify in the same file the default 300 seconds timeout for waiting for the VM to reach the EC2 running state in case you also want to attach to the instance a elastic IP:
 
 .. code::
 
     state_wait_timeout_seconds: 300
 
-.. warning:: ``instance_types`` section shows us the machines that AWS is able to provide, the ec2 driver will retrieve this kind of information so it's better to not change it unless you are aware of your actions.
+.. warning:: The ``instance_types`` section lists the machines that AWS is able to provide. The EC2 driver will retrieve this kind of information, so it's better not to change it unless you know what you are doing.
 
 .. warning::
 
-    If you were using OpenNebula before 5.4 you may have noticed that there are not AWS credentials in configuration file anymore, this is due security reasons. In 5.4 there is a new secure credentials storage for AWS so you do not need to store sensitive credential data inside your disk. OpenNebula daemon stores the data in an encrypted format.
+    If you were using OpenNebula before 5.4 you may have noticed that there are no AWS credentials in the configuration file anymore. This is for security reasons. In 5.4 there is a new secure credentials storage for AWS, so you do not need to store sensitive credential data on disk. The OpenNebula daemon stores the data in an encrypted format.
 
-After OpenNebula is restarted, create a new Host with AWS credentials that uses the ec2 drivers:
+After OpenNebula is restarted, create a new Host with AWS credentials that uses the EC2 drivers:
 
 .. prompt:: bash $ auto
 
@@ -97,11 +97,11 @@ After OpenNebula is restarted, create a new Host with AWS credentials that uses 
 
 .. note::
 
-    ``-t`` is needed to specify what type of remote provider host we want to set up, if you've followed all the instruction properly your default editor should show in your screen asking for the credentials and other mandatory data that will allow you to communicate with AWS.
+    ``-t`` is needed to specify what type of remote provider host we want to set up. If you've followed all the instructions properly, your default editor should appear, asking for the credentials and other mandatory data that will allow you to communicate with AWS.
 
-Once you have opened your editor you can look for additional help at the top of your screen, you have more information in :ref:`EC2 Specific Template Attributes <ec2_specific_template_attributes>` section. The basic three variables you have to set are: ``EC2_ACCESS``, ``EC2_SECRET`` and ``REGION_NAME``.
+Once you have opened your editor you can look for additional help at the top of the screen. There is more information in the :ref:`EC2 Specific Template Attributes <ec2_specific_template_attributes>` section. The basic three variables you have to set are: ``EC2_ACCESS``, ``EC2_SECRET`` and ``REGION_NAME``.
 
-This can also be done creating a template file than can be used with the creation command:
+This can also be done by creating a template file that can be used with the creation command:
 
 .. prompt:: bash $ auto
 
@@ -112,10 +112,10 @@ This can also be done creating a template file than can be used with the creatio
 
 .. _ec2_specific_template_attributes:
 
-EC2 Specific Template Attributes
+EC2-Specific Template Attributes
 ================================================================================
 
-In order to deploy an instance in EC2 through OpenNebula you must include an EC2 section in the virtual machine template. This is an example of a virtual machine template that can be deployed in our local resources or in EC2.
+In order to deploy an instance in EC2 through OpenNebula, you must include an EC2 PUBLIC_CLOUD section in the virtual machine template. This is an example of a virtual machine template that can be deployed in local resources or in EC2.
 
 .. code::
 
@@ -135,7 +135,7 @@ In order to deploy an instance in EC2 through OpenNebula you must include an EC2
     #Add this if you want to use only EC2 cloud
     #SCHED_REQUIREMENTS = 'HOSTNAME = "ec2"'
 
-Check an exhaustive list of attributes in the :ref:`Virtual Machine Definition File Reference Section <public_cloud_amazon_ec2_atts>`.
+See the exhaustive list of attributes in the :ref:`Virtual Machine Definition File Reference Section <public_cloud_amazon_ec2_atts>`.
 
 Default values for all these attributes can be defined in the ``/etc/one/ec2_driver.default`` file.
 
@@ -165,7 +165,7 @@ Default values for all these attributes can be defined in the ``/etc/one/ec2_dri
 
 .. note:: The PUBLIC_CLOUD sections allow for substitutions from template and virtual network variables, the same way as the :ref:`CONTEXT section allows <template_context>`.
 
-These values can furthermore be asked to the user using :ref:`user inputs <vm_guide_user_inputs>`. A common scenario is to delegate the User Data to the end user. For that, a new User Input named USERDATA can be created of text64 (the User Data needs to be encoded on base64) and a placeholder added to the PUBLIC_CLOUD section:
+These values can furthermore be requested from the user using :ref:`user inputs <vm_guide_user_inputs>`. A common scenario is to delegate the User Data to the end user. For that, a new User Input named USERDATA can be created of type ``text64`` (the User Data needs to be encoded on base64), and a placeholder added to the PUBLIC_CLOUD section:
 
 .. code::
 
@@ -181,7 +181,7 @@ These values can furthermore be asked to the user using :ref:`user inputs <vm_gu
 Auth Attributes
 --------------------------------------------------------------------------------
 
-After successfully executing onehost create with -t option, your default editor will open. An example follows of how you can complete this area:
+After successfully executing ``onehost create`` with the ``-t`` option, your default editor will open. An example follows of how you can complete  the information:
 
 .. code::
 
@@ -199,11 +199,11 @@ The first two attributes have the authentication info required by AWS:
 
 This information will be encrypted as soon as the host is created. In the host template the values of the ``EC2_ACCESS`` and ``EC2_SECRET`` attributes will be encrypted.
 
-- **REGION_NAME**: it's the name of AWS region that your account uses to deploy machines.
+- **REGION_NAME**: Name of the AWS region that your account uses to deploy machines.
 
-In the example the region is set to `us-east-1`, you can get this information at the EC2 web console.
+In the example the region is set to ```us-east-1``. You can get this information from the EC2 web console.
 
-- **CAPACITY**: This attribute sets the size and number of EC2 machines that your OpenNebula host will handle, you can see ``instance_types`` section in ``ec2_driver.conf`` file to know the supported names. Dot ('.') is not permitted, you have to change it to underscores (`_`) and capitalize the names (``m1.small`` => ``M1_SMALL``).
+- **CAPACITY**: This attribute sets the size and number of EC2 machines that your OpenNebula host will handle. You can consult the ``instance_types`` section in the ``ec2_driver.conf`` file for the supported names. Dot (``.``) is not permitted: you have to change it to underscore (``_``) and capitalize the names (``m1.small`` => ``M1_SMALL``).
 
 .. _context_ec2:
 
@@ -218,7 +218,7 @@ If a CONTEXT section is defined in the template, it will be available as USERDAT
     ONEGATE_ENDPOINT="https://onegate...
     SSH_PUBLIC_KEY="ssh-rsa ABAABeqzaC1y...
 
-If the :ref:`linux context packages for EC2 <kvm_contextualization>` are installed in the VM, these parameters will be used to configure the VM. This is the :ref:`list of the supported parameters for EC2 <template_context>`.
+If the :ref:`Linux context packages for EC2 <kvm_contextualization>` are installed in the VM, these parameters will be used to configure the VM. See the :ref:`list of the supported parameters for EC2 <template_context>`.
 
 For example, if you want to enable SSH access to the VM, an existing EC2 keypair name can be provided in the EC2 template section or the :ref:`SSH public key of the user <vcenter_contextualization>` can be included in the CONTEXT section of the template.
 
@@ -247,12 +247,12 @@ An example of a hybrid template:
     EC2=[
       AMI="ami-xxxxx" ]
 
-OpenNebula will use the first portion (from NAME to NIC) in the above template when the VM is scheduled to a local virtualization node, and the EC2 section when the VM is scheduled to an EC2 node (ie, when the VM is going to be launched in Amazon EC2).
+OpenNebula will use the first portion (from NAME to NIC) in the above template when the VM is scheduled to a local virtualization node, and the EC2 section when the VM is scheduled to an EC2 node (i.e. when the VM is going to be launched in Amazon EC2).
 
 Testing
 ================================================================================
 
-You must create a template file containing the information of the AMIs you want to launch. Additionally if you have an elastic IP address you want to use with your EC2 instances, you can specify it as an optional parameter.
+You must create a template file containing the information on the AMIs you want to launch. Additionally, if you have an elastic IP address you want to use with your EC2 instances, you can specify it as an optional parameter.
 
 .. code::
 
@@ -288,7 +288,7 @@ Now you can monitor the state of the VM with
         ID USER     GROUP    NAME         STAT CPU     MEM        HOSTNAME        TIME
          0 oneadmin oneadmin one-0        runn   0      0K             ec2    0d 07:03
 
-Also you can see information (like IP address) related to the amazon instance launched via the command. The attributes available are:
+Also you can see information (like IP addresses) related to the EC2 instance launched via the command. The attributes available are:
 
 -  AWS\_DNS\_NAME
 -  AWS\_PRIVATE\_DNS\_NAME
@@ -355,12 +355,12 @@ Also you can see information (like IP address) related to the amazon instance la
 Scheduler Configuration
 ================================================================================
 
-Since ec2 Hosts are treated by the scheduler like any other host, VMs will be automatically deployed in them. But you probably want to lower their priority and start using them only when the local infrastructure is full.
+Since EC2 Hosts are treated by the scheduler like any other host, VMs will be automatically deployed in them. But you probably want to lower their priority and start using them only when the local infrastructure is full.
 
 Configure the Priority
 --------------------------------------------------------------------------------
 
-The ec2 drivers return a probe with the value PRIORITY = -1. This can be used by :ref:`the scheduler <schg>`, configuring the 'fixed' policy in ``sched.conf``:
+The EC2 drivers return a probe with the value PRIORITY = −1. This can be used by :ref:`the scheduler <schg>` by configuring the 'fixed' policy in ``sched.conf``:
 
 .. code::
 
@@ -368,30 +368,30 @@ The ec2 drivers return a probe with the value PRIORITY = -1. This can be used by
         policy = 4
     ]
 
-The local hosts will have a priority of 0 by default, but you could set any value manually with the 'onehost/onecluster update' command.
+The local hosts will have a priority of 0 by default, but you could set any value manually with the ``onehost update`` or ``onecluster update`` commands.
 
-There are two other parameters that you may want to adjust in sched.conf::
+There are two other parameters that you may want to adjust in ``sched.conf``::
 
--  MAX_DISPATCH: Maximum number of Virtual Machines actually dispatched to a host in each scheduling action
--  MAX_HOST: Maximum number of Virtual Machines dispatched to a given host in each scheduling action
+-  **MAX_DISPATCH**: Maximum number of Virtual Machines actually dispatched to a host in each scheduling action
+-  **MAX_HOST**: Maximum number of Virtual Machines dispatched to a given host in each scheduling action
 
-In a scheduling cycle, when MAX\_HOST number of VMs have been deployed to a host, it is discarded for the next pending VMs.
+In a scheduling cycle, when MAX_HOST VMs have been deployed to a host, the host is discarded for the following pending VMs.
 
-For example, having this configuration:
+For example, with this configuration:
 
 -  MAX\_HOST = 1
 -  MAX\_DISPATCH = 30
 -  2 Hosts: 1 in the local infrastructure, and 1 using the ec2 drivers
 -  2 pending VMs
 
-The first VM will be deployed in the local host. The second VM will have also sort the local host with higher priority, but because 1 VMs was already deployed, the second VM will be launched in ec2.
+the first VM will be deployed in the local host. The second VM will also sort with higher priority on the local host, but because 1 VM was already deployed, the second VM will be launched in EC2.
 
-A quick way to ensure that your local infrastructure will be always used before the ec2 hosts is to **set MAX\_DISPATH to the number of local hosts**.
+A quick way to ensure that your local infrastructure will be always used before the EC2 hosts is to **set MAX_DISPATCH to the number of local hosts**.
 
 Force a Local or Remote Deployment
 --------------------------------------------------------------------------------
 
-The ec2 drivers report the host attribute PUBLIC\_CLOUD = YES. Knowing this, you can use that attribute in your :ref:`VM requirements <template_placement_section>`.
+The EC2 drivers report the host attribute PUBLIC\_CLOUD = YES. Knowing this, you can use that attribute in your :ref:`VM requirements <template_placement_section>`.
 
 To force a VM deployment in a local host, use:
 
@@ -399,7 +399,7 @@ To force a VM deployment in a local host, use:
 
     SCHED_REQUIREMENTS = "!(PUBLIC_CLOUD = YES)"
 
-To force a VM deployment in an ec2 host, use:
+To force a VM deployment in an EC2 host, use:
 
 .. code::
 
@@ -408,12 +408,12 @@ To force a VM deployment in an ec2 host, use:
 Importing VMs
 ================================================================================
 
-VMs running on EC2 that were not launched through OpenNebula can be :ref:`imported in OpenNebula <import_wild_vms>`.
+VMs running on EC2 that were not launched through OpenNebula can be :ref:`imported into OpenNebula <import_wild_vms>`.
 
 Permissions requirement
 ================================================================================
 
-If the user account that is going to be used does not have full permissions here is a table that summarizes the privileges required by ec2 driver.
+If the user account that is going to be used does not have full permissions, here is a table that summarizes the privileges required by the EC2 driver.
 
 Service STS
 -----------
