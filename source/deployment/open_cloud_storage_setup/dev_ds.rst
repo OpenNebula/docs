@@ -4,7 +4,7 @@
 Raw Device Mapping (RDM) Datastore
 ================================================================================
 
-The RDM Datastore is an Image Datastore that enables raw access to node block devices.
+The RDM Datastore is an Image Datastore that enables raw access to node block devices. This datastore enables fast VM deployment times due to a non-existent transfer operation from the image datastore to the system datastore (instant PROLOG). 
 
 .. warning:: The datastore should only be usable by the administrators. Letting users create images in this datastore will cause security problems. For example, register an image ``/dev/sda`` and reading the host filesystem.
 
@@ -16,7 +16,18 @@ The RDM Datastore is used to register already existent block devices in the node
 Frontend Setup
 ================================================================================
 
-No addtional setup is required.
+Make sure **/etc/one/oned.conf** has the following configuration for the RDM datastore
+
+.. code-block:: 
+
+    TM_MAD_CONF = [
+    NAME = "dev", LN_TARGET = "NONE", CLONE_TARGET = "NONE", SHARED = "YES",
+    TM_MAD_SYSTEM = "ssh,shared", LN_TARGET_SSH = "SYSTEM", CLONE_TARGET_SSH = "SYSTEM",
+    DISK_TYPE_SSH = "BLOCK", LN_TARGET_SHARED = "NONE",
+    CLONE_TARGET_SHARED = "SELF", DISK_TYPE_SHARED = "BLOCK"
+    ]
+
+Restart OpenNebula if it required an update.
 
 Node Setup
 ================================================================================
@@ -78,13 +89,47 @@ An example of datastore:
 Datastore Usage
 ================================================================================
 
-New images can be added as any other image specifying the path. If you are using the CLI do not use the shorthand parameters as the CLI check if the file exists and the device most provably won't exist in the frontend. As an example here is an image template to add a node disk ``/dev/sdb``:
+New images can be added as any other image specifying the path.
 
-.. code:: bash
+Layout on the virtualization node:
+
+.. code-block:: bash
+
+    sr0                          11:0    1  366K  0 rom  
+    nbd1                         43:16   0    8G  0 disk 
+    └─nbd1p1                     43:17   0    8G  0 part 
+    sda                         252:0    0   20G  0 disk 
+    ├─sda1                      252:1    0 19.9G  0 part /
+    ├─sda14                     252:14   0    4M  0 part 
+    └─sda15                     252:15   0  106M  0 part /boot/efi
+    sdb                         252:0    0   20G  0 disk 
+    ├─sdb1                      252:1    0 19.9G  0 part
+    ├─sdb14                     252:14   0    4M  0 part 
+    └─sdb15                     252:15   0  106M  0 part
+
+
+Example of a mapped qcow2 block:
+
+.. code-block:: bash
+
+    oneimage create -d 101 --name nbd --source /dev/nbd1 --driver raw --prefix vd  --persistent --type OS --size 0MB
+
+Or using a template for the secondary disk in the OS:
+
+.. code-block:: bash
+
+    cat image.tmpl
 
     NAME=scsi_device
     PATH=/dev/sdb
     PERSISTENT=YES
 
+    oneimage create image.tmpl -d 101
+
 .. note:: As this datastore does is just a container for existing devices images does not take any size from it. All devices registered will render size of 0 and the overall devices datastore will show up with 1MB of available space
 
+
+Troubleshooting
+---------------
+
+If the VM complains about not being able to mount the root partition, make sure your image has the attribute ``DEV_PREFIX = vd``. 
