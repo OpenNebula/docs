@@ -26,3 +26,17 @@ Using some CLI commands in Ubuntu 18.04, due to ruby and gem versions, you may s
 ``warning: constant ::Fixnum is deprecated``
 
 As a workaround you can use ``export RUBYOPT="-W0``. This will disable the warning message (but, take into account that it will disable all warning messages from ruby).
+
+Raw Device Mapping and system datastores
+========================================
+
+If you try to deploy a VM using an image from an RDM datastore into an ssh or shared datastore you might get an incompatibility error. To fix this you need to state the following config in **/etc/one/oned.conf**
+
+.. code-block::
+
+    TM_MAD_CONF = [
+    NAME = "dev", LN_TARGET = "NONE", CLONE_TARGET = "NONE", SHARED = "YES",
+    TM_MAD_SYSTEM = "ssh,shared", LN_TARGET_SSH = "SYSTEM", CLONE_TARGET_SSH = "SYSTEM",
+    DISK_TYPE_SSH = "BLOCK", LN_TARGET_SHARED = "NONE",
+    CLONE_TARGET_SHARED = "SELF", DISK_TYPE_SHARED = "BLOCK"
+    ]
