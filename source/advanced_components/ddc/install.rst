@@ -8,14 +8,14 @@ All functionality is distributed as an optional operating system package ``openn
 
 .. important::
 
-    The tool requires the `Ansible <https://www.ansible.com/>`__ to be installed on the same host(s) as well. There is **no automatic dependency** which would install Ansible automatically, you have to manage the installation of required Ansible version on your own.
+    The tool requires `Ansible <https://www.ansible.com/>`__ to be installed on the same host(s) as well. There is **no automatic dependency** which would install Ansible automatically; you have to manage the installation of the required Ansible version on your own.
 
-    Supported versions: Ansible 2.5.x or 2.6.x.
+    Supported versions: Ansible 2.5.x or 2.6.x.  Note that the Ansible packages in CentOS 7+ and Debian 10+ are too new, and Ubuntu 16.04's is too old.
 
 Step 1. Tools
 =============
 
-Installation of tools is as easy as the install of any operating system package. Choose from the sections below based on your operating system. You also need to have installed the OpenNebula :ref:`front-end packages <frontend_installation>`.
+Installation of the tools is as easy as the installation of any operating system package. Choose from the sections below based on your operating system. You also need to have installed the OpenNebula :ref:`front-end packages <frontend_installation>`.
 
 CentOS/RHEL 7
 -------------
@@ -54,9 +54,9 @@ and, then install Ansible:
 
 .. prompt:: bash $ auto
 
-   $ sudo pip install 'ansible>=2.5.0,<2.6.0'
+   $ sudo pip install 'ansible>=2.5.0,<2.7.0'
 
-Check the Ansible is installed properly:
+Check that Ansible is installed properly:
 
 .. prompt:: bash $ auto
 

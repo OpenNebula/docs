@@ -8,11 +8,11 @@ NIC Alias IP Hook
 
     Feature available since **OpenNebula 5.8.5** only.
 
-This hook ensures the IPAM managed IP addresses are assigned to the physical host where the particular Virtual Machines are running. Hook is triggered on significant Virtual Machine state changes - when it starts, when new NIC is hotplugged and when Virtual Machine is destroyed. Read more about :ref:`Using Hooks <hooks>` in the Integration Guide.
+This hook ensures the IPAM-managed IP addresses are assigned to the physical host where the particular Virtual Machines are running. The hook is triggered on significant Virtual Machine state changes — when it starts, when a new NIC is hotplugged and when the Virtual Machine is destroyed. Read more about :ref:`Using Hooks <hooks>` in the Integration Guide.
 
 .. important::
 
-    The functionality can be used **only for external NIC aliases** (secondary addresses) of the virtual machines and only if all following drivers and hook are used together:
+    The functionality can be used **only for external NIC aliases** (secondary addresses) of the virtual machines, and only if all the following drivers and hook are used together:
 
     * IPAM driver for :ref:`Packet <ddc_ipam_packet>`
     * Hook for :ref:`NIC Alias IP <ddc_hooks_alias_ip>`

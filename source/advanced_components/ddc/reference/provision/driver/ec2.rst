@@ -38,18 +38,18 @@ Parameter             Mandatory Description
 ``cloud_init``        NO        Generate ``cloud-init`` contextualization data if no custom ``userdata`` specified (default: ``no``). See :ref:`Cloud-init <ddc_driver_ec2_cloudinit>`.
 ===================== ========= ===========
 
-and, all the parameters supported by the :ref:`EC2 cloud-bursting <ec2g>` driver.
+and all the parameters supported by the :ref:`EC2 cloud-bursting <ec2g>` driver.
 
 .. _ddc_driver_ec2_cloudinit:
 
 Cloud-init
 ==========
 
-`Cloud-init <http://cloudinit.readthedocs.io/>`__ is a popular tool to contextualize the cloud resources. Although the OpenNebula mainly supports own contextualization method and tools (see packages for `Linux <https://github.com/OpenNebula/addon-context-linux>`__ and `Windows <https://github.com/OpenNebula/addon-context-windows>`__), the EC2 driver can be forced to provide configuration for generic images relying on the cloud-init.
+`Cloud-init <http://cloudinit.readthedocs.io/>`__ is a popular tool to contextualize the cloud resources. Although OpenNebula mainly supports its own contextualization method and tools (see packages for `Linux <https://github.com/OpenNebula/addon-context-linux>`__ and `Windows <https://github.com/OpenNebula/addon-context-windows>`__), the EC2 driver can be forced to provide configuration for generic images relying on cloud-init.
 
 The cloud-init configuration is generated if
 
-1. explicitly enabled by ``cloud_init`` parameter and
+1. explicitly enabled by the ``cloud_init`` parameter and
 2. no custom ``userdata`` parameter is specified.
 
 Parameter ``cloud_init`` allowed values:
@@ -66,7 +66,7 @@ Supported functionality:
 Example
 =======
 
-Example of minimal EC2 provision template:
+Example of a minimal EC2 provision template:
 
 .. code::
 
