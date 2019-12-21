@@ -32,7 +32,7 @@ Raw Device Mapping and system datastores
 
 If you try to deploy a VM using an image from an RDM datastore into an ssh or shared datastore you might get an incompatibility error. To fix this you need to state the following config in **/etc/one/oned.conf**
 
-.. code-block::
+.. code-block:: bash
 
     TM_MAD_CONF = [
     NAME = "dev", LN_TARGET = "NONE", CLONE_TARGET = "NONE", SHARED = "YES",
