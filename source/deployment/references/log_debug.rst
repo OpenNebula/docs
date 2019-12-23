@@ -8,7 +8,7 @@ OpenNebula provides logs for many resources. It supports three logging systems: 
 
 In the case of file based logging, OpenNebula keeps separate log files for each active component, all of them stored in ``/var/log/one``. To help users and administrators find and solve problems, they can also access some of the error messages from the :ref:`CLI <cli>` or the :ref:`Sunstone GUI <sunstone>`.
 
-With syslog or standard error, the logging strategy is almost identical, except that the logging messages slightly change their format following syslog logging conventions, and resource information.
+With syslog or standard error, the logging strategy is almost identical, except that the logging messages slightly change their format following syslog logging conventions and resource information.
 
 .. _log_debug_configure_the_logging_system:
 
@@ -28,10 +28,10 @@ There are different log resources corresponding to different OpenNebula componen
 -  **Scheduler**: All the scheduler information is collected into the ``/var/log/one/sched.log`` file. This resource can also be logged to the syslog.
 -  **Virtual Machines**: The information specific to a VM will be dumped into the log file ``/var/log/one/<vmid>.log``. All VMs controlled by OpenNebula have their own directory, ``/var/lib/one/vms/<VID>`` if syslog/stderr isn't enabled. You can find the following information in it:
 
-   -  **Deployment description files** : Stored in ``deployment.<EXECUTION>``, where ``<EXECUTION>`` is the sequence number in the execution history of the VM (``deployment.0```` for the first host, ``deployment.1`` for the second and so on).
+   -  **Deployment description files** : Stored in ``deployment.<EXECUTION>``, where ``<EXECUTION>`` is the sequence number in the execution history of the VM (``deployment.0`` for the first host, ``deployment.1`` for the second and so on).
    -  **Transfer description files** : Stored in ``transfer.<EXECUTION>.<OPERATION>``, where ``<EXECUTION>`` is the sequence number in the execution history of the VM, and ``<OPERATION>`` is the stage where the script was used, e.g. ``transfer.0.prolog``, ``transfer.0.epilog``, or ``transfer.1.cleanup``.
 
--  **Drivers**: Each driver can have its **ONE\_MAD\_DEBUG** variable activated in **RC** files. If so, error information will be dumped to ``/var/log/one/name-of-the-driver-executable.log``; log information from the drivers is in ``oned.log``.
+-  **Drivers**: Each driver can have its **ONE\_MAD\_DEBUG** variable activated in **RC** files. If so, error information will be dumped to ``/var/log/one/name-of-the-driver-executable.log``. Log information from the drivers is in ``oned.log``.
 
 Otherwise, the information is sent to syslog/stderr.
 
@@ -110,7 +110,7 @@ Virtual Machine errors can be checked by the owner or an administrator using the
      SEQ        HOSTNAME ACTION           START        TIME       PTIME
        0          host01   none  07/19 17:44:31 00 00:00:00 00 00:00:00
 
-Here the error message that it could not copy a file, most probably means the file does not exist.
+Here the error message that it could not copy a file most probably means the file does not exist.
 
 Alternatively you can check the log files for the VM at ``/var/log/one/<vmid>.log``.
 

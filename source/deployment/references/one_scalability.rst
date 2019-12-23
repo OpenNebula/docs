@@ -41,7 +41,7 @@ In a single zone, OpenNebula (oned) can work with the following limits:
 | Average VM template size | 7 KB                                                |
 +--------------------------+-----------------------------------------------------+
 
-In production environments, we do not recommend exceeding in the same installation this number of servers (2,500) and VMs (10,000), as well as a load of 30 API requests/s to avoid excessive slowness of the system. Better performance can be achieved with specific tuning of other components, like the DB, or better hardware.
+In production environments, we do not recommend exceeding in the same installation this number of servers (2,500) and VMs (10,000), as well as a load of 30 API requests/s to avoid excessive slowness of the system. Better performance can be achieved with specific tuning of other components, like the database, or better hardware.
 
 The four most common API calls were used to stress the core at the same time in approximately the same ratio experienced on real deployments. The total numbers of API calls per second used were: 10, 20 and 30. In these conditions, with a host monitoring interval of 20 hosts/second, in a pool with 2,500 hosts and a monitoring period on each host of 125 seconds, the response times in seconds of the oned process for the most common XMLRPC calls are shown below:
 
@@ -108,7 +108,7 @@ Tuning for Large Scale
 Monitoring Tuning
 -----------------------------------
 
-In KVM environments, OpenNebula supports two native monitoring systems: ``ssh-pull`` and ``udp-push``. The former one, ``ssh-pull`` is the default monitoring system for OpenNebula <= 4.2, however from OpenNebula 4.4 onwards, the default monitoring system is ``udp-push``. This model is highly scalable, and its limit (in terms of number of VMs monitored per second) is bound by the performance of the server running oned, and the database server. Read more in the :ref:`Monitoring guide <mon>`.
+In KVM environments, OpenNebula supports two native monitoring systems: ``ssh-pull`` and ``udp-push``. The former one, ``ssh-pull`` is the default monitoring system for OpenNebula <= 4.2, however from OpenNebula 4.4 onwards, the default monitoring system is ``udp-push``. This model is highly scalable, and its limit (in terms of number of VMs monitored per second) is bound by the performance of the server running oned and the database server. Read more in the :ref:`Monitoring guide <mon>`.
 
 For vCenter environments, OpenNebula uses the VI API offered by vCenter to monitor the state of the hypervisor and all the Virtual Machines running in all the imported vCenter clusters. The driver is optimized to cache common VM information.
 
@@ -126,7 +126,7 @@ OpenNebula keeps the monitoring history for a defined time in a database table. 
 -  ``MONITORING_INTERVAL_DB_UPDATE``: Time in seconds between DB writes of VM monitoring information. Default: 0 (write every update).
 
 
-.. important:: It is highly recommended to increase thee ``MONITORING_INTERVAL_DB_UPDATE`` and the ``IM_MAD-collectd`` ``-i`` argument when running more than 5K VMs, to not overload DB write threads. Usually a slow response time from the API when running a high number of VMs is caused by this.
+.. important:: It is highly recommended to increase the ``MONITORING_INTERVAL_DB_UPDATE`` and the ``IM_MAD-collectd`` ``-i`` argument when running more than 5K VMs, so as not to overload DB write threads. Usually a slow response time from the API when running a high number of VMs is caused by this.
 
 If you don’t use Sunstone, you may want to disable the monitoring history, setting both expiration times to 0.
 
@@ -213,7 +213,7 @@ When oned is started in read-only (or cache) mode, it resolves any read-only ope
 
 .. note:: read-only operations enforce any ACL restriction or ownership checks.
 
-Any other API call is forwarded to the active oned process. In this case the cache server is acting as a simple proxy. The architecture recommended to be used with the cache server is depicted in the following figure:
+Any other API call is forwarded to the active oned process. In this case, the cache server is acting as a simple proxy. The architecture recommended to be used with the cache server is depicted in the following figure:
 
 |scala|
 
@@ -266,7 +266,7 @@ Alternatively, you may want to set up a load balancer that balances client reque
     server opennebula2 10.134.236.11:2633 check
     server opennebula3 10.134.236.12:2633 check
 
-Server entries must be modified and the stats section is optional.
+Server entries must be modified, and the stats section is optional.
 
 Optionally, a second load balancer can be added on another server, and an active-passive redundancy protocol, like VRRP, can be set between both load balancer nodes for high availability.
 
@@ -283,7 +283,7 @@ The new endpoint will be the load balancer address.
 Driver Tuning
 ------------------------
 
-OpenNebula drivers have by default 15 threads. This is the maximum number of actions a driver can perform at the same time. The next actions will be queued. You can make this value in :ref:`oned.conf <oned_conf>`. The driver parameter is ``-t``.
+OpenNebula drivers have by default 15 threads. This is the maximum number of actions a driver can perform at the same time; following actions will be queued. You can make this value in :ref:`oned.conf <oned_conf>`. The driver parameter is ``-t``.
 
 Database Tuning
 -------------------------

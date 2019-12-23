@@ -19,7 +19,7 @@ The command ``onedb`` can connect to any SQLite or MySQL database. Visit the :re
 onedb fsck
 ==========
 
-Checks the consistency of the DB (database), and fixes any problems found. For example, if the machine where OpenNebula is running crashes, or loses connectivity with the database, you may have the wrong number of VMs running in a Host, or incorrect usage quotas for some users.
+Checks the consistency of the DB (database), and fixes any problems found. For example, if the machine where OpenNebula is running crashes, or loses connectivity to the database, you may have the wrong number of VMs running in a Host, or incorrect usage quotas for some users.
 
 .. prompt:: text $ auto
 
@@ -176,7 +176,7 @@ Restores the DB from a backup file. Please note that this tool will only restore
 onedb sqlite2mysql
 ==================
 
-This command migrates from a SQLite database to a MySQL database. The procedure to follow is:
+This command migrates from an SQLite database to a MySQL database. The procedure to follow is:
 
 * Stop OpenNebula
 * Change the DB directive in ``/etc/one/oned.conf`` to use MySQL instead of SQLite
@@ -230,7 +230,7 @@ Change the second network of VMs that belong to "user":
 
     $ onedb change-body vm --expr UNAME=user '/VM/TEMPLATE/NIC[NETWORK="service"]/NETWORK' new_network
 
-Delete the cache attribute for all disks, write XML, do not modify the DB:
+Delete the cache attribute for all disks, write XML, but do not modify the DB:
 
 .. prompt:: text $ auto
 

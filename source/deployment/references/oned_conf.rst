@@ -34,7 +34,7 @@ Daemon Configuration Attributes
    -  ``db_name`` (MySQL only): MySQL database name.
    -  ``connections`` (MySQL only): maximum number of connections to the MySQL server.
 
--  ``VNC_PORTS``: VNC port pool for automatic VNC port assignment. If possible the port will be set to ``START`` + ``VMID``. Refer to the :ref:`VM template reference <template>` for further information:
+-  ``VNC_PORTS``: VNC port pool for automatic VNC port assignment. If possible, the port will be set to ``START`` + ``VMID``. Refer to the :ref:`VM template reference <template>` for further information:
 
    - ``start``: First port to assign.
    - ``reserved``: Comma-separated list of reserved ports or ranges. Two numbers separated by a colon indicate a range.
@@ -152,7 +152,7 @@ Opennebula uses the Raft algorithm. It can be tuned by several parameters in the
 - ``LOG_PURGE_TIMEOUT``: How often applied records are purged according to the log retention value (in seconds).
 - ``ELECTION_TIMEOUT_MS``: Timeout to start an election process if no heartbeat or log is received from the leader (in milliseconds).
 - ``BROADCAST_TIMEOUT_MS``: How often heartbeats are sent to  followers (in milliseconds).
-- ``XMLRPC_TIMEOUT_MS``: To timeout Raft-related API calls (in milliseconds). For an infinite timeout, set this value to 0.
+- ``XMLRPC_TIMEOUT_MS``: Timeout for Raft-related API calls (in milliseconds). For an infinite timeout, set this value to 0.
 
 .. code-block:: bash
 
@@ -269,7 +269,7 @@ Datastores
 
 The :ref:`Storage Subsystem <sm>` allows users to set up images, which can be operating systems or data, to be used in Virtual Machines easily. These images can be used by several Virtual Machines simultaneously, and also shared with other users.
 
-Here you can configure the default values for the Datastores and Image templates. There is more information about the templates syntax :ref:`here <img_template>`.
+Here you can configure the default values for the Datastores and Image templates. There is more information about the template syntax :ref:`here <img_template>`.
 
 -  ``DATASTORE_LOCATION``: Path for Datastores. It is the same for all the hosts and front-end. It defaults to ``/var/lib/one/datastores`` (or in self-contained mode defaults to ``$ONE_LOCATION/var/datastores``). Each datastore has its own directory (called BASE_PATH) of the form: ``$DATASTORE_LOCATION/<datastore_id>``. You can symlink this directory to any other path, if needed. BASE_PATH is generated from this attribute each time oned is started.
 -  ``DATASTORE_CAPACITY_CHECK``: Check that there is enough capacity before creating a new image. Defaults to Yes.
@@ -279,7 +279,7 @@ Here you can configure the default values for the Datastores and Image templates
    -  ``CDROM``: Image file holding a CDROM
    -  ``DATABLOCK``: Image file holding a datablock, created as an empty block
 
--  ``DEFAULT_DEVICE_PREFIX``: Default value for DEV\_PREFIX field when it is omitted in a template. The missing DEV\_PREFIX attribute is filled when Images are created, so changing this prefix won't affect existing Images. It can be set to:
+-  ``DEFAULT_DEVICE_PREFIX``: Default value for the DEV\_PREFIX field when it is omitted in a template. The missing DEV\_PREFIX attribute is filled when Images are created, so changing this prefix won't affect existing Images. It can be set to:
 
 +----------+--------------------+
 | Prefix   | Device type        |
@@ -438,7 +438,7 @@ Transfer Driver
 
 The transfer drivers are used to transfer, clone, remove and create VM images. The default TM\_MAD driver includes plugins for all supported storage modes. You may need to modify the TM\_MAD to add custom plugins.
 
--  **EXECUTABLE**: path of the transfer driver executable as an absolute path or relative to ``/usr/lib/one/mads/``
+-  **EXECUTABLE**: path of the transfer driver executable, as an absolute path or relative to ``/usr/lib/one/mads/``
 -  **ARGUMENTS**: for the driver executable:
 
    -  **-t**: number of threads, i.e. number of transfers made at the same time
@@ -478,7 +478,7 @@ The configuration for each driver is defined in the TM\_MAD\_CONF section. These
 
 - **DS_MIGRATE**: set to YES if system datastore migrations are allowed for this TM. Only useful for system datastore TMs.
 
-- **ALLOW_ORPHANS**: Whether snapshots can live without parents. It allows three values YES, NO and MIXED. The last mode, MIXED, allow creating orphan snapshots, but taking into account some dependencies which can appear after a revert snapshot action on Ceph datastores.
+- **ALLOW_ORPHANS**: Whether snapshots can live without parents. It allows three values: YES, NO and MIXED. The last mode, MIXED, allows creating orphan snapshots, but taking into account some dependencies which can appear after a revert snapshot action on Ceph datastores.
 
 Sample configuration:
 
@@ -627,14 +627,14 @@ Sample configuration:
 Auth Manager Configuration
 ==========================
 
--  **AUTH\_MAD**: The :ref:`driver <external_auth>` that will be used to authenticate and authorize OpenNebula requests. If not defined, OpenNebula will use the built-in auth policies
+-  **AUTH\_MAD**: The :ref:`driver <external_auth>` that will be used to authenticate and authorize OpenNebula requests. If not defined, OpenNebula will use the built-in auth policies.
 
    -  **EXECUTABLE**: path of the auth driver executable as an absolute path or relative to ``/usr/lib/one/mads/``
    -  **AUTHN**: list of authentication modules, separated by commas. If not defined, all the modules available will be enabled
    -  **AUTHZ**: list of authorization modules, separated by commas
 
 -  **SESSION\_EXPIRATION\_TIME**: Time in seconds for which an authenticated token is valid. During this time the driver is not used. Use 0 to disable session caching.
--  **ENABLE\_OTHER\_PERMISSIONS**: Whether or not to enable the permissions for 'other'. Users in the oneadmin group will still be able to change these permissions. Values: YES or NO
+-  **ENABLE\_OTHER\_PERMISSIONS**: Whether or not to enable the permissions for 'other'. Users in the oneadmin group will still be able to change these permissions. Values: YES or NO.
 -  **DEFAULT\_UMASK**: Similar to Unix umask. Sets the default resource permissions. Its format must be 3 octal digits. For example a umask of 137 will set the new object's permissions to 640 ``um- u-- ---``.
 
 Sample configuration:
@@ -674,7 +674,7 @@ actions:
 - snapshot: includes create, delete and revert actions
 - resched: includes resched and unresched actions
 
-The list and show operations require the USE permission; this is not configurable.
+The list and show operations require USE permission; this is not configurable.
 
 In the following example you need ADMIN rights on a VM to perform migrate, delete, recover... while undeploy, hold, ... need MANAGE rights:
 
@@ -696,10 +696,10 @@ Restricted Attributes Configuration
 Users outside the oneadmin group won't be able to instantiate templates created by users outside the ''oneadmin'' group that include attributes restricted by:
 
 -  **VM\_RESTRICTED\_ATTR**: Virtual Machine attribute to be restricted for users outside the oneadmin group
--  **IMAGE\_RESTRICTED\_ATTR**: Image attribute to be restricted for users outside the ''oneadmin'' group
--  **VNET\_RESTRICTED\_ATTR**: Virtual Network attribute to be restricted for users outside the ''oneadmin'' group when updating a reservation. These attributes are not considered for regular VNET creation.
+-  **IMAGE\_RESTRICTED\_ATTR**: Image attribute to be restricted for users outside the oneadmin group
+-  **VNET\_RESTRICTED\_ATTR**: Virtual Network attribute to be restricted for users outside the oneadmin group when updating a reservation. These attributes are not considered for regular VNET creation.
 
-If the VM template has been created by admins in the ''oneadmin'' group, then users outside the ''oneadmin'' group **can** instantiate these templates.
+If the VM template has been created by admins in the oneadmin group, then users outside the oneadmin group **can** instantiate these templates.
 
 Sample configuration:
 
@@ -747,7 +747,7 @@ OpenNebula evaluates these attributes:
 
 - on VM template instantiate (``onetemplate instantiate``)
 - on VM create (``onevm create``)
-- on VM attach NIC (``onevm nic-attach``) for example, to prevent using NIC/MAC
+- on VM attach NIC (``onevm nic-attach``), for example, to prevent using NIC/MAC
 
 Encrypted Attributes Configuration
 ==================================
@@ -863,7 +863,7 @@ Default ACL rules created when a resource is added to a VDC. The following attri
 -  ``DEFAULT_VDC_CLUSTER_NET_ACL``: permissions granted to cluster vnets when a cluster is added to the VDC.
 -  ``DEFAULT_VDC_CLUSTER_DATASTORE_ACL``: permissions granted to a datastores added to a cluster.
 
-When defining the permissions you can use ``""`` or ``"-"`` to not add any rule to that specific resource. Also you can combine several permissions with ``"+"``, for example ``"MANAGE+USE"``. Valid permissions are USE, MANAGE or ADMIN.
+When defining the permissions you can use ``""`` or ``"-"`` to avoid adding any rule to that specific resource. Also you can combine several permissions with ``"+"``, for example ``"MANAGE+USE"``. Valid permissions are USE, MANAGE or ADMIN.
 
 Example:
 
