@@ -19,6 +19,12 @@ The way arguments are passed to the pre/post/clean/update_sg has changed as foll
 
 This change has been introduced `because of this bug <https://github.com/OpenNebula/one/issues/2851>`_.
 
+Storage Driver actions interface
+--------------------------------
+On premigrate and postmigrate scripts, the old last argument ``vm xml template`` it is now sent via by ``stdin``. In consequence, there is an argument less.
+
+This change has been introduced `due to this bug <https://github.com/OpenNebula/one/issues/3373>`_.
+
 Bridge Interface options
 ------------------------
 As ``Bridge utils (brctl)`` became obsolete they were replaced by ``ip-route2``. Bridge options for ``ip command`` could be specified in ``:ip_bridge_conf`` but for backward compatibility the section ``:bridge_conf`` is still accepted and options are transformed to the ``ip-route2`` format.
