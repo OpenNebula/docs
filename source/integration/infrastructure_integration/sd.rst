@@ -151,19 +151,21 @@ Action scripts for generic image datastores:
 
 .. note:: You only need to implement one ``mv`` script, but consider the arguments received when the TM is used for the system datastore, a regular image datastore or both.
 
--  **premigrate**: It is executed before a livemigration operation is issued to the hypervisor. Note that **only the premigrate script from the system datastore will be used**. Any customization must be done for the premigrate script of the system datastore, although you will probably add operations for other backends than that used by the system datastore.
+-  **premigrate**: It is executed before a livemigration operation is issued to the hypervisor. Note that **only the premigrate script from the system datastore will be used**. Any customization must be done for the premigrate script of the system datastore, although you will probably add operations for other backends than that used by the system datastore. 
 
-   -  **ARGUMENTS**: ``source_host dst_host remote_system_dir vmid dsid template``
+
+   - Base64 encoded VM XML is sent via stdin.
+   -  **ARGUMENTS**: ``source_host dst_host remote_system_dir vmid dsid``
    -  ``src_host`` is the host the VM is in.
    -  ``dst_host`` is the target host to migrate the VM to
    -  ``remote_system_ds_dir`` is the path for the VM directory in the system datastore in the host
    -  ``vmid`` is the id of the VM
    -  ``dsid`` is the target datastore
-   -  ``template`` is the template of the VM in XML and base64 encoded
 
--  **postmigrate**: It is executed after a livemigration operation. Note that **only the postmigrate script from the system datastore will be used**. Any customization must be done for the postmigrate script of the system datastore, although you will probably add operations for other backends than that used by the system datastore.
+-  **postmigrate**: It is executed after a livemigration operation. Note that **only the postmigrate script from the system datastore will be used**. Any customization must be done for the postmigrate script of the system datastore, although you will probably add operations for other backends than that used by the system datastore. Base64 encoded VM XML is sent via stdin.
 
-   -  **ARGUMENTS**: ``source_host dst_host remote_system_dir vmid dsid template``
+   - Base64 encoded VM XML is sent via stdin.
+   -  **ARGUMENTS**: ``source_host dst_host remote_system_dir vmid dsid``
    -  see ``premigrate`` description.
 
 -  **snap_create**: Creates a disk snapshot of the selected disk
