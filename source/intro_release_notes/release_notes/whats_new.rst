@@ -58,4 +58,4 @@ KVM Virtualization Driver
 Other Issues Solved
 ================================================================================
 
-- `Description <https://github.com/OpenNebula/one/issues/XXXX>`_.
+- `Fix monitoring of total and used space for CEPH datastores <https://github.com/OpenNebula/one/pull/4074>`_.
