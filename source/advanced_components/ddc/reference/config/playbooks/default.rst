@@ -13,16 +13,16 @@ This configuration prepares the host with
 
 * KVM hypervisor
 * network 1: bridge ``br0`` for the private host-only networking and NAT
-* masquerade (NAT) to allow VMs from **network 1** access the public services
+* masquerade (NAT) to allow VMs from **network 1** to access public services
 
 .. important::
 
-    If more physical hosts are created, the private traffic of the virtual machines isn't routed between them. Virtual machines on different hosts are isolated although sharing the same private address space! This is the simplest configuration type.
+    If more physical hosts are created, the private traffic of the virtual machines isn't routed between them. Virtual machines on different hosts are isolated, despite sharing the same private address space! This is the simplest configuration type.
 
 Networking 1 (host-only with NAT)
 =================================
 
-On the physical host, the IP configuration of prepared bridge ``br0`` (with TAP interface ``tap0``) is same on all hosts:
+On the physical host, the IP configuration of prepared bridge ``br0`` (with TAP interface ``tap0``) is the same on all hosts:
 
 ============= =================
 Parameter     Value
@@ -65,7 +65,7 @@ Put the full network definition into your provision template:
             size: 253
             type: IP4
 
-or, just easily extend the shipped template with above definition by setting the ``extends`` attribute in the provision template:
+or, just easily extend the shipped template with the above definition by setting the ``extends`` attribute in the provision template:
 
 .. code::
 
@@ -74,7 +74,7 @@ or, just easily extend the shipped template with above definition by setting the
 Manually
 ~~~~~~~~
 
-In the OpenNebula, the :ref:`virtual network <manage_vnets>` for the virtual machines can be defined by the following template:
+In OpenNebula, the :ref:`virtual network <manage_vnets>` for the virtual machines can be defined by the following template:
 
 .. code::
 
@@ -110,26 +110,26 @@ Parameter                              Value                                    
 ``bridged_networking_static_netmask``  255.255.255.0                              Netmask of the bridge
 ``opennebula_node_kvm_use_ev``         **True** or False                          Whether to use the ev package for kvm
 ``opennebula_node_kvm_param_nested``   True or **False**                          Enable nested KVM virtualization
-``opennebula_repository_version``      5.8                                        OpenNebula repository version
+``opennebula_repository_version``      5.10                                       OpenNebula repository version
 ``opennebula_repository_base``         ``https://downloads.opennebula.org/repo/`` Repository of the OpenNebula packages
                                        ``{{ opennebula_repository_version }}``
 =====================================  ========================================== ===========
 
-All parameters are covered in the :ref:`Configuration Roles <ddc_config_roles>`
+All parameters are covered in the :ref:`Configuration Roles <ddc_config_roles>`.
 
 Configuration Steps
 ===================
 
 The roles and tasks are applied during the configuration in the following order:
 
-1. **python** - check and install Python required for Ansible
-2. **ddc** - general asserts and cleanups
-3. **opennebula-repository** - setup OpenNebula package repository
-4. **opennebula-node-kvm** - install OpenNebula node KVM package
-5. **opennebula-ssh** - deploy local SSH keys for the remote oneadmin
-6. **tuntap** - create TAP ``tap0`` interface
-7. **bridged-networking** - bridge Linux bridge ``br0`` with TAP interface
-8. **iptables** - create basic iptables rules and enable NAT
+1. **python**: check and install Python required for Ansible
+2. **ddc**: general asserts and cleanups
+3. **opennebula-repository**: set up the OpenNebula package repository
+4. **opennebula-node-kvm**: install OpenNebula node KVM package
+5. **opennebula-ssh**: deploy local SSH keys for the remote oneadmin
+6. **tuntap**: create TAP ``tap0`` interface
+7. **bridged-networking**: bridge Linux bridge ``br0`` with a TAP interface
+8. **iptables**: create basic iptables rules and enable NAT
 
 with the following configuration overrides to the :ref:`roles defaults <ddc_config_roles>`:
 

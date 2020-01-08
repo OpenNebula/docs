@@ -8,17 +8,17 @@ Packet IPAM driver
 
     Feature available since **OpenNebula 5.8.5** only.
 
-This IPAM driver is responsible for managing the public IPv4 ranges on Packet as IPv4 Address Ranges withing the OpenNebula Virtual Networks. Manages full lifecycles of the Address Range from allocation of new custom range to its releasing. Read more about :ref:`IPAM Driver <devel-ipam>` in the Integration Guide.
+This IPAM driver is responsible for managing the public IPv4 ranges on Packet as IPv4 Address Ranges within the OpenNebula Virtual Networks. It manages full lifecycles of the Address Range from allocation of a new custom range to its release. Read more about the :ref:`IPAM Driver <devel-ipam>` in the Integration Guide.
 
 .. important::
 
-    The functionality can be used **only for external NIC aliases** (secondary addresses) of the virtual machines and only if all following drivers and hook are used together:
+    The functionality can be used **only for external NIC aliases** (secondary addresses) of the virtual machines, and only if all the following drivers and hooks are used together:
 
     * IPAM driver for :ref:`Packet <ddc_ipam_packet>`
     * Hook for :ref:`NIC Alias IP <ddc_hooks_alias_ip>`
     * Virtual Network :ref:`NAT Mapping Driver for Aliased NICs <ddc_vnet_alias_sdnat>`
 
-To enable the Packet IPAM, you need to update ``IPAM_MAD`` section in your ``oned.conf`` configuration file to look like:
+To enable the Packet IPAM, you need to update the ``IPAM_MAD`` section in your ``oned.conf`` configuration file to look like:
 
 .. code::
 
@@ -32,7 +32,7 @@ After that, you have to restart OpenNebula so the change takes effect.
 Create Address Range
 ====================
 
-IPAM managed Address Range can be created during the creation of new Virtual Network or any time later as additional Address Range into existing Virtual Network. Follow the :ref:`Virtual Network Management <manage_vnets>` documentation.
+An IPAM-managed Address Range can be created during the creation of a new Virtual Network, or any time later as an additional Address Range in an existing Virtual Network. Follow the :ref:`Virtual Network Management <manage_vnets>` documentation.
 
 The Packet IPAM managed Address Range requires following template parameters to be provided:
 

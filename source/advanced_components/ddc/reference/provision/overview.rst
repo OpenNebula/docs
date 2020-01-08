@@ -4,7 +4,7 @@
 Provision
 =========
 
-The provision is a process of allocating new physical resources from the remote providers. :ref:`Provision drivers <ddc_provision_driver>` are used for communication with the remote providers. Credentials for the communication and parameters of the required provision (hardware, operating system, IPs, etc.) need to be specified. All these information are stored in the :ref:`provision template <ddc_provision_template>` file and passed to the ``oneprovision create`` command.
+The provision is a process of allocating new physical resources from the remote providers. :ref:`Provision drivers <ddc_provision_driver>` are used for communication with the remote providers. Credentials for the communication and parameters of the required provision (hardware, operating system, IPs, etc.) need to be specified. All these items are stored in the :ref:`provision template <ddc_provision_template>` file and passed to the ``oneprovision create`` command.
 
 In this chapter, we'll describe the format and content of the provision template.
 
@@ -13,14 +13,14 @@ In this chapter, we'll describe the format and content of the provision template
 Template
 ========
 
-**Provision template** is a YAML formatted file with parameters specifying the new physical resources to be provisioned. Contains:
+A **provision template** is a YAML-formatted file with parameters specifying the new physical resources to be provisioned. It contains:
 
 * header (name, configuration playbook, parent template)
 * global default parameters for
 
   * remote connection (SSH),
   * host provision driver,
-  * host configuration tunables,
+  * host configuration tunables.
 
 * list of provision objects (cluster, hosts, datastores, virtual networks) to deploy with overrides to the global defaults above.
 
@@ -117,7 +117,7 @@ Header
 Shared sections
 ---------------
 
-Following shared sections can be specified inside the template ``defaults``, or directly inside each OpenNebula provision object (cluster, datastore, virtual network, and host). Parameters specified on the object side have higher priority and overrides the parameters from ``defaults``.
+The following shared sections can be specified inside the template ``defaults``, or directly inside each OpenNebula provision object (cluster, datastore, virtual network, and host). Parameters specified on the object side have higher priority and override the parameters from ``defaults``.
 
 .. _ddc_provision_template_connection:
 
@@ -143,7 +143,7 @@ This section contains parameters for the remote SSH connection on the privileged
 provision
 ^^^^^^^^^
 
-This section contains parameters for the provisioning driver. Most parameters are specific for each driver, the only valid common parameters are:
+This section contains parameters for the provisioning driver. Most parameters are specific to each driver. The only valid common parameters are:
 
 +-----------------+--------------------------------------+-----------------------------------------------+
 | Parameter       | Default                              | Description                                   |
@@ -159,18 +159,18 @@ This section contains parameters for the provisioning driver. Most parameters ar
 configuration
 ^^^^^^^^^^^^^
 
-This section provides parameters for the host configuration process (e.g. KVM installation, host networking etc.). All parameters are passed to the external configuration tool (Ansible), all available parameters are covered by the :ref:`configuration <ddc_config_roles>` chapter.
+This section provides parameters for the host configuration process (e.g. KVM installation, host networking etc.). All parameters are passed to the external configuration tool (Ansible), and all available parameters are covered by the :ref:`configuration <ddc_config_roles>` chapter.
 
 .. _ddc_provision_template_devices:
 
 Provision objects
 -----------------
 
-Sections ``cluster``, ``hosts``, ``datastores``, ``networks`` contain list of provision objects to be deployed with all necessary parameters for the deployment and create in the OpenNebula. The object structure is a YAML representation of OpenNebula template with additional shared sections (``connection``, ``provision``, ``configuration``).
+Sections ``cluster``, ``hosts``, ``datastores``, ``networks`` contain list of provision objects to be deployed with all the necessary parameters for deployment and creation in OpenNebula. The object structure is a YAML representation of an OpenNebula template with additional shared sections (``connection``, ``provision``, ``configuration``).
 
 .. note::
 
-    It's possible to deploy only a single cluster, the section ``cluster`` is a dictionary. All other sections are lists.
+    It's possible to deploy only a single cluster. The section ``cluster`` is a dictionary. All other sections are lists.
 
 Example of datastore defined from regular template:
 
