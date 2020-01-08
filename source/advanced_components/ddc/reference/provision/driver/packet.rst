@@ -38,7 +38,7 @@ Parameter          Mandatory Description
 Example
 =======
 
-Example of minimal Packet provision template:
+Example of a minimal Packet provision template:
 
 .. code::
 
@@ -69,19 +69,19 @@ Public Networking
 
     Feature available since **OpenNebula 5.8.5** only.
 
-OpenNebula provides means to allow the public networking for the Virtual Machines running on OpenNebula managed hosts on Packet.
+OpenNebula provides means to allow the public networking for the Virtual Machines running on OpenNebula-managed hosts on Packet.
 
 .. important::
 
-    The functionality can be used **only for external NIC aliases** (secondary addresses) of the virtual machines and only if all following drivers and hook are configured:
+    The functionality can be used **only for external NIC aliases** (secondary addresses) of the virtual machines and only if all the following drivers and hooks are configured:
 
     * IPAM driver for :ref:`Packet <ddc_ipam_packet>`
     * Hook for :ref:`NIC Alias IP <ddc_hooks_alias_ip>`
     * Virtual Network :ref:`NAT Mapping Driver for Aliased NICs <ddc_vnet_alias_sdnat>`
 
-It's expected that you have the private host-only network in the OpenNebula and Linux bridge configured with the private IP address on the host. Any IP Masquerade (NAT) should be disabled not to clash with the SNAT / DNAT ad-hoc rules created by :ref:`NAT Mapping Driver for Aliased NICs <ddc_vnet_alias_sdnat>`.
+It's expected that you have the private host-only network in OpenNebula and a Linux bridge configured with the private IP address on the host. Any IP Masquerade (NAT) should be disabled, so as not to clash with the SNAT / DNAT ad-hoc rules created by the :ref:`NAT Mapping Driver for Aliased NICs <ddc_vnet_alias_sdnat>`.
 
-Example provision template with network-only related configuration:
+Example provision template with network-only-related configuration:
 
 .. code::
 
