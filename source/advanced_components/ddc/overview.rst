@@ -15,7 +15,7 @@ Two of the use cases that will be supported by this new disaggregated cloud appr
     :width: 50%
     :align: center
 
-There are several benefits of this approach over the traditional, more decoupled hybrid solution that involves using the provider cloud API. However, one of them stands tall among the rest and it is the ability to move offline workload between your local and rented resources.
+There are several benefits of this approach over the traditional, more decoupled hybrid solution that involves using the provider cloud API. However, one of them stands out among the rest; it is the ability to move offline workloads between your local and rented resources.
 
 How Should I Read This Chapter
 ==============================

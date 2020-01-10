@@ -4,13 +4,13 @@
 OneProvision Basic Usage
 ========================
 
-Each new provision is described by the :ref:`provision template <ddc_provision_template>`, a YAML document specifying the OpenNebula resources to add (cluster, hosts, datastores, virtual networks), physical resources to provision from the remote infrastructure provider, the connection parameters for SSH and configuration steps (playbook) with tunables. The template is prepared by the experienced Cloud Administrator and passed to the command line tool ``oneprovision``. At the end of the process, there is a new cluster available in the OpenNebula.
+Each new provision is described by the :ref:`provision template <ddc_provision_template>`, a YAML document specifying the OpenNebula resources to add (cluster, hosts, datastores, virtual networks), physical resources to provision from the remote infrastructure provider, the connection parameters for SSH and configuration steps (playbook) with tunables. The template is prepared by the experienced Cloud Administrator and passed to the command line tool ``oneprovision``. At the end of the process, there is a new cluster available in OpenNebula.
 
 .. image:: /images/ddc_create.png
     :width: 50%
     :align: center
 
-All operations with the provision and physical resources are performed only with the command line tool ``oneprovision``. Create a new provision, manage (reboot, reset, power off, resume) the existing provisions, and delete the provision at the end.
+All operations with the provision and physical resources are performed only with the command line tool ``oneprovision``: create a new provision, manage (reboot, reset, power off, resume) the existing provisions, and delete the provision at the end.
 
 In this chapter, we'll cover the basics of writing the provision templates and available commands to interact with the provision.
 
@@ -19,9 +19,9 @@ In this chapter, we'll cover the basics of writing the provision templates and a
 Provision Template
 ==================
 
-Provision template describes the resources to create in the OpenNebula (cluster, hosts, datastores, virtual networks), parameters for allocation of the new hosts on the remote bare-metal cloud provider, how to connect and configure them from the perspective of operating system and software. It's a YAML document, which needs to be prepared by the Cloud Administrator.
+The provision template describes the resources to create in the OpenNebula (cluster, hosts, datastores, virtual networks), parameters for allocation of the new hosts on the remote bare-metal cloud provider, how to connect and configure them from the perspective of operating system and software. It's a YAML document, which needs to be prepared by the Cloud Administrator.
 
-We'll explain the templating basics on a few simple examples. Continue to the :ref:`provision template reference <ddc_provision_template>` with comprehensive documentation.
+We'll explain the templating basics with a few simple examples. Continue to the :ref:`provision template reference <ddc_provision_template>` for comprehensive documentation.
 
 .. _ddc_usage_example1:
 
@@ -45,11 +45,11 @@ Example 1: Empty cluster with datastores
       tm_mad: ssh
       safe_dirs: '/var/tmp /tmp'
 
-Execution of this provision will create new cluster ``ex1-cluster`` with datastores ``ex1-default`` and ``ex1-system``. The cluster is always just a single one, datastores (hosts and virtual networks) are specified as a list (collection) of objects. Each object is described by a hash (associative array, map) of attributes, which would be otherwise specified in the OpenNebula INI-like template. I.e., it's an OpenNebula template represented as YAML hash.
+Execution of this provision will create a new cluster ``ex1-cluster`` with datastores ``ex1-default`` and ``ex1-system``. The cluster is always just a single one. Datastores, hosts, and virtual networks are specified as a list (collection) of objects. Each object is described by a hash (associative array, map) of attributes, which would be otherwise specified in the OpenNebula INI-like template. I.e., it's an OpenNebula template represented as a YAML hash.
 
 .. note::
 
-    The system datastore ``ex1-system`` from the example matches the very same datastore which would be created over CLI and specified as OpenNebula INI-like template:
+    The system datastore ``ex1-system`` from the example matches the datastore which would be created with the CLI as follows, but specified as an OpenNebula INI-like template:
 
     .. prompt:: text $ auto
 
@@ -62,14 +62,14 @@ Execution of this provision will create new cluster ``ex1-cluster`` with datasto
         $ onedatastore create systemds.txt
         ID: 100
 
-Check :ref:`Datastores <ds_op>` section in the Operation Guide for suitable attributes and values.
+Check the :ref:`Datastores <ds_op>` section in the Operation Guide for suitable attributes and values.
 
 .. _ddc_usage_example2:
 
 Example 2: Cluster with EC2 host
 --------------------------------
 
-Following template describes a provision of a cluster with only single host deployed on Amazon EC2:
+The following template describes provisioning a cluster with a single host deployed on Amazon EC2:
 
 .. code::
 
@@ -95,16 +95,16 @@ Following template describes a provision of a cluster with only single host depl
           securitygroupsids: sg-*****************
           subnetid: subnet-*****************
 
-As with the datastores in from :ref:`Example 1 <ddc_usage_example1>` above, the hosts are specified as a list as well. Each host is described by a hash with template attributes required by the OpenNebula. Parameters for the provisioning on the remote cloud providers must be set in own section ``provision`` of each host. The provision parameters are driver specific, you have to be aware of the available drivers and their parameters.
+As with the datastores in :ref:`Example 1 <ddc_usage_example1>` above, the hosts are specified as a list. Each host is described by a hash with template attributes required by OpenNebula. Parameters for provisioning on remote cloud providers must be set in a section ``provision`` for each host. The provision parameters are driver-specific; you have to be aware of the available drivers and their parameters.
 
-Check :ref:`Provision Drivers <ddc_provision_driver>` reference for available drivers and parameters.
+Check the :ref:`Provision Drivers <ddc_provision_driver>` reference for the available drivers and parameters.
 
 .. _ddc_usage_example3:
 
 Example 3: Host Configuration
 -----------------------------
 
-The newly provisioned hosts are mostly a fresh installation without anything necessary for running the hypervisor. In this example, we add a few more parameters telling the OpenNebula how to connect and configure the new host:
+The newly-provisioned hosts are mostly a fresh installation without anything necessary for running the hypervisor. In this example, we add a few more parameters, telling OpenNebula how to connect and configure the new host:
 
 .. code::
 
@@ -137,7 +137,7 @@ The newly provisioned hosts are mostly a fresh installation without anything nec
           opennebula_node_kvm_use_ev: true
           opennebula_node_kvm_param_nested: true
 
-As part of provision creation, the new hosts are connected over SSH and required software is installed and configured. Custom SSH connection information can be set for each host in section ``connection``. Installation is handled by the Ansible, which runs the template-global installation prescription called  ``playbook``. The playbook run can be slightly modified by optional ``configuration`` tunables.
+As part of provision creation, the new hosts are connected to over SSH and the required software is installed and configured. Custom SSH connection information can be set for each host in section ``connection``. Installation is handled by Ansible, which runs the template-global installation prescription called  ``playbook``. The playbook run can be slightly modified by optional ``configuration`` tunables.
 
 Check the following subsections:
 
@@ -149,7 +149,7 @@ Check the following subsections:
 Example 4: Defaults
 -------------------
 
-When deploying several hosts, repeating still same provision, configuration and connection parameters would be annoying and prone to errors.
+When deploying several hosts, repeating the same provision, configuration and connection parameters would be annoying and prone to errors.
 
 In the following example, we explain how to use defaults:
 
@@ -198,14 +198,14 @@ In the following example, we explain how to use defaults:
         configuration:
           opennebula_node_kvm_param_nested: false
 
-Section ``defaults`` contains sub-sections for ``provision``, ``connection``, and ``configuration`` familiar from the previous examples. Defaults are applied to all objects, optionally you can override any of the parameters on the objects level. In the example, the first host ``ex-host1`` inherits all the **defaults** and extends them only with custom hostname. The second host ``ex-host2`` provides few more ``provision``, ``connection``, and ``configuration`` overrides (the rest defaults are taken untouched).
+Section ``defaults`` contains sub-sections for ``provision``, ``connection``, and ``configuration`` familiar from the previous examples. Defaults are applied to all objects. Optionally you can override any of the parameters on the objects level. In the example, the first host ``ex-host1`` inherits all the **defaults** and extends them only with a custom hostname. The second host ``ex-host2`` provides a few more ``provision``, ``connection``, and ``configuration`` overrides (with the rest of the defaults taken).
 
 .. _ddc_usage_example5:
 
 Example 5: Full Cluster
 -----------------------
 
-Following example shows the provision of complete cluster with host, datastores, and networks.
+The following example shows the provisioning of a complete cluster with host, datastores, and networks.
 
 .. code::
 
@@ -268,9 +268,9 @@ Following example shows the provision of complete cluster with host, datastores,
 Example 6: Template Inheritance
 -------------------------------
 
-Similarly, as with **defaults** in :ref:`Example 4 <ddc_usage_example4>`, the reusable parts of the templates can be moved into their own templates. One provision template can include another provision template, extend or override the information from the included one. The template can directly extend only from one template, but several templates can be chained (for the recursive inheritance). Hosts, datastores, and networks sections are **merged** (appended) in the order they are defined and inherited, defaults are **deep merged** on the level of individual parameters.
+Similarly, as with **defaults** in :ref:`Example 4 <ddc_usage_example4>`, the reusable parts of the templates can be moved into their own templates. One provision template can include another provision template, extending or overriding the information from the included one. The template can directly extend only from one template, but several templates can be chained (for recursive inheritance). Hosts, datastores, and networks sections are **merged** (appended) in the order they are defined and inherited. Defaults are **deep merged** on the level of individual parameters.
 
-In the following example, we separate datastores and networks definitions into own template ``example-ds_vnets.yaml``:
+In the following example, we separate datastore and network definitions into their own template, ``example-ds_vnets.yaml``:
 
 .. code::
 
@@ -296,7 +296,7 @@ In the following example, we separate datastores and networks definitions into o
             size: 253
             type: IP4
 
-Main template extends the datastores and network with one EC2 host:
+The main template extends the datastores and network with one EC2 host:
 
 .. code::
 
@@ -333,32 +333,32 @@ Main template extends the datastores and network with one EC2 host:
         provision:
           hostname: "ex6-host1"
 
-Check :ref:`Templates <ddc_provision_templates>` reference for available base templates.
+Check the :ref:`Templates <ddc_provision_templates>` reference for available base templates.
 
 CLI Commands
 ============
 
-This section covers available commands of the ``oneprovision`` tool.
+This section covers the available commands of the ``oneprovision`` tool.
 
 .. warning::
 
-    Commands should be run under ``oneadmin`` user on your frontend.
+    Commands should be run as the ``oneadmin`` user on your frontend.
 
 .. note::
 
-    Additional CLI arguments ``--verbose/-d`` and ``--debug/-D`` (applicable for all commands of ``oneprovision`` tool) provide additional levels of logging. Check :ref:`Logging Modes <ddc_usage_log>` for the detailed description.
+    Additional CLI arguments ``--verbose/-d`` and ``--debug/-D`` (applicable for all commands of the ``oneprovision`` tool) provide additional levels of logging. Check :ref:`Logging Modes <ddc_usage_log>` for the detailed description.
 
 Create
 ------
 
-All deployment steps (create, provision, configuration) are covered by a single run of the command ``oneprovision create``, it's necessary to provide :ref:`provision template <ddc_provision_template>` (with information about what to create, provision and how to configure the hosts). The OpenNebula provision ID is returned after successful provision.
+All deployment steps (create, provision, configuration) are covered by a single run of the command ``oneprovision create``. It's necessary to provide a :ref:`provision template <ddc_provision_template>` (with information about what to create, provision and how to configure the hosts). The OpenNebula provision ID is returned after successful provision.
 
-Deployment of a new provision is a 4 steps process:
+Deployment of a new provision is a 4 step process:
 
 - **Add**. OpenNebula provision objects (cluster, hosts, datastores, networks) are created, but disabled for general use.
-- :ref:`Provision <ddc_provision>`. Resources are allocated on the remote provider (e.g. use provider's API to get clean new hosts).
-- :ref:`Configure <ddc_config>`. Resources are reconfigured for the particular use (e.g. install virtualization tools on new hosts).
-- **Enable**. Ready-to-use resources are enabled in the OpenNebula.
+- :ref:`Provision <ddc_provision>`. Resources are allocated on the remote provider (e.g. use the provider's API to get clean new hosts).
+- :ref:`Configure <ddc_config>`. Resources are reconfigured for a particular use (e.g. install virtualization tools on new hosts).
+- **Enable**. Ready-to-use resources are enabled in OpenNebula.
 
 Parameters:
 
@@ -389,7 +389,7 @@ Example:
 Validate
 --------
 
-The ``validate`` command checks the provided :ref:`provision template <ddc_provision_template>` is correct. Returns exit code 0 is template is valid.
+The ``validate`` command checks the provided :ref:`provision template <ddc_provision_template>` is correct. Returns exit code 0 if the template is valid.
 
 Parameters:
 
@@ -426,7 +426,7 @@ The ``list`` command lists all provisions.
 Show
 ----
 
-The ``show`` command list all provisioned objects of the particular provision.
+The ``show`` command lists all provisioned objects of the particular provision.
 
 Parameters:
 
@@ -466,9 +466,9 @@ Configure
 
 .. warning::
 
-    It's important to understand that the (re)configuration can happen only on physical hosts that aren't actively used by the users (e.g., no virtual machines running on the host) and with the operating systems/services configuration untouched since the last (re)configuration. It's not possible to (re)configure the host with manually modified OS/services configuration. It's not possible to fix a seriously broken host. Such situation needs to be handled manually by the experienced systems administrator.
+    It's important to understand that the (re)configuration can happen only on physical hosts that aren't actively used (e.g., no virtual machines running on the host) and with the operating system/services configuration untouched since the last (re)configuration. It's not possible to (re)configure the host with a manually modified OS/services configuration. Also it's not possible to fix a seriously broken host. Such a situation needs to be handled manually by an experienced systems administrator.
 
-The ``configure`` command offlines the OpenNebula hosts (making it unavailable for the users) and triggers again the deployment configuration phase. If the provision was already successfully configured before, the command line argument ``--force`` needs to be used. After successful configuration, the OpenNebula hosts are enabled back.
+The ``configure`` command offlines the OpenNebula hosts (making them unavailable to users) and triggers the deployment configuration phase. If the provision was already successfully configured before, the argument ``--force`` needs to be used. After successful configuration, the OpenNebula hosts are re-enabled.
 
 Parameters:
 
@@ -503,7 +503,7 @@ The ``delete`` command releases the physical resources to the remote provider an
     2018-11-27 12:45:21 INFO  : Undeploying hosts
     2018-11-27 12:45:23 INFO  : Deleting provision objects
 
-Only provisions with no running VMs or images in the datastores can be easily deleted. You can force the ``oneprovision`` to terminate VMs running on provisioned hosts and delete all images in the datastores with ``--cleanup`` parameter.
+Only provisions with no running VMs or images in the datastores can be easily deleted. You can force ``oneprovision`` to terminate VMs running on provisioned hosts and delete all images in the datastores with the ``--cleanup`` parameter.
 
 Parameters:
 
@@ -551,7 +551,7 @@ The ``host list`` command lists all provisioned hosts, and ``host top`` command 
 Host Power Off
 ^^^^^^^^^^^^^^
 
-The ``host poweroff`` command offlines the host in the OpenNebula (making it unavailable for use by the users) and power off the physical resource.
+The ``host poweroff`` command offlines the host in OpenNebula (making it unavailable to users) and powers off the physical resource.
 
 .. prompt:: bash $ auto
 
@@ -562,7 +562,7 @@ The ``host poweroff`` command offlines the host in the OpenNebula (making it una
 Host Resume
 ^^^^^^^^^^^
 
-The ``host resume`` command power on the physical resource, and enables back the OpenNebula host (making it available again to the users).
+The ``host resume`` command powers on the physical resource, and re-enables the OpenNebula host (making it available again to users).
 
 .. prompt:: bash $ auto
 
@@ -573,7 +573,7 @@ The ``host resume`` command power on the physical resource, and enables back the
 Host Reboot
 ^^^^^^^^^^^
 
-The ``host reboot`` command offlines the OpenNebula host (making it unavailable for the users), cleanly reboots the physical resource and enables the OpenNebula host back (making it available again for the users after successful OpenNebula host monitoring).
+The ``host reboot`` command offlines the OpenNebula host (making it unavailable for users), cleanly reboots the physical resource and re-enables the OpenNebula host (making it available again for users after successful OpenNebula host monitoring).
 
 .. prompt:: bash $ auto
 
@@ -584,7 +584,7 @@ The ``host reboot`` command offlines the OpenNebula host (making it unavailable 
 Host Reset
 ^^^^^^^^^^
 
-The ``host reboot --hard`` command offlines the OpenNebula host (making it unavailable for the users), resets the physical resource and enables the OpenNebula host back.
+The ``host reboot --hard`` command offlines the OpenNebula host (making it unavailable for users), resets the physical resource and re-enables the OpenNebula host.
 
 .. prompt:: bash $ auto
 
@@ -595,7 +595,7 @@ The ``host reboot --hard`` command offlines the OpenNebula host (making it unava
 Host SSH
 ^^^^^^^^
 
-The ``host ssh`` command opens the interactive SSH connection on the physical resource to the same (privileged) user used for the configuration.
+The ``host ssh`` command opens an interactive SSH connection on the physical resource to the (privileged) remote user used for configuration.
 
 .. prompt:: bash $ auto
 
@@ -619,9 +619,9 @@ An additional argument may specify a command to run on the remote side.
 Host Configure
 ^^^^^^^^^^^^^^
 
-The physical host :ref:`configuration <ddc_config>` is part of the initial deployment, but it's possible to trigger the reconfiguration on provisioned host anytime later (e.g. when a configured service stopped running, or the host needs to be reconfigured different way). Based on the initially provided connection and configuration parameters in the :ref:`provision template <ddc_provision_template_configuration>`, the configuration steps are applied again.
+The physical host :ref:`configuration <ddc_config>` is part of the initial deployment, but it's possible to trigger the reconfiguration on provisioned hosts anytime later (e.g. when a configured service stopped running, or the host needs to be reconfigured differently). Based on the initially-provided connection and configuration parameters in the :ref:`provision template <ddc_provision_template_configuration>`, the configuration steps are applied again.
 
-The ``host configure`` command offlines the OpenNebula host (making it unavailable for the users) and triggers again the deployment configuration phase. If provisioned the host was already successfully configured before, the command line argument ``--force`` needs to be used. After successful configuration, the OpenNebula host is enabled back.
+The ``host configure`` command offlines the OpenNebula host (making it unavailable for users) and re-triggers the deployment configuration phase. If the provisioned the host was already successfully configured, the argument ``--force`` needs to be used. After successful configuration, the OpenNebula host is re-enabled.
 
 .. prompt:: bash $ auto
 
@@ -659,7 +659,7 @@ The ``oneprovision cluster delete`` command deletes the cluster.
     $ oneprovision cluster delete 184 -d
     CLUSTER 184: deleted
 
-The cluster needs to be without any datastores, virtual networks, or hosts. Please, check ``oneprovision delete`` command to remove all the related objects.
+The cluster needs to have no datastores, virtual networks, or hosts. Please see the ``oneprovision delete`` command to remove all the related objects.
 
 .. prompt:: bash $ auto
 
@@ -727,7 +727,7 @@ The ``oneprovision vnet delete`` command deletes the virtual network.
 Logging Modes
 =============
 
-The ``oneprovision`` tool in the default mode returns only minimal requested output (e.g., provision IDs after create), or errors. The operations with the remote providers or the host configuration are complicated and time-consuming tasks. For the better insight and for debugging purposes there are 2 logging modes available providing more information on the standard error output.
+The ``oneprovision`` tool in the default mode returns only minimal requested output (e.g., provision IDs after create), or errors. Operations on the remote providers or the host configuration are complicated and time-consuming tasks. For better insight and for debugging purposes there are 2 logging modes available, providing more information on the standard error output.
 
 * **verbose** (``--verbose/-d``). Only the main steps are logged.
 
@@ -739,7 +739,7 @@ Example:
     2018-11-27 12:58:32 INFO  : Rebooting host: 766
     HOST 766: disabled
 
-* **debug** (``--debug/-D``). All internal actions incl. generated configurations with **sensitive data** are logged.
+* **debug** (``--debug/-D``). All internal actions, including generated configurations with **sensitive data**, are logged.
 
 Example:
 
@@ -755,7 +755,7 @@ Example:
 Running Modes
 =============
 
-The ``oneprovision`` tool is ready to deal with common problems during the execution. It's able to retry some actions or clean up an uncomplete provision. Depending on where and how the tool is used, it offers 2 running modes:
+The ``oneprovision`` tool is ready to deal with common problems during execution. It's able to retry some actions or clean up an incomplete provision. Depending on where and how the tool is used, it offers 2 running modes:
 
 * **interactive** (default). If the unexpected condition appears, the user is asked how to continue.
 
@@ -778,7 +778,7 @@ Example:
     Choose failover method: 1
     $
 
-* **batch** (``--batch``). It's expected to be run as part of the scripts. No question is raised to the user, but the tool tries to automatically deal with the problem according to the failover method specified as a command line parameter:
+* **batch** (``--batch``). It's expected to be run from scripts. No questions are asked, and the tool tries to deal automatically with the problem according to the failover method specified as a command line parameter:
 
 +-------------------------+------------------------------------------------+
 | Parameter               | Description                                    |

@@ -9,13 +9,13 @@ Overview
 
 As mentioned in the :ref:`MarketPlace Overview <marketplace_overview>`, a MarketPlaceApp is a resource that can be either a single Image associated with a template, a template associated with one or more images, or a flow composed of one or more templates associated with images. In short, MarketPlaceApps are composed of metadata (a template) and binary data (the images). This guide addresses how you can manage these MarketPlaceApps in OpenNebula, considering both the metadata and the images.
 
-MarketPlaceApps can be managed either using the CLI with the ``onemarketapp`` command or with the Sunstone GUI. In this section we will detail the actions available for MarketPlaceApps in both interfaces. MarketPlaceApps are common OpenNebula objects and respond the the common actions shared by all the OpenNebula objets: `list`, `show`, `create`, `delete`, etc, plus some specific ones.
+MarketPlaceApps can be managed either using the CLI with the ``onemarketapp`` command or with the Sunstone GUI. In this section we will detail the actions available for MarketPlaceApps in both interfaces. MarketPlaceApps are common OpenNebula objects and respond to the common actions shared by all OpenNebula objects: `list`, `show`, `create`, `delete`, etc, plus some specific ones.
 
 Requirements
 --------------------------------------------------------------------------------
-This section only apply to vCenter apps.
+This section only applies to vCenter apps.
 
-In order to use a vCenter app it is needed to attach the image to one vCenter VM Template which had been previously imported.  An existing VM Template can be cloned and its disks replaced with the image from the marketplace. Once the VM Template its ready the appliance can be instantiated.
+In order to use a vCenter app it is necessary to attach the image to a vCenter VM Template which was previously imported.  An existing VM Template can be cloned and its disks replaced with the image from the marketplace. Once the VM Template is ready, the appliance can be instantiated.
 
 
 Listing MarketPlaceApps
@@ -72,7 +72,7 @@ Using the CLI:
     PUBLISHER      : OpenNebula.org
     PUB. DATE      : Wed Jun  8 22:17:19 137435166546
     VERSION        : 1.0
-    DESCRIPTION    : This is a very small image that works with OpenNebula. It's already contextualized. The purpose of this image is to test OpenNebula deployments, without wasting network bandwith thanks to the tiny footprint of this image
+    DESCRIPTION    : This is a very small image that works with OpenNebula. It's already contextualized. The purpose of this image is to test OpenNebula deployments, without wasting network bandwidth thanks to the tiny footprint of this image
     (40MB).
     SIZE           : 40M
     ORIGIN_ID      : -1
@@ -88,7 +88,7 @@ Using the CLI:
     VMTEMPLATE64="Q09OVEVYVCA9IFsgTkVUV09SSyAgPSJZRVMiLFNTSF9QVUJMSUNfS0VZICA9IiRVU0VSW1NTSF9QVUJMSUNfS0VZXSJdCgpDUFUgPSAiMC4xIgpHUkFQSElDUyA9IFsgTElTVEVOICA9IjAuMC4wLjAiLFRZUEUgID0idm5jIl0KCk1FTU9SWSA9ICIxMjgiCkxPR08gPSAiaW1hZ2VzL2xvZ29zL2xpbnV4LnBuZyI="
 
 
-Not that if we unpack that `VMTEMPLATE64` we obtain the following:
+Note that if we unpack that `VMTEMPLATE64` we obtain the following:
 
 .. code::
 
@@ -134,7 +134,7 @@ In order to create a MarketPlaceApp you will need to prepare a new template file
 +--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``VMTEMPLATE64``   | (Optional) Creates this template (encoded in base64) pointing to the base image.                                                                                             |
 +--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``APPTEMPLATE64``  | (Optional) This is the image template (encoded in base64) that will be added to the registered image. It is useful to include parameteres like ``DRIVER`` or ``DEV_PREFIX``. |
+| ``APPTEMPLATE64``  | (Optional) This is the image template (encoded in base64) that will be added to the registered image. It is useful to include parameters like ``DRIVER`` or ``DEV_PREFIX``.  |
 +--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 Example:
@@ -189,7 +189,7 @@ To download a MarketPlaceApp to a file:
 
 .. warning:: This command requires that the `ONE_SUNSTONE` environment variable is set. Read :ref:`here <manage_users_shell>` for more information.
 
-.. warning:: Make sure the Sunstone is properly deployed to handle this feature. Read :ref:`here <suns_advance_marketplace>` for more information.
+.. warning:: Make sure Sunstone is properly deployed to handle this feature. Read :ref:`here <suns_advance_marketplace>` for more information.
 
 
 Additional Commands
@@ -205,7 +205,7 @@ Like any other OpenNebula Resource, MarketPlaceApps respond to the base actions,
 * enable
 * disable
 
-Please take a look at the CLI reference to see how to use these actions. In Sunstone this options are also available.
+Please take a look at the CLI reference to see how to use these actions. These  options are also available in Sunstone.
 
 Tuning & Extending
 ==================

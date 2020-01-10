@@ -7,18 +7,16 @@ OpenNebula Systems MarketPlace
 Overview
 ================================================================================
 
-OpenNebula Systems provides a public and official MarketPlace, universally available to all the OpenNebula's. The OpenNebula Marketplace is a catalog of third party virtual appliances ready to run in OpenNebula environments. This MarketPlace is available here: `http://marketplace.opennebula.systems <http://marketplace.opennebula.systems>`__. Anyone can request an account and upload their appliances and share them with other OpenNebula's, however, as opposed to other MarketPlaces, MarketPlaceApp creation is not done through OpenNebula, but by following the instructions in `http://marketplace.opennebula.systems <http://marketplace.opennebula.systems>`__. Deletion of MarketPlaceApps is likewise limited.
+OpenNebula Systems provides a public and official MarketPlace, universally available to all instances of OpenNebula with access to internet. The OpenNebula Marketplace is a catalog of virtual appliances ready to run in OpenNebula environments available at `http://marketplace.opennebula.systems <http://marketplace.opennebula.systems>`__.
 
-The MarketPlaceApps included in the official MarketPlace are third-party contributions of other OpenNebula users, meaning that they are not certificated by the OpenNebula project.
+You can also connect to MarketPlaces deployed with the `OpenNebula Add-on AppMarket <https://github.com/OpenNebula/addon-appmarket>`__. Such AppMarkets which are already deployed can still be used, but they are now deprecated in favor of :ref:`HTTP MarketPlaces <market_http>`.
 
 |image0|
-
-You can also connect to MarketPlaces deployed with the `OpenNebula Add-on AppMarket <https://github.com/OpenNebula/addon-appmarket>`__. The already deployed AppMarkets can still be used, but they are now deprecated in favor of the :ref:`HTTP MarketPlaces <market_http>`.
 
 Requirements
 ================================================================================
 
-The url http://marketplace.opennebula.systems must be reachable from the OpenNebula Frontend.
+The URL http://marketplace.opennebula.systems must be reachable from the OpenNebula Frontend.
 
 Configuration
 ================================================================================
@@ -42,10 +40,10 @@ However, to connect to `OpenNebula Add-on AppMarkets <https://github.com/OpenNeb
 +----------------+--------------------------------------------------------------+
 | ``MARKET_MAD`` | Must be ``one``.                                             |
 +----------------+--------------------------------------------------------------+
-| ``ENDPOINT``   | (**Required to connect to AppMarket**) The URL of AppMarket. |
+| ``ENDPOINT``   | (**Required to connect to AppMarket**) The AppMarket URL.    |
 +----------------+--------------------------------------------------------------+
 
-For example, the following examples illustrates the creation of a MarketPlace:
+For example, the following examples illustrate the creation of a MarketPlace:
 
 .. prompt:: bash $ auto
 

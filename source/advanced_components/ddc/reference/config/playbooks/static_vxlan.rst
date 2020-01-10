@@ -71,7 +71,7 @@ or, just easily extend the shipped template with both network definitions by set
 Manually
 ~~~~~~~~
 
-In the OpenNebula, the :ref:`virtual network <manage_vnets>` for the virtual machines can be defined by the following template:
+In OpenNebula, the :ref:`virtual network <manage_vnets>` for the virtual machines can be defined by the following template:
 
 .. code::
 
@@ -185,27 +185,27 @@ Parameter                              Value                                    
 ``bridged_networking_static_netmask``  255.255.255.0                              Netmask of the bridge
 ``opennebula_node_kvm_use_ev``         **True** or False                          Whether to use the ev package for kvm
 ``opennebula_node_kvm_param_nested``   True or **False**                          Enable nested KVM virtualization
-``opennebula_repository_version``      5.8                                        OpenNebula repository version
+``opennebula_repository_version``      5.10                                       OpenNebula repository version
 ``opennebula_repository_base``         ``https://downloads.opennebula.org/repo/`` Repository of the OpenNebula packages
                                        ``{{ opennebula_repository_version }}``
 =====================================  ========================================== ===========
 
-All parameters are covered in the :ref:`Configuration Roles <ddc_config_roles>`
+All parameters are covered in the :ref:`Configuration Roles <ddc_config_roles>`.
 
 Configuration Steps
 ===================
 
 The roles and tasks are applied during the configuration in the following order:
 
-1. **python** - check and install Python required for Ansible
-2. **ddc** - general asserts and cleanups
-3. **opennebula-repository** - setup OpenNebula package repository
-4. **opennebula-node-kvm** - install OpenNebula node KVM package
-5. **opennebula-ssh** - deploy local SSH keys for the remote oneadmin
-6. **tuntap** - create TAP ``tap0`` interface
-7. **bridged-networking** - bridge Linux bridge ``br0`` with TAP interface
-8. **opennebula-p2p-vxlan** - bridge ``vxlan100`` with static VXLAN connections among hosts
-9. **iptables** - create basic iptables rules and enable NAT
+1. **python**: check and install Python required for Ansible
+2. **ddc**: general asserts and cleanups
+3. **opennebula-repository**: set up the OpenNebula package repository
+4. **opennebula-node-kvm**: install OpenNebula node KVM package
+5. **opennebula-ssh**: deploy local SSH keys for the remote oneadmin
+6. **tuntap**: create TAP ``tap0`` interface
+7. **bridged-networking**: bridge Linux bridge ``br0`` with a TAP interface
+8. **opennebula-p2p-vxlan**: bridge ``vxlan100`` with static VXLAN connections among hosts
+9. **iptables**: create basic iptables rules and enable NAT
 
 with the following configuration overrides to the :ref:`roles defaults <ddc_config_roles>`:
 
