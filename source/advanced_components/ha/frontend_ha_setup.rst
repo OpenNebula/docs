@@ -5,7 +5,7 @@
 OpenNebula HA Setup
 ================================================================================
 
-This guide walks you through the process of setting a high available cluster for OpenNebula core services: core (oned), scheduler (mm\_sched).
+This guide walks you through the process of setting a highly available cluster for OpenNebula core services: core (oned), scheduler (mm\_sched).
 
 OpenNebula uses a distributed consensus protocol to provide fault-tolerance and state consistency across OpenNebula services. In this section, you learn the basics of how to bootstrap and operate an OpenNebula distributed cluster.
 
@@ -18,13 +18,13 @@ This section covers some internals on how OpenNebula implements Raft. You do not
 
 A consensus algorithm is built around two concepts:
 
-* **System State**, in OpenNebula the system state is the data stored in the database tables (users, ACLs, or the VMs in the system).
+* **System State**, the OpenNebula data stored in the database tables (users, ACLs, or the VMs in the system).
 
 * **Log**, a sequence of SQL statements that are *consistently* applied to the OpenNebula DB in all servers to evolve the system state.
 
-To preserve a consistent view of the system across servers, modifications to system state are performed through a special node, the *leader*. The servers in the OpenNebula cluster elects a single node to be the *leader*. The *leader* periodically sends heartbeats to the other servers, the *followers*, to keep its leadership. If a *leader* fails to send the heartbeat, *followers* promote to *candidates* and start a new election.
+To preserve a consistent view of the system across servers, modifications to system state are performed through a special node, the *leader*. The servers in the OpenNebula cluster elect a single node to be the *leader*. The *leader* periodically sends heartbeats to the other servers, the *followers*, to keep its leadership. If a *leader* fails to send the heartbeat, *followers* promote to *candidates* and start a new election.
 
-Whenever the system is modified (e.g. a new VM is added to the system), the *leader* updates the log and replicates the entry in a majority of *followers* before actually writing it to the database. The latency of DB operations are thus increased, but the system state is safely replicated, and the cluster can continue its operation in case of node failure.
+Whenever the system is modified (e.g. a new VM is added to the system), the *leader* updates the log and replicates the entry in a majority of *followers* before actually writing it to the database. The latency of DB operations is thus increased, but the system state is safely replicated, and the cluster can continue its operation in case of node failure.
 
 In OpenNebula, read-only operations can be performed through any oned server in the cluster; this means that reads can be arbitrarily stale but generally within the round-trip time of the network.
 
@@ -35,13 +35,13 @@ The recommended deployment size is either 3 or 5 servers, which provides a fault
 
 Every HA cluster requires:
 
-* Odd number of servers (3 is recommended).
-* Recommended identical servers capacity.
-* Same software configuration of the servers (the sole difference would be the ``SERVER_ID`` field in ``/etc/one/oned.conf``).
-* Working database connection of the same type, MySQL is recommended.
+* An odd number of servers (3 is recommended).
+* (Recommended) identical server capacities.
+* The same software configuration of the servers. (The sole difference would be the ``SERVER_ID`` field in ``/etc/one/oned.conf``.)
+* A working database connection of the same type. MySQL is recommended.
 * All the servers must share the credentials.
 * Floating IP which will be assigned to the *leader*.
-* Shared filesystem.
+* A shared filesystem.
 
 The servers should be configured in the following way:
 
@@ -51,11 +51,11 @@ The servers should be configured in the following way:
 Bootstrapping the HA cluster
 ================================================================================
 
-This section shows on examples all steps required to deploy the HA Cluster.
+This section shows examples of all the steps required to deploy the HA Cluster.
 
 .. warning::
 
-  To maintain a healthy cluster during the procedure of adding servers to the clusters, make sure you add **only** one server at a time
+  To maintain a healthy cluster during the procedure of adding servers to the clusters, make sure you add **only** one server at a time.
 
 .. important:: In the following, each configuration step starts with (initial) **Leader** or (future) **Follower** to indicate the server where the step must be performed.
 
@@ -130,7 +130,7 @@ We start with the first server, to perform the initial system bootstrapping.
   ]
 
 * **Leader**: Start OpenNebula.
-* **Leader**: Check the zone, the server is now the leader and has the floating IP:
+* **Leader**: Check the zone. The server is now the leader and has the floating IP:
 
 .. prompt:: bash $ auto
 
@@ -196,7 +196,7 @@ Adding more servers
 
   $ onezone server-add 0 --name server-1 --rpc http://192.168.150.2:2633/RPC2
 
-* **Leader**: Check the zone, the new server is in error state, since OpenNebula on the new server is still not running. Make a note of the server id, in this case it is 1.
+* **Leader**: Check the zone. The new server is in the error state, since OpenNebula on the new server is still not running. Make a note of the server id, in this case 1.
 
 .. prompt:: bash $ auto
 
@@ -220,7 +220,7 @@ Adding more servers
   ENDPOINT="http://localhost:2633/RPC2"
 
 * **Follower**: Edit ``/etc/one/oned.conf`` on the new server to set the ``SERVER_ID`` for the new server. Make sure to enable the hooks as in the initial leader's configuration.
-* **Follower**: Start OpenNebula service.
+* **Follower**: Start the OpenNebula service.
 * **Leader**: Run `onezone show 0` to make sure that the new server is in follower state.
 
 .. prompt:: bash $ auto
@@ -246,7 +246,7 @@ Adding more servers
 
 .. note::
 
-  It may happen the **TERM/INDEX/COMMIT** does not match (like above). This is not important right now; it will sync automatically when the database is changed.
+  It may happen that the **TERM**/**INDEX**/**COMMIT** does not match (as above). This is not important right now; it will sync automatically when the database is changed.
 
 Repeat this section to add new servers. Make sure that you only add servers when the cluster is in a healthy state. That means there is 1 leader and the rest are in follower state. If there is one server in error state, fix it before proceeding.
 
@@ -311,7 +311,7 @@ Recovering servers
 When a follower is down for some time it may fall out of the recovery window, i.e. the log may not include all the records needed to bring it up-to-date. In order to recover this server you need to:
 
 * **Leader**: Create a DB backup and copy it to the failed follower. Note that you cannot reuse a previous backup.
-* **Follower**: Stop OpenNebula if running.
+* **Follower**: Stop OpenNebula if it is running.
 * **Follower**: Restore the DB backup from the leader.
 * **Follower**: Start OpenNebula.
 * **Leader**: Reset the failing follower with:
@@ -324,14 +324,14 @@ When a follower is down for some time it may fall out of the recovery window, i.
 Shared data between HA nodes
 ================================================================================
 
-HA deployment requires the filesystem view of most datastores (by default in ``/var/lib/one/datastores/``) to be same on all front-ends. It is necessary to setup a shared filesystem over the datastore directories. This document does not cover configuration and deployment of the shared filesystem; it is left completely up to the cloud administrator.
+HA deployment requires the filesystem view of most datastores (by default in ``/var/lib/one/datastores/``) to be the same on all frontends. It is necessary to setup a shared filesystem over the datastore directories. This document does not cover configuration and deployment of the shared filesystem; it is left completely up to the cloud administrator.
 
-OpenNebula stores virtual machine logs inside ``/var/log/one/`` as files named ``${VMID}.log``. It is not recommended to share the whole log directory between the front-ends as there are also other OpenNebula logs which would be randomly overwritten. It is up to the cloud administrator to periodically backup the virtual machine logs on cluster leader and on fail-over to restore from the backup on a new leader (e.g. as part of the raft hook).
+OpenNebula stores virtual machine logs inside ``/var/log/one/`` as files named ``${VMID}.log``. It is not recommended to share the whole log directory between the front-ends as there are also other OpenNebula logs which would be randomly overwritten. It is up to the cloud administrator to periodically backup the virtual machine logs on the cluster leader, and on fail-over to restore from the backup on a new leader (e.g. as part of the raft hook).
 
 Sunstone
 ================================================================================
 
-There are several types of the Sunstone deployment in HA environment. The basic one is Sunstone running on each OpenNebula front-end node configured with the local OpenNebula. Only one server, the leader with floating IP, is used by the clients.
+There are several types of Sunstone deployment in an HA environment. The basic one is Sunstone running on each OpenNebula frontend node configured with the local OpenNebula. Only one server, the leader with floating IP, is used by the clients.
 
 It is possible to configure a load balancer (e.g. HAProxy, Pound, Apache or Nginx) over the front-ends to spread the load (read operations) among the nodes. In this case, the **Memcached** and shared ``/var/tmp/`` may be required, please see :ref:`Configuring Sunstone for Large Deployments <suns_advance>`.
 
@@ -340,7 +340,7 @@ To easy scale out beyond the total number of core OpenNebula daemons, Sunstone c
 Raft Configuration Attributes
 ================================================================================
 
-The Raft algorithm can be tuned by several parameters in the configuration file ``/etc/one/oned.conf``. Following options are available:
+The Raft algorithm can be tuned by several parameters in the configuration file ``/etc/one/oned.conf``. The following options are available:
 
 +-----------------------------------------------------------------------------------------------------------------------------------------------------+
 | Raft: Algorithm Attributes                                                                                                                          |
@@ -351,21 +351,21 @@ The Raft algorithm can be tuned by several parameters in the configuration file 
 +----------------------------+------------------------------------------------------------------------------------------------------------------------+
 | ``LOG_PURGE_TIMEOUT``      | How often applied records are purged according the log retention value. (in seconds).                                  |
 +----------------------------+------------------------------------------------------------------------------------------------------------------------+
-| ``ELECTION_TIMEOUT_MS``    | Timeout to start a election process if no heartbeat or log is received from leader.                                    |
+| ``ELECTION_TIMEOUT_MS``    | Timeout to start an election process if no heartbeat or log is received from the leader.                               |
 +----------------------------+------------------------------------------------------------------------------------------------------------------------+
 | ``BROADCAST_TIMEOUT_MS``   | How often heartbeats are sent to  followers.                                                                           |
 +----------------------------+------------------------------------------------------------------------------------------------------------------------+
-| ``XMLRPC_TIMEOUT_MS``      | To timeout raft related API calls. To set an infinite  timeout set this value to 0.                                    |
+| ``XMLRPC_TIMEOUT_MS``      | To timeout raft-related API calls. To set an infinite  timeout set this value to 0.                                    |
 +----------------------------+------------------------------------------------------------------------------------------------------------------------+
 
 .. warning::
 
-  Any change in these parameters can lead to the unexpected behavior during the fail-over and result in whole cluster malfunction. After any configuration change, always check the crash scenarios for the correct behavior.
+  Any change in these parameters can lead to unexpected behavior during the fail-over and result in whole-cluster malfunction. After any configuration change, always check the crash scenarios for the correct behavior.
 
 Compatibility with the earlier HA
 =================================
 
-In OpenNebula <= 5.2, HA was configured using a classical active-passive approach, using Pacemaker and Corosync. While this still works for OpenNebula > 5.2, it is not the recommended way to set up a cluster. However, it is fine if you want to continue using that HA coming from earlier versions.
+In OpenNebula <= 5.2, HA was configured using a classical active-passive approach, using Pacemaker and Corosync. While this still works for OpenNebula > 5.2, it is not the recommended way to set up a cluster. However, it is fine if you want to continue using that HA method when coming from earlier versions.
 
 This is documented here: `Front-end HA Setup <http://docs.opennebula.org/5.2/advanced_components/ha/frontend_ha_setup.html>`_.
 
