@@ -4,11 +4,11 @@
 Logging & Debugging
 ====================
 
-OpenNebula provides logs for many resources. It supports three logging systems: file based logging systems, syslog logging and logging to standard error stream.
+OpenNebula provides logs for many resources. It supports three logging systems: file based logging systems, syslog logging and logging to the standard error stream.
 
 In the case of file based logging, OpenNebula keeps separate log files for each active component, all of them stored in ``/var/log/one``. To help users and administrators find and solve problems, they can also access some of the error messages from the :ref:`CLI <cli>` or the :ref:`Sunstone GUI <sunstone>`.
 
-With syslog or standard error the logging strategy is almost identical, except that the logging message change slightly their format following syslog logging conventions, and resource information.
+With syslog or standard error, the logging strategy is almost identical, except that the logging messages slightly change their format following syslog logging conventions and resource information.
 
 .. _log_debug_configure_the_logging_system:
 
@@ -24,14 +24,16 @@ Log Resources
 
 There are different log resources corresponding to different OpenNebula components:
 
--  **ONE Daemon**: The core component of OpenNebula dumps all its logging information onto ``/var/log/one/oned.log``. Its verbosity is regulated by DEBUG_LEVEL in ``/etc/one/oned.conf``. By default the one start up scripts will backup the last oned.log file using the current time, e.g. oned.log.20121011151807. Alternatively, this resource can be logged to the syslog.
+-  **ONE Daemon**: The core component of OpenNebula dumps all its logging information onto ``/var/log/one/oned.log``. Its verbosity is regulated by DEBUG_LEVEL in ``/etc/one/oned.conf``. By default the ONE start up scripts will backup the last ``oned.log`` file using the current time, e.g. ``oned.log.20121011151807``. Alternatively, this resource can be logged to the syslog.
 -  **Scheduler**: All the scheduler information is collected into the ``/var/log/one/sched.log`` file. This resource can also be logged to the syslog.
--  **Virtual Machines**: The information specific of the VM will be dumped in the log file ``/var/log/one/<vmid>.log``. All VMs controlled by OpenNebula have their folder, ``/var/lib/one/vms/<VID>``, or to the syslog/stderr if enabled. You can find the following information in it:
+-  **Virtual Machines**: The information specific to a VM will be dumped into the log file ``/var/log/one/<vmid>.log``. All VMs controlled by OpenNebula have their own directory, ``/var/lib/one/vms/<VID>`` if syslog/stderr isn't enabled. You can find the following information in it:
 
-   -  **Deployment description files** : Stored in ``deployment.<EXECUTION>``, where ``<EXECUTION>`` is the sequence number in the execution history of the VM (deployment.0 for the first host, deployment.1 for the second and so on).
-   -  **Transfer description files** : Stored in ``transfer.<EXECUTION>.<OPERATION>``, where ``<EXECUTION>`` is the sequence number in the execution history of the VM, ``<OPERATION>`` is the stage where the script was used, e.g. transfer.0.prolog, transfer.0.epilog, or transfer.1.cleanup.
+   -  **Deployment description files** : Stored in ``deployment.<EXECUTION>``, where ``<EXECUTION>`` is the sequence number in the execution history of the VM (``deployment.0`` for the first host, ``deployment.1`` for the second and so on).
+   -  **Transfer description files** : Stored in ``transfer.<EXECUTION>.<OPERATION>``, where ``<EXECUTION>`` is the sequence number in the execution history of the VM, and ``<OPERATION>`` is the stage where the script was used, e.g. ``transfer.0.prolog``, ``transfer.0.epilog``, or ``transfer.1.cleanup``.
 
--  **Drivers**: Each driver can have activated its **ONE\_MAD\_DEBUG** variable in their **RC** files. If so, error information will be dumped to ``/var/log/one/name-of-the-driver-executable.log``; log information of the drivers is in ``oned.log``.
+-  **Drivers**: Each driver can have its **ONE\_MAD\_DEBUG** variable activated in **RC** files. If so, error information will be dumped to ``/var/log/one/name-of-the-driver-executable.log``. Log information from the drivers is in ``oned.log``.
+
+Otherwise, the information is sent to syslog/stderr.
 
 Logging Format
 ==============
@@ -48,15 +50,17 @@ In the case of syslog it follows the standard:
 
     date hostname process[pid]: [Z<zone_id>][module][log_level]: message 
 
-Where the zone_id is the ID of the zone in the federation, 0 for single zone set ups, module is any of the internal OpenNebula components: ``VMM``, ``ReM``, ``TM``, etc. And the log\_level is a single character indicating the log level: I for info, D for debug, etc.
+where the zone_id is the ID of the zone in the federation, 0 for single zone set ups, the module is any of the internal OpenNebula components: ``VMM``, ``ReM``, ``TM``, etc., and the log\_level is a single character indicating the log level: I for info, D for debug, etc.
 
-For the syslog, OpenNebula will also log the Virtual Machine events like this:
+For syslog, OpenNebula will also log the Virtual Machine events like this:
 
 .. code-block:: none
 
     date hostname process[pid]: [VM id][Z<zone_id>][module][log_level]: message
 
-And similarly for the stderr logging, for oned and VM events the format are:
+and similarly for stderr logging. 
+
+For ``oned`` and VM events the formats are:
 
 .. code-block:: none
 
@@ -106,9 +110,9 @@ Virtual Machine errors can be checked by the owner or an administrator using the
      SEQ        HOSTNAME ACTION           START        TIME       PTIME
        0          host01   none  07/19 17:44:31 00 00:00:00 00 00:00:00
 
-Here the error tells that it could not copy a file, most probably it does not exist.
+Here the error message that it could not copy a file most probably means the file does not exist.
 
-Alternatively you can also check the log files for the VM at ``/var/log/one/<vmid>.log``.
+Alternatively you can check the log files for the VM at ``/var/log/one/<vmid>.log``.
 
 .. note::
 
@@ -155,4 +159,4 @@ The error message appears in the ``ERROR`` value of the monitoring. To get more 
     Tue Jul 19 17:17:22 2011 [InM][I]: ExitCode: 1
     Tue Jul 19 17:17:22 2011 [InM][E]: Error monitoring host 1 : MONITOR FAILURE 1 Could not update remotes
 
-From the execution output we notice that the host name is not known, probably a mistake naming the host.
+From the execution output we notice that the host name is not known, probably due to a mistake naming the host.
