@@ -137,7 +137,7 @@ Internally sunstone adds the field **TWO_FACTOR_AUTH_SECRET**.
 
 |image_setting_auth_disable|
 
-
+.. _ss_proxy:
 
 Configuring an SSL Proxy
 ========================
