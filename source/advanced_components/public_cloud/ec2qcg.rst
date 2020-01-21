@@ -260,7 +260,7 @@ Remember that you will have to add this VNet (ID:12) to the users group (ID:100)
 Configuring an SSL Proxy
 --------------------------------------------------------------------------------
 
-Te OpenNebula EC2 Query Service runs natively just on normal HTTP connections. If the extra security provided by SSL is needed, a proxy can be set up to handle the SSL connection that forwards the petition to the EC2 Query Service and returns the answer to the client.
+The OpenNebula EC2 Query Service runs natively just on normal HTTP connections. If the extra security provided by SSL is needed, a proxy can be set up to handle the SSL connection that forwards the petition to the EC2 Query Service and returns the answer to the client.
 
 This set up needs:
 
