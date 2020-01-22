@@ -12,8 +12,10 @@ The following new features has been backported to 5.10.2:
 - `Add append option to onedb change-body <https://github.com/OpenNebula/one/issues/3999>`__.
 - `Add OneAcl helper class to PyOne <https://github.com/OpenNebula/one/pull/4079>`__.
 - `Add VM name on vCenter to vCenter information section <https://github.com/OpenNebula/one/issues/2771>`__.
+- `Add vCenter custom names option for VMs <https://github.com/OpenNebula/one/issues/1973>`__.
 
 The following issues has been solved in 5.10.2:
 
 - `Fix onedb purge-done problem with end-time <https://github.com/OpenNebula/one/issues/4050>`__.
 - `Fix bash 4.4 warnings about null byte <https://github.com/OpenNebula/one/issues/1690>`__.
+- `Fix login form when auth config is remote <https://github.com/OpenNebula/one/issues/4096>`__.
