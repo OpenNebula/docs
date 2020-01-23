@@ -13,6 +13,7 @@ The following new features has been backported to 5.10.2:
 - `Add OneAcl helper class to PyOne <https://github.com/OpenNebula/one/pull/4079>`__.
 - `Add VM name on vCenter to vCenter information section <https://github.com/OpenNebula/one/issues/2771>`__.
 - `Add vCenter custom names option for VMs <https://github.com/OpenNebula/one/issues/1973>`__.
+- `Add option for set filter for the NIC in Sunstone <https://github.com/OpenNebula/one/issues/3383>`__.
 
 The following issues has been solved in 5.10.2:
 
