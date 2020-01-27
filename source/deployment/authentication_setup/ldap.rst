@@ -80,6 +80,11 @@ The configuration file for the auth module is located at ``/etc/one/auth/ldap_au
         # if false, depending on your LDAP server configuration,
         # set user_field and user_group_field 'uid' and group_field 'memberUid'
         :rfc2307bis: true
+
+        # DN of a group, if user is member of that group it LDAP, this user
+        # will be a group admin of all mapped LDAP groups in ONE.
+        #:group_admin_group_dn: 'cn=admins,ou=groups,dc=domain
+
      
     # this example server wont be called as it is not in the :order list
     server 2:
@@ -125,58 +130,62 @@ The structure is a hash where any key different to ``:order`` will contain the c
 
 .. note:: Items of the ``:order`` are the server names, or nested arrays of server names, representing the **availability group**. The items in the ``:order`` are processed one by one until the user is successfully authenticated, or the end of the list is reached. Inside the availability group, only the very first server which can be successfully connected to is queried. Any server not listed in ``:order`` won't be queried.
 
-+-----------------------+-------------------------------------------------+
-|        VARIABLE       |                   DESCRIPTION                   |
-+=======================+=================================================+
-| ``:user``             | Name of the user that can query LDAP. Do not    |
-|                       | set it if you can perform queries anonymously   |
-+-----------------------+-------------------------------------------------+
-| ``:password``         | Password for the user defined in ``:user``.     |
-|                       | Do not set if anonymous access is enabled       |
-+-----------------------+-------------------------------------------------+
-| ``:auth_method``      | Only ``:simple`` is supported                   |
-+-----------------------+-------------------------------------------------+
-| ``:encryption``       | Can be set to ``:simple_tls`` if SSL connection |
-|                       | is needed                                       |
-+-----------------------+-------------------------------------------------+
-| ``:host``             | Host name of the LDAP server                    |
-+-----------------------+-------------------------------------------------+
-| ``:port``             | Port of the LDAP server                         |
-+-----------------------+-------------------------------------------------+
-| ``:timeout``          | Connection and authentication timeout           |
-+-----------------------+-------------------------------------------------+
-| ``:base``             | Base leaf where to perform user searches        |
-+-----------------------+-------------------------------------------------+
-| ``:group_base``       | Alternative base leaf where to perform group    |
-|                       | searches instead of in ``:base``                |
-+-----------------------+-------------------------------------------------+
-| ``:group``            | If set, the users need to belong to this group  |
-+-----------------------+-------------------------------------------------+
-| ``:user_field``       | Field in LDAP that holds the user name          |
-+-----------------------+-------------------------------------------------+
-| ``:mapping_generate`` | Automatically generate a mapping file. It can   |
-|                       | be disabled in case it needs to be done         |
-|                       | manually                                        |
-+-----------------------+-------------------------------------------------+
-| ``:mapping_timeout``  | Number of seconds between automatic mapping     |
-|                       | file generation                                 |
-+-----------------------+-------------------------------------------------+
-| ``:mapping_filename`` | Name of the mapping file. Should be different   |
-|                       | for each server                                 |
-+-----------------------+-------------------------------------------------+
-| ``:mapping_key``      | Key in the group template used to generate      |
-|                       | the mapping file. It should hold the DN of      |
-|                       | the mapped group                                |
-+-----------------------+-------------------------------------------------+
-| ``:mapping_default``  | Default group used when no mapped group is      |
-|                       | found. Set to ``false`` in case you don't want  |
-|                       | the user to be authorized if they do not belong |
-|                       | to a mapped group                               |
-+-----------------------+-------------------------------------------------+
-| ``:rfc2307bis:``      | Set to true when using Active Directory, false  |
-|                       | when using LDAP. Make sure you configure        |
-|                       | ``user_group_field`` and ``group_field``        |
-+-----------------------+-------------------------------------------------+
++----------------------------+-------------------------------------------------+
+|        VARIABLE            |                   DESCRIPTION                   |
++============================+=================================================+
+| ``:user``                  | Name of the user that can query LDAP. Do not    |
+|                            | set it if you can perform queries anonymously   |
++----------------------------+-------------------------------------------------+
+| ``:password``              | Password for the user defined in ``:user``.     |
+|                            | Do not set if anonymous access is enabled       |
++----------------------------+-------------------------------------------------+
+| ``:auth_method``           | Only ``:simple`` is supported                   |
++----------------------------+-------------------------------------------------+
+| ``:encryption``            | Can be set to ``:simple_tls`` if SSL connection |
+|                            | is needed                                       |
++----------------------------+-------------------------------------------------+
+| ``:host``                  | Host name of the LDAP server                    |
++----------------------------+-------------------------------------------------+
+| ``:port``                  | Port of the LDAP server                         |
++----------------------------+-------------------------------------------------+
+| ``:timeout``               | Connection and authentication timeout           |
++----------------------------+-------------------------------------------------+
+| ``:base``                  | Base leaf where to perform user searches        |
++----------------------------+-------------------------------------------------+
+| ``:group_base``            | Alternative base leaf where to perform group    |
+|                            | searches instead of in ``:base``                |
++----------------------------+-------------------------------------------------+
+| ``:group``                 | If set, the users need to belong to this group  |
++----------------------------+-------------------------------------------------+
+| ``:user_field``            | Field in LDAP that holds the user name          |
++----------------------------+-------------------------------------------------+
+| ``:mapping_generate``      | Automatically generate a mapping file. It can   |
+|                            | be disabled in case it needs to be done         |
+|                            | manually                                        |
++----------------------------+-------------------------------------------------+
+| ``:mapping_timeout``       | Number of seconds between automatic mapping     |
+|                            | file generation                                 |
++----------------------------+-------------------------------------------------+
+| ``:mapping_filename``      | Name of the mapping file. Should be different   |
+|                            | for each server                                 |
++----------------------------+-------------------------------------------------+
+| ``:mapping_key``           | Key in the group template used to generate      |
+|                            | the mapping file. It should hold the DN of      |
+|                            | the mapped group                                |
++----------------------------+-------------------------------------------------+
+| ``:mapping_default``       | Default group used when no mapped group is      |
+|                            | found. Set to ``false`` in case you don't want  |
+|                            | the user to be authorized if they do not belong |
+|                            | to a mapped group                               |
++----------------------------+-------------------------------------------------+
+| ``:rfc2307bis:``           | Set to true when using Active Directory, false  |
+|                            | when using LDAP. Make sure you configure        |
+|                            | ``user_group_field`` and ``group_field``        |
++----------------------------+-------------------------------------------------+
+| ``:group_admin_group_dn:`` | DN of a group, if user is member of that group  |
+|                            | it LDAP, this user will be a group admin of all |
+|                            | mapped LDAP groups in ONE.                      |
++----------------------------+-------------------------------------------------+
 
 To enable ``ldap`` authentication the described parameters should be configured. OpenNebula must be also configured to enable external authentication. Add this line in ``/etc/one/oned.conf``
 
