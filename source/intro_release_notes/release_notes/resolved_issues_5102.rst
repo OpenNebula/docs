@@ -21,3 +21,4 @@ The following issues has been solved in 5.10.2:
 - `Fix bash 4.4 warnings about null byte <https://github.com/OpenNebula/one/issues/1690>`__.
 - `Fix login form when auth config is remote <https://github.com/OpenNebula/one/issues/4096>`__.
 - `Fix create vm template with NUMA without HUGEPAGES <https://github.com/OpenNebula/one/issues/4112>`__.
+- `Fix boolean user inputs in CLI <https://github.com/OpenNebula/one/issues/4075>`__.
