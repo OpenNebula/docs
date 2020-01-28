@@ -183,7 +183,7 @@ The structure is a hash where any key different to ``:order`` will contain the c
 |                            | ``user_group_field`` and ``group_field``        |
 +----------------------------+-------------------------------------------------+
 | ``:group_admin_group_dn:`` | DN of a group, if user is member of that group  |
-|                            | it LDAP, this user will be a group admin of all |
+|                            | in LDAP, this user will be a group admin of all |
 |                            | mapped LDAP groups in ONE.                      |
 +----------------------------+-------------------------------------------------+
 
