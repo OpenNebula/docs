@@ -29,9 +29,7 @@ Networking
 Authentication
 --------------------------------------------------------------------------------
 
-- **Group admins for LDAP driver**, when configuring your LDAP driver you can
-  define *group_admin_group_dn* which will cause that members of that group
-  will be group admins of all the mapped LDAP group in OpenNebula
+- **Group admins for LDAP driver**, when configuring your LDAP driver you can define *group_admin_group_dn* which will cause that members of that group will be group admins of all the mapped LDAP group in OpenNebula
 
 Sunstone
 --------------------------------------------------------------------------------
@@ -39,7 +37,7 @@ Sunstone
 
 vCenter
 ===============================================================================
-- ...
+- **vCenter Resource pool tab**, within the host individual view a new tab displays the information of all :ref:`resource pools <vcenter_resource_pool>` defined in the vCenter cluster corresponding to the OpenNebula host.
 
 OneFlow & OneGate
 ===============================================================================
