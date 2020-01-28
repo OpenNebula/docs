@@ -81,7 +81,7 @@ The configuration file for the auth module is located at ``/etc/one/auth/ldap_au
         # set user_field and user_group_field 'uid' and group_field 'memberUid'
         :rfc2307bis: true
 
-        # DN of a group, if user is member of that group it LDAP, this user
+        # DN of a group, if user is member of that group in LDAP, this user
         # will be a group admin of all mapped LDAP groups in ONE.
         #:group_admin_group_dn: 'cn=admins,ou=groups,dc=domain
 
