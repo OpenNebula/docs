@@ -39,7 +39,9 @@ Sunstone
 
 vCenter
 ===============================================================================
-- ...
+- **vCenter Resource pool tab in host**, inside host view, we can see a new
+  tab that contains all resource pool, this permit a better understand about
+  resources pool inside this Cluster
 
 OneFlow & OneGate
 ===============================================================================
