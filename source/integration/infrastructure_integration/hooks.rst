@@ -201,6 +201,8 @@ Then, simply create the hook by running the following command:
 
 We have just created a hook which will be triggered each time a VM switch to PENDING state.
 
+.. note:: Note that just one hook can be created for each trigger event.
+
 Checking Hook Execution
 --------------------------------------------------------------------------------
 
