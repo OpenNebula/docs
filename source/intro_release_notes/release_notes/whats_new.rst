@@ -29,7 +29,8 @@ Networking
 Authentication
 --------------------------------------------------------------------------------
 
-- **Group admins for LDAP driver**, when configuring your LDAP driver you can define *group_admin_group_dn* which will cause that members of that group will be group admins of all the mapped LDAP group in OpenNebula
+- **Group admins for LDAP driver**, when configuring your LDAP driver you can define *group_admin_group_dn* which will cause that members of that group will be group admins of all the mapped LDAP group in OpenNebula :ref:`LDAP driver <ldap>`
+
 
 Sunstone
 --------------------------------------------------------------------------------
