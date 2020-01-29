@@ -73,7 +73,7 @@ In case of a more complex cgroup configuration the containers cgroup could be pl
 LXD daemon
 --------------------------------------------------------------------------------
 
-Every existing container should have defined the following limits: ``limits.cpu`` ``limits.vcpu`` and ``limits.memory``. The opennebula-node-lxd package sets the default profile with these limits to ``100%``, ``1`` and ``512MB``.
+Every existing container should have defined the following limits: ``limits.cpu.allowance``, ``limits.cpu`` and ``limits.memory``. The opennebula-node-lxd package sets the default profile with these limits to ``100%``, ``1`` and ``512MB``.
 
 
 Drivers
