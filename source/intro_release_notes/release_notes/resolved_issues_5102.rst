@@ -24,4 +24,4 @@ The following issues has been solved in 5.10.2:
 - `Fix boolean user inputs in CLI <https://github.com/OpenNebula/one/issues/4075>`__.
 - `Fix IPv4 address not shown in VM network tab <https://github.com/OpenNebula/one/issues/>3882`__.
 - `Fix ACL XSD schema. It also fixes ACL for Pyone <https://github.com/OpenNebula/one/issues/>4076`__.
-
+- `Fix highlighting states <https://github.com/OpenNebula/one/issues/>3450`__.
