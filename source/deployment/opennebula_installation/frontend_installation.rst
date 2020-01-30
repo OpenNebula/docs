@@ -11,6 +11,9 @@ Using the packages provided on our site is the recommended method, to ensure the
 
 If there are no packages for your distribution, head to the :ref:`Building from Source Code guide <compile>`.
 
+.. note:: Installing the frontend inside a LXD container is possible, however you will have limited functionality. The LXD marketplace shouldn't be usable in this situation. The frontend requires to mount a block device and this is not doable for a LXD container.
+
+
 Step 1. SELinux on CentOS/RHEL
 ================================================================================
 
