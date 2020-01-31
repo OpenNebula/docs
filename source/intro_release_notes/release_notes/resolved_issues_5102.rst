@@ -22,6 +22,7 @@ The following issues has been solved in 5.10.2:
 - `Fix login form when auth config is remote <https://github.com/OpenNebula/one/issues/4096>`__.
 - `Fix create vm template with NUMA without HUGEPAGES <https://github.com/OpenNebula/one/issues/4112>`__.
 - `Fix boolean user inputs in CLI <https://github.com/OpenNebula/one/issues/4075>`__.
-- `Fix IPv4 address not shown in VM network tab <https://github.com/OpenNebula/one/issues/>3882`__.
-- `Fix ACL XSD schema. It also fixes ACL for Pyone <https://github.com/OpenNebula/one/issues/>4076`__.
-- `Fix highlighting states <https://github.com/OpenNebula/one/issues/>3450`__.
+- `Fix IPv4 address not shown in VM network tab <https://github.com/OpenNebula/one/issues/3882>`__.
+- `Fix ACL XSD schema. It also fixes ACL for PyONE <https://github.com/OpenNebula/one/issues/4076>`__.
+- `Fix highlighting states <https://github.com/OpenNebula/one/issues/3450>`__.
+- `Fix missing SNAPSHOTS element in vm_pool.xsd and PyONE <https://github.com/OpenNebula/one/issues/4136>`__.
