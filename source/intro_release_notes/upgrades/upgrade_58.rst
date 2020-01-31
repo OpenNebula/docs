@@ -37,7 +37,7 @@ Ubuntu/Debian
 
 .. prompt:: text # auto
 
-    # apt-get install --only-update opennebula opennebula-sunstone opennebula-gate opennebula-flow python-pyone
+    # apt-get install --only-upgrade opennebula opennebula-sunstone opennebula-gate opennebula-flow python-pyone
 
 CentOS
 
