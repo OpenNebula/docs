@@ -208,6 +208,15 @@ You should be able now to start OpenNebula as usual, running ``service opennebul
 
 .. warning:: Doing ``onehost sync`` is important. If the monitorization drivers are not updated, the hosts will behave erratically.
 
+Update ServerAdmin password to SHA256
+=====================================
+
+Since 5.10 passwords and tokens are generated using SHA256. OpenNebula will update the DB automatically for your regular users (including oneadmin). However, you need to do the update for serveradmin manually. You can do so, with:
+
+.. prompt:: text # auto
+
+    $ oneuser passwd --sha256 serveradmin `cat /var/lib/one/.one/sunstone_auth|cut -f2 -d':'`
+
 Testing
 =======
 
