@@ -145,7 +145,7 @@ At this point OpenNebula will continue the monitoring and management of your pre
 Step 9. Update ServerAdmin password to SHA256
 --------------------------------------------------------------------------------
 
-Since 5.8 passwords and tokens are generated using SHA256. OpenNebula will update the DB automatically for your regular users (including oneadmin). However, you need to do the update for serveradmin manually. You can do so, with:
+Since 5.10 passwords and tokens are generated using SHA256. OpenNebula will update the DB automatically for your regular users (including oneadmin). However, you need to do the update for serveradmin manually. You can do so, with:
 
 .. prompt:: text # auto
 
