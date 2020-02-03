@@ -15,6 +15,7 @@ The following new features has been backported to 5.10.2:
 - `Add vCenter custom names option for VMs <https://github.com/OpenNebula/one/issues/1973>`__.
 - `Add option for set filter for the NIC in Sunstone <https://github.com/OpenNebula/one/issues/3383>`__.
 - `Add option to order wild vms in Sunstone <https://github.com/OpenNebula/one/issues/4131>`__.
+- :ref:`New onevcenter cleartags command to reimport vCenter Wild VMs <vcenter_reimport_wild_vms>`.
 
 The following issues has been solved in 5.10.2:
 
