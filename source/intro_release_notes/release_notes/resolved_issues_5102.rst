@@ -27,3 +27,4 @@ The following issues has been solved in 5.10.2:
 - `Fix ACL XSD schema. It also fixes ACL for PyONE <https://github.com/OpenNebula/one/issues/4076>`__.
 - `Fix highlighting states <https://github.com/OpenNebula/one/issues/3450>`__.
 - `Fix missing SNAPSHOTS element in vm_pool.xsd and PyONE <https://github.com/OpenNebula/one/issues/4136>`__.
+- `Fix status of new NoVNC server <https://github.com/OpenNebula/one/issues/4020>`__.
