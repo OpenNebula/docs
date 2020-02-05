@@ -30,3 +30,4 @@ The following issues has been solved in 5.10.2:
 - `Fix missing SNAPSHOTS element in vm_pool.xsd and PyONE <https://github.com/OpenNebula/one/issues/4136>`__.
 - `Fix status of new NoVNC server <https://github.com/OpenNebula/one/issues/4020>`__.
 - `Fix error message <https://github.com/OpenNebula/one/issues/4144>`__.
+- `Remove Context ISO old configuration on NIC detach <https://github.com/OpenNebula/one/issues/4130>`__.
