@@ -31,3 +31,4 @@ The following issues has been solved in 5.10.2:
 - `Fix status of new NoVNC server <https://github.com/OpenNebula/one/issues/4020>`__.
 - `Fix error message <https://github.com/OpenNebula/one/issues/4144>`__.
 - `Remove Context ISO old configuration on NIC detach <https://github.com/OpenNebula/one/issues/4130>`__.
+- `Memory leak after upgrade to 5.10.1 (due to hook events saturation <https://github.com/OpenNebula/one/issues/4154>`__.
