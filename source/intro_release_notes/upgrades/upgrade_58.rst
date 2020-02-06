@@ -37,7 +37,7 @@ Ubuntu/Debian
 
 .. prompt:: text # auto
 
-    # apt-get install --only-update opennebula opennebula-sunstone opennebula-gate opennebula-flow python-pyone
+    # apt-get install --only-upgrade opennebula opennebula-sunstone opennebula-gate opennebula-flow python-pyone
 
 CentOS
 
@@ -145,7 +145,7 @@ At this point OpenNebula will continue the monitoring and management of your pre
 Step 9. Update ServerAdmin password to SHA256
 --------------------------------------------------------------------------------
 
-Since 5.8 passwords and tokens are generated using SHA256. OpenNebula will update the DB automatically for your regular users (including oneadmin). However, you need to do the update for serveradmin manually. You can do so, with:
+Since 5.10 passwords and tokens are generated using SHA256. OpenNebula will update the DB automatically for your regular users (including oneadmin). However, you need to do the update for serveradmin manually. You can do so, with:
 
 .. prompt:: text # auto
 
@@ -299,7 +299,7 @@ Now, in OpenNebula 5.10, you need to create the following hook template:
 
 and define the hook with ``onehook create`` command.
 
-.. important:: To emulate the ``ON=CREATE`` hook for VMs an API hook can be defined for ``one.template.allocate`` and ``one.vm.allocate``.
+.. important:: To emulate the ``ON=CREATE`` hook for VMs an API hook can be defined for ``one.template.instantiate`` and ``one.vm.allocate``.
 
 In general, any create/remove hook can be migrated using the following template:
 

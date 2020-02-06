@@ -6,8 +6,7 @@ Infrastructure Integration
    :maxdepth: 2
 
    Overview <overview>
-   Using Hooks <hooks>
-   Hook Manager Events <hook_manager_events>
+   Hook Driver <hooks>
    Virtualization Driver <devel-vmm>
    Provision Driver <devel-pm>
    Storage Driver <sd>

@@ -15,9 +15,21 @@ The following new features has been backported to 5.10.2:
 - `Add vCenter custom names option for VMs <https://github.com/OpenNebula/one/issues/1973>`__.
 - `Add option for set filter for the NIC in Sunstone <https://github.com/OpenNebula/one/issues/3383>`__.
 - `Add onezone serversync command <https://github.com/OpenNebula/one/issues/4109>`__.
+- `Add option to order wild vms in Sunstone <https://github.com/OpenNebula/one/issues/4131>`__.
+- :ref:`New onevcenter cleartags command to reimport vCenter Wild VMs <vcenter_reimport_wild_vms>`.
 
 The following issues has been solved in 5.10.2:
 
 - `Fix onedb purge-done problem with end-time <https://github.com/OpenNebula/one/issues/4050>`__.
 - `Fix bash 4.4 warnings about null byte <https://github.com/OpenNebula/one/issues/1690>`__.
 - `Fix login form when auth config is remote <https://github.com/OpenNebula/one/issues/4096>`__.
+- `Fix create vm template with NUMA without HUGEPAGES <https://github.com/OpenNebula/one/issues/4112>`__.
+- `Fix boolean user inputs in CLI <https://github.com/OpenNebula/one/issues/4075>`__.
+- `Fix IPv4 address not shown in VM network tab <https://github.com/OpenNebula/one/issues/3882>`__.
+- `Fix ACL XSD schema. It also fixes ACL for PyONE <https://github.com/OpenNebula/one/issues/4076>`__.
+- `Fix highlighting states <https://github.com/OpenNebula/one/issues/3450>`__.
+- `Fix missing SNAPSHOTS element in vm_pool.xsd and PyONE <https://github.com/OpenNebula/one/issues/4136>`__.
+- `Fix status of new NoVNC server <https://github.com/OpenNebula/one/issues/4020>`__.
+- `Fix error message <https://github.com/OpenNebula/one/issues/4144>`__.
+- `Remove Context ISO old configuration on NIC detach <https://github.com/OpenNebula/one/issues/4130>`__.
+- `Memory leak after upgrade to 5.10.1 (due to hook events saturation <https://github.com/OpenNebula/one/issues/4154>`__.

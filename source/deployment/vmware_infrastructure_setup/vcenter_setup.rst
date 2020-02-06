@@ -566,6 +566,32 @@ Once a Wild VM is imported, OpenNebula will reconfigure the vCenter VM so VNC co
 
 Also, network management operations are present like the ability to attach/detach network interfaces, as well as capacity (CPU and MEMORY) resizing operations and VNC connections if the ports are opened before hand.
 
+.. _vcenter_reimport_wild_vms:
+
+After a VM has been imported, it can be removed from OpenNebula and imported again. OpenNebula sets information in the vCenter VM metadata that needs to be removed, which can be done with the onevcenter cleartags command:
+
+- opennebula.vm.running
+- opennebula.vm.id
+- opennebula.disk.*
+
+The following procedure is useful if the VM has been changed in vCenter and OpenNebula needs to "rescan" its disks and NICs:
+
+* Use onevcenter cleartags on the VM that will be removed:
+
+.. prompt:: bash $ auto
+
+    $ onevcenter cleartags <vmid>
+
+**vmid** is the id of the VM whose attributes will be cleared.
+
+* Un-register VM
+
+.. prompt:: bash $ auto
+
+    $ onevm recover --delete-db <vmid>
+
+* Re-import VM: on the next host's monitoring cycle you will find this VM under **Wilds** tab, and it can be safely imported.
+
 .. _vcenter_import_networks:
 
 Importing vCenter Networks
