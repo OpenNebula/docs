@@ -32,6 +32,6 @@ The following issues has been solved in 5.10.2:
 - `Fix missing SNAPSHOTS element in vm_pool.xsd and PyONE <https://github.com/OpenNebula/one/issues/4136>`__.
 - `Fix status of new NoVNC server <https://github.com/OpenNebula/one/issues/4020>`__.
 - `Fix error message <https://github.com/OpenNebula/one/issues/4144>`__.
-- `Fix Context ISO attributes to not include NIC detach information<https://github.com/OpenNebula/one/issues/4130>`__.
+- `Fix Context ISO attributes to not include NIC detach information <https://github.com/OpenNebula/one/issues/4130>`__.
 - `Fix a high memory usage of oned due to hook events saturation <https://github.com/OpenNebula/one/issues/4154>`__.
 - `Fix a fsck for non-utf8 encoded databases <https://github.com/OpenNebula/one/issues/4165>`__.
