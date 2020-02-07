@@ -1,46 +1,49 @@
 .. _market_lxd:
 
 ==============================
-Linux Containers MarketPlace
+LXD MarketPlaces
 ==============================
 
 Overview
 ================================================================================
 
-The `Linux Containers image server <https://images.linuxcontainers.org/>`__ hosts a public image server for use by LXC and LXD. It is the default image server for LXD.
+OpenNebula includes two different marketplaces that can be used with LXD:
 
-OpenNebula's linuxcontainers marketplace enables users to easily download, contextualize and add Linux Containers images to an OpenNebula image datastore. Linux Containers images are compressed ``.tar.xz`` files. In order to use them, this marketplace creates an image, where it dumps the content, and later uploads it to OpenNebula. The marketplace will automatically take care of downloading the correct context package for your image and installing it inside the container. The marketplace also creates a VM template with a set of required and optional values. There is a log file (``/var/log/chroot.log``) inside the imported app filesystem which shows information about the operations done during the app setup process; in case of issues it could be a source of information.
+- The `Linux Containers image server <https://images.linuxcontainers.org/>`__ that hosts a public image server with container images for LXC and LXD. It is the default image server for LXD.
+- `TurnKey Linux <https://www.turnkeylinux.org/>`__ is a free software repository that provides container images based on Debian.
+
+OpenNebula's LXD marketplaces enable users to easily download, contextualize and add Linux containers images to an OpenNebula datastore.  The container images are downloaded in a compressed form. In order to use them, OpenNebula creates an image, where it dumps the content, install the corresponding context packages, and later uploads it to the datastore. The marketplace also creates a VM template with a set of required and optional values. There is a log file (``/var/log/chroot.log``) inside the imported app filesystem which shows information about the operations done during the app setup process; in case of issues it could be a useful source of information.
 
 Requirements
 ================================================================================
 
-- OpenNebula's frontend needs an Internet connection to https://images.linuxcontainers.org and https://github.com
-- Approximately 6GB of storage plus the container image size configured on your frontend
+- OpenNebula's frontend needs an Internet connection to https://images.linuxcontainers.org, https://www.turnkeylinux.org and https://github.com
+- Approximately 6GB of storage plus the container image size configured on your frontend.
 
 Configuration
 ================================================================================
 
 Several parameters can be specified in the marketplace's template:
 
-+-------------------+-----------------------------------------------------+----------------------------------------+
-|   Attribute       |                         Description                 |                Default                 |
-+===================+=====================================================+========================================+
-| ``NAME``          | Required                                            |                                        |
-+-------------------+-----------------------------------------------------+----------------------------------------+
-| ``MARKET_MAD``    | Must be ``linuxcontainers``                         |          ``linuxcontainers``           |
-+-------------------+-----------------------------------------------------+----------------------------------------+
-| ``ENDPOINT``      | The URL of the Market.                              | ``https://images.linuxcontainers.org`` |
-+-------------------+-----------------------------------------------------+----------------------------------------+
-| ``IMAGE_SIZE_MB`` | Size in MB for the image holding the rootfs         |                 ``1024``               |
-+-------------------+-----------------------------------------------------+----------------------------------------+
-| ``FILESYSTEM``    | Filesystem used for the image                       |                 ``ext4``               |
-+-------------------+-----------------------------------------------------+----------------------------------------+
-| ``FORMAT``        | Image block file format                             |                 ``raw``                |
-+-------------------+-----------------------------------------------------+----------------------------------------+
-| ``SKIP_UNTESTED`` | Show only auto-contextualized apps                  |                 ``yes``                |
-+-------------------+-----------------------------------------------------+----------------------------------------+
++-------------------+-----------------------------------------------------+-----------------------------------------------------------------------+
+|   Attribute       |                         Description                 |                Default                                                |
++===================+=====================================================+=======================================================================+
+| ``NAME``          | Required                                            |                                                                       |
++-------------------+-----------------------------------------------------+-----------------------------------------------------------------------+
+| ``MARKET_MAD``    | ``linuxcontainers`` or ``turnkeylinux``             |                                                                       |
++-------------------+-----------------------------------------------------+-----------------------------------------------------------------------+
+| ``ENDPOINT``      | The base URL of the Market.                         | ``https://images.linuxcontainers.org`` or ``http://turnkeylinux.org`` |
++-------------------+-----------------------------------------------------+-----------------------------------------------------------------------+
+| ``IMAGE_SIZE_MB`` | Size in MB for the image holding the rootfs         |                 ``1024``                                              |
++-------------------+-----------------------------------------------------+-----------------------------------------------------------------------+
+| ``FILESYSTEM``    | Filesystem used for the image                       |                 ``ext4``                                              |
++-------------------+-----------------------------------------------------+-----------------------------------------------------------------------+
+| ``FORMAT``        | Image block file format                             |                 ``raw``                                               |
++-------------------+-----------------------------------------------------+-----------------------------------------------------------------------+
+| ``SKIP_UNTESTED`` | Only auto-contextualized apps (linuxcontainers)     |                 ``yes``                                               |
++-------------------+-----------------------------------------------------+-----------------------------------------------------------------------+
 
-The OpenNebula frontend already ships with a configured LXD marketplace.
+The OpenNebula frontend already ships with a configured LXD and TurnkeyLinux marketplace.
 
 |image1|
 
@@ -53,6 +56,15 @@ The following template will create a working marketplace with the default values
     NAME="Linux Containers"
     MARKET_MAD="linuxcontainers"
     DESCRIPTION="MarketPlace for the public image server fo LXC at linuxcontainers.org"
+
+Equivalently for TurnkeyLinux:
+
+.. code-block:: text
+
+    NAME="TurnKey Linux"
+    MARKET_MAD="turnkeylinux"
+    DESCRIPTION="MarketPlace for the public image server fo LXC at turnkeylinux.org"
+
 
 Save this contents on a file (e.g. lxcmarket) and create the market with:
 
