@@ -16,7 +16,8 @@ The following new features has been backported to 5.10.2:
 - `Add option for set filter for the NIC in Sunstone <https://github.com/OpenNebula/one/issues/3383>`__.
 - `Add onezone serversync command <https://github.com/OpenNebula/one/issues/4109>`__.
 - `Add option to order wild vms in Sunstone <https://github.com/OpenNebula/one/issues/4131>`__.
-- :ref:`New onevcenter cleartags command to reimport vCenter Wild VMs <vcenter_reimport_wild_vms>`.
+- :ref:`Add onevcenter cleartags command to reimport vCenter Wild VMs <vcenter_reimport_wild_vms>`.
+- :ref:`Add marketplace for TurnKey Linux <market_lxd>`.
 
 The following issues has been solved in 5.10.2:
 
@@ -31,5 +32,6 @@ The following issues has been solved in 5.10.2:
 - `Fix missing SNAPSHOTS element in vm_pool.xsd and PyONE <https://github.com/OpenNebula/one/issues/4136>`__.
 - `Fix status of new NoVNC server <https://github.com/OpenNebula/one/issues/4020>`__.
 - `Fix error message <https://github.com/OpenNebula/one/issues/4144>`__.
-- `Remove Context ISO old configuration on NIC detach <https://github.com/OpenNebula/one/issues/4130>`__.
-- `Memory leak after upgrade to 5.10.1 (due to hook events saturation <https://github.com/OpenNebula/one/issues/4154>`__.
+- `Fix Context ISO attributes to not include NIC detach information<https://github.com/OpenNebula/one/issues/4130>`__.
+- `Fix a high memory usage of oned due to hook events saturation <https://github.com/OpenNebula/one/issues/4154>`__.
+- `Fix a fsck for non-utf8 encoded databases <https://github.com/OpenNebula/one/issues/4165>`__.
