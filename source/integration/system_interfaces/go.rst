@@ -65,7 +65,7 @@ To use the OpenNebula Cloud API for Go in your Go project, you have to import go
 Code Sample
 ================================================================================
 
-The example below show how get the information of a running VM, print its name, and power it off. It then builds a new OpenNebula template and prints its string representation.
+The example below shows how to poweroff a running VM. You need to pass the VM ID argument to the program.
 
 .. code-block:: go
 
@@ -78,50 +78,46 @@ The example below show how get the information of a running VM, print its name, 
         "strconv"
 
         "github.com/OpenNebula/one/src/oca/go/src/goca"
-        "github.com/OpenNebula/one/src/oca/go/src/goca/schemas/shared"
-        "github.com/OpenNebula/one/src/oca/go/src/goca/schemas/vm"
-        "github.com/OpenNebula/one/src/oca/go/src/goca/schemas/vm/keys"
     )
 
     func main() {
-        conf := goca.NewConfig("user", "password_or_token", "endpoint")
+        // Initialize connection with OpenNebula
+        con := map[string]string{
+            "user":     "user",
+            "password": "password",
+            "endpoint": "XMLRPC address",
+        }
 
-        client := goca.NewDefaultClient(conf)
+        client := goca.NewDefaultClient(
+            goca.NewConfig(con["user"], con["password"], con["endpoint"]),
+        )
+
         controller := goca.NewController(client)
 
+        // Read VM ID from arguments
         id, _ := strconv.Atoi(os.Args[1])
 
-        vm, err := controller.VM(uint(id)).Info()
+        vmctrl := controller.VM(id)
+
+        // Fetch informations of the created VM
+        vm, err := vmctrl.Info(false)
+
         if err != nil {
             log.Fatal(err)
         }
 
-        fmt.Println(vm.Name)
+        fmt.Printf("Shutting down %+v\n", vm.Name)
 
         // Poweroff the VM
-        err = vm.PoweroffHard()
+        err = vmctrl.Poweroff()
         if err != nil {
             log.Fatal(err)
         }
 
-        // Create a new Template
-        tpl := vm.NewTemplate()
-        tpl.CPU(1)
-        tpl.Memory(64)
-        tpl.VCPU(2)
-
-        disk := tpl.AddDisk()
-        disk.Add(shared.ImageID, "119")
-        disk.Add(shared.DevPrefix, "vd")
-
-        nic := tpl.AddNIC()
-        nic.Add(shared.NetworkID, "3")
-        nic.Add(shared.Model, "virtio")
-
-        fmt.Println(template)
     }
 
-To see more, take at these `examples <https://github.com/OpenNebula/one/tree/master/src/oca/go/share/examples>`__.
+
+Take a look at these `examples <https://github.com/OpenNebula/one/tree/master/src/oca/go/share/examples>`__ in order to get a more in-depth usage of GOCA.
 
 Error handling
 ================================================================================
@@ -137,5 +133,5 @@ Extend the client
 ================================================================================
 
 The provided client is a basic XML-RPC client for OpenNebula, without any complex features.
-It's possible to use an other client or enhance the basic client with Goca if it implements the RPCCaller interface.
+It's possible to use another client or enhance the basic client with Goca if it implements the RPCCaller interface.
 
