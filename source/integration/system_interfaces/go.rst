@@ -45,7 +45,7 @@ Go OpenNebula Cloud API cover the resources lists below:
 +------------------+----------------------------------------------------------------------------------------------------------------+
 | VMs              | `vm.go <https://github.com/OpenNebula/one/blob/master/src/oca/go/src/goca/vm.go>`__                            |
 +------------------+----------------------------------------------------------------------------------------------------------------+
-| VM Groups        | `vmgroup.go <http://docs.opennebula.org/5.10/integration/system_interfaces/api.html#onevmgroup>`__             |
+| VM Groups        | `vmgroup.go <http://docs.opennebula.org/5.11/integration/system_interfaces/api.html#onevmgroup>`__             |
 +----------------------+------------------------------------------------------------------------------------------------------------+
 | VN template      | `vntemplate.go <https://github.com/OpenNebula/one/blob/master/src/oca/go/src/goca/vntemplate.go>`__            |
 +------------------+----------------------------------------------------------------------------------------------------------------+
