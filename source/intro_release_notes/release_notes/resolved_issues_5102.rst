@@ -18,6 +18,7 @@ The following new features has been backported to 5.10.2:
 - `Add option to order wild vms in Sunstone <https://github.com/OpenNebula/one/issues/4131>`__.
 - :ref:`Add onevcenter cleartags command to reimport vCenter Wild VMs <vcenter_reimport_wild_vms>`.
 - :ref:`Add marketplace for TurnKey Linux <market_lxd>`.
+- `Add RDP links in Sunstone <https://github.com/OpenNebula/one/issues/3969>`__.
 
 The following issues has been solved in 5.10.2:
 
