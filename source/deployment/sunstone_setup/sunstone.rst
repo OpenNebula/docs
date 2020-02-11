@@ -235,6 +235,35 @@ There can be multiple reasons for noVNC not correctly connecting to the machines
 -  Please contact the support forum only when you have gone through the suggestions, above and provide full sunstone logs, errors shown, and any relevant information on your infrastructure (if there are Firewalls etc.).
 - The message "SecurityError: The operation is insecure." is usually related to a Same-Origin-Policy problem.  If you have Sunstone TLS-secured and try to connect to an insecure websocket for VNC, Firefox blocks that. For Firefox, you need to have both connections secured to not get this error. And don't use a self-signed certificate for the server, this would raise the error again (you can setup your own little CA, that works, but don't use a self-signed server certificate). The other option would be to go into the Firefox config (about:config) and set ``network.websocket.allowInsecureFromHTTPS`` to ``true``.
 
+.. _sunstone_rdp_troubleshootings:
+
+RDP Troubleshooting
+--------------------------------------------------------------------------------
+
+To add one RDP connection link for a NIC in a VM, there are two possibilities for this purpose.
+
+- Activate the option in the Network tab of the template:
+
+|sunstone_rdp_troubleshooting|
+
+- It can also be defined in the VM by adding:
+
+.. code::
+
+    NIC=[
+        ...
+        RDP = "YES"
+    ]
+
+Once the VM is instantiated, users will be able to download the RDP file configuration.
+
+|sunstone_rdp_troubleshooting2|
+
+.. important:: The RDP connection is only allowed to activate on a single NIC. In any case, the file RDP will only contain the IP of the first NIC with this property enabled.
+
+.. note:: If the VM template has a password and username set in the contextualization section, this will be reflected in the RDP file. You can read about them in the :ref:`Virtual Machine Definition File reference section <template_context>`
+
+
 Tuning & Extending
 ==================
 
@@ -353,4 +382,6 @@ OpenNebula :ref:`Sunstone views <suns_views>` can be adapted to deploy a differe
 
 .. |support_home| image:: /images/support_home.png
 .. |sunstone_oneflow_error| image:: /images/sunstone_oneflow_error.png
+.. |sunstone_rdp_troubleshooting| image:: /images/sunstone_rdp_troubleshooting.png
+.. |sunstone_rdp_troubleshooting2| image:: /images/sunstone_rdp_troubleshooting2.png
 .. |sunstone_vm_logo| image:: /images/sunstone_vm_logo.png
