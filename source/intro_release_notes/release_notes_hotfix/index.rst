@@ -1,0 +1,5 @@
+.. toctree::
+   :maxdepth: 1
+
+   What is? <what_is_hotfix>
+   Resolved Issues in 5.10.2 <resolved_issues_5102>
