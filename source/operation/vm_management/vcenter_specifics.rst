@@ -71,6 +71,7 @@ The monitoring attributes retrieved from a vCenter VM are:
 - DISKRDIOPS: VM disks read IOPS
 - DISKWRBYTES: VM disks write bytes
 - DISKWRIOPS: VM disks write IOPS
+- VCENTER_VM_NAME: VM name on vCenter
 
 vCenter Template or Wild VM Importing Procedure
 --------------------------------------------------------------------------------

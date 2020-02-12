@@ -150,3 +150,4 @@ Other Issues Solved
 - `Fix show error when disable OpenNebula Systems support endpoint <https://github.com/OpenNebula/one/issues/3268>`__.
 - `Fix race condition when two migrate actions are executed simultaneously over the same VM <https://github.com/OpenNebula/one/issues/3936>`__.
 - `Fix error when attaching a disk to a VM using hybrid mode <https://github.com/OpenNebula/one/issues/3949>`__.
+- `Fix monitoring of total and used space for CEPH datastores <https://github.com/OpenNebula/one/pull/4074>`_.
