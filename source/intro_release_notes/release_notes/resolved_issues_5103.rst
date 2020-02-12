@@ -17,3 +17,4 @@ The following issues has been solved in 5.10.3:
 - `Write some nice description here <https://github.com/OpenNebula/one/issues/XXX>`__.
 - `Write some nice description here <https://github.com/OpenNebula/one/issues/XXX>`__.
 - `Write some nice description here <https://github.com/OpenNebula/one/issues/XXX>`__.
+- `Fix clusters on Virtual Networks Templates in Sunsonte <https://github.com/OpenNebula/one/issues/4169>`__.
