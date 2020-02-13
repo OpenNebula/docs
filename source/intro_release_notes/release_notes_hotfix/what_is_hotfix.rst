@@ -10,4 +10,4 @@ While OpenNebula is fully open source, packages from hotfix incremental versions
 
 Hence, everyone can create their own packages or :ref:`build OpenNebula from the source code <compile>`, but only OpenNebula Systems customers have the convenience of pre-created packages in Hotfixes incremental releases.
 
-if you are an OpenNebula Systems customer with an active support subscription you have access to the this hotfix package. Please check your private repository at OpenNebula.pro
+If you are an OpenNebula Systems customer with an active support subscription you have access to this hotfix package. Please check your private repository at OpenNebula.pro
