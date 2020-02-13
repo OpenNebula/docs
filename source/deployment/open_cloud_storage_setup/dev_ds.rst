@@ -25,7 +25,7 @@ No addtional setup is required. Make sure **/etc/one/oned.conf** has the followi
       TM_MAD_SYSTEM = "ssh,shared", LN_TARGET_SSH = "SYSTEM", CLONE_TARGET_SSH = "SYSTEM",
       DISK_TYPE_SSH = "BLOCK", LN_TARGET_SHARED = "NONE",
       CLONE_TARGET_SHARED = "SELF", DISK_TYPE_SHARED = "BLOCK"
-    ]￼
+    ]
 
 Node Setup
 ================================================================================
