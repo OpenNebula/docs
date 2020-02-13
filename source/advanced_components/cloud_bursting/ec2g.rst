@@ -360,7 +360,7 @@ Since EC2 Hosts are treated by the scheduler like any other host, VMs will be au
 Configure the Priority
 --------------------------------------------------------------------------------
 
-The EC2 drivers return a probe with the value PRIORITY = −1. This can be used by :ref:`the scheduler <schg>` by configuring the 'fixed' policy in ``sched.conf``:
+The EC2 drivers return a probe with the value PRIORITY = -1. This can be used by :ref:`the scheduler <schg>` by configuring the 'fixed' policy in ``sched.conf``:
 
 .. code::
 
