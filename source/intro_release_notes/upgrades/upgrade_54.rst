@@ -51,6 +51,10 @@ It is highly recommended **not to keep** your current ``oned.conf``, and update 
 Configuration Files Upgrade
 ===========================
 
+.. important::
+
+    If you have an active OpenNebula `support subscription <http://opennebula.systems/opennebula-support>`__, this step can be automated using the `Configuration Management Module of OneScape <http://docs.opennebula.pro/onescape/5.10/module/config/index.html>`__. It is **mandatory** that you updgrade in this fashion to OpenNebula 5.10.2+. After the ``onecfg upgrade`` step is completed, follow the rest of the steps in this guide before moving to the final steps in OneScape's `OpenNebula Upgrade Workflow <http://docs.opennebula.pro/onescape/5.10/module/config/workflow.html>`__.
+
 If you haven't modified any configuration files, the package managers will replace the configuration files with their newer versions and no manual intervention is required.
 
 If you have customized **any** configuration files under ``/etc/one`` we recommend you to follow these steps regardless of the platform/linux distribution.
