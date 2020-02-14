@@ -50,6 +50,10 @@ Step 5. Update Configuration Files
 --------------------------------------------------------------------------------
 If you haven't modified any configuration files, you can skip this step and proceed to the next one.
 
+.. important::
+
+    If you have an active OpenNebula `support subscription <http://opennebula.systems/opennebula-support>`__, this step can be automated using the `Configuration Management Module of OneScape <http://docs.opennebula.pro/onescape/5.10/module/config/index.html>`__. It is **mandatory** that you updgrade in this fashion to OpenNebula 5.10.2+. After the ``onecfg upgrade`` step is completed, follow the rest of the steps in this guide before moving to the final steps in OneScape's `OpenNebula Upgrade Workflow <http://docs.opennebula.pro/onescape/5.10/module/config/workflow.html>`__.
+
 In order to update the configuration files with your existing customizations you'll need to:
 
 #. Compare the old and new configuration files: ``diff -ur /etc/one.YYYY-MM-DD /etc/one`` and ``diff -ur /var/lib/one/remotes/etc.YYYY-MM-DD /var/lib/one/remotes/etc``. You can use graphical diff-tools like ``meld`` to compare both directories, which are very useful in this step.
