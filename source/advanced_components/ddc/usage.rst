@@ -133,7 +133,7 @@ The newly-provisioned hosts are mostly a fresh installation without anything nec
         connection:
           remote_user: root
         configuration:
-          opennebula_repository_version: 5.8.0
+          opennebula_repository_version: '5.8.0'
           opennebula_node_kvm_use_ev: true
           opennebula_node_kvm_param_nested: true
 
@@ -173,7 +173,7 @@ In the following example, we explain how to use defaults:
       connection:
         remote_user: root
       configuration:
-        opennebula_repository_version: 5.8.0
+        opennebula_repository_version: '5.8.0'
         opennebula_node_kvm_use_ev: true
         opennebula_node_kvm_param_nested: true
 
@@ -228,7 +228,7 @@ The following example shows the provisioning of a complete cluster with host, da
         remote_user: root
       configuration:
         opennebula_node_kvm_manage_kvm: False
-        opennebula_repository_version: 5.8.0
+        opennebula_repository_version: '5.8.0'
         opennebula_node_kvm_use_ev: true
         opennebula_node_kvm_param_nested: true
 
@@ -319,7 +319,7 @@ The main template extends the datastores and network with one EC2 host:
         remote_user: root
       configuration:
         opennebula_node_kvm_manage_kvm: False
-        opennebula_repository_version: 5.8.0
+        opennebula_repository_version: '5.8.0'
         opennebula_node_kvm_use_ev: true
         opennebula_node_kvm_param_nested: true
 
