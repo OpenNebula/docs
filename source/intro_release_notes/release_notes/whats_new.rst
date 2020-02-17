@@ -74,7 +74,7 @@ vCenter
 - **Change default port** `used when OpenNebula connects to vSphere's API <http://docs.opennebula.org/5.10/deployment/vmware_infrastructure_setup/vcenter_setup.html#importing-vcenter-clusters>`__.
 - **NSX integration**: `discover and setup NSX Manager <http://docs.opennebula.org/5.10/deployment/vmware_infrastructure_setup/nsx_setup.html>`__.
 - **NSX integration**: `create and consume NSX networks from within OpenNebula <http://docs.opennebula.org/5.10/operation/network_management/manage_vnets.html#nsx-specific>`__.
-- **NSX integration**: `permit vCenter disk resize in running VM`__.
+- **Hot disk resize**: permit vCenter disk resize in running VM.
 
 OneFlow & OneGate
 ===============================================================================
