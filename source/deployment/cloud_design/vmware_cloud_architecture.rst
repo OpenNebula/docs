@@ -40,11 +40,11 @@ The minimum recommended specs are for the OpenNebula front-end are:
 +-----------+-----------------------------------+
 |  Resource | Minimum Recommended configuration |
 +===========+===================================+
-| Memory    | 2 GB                              |
+| Memory    | 8 GB                              |
 +-----------+-----------------------------------+
-| CPU       | 1 CPU (2 cores)                   |
+| CPU       | 2 CPU (4 cores)                   |
 +-----------+-----------------------------------+
-| Disk Size | 100 GB                            |
+| Disk Size | 200 GB                            |
 +-----------+-----------------------------------+
 | Network   | 2 NICs                            |
 +-----------+-----------------------------------+
