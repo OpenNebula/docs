@@ -47,9 +47,9 @@ In high load environments it is possible that the hook driver (one_hm) is not ab
 
 In the scenarios reviewed where this issue appears, disabling the reporting .info API calls alleviates the problem. Hence this will be disabled in future versions. As a workaround, a new oned process can be compiled with this `commit <https://github.com/OpenNebula/one/commit/5ba128ee7044f8b5e61772f03dcbcb89cfe3c2f8>`__ that disables reporting of .info API calls to the hook subsystem.
 
-Onedb upgrade breaks encoding
-=============================
+Onedb upgrade overwirtes DB encoding
+====================================
 
-When running ``onedb upgrade`` and the tables have different encoding from UTF-8, it breaks those tables.
+When running ``onedb upgrade`` and the DB tables have different encoding from UTF-8, it overwirtes the tables using a wrong encoding. This leads to a non-compatible encoding and errors at the XML-RPC level.
 
-As a workaround you can change the value of **NOKOGIRI_ENCODING** in the file `/usr/bin/onedb` and put there your encoding according to the table you can find `here <https://www.rubydoc.info/github/sparklemotion/nokogiri/Nokogiri/XML/SAX/Parser>`__.
+As a workaround you can change the value of **NOKOGIRI_ENCODING** in the file `/usr/bin/onedb` and put there your encoding according to the DB table encoding in your case. You can find `here <https://www.rubydoc.info/github/sparklemotion/nokogiri/Nokogiri/XML/SAX/Parser>`__ the appropiate enconding.
