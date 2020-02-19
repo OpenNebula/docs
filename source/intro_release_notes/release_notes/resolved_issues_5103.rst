@@ -9,6 +9,7 @@ The following new features has been backported to 5.10.3:
 
 - `Increase number of wild VMs shown per page in Sunstone <https://github.com/OpenNebula/one/issues/4162>`__.
 - `Make some improvements in onehook CLI <https://github.com/OpenNebula/one/issues/4203>`__.
+- `Support hot disk resize in vCenter <https://github.com/OpenNebula/one/issues/1542>`__.
 
 The following issues has been solved in 5.10.3:
 
@@ -16,4 +17,4 @@ The following issues has been solved in 5.10.3:
 - `Fix VM scheduler requirements <https://github.com/OpenNebula/one/issues/4177>`__.
 - `Fix clusters on Virtual Networks Templates in Sunsonte <https://github.com/OpenNebula/one/issues/4169>`__.
 - `Fix edit group dialog in Sunstone <https://github.com/OpenNebula/one/issues/4153>`__.
-- `Permit vCenter hot disk resize <https://github.com/OpenNebula/one/issues/1542>`__.
+- `Fix errors on detaching VM disks <https://github.com/OpenNebula/one/issues/4164>`__.
