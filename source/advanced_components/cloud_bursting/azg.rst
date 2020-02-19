@@ -13,78 +13,43 @@ You should take into account the following technical considerations when using t
 
 -  The usual OpenNebula functionality for snapshotting, hot-plugging, or migration is not available with Azure.
 
--  By default, OpenNebula will always launch Small (1 CPU, 1792 MB RAM) instances, unless otherwise specified. The following table is an excerpt of all the instance types available in Azure. A more exhaustive list can be found (and edited) in ``/etc/one/az_driver.conf``.
+-  By default, OpenNebula will always launch `Standard_B1ls` (1 CPU, 512 MB RAM) instances, unless otherwise specified. The following table is an excerpt from all the instance types available in Azure. A more exhaustive list can be found (and edited) in ``/etc/one/az_driver.conf``.
 
-+------------+--------------+-----------------+
-|    Name    | CPU Capacity | Memory Capacity |
-+============+==============+=================+
-| ExtraSmall | 0.1 Cores    | 768 MB          |
-+------------+--------------+-----------------+
-| Small      | 1 Cores      | 1792 MB         |
-+------------+--------------+-----------------+
-| Medium     | 2 Cores      | 3584 MB         |
-+------------+--------------+-----------------+
-| Large      | 4 Cores      | 7168 MB         |
-+------------+--------------+-----------------+
-| ExtraLarge | 8 Cores      | 14336 MB        |
-+------------+--------------+-----------------+
-| A5         | 2 Cores      | 14336 MB        |
-+------------+--------------+-----------------+
-| A6         | 4 Cores      | 28672 MB        |
-+------------+--------------+-----------------+
-| A7         | 8 Cores      | 57344 MB        |
-+------------+--------------+-----------------+
-| A8         | 8 Cores      | 57344 MB        |
-+------------+--------------+-----------------+
-| A9         | 16 Cores     | 114688 MB       |
-+------------+--------------+-----------------+
++-----------------+--------------+-----------------+
+|    Name         | CPU Capacity | Memory Capacity |
++=================+==============+=================+
+| Standard_B1ls1  | 1 Core       | 0.5 GB          |
++-----------------+--------------+-----------------+
+| Standard_B1ms   | 1 Core       | 2 GB            |
++-----------------+--------------+-----------------+
+| Standard_B1s    | 1 Core       | 1 GB            |
++-----------------+--------------+-----------------+
+| Standard_B2ms   | 2 Cores      | 8 GB            |
++-----------------+--------------+-----------------+
+| Standard_B2s    | 2 Cores      | 4 GB            |
++-----------------+--------------+-----------------+
+| Standard_B4ms   | 4 Cores      | 16 GB           |
++-----------------+--------------+-----------------+
+| Standard_B8ms   | 8 Cores      | 32 GB           |
++-----------------+--------------+-----------------+
+| Standard_B12ms  | 12 Cores     | 48 GB           |
++-----------------+--------------+-----------------+
+| Standard_B16ms  | 16 Cores     | 64 GB           |
++-----------------+--------------+-----------------+
+| Standard_B20ms  | 20 Cores     | 80 GB           |
++-----------------+--------------+-----------------+
 
 Prerequisites
 ================================================================================
 
-- You must have a working account for `Azure <http://azure.microsoft.com/>`__.
-- First, the Subscription ID, that can be uploaded and retrieved from All services -> Subscriptions.
-- Second, the Management Certificate file, that can be created with the following steps. We need the ``.pem`` file (for the ruby gem) and the ``.cer`` file (to upload to Azure):
+- You must have a working account for `Azure <https://portal.azure.com/>`__.
+- First, you need the Subscription ID, that can be uploaded and retrieved from All services -> Subscriptions.
+- Second, you need Client ID, Client secret and Tenant ID. To get those you need to register an application
+  in the Azure Active Directory. Follow the Azure documentation
+  `Create an Azure AD application <https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal>`__.
+-  The following gems are required: `azure_mgmt_compute`, `azure_mgmt_monitor`, `azure_mgmt_network`, `azure_mgmt_resources`, `azure_mgmt_storage`
 
-.. code::
-
-    ## Install openssl
-
-    ## CentOS
-    $ sudo yum install openssl
-
-    ## Ubuntu
-    $ sudo apt-get install openssl
-
-    # Move to a folder (wherever you prefer, but it's best to choose a private folder to store all your keys)
-    $ mkdir ~/.ssh/azure && cd ~/.ssh/azure
-
-    ## Create certificate
-    $ openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout myPrivateKey.key -out myCert.pem
-    $ chmod 600 myPrivateKey.key
-
-    ## Generate .cer file for Azure
-    $ openssl x509 -outform der -in myCert.pem -out myCert.cer
-
-    ## You should have now your .pem certificate and your private key
-    $ find .
-    ==>
-        ./myCert.pem
-        ./myPrivateKey.key
-
-
-
-- Third, the certificate file (``.cer``) has to be uploaded to All services -> Subscriptions -> Management certificates
-- In order to allow the Azure driver to authenticate properly with our Azure account, you need to sign your ``.pem`` file:
-
-.. code::
-
-    ## Concatenate key and pem certificate (sign with private key)
-    $ cat myCert.pem myPrivateKey.key > azureOne.pem
-
-``azureOne.pem`` is the resulting signed certificate. OpenNebula does not need you to store this in any specific location of the OpenNebula front-end filesystem, but please keep it safe. Remember that you will need to read it in the host creation process. We'll talk about how to perform this action later.
-
--  The following gem is required: ``azure``. This gem is automatically installed as part of the :ref:`installation process <ruby_runtime>`. Otherwise, run the ``install_gems`` script as root:
+These gems are automatically installed as part of the :ref:`installation process <ruby_runtime>`. Otherwise, run the ``install_gems`` script as root:
 
 .. prompt:: bash # auto
 
@@ -101,7 +66,7 @@ Uncomment the Azure AZ IM and VMM drivers from the ``/etc/one/oned.conf`` file i
           name       = "az",
           executable = "one_im_sh",
           arguments  = "-c -t 1 -r 0 az" ]
-     
+
     VM_MAD = [
         name       = "az",
         executable = "one_vmm_sh",
@@ -123,22 +88,23 @@ The Azure driver has its own configuration file with a few options ready to cust
 .. code::
 
     proxy_uri:
+    rgroup_name_format: one-%<NAME>s-%<ID>s
     instance_types:
-        ExtraSmall:
+        Standard_B1ls:
+            memory: 0.5
             cpu: 1
-            memory: 0.768
-        Small:
+        Standard_B1ms:
+            memory: 2.0
             cpu: 1
-            memory: 1.75
-        Medium:
+        Standard_B1s:
+            memory: 1.0
+            cpu: 1
+        Standard_B2ms:
+            memory: 8.0
             cpu: 2
-            memory: 3.5
-        Large:
-            cpu: 4
-            memory: 7.0
-        ExtraLarge:
-            cpu: 8
-            memory: 14.0
+        Standard_B2s:
+            memory: 4.0
+            cpu: 2
         ...
 
 In the above file, each ``instance_type`` represents the physical resources that Azure will serve.
@@ -148,6 +114,8 @@ If the OpenNebula frontend needs to use a proxy to connect to the public Interne
 .. code::
 
     proxy_uri: http://10.0.0.1:8080
+
+If you don't specify the Azure Resource Group explicitly in the HOST template then the ``rgroup_name_format`` is taken into account and the Azure Resource Group name will be derived from the OpenNebula Azure host values (name and id).
 
 
 .. warning:: The ``instance_types`` section lists the machines that Azure is able to provide. The Azure driver will retrieve this kind of information, so it's better not to change it unless you know what you are doing.
@@ -167,7 +135,7 @@ Once the file is saved, OpenNebula needs to be restarted. Create a new Host with
 
     ``-t`` is needed to specify what type of remote provider host we want to set up. If you've followed all the instructions properly, your default editor should appear, asking for the credentials and other mandatory data that will allow you to communicate with Azure.
 
-Once you have opened your editor you can look for additional help at the top of your screen. There is more information in the :ref:`Azure Auth template Attributes <az_auth_attributes>` section. The basic three variables you have to set are: ``AZ_ID``, ``AZ_CERT`` and ``REGION_NAME``.
+Once you have opened your editor you can look for additional help at the top of your screen. There is more information in the :ref:`Azure Auth template Attributes <az_auth_attributes>` section. The basic five variables you have to set are: ``AZ_SUB``, ``AZ_CLIENT``, ``AZ_SECRET``, ``AZ_TENANT`` and ``AZ_REGION``.
 
 
 .. _azure_specific_template_attributes:
@@ -181,29 +149,31 @@ In order to deploy an instance in Azure through OpenNebula, you must include an 
 
     CPU      = 0.5
     MEMORY   = 128
-     
+
     # KVM template machine, this will be use when submitting this VM to local resources
     DISK     = [ IMAGE_ID = 3 ]
     NIC      = [ NETWORK_ID = 7 ]
-     
-    # Azure template machine, this will be use wen submitting this VM to Azure
+
+    # Azure template machine, this will be use when submitting this VM to Azure
+
     PUBLIC_CLOUD = [
-      TYPE=AZURE,
-      INSTANCE_TYPE=ExtraSmall,
-      IMAGE=b39f27a8b8c64d52b05eac6a62ebad85__Ubuntu-14_04-LTS-amd64-server-20140606.1-en-us-30GB,
-      VM_USER="azuser",
+      INSTANCE_TYPE="Standard_B1s",
+      IMAGE_OFFER="UbuntuServer",
+      IMAGE_PUBLISHER="canonical",
+      IMAGE_SKU="16.04.0-LTS",
+      IMAGE_VERSION="latest",
+      PUBLIC_IP="YES",
+      TYPE="AZURE",
+      VM_USER="MyUserName"
       VM_PASSWORD="myr@nd0mPass9",
-      WIN_RM="https",
-      TCP_ENDPOINTS="80",
-      SSHPORT=2222
     ]
-     
+
     #Add this if you want this VM to only go to the West EuropeAzure cloud
-    #SCHED_REQUIREMENTS = 'HOSTNAME = "west-europe"'
+    #SCHED_REQUIREMENTS = 'HOSTNAME = "westeurope"'
 
 These are the attributes that can be used in the PUBLIC_CLOUD section of the template for TYPE "AZURE", There is an exhaustive list of attributes in the :ref:`Virtual Machine Definition File Reference Section <public_cloud_azure_atts>`.
 
-.. note:: The PUBLIC_CLOUD sections allow for substitutions from template and virtual network variables, the same way as the :ref:`CONTEXT section allows <template_context>`.
+.. note:: The PUBLIC_CLOUD sections allow for substitutions from a template and virtual network variables, the same way as the :ref:`CONTEXT section allows <template_context>`.
 
 
 Default values for all these attributes can be defined in the ``/etc/one/az_driver.default`` file.
@@ -213,65 +183,39 @@ Default values for all these attributes can be defined in the ``/etc/one/az_driv
     <!--
      Default configuration attributes for the Azure driver
      (all domains will use these values as defaults)
-     Valid attributes are: INSTANCE_TYPE, IMAGE, VM_USER, VM_PASSWORD, LOCATION,
-     STORAGE_ACCOUNT, WIN_RM, CLOUD_SERVICE, TCP_ENDPOINTS, SSHPORT, AFFINITY_GROUP,
-     VIRTUAL_NETWORK_NAME, SUBNET and AVAILABILITY_SET
+     Valid attributes are: LOCATION, INSTANCE_TYPE, IMAGE_PUBLISHER, IMAGE_OFFER,
+     IMAGE_SKU, IMAGE_VERSION, VM_USER, VM_PASSWORD, VIRTUAL_NETWORK_NAME,
+     PUBLIC_IP, VNET_NAME, VNET_ADDR_PREFIX, VNET_DNS, VNET_SUBNAME,
+     VNET_SUB_PREFIX,
      Use XML syntax to specify defaults, note elements are UPCASE
      Example:
      <TEMPLATE>
        <AZURE>
-         <LOCATION>west-europe</LOCATION>
-         <INSTANCE_TYPE>Small</INSTANCE_TYPE>
-         <CLOUD_SERVICE>MyDefaultCloudService</CLOUD_SERVICE>
-         <IMAGE>0b11de9248dd4d87b18621318e037d37__RightImage-Ubuntu-12.04-x64-v13.4</IMAGE>
-         <VM_USER>MyUser</VM_USER>
-         <VM_PASSWORD>MyPassword</VM_PASSWORD>
-         <STORAGE_ACCOUNT>MyStorageAccountName</STORAGE_ACCOUNT>
-         <WIN_RM>http</WIN_RM>
-         <CLOUD_SERVICE>MyCloudServiceName</CLOUD_SERVICE>
-         <TCP_ENDPOINTS>80,3389:3390</TCP_ENDPOINTS>
-         <SSHPORT>2222</SSHPORT>
-         <AFFINITY_GROUP>MyAffinityGroup</AFFINITY_GROUP>
-         <VIRTUAL_NETWORK_NAME>MyVirtualNetwork</VIRTUAL_NETWORK_NAME>
-         <SUBNET>MySubNet<SUBNET>
-         <AVAILABILITY_SET>MyAvailabilitySetName<AVAILABILITY_SET>
+         <LOCATION>westeurope</LOCATION>
+         <INSTANCE_TYPE>Standard_B1ls</INSTANCE_TYPE>
+         <IMAGE_PUBLISHER>canonical</IMAGE_PUBLISHER>
+         <IMAGE_OFFER>UbuntuServer</IMAGE_OFFER>
+         <IMAGE_SKU>16.04.0-LTS</IMAGE_SKU>
+         <IMAGE_VERSION>latest</IMAGE_VERSION>
+         <VM_USER>one</VM_USER>
+         <VM_PASSWORD>Q2ejfz$Cbzf</VM_PASSWORD>
+         <VIRTUAL_NETWORK_NAME></VIRTUAL_NETWORK_NAME>
+         <PUBLIC_IP>YES</PUBLIC_IP>
+         <VNET_NAME>one-vnet</VNET_NAME>
+         <VNET_ADDR_PREFIX>10.0.0.0/16</VNET_ADDR_PREFIX>
+         <VNET_DNS>8.8.8.8</VNET_DNS>
+         <VNET_SUBNAME>default</VNET_SUBNAME>
+         <VNET_SUB_PREFIX>10.0.0.0/24</VNET_SUB_PREFIX>
        </AZURE>
      </TEMPLATE>
     -->
 
     <TEMPLATE>
       <AZURE>
-         <LOCATION>west-europe</LOCATION>
-         <INSTANCE_TYPE>Small</INSTANCE_TYPE>
+         <LOCATION>westeurope</LOCATION>
+         <INSTANCE_TYPE>Standard_B1ls</INSTANCE_TYPE>
       </AZURE>
     </TEMPLATE>
-
-.. note:: Valid Azure images to set in the IMAGE atribute of the PUBLIC_CLOUD section can be extracted with the following ruby snippet:
-
-
-.. code::
-
-   #!/usr/bin/env ruby
-
-   require "azure"
-
-   # Get a list of available virtual machine images
-   def get_image_names
-       vm_image_management = Azure.vm_image_management
-       vm_image_management.list_os_images.each do |image|
-           puts "#{image.os_type}"
-           puts "      locations: #{image.locations}"
-           puts "      name     : #{image.name}"
-           puts
-       end
-   end
-
-   Azure.configure do |config|
-             config.management_certificate = '/path-to/azureOne.pem'
-             config.subscription_id        = 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX'
-   end
-
-   get_image_names
 
 
 .. _az_auth_attributes:
@@ -283,40 +227,48 @@ After successfully executing ``onehost create`` with the ``-t`` option, your def
 
 .. code::
 
-    AZ_ID = "this-is-my-azure-identifier"
-    AZ_CERT = "-----BEGIN CERTIFICATE-----
-              xxxxxxxxxxxxxxxxxxxxxxxxxxxx
-              -----END CERTIFICATE-----
-              -----BEGIN PRIVATE KEY-----
-              xxxxxxxxxxxxxxxxxxxxxxxxxxxx
-              -----END PRIVATE KEY-----"
+    AZ_SUB    = "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
+    AZ_CLIENT = "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
+    AZ_SECRET = "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
+    AZ_TENANT = "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
+    AZ_REGION = "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
 
-    REGION_NAME = "West Europe"
-    CAPACITY = [
-        SMALL = "3",
-        MEDIUM = "1" ]
+    CAPACITY=[
+      STANDARD_B1LS =<number of machines Standard_B1ls>,
+      STANDARD_A1_V2=<number of machines Standard_A1_v2>
+    ]
 
-The first two attributes have the authentication info required by Azure:
+    Optional AZURE ATTRIBUTES:
 
-- **AZ_ID**: Your Microsoft Azure account identifier, found in All services -> Subscriptions.
-- **AZ_CERT**: The certificate that you signed before. In our example this file is called 'azureOne.pem'. You only need to read this file once to set the attribute and start using Azure:
-
-.. prompt:: bash $ auto
-
-    $ cat ~/.ssh/azure/azureOne.pem
-
-- Copy the content into your system clipboard without any mistake selecting all the text (ctrl + Shift + c if you are using a typical desktop).
-
-- Paste that into the AZ_CERT value. Make sure it is inside quotes, without leaving any blank space.
+    AZ_RGROUP = ""
+    AZ_RGROUP_KEEP_EMPTY = ""
 
 
-This information will be encrypted as soon as the host is created. In the host template the values of the ``AZ_ID`` and ``AZ_CERT`` attributes will be encrypted to maintain your future communication with Azure securely.
-
-- **REGION_NAME**: The name of the Azure region that your account uses to deploy machines. You can check Microsoft's `Regions Azure page <https://azure.microsoft.com/es-es/regions/>`__ to find more about the region availability.
-
-In the example the region is set to `West Europe`.
-
-- **CAPACITY**: This attribute sets the size and number of Azure machines that your OpenNebula host will handle.   See the ``instance_types`` section in the ``azure_driver.conf`` file for the supported names. Remember that it is mandatory to capitalize the names (``Small`` => ``SMALL``).
++--------------------------+------------------------------------------------------------------------------------------------------+
+|  **AZ_SUB**              | Your Microsoft Azure subscription identifier, found in All services -> Subscriptions.                |
++--------------------------+------------------------------------------------------------------------------------------------------+
+|  **AZ_CLIENT**,          | For those parameters you need to register an application in AzureActive Directory.                   |
+|  **AZ_SECRET**,          | Follow the Azure documentation `Create an Azure AD application                                       |
+|  **AZ_TENANT**           | <https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal>`__.|
+|                          | In the host template the values of the ``AZ_SUB``, ``AZ_CLIENT``, ``AZ_SECRET`` and ``AZ_TENANT``    |
+|                          | attributes will be encrypted to maintain your future communication with Azure securely.              |
++--------------------------+------------------------------------------------------------------------------------------------------+
+| **AZ_REGION**            | The name of the Azure region that your account uses to deploy machines. You can check Microsoft's    |
+|                          | `Regions Azure page <https://azure.microsoft.com/global-infrastructure/regions/>`__ to find more     |
+|                          | about the region availability.                                                                       |
++--------------------------+------------------------------------------------------------------------------------------------------+
+| **AZ_RGROUP**            | Name of the Azure Resource Group, which will be created on Azure. If not specified then it will      |
+|                          | be derived from the name of the host and the format string specified in the                          |
+|                          | ``/etc/one/az_driver.conf``.                                                                         |
++--------------------------+------------------------------------------------------------------------------------------------------+
+| **AZ_RGROUP_KEEP_EMPTY** | If set to ``YES`` then even if the last VM if deleted in this Resource Group it will remain          |
+|                          | in the Azure. This is useful when you have pre-defined resources in the Azure (like Resource group,  |
+|                          | Virtual networks etc) and want them to use it by OpenNebula Azure driver.                            |
++--------------------------+------------------------------------------------------------------------------------------------------+
+| **CAPACITY**             | This attribute sets the size and number of Azure machines that your OpenNebula host will handle.     |
+|                          | See the ``instance_types`` section in the ``azure_driver.conf`` file for the supported names.        |
+|                          | Remember that it is mandatory to capitalize the names (``STANDARD_B1ls`` => ``STANDARD_B1LS``)       |
++--------------------------+------------------------------------------------------------------------------------------------------+
 
 .. _azg_multi_az_site_region_account_support:
 
@@ -326,54 +278,37 @@ Multi Azure Location/Account Support
 It is possible to define various Azure hosts to allow OpenNebula to manage different Azure locations or different Azure accounts. OpenNebula chooses the datacenter in which to launch the VM in the following way:
 
 - If the VM description contains the LOCATION attribute, then OpenNebula knows that the VM needs to be launched in this Azure location.
-- If the name of the host matches the region name (remember, this is the same as an Azure location), then OpenNebula knows that the VMs sent to this host needs to be launched in that Azure datacenter.
+- If the name of the host matches the region name (remember, this is the same as an Azure location), then OpenNebula knows that the VMs sent to this host need to be launched in that Azure datacenter.
 - If the VM doesn't have a LOCATION attribute, and the host name doesn't match any of the defined regions, then the default region is picked.
 
-When you create a new host, the credentials and endpoint for that host are retrieved from the ``/etc/one/az_driver.conf`` file using the host name. Therefore, if you want to add a new host to manage a different datacenter, i.e. ``west-europe``, just add your credentials and the capacity limits to the ``west-europe`` section in the configuration file, and specify that name (``west-europe``) when creating the new host.
-
-.. code::
-
-    regions:
-        ...
-        west-europe:
-            region_name: "West Europe"
-            pem_management_cert: "<path-to-your-vonecloud-pem-certificate-here>"
-            subscription_id: "your-subscription-id"
-            management_endpoint:
-            capacity:
-                Small: 5
-                Medium: 1
-                Large: 0
-
-After that, create a new Host with the ``west-europe`` name:
-
-.. prompt:: bash $ auto
-
-    $ onehost create west-europe -i az -v az
-
-If the Host name does not match any region key, the ``default`` will be used.
 
 You can define a different Azure section in your template for each Azure host, so with one template you can define different VMs depending on which host it is scheduled. Just include a LOCATION attribute in each PUBLIC_CLOUD section:
 
 .. code::
 
     PUBLIC_CLOUD = [ TYPE=AZURE,
-                     INSTANCE_TYPE=Small,
-                     IMAGE=b39f27a8b8c64d52b05eac6a62ebad85__Ubuntu-14_04-LTS-amd64-server-20140606.1-en-us-30GB,
+                     INSTANCE_TYPE=Standard_B1ls,
+                     IMAGE_PUBLISHER=canonical,
+                     IMAGE_OFFER=UbuntuServer,
+                     IMAGE_SKU=16.04.0-LTS,
+                     IMAGE_VERSION=latest
                      VM_USER="MyUserName",
                      VM_PASSWORD="MyPassword",
-                     LOCATION="brazil-south"
+                     LOCATION="brazilsouth"
     ]
 
     PUBLIC_CLOUD = [ TYPE=AZURE,
-                     INSTANCE_TYPE=Medium,
-                     IMAGE=0b11de9248dd4d87b18621318e037d37__RightImage-Ubuntu-12.04-x64-v13.4,
+                     INSTANCE_TYPE=Standard_B2s,
+                     IMAGE_PUBLISHER=canonical,
+                     IMAGE_OFFER=UbuntuServer,
+                     IMAGE_SKU=16.04.0-LTS,
+                     IMAGE_VERSION=latest
                      VM_USER="MyUserName",
                      VM_PASSWORD="MyPassword",
-                     LOCATION="west-europe"
+                     LOCATION="westeurope"
     ]
 
-You will have a small Ubuntu 14.04 VM launched when this VM template is sent to host *brazil-south* and a medium Ubuntu 13.04 VM launched whenever the VM template is sent to host *west-europe*.
+You will have a Standard_B1ls Ubuntu 16.04 VM launched when this VM template is sent to host *brazilsouth* and a Standard_B2s Ubuntu 16.04 VM launched whenever the VM template is sent to host *westeurope*.
 
 .. warning:: If only one Azure host is defined, the Azure driver will deploy all Azure templates onto it, not paying attention to the **LOCATION** attribute.
 
@@ -388,19 +323,22 @@ An example of a hybrid template:
 
     ## Local Template section
     NAME=MNyWebServer
-     
+
     CPU=1
     MEMORY=256
-     
+
     DISK=[IMAGE="nginx-golden"]
     NIC=[NETWORK="public"]
-     
+
     PUBLIC_CLOUD = [ TYPE=AZURE,
-                     INSTANCE_TYPE=Medium,
-                     IMAGE=0b11de9248dd4d87b18621318e037d37__RightImage-Ubuntu-12.04-x64-v13.4,
+                     INSTANCE_TYPE=Standard_B2s,
+                     IMAGE_PUBLISHER=canonical,
+                     IMAGE_OFFER=UbuntuServer,
+                     IMAGE_SKU=16.04.0-LTS,
+                     IMAGE_VERSION=latest
                      VM_USER="MyUserName",
                      VM_PASSWORD="MyPassword",
-                     LOCATION="west-europe"
+                     LOCATION="westeurope"
     ]
 
 OpenNebula will use the first portion (from NAME to NIC) in the above template when the VM is scheduled to a local virtualization node, and the PUBLIC_CLOUD section of TYPE="AZURE" when the VM is scheduled to an Azure node (i.e. when the VM is going to be launched in Azure).
@@ -414,21 +352,24 @@ You must create a template file containing the information of the VMs you want t
 
     CPU      = 1
     MEMORY   = 1700
-     
+
     # KVM template machine, this will be use when submitting this VM to local resources
     DISK     = [ IMAGE_ID = 3 ]
     NIC      = [ NETWORK_ID = 7 ]
-     
-    # Azure template machine, this will be use when submitting this VM to Azure
-     
+
+    # Azure template machine, this will be used when submitting this VM to Azure
+
     PUBLIC_CLOUD = [ TYPE=AZURE,
-                     INSTANCE_TYPE=Medium,
-                     IMAGE=0b11de9248dd4d87b18621318e037d37__RightImage-Ubuntu-12.04-x64-v13.4,
+                     INSTANCE_TYPE=Standard_B2s,
+                     IMAGE_PUBLISHER=canonical,
+                     IMAGE_OFFER=UbuntuServer,
+                     IMAGE_SKU=16.04.0-LTS,
+                     IMAGE_VERSION=latest
                      VM_USER="MyUserName",
                      VM_PASSWORD="MyPassword",
-                     LOCATION="west-europe"
+                     LOCATION="westeurope"
     ]
-     
+
     # Add this if you want to use only Azure cloud
     #SCHED_REQUIREMENTS = 'HYPERVISOR = "AZURE"'
 
@@ -448,82 +389,29 @@ Now you can monitor the state of the VM with
          0 oneadmin oneadmin one-0        runn   0      0K     west-europe    0d 07:03
 
 
-Also you can see information (like IP address) related to the Azure instance launched via the command. The attributes available are:
+Also, you can see information (like IP address) related to the Azure instance launched via the command ``onevm show 0``. The attributes available are:
 
--  AZ_AVAILABILITY_SET_NAME
--  AZ_CLOUD_SERVICE_NAME,
--  AZ_DATA_DISKS,
--  AZ_DEPLOYMENT_NAME,
--  AZ_DISK_NAME,
--  AZ_HOSTNAME,
--  AZ_IMAGE,
--  AZ_IPADDRESS,
--  AZ_MEDIA_LINK,
--  AZ_OS_TYPE,
--  AZ_ROLE_SIZE,
--  AZ_TCP_ENDPOINTS,
--  AZ_UDP_ENDPOINTS,
--  AZ_VIRTUAL_NETWORK_NAME
+-   AZ_HARDWARE_PROFILE_VM_SIZE
+-   AZ_ID
+-   AZ_IPADDRESS
+-   AZ_LOCATION
+-   AZ_NAME
+-   AZ_OS_PROFILE_ADMIN_USERNAME
+-   AZ_OS_PROFILE_COMPUTER_NAME
+-   AZ_PROVISIONING_STATE
+-   AZ_STORAGE_PROFILE_IMAGE_REFERENCE_OFFER
+-   AZ_STORAGE_PROFILE_IMAGE_REFERENCE_PUBLISHER
+-   AZ_STORAGE_PROFILE_IMAGE_REFERENCE_SKU
+-   AZ_STORAGE_PROFILE_IMAGE_REFERENCE_VERSION
+-   AZ_STORAGE_PROFILE_OS_DISK_CACHING
+-   AZ_STORAGE_PROFILE_OS_DISK_CREATE_OPTION
+-   AZ_STORAGE_PROFILE_OS_DISK_MANAGED_DISK_ID
+-   AZ_STORAGE_PROFILE_OS_DISK_MANAGED_DISK_STORAGE_ACCOUNT_TYPE
+-   AZ_STORAGE_PROFILE_OS_DISK_NAME
+-   AZ_STORAGE_PROFILE_OS_DISK_OS_TYPE
+-   AZ_TYPE
+-   AZ_VM_ID
 
-.. prompt:: bash $ auto
-
-    $ onevm show 0
-    VIRTUAL MACHINE 0 INFORMATION
-    ID                  : 0
-    NAME                : one-0
-    USER                : oneadmin
-    GROUP               : oneadmin
-    STATE               : ACTIVE
-    LCM_STATE           : RUNNING
-    RESCHED             : No
-    START TIME          : 06/25 13:05:29
-    END TIME            : -
-    HOST                : west-europe
-    CLUSTER ID          : -1
-    DEPLOY ID           : one-0_opennebuladefaultcloudservicename-0
-
-
-    VIRTUAL MACHINE MONITORING
-    USED MEMORY         : 0K
-    USED CPU            : 0
-    NET_TX              : 0K
-    NET_RX              : 0K
-
-    PERMISSIONS
-    OWNER               : um-
-    GROUP               : ---
-    OTHER               : ---
-
-    VIRTUAL MACHINE HISTORY
-    SEQ HOST            ACTION             DS           START        TIME     PROLOG
-      0 west-europe     none               -1  06/25 13:06:25   0d 00h06m   0h00m00s
-
-
-    USER TEMPLATE
-    PUBLIC_CLOUD=[
-      IMAGE="b39f27a8b8c64d52b05eac6a62ebad85__Ubuntu-14_04-LTS-amd64-server-20140606.1-en-us-30GB",
-      INSTANCE_TYPE="ExtraSmall",
-      SSH_PORT="2222",
-      TCP_ENDPOINTS="80",
-      TYPE="AZURE",
-      VM_PASSWORD="MyVMPassword",
-      VM_USER="MyUserName",
-      WIN_RM="https" ]
-    VIRTUAL MACHINE TEMPLATE
-    AUTOMATIC_REQUIREMENTS="!(PUBLIC_CLOUD = YES) | (PUBLIC_CLOUD = YES & (HYPERVISOR = AZURE | HYPERVISOR = AZURE))"
-    AZ_CLOUD_SERVICE_NAME="opennebuladefaultcloudservicename-0"
-    AZ_DEPLOYMENT_NAME="OpenNebulaDefaultCloudServiceName-0"
-    AZ_DISK_NAME="OpenNebulaDefaultCloudServiceName-0-one-0_OpenNebulaDefaultCloudServiceName-0-0-201406251107210062"
-    AZ_HOSTNAME="ubuntu"
-    AZ_IMAGE="b39f27a8b8c64d52b05eac6a62ebad85__Ubuntu-14_04-LTS-amd64-server-20140606.1-en-us-30GB"
-    AZ_IPADDRESS="191.233.70.93"
-    AZ_MEDIA_LINK="http://one0opennebuladefaultclo.blob.core.windows.net/vhds/disk_2014_06_25_13_07.vhd"
-    AZ_OS_TYPE="Linux"
-    AZ_ROLE_SIZE="ExtraSmall"
-    AZ_TCP_ENDPOINTS="name=SSH,vip=23.97.101.202,publicport=2222,local_port=22,local_port=tcp;name=TCP-PORT-80,vip=23.97.101.202,publicport=80,local_port=80,local_port=tcp"
-    CPU="1"
-    MEMORY="1024"
-    VMID="0"
 
 Scheduler Configuration
 ================================================================================

@@ -1024,39 +1024,48 @@ More information in the :ref:`Azure Driver Section <azg>`:
 +==========================+=================================================================================================+===========+
 | **TYPE**                 | Needs to be set to "AZURE"                                                                      | YES       |
 +--------------------------+-------------------------------------------------------------------------------------------------+-----------+
-| **INSTANCE_TYPE**        | Specifies the capacity of the VM in terms of CPU and memory                                     | YES       |
+| **INSTANCE_TYPE**        | Specifies the capacity of the VM in terms of CPU and memory.                                    | YES       |
 +--------------------------+-------------------------------------------------------------------------------------------------+-----------+
-| **IMAGE**                | Specifies the base OS of the VM. There are various ways to obtain the list of valid images for  | YES       |
-|                          | Azure, the simplest one is detailed `here                                                       |           |
-|                          | <http://msdn.microsoft.com/library/azure/jj157191.aspx>`__                                      |           |
+|    Following 4 attributes specify the base OS of the VM. There are various ways to obtain the list of valid images for Azure,          |
+|    the simplest one is detailed `here <https://docs.microsoft.com/en-us/rest/api/compute/images/list>`__                               |
+|    You can also obtain them using `azure-cli` by running ``az vm image list``.                                                         |
++--------------------------+-------------------------------------------------------------------------------------------------+-----------+
+| **IMAGE_PUBLISHER**      | Such as `Canonical`, `OpenLogic` or `Debian`                                                    | YES       |
++--------------------------+-------------------------------------------------------------------------------------------------+-----------+
+| **IMAGE_OFFER**          | Such as `UbuntuServer`, `CentOS` or `debian-10`                                                 | YES       |
++--------------------------+-------------------------------------------------------------------------------------------------+-----------+
+| **IMAGE_SKU**            | Such as `18.04-LTS`, `7.5`, `10`                                                                | YES       |
++--------------------------+-------------------------------------------------------------------------------------------------+-----------+
+| **IMAGE_VERSION**        | Usually `latest`                                                                                | YES       |
 +--------------------------+-------------------------------------------------------------------------------------------------+-----------+
 | **VM_USER**              | If the selected IMAGE is prepared for Azure provisioning, a username can be specified here to   | NO        |
-|                          | access the VM once booted                                                                       |           |
+|                          | access the VM once booted.                                                                      |           |
 +--------------------------+-------------------------------------------------------------------------------------------------+-----------+
 | **VM_PASSWORD**          | Password for VM_USER                                                                            | NO        |
 +--------------------------+-------------------------------------------------------------------------------------------------+-----------+
-| **LOCATION**             | Azure datacenter where the VM will be sent. See /etc/one/az_driver.conf for possible values     | NO        |
-|                          | (use the name of the section, not the region names). Spaces are not supported in this value.    |           |
+| **LOCATION**             | Azure datacenter where the VM will be sent.                                                     | NO        |
+|                          | See: `Azure regions <https://azure.microsoft.com/global-infrastructure/regions/>`__.            | NO        |
 +--------------------------+-------------------------------------------------------------------------------------------------+-----------+
-| **STORAGE_ACCOUNT**      | Specify the storage account where this VM will belong                                           | NO        |
+| **PUBLIC_IP**            | Set to "YES" if you want to create and assign public ipv4 address to the Azure VM.              | NO        |
 +--------------------------+-------------------------------------------------------------------------------------------------+-----------+
-| **WIN_RM**               | Comma-separated list of possible protocols to access this Windows VM                            | NO        |
+| **VIRTUAL_NETWORK_NAME** | Name of the virtual network, which is already created in Azure. If not given virtual network    | NO        |
+|                          | will be created based on 5 following attributes (or using defaults).                            |           |
 +--------------------------+-------------------------------------------------------------------------------------------------+-----------+
-| **CLOUD_SERVICE**        | Specifies the name of the cloud service where this VM will be linked. Defaults to "csn<vid>,    | NO        |
-|                          | where vid is the id of the VM".                                                                 |           |
+| **VNET_NAME**            | Name of virtual network which will be created on Azure. Default: `one-vnet`                     | NO        |
 +--------------------------+-------------------------------------------------------------------------------------------------+-----------+
-| **TCP_ENDPOINTS**        | Comma-separated list of TCP ports to be accesible from the public internet to this VM           | NO        |
+| **VNET_ADDR_PREFIX**     | Vnet address prefix on. Default: `10.0.0.0/16`.                                                 | NO        |
 +--------------------------+-------------------------------------------------------------------------------------------------+-----------+
-| **SSHPORT**              | Port where the VMs ssh server will listen on                                                    | NO        |
+| **VNET_DNS**             | DNS server. Default: `8.8.8.8`.                                                                 | NO        |
 +--------------------------+-------------------------------------------------------------------------------------------------+-----------+
-| **VIRTUAL_NETWORK_NAME** | Name of the virtual network to which this VM will be connected                                  | NO        |
+| **VNET_SUBNAME**         | Subnet name. Default: `default`.                                                                | NO        |
 +--------------------------+-------------------------------------------------------------------------------------------------+-----------+
-| **SUBNET**               | NAme of the particular Subnet where this VM will be connected to                                | NO        |
+| **VNET_SUB_PREFIX**      | Vnet subnet prefix. Default: `VNET_SUB_PREFIX`.                                                 | NO        |
 +--------------------------+-------------------------------------------------------------------------------------------------+-----------+
-| **AVAILABILITY_SET**     | Name of the availability set to which this VM will belong                                       | NO        |
+| **AVAILABILITY_SET**     | Name of the availability set to which this VM will belong.                                      | NO        |
 +--------------------------+-------------------------------------------------------------------------------------------------+-----------+
-| **AFFINITY_GROUP**       | Affinity groups allow you to group your Azure services to optimize performance. All services    | NO        |
-|                          | and VMs within an affinity group will be located in the same region belong                      |           |
+| **PROXIMITY_GROUP**      | Name of proximity groups which is already created in Azure. Proximity groups allow you to group | NO        |
+|                          | your Azure services to optimize performance. All services and VMs within an affinity group will |           |
+|                          | be located in the same region belong.                                                           |           |
 +--------------------------+-------------------------------------------------------------------------------------------------+-----------+
 
 .. _template_requirement_expression_syntax:
