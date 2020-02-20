@@ -144,11 +144,51 @@ Each Role can be attached to the dynamic networks individually.
 
 |oneflow-templates-net-2|
 
-When a Service Template defines dynamic networks, the instantiate dialog will ask the user to select the networks to use for the new Service.
+When a Service Template defines dynamic networks, the instantiate dialog will ask the user to select how to select the network.
+
+- You can use an existing one, it will just take a lease from that network.
 
 |oneflow-templates-net-3|
 
+- You can create a network from a reservation, in this case it will take the existing network and create a reservation for the service. In this case as an extra parameters you have to specify the name of the reservation and the size.
+
+|oneflow-templates-net-4|
+
+- You can create a network instantiating a network template. In this case as an extra parameters you have to specify the address range to create.
+
+|oneflow-templates-net-5|
+
 This allows you to create more generic Service Templates. For example, the same Service Template can be used by users of different :ref:`groups <manage_groups>` that may have access to different Virtual Networks.
+
+.. note:: When the service is deleted, all the networks that have been created are automatically deleted.
+
+All these operations can be also done trhough the CLI. When you instantiate the template using ``oneflow-template instantiate <ID> <file>``
+
+.. code::
+
+    # Use existing network
+    {"networks_values": [{"Private":{"id":"0"}}]}
+
+    # Reserve from a network
+    {"networks_valies": [{"reserve_from": "0", "extra":"NAME=RESERVATION\nSIZE=5"}]}
+
+    # Instantiate a network template
+    {"networks_values": [{"Private":{"template_id":"0", "extra":"AR=[ IP=192.168.122.10, SIZE=10, TYPE=IP4 ]"}}]}
+
+Using Custom Attributes
+--------------------------------------------------------------------------------
+
+You can use some custom attributes in service template to pass them to the virtual machine context section. This custom attributes are key-value format and can be mandatory or optional.
+
+|oneflow-templates-attrs|
+
+You can also use them trhough the CLI. When you instantiate the template using ``oneflow-template instantiate <ID> <file>``
+
+.. code::
+
+    {"custom_attrs_values":{"map_private":"10.0.0.0/24", "map_public":"192.168.2.0/24"}
+
+.. note:: There are special custom attributes, which are the ones starting by ``map_``, this allow you to make a maping beetween public and private networking.
 
 
 Managing Services
@@ -516,3 +556,6 @@ Read the :ref:`elasticity policies documentation <appflow_elasticity>` for more 
 .. |oneflow-templates-net-1| image:: /images/oneflow-templates-net-1.png
 .. |oneflow-templates-net-2| image:: /images/oneflow-templates-net-2.png
 .. |oneflow-templates-net-3| image:: /images/oneflow-templates-net-3.png
+.. |oneflow-templates-net-4| image:: /images/oneflow-templates-net-4.png
+.. |oneflow-templates-net-5| image:: /images/oneflow-templates-net-5.png
+.. |oneflow-templates-attrs| image:: /images/oneflow-templates-attrs.png

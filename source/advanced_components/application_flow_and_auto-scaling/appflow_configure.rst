@@ -25,7 +25,7 @@ The OneFlow configuration file can be found at ``/etc/one/oneflow-server.conf``.
 +----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | :one\_xmlrpc         | OpenNebula daemon host and port                                                                                                                                         |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| :lcm\_interval       | Time in seconds between Life Cycle Manager steps                                                                                                                        |
+| :autoscaler\_interval| Time in seconds between each time scale rules are evaluated                                                                                                             |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | :host                | Host where OneFlow will listen                                                                                                                                          |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -69,55 +69,60 @@ This is the default file
     ################################################################################
     # Server Configuration
     ################################################################################
-     
+
     # OpenNebula daemon contact information
     #
     :one_xmlrpc: http://localhost:2633/RPC2
-     
-    # Time in seconds between Life Cycle Manager steps
+
+    # Time in seconds between each time scale rules are evaluated
     #
-    :lcm_interval: 30
-     
+    :autoscaler_interval: 90
+
     # Host and port where OneFlow server will run
     :host: 127.0.0.1
     :port: 2474
-     
+
+    # Force deletion of VMs on terminate signal
+    :force_deletion: false
+
     ################################################################################
     # Defaults
     ################################################################################
-     
+
     # Default cooldown period after a scale operation, in seconds
     :default_cooldown: 300
-     
-    # Default shutdown action. Values: 'shutdown', 'shutdown-hard'
-    :shutdown_action: 'shutdown'
-     
-    # Default oneflow action options when only one is supplied
+
+    # Default shutdown action. Values: 'terminate', 'terminate-hard'
+    :shutdown_action: 'terminate'
+
+    # Default number of virtual machines (action_number) that will receive the
+    #   given call in each interval defined by action_period, when an action
+    #   is performed on a role.
     :action_number: 1
     :action_period: 60
-     
-    # Default name for the Virtual Machines created by oneflow. You can use any
+
+    # Default name for the Virtual Machines and Virtual Networks created by oneflow. You can use any
     # of the following placeholders:
     #   $SERVICE_ID
     #   $SERVICE_NAME
     #   $ROLE_NAME
-    #   $VM_NUMBER
-     
+    #   $VM_NUMBER (onely for VM names)
+
     :vm_name_template: '$ROLE_NAME_$VM_NUMBER_(service_$SERVICE_ID)'
-     
+    #:vn_name_template: '$ROLE_NAME(service_$SERVICE_ID)'
     #############################################################
     # Auth
     #############################################################
-     
+
     # Authentication driver to communicate with OpenNebula core
     #   - cipher, for symmetric cipher encryption of tokens
     #   - x509, for x509 certificate encryption of tokens
     :core_auth: cipher
-     
+
     ################################################################################
     # Log
     ################################################################################
-     
+
     # Log debug level
     #   0 = ERROR, 1 = WARNING, 2 = INFO, 3 = DEBUG
     #
