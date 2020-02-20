@@ -1044,7 +1044,7 @@ More information in the :ref:`Azure Driver Section <azg>`:
 | **VM_PASSWORD**          | Password for VM_USER                                                                            | NO        |
 +--------------------------+-------------------------------------------------------------------------------------------------+-----------+
 | **LOCATION**             | Azure datacenter where the VM will be sent.                                                     | NO        |
-|                          | See: `Azure regions <https://azure.microsoft.com/global-infrastructure/regions/>`__.            | NO        |
+|                          | See: `Azure regions <https://azure.microsoft.com/global-infrastructure/regions/>`__.            |           |
 +--------------------------+-------------------------------------------------------------------------------------------------+-----------+
 | **PUBLIC_IP**            | Set to "YES" if you want to create and assign public ipv4 address to the Azure VM.              | NO        |
 +--------------------------+-------------------------------------------------------------------------------------------------+-----------+
