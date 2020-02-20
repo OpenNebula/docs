@@ -8,6 +8,8 @@ A complete list of solved issues for 5.10.3 can be found in the `project develop
 The following new features has been backported to 5.10.3:
 
 - `Increase number of wild VMs shown per page in Sunstone <https://github.com/OpenNebula/one/issues/4162>`__.
+- `Make some improvements in onehook CLI <https://github.com/OpenNebula/one/issues/4203>`__.
+- `Support hot disk resize in vCenter <https://github.com/OpenNebula/one/issues/1542>`__.
 
 The following issues has been solved in 5.10.3:
 
@@ -16,3 +18,9 @@ The following issues has been solved in 5.10.3:
 - `Fix clusters on Virtual Networks Templates in Sunsonte <https://github.com/OpenNebula/one/issues/4169>`__.
 - `Fix edit group dialog in Sunstone <https://github.com/OpenNebula/one/issues/4153>`__.
 - `Fix VNC window in Sunstone <https://github.com/OpenNebula/one/issues/4083>`__.
+- `Fix errors on detaching VM disks <https://github.com/OpenNebula/one/issues/4164>`__.
+- `Fix database encoding overwritten by onedb upgrade <https://github.com/OpenNebula/one/issues/4212>`__.
+- `Added missing package dependency on libcurl on Debian/Ubuntu <https://github.com/OpenNebula/packages/issues/120>`__.
+- `Obsoleted add-on packages <https://github.com/OpenNebula/packages/issues/122>`__.
+- Library include errors in `econe tools<https://github.com/OpenNebula/one/issues/4226>`__ and `oneprovision <https://github.com/OpenNebula/one/pull/4228>`__.
+- `Missing gems in install_gems groups <https://github.com/OpenNebula/one/issues/4092>`__.
