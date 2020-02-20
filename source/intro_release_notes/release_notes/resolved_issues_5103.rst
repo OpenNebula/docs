@@ -19,3 +19,5 @@ The following issues has been solved in 5.10.3:
 - `Fix edit group dialog in Sunstone <https://github.com/OpenNebula/one/issues/4153>`__.
 - `Fix errors on detaching VM disks <https://github.com/OpenNebula/one/issues/4164>`__.
 - `Fix database encoding overwritten by onedb upgrade <https://github.com/OpenNebula/one/issues/4212>`__.
+- `Added missing package dependency on libcurl on Debian/Ubuntu <https://github.com/OpenNebula/packages/issues/120>`__.
+- `Obsoleted add-on packages <https://github.com/OpenNebula/packages/issues/122>`__.
