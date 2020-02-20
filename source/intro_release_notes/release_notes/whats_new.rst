@@ -64,7 +64,7 @@ KVM Virtualization Driver
 
 Hybrid Virtualization
 ================================================================================
-- :ref:`Azure driver <azg>` was rafactored to use Azure Resource Manager deployment
+- :ref:`Azure driver <azg>` was refactored to use Azure Resource Manager deployment
 
 
 Other Issues Solved
