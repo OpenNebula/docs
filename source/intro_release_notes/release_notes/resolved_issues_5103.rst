@@ -21,3 +21,4 @@ The following issues has been solved in 5.10.3:
 - `Fix database encoding overwritten by onedb upgrade <https://github.com/OpenNebula/one/issues/4212>`__.
 - `Added missing package dependency on libcurl on Debian/Ubuntu <https://github.com/OpenNebula/packages/issues/120>`__.
 - `Obsoleted add-on packages <https://github.com/OpenNebula/packages/issues/122>`__.
+- Library include errors in `econe tools<https://github.com/OpenNebula/one/issues/4226>`__ and `oneprovision <https://github.com/OpenNebula/one/pull/4228>`__.
