@@ -17,6 +17,7 @@ The following issues has been solved in 5.10.3:
 - `Fix VM scheduler requirements <https://github.com/OpenNebula/one/issues/4177>`__.
 - `Fix clusters on Virtual Networks Templates in Sunsonte <https://github.com/OpenNebula/one/issues/4169>`__.
 - `Fix edit group dialog in Sunstone <https://github.com/OpenNebula/one/issues/4153>`__.
+- `Fix VNC window in Sunstone <https://github.com/OpenNebula/one/issues/4083>`__.
 - `Fix errors on detaching VM disks <https://github.com/OpenNebula/one/issues/4164>`__.
 - `Fix database encoding overwritten by onedb upgrade <https://github.com/OpenNebula/one/issues/4212>`__.
 - `Added missing package dependency on libcurl on Debian/Ubuntu <https://github.com/OpenNebula/packages/issues/120>`__.
