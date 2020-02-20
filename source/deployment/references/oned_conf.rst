@@ -105,8 +105,9 @@ Example of this section:
     #        CONNECTIONS = 50 ]
 
     VNC_PORTS = [
-        START    = 5900
-    #    RESERVED = "6800, 6801, 9869"
+        START    = 5900,
+        RESERVED = "32768:65536"
+        # RESERVED = "6800, 6801, 9869"
     ]
 
     #VM_SUBMIT_ON_HOLD = "NO"
