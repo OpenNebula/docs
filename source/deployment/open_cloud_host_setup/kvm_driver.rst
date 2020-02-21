@@ -258,7 +258,7 @@ Virtio is the framework for IO virtualization in KVM. You will need a linux kern
 
 If you want to use the virtio drivers add the following attributes to your devices:
 
-* ``DISK``, add the attribute ``DEV_PREFIX="vd"`` or ``DEV_PREFIX="sd"``
+* ``DISK``, add the attribute ``DEV_PREFIX="vd"`` or ``DEV_PREFIX="sd"`` or ``DEV_PREFIX="hd"``
 * ``NIC``, add the attribute ``MODEL="virtio"``
 
 For disks you can also use SCSI bus (``sd``) and it will use virtio-scsi controller. This controller also offers high speed as it is not emulating real hardware but also adds support to trim commands to free disk space when the disk has the attribute ``DISCARD="unmap"``. If needed, you can change the number of vCPU queues this way:
@@ -309,6 +309,7 @@ KVM supports hotplugging to the ``virtio`` and the ``SCSI`` buses. For disks, th
 
 * ``vd``: ``virtio`` (recommended).
 * ``sd``: ``SCSI`` (default).
+* ``hd``: ``IDE``
 
 .. note:: Hotplugging is not supported for CDROM and floppy.
 
