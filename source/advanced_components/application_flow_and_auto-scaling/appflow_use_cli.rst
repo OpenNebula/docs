@@ -136,19 +136,55 @@ If ``ready_status_gate`` is set to ``false``, a VM will be considered to be in r
 Configure Dynamic Networks
 --------------------------------------------------------------------------------
 
-Each Service Role has a :ref:`Virtual Machine Template <vm_guide>` assigned. The VM Template will define the capacity, disks, and network interfaces. But instead of using the Virtual Networks set in the VM Template, the Service Template can define a set of dynamic networks.
+Each Service Role has a :ref:`Virtual Machine Template <vm_guide>` assigned. The VM Template will define the capacity, disks, and network interfaces. Apart from defining the Virtual Networks in the VM Template, the Service Template can define a set of dynamic networks. Then each Role of the service can be attached to one or more dynamic networks individually.
 
 |oneflow-templates-net-1|
 
-Each Role can be attached to the dynamic networks individually.
-
 |oneflow-templates-net-2|
 
-When a Service Template defines dynamic networks, the instantiate dialog will ask the user to select the networks to use for the new Service.
+When a Service Template defines dynamic networks, the instantiate dialog will ask the user to select how to instantiate the network. There are 3 alternatives:
+
+- You can use an existing Virtual Network, VMs in the Role will just take a lease from that network. You'll probably use this method for networks with a predefined address set (e.g. public IPs).
 
 |oneflow-templates-net-3|
 
+- You can create a network reservation, in this case it will take the existing network and create a reservation for the service. You have to specify the name of the reservation and the size in the input dialog. Use this method when you need to allocate a pool of IPs for your service.
+
+|oneflow-templates-net-4|
+
+- You can create a network instantiating a network template. In this case as an extra parameters you may have to specify the address range to create, depending on the selected network template. This is useful for service private VLAN for internal service communication.
+
+|oneflow-templates-net-5|
+
 This allows you to create more generic Service Templates. For example, the same Service Template can be used by users of different :ref:`groups <manage_groups>` that may have access to different Virtual Networks.
+
+.. note:: When the service is deleted, all the networks that have been created are automatically deleted.
+
+All these operations can be also done through the CLI. When you instantiate the template using ``oneflow-template instantiate <ID> <file>``
+
+.. code::
+
+    # Use existing network
+    {"networks_values": [{"Private":{"id":"0"}}]}
+
+    # Reserve from a network
+    {"networks_valies": [{"reserve_from": "0", "extra":"NAME=RESERVATION\nSIZE=5"}]}
+
+    # Instantiate a network template
+    {"networks_values": [{"Private":{"template_id":"0", "extra":"AR=[ IP=192.168.122.10, SIZE=10, TYPE=IP4 ]"}}]}
+
+Using Custom Attributes
+--------------------------------------------------------------------------------
+
+You can use some custom attributes in service template to pass them to the virtual machine context section. This custom attributes are key-value format and can be mandatory or optional.
+
+|oneflow-templates-attrs|
+
+You can also use them through the CLI. When you instantiate the template using ``oneflow-template instantiate <ID> <file>``
+
+.. code::
+
+    {"custom_attrs_values":{"map_private":"10.0.0.0/24", "map_public":"192.168.2.0/24"}
 
 
 Managing Services
@@ -516,3 +552,6 @@ Read the :ref:`elasticity policies documentation <appflow_elasticity>` for more 
 .. |oneflow-templates-net-1| image:: /images/oneflow-templates-net-1.png
 .. |oneflow-templates-net-2| image:: /images/oneflow-templates-net-2.png
 .. |oneflow-templates-net-3| image:: /images/oneflow-templates-net-3.png
+.. |oneflow-templates-net-4| image:: /images/oneflow-templates-net-4.png
+.. |oneflow-templates-net-5| image:: /images/oneflow-templates-net-5.png
+.. |oneflow-templates-attrs| image:: /images/oneflow-templates-attrs.png
