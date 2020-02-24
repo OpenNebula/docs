@@ -24,4 +24,4 @@ The following issues has been solved in 5.10.3:
 - `Obsoleted add-on packages <https://github.com/OpenNebula/packages/issues/122>`__.
 - Library include errors in `econe tools<https://github.com/OpenNebula/one/issues/4226>`__ and `oneprovision <https://github.com/OpenNebula/one/pull/4228>`__.
 - `Missing gems in install_gems groups <https://github.com/OpenNebula/one/issues/4092>`__.
-- `When import wild on vCenter and create snapshot disk metadata is corrupted <https://github.com/OpenNebula/one/issues/3844>`__.
+- `Fix for metadata corruption when snapshotting an imported running VM in vCenter <https://github.com/OpenNebula/one/issues/3844>`__.
