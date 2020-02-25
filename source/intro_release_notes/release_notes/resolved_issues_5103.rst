@@ -11,6 +11,7 @@ The following new features has been backported to 5.10.3:
 - `Add datastore for live migration in Sunstone <https://github.com/OpenNebula/one/issues/3194>`__.
 - `Make some improvements in onehook CLI <https://github.com/OpenNebula/one/issues/4203>`__.
 - `Support hot disk resize in vCenter <https://github.com/OpenNebula/one/issues/1542>`__.
+- `Fix wrong usage data monitoring for CEPH <https://github.com/OpenNebula/one/issues/4249>`__.
 
 The following issues has been solved in 5.10.3:
 
