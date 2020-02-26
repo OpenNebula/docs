@@ -31,3 +31,4 @@ The following issues has been solved in 5.10.3:
 - `Removed obstructing oneimage path validation <https://github.com/OpenNebula/one/issues/4221>`__.
 - `Fix for metadata corruption when snapshotting an imported running VM in vCenter <https://github.com/OpenNebula/one/issues/3844>`__.
 - `Fix the visibility of the RDP button in Sunstone <https://github.com/OpenNebula/one/issues/4241>`__.
+- `Fix form behavior on oneflow templates in Sunstone <https://github.com/OpenNebula/one/issues/4263>`__.
