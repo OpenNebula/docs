@@ -1,7 +1,7 @@
 .. _whats_new:
 
 ================================================================================
-What's New in 5.11
+What's New in 5.12
 ================================================================================
 
 ..
@@ -66,6 +66,9 @@ Hybrid Virtualization
 ================================================================================
 - :ref:`Azure driver <azg>` was refactored to use Azure Resource Manager deployment
 
+VMware Virtualization driver
+================================================================================
+- Support for attach and detach NIC operations in poweroff state
 
 Other Issues Solved
 ================================================================================
