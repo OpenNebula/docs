@@ -233,7 +233,7 @@ and then you can proceed to create the host. After few minutes, when the creatio
 
 **Step 4 – Deploy a container**
 
-To test the environment, you can select the host and add a container:
+To test the environment, you can select the host and add a container.
 
 Autoscaling via OneFlow
 --------------------------------------------------------------------------------
