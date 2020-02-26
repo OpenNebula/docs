@@ -409,7 +409,7 @@ The virtualization drivers are used to create, control and monitor VMs on the ho
 There are some non mandatory attributes:
 
 - **DS_LIVE_MIGRATION**: live migration between datastores is allowed.
-- **COLD_NIC_ATTACH**: nic attach/detach in poweroff state calls networks scripts (pre, post, clean)
+- **COLD_NIC_ATTACH**: nic attach/detach in poweroff state calls networks scripts (pre, post, clean) and virtualization driver attach/detach actions.
 
 For more information on configuring and setting up the Virtual Machine Manager Driver please check the section that suits you:
 
