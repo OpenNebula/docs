@@ -25,10 +25,13 @@ The following issues has been solved in 5.10.3:
 - `Fix database encoding overwritten by onedb upgrade <https://github.com/OpenNebula/one/issues/4212>`__.
 - `Added missing package dependency on libcurl on Debian/Ubuntu <https://github.com/OpenNebula/packages/issues/120>`__.
 - `Obsoleted add-on packages <https://github.com/OpenNebula/packages/issues/122>`__.
-- Library include errors in `econe tools<https://github.com/OpenNebula/one/issues/4226>`__ and `oneprovision <https://github.com/OpenNebula/one/pull/4228>`__.
+- Library include errors in `econe tools <https://github.com/OpenNebula/one/issues/4226>`__ and `oneprovision <https://github.com/OpenNebula/one/pull/4228>`__.
 - `Missing gems in install_gems groups <https://github.com/OpenNebula/one/issues/4092>`__.
 - `Fix NIC parameters when update oneflow template <https://github.com/OpenNebula/one/issues/4238>`__.
 - `Removed obstructing oneimage path validation <https://github.com/OpenNebula/one/issues/4221>`__.
 - `Fix for metadata corruption when snapshotting an imported running VM in vCenter <https://github.com/OpenNebula/one/issues/3844>`__.
 - `Fix the visibility of the RDP button in Sunstone <https://github.com/OpenNebula/one/issues/4241>`__.
 - `Fix Address Ranges for Virtual Network templates in Sunstone <https://github.com/OpenNebula/one/issues/4234>`__.
+- `Fix form behavior on oneflow templates in Sunstone <https://github.com/OpenNebula/one/issues/4263>`__.
+- `Fix attach nic alias when using network mode auto <https://github.com/OpenNebula/one/issues/4262>`__.
+- `Fix retrieve input function in Sunstone <https://github.com/OpenNebula/one/issues/4269>`__.
