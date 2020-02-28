@@ -767,6 +767,43 @@ These are the commands that can be scheduled:
 -  ``poweroff [--hard]``
 -  ``snapshot-create``
 
+
+VM Charter
+----------
+
+This functionality auto add scheduling actions in VM templates. For add this only need add this in ``sunstone-server.conf`` file
+
+|vm_charter|
+
+.. prompt:: text $ auto
+
+  :leases:
+    suspense:
+      time: "+1209600"
+      color: "#000000"
+      warning:
+        time: "-86400"
+        color: "#085aef"
+    terminate:
+      time: "+1209600"
+      color: "#e1ef08"
+      warning:
+        time: "-86400"
+        color: "#ef2808"
+
+In the previous example you can see how scheduled actions are added and you can see the following values:
+
++---------+-------------------------------------------------------------------------------------------------------+
+| time    | Time for tha action in secs example: +1209600 is to weeks.                                            |
+|         | .. note:: The order is very important since time adds to the previous scheduled action.               |
++---------+-------------------------------------------------------------------------------------------------------+
+| color   | Is the color in hexadecimal since the icon will appear in the Vms table                               |
++---------+-------------------------------------------------------------------------------------------------------+
+| warning | It is an alert (color change of the icon in the VM table) that will change when the limit has elapsed |
+|         | minus the time placed                                                                                 |
++---------+-------------------------------------------------------------------------------------------------------+
+
+
 .. _vm_guide2_user_defined_data:
 
 User Defined Data
@@ -895,6 +932,7 @@ Information for Developers and Integrators
 .. |image10| image:: /images/sunstone_save_button.png
 .. |image11| image:: /images/sunstone_save_dialog.png
 .. |image12| image:: /images/sunstone_cloud_save_button.png
+.. |vm_charter| image:: /images/vm_charter.png
 .. |sunstone_admin_instantiate| image:: /images/sunstone_admin_instantiate.png
 .. |sunstone_disk_snapshot| image:: /images/sunstone_disk_snapshot.png
 .. |sunstone_persistent_1| image:: /images/sunstone_persistent_1.png
