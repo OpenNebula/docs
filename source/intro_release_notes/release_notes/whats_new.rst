@@ -42,7 +42,8 @@ vCenter
 
 OneFlow & OneGate
 ===============================================================================
-- ...
+- `OneFlow revamp <https://github.com/OpenNebula/one/issues/4132>`__.
+- `OneFlow template cloning recursively <https://github.com/OpenNebula/one/issues/4287>`__.
 
 CLI
 ================================================================================
