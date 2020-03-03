@@ -184,7 +184,52 @@ You can also use them through the CLI. When you instantiate the template using `
 
 .. code::
 
-    {"custom_attrs_values":{"map_private":"10.0.0.0/24", "map_public":"192.168.2.0/24"}
+    {"custom_attrs_values":{"A":"A_VALUE", "B":"B_VALUE"}
+
+.. note:: In order to pass the service custom attributes to the VM  when using the CLI they need to be duplicated inside ``vm_template_contents`` section.
+
+Network mapping
+--------------------------------------------------------------------------------
+
+Network mapping can be achieved by using custom attributes. Only three steps are required for mapping all the IP addresses from an internal network into an external one, as shown in the image below:
+
+|oneflow-network-mapping|
+
+**Defining Custom Attributes at OneFlow Template**
+
+First of all two custom attributes must be defined at the service template ``INTERNAL`` and ``EXTERNAL`` which will contains the network addresses that are going to be mapped.
+
+**Preparing the VM Template**
+
+The VM template used for the router needs to be prepared:
+
+  - Define two custom attributes at context to retrieve the value of the service custom attributes:
+
+    .. code::
+
+      CONTEXT=[
+        ...
+        INTERNAL = $INTERNAL
+        EXTERNAL = $EXTERNAL
+      ]
+
+  - Define an init script to set the firewall rules when the VM boots:
+
+    .. code::
+
+      CONTEXT=[
+        ...
+        INTERNAL = $INTERNAL
+        EXTERNAL = $EXTERNAL
+        ...
+        START_SCRIPT_BASE64="c3lzY3RsIG5ldC5pcHY0LmlwX2ZvcndhcmQ9MQppcHRhYmxlcyAtdCBuYXQgIC1BIFBSRVJPVVRJTkcgLWQgJEVYVEVSTkFMIC1qIE5FVE1BUCAtLXRvICRJTlRFUk5BTAppcHRhYmxlcyAtdCBuYXQgIC1BIFBPU1RST1VUSU5HIC1zICRJTlRFUk5BTCAgISAtZCAkSU5URVJOQUwgLWogTkVUTUFQIC0tdG8gJEVYVEVSTkFM" ]
+      ]
+
+**Instantiate the Service Template**
+
+During the service instantiate process just fill the ``EXTERNAL`` and ``INTERNAL`` values with the network address in CIDR format. For the example of the pictures above: ``EXTERNAL=10.0.0.0/24`` and ``INTERNAL=192.168.1.0/24``.
+
+.. warning:: Note that this will only apply a firewall rules. In order to everything works properly the networks attached to each VM must makes sense with the values specified for ``EXTERNAL`` and ``INTERNAL`` attributes.
 
 
 Managing Services
@@ -574,3 +619,4 @@ Read the :ref:`elasticity policies documentation <appflow_elasticity>` for more 
 .. |oneflow-templates-net-4| image:: /images/oneflow-templates-net-4.png
 .. |oneflow-templates-net-5| image:: /images/oneflow-templates-net-5.png
 .. |oneflow-templates-attrs| image:: /images/oneflow-templates-attrs.png
+.. |oneflow-network-mapping| image:: /images/oneflow-network-map.png
