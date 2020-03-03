@@ -537,6 +537,24 @@ Some common failures can be resolved without manual intervention, calling the ``
 |                        |                 | New VMs are instantiated to maintain the current cardinality.            |
 +------------------------+-----------------+--------------------------------------------------------------------------+
 
+Map External Network to Internal Network
+----------------------------------------
+
+The VM datatables can show the mapping of external networks to private networks (TODO link). To enable this functionality, place the following values in the configuration file ``sunstone-server.conf``
+
+|vm_mapped|
+
+Configuration file ``sunstone-server.conf``
+
+.. prompt:: text $ auto
+
+  :mapped_ips: true
+  :get_extended_vm_info: true
+
+.. note:: For the RDP button to appear, the NIC in the vm template must have the value ``RDP = “yes”``.
+
+Restart sunstone server service
+
 Service Template Reference
 ==========================
 
@@ -548,6 +566,7 @@ Read the :ref:`elasticity policies documentation <appflow_elasticity>` for more 
 .. |image1| image:: /images/oneflow-templates-create.png
 .. |image3| image:: /images/oneflow-service.png
 .. |image4| image:: /images/flow_lcm.png
+.. |vm_mapped| image:: /images/mapped_ips.png
 .. |oneflow-ready-status-checkbox| image:: /images/oneflow-ready-status-checkbox.png
 .. |oneflow-templates-net-1| image:: /images/oneflow-templates-net-1.png
 .. |oneflow-templates-net-2| image:: /images/oneflow-templates-net-2.png
