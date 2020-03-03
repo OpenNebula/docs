@@ -38,4 +38,4 @@ The following issues has been solved in 5.10.3:
 - `Fix LXD CPU and RAM monitoring always being 0 <https://github.com/OpenNebula/one/issues/4250>`__.
 - `Fix retrieve input function in Sunstone <https://github.com/OpenNebula/one/issues/4269>`__.
 - `Fix live migration in Sunstone <https://github.com/OpenNebula/one/issues/4286>`__.
-
+- `Fix wrong rror handling in CLI <https://github.com/OpenNebula/one/issues/2689>`__.
