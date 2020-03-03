@@ -215,6 +215,16 @@ The VM template used for the router needs to be prepared:
 
   - Define an init script to set the firewall rules when the VM boots:
 
+    Something like this can be used for mapping two equals size networks into each other:
+
+    .. code::
+
+      sysctl net.ipv4.ip_forward=1
+      iptables -t nat  -A PREROUTING -d $EXTERNAL -j NETMAP --to $INTERNAL
+      iptables -t nat  -A POSTROUTING -s $INTERNAL  ! -d $INTERNAL -j NETMAP --to $EXTERNAL
+
+    The VM template should looks like this after adding the script:
+
     .. code::
 
       CONTEXT=[
