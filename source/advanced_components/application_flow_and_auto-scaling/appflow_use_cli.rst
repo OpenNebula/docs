@@ -537,10 +537,10 @@ Some common failures can be resolved without manual intervention, calling the ``
 |                        |                 | New VMs are instantiated to maintain the current cardinality.            |
 +------------------------+-----------------+--------------------------------------------------------------------------+
 
-Map private network to public
------------------------------
+Map External Network to Internal Network
+----------------------------------------
 
-To see the mapping of public networks in private networks, these can be seen in the table of the Vms. for this you have to place the following values ​​in the configuration file ``sunstone-server.conf``
+The VM datatables can show the mapping of external networks to private networks (TODO link). To enable this functionality, place the following values in the configuration file ``sunstone-server.conf``
 
 |vm_mapped|
 
@@ -554,7 +554,6 @@ Configuration file ``sunstone-server.conf``
 .. note:: For the RDP button to appear, the NIC in the vm template must have the value ``RDP = “yes”``.
 
 Restart sunstone server service
-
 
 Service Template Reference
 ==========================
