@@ -24,7 +24,7 @@ Prerequisites
 
 A user account needs to be set up in the remote OpenNebula. This user should have access to the VM Templates that you are going to expose for hybrid access.
 
-.. note:: You can check if the user has access to the remote template with the command 
+.. note:: You can check if the user has access to the remote template with the command
 
 .. code::
 
@@ -33,17 +33,10 @@ A user account needs to be set up in the remote OpenNebula. This user should hav
 OpenNebula Configuration
 ================================================================================
 
-Uncomment the OpenNebula IM and VMM drivers from the ``/etc/one/oned.conf`` file in order to use the driver.
+In order to enable OpenNebula drivers uncomment the OpenNebula VMM drivers from the ``/etc/one/oned.conf``
 
 .. code::
 
-    IM_MAD = [
-        NAME          = "one",
-        SUNSTONE_NAME = "OpenNebula",
-        EXECUTABLE    = "one_im_sh",
-        ARGUMENTS     = "-c -t 1 -r 0 one" ]
-
-     
     VM_MAD = [
         NAME           = "one",
         SUNSTONE_NAME  = "OpenNebula",
@@ -53,6 +46,16 @@ Uncomment the OpenNebula IM and VMM drivers from the ``/etc/one/oned.conf`` file
         KEEP_SNAPSHOTS = "no"
     ]
 
+and IM drivers from the ``/etc/one/monitord.conf``
+
+.. code::
+
+    IM_MAD = [
+        NAME          = "one",
+        SUNSTONE_NAME = "OpenNebula",
+        EXECUTABLE    = "one_im_sh",
+        ARGUMENTS     = "-c -t 1 -r 0 one" ]
+     
 Driver flags are the same as for other drivers:
 
 +------------+---------------------+

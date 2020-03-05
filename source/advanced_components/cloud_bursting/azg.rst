@@ -58,20 +58,24 @@ These gems are automatically installed as part of the :ref:`installation process
 OpenNebula Configuration
 ================================================================================
 
-Uncomment the Azure AZ IM and VMM drivers from the ``/etc/one/oned.conf`` file in order to use the driver.
+In order to enable Azure drivers uncomment the Azure VMM drivers from the ``/etc/one/oned.conf``
 
 .. code::
-
-    IM_MAD = [
-          name       = "az",
-          executable = "one_im_sh",
-          arguments  = "-c -t 1 -r 0 az" ]
 
     VM_MAD = [
         name       = "az",
         executable = "one_vmm_sh",
         arguments  = "-t 15 -r 0 az",
         type       = "xml" ]
+
+and Azure IM drivers from the ``/etc/one/monitord.conf``
+
+.. code::
+
+    IM_MAD = [
+        name       = "az",
+        executable = "one_im_sh",
+        arguments  = "-c -t 1 -r 0 az" ]
 
 Driver flags are the same as other drivers:
 
