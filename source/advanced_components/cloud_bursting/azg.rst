@@ -164,8 +164,8 @@ In order to deploy an instance in Azure through OpenNebula, you must include an 
       IMAGE_VERSION="latest",
       PUBLIC_IP="YES",
       TYPE="AZURE",
-      VM_USER="MyUserName"
-      VM_PASSWORD="myr@nd0mPass9",
+      VM_USER="MyUserName",
+      VM_PASSWORD="myr@nd0mPass9"
     ]
 
     #Add this if you want this VM to only go to the West EuropeAzure cloud
