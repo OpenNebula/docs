@@ -31,7 +31,17 @@ Prerequisites
 OpenNebula Configuration
 ================================================================================
 
-Uncomment the EC2 IM and VMM drivers from the ``/etc/one/oned.conf`` file in order to use the driver.
+In order to enable EC2 drivers uncomment the EC2 VMM drivers from the ``/etc/one/oned.conf``
+
+.. code::
+
+    VM_MAD = [
+        name       = "ec2",
+        executable = "one_vmm_sh",
+        arguments  = "-t 15 -r 0 ec2",
+        type       = "xml" ]
+     
+and IM drivers from the ``/etc/one/monitord.conf``
 
 .. code::
 
@@ -39,12 +49,7 @@ Uncomment the EC2 IM and VMM drivers from the ``/etc/one/oned.conf`` file in ord
         name       = "ec2",
         executable = "one_im_sh",
         arguments  = "-c -t 1 -r 0 ec2" ]
-     
-    VM_MAD = [
-        name       = "ec2",
-        executable = "one_vmm_sh",
-        arguments  = "-t 15 -r 0 ec2",
-        type       = "xml" ]
+
 
 Driver flags are the same as other drivers:
 
