@@ -7,6 +7,8 @@ documentation is live at:
 
 You are encouraged to fork this repo and send us pull requests!
 
+To create issues to report changes and requests, please use the [OpenNebula main repository](https://github.com/OpenNebula/one), with label Documentation.
+
 Building
 --------
 
