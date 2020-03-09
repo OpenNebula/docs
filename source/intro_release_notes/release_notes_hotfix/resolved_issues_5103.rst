@@ -12,10 +12,12 @@ The following new features has been backported to 5.10.3:
 - `Make some improvements in onehook CLI <https://github.com/OpenNebula/one/issues/4203>`__.
 - `Support hot disk resize in vCenter <https://github.com/OpenNebula/one/issues/1542>`__.
 - `Fix wrong usage data monitoring for CEPH <https://github.com/OpenNebula/one/issues/4249>`__.
+- `Add button to enable or disable an input in Sunstone <https://github.com/OpenNebula/one/issues/4276>`__.
+- `Add non interactive CLI user inputs <https://github.com/OpenNebula/one/issues/1368>`__.
 
 The following issues has been solved in 5.10.3:
 
-- `Fix NIC aliases when update VM template in Sunstone <https://github.com/OpenNebula/one/issues/4178>`__.
+- `Fix NIC aliases when update VM template in Sunstone. <https://github.com/OpenNebula/one/issues/4178>`__.
 - `Fix VM scheduler requirements <https://github.com/OpenNebula/one/issues/4177>`__.
 - `Fix clusters on Virtual Networks Templates in Sunsonte <https://github.com/OpenNebula/one/issues/4169>`__.
 - `Fix edit group dialog in Sunstone <https://github.com/OpenNebula/one/issues/4153>`__.
@@ -31,4 +33,10 @@ The following issues has been solved in 5.10.3:
 - `Removed obstructing oneimage path validation <https://github.com/OpenNebula/one/issues/4221>`__.
 - `Fix for metadata corruption when snapshotting an imported running VM in vCenter <https://github.com/OpenNebula/one/issues/3844>`__.
 - `Fix the visibility of the RDP button in Sunstone <https://github.com/OpenNebula/one/issues/4241>`__.
+- `Fix Address Ranges for Virtual Network templates in Sunstone <https://github.com/OpenNebula/one/issues/4234>`__.
+- `Fix form behavior on oneflow templates in Sunstone <https://github.com/OpenNebula/one/issues/4263>`__.
 - `Fix attach nic alias when using network mode auto <https://github.com/OpenNebula/one/issues/4262>`__.
+- `Fix LXD CPU and RAM monitoring always being 0 <https://github.com/OpenNebula/one/issues/4250>`__.
+- `Fix retrieve input function in Sunstone <https://github.com/OpenNebula/one/issues/4269>`__.
+- `Fix live migration in Sunstone <https://github.com/OpenNebula/one/issues/4286>`__.
+- `Fix wrong rror handling in CLI <https://github.com/OpenNebula/one/issues/2689>`__.
