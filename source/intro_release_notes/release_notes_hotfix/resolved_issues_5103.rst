@@ -19,7 +19,7 @@ The following issues has been solved in 5.10.3:
 
 - `Fix NIC aliases when update VM template in Sunstone <https://github.com/OpenNebula/one/issues/4178>`__.
 - `Fix VM scheduler requirements <https://github.com/OpenNebula/one/issues/4177>`__.
-- `Fix clusters on Virtual Networks Templates in Sunsonte <https://github.com/OpenNebula/one/issues/4169>`__.
+- `Fix clusters on Virtual Networks Templates in Sunstone <https://github.com/OpenNebula/one/issues/4169>`__.
 - `Fix edit group dialog in Sunstone <https://github.com/OpenNebula/one/issues/4153>`__.
 - `Fix NIC when update VM template in Sunstone <https://github.com/OpenNebula/one/issues/4204>`__.
 - `Fix VNC window in Sunstone <https://github.com/OpenNebula/one/issues/4083>`__.
