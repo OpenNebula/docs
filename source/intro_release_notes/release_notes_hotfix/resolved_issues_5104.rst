@@ -13,6 +13,4 @@ The following new features has been backported to 5.10.4:
 
 The following issues has been solved in 5.10.4:
 
-- `Write some nice description here <https://github.com/OpenNebula/one/issues/XXX>`__.
-- `Write some nice description here <https://github.com/OpenNebula/one/issues/XXX>`__.
-- `Write some nice description here <https://github.com/OpenNebula/one/issues/XXX>`__.
+- `Fix default encoding when table encoding is not detected <https://github.com/OpenNebula/one/issues/4329>`__.
