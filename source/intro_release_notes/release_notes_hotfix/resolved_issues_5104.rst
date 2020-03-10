@@ -15,3 +15,4 @@ The following issues has been solved in 5.10.4:
 
 - `Fix default encoding when table encoding is not detected <https://github.com/OpenNebula/one/issues/4329>`__.
 - `Fix Graphics when update VM template in Sunstone <https://github.com/OpenNebula/one/issues/4278>`__.
+- `Fix Scheduling when update VM template in Sunstone <https://github.com/OpenNebula/one/issues/4274>`__.
