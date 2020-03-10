@@ -12,7 +12,7 @@ Requirements:
 Supported Packet hosts:
 
 * operating systems: ``centos_7``, ``ubuntu_16_04``, ``ubuntu_18_04``
-* plans: ``baremetal_0``
+* plans: all plans are supported. You can check `here <https://www.packet.com/cloud/locations/>`__ the plans availables per facility.
 
 .. _ddc_driver_packet_params:
 
