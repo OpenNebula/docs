@@ -12,7 +12,7 @@ Supported EC2 hosts:
 
 * operating systems: CentOS 7, Ubuntu 16.04 and 18.04
 * AMIs (us-east1): ``ami-66a7871c`` (CentOS 7), ``ami-759bc50a`` (Ubuntu 16.04)
-* instance types: ``i3.metal``
+* instance types: all metal instances are supported. You can check `here <https://aws.amazon.com/ec2/instance-types>`__ the available instances per region (baremetal instances are those with **.metal** suffix)
 
 .. _ddc_driver_ec2_params:
 
