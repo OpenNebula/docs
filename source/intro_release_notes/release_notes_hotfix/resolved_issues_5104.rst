@@ -17,5 +17,5 @@ The following issues has been solved in 5.10.4:
 - `Fix Graphics when update VM template in Sunstone <https://github.com/OpenNebula/one/issues/4278>`__.
 - `Fix Scheduling when update VM template in Sunstone <https://github.com/OpenNebula/one/issues/4274>`__.
 - `Fix error in fsck when vnet lease has no ID <https://github.com/OpenNebula/one/issues/4328>`__.
-- `Fix Vms and Images datatables users can see in Sunstone <https://github.com/OpenNebula/one/issues/1388>`__.
+- `Fix VMs & Images datatables in Sunstone <https://github.com/OpenNebula/one/issues/1388>`__.
 - `Fix labels when service updating in Sunstone <https://github.com/OpenNebula/one/issues/4273>`__.
