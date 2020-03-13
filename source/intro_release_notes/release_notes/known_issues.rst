@@ -50,4 +50,4 @@ System VM Snapshots
 Security Groups
 ====================
 
-When detaching a NIC associated to a SG the VM is removed from that SG even though there is more NICs associated to that SG as described in https://github.com/OpenNebula/one/issues/4354.
+When detaching a NIC associated to a SG the VM is removed from that SG even though there is more NICs associated to that SG as described in the `development portal <https://github.com/OpenNebula/one/issues/4354>`__.
