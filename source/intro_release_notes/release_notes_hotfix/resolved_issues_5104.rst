@@ -7,9 +7,7 @@ A complete list of solved issues for 5.10.4 can be found in the `project develop
 
 The following new features has been backported to 5.10.4:
 
-- `Write some nice description here <https://github.com/OpenNebula/one/issues/XXX>`__.
-- `Write some nice description here <https://github.com/OpenNebula/one/issues/XXX>`__.
-- `Write some nice description here <https://github.com/OpenNebula/one/issues/XXX>`__.
+- `Pyone, the Python API binding for OPenNebula, is now thread-safe <https://github.com/OpenNebula/one/issues/4236>`__.
 
 The following issues has been solved in 5.10.4:
 
