@@ -46,3 +46,8 @@ System VM Snapshots
 ====================
 
 `When a VM system snapshot is deleted <https://github.com/OpenNebula/one/issues/4017>`_ the associated metadata for other snapshots of that VM get corrupted. This breaks the snapshots preventing the VM to revert to other saved snapshot states. Note: This issue affects KVM and qcow2 datastores.
+
+Security Groups
+====================
+
+When detaching a NIC associated to a SG the VM is removed from that SG even though there is more NICs associated to that SG as described in https://github.com/OpenNebula/one/issues/4354.
