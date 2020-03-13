@@ -53,3 +53,8 @@ Onedb upgrade overwirtes DB encoding
 When running ``onedb upgrade`` and if the DB tables have different encoding from UTF-8, it overwirtes the tables using a wrong encoding. This leads to a non-compatible encoding and errors at the XML-RPC level.
 
 As a workaround you can change the value of **NOKOGIRI_ENCODING** in the file `/usr/bin/onedb` and put there your encoding according to the DB table encoding in your case. You can find `here <https://www.rubydoc.info/github/sparklemotion/nokogiri/Nokogiri/XML/SAX/Parser>`__ the appropiate enconding.
+
+Security Groups
+====================
+
+When detaching a NIC associated to a SG the VM is removed from that SG even though there is more NICs associated to that SG as described in https://github.com/OpenNebula/one/issues/4354.
