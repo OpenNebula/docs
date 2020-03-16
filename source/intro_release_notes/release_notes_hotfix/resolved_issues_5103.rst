@@ -14,6 +14,7 @@ The following new features has been backported to 5.10.3:
 - `Fix wrong usage data monitoring for CEPH <https://github.com/OpenNebula/one/issues/4249>`__.
 - `Add button to enable or disable an input in Sunstone <https://github.com/OpenNebula/one/issues/4276>`__.
 - `Add non interactive CLI user inputs <https://github.com/OpenNebula/one/issues/1368>`__.
+- `Fix NIC_ALIAS information not shown on OneGate command calls <https://github.com/OpenNebula/one/issues/4361>`__.
 
 The following issues has been solved in 5.10.3:
 
