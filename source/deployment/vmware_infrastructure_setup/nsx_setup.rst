@@ -5,6 +5,12 @@ NSX Setup
 
 NSX is the Network and Security software from VMware that enables a virtual cloud network to connect and protect applications across data centers, multi-clouds, bare metal, and container infrastructures. VMware NSX Data Center delivers a complete L2-L7 networking and security virtualization platform — providing agility, automation, and dramatic cost savings that come with a software-only solution.
 
+Features
+--------
+
+Logical Switches
+^^^^^^^^^^^^^^^^
+
 OpenNebula can manage NSX-V and NSX-T logical switches in the following ways:
 
     - Creating new logical switches into existing Transport Zones.
@@ -12,6 +18,19 @@ OpenNebula can manage NSX-V and NSX-T logical switches in the following ways:
     - Deleting logical switches created or imported into OpenNebula.
     - Attaching logical switches, created or imported, to VMs.
     - Detaching logical switches, created or imported to VMs.
+
+Security Groups - Distributed Firewall
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+OpenNebula can manage NSX-V and NSX-T Distributed Firewall (DFW) through OpenNebula Security Groups.
+These security groups have rules and OpenNebula can apply the rules into NSX Distributed Firewall in the following ways.
+
+    - Creating firewall rules applied on logical ports.
+    - Deleting firewall rules.
+    - Updating firewall rules.
+
+By default all rules are creating under a section called "OpenNebula".
+Also OpenNebula security groups are rules only to allow connections, so you need to set DFW to deny connections by default, and allowing them by rules.
 
 Requirements
 ------------
@@ -41,6 +60,12 @@ Logical Switches
 
 It is not mandatory to have any logical switch before start using opennebula NSX-V integration, but is recommendable to test that logical switches are working properly, creating a logical switch from vCenter into a Transport Zone, and attaching it into two VMs to test that overlay network is working.
 
+Distributed Firewall
+^^^^^^^^^^^^^^^^^^^^
+
+NSX DFW default rule, must be set to deny any connection since OpenNebula only is able to create rules to allow connections.
+
+
 .. _nsx_limitations:
 
 NSX Driver Limitations
@@ -52,6 +77,7 @@ NSX Driver Limitations
 - Only support one NSX Manager per vCenter Server
 - The process of preparing a NSX cluster must be done from NSX Manager
 - Imported networks work with vcenter id instead of nsx id
+- ICMP subprotocols are not implemented
 
 .. _nsx_adding_nsx_manager:
 
