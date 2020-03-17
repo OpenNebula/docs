@@ -11,3 +11,4 @@ Disaggregated Data Centers
    OneProvision Installation <install>
    OneProvision Basic Usage <usage>
    Provision and Configuration Reference <reference/index>
+   Managing virtual objects <virtual>

@@ -36,6 +36,10 @@ Sunstone
 --------------------------------------------------------------------------------
 - ...
 
+DDC
+================================================================================
+- Provision support of other object types. Refer to :ref:`this<ddc_virtual>` for more information.
+
 vCenter
 ===============================================================================
 - **vCenter Resource pool tab**, within the host individual view a new tab displays the information of all :ref:`resource pools <vcenter_resource_pool>` defined in the vCenter cluster corresponding to the OpenNebula host.

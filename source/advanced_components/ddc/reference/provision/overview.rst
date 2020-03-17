@@ -24,6 +24,8 @@ A **provision template** is a YAML-formatted file with parameters specifying the
 
 * list of provision objects (cluster, hosts, datastores, virtual networks) to deploy with overrides to the global defaults above.
 
+* list of virtual objects (images, templates, vnet templates, marketplace apps, service templates) Refer to :ref:`this<ddc_virtual>` for more information.
+
 Example:
 
 .. code::
