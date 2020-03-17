@@ -95,6 +95,6 @@ Here is a table with the components and their reference formats in NSX and vCent
 Managed components
 ------------------
 
-Currently only Logical Switches are supported. In the image below is shown which components are intended to be supported by OpenNebula through its NSX Driver in the near future.
+Currently Logical Switches and Distributed Firewall ( DFW ) are supported. These componentes are known as NSX-T / NSX-V vnets and Security Groups respectively in OpenNebula. In the image below is shown which components are intended to be supported by OpenNebula through its NSX Driver in the near future.
 
 .. figure:: /images/nsx_driver_managed_components.png

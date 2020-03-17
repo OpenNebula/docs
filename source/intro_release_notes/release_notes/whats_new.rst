@@ -23,7 +23,7 @@ Storage
 
 Networking
 --------------------------------------------------------------------------------
-- ...
+- **Security Groups** are now supported on NSX-T and NSX-V networks. Check :ref:`NSX Setup <nsx_setup>` for initial requirements and the :ref:`Security Groups Operation Guide <security_groups>` to learn how to operate with them. For more details about this integration go to :ref:`NSX Driver <nsx_driver>`
 
 
 Authentication
