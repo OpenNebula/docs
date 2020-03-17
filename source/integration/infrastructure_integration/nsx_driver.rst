@@ -32,6 +32,43 @@ The process of creating a logical switch is depicted below.
 
 .. figure:: /images/nsx_driver_integration.png
 
+
+Security Groups integration
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+OpenNebula security groups defines rules, associated to vnet, that are applied into NSX Distributed Firewall over a specific virtual machine logical port group. NSXDriver is in charge of translate OpenNebula security group rules into DFW rules, on both NSX-T and NSX-V.
+
+Here are the actions that affect to the creation, modification or deletion of rules in the Distributed Firewall. 
+
++-----------------------------------+--------------------+--------------------+
+| OpenNebula action                 | NET driver actions | NSX driver action  |
++===================================+====================+====================+
+| Instantiate                       | PRE & POST         | Create rules       |
++-----------------------------------+--------------------+--------------------+
+| Terminate                         | CLEAN              | Delete rules       |
++-----------------------------------+--------------------+--------------------+
+| PowerOn                           | PRE & POST         | Create rules       |
++-----------------------------------+--------------------+--------------------+
+| PowerOff                          | CLEAN              | Delete rules       |
++-----------------------------------+--------------------+--------------------+
+| Attach nic                        | PRE & POST         | Create rules       |
++-----------------------------------+--------------------+--------------------+
+| Detach nic                        | CLEAN              | Delete rules       |
++-----------------------------------+--------------------+--------------------+
+| Update Security Group             | UPDATE_SG          | Modify rules       |
++-----------------------------------+--------------------+--------------------+
+
+.. warning:: The actions above only apply when a Security Group belongs to a NSX-T or NSX-V vnet.
+
+When the above OpenNebula actions are executed, the OpenNebula network driver run one or more actions. Each action type uses NSX driver to create / modify / delete rules into the NSX Distributed Firewall.
+
+What does each network driver action do?
+
+    - **PRE**: Check if NSX_STATUS is OK. If NSX_STATUS is not OK then the OpenNebula action will fail.
+    - **POST**: Uses NSX driver to create rules in DFW.
+    - **CLEAN**: Uses NSX driver to remove rules in DFW.
+    - **UPDATE_SG**: Uses NSX driver to update rules in DFW.
+
 .. _nsx_object_ref:
 
 Object references
