@@ -182,3 +182,5 @@ Security groups are made up of rules that are applied into Distributed Firewall 
 
     - The security group rules are applied to a virtual machine logical port group.
     - All security group rules are applied with action "ALLOW"
+
+.. warning:: Modify rules or sections created by OpenNebula from NSX Manager is not supported.
