@@ -159,6 +159,19 @@ To use them, you need to add the attribute **mode** to the template, this attrib
 
 In this example, the image would be created and there won't be any wait until it's ready, the programm would continue.
 
+The timeout to wait until the resource is ready is also configurable, it can be done adding **timeout** attribute in the object. For example:
+
+.. code::
+
+    images:
+        - name: "test_image"
+          ds_id: 1
+          size: 2048
+          mode: sync
+          timeout: 30
+
+In this example, the timeout to wait would be 30 seconds.
+
 .. note:: Mode is also used when deleting the objects, so if it's sync the programm will wait until the object is deleted.
 
 .. warning:: Mode attribute is only available for images and marketplace apps.
