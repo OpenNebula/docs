@@ -5,10 +5,10 @@
 Security Groups
 ================================================================================
 
-Security Groups define firewall rules to be applied on Virtual Machines.
+Security Groups define firewall rules to be applied to Virtual Machines.
 
 .. warning::
-    Security groups is not supported for OpenvSwitch and vCenter networks.
+    Security groups is not supported for OpenvSwitch. In vCenter environments, NSX is mandatory to enable Security Groups functionality.
 
 .. _security_groups_requirements:
 
@@ -153,3 +153,32 @@ If the update process needs to be reset, i.e. apply again the rules, you can use
 .. |sg_vnet_assign| image:: /images/sg_vnet_assign.png
 .. |sg_ar_assign| image:: /images/sg_ar_assign.png
 .. |sg_vm_view| image:: /images/sg_vm_view.png
+
+
+NSX Specific
+============
+
+This section describes NSX specifics regarding Security Groups, which are supported for NSX-T and NSX-V networks.
+
+.. warning:: NSX_STATUS must be OK before performs operations related to Security Groups.
+
+Security Groups are made up of rules that are applied into Distributed Firewall as follows:
+    - All rules are created under a section called "OpenNebula".
+    - The name pattern of the created rules is:
+    
+        **<sgID>-<sgName>-<vmID>-<vmDeployID>-<nicID>**
+            
+            - **sgID** = OpenNebula Security Group ID
+
+            - **sgName** = OpenNebula Security Group Name
+
+            - **vmID** = OpenNebula instance ID
+
+            - **vmDeployID** = vCenter vm-id
+
+            - **nicID** = OpenNebula instance nic ID
+
+    - The Security Groups rules are applied to a virtual machine logical port group.
+    - All sSecurity Groups rules are applied with action "ALLOW"
+
+.. warning:: Modificationof rules or sections created by OpenNebula using directly the NSX Manager interface is not supported, since the information won't be synced back in OpenNebula.

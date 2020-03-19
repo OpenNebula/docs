@@ -3,7 +3,7 @@
 NSX Driver
 ==========
 
-The NSX Driver for OpenNebula enables the interaction with NSX Manager API, to manage its different components, such as logical switches, distributed firewall and so on.
+The NSX Driver for OpenNebula enables the interaction with NSX Manager API to manage its different components, such as logical switches, distributed firewall and so on.
 
 UML diagram
 -----------
@@ -18,19 +18,54 @@ NSX Integration
 Logical switches integration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-OpenNebula can manage logical switches using NSX Driver and the hook subsystem. How does it work?
+OpenNebula manages logical switches using NSX Driver and the hook subsystem. How does it work?
 
-An action to create or delete a logical switch either from Sunstone, CLI or API, generates an specific event.
+An action to create or delete a logical switch either from Sunstone, CLI or API, generates an specific event. If there is a hook subscribed to that event, it will execute an action or script.
 
-If there is a hook subscribed to that event, it will execute an action or script.
+In the NSX integration a hook will use the NSX Driver to send commands to the NSX Manager API and will wait for an answer.
 
-In the case of NSX, the hook will use the NSX Driver to send commands to the NSX Manager API, and will wait to the answer.
-
-When NSX Manager finish the action, will return a response and the hook, based on that response, will end up as success or error.
+When NSX Manager finishes the action it will return a response and the hook, based on that response, will end up as success or error.
 
 The process of creating a logical switch is depicted below.
 
 .. figure:: /images/nsx_driver_integration.png
+
+
+Security Groups integration
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+OpenNebula security groups defines rules, associated to vnet, that are applied into NSX Distributed Firewall over a specific virtual machine logical port group. NSXDriver is in charge of translating OpenNebula security group rules into DFW rules, on both NSX-T and NSX-V.
+
+Here are the actions that affect to the creation, modification or deletion of rules in the Distributed Firewall. 
+
++-----------------------------------+--------------------+--------------------+
+| OpenNebula action                 | NET driver actions | NSX driver action  |
++===================================+====================+====================+
+| Instantiate                       | PRE & POST         | Create rules       |
++-----------------------------------+--------------------+--------------------+
+| Terminate                         | CLEAN              | Delete rules       |
++-----------------------------------+--------------------+--------------------+
+| PowerOn                           | PRE & POST         | Create rules       |
++-----------------------------------+--------------------+--------------------+
+| PowerOff                          | CLEAN              | Delete rules       |
++-----------------------------------+--------------------+--------------------+
+| Attach nic                        | PRE & POST         | Create rules       |
++-----------------------------------+--------------------+--------------------+
+| Detach nic                        | CLEAN              | Delete rules       |
++-----------------------------------+--------------------+--------------------+
+| Update Security Group             | UPDATE_SG          | Modify rules       |
++-----------------------------------+--------------------+--------------------+
+
+.. warning:: The actions above only apply when a Security Group belongs to a NSX-T or NSX-V vnet.
+
+When the above OpenNebula actions are executed, the OpenNebula network driver run one or more actions. Each action type uses NSX driver to create / modify / delete rules into the NSX Distributed Firewall.
+
+What does each network driver action do?
+
+    - **PRE**: Check if NSX_STATUS is OK. If NSX_STATUS is not OK then the OpenNebula action will fail.
+    - **POST**: Uses NSX driver to create rules in DFW.
+    - **CLEAN**: Uses NSX driver to remove rules in DFW.
+    - **UPDATE_SG**: Uses NSX driver to update rules in DFW.
 
 .. _nsx_object_ref:
 
@@ -58,6 +93,6 @@ Here is a table with the components and their reference formats in NSX and vCent
 Managed components
 ------------------
 
-Currently only Logical Switches are supported. In the image below is shown which components are intended to be supported by OpenNebula through its NSX Driver in the near future.
+Currently Logical Switches and Distributed Firewall ( DFW ) are supported. These componentes are known as NSX-T / NSX-V vnets and Security Groups respectively in OpenNebula. In the image below is shown which components are intended to be supported by OpenNebula through its NSX Driver in the near future.
 
 .. figure:: /images/nsx_driver_managed_components.png
