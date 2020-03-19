@@ -54,6 +54,8 @@ Transport Zone
 
 At least one transport zone must be created.
 
+.. warning:: Transport zone names can only contain alphanumeric characters ( a-z, A-Z, 0-9 ) and underscores ( _ ).
+
 Logical Switches
 ^^^^^^^^^^^^^^^^
 
@@ -79,6 +81,7 @@ The following limitations applies to the OpenNebula-NSX integration:
 - The process of preparing a NSX cluster must be done from NSX Manager
 - Imported networks work with vcenter id instead of nsx id
 - ICMP subprotocols are not implemented
+- Transport zone names can only contain alphanumeric characters and underscores
 
 .. _nsx_adding_nsx_manager:
 

@@ -13,3 +13,8 @@ OneFlow revamp
 ==============
 
 In the new OneFlow server, the state **poweroff** sets the service state to warning.
+
+New default restricted attributes
+=================================
+
+The ``PIN_POLICY`` and ``HUGEPAGE_SIZE`` attributes from ``TOPOLOGY`` are now restricted by default.
