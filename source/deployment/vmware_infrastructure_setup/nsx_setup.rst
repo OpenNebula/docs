@@ -22,15 +22,14 @@ OpenNebula can manage NSX-V and NSX-T logical switches in the following ways:
 Security Groups - Distributed Firewall
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-OpenNebula can manage NSX-V and NSX-T Distributed Firewall (DFW) through OpenNebula Security Groups.
+OpenNebula manages NSX-V and NSX-T Distributed Firewall (DFW) through :ref:`OpenNebula Security Groups <security_groups>`.
 These security groups have rules and OpenNebula can apply the rules into NSX Distributed Firewall in the following ways.
 
     - Creating firewall rules applied on logical ports.
     - Deleting firewall rules.
     - Updating firewall rules.
 
-By default all rules are creating under a section called "OpenNebula".
-Also OpenNebula security groups are rules only to allow connections, so you need to set DFW to deny connections by default, and allowing them by rules.
+By default all rules are creating under a section called "OpenNebula". OpenNebula security groups only whitelist connections, so you need to set DFW to deny connections by default, and allowing them by rules.
 
 Requirements
 ------------
@@ -48,7 +47,7 @@ At least one controller node must be deployed.
 ESXi Hosts
 ^^^^^^^^^^
 
- All ESXi of the cluster must be prepared for NSX.
+All ESXi of the cluster must be prepared for NSX.
 
 Transport Zone
 ^^^^^^^^^^^^^^
@@ -58,7 +57,7 @@ At least one transport zone must be created.
 Logical Switches
 ^^^^^^^^^^^^^^^^
 
-It is not mandatory to have any logical switch before start using opennebula NSX-V integration, but is recommendable to test that logical switches are working properly, creating a logical switch from vCenter into a Transport Zone, and attaching it into two VMs to test that overlay network is working.
+It is not mandatory to have any logical switch before start using opennebula NSX-V integration. However, it is recommended to test that logical switches are working properly, creating a logical switch from vCenter into a Transport Zone, and attaching it into two VMs to test that overlay network is working.
 
 Distributed Firewall
 ^^^^^^^^^^^^^^^^^^^^
@@ -70,6 +69,8 @@ NSX DFW default rule, must be set to deny any connection since OpenNebula only i
 
 NSX Driver Limitations
 ----------------------
+
+The following limitations applies to the OpenNebula-NSX integration:
 
 - Cannot create/modify/delete Transport Zones
 - All parameters are not available when creating Logical Switches
@@ -84,15 +85,14 @@ NSX Driver Limitations
 Adding NSX Manager into OpenNebula
 -----------------------------------
 
-This is a semi-automatic process. When vCenter is connected to a NSX Manager, OpenNebula in the next monitoring execution will detect it and a new tab called “NSX” will show in the UI allowing the configuration of the credentials (User and Password) needed to connect to NSX Manager. The same process is applied when importing a new vcenter cluster that is prepared to work with NSX-V or NSX-T.
+This is a semi-automatic process. When vCenter is connected to a NSX Manager, OpenNebula will detect it in the next monitoring cycle. AS a result, a new tab called “NSX” will show in the UI allowing the configuration of the credentials (User and Password) needed to connect to NSX Manager. The same process is applied when importing a new vCenter cluster that is prepared to work with NSX-V or NSX-T.
 
 This section details how to configure OpenNebula to start working with NSX, doing the complete process ranging from importing a vCenter Cluster to checking that OpenNebula gets NSX information correctly
 
-Adding vCenter cluster into OpenNebula
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Importing a vCenter cluster in OpenNebula
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The first step is to add a ESXi cluster to OpenNebula, this cluster must have all the requirements to work with NSX-V or NSX-T.
-You can add the cluster in two ways, as usual:
 
 Import from Sunstone
 """"""""""""""""""""
