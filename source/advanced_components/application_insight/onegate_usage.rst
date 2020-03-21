@@ -319,6 +319,23 @@ Self-awareness
       USER TEMPLATE
       APP_LOAD="9.7"
 
+* ``PUT ${ONEGATE_ENDPOINT}/vm?type=2``: To delete information from the template of the current VM.
+* ``PUT ${ONEGATE_ENDPOINT}/vms/${VM_ID}?type=2``: To delete information from the template of a specific VM of the Service.
+
+  .. prompt:: text $ auto
+
+      $ curl -X "PUT" "${ONEGATE_ENDPOINT}/vm?type=2" \
+          --header "X-ONEGATE-TOKEN: `cat token.txt`" \
+          --header "X-ONEGATE-VMID: $VMID" \
+          -d "APP_LOAD"
+
+  The new metric is stored in the user template section of the VM:
+
+  .. prompt:: text $ auto
+
+      $ onevm show 0
+      ...
+      USER TEMPLATE
 
 * ``GET ${ONEGATE_ENDPOINT}/service``: To request information about the Service. The information is returned in JSON format and is ready for public cloud usage. By pushing data ``PUT /vm`` from one VM and pulling the Service data from another VM ``GET /service``, nodes that are part of a OneFlow Service can pass values from one to another.
 
