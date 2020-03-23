@@ -20,5 +20,6 @@ The following issues has been solved in 5.10.4:
 - `Fix error in fsck when vnet lease has no ID <https://github.com/OpenNebula/one/issues/4328>`__.
 - `Fix VMs & Images datatables in Sunstone <https://github.com/OpenNebula/one/issues/1388>`__.
 - `Fix labels when service updating in Sunstone <https://github.com/OpenNebula/one/issues/4273>`__.
-- `Fix ACLs check permissions when creating a template <https://github.com/OpenNebula/one/issues/4352>`__.
+- `Fix ACLs check permissions when creating a template <https://github.com/OpenNebula/one/issues/4352>`__.f
+- `Fix create group with no permissions <https://github.com/OpenNebula/one/issues/3361>`__.
 - `Fix NIC aliases are not working with NETWORK_SELECT = "NO" <https://github.com/OpenNebula/one/issues/4378>`__.
