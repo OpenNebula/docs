@@ -21,3 +21,4 @@ The following issues has been solved in 5.10.4:
 - `Fix labels when service updating in Sunstone <https://github.com/OpenNebula/one/issues/4273>`__.
 - `Fix ACLs check permissions when creating a template <https://github.com/OpenNebula/one/issues/4352>`__.
 - `Fix NIC aliases are not working with NETWORK_SELECT = "NO" <https://github.com/OpenNebula/one/issues/4378>`__.
+- `Fix address range dialog when instantiate a VNet <https://github.com/OpenNebula/one/issues/4393>`__.
