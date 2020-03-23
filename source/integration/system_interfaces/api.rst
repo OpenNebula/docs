@@ -6623,23 +6623,25 @@ one.acl.addrule
 -  **Description**: Adds a new ACL rule.
 -  **Parameters**
 
-+------+------------+-----------------------------------------------------------------------+
-| Type | Data Type  |                              Description                              |
-+======+============+=======================================================================+
-| IN   | String     | The session string.                                                   |
-+------+------------+-----------------------------------------------------------------------+
-| IN   | String     | User component of the new rule. A string containing a hex number.     |
-+------+------------+-----------------------------------------------------------------------+
-| IN   | String     | Resource component of the new rule. A string containing a hex number. |
-+------+------------+-----------------------------------------------------------------------+
-| IN   | String     | Rights component of the new rule. A string containing a hex number.   |
-+------+------------+-----------------------------------------------------------------------+
-| OUT  | Boolean    | true or false whenever is successful or not                           |
-+------+------------+-----------------------------------------------------------------------+
-| OUT  | Int/String | The allocated ACL rule ID / The error string.                         |
-+------+------------+-----------------------------------------------------------------------+
-| OUT  | Int        | Error code.                                                           |
-+------+------------+-----------------------------------------------------------------------+
++------+------------+----------------------------------------------------------------------------+
+| Type | Data Type  |                              Description                                   |
++======+============+============================================================================+
+| IN   | String     | The session string.                                                        |
++------+------------+----------------------------------------------------------------------------+
+| IN   | String     | User component of the new rule. A string containing a hex number.          |
++------+------------+----------------------------------------------------------------------------+
+| IN   | String     | Resource component of the new rule. A string containing a hex number.      |
++------+------------+----------------------------------------------------------------------------+
+| IN   | String     | Rights component of the new rule. A string containing a hex number.        |
++------+------------+----------------------------------------------------------------------------+
+| IN   | String     | Optional zone component of the new rule. A string containing a hex number. |
++------+------------+----------------------------------------------------------------------------+
+| OUT  | Boolean    | true or false whenever is successful or not                                |
++------+------------+----------------------------------------------------------------------------+
+| OUT  | Int/String | The allocated ACL rule ID / The error string.                              |
++------+------------+----------------------------------------------------------------------------+
+| OUT  | Int        | Error code.                                                                |
++------+------------+----------------------------------------------------------------------------+
 
 To build the hex. numbers required to create a new rule we recommend you to read the `ruby <https://github.com/OpenNebula/one/blob/master/src/oca/ruby/opennebula/acl.rb>`__ or `java <https://github.com/OpenNebula/one/blob/master/src/oca/java/src/org/opennebula/client/acl/Acl.java>`__ code.
 
