@@ -36,6 +36,8 @@ Transport Zone
 
 At least one transport zone must be created.
 
+.. warning:: Transport zone names can only contain alphanumeric characters ( a-z, A-Z, 0-9 ) and underscores ( _ ).
+
 Logical Switches
 ^^^^^^^^^^^^^^^^
 
@@ -52,6 +54,7 @@ NSX Driver Limitations
 - Only support one NSX Manager per vCenter Server
 - The process of preparing a NSX cluster must be done from NSX Manager
 - Imported networks work with vcenter id instead of nsx id
+- Transport zone names can only contain alphanumeric characters and underscores
 
 .. _nsx_adding_nsx_manager:
 
