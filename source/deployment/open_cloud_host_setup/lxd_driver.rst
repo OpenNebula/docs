@@ -24,8 +24,7 @@ There are a number of regular features that are not implemented yet:
 - live disk resize
 - LVM datastore
 - PCI Passthrough
-- volatile filesystems
-
+- swap disk type, inderectly supported through volatile disks
 
 - **offline disk resize**:
     - not supported on multiple partition images
