@@ -4,7 +4,7 @@
 vCenter Driver Setup
 ====================
 
-The vCenter Driver is the responsible for all the integration of OpenNebula with VMware based infrastructures. All the interaciton between OpenNebula and vSphere is channeled through the vCenter API, except for the VNC console connection where Sunstone server (more specifically, the noVNC server) contacts with the ESX hypervisors directly.
+The vCenter Driver is the responsible for all the integration of OpenNebula with VMware based infrastructures. All the interaction between OpenNebula and vSphere is channeled through the vCenter API, except for the VNC console connection where Sunstone server (more specifically, the noVNC server) contacts with the ESX hypervisors directly.
 
 This section lays out the actions needed to incorporate VMware resources to an OpenNebula cloud.
 
