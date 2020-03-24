@@ -559,7 +559,6 @@ After a Virtual Machine is imported, their life-cycle (including creation of sna
 
 * Recover --recreate
 * Undeploy (and Undeploy --hard)
-* Migrate (and Migrate --live)
 * Stop
 
 Once a Wild VM is imported, OpenNebula will reconfigure the vCenter VM so VNC connections can be established once the VM is monitored.
