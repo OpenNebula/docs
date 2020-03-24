@@ -36,7 +36,7 @@ Sunstone
 --------------------------------------------------------------------------------
 - ...
 
-DDC
+Disaggregated Data Centers
 ================================================================================
 - Provision support of other object types. Refer to :ref:`this<ddc_virtual>` for more information.
 

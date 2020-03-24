@@ -22,9 +22,9 @@ A **provision template** is a YAML-formatted file with parameters specifying the
   * host provision driver,
   * host configuration tunables.
 
-* list of provision objects (cluster, hosts, datastores, virtual networks) to deploy with overrides to the global defaults above.
+* list of OpenNebula infrastructure objects (cluster, hosts, datastores, virtual networks) to deploy with overrides to the global defaults above.
 
-* list of virtual objects (images, templates, vnet templates, marketplace apps, service templates) Refer to :ref:`this<ddc_virtual>` for more information.
+* list of OpenNebula virtual objects (images, templates, vnet templates, marketplace apps, service templates) Refer to :ref:`this<ddc_virtual>` for more information.
 
 Example:
 
@@ -49,7 +49,7 @@ Example:
       configuration:
         opennebula_node_kvm_param_nested: true
 
-    # List of provision objects to deploy with provision/connection/configuration overrides
+    # List of OpenNebula infrastructure objects to deploy with provision/connection/configuration overrides
     cluster:
       name: mycluster
 
@@ -165,10 +165,10 @@ This section provides parameters for the host configuration process (e.g. KVM in
 
 .. _ddc_provision_template_devices:
 
-Provision objects
------------------
+OpenNebula infrastructure objects
+---------------------------------
 
-Sections ``cluster``, ``hosts``, ``datastores``, ``networks`` contain list of provision objects to be deployed with all the necessary parameters for deployment and creation in OpenNebula. The object structure is a YAML representation of an OpenNebula template with additional shared sections (``connection``, ``provision``, ``configuration``).
+Sections ``cluster``, ``hosts``, ``datastores``, ``networks`` contain list of OpenNebula infrastructure objects to be deployed with all the necessary parameters for deployment and creation in OpenNebula. The object structure is a YAML representation of an OpenNebula template with additional shared sections (``connection``, ``provision``, ``configuration``).
 
 .. note::
 
