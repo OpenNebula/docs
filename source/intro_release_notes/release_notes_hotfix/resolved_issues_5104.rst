@@ -23,3 +23,4 @@ The following issues has been solved in 5.10.4:
 - `Fix ACLs check permissions when creating a template <https://github.com/OpenNebula/one/issues/4352>`__.f
 - `Fix create group with no permissions <https://github.com/OpenNebula/one/issues/3361>`__.
 - `Fix NIC aliases are not working with NETWORK_SELECT = "NO" <https://github.com/OpenNebula/one/issues/4378>`__.
+- `Fix scheduler action are not working with END_TYPE = 0 <https://github.com/OpenNebula/one/issues/4380>`__.
