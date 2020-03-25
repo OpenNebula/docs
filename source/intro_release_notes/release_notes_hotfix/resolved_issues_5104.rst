@@ -23,6 +23,7 @@ The following issues has been solved in 5.10.4:
 - `Fix ACLs check permissions when creating a template <https://github.com/OpenNebula/one/issues/4352>`__.
 - `Fix create group with no permissions <https://github.com/OpenNebula/one/issues/3361>`__.
 - `Fix NIC aliases are not working with NETWORK_SELECT = "NO" <https://github.com/OpenNebula/one/issues/4378>`__.
+- `Fix uid and gid of new VMs when scaling a service <https://github.com/OpenNebula/one/issues/4406>`__.
 - `Fix scheduler action are not working with END_TYPE = 0 <https://github.com/OpenNebula/one/issues/4380>`__.
 - `Fix address range dialog when instantiate a VNet <https://github.com/OpenNebula/one/issues/4393>`__.
 - `Fix display Roles in Service <https://github.com/OpenNebula/one/issues/4428>`__.
