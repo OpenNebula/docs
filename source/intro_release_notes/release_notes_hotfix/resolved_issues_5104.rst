@@ -7,7 +7,7 @@ A complete list of solved issues for 5.10.4 can be found in the `project develop
 
 The following new features has been backported to 5.10.4:
 
-- `Pyone, the Python API binding for OPenNebula, is now thread-safe <https://github.com/OpenNebula/one/issues/4236>`__.
+- `Pyone, the Python API binding for OpenNebula, is now thread-safe <https://github.com/OpenNebula/one/issues/4236>`__.
 - `Support for volatile disks on LXD <https://github.com/OpenNebula/one/issues/3297>`__.
 - `Improve CLI filter operators handling <https://github.com/OpenNebula/one/issues/2506>`__.
 
@@ -23,5 +23,6 @@ The following issues has been solved in 5.10.4:
 - `Fix ACLs check permissions when creating a template <https://github.com/OpenNebula/one/issues/4352>`__.
 - `Fix create group with no permissions <https://github.com/OpenNebula/one/issues/3361>`__.
 - `Fix NIC aliases are not working with NETWORK_SELECT = "NO" <https://github.com/OpenNebula/one/issues/4378>`__.
+- `Fix scheduler action are not working with END_TYPE = 0 <https://github.com/OpenNebula/one/issues/4380>`__.
+- `Fix address range dialog when instantiate a VNet <https://github.com/OpenNebula/one/issues/4393>`__.
 - `Fix display Roles in Service <https://github.com/OpenNebula/one/issues/4428>`__.
-- `Fix search_token replication <https://github.com/OpenNebula/one/issues/4411>`__.
