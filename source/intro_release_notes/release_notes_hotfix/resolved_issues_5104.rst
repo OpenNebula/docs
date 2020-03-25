@@ -24,3 +24,4 @@ The following issues has been solved in 5.10.4:
 - `Fix create group with no permissions <https://github.com/OpenNebula/one/issues/3361>`__.
 - `Fix NIC aliases are not working with NETWORK_SELECT = "NO" <https://github.com/OpenNebula/one/issues/4378>`__.
 - `Fix display Roles in Service <https://github.com/OpenNebula/one/issues/4428>`__.
+- `Fix search_token replication <https://github.com/OpenNebula/one/issues/4411>`__.
