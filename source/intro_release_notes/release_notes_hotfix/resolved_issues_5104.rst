@@ -26,3 +26,4 @@ The following issues has been solved in 5.10.4:
 - `Fix scheduler action are not working with END_TYPE = 0 <https://github.com/OpenNebula/one/issues/4380>`__.
 - `Fix address range dialog when instantiate a VNet <https://github.com/OpenNebula/one/issues/4393>`__.
 - `Fix display Roles in Service <https://github.com/OpenNebula/one/issues/4428>`__.
+- `Fix installing augeas gem in Debians <https://github.com/OpenNebula/one/issues/4426>`__.
