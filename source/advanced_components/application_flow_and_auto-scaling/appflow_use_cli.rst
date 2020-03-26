@@ -191,56 +191,91 @@ You can also use them through the CLI. When you instantiate the template using `
 Network mapping
 --------------------------------------------------------------------------------
 
-Network mapping can be achieved by using custom attributes. Only three steps are required for mapping all the IP addresses from an internal network into an external one, as shown in the image below:
+Network mapping can be achieved by using OneFlow and OneGate together. Only four steps are required for mapping IP addresses from an internal network into an external one, as shown in the image below:
 
 |oneflow-network-mapping|
 
-**Defining Custom Attributes at OneFlow Template**
+**Upload the Network Mapping script**
 
-First of all two custom attributes must be defined at the service template ``INTERNAL`` and ``EXTERNAL`` which will contains the network addresses that are going to be mapped.
+First of all, it is necessary to upload the Network Mapping script to a :ref:`Kernels & Files Datastore <file_ds>`. The steps below must be followed:
 
-**Preparing the VM Template**
+* Include ``/usr/share/one/start-script`` path in ``SAFE_DIRS``.
 
-The VM template used for the router needs to be prepared:
+  |oneflow-network-mapping-fileds_safedirs|
 
-  - Define two custom attributes at context to retrieve the value of the service custom attributes:
+* Create a file of type ``Context`` stored in the File Datastore. Set ``Path in OpenNebula server`` to ``/usr/share/one/start-scripts/map_vnets_start_script``.
 
-    .. code::
+  |oneflow-network-mapping-create_file|
 
-      CONTEXT=[
-        ...
-        INTERNAL = $INTERNAL
-        EXTERNAL = $EXTERNAL
-      ]
+**Preparing the Router Virtual Machine Template**
 
-  - Define an init script to set the firewall rules when the VM boots:
+A custom Virtual Machine template acting as router is also needed. Steps similar to those below should be followed:
 
-    Something like this can be used for mapping two equals size networks into each other:
+* Storage. Choose a disk image. For instance, a light weight Alpine that can be get on :ref:`OpenNebula Systems MarketPlace <market_one>`.
 
-    .. code::
+* Network. Set ``virtio`` as ``Default hardware model to emulate for all NICs``.
 
-      sysctl net.ipv4.ip_forward=1
-      iptables -t nat  -A PREROUTING -d $EXTERNAL -j NETMAP --to $INTERNAL
-      iptables -t nat  -A POSTROUTING -s $INTERNAL  ! -d $INTERNAL -j NETMAP --to $EXTERNAL
+* Context:
 
-    The VM template should looks like this after adding the script:
+  * Configuration:
 
-    .. code::
+    * ``Add OneGate token`` must be checked (this is also aplicable to all templates used in the Service Template).
 
-      CONTEXT=[
-        ...
-        INTERNAL = $INTERNAL
-        EXTERNAL = $EXTERNAL
-        ...
-        START_SCRIPT_BASE64="c3lzY3RsIG5ldC5pcHY0LmlwX2ZvcndhcmQ9MQppcHRhYmxlcyAtdCBuYXQgIC1BIFBSRVJPVVRJTkcgLWQgJEVYVEVSTkFMIC1qIE5FVE1BUCAtLXRvICRJTlRFUk5BTAppcHRhYmxlcyAtdCBuYXQgIC1BIFBPU1RST1VUSU5HIC1zICRJTlRFUk5BTCAgISAtZCAkSU5URVJOQUwgLWogTkVUTUFQIC0tdG8gJEVYVEVSTkFM" ]
-      ]
+    * Copy the contents of ``/usr/share/one/start-scripts/cron_start_script`` in ``Start script``.
+
+      |oneflow-network-mapping-router_context_config|
+
+    * Files. Select the network mapping script previously uploaded to the File Datastore.
+
+      |oneflow-network-mapping-router_context_files|
+
+**Prepare the Service Template**
+
+As a proof of concept, a Service Template similar to the one below can be prepared:
+
+* Network configuration. Declare the *Public* and *Private* networks to be used on instantiation.
+
+  |oneflow-network-mapping-service_template_nw_config|
+
+* Role ``router``. Select the previously cretated Router Virtual Template, and check ``Private`` and ``Public`` in ``Network Interfaces``.
+
+  |oneflow-network-mapping-service_template_role_router|
+
+* Role ``worker``. Select a Virtual Machine Template, check only ``Private`` in ``Network Interfaces``, and check ``router`` in ``Parent roles``.
+
+  |oneflow-network-mapping-service_template_role_worker|
 
 **Instantiate the Service Template**
 
-During the service instantiate process just fill the ``EXTERNAL`` and ``INTERNAL`` values with the network address in CIDR format. For the example of the pictures above: ``EXTERNAL=10.0.0.0/24`` and ``INTERNAL=192.168.1.0/24``.
+At this point the Service Template can be instantiated. On instantiation a deployment similar to the one below will be obtained.
 
-.. warning:: Note that this will only apply a firewall rules. In order to everything works properly the networks attached to each VM must makes sense with the values specified for ``EXTERNAL`` and ``INTERNAL`` attributes.
+|oneflow-network-mapping-service_instantiation_init|
 
+If a ``NIC_ALIAS`` on *Pulic* network is attached to any of the virtual machines on the *worker* role, the specific machine can be reached by using the IP address assigned to the ``NIC_ALIAS``.
+
+|oneflow-network-mapping-service_instantiation_alias1|
+
+.. code::
+
+   $ ping -c1 10.0.0.2
+   PING 10.0.0.2 (10.0.0.2) 56(84) bytes of data.
+   64 bytes from 10.0.0.2: icmp_seq=1 ttl=64 time=0.936 ms
+
+   --- 10.0.0.2 ping statistics ---
+   1 packets transmitted, 1 received, 0% packet loss, time 0ms
+   rtt min/avg/max/mdev = 0.936/0.936/0.936/0.000 ms
+
+If the ``NIC_ALIAS`` on *Pulic* network is detached from the virtual machine, the connectivity -through the previously- assigned IP address is lost.
+
+.. code::
+
+   $ ping -c1 10.0.0.2
+   PING 10.0.0.2 (10.0.0.2) 56(84) bytes of data.
+
+   --- 10.0.0.2 ping statistics ---
+   1 packets transmitted, 0 received, 100% packet loss, time 0ms
+
+.. warning:: It takes up to one minute, half a minute on average, to configure the rules on *iptables*.
 
 Managing Services
 =================
@@ -630,3 +665,12 @@ Read the :ref:`elasticity policies documentation <appflow_elasticity>` for more 
 .. |oneflow-templates-net-5| image:: /images/oneflow-templates-net-5.png
 .. |oneflow-templates-attrs| image:: /images/oneflow-templates-attrs.png
 .. |oneflow-network-mapping| image:: /images/oneflow-network-map.png
+.. |oneflow-network-mapping-fileds_safedirs| image:: /images/oneflow-network-map-fileds_safedirs.png
+.. |oneflow-network-mapping-create_file| image:: /images/oneflow-network-map-create_file.png
+.. |oneflow-network-mapping-router_context_config| image:: /images/oneflow-network-map-router_context_config.png
+.. |oneflow-network-mapping-router_context_files| image:: /images/oneflow-network-map-router_context_files.png
+.. |oneflow-network-mapping-service_template_nw_config| image:: /images/oneflow-network-map-service_template_nw_config.png
+.. |oneflow-network-mapping-service_template_role_router| image:: /images/oneflow-network-map-service_template_role_router.png
+.. |oneflow-network-mapping-service_template_role_worker| image:: /images/oneflow-network-map-service_template_role_worker.png
+.. |oneflow-network-mapping-service_instantiation_init| image:: /images/oneflow-network-map-service_instantiation_init.png
+.. |oneflow-network-mapping-service_instantiation_alias1| image:: /images/oneflow-network-map-service_instantiation_alias1.png
