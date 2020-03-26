@@ -356,6 +356,7 @@ All deployment steps (create, provision, configuration) are covered by a single 
 Deployment of a new provision is a 4 step process:
 
 - **Add**. OpenNebula infrastructure objects (cluster, hosts, datastores, networks) are created, but disabled for general use.
+- **Add**. OpenNebula virtual objects(images, marketplace apps, VM Templates, VNet templates, OneFlow service templates) are created.
 - :ref:`Provision <ddc_provision>`. Resources are allocated on the remote provider (e.g. use the provider's API to get clean new hosts).
 - :ref:`Configure <ddc_config>`. Resources are reconfigured for a particular use (e.g. install virtualization tools on new hosts).
 - **Enable**. Ready-to-use resources are enabled in OpenNebula.
@@ -371,6 +372,14 @@ Parameters:
 | ``--ping-retries`` number | Number of SSH connection retries (default: 10)     | NO        |
 +---------------------------+----------------------------------------------------+-----------+
 | ``--ping-timeout`` number | Seconds between each SSH retry (default: 20)       | NO        |
++---------------------------+----------------------------------------------------+-----------+
+| ``--wait``                | Wait virtual objects to be ready in OpenNebula     | NO        |
++---------------------------+----------------------------------------------------+-----------+
+| ``--wait-timeout`` number | Seconds to wait virtual objects (default: 60)      | NO        |
++---------------------------+----------------------------------------------------+-----------+
+| ``--skip-provision``      | Skip hosts provision and configuration             | NO        |
++---------------------------+----------------------------------------------------+-----------+
+| ``--skip-config``         | Skip hosts configuration                           | NO        |
 +---------------------------+----------------------------------------------------+-----------+
 
 Example:

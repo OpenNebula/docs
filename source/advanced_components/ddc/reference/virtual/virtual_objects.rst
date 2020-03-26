@@ -9,18 +9,20 @@ created with the provision itselt, with the command ``oneprovision create`` and 
 
 The available objects are the following:
 
-- Virtual Machine Templates
-- Virtual Network Templates
 - Images
 - Marketplace apps
+- Virtual Machine Templates
+- Virtual Network Templates
 - OneFlow Service templates
 
 .. note:: The marketplace apps are exported from the marketplace, so they create a new imagen and a new template.
 
+.. note:: They are created in the order they appear in the list.
+
 Virtual Machine Templates
 -------------------------
 
-To create some virtual machine templates, you need to add the following to your provision template:
+To create virtual machine templates, you need to add the following to your provision template:
 
 .. code::
 
@@ -35,7 +37,7 @@ to the virtual machine template. Please refer to this :ref:`guide<template>` to 
 Virtual Network Templates
 -------------------------
 
-To create some virtual machine templates you need to add the following to your provision template:
+To create virtual machine templates you need to add the following to your provision template:
 
 .. code::
 
@@ -46,7 +48,6 @@ To create some virtual machine templates you need to add the following to your p
           - ip: "10.0.0.1"
             size: 10
             type: "IP4"
-        cluster_ids: 100
 
 These are the mandatory values for a virtual network template in OpenNebula. Then you can add all the information you want, everything you put there will be copy
 to the virtual network template. Please refer to this :ref:`guide<vn_templates>` to know what attributes are available.
@@ -54,7 +55,7 @@ to the virtual network template. Please refer to this :ref:`guide<vn_templates>`
 Images
 ------
 
-To create some images you need to add the following to your provision template:
+To create images you need to add the following to your provision template:
 
 .. code::
 

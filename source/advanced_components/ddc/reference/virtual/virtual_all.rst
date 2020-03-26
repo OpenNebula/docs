@@ -1,13 +1,13 @@
 .. _ddc_virtual_all:
 
-=================
-Combining Objects
-=================
+===================
+Referencing Objects
+===================
 
-As all these are objects that are created dinamically, there can be some relations between them. For example, we might want to use a new image that is created
-in some template that is going to be created too.
+As all these are objects that are created dynamically, there can be some relations between them. For example, we might want to use a new image that is created
+in a template that is going to be created too.
 
-For this, ERB expressions are available, so you can reference some objects that have been already created. Let's see some example about this.
+For this, ERB expressions are available, so you can reference objects that have been already created. Let's see some example about this.
 
 .. code::
 

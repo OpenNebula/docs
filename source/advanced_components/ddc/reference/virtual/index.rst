@@ -9,5 +9,5 @@ OpenNebula Virtual Objects
 
    Virtual Objects <virtual_objects>
    Ownership and Permissions <virtual_perms>
-   Wait Objects <virtual_wait>
-   Combining Objects <virtual_all>
+   Wait Modes <virtual_wait>
+   Referencing Objects <virtual_all>
