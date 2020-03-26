@@ -29,3 +29,5 @@ The following issues has been solved in 5.10.4:
 - `Fix display Roles in Service <https://github.com/OpenNebula/one/issues/4428>`__.
 - `Fix installing augeas gem in Debians <https://github.com/OpenNebula/one/issues/4426>`__.
 - `Fix required IPv4 when IPAM driver is selected <https://github.com/OpenNebula/one/issues/3615>`__.
+- `Do not allow user to increase his privileages to manage VMs <https://github.com/OpenNebula/one/issues/4416>`__.
+- `Do not allow wrong string in VM_*_OPERATIONS attribute <https://github.com/OpenNebula/one/issues/4417>`__.
