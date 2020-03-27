@@ -167,7 +167,7 @@ In order to deploy an instance in Azure through OpenNebula, you must include an 
       IMAGE_SKU="16.04.0-LTS",
       IMAGE_VERSION="latest",
       PUBLIC_IP="YES",
-      TYPE="AZURE",
+      TYPE="azure",
       VM_USER="MyUserName",
       VM_PASSWORD="myr@nd0mPass9"
     ]
@@ -175,7 +175,7 @@ In order to deploy an instance in Azure through OpenNebula, you must include an 
     #Add this if you want this VM to only go to the West EuropeAzure cloud
     #SCHED_REQUIREMENTS = 'HOSTNAME = "westeurope"'
 
-These are the attributes that can be used in the PUBLIC_CLOUD section of the template for TYPE "AZURE", There is an exhaustive list of attributes in the :ref:`Virtual Machine Definition File Reference Section <public_cloud_azure_atts>`.
+These are the attributes that can be used in the PUBLIC_CLOUD section of the template for TYPE "azure", There is an exhaustive list of attributes in the :ref:`Virtual Machine Definition File Reference Section <public_cloud_azure_atts>`.
 
 .. note:: The PUBLIC_CLOUD sections allow for substitutions from a template and virtual network variables, the same way as the :ref:`CONTEXT section allows <template_context>`.
 
@@ -290,7 +290,7 @@ You can define a different Azure section in your template for each Azure host, s
 
 .. code::
 
-    PUBLIC_CLOUD = [ TYPE=AZURE,
+    PUBLIC_CLOUD = [ TYPE=azure,
                      INSTANCE_TYPE=Standard_B1ls,
                      IMAGE_PUBLISHER=canonical,
                      IMAGE_OFFER=UbuntuServer,
@@ -301,7 +301,7 @@ You can define a different Azure section in your template for each Azure host, s
                      LOCATION="brazilsouth"
     ]
 
-    PUBLIC_CLOUD = [ TYPE=AZURE,
+    PUBLIC_CLOUD = [ TYPE=azure,
                      INSTANCE_TYPE=Standard_B2s,
                      IMAGE_PUBLISHER=canonical,
                      IMAGE_OFFER=UbuntuServer,
@@ -334,7 +334,7 @@ An example of a hybrid template:
     DISK=[IMAGE="nginx-golden"]
     NIC=[NETWORK="public"]
 
-    PUBLIC_CLOUD = [ TYPE=AZURE,
+    PUBLIC_CLOUD = [ TYPE=azure,
                      INSTANCE_TYPE=Standard_B2s,
                      IMAGE_PUBLISHER=canonical,
                      IMAGE_OFFER=UbuntuServer,
@@ -345,7 +345,7 @@ An example of a hybrid template:
                      LOCATION="westeurope"
     ]
 
-OpenNebula will use the first portion (from NAME to NIC) in the above template when the VM is scheduled to a local virtualization node, and the PUBLIC_CLOUD section of TYPE="AZURE" when the VM is scheduled to an Azure node (i.e. when the VM is going to be launched in Azure).
+OpenNebula will use the first portion (from NAME to NIC) in the above template when the VM is scheduled to a local virtualization node, and the PUBLIC_CLOUD section of TYPE="azure" when the VM is scheduled to an Azure node (i.e. when the VM is going to be launched in Azure).
 
 Testing
 ================================================================================
@@ -363,7 +363,7 @@ You must create a template file containing the information of the VMs you want t
 
     # Azure template machine, this will be used when submitting this VM to Azure
 
-    PUBLIC_CLOUD = [ TYPE=AZURE,
+    PUBLIC_CLOUD = [ TYPE=azure,
                      INSTANCE_TYPE=Standard_B2s,
                      IMAGE_PUBLISHER=canonical,
                      IMAGE_OFFER=UbuntuServer,
@@ -375,7 +375,7 @@ You must create a template file containing the information of the VMs you want t
     ]
 
     # Add this if you want to use only Azure cloud
-    #SCHED_REQUIREMENTS = 'HYPERVISOR = "AZURE"'
+    #SCHED_REQUIREMENTS = 'HYPERVISOR = "azure"'
 
 You can submit and control the template using the OpenNebula interface:
 
