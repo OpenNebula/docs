@@ -53,3 +53,18 @@ Onedb upgrade overwirtes DB encoding
 When running ``onedb upgrade`` and if the DB tables have different encoding from UTF-8, it overwirtes the tables using a wrong encoding. This leads to a non-compatible encoding and errors at the XML-RPC level.
 
 As a workaround you can change the value of **NOKOGIRI_ENCODING** in the file `/usr/bin/onedb` and put there your encoding according to the DB table encoding in your case. You can find `here <https://www.rubydoc.info/github/sparklemotion/nokogiri/Nokogiri/XML/SAX/Parser>`__ the appropiate enconding.
+
+Security Groups
+====================
+
+When detaching a NIC associated to a SG the VM is removed from that SG even though there is more NICs associated to that SG as described in the `development portal <https://github.com/OpenNebula/one/issues/4354>`__.
+
+Random failures when getting Host objects after the upgrade
+===========================================================
+
+Sometimes during the upgrade process the new host attribute ``PREV_STATE`` is not created. This leads to an error every time OpenNebula tries to perform an action over the host.
+
+For fixing it just update the host using ``onedb update-body host --id <host_id>`` and add ``/HOST/PREV_STATE`` attribute with same value as that of ``/HOST/STATE``.
+
+We are not able to reproduce the error, any information if you are being hit by this will be very welcome here: https://github.com/OpenNebula/one/issues/4099
+
