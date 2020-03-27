@@ -53,8 +53,8 @@ This Service can be represented with the following JSON template:
       ]
     }
 
-Managing Service Templates
-==========================
+Defining a new Service: Templates
+=================================
 
 OneFlow allows OpenNebula administrators and users to register Service Templates in OpenNebula, to be instantiated later as Services. These Templates can be instantiated several times, and also shared with other users.
 
@@ -70,9 +70,6 @@ The command ``oneflow-template create`` registers a JSON template file. For exam
     $ oneflow-template create /tmp/my_service.json
     ID: 0
 
-You can also create Service Templates from Sunstone:
-
-|image1|
 
 To list the available Service Templates, use ``oneflow-template list/show/top``:
 
@@ -103,6 +100,8 @@ To list the available Service Templates, use ``oneflow-template list/show/top``:
     ....
 
 Templates can be deleted with ``oneflow-template delete``.
+
+You can also create and manage Service Templates from Sunstone.
 
 .. _appflow_use_cli_running_state:
 
@@ -136,29 +135,27 @@ If ``ready_status_gate`` is set to ``false``, a VM will be considered to be in r
 Configure Dynamic Networks
 --------------------------------------------------------------------------------
 
-Each Service Role has a :ref:`Virtual Machine Template <vm_guide>` assigned. The VM Template will define the capacity, disks, and network interfaces. Apart from defining the Virtual Networks in the VM Template, the Service Template can define a set of dynamic networks. Then each Role of the service can be attached to one or more dynamic networks individually.
+Each Service Role has a :ref:`Virtual Machine Template <vm_guide>` assigned. The VM Template will define the capacity, disks, and network interfaces. Apart from defining the Virtual Networks in the VM Template, the Service Template can define a set of dynamic networks.
 
 |oneflow-templates-net-1|
 
+Then each Role of the service can be attached to one or more dynamic networks individually.
+
 |oneflow-templates-net-2|
 
-When a Service Template defines dynamic networks, the instantiate dialog will ask the user to select how to instantiate the network. There are 3 alternatives:
+A Service Template can define three different dynamic network modes, that determine how the networks will be used:
 
 - You can use an existing Virtual Network, VMs in the Role will just take a lease from that network. You'll probably use this method for networks with a predefined address set (e.g. public IPs).
 
-|oneflow-templates-net-3|
-
 - You can create a network reservation, in this case it will take the existing network and create a reservation for the service. You have to specify the name of the reservation and the size in the input dialog. Use this method when you need to allocate a pool of IPs for your service.
 
-|oneflow-templates-net-4|
-
 - You can create a network instantiating a network template. In this case as an extra parameters you may have to specify the address range to create, depending on the selected network template. This is useful for service private VLAN for internal service communication.
-
-|oneflow-templates-net-5|
 
 This allows you to create more generic Service Templates. For example, the same Service Template can be used by users of different :ref:`groups <manage_groups>` that may have access to different Virtual Networks.
 
 .. note:: When the service is deleted, all the networks that have been created are automatically deleted.
+
+.. note:: You can provide suitable defaults for the dynamic networks
 
 All these operations can be also done through the CLI. When you instantiate the template using ``oneflow-template instantiate <ID> <file>``
 
@@ -184,8 +181,9 @@ You can also use them through the CLI. When you instantiate the template using `
 
 .. code::
 
-    {"custom_attrs_values":{"map_private":"10.0.0.0/24", "map_public":"192.168.2.0/24"}
+    {"custom_attrs_values":{"A":"A_VALUE", "B":"B_VALUE"}
 
+.. note:: In order to pass the service custom attributes to the VM  when using the CLI they need to be duplicated inside ``vm_template_contents`` section.
 
 Managing Services
 =================
@@ -354,25 +352,6 @@ If a Service and its VMs must be immediately undeployed, the command ``oneflow d
 
 When a Service fails during a deployment, undeployment or scaling operation, the command ``oneflow recover`` can be used to retry the previous action once the problem has been solved.
 
-Elasticity
-----------
-
-A Role's cardinality can be adjusted manually, based on metrics, or based on a schedule. To start the scalability immediately, use the command ``oneflow scale``:
-
-.. prompt:: bash $ auto
-
-    $ oneflow scale <serviceid> <role_name> <cardinality>
-
-To define automatic elasticity policies, proceed to the :ref:`elasticity documentation guide <appflow_elasticity>`.
-
-Sharing Information between VMs
---------------------------------------------------------------------------------
-
-The Virtual Machines of a Service can share information with each other, using the :ref:`OneGate server <onegate_overview>`.  OneGate allows Virtual Machine guests to push information to OpenNebula, and pull information about their own VM or Service.
-
-From any VM, use the ``PUT ${ONEGATE_ENDPOINT}/vm`` action to store any information in the VM user template. This information will be in the form of attribute=vale, e.g. ``ACTIVE_TASK = 13``. Other VMs in the Service can request that information using the ``GET ${ONEGATE_ENDPOINT}/service`` action.
-
-You can read more details in the :ref:`OneGate API documentation <onegate_usage>`.
 
 Managing Permissions
 ====================
@@ -537,23 +516,97 @@ Some common failures can be resolved without manual intervention, calling the ``
 |                        |                 | New VMs are instantiated to maintain the current cardinality.            |
 +------------------------+-----------------+--------------------------------------------------------------------------+
 
-Map External Network to Internal Network
-----------------------------------------
+Advanced Usage
+================================================================================
 
-The VM datatables can show the mapping of external networks to private networks (TODO link). To enable this functionality, place the following values in the configuration file ``sunstone-server.conf``
+Elasticity
+----------
 
-|vm_mapped|
+A Role's cardinality can be adjusted manually, based on metrics, or based on a schedule. To start the scalability immediately, use the command ``oneflow scale``:
 
-Configuration file ``sunstone-server.conf``
+.. prompt:: bash $ auto
 
-.. prompt:: text $ auto
+    $ oneflow scale <serviceid> <role_name> <cardinality>
 
-  :mapped_ips: true
-  :get_extended_vm_info: true
+To define automatic elasticity policies, proceed to the :ref:`elasticity documentation guide <appflow_elasticity>`.
 
-.. note:: For the RDP button to appear, the NIC in the vm template must have the value ``RDP = “yes”``.
+Sharing Information between VMs
+--------------------------------------------------------------------------------
 
-Restart sunstone server service
+The Virtual Machines of a Service can share information with each other, using the :ref:`OneGate server <onegate_overview>`.  OneGate allows Virtual Machine guests to push information to OpenNebula, and pull information about their own VM or Service.
+
+From any VM, use the ``PUT ${ONEGATE_ENDPOINT}/vm`` action to store any information in the VM user template. This information will be in the form of attribute=vale, e.g. ``ACTIVE_TASK = 13``. Other VMs in the Service can request that information using the ``GET ${ONEGATE_ENDPOINT}/service`` action.
+
+You can read more details in the :ref:`OneGate API documentation <onegate_usage>`.
+
+Network mapping & Floating IPs
+--------------------------------------------------------------------------------
+
+Network mapping can be achieved by using OneFlow and OneGate together. A few steps are required for mapping IP addresses from an internal network into an external one, as shown in the image below:
+
+|oneflow-network-mapping|
+
+**Upload the Network Mapping script**
+
+First of all, it is necessary to upload the Network Mapping script to a :ref:`Kernels & Files Datastore <file_ds>`. Simply, Create a file of type ``Context`` in the File Datastore using ``/usr/share/one/start-scripts/map_vnets_start_script``. Note that you may need to add ``/usr/share/one/start-script`` path to ``SAFE_DIRS`` attribute of the Files Datastore.
+
+
+**Preparing the Router Virtual Machine Template**
+
+A custom Virtual Machine template acting as router is also needed. Steps similar to those below should be followed:
+
+* Storage. Choose a disk image. For instance, a light weight Alpine that can be get on :ref:`OpenNebula Systems MarketPlace <market_one>`.
+
+* Network. You may want to set ``virtio`` as ``Default hardware model to emulate for all NICs``.
+
+* Context:
+
+  * Configuration:
+
+    * ``Add OneGate token`` must be checked (this is also aplicable to all templates used in the Service Template).
+
+    * Copy the contents of ``/usr/share/one/start-scripts/cron_start_script`` in ``Start script``.
+
+      |oneflow-network-mapping-router_context_config|
+
+    * Files. Select the network mapping script previously uploaded to the File Datastore.
+
+**Prepare the Service Template**
+
+As an example we will create a two-tier server with an external network (*Public*) and an internal (*Private*) one for private traffic:
+
+* Network configuration. Declare the *Public* and *Private* networks to be used on instantiation. :ref:`See Dynamic Networks section above <appflow_use_cli_networks>`.
+
+* Role ``router``. Select the previously created Router Virtual Template, and check ``Private`` and ``Public`` in ``Network Interfaces``.
+
+* Role ``worker``. Select a Virtual Machine Template, check only ``Private`` in ``Network Interfaces``, and check ``router`` in ``Parent roles`` to set up a deploy dependency.
+
+**Instantiate the Service Template**
+
+At this point the Service Template can be instantiated.  If a ``NIC_ALIAS`` on *Pulic* network is attached to any of the virtual machines on the *worker* role, the specific machine can be reached by using the IP address assigned to the ``NIC_ALIAS``.
+
+.. code::
+
+   $ ping -c1 10.0.0.2
+   PING 10.0.0.2 (10.0.0.2) 56(84) bytes of data.
+   64 bytes from 10.0.0.2: icmp_seq=1 ttl=64 time=0.936 ms
+
+   --- 10.0.0.2 ping statistics ---
+   1 packets transmitted, 1 received, 0% packet loss, time 0ms
+   rtt min/avg/max/mdev = 0.936/0.936/0.936/0.000 ms
+
+If the ``NIC_ALIAS`` on *Pulic* network is detached from the virtual machine, the connectivity -through the previously- assigned IP address is lost. You can re-attach the IP as a ``NIC_ALIAS`` to other VM to *float* the IP.
+
+.. code::
+
+   $ ping -c1 10.0.0.2
+   PING 10.0.0.2 (10.0.0.2) 56(84) bytes of data.
+
+   --- 10.0.0.2 ping statistics ---
+   1 packets transmitted, 0 received, 100% packet loss, time 0ms
+
+.. warning:: It takes up to one minute, half a minute on average, to configure the rules on *iptables*.
+
 
 Service Template Reference
 ==========================
@@ -563,10 +616,8 @@ For more information on the resource representation, please check the :ref:`API 
 Read the :ref:`elasticity policies documentation <appflow_elasticity>` for more information.
 
 .. |image0| image:: /images/service_sample.png
-.. |image1| image:: /images/oneflow-templates-create.png
 .. |image3| image:: /images/oneflow-service.png
 .. |image4| image:: /images/flow_lcm.png
-.. |vm_mapped| image:: /images/mapped_ips.png
 .. |oneflow-ready-status-checkbox| image:: /images/oneflow-ready-status-checkbox.png
 .. |oneflow-templates-net-1| image:: /images/oneflow-templates-net-1.png
 .. |oneflow-templates-net-2| image:: /images/oneflow-templates-net-2.png
@@ -574,3 +625,7 @@ Read the :ref:`elasticity policies documentation <appflow_elasticity>` for more 
 .. |oneflow-templates-net-4| image:: /images/oneflow-templates-net-4.png
 .. |oneflow-templates-net-5| image:: /images/oneflow-templates-net-5.png
 .. |oneflow-templates-attrs| image:: /images/oneflow-templates-attrs.png
+.. |oneflow-network-mapping| image:: /images/oneflow-network-map.png
+.. |oneflow-network-mapping-router_context_config| image:: /images/oneflow-network-map-router_context_config.png
+.. |oneflow-network-mapping-service_template_nw_config| image:: /images/oneflow-network-map-service_template_nw_config.png
+.. |oneflow-network-mapping-service_template_role_router| image:: /images/oneflow-network-map-service_template_role_router.png

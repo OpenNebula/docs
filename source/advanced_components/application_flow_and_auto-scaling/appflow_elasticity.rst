@@ -27,8 +27,6 @@ A Role with elasticity policies must define a minimum and maximum number of VMs:
 
 After the scaling, the Role and Service are in the ``COOLDOWN`` state for the configured duration. During a scale operation and the cooldown period, other scaling actions for the same or for other Roles are delayed until the Service is ``RUNNING`` again.
 
-|image0|
-
 Set the Cardinality of a Role Manually
 ======================================
 
@@ -293,5 +291,4 @@ Examples
       ]
     }
 
-.. |image0| image:: /images/oneflow-templates-create.png
 .. |image1| image:: /images/oneflow-service.png
