@@ -58,3 +58,12 @@ Security Groups
 ====================
 
 When detaching a NIC associated to a SG the VM is removed from that SG even though there is more NICs associated to that SG as described in the `development portal <https://github.com/OpenNebula/one/issues/4354>`__.
+
+Random failures when getting Host objects after the upgrade
+===========================================================
+
+Sometimes during the upgrade process the new host attribute ``PREV_STATE`` is not created. This leads to an error every time OpenNebula tries to perform an action over the host.
+
+For fixing it just update the host using ``onedb update-body host --id <host_id>`` and add ``/HOST/PREV_STATE`` attribute with same value as that of ``/HOST/STATE``.
+
+We are not able to reproduce the error, any information if you are being hit by this will be very welcome here: https://github.com/OpenNebula/one/issues/4099
