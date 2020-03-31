@@ -32,4 +32,5 @@ The following issues has been solved in 5.10.4:
 - `Do not allow user to increase his privileages to manage VMs <https://github.com/OpenNebula/one/issues/4416>`__.
 - `Do not allow wrong string in VM_*_OPERATIONS attribute <https://github.com/OpenNebula/one/issues/4417>`__.
 - `Fix problem with unmanage nics at deploy time <https://github.com/OpenNebula/one/issues/4207>`__.
-- `Add VCENTER_TEMPLATE_NAME attribute in vCenter templates <https://github.com/OpenNebula/one/issues/4150>`__.
+- `Fix vCenter templates adding VCENTER_TEMPLATE_NAME attribute <https://github.com/OpenNebula/one/issues/4150>`__.
+- `Fix MariaDB/MySQL version detection <https://github.com/OpenNebula/one/issues/3924>`__.
