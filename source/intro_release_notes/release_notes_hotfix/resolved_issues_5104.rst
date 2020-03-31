@@ -33,3 +33,4 @@ The following issues has been solved in 5.10.4:
 - `Do not allow wrong string in VM_*_OPERATIONS attribute <https://github.com/OpenNebula/one/issues/4417>`__.
 - `Fix problem with unmanage nics at deploy time <https://github.com/OpenNebula/one/issues/4207>`__.
 - `Add VCENTER_TEMPLATE_NAME attribute in vCenter templates <https://github.com/OpenNebula/one/issues/4150>`__.
+- `Fix vCenter information attributes to show correct icons if they can be modified or deleted  <https://github.com/OpenNebula/one/issues/2763>`__.
