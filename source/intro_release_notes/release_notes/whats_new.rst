@@ -39,7 +39,7 @@ Sunstone
 Scheduler
 ================================================================================
 
-- New actions have been added as a scheduled actions, concretely the following: ``snapshot-revert``, ``snapshot-delete``, ``disk-snapshot-create``, ``disk-snapshot-revert``, ``disk-snapshot-delete``. Check :ref:`this <vm_instances>` for more information.
+- New actions have been added as a scheduled actions, in particular: ``snapshot-revert``, ``snapshot-delete``, ``disk-snapshot-create``, ``disk-snapshot-revert``, ``disk-snapshot-delete``. Check :ref:`this <vm_instances>` for more information.
 
 Disaggregated Data Centers
 ================================================================================
