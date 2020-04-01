@@ -795,13 +795,13 @@ The actions that need arguments, are the following:
 +----------------------+------------------+-------------+
 | Action               | Arguments        | Mandatory   |
 +----------------------+------------------+-------------+
-| snapshot-create      | name             | NO          |
+| snapshot-create      | name             | YES         |
 +----------------------+------------------+-------------+
 | snapshot-revert      | snap ID          | YES         |
 +----------------------+------------------+-------------+
 | snapshot-delete      | snap ID          | YES         |
 +----------------------+------------------+-------------+
-| disk-snapshot-create | disk ID, name    | YES, NO     |
+| disk-snapshot-create | disk ID, name    | YES, YES    |
 +----------------------+------------------+-------------+
 | disk-snapshot-revert | disk ID, snap ID | YES, YES    |
 +----------------------+------------------+-------------+
@@ -809,8 +809,6 @@ The actions that need arguments, are the following:
 +----------------------+------------------+-------------+
 
 .. note:: These arguments are generated automatically if you use the CLI or Sunstone.
-
-
 
 VM Charter
 ----------
