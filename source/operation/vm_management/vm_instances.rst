@@ -772,7 +772,7 @@ These are the commands that can be scheduled:
 -  ``disk-snapshot-revert``
 -  ``disk-snapshot-delete``
 
-Some of the above actions need some parameters to run (or can have some optional parameters) You can pass arguments to the scheduled actions using the parameter ``ARGS`` in the action definition.
+Some of the above actions need some parameters to run (e.g. a disk ID or a snapshot name). You can pass those arguments to the scheduled actions using the parameter ``ARGS`` in the action definition. For example:
 
 .. prompt:: text $ auto
 
@@ -780,7 +780,7 @@ Some of the above actions need some parameters to run (or can have some optional
 
     SCHED_ACTION=[
         ACTION="disk-snapshot-create",
-        ARGS="0,disksnap",
+        ARGS="0, disksnap_example",
         DAYS="1,5",
         END_TYPE="1",
         END_VALUE="5",
