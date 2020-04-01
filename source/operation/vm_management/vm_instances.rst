@@ -766,7 +766,49 @@ These are the commands that can be scheduled:
 -  ``reboot [--hard]``
 -  ``poweroff [--hard]``
 -  ``snapshot-create``
+-  ``snapshot-revert``
+-  ``snapshot-delete``
+-  ``disk-snapshot-create``
+-  ``disk-snapshot-revert``
+-  ``disk-snapshot-delete``
 
+Some of the above actions need some parameters to run (e.g. a disk ID or a snapshot name). You can pass those arguments to the scheduled actions using the parameter ``ARGS`` in the action definition. For example:
+
+.. prompt:: text $ auto
+
+    $ onevm update 0
+
+    SCHED_ACTION=[
+        ACTION="disk-snapshot-create",
+        ARGS="0, disksnap_example",
+        DAYS="1,5",
+        END_TYPE="1",
+        END_VALUE="5",
+        ID="0",
+        REPEAT="0",
+        TIME="1537653600" ]
+
+In this example, the first argument would be the disk and the second the snapshot name.
+
+The actions that need arguments, are the following:
+
++----------------------+------------------+
+| Action               | Arguments        |
++----------------------+------------------+
+| snapshot-create      | name             |
++----------------------+------------------+
+| snapshot-revert      | snap ID          |
++----------------------+------------------+
+| snapshot-delete      | snap ID          |
++----------------------+------------------+
+| disk-snapshot-create | disk ID, name    |
++----------------------+------------------+
+| disk-snapshot-revert | disk ID, snap ID |
++----------------------+------------------+
+| disk-snapshot-delete | disk ID, snap ID |
++----------------------+------------------+
+
+.. note:: These arguments are mandatory. If you use the CLI or Sunstone they are generated automatically for the actions.
 
 VM Charter
 ----------
