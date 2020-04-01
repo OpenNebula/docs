@@ -36,6 +36,8 @@ By default just oneadmin can create Virtual Network Templates, if other users ne
 
 Once the Virtual Network Template is created the access to it can be managed by its permissions. For example, if a end user needs to instantiate an specific template, it would be enough to give the template **USE** permmission for others. You can find more :ref:`information about permissions here <manage_vnets>`.
 
+.. note:: Depending on the user, ACLs might need to be created in order to allow the users to manage their own networks.
+
 Operations
 ------------------------------------
 
