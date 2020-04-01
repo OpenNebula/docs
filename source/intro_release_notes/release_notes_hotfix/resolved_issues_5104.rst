@@ -36,3 +36,4 @@ The following issues has been solved in 5.10.4:
 - `Fix vCenter information attributes to show correct icons if they can be modified or deleted  <https://github.com/OpenNebula/one/issues/2763>`__.
 - `Fix vCenter templates adding VCENTER_TEMPLATE_NAME attribute <https://github.com/OpenNebula/one/issues/4150>`__.
 - `Fix MariaDB/MySQL version detection <https://github.com/OpenNebula/one/issues/3924>`__.
+- `Fix template context variables on instantiation <https://github.com/OpenNebula/one/issues/4409>`__.
