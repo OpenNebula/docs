@@ -792,23 +792,23 @@ In this example, the first argument would be the disk and the second the snapsho
 
 The actions that need arguments, are the following:
 
-+----------------------+------------------+-------------+
-| Action               | Arguments        | Mandatory   |
-+----------------------+------------------+-------------+
-| snapshot-create      | name             | YES         |
-+----------------------+------------------+-------------+
-| snapshot-revert      | snap ID          | YES         |
-+----------------------+------------------+-------------+
-| snapshot-delete      | snap ID          | YES         |
-+----------------------+------------------+-------------+
-| disk-snapshot-create | disk ID, name    | YES, YES    |
-+----------------------+------------------+-------------+
-| disk-snapshot-revert | disk ID, snap ID | YES, YES    |
-+----------------------+------------------+-------------+
-| disk-snapshot-delete | disk ID, snap ID | YES, YES    |
-+----------------------+------------------+-------------+
++----------------------+------------------+
+| Action               | Arguments        |
++----------------------+------------------+
+| snapshot-create      | name             |
++----------------------+------------------+
+| snapshot-revert      | snap ID          |
++----------------------+------------------+
+| snapshot-delete      | snap ID          |
++----------------------+------------------+
+| disk-snapshot-create | disk ID, name    |
++----------------------+------------------+
+| disk-snapshot-revert | disk ID, snap ID |
++----------------------+------------------+
+| disk-snapshot-delete | disk ID, snap ID |
++----------------------+------------------+
 
-.. note:: These arguments are generated automatically if you use the CLI or Sunstone.
+.. note:: These arguments are mandatory. If you use the CLI or Sunstone they are generated automatically for the actions.
 
 VM Charter
 ----------
