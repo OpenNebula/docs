@@ -37,3 +37,4 @@ The following issues has been solved in 5.10.4:
 - `Fix vCenter templates adding VCENTER_TEMPLATE_NAME attribute <https://github.com/OpenNebula/one/issues/4150>`__.
 - `Fix MariaDB/MySQL version detection <https://github.com/OpenNebula/one/issues/3924>`__.
 - `Fix template context variables on instantiation <https://github.com/OpenNebula/one/issues/4409>`__.
+- `Fix remove of SG after NIC detach <https://github.com/OpenNebula/one/issues/4354>`__.
