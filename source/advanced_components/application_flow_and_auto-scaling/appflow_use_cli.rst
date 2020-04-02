@@ -473,6 +473,11 @@ These are the commands that can be performed:
 * ``poweroff``
 * ``poweroff-hard``
 * ``snapshot-create``
+* ``snapshot-revert``
+* ``snapshot-delete``
+* ``disk-snapshot-create``
+* ``disk-snapshot-revert``
+* ``disk-snapshot-delete``
 
 Instead of performing the action immediately on all the VMs, you can perform it on small groups of VMs with these options:
 
@@ -515,6 +520,8 @@ Some common failures can be resolved without manual intervention, calling the ``
 |                        |                 |                                                                          |
 |                        |                 | New VMs are instantiated to maintain the current cardinality.            |
 +------------------------+-----------------+--------------------------------------------------------------------------+
+
+You can use the option ``--delete`` to delete the current service and its VMs.
 
 Advanced Usage
 ================================================================================
