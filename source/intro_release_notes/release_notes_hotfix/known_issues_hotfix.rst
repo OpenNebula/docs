@@ -41,6 +41,8 @@ If you try to deploy a VM using an image from an RDM datastore into an ssh or sh
     CLONE_TARGET_SHARED = "SELF", DISK_TYPE_SHARED = "BLOCK"
     ]
 
+You need to restart OpenNebula after modyfing **/etc/one/oned.conf**. Datastores existing prior to the modification won't be affected by this and need to be updated with the new config. New datastores will have this new parameters when created.
+
 Security Groups
 ====================
 
