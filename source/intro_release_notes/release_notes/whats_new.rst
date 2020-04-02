@@ -15,7 +15,7 @@ What's New in 5.12
 
 OpenNebula Core
 ================================================================================
-- ...
+- **PostgreSQL Backend** is now supported as Technology Preview, see :ref:`here <postgresql>`.
 
 Storage
 --------------------------------------------------------------------------------
