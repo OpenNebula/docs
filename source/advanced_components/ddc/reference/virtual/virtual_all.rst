@@ -71,7 +71,7 @@ Here you can check a full provision template example:
       packet_project: ************
       facility: ams1
       plan: baremetal_0
-      os: centos7
+      os: centos_7
     connection:
       public_key: '/var/lib/one/.ssh/id_rsa.pub'
       private_key: '/var/lib/one/.ssh/id_rsa'
