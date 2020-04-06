@@ -44,6 +44,7 @@ Scheduler
 Disaggregated Data Centers
 ================================================================================
 - Provision support of other object types. Refer to :ref:`this<ddc_virtual>` for more information.
+- Provision templates can extends multiple ones. Refer to :ref:`this<ddc_usage_example6>` for more information.
 
 vCenter
 ===============================================================================
