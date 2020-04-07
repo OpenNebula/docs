@@ -139,7 +139,7 @@ Each Service Role has a :ref:`Virtual Machine Template <vm_guide>` assigned. The
 
 |oneflow-templates-net-1|
 
-Then each Role of the service can be attached to one or more dynamic networks individually.
+Then each Role of the service can be attached to one or more dynamic networks individually. Additionally you can set the role that exposes an RDP endpoint.
 
 |oneflow-templates-net-2|
 
