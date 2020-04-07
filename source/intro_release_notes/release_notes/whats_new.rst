@@ -50,6 +50,7 @@ Disaggregated Data Centers
 - Provision support of other object types. Refer to :ref:`this <ddc_virtual>` for more information.
 - Provision templates can extends multiple ones. Refer to :ref:`this <ddc_usage_example6>` for more information.
 - Provision templates supports multiple playbooks. Refer to :ref:`this <ddc_usage_example7>` for more information.
+- New examples of complete clusters, check them :ref:`here <ddc_provision_cluster_templates>`.
 
 vCenter
 ===============================================================================
