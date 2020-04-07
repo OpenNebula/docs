@@ -83,4 +83,4 @@ VMware Virtualization driver
 Other Issues Solved
 ================================================================================
 
-- `Description <https://github.com/OpenNebula/one/issues/XXXX>`_.
+- `LXD Template Wizard: Clean OS & CPU section <https://github.com/OpenNebula/one/issues/3025>`_.
