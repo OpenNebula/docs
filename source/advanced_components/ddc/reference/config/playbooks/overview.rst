@@ -13,6 +13,6 @@ You can use multiple playbooks at once, you just need to add a list in your prov
 .. code::
 
     ---
-    playbooks:
+    playbook:
       - default
-      - static_vxlan
+      - mycustom

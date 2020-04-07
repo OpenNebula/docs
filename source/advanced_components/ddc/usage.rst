@@ -340,9 +340,9 @@ Check the :ref:`Templates <ddc_provision_templates>` reference for available bas
 Example 7: Using more than one playbook
 ---------------------------------------
 
-In order to configure the provision, you can specify some playbooks, these are Ansible playbooks that are going to be triggered. You can specify more than one playbook, they are going to be executed one by one by ``oneprovision``.
+In order to configure the provision, you can specify playbooks, these are Ansible playbooks that are going to be triggered. You can specify more than one playbook, they are going to be executed one by one by ``oneprovision``.
 
-In the following example we use the default and the static vxlan playbooks:
+In the following example we use the ``default`` and a custom ``mycustom`` playbooks:
 
 .. code::
 
@@ -350,7 +350,7 @@ In the following example we use the default and the static vxlan playbooks:
     name: example6
     playbook:
       - default
-      - static_vxlan
+      - mycustom
 
     defaults:
       provision:
