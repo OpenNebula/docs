@@ -261,6 +261,8 @@ Once the VM is instantiated, users will be able to download the RDP file configu
 
 .. important:: The RDP connection is only allowed to activate on a single NIC. In any case, the file RDP will only contain the IP of the first NIC with this property enabled.
 
+.. note:: The RDP button will work the same way for NIC ALIASES
+
 .. note:: If the VM template has a password and username set in the contextualization section, this will be reflected in the RDP file. You can read about them in the :ref:`Virtual Machine Definition File reference section <template_context>`
 
 
