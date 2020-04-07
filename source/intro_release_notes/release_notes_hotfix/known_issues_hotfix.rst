@@ -40,3 +40,10 @@ If you try to deploy a VM using an image from an RDM datastore into an ssh or sh
     DISK_TYPE_SSH = "BLOCK", LN_TARGET_SHARED = "NONE",
     CLONE_TARGET_SHARED = "SELF", DISK_TYPE_SHARED = "BLOCK"
     ]
+
+You need to restart OpenNebula after modyfing **/etc/one/oned.conf**. Datastores existing prior to the modification won't be affected by this and need to be updated with the new config. New datastores will have this new parameters when created.
+
+Security Groups
+====================
+
+When detaching a NIC associated to a SG the VM is removed from that SG even though there is more NICs associated to that SG as described in the `development portal <https://github.com/OpenNebula/one/issues/4354>`__.

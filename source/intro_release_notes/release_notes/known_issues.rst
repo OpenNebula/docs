@@ -67,4 +67,3 @@ Sometimes during the upgrade process the new host attribute ``PREV_STATE`` is no
 For fixing it just update the host using ``onedb update-body host --id <host_id>`` and add ``/HOST/PREV_STATE`` attribute with same value as that of ``/HOST/STATE``.
 
 We are not able to reproduce the error, any information if you are being hit by this will be very welcome here: https://github.com/OpenNebula/one/issues/4099
-
