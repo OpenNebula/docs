@@ -35,6 +35,7 @@ Authentication
 Sunstone
 --------------------------------------------------------------------------------
 - Support for RDP in alias interfaces. Check :ref:`this <sunstone_rdp_troubleshootings>` for more information.
+- RDP links available in VMs table.
 
 Scheduler
 ================================================================================
