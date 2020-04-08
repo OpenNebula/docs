@@ -268,7 +268,7 @@ The following example shows the provisioning of a complete cluster with host, da
 Example 6: Template Inheritance
 -------------------------------
 
-Similarly, as with **defaults** in :ref:`Example 4 <ddc_usage_example4>`, the reusable parts of the templates can be moved into their own templates. One provision template can include another provision template, extending or overriding the information from the included one. The template can directly extend only from one template, but several templates can be chained (for recursive inheritance). Hosts, datastores, and networks sections are **merged** (appended) in the order they are defined and inherited. Defaults are **deep merged** on the level of individual parameters.
+Similarly, as with **defaults** in :ref:`Example 4 <ddc_usage_example4>`, the reusable parts of the templates can be moved into their own templates. One provision template can include anothers provision templates, extending or overriding the information from the included ones. The template can directly extend from multiple templates. Hosts, datastores, and networks sections are **merged** (appended) in the order they are defined and inherited. Defaults are **deep merged** on the level of individual parameters.
 
 In the following example, we separate datastore and network definitions into their own template, ``example-ds_vnets.yaml``:
 
@@ -303,6 +303,74 @@ The main template extends the datastores and network with one EC2 host:
     ---
     name: example6
     extends: example-ds_vnets.yaml
+
+    defaults:
+      provision:
+        driver: ec2
+        ec2_access: ********************
+        ec2_secret: ****************************************
+        region_name: "us-east-1"
+        cloud_init: true
+        ami: ami-66a7871c
+        instancetype: "i3.metal"
+        securitygroupsids: sg-*****************
+        subnetid: subnet-*****************
+      connection:
+        remote_user: root
+      configuration:
+        opennebula_node_kvm_manage_kvm: False
+        opennebula_repository_version: '5.8.0'
+        opennebula_node_kvm_use_ev: true
+        opennebula_node_kvm_param_nested: true
+
+    cluster:
+      name: ex6-cluster
+
+    hosts:
+      - reserved_cpu: 100
+        im_mad: kvm
+        vm_mad: kvm
+        provision:
+          hostname: "ex6-host1"
+
+In the following example, we separate datastore and network definitions into their own templates, ``example-ds.yaml`` and ``example-vnet.yaml``:
+
+.. code::
+
+    ---
+    datastores:
+      - name: example-default
+        ds_mad: fs
+        tm_mad: ssh
+      - name: example-system
+        type: system_ds
+        tm_mad: ssh
+        safe_dirs: '/var/tmp /tmp'
+
+.. code::
+
+    ---
+    networks:
+      - name: example-nat
+        vn_mad: dummy
+        bridge: br0
+        dns: "8.8.8.8 8.8.4.4"
+        gateway: "192.168.150.1"
+        description: "Host-only networking with NAT"
+        ar:
+          - ip: "192.168.150.2"
+            size: 253
+            type: IP4
+
+The main template extends the datastores and network with one EC2 host:
+
+.. code::
+
+    ---
+    name: example6
+    extends:
+      - example-ds.yaml
+      - example-vnet.yaml
 
     defaults:
       provision:
