@@ -34,7 +34,8 @@ Authentication
 
 Sunstone
 --------------------------------------------------------------------------------
-- ...
+- Support for RDP in alias interfaces. Check :ref:`this <sunstone_rdp_troubleshootings>` for more information.
+- RDP links available in VMs table.
 
 Scheduler
 ================================================================================
@@ -45,6 +46,7 @@ Disaggregated Data Centers
 ================================================================================
 - Provision support of other object types. Refer to :ref:`this<ddc_virtual>` for more information.
 - Provision templates can extends multiple ones. Refer to :ref:`this<ddc_usage_example6>` for more information.
+- Provision templates supports multiple playbooks. Refer to :ref:`this <ddc_usage_example7>` for more information.
 
 vCenter
 ===============================================================================
@@ -84,4 +86,4 @@ VMware Virtualization driver
 Other Issues Solved
 ================================================================================
 
-- `Description <https://github.com/OpenNebula/one/issues/XXXX>`_.
+- `LXD Template Wizard: Clean OS & CPU section <https://github.com/OpenNebula/one/issues/3025>`_.
