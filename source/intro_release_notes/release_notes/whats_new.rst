@@ -24,6 +24,7 @@ Storage
 Networking
 --------------------------------------------------------------------------------
 - **Security Groups** are now supported on NSX-T and NSX-V networks. Check :ref:`NSX Setup <nsx_setup>` for initial requirements and the :ref:`Security Groups Operation Guide <security_groups>` to learn how to operate with them. For more details about this integration go to :ref:`NSX Driver <nsx_driver>`
+- `Force option for AR remove <https://github.com/OpenNebula/one/issues/4132>`__: ``onevnet rmar`` supports optional ``--force`` flag, which force remove of AR even if active leases exists
 
 
 Authentication
