@@ -119,7 +119,7 @@ This table shows some examples:
 Managing Permissions in Sunstone
 ================================
 
-Sunstone offers a convenient way to manage resources permissions. This can be done by selecting resources from a view (for example the templates view) and clicking on the ``update properties`` button. The update dialog lets the user conveniently set the resource's permissions.
+Sunstone offers a convenient way to manage resources permissions. This can be done by selecting resources from a view (for example the templates view). The dialog lets the user conveniently set the resource's permissions.
 
 |image3|
 
