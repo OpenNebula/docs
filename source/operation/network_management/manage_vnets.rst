@@ -132,9 +132,7 @@ There are three different ways for creating a network:
 
 End users typically use the last two ways, instantiation and reservation. The administrator can define a network template for being instantiated later by the end user or create a virtual network where the end user can make a reservation from.
 
-|image0|
-
-To create a new network from scratch put its configuration in a file, for example using the contents above, and then execute:
+To create a new network from scratch put its configuration in a file, and then execute:
 
 .. code::
 
