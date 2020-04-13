@@ -164,7 +164,3 @@ Permission to Create Services
 --------------------------------------------------------------------------------
 
 By default, :ref:`new groups <manage_groups>` are allowed to create Document resources. Documents are a special tool used by OneFlow to store Service Templates and instances. When a new Group is created, you can decide if you want to allow or deny its users to create OneFlow resources (Documents).
-
-|oneflow-config-acl|
-
-.. |oneflow-config-acl| image:: /images/oneflow-config-acl.png

@@ -45,8 +45,6 @@ A user can perform the following actions from this view:
 * Save the VM into a new Template
 * Power on the VM
 
-|cloud_vm_poweroff|
-
 .. _save_vm_as_template_cloudview:
 .. _cloudview_persistent:
 
@@ -99,20 +97,7 @@ A user can perform the following actions from this view:
 Usage, Accounting and Showback
 --------------------------------------------------------------------------------
 
-The user can check his current usage and quotas
-
-|cloud_user_quota|
-
-Also, the user can generate accounting reports for a given range of time
-
-|cloud_user_acct|
-
-|cloud_user_showback|
-
-User Settings
--------------
-
-From the user settings tab, the user can change his password, language, ssh key and view
+From the user settings dialog, the user can check his current quotas, accounting and showback information. From this dialog the user can also change his password, language, ssh key and view:
 
 |cloud_user_settings|
 
@@ -128,9 +113,6 @@ From the user settings tab, the user can change his password, language, ssh key 
 .. |cloud_create_service| image:: /images/cloud_create_service.png
 .. |cloud_services_list| image:: /images/cloud_services_list.png
 .. |cloud_service_info| image:: /images/cloud_service_info.png
-.. |cloud_user_quota| image:: /images/cloud_user_quota.png
-.. |cloud_user_acct| image:: /images/cloud_user_acct.png
-.. |cloud_user_showback| image:: /images/cloud_user_showback.png
 .. |cloud_user_settings| image:: /images/cloud_user_settings.png
 .. |showback_template_wizard| image:: /images/showback_template_wizard.png
 .. |sunstone_persistent_1| image:: /images/sunstone_persistent_1.png

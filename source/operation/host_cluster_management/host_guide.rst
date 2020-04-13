@@ -327,10 +327,6 @@ After a Virtual Machine is imported, their life-cycle (including creation of sna
 
 The same import mechanism is available graphically through Sunstone. Running and Powered Off VMs can be imported through the WILDS tab in the Host info tab.
 
-.. image:: /images/importvmsfromsunstone.png
-    :width: 90%
-    :align: center
-
 Using Sunstone to Manage Hosts
 ================================================================================
 
