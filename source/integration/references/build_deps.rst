@@ -13,6 +13,7 @@ If you want to install it from your package manager, visit the `software menu <h
 * **scons** build tool (>= 0.98)
 * **sqlite3** development libraries (if compiling with sqlite support) (>= 3.6)
 * **mysql** client development libraries (if compiling with mysql support) (>= 5.1)
+* **postgresql** client development libraries (if compiling with PostgrSQL support) (>= 9.2)
 * **libxml2** development libraries (>= 2.7)
 * **libvncserver** development libraries (>= 0.9)
 * **openssl** development libraries (>= 0.9.8)
@@ -41,6 +42,7 @@ Ubuntu 18.04
 * **libcurl4-openssl-dev**
 * **libcurl4**
 * **libvncserver-dev**
+* **postgresql-server-dev-all**
 * **ruby**
 * **scons**
 
@@ -66,6 +68,7 @@ Ubuntu 16.04
 * **libxslt1-dev**
 * **libcurl4-openssl-dev**
 * **libvncserver-dev**
+* **postgresql-server-dev-all**
 * **ruby**
 * **scons**
 
@@ -88,6 +91,7 @@ Ubuntu 14.04
 * **libxslt1-dev**
 * **libcurl4-openssl-dev**
 * **libvncserver-dev**
+* **postgresql-server-dev-all**
 * **ruby**
 * **scons**
 * **libxmlrpc-c++8-dev**
@@ -110,6 +114,7 @@ Debian 9
 * **libxmlrpc3-common-java**
 * **libxslt1-dev**
 * **libvncserver-dev**
+* **postgresql-server-dev-all**
 * **ruby**
 * **scons**
 
@@ -123,6 +128,7 @@ CentOS 7
 * **mysql-devel**
 * **openssh**
 * **openssl-devel**
+* **postgresql-devel**
 * **pkgconfig**
 * **ruby**
 * **scons**
@@ -132,23 +138,29 @@ CentOS 7
 * **xmlrpc-c-devel**
 * **libvncserver-devel**
 
-CentOS 6
+CentOS 8
 ================================================================================
 
 * **gcc-c++**
 * **libcurl-devel**
+* **libpq-devel**
 * **libxml2-devel**
-* **xmlrpc-c-devel**
-* **openssl-devel**
 * **mysql-devel**
 * **openssh**
+* **openssl-devel**
 * **pkgconfig**
+* **python2-setuptools**
+* **python2-wheel**
+* **python3-devel**
+* **python3-rpm-macros**
+* **python3-scons**
+* **python3-setuptools**
+* **python3-wheel**
 * **ruby**
-* **scons**
 * **sqlite-devel**
-* **xmlrpc-c**
-* **java-1.7.0-openjdk-devel**
-* **libvncserver-devel**
+* **sqlite-devel**
+* **systemd-devel**
+* **xmlrpc-c-devel**
 
 Arch
 ================================================================================

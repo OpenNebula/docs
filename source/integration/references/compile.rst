@@ -33,6 +33,8 @@ Follow these simple steps to install the OpenNebula software:
 +----------------+--------------------------------------------------------+
 | mysql          | **yes** if you want to build mysql support             |
 +----------------+--------------------------------------------------------+
+| postgresql     | **yes** if you want to build PostgreSQL support        |
++----------------+--------------------------------------------------------+
 | xmlrpc         | path-to-xmlrpc-install                                 |
 +----------------+--------------------------------------------------------+
 | parsers        | **yes** if you want to rebuild flex/bison files        |
@@ -138,6 +140,7 @@ Some OpenNebula components need ruby libraries. Some of these libraries are inte
 
 -  **sqlite3**: sqlite3 development library
 -  **mysql**: mysql client development library
+-  **pg**: PostgreSQL client development library
 -  **curb**: curl development library
 -  **nokogiri**: expat development librarie
 -  **xmlparse**: libxml2 and libxslt development libraries
@@ -323,26 +326,26 @@ Check it worked
 .. code::
 
     oneuser show
-    USER 0 INFORMATION                                                              
-    ID              : 0                   
-    NAME            : oneadmin            
-    GROUP           : oneadmin            
+    USER 0 INFORMATION
+    ID              : 0
+    NAME            : oneadmin
+    GROUP           : oneadmin
     PASSWORD        : 4478db59d30855454ece114e8ccfa5563d21c9bd
-    AUTH_DRIVER     : core                
-    ENABLED         : Yes                 
+    AUTH_DRIVER     : core
+    ENABLED         : Yes
 
-    TOKENS                                                                          
+    TOKENS
 
-    USER TEMPLATE                                                                   
+    USER TEMPLATE
     TOKEN_PASSWORD="f99aab65e58162dc83a0fae59bec074a935c9a68"
 
-    VMS USAGE & QUOTAS                                                              
+    VMS USAGE & QUOTAS
 
-    VMS USAGE & QUOTAS - RUNNING                                                    
+    VMS USAGE & QUOTAS - RUNNING
 
-    DATASTORE USAGE & QUOTAS                                                        
+    DATASTORE USAGE & QUOTAS
 
-    NETWORK USAGE & QUOTAS                                                          
+    NETWORK USAGE & QUOTAS
 
     IMAGE USAGE & QUOTAS
 

@@ -200,6 +200,7 @@ The previous script is prepared to detect common Linux distributions and install
 
 * sqlite3 development library
 * mysql client development library
+* PostgreSQL client development library
 * curl development library
 * libxml2 and libxslt development libraries
 * ruby development library
@@ -208,12 +209,12 @@ The previous script is prepared to detect common Linux distributions and install
 
 If you want to install only a set of gems for a specific component, read :ref:`Building from Source Code <compile>` where it is explained in more depth.
 
-Step 5. Enabling MySQL/MariaDB (Optional)
+Step 5. Enabling MySQL/MariaDB/PostgreSQL (Optional)
 ================================================================================
 
-You can skip this step if you just want to deploy OpenNebula as quickly as possible. However if you are deploying this for production, or in a more serious environment, make sure you read the :ref:`MySQL Setup <mysql_setup>` section.
+You can skip this step if you just want to deploy OpenNebula as quickly as possible. However if you are deploying this for production, or in a more serious environment, make sure you read the :ref:`MySQL Setup <mysql_setup>` or :ref:`PostgreSQL Setup <postgresql_setup>` sections.
 
-Note that it **is** possible to switch from SQLite to MySQL, but since it's more cumbersome to migrate databases, we suggest that, if in doubt, use MySQL from the start.
+Note that it **is** possible to switch from SQLite to MySQL, but since it's more cumbersome to migrate databases, we suggest that, if in doubt, use MySQL from the start. It is not possible to automatically migrate existing databases to PostgreSQL.
 
 Step 6. Starting OpenNebula
 ================================================================================
