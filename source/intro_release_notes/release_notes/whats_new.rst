@@ -83,4 +83,4 @@ VMware Virtualization driver
 Other Issues Solved
 ================================================================================
 
-- `Description <https://github.com/OpenNebula/one/issues/XXXX>`_.
+- `Fixed capacity bars in Clusters and Host when user reserve CPU and Memory <https://github.com/OpenNebula/one/issues/4256>`_.
