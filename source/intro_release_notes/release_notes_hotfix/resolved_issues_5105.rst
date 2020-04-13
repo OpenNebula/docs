@@ -12,3 +12,4 @@ The following new features has been backported to 5.10.5:
 The following issues has been solved in 5.10.5:
 
 - `Remove done services in Sunstone <https://github.com/OpenNebula/one/issues/4487>`__.
+- `Fix onedb fsck wrong check for IP6 <https://github.com/OpenNebula/one/issues/4512>`__.
