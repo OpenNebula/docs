@@ -11,4 +11,4 @@ The following new features has been backported to 5.10.5:
 
 The following issues has been solved in 5.10.5:
 
-- `Write some nice description here <https://github.com/OpenNebula/one/issues/XXX>`__.
+- `Remove done services in Sunstone <https://github.com/OpenNebula/one/issues/4487>`__.
