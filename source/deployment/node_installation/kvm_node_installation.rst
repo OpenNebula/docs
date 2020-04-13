@@ -228,8 +228,6 @@ Then fill-in the fqdn of the node in the Hostname field.
 
 Finally, return to the Hosts list, and check that the Host has switched to ON status. It should take somewhere between 20s to 1m. Try clicking on the refresh button to check the status more frequently.
 
-|sunstone_list_hosts|
-
 If the host turns to ``err`` state instead of ``on``, check ``/var/log/one/oned.log``. Chances are it's a problem with SSH!
 
 Adding a Host through the CLI
@@ -277,5 +275,4 @@ Otherwise, you are ready to :ref:`start using your cloud <operation_guide>` or y
 
 .. |image3| image:: /images/network-02.png
 .. |sunstone_create_host_dialog| image:: /images/sunstone_create_host_dialog.png
-.. |sunstone_list_hosts| image:: /images/sunstone_list_hosts.png
 .. |sunstone_select_create_host| image:: /images/sunstone_select_create_host.png
