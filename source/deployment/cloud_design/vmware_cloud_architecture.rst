@@ -4,14 +4,14 @@
 VMware Cloud Architecture
 ================================================================================
 
-OpenNebula is intended for companies willing to create a self-service cloud environment on top of their VMware infrastructure without having to abandon their investment in VMware and retool the entire stack. In these environments, OpenNebula seamlessly integrates with existing vCenter infrastructures to leverage advanced features — such as vMotion, HA or DRS scheduling — provided by the VMware vSphere product family. OpenNebula exposes a multi-tenant, cloud-like provisioning layer on top of vCenter, including features like virtual data centers, data center federation or hybrid cloud computing to connect in-house vCenter infrastructures with public clouds.
+OpenNebula is intended for companies willing to create a self-service cloud environment on top of their VMware infrastructure without having to abandon their investment in VMware and retool the entire stack. In these environments, OpenNebula seamlessly integrates with existing vCenter infrastructures to leverage advanced features — such as vMotion, HA, DRS scheduling or NSX-T / NSX-V — provided by the VMware vSphere product family. OpenNebula exposes a multi-tenant, cloud-like provisioning layer on top of vCenter, including features like virtual data centers, data center federation or hybrid cloud computing to connect in-house vCenter infrastructures with public clouds.
 
 OpenNebula over vCenter is intended for companies that want to keep VMware management tools, procedures and workflows. For these companies, throwing away VMware and retooling the entire stack is not the answer. However, as they consider moving beyond virtualization toward a private cloud, they can choose to either invest more in VMware, or proceed on a tactically challenging but strategically rewarding path of open infrastructure.
 
 Architectural Overview
 ================================================================================
 
-OpenNebula assumes that your physical infrastructure adopts a classical cluster-like architecture with a front-end, and a set of vCenter instances grouping ESX hosts where Virtual Machines (VM) will be executed. There is at least one physical network joining all the vCenters and ESX hosts with the front-end. Connection from the front-end to vCenter is for management purposes, whereas the connection from the front-end to the ESX hosts is to support VNC connections.
+OpenNebula assumes that your physical infrastructure adopts a classical cluster-like architecture with a front-end, and a set of vCenter instances grouping ESX hosts where Virtual Machines (VM) will be executed. There is at least one physical network joining all the vCenters and ESX hosts with the front-end. Connection from the front-end to vCenter is for management purposes, whereas the connection from the front-end to the ESX hosts is to support VNC or VMRC connections.
 
 The VMware vCenter drivers enable OpenNebula to access one or more vCenter servers that manage one or more ESX Clusters. Each ESX Cluster is presented in OpenNebula as an aggregated hypervisor. Note that OpenNebula scheduling decisions are therefore made at ESX Cluster level; vCenter then uses the DRS component to select the actual ESX host and Datastore to deploy the Virtual Machine.
 
@@ -24,7 +24,7 @@ A cloud architecture is defined by three components: storage, networking and vir
 -  **Front-end** that executes the OpenNebula services.
 -  Hypervisor-enabled **hosts** that provide the resources needed by the VMs.
 -  **Datastores** that hold the base images of the VMs.
--  Physical **networks** used to support basic services such as interconnection of the VMs.
+-  Physical or software defined **networks** used to support basic services such as interconnection of the VMs.
 
 OpenNebula presents a highly modular architecture that offers broad support for commodity and enterprise-grade hypervisors, monitoring, storage, networking and user management services. This Section briefly describes the different choices that you can make for the management of the different subsystems. If your specific services are not supported we recommend checking the drivers available in the `Add-on Catalog <https://github.com/OpenNebula/one/wiki/Add_ons-Catalog>`__. We also provide information and support about how to develop new drivers.
 
@@ -118,7 +118,15 @@ Networking
 
 Networking in OpenNebula is handled by creating or importing Virtual Network representations of vCenter Networks and Distributed vSwitches. In this way, new VMs with defined network interfaces will be bound by OpenNebula to these Networks and/or Distributed vSwitches. OpenNebula can create a new logical layer of these vCenter Networks and Distributed vSwitches; in particular, three types of Address Ranges can be defined per Virtual Network representing the vCenter network resources: plain Ethernet, IPv4 and IPv6. This networking information can be passed to the VMs through the :ref:`contextualization <vcenter_contextualization>` process.
 
-Please check the :ref:`Networking Chapter <nm>` to find out more about the networking support in vCenter infrastructures by OpenNebula.
+OpenNebula supports NSX-T and NSX-V logical switches through the NSX Manager API. Some of the key points of this integration are:
+
+-  NSX Manager is automatically detected from vCenter Server. 
+-  Transport Zones are automatically discovered.
+-  Logical switches are created in the NSX Manager after a Virtual Network is created in OpenNebula.
+-  Link VM NICs to these logical switches through the OpenNebula GUI, both at deployment and run times.
+-  Import or remove existing logical switches.
+
+Please check the :ref:`vCenter Networking Setup <vcenter_networking_setup>` and :ref:`NSX Setup <nsx_setup>` to find out more about the networking support in vCenter infrastructures by OpenNebula.
 
 Authentication
 ================================================================================
