@@ -3047,6 +3047,8 @@ one.vn.rm_ar
 +------+------------+--------------------------------------------------+
 | IN   | Int        | ID of the address range to remove.               |
 +------+------------+--------------------------------------------------+
+| IN   | Boolean    | Optional force flag, bypass consistency checks   |
++------+------------+--------------------------------------------------+
 | OUT  | Boolean    | true or false whenever is successful or not      |
 +------+------------+--------------------------------------------------+
 | OUT  | Int/String | The resource ID / The error string.              |
