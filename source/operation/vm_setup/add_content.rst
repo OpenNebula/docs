@@ -341,7 +341,7 @@ Using the CLI you can do:
 Use the OpenNebula Marketplace
 ==============================
 
-If your frontend is connected to the internet it should have access to the public OpenNebula Marketplace. In it there are several images prepared to run in an OpenNebula Cloud. To get images from it you can go to the Storage/Apps tab in Sunstone web interface, select one of the images and click the button "<arrow> OpenNebula":
+If your frontend is connected to the internet it should have access to the public OpenNebula Marketplace. In it there are several images prepared to run in an OpenNebula Cloud. To get images from it you can go to the Storage/Apps tab in Sunstone web interface, select one of the images and click the download button:
 
 |sunstone_marketplace_list_import|
 

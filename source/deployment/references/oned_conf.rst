@@ -27,7 +27,7 @@ Daemon Configuration Attributes
 -  ``LISTEN_ADDRESS``: Host IP to listen on for XML-RPC calls (default: all IPs).
 -  ``DB``: Vector of configuration attributes for the database back-end.
 
-   -  ``backend``: Set to ``sqlite`` or ``mysql``. Please visit the :ref:`MySQL configuration guide <mysql>` for more information.
+   -  ``backend``: Set to ``sqlite`` or ``mysql`` or ``postgresql``. Please visit the :ref:`MySQL configuration guide <mysql>` or :ref:`PostgreSQL configuration guide <postgresql>` for more information.
    -  ``server`` (MySQL only): Host name or IP address of the MySQL server.
    -  ``user`` (MySQL only): MySQL user's login ID.
    -  ``passwd`` (MySQL only): MySQL user's password.

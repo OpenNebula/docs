@@ -348,8 +348,6 @@ To detach a disk from a running VM, find the disk ID of the Image you want to de
 
     $ onevm disk-detach one-5 1
 
-|image2|
-
 .. _vm_guide2_nic_hotplugging:
 
 NIC Hot-plugging
@@ -404,8 +402,6 @@ You can also detach a NIC by its ID. If you want to detach interface 1 (MAC ``02
 .. prompt:: text $ auto
 
     $ onevm nic-detach 2 1
-
-|image3|
 
 .. _vm_guide2_snapshotting:
 
@@ -529,8 +525,6 @@ Some of the VM configuration attributes defined in the VM Template can be update
 In Sunstone this action is inside the 'Conf' VM panel:
 
 |sunstone_updateconf_1|
-
-|sunstone_updateconf_2|
 
 .. _vm_guide2_clone_vm:
 
@@ -941,8 +935,6 @@ If the VM supports VNC or Spice and is ``running``, then the VNC icon on the Vir
 
 |image7|
 
-|image8|
-
 .. note:: In LXD instances, VNC access is provided through a command executed via ``lxc exec <container> -- <command>``. By default this command is ``/bin/login`` and it can be updated by editing **/var/tmp/one/etc/vmm/lxd/lxdrc** in the LXD node.
 
 The command can also be set for each container, by updating the ``GRAPHICS`` section in the VM template.
@@ -970,7 +962,6 @@ Information for Developers and Integrators
 .. |image5| image:: /images/sunstone_vm_resize.png
 .. |image6| image:: /images/sunstone_vm_list.png
 .. |image7| image:: /images/sunstone_vnc.png
-.. |image8| image:: /images/sunstonevnc4.png
 .. |image10| image:: /images/sunstone_save_button.png
 .. |image11| image:: /images/sunstone_save_dialog.png
 .. |image12| image:: /images/sunstone_cloud_save_button.png
@@ -982,5 +973,4 @@ Information for Developers and Integrators
 .. |sunstone_persistent_3| image:: /images/sunstone_persistent_3.png
 .. |sunstone_schedule_action| image:: /images/sunstone_schedule_action.png
 .. |sunstone_updateconf_1| image:: /images/sunstone_updateconf_1.png
-.. |sunstone_updateconf_2| image:: /images/sunstone_updateconf_2.png
 .. |lxd_vnc| image:: /images/lxd_vnc.png
