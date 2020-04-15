@@ -45,8 +45,8 @@ Scheduler
 
 Disaggregated Data Centers
 ================================================================================
-- Provision support of other object types. Refer to :ref:`this<ddc_virtual>` for more information.
-- Provision templates can extends multiple ones. Refer to :ref:`this<ddc_usage_example6>` for more information.
+- Provision support of other object types. Refer to :ref:`this <ddc_virtual>` for more information.
+- Provision templates can extends multiple ones. Refer to :ref:`this <ddc_usage_example6>` for more information.
 - Provision templates supports multiple playbooks. Refer to :ref:`this <ddc_usage_example7>` for more information.
 
 vCenter
@@ -57,6 +57,7 @@ OneFlow & OneGate
 ===============================================================================
 - `OneFlow revamp <https://github.com/OpenNebula/one/issues/4132>`__.
 - `OneFlow template cloning recursively <https://github.com/OpenNebula/one/issues/4287>`__.
+- OneFlow sched actions at service level. Refer to :ref:`this <flow_sched>` for more information.
 
 CLI
 ================================================================================
