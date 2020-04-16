@@ -15,7 +15,7 @@ What's New in 5.12
 
 OpenNebula Core
 ================================================================================
-- **PostgreSQL Backend** is now supported as Technology Preview, see :ref:`here <postgresql>`.
+- ...
 
 Storage
 --------------------------------------------------------------------------------
@@ -89,4 +89,5 @@ Other Issues Solved
 ================================================================================
 - `Fixed capacity bars in Clusters and Host when user reserve CPU and Memory <https://github.com/OpenNebula/one/issues/4256>`_.
 - `LXD Template Wizard: Clean OS & CPU section <https://github.com/OpenNebula/one/issues/3025>`_.
+- `Template Wizard: Change fieldname of target device to mountpoint when hypervisor LXD <https://github.com/OpenNebula/one/issues/3024>`_.
 - `LXD Marketplace attributes <https://github.com/OpenNebula/one/issues/3059>`_.
