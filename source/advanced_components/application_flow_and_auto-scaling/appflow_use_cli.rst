@@ -139,7 +139,9 @@ Each Service Role has a :ref:`Virtual Machine Template <vm_guide>` assigned. The
 
 |oneflow-templates-net-1|
 
-Then each Role of the service can be attached to one or more dynamic networks individually. Additionally you can set the role that exposes an RDP endpoint.
+Then each Role of the service can be attached to one or more dynamic networks individually. The network can be attached to the Role as an alias. In this case, you need to specify the interface to add the alias by selecting the virtual network it will be attached to. For example the Role, ``slave`` in the next picture will have one physical interface attached to the ``PRIVATE`` network. This interface will also have a IP alias configured from network ``PUBLIC``.
+
+Additionally you can set if the VMs in the Role exposes an RDP endpoint. Equivalently, you need to specify the IP of the VM for the RDP connection by selecting the virtual network the interface is attached to.
 
 |oneflow-templates-net-2|
 
