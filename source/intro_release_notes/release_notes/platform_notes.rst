@@ -37,6 +37,8 @@ Front-End Components
 | Corosync+Pacemaker      | Version included in the Linux distribution              | :ref:`Front-end HA Setup <oneha>`                     |
 +-------------------------+---------------------------------------------------------+-------------------------------------------------------+
 
+.. _vcenter_nodes_platform_notes:
+
 vCenter Nodes
 --------------------------------------------------------------------------------
 
