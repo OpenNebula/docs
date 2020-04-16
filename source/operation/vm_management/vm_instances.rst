@@ -804,6 +804,8 @@ The actions that need arguments, are the following:
 
 .. note:: These arguments are mandatory. If you use the CLI or Sunstone they are generated automatically for the actions.
 
+.. _vm_charter:
+
 VM Charter
 ----------
 

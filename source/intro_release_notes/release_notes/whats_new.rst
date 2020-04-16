@@ -38,6 +38,7 @@ Sunstone
 - Support for RDP in alias interfaces. Check :ref:`this <sunstone_rdp_troubleshootings>` for more information.
 - RDP links available in VMs table.
 - Support for nic alias in Sunstone service dialog. Check :ref:`this <appflow_use_cli_networks>` for more information.
+- Support for Vm Charter. Check :ref:`this <vm_charter>` for more information.
 
 Scheduler
 ================================================================================
@@ -92,3 +93,4 @@ Other Issues Solved
 - `LXD Template Wizard: Clean OS & CPU section <https://github.com/OpenNebula/one/issues/3025>`_.
 - `Template Wizard: Change fieldname of target device to mountpoint when hypervisor LXD <https://github.com/OpenNebula/one/issues/3024>`_.
 - `LXD Marketplace attributes <https://github.com/OpenNebula/one/issues/3059>`_.
+- `Fixed network is lost after making a save as template <https://github.com/OpenNebula/one/issues/4284>`_.
