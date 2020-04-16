@@ -15,7 +15,7 @@ Requirements
 
 The following must be met for a functional vCenter environment:
 
-* vCenter 5.5, 6.0 and/or 6.5, with at least one cluster aggregating at least one ESX 5.5, 6.0 and/or 6.5 host.
+* Supported vSphere version (check :ref:`Platform Notes <vcenter_nodes_platform_notes>`) with at least one cluster aggregating at least one ESX.
 * Define a vCenter user for OpenNebula. This vCenter user (let's call her ``oneadmin``) needs to have access to the ESX clusters that OpenNebula will manage. In order to avoid problems, the hassle free approach is to **declare this oneadmin user as Administrator**. However, in some enterprise environments declaring the user as Administrator is not allowed. In that case, you will need to grant permissions to perform some tasks. A table with the permissions required is found at the end of this chapter.
 * All ESX hosts belonging to the same ESX cluster to be exposed to OpenNebula **must** share at least one datastore among them.
 * The ESX cluster **should** have DRS enabled. DRS is not required but it is recommended. As OpenNebula does not schedule to the granularity of ESX hosts, DRS is needed to select the actual ESX host within the cluster, otherwise the VM will be launched in the ESX where the VM template has been created.
