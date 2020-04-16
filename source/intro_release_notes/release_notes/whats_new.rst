@@ -54,6 +54,7 @@ Disaggregated Data Centers
 vCenter
 ===============================================================================
 - **vCenter Resource pool tab**, within the host individual view a new tab displays the information of all :ref:`resource pools <vcenter_resource_pool>` defined in the vCenter cluster corresponding to the OpenNebula host.
+- **docker-machine-driver-opennebula**, is updated to support latest :ref:`Rancher <rancher_tutorial>` version.
 
 OneFlow & OneGate
 ===============================================================================
