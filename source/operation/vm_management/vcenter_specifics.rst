@@ -56,6 +56,8 @@ The following operations are not available for vCenter VMs:
 - migrate
 - livemigrate
 
+.. _vm_monitoring_attributes_vcenter:
+
 The monitoring attributes retrieved from a vCenter VM are:
 
 - VCENTER_ESX_HOST: The ESX host where the VM is running
@@ -74,6 +76,7 @@ The monitoring attributes retrieved from a vCenter VM are:
 - DISKWRBYTES: VM disks write bytes
 - DISKWRIOPS: VM disks write IOPS
 - VCENTER_VM_NAME: VM name on vCenter
+- DISK_x_ACTUAL_PATH: Physical path of the disk inside the vCenter datastore
 
 vCenter Template or Wild VM Importing Procedure
 --------------------------------------------------------------------------------
