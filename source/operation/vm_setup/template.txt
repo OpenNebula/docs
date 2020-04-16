@@ -77,6 +77,7 @@ For Windows machines SSH is not available but you can use the options ``USERNAME
         PASSWORD = "VeryComplexPassw0rd"
     ]
 
+.. note:: This password is encrypted in the virtual machine and in the virtual machine template.
 
 Execute Scripts on Boot
 -----------------------

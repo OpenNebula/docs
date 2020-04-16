@@ -448,6 +448,8 @@ Another common scenario is having Service Templates created by oneadmin that can
 
 Please refer to the OpenNebula documentation for more information about :ref:`users & groups <auth_overview>`, and :ref:`resource permissions <chmod>`.
 
+.. _flow_sched:
+
 Scheduling Actions on the Virtual Machines of a Role
 ====================================================
 
@@ -491,6 +493,8 @@ Let's say you need to reboot all the VMs of a Role, but you also need to avoid d
     $ oneflow action my-service my-role reboot --period 300 --number 2
 
 The ``/etc/one/oneflow-server.conf`` file contains default values for ``period`` and ``number`` that are used if you omit one of them.
+
+.. note:: You can also perform an operation in the whole service using eht command ``service action``. All the above operations and options are supported.
 
 Recovering from Failures
 ========================

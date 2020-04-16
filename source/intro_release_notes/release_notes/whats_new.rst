@@ -24,6 +24,7 @@ Storage
 Networking
 --------------------------------------------------------------------------------
 - **Security Groups** are now supported on NSX-T and NSX-V networks. Check :ref:`NSX Setup <nsx_setup>` for initial requirements and the :ref:`Security Groups Operation Guide <security_groups>` to learn how to operate with them. For more details about this integration go to :ref:`NSX Driver <nsx_driver>`
+- `Force option to remove address ranges (AR) with leases <https://github.com/OpenNebula/one/issues/4132>`__: ``onevnet rmar`` supports optional ``--force`` flag, which forces AR removal even if active leases exists
 
 
 Authentication
@@ -44,8 +45,8 @@ Scheduler
 
 Disaggregated Data Centers
 ================================================================================
-- Provision support of other object types. Refer to :ref:`this<ddc_virtual>` for more information.
-- Provision templates can extends multiple ones. Refer to :ref:`this<ddc_usage_example6>` for more information.
+- Provision support of other object types. Refer to :ref:`this <ddc_virtual>` for more information.
+- Provision templates can extends multiple ones. Refer to :ref:`this <ddc_usage_example6>` for more information.
 - Provision templates supports multiple playbooks. Refer to :ref:`this <ddc_usage_example7>` for more information.
 
 vCenter
@@ -56,6 +57,7 @@ OneFlow & OneGate
 ===============================================================================
 - `OneFlow revamp <https://github.com/OpenNebula/one/issues/4132>`__.
 - `OneFlow template cloning recursively <https://github.com/OpenNebula/one/issues/4287>`__.
+- OneFlow sched actions at service level. Refer to :ref:`this <flow_sched>` for more information.
 
 CLI
 ================================================================================
@@ -85,7 +87,7 @@ VMware Virtualization driver
 
 Other Issues Solved
 ================================================================================
-
 - `Fixed capacity bars in Clusters and Host when user reserve CPU and Memory <https://github.com/OpenNebula/one/issues/4256>`_.
 - `LXD Template Wizard: Clean OS & CPU section <https://github.com/OpenNebula/one/issues/3025>`_.
 - `Template Wizard: Change fieldname of target device to mountpoint when hypervisor LXD <https://github.com/OpenNebula/one/issues/3024>`_.
+- `LXD Marketplace attributes <https://github.com/OpenNebula/one/issues/3059>`_.
