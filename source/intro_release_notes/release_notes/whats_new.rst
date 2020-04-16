@@ -60,7 +60,7 @@ vCenter
 OneFlow & OneGate
 ===============================================================================
 - The OneFlow component has been revamped to improve its performance. This revamp has been made in terms of times, so we have reduced a lot the time that each operations consumes. The API is the same as it was before. Click :ref:`here <appflow_use_cli>` to check more information about this component.
-- `OneFlow template cloning recursively <https://github.com/OpenNebula/one/issues/4287>`__.
+- **OneFlow template** can be :ref:`cloned <service_clone>`, optionally in a recursive fashion so all the VM Templates and images are cloned as well
 - OneFlow sched actions at service level. Refer to :ref:`this <flow_sched>` for more information.
 
 CLI

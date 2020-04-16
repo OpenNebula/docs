@@ -187,6 +187,15 @@ You can also use them through the CLI. When you instantiate the template using `
 
 .. note:: In order to pass the service custom attributes to the VM  when using the CLI they need to be duplicated inside ``vm_template_contents`` section.
 
+.. _service_clone:
+
+Clone a Service Template
+------------------------
+
+A service template can be cloned to produce a copy, ready to be instantiated under another name. This copy can be recursive, so all the VM Templates forming the service will be cloned as well, and referenced from the cloned service.
+
+The ``oneflow-template clone`` (with the optional --recursive flag) can be used to achieve this, as well as from the Sunstone service template tab.
+
 Managing Services
 =================
 
