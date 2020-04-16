@@ -38,7 +38,7 @@ Sunstone
 - Support for RDP in alias interfaces. Check :ref:`this <sunstone_rdp_troubleshootings>` for more information.
 - RDP links available in VMs table.
 - Support for nic alias in Sunstone service dialog. Check :ref:`this <appflow_use_cli_networks>` for more information.
-- Support for Vm Charter. Check :ref:`this <vm_charter>` for more information.
+- Support for VM Charter. Check :ref:`this <vm_charter>` for more information.
 
 Scheduler
 ================================================================================
