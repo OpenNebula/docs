@@ -96,3 +96,4 @@ Other Issues Solved
 - `Template Wizard: Change fieldname of target device to mountpoint when hypervisor LXD <https://github.com/OpenNebula/one/issues/3024>`_.
 - `LXD Marketplace attributes <https://github.com/OpenNebula/one/issues/3059>`_.
 - `Fixed network is lost after making a save as template <https://github.com/OpenNebula/one/issues/4284>`_.
+- `Fixed edit vCenter virtual network context fails <https://github.com/OpenNebula/one/issues/3675>`_.
