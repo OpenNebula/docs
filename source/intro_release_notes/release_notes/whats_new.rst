@@ -98,3 +98,4 @@ Other Issues Solved
 - `LXD Marketplace attributes <https://github.com/OpenNebula/one/issues/3059>`_.
 - `Fixed network is lost after making a save as template <https://github.com/OpenNebula/one/issues/4284>`_.
 - `Fixed edit vCenter virtual network context fails <https://github.com/OpenNebula/one/issues/3675>`_.
+- `Fixed vRouter not showing floating IP <https://github.com/OpenNebula/one/issues/4147>`_.
