@@ -67,3 +67,9 @@ Check that Ansible is installed properly:
      ansible python module location = /usr/lib/python2.7/site-packages/ansible
      executable location = /usr/bin/ansible
      python version = 2.7.5 (default, Apr 11 2018, 07:36:10) [GCC 4.8.5 20150623 (Red Hat 4.8.5-28)]
+
+.. note:: You need to have Jinja2 version 2.10.0 (or higher). If your operating system is shipped with older, do upgrade with the following command:
+
+    .. prompt:: bash $ auto
+
+        $ sudo pip install 'Jinja2>=2.10.0'
