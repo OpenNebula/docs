@@ -592,7 +592,7 @@ Please bear in mind the following ``onevm save`` limitations:
 
 - The VM's source Template will be used. If this Template was updated since the VM was instantiated, the new contents will be used.
 - Volatile disks cannot be saved, and the current contents will be lost. The cloned VM Template will contain the definition for an empty volatile disk.
-- Disks and NICs will only contain the target Image/Network ID. If your Template requires extra configuration (such as DISK/DEV_PREFIX), you will need to update the new Template.
+- Disks and NICs will only contain the target Image/Network NAME and UNAME if defined. If your Template requires extra configuration (such as DISK/DEV_PREFIX), you will need to update the new Template.
 
 .. _vm_guide2_scheduling_actions:
 
