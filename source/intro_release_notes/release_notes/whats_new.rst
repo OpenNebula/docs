@@ -100,3 +100,4 @@ Other Issues Solved
 - `Fixed network is lost after making a save as template <https://github.com/OpenNebula/one/issues/4284>`_.
 - `Fixed edit vCenter virtual network context fails <https://github.com/OpenNebula/one/issues/3675>`_.
 - `Fixed vRouter not showing floating IP <https://github.com/OpenNebula/one/issues/4147>`_.
+- `Added asynchronous retry of KVM time sync <https://github.com/OpenNebula/one/issues/4508>`_.
