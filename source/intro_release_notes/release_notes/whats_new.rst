@@ -58,6 +58,7 @@ vCenter
 - **docker-machine-driver-opennebula**, is updated to support latest :ref:`Rancher <rancher_tutorial>` version.
 - Monitoring the physical path of the disks inside the vCenter datastore. :ref:`Monitoring Attributes <vm_monitoring_attributes_vcenter>`.
 - Differentiate created :ref:`Virtual Machine Templates <vm_templates>` on vCenter.
+- Option to create :ref:`Tags and Categories <vcenter_tags_and_categories>` on vCenter.
 
 OneFlow & OneGate
 ===============================================================================

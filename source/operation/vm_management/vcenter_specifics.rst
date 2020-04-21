@@ -302,3 +302,25 @@ Images can be imported from the vCenter datastore using the :ref:`onevcenter<vce
 .. warning: Images spaces are not allowed for import
 
 .. note: By default, OpenNebula checks the datastore capacity to see if the image fits. This may cause a "Not enough space in datastore" error. To avoid this error, disable the datastore capacity check before importing images. This can be changed in /etc/one/oned.conf, using the DATASTORE_CAPACITY_CHECK set to "no".
+
+.. _vcenter_tags_and_categories:
+
+vCenter Tags and Categories
+================================================================================
+
+Working with vCenter tags and categories can be extremely helpful. It allows you to add valuable information to inventory items and make them searchable and sortable.
+
+To assign a Label and Category to a VM, you must add the following block to the Template definition before instantiating it. You can add as many blocks as you need.
+
+.. code-block:: text
+
+
+    VCENTER_TAG = [
+        CATEGORY_NAME = "Category name",
+        DESCRIPTION = "Tag description",
+        NAME = "Tag name"]
+
+
+OpenNebula uses the ``CATEGORY_NAME`` field to create a Category in case there is no Category with this name. If you don't supply a ``CATEGORY_NAME``, OpenNebula will create a default category called ``OpenNebula``.
+
+OpenNebula uses the ``NAME`` and ``DESCRIPTION`` fields to create a ``TAG`` with this name and description that belongs to the category.
