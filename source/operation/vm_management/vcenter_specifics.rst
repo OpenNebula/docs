@@ -308,9 +308,9 @@ Images can be imported from the vCenter datastore using the :ref:`onevcenter<vce
 vCenter Tags and Categories
 ================================================================================
 
-Working with vCenter tags and categories can be extremely helpful. It allows you to add valuable information to inventory items and make them searchable and sortable.
+Working with vCenter tags and categories can be extremely helpful. It allows to add valuable information to inventory items and make them searchable and sortable.
 
-To assign a Label and Category to a VM, you must add the following block to the Template definition before instantiating it. You can add as many blocks as you need.
+To assign a Label and Category to a VM add the following block to the Template definition before instantiating it. Several blocks can be added as needed.
 
 .. code-block:: text
 
@@ -321,6 +321,6 @@ To assign a Label and Category to a VM, you must add the following block to the 
         NAME = "Tag name"]
 
 
-OpenNebula uses the ``CATEGORY_NAME`` field to create a Category in case there is no Category with this name. If you don't supply a ``CATEGORY_NAME``, OpenNebula will create a default category called ``OpenNebula``.
+OpenNebula uses the ``CATEGORY_NAME`` field to create a Category in case there is no Category with this name. If a ``CATEGORY_NAME`` is not supplied, OpenNebula will create a default category called ``OpenNebula``.
 
 OpenNebula uses the ``NAME`` and ``DESCRIPTION`` fields to create a ``TAG`` with this name and description that belongs to the category.
