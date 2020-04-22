@@ -39,6 +39,7 @@ Sunstone
 - RDP links available in VMs table.
 - Support for nic alias in Sunstone service dialog. Check :ref:`this <appflow_use_cli_networks>` for more information.
 - Support for VM Charter. Check :ref:`this <vm_charter>` for more information.
+- Administrator accounts passwords can't be changed via Sunstone <https://github.com/OpenNebula/one/issues/4327>`.
 
 Scheduler
 ================================================================================
