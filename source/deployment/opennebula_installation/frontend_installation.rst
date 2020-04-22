@@ -245,6 +245,13 @@ Or use service in older Linux systems:
     # service opennebula start
     # service opennebula-sunstone start
 
+.. note::
+
+   If OpenNebula services fail to start, check you
+
+   - followed :ref:`Step 4. Ruby Runtime Installation (Optional) <ruby_runtime>`,
+   - are not affected by :ref:`known issue on Debian and Ubuntu <known_issues_ruby>`.
+
 .. _verify_frontend_section:
 
 Step 7. Verifying the Installation
