@@ -62,3 +62,37 @@ Sometimes during the upgrade process the new host attribute ``PREV_STATE`` is no
 For fixing it just update the host using ``onedb update-body host --id <host_id>`` and add ``/HOST/PREV_STATE`` attribute with same value as that of ``/HOST/STATE``.
 
 We are not able to reproduce the error, any information if you are being hit by this will be very welcome here: https://github.com/OpenNebula/one/issues/4099
+
+.. _known_issues_ruby:
+
+OpenNebula services fail to start
+=================================
+
+**Debian and Ubuntu platforms**: It might happen that even when :ref:`front-end installation steps <ruby_runtime>` are followed and when using OpenNebula shipped Ruby gems (i.e., you have a symlink ``/usr/share/one/gems`` present), some OpenNebula services (mainly Sunstone, OneFlow, OneGate) fail to start due to an error in Ruby. It was discovered that Ruby gems installed system-wide via distribution packages might conflict with the gems shipped with the OpenNebula. It's recommended to uninstall any unnecessary Ruby gems installed via packages **from your distribution**.
+
+List Ruby gems installed from distribution packages (prefixed with ``ruby-``), e.g.:
+
+.. prompt:: bash # auto
+
+    # dpkg -l | grep ruby-
+    ii  ruby-did-you-mean       1.2.0-2                      all          smart error messages for Ruby > 2.3
+    ii  ruby-minitest           5.10.3-1                     all          Ruby test tools supporting TDD, BDD, mocking, and benchmarking
+    ii  ruby-net-telnet         0.1.1-2                      all          telnet client library
+    ii  ruby-power-assert       0.3.0-1                      all          library showing values of variables and method calls in an expression
+    ii  ruby-rack               1.6.4-4ubuntu0.1             all          modular Ruby webserver interface
+    ii  ruby-rack-protection    1.5.3-2+deb9u1build0.18.04.1 all          Protects against typical web attacks for Rack apps
+    ii  ruby-sinatra            1.4.8-1                      all          Ruby web-development dressed in a DSL
+    ii  ruby-test-unit          3.2.5-1                      all          unit testing framework for Ruby
+    ii  ruby-tilt               2.0.1-2                      all          Generic interface to multiple Ruby template engines
+
+Review list and uninstall unnecessary ones.
+
+.. important::
+
+    Distribution packages usually causing problems are ``ruby-rack``, ``ruby-rack-protection`` and ``ruby-sinatra``. Run the following command on your front-end to make sure they are not installed (always review the final list of packages to be removed from your system by packager):
+
+    .. prompt:: bash # auto
+
+        # apt-get remove ruby-rack ruby-rack-protection ruby-sinatra
+
+Problem is going to be `fixed <https://github.com/OpenNebula/one/issues/4304>`__ in OpenNebula 5.12.
