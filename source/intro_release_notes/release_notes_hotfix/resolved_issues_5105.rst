@@ -14,3 +14,4 @@ The following issues has been solved in 5.10.5:
 - `Remove done services in Sunstone <https://github.com/OpenNebula/one/issues/4487>`__.
 - `Fix onedb fsck wrong check for IP6 <https://github.com/OpenNebula/one/issues/4512>`__.
 - `Allow multiple hooks for same trigger event <https://github.com/OpenNebula/one/issues/4128>`__.
+- `Fix support tab visibility via sunstone yaml files <https://github.com/OpenNebula/one/issues/3204>`__.
