@@ -74,6 +74,7 @@ CLI
 Packaging
 ================================================================================
 - Use of bundled Ruby gems is now even more `isolated <https://github.com/OpenNebula/one/issues/4304>`_ from the rest of the system.
+- `Logrotate configurations don't change global settings <https://github.com/OpenNebula/one/issues/4557>`_.
 
 KVM Monitoring Drivers
 ================================================================================
