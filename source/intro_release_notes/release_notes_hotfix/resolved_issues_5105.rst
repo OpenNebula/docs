@@ -15,3 +15,4 @@ The following issues has been solved in 5.10.5:
 - `Fix onedb fsck wrong check for IP6 <https://github.com/OpenNebula/one/issues/4512>`__.
 - `Allow multiple hooks for same trigger event <https://github.com/OpenNebula/one/issues/4128>`__.
 - `Fix widget displaying running vms on Sunstone dashboard <https://github.com/OpenNebula/one/issues/2504>`__.
+- `Fix Logrotate configurations to not change global settings <https://github.com/OpenNebula/one/issues/4557>`_.
