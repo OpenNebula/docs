@@ -104,3 +104,4 @@ Other Issues Solved
 - `Fixed edit vCenter virtual network context fails <https://github.com/OpenNebula/one/issues/3675>`_.
 - `Fixed vRouter not showing floating IP <https://github.com/OpenNebula/one/issues/4147>`_.
 - `Added asynchronous retry of KVM time sync <https://github.com/OpenNebula/one/issues/4508>`_.
+- `Wrong PCI to VM association removed when undeploying and terminating a VM with PCI pass-through <https://github.com/OpenNebula/one/issues/3964>`__.
