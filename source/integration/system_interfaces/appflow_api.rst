@@ -58,23 +58,21 @@ Methods
 Service
 --------------------------------------------------------------------------------
 
-+--------------+----------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------+
-| **Method**   | **URL**                                | **Meaning / Entity Body**                                                                                                                                                                                                                                                                                                                                  | **Response**                                                           |
-+==============+========================================+============================================================================================================================================================================================================================================================================================================================================================+========================================================================+
-| **GET**      | ``/service``                           | **List** the contents of the ``SERVICE`` collection.                                                                                                                                                                                                                                                                                                       | **200 OK**: A JSON representation of the collection in the http body   |
-+--------------+----------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------+
-| **GET**      | ``/service/<id>``                      | **Show** the ``SERVICE`` resource identified by <id>                                                                                                                                                                                                                                                                                                       | **200 OK**: A JSON representation of the collection in the http body   |
-+--------------+----------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------+
-| **DELETE**   | ``/service/<id>``                      | **Delete** the ``SERVICE`` resource identified by <id>                                                                                                                                                                                                                                                                                                     | **204**:                                                               |
-+--------------+----------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------+
-| **POST**     | ``/service/<id>/action``               | **Perform** an action on the ``SERVICE`` resource identified by <id>. Available actions: shutdown, recover, chown, chgrp, chmod                                                                                                                                                                                                                            | **201**:                                                               |
-+--------------+----------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------+
-| **PUT**      | ``/service/<id>/role/<name>``          | **Update** the ``ROLE`` identified by <name> of the ``SERVICE`` resource identified by <id>. Currently the only attribute that can be updated is the cardinality.                                                                                                                                                                                          | **200 OK**:                                                            |
-+--------------+----------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------+
-| **POST**     | ``/service/<id>/action``               | **Perform** an action on all the Virtual Machines of the ``SERVICE`` resource identified by <id>. Available actions: shutdown, shutdown-hard, undeploy, undeploy-hard, hold, release, stop, suspend, resume, boot, delete, delete-recreate, reboot, reboot-hard, poweroff, poweroff-hard, snapshot-create                                                  | **201**:                                                               |
-+--------------+----------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------+
-| **POST**     | ``/service/<id>/role/<name>/action``   | **Perform** an action on all the Virtual Machines belonging to the ``ROLE`` identified by <name> of the ``SERVICE`` resource identified by <id>. Available actions: shutdown, shutdown-hard, undeploy, undeploy-hard, hold, release, stop, suspend, resume, boot, delete, delete-recreate, reboot, reboot-hard, poweroff, poweroff-hard, snapshot-create   | **201**:                                                               |
-+--------------+----------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------+
++--------------+----------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------+
+| **Method**   | **URL**                                | **Meaning / Entity Body**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | **Response**                                                           |
++==============+========================================+====================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================+========================================================================+
+| **GET**      | ``/service``                           | **List** the contents of the ``SERVICE`` collection.                                                                                                                                                                                                                                                                                                                                                                                                                                                               | **200 OK**: A JSON representation of the collection in the http body   |
++--------------+----------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------+
+| **GET**      | ``/service/<id>``                      | **Show** the ``SERVICE`` resource identified by <id>                                                                                                                                                                                                                                                                                                                                                                                                                                                               | **200 OK**: A JSON representation of the collection in the http body   |
++--------------+----------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------+
+| **DELETE**   | ``/service/<id>``                      | **Delete** the ``SERVICE`` resource identified by <id>                                                                                                                                                                                                                                                                                                                                                                                                                                                             | **204**:                                                               |
++--------------+----------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------+
+| **POST**     | ``/service/<id>/action``               | **Perform** an action on the ``SERVICE`` resource identified by <id>. Available actions: shutdown, recover, chown, chgrp, chmod. It can also be used to perform an action in all the Virtual Machines. Available actions: shutdown, shutdown-hard, undeploy, undeploy-hard, hold, release, stop, suspend, resume, boot, delete, delete-recreate, reboot, reboot-hard, poweroff, poweroff-hard, snapshot-create, snapshot-revert, snapshot-delete, disk-snapshot-create, disk-snapshot-revert, disk-snapshot-delete | **204**:                                                               |
++--------------+----------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------+
+| **POST**     | ``/service/<id>/scale``                | **Perform** an scale operation on the ``SERVICE`` resource identified by <id>.                                                                                                                                                                                                                                                                                                                                                                                                                                     | **204**:                                                               |
++--------------+----------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------+
+| **POST**     | ``/service/<id>/role/<name>/action``   | **Perform** an action on all the Virtual Machines belonging to the ``ROLE`` identified by <name> of the ``SERVICE`` resource identified by <id>. Available actions: shutdown, shutdown-hard, undeploy, undeploy-hard, hold, release, stop, suspend, resume, boot, delete, delete-recreate, reboot, reboot-hard, poweroff, poweroff-hard, snapshot-create, snapshot-revert, snapshot-delete, disk-snapshot-create, disk-snapshot-revert, disk-snapshot-delete                                                       | **204**:                                                               |
++--------------+----------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------+
 
 Service Template
 --------------------------------------------------------------------------------
@@ -116,6 +114,10 @@ A Service is defined with JSON syntax templates.
 | shutdown\_action  | string         | No        | VM shutdown action: 'shutdown' or 'shutdown-hard'. If it is not set, the default set in oneflow-server.conf will be used                                                                                                                                                                                         |
 +-------------------+----------------+-----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ready_status_gate | boolean        | No        | If ready_status_gate is set to true, a VM will only be considered to be in running state the following points are true: VM is in running state for OpenNebula. Which specifically means that LCM_STATE==3 and STATE>=3; The VM has READY=YES in the user template, this can be reported by the VM using OneGate. |
++-------------------+----------------+-----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| custom_attrs      | hash           | No        | Hash of custom attributes to use in the service                                                                                                                                                                                                                                                                  |
++-------------------+----------------+-----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| networks          | hash           | No        | Hash of virtual networks to use in the service                                                                                                                                                                                                                                                                   |
 +-------------------+----------------+-----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | roles             | array of Roles | Yes       | Array of Roles, see below                                                                                                                                                                                                                                                                                        |
 +-------------------+----------------+-----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -197,9 +199,13 @@ And each scheduled policy is defined as:
           :enum => %w{none straight},
           :default => 'none'
         },
+        'description' => {
+          :type => :string,
+          :required => false
+        },
         'shutdown_action' => {
           :type => :string,
-          :enum => %w{shutdown shutdown-hard},
+          :enum => %w{terminate terminate-hard shutdown shutdown-hard},
           :required => false
         },
         'roles' => {
@@ -209,8 +215,24 @@ And each scheduled policy is defined as:
         },
         'custom_attrs' => {
           :type => :object,
-          :properties => {
-          },
+          :properties => {},
+          :required => false
+        },
+        'custom_attrs_values' => {
+          :type => :object,
+          :properties => {},
+          :required => false
+        },
+        'networks' => {
+          :type => :object,
+          :properties => {},
+          :required => false
+        },
+        'networks_values' => {
+          :type => :array,
+          :items => {
+            :type => :object,
+            :properties => {}},
           :required => false
         },
         'ready_status_gate' => {
@@ -362,7 +384,13 @@ Action Schema
             },
             'params' => {
               :type => :object,
-                :required => false
+              :required => false,
+              :propierties => {
+                'merge_template' => {
+                    :type => object,
+                    :required => false
+                  }
+                }
               }
             }
           }
@@ -411,7 +439,7 @@ Create a New Service Template
             {
               "type":"CHANGE",
               "adjust":"4",
-              "recurrence":"0 2 1-10 * *"
+              "recurrence":"0 2 1-10 * * "
             }
           ]
         },
@@ -473,7 +501,7 @@ Create a New Service Template
                   {
                     "adjust": 4,
                     "type": "CHANGE",
-                    "recurrence": "0 2 1-10 * *"
+                    "recurrence": "0 2 1-10 * * "
                   }
                 ],
                 "vm_template": 0,
@@ -585,7 +613,7 @@ Get Detailed Information of a Given Service Template
                   {
                     "adjust": 4,
                     "type": "CHANGE",
-                    "recurrence": "0 2 1-10 * *"
+                    "recurrence": "0 2 1-10 * * "
                   }
                 ],
                 "vm_template": 0,
@@ -634,7 +662,7 @@ List the Available Service Templates
                       {
                         "adjust": 4,
                         "type": "CHANGE",
-                        "recurrence": "0 2 1-10 * *"
+                        "recurrence": "0 2 1-10 * * "
                       }
                     ],
                     "vm_template": 0,
@@ -686,7 +714,7 @@ Update a Given Template
             {
               "type":"CHANGE",
               "adjust":"4",
-              "recurrence":"0 2 1-10 * *"
+              "recurrence":"0 2 1-10 * * "
             }
           ]
         },
@@ -750,7 +778,7 @@ Update a Given Template
                   {
                     "adjust": 4,
                     "type": "CHANGE",
-                    "recurrence": "0 2 1-10 * *"
+                    "recurrence": "0 2 1-10 * * "
                   }
                 ],
                 "vm_template": 0,
@@ -777,6 +805,7 @@ Available actions:
 -  chown
 -  chmod
 -  chgrp
+
 
 .. code::
 
@@ -816,10 +845,26 @@ Available actions:
                   {
                     "adjust": 4,
                     "type": "CHANGE",
-                    "recurrence": "0 2 1-10 * *"
+                    "recurrence": "0 2 1-10 * * "
                   }
                 ],
                 "vm_template": 0,
+
+Aditional parameters can be passed using the ``merge_template`` inside the ``params``. For example, if we want to change the name when instantiating:
+
+.. code::
+
+    curl http://127.0.0.1:2474/service_template/4/action -u 'oneadmin:opennebula' -v -X POST --data '{
+      "action": {
+        "perform":"instantiate",
+        "params": {"merge_template":{"name":"new_name"}}
+      }
+    }'
+
+The following attributes can be also passed using the ``merge_template``:
+
+- network_values
+- custom_attrs_values
 
 Delete a Given Template
 --------------------------------------------------------------------------------
@@ -892,7 +937,7 @@ Get Detailed Information of a Given Service
                     "adjust": 4,
                     "last_eval": 1374676803,
                     "type": "CHANGE",
-                    "recurrence": "0 2 1-10 * *"
+                    "recurrence": "0 2 1-10 * * "
                   }
                 ],
                 "vm_template": 0,
@@ -906,72 +951,12 @@ Get Detailed Information of a Given Service
                     "deploy_id": 12,
                     "vm_info": {
                       "VM": {
-                        "CPU": "33",
-                        "TEMPLATE": {
-                          "CPU": "1",
-                          "CONTEXT": {
-                            "TARGET": "hda",
-                            "NETWORK": "YES",
-                            "DISK_ID": "0"
-                          },
-                          "MEMORY": "1024",
-                          "TEMPLATE_ID": "0",
-                          "VMID": "12"
-                        },
                         "GNAME": "oneadmin",
-                        "RESCHED": "0",
-                        "NET_RX": "1300",
                         "NAME": "frontend_0_(service_5)",
-                        "ETIME": "0",
-                        "USER_TEMPLATE": {
-                          "SERVICE_ID": "5",
-                          "ROLE_NAME": "frontend"
-                        },
                         "GID": "0",
-                        "LAST_POLL": "1374676793",
-                        "MEMORY": "786432",
-                        "HISTORY_RECORDS": {
-                          "HISTORY": {
-                            "RETIME": "0",
-                            "TMMAD": "dummy",
-                            "DS_LOCATION": "/var/tmp/one_install/var//datastores",
-                            "SEQ": "0",
-                            "VNMMAD": "dummy",
-                            "ETIME": "0",
-                            "PETIME": "1374676347",
-                            "HOSTNAME": "vmx_dummy",
-                            "VMMMAD": "dummy",
-                            "ESTIME": "0",
-                            "HID": "2",
-                            "EETIME": "0",
-                            "OID": "12",
-                            "STIME": "1374676347",
-                            "DS_ID": "0",
-                            "ACTION": "0",
-                            "RSTIME": "1374676347",
-                            "REASON": "0",
-                            "PSTIME": "1374676347"
-                          }
-                        },
                         "ID": "12",
-                        "DEPLOY_ID": "vmx_dummy:frontend_0_(service_5):dummy",
-                        "NET_TX": "800",
                         "UNAME": "oneadmin",
-                        "LCM_STATE": "3",
-                        "STIME": "1374676345",
                         "UID": "0",
-                        "PERMISSIONS": {
-                          "OWNER_U": "1",
-                          "OWNER_M": "1",
-                          "OWNER_A": "0",
-                          "GROUP_U": "0",
-                          "GROUP_M": "0",
-                          "GROUP_A": "0",
-                          "OTHER_U": "0",
-                          "OTHER_M": "0",
-                          "OTHER_A": "0"
-                        },
-                        "STATE": "3"
                       }
                     }
                   }
@@ -1012,72 +997,12 @@ Get Detailed Information of a Given Service
                     "deploy_id": 13,
                     "vm_info": {
                       "VM": {
-                        "CPU": "9",
-                        "TEMPLATE": {
-                          "CPU": "1",
-                          "CONTEXT": {
-                            "TARGET": "hda",
-                            "NETWORK": "YES",
-                            "DISK_ID": "0"
-                          },
-                          "MEMORY": "1024",
-                          "TEMPLATE_ID": "0",
-                          "VMID": "13"
-                        },
                         "GNAME": "oneadmin",
-                        "RESCHED": "0",
-                        "NET_RX": "1600",
                         "NAME": "worker_0_(service_5)",
-                        "ETIME": "0",
-                        "USER_TEMPLATE": {
-                          "SERVICE_ID": "5",
-                          "ROLE_NAME": "worker"
-                        },
                         "GID": "0",
-                        "LAST_POLL": "1374676783",
-                        "MEMORY": "545259",
-                        "HISTORY_RECORDS": {
-                          "HISTORY": {
-                            "RETIME": "0",
-                            "TMMAD": "dummy",
-                            "DS_LOCATION": "/var/tmp/one_install/var//datastores",
-                            "SEQ": "0",
-                            "VNMMAD": "dummy",
-                            "ETIME": "0",
-                            "PETIME": "1374676377",
-                            "HOSTNAME": "xen_dummy",
-                            "VMMMAD": "dummy",
-                            "ESTIME": "0",
-                            "HID": "1",
-                            "EETIME": "0",
-                            "OID": "13",
-                            "STIME": "1374676377",
-                            "DS_ID": "0",
-                            "ACTION": "0",
-                            "RSTIME": "1374676377",
-                            "REASON": "0",
-                            "PSTIME": "1374676377"
-                          }
-                        },
                         "ID": "13",
-                        "DEPLOY_ID": "xen_dummy:worker_0_(service_5):dummy",
-                        "NET_TX": "600",
                         "UNAME": "oneadmin",
-                        "LCM_STATE": "3",
-                        "STIME": "1374676375",
                         "UID": "0",
-                        "PERMISSIONS": {
-                          "OWNER_U": "1",
-                          "OWNER_M": "1",
-                          "OWNER_A": "0",
-                          "GROUP_U": "0",
-                          "GROUP_M": "0",
-                          "GROUP_A": "0",
-                          "OTHER_U": "0",
-                          "OTHER_M": "0",
-                          "OTHER_A": "0"
-                        },
-                        "STATE": "3"
                       }
                     }
                   },
@@ -1085,72 +1010,11 @@ Get Detailed Information of a Given Service
                     "deploy_id": 14,
                     "vm_info": {
                       "VM": {
-                        "CPU": "75",
-                        "TEMPLATE": {
-                          "CPU": "1",
-                          "CONTEXT": {
-                            "TARGET": "hda",
-                            "NETWORK": "YES",
-                            "DISK_ID": "0"
-                          },
-                          "MEMORY": "1024",
-                          "TEMPLATE_ID": "0",
-                          "VMID": "14"
-                        },
                         "GNAME": "oneadmin",
-                        "RESCHED": "0",
-                        "NET_RX": "1100",
-                        "NAME": "worker_1_(service_5)",
-                        "ETIME": "0",
-                        "USER_TEMPLATE": {
-                          "SERVICE_ID": "5",
-                          "ROLE_NAME": "worker"
-                        },
                         "GID": "0",
-                        "LAST_POLL": "1374676783",
-                        "MEMORY": "471859",
-                        "HISTORY_RECORDS": {
-                          "HISTORY": {
-                            "RETIME": "0",
-                            "TMMAD": "dummy",
-                            "DS_LOCATION": "/var/tmp/one_install/var//datastores",
-                            "SEQ": "0",
-                            "VNMMAD": "dummy",
-                            "ETIME": "0",
-                            "PETIME": "1374676378",
-                            "HOSTNAME": "kvm_dummy",
-                            "VMMMAD": "dummy",
-                            "ESTIME": "0",
-                            "HID": "0",
-                            "EETIME": "0",
-                            "OID": "14",
-                            "STIME": "1374676378",
-                            "DS_ID": "0",
-                            "ACTION": "0",
-                            "RSTIME": "1374676378",
-                            "REASON": "0",
-                            "PSTIME": "1374676378"
-                          }
-                        },
                         "ID": "14",
-                        "DEPLOY_ID": "kvm_dummy:worker_1_(service_5):dummy",
-                        "NET_TX": "550",
                         "UNAME": "oneadmin",
-                        "LCM_STATE": "3",
-                        "STIME": "1374676375",
                         "UID": "0",
-                        "PERMISSIONS": {
-                          "OWNER_U": "1",
-                          "OWNER_M": "1",
-                          "OWNER_A": "0",
-                          "GROUP_U": "0",
-                          "GROUP_M": "0",
-                          "GROUP_A": "0",
-                          "OTHER_U": "0",
-                          "OTHER_M": "0",
-                          "OTHER_A": "0"
-                        },
-                        "STATE": "3"
                       }
                     }
                   }
@@ -1259,7 +1123,7 @@ List the Available Services
                         "adjust": 4,
                         "last_eval": 1374676986,
                         "type": "CHANGE",
-                        "recurrence": "0 2 1-10 * *"
+                        "recurrence": "0 2 1-10 * * "
                       }
                     ],
                     ...
@@ -1283,6 +1147,7 @@ Available actions:
    * From FAILED\_UNDEPLOYING continues shutting down the Service
    * From COOLDOWN the Service is set to running ignoring the cooldown duration
    * From WARNING failed VMs are deleted, and new VMs are instantiated
+* recover delete: Will delete the service and its VMs (no matter in what state the service is)
 * chown
 * chmod
 * chgrp
@@ -1372,6 +1237,11 @@ These are the commands that can be performed:
 * ``poweroff``
 * ``poweroff-hard``
 * ``snapshot-create``
+* ``snapshot-revert``
+* ``snapshot-delete``
+* ``disk-snapshot-create``
+* ``disk-snapshot-revert``
+* ``disk-snapshot-delete``
 
 Instead of performing the action immediately on all the VMs, you can perform it on small groups of VMs with these options:
 
