@@ -113,8 +113,7 @@ The packages for the OpenNebula frontend and the virtualization host are as foll
 * **opennebula-provision**: :ref:`OneProvision <ddc_overview>` deploys new clusters on remote bare-metal cloud providers.
 * **opennebula-node-kvm**: Meta-package that installs the oneadmin user, libvirt and kvm.
 * **opennebula-common**: Common files for OpenNebula packages.
-* **opennebula-rubygems**: Metapackage with dependency on all required Ruby gems.
-* **opennebula-rubygem-$NAME**: Package with Ruby gem ``$NAME``.
+* **opennebula-rubygems**: All Ruby gem dependencies.
 * **opennebula-debuginfo**: Package with debug information.
 * **opennebula-ruby**: Ruby Bindings.
 * **opennebula-java**: Java Bindings.
@@ -149,8 +148,7 @@ These are the packages available for these distributions:
 * **opennebula-node**: Prepares a node as an opennebula KVM node.
 * **opennebula-node-lxd**: Prepares a node as an opennebula LXD node.
 * **opennebula-lxd-snap**: Installs LXD snap (only on Ubuntu 16.04 and 18.04).
-* **opennebula-rubygems**: Metapackage with dependency on all required Ruby gems.
-* **opennebula-rubygem-$NAME**: Package with Ruby gem ``$NAME``.
+* **opennebula-rubygems**: All Ruby gem dependencies.
 * **opennebula-dbgsym**: Package with debug information.
 * **ruby-opennebula**: Ruby API.
 * **libopennebula-java**: Java API.
@@ -169,7 +167,7 @@ Step 4. Ruby Runtime Installation (Optional)
 
 .. warning::
 
-    Since OpenNebula 5.10, this step is **optional** and all required Ruby gems are provided as a set of **opennebula-rubygem-$NAME** packages and **opennebula-rubygems** metapackage. Ruby gems are installed into a dedicated directory ``/usr/share/one/gems-dist/``, but OpenNebula uses them via (symlinked) location ``/usr/share/one/gems/`` which points to the ``gems-dist/`` directory. When the ``gems/`` directory (by default) exists, OpenNebula uses the gems inside **exclusively** by removing any other system Ruby gems locations from the search paths!
+    Since OpenNebula 5.10, this step is **optional** and all required Ruby gems are provided within **opennebula-rubygems** package. Ruby gems are installed into a dedicated directory ``/usr/share/one/gems-dist/``, but OpenNebula uses them via (symlinked) location ``/usr/share/one/gems/`` which points to the ``gems-dist/`` directory. When the ``gems/`` directory (by default on new installations) exists, OpenNebula uses the gems inside **exclusively** by removing any other system Ruby gems locations from the search paths!
 
     .. prompt:: bash # auto
 
