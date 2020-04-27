@@ -25,7 +25,7 @@ Daemon Configuration Attributes
 -  ``SCRIPTS_REMOTE_DIR``: Remote path to store the monitoring and VM management script.
 -  ``PORT``: Port where ``oned`` will listen for XML-RPC calls.
 -  ``LISTEN_ADDRESS``: Host IP to listen on for XML-RPC calls (default: all IPs).
--  ``HOSTNAME``: Hostname to use instead of autodetect it.
+-  ``HOSTNAME``: Hostname to use instead of autodetect it. This hostname is used to connect to frontend during driver operations.
 -  ``DB``: Vector of configuration attributes for the database back-end.
 
    -  ``backend``: Set to ``sqlite`` or ``mysql`` or ``postgresql``. Please visit the :ref:`MySQL configuration guide <mysql>` or :ref:`PostgreSQL configuration guide <postgresql>` for more information.
