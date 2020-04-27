@@ -16,7 +16,7 @@ What's New in 5.12
 OpenNebula Core
 ================================================================================
 - **PostgreSQL Backend** is now supported as Technology Preview, see :ref:`here <postgresql>`.
-- **Better Hostname Detection**. Now OpenNebula reads the FQDN of the hostname and it also can be configurable in ``oned.conf``.
+- **Better Hostname Detection**. Now OpenNebula reads the FQDN of the hostname. It can also be configured in ``oned.conf``.
 
 Storage
 --------------------------------------------------------------------------------
