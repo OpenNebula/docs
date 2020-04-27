@@ -15,7 +15,8 @@ What's New in 5.12
 
 OpenNebula Core
 ================================================================================
-  - **PostgreSQL Backend** is now supported as Technology Preview, see :ref:`here <postgresql>`.
+- **PostgreSQL Backend** is now supported as Technology Preview, see :ref:`here <postgresql>`.
+- **Better Hostname Detection**. Now OpenNebula reads the FQDN of the hostname and it also can be configurable in ``oned.conf``.
 
 Storage
 --------------------------------------------------------------------------------
@@ -40,7 +41,7 @@ Sunstone
 - Support for nic alias in Sunstone service dialog. Check :ref:`this <appflow_use_cli_networks>` for more information.
 - Support for VM Charter. Check :ref:`this <vm_charter>` for more information.
 - Administrator accounts :ref:`passwords <change_credentials>` can't be changed via Sunstone.
-- Add force remove of :ref:`address ranges <manage_nets>`.
+- Add force remove of :ref:`address ranges <manage_vnets>`.
 
 Scheduler
 ================================================================================
