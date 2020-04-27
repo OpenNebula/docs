@@ -15,7 +15,8 @@ What's New in 5.12
 
 OpenNebula Core
 ================================================================================
-  - **PostgreSQL Backend** is now supported as Technology Preview, see :ref:`here <postgresql>`.
+- **PostgreSQL Backend** is now supported as Technology Preview, see :ref:`here <postgresql>`.
+- **Better Hostname Detection**. Now OpenNebula reads the FQDN of the hostname. It can also be configured in ``oned.conf``.
 
 Storage
 --------------------------------------------------------------------------------
@@ -39,9 +40,12 @@ Sunstone
 - RDP links available in VMs table.
 - Support for nic alias in Sunstone service dialog. Check :ref:`this <appflow_use_cli_networks>` for more information.
 - Support for VM Charter. Check :ref:`this <vm_charter>` for more information.
+- Universal 2nd Factor authentication using WebAuthn (for U2F/FIDO2 keys). Check :ref:`this <2f_auth>` for more information.
+- Administrator accounts passwords can't be changed via Sunstone <https://github.com/OpenNebula/one/issues/4327>`.
 - Administrator accounts :ref:`passwords <change_credentials>` can't be changed via Sunstone.
 - Add force remove of :ref:`address ranges <manage_nets>`.
 - Make Suntone color thresholds configurable. Check :ref:`this <sunstone_branding>` for more information.
+- Add force remove of :ref:`address ranges <manage_vnets>`.
 
 Scheduler
 ================================================================================
@@ -107,3 +111,4 @@ Other Issues Solved
 - `Fixed edit vCenter virtual network context fails <https://github.com/OpenNebula/one/issues/3675>`_.
 - `Fixed vRouter not showing floating IP <https://github.com/OpenNebula/one/issues/4147>`_.
 - `Added asynchronous retry of KVM time sync <https://github.com/OpenNebula/one/issues/4508>`_.
+- `Fixed disable instantiate options in Sunstone <https://github.com/OpenNebula/one/issues/3604>`_.
