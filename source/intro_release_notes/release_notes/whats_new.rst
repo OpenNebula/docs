@@ -43,6 +43,8 @@ Sunstone
 - Universal 2nd Factor authentication using WebAuthn (for U2F/FIDO2 keys). Check :ref:`this <2f_auth>` for more information.
 - Administrator accounts passwords can't be changed via Sunstone <https://github.com/OpenNebula/one/issues/4327>`.
 - Administrator accounts :ref:`passwords <change_credentials>` can't be changed via Sunstone.
+- Add force remove of :ref:`address ranges <manage_nets>`.
+- Make Suntone color thresholds configurable. Check :ref:`this <sunstone_branding>` for more information.
 - Add force remove of :ref:`address ranges <manage_vnets>`.
 
 Scheduler

@@ -300,6 +300,8 @@ The VM Templates have an image logo to identify the guest OS. To modify the list
 |sunstone_vm_logo|
 
 
+.. _sunstone_branding: 
+
 Branding the Sunstone Portal
 --------------------------------------------------------------------------------
 
@@ -307,6 +309,12 @@ You can easily add your logos to the login and main screens by updating the ``lo
 
 -  The login screen is defined in the ``/etc/one/sunstone-views.yaml``.
 -  The logo of the main UI screen is defined for each view in :ref:`the view yaml file <suns_views>`.
+
+You can also change the color threshold values in the ``/etc/one/sunstone-server.conf``.
+
+- The green color starts in ``:threshold_min:``
+- The orange color starts in ``:threshold_low:``
+- The red color starts in ``:threshold_high:``
 
 sunstone-views.yaml
 --------------------------------------------------------------------------------
