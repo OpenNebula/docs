@@ -111,4 +111,6 @@ Other Issues Solved
 - `Fixed edit vCenter virtual network context fails <https://github.com/OpenNebula/one/issues/3675>`_.
 - `Fixed vRouter not showing floating IP <https://github.com/OpenNebula/one/issues/4147>`_.
 - `Added asynchronous retry of KVM time sync <https://github.com/OpenNebula/one/issues/4508>`_.
+- `Fix wrong PCI to VM association when undeploying and terminating a VM with PCI pass-through <https://github.com/OpenNebula/one/issues/3964>`__.
 - `Fixed disable instantiate options in Sunstone <https://github.com/OpenNebula/one/issues/3604>`_.
+
