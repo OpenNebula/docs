@@ -19,7 +19,9 @@ OpenNebula Sunstone was installed during the OpenNebula installation. If you fol
 
 The Sunstone Operation Center offers the possibility of starting a VNC/SPICE session to a Virtual Machine. This is done by using a VNC/SPICE websocket-based client (noVNC) on the client side and a VNC proxy translating and redirecting the connections on the server side.
 
-.. warning:: The SPICE Web client is a prototype and is limited in function. More information of this component can be found in the following `link <http://www.spice-space.org/page/Html5>`__
+.. note:: For the correct functioning of the SPICE Web Client, we recommend defining by default some SPICE parameters in ``/etc/one/vmm_mad/vmm_exec_kvm.conf``.
+  In this way, once modified the file and restarted OpenNebula, it will be applied to all the VMs instantiated from now on.
+  You can also override these SPICE parameters ​​in VM Template. For more info check :ref:`Driver Defaults <kvmg_default_attributes>` section.
 
 .. warning:: Make sure that there is free space in sunstone's log directory or it will die silently. By default the log directory is ``/var/log/one``.
 
@@ -298,6 +300,8 @@ The VM Templates have an image logo to identify the guest OS. To modify the list
 |sunstone_vm_logo|
 
 
+.. _sunstone_branding: 
+
 Branding the Sunstone Portal
 --------------------------------------------------------------------------------
 
@@ -305,6 +309,12 @@ You can easily add your logos to the login and main screens by updating the ``lo
 
 -  The login screen is defined in the ``/etc/one/sunstone-views.yaml``.
 -  The logo of the main UI screen is defined for each view in :ref:`the view yaml file <suns_views>`.
+
+You can also change the color threshold values in the ``/etc/one/sunstone-server.conf``.
+
+- The green color starts in ``:threshold_min:``
+- The orange color starts in ``:threshold_low:``
+- The red color starts in ``:threshold_high:``
 
 sunstone-views.yaml
 --------------------------------------------------------------------------------

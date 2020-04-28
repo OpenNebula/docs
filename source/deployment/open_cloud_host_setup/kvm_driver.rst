@@ -94,7 +94,7 @@ For example:
     HYPERV_OPTIONS="<relaxed state='on'/><vapic state='on'/><spinlocks state='on' retries='4096'/>"
     SPICE_OPTIONS="
         <video>
-            <model type='qxl' heads='1'/>
+            <model type='vga' heads='1'/>
         </video>
              <sound model='ich6' />
         <channel type='spicevmc'>
