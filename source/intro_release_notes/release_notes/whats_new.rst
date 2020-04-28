@@ -112,3 +112,4 @@ Other Issues Solved
 - `Fixed vRouter not showing floating IP <https://github.com/OpenNebula/one/issues/4147>`_.
 - `Added asynchronous retry of KVM time sync <https://github.com/OpenNebula/one/issues/4508>`_.
 - `Fixed disable instantiate options in Sunstone <https://github.com/OpenNebula/one/issues/3604>`_.
+- `Fixed VROUTER_KEEPALIVED_ID = 0 <https://github.com/OpenNebula/one/issues/4220>`_.
