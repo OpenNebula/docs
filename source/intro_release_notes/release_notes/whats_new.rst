@@ -75,7 +75,7 @@ OneFlow & OneGate
 
 CLI
 ================================================================================
-- Option (``--read-credentials``) to read database credentials from ``oned.conf`` when using ``onedb`` command has been added.
+- Functionality to read database credentials from ``oned.conf`` when using ``onedb`` command has been added.
 
 Packaging
 ================================================================================
