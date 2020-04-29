@@ -244,7 +244,7 @@ Or if you are used to the old ``service`` command:
     # service opennebula start
     # service opennebula-sunstone start
 
-.. note:: By default (since ``5.11.80``) there is now integrated and enabled SSH agent as the ``opennebula-ssh-agent`` service which removes the need to copy oneadmin's SSH private key across your hosts. For more info you can look at the :ref:`passwordless login <kvm_ssh>` section of the manual. You can opt to disable this service and configure your environment the old way.
+.. note:: Since 5.12, the OpenNebula comes with an integrated SSH agent as the ``opennebula-ssh-agent`` service which removes the need to copy oneadmin's SSH private key across your hosts. For more info you can look at the :ref:`passwordless login <kvm_ssh>` section of the manual. You can opt to disable this service and configure your environment the old way.
 
 .. _verify_frontend_section:
 
