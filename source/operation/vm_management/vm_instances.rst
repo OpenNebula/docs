@@ -744,6 +744,8 @@ For instance, a VM Template with the following SCHED_ACTION will spawn VMs that 
 
 This functionality is present graphically in Sunstone in the VM Template creation and update dialog, and in the VM Actions tab:
 
+.. _schedule_actions:
+
 |sunstone_schedule_action|
 
 These are the commands that can be scheduled:
