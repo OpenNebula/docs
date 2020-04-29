@@ -45,6 +45,7 @@ Sunstone
 - Administrator accounts :ref:`passwords <change_credentials>` can't be changed via Sunstone.
 - Make Suntone color thresholds configurable. Check :ref:`this <sunstone_branding>` for more information.
 - Add force remove of :ref:`address ranges <manage_vnets>`.
+- Support for update :ref:`Schedule Actions <schedule_actions>`.
 
 Scheduler
 ================================================================================
