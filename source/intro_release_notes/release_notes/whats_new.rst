@@ -113,3 +113,4 @@ Other Issues Solved
 - `Added asynchronous retry of KVM time sync <https://github.com/OpenNebula/one/issues/4508>`_.
 - `Fix wrong PCI to VM association when undeploying and terminating a VM with PCI pass-through <https://github.com/OpenNebula/one/issues/3964>`__.
 - `Fixed disable instantiate options in Sunstone <https://github.com/OpenNebula/one/issues/3604>`_.
+- `Fixed VROUTER_KEEPALIVED_ID = 0 <https://github.com/OpenNebula/one/issues/4220>`_.
