@@ -46,6 +46,7 @@ Sunstone
 - Make Suntone color thresholds configurable. Check :ref:`this <sunstone_branding>` for more information.
 - Add force remove of :ref:`address ranges <manage_vnets>`.
 - Support for update :ref:`Schedule Actions <schedule_actions>`.
+- Support for search in :ref:`Wilds VMs <import_wild_vms>`.
 
 Scheduler
 ================================================================================
