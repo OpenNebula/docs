@@ -37,8 +37,9 @@ Authentication
 
 Sunstone
 --------------------------------------------------------------------------------
-- Support for RDP in alias interfaces. Check :ref:`this <sunstone_rdp_troubleshootings>` for more information.
+- Support for RDP in alias interfaces. Check :ref:`this <rdp_sunstone>` for more information.
 - RDP links available in VMs table.
+- Support for Virt-Viewer links. Check :ref:`this <remote_access_sunstone>` for more information.
 - Support for nic alias in Sunstone service dialog. Check :ref:`this <appflow_use_cli_networks>` for more information.
 - Support for VM Charter. Check :ref:`this <vm_charter>` for more information.
 - Universal 2nd Factor authentication using WebAuthn (for U2F/FIDO2 keys). Check :ref:`this <2f_auth>` for more information.
