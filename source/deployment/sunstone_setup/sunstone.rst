@@ -15,21 +15,7 @@ OpenNebula Sunstone was installed during the OpenNebula installation. If you fol
 
     # /usr/share/one/install_gems sunstone
 
-.. _remote_access_sunstone:
-
-The Sunstone Operation Center offers the possibility of starting a VNC/SPICE session to a Virtual Machine. This is done by using a VNC/SPICE websocket-based client (noVNC) on the client side and a VNC proxy translating and redirecting the connections on the server side.
-
-.. note:: For the correct functioning of the SPICE Web Client, we recommend defining by default some SPICE parameters in ``/etc/one/vmm_mad/vmm_exec_kvm.conf``.
-  In this way, once modified the file and restarted OpenNebula, it will be applied to all the VMs instantiated from now on.
-  You can also override these SPICE parameters ​​in VM Template. For more info check :ref:`Driver Defaults <kvmg_default_attributes>` section.
-
-.. warning:: Make sure that there is free space in sunstone's log directory or it will die silently. By default the log directory is ``/var/log/one``.
-
-Requirements:
-
--  Websockets-enabled browser (optional): Firefox and Chrome support websockets. In some versions of Firefox manual activation is required. If websockets are not enabled, Flash emulation will be used.
--  Installing the python-numpy package is recommended for better VNC performance.
-
+If you want to use VNC, SPICE, RDP or VIRT-VIEWER please follow the requirements laid out :ref:`here <remote_access_sunstone>`.
 
 Configuration
 ================================================================================
@@ -177,6 +163,99 @@ To start Sunstone, just issue the following command as oneadmin
 
 You can find the Sunstone server log file in ``/var/log/one/sunstone.log``. Errors are logged in ``/var/log/one/sunstone.error``.
 
+.. _remote_access_sunstone:
+
+Accesing your VMs Console and Desktop
+================================================================================
+
+The Sunstone Operation Center offers the possibility of starting a VNC/SPICE session to a Virtual Machine. This is done by using a **VNC/SPICE websocket-based client (noVNC)** on the client side and a VNC proxy translating and redirecting the connections on the server side.
+
+You must have a ``GRAPHICS`` section in the VM template enabling VNC, as stated in the documentation. Make sure the attribute ``IP`` is set correctly (``0.0.0.0`` to allow connections from everywhere), otherwise, no connections will be allowed from the outside.
+
+.. code-block:: none
+    :name: graphics-template
+    :caption: For example, to configure this in Vrtual Machine template
+
+    GRAPHICS=[
+        LISTEN="0.0.0.0",
+        TYPE="vnc"
+    ]
+
+Make sure there are no firewalls blocking the connections. **The proxy will redirect the websocket** data from the VNC proxy port to the VNC port stated in the template of the VM. The value of the proxy port is defined in ``sunstone-server.conf`` as ``:vnc_proxy_port``.
+
+You can retrieve useful information from ``/var/log/one/novnc.log``. **Your browser must support websockets**, and have them enabled. This is the default in current Chrome and Firefox, but former versions of Firefox (i.e. 3.5) required manual activation. Otherwise Flash emulation will be used.
+
+When using secure websockets, make sure that your certificate and key (if not included in the certificate) are correctly set in the :ref:`Sunstone configuration files <suns_advance_ssl_proxy>`. Note that your certificate must be valid and trusted for the wss connection to work.
+
+If you are working with a certificate that it is not accepted by the browser, you can manually add it to the browser trust list by visiting ``https://sunstone.server.address:vnc_proxy_port``. The browser will warn that the certificate is not secure and prompt you to manually trust it.
+
+.. _requirements_remote_access_sunstone:
+
+Requirements:
+--------------------------------------------------------------------------------
+-  Websockets-enabled browser (optional): Firefox and Chrome support websockets. In some versions of Firefox manual activation is required. If websockets are not enabled, Flash emulation will be used.
+-  Installing the python-numpy package is recommended for better VNC performance.
+-  Client noVNC requires Python >= 2.5 for the websockets proxy to work. You may also need additional modules, such as ``python2<version>-numpy``.
+
+.. _vnc_sunstone:
+
+VNC Console
+--------------------------------------------------------------------------------
+VNC is a graphical console with wide support among many hypervisors and clients. When clicking the VNC icon, a request is made, and if a VNC session is possible, the Sunstone server will add the VM Host to the list of allowed vnc session targets and create a **random token** associated to it. The server responds with the session token, then a ``noVNC`` dialog pops up.
+
+The VNC console embedded in this dialog will try to connect to the proxy, either using websockets (default) or emulating them using Flash. Only connections providing the right token will be successful. The token expires and cannot be reused.
+
+Make sure that you can connect directly from the Sunstone frontend to the VM using a normal VNC client tool, such as ``vncviewer``.
+
+.. _spice_sunstone:
+
+SPICE Console
+--------------------------------------------------------------------------------
+
+SPICE support in Sunstone share a similar architecture to the VNC implementation. Sunstone use a ``SPICE-HTML5`` widget in its console dialog that communicates with the proxy by using websockets.
+
+.. note:: For the correct functioning of the SPICE Web Client, we recommend defining by default some SPICE parameters in ``/etc/one/vmm_mad/vmm_exec_kvm.conf``. In this way, once modified the file and restarted OpenNebula, it will be applied to all the VMs instantiated from now on. You can also override these SPICE parameters ​​in VM Template. For more info check :ref:`Driver Defaults <kvmg_default_attributes>` section.
+
+.. _virt_viewer_sunstone:
+
+VIRT-VIEWER
+--------------------------------------------------------------------------------
+Virt-viewer is a minimal tool for displaying the graphical console of a virtual machine. It can **display VNC or SPICE protocol**, and uses libvirt to lookup the graphical connection details.
+
+In this case, Sunstone allows you to download **the virt-viewer configuration file** for the VNC and SPICE protocols. The only requirement is the ``virt-viewer`` package.
+
+To use this option, you will only have to enable any of two protocols in the VM. Once the VM is ``instantiated`` and ``running``, users will be able to download the virt-viewer file.
+
+|sunstone_virt_viewer_button|
+
+.. _rdp_sunstone:
+
+RDP
+--------------------------------------------------------------------------------
+Short for Remote Desktop Protocol, allows one computer to connect to another computer over a network in order to use it remotely. Is available for most versions of the Windows operating system. To add one RDP connection link for a network in a VM, there are two possibilities for this purpose.
+
+- Activate the option in the Network tab of the template:
+
+|sunstone_rdp_connection|
+
+- It can also be defined in the VM template by adding:
+
+.. code::
+
+    NIC=[
+        ...
+        RDP = "YES"
+    ]
+
+Once the VM is instantiated, users will be able to download the RDP file configuration.
+
+|sunstone_rdp_button|
+
+.. important:: **The RDP connection is only allowed to activate on a single NIC**. In any case, the file RDP will only contain the IP of the first NIC with this property enabled. The RDP button will work the same way for NIC ALIASES.
+
+.. note:: If the VM template has a ``PASSWORD`` and ``USERNAME`` set in the contextualization section, this will be reflected in the RDP file. You can read about them in the :ref:`Virtual Machine Definition File reference section <template_context>`.
+
+
 .. _commercial_support_sunstone:
 
 Commercial Support Integration
@@ -211,60 +290,6 @@ The Service instances and templates tabs may show the following message:
 |sunstone_oneflow_error|
 
 You need to start the OneFlow component :ref:`following this section <appflow_configure>`, or disable the Service and Service Templates menu entries in the :ref:`Sunstone views yaml files <suns_views>`.
-
-.. _sunstone_vnc_troubleshooting:
-
-VNC Troubleshooting
---------------------------------------------------------------------------------
-
-When clicking the VNC icon, the process of starting a session begins:
-
--  A request is made, and if a VNC session is possible, the Sunstone server will add the VM Host to the list of allowed vnc session targets and create a random token associated to it.
--  The server responds with the session token, then a ``noVNC`` dialog pops up.
--  The VNC console embedded in this dialog will try to connect to the proxy, either using websockets (default) or emulating them using Flash. Only connections providing the right token will be successful. The token expires and cannot be reused.
-
-There can be multiple reasons for noVNC not correctly connecting to the machines. Here's a checklist of common problems:
-
--  noVNC requires Python >= 2.5 for the websockets proxy to work. You may also need additional modules, such as ``python2<version>-numpy``.
--  You can retrieve useful information from ``/var/log/one/novnc.log``
--  You must have a ``GRAPHICS`` section in the VM template enabling VNC, as stated in the documentation. Make sure the attribute ``IP`` is set correctly (``0.0.0.0`` to allow connections from everywhere), otherwise, no connections will be allowed from the outside.
--  Your browser must support websockets, and have them enabled. This is the default in current Chrome and Firefox, but former versions of Firefox (i.e. 3.5) required manual activation. Otherwise Flash emulation will be used.
--  Make sure there are no firewalls blocking the connections. The proxy will redirect the websocket data from the VNC proxy port to the ``VNC`` port stated in the template of the VM. The value of the proxy port is defined in ``sunstone-server.conf``.
--  Make sure that you can connect directly from the Sunstone frontend to the VM using a normal VNC client tool, such as ``vncviewer``.
--  When using secure websockets, make sure that your certificate and key (if not included in the certificate) are correctly set in the Sunstone configuration files. Note that your certificate must be valid and trusted for the wss connection to work. If you are working with a certificate that it is not accepted by the browser, you can manually add it to the browser trust list by visiting ``https://sunstone.server.address:vnc_proxy_port``. The browser will warn that the certificate is not secure and prompt you to manually trust it.
--  If your connection is very, very, very slow, there might be a token expiration issue. Please try the manual proxy launch as described below to check it.
--  Doesn't work yet? Try launching Sunstone, killing the websockify proxy and relaunching the proxy manually in a console window with the command that is logged at the beginning of ``/var/log/one/novnc.log``. You must generate a lock file containing the PID of the python process in ``/var/lock/one/.novnc.lock`` Leave it running and click on the VNC icon on Sunstone for the same VM again. You should see some output from the proxy in the console and hopefully the reason the connection does not work.
--  Please contact the support forum only when you have gone through the suggestions, above and provide full sunstone logs, errors shown, and any relevant information on your infrastructure (if there are Firewalls etc.).
-- The message "SecurityError: The operation is insecure." is usually related to a Same-Origin-Policy problem.  If you have Sunstone TLS-secured and try to connect to an insecure websocket for VNC, Firefox blocks that. For Firefox, you need to have both connections secured to not get this error. And don't use a self-signed certificate for the server, this would raise the error again (you can setup your own little CA, that works, but don't use a self-signed server certificate). The other option would be to go into the Firefox config (about:config) and set ``network.websocket.allowInsecureFromHTTPS`` to ``true``.
-
-.. _sunstone_rdp_troubleshootings:
-
-RDP Troubleshooting
---------------------------------------------------------------------------------
-
-To add one RDP connection link for a NIC in a VM, there are two possibilities for this purpose.
-
-- Activate the option in the Network tab of the template:
-
-|sunstone_rdp_troubleshooting|
-
-- It can also be defined in the VM by adding:
-
-.. code::
-
-    NIC=[
-        ...
-        RDP = "YES"
-    ]
-
-Once the VM is instantiated, users will be able to download the RDP file configuration.
-
-|sunstone_rdp_troubleshooting2|
-
-.. important:: The RDP connection is only allowed to activate on a single NIC. In any case, the file RDP will only contain the IP of the first NIC with this property enabled. The RDP button will work the same way for NIC ALIASES
-
-.. note:: If the VM template has a password and username set in the contextualization section, this will be reflected in the RDP file. You can read about them in the :ref:`Virtual Machine Definition File reference section <template_context>`
-
 
 Tuning & Extending
 ==================
@@ -392,6 +417,7 @@ OpenNebula :ref:`Sunstone views <suns_views>` can be adapted to deploy a differe
 
 .. |support_home| image:: /images/support_home.png
 .. |sunstone_oneflow_error| image:: /images/sunstone_oneflow_error.png
-.. |sunstone_rdp_troubleshooting| image:: /images/sunstone_rdp_troubleshooting.png
-.. |sunstone_rdp_troubleshooting2| image:: /images/sunstone_rdp_troubleshooting2.png
+.. |sunstone_virt_viewer_button| image:: /images/sunstone_virt_viewer_button.png
+.. |sunstone_rdp_connection| image:: /images/sunstone_rdp_connection.png
+.. |sunstone_rdp_button| image:: /images/sunstone_rdp_button.png
 .. |sunstone_vm_logo| image:: /images/sunstone_vm_logo.png

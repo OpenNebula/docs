@@ -950,7 +950,7 @@ The command can also be set for each container, by updating the ``GRAPHICS`` sec
 .. warning:: It is advised for RPM distros to update the command since it doesn't work when running it through ``lxc exec``. For example, a valid command would be ``/bin/bash``. Keep in mind it grants a root shell inside the container.
 
 
-The Sunstone documentation contains a section on :ref:`VNC troubleshooting <sunstone_vnc_troubleshooting>`.
+The Sunstone documentation contains a section on :ref:`Accesing your VMs Console and Desktop <remote_access_sunstone>` section.
 
 Information for Developers and Integrators
 ==========================================
