@@ -13,6 +13,19 @@ What's New in 5.12
 
 ...
 
+OpenNebula 5.12 (Firework) is the seventh major release of the OpenNebula 5 series. The main focus has been to write a new monitoring subsystem to support very large scale deployments, as well as several OneFlow improvements. In this line support for NSX-v and NSX-t has been integrated with the Security Groups model in OpenNebula. And other very nice perks!. The highlights of Firework are:
+
+- **New monitoring subsytem**, with separate upgrade intervals for different types of information.
+- **OneFlow** revamp to support fenced networking, performance improvements, etc.
+- **NSX** integrated with the **Security Groups** functionality
+- **Firecracker** support to enable serverless deployments
+
+As usual, OpenNebula 5.12 codename refers to a nebula, in this case the `Firework Nebula <https://apod.nasa.gov/apod/ap980704.html>`__, the result of a type of stellar explosion called a nova. In a nova, a nuclear detonation on the surface of a compact white dwarf star blasts away material that has been dumped on its surface by a companion star. Also known as GK Persei or Nova Persei, this nova became one of the brightest stars in the night sky in the year 1901. As bright as your OpenNebula cloud :).
+
+The OpenNebula team is now transitioning to "bug-fixing mode". Note that this is a first beta release aimed at testers and developers to try the new features, and send a more than welcomed feedback for the final release. Also note that being a beta, there is no migration path from the previous stable version (5.10.4) nor migration path to the final stable version (5.12.0). A list of open issues can be found in the `GitHub development portal <https://github.com/OpenNebula/one/milestone/28>`__.
+
+In the following list you can check the highlights of OpenNebula 5.10 (a detailed list of changes can be found `here <https://github.com/OpenNebula/one/milestone/28?closed=1>`__):
+
 OpenNebula Core
 ================================================================================
 - **PostgreSQL Backend** is now supported as Technology Preview, see :ref:`here <postgresql>`.
