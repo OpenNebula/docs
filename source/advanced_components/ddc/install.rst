@@ -10,7 +10,7 @@ All functionality is distributed as an optional operating system package ``openn
 
     The tool requires `Ansible <https://www.ansible.com/>`__ to be installed on the same host(s) as well. There is **no automatic dependency** which would install Ansible automatically; you have to manage the installation of the required Ansible version on your own.
 
-    Supported versions: Ansible 2.5.x or 2.6.x.  Note that the Ansible packages in CentOS 7+ and Debian 10+ are too new, and Ubuntu 16.04's is too old.
+    Supported versions: Ansible 2.5.x, 2.6.x., 2.7.x or 2.8.x  Note that the Ansible packages in CentOS 7+ and Debian 10+ are too new, and Ubuntu 16.04's is too old.
 
 Step 1. Tools
 =============
@@ -54,19 +54,18 @@ and, then install Ansible:
 
 .. prompt:: bash $ auto
 
-   $ sudo pip install 'ansible>=2.5.0,<2.7.0'
+   $ sudo pip install 'ansible>=2.5.0,<2.9.0'
 
 Check that Ansible is installed properly:
 
 .. prompt:: bash $ auto
 
-   $ ansible --version
-   ansible 2.5.3
-     config file = /etc/ansible/ansible.cfg
-     configured module search path = [u'/root/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
-     ansible python module location = /usr/lib/python2.7/site-packages/ansible
-     executable location = /usr/bin/ansible
-     python version = 2.7.5 (default, Apr 11 2018, 07:36:10) [GCC 4.8.5 20150623 (Red Hat 4.8.5-28)]
+    ansible 2.8.9
+      config file = None
+      configured module search path = [u'/var/lib/one/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
+      ansible python module location = /usr/local/lib/python2.7/dist-packages/ansible
+      executable location = /usr/local/bin/ansible
+      python version = 2.7.17 (default, Apr 15 2020, 17:20:14) [GCC 7.5.0]
 
 .. note:: You need to have Jinja2 version 2.10.0 (or higher). If your operating system is shipped with older, do upgrade with the following command:
 
