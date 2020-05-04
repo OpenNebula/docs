@@ -68,6 +68,7 @@ vCenter
 - Monitoring the physical path of the disks inside the vCenter datastore. :ref:`Monitoring Attributes <vm_monitoring_attributes_vcenter>`.
 - Differentiate created :ref:`Virtual Machine Templates <vm_templates>` on vCenter.
 - Option to create :ref:`Tags and Categories <vcenter_tags_and_categories>` on vCenter.
+- Preparing vCPU for numa and pinning adding the option to define the :ref:`number of cores per socket <numa_topology_section>` on vCenter using CORES attribute.
 
 OneFlow & OneGate
 ===============================================================================

@@ -1276,6 +1276,8 @@ Example:
 
 .. |user_inputs| image:: /images/sunstone_user_inputs.png
 
+.. _numa_topology_section:
+
 NUMA topology Section
 ================================================================================
 
