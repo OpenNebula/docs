@@ -17,3 +17,4 @@ The following issues has been solved in 5.10.5:
 - `Fix widget displaying running vms on Sunstone dashboard <https://github.com/OpenNebula/one/issues/2504>`__.
 - `Fix Logrotate configurations to not change global settings <https://github.com/OpenNebula/one/issues/4557>`_.
 - `Fix spice random password is too long <https://github.com/OpenNebula/one/issues/4103>`__.
+- `Fix LogDB purge process for Federation <https://github.com/OpenNebula/one/issues/4636>`__.
