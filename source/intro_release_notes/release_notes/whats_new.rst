@@ -64,8 +64,9 @@ Sunstone
 - Administrator accounts :ref:`passwords <change_credentials>` can't be changed via Sunstone.
 - Make Suntone color thresholds configurable. Check :ref:`this <sunstone_branding>` for more information.
 - Add force remove of :ref:`address ranges <manage_vnets>`.
-- Support for update :ref:`Schedule Actions <schedule_actions>`.
-- Support for search in :ref:`Wilds VMs <import_wild_vms>`.
+- Now is possible to update existing :ref:`Schedule Actions <schedule_actions>`.
+- Search box for :ref:`Wilds VMs <import_wild_vms>`.
+
 
 Scheduler
 ================================================================================
@@ -78,15 +79,6 @@ Disaggregated Data Centers
 - Provision templates can extends multiple ones. Refer to :ref:`this <ddc_usage_example6>` for more information.
 - Provision templates supports multiple playbooks. Refer to :ref:`this <ddc_usage_example7>` for more information.
 - New examples of complete clusters, check them :ref:`here <ddc_provision_cluster_templates>`.
-
-vCenter
-===============================================================================
-- **vCenter Resource pool tab**, within the host individual view a new tab displays the information of all :ref:`resource pools <vcenter_resource_pool>` defined in the vCenter cluster corresponding to the OpenNebula host.
-- **docker-machine-driver-opennebula**, is updated to support latest :ref:`Rancher <rancher_tutorial>` version.
-- Monitoring the physical path of the disks inside the vCenter datastore. :ref:`Monitoring Attributes <vm_monitoring_attributes_vcenter>`.
-- Differentiate created :ref:`Virtual Machine Templates <vm_templates>` on vCenter.
-- Option to create :ref:`Tags and Categories <vcenter_tags_and_categories>` on vCenter.
-- Preparing vCPU for numa and pinning adding the option to define the :ref:`number of cores per socket <numa_topology_section>` on vCenter using CORES attribute.
 
 OneFlow & OneGate
 ===============================================================================
@@ -104,10 +96,15 @@ Packaging
 - Use of bundled Ruby gems is now even more `isolated <https://github.com/OpenNebula/one/issues/4304>`_ from the rest of the system.
 - `Logrotate configurations don't change global settings <https://github.com/OpenNebula/one/issues/4557>`_.
 
-KVM Monitoring Drivers
-================================================================================
-
-- ...
+VMware Virtualization driver
+===============================================================================
+- **vCenter Resource pool tab**, within the host individual view a new tab displays the information of all :ref:`resource pools <vcenter_resource_pool>` defined in the vCenter cluster corresponding to the OpenNebula host.
+- Monitoring the physical path of the disks inside the vCenter datastore. :ref:`Monitoring Attributes <vm_monitoring_attributes_vcenter>`.
+- Differentiate created :ref:`Virtual Machine Templates <vm_templates>` on vCenter.
+- Option to create :ref:`Tags and Categories <vcenter_tags_and_categories>` on vCenter.
+- Preparing vCPU for numa and pinning adding the option to define the :ref:`number of cores per socket <numa_topology_section>` on vCenter using CORES attribute.
+- Support for attach and detach NIC operations in poweroff state.
+- Define Virtual Cores per Socket on vCenter VM. Check :ref:`this <numa>` for more information. 
 
 KVM Virtualization Driver
 ================================================================================
@@ -118,9 +115,11 @@ Hybrid Virtualization
 ================================================================================
 - :ref:`Azure driver <azg>` was refactored to use Azure Resource Manager deployment
 
-VMware Virtualization driver
-================================================================================
-- Support for attach and detach NIC operations in poweroff state
+Containers
+==========
+
+- **docker-machine-driver-opennebula**, is updated to support latest :ref:`Rancher <rancher_tutorial>` version.
+- TODO: Firecracker
 
 Other Issues Solved
 ================================================================================
