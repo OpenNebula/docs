@@ -11,6 +11,8 @@ The following new features has been backported to 5.10.5:
 
 The following issues has been solved in 5.10.5:
 
+- `Fix arping path in sudoers on Debian and Ubuntu <https://github.com/OpenNebula/one/pull/4660>`__.
+- `Logrotates don't touch global defaults <https://github.com/OpenNebula/one/issues/4557>`__.
 - `Remove done services in Sunstone <https://github.com/OpenNebula/one/issues/4487>`__.
 - `Fix onedb fsck wrong check for IP6 <https://github.com/OpenNebula/one/issues/4512>`__.
 - `Allow multiple hooks for same trigger event <https://github.com/OpenNebula/one/issues/4128>`__.
