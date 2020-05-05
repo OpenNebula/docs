@@ -11,14 +11,19 @@ What's New in 5.12
    Minor features are added in a separate block in each section as:
    - `<one-to-two line description <http://github.com/OpenNebula/one/issues/#>`__.
 
-...
+..
 
 OpenNebula 5.12 (Firework) is the seventh major release of the OpenNebula 5 series. The main focus has been to write a new monitoring subsystem to support very large scale deployments, as well as several OneFlow improvements. In this line support for NSX-v and NSX-t has been integrated with the Security Groups model in OpenNebula. And other very nice perks!. The highlights of Firework are:
 
-- **New monitoring subsytem**, with separate upgrade intervals for different types of information.
-- **OneFlow** revamp to support fenced networking, performance improvements, etc.
-- **NSX** integrated with the **Security Groups** functionality
-- **Firecracker** support to enable serverless deployments
+- **New monitoring subsytem**, with separate upgrade intervals for different types of information. This enables the efficient monitoring of large scale deployments with thousands of physical hosts and tens of thousands of virtual machines.
+- **OneFlow** revamped to support fenced networking and performance improvements among others. Easily deploy environments with automatic deployed network gateway between an external and isolated internal network.
+- **NSX** integrated with the **Security Groups** functionality. This opens the door to manage inbound/outbound network traffic with L3 rules, using the power of NSX within OpenNebula.
+- **Firecracker** support to innovative serverless deployments. Firecracker is a virtual machine manager—responsible for managing lots of tiny virtual machines on a server. Couple the security of the VMs with the agility of containers, combining different workloads with the same OpenNebula instance.
+- New ways of remote accesing your VMs in **Sunstone**, better SPICE integration with the possiblity of spawning an external virt-viewer program, as well as the possiblity of automatically autheticating on a Windows VM using a RDP client from Sunstone.
+
+.. image:: /images/virt-viewer-example.png
+    :width: 90%
+    :align: center
 
 As usual, OpenNebula 5.12 codename refers to a nebula, in this case the `Firework Nebula <https://apod.nasa.gov/apod/ap980704.html>`__, the result of a type of stellar explosion called a nova. In a nova, a nuclear detonation on the surface of a compact white dwarf star blasts away material that has been dumped on its surface by a companion star. Also known as GK Persei or Nova Persei, this nova became one of the brightest stars in the night sky in the year 1901. As bright as your OpenNebula cloud :).
 
