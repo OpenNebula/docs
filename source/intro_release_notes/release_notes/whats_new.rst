@@ -66,6 +66,7 @@ Sunstone
 - Add force remove of :ref:`address ranges <manage_vnets>`.
 - Support for update :ref:`Schedule Actions <schedule_actions>`.
 - Support for search in :ref:`Wilds VMs <import_wild_vms>`.
+- Suppor for change Cores on vCenter VM. Check :ref:`this <numa>` for more information. 
 
 Scheduler
 ================================================================================
