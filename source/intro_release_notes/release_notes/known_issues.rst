@@ -96,3 +96,8 @@ Review list and uninstall unnecessary ones.
         # apt-get remove ruby-rack ruby-rack-protection ruby-sinatra
 
 Problem is going to be `fixed <https://github.com/OpenNebula/one/issues/4304>`__ in OpenNebula 5.12.
+
+Federation replication process
+==================================
+
+There is a bug in the Federation replication process does could lead to a situation when replication is stuck as a result of the purge procedure. As a workaround, if this happens, the master node DB federated tables should be restored in the follower node as explained in the :ref:`Federation Configuration <federationconfig>` guide.
