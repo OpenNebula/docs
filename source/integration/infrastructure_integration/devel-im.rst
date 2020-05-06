@@ -4,66 +4,61 @@
 Monitoring Driver
 ================================================================================
 
-The Monitoring Drivers (or IM drivers) collect host and virtual machine monitoring data by executing a set of probes in the hosts. This data is either actively queried by OpenNebula or sent periodically by an agent running in the hosts to the frontend.
+The Monitoring Drivers (or IM drivers) collect host and virtual machine monitoring data by executing a monitoring agent in the hosts. The agent periodically executes probes to collect data and periodically sent them to the frontend.
 
-This guide describes the process of customize or add probes to the hosts. It is also a starting point on how to create a new IM driver from scratch.
+This guide describes the internals of the monitoring system. It is also a starting point on how to create a new IM driver from scratch.
 
-Probe Location
+Message structure
 ================================================================================
 
-The default probes are installed in the frontend in the following path:
+The structure of monitoring message is:
 
--  **KVM**: ``/var/lib/one/remotes/im/kvm-probes.d``
--  **vCenter, EC2 and Azure**: ``/var/lib/one/remotes/im/<hypervisor>.d``
+.. code::
 
-In the case of ``KVM``, the probes are distributed to the hosts, therefore if the probes are changed, they **must** be distributed to the hosts by running ``onehost sync``.
+    MESSAGE_TYPE ID RESULT PAYLOAD
 
-General Probe Structure
-================================================================================
++-----------------+--------------------------------------------------------------------------+
+| Name            | Description                                                              |
++=================+==========================================================================+
+| MESSAGE_TYPE    | SYSTEM_HOST, MONITOR_HOST, BEACON_HOST, MONITOR_VM or STATE_VM           |
++-----------------+--------------------------------------------------------------------------+
+| ID              | ID of the host, which generates the message.                             |
++-----------------+--------------------------------------------------------------------------+
+| RESULT          | Result of the action, possible values SUCCESS or FAILURE                 |
++-----------------+--------------------------------------------------------------------------+
+| PAYLOAD         | Message data, depends on MESSAGE_TYPE                                    |
++-----------------+--------------------------------------------------------------------------+
 
-An IM driver is composed of one or several scripts that write to ``stdout`` information in this form:
+Descriptionof message types:
+
+- **SYSTEM_HOST** - General information about the host, which doesn't change too often (e.g. total memory, disk cpacity, datastores, pci devices, NUMA nodes, ...)
+- **MONITOR_HOST** - Monitoring information: used memory, used cpu, network traffic, ...
+- **BEACON_HOST** - notification message, that the agent is still alive
+- **MONITOR_VM** - VMs monitoring information: used memory, used cpus, disk io, ...
+- **STATE_VM** - VMs state: running, poweroff, ...
+
+The provided hypervisors compose each message from data provided by probes in specific directory:
+- SYSTEM_HOST - im/<hypervisor>-probes.d/host/system
+- MONITOR_HOST - im/<hypervisor>-probes.d/host/monitor
+- BEACON_HOST - im/<hypervisor>-probes.d/host/beacon
+- MONITOR_VM - im/<hypervisor>-probes.d/vm/monitor
+- STATE_VM - im/<hypervisor>-probes.d/vm/status
+
+An IM probes are composed of one or several scripts that write to ``stdout`` information in this form:
 
 .. code::
 
     KEY1="value"
     KEY2="another value with spaces"
 
-The drivers receive the following parameters:
-
-+------------+-------------------------------------------------------------------------------------------------+
-| Position   | Description                                                                                     |
-+============+=================================================================================================+
-| 1          | **hypervisor**: The name of the hypervisor: ``kvm``, etc...                                     |
-+------------+-------------------------------------------------------------------------------------------------+
-| 2          | **datastore location**: path of the datastores directory in the host                            |
-+------------+-------------------------------------------------------------------------------------------------+
-| 3          | **collectd port**: port in which the ``collectd`` is listening on                               |
-+------------+-------------------------------------------------------------------------------------------------+
-| 4          | **monitor push cycle**: time in seconds between monitorization actions for the UDP-push model   |
-+------------+-------------------------------------------------------------------------------------------------+
-| 5          | **host\_id**: id of the host                                                                    |
-+------------+-------------------------------------------------------------------------------------------------+
-| 6          | **host\_name**: name of the host                                                                |
-+------------+-------------------------------------------------------------------------------------------------+
-
-Take into account that in shell script the parameters start at 1 (``$1``) and in ruby start at 0 (``ARGV[0]``). For shell script you can use this snippet to get the parameters:
-
-.. code::
-
-    hypervisor=$1
-    datastore_location=$2
-    collectd_port=$3
-    monitor_push_cycle=$4
-    host_id=$5
-    host_name=$6
-
 .. _devel-im_basic_monitoring_scripts:
 
 Basic Monitoring Scripts
 ================================================================================
 
-You can add any key and value you want to use later in ``RANK`` and ``REQUIREMENTS`` for scheduling but there are some basic values you should output:
+Mandatory values for each category are described below:
 
+** SYSTEM_HOST Message **
 +---------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
 | Key           | Description                                                                                                                                       |
 +===============+===================================================================================================================================================+
@@ -75,6 +70,11 @@ You can add any key and value you want to use later in ``RANK`` and ``REQUIREMEN
 +---------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
 | TOTALMEMORY   | Maximum memory that could be used for VMs. It is advised to take out the memory used by the hypervisor.                                           |
 +---------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+
+** MONITOR_HOST Message **
++---------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+| Key           | Description                                                                                                                                       |
++===============+===================================================================================================================================================+
 | USEDMEMORY    | Memory used, in kilobytes.                                                                                                                        |
 +---------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
 | FREEMEMORY    | Available memory for VMs at that moment, in kilobytes.                                                                                            |
@@ -88,122 +88,82 @@ You can add any key and value you want to use later in ``RANK`` and ``REQUIREMEN
 | NETTX         | Transferred bytes to the network                                                                                                                  |
 +---------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
 
-For example, a probe that gets memory information about a host could be something like:
+** BEACON_HOST Message **
+No data
+
+** MONITOR_VM Message **
+The format of the MONITOR_VM Message:
 
 .. code::
 
-    #!/bin/bash
-     
-    total=$(free | awk ' /^Mem/ { print $2 }')
-    used=$(free | awk '/buffers\/cache/ { print $3 }')
-    free=$(free | awk '/buffers\/cache/ { print $4 }')
-     
-    echo "TOTALMEMORY=$total"
-    echo "USEDMEMORY=$used"
-    echo "FREEMEMORY=$free"
+    VM = [ ID="0",
+           UUID="6c1e1565-50f4-43b6-ba71-0fe46477d2ec",
+           MONITOR="Q1BVPSIxLjAxIgpNRU1PUlk9IjE0MDgxNiIKTkVUUlg9IjAiCk5FVFRYPSIwIgpESVNLUkRCWVRFUz0iNDQxNjU0NDQiCkRJU0tXUkJZVEVTPSIxMjY2Njg4IgpESVNLUkRJT1BTPSIxMjg5IgpESVNLV1JJT1BTPSI4ODEiCg=="]
+    VM = [ ID="1",
+           ... ]
 
-Executing it should give use memory values:
++---------------+----------------------------------------------------------------------------------------------+
+| Key           | Description                                                                                  |
++===============+==============================================================================================+
+| ID            | ID of the VM in OpenNebula.                                                                  |
++---------------+----------------------------------------------------------------------------------------------+
+| UUID          | Unique ID, must be unique across all hosts.                                                  |
++---------------+----------------------------------------------------------------------------------------------+
+| MONITOR       | Base64 encoded monitoring information, the monitoring information includes following data:   |
++---------------+----------------------------------------------------------------------------------------------+
+| TIMESTAMP     | Timestamp of the measurement.                                                                |
++---------------+----------------------------------------------------------------------------------------------+
+| CPU           | Percentage of 1 CPU consumed (two fully consumed cpu is 2.0).                                |
++---------------+----------------------------------------------------------------------------------------------+
+| MEMORY        | MEMORY consumption in kilobytes.                                                             |
++---------------+----------------------------------------------------------------------------------------------+
+| DISKRDBYTES   | Amount of bytes read from disk.                                                              |
++---------------+----------------------------------------------------------------------------------------------+
+| DISKRDIOPS    | Number of IO read operations.                                                                |
++---------------+----------------------------------------------------------------------------------------------+
+| DISKWRBYTES   | Amount of bytes written to disk.                                                             |
++---------------+----------------------------------------------------------------------------------------------+
+| DISKWRIOPS    | Number of IO write operations.                                                               |
++---------------+----------------------------------------------------------------------------------------------+
+| NETRX         | Received bytes from the network.                                                             |
++---------------+----------------------------------------------------------------------------------------------+
+| NETTX         | Sent bytes to the network.                                                                   |
++---------------+----------------------------------------------------------------------------------------------+
+
+** STATE_VM Message **
+The format of the STATE_VM message is:
 
 .. code::
 
-    $ ./memory_probe
-    TOTALMEMORY=1020696
-    USEDMEMORY=209932
-    FREEMEMORY=810724
-
-For real examples check the directories at ``/var/lib/one/remotes/im``.
-
-.. _devel-im_vm_information:
-
-VM Information
-================================================================================
-
-The scripts should also provide information about the VMs running in the host. This is useful as it will only need one call to gather all that information about the VMs in each host. The output should be in this form:
-
-.. code::
-
-    VM_POLL=YES
     VM=[
       ID=115,
       DEPLOY_ID=one-115,
-      VM_NAME=one-115,
-      IMPORT_TEMPLATE="TkFNRT1vcGVubmVidWxhcm9ja3NiaWd0aW1lDQpDUFU9MQ0KTUVNT1JZPTIwMTQ4",
-      POLL="STATE=a CPU=100.0 MEMORY=73232 NETRX=1518 NETTX=0 DISK_SIZE=[ ID=0, SIZE=24 ] DISK_SIZE=[ ID=1, SIZE=0 ]  SNAPSHOT_SIZE=[ ID=1, DISK_ID=0, SIZE=24 ] SNAPSHOT_SIZE=[ ID=0, DISK_ID=0, SIZE=24 ] " ]
+      UUID="6c1e1565-50f4-43b6-ba71-0fe46477d2ec",
+      STATE="RUNNING" ]
     VM=[
       ID=116,
       DEPLOY_ID=one-116,
-      VM_NAME=one-115,
-      IMPORT_TEMPLATE="TkFNRT1vcGVubmVidWxhcm9ja3NiaWd0aW1leWVzDQpDUFU9MQ0KTUVNT1JZPTIwNDg=",
-      POLL="STATE=a CPU=100.5 MEMORY=77824 NETRX=1392 NETTX=0 DISK_SIZE=[ ID=0, SIZE=24 ] DISK_SIZE=[ ID=1, SIZE=0 ]  " ]
-    VM=[
-      ID=-1,
-      DEPLOY_ID=f81d4fae-7dec-11d0-a765-00a0c91e6bf6,
-      VM_NAME=MyVM,
-      IMPORT_TEMPLATE="TkFNRT13aWxkdm0NCkNQVT0yDQpNRU1PUlk9MTAyNA==",
-      POLL="STATE=a CPU=100.5 MEMORY=77824 NETRX=1392 NETTX=0 DISK_SIZE=[ ID=0, SIZE=24 ] DISK_SIZE=[ ID=1, SIZE=0 ]  " ]
+      UUID="1a3f2513-50f4-43b6-ba71-0fe46477d2ec",
+      STATE="POWEROFF" ]
 
++---------------+-------------------------------------------------------------------------------------------+
+| Key           | Description                                                                               |
++===============+===========================================================================================+
+| ID            | ID of the VM in OpenNebula.                                                               |
++---------------+-------------------------------------------------------------------------------------------+
+| DEPLOY_ID     | ID of the VM in the hypervisor, usually unique in host.                                   |
++---------------+-------------------------------------------------------------------------------------------+
+| UUID          | Unique ID, must be unique across all hosts.                                               |
++---------------+-------------------------------------------------------------------------------------------+
+| STATE         | State of the VM (running, poweroff, ...).                                                 |
++---------------+-------------------------------------------------------------------------------------------+
 
-
-The first line (``VM_POLL=YES``) is used to indicate OpenNebula that VM information will follow. Then the information about the VMs is output in that form.
-
-+-----------------+---------------------------------------------------------------------------------------------------------------+
-|       Key       |                                                  Description                                                  |
-+=================+===============================================================================================================+
-| ID              | OpenNebula VM id. It can be -1 in case this VM was not created by OpenNebula, a wild VM, that can be imported |
-+-----------------+---------------------------------------------------------------------------------------------------------------+
-| DEPLOY_ID       | Hypervisor name or identifier of the VM                                                                       |
-+-----------------+---------------------------------------------------------------------------------------------------------------+
-| VM_NAME         | Human readable VM name (to show on import dialogs)                                                            |
-+-----------------+---------------------------------------------------------------------------------------------------------------+
-| IMPORT_TEMPLATE | Base64 representation of the VM template to be used on import                                                 |
-+-----------------+---------------------------------------------------------------------------------------------------------------+
-| POLL            | VM monitoring info, in the same format as :ref:`VMM driver <devel-vmm>` poll                                  |
-+-----------------+---------------------------------------------------------------------------------------------------------------+
-
-For example here is a simple script to get qemu/kvm VMs status from libvirt. As before, check the scripts from OpenNebula for a complete example:
-
-.. code::
-
-    #!/bin/bash
-     
-    echo "VM_POLL=YES"
-     
-    virsh -c qemu:///system list | grep one- | while read vm; do
-        deploy_id=$(echo $vm | cut -d' ' -f 2)
-        id=$(echo $deploy_id | cut -d- -f 2)
-        status_str=$(echo $vm | cut -d' ' -f 3)
-     
-        if [ $status_str == "running" ]; then
-            state="a"
-        else
-            state="e"
-        fi
-     
-        echo "VM=["
-        echo "  ID=$id,"
-        echo "  DEPLOY_ID=$deploy_id,"
-        echo "  POLL=\"STATE=$state\" ]"
-    done
-
-.. code::
-
-    $ ./vm_poll
-    VM_POLL=YES
-    VM=[
-      ID=0,
-      DEPLOY_ID=one-0,
-      POLL="STATE=a" ]
-    VM=[
-      ID=1,
-      DEPLOY_ID=one-1,
-      POLL="STATE=a" ]
+.. _devel-im_vm_information:
 
 System Datastore Information
 ================================================================================
 
-Information Manager drivers are also responsible to collect the datastore sizes and its available space. To do so there is an already made script that collects this information for filesystem and lvm based datastores. You can copy it from the KVM driver (``/var/lib/one/remotes/im/kvm-probes.d/monitor_ds.sh``) into your driver directory.
-
-In case you want to create your own datastore monitor you have to return something like this in STDOUT:
+Monitoring probes are also responsible to collect the datastore sizes and its available space. The datastores infomation is included in SYSTEM_HOST message.
 
 .. code::
 
@@ -262,21 +222,15 @@ OpenNebula provides two IM probe execution engines: ``one_im_sh`` and ``one_im_s
 Populating the Probes
 --------------------------------------------------------------------------------
 
-Both ``one_im_sh`` and ``one_im_ssh`` require an argument which indicates the directory that contains the probes. This argument is appended with ”.d”.
+Both ``one_im_sh`` and ``one_im_ssh`` require an argument which indicates the directory that contains the probes. This argument is appended with ”.d”. Also you need to create:
 
-Making Use of collectd
---------------------------------------------------------------------------------
-
-If the new IM driver wishes to use the ``collectd`` component, it needs to:
-
--  Use ``one_im_ssh``
--  The ``/var/lib/one/remotes/im/<im_name>.d`` should **only** contain 2 files, the sames that are provided by default inside ``kvm.d``, which are: ``collectd-client_control.sh`` and ``collectd-client.rb``.
+-  The ``/var/lib/one/remotes/im/<im_name>.d`` directory with **only** 2 files, the sames that are provided by default inside ``kvm.d``, which are: ``collectd-client_control.sh`` and ``collectd-client.rb``.
 -  The probes should be actually placed in the ``/var/lib/one/remotes/im/<im_name>-probes.d`` folder.
 
 Enabling the Driver
 --------------------------------------------------------------------------------
 
-A new IM section should be placed added to ``oned.conf``.
+A new IM section should be placed added to ``monitord.conf``.
 
 Example:
 

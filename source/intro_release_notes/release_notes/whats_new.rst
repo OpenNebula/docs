@@ -15,7 +15,7 @@ What's New in 5.12
 
 OpenNebula 5.12 (Firework) is the seventh major release of the OpenNebula 5 series. The main focus has been to write a new monitoring subsystem to support very large scale deployments, as well as several OneFlow improvements. In this line support for NSX-v and NSX-t has been integrated with the Security Groups model in OpenNebula. And other very nice perks!. The highlights of Firework are:
 
-- **New monitoring subsytem**, with separate upgrade intervals for different types of information. This enables the efficient monitoring of large scale deployments with thousands of physical hosts and tens of thousands of virtual machines.
+- **New monitoring subsytem**, the monitoring system has been rewriting to improve its scalability to support thousands of physical hosts and tens of thousands of VMs, better support hypervisors at cloud/edge locations and HA deployments.
 - **OneFlow** has been revamped to use the hook mechanism for VM monitoring rendering significant performance improvements. Also with new functionality like automatic network creation when a service is deployed, support for fenced networking to map an external and internal network as well as batch operations on all VMs of the service or a particular role. The new incarnation of OneFlow reduces times for service deployment (1m to 11s), scaling (1m20s to 15s) and failure (23s to 1s).
 - **NSX** integrated with the **Security Groups** functionality. This opens the door to manage inbound/outbound network traffic with L3 rules, using the power of NSX within OpenNebula.
 - **Firecracker** support to innovative serverless deployments. Firecracker is a virtual machine manager—responsible for managing lots of tiny virtual machines on a server. Couple the security of the VMs with the agility of containers, combining different workloads with the same OpenNebula instance.
@@ -33,9 +33,11 @@ In the following list you can check the highlights of OpenNebula 5.12 (a detaile
 
 OpenNebula Core
 ================================================================================
+
 - **PostgreSQL Backend** is now supported as Technology Preview, see :ref:`here <postgresql>`.
 - **Better Hostname Detection**. Now OpenNebula reads the FQDN of the hostname. It can also be configured in ``oned.conf``.
 - **SSH agent integration** - Added a new service ``opennebula-ssh-agent`` and with it the need to copy around a private SSH key was removed.
+- **Monitoring** new monitoring system check :ref:`Monitoring <mon>` for more information.
 
 Storage
 --------------------------------------------------------------------------------

@@ -18,3 +18,8 @@ New default restricted attributes
 =================================
 
 The ``PIN_POLICY`` and ``HUGEPAGE_SIZE`` attributes from ``TOPOLOGY`` are now restricted by default.
+
+New monitoring
+==============
+
+Monitoring have been redesigned. If you have custem monitoring drivers, see the :ref:`Monitoring Driver <devel-im>` how to build custom driver.
