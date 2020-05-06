@@ -68,6 +68,7 @@ Sunstone
 - Add force remove of :ref:`address ranges <manage_vnets>`.
 - Now is possible to update existing :ref:`Schedule Actions <schedule_actions>`.
 - Search box for :ref:`Wilds VMs <import_wild_vms>`.
+- MarketplaceApp now considers the app state :ref:`to download it <marketapp_download>`.
 
 
 Scheduler
