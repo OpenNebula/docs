@@ -129,12 +129,12 @@ More information about Filesystem Datastores can be found :ref:`here <fs_ds>`.
 Images & Kernels Disks
 --------------------------------------------------------------------------------
 
-Unlike VMs and containers, Firecracker microVMs does not use disk images. Instead Firecracker microVMs needs a linux Kernel binary and a root file system.
+Unlike VMs and containers, Firecracker microVMs does not use full disk images (including partition tables, MBR...). Instead Firecracker microVMs uses a root filesystem image and needs a linux Kernel binary.
 
 Images
 ^^^^^^^^^^^^^^^^^^^^^
 
-The root file system can be uploaded as a raw image wit ``OS`` type to any OpenNebula image datastore. Once the image is available in an image datastore it can be added as a new disk to the microVM template.
+The root file system can be uploaded as a raw image (``OS`` type) to any OpenNebula image datastore. Once the image is available it can be added as a new disk to the microVM template.
 
 Root file system images can be downloaded directly to OpenNebula from `Docker Hub <https://hub.docker.com/>`__ and from `Linux Containers - Image server <https://uk.images.linuxcontainers.org/>`__ as both are fully integrated with OpenNebula. Check :ref:`LXD Marketplace <market_lxd>` for more information.
 
@@ -145,7 +145,7 @@ Kernels
 
 The kernel image must be uploaded to a :ref:`Kernels & Files Datastore <file_ds>` with type kernel. Once the kernel is available it can be reference by using the attribute ``KERNEL_DS`` inside ``OS`` section at microVM template.
 
-Kernel images can be achieved by building the desired kernel version, with the configuration attribute required for the use case, in order to improve performance kernel should be build with the minimal options needed. Firecracker project provide their suggested configuration files in their `official repository <https://github.com/firecracker-microvm/firecracker/tree/master/resources>`__
+Kernel images can built the desired kernel version, with the configuration attribute required for the use case, in order to improve performance kernel should be build with the minimal options needed. Firecracker project provide their suggested configuration files in their `official repository <https://github.com/firecracker-microvm/firecracker/tree/master/resources>`__
 
 .. _fc_network:
 
@@ -157,12 +157,13 @@ Firecracker is fully integrated with every networking driver based on linux brid
 - Bridged
 - VLAN
 - VXLAN
+- Security Groups
 
 Unlike qemu-KVM which do manage automatically the tap devices requires for VM networking Firecracker needs for this devices to be managed by an external agent. OpenNebula takes care of managing this tap devices and plug then inside the pertinent bridge. In order to enable this functionality the following actions have to be carried out manually when networking is desired for MicroVMs.
 
 .. code::
 
-    # In the frontend
+    # In the frontend for each driver to be use with firecracker
     $ cp /var/lib/one/remotes/vnm/hooks/pre/firecracker /var/lib/one/remotes/vnm/<networking-driver>/pre.d/firecracker
     $ cp /var/lib/one/remotes/vnm/hooks/clean/firecracker /var/lib/one/remotes/vnm/<networking-driver>/clean.d/firecracker
     $ onehost sync -f
@@ -176,31 +177,30 @@ Usage
 MicroVM Template
 -----------------------
 
-Below there is defined a minimum microVM Template:
+Below there is a minimum microVM Template:
 
 .. code::
 
-    CONTEXT=[
-    NETWORK="YES",
-    SSH_PUBLIC_KEY="$USER[SSH_PUBLIC_KEY]" ]
     CPU="1"
-    DISK=[
-    IMAGE="Alpine Linux 3.11",
-    IMAGE_UNAME="oneadmin" ]
-    GRAPHICS=[
-    LISTEN="0.0.0.0",
-    TYPE="VNC" ]
     MEMORY="146"
-    MEMORY_UNIT_COST="MB"
-    NIC=[
-    NETWORK="vnet",
-    NETWORK_UNAME="oneadmin",
-    SECURITY_GROUPS="0" ]
-    OS=[
-    BOOT="",
-    KERNEL_CMD="console=ttyS0 reboot=k panic=1 pci=off i8042.noaux i8042.nomux i8042.nopnp i8042.dumbkbd",
-    KERNEL_DS="$FILE[IMAGE_ID=2]"]
     VCPU="2"
+    CONTEXT=[
+      NETWORK="YES",
+      SSH_PUBLIC_KEY="$USER[SSH_PUBLIC_KEY]" ]
+    DISK=[
+      IMAGE="Alpine Linux 3.11",
+      IMAGE_UNAME="oneadmin" ]
+    GRAPHICS=[
+      LISTEN="0.0.0.0",
+      TYPE="VNC" ]
+    NIC=[
+      NETWORK="vnet",
+      NETWORK_UNAME="oneadmin",
+      SECURITY_GROUPS="0" ]
+    OS=[
+      BOOT="",
+      KERNEL_CMD="console=ttyS0 reboot=k panic=1 pci=off i8042.noaux i8042.nomux i8042.nopnp i8042.dumbkbd",
+      KERNEL_DS="$FILE[IMAGE_ID=2]"]
 
 Unlike VMs for microVMs the ``OS`` sections need to contains a ``KERNEL_DS`` attribute referencing a linux kernel from a File & Kernel datastore:
 

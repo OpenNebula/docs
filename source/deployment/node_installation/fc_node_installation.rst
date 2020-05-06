@@ -4,7 +4,7 @@
 Firecracker Node Installation
 ==========================================
 
-The majority of the steps needed to install the Firecracker node are similar to KVM because both rely on a Linux OS. Similar steps will have a link in the name and will be indicated by **"Same as KVM"**.
+The majority of the steps needed to install the Firecracker node are similar to KVM because both rely on a Linux OS and the same hypervisor. Similar steps will have a link in the name and will be indicated by **"Same as KVM"**.
 
 Step 1. Add OpenNebula Repositories
 ========================================================
