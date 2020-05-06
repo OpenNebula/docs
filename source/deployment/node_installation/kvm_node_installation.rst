@@ -63,6 +63,8 @@ Execute the following commands to install the node package and restart libvirt t
 
 For further configuration check the specific guide: :ref:`KVM <kvmg>`.
 
+.. _kvm_selinux:
+
 Step 3. SELinux on CentOS/RHEL
 ==============================
 
