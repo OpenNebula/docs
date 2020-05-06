@@ -1,7 +1,7 @@
 .. _rn_hotfix:
 
 ================================================================================
-Release Notes 5.10.5 Hotfix
+Release Notes 5.10.6 Hotfix
 ================================================================================
 
 .. toctree::
@@ -12,4 +12,5 @@ Release Notes 5.10.5 Hotfix
    Resolved Issues in 5.10.3 <resolved_issues_5103>
    Resolved Issues in 5.10.4 <resolved_issues_5104>
    Resolved Issues in 5.10.5 <resolved_issues_5105>
+   Resolved Issues in 5.10.6 <resolved_issues_5106>
    Known Issues <known_issues_hotfix>
