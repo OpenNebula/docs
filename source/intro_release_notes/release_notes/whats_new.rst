@@ -15,9 +15,13 @@ What's New in 5.12
 
 OpenNebula 5.12 (Firework) is the seventh major release of the OpenNebula 5 series. The main focus has been to write a new monitoring subsystem to support very large scale deployments, as well as several OneFlow improvements. In this line support for NSX-v and NSX-t has been integrated with the Security Groups model in OpenNebula. And other very nice perks!. The highlights of Firework are:
 - **New monitoring subsytem**, the monitoring system has been rewritten to improve its scalability to support thousands of physical hosts and tens of thousands of VMs, better support hypervisors at cloud/edge locations and HA deployments. This re-design decouples DB access for monitoring and VM/Host data to improve oned response time and overall monitor processing time. Additionally, the host monitor agents have been improved to better report VM state changes and optimize network usage.
+
 - **OneFlow** has been revamped to use the hook mechanism for VM monitoring rendering significant performance improvements. Also with new functionality like automatic network creation when a service is deployed, support for fenced networking to map an external and internal network as well as batch operations on all VMs of the service or a particular role. The new incarnation of OneFlow reduces times for service deployment (1m to 11s), scaling (1m20s to 15s) and failure (23s to 1s).
+
 - **NSX** integrated with the **Security Groups** functionality. This opens the door to manage inbound/outbound network traffic with L3 rules, using the power of NSX within OpenNebula.
+
 - **Firecracker** support to innovative serverless deployments. Firecracker is a virtual machine manager—responsible for managing lots of tiny virtual machines on a server. Couple the security of the VMs with the agility of containers, combining different workloads with the same OpenNebula instance.
+
 - New ways of remote accesing your VMs in **Sunstone**, better SPICE integration with the possiblity of spawning an external virt-viewer program, as well as the possiblity of automatically autheticating on a Windows VM using a RDP client from Sunstone.
 
 .. image:: /images/virt-viewer-example.png
