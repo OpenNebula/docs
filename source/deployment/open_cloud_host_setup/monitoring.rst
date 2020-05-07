@@ -274,6 +274,4 @@ Monitoring Probes
 For the troubleshooting of errors produced during the execution of the monitoring probes, try to execute them directly through the command line as oneadmin in the hosts. Information about malformed messages should be reported in ``oned.log`` or ``monitord.log``
 
 
-==================
-
 .. |image0| image:: /images/collector.png
