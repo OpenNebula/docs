@@ -7,49 +7,49 @@ CentOS/RHEL 6.x
 
 .. prompt:: bash # auto
 
-    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.10.0/one-context-5.10.0-1.el6.noarch.rpm
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.11.80/one-context-5.11.80-1.el6.noarch.rpm
 
 CentOS/RHEL 7.x
 ~~~~~~~~~~~~~~~
 
 .. prompt:: bash # auto
 
-    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.10.0/one-context-5.10.0-1.el7.noarch.rpm
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.11.80/one-context-5.11.80-1.el7.noarch.rpm
 
 CentOS/RHEL 8.x and Fedora 29+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. prompt:: bash # auto
 
-    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.10.0/one-context-5.10.0-1.el8.noarch.rpm
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.11.80/one-context-5.11.80-1.el8.noarch.rpm
 
 OpenSUSE 42,15 / SLES 12
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. prompt:: bash # auto
 
-    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.10.0/one-context-5.10.0-1.suse.noarch.rpm
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.11.80/one-context-5.11.80-1.suse.noarch.rpm
 
 Debian/Ubuntu/Devuan
 ~~~~~~~~~~~~~~~~~~~~
 
 .. prompt:: bash # auto
 
-    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.10.0/one-context_5.10.0-1.deb
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.11.80/one-context_5.11.80-1.deb
 
 Alpine Linux
 ~~~~~~~~~~~~
 
 .. prompt:: bash # auto
 
-    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.10.0/one-context-5.10.0-r1.apk
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.11.80/one-context-5.11.80-r1.apk
 
 FreeBSD 11,12
 ~~~~~~~~~~~~~
 
 .. prompt:: bash # auto
 
-    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.10.0/one-context-5.10.0_1.txz
+    # wget https://github.com/OpenNebula/addon-context-linux/releases/download/v5.11.80/one-context-5.11.80_1.txz
 
 Windows
 ~~~~~~~
