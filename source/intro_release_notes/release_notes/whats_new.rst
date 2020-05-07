@@ -13,15 +13,15 @@ What's New in 5.12
 
 ..
 
-OpenNebula 5.12 (Firework) is the seventh major release of the OpenNebula 5 series. The main focus has been to write a new monitoring subsystem to support very large scale deployments, as well as several OneFlow improvements. In this line support for NSX-v and NSX-t has been integrated with the Security Groups model in OpenNebula. And other very nice perks!. The highlights of Firework are:
+OpenNebula 5.12 (Firework) is the seventh major release of the OpenNebula 5 series. The main focus has been to write a new monitoring subsystem to support very large scale deployments, in addition to making several OneFlow improvements. In this line, support for NSX-v and NSX-t has been integrated with the Security Groups model in OpenNebula. And there are plenty of other very nice perks! The highlights of Firework are:
 
-- **New monitoring subsytem**, the monitoring system has been rewritten to improve its scalability to support thousands of physical hosts and tens of thousands of VMs, better support hypervisors at cloud/edge locations and HA deployments. This re-design decouples DB access for monitoring and VM/Host data to improve oned response time and overall monitor processing time. Additionally, the host monitor agents have been improved to better report VM state changes and optimize network usage.
+- **New monitoring subsytem**, the monitoring system has been rewritten to improve its scalability to support thousands of physical hosts and tens of thousands of VMs, and to better support hypervisors at cloud/edge locations and HA deployments. This re-design decouples DB access for monitoring and VM/Host data to improve oned response time and overall monitor processing time. Additionally, the host monitor agents have been improved to better report VM state changes and optimize network usage.
 
-- **OneFlow** has been revamped to use the hook mechanism for VM monitoring rendering significant performance improvements. Also with new functionality like automatic network creation when a service is deployed, support for fenced networking to map an external and internal network as well as batch operations on all VMs of the service or a particular role. The new incarnation of OneFlow reduces times for service deployment (1m to 11s), scaling (1m20s to 15s) and failure (23s to 1s).
+- **OneFlow** has been revamped to use the hook mechanism for VM monitoring rendering significant performance improvements. It also includes new functionality like automatic network creation when a service is deployed, support for fenced networking to map an external and internal network, as well as batch operations on all VMs of the service or a particular role. The new incarnation of OneFlow reduces times for service deployment (1m to 11s), scaling (1m20s to 15s) and failure (23s to 1s).
 
 - **NSX** integrated with the **Security Groups** functionality. This opens the door to manage inbound/outbound network traffic with L3 rules, using the power of NSX within OpenNebula.
 
-- **Firecracker** support to innovative serverless deployments. Firecracker is a virtual machine manager—responsible for managing lots of tiny virtual machines on a server. Couple the security of the VMs with the agility of containers, combining different workloads with the same OpenNebula instance.
+- **Firecracker** support to innovative serverless deployments. Firecracker is a virtual machine manager responsible for managing lots of tiny virtual machines on a server. Here you can couple the security of the VMs with the agility of containers, combining different workloads with the same OpenNebula instance.
 
 - New ways of remote accessing your VMs in **Sunstone**, better SPICE integration with the possibility of spawning an external virt-viewer program, as well as the possibility of automatically authenticating on a Windows VM using a RDP client from Sunstone.
 
@@ -29,9 +29,9 @@ OpenNebula 5.12 (Firework) is the seventh major release of the OpenNebula 5 seri
     :width: 90%
     :align: center
 
-As usual, OpenNebula 5.12 codename refers to a nebula, in this case the `Firework Nebula <https://apod.nasa.gov/apod/ap980704.html>`__, the result of a type of stellar explosion called a nova. In a nova, a nuclear detonation on the surface of a compact white dwarf star blasts away material that has been dumped on its surface by a companion star. Also known as GK Persei or Nova Persei, this nova became one of the brightest stars in the night sky in the year 1901. As bright as your OpenNebula cloud :).
+As usual, OpenNebula 5.12 codename refers to a nebula, in this case the `Firework Nebula <https://apod.nasa.gov/apod/ap980704.html>`__, the result of a type of stellar explosion called a nova. In a nova, a nuclear detonation on the surface of a compact white dwarf star blasts away material that has been dumped on its surface by a companion star. Also known as GK Persei or Nova Persei, this nova became one of the brightest stars in the night sky in the year 1901. As bright as your OpenNebula cloud :) .
 
-The OpenNebula team is now transitioning to "bug-fixing mode". Note that this is a first beta release aimed at testers and developers to try the new features, and send a more than welcomed feedback for the final release. Please check the :ref:`known issues <known_issues>` before submitting an `issue through GitHub <https://github.com/OpenNebula/one/issues/new?template=bug_report.md>`__. Also note that being a beta, there is no migration path from the previous stable version (5.10.4) nor migration path to the final stable version (5.12.0). A list of open issues can be found in the `GitHub development portal <https://github.com/OpenNebula/one/milestone/28>`__.
+The OpenNebula team is now transitioning to "bug-fixing mode". Note that this is a first beta release aimed at testers and developers to try the new features, and we welcome you to send feedback for the final release. Please check the :ref:`known issues <known_issues>` before submitting an `issue through GitHub <https://github.com/OpenNebula/one/issues/new?template=bug_report.md>`__. Also note that being a beta, there is no migration path from the previous stable version (5.10.4) nor migration path to the final stable version (5.12.0). A list of open issues can be found in the `GitHub development portal <https://github.com/OpenNebula/one/milestone/28>`__.
 
 In the following list you can check the highlights of OpenNebula 5.12 (a detailed list of changes can be found `here <https://github.com/OpenNebula/one/milestone/28?closed=1>`__):
 
@@ -40,13 +40,13 @@ OpenNebula Core
 
 - **PostgreSQL Backend** is now supported as Technology Preview, see :ref:`here <postgresql>`.
 - **Better Hostname Detection**. Now OpenNebula reads the FQDN of the hostname. It can also be configured in ``oned.conf``.
-- :ref:`SSH agent integration <kvm_ssh>` - Secure way to delegate private SSH keys from front-end to hosts without need to distribute secrets across hosts.
+- :ref:`SSH agent integration <kvm_ssh>` - A secure way to delegate private SSH keys from front-end to hosts without needing to distribute secrets across hosts.
 - **Monitoring** new monitoring system check :ref:`Monitoring <mon>` for more information.
 
 Networking
 ================================================================================
-- **Security Groups** are now supported on NSX-T and NSX-V networks. Check :ref:`NSX Setup <nsx_setup>` for initial requirements and the :ref:`Security Groups Operation Guide <security_groups>` to learn how to operate with them. For more details about this integration go to :ref:`NSX Driver <nsx_driver>`
-- `Force option to remove address ranges (AR) with leases <https://github.com/OpenNebula/one/issues/4132>`__: ``onevnet rmar`` supports optional ``--force`` flag, which forces AR removal even if active leases exists
+- **Security Groups** are now supported on NSX-T and NSX-V networks. Check :ref:`NSX Setup <nsx_setup>` for initial requirements and the :ref:`Security Groups Operation Guide <security_groups>` to learn how to operate with them. For more details about this integration go to :ref:`NSX Driver <nsx_driver>`.
+- `Force option to remove address ranges (AR) with leases <https://github.com/OpenNebula/one/issues/4132>`__: ``onevnet rmar`` supports optional ``--force`` flag, which forces AR removal even if active leases exist.
 
 
 Authentication
@@ -59,15 +59,15 @@ Sunstone
 ================================================================================
 
 - Support for RDP in alias interfaces. Check :ref:`this <rdp_sunstone>` for more information.
-- RDP links available in VMs table.
+- RDP links are available in VMs table.
 - Support for Virt-Viewer links. Check :ref:`this <remote_access_sunstone>` for more information.
 - Support for nic alias in Sunstone service dialog. Check :ref:`this <appflow_use_cli_networks>` for more information.
 - Support for VM Charter. Check :ref:`this <vm_charter>` for more information.
 - Universal 2nd Factor authentication using WebAuthn (for U2F/FIDO2 keys). Check :ref:`this <2f_auth>` for more information.
 - Administrator accounts :ref:`passwords <change_credentials>` can't be changed via Sunstone.
-- Make Suntone color thresholds configurable. Check :ref:`this <sunstone_branding>` for more information.
+- Make Sunstone color thresholds configurable. Check :ref:`this <sunstone_branding>` for more information.
 - Add force remove of :ref:`address ranges <manage_vnets>`.
-- Now is possible to update existing :ref:`Schedule Actions <schedule_actions>`.
+- Now it is possible to update existing :ref:`Schedule Actions <schedule_actions>`.
 - Search box for :ref:`Wilds VMs <import_wild_vms>`.
 - MarketplaceApp now considers the app state :ref:`to download it <marketapp_download>`.
 - Show more than 2 IPs in a dropdown list on instantiated VMs table. Check :ref:`this <manage_vnets>` for more information.
@@ -76,7 +76,7 @@ Sunstone
 Scheduler
 ================================================================================
 
-- New actions have been added as a scheduled actions, in particular: ``snapshot-revert``, ``snapshot-delete``, ``disk-snapshot-create``, ``disk-snapshot-revert``, ``disk-snapshot-delete``. Check :ref:`this <vm_instances>` for more information.
+- New actions have been added as scheduled actions, in particular: ``snapshot-revert``, ``snapshot-delete``, ``disk-snapshot-create``, ``disk-snapshot-revert``, ``disk-snapshot-delete``. Check :ref:`this <vm_instances>` for more information.
 
 Disaggregated Data Centers
 ================================================================================
@@ -87,8 +87,8 @@ Disaggregated Data Centers
 
 OneFlow & OneGate
 ===============================================================================
-- The OneFlow component has been revamped to improve its performance. This revamp has been made in terms of times, so we have reduced a lot the time that each operations consumes. The API is the same as it was before. Click :ref:`here <appflow_use_cli>` to check more information about this component.
-- **OneFlow template** can be :ref:`cloned <service_clone>`, optionally in a recursive fashion so all the VM Templates and images are cloned as well
+- The OneFlow component has been revamped to improve its performance. This revamp has been made in terms of elapsed time, so we have reduced a lot of the time that each operations consumes. The API is the same as it was before. Click :ref:`here <appflow_use_cli>` to check more information about this component.
+- **OneFlow template** can be :ref:`cloned <service_clone>`, optionally in a recursive fashion so all the VM Templates and images are cloned, as well.
 - OneFlow sched actions at service level. Refer to :ref:`this <flow_sched>` for more information.
 
 CLI
@@ -104,16 +104,16 @@ Packaging
 VMware Virtualization driver
 ===============================================================================
 - **vCenter Resource pool tab**, within the host individual view a new tab displays the information of all :ref:`resource pools <vcenter_resource_pool>` defined in the vCenter cluster corresponding to the OpenNebula host.
-- Monitoring the physical path of the disks inside the vCenter datastore. :ref:`Monitoring Attributes <vm_monitoring_attributes_vcenter>`.
+- Monitoring the physical path of the disks inside the vCenter datastore - :ref:`Monitoring Attributes <vm_monitoring_attributes_vcenter>`.
 - Differentiate created :ref:`Virtual Machine Templates <vm_templates>` on vCenter.
 - Option to create :ref:`Tags and Categories <vcenter_tags_and_categories>` on vCenter.
-- Preparing vCPU for numa and pinning adding the option to define the :ref:`number of cores per socket <numa_topology_section>` on vCenter using CORES attribute.
+- Preparing vCPU for numa and pinning, adding the option to define the :ref:`number of cores per socket <numa_topology_section>` on vCenter using CORES attribute.
 - Support for attach and detach NIC operations in poweroff state.
 - Define Virtual Cores per Socket on vCenter VM. Check :ref:`this <numa>` for more information.
 
 Hybrid Virtualization
 ================================================================================
-- :ref:`Azure driver <azg>` was refactored to use Azure Resource Manager deployment
+- :ref:`Azure driver <azg>` was refactored to use Azure Resource Manager deployment.
 
 Containers
 ==========
@@ -127,7 +127,7 @@ MicroVMs
 
 Other Issues Solved
 ================================================================================
-- `Fixed capacity bars in Clusters and Host when user reserve CPU and Memory <https://github.com/OpenNebula/one/issues/4256>`_.
+- `Fixed capacity bars in Clusters and Host when user reserves CPU and Memory <https://github.com/OpenNebula/one/issues/4256>`_.
 - `LXD Template Wizard: Clean OS & CPU section <https://github.com/OpenNebula/one/issues/3025>`_.
 - `Template Wizard: Change fieldname of target device to mountpoint when hypervisor LXD <https://github.com/OpenNebula/one/issues/3024>`_.
 - `LXD Marketplace attributes <https://github.com/OpenNebula/one/issues/3059>`_.
