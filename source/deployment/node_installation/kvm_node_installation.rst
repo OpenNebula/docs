@@ -123,29 +123,60 @@ The OpenNebula Front-end connects to the hypervisor Hosts using SSH. You must di
 
    This SSH agent service is supported since the OpenNebula version 5.12 and it is enabled by **default**. The utilization of the SSH agent service is not mandatory and you can simply disable it via systemd facility if there is such need (e.g.: ``systemctl disable opennebula-ssh-agent.service``). **Although** in such a case when SSH agent service is disabled - you must fallback to the distribution of the oneadmin's SSH private key yet again as it was necessary until now.
 
-When the package was installed in the Front-end, a SSH key pair was generated and the ``authorized_keys`` populated. We will sync the ``authorized_keys`` (and if SSH agent is disabled then also ``id_rsa`` and ``id_rsa.pub``) from the Front-end to the nodes. Additionally we need to create a ``known_hosts`` file and sync it to the nodes as well.
+When the package was installed in the Front-end, a SSH key pair was generated and the ``authorized_keys`` populated - but only if none was present already. Please, ensure that the oneadmin's SSH pubkey ``id_rsa.pub`` is included in ``authorized_keys`` before you continue. We will sync the ``authorized_keys`` (and if SSH agent is disabled then also ``id_rsa`` and ``id_rsa.pub``) from the Front-end to the nodes.
+
+.. important:: Additionally for OpenNebula versions **prior 5.12** we need to also create a ``known_hosts`` file and sync it to the nodes as well.
 
 With enabled SSH agent service (default)
 ----------------------------------------
 
-Firstly make sure that you are logged in on the Front-end as ``oneadmin`` - for example like this:
+Firstly make sure that you are logged in to the Front-end as ``oneadmin`` - for example like this:
 
 .. prompt:: bash $ auto
 
     $ su - oneadmin
 
-To create the ``known_hosts`` file, we have to execute this command as user ``oneadmin`` on the Front-end (step above) with **ALL** the node names **including** the Front-end as parameters:
+Using OpenNebula's SSH config
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Since version 5.12**, OpenNebula is distributing custom SSH config files ``/usr/share/one/ssh/config`` and ``/usr/share/one/ssh/config-pre7.6`` for SSH versions >=7.6 and <7.6 respectively. One of these config files relevant to the actual platform (and its SSH version) is copied to oneadmin's home directory when no config file is found there: ``~oneadmin/.ssh/config``. This happens only once during the fresh installation of ``opennebula-common`` package.
+
+If you are using OpenNebula's SSH config then you will not need to scan nodes for their SSH host keys and create any ``known_hosts`` file. The config will ensure that any **new** host/node will be added automatically and SSH host key checking will be applied only in the case when the host key is changed - that will cause the SSH connection to fail.
+
+If you see this as a security concern and you wish to check and verify that added host keys are really those of your intended machines then do not use the default config file - edit it or delete it.
+
+The relevant SSH option for handling a known_hosts's entries is::
+
+   StrictHostKeyChecking
+
+SSH version 7.6 and above supports the value ``accept-new`` which behaves as described - it will automatically add all **new** hosts but it will verify all those already added. For older SSH version than 7.6 we are packaging a tweaked config ``config-pre7.6`` which imitates this behavior.
+
+Another improvement brought by the default OpenNebula's SSH config is support for persistent SSH connections to speed up operations when the latency is very low (long-distance connections). These are handled by::
+
+   ControlMaster
+   ControlPath
+   ControlPersist
+
+Again, you are free to modify it to fit your needs.
+
+Manual creation of known_hosts (optional since 5.12)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+To manually create the ``known_hosts`` file, we can use the ``ssh-keyscan`` command. We have to execute it as user ``oneadmin`` on the Front-end (step above) with **ALL** the node names **including** the Front-end as parameters:
 
 .. prompt:: bash $ auto
 
     $ ALL_HOSTS="frontend node1 node2 node3" # adjust to your situation
     $ ssh-keyscan ${ALL_HOSTS} >> /var/lib/one/.ssh/known_hosts
 
-Now we need to copy these files from the Front-end to the rest of the nodes.
+Distribution of the files
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Now we need to copy the following files from the Front-end to the rest of the nodes.
 
 .. note:: The easiest way is to setup a temporary password for the ``oneadmin`` user on all the hosts.
 
-With the SSH agent we only need to distribute the public portion of the oneadmin's SSH keys (``authorized_keys`` or just ``id_rsa.pub``) and also the ``known_hosts`` file. If your installation/environment does not have some special requirements then only the ``oneadmin`` user is needed to connect to the other nodes (as ``oneadmin``). So we can just distribute the ``id_rsa.pub`` instead of the whole ``authorized_keys``.
+With the SSH agent we only need to distribute the public portion of the oneadmin's SSH keys (``authorized_keys`` or just ``id_rsa.pub``) and also the ``known_hosts`` file if you are using OpenNebula older than 5.12 (or with your custom SSH config). If your installation/environment does not have some special requirements then only the ``oneadmin`` user is needed to connect to the other nodes (as ``oneadmin``). So we can just distribute the ``id_rsa.pub`` instead of the whole ``authorized_keys``.
 
 Let's enable the passwordless login for the ``oneadmin`` user - here you will need to type the password for each node:
 
@@ -156,6 +187,8 @@ Let's enable the passwordless login for the ``oneadmin`` user - here you will ne
     $ ssh-copy-id -i /var/lib/one/.ssh/id_rsa.pub oneadmin@node3 # adjust the node name
 
 Now the authorization is in place and we can automate the rest (no more passwords):
+
+You can distribute your hand-crafted ``known_hosts`` file like this (**not needed since 5.12**):
 
 .. prompt:: bash $ auto
 
