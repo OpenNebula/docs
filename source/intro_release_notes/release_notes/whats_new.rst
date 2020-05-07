@@ -43,24 +43,21 @@ OpenNebula Core
 - :ref:`SSH agent integration <kvm_ssh>` - Secure way to delegate private SSH keys from front-end to hosts without need to distribute secrets across hosts.
 - **Monitoring** new monitoring system check :ref:`Monitoring <mon>` for more information.
 
-Storage
---------------------------------------------------------------------------------
-- ...
-
 Networking
---------------------------------------------------------------------------------
+================================================================================
 - **Security Groups** are now supported on NSX-T and NSX-V networks. Check :ref:`NSX Setup <nsx_setup>` for initial requirements and the :ref:`Security Groups Operation Guide <security_groups>` to learn how to operate with them. For more details about this integration go to :ref:`NSX Driver <nsx_driver>`
 - `Force option to remove address ranges (AR) with leases <https://github.com/OpenNebula/one/issues/4132>`__: ``onevnet rmar`` supports optional ``--force`` flag, which forces AR removal even if active leases exists
 
 
 Authentication
---------------------------------------------------------------------------------
+================================================================================
 
 - **Group admins for LDAP driver**, when configuring your LDAP driver you can define *group_admin_group_dn* which will cause that members of that group will be group admins of all the mapped LDAP group in OpenNebula :ref:`LDAP driver <ldap>`
 
 
 Sunstone
---------------------------------------------------------------------------------
+================================================================================
+
 - Support for RDP in alias interfaces. Check :ref:`this <rdp_sunstone>` for more information.
 - RDP links available in VMs table.
 - Support for Virt-Viewer links. Check :ref:`this <remote_access_sunstone>` for more information.
@@ -113,11 +110,6 @@ VMware Virtualization driver
 - Preparing vCPU for numa and pinning adding the option to define the :ref:`number of cores per socket <numa_topology_section>` on vCenter using CORES attribute.
 - Support for attach and detach NIC operations in poweroff state.
 - Define Virtual Cores per Socket on vCenter VM. Check :ref:`this <numa>` for more information.
-
-KVM Virtualization Driver
-================================================================================
-
-- ...
 
 Hybrid Virtualization
 ================================================================================
