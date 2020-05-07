@@ -65,14 +65,8 @@ To add OpenNebula repository on Debian/Ubuntu execute as root:
 
     # echo "deb https://downloads.opennebula.org/repo/5.11/Ubuntu/18.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
 
-**Ubuntu 19.04**
+**Ubuntu 20.04**
 
 .. prompt:: bash # auto
 
-    # echo "deb https://downloads.opennebula.org/repo/5.11/Ubuntu/19.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
-
-**Ubuntu 19.10**
-
-.. prompt:: bash # auto
-
-    # echo "deb https://downloads.opennebula.org/repo/5.11/Ubuntu/19.10 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # echo "deb https://downloads.opennebula.org/repo/5.11/Ubuntu/20.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list

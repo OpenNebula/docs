@@ -40,7 +40,7 @@ OpenNebula Core
 
 - **PostgreSQL Backend** is now supported as Technology Preview, see :ref:`here <postgresql>`.
 - **Better Hostname Detection**. Now OpenNebula reads the FQDN of the hostname. It can also be configured in ``oned.conf``.
-- **SSH agent integration** - Added a new service ``opennebula-ssh-agent`` and with it the need to copy around a private SSH key was removed.
+- :ref:`SSH agent integration <kvm_ssh>` - Secure way to delegate private SSH keys from front-end to hosts without need to distribute secrets across hosts.
 - **Monitoring** new monitoring system check :ref:`Monitoring <mon>` for more information.
 
 Storage
@@ -112,7 +112,7 @@ VMware Virtualization driver
 - Option to create :ref:`Tags and Categories <vcenter_tags_and_categories>` on vCenter.
 - Preparing vCPU for numa and pinning adding the option to define the :ref:`number of cores per socket <numa_topology_section>` on vCenter using CORES attribute.
 - Support for attach and detach NIC operations in poweroff state.
-- Define Virtual Cores per Socket on vCenter VM. Check :ref:`this <numa>` for more information. 
+- Define Virtual Cores per Socket on vCenter VM. Check :ref:`this <numa>` for more information.
 
 KVM Virtualization Driver
 ================================================================================
