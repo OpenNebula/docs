@@ -23,7 +23,7 @@ OpenNebula 5.12 (Firework) is the seventh major release of the OpenNebula 5 seri
 
 - **Firecracker** support to innovative serverless deployments. Firecracker is a virtual machine manager—responsible for managing lots of tiny virtual machines on a server. Couple the security of the VMs with the agility of containers, combining different workloads with the same OpenNebula instance.
 
-- New ways of remote accesing your VMs in **Sunstone**, better SPICE integration with the possiblity of spawning an external virt-viewer program, as well as the possiblity of automatically autheticating on a Windows VM using a RDP client from Sunstone.
+- New ways of remote accessing your VMs in **Sunstone**, better SPICE integration with the possibility of spawning an external virt-viewer program, as well as the possibility of automatically authenticating on a Windows VM using a RDP client from Sunstone.
 
 .. image:: /images/virt-viewer-example.png
     :width: 90%
