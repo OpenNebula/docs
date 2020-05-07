@@ -18,3 +18,7 @@ The vCenter driver is not fully adapted to the new monitoring system. As such, t
   - DB lock errors introduced by the IM probe state.rb, mostly harmless.
   - Snapshots
   - OpenNebula hosts representing vCenter clusters with NSX not in OK status (NSX_STATUS = OK) cannot spawn new VMs. NSX needs to be configured correctly or the attribute added manually.
+  - To use hosts with no NSX, you need modify the next files, writing an "exit 0" at the start
+      /var/lib/one/remotes/vnm/pre
+      /var/lib/one/remotes/vnm/post
+      /var/lib/one/remotes/vnm/clean
