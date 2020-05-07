@@ -73,6 +73,7 @@ Sunstone
 - Now is possible to update existing :ref:`Schedule Actions <schedule_actions>`.
 - Search box for :ref:`Wilds VMs <import_wild_vms>`.
 - MarketplaceApp now considers the app state :ref:`to download it <marketapp_download>`.
+- Show more than 2 IPs in a dropdown list on instantiated VMs table. Check :ref:`this <manage_vnets>` for more information.
 
 
 Scheduler
