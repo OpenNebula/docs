@@ -744,6 +744,8 @@ For instance, a VM Template with the following SCHED_ACTION will spawn VMs that 
 
 This functionality is present graphically in Sunstone in the VM Template creation and update dialog, and in the VM Actions tab:
 
+.. _schedule_actions:
+
 |sunstone_schedule_action|
 
 These are the commands that can be scheduled:
@@ -950,7 +952,7 @@ The command can also be set for each container, by updating the ``GRAPHICS`` sec
 .. warning:: It is advised for RPM distros to update the command since it doesn't work when running it through ``lxc exec``. For example, a valid command would be ``/bin/bash``. Keep in mind it grants a root shell inside the container.
 
 
-The Sunstone documentation contains a section on :ref:`VNC troubleshooting <sunstone_vnc_troubleshooting>`.
+The Sunstone documentation contains a section on :ref:`Accesing your VMs Console and Desktop <remote_access_sunstone>` section.
 
 Information for Developers and Integrators
 ==========================================

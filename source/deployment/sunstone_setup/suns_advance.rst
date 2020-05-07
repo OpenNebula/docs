@@ -163,6 +163,8 @@ The next thing we have to do is to configure the virtual host that will run our 
 
 Now the configuration should be ready. Restart — or reload — the Apache configuration to start the application, and point to the virtual host to check if everything is running.
 
+.. _suns_advance_ssl_proxy:
+
 Running Sunstone behind an nginx SSL Proxy
 ------------------------------------------
 

@@ -9,3 +9,5 @@ The OpenNebula project would like to thank the `community members <http://openne
 We’d like to acknowledge the following significant contributions:
 
   - Dennis Felsch for the Sunstone 2FA using WebAuthn contribution.
+  - Igor Sivy for the PostgreSQL backend support.
+  - The new fencing functionality integrated with OneFlow, the new OneFlow batch operations, the RDP integration and the VM Charters fucntionality were funded by `Haufe Lexware <https://www.haufegroup.com/>`__  in the context of the Fund a Feature Program.

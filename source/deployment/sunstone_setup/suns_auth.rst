@@ -144,6 +144,20 @@ Internally sunstone adds the field **TWO_FACTOR_AUTH_SECRET**.
 Security keys
 ^^^^^^^^^^^^^
 
+In order to properly use U2F/FIDO2 authentication (based on the Ruby Webauthn library) the following parameters need to be adjusted in sunstone-server.conf.
+
++---------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|   webauthn_origin   | This value needs to match `window.location.origin` evaluated by the User Agent  during registration and authentication ceremonies. Remember that WebAuthn  requires TLS on anything else than localhost. |
++---------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| webauthn_rpname     | Relying Party name for display purposes                                                                                                                                                                  |
++---------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| webauthn_timeout    | Optional client timeout hint, in milliseconds. Specifies how long the browser should wait for any interaction with the user.                                                                             |
++---------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| webauthn_rpid       | Optional differing Relying Party ID. See https://www.w3.org/TR/webauthn/#relying-party-identifier                                                                                                        |
++---------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| webauthn_algorithms | Optional list of  supported cryptographic algorithms (https://www.iana.org/assignments/jose/jose.xhtml).  Possible is any list of ES256, ES384, ES512, PS256, PS384,  PS512, RS256, RS384, RS512, RS1    |
++---------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
 This allows to use e.g. U2F/FIDO2 authentication keys. In this case to enable this authentication method, we follow the same steps but select **Register new security key**.
 
 |sunstone_settings_2fa_keys|

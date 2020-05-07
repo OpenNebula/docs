@@ -230,19 +230,21 @@ The ``/var/lib/one/.one/one_auth`` fill will have been created with a randomly-g
 
 .. warning:: This will set the oneadmin password on the first boot. From that point, you must use the `oneuser passwd` command to change oneadmin's password. More information on how to change the oneadmin password is :ref:`here <change_credentials>`.
 
-You are ready to start the OpenNebula daemons. You can use systemctl for Linux distributions which have adopted systemd:
+You are ready to start the OpenNebula daemons - via ``systemctl`` like this:
 
 .. prompt:: bash # auto
 
     # systemctl start opennebula
     # systemctl start opennebula-sunstone
 
-Or use service in older Linux systems:
+Or if you are used to the old ``service`` command:
 
 .. prompt:: bash # auto
 
     # service opennebula start
     # service opennebula-sunstone start
+
+.. note:: Since 5.12, the OpenNebula comes with an integrated SSH agent as the ``opennebula-ssh-agent`` service which removes the need to copy oneadmin's SSH private key across your hosts. For more info you can look at the :ref:`passwordless login <kvm_ssh>` section of the manual. You can opt to disable this service and configure your environment the old way.
 
 .. _verify_frontend_section:
 

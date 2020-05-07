@@ -82,33 +82,33 @@ To be able to use the Ceph storage drivers, you might need to install an additio
 For further configuration check the specific guide: :ref:`LXD <lxdmg>`.
 
 
-Step 4. Configure Passwordless SSH
+Step 3. Configure Passwordless SSH
 =====================================================
 
 :ref:`Same as KVM <kvm_ssh>`
 
-Step 5.  Networking Configuration
+Step 4.  Networking Configuration
 =======================================================
 
 :ref:`Same as KVM <kvm_net>`
 
-Step 6.  Storage Configuration
+Step 5.  Storage Configuration
 =======================================================
 
 :ref:`Same as KVM <kvm_storage>`
 
-Step 7. Adding a Host to OpenNebula
+Step 6. Adding a Host to OpenNebula
 ============================================================
 
 :ref:`Same as KVM <kvm_addhost>`
 
 Replace ``kvm`` for ``lxd`` in the CLI and Sunstone
 
-Step 8. Import Existing Containers (Optional)
+Step 7. Import Existing Containers (Optional)
 =========================================================================
 You can use the :ref:`import VM <import_wild_vms>` functionality if you want to manage pre-existing containers. It is required that containers aren't named under the pattern ``one-<id>`` in order to be imported. They need also to have ``limits.cpu.allowance``, ``limits.cpu`` and ``limits.memory`` keys defined, otherwise OpenNebula cannot import them. The `opennebula-node-lxd` package should setup the default template with these values.
 
-Step 9.  Next steps
+Step 8.  Next steps
 ======================================
 
 :ref:`Same as KVM <kvm_next>`
