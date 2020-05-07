@@ -119,7 +119,11 @@ Containers
 ==========
 
 - **docker-machine-driver-opennebula**, is updated to support latest :ref:`Rancher <rancher_tutorial>` version.
-- TODO: Firecracker
+
+MicroVMs
+========
+
+- MicroVMs are supported via the new **Firecracker** hypervisor. More information can be found in the :ref:`Firecracker Driver <fcmg>` guide. 
 
 Other Issues Solved
 ================================================================================
