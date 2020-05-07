@@ -17,3 +17,4 @@ The vCenter driver is not fully adapted to the new monitoring system. As such, t
   - VNC due to issues with the VCENTER_ESX_HOST attribute
   - DB lock errors introduced by the IM probe state.rb, mostly harmless
   - Snapshots
+  - OpenNebula hosts representing vCenter clusters with NSX not in OK status (NSX_STATUS = OK) cannot spawn new VMs. NSX needs to be configured correctly or the attribute added manually
