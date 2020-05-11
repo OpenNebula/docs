@@ -143,3 +143,4 @@ Other Issues Solved
 - `Fixed login in LDAP for usernames with uppercase characters <https://github.com/OpenNebula/one/issues/4111>`_.
 - `Fixed limit the sunstone notification box content size <https://github.com/OpenNebula/one/issues/2126>`_.
 - `Fixed real used cpu should use real total cpu as base <https://github.com/OpenNebula/one/issues/1756>`_.
+- `Make LXD marketplace Apps compatible only with LXD hypervisor by default <https://github.com/OpenNebula/one/issues/4669>`_.
