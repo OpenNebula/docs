@@ -125,8 +125,6 @@ The OpenNebula Front-end connects to the hypervisor Hosts using SSH. You must di
 
 When the package was installed in the Front-end, a SSH key pair was generated and the ``authorized_keys`` populated - but only if none was present already. Please, ensure that the oneadmin's SSH pubkey ``id_rsa.pub`` is included in ``authorized_keys`` before you continue. We will sync the ``authorized_keys`` (and if SSH agent is disabled then also ``id_rsa`` and ``id_rsa.pub``) from the Front-end to the nodes.
 
-.. important:: Additionally for OpenNebula versions **prior 5.12** we need to also create a ``known_hosts`` file and sync it to the nodes as well.
-
 With enabled SSH agent service (default)
 ----------------------------------------
 
@@ -139,28 +137,36 @@ Firstly make sure that you are logged in to the Front-end as ``oneadmin`` - for 
 Using OpenNebula's SSH config
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Since version 5.12**, OpenNebula is distributing custom SSH config files ``/usr/share/one/ssh/config`` and ``/usr/share/one/ssh/config-pre7.6`` for SSH versions >=7.6 and <7.6 respectively. One of these config files relevant to the actual platform (and its SSH version) is copied to oneadmin's home directory when no config file is found there: ``~oneadmin/.ssh/config``. This happens only once during the fresh installation of ``opennebula-common`` package.
+**Since version 5.12**, OpenNebula is distributing custom SSH config files ``/usr/share/one/ssh/config`` and ``/usr/share/one/ssh/config-pre7.6`` for SSH versions >=7.6 and <7.6 respectively.
 
-If you are using OpenNebula's SSH config then you will not need to scan nodes for their SSH host keys and create any ``known_hosts`` file. The config will ensure that any **new** host/node will be added automatically and SSH host key checking will be applied only in the case when the host key is changed - that will cause the SSH connection to fail.
+The right version of one of the default SSH configuration file is copied to oneadmin's home directory (``~oneadmin/.ssh/config``). This happens only once on a fresh OpenNebula installation (package ``opennebula-common``) and only if no SSH config is already present.
+
+The default OpenNebula's SSH config will ensure that any **new** host/node will be added automatically and SSH host key checking will be applied only in the case when the host key is changed - that will cause the SSH connection to fail. Therefore you will not need to scan all nodes for their SSH host keys and create any ``known_hosts`` file in advance. 
 
 If you see this as a security concern and you wish to check and verify that added host keys are really those of your intended machines then do not use the default config file - edit it or delete it.
 
-The relevant SSH option for handling a known_hosts's entries is::
+.. note::
 
-   StrictHostKeyChecking
+   The relevant SSH option for handling a known_hosts's entries is::
 
-SSH version 7.6 and above supports the value ``accept-new`` which behaves as described - it will automatically add all **new** hosts but it will verify all those already added. For older SSH version than 7.6 we are packaging a tweaked config ``config-pre7.6`` which imitates this behavior.
+      StrictHostKeyChecking
 
-Another improvement brought by the default OpenNebula's SSH config is support for persistent SSH connections to speed up operations when the latency is very low (long-distance connections). These are handled by::
+   For the most security set it to ``yes`` and possibly create ``known_hosts`` file manually as described in the :ref:`next section <create_known_hosts>`.
+
+Another improvement brought by the default OpenNebula's SSH config is support for persistent SSH connections to speed up operations when the latency is very high (long-distance connections). These are handled by::
 
    ControlMaster
    ControlPath
    ControlPersist
 
+These will reuse connections on any consecutive SSH operations which are happening in a burst (separated only by a few seconds) and removing the need to establish separate TCP connections for each of them. This should resulted in much lively responses where network latency is an issue.
+
 Again, you are free to modify it to fit your needs.
 
-Manual creation of known_hosts (optional since 5.12)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. _create_known_hosts:
+
+Manual creation of known_hosts
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To manually create the ``known_hosts`` file, we can use the ``ssh-keyscan`` command. We have to execute it as user ``oneadmin`` on the Front-end (step above) with **ALL** the node names **including** the Front-end as parameters:
 
@@ -168,6 +174,22 @@ To manually create the ``known_hosts`` file, we can use the ``ssh-keyscan`` comm
 
     $ ALL_HOSTS="frontend node1 node2 node3" # adjust to your situation
     $ ssh-keyscan ${ALL_HOSTS} >> /var/lib/one/.ssh/known_hosts
+
+.. important::
+
+   If you care about security then you should check and verify each host key.
+
+      1. login safely to the node first (e.g.: directly or via virtual console)
+      2. print its host keys::
+
+         <node> # for host_key in /etc/ssh/ssh_host_*_key; do ssh-keygen -l -E sha256 -f "$host_key"; done
+
+      3. now try to ssh into this node **from the frontend**::
+
+         <frontend> # ssh -o FingerprintHash=sha256 <node>
+
+      4. the shown host key should match one from the node printed previously
+      5. if it does then you can type ``yes`` and the key will be added to the frontend's ``known_hosts`` file - otherwise you may be a victim of a `MITM <https://en.wikipedia.org/wiki/Man-in-the-middle_attack>`_ attack!
 
 Distribution of the files
 ^^^^^^^^^^^^^^^^^^^^^^^^^
