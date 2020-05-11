@@ -18,15 +18,15 @@ This section focuses on the scale limits of oned, the controller component, for 
 The following results have been obtained with synthetic workloads that stress oned running on a physical server with the following specifications:
 
 +----------------------+---------------------------------------------------------+
-| CPU model:           | Intel(R) Atom(TM) CPU C2550 @ 2.40GHz, 4 cores, no HT   |
+| CPU model:           | Intel(R) Core(TM) i5-3210M CPU @ 2.50GHz                |
 +----------------------+---------------------------------------------------------+
-| RAM:                 | 8GB, DDR3, 1600 MT/s, single channel                    |
+| RAM:                 | 2x8GB, DDR3, 1600 MT/s                                  |
 +----------------------+---------------------------------------------------------+
-| HDD:                 | INTEL SSDSC2BB150G7                                     |
+| HDD:                 | KINGSTON SH103S3, SSD 240 GB                            |
 +----------------------+---------------------------------------------------------+
-| OS:                  | Ubuntu 18.04                                            |
+| OS:                  | Ubuntu 19.10                                            |
 +----------------------+---------------------------------------------------------+
-| OpenNebula:          | Version 5.8                                             |
+| OpenNebula:          | Version 5.12                                            |
 +----------------------+---------------------------------------------------------+
 | Database:            | MariaDB v10.1 with default configurations               |
 +----------------------+---------------------------------------------------------+
@@ -34,16 +34,16 @@ The following results have been obtained with synthetic workloads that stress on
 In a single zone, OpenNebula (oned) can work with the following limits:
 
 +--------------------------+-----------------------------------------------------+
-| Number of hosts          | 2,500                                               |
+| Number of hosts          | 1,250                                               |
 +--------------------------+-----------------------------------------------------+
-| Number of VMs            | 10,000                                              |
+| Number of VMs            | 20,000                                              |
 +--------------------------+-----------------------------------------------------+
 | Average VM template size | 7 KB                                                |
 +--------------------------+-----------------------------------------------------+
 
-In production environments, we do not recommend exceeding in the same installation this number of servers (2,500) and VMs (10,000), as well as a load of 30 API requests/s to avoid excessive slowness of the system. Better performance can be achieved with specific tuning of other components, like the database, or better hardware.
+In production environments, we do not recommend exceeding in the same installation this number of servers (1,250) and VMs (20,000), as well as a load of 30 API requests/s to avoid excessive slowness of the system. Better performance can be achieved with specific tuning of other components, like the database, or better hardware.
 
-The four most common API calls were used to stress the core at the same time in approximately the same ratio experienced on real deployments. The total numbers of API calls per second used were: 10, 20 and 30. In these conditions, with a host monitoring interval of 20 hosts/second, in a pool with 2,500 hosts and a monitoring period on each host of 125 seconds, the response times in seconds of the oned process for the most common XMLRPC calls are shown below:
+The four most common API calls were used to stress the core at the same time in approximately the same ratio experienced on real deployments. The total numbers of API calls per second used were: 10, 20 and 30. In these conditions, with a host monitoring interval of 30 hosts/second, in a pool with 1,250 hosts and a monitoring period on each host of 180 seconds, the response times in seconds of the oned process for the most common XMLRPC calls are shown below:
 
 
 +---------------------------------------------------------------------------------------+
@@ -51,17 +51,19 @@ The four most common API calls were used to stress the core at the same time in 
 +-----------------------+---------------------+--------------------+--------------------+
 | API Call - ratio      | API Load: 10 req/s  | API Load: 20 req/s | API Load: 30 req/s |
 +-----------------------+---------------------+--------------------+--------------------+
-| host.info (30%)       | 0.06                | 0.50               | 0.54               |
+| host.info (30%)       | 0.04                | 0.24               | 0.31               |
 +-----------------------+---------------------+--------------------+--------------------+
-| Hostpool.info (10%)   | 0.14                | 0.41               | 0.43               |
+| hostpool.info (20%)   | 0.25                | 0.57               | 0.66               |
 +-----------------------+---------------------+--------------------+--------------------+
-| vm.info (30%)         | 0.07                | 0.57               | 0.51               |
+| vm.info (30%)         | 0.06                | 0.26               | 0.33               |
 +-----------------------+---------------------+--------------------+--------------------+
-| vmpool.info (30%)     | 1.23                | 2.13               | 4.18               |
+| vmpool.info (20%)     | 2.39                | 4.68               | 6.36               |
 +-----------------------+---------------------+--------------------+--------------------+
 
 Hypervisor Scalability
 --------------------------------------
+
+.. todo: update with actual values for new monitoring
 
 The number of VMs (or containers) a virtualization node can run is limited by the monitoring probes. In this section we have evaluated the performance of the monitoring probes for the KVM and LXD drivers. The host specs are the following:
 
@@ -108,7 +110,7 @@ Tuning for Large Scale
 Monitoring Tuning
 -----------------------------------
 
-In KVM environments, OpenNebula supports two native monitoring systems: ``ssh-pull`` and ``udp-push``. The former one, ``ssh-pull`` is the default monitoring system for OpenNebula <= 4.2, however from OpenNebula 4.4 onwards, the default monitoring system is ``udp-push``. This model is highly scalable, and its limit (in terms of number of VMs monitored per second) is bound by the performance of the server running oned and the database server. Read more in the :ref:`Monitoring guide <mon>`.
+Since OpenNebula 5.12 the monitoring system uses tcp/udp to send monitoring information to Monitor Daemon. This model is highly scalable, and its limit (in terms of number of VMs monitored per second) is bound by the performance of the server running oned and the database server. Read more in the :ref:`Monitoring guide <mon>`.
 
 For vCenter environments, OpenNebula uses the VI API offered by vCenter to monitor the state of the hypervisor and all the Virtual Machines running in all the imported vCenter clusters. The driver is optimized to cache common VM information.
 
@@ -117,16 +119,12 @@ In both environments, our scalability testing achieves monitoring of tens of tho
 Core Tuning
 ---------------------------
 
-OpenNebula keeps the monitoring history for a defined time in a database table. These values are then used to draw the plots in Sunstone. These monitoring entries can take quite a bit of storage in your database. The amount of storage used will depend on the size of your cloud, and the following configuration attributes in :ref:`oned.conf <oned_conf>`:
+OpenNebula keeps the monitoring history for a defined time in a database table. These values are then used to draw the plots in Sunstone. These monitoring entries can take quite a bit of storage in your database. The amount of storage used will depend on the size of your cloud, and the following configuration attributes in :ref:`monitord.conf <mon_conf>`:
 
 -  ``MONITORING_INTERVAL_HOST``: Time in seconds between each monitoring cycle. Default: 180. This parameter sets the timeout to pro-actively restart the monitoring probe in the standard ``udp-push`` model.
--  collectd IM\_MAD ``-i`` argument (KVM only): Time in seconds of the monitoring push cycle. Default: 60.
 -  ``HOST_MONITORING_EXPIRATION_TIME``: Time, in seconds, to expire monitoring information. Default: 12h.
 -  ``VM_MONITORING_EXPIRATION_TIME``: Time, in seconds, to expire monitoring information. Default: 4h.
--  ``MONITORING_INTERVAL_DB_UPDATE``: Time in seconds between DB writes of VM monitoring information. Default: 0 (write every update).
-
-
-.. important:: It is highly recommended to increase the ``MONITORING_INTERVAL_DB_UPDATE`` and the ``IM_MAD-collectd`` ``-i`` argument when running more than 5K VMs, so as not to overload DB write threads. Usually a slow response time from the API when running a high number of VMs is caused by this.
+-  ``PROBES_PERIOD``: Time, in seconds, to send periodic updates for specific monitoring messages.
 
 If you don’t use Sunstone, you may want to disable the monitoring history, setting both expiration times to 0.
 
@@ -137,7 +135,7 @@ Each monitoring entry will be around 2 KB for each Host, and 4 KB for each VM. T
 +=======================+===================+===========+===========+
 | 20s                   | 12h               | 200       | 850 MB    |
 +-----------------------+-------------------+-----------+-----------+
-| 20s                   | 24h               | 1,000      | 8.2 GB   |
+| 20s                   | 24h               | 1,000     |  8.2 GB   |
 +-----------------------+-------------------+-----------+-----------+
 
 +-----------------------+-----------------+---------+-----------+
@@ -156,20 +154,20 @@ API Tuning
 For large deployments with lots of XML-RPC calls, the default values for the XML-RPC server are too conservative. The values you can modify, and their meaning, are explained in :ref:`oned.conf <oned_conf>` and the `xmlrpc-c library documentation <http://xmlrpc-c.sourceforge.net/doc/libxmlrpc_server_abyss.html#max_conn>`__. From our experience, these values improve the server behavior with a large number of client calls:
 
  .. code-block:: none
- 
+
      MAX_CONN = 240
      MAX_CONN_BACKLOG = 480
 
 The core is able to paginate some pool answers. This makes the memory consumption decrease, and in some cases makes the parsing faster. By default the pagination value is 2,000 objects, but it can be changed using the environment variable ``ONE_POOL_PAGE_SIZE``. It should be bigger than 2. For example, to list VMs with a page size of 5,000 we can use:
 
  .. prompt:: text $ auto
- 
+
      $ ONE_POOL_PAGE_SIZE=5000 onevm list
- 
+
 To disable pagination we can use a non numeric value:
- 
+
  .. prompt:: text $ auto
- 
+
      $ ONE_POOL_PAGE_SIZE=disabled onevm list
 
 This environment variable can be also used for Sunstone.

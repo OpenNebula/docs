@@ -27,8 +27,10 @@ The monitoring system has been redesigned to improve its scalability and to bett
 - Custom probes needs to be copied to the new locations, see :ref:`Monitoring Guide <mon>` to learn about the new locations.
 - In order to speed-up DB access, monitoring and VM/Host data has been separated. The XPATH of some data had to be modified to accommodate the change. You may need to adapt any custom integration to the new XPATHS. In particular:
 
-  - ``HOST/HOST_SHARE``
-  - TODO Complete
+  - ``HOST/LAST_MON_TIME`` was removed
+  - ``/HOST/HOST_SHARE/[DISK_USAGE,FREE_DISK,MAX_DISK,USED_DISK]`` was moved to ``/HOST/HOST_SHARE/DATASTORES/[DISK_USAGE,FREE_DISK,MAX_DISK,USED_DISK]``
+  - ``/HOST/HOST_SHARE/[USED*, FREE*]`` was moved to monitoring object ``/MONITORING/CAPACITY/[USED*, FREE*]``
+  - ``/HOST/TEMPLATE/[NETRX, NETTX]`` was moved to monitoring object ``/MONITORING/SYSTEM/[NETRX, NETTX]``
 
 - No monitor information is sent in listing API call, neither hosts nor VMs.
 - Configuration of monitoring probes and parameters has been moved to its own file, you may need to adapt/migrate your custom modifications from ``oned.conf`` to ``monitord.conf``.
