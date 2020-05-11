@@ -153,15 +153,23 @@ If you see this as a security concern and you wish to check and verify that adde
 
    For the most security set it to ``yes`` and possibly create ``known_hosts`` file manually as described in the :ref:`next section <create_known_hosts>`.
 
-Another improvement brought by the default OpenNebula's SSH config is support for persistent SSH connections to speed up operations when the latency is very high (long-distance connections). These are handled by::
+.. warning::
 
-   ControlMaster
-   ControlPath
-   ControlPersist
+   **NOT RECOMMENDED!!!** If you are certain that your network is completely secured then you can setup your SSH config with the following options below. By doing so - **it will NOT check or validate the host keys at all!** On the other hand - you will not need to craft or manage any ``known_hosts`` file::
 
-These will reuse connections on any consecutive SSH operations which are happening in a burst (separated only by a few seconds) and removing the need to establish separate TCP connections for each of them. This should resulted in much lively responses where network latency is an issue.
+      Host *
+         StrictHostKeyChecking no
+         UserKnownHostsFile /dev/null
 
-Again, you are free to modify it to fit your needs.
+Another improvement brought by the default OpenNebula's SSH config is support for persistent SSH connections to speed up operations when the latency is very high (long-distance connections). This is done by reusing connections on any consecutive SSH operations which are happening in a burst (separated only by a few seconds) and removing the need to establish separate TCP connections for each of them. This should resulted in much lively responses where network latency is an issue.
+
+If you are not interested in the OpenNebula's shipped config but you are still interested in this feature then you can enable it in the SSH config this way (for example)::
+
+   Host *
+      ControlMaster auto
+      ControlPath ~/.ssh-%C
+      ControlPersist 5s
+
 
 .. _create_known_hosts:
 
