@@ -49,6 +49,8 @@ This should be the only driver activated in this file. The following configurati
 | ``THREADS``      | number of threads used to process messages from monitor daemon                     |
 +------------------+------------------------------------------------------------------------------------+
 
+.. _mon_conf:
+
 Configure the monitor daemon
 ----------------------------
 
@@ -83,7 +85,7 @@ The monitor daemon, ``onemonitord`` is configured in ``/etc/one/monitord.conf``.
 |                     +---------------------+------------------------------------------------------------------------------------+
 |                     | ``PRIKEY``          | Absolute path to private key. Empty for no encryption.                             |
 +---------------------+---------------------+------------------------------------------------------------------------------------+
-| ``PORBES_PERIOD``   | ``BEACON_HOST``     | Time in seconds to send heartbeat for the host                                     |
+| ``PROBES_PERIOD``   | ``BEACON_HOST``     | Time in seconds to send heartbeat for the host                                     |
 |                     +---------------------+------------------------------------------------------------------------------------+
 |                     | ``SYSTEM_HOST``     | Time in seconds to send host static/configuration information                      |
 |                     +---------------------+------------------------------------------------------------------------------------+
