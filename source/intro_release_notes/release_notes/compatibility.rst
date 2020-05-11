@@ -35,3 +35,11 @@ The monitoring system has been redesigned to improve its scalability and to bett
 - No monitor information is sent in listing API call, neither hosts nor VMs.
 - Configuration of monitoring probes and parameters has been moved to its own file, you may need to adapt/migrate your custom modifications from ``oned.conf`` to ``monitord.conf``.
 - The monitoring system now may use TCP transport, you'll need to open incoming connections to port 4124 and TCP to the front-end, in addition to the UDP one.
+
+Accounting and Showback
+=======================
+
+All the states that make Virtual Machines to remain in the host are taken in account to calculate the accounting and showback records. So now, the following states are also computed:
+
+- Poweroff
+- Suspend
