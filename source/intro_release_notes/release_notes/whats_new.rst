@@ -13,23 +13,25 @@ What's New in 5.12
 
 ..
 
-OpenNebula 5.12 (Firework) is the seventh major release of the OpenNebula 5 series. The main focus has been to write a new monitoring subsystem to support very large scale deployments, in addition to making several OneFlow improvements. In this line, support for NSX-v and NSX-t has been integrated with the Security Groups model in OpenNebula. And there are plenty of other very nice perks! The highlights of Firework are:
+OpenNebula 5.12 (Firework) is the seventh stable release of the OpenNebula 5 series. The main focus has been to better support cloud infrastructures with several thousands of physical hosts, running tens of thousands of VMs, distributed cloud/edge and HA deployments, and micro-VMs for innovative serverless deployments and secure multi-tenant container-based services.
 
-- **New monitoring subsystem**, the monitoring system has been rewritten to improve its scalability to support thousands of physical hosts and tens of thousands of VMs, and to better support hypervisors at cloud/edge locations and HA deployments. This re-design decouples DB access for monitoring and VM/Host data to improve oned response time and overall monitor processing time. Additionally, the host monitor agents have been improved to better report VM state changes and optimize network usage.
+There are plenty of very nice perks! The highlights of “Firework” are:
 
-- **OneFlow** has been revamped to use the hook mechanism for VM monitoring rendering significant performance improvements. It also includes new functionality like automatic network creation when a service is deployed, support for fenced networking to map an external and internal network, as well as batch operations on all VMs of the service or a particular role. The new incarnation of OneFlow reduces times for service deployment (1m to 11s), scaling (1m20s to 15s) and failure (23s to 1s).
+- The `much-announced <https://opennebula.io/opennebula-firecracker-building-the-future-of-on-premises-serverless-computing/>`__ **integration with Firecracker for supporting innovative serverless deployments**. Firecracker is a virtual machine manager widely used by Amazon Web Services (AWS) and designed for managing lots of tiny virtual machines (*micro-VMs*) on a server. Here you can couple the security of traditional VMs with the agility of containers, combining different workloads on the same OpenNebula instance.
 
-- **NSX** integrated with the **Security Groups** functionality. This opens the door to manage inbound/outbound network traffic with L3 rules, using the power of NSX within OpenNebula.
+- **New monitoring subsystem**, able to **scale to thousands of physical hosts and tens of thousands of VMs** and better **support hypervisors at cloud/edge locations and HA deployments**. This re-design decouples DB access for monitoring and VM/Host data to improve *oned* response time and overall monitor processing time. Additionally, the host monitor agents have been improved to better report VM state changes and optimize network usage.
 
-- **Firecracker** support to innovative serverless deployments. Firecracker is a virtual machine manager responsible for managing lots of tiny virtual machines on a server. Here you can couple the security of the VMs with the agility of containers, combining different workloads with the same OpenNebula instance.
+- **OneFlow has been revamped** to use the hook mechanism for VM monitoring rendering significant performance improvements. It also includes new functionality like automatic network creation when a service is deployed, support for fenced networking to map an external and internal network, as well as batch operations on all VMs of the service or a particular role. The new incarnation of OneFlow **reduces times for service deployment (1m to 11s), scaling (1m20s to 15s) and failure (23s to 1s)**.
 
-- New ways of remote accessing your VMs in **Sunstone**, better SPICE integration with the possibility of spawning an external virt-viewer program, as well as the possibility of automatically authenticating on a Windows VM using a RDP client from Sunstone.
+- **NSX integrated with the Security Groups functionality**. This opens the door to manage inbound/outbound network traffic with L3 rules, using the power of NSX within OpenNebula.
+
+- **New ways of remote accessing your VMs in Sunstone**. Better SPICE integration with the possibility of spawning an external virt-viewer program, as well as the possibility of automatically authenticating on a Windows VM using a RDP client from Sunstone.
 
 .. image:: /images/virt-viewer-example.png
     :width: 90%
     :align: center
 
-As usual, OpenNebula 5.12 codename refers to a nebula, in this case the `Firework Nebula <https://apod.nasa.gov/apod/ap980704.html>`__, the result of a type of stellar explosion called a nova. In a nova, a nuclear detonation on the surface of a compact white dwarf star blasts away material that has been dumped on its surface by a companion star. Also known as GK Persei or Nova Persei, this nova became one of the brightest stars in the night sky in the year 1901. As bright as your OpenNebula cloud :) .
+As usual, OpenNebula 5.12 codename refers to a nebula, in this case the `Firework Nebula <https://opennebula.io/the-firework-nebula/>`__, the result of a type of stellar explosion called a nova. In a nova, a nuclear detonation on the surface of a compact white dwarf star blasts away material that has been dumped on its surface by a companion star. Also known as GK Persei or Nova Persei 1901, this nova became one of the brightest stars in the night sky in the year 1901—almost as bright as your OpenNebula cloud ;)
 
 The OpenNebula team is now transitioning to "bug-fixing mode". Note that this is a first beta release aimed at testers and developers to try the new features, and we welcome you to send feedback for the final release. Please check the :ref:`known issues <known_issues>` before submitting an `issue through GitHub <https://github.com/OpenNebula/one/issues/new?template=bug_report.md>`__. Also note that being a beta, there is no migration path from the previous stable version (5.10.4) nor migration path to the final stable version (5.12.0). A list of open issues can be found in the `GitHub development portal <https://github.com/OpenNebula/one/milestone/28>`__.
 
