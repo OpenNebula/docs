@@ -271,6 +271,17 @@ This tab and can be disabled in each one of the :ref:`view yaml files <suns_view
         [...]
         #- support-tab
 
+
+.. _link_attribute_sunstone:
+
+Link attribute
+================================================================================
+Editable template attributes are represented in some sections of Sunstone, for example in the marketplace app section.
+You can add an attribute with the name LINK and whose value is an external link. In this way, the value of that attribute will be represented as a hyperlink.
+
+|sunstone_link_attribute|
+
+
 Troubleshooting
 ================================================================================
 
@@ -414,6 +425,7 @@ OpenNebula :ref:`Sunstone views <suns_views>` can be adapted to deploy a differe
             - user
 
 .. |support_home| image:: /images/support_home.png
+.. |sunstone_link_attribute| image:: /images/sunstone_link_attribute.png
 .. |sunstone_oneflow_error| image:: /images/sunstone_oneflow_error.png
 .. |sunstone_virt_viewer_button| image:: /images/sunstone_virt_viewer_button.png
 .. |sunstone_rdp_connection| image:: /images/sunstone_rdp_connection.png
