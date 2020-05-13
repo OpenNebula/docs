@@ -74,6 +74,7 @@ Sunstone
 - MarketplaceApp now considers the app state :ref:`to download it <marketapp_download>`.
 - Show more than 2 IPs in a dropdown list on instantiated VMs table. Check :ref:`this <manage_vnets>` for more information.
 - Template attributes called **LINK** will be represented as hyperlinks. Check :ref:`this <link_attribute_sunstone>` for more information.
+- Disable network, interface type and RDP connection when instantiate template 
 
 Scheduler
 ================================================================================

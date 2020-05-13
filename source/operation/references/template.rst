@@ -1329,3 +1329,33 @@ For example:
    NUMA_NODE = [ MEMORY = 2048, TOTAL_CPUS = 4 ]
 
 Please :ref:`check the NUMA guide <numa>` for more information.
+
+.. _sunstone_template_section:
+
+Sunstone Section
+================================================================================
+The following attributes are used to display elements in the sunstone
+
+|sunstone_network_options|
+
++---------------------+---------------------------------------------------------------------+
++ Sunstone attribute  | Meaning                                                             |
++=====================+=====================================================================+
+| NETWORK_ALIAS       | Disable interface network type (alias)                              |
++---------------------+---------------------------------------------------------------------+
+| NETWORK_AUTO        | Disable interface network selection (Automatic selection)           |
++---------------------+---------------------------------------------------------------------+
+| NETWORK_RDP         | Disable interface network RDP Conection (active)                    |
++---------------------+---------------------------------------------------------------------+
+
+For example:
+
+.. code::
+
+  SUNSTONE = [
+    NETWORK_ALIAS = "yes",
+    NETWORK_AUTO = "no",
+    NETWORK_RDP = "yes"
+  ]
+
+.. |sunstone_network_options| image:: /images/sunstone_network_options.png
