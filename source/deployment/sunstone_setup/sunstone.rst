@@ -123,6 +123,9 @@ Available options are:
 +---------------------------+-----------------------------------------------------------------------------------------------+
 | :no\_proxy                | Patterns for IP addresses or domain names that shouldn’t use the proxy                        |
 +---------------------------+-----------------------------------------------------------------------------------------------+
+| :paginate                 | Array for paginate, the first position is for internal use. the second is used to put         |
+|                           | names to each value                                                                           |
++---------------------------+-----------------------------------------------------------------------------------------------+
 
 .. note:: To use Sunstone with IPv6 only systems and thin HTTP sever, use the full IPv6 address in the field `:host`. If you need to set the localhost address (::1) or the unspecified address (::) please use the following:
 
