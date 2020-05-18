@@ -73,7 +73,9 @@ Sunstone
 - Search box for :ref:`Wilds VMs <import_wild_vms>`.
 - MarketplaceApp now considers the app state :ref:`to download it <marketapp_download>`.
 - Show more than 2 IPs in a dropdown list on instantiated VMs table. Check :ref:`this <manage_vnets>` for more information.
-
+- Template attributes called **LINK** will be represented as hyperlinks. Check :ref:`this <link_attribute_sunstone>` for more information.
+- Disable network, interface type and RDP connection when instantiate template. Check :ref:`this <sunstone_template_section>` for more information.
+- Add custom paginate for cloud view. Check :ref:`this <sunstone_sunstone_server_conf>` for more information.
 
 Scheduler
 ================================================================================
@@ -140,7 +142,7 @@ Other Issues Solved
 - `Fix wrong PCI to VM association when undeploying and terminating a VM with PCI pass-through <https://github.com/OpenNebula/one/issues/3964>`__.
 - `Fixed disable instantiate options in Sunstone <https://github.com/OpenNebula/one/issues/3604>`_.
 - `Fixed VROUTER_KEEPALIVED_ID = 0 <https://github.com/OpenNebula/one/issues/4220>`_.
-- `Fixed login in LDAP for usernames with uppercase characters <https://github.com/OpenNebula/one/issues/4111>`_.
 - `Fixed limit the sunstone notification box content size <https://github.com/OpenNebula/one/issues/2126>`_.
 - `Fixed real used cpu should use real total cpu as base <https://github.com/OpenNebula/one/issues/1756>`_.
 - `Make LXD marketplace Apps compatible only with LXD hypervisor by default <https://github.com/OpenNebula/one/issues/4669>`_.
+- `Validate RAW/DATA section with libvirt xml schema <https://github.com/OpenNebula/one/issues/3953>`_.
