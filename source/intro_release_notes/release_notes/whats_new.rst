@@ -77,6 +77,7 @@ Sunstone
 - Disable network, interface type and RDP connection when instantiate template. Check :ref:`this <sunstone_template_section>` for more information.
 - Add custom paginate for cloud view. Check :ref:`this <sunstone_sunstone_server_conf>` for more information.
 - Add buttons on VNets to add and remove Security Groups. Check :ref:`this <security_groups>` for more information.
+- Add force IPv4 on Cloud View. Check :ref:`this <force_ipv4_sunstone>` for more information.
 
 Scheduler
 ================================================================================
