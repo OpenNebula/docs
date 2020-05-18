@@ -129,7 +129,8 @@ Containers
 MicroVMs
 ========
 
-- MicroVMs are supported via the new **Firecracker** hypervisor. More information can be found in the :ref:`Firecracker Driver <fcmg>` guide. 
+- MicroVMs are supported via the new **Firecracker** hypervisor. More information can be found in the :ref:`Firecracker Driver <fcmg>` guide.
+- New DockerHub Marketplace have been added in order to easily provide images for MicroVMs.
 
 Other Issues Solved
 ================================================================================
