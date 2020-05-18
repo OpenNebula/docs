@@ -144,4 +144,5 @@ Other Issues Solved
 - `Fixed VROUTER_KEEPALIVED_ID = 0 <https://github.com/OpenNebula/one/issues/4220>`_.
 - `Fixed limit the sunstone notification box content size <https://github.com/OpenNebula/one/issues/2126>`_.
 - `Fixed real used cpu should use real total cpu as base <https://github.com/OpenNebula/one/issues/1756>`_.
+- `Make LXD marketplace Apps compatible only with LXD hypervisor by default <https://github.com/OpenNebula/one/issues/4669>`_.
 - `Validate RAW/DATA section with libvirt xml schema <https://github.com/OpenNebula/one/issues/3953>`_.
