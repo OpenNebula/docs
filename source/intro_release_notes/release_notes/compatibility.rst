@@ -14,6 +14,9 @@ OneFlow revamp
 
 In the new OneFlow server, the state **poweroff** sets the service state to **warning**.
 
+In the new OneFlow server, the service watch dog, the component in charge of checking the services in case they should be put in warning state, keeps a socket open with ZMQ. Due to this, you can reach the limit of file descriptors opened by the process. You should estimate the number of VMs you will have managed
+by OneFlow server and increase the maximum number of opened FD.
+
 New default restricted attributes
 =================================
 
