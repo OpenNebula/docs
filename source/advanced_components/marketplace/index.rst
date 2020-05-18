@@ -12,5 +12,6 @@ MarketPlace
    HTTP MarketPlaces <market_http>
    S3 MarketPlaces <market_s3>
    LXD MarketPlaces <market_lxd>
+   DockerHub MarketPlace <market_dh>
    MarketPlaceApps Usage <marketapp>
    Migrate images to/from KVM / vCenter DS <migrate_images>

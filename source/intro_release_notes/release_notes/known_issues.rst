@@ -8,13 +8,22 @@ A complete list of `known issues for OpenNebula is maintained here <https://gith
 
 This page will be updated with relevant information about bugs affecting OpenNebula, as well as possible workarounds until a patch is officially published.
 
+Accounting and Showback
+=======================
+
+A bug that might lead to innacurate hours in accounting and showback have been fixed. You can check all the information `here <https://github.com/OpenNebula/one/issues/1662>`_. But, old VMs won't be updated, so the bug might be still on those VMs.
+
 vCenter Driver
 ==========================
 
 The vCenter driver is not fully adapted to the new monitoring system. As such, there are several functionalities that are currently known not to work:
 
-  - Hotplug operations for network interface cards
-  - VNC due to issues with the VCENTER_ESX_HOST attribute
-  - DB lock errors introduced by the IM probe state.rb, mostly harmless
+  - Hotplug operations for network interface cards.
+  - VNC due to issues with the VCENTER_ESX_HOST attribute.
+  - DB lock errors introduced by the IM probe state.rb, mostly harmless.
   - Snapshots
-  - OpenNebula hosts representing vCenter clusters with NSX not in OK status (NSX_STATUS = OK) cannot spawn new VMs. NSX needs to be configured correctly or the attribute added manually
+  - OpenNebula hosts representing vCenter clusters with NSX not in OK status (NSX_STATUS = OK) cannot spawn new VMs. NSX needs to be configured correctly or the attribute added manually.
+  - To use hosts with no NSX, you need modify the next files, writing an "exit 0" at the start
+      /var/lib/one/remotes/vnm/pre
+      /var/lib/one/remotes/vnm/post
+      /var/lib/one/remotes/vnm/clean
