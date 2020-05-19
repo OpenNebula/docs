@@ -67,6 +67,8 @@ In order to update the configuration files with your existing customizations you
 
 #. Compare the old and new configuration files: ``diff -ur /etc/one.YYYY-MM-DD /etc/one`` and ``diff -ur /var/lib/one/remotes/etc.YYYY-MM-DD /var/lib/one/remotes/etc``. You can use graphical diff-tools like ``meld`` to compare both directories, which are very useful in this step.
 #. Edit the **new** files and port all the customizations from the previous version.
+    * See changes in the :ref:`Monitoring <mon>`, update the MONITOR_ADDRESS in ``/etc/one/monitord.conf``
+    * If you use HA configuration, the MONITOR_ADDRESS should be a floating address
 
 Step 7. Upgrade the Database version
 --------------------------------------------------------------------------------
@@ -226,7 +228,7 @@ Finally upgrade the hypervisors as described in Step 9 in the previous section (
 Upgrading a Federation
 ================================================================================
 
-This version of OpenNebula does not upgrade the shared database schema. The federation can be upgraded zone by zone. For each zone please follow the previous procedure that applies to your setup.
+.. todo: Describe federation update due to PostgreSql support
 
 
 Restoring the Previous Version

@@ -115,6 +115,9 @@ We start with the first server, to perform the initial system bootstrapping.
 
 * **Leader**: [Optional] Enable the RAFT Hooks in ``/etc/one/oned.conf``. This will add a floating IP to the system.
 
+.. note::
+
+    Floating IP should be used for monitor daemon parameter MONITOR_ADDRESS in ``/etc/one/monitord.conf``
 .. code-block:: bash
 
   # Executed when a server transits from follower->leader
@@ -390,6 +393,7 @@ Individual files:
 - /etc/one/ec2_driver.conf
 - /etc/one/ec2_driver.default
 - /etc/one/econe.conf
+- /etc/one/monitord.conf
 - /etc/one/oneflow-server.conf
 - /etc/one/onegate-server.conf
 - /etc/one/sched.conf
