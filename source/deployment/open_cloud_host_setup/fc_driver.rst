@@ -19,8 +19,6 @@ microVM CPU usage
 
 There are three main limitation regarding CPU usage for microVM:
 
-- CPU limitation is not available for microVMs. As they are intended o be used to manage serverless loads, the CPU usage limitation is not supported by Firecracker. This means that the available CPU will be evenly distributed among all the microVM.
-
 - OpenNebula deploys microVMs by using `Firecracker's Jailer <https://github.com/firecracker-microvm/firecracker/blob/master/docs/jailer.md>`__. The `jailer` takes care of increasing the security and isolation of the microVM and is the Firecracker recommended way for deploying microVMs in production environments. The jailer force the microVM to be isolated in a NUMA node, OpenNebula takes care of evenly distribute microVMs among the available NUMA nodes. One of the following policies can be selected in ``/var/lib/one/remotes/etc/vmm/firecracker/firecrackerrc``:
 
    - ``rr``: schedule the microVMs in a RR way across NUMA nodes based on the VM id.
@@ -79,6 +77,11 @@ There are some interaction options between Firecracker and OpenNebula configured
 |                       | shutdown gets stuck                                   |
 +-----------------------+-------------------------------------------------------+
 | cgroup_location       | Path where cgrup file system is mounted               |
++-----------------------+-------------------------------------------------------+
+| cgroup_cpu_shares     | If true the cpu.shares value will be set according to |
+|                       | the VM CPU value if false the cpu.shares is left by   |
+|                       | default which means that all the resources are shared |
+|                       | equally across the VMs.                               |
 +-----------------------+-------------------------------------------------------+
 | cgroup_delete_timeout | Timeout to wait a cgroup to be empty after            |
 |                       | shutdown/cancel a microVM                             |
