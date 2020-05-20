@@ -845,6 +845,7 @@ Sample configuration:
     INHERIT_VNET_ATTR       = "FILTER_IP_SPOOFING"
     INHERIT_VNET_ATTR       = "FILTER_MAC_SPOOFING"
     INHERIT_VNET_ATTR       = "MTU"
+    INHERIT_VNET_ATTR       = "METRIC"
 
 OneGate Configuration
 =====================

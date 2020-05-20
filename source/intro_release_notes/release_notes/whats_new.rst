@@ -49,6 +49,7 @@ Networking
 ================================================================================
 - **Security Groups** are now supported on NSX-T and NSX-V networks. Check :ref:`NSX Setup <nsx_setup>` for initial requirements and the :ref:`Security Groups Operation Guide <security_groups>` to learn how to operate with them. For more details about this integration go to :ref:`NSX Driver <nsx_driver>`.
 - `Force option to remove address ranges (AR) with leases <https://github.com/OpenNebula/one/issues/4132>`__: ``onevnet rmar`` supports optional ``--force`` flag, which forces AR removal even if active leases exist.
+- `Added **route metrics** support per network interface where default gateway is set <https://github.com/OpenNebula/addon-context-linux/issues/83>`_
 
 
 Authentication
