@@ -117,109 +117,141 @@ After the changes, you should reboot the machine.
 Step 4. Configure Passwordless SSH
 ==================================
 
-The OpenNebula Front-end connects to the hypervisor Hosts using SSH. You must distribute the public key of the ``oneadmin`` user from all machines to the file ``/var/lib/one/.ssh/authorized_keys`` in all the machines. There are many methods to achieve the distribution of the SSH keys. Ultimately the administrator should choose a method; the recommendation is to use a configuration management system. In this guide we are going to manually scp the SSH keys.
+The OpenNebula Front-end connects to the hypervisor Hosts using SSH. Following connection types are being established:
 
-.. important:: There is now a better alternative to just distributing the oneadmin's SSH private key accross all nodes - by using the **OpenNebula's SSH agent**: ``opennebula-ssh-agent.service``
+- from Front-end to Front-end,
+- from Front-end to hypervisor Host,
+- from Front-end to hypervisor Host with another connection within to another Host (for migration operations),
+- from Front-end to hypervisor Host with another connection within back to Front-end (for data copy back).
 
-   This SSH agent service is supported since the OpenNebula version 5.12 and it is enabled by **default**. The utilization of the SSH agent service is not mandatory and you can simply disable it via systemd facility if there is such need (e.g.: ``systemctl disable opennebula-ssh-agent.service``). **Although** in such a case when SSH agent service is disabled - you must fallback to the distribution of the oneadmin's SSH private key yet again as it was necessary until now.
+.. important::
 
-When the package was installed in the Front-end, a SSH key pair was generated and the ``authorized_keys`` populated. We will sync the ``authorized_keys`` (and if SSH agent is disabled then also ``id_rsa`` and ``id_rsa.pub``) from the Front-end to the nodes. Additionally we need to create a ``known_hosts`` file and sync it to the nodes as well.
+    It must be ensured that Front-end and all Hosts **can connect to each other** over SSH without manual intervention.
 
-With enabled SSH agent service (default)
-----------------------------------------
+When OpenNebula server package is installed on the Front-end, a SSH key pair is automatically generated for the *oneadmin* user into ``/var/lib/one/.ssh/id_rsa`` and ``/var/lib/one/.ssh/id_rsa.pub``, the public key is also added into ``/var/lib/one/.ssh/authorized_keys``. It happens only if these files don't exist yet, existing files (e.g., leftovers from previous installations) are not touched! For new installations, the :ref:`default SSH configuration <node_ssh_config>` is placed for the *oneadmin* from ``/usr/share/one/ssh`` into ``/var/lib/one/.ssh/config``.
 
-Firstly make sure that you are logged in on the Front-end as ``oneadmin`` - for example like this:
+To enable passwordless connections you must distribute the public key of the *oneadmin* user from the Front-end to ``/var/lib/one/.ssh/authorized_keys`` on all hypervisor Hosts. There are many methods to achieve the distribution of the SSH keys. Ultimately the administrator should choose a method; the recommendation is to use a configuration management system (e.g., Ansible or Puppet). In this guide, we are going to manually use SSH tools.
 
-.. prompt:: bash $ auto
+**Since OpenNebula 5.12**. On the Front-end runs dedicated **SSH authentication agent** service which imports the *oneadmin*'s private key on its start. Access to this agent is delegated (forwarded) from the OpenNebula Front-end to the hypervisor Hosts for the operations which need to connect between Hosts or back to the Front-end. While the authentication agent is used, you **don't need to distribute private SSH key from Front-end** to hypervisor Hosts!
 
-    $ su - oneadmin
+To learn more about the SSH, read the :ref:`Advanced SSH Usage <node_ssh>` guide.
 
-To create the ``known_hosts`` file, we have to execute this command as user ``oneadmin`` on the Front-end (step above) with **ALL** the node names **including** the Front-end as parameters:
+.. _kvm_ssh_known_hosts:
 
-.. prompt:: bash $ auto
+A. Populate Host SSH Keys
+-------------------------
 
-    $ ALL_HOSTS="frontend node1 node2 node3" # adjust to your situation
-    $ ssh-keyscan ${ALL_HOSTS} >> /var/lib/one/.ssh/known_hosts
+You should prepare and further manage the list of host SSH public keys of your nodes (a.k.a. ``known_hosts``) so that all communicating parties know the identity of the other sides. The file is located in ``/var/lib/one/.ssh/known_hosts`` and we can use the command ``ssh-keyscan`` to manually create it. It should be executed on your Front-end under *oneadmin* user and copied on all your Hosts.
 
-Now we need to copy these files from the Front-end to the rest of the nodes.
+.. important::
 
-.. note:: The easiest way is to setup a temporary password for the ``oneadmin`` user on all the hosts.
+   You'll need to update and redistribute file with host keys every time any host is reinstalled or its keys are regenerated.
 
-With the SSH agent we only need to distribute the public portion of the oneadmin's SSH keys (``authorized_keys`` or just ``id_rsa.pub``) and also the ``known_hosts`` file. If your installation/environment does not have some special requirements then only the ``oneadmin`` user is needed to connect to the other nodes (as ``oneadmin``). So we can just distribute the ``id_rsa.pub`` instead of the whole ``authorized_keys``.
+.. important::
 
-Let's enable the passwordless login for the ``oneadmin`` user - here you will need to type the password for each node:
+   If :ref:`default SSH configuration <node_ssh_config>` shipped with OpenNebula is used, the SSH client automatically accepts host keys on the first connection. That makes this step optional, as the ``known_hosts`` will be incrementally automatically generated on your infrastructure when the various connections happen. While this simplifies the initial deployment, it lowers the security of your infrastructure. We highly recommend to populate ``known_hosts`` on your infrastructure in controlled manner!
 
-.. prompt:: bash $ auto
-
-    $ ssh-copy-id -i /var/lib/one/.ssh/id_rsa.pub oneadmin@node1 # adjust the node name
-    $ ssh-copy-id -i /var/lib/one/.ssh/id_rsa.pub oneadmin@node2 # adjust the node name
-    $ ssh-copy-id -i /var/lib/one/.ssh/id_rsa.pub oneadmin@node3 # adjust the node name
-
-Now the authorization is in place and we can automate the rest (no more passwords):
+Make sure you are logged on your Front-end and run the commands as *oneadmin*, e.g. by typing:
 
 .. prompt:: bash $ auto
 
-    $ NODES="node1 node2 node3" # adjust to your situation
-    $ for node in ${NODES} ; do scp -p /var/lib/one/.ssh/known_hosts ${node}:/var/lib/one/.ssh/ ; done
+    # su - oneadmin
 
-If you wish to enable the passwordless login for ``oneadmin`` on each node in exactly the same manner as it is on the Front-end then you can copy the ``authorized_keys`` now:
-
-.. prompt:: bash $ auto
-
-    $ NODES="node1 node2 node3" # adjust to your situation
-    $ for node in ${NODES} ; do scp -p /var/lib/one/.ssh/authorized_keys ${node}:/var/lib/one/.ssh/ ; done
-
-You should try and verify that none of these connections (as user ``oneadmin``) requires a password:
-
-   * from the Front-end to itself
-   * from the Front-end to the nodes
-   * from the nodes to the Front-end
+Create the ``known_hosts`` file by running following command with all the Host names including the Front-end as parameters:
 
 .. prompt:: bash $ auto
 
+    $ ssh-keyscan <frontend> <node1> <node2> <node3> ... >> /var/lib/one/.ssh/known_hosts
+
+B. Distribute Authentication Configuration
+------------------------------------------
+
+To enable passwordless login on your infrastructure, you must copy authentication configuration for *oneadmin* user from Front-end to all your nodes. We'll distribute only ``known_hosts`` created in the previous section and *oneadmin*'s SSH public key from Front-end to your nodes. We **don't need to distribute oneadmin's SSH private key** from Front-end, as it'll be securely delegated from Front-end to hypervisor Hosts with the default **SSH authentication agent** service running on the Front-end.
+
+Make sure you are logged on your Front-end and run the commands as *oneadmin*, e.g. by typing:
+
+.. prompt:: bash $ auto
+
+    # su - oneadmin
+
+Enable passwordless logins by executing the following command for each your Host. For example:
+
+.. prompt:: bash $ auto
+
+    $ ssh-copy-id -i /var/lib/one/.ssh/id_rsa.pub <node1>
+    $ ssh-copy-id -i /var/lib/one/.ssh/id_rsa.pub <node2>
+    $ ssh-copy-id -i /var/lib/one/.ssh/id_rsa.pub <node3>
+
+If the list of host SSH public keys was created in the previous section, distribute the ``known_hosts`` file on each your Host. For example:
+
+.. prompt:: bash $ auto
+
+    $ scp -p /var/lib/one/.ssh/known_hosts <node1>:/var/lib/one/.ssh/
+    $ scp -p /var/lib/one/.ssh/known_hosts <node2>:/var/lib/one/.ssh/
+    $ scp -p /var/lib/one/.ssh/known_hosts <node3>:/var/lib/one/.ssh/
+
+Without SSH Authentication Agent (Optional)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. warning::
+
+    **Not Recommended**. If you don't use integrated SSH authentication agent service (which is initially enabled) on the Front-end, you'll have to distribute also *oneadmin*'s private SSH key on your hypervisor Hosts to allow connections among Hosts and from Hosts to Front-end. For security reasons, it's recommended to use SSH authentication agent service and **avoid this step**.
+
+    If you need to distribute *oneadmin*'s private SSH key on your Hosts, proceeed with steps above and continue with following extra commands for all your Hosts. For example:
+
+    .. prompt:: bash $ auto
+
+        $ scp -p /var/lib/one/.ssh/id_rsa <node1>:/var/lib/one/.ssh/
+        $ scp -p /var/lib/one/.ssh/id_rsa <node2>:/var/lib/one/.ssh/
+        $ scp -p /var/lib/one/.ssh/id_rsa <node3>:/var/lib/one/.ssh/
+
+C. Validate Connections
+-----------------------
+
+You should verify that none of these connections (under user *oneadmin*) fail and none require password:
+
+* from the Front-end to Front-end itself
+* from the Front-end to all Hosts
+* from all Hosts to all Hosts
+* from all Hosts back to Front-end
+
+For example, execute on the Front-end:
+
+.. prompt:: bash $ auto
+
+    # from Front-end to Front-end itself
     $ ssh <frontend>
     $ exit
 
+    # from Front-end to node, back to Front-end and to other nodes
     $ ssh <node1>
     $ ssh <frontend>
     $ exit
+    $ ssh <node2>
+    $ exit
+    $ ssh <node3>
+    $ exit
     $ exit
 
+    # from Front-end to node, back to Front-end and to other nodes
     $ ssh <node2>
     $ ssh <frontend>
     $ exit
+    $ ssh <node1>
+    $ exit
+    $ ssh <node3>
+    $ exit
     $ exit
 
+    # from Front-end to nodes and back to Front-end and other nodes
     $ ssh <node3>
     $ ssh <frontend>
     $ exit
+    $ ssh <node1>
     $ exit
-
-.. note:: If you wish to add your oneadmin's SSH key from different non-standard location or interactively because it is encrypted then this is the way to do it:
-
-   .. prompt:: bash $ auto
-
-      $ SSH_AUTH_SOCK=/var/run/one/ssh-agent.sock ssh-add .ssh/id_rsa
-
-   And this is how you can verify it that it was added:
-
-   .. prompt:: bash $ auto
-
-      $ SSH_AUTH_SOCK=/var/run/one/ssh-agent.sock ssh-add -l
-
-
-With disabled SSH agent service (optional - not recommended)
-------------------------------------------------------------
-
-.. warning:: If SSH agent service is **disabled** then you must copy both the private and public part of the oneadmin's SSH key pair.
-
-   Simply copy the whole directory ``/var/lib/one/.ssh`` to all the nodes.:
-
-   .. prompt:: bash $ auto
-
-       $ scp -rp /var/lib/one/.ssh node1:/var/lib/one/ # adjust the node name
-       $ scp -rp /var/lib/one/.ssh node2:/var/lib/one/ # adjust the node name
-       $ scp -rp /var/lib/one/.ssh node3:/var/lib/one/ # adjust the node name
+    $ ssh <node2>
+    $ exit
+    $ exit
 
 .. _kvm_node_networking:
 
