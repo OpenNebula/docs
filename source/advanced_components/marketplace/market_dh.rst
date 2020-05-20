@@ -1,7 +1,7 @@
 .. _market_dh:
 
 ==============================
-DockerHub MarketPlaces
+DockerHub MarketPlace
 ==============================
 
 Overview
