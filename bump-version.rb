@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
-require 'colored'
 
 if ARGV.length != 2
     STDERR.puts "Usage: #{$0} <old_version> <new_version>"
