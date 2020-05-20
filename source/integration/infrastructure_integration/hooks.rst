@@ -463,19 +463,21 @@ Event Messages Format
 
 There are two different types of EVENT messages, representing API and state events. The key format for both types are listed below:
 
-+---------------+---------------------------------------------------------------------------------------------------------------------+
-| EVENT         | Key format                                                                                                          |
-+===============+=====================================================================================================================+
-| API           | ``EVENT API <API_CALL> <SUCCESS>`` (e.g. ``EVENT API one.vm.allocate 1` or `Key: EVENT API one.hook.info 0``)       |
-+---------------+---------------------------------------------------------------------------------------------------------------------+
-| STATE (HOST)  | ``EVENT STATE HOST/<STATE>/`` (e.g. ``EVENT STATE HOST/INIT/``)                                                     |
-|               |                                                                                                                     |
-|               | ``EVENT HOST <HOST_ID>/<STATE>/`` (e.g. ``EVENT HOST 0/INIT/``)                                                     |
-+---------------+---------------------------------------------------------------------------------------------------------------------+
-| STATE (VM)    | ``EVENT STATE VM/<STATE>/<LCM_STATE>`` (e.g. ``EVENT STATE VM/PENDING/LCM_INIT``)                                   |
-|               |                                                                                                                     |
-|               | ``EVENT VM <VM_ID>/<STATE>/<LCM_STATE>`` (e.g. ``EVENT VM 0/PENDING/LCM_INIT``)                                     |
-+---------------+---------------------------------------------------------------------------------------------------------------------+
++------------------+---------------------------------------------------------------------------------------------------------------------+
+| EVENT            | Key format                                                                                                          |
++==================+=====================================================================================================================+
+| API              | ``EVENT API <API_CALL> <SUCCESS>`` (e.g. ``EVENT API one.vm.allocate 1` or `Key: EVENT API one.hook.info 0``)       |
++------------------+---------------------------------------------------------------------------------------------------------------------+
+| STATE (HOST)     | ``EVENT STATE HOST/<STATE>/`` (e.g. ``EVENT STATE HOST/INIT/``)                                                     |
+|                  |                                                                                                                     |
+|                  | ``EVENT HOST <HOST_ID>/<STATE>/`` (e.g. ``EVENT HOST 0/INIT/``)                                                     |
++------------------+---------------------------------------------------------------------------------------------------------------------+
+| STATE (VM)       | ``EVENT STATE VM/<STATE>/<LCM_STATE>`` (e.g. ``EVENT STATE VM/PENDING/LCM_INIT``)                                   |
+|                  |                                                                                                                     |
+|                  | ``EVENT VM <VM_ID>/<STATE>/<LCM_STATE>`` (e.g. ``EVENT VM 0/PENDING/LCM_INIT``)                                     |
++------------------+---------------------------------------------------------------------------------------------------------------------+
+| CHANGE (SERVICE) | ``EVENT SERVICE SERVICE_ID`` (e.g. ``EVENT SERVICE 0``)                                                             |
++------------------+---------------------------------------------------------------------------------------------------------------------+
 
 Keys are used to subscribe to specific events. Note also that you do not need to specify the whole key, form example ``EVENT STATE HOST/ERROR/`` will suscribe for state changes to ``ERROR`` on the hosts, while ``EVENT STATE HOST/`` will suscribe for all state changes of the hosts.
 

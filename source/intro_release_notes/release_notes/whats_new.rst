@@ -77,6 +77,7 @@ Sunstone
 - Disable network, interface type and RDP connection when instantiate template. Check :ref:`this <sunstone_template_section>` for more information.
 - Add custom paginate for cloud view. Check :ref:`this <sunstone_sunstone_server_conf>` for more information.
 - Add buttons on VNets to add and remove Security Groups. Check :ref:`this <security_groups>` for more information.
+- Add force IPv4 on Cloud View. Check :ref:`this <force_ipv4_sunstone>` for more information.
 
 Scheduler
 ================================================================================
@@ -100,6 +101,7 @@ OneFlow & OneGate
 CLI
 ================================================================================
 - Functionality to read database credentials from ``oned.conf`` when using ``onedb`` command has been added.
+- You can now filter data by hidden columns, e.g: ``onevm list --filter HOST=localhost --list ID,NAME``
 
 Packaging
 ================================================================================
@@ -149,3 +151,4 @@ Other Issues Solved
 - `Fixed real used cpu should use real total cpu as base <https://github.com/OpenNebula/one/issues/1756>`_.
 - `Make LXD marketplace Apps compatible only with LXD hypervisor by default <https://github.com/OpenNebula/one/issues/4669>`_.
 - `Validate RAW/DATA section with libvirt xml schema <https://github.com/OpenNebula/one/issues/3953>`_.
+- `Allow unselect row when previously selected in Sunstone <https://github.com/OpenNebula/one/issues/4697>`_.
