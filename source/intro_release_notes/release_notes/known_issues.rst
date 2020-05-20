@@ -27,3 +27,8 @@ The vCenter driver is not fully adapted to the new monitoring system. As such, t
       /var/lib/one/remotes/vnm/pre
       /var/lib/one/remotes/vnm/post
       /var/lib/one/remotes/vnm/clean
+
+OneFlow
+=======
+
+Services using ``ready_status_gate: true``, will be in running state although ``READY=YES`` is not in the VM template.
