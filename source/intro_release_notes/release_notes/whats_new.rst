@@ -17,7 +17,9 @@ OpenNebula 5.12 (Firework) is the seventh stable release of the OpenNebula 5 ser
 
 There are plenty of very nice perks! The highlights of “Firework” are:
 
-- The `much-announced <https://opennebula.io/opennebula-firecracker-building-the-future-of-on-premises-serverless-computing/>`__ **integration with Firecracker for supporting innovative serverless deployments**. Firecracker is a virtual machine manager widely used by Amazon Web Services (AWS) and designed for managing lots of tiny virtual machines (*micro-VMs*) on a server. Here you can couple the security of traditional VMs with the agility of containers, combining different workloads on the same OpenNebula instance.
+- The `much-announced integration <https://opennebula.io/opennebula-firecracker-building-the-future-of-on-premises-serverless-computing/>`__ with **Firecracker** for supporting innovative serverless deployments. Firecracker is a virtual machine manager widely used by Amazon Web Services (AWS) and designed for managing lots of tiny virtual machines (micro-VMs) on a server. Here you can couple the security of traditional VMs with the agility of containers, combining different workloads on the same OpenNebula instance.
+
+- It also brings seamless integration with the **Docker Hub Marketplace**, permitting direct execution of Docker Hub images using KVM/LXD/Firecracker hypervisors in your OpenNebula cloud. This brings all of the current application container management right square in-line with OpenNebula.
 
 - **New monitoring subsystem**, able to **scale to thousands of physical hosts and tens of thousands of VMs** and better **support hypervisors at cloud/edge locations and HA deployments**. This re-design decouples DB access for monitoring and VM/Host data to improve *oned* response time and overall monitor processing time. Additionally, the host monitor agents have been improved to better report VM state changes and optimize network usage.
 
@@ -31,7 +33,7 @@ There are plenty of very nice perks! The highlights of “Firework” are:
     :width: 90%
     :align: center
 
-As usual, OpenNebula 5.12 codename refers to a nebula, in this case the `Firework Nebula <https://opennebula.io/the-firework-nebula/>`__, the result of a type of stellar explosion called a nova. In a nova, a nuclear detonation on the surface of a compact white dwarf star blasts away material that has been dumped on its surface by a companion star. Also known as GK Persei or Nova Persei 1901, this nova became one of the brightest stars in the night sky in the year 1901—almost as bright as your OpenNebula cloud ;). More on this on this `excellent blog post <https://opennebula.io/the-firework-nebula/>`__.
+As usual, the OpenNebula 5.12 codename refers to a nebula, in this case the `Firework Nebula <https://opennebula.io/the-firework-nebula/>`__, the result of a type of stellar explosion called a nova. In a nova, a nuclear detonation on the surface of a compact white dwarf star blasts away material that has been dumped on its surface by a companion star. Also known as GK Persei or Nova Persei 1901, this nova became one of the brightest stars in the night sky in the year 1901—almost as bright as your OpenNebula cloud ;). More on this in this `excellent blog post <https://opennebula.io/the-firework-nebula/>`__.
 
 The OpenNebula team is now transitioning to "bug-fixing mode". Note that this is a second beta release aimed at testers and developers to try the new features, and we welcome you to send feedback for the final release. Please check the :ref:`known issues <known_issues>` before submitting an `issue through GitHub <https://github.com/OpenNebula/one/issues/new?template=bug_report.md>`__. Also note that being a beta, there is no migration path from the previous stable version (5.10.5) nor migration path to the final stable version (5.12.0). A list of open issues can be found in the `GitHub development portal <https://github.com/OpenNebula/one/milestone/28>`__.
 
