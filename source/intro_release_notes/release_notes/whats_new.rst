@@ -101,6 +101,7 @@ OneFlow & OneGate
 CLI
 ================================================================================
 - Functionality to read database credentials from ``oned.conf`` when using ``onedb`` command has been added.
+- You can now filter data by hidden columns, e.g: ``onevm list --filter HOST=localhost --list ID,NAME``
 
 Packaging
 ================================================================================
