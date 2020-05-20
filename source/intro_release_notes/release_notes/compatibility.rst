@@ -24,7 +24,7 @@ New monitoring
 
 The monitoring system has been redesigned to improve its scalability and to better support different deployment scenarios. This redesign introduces some incompatibilities:
 
-- Custom probes needs to be copied to the new locations, see :ref:`Monitoring Guide <mon>` to learn about the new locations.
+- Custom probes need to be copied to the new locations, see :ref:`Monitoring Guide <mon>` to learn about the new locations.
 - In order to speed-up DB access, monitoring and VM/Host data has been separated. The XPATH of some data had to be modified to accommodate the change. You may need to adapt any custom integration to the new XPATHS. In particular:
 
   - ``HOST/LAST_MON_TIME`` was removed
@@ -34,7 +34,7 @@ The monitoring system has been redesigned to improve its scalability and to bett
 
 - No monitor information is sent in listing API call, neither hosts nor VMs.
 - Configuration of monitoring probes and parameters has been moved to its own file, you may need to adapt/migrate your custom modifications from ``oned.conf`` to ``monitord.conf``.
-- The monitoring system now may use TCP transport, you'll need to open incoming connections to port 4124 and TCP to the front-end, in addition to the UDP one.
+- The monitoring system now may use TCP transport. You'll need to open incoming connections to port 4124 and TCP to the front-end, in addition to the UDP one.
 
 Accounting and Showback
 =======================
