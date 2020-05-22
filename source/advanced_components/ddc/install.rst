@@ -54,7 +54,7 @@ and, then install Ansible:
 
 .. prompt:: bash $ auto
 
-   $ sudo pip install 'ansible>=2.5.0,<2.10.0'
+   $ sudo pip install 'ansible>=2.8.0,<2.10.0'
 
 Check that Ansible is installed properly:
 
