@@ -10,7 +10,7 @@ All functionality is distributed as an optional operating system package ``openn
 
     The tool requires `Ansible <https://www.ansible.com/>`__ to be installed on the same host(s) as well. There is **no automatic dependency** which would install Ansible automatically; you have to manage the installation of the required Ansible version on your own.
 
-    Supported versions: Ansible 2.5.x, 2.6.x., 2.7.x, 2.8.x or 2.9.x Note that the Ansible packages in CentOS 7+ and Debian 10+ are too new, and Ubuntu 16.04's is too old.
+    Supported versions: Ansible 2.8.x and 2.9.x.
 
 Step 1. Tools
 =============
