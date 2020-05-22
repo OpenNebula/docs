@@ -17,7 +17,9 @@ OpenNebula 5.12 (Firework) is the seventh stable release of the OpenNebula 5 ser
 
 There are plenty of very nice perks! The highlights of “Firework” are:
 
-- The `much-announced <https://opennebula.io/opennebula-firecracker-building-the-future-of-on-premises-serverless-computing/>`__ **integration with Firecracker for supporting innovative serverless deployments**. Firecracker is a virtual machine manager widely used by Amazon Web Services (AWS) and designed for managing lots of tiny virtual machines (*micro-VMs*) on a server. Here you can couple the security of traditional VMs with the agility of containers, combining different workloads on the same OpenNebula instance.
+- The `much-announced integration <https://opennebula.io/opennebula-firecracker-building-the-future-of-on-premises-serverless-computing/>`__ with **Firecracker** for supporting innovative serverless deployments. Firecracker is a virtual machine manager widely used by Amazon Web Services (AWS) and designed for managing lots of tiny virtual machines (micro-VMs) on a server. Here you can couple the security of traditional VMs with the agility of containers, combining different workloads on the same OpenNebula instance.
+
+- It also brings seamless integration with the **Docker Hub Marketplace**, permitting direct execution of Docker Hub images using KVM/LXD/Firecracker hypervisors in your OpenNebula cloud. This brings all of the current application container management right square in-line with OpenNebula.
 
 - **New monitoring subsystem**, able to **scale to thousands of physical hosts and tens of thousands of VMs** and better **support hypervisors at cloud/edge locations and HA deployments**. This re-design decouples DB access for monitoring and VM/Host data to improve *oned* response time and overall monitor processing time. Additionally, the host monitor agents have been improved to better report VM state changes and optimize network usage.
 
@@ -31,9 +33,9 @@ There are plenty of very nice perks! The highlights of “Firework” are:
     :width: 90%
     :align: center
 
-As usual, OpenNebula 5.12 codename refers to a nebula, in this case the `Firework Nebula <https://opennebula.io/the-firework-nebula/>`__, the result of a type of stellar explosion called a nova. In a nova, a nuclear detonation on the surface of a compact white dwarf star blasts away material that has been dumped on its surface by a companion star. Also known as GK Persei or Nova Persei 1901, this nova became one of the brightest stars in the night sky in the year 1901—almost as bright as your OpenNebula cloud ;)
+As usual, the OpenNebula 5.12 codename refers to a nebula, in this case the `Firework Nebula <https://opennebula.io/the-firework-nebula/>`__, the result of a type of stellar explosion called a nova. In a nova, a nuclear detonation on the surface of a compact white dwarf star blasts away material that has been dumped on its surface by a companion star. Also known as GK Persei or Nova Persei 1901, this nova became one of the brightest stars in the night sky in the year 1901—almost as bright as your OpenNebula cloud ;). More on this in this `excellent blog post <https://opennebula.io/the-firework-nebula/>`__.
 
-The OpenNebula team is now transitioning to "bug-fixing mode". Note that this is a first beta release aimed at testers and developers to try the new features, and we welcome you to send feedback for the final release. Please check the :ref:`known issues <known_issues>` before submitting an `issue through GitHub <https://github.com/OpenNebula/one/issues/new?template=bug_report.md>`__. Also note that being a beta, there is no migration path from the previous stable version (5.10.4) nor migration path to the final stable version (5.12.0). A list of open issues can be found in the `GitHub development portal <https://github.com/OpenNebula/one/milestone/28>`__.
+The OpenNebula team is now transitioning to "bug-fixing mode". Note that this is a second beta release aimed at testers and developers to try the new features, and we welcome you to send feedback for the final release. Please check the :ref:`known issues <known_issues>` before submitting an `issue through GitHub <https://github.com/OpenNebula/one/issues/new?template=bug_report.md>`__. Also note that for this version there is no migration path from the previous stable version (5.10.5) nor migration path to the final stable version (5.12.0). A list of open issues can be found in the `GitHub development portal <https://github.com/OpenNebula/one/milestone/28>`__.
 
 In the following list you can check the highlights of OpenNebula 5.12 (a detailed list of changes can be found `here <https://github.com/OpenNebula/one/milestone/28?closed=1>`__):
 
@@ -49,6 +51,7 @@ Networking
 ================================================================================
 - **Security Groups** are now supported on NSX-T and NSX-V networks. Check :ref:`NSX Setup <nsx_setup>` for initial requirements and the :ref:`Security Groups Operation Guide <security_groups>` to learn how to operate with them. For more details about this integration go to :ref:`NSX Driver <nsx_driver>`.
 - `Force option to remove address ranges (AR) with leases <https://github.com/OpenNebula/one/issues/4132>`__: ``onevnet rmar`` supports optional ``--force`` flag, which forces AR removal even if active leases exist.
+- `Added **route metrics** support per network interface where default gateway is set <https://github.com/OpenNebula/addon-context-linux/issues/83>`_
 
 
 Authentication
@@ -77,6 +80,8 @@ Sunstone
 - Disable network, interface type and RDP connection when instantiate template. Check :ref:`this <sunstone_template_section>` for more information.
 - Add custom paginate for cloud view. Check :ref:`this <sunstone_sunstone_server_conf>` for more information.
 - Add buttons on VNets to add and remove Security Groups. Check :ref:`this <security_groups>` for more information.
+- Add force IPv4 on Cloud View. Check :ref:`this <force_ipv4_sunstone>` for more information.
+- Keep state on VMs nics table. Check :ref:`this <vm_guide2_nic_hotplugging>` for more information.
 
 Scheduler
 ================================================================================
@@ -100,6 +105,7 @@ OneFlow & OneGate
 CLI
 ================================================================================
 - Functionality to read database credentials from ``oned.conf`` when using ``onedb`` command has been added.
+- You can now filter data by hidden columns, e.g: ``onevm list --filter HOST=localhost --list ID,NAME``
 
 Packaging
 ================================================================================
@@ -130,7 +136,7 @@ MicroVMs
 ========
 
 - MicroVMs are supported via the new **Firecracker** hypervisor. More information can be found in the :ref:`Firecracker Driver <fcmg>` guide.
-- New DockerHub Marketplace have been added in order to easily provide images for MicroVMs.
+- New :ref:`DockerHub Marketplace <market_dh>` have been added in order to easily provide images for MicroVMs.
 
 Other Issues Solved
 ================================================================================
@@ -150,3 +156,4 @@ Other Issues Solved
 - `Make LXD marketplace Apps compatible only with LXD hypervisor by default <https://github.com/OpenNebula/one/issues/4669>`_.
 - `Validate RAW/DATA section with libvirt xml schema <https://github.com/OpenNebula/one/issues/3953>`_.
 - `Added systemd timer job to compute showback every night <https://github.com/OpenNebula/one/issues/865>`_.
+- `Allow unselect row when previously selected in Sunstone <https://github.com/OpenNebula/one/issues/4697>`_.

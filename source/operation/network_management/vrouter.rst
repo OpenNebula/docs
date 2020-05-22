@@ -39,6 +39,8 @@ Creating a new Virtual Router
 
 New Virtual Routers are created from a special type of VM Template, as the one created automatically when downloading the market app.
 
+.. _force_ipv4_sunstone:
+
 Sunstone
 --------------------------------------------------------------------------------
 

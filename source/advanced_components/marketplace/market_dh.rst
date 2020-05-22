@@ -1,7 +1,7 @@
 .. _market_dh:
 
 ==============================
-DockerHub MarketPlaces
+DockerHub MarketPlace
 ==============================
 
 Overview
@@ -38,6 +38,42 @@ The Official OpenNebula Systems Marketplace is pre-registered in OpenNebula:
 Therefore it does not require any additional action from the administrator.
 
 .. note:: Note that the monitoring can be disabled for this marketplace by commenting the corresponding ``MARKET_MAD`` section in ``oned.conf`` and restarting OpenNebula service.
+
+Downloading non official images
+================================================================================
+
+The DockerHub MarketPlace have available only the `DockerHub Official Images <https://hub.docker.com/search?image_filter=official&type=image>`__, if a non official image needs to be imported to the cloud you can create a new image and use as ``path`` argument an URL with the following format:
+
+.. code::
+
+    docker://<image>?size=<image_size>&filesystem=<fs_type>&format=raw&tag=<tag>
+
+The different arguments of the URL are explained below:
+
++-----------------------+-------------------------------------------------------+
+| Argument              | Description                                           |
++=======================+=======================================================+
+| ``<image>``           | DockerHub image name.                                 |
++-----------------------+-------------------------------------------------------+
+| ``<image_size>``      | Resulting image size. (It must be greater than actual |
+|                       | image size)                                           |
++-----------------------+-------------------------------------------------------+
+| ``<fs_type>``         | Filesystem type (ext4, ext3, ext2 or xfs)             |
++-----------------------+-------------------------------------------------------+
+| ``<tag>``             | Image tag name (default ``latest``).                  |
++-----------------------+-------------------------------------------------------+
+
+For example, with the command below we will create a new image called ``nginx-dh`` based on the ``nginx`` image from DockerHub with 3GB size using ``ext4`` and the ``alpine`` tag, the image will be stored in the image DS with id 1:
+
+.. code::
+
+    $ oneimage create --name nginx-dh --path 'docker://nginx?size=3072&filesystem=ext4&format=raw&tag=alpine' --datastore 1
+      ID: 0
+    $ oneimage list
+      ID USER     GROUP    NAME      DATASTORE SIZE TYPE PER STAT RVMS
+      0 oneadmin oneadmin nginx-dh  default     3G OS    No rdy     0
+
+.. note:: This format can also be used at Sunstone image creation dialog.
 
 Tuning & Extending
 ==================

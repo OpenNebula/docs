@@ -13,3 +13,4 @@ Node Installation
    Firecracker Node Installation <fc_node_installation>
    vCenter Node Installation <vcenter_node_installation>
    Verify your Installation <verify>
+   Advanced SSH Usage <ssh>
