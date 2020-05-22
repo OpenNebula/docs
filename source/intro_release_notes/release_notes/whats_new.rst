@@ -155,4 +155,5 @@ Other Issues Solved
 - `Fixed real used cpu should use real total cpu as base <https://github.com/OpenNebula/one/issues/1756>`_.
 - `Make LXD marketplace Apps compatible only with LXD hypervisor by default <https://github.com/OpenNebula/one/issues/4669>`_.
 - `Validate RAW/DATA section with libvirt xml schema <https://github.com/OpenNebula/one/issues/3953>`_.
+- `Added systemd timer job to compute showback every night <https://github.com/OpenNebula/one/issues/865>`_.
 - `Allow unselect row when previously selected in Sunstone <https://github.com/OpenNebula/one/issues/4697>`_.
