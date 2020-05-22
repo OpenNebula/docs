@@ -72,3 +72,12 @@ Check that Ansible is installed properly:
     .. prompt:: bash $ auto
 
         $ sudo pip install 'Jinja2>=2.10.0'
+
+Step 3. OpenNebula Configuration
+================================
+
+In order to get everything working in OpenNebula you need to perform some actions on it:
+
+- Check :ref:`this <ddc_hooks_alias_ip>` to create needed hooks.
+- Check :ref:`this <ddc_vnet_alias_sdnat>` to activate network driver.
+- Check :ref:`this <ddc_ipam_packet>` to activate IPAM driver.

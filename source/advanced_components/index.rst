@@ -15,4 +15,4 @@ Advanced Components Guide
    Public Cloud <public_cloud/index>
    MarketPlace <marketplace/index>
    Applications Containerization <applications_containerization/index>
-   Disaggregated Data Centers <ddc/index>
+   Infrastructure Provision <ddc/index>
