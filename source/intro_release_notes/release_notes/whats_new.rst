@@ -157,3 +157,4 @@ Other Issues Solved
 - `Validate RAW/DATA section with libvirt xml schema <https://github.com/OpenNebula/one/issues/3953>`_.
 - `Added systemd timer job to compute showback every night <https://github.com/OpenNebula/one/issues/865>`_.
 - `Allow unselect row when previously selected in Sunstone <https://github.com/OpenNebula/one/issues/4697>`_.
+- `Fixed host widget in sunstone <https://github.com/OpenNebula/one/issues/4790>`_.
