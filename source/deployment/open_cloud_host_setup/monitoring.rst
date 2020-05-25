@@ -54,8 +54,6 @@ This should be the only driver activated in this file. The following configurati
 Configure the monitor daemon
 ----------------------------
 
-.. important:: Be sure to adjust the MONITOR_ADDRESS so the probes can send back the monitor data.
-
 The monitor daemon, ``onemonitord`` is configured in ``/etc/one/monitord.conf``. The following table describes the configuration attributes for it:
 
 +---------------------+---------------------+------------------------------------------------------------------------------------+
@@ -75,7 +73,9 @@ The monitor daemon, ``onemonitord`` is configured in ``/etc/one/monitord.conf``.
 |                     +---------------------+------------------------------------------------------------------------------------+
 |                     | ``ADDRESS``         | network address to bind the UDP/TCP listener to                                    |
 |                     +---------------------+------------------------------------------------------------------------------------+
-|                     | ``MONITOR_ADDRESS`` | agents will send updates to this monitor address                                   |
+|                     | ``MONITOR_ADDRESS`` | Agents will send updates to this monitor address.                                  |
+|                     |                     | If "auto" is used, agents will detect the address from the ssh connection          |
+|                     |                     | frontend -> host ($SSH_CLIENT), "auto" is not usable for HA setup                  |
 |                     +---------------------+------------------------------------------------------------------------------------+
 |                     | ``PORT``            | listening port                                                                     |
 |                     +---------------------+------------------------------------------------------------------------------------+
