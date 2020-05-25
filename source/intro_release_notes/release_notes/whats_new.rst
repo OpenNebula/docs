@@ -82,6 +82,7 @@ Sunstone
 - Add buttons on VNets to add and remove Security Groups. Check :ref:`this <security_groups>` for more information.
 - Add force IPv4 on Cloud View. Check :ref:`this <force_ipv4_sunstone>` for more information.
 - Keep state on VMs nics table. Check :ref:`this <vm_guide2_nic_hotplugging>` for more information.
+- Add TB unit to disks. Check :ref:`this <vm_disks>` for more information.
 
 Scheduler
 ================================================================================
