@@ -188,14 +188,13 @@ For each of them, you can find an example template, ready to use, provided by Op
             packet_token: "********************************"
             packet_project: "******************************"
 
-In the following sections you are going to see what changes are needed to deploy these templates and a graphic with the resulting infrastructure.
+In the following sections you are going to see what changes are needed to deploy these templates and a picture with the resulting infrastructure.
 
 AWS Deployment
 --------------
 
-In this example we are going to deploy a cluster with two hosts and the rest infrastructure resources. Virtual machines deployed in each host will be able to communicate each other.
+In this example we are going to deploy a cluster with two hosts and the rest of infrastructure resources. Virtual machines deployed in each host will be able to communicate with each other.
 
-Graphic
 #######
 
 .. image:: /images/ddc_aws_deployment.png
@@ -308,10 +307,9 @@ We can now deploy virtual machines on those hosts. You just need to download and
 Packet Deployment
 -----------------
 
-In this example we are going to deploy a cluster with two hosts and the rest infrastructure resources. Virtual machines deployed in each host will be able to communicate each other
-and also we are going to be able to ssh them outside the host.
+In this example we are going to deploy a cluster with two hosts and the rest of infrastructure resources. Virtual machines deployed in each host will be able to communicate with each other and also we are going to be able to ssh them from outside the host.
 
-Graphic
+
 #######
 
 .. image:: /images/ddc_packet_deployment.png
