@@ -22,6 +22,6 @@ How Should I Read This Chapter
 
 You should be reading this Chapter as part of the :ref:`Advanced Components Guide <advanced_components>`. You should be aware of the :ref:`Cloud Bursting <cloud_bursting>` functionality, as the cluster provisioning shares some approaches.
 
-In this Chapter, you can find a guide on how to provide additional resources from public bare-metal cloud providers into your OpenNebula. Cloud Administrators should follow the sections which cover :ref:`Installation <ddc_install>` and :ref:`Basic Usage <ddc_usage>`, the Cloud Integrators and Developers might find useful the :ref:`Provision and Configuration Reference <ddc_ref>` and :ref:`Provision Driver <devel-pm>` API specification.
+In this Chapter, you can find a guide on how to provide additional resources from public bare-metal cloud providers into your OpenNebula. Cloud Administrators should follow the sections which cover :ref:`Installation <ddc_install>`, :ref:`Default Infrastructure Provision <default_ddc_templates>` and :ref:`Basic Usage <ddc_usage>`, the Cloud Integrators and Developers might find useful the :ref:`Provision and Configuration Reference <ddc_ref>` and :ref:`Provision Driver <devel-pm>` API specification.
 
 After reading this chapter you can continue with other topics from :ref:`Advanced Components <advanced_components>`.

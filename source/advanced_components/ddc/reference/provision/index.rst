@@ -1,12 +1,11 @@
 .. _ddc_provision:
 
-===================
-Provision Reference
-===================
+==================
+Provision Template
+==================
 
 .. toctree::
    :maxdepth: 2
 
    Overview <overview>
    Templates <templates>
-   Drivers <driver/index>

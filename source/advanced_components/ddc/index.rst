@@ -10,5 +10,6 @@ Infrastructure Provision
    Overview <overview>
    OneProvision Installation <install>
    Default Infrastructure Provision <default>
-   OneProvision Basic Usage <usage>
+   Customized Infrastructure Provision <custom/index>
+   OneProvision Usage <usage>
    Provision and Configuration Reference <reference/index>
