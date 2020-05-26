@@ -119,6 +119,8 @@ This file will create a IPv4 network using VLAN tagging, the VLAN ID in this cas
 
 :ref:`See here for more examples <vnet_template_example>`
 
+.. _add_and_delete_vnet:
+
 Adding and Deleting Virtual Networks
 ====================================
 
