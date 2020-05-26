@@ -84,6 +84,7 @@ Sunstone
 - Keep state on VMs nics table. Check :ref:`this <vm_guide2_nic_hotplugging>` for more information.
 - Add TB unit to disks. Check :ref:`this <vm_disks>` for more information.
 - Add VM name in VNet leases. Check :ref:`this <add_and_delete_vnet>` for more information.
+- Move NSX specific attributes to NSX tab. Check :ref:`this <nsx_autodiscovered_attributes>` for more information.
 
 Scheduler
 ================================================================================
@@ -161,4 +162,3 @@ Other Issues Solved
 - `Allow unselect row when previously selected in Sunstone <https://github.com/OpenNebula/one/issues/4697>`_.
 - `Fixed host widget in sunstone <https://github.com/OpenNebula/one/issues/4790>`_.
 - `Fixed error when creating bridge on a hypervisor <https://github.com/OpenNebula/one/issues/4794>`_.
-

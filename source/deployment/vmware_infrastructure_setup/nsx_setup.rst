@@ -119,6 +119,8 @@ Once a vCenter cluster is imported into OpenNebula, two hooks are created:
 
 For more information about list, create and delete these vCenter hooks go to :ref:`vcenter_hooks`.
 
+.. _nsx_autodiscovered_attributes:
+
 Check NSX Manager autodiscovered attributes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
