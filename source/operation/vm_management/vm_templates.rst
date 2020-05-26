@@ -28,7 +28,7 @@ Capacity & Name
 
 |sunstone_template_create_capacity|
 
-.. _vm_disks
+.. _vm_disks:
 
 Disks
 --------------------------------------------------------------------------------
