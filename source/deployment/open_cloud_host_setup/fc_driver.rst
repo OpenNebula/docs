@@ -11,6 +11,8 @@ Requirements
 
 Firecracker requires a Linux kernel >= 4.14 and KVM module.
 
+.. _fcmg_limitations:
+
 Considerations & Limitations
 ================================================================================
 
@@ -35,6 +37,8 @@ There are three main limitation regarding CPU usage for microVM:
         PIN_POLICY = "NONE",
         SOCKETS = "1",
         THREADS = "2" ]
+
+- As Firecracker Jailer performs a ``chroot`` operation under the microVM location, persistent images are not supported when using ``TM_MAD=shared``. In order to use persistent images when using ``TM_MAD=shared`` the system ``TM_MAD`` must be overwritten to use ``TM_MAD=ssh`` this can be easily achieved by adding ``TM_MAD_SYSTEM=ssh`` at the microVM template. More info on how to combine different ``TM_MADs`` can be found :ref:`here <shared-ssh-mode>`.
 
 MicroVM actions
 --------------------------------------------------------------------------------
@@ -126,6 +130,8 @@ Datastores
 --------------------------------------------------------------------------------
 
 Firecracker driver is compatible with **Filesystem Datastores**. Regarding of Transfer Managers (``TM_MAD``) Firecracker support every ``TM_MAD`` supported by Filesystem Datastores but ``qcow2`` as Firecracker does not support ``qcow2`` images.
+
+.. note:: Note that ``shared`` datastores have some limitations, check :ref:`Considerations & Limitations section <fcmg_limitations>`.
 
 More information about Filesystem Datastores can be found :ref:`here <fs_ds>`.
 
