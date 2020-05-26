@@ -80,3 +80,4 @@ In order to get everything working in OpenNebula you need to perform some action
 
 - Check :ref:`this <ddc_hooks_alias_ip>` to create needed hooks.
 - Check :ref:`this <ddc_vnet_alias_sdnat>` to activate network driver.
+- Check :ref:`this <ddc_ipam>` to activate IPAM driver.
