@@ -76,5 +76,7 @@ Check that Ansible is installed properly:
 Step 3. OpenNebula Configuration
 ================================
 
-- Please check :ref:`this <ddc_hooks_alias_ip>` to create needed hooks.
-- Please check :ref:`this <ddc_vnet_alias_sdnat>` to activate network driver.
+In order to get everything working in OpenNebula you need to perform some actions on it:
+
+- Check :ref:`this <ddc_hooks_alias_ip>` to create needed hooks.
+- Check :ref:`this <ddc_vnet_alias_sdnat>` to activate network driver.

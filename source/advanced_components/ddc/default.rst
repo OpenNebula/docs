@@ -4,8 +4,8 @@
 Default Infrastructure Provision
 ================================
 
-In this section you can see how to easily deploy a fully operational cluster with ``oneprovision``. This is a cluster with all the resources needed to deploy a Virtual Machine.
-It includes the hosts, datastores and Virtual Networks.
+In this section you can see how to easily deploy a fully operational cluster with ``oneprovision``. This is a cluster with all the resources needed to deploy a virtual machine,
+it includes hosts, datastores and virtual networks. You will also see some examples about how to deploy the virtual machine and ssh to it.
 
 Default Templates
 -----------------
@@ -195,15 +195,13 @@ AWS Deployment
 
 In this example we are going to deploy a cluster with two hosts and the rest of infrastructure resources. Virtual machines deployed in each host will be able to communicate with each other.
 
-#######
-
 .. image:: /images/ddc_aws_deployment.png
     :align: center
 
 Deployment File
 ###############
 
-The deployment file provided by OpenNebula (``/usr/share/one/oneprovision/examples/example_ec2.yaml``) Needs some changes in order to deploy the hosts.
+The deployment file provided by OpenNebula (``/usr/share/one/oneprovision/examples/example_ec2.yaml``) needs some changes in order to deploy the hosts.
 
 First of all, you need to add your AWS credentials:
 
@@ -310,8 +308,6 @@ Packet Deployment
 In this example we are going to deploy a cluster with two hosts and the rest of infrastructure resources. Virtual machines deployed in each host will be able to communicate with each other and also we are going to be able to ssh them from outside the host.
 
 
-#######
-
 .. image:: /images/ddc_packet_deployment.png
     :align: center
 
@@ -325,7 +321,7 @@ First of all, you need to add your Packet credentials and project ID:
 - packet_token
 - packet_project
 
-In the template you have to change ``******`` by a valid token. You can create one in your Packer user portal.
+In the template you have to change ``******`` by a valid token. You can create one in your Packer user portal. And to get the project ID just go to project settings tab in Packet.
 
 Then you need to add the hosts you want to deploy. You have to uncomment the Ubuntu or CentOS hosts, in case of CentOS the final result would be the following:
 
