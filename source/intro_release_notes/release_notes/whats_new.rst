@@ -162,3 +162,4 @@ Other Issues Solved
 - `Allow unselect row when previously selected in Sunstone <https://github.com/OpenNebula/one/issues/4697>`_.
 - `Fixed host widget in sunstone <https://github.com/OpenNebula/one/issues/4790>`_.
 - `Fixed error when creating bridge on a hypervisor <https://github.com/OpenNebula/one/issues/4794>`_.
+- `Fixed VM log tab if the VM is remote on a federated oned <https://github.com/OpenNebula/one/issues/3465>`_.
