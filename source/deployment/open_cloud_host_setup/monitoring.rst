@@ -217,7 +217,7 @@ Probes are structured in different directories that determine the frequency they
         `-- status
             `-- state.rb
 
-The pupose of each directory is described in the following table:
+The purpose of each directory is described in the following table:
 
 +------------------+------------------------------------------------------------------------------------------------------------------+---------------------+
 | Directory        | Purpose                                                                                                          | Update Frequency    |
@@ -228,9 +228,9 @@ The pupose of each directory is described in the following table:
 +------------------+------------------------------------------------------------------------------------------------------------------+---------------------+
 | ``host/system``  | General quasi-static information about the host (e.g. NUMA nodes) stored in ``HOST/TEMPLATE`` and ``HOST/SHARE`` | SYSTEM_HOST (600s)  |
 +------------------+------------------------------------------------------------------------------------------------------------------+---------------------+
-| ``vm/monitor``   | Monitor information (variable) (e.g. used cpu, network usage) stored in ``VM/MONITORING``                        | MONITOR_VM (90s)    |
+| ``vm/monitor``   | Monitor information (variable) (e.g. used cpu, network usage) stored in ``VM/MONITORING``                        | MONITOR_VM (30s)    |
 +------------------+------------------------------------------------------------------------------------------------------------------+---------------------+
-| ``vm/state``     | State change notification, only send when a change is detected                                                   | STATE_VM (5s)       |
+| ``vm/state``     | State change notification, only send when a change is detected                                                   | STATE_VM (30s)      |
 +------------------+------------------------------------------------------------------------------------------------------------------+---------------------+
 
 If you need to add custom metrics the procedure is:
