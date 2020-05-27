@@ -17,176 +17,8 @@ OpenNebula provision currently supports two different providers:
 
 For each of them, you can find an example template, ready to use, provided by OpenNebula. These templates are located in ``/usr/share/one/oneprovision/examples``:
 
-- **example_ec2.yaml**
-
-.. code::
-
-    ---
-
-    #############################################################
-    # WARNING: You need to replace ***** values with your
-    # own credentials for the particular provider. You need to
-    # uncomment and update list of hosts to deploy based
-    # on your requirements.
-    #############################################################
-
-    # Ansible playbook to configure hosts
-    playbook: "static_vxlan"
-
-    # Provision name to use in all resources
-    name: "EC2Cluster"
-
-    # Defaults sections with information related with Packet
-    defaults:
-    provision:
-        driver: "ec2"
-        instancetype: "i3.metal"
-        ec2_access: "***********************************"
-        ec2_secret: "***********************************"
-        region_name: "us-east-1"
-        cloud_init: true
-
-    # Hosts to be deployed in Packet and created in OpenNebula
-    hosts:
-    #  - reserved_cpu: "100"
-    #    im_mad: "kvm"
-    #    vm_mad: "kvm"
-    #    provision:
-    #      hostname: "centos-host"
-    #      ami: "ami-66a7871c"
-
-    #  - reserved_cpu: "100"
-    #    im_mad: "kvm"
-    #    vm_mad: "kvm"
-    #    provision:
-    #      hostname: "ubuntu-host"
-    #      ami: "ami-759bc50a" # (Ubuntu 16.04)
-
-    # Datastores to be created in OpenNebula
-    datastores:
-    - name: "<%= @name %>-image"
-        ds_mad: "fs"
-        tm_mad: "ssh"
-
-    - name: "<%= @name %>-system"
-        type: "system_ds"
-        tm_mad: "ssh"
-
-    # Network to be created in OpenNebula
-    networks:
-    - name: "<%= @name %>-private-host-only-nat"
-        vn_mad: "dummy"
-        bridge: "br0"
-        dns: "8.8.8.8 8.8.4.4"
-        gateway: "192.168.150.1"
-        description: "Host-only private network with NAT"
-        ar:
-        - ip: "192.168.150.2"
-            size: "253"
-            type: "IP4"
-
-    - name: "<%= @name %>-private"
-        vn_mad: "dummy"
-        bridge: "vxbr100"
-        mtu: "1450"
-        description: "Private networking"
-        ar:
-        - ip: "192.168.160.2"
-            size: "253"
-            type: "IP4"
-
-
-- **example_packet.yaml**
-
-.. code::
-
-    ---
-
-    #############################################################
-    # WARNING: You need to replace ***** values with your
-    # own credentials for the particular provider. You need to
-    # uncomment and update list of hosts to deploy based
-    # on your requirements.
-    #############################################################
-
-    # Ansible playbook to configure hosts
-    playbook: "static_vxlan"
-
-    # Provision name to use in all resources
-    name: "PacketCluster"
-
-    # Defaults sections with information related with Packet
-    defaults:
-    provision:
-        driver: "packet"
-        packet_token: "**************************"
-        packet_project: "************************"
-        facility: "ams1"
-        plan: "baremetal_0"
-        os: "centos_7"
-    configuration:
-        iptables_masquerade_enabled: false  # NAT breaks public networking
-
-    # Hosts to be deployed in Packet and created in OpenNebula
-    hosts:
-    #  - reserved_cpu: "100"
-    #    im_mad: "kvm"
-    #    vm_mad: "kvm"
-    #    provision:
-    #      hostname: "centos-host"
-    #      os: "centos_7"
-
-    #  - reserved_cpu: "100"
-    #    im_mad: "kvm"
-    #    vm_mad: "kvm"
-    #    provision:
-    #      hostname: "ubuntu-host"
-    #      os: "ubuntu_18_04"
-
-    # Datastores to be created in OpenNebula
-    datastores:
-    - name: "<%= @name %>-image"
-        ds_mad: "fs"
-        tm_mad: "ssh"
-
-    - name: "<%= @name %>-system"
-        type: "system_ds"
-        tm_mad: "ssh"
-
-    # Network to be created in OpenNebula
-    networks:
-    - name: "<%= @name %>-private-host-only"
-        vn_mad: "dummy"
-        bridge: "br0"
-        description: "Host-only private network"
-        gateway: "192.168.150.1"
-        ar:
-        - ip: "192.168.150.2"
-            size: "253"
-            type: "IP4"
-
-    - name: "<%= @name %>-private"
-        vn_mad: "dummy"
-        bridge: "vxbr100"
-        mtu: "1450"
-        description: "Private networking"
-        ar:
-        - ip: "192.168.160.2"
-            size: "253"
-            type: "IP4"
-
-    - name: "<%= @name %>-public"
-        vn_mad: "alias_sdnat"
-        external: "yes"
-        description: "Public networking"
-        ar:
-        - size: "4"  # select number of public IPs
-            type: "IP4"
-            ipam_mad: "packet"
-            packet_ip_type: "public_ipv4"
-            facility: "ams1"
-            packet_token: "********************************"
-            packet_project: "******************************"
+- example_ec2.yaml
+- example_packet.yaml
 
 In the following sections you are going to see what changes are needed to deploy these templates and a picture with the resulting infrastructure.
 
@@ -233,8 +65,8 @@ After doing this, we have our template ready to be deployed in AWS. You can vali
 
 .. prompt:: bash $ auto
 
-    $ oneprovision validate example_ec2.yaml && echo $?
-    0
+    $ oneprovision validate example_ec2.yaml && echo OK
+    OK
 
 Deploy
 ######
@@ -345,8 +177,8 @@ After doing this, we have our template ready to be deployed in Packet. You can v
 
 .. prompt:: bash $ auto
 
-    $ oneprovision validate example_packet.yaml && echo $?
-    0
+    $ oneprovision validate example_packet.yaml && echo OK
+    OK
 
 Deploy
 ######

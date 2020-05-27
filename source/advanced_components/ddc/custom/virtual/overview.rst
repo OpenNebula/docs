@@ -81,8 +81,8 @@ We are going to deploy a cluster with the following elements:
 
 .. prompt:: bash $ auto
 
-    $ oneprovision validate virtual.yaml && echo $?
-    0
+    $ oneprovision validate virtual.yaml && echo OK
+    OK
 
 Deployment
 ----------
