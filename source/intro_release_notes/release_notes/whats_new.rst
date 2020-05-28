@@ -164,3 +164,4 @@ Other Issues Solved
 - `Fixed error when creating bridge on a hypervisor <https://github.com/OpenNebula/one/issues/4794>`_.
 - `Fixed VM log tab if the VM is remote on a federated oned <https://github.com/OpenNebula/one/issues/3465>`_.
 - `Fixed vCenter attach/detach NIC in poweroff state to not leave VMs in running <https://github.com/OpenNebula/one/issues/4827>`_.
+- `Fixed Docker Machine driver breaking change <https://github.com/OpenNebula/one/issues/4734>`_.
