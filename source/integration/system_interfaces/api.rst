@@ -2240,6 +2240,9 @@ one.vmpool.monitoring
 |      |           | * **-1**: Resources belonging to the user and any of his groups |
 |      |           | * **>= 0**: UID User's Resources                                |
 +------+-----------+-----------------------------------------------------------------+
+| IN   | Int       | Number of records to be retrieved. If -1 every record is        |
+|      |           | retrieved                                                       |
++------+-----------+-----------------------------------------------------------------+
 | OUT  | Boolean   | true or false whenever is successful or not                     |
 +------+-----------+-----------------------------------------------------------------+
 | OUT  | String    | The information string / The error string.                      |
@@ -2619,6 +2622,9 @@ one.hostpool.monitoring
 | Type | Data Type |                 Description                 |
 +======+===========+=============================================+
 | IN   | String    | The session string.                         |
++------+-----------+---------------------------------------------+
+| IN   | Int       | Number of records to be retrieved. If -1    |
+|      |           | every record is retrieved.                  |
 +------+-----------+---------------------------------------------+
 | OUT  | Boolean   | true or false whenever is successful or not |
 +------+-----------+---------------------------------------------+
