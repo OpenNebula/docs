@@ -78,7 +78,7 @@ To deploy it you just need to use the command ``oneprovision create example_ec2.
     $ oneprovision create example_ec2.yaml
     ID: ea5a0e54-7b22-4535-9e70-de6bc197f228
 
-.. warning:: This will take a bit, because the hosts need to be configured by Ansible.
+.. warning:: This will take a bit, because hosts need to be allocated on AWS/Packet, configured to run hypervisor, and added into OpenNebula.
 
 Infrastructure Validation
 #########################
@@ -88,32 +88,36 @@ Once the deployment has finished, we can check that all the objects have been co
 .. prompt:: bash $ auto
 
     $ oneprovision host list
-  ID NAME                                                                                     CLUSTER         ALLOCATED_CPU      ALLOCATED_MEM PROVIDER STAT
-   5 54.167.216.3                                                                             EC2Cluster      0 / -100 (0%)                  - ec2      off
-   4 100.24.17.189                                                                            EC2Cluster      0 / -100 (0%)                  - ec2      off
+  ID NAME               CLUSTER         ALLOCATED_CPU      ALLOCATED_MEM PROVIDER STAT
+   5 54.167.216.3       EC2Cluster      0 / -100 (0%)                  - ec2      off
+   4 100.24.17.189      EC2Cluster      0 / -100 (0%)                  - ec2      off
 
     $ oneprovision datastore list
-  ID NAME                                                                                                 SIZE AVA CLUSTERS IMAGES TYPE DS      TM      STAT
- 111 EC2Cluster-system                                                                                      0M -   106           0 sys  -       ssh     on
- 110 EC2Cluster-image                                                                                      80G 97% 106           0 img  fs      ssh     on
+  ID NAME               SIZE AVA CLUSTERS IMAGES TYPE DS      TM      STAT
+ 111 EC2Cluster-system    0M -   106           0 sys  -       ssh     on
+ 110 EC2Cluster-image    80G 97% 106           0 img  fs      ssh     on
 
     $ oneprovision vnet list
-  ID USER     GROUP    NAME                                                                       CLUSTERS   BRIDGE                                   LEASES
-  15 oneadmin oneadmin EC2Cluster-private                                                         106        vxbr100                                       0
-  14 oneadmin oneadmin EC2Cluster-private-host-only-nat                                           106        br0                                           0
+  ID USER     GROUP    NAME                             CLUSTERS   BRIDGE   LEASES
+  15 oneadmin oneadmin EC2Cluster-private                    106  vxbr100        0
+  14 oneadmin oneadmin EC2Cluster-private-host-only-nat      106      br0        0
 
 We can now deploy virtual machines on those hosts. You just need to download and app from the marketplace, store it in the image datastore and instantiate it:
 
+- Export the image from the marketplace
+
 .. prompt:: bash $ auto
 
-    # Export the image from the marketplace
     $ onemarketapp export "Alpine Linux 3.11" "Alpine" -d 110
     IMAGE
         ID: 0
     VMTEMPLATE
         ID: 0
 
-    # Add the virtual networks to the template
+- Update the VM template to add the virtual networks
+
+.. prompt:: bash $ auto
+
     $ ontemplate update 0
     NIC = [
         NETWORK = "EC2Cluster-private",
@@ -126,10 +130,14 @@ We can now deploy virtual machines on those hosts. You just need to download and
     NIC_DEFAULT = [
         MODEL = "virtio" ]
 
+- Instantiate the VM template
+
+.. prompt:: bash $ auto
+
     # Instantiate it
     $ onetemplate instantiate 0 -m 2
 
-    # Check ping between them
+- Check ping between VMs
 
 .. image:: /images/ddc_aws_ping.png
     :align: center
@@ -200,33 +208,37 @@ Once the deployment has finished, we can check that all the objects have been co
 .. prompt:: bash $ auto
 
     $ oneprovision host list
-    ID NAME                                                                                     CLUSTER         ALLOCATED_CPU      ALLOCATED_MEM PROVIDER STAT
-    11 147.75.80.135                                                                            PacketClus       0 / 700 (0%)     0K / 7.8G (0%) packet   on
-    10 147.75.80.151                                                                            PacketClus       0 / 700 (0%)     0K / 7.8G (0%) packet   on
+    ID NAME             CLUSTER         ALLOCATED_CPU      ALLOCATED_MEM PROVIDER STAT
+    11 147.75.80.135    PacketClus       0 / 700 (0%)     0K / 7.8G (0%) packet   on
+    10 147.75.80.151    PacketClus       0 / 700 (0%)     0K / 7.8G (0%) packet   on
 
     $ oneprovision datastore list
-  ID NAME                                                                                                 SIZE AVA CLUSTERS IMAGES TYPE DS      TM      STAT
- 117 PacketCluster-system                                                                                   0M -   108           0 sys  -       ssh     on
- 116 PacketCluster-image                                                                                   80G 97% 108           0 img  fs      ssh     on
+  ID NAME                   SIZE AVA CLUSTERS IMAGES TYPE DS      TM      STAT
+ 117 PacketCluster-system     0M -   108           0 sys  -       ssh     on
+ 116 PacketCluster-image     80G 97% 108           0 img  fs      ssh     on
 
     $ oneprovision vnet list
-  ID USER     GROUP    NAME                                                                       CLUSTERS   BRIDGE                                   LEASES
-  22 oneadmin oneadmin PacketCluster-public                                                       108        onebr22                                       0
-  21 oneadmin oneadmin PacketCluster-private                                                      108        vxbr100                                       0
-  20 oneadmin oneadmin PacketCluster-private-host-only                                            108        br0                                           0
+  ID USER     GROUP    NAME                             CLUSTERS   BRIDGE   LEASES
+  22 oneadmin oneadmin PacketCluster-public             108        onebr22       0
+  21 oneadmin oneadmin PacketCluster-private            108        vxbr100       0
+  20 oneadmin oneadmin PacketCluster-private-host-only  108        br0           0
 
 We can now deploy virtual machines on those hosts. You just need to download and app from the marketplace, store it in the image datastore and instantiate it:
 
+- Export the image from the marketplace
+
 .. prompt:: bash $ auto
 
-    # Export the image from the marketplace
     $ onemarketapp export "Alpine Linux 3.11" "Alpine" -d 116
     IMAGE
         ID: 0
     VMTEMPLATE
         ID: 0
 
-    # Add the virtual networks to the template
+- Update the VM template to add the virtual networks
+
+.. prompt:: bash $ auto
+
     $ ontemplate update 0
     NIC = [
         NETWORK = "PacketCluster-private",
@@ -245,10 +257,16 @@ We can now deploy virtual machines on those hosts. You just need to download and
     NIC_DEFAULT = [
         MODEL = "virtio" ]
 
-    # Instantiate it
+- Instantiate the VM template
+
+.. prompt:: bash $ auto
+
     $ onetemplate instantiate 0 -m 2
 
-    # Check ssh over public
+- Check ssh over public
+
+.. prompt:: bash $ auto
+
     $ ssh root@147.75.81.25
     Warning: Permanently added '147.75.81.25' (ECDSA) to the list of known hosts.
     localhost:~# ip a
