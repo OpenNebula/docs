@@ -1,10 +1,10 @@
 .. _rancher_integration_overview:
 
-=========================================================
+================================================================================
 Rancher Integration
-=========================================================
+================================================================================
 
-**WIP**
+`Rancher <https://rancher.com/>`_ is a sofware stack to run and manage containers and `Kubernetes <https://kubernetes.io/>`_ clusters while providing other integrated tools to enhance DevOps workflows.
 
 .. _rancher_tutorial:
 
