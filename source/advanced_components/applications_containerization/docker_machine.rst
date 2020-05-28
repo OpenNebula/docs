@@ -27,9 +27,9 @@ This guide shows how to specify all the required command line  attributes to cre
 Step 1 - Install Docker Machine OpenNebula Driver
 --------------------------------------------------------------------------------
 
-In order to install the Docker Machine OpenNebula Driver you just need to install the package `docker-machine-opennebula` available `here <https://opennebula.org/software/>`__ in your desktop.
+In order to install the Docker Machine OpenNebula Driver you just need to download the OpenNebula software bundle available as an `archive <https://opennebula.io/use/>`_ (for your Linux distribution) and install the one package ``docker-machine-opennebula`` inside.
 
-In case you already have it installed in the OpenNebula frontend (or any other host) you instead can copy the `docker-machine-driver-opennebula` file from the /usr/share/docker_machine path of the frontend into any folder of your desktop that is included in your $PATH.
+Alternatively in the case that you already have it installed in the OpenNebula frontend (or any other host) you can instead copy the ``/usr/bin/docker-machine-driver-opennebula`` file directly from the the frontend into any directory on your desktop which is included in your ``$PATH``.
 
 
 Step 2 - Configure Client Machine to Access the OpenNebula Cloud
