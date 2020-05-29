@@ -67,7 +67,7 @@ In order to update the configuration files with your existing customizations you
 
 #. Compare the old and new configuration files: ``diff -ur /etc/one.YYYY-MM-DD /etc/one`` and ``diff -ur /var/lib/one/remotes/etc.YYYY-MM-DD /var/lib/one/remotes/etc``. You can use graphical diff-tools like ``meld`` to compare both directories, which are very useful in this step.
 #. Edit the **new** files and port all the customizations from the previous version.
-    * See changes in the :ref:`Monitoring <mon>`, update the MONITOR_ADDRESS in ``/etc/one/monitord.conf``
+    * See changes in the :ref:`Monitoring <mon>`, optionally update the MONITOR_ADDRESS in ``/etc/one/monitord.conf``
     * If you use HA configuration, the MONITOR_ADDRESS should be a floating address
 
 Step 7. Upgrade the Database version
