@@ -71,12 +71,16 @@ This set of attributes limit the bandwidth of each NIC attached to the Virtual N
 +----------------------+----------------------------------------------------------------------------+--------------------+
 | **INBOUND_PEAK_KB**  | Data that can be transmitted at peak speed in kilobytes.                   | All except vCenter |
 +----------------------+----------------------------------------------------------------------------+--------------------+
-| **OUTBOUND_AVG_BW**  | Average bitrate for the interface in kilobytes/second for outbound traffic | All                |
+| **OUTBOUND_AVG_BW**  | Average bitrate for the interface in kilobytes/second for outbound traffic | All except ovswitch|
 +----------------------+----------------------------------------------------------------------------+--------------------+
-| **OUTBOUND_PEAK_BW** | Maximum bitrate for the interface in kilobytes/second for outbound traffic | All                |
+| **OUTBOUND_PEAK_BW** | Maximum bitrate for the interface in kilobytes/second for outbound traffic | All except ovswitch|
 +----------------------+----------------------------------------------------------------------------+--------------------+
 | **OUTBOUND_PEAK_KB** | Data that can be transmitted at peak speed in kilobytes.                   | All except vCenter |
+|                      |                                                                            | and ovswitch       |
 +----------------------+----------------------------------------------------------------------------+--------------------+
+
+.. warning:: For Outbound QoS when using Open vSwitch, you can configure the `egress traffic shapping <https://docs.openvswitch.org/en/latest/faq/qos/>`__.
+
 
 The Address Range
 ================================================================================
