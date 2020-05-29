@@ -165,3 +165,5 @@ Other Issues Solved
 - `Fixed VM log tab if the VM is remote on a federated oned <https://github.com/OpenNebula/one/issues/3465>`_.
 - `Fixed vCenter attach/detach NIC in poweroff state to not leave VMs in running <https://github.com/OpenNebula/one/issues/4827>`_.
 - `Fixed Docker Machine driver breaking change <https://github.com/OpenNebula/one/issues/4734>`_.
+- `Add IP Leases, disk quotas and datastore quotas in Cloud view dashboard <https://github.com/OpenNebula/one/issues/1946>`_.
+- `Assign VMGroup when create a service <https://github.com/OpenNebula/one/issues/2992>`_.
