@@ -1,13 +1,15 @@
 .. _ddc:
 
-==========================
-Disaggregated Data Centers
-==========================
+========================
+Infrastructure Provision
+========================
 
 .. toctree::
    :maxdepth: 2
 
    Overview <overview>
    OneProvision Installation <install>
-   OneProvision Basic Usage <usage>
+   Default Infrastructure Provision <default>
+   Customized Infrastructure Provision <custom/index>
+   OneProvision Usage <usage>
    Provision and Configuration Reference <reference/index>

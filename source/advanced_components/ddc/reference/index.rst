@@ -7,9 +7,9 @@ Provision and Configuration Reference
 .. toctree::
    :maxdepth: 3
 
-   Provision <provision/index>
-   OpenNebula Virtual Objects <virtual/index>
-   Configuration <config/index>
+   Provision Template <provision/index>
+   Provision Drivers <provision/driver/index>
+   Automatic Configuration <config/index>
+   Provision Hooks <hooks/index>
    IPAM Drivers <ipam/index>
-   Hooks <hooks/index>
    Virtual Network Drivers <vnet/index>
