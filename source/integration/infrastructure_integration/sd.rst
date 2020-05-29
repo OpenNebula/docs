@@ -233,19 +233,17 @@ Action scripts needed when the TM is used for the system datastore:
    -  ``vm_id`` is the id of the VM
    -  ``ds_id`` is the target datastore (the system datastore)
 
--  **monitor**: monitors a **shared** system datastore. Non-shared system datastores are monitored through ``monitor_ds`` script.
+-  **monitor**: monitors a **shared** system datastore. Sends ``monitor VMs data`` to Monitor Daemon. Non-shared system datastores are monitored through ``monitor_ds`` script.
 
    -  **ARGUMENTS**: ``datastore_action_dump image_id``
    -  **RETURNS**: ``monitor data``
    -  ``datastore_image_dump`` is an XML dump of the driver action encoded in Base 64. See a decoded :ref:`example <sd_dump>`.
-   -  ``monitor data`` Including:
-
-      - The monitoring information of the datastore, namely “USED\_MB=...\\nTOTAL\_MB=...\\nFREE\_MB=...” which are respectively the used size of the datastore in MB, the total capacity of the datastore in MB and the available space in the datastore in MB.
-      - It also needs to return for each VM the size of each disk and any snapshot on those disks. In the form:
+   -  ``monitor data`` The monitoring information of the datastore, namely “USED\_MB=...\\nTOTAL\_MB=...\\nFREE\_MB=...” which are respectively the used size of the datastore in MB, the total capacity of the datastore in MB and the available space in the datastore in MB.
+   -  ``monitor VMs data`` For each VM the size of each disk and any snapshot on those disks. This data are send by UDP to Monitor Daemon. The MONITOR parameter is encoded in base64 format. Decoded example:
 
 .. code::
 
-  VM = [ ID = ${vm_id}, POLL = "\
+  VM = [ ID = ${vm_id}, MONITOR = "\
       DISK_SIZE=[ID=${disk_id},SIZE=${disk_size}]
       ...
       SNAPSHOT_SIZE=[ID=${snap},DISK_ID=${disk_id},SIZE=${snap_size}]

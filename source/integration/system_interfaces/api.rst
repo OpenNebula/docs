@@ -2008,12 +2008,12 @@ For example:
     <MONITORING_DATA>
         <VM>
             ...
-            <LAST_POLL>123</LAST_POLL>
+            <TIMESTAMP>123</TIMESTAMP>
             ...
         </VM>
         <VM>
             ...
-            <LAST_POLL>456</LAST_POLL>
+            <TIMESTAMP>456</TIMESTAMP>
             ...
         </VM>
     </MONITORING_DATA>
@@ -2259,22 +2259,22 @@ Sample output:
     <MONITORING_DATA>
         <VM>
             <ID>0</ID>
-            <LAST_POLL>123</LAST_POLL>
+            <TIMESTAMP>123</TIMESTAMP>
             ...
         </VM>
         <VM>
             <ID>0</ID>
-            <LAST_POLL>456</LAST_POLL>
+            <TIMESTAMP>456</TIMESTAMP>
             ...
         </VM>
         <VM>
             <ID>3</ID>
-            <LAST_POLL>123</LAST_POLL>
+            <TIMESTAMP>123</TIMESTAMP>
             ...
         </VM>
         <VM>
             <ID>3</ID>
-            <LAST_POLL>456</LAST_POLL>
+            <TIMESTAMP>456</TIMESTAMP>
             ...
         </VM>
     </MONITORING_DATA>
