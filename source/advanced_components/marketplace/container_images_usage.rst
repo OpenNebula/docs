@@ -4,7 +4,7 @@
 Container Image Usage
 ====================================================
 
-The images from the  OpenNebula container marketplaces (:ref:`Docker Hub <market_dh>`, :ref:`Turnkey Linux <market_turnkey_linux>`, and :ref:`Linux Containers <market_linux_container>`) are just filesystem images (e.g ext4 files). When using with LXD those images are enough for deploying a container, but in order to use any of these images to deploy a Firecracker MicroVM or a KVM VM an uncompressed linux kernel is required.
+The images from the OpenNebula container marketplaces (:ref:`Docker Hub <market_dh>`, :ref:`Turnkey Linux <market_turnkey_linux>`, and :ref:`Linux Containers <market_linux_container>`) are just filesystem images. When used together with LXD those images are enough for deploying a container, but in order to use any of these images to deploy a Firecracker MicroVM or a KVM VM an uncompressed linux kernel is required.
 
 .. note:: More info on Kernel images can be found :ref:`here <file_ds>`.
 
@@ -33,4 +33,4 @@ The kernel images can be either directly build by using the kernel configuration
 
 - `Firecracker recommended kernel <https://marketplace.opennebula.io/appliance/289ed567-a8b1-4111-aa74-d3b4393f336a>`__
 
-.. note:: The provides kernel images and configuration files have a basic configuration, custom kernel can be build to satisfy different use cases, as long as they fulfill the requirements specified above for the corresponding hypervisor.
+.. note:: The provided kernel images and configuration files have a basic configuration, custom kernel can be built to satisfy different use cases, as long as they fulfill the requirements specified above for the corresponding hypervisor.
