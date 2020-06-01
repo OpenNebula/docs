@@ -79,7 +79,7 @@ This set of attributes limit the bandwidth of each NIC attached to the Virtual N
 |                      |                                                                            | and ovswitch       |
 +----------------------+----------------------------------------------------------------------------+--------------------+
 
-.. warning:: For Outbound QoS when using Open vSwitch, you can configure the `egress traffic shapping <https://docs.openvswitch.org/en/latest/faq/qos/>`__.
+.. warning:: For Outbound QoS when using Open vSwitch, you can leverage the `Open vSwitch QoS <https://docs.openvswitch.org/en/latest/faq/qos/>`__ capabilities.
 
 
 The Address Range
