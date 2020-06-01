@@ -18,7 +18,7 @@ Probes are structured in information categories for host and virtual machine inf
 
 |image0|
 
-If information stop being received from a specific Host, OpenNebula will detect it (missing heartbeats) and will pro-actively restart the probe connecting through ``ssh``.
+If information stops being received from a specific Host, OpenNebula will detect it (missing heartbeats) and will pro-actively restart the probe connecting through ``ssh``.
 
 Requirements
 ============
@@ -115,7 +115,7 @@ Additionally you need to enable the drivers that ``onemonitord`` will use to int
 
 You can configure the probes to encrypt the monitor messages sent to the front-end. This may help to secure your environment when some of the hypervisors are in cloud/edge locations. Follow the next steps to configure encryption:
 
-1. Generate a dedicated public and private keys for the monitor system. And place them in a safe place, we'll use ``/etc/one``. Do not use any passphrase to encrypt the private key.
+1. Generate dedicated public and private keys for the monitor system. And place them in a safe place, we'll use ``/etc/one``. Do not use any passphrase to encrypt the private key.
 
 .. code::
 
@@ -154,19 +154,19 @@ You can configure the probes to encrypt the monitor messages sent to the front-e
 (Optional) Configuring monitoring in HA
 ------------------------------------------
 
-If you are running OpenNebula in a HA cluster, it is recommended to use a virtual IP for the ``MONITOR_ADDRESS`` attribute. This way the RAFT hook will move the monitor address and the probes does not be restarted. Simply adjust the RAFT hook configuration to include the monitor IP, see more details on :ref:`HA Setup guide (Raft Hooks) <oneha>`
+If you are running OpenNebula in an HA cluster, it is recommended to use a virtual IP for the ``MONITOR_ADDRESS`` attribute. This way the RAFT hook will move the monitor address and the probes do not need to be restarted. Simply adjust the RAFT hook configuration to include the monitor IP, see more details on :ref:`HA Setup guide (Raft Hooks) <oneha>`
 
 (Optional) Adjust Monitoring Interval Times
 -------------------------------------------
 
-For medium size clouds the default values should perform well. For lager environments you may need to tune your OpenNebula installation with appropriate values of the monitoring parameters and monitoring intervals in ``PROBES_PERIOD`` section. The final values should consider the number of hosts and vms that in turns will determine the processing requirements for OpenNebula. Also, you may need to increase the number of threads (``THREADS``) in ``oned.conf`` and drivers in ``monitord.conf``.
+For medium size clouds the default values should perform well. For larger environments you may need to tune your OpenNebula installation with appropriate values of the monitoring parameters and monitoring intervals in the ``PROBES_PERIOD`` section. The final values should consider the number of hosts and VMs that, in turn, will determine the processing requirements for OpenNebula. Also, you may need to increase the number of threads (``THREADS``) in ``oned.conf`` and drivers in ``monitord.conf``.
 
 If the system is not working healthily it could be due to the database throughput. If the number of virtual machines and hosts is too large and the monitoring periods too low, OpenNebula will not be able to write that amount of data to the database.
 
 Extending the Monitor System
 ============================
 
-The monitor system can be easily customize to include additional monitor metrics. These new metrics can be used to implement custom scheduling policies or gather data of interest for the hosts or VMs. Metrics are gather by probes, simple programs that output the metric value to standard output using OpenNebula Template syntax. For example, in a KVM hypervisor the system usage probe outputs:
+The monitor system can be easily customized to include additional monitor metrics. These new metrics can be used to implement custom scheduling policies or gather data of interest for the hosts or VMs. Metrics are gathered by probes, simple programs that output the metric value to standard output using OpenNebula Template syntax. For example, in a KVM hypervisor the system usage probe outputs:
 
 .. code::
 
@@ -192,7 +192,7 @@ or the NUMA configuration probe:
     CORE = [ NODE_ID = "0", ID = "0", CPUS = "0,4" ]
     MEMORY_NODE = [ NODE_ID = "0", TOTAL = "7978172", DISTANCE = "0" ]
 
-Probes are structured in different directories that determine the frequency they are executed and data sent back to the frontend. The layout in the filesystem is:
+Probes are structured in different directories that determine the frequency in which they are executed, as well as the data sent back to the frontend. The layout in the filesystem is:
 
 .. code::
 
@@ -233,9 +233,9 @@ The purpose of each directory is described in the following table:
 | ``vm/state``     | State change notification, only send when a change is detected                                                   | STATE_VM (30s)      |
 +------------------+------------------------------------------------------------------------------------------------------------------+---------------------+
 
-If you need to add custom metrics the procedure is:
+If you need to add custom metrics, the procedure is:
 
-1. Develop a program that gathers the metric and output it in stdout
+1. Develop a program that gathers the metric and output it to stdout
 2. Place the program in the target directory, depending on the nature and object it should be one of ``host/monitor``, ``host/system`` or ``vm/monitor``. You should not modify probes in the other directories.
 3. Increment the VERSION number in ``/var/lib/one/remotes/VERSION``
 4. Distribute changes to the hosts by running ``onehost sync``.
@@ -250,7 +250,7 @@ Troubleshooting
 Healthy Monitoring System
 -------------------------
 
-Default location for monitoring log file is ``/var/log/one/monitor.log``.  Every (approximately) configured monitor period OpenNebula is receiving the monitoring data of every Virtual Machine and of a host like such:
+Default location for monitoring log file is ``/var/log/one/monitor.log``.  Every (approximately) configured monitor period OpenNebula is receiving the monitoring data of every Virtual Machine and of a host as follows:
 
 .. code::
 
@@ -268,7 +268,7 @@ However, if in ``monitor.log`` a host is being monitored **actively** periodical
     Sun Mar 15 22:35:10 2020 [Z0][HMM][D]: Monitoring host localhost(0)
     Sun Mar 15 22:35:19 2020 [Z0][HMM][D]: Start monitor success, host: 0
 
-If this is the case it's probably because Monitor Daemon doesn't receive any data from probes, could be caused by wrong UDP settings. You should not see restarting of monitor process
+If this is the case it's probably because the Monitor Daemon doesn't receive any data from probes, and could be caused by wrong UDP settings. You should not see restarting of monitor process
 
 Monitoring Probes
 -----------------
