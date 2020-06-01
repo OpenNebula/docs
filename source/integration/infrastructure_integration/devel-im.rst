@@ -4,7 +4,7 @@
 Monitoring Driver
 ================================================================================
 
-The Monitoring Drivers (or IM drivers) collect host and virtual machine monitoring data by executing a monitoring agent in the hosts. The agent periodically executes probes to collect data and periodically sent them to the frontend.
+The Monitoring Drivers (or IM drivers) collect host and virtual machine monitoring data by executing a monitoring agent in the hosts. The agent periodically executes probes to collect data and periodically send them to the frontend.
 
 This guide describes the internals of the monitoring system. It is also a starting point on how to create a new IM driver from scratch.
 
@@ -33,18 +33,18 @@ Descriptionof message types:
 
 - **SYSTEM_HOST** - General information about the host, which doesn't change too often (e.g. total memory, disk cpacity, datastores, pci devices, NUMA nodes, ...)
 - **MONITOR_HOST** - Monitoring information: used memory, used cpu, network traffic, ...
-- **BEACON_HOST** - notification message, that the agent is still alive
-- **MONITOR_VM** - VMs monitoring information: used memory, used cpus, disk io, ...
+- **BEACON_HOST** - notification message, indicating that the agent is still alive
+- **MONITOR_VM** - VMs monitoring information: used memory, used CPUs, disk io, ...
 - **STATE_VM** - VMs state: running, poweroff, ...
 
-The provided hypervisors compose each message from data provided by probes in specific directory:
+The provided hypervisors compose each message from data provided by probes in a specific directory:
 - SYSTEM_HOST - im/<hypervisor>-probes.d/host/system
 - MONITOR_HOST - im/<hypervisor>-probes.d/host/monitor
 - BEACON_HOST - im/<hypervisor>-probes.d/host/beacon
 - MONITOR_VM - im/<hypervisor>-probes.d/vm/monitor
 - STATE_VM - im/<hypervisor>-probes.d/vm/status
 
-An IM probes are composed of one or several scripts that write to ``stdout`` information in this form:
+Each IM probe is composed of one or several scripts that write to ``stdout`` information in this form:
 
 .. code::
 
@@ -176,7 +176,7 @@ The format of the STATE_VM message is:
 System Datastore Information
 ================================================================================
 
-Monitoring probes are also responsible to collect the datastore sizes and its available space. The datastores infomation is included in SYSTEM_HOST message.
+Monitoring probes are also responsible to collect the datastore sizes and its available space. The datastores information is included in SYSTEM_HOST message.
 
 .. code::
 
@@ -222,7 +222,7 @@ These are the meanings of the values:
 | FREE\_MB                  | Free space in megabytes for that datastore                           |
 +---------------------------+----------------------------------------------------------------------+
 
-The DATASTORE LOCATION is the path where the datastores are mounted. By default is ``/var/lib/one/datastores`` but it is specified in the second parameter of the script call.
+The DATASTORE LOCATION is the path where the datastores are mounted. By default, it is ``/var/lib/one/datastores`` but it is specified in the second parameter of the script call.
 
 Creating a New IM Driver
 ================================================================================
@@ -235,9 +235,9 @@ OpenNebula provides two IM probe execution engines: ``one_im_sh`` and ``one_im_s
 Populating the Probes
 --------------------------------------------------------------------------------
 
-Both ``one_im_sh`` and ``one_im_ssh`` require an argument which indicates the directory that contains the probes. This argument is appended with ”.d”. Also you need to create:
+Both ``one_im_sh`` and ``one_im_ssh`` require an argument which indicates the directory that contains the probes. This argument is appended with ”.d”. Also, you need to create:
 
--  The ``/var/lib/one/remotes/im/<im_name>.d`` directory with **only** 2 files, the sames that are provided by default inside ``kvm.d``, which are: ``collectd-client_control.sh`` and ``collectd-client.rb``.
+-  The ``/var/lib/one/remotes/im/<im_name>.d`` directory with **only** 2 files, the same ones that are provided by default inside ``kvm.d``, which are: ``collectd-client_control.sh`` and ``collectd-client.rb``.
 -  The probes should be actually placed in the ``/var/lib/one/remotes/im/<im_name>-probes.d`` folder.
 
 Enabling the Driver
