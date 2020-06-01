@@ -63,27 +63,33 @@ Backends
 
 MarketPlaces store the actual MarketPlaceApp images. How they do so depends on the backend driver. Currently these drivers are shipped with OpenNebula:
 
-+---------------------------+--------+--------------------------------------------------------------------+
-| Driver                    | Upload | Description                                                        |
-+===========================+========+====================================================================+
-| :ref:`one <market_one>`   | No     | This driver allows read access to the official public `OpenNebula  |
-|                           |        | Systems Marketplace <http://marketplace.opennebula.systems>`__, as |
-|                           |        | well as to the `OpenNebula AppMarket Add-on                        |
-|                           |        | <https://github.com/OpenNebula/addon-appmarket>`__.                |
-+---------------------------+--------+--------------------------------------------------------------------+
-| :ref:`http <market_http>` | Yes    | When an image is uploaded to a MarketPlace of this kind, the image |
-|                           |        | is written into a file in a specified folder, which is in turn     |
-|                           |        | available via a web-server.                                        |
-+---------------------------+--------+--------------------------------------------------------------------+
-| :ref:`S3 <market_s3>`     | Yes    | Images are stored to an S3 API-capable service. This means they can|
-|                           |        | be stored in the official `AWS S3 service                          |
-|                           |        | <https://aws.amazon.com/s3/>`__ , or in services that implement    |
-|                           |        | that API like `Ceph Object Gateway S3                              |
-|                           |        | <http://docs.ceph.com/docs/master/radosgw/s3/>`__                  |
-+---------------------------+--------+--------------------------------------------------------------------+
-| :ref:`LXD <market_lxd>`   | No     | Enables creating base images from `the public LXD image repository |
-|                           |        | <https://images.linuxcontainers.org>`_                             |
-+---------------------------+--------+--------------------------------------------------------------------+
++---------------------------------------------+--------+--------------------------------------------------------------------+
+| Driver                                      | Upload | Description                                                        |
++=============================================+========+====================================================================+
+| :ref:`one <market_one>`                     | No     | This driver allows read access to the official public `OpenNebula  |
+|                                             |        | Systems Marketplace <http://marketplace.opennebula.systems>`__, as |
+|                                             |        | well as to the `OpenNebula AppMarket Add-on                        |
+|                                             |        | <https://github.com/OpenNebula/addon-appmarket>`__.                |
++---------------------------------------------+--------+--------------------------------------------------------------------+
+| :ref:`http <market_http>`                   | Yes    | When an image is uploaded to a MarketPlace of this kind, the image |
+|                                             |        | is written into a file in a specified folder, which is in turn     |
+|                                             |        | available via a web-server.                                        |
++---------------------------------------------+--------+--------------------------------------------------------------------+
+| :ref:`S3 <market_s3>`                       | Yes    | Images are stored to an S3 API-capable service. This means they can|
+|                                             |        | be stored in the official `AWS S3 service                          |
+|                                             |        | <https://aws.amazon.com/s3/>`__ , or in services that implement    |
+|                                             |        | that API like `Ceph Object Gateway S3                              |
+|                                             |        | <http://docs.ceph.com/docs/master/radosgw/s3/>`__                  |
++---------------------------------------------+--------+--------------------------------------------------------------------+
+| :ref:`LXD <market_linux_container>`         | No     | Enables creating base images from `the public LXD image repository |
+|                                             |        | <https://images.linuxcontainers.org>`_                             |
++---------------------------------------------+--------+--------------------------------------------------------------------+
+| :ref:`Turnkey Linux <market_turnkey_linux>` | No     | Enables creating base images from `the Turnkey Linux image         |
+|                                             |        | repository <https://images.linuxcontainers.org>`_                  |
++---------------------------------------------+--------+--------------------------------------------------------------------+
+| :ref:`Docker Hub <market_dh>`               | No     | Enables creating base images from `the Docker Hub image repository |
+|                                             |        | <https://images.linuxcontainers.org>`_                             |
++---------------------------------------------+--------+--------------------------------------------------------------------+
 
 OpenNebula ships with the OpenNebula Systems MarketPlace pre-registered, so users can access it directly.
 

@@ -235,7 +235,7 @@ Every regular LXD setup comes by default with a public image server read access 
     | ubuntu-daily    | https://cloud-images.ubuntu.com/daily    | simplestreams |           | YES    | YES    |
     +-----------------+------------------------------------------+---------------+-----------+--------+--------+
 
-OpenNebula can leverage the existing **images** server by using it as a backend for a :ref:`Marketplace <market_lxd>`.. 
+OpenNebula can leverage the existing **images** server by using it as a backend for a :ref:`Marketplace <market_linux_container>`.. 
 
 Use a KVM disk image
 ~~~~~~~~~~~~~~~~~~~~
