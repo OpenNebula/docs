@@ -9,6 +9,7 @@ Release Notes 5.11.85
 
    What's New <whats_new>
    Platform Notes <platform_notes>
+   Secondary Platforms <secondary>
    Compatibility Guide <compatibility>
    Known Issues <known_issues>
    Acknowledgements <acknowledgements>

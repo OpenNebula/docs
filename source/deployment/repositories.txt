@@ -1,5 +1,5 @@
-CentOS/RHEL
------------
+CentOS/RHEL/Fedora
+------------------
 
 To add OpenNebula repository execute the following as root:
 
@@ -31,6 +31,21 @@ To add OpenNebula repository execute the following as root:
     repo_gpgcheck=1
     EOT
 
+**Fedora 32**
+
+.. important:: This is a :ref:`Secondary Platform <secondary>` not recommended for production evironments!
+
+.. prompt:: bash # auto
+
+    # cat << "EOT" > /etc/yum.repos.d/opennebula.repo
+    [opennebula]
+    name=opennebula
+    baseurl=https://downloads.opennebula.org/repo/5.11/Fedora/32/$basearch
+    enabled=1
+    gpgkey=https://downloads.opennebula.org/repo/repo.key
+    gpgcheck=1
+    repo_gpgcheck=1
+    EOT
 
 Debian/Ubuntu
 -------------
