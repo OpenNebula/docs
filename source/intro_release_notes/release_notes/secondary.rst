@@ -4,7 +4,7 @@
 Secondary Platforms
 ================================================================================
 
-**Secondary Platforms** are an experimental OpenNebula builds for bleeding edge operating systems and software versions, a completely new platforms which haven't gained mature support in the OpenNebula yet, or for non-mainstream CPU architectures. Continuity of support is not guaranteed. Builds for the **Secondary Platforms** are provided with only limited testing coverage and without any commercial support options.
+**Secondary Platforms** are experimental OpenNebula builds for bleeding edge operating systems and software versions, a completely new platforms which haven't gained mature support in the OpenNebula yet, or for non-mainstream CPU architectures. Continuity of support is not guaranteed. Builds for the **Secondary Platforms** are provided with only limited testing coverage and without any commercial support options.
 
 .. important:: **Secondary Platforms** are not recommended for production environments!
 
