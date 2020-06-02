@@ -13,11 +13,6 @@ Accounting and Showback
 
 A bug that might lead to innacurate hours in accounting and showback have been fixed. You can check all the information `here <https://github.com/OpenNebula/one/issues/1662>`_. But, old VMs won't be updated, so the bug might be still on those VMs.
 
-vCenter Driver
-==========================
-
-The vCenter driver is not fully adapted yet to the new monitoring system. Functionality is working as expected, however there is a greater memory consumption that we are working to mitigate.
-
 OneFlow
 =======
 
