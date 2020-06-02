@@ -8,6 +8,8 @@ The images from the OpenNebula container marketplaces (:ref:`Docker Hub <market_
 
 .. note:: More info on Kernel images can be found :ref:`here <file_ds>`.
 
+.. important:: Container images are not supported for vCenter hypervisor.
+
 Using Container Images with Firecracker
 ====================================================
 
