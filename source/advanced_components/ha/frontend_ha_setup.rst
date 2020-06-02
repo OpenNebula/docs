@@ -370,9 +370,9 @@ Compatibility with the earlier HA
 
 In OpenNebula <= 5.2, HA was configured using a classical active-passive approach, using Pacemaker and Corosync. While this still works for OpenNebula > 5.2, it is not the recommended way to set up a cluster. However, it is fine if you want to continue using that HA method when coming from earlier versions.
 
-This is documented here: `Front-end HA Setup <http://docs.opennebula.org/5.2/advanced_components/ha/frontend_ha_setup.html>`_.
+This is documented here: `Front-end HA Setup <http://docs.opennebula.io/5.2/advanced_components/ha/frontend_ha_setup.html>`_.
 
-Syncrhonize configuration files accross servers
+Synchronize configuration files across servers
 ================================================================================
 
 You can use the command ``onezone serversync``. This command is designed to help administrators to sync OpenNebula's configurations across

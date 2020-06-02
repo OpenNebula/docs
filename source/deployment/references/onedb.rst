@@ -48,7 +48,7 @@ If onedb fsck shows the following error message:
 
     [UNREPAIRED] History record for VM <<vid>> seq # <<seq>> is not closed (etime = 0)
 
-This is due to the fixed `bug #4000 <http://dev.opennebula.org/issues/4000>`_. It means that when using accounting or showback, the etime (end-time) of that history record was not set, and the VM was considered as still running when it should not have been. To fix this problem, you could locate the time when the VM was shut down in the logs and then execute this patch to edit the times manually:
+It means that when using accounting or showback, the etime (end-time) of that history record was not set, and the VM was considered as still running when it should not have been. To fix this problem, you could locate the time when the VM was shut down in the logs and then execute this patch to edit the times manually:
 
 .. prompt:: text $ auto
 
@@ -245,4 +245,3 @@ Delete the cache attribute for all disks in poweroff:
 .. warning::
 
     This action is done while OpenNebula is running. Make a backup of the database before executing.
-

@@ -91,4 +91,4 @@ In order to be able to search for VMs by different attributes, OpenNebula's data
 VMs in DONE state
 ----------------------
 
-When a VM is terminated, OpenNebula changes its state to DONE but it keeps the VM in the database in case the VM information is required in the future (e.g. to generate accounting reports). In order to reduce the size of the VM table, it is recommended to periodically delete the VMs in the DONE state when not needed. For this task the `onedb purge-done <http://docs.opennebula.org/5.8/deployment/references/onedb.html#onedb-purge-done>`__ tool is available.
+When a VM is terminated, OpenNebula changes its state to DONE but it keeps the VM in the database in case the VM information is required in the future (e.g. to generate accounting reports). In order to reduce the size of the VM table, it is recommended to periodically delete the VMs in the DONE state when not needed. For this task the :ref:`onedb purge-done <cli>` tool is available.

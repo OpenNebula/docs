@@ -170,7 +170,7 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 - :ref:`Broad support for commodity and enterprise-grade hypervisor, monitoring, storage, networking and user management services <uspng>`
 
-- `Packages for major Linux distributions <http://opennebula.org/software/>`__
+- `Packages for major Linux distributions <http://opennebula.io/use/>`__
 
 
 **CUSTOMIZATION AND INTEGRATION**
@@ -214,7 +214,7 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 **QUALITY ASSURANCE**
 
-- `Internal quality assurance process for functionality, scalability, performance, robustness and stability <http://opennebula.org/software/testing/>`__
+- `Internal quality assurance process for functionality, scalability, performance, robustness and stability <https://github.com/OpenNebula/one/wiki/Quality-Assurance>`__
 
 - `Technology matured through an active and engaged large community <http://opennebula.org/community/>`__
 

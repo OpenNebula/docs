@@ -109,7 +109,7 @@ Parameter                              Value                                    
 ``bridged_networking_static_ip``       192.168.150.1                              IP address of the bridge
 ``bridged_networking_static_netmask``  255.255.255.0                              Netmask of the bridge
 ``opennebula_repository_version``      5.10                                       OpenNebula repository version
-``opennebula_repository_base``         ``https://downloads.opennebula.org/repo/`` Repository of the OpenNebula packages
+``opennebula_repository_base``         ``https://downloads.opennebula.io/repo/``  Repository of the OpenNebula packages
                                        ``{{ opennebula_repository_version }}``
 =====================================  ========================================== ===========
 

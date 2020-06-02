@@ -138,9 +138,7 @@ Advanced Configuration
 Enabling Keypairs
 --------------------------------------------------------------------------------
 
-.. Fixme: Should the reference be updated?
-
-In order to benefit from the Keypair functionality, the images that will be used by the econe users must be prepared to read the EC2\_PUBLIC\_KEY and EC2\_USER\_DATA from the CONTEXT disk. This can be achieved easily with the new `contextualization packages <http://opennebula.org/documentation:rel3.8:cong#contextualization_packages_for_vm_images>`__, generating a new custom contextualization package like this one:
+In order to benefit from the Keypair functionality, the images that will be used by the econe users must be prepared to read the EC2\_PUBLIC\_KEY and EC2\_USER\_DATA from the CONTEXT disk. This can be achieved using a START SCRIPT:
 
 .. prompt:: text $ auto
 
@@ -201,10 +199,6 @@ These scripts are language agnostic and their path has to be specified in the ec
 The associate script will receive three arguments: **elastic\_ip** to be associated; **private\_ip** of the instance; **Virtual Network template**, base64-encoded.
 
 The disassociate script will receive similar arguments: **elastic\_ip** to be disassociated, **private_ip**, and **Virtual Network template**.
-
-.. Fixme: Where is this now?
-
-Scripts to interact with OpenFlow can be found in an `ecosystem project <http://www.opennebula.org/software:ecosystem:onenox>`__
 
 Using a Specific Group for EC2
 --------------------------------------------------------------------------------

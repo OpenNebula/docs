@@ -114,7 +114,7 @@ Configures the OpenNebula package repository for the particular version.
 Parameter                               Default                                    Description
 ======================================= ========================================== ===========
 ``opennebula_repository_version``       5.10                                        OpenNebula repository version
-``opennebula_repository_base``          ``https://downloads.opennebula.org/repo/`` Repository of the OpenNebula packages
+``opennebula_repository_base``          ``https://downloads.opennebula.io/repo/``  Repository of the OpenNebula packages
                                         ``{{ opennebula_repository_version }}``
 ``opennebula_repository_gpgcheck``      yes                                        Enable GPG check for the packages
 ``opennebula_repository_repo_gpgcheck`` yes                                        Enable GPG check for the repos (RHEL/CentOS only)
