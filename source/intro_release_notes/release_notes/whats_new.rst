@@ -167,3 +167,4 @@ Other Issues Solved
 - `Fixed Docker Machine driver breaking change <https://github.com/OpenNebula/one/issues/4734>`_.
 - `Add IP Leases, disk quotas and datastore quotas in Cloud view dashboard <https://github.com/OpenNebula/one/issues/1946>`_.
 - `Assign VMGroup when create a service <https://github.com/OpenNebula/one/issues/2992>`_.
+- `Fixed incorrect assignation of network type when import NSX-V networks <https://github.com/OpenNebula/one/issues/4004>`_.
