@@ -6,8 +6,6 @@ Building from Source Code
 
 This page will show you how to compile and install OpenNebula from the sources.
 
-If you want to install it from your package manager, visit the `software menu <http://opennebula.org/software:software>`_ to find out if OpenNebula is included in your official distribution package repositories.
-
 .. warning:: Do not forget to check the :ref:`Building Dependencies <build_deps>` for a list of specific software requirements to build OpenNebula.
 
 Compiling the Software
@@ -348,6 +346,3 @@ Check it worked
     NETWORK USAGE & QUOTAS
 
     IMAGE USAGE & QUOTAS
-
-
-

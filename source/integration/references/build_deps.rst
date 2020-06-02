@@ -6,8 +6,6 @@ Build Dependencies
 
 This page lists the **build** dependencies for OpenNebula.
 
-If you want to install it from your package manager, visit the `software menu <http://opennebula.org/software:software>`__ to find out if OpenNebula is included in your official distribution package repositories.
-
 * **g++** compiler (>= 4.0)
 * **xmlrpc-c** development libraries (>= 1.06)
 * **scons** build tool (>= 0.98)

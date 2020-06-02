@@ -219,14 +219,14 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 - `Internal quality assurance process for functionality, scalability, performance, robustness and stability <https://github.com/OpenNebula/one/wiki/Quality-Assurance>`__
 
-- `Technology matured through an active and engaged large community <http://opennebula.org/community/>`__
+- `Technology matured through an active and engaged large community <http://opennebula.io/community-champions>`__
 
 - Scalability, reliability and performance tested on many massive scalable production deployments consisting of hundreds of thousands of cores and VMs
 
 
 **PRODUCT SUPPORT**
 
-- `Best-effort community support <http://forum.opennebula.org>`__
+- `Best-effort community support <http://forum.opennebula.io>`__
 
 - `SLA-based commercial support directly from the developers <http://opennebula.pro>`__
 

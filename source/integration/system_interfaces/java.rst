@@ -9,7 +9,7 @@ This page contains the OpenNebula Cloud API Specification for Java. It has been 
 Download
 ================================================================================
 
-You can download the ``.jar`` file compiled using Java 1.8, the required libraries, and the javadoc packaged in a tar.gz file `following this link <http://downloads.opennebula.org/packages>`__ in the OpenNebula version you have installed.
+You can download the ``.jar`` file compiled using Java 1.8, the required libraries, and the javadoc packaged in a tar.gz file `following this link <http://downloads.opennebula.io/packages>`__ in the OpenNebula version you have installed.
 
 You can also consult the `javadoc online </doc/5.11/oca/java/>`__.
 
@@ -171,7 +171,7 @@ For more complete examples, please check the ``src/oca/java/share/examples`` dir
 Compilation
 ================================================================================
 
-To compile the Java OCA, untar the `OpenNebula source <http://downloads.opennebula.org>`__, ``cd`` to the java directory and use the build script:
+To compile the Java OCA, untar the `OpenNebula source <http://downloads.opennebula.io>`__, ``cd`` to the java directory and use the build script:
 
 .. prompt:: text $ auto
 
@@ -189,4 +189,3 @@ You might want to copy the .jar files to a more convenient directory. You could 
 
     $ sudo mkdir /usr/lib/one/java/
     $ sudo cp jar/* lib/* /usr/lib/one/java/
-
