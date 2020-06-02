@@ -11,4 +11,4 @@ This page will be updated with relevant information about bugs affecting OpenNeb
 Accounting and Showback
 =======================
 
-A bug that might lead to innacurate hours in accounting and showback have been fixed. You can check all the information `here <https://github.com/OpenNebula/one/issues/1662>`_. But, old VMs won't be updated, so the bug might be still on those VMs.
+A bug that might lead to innacurate hours in accounting and showback has been fixed. You can check all the information `here <https://github.com/OpenNebula/one/issues/1662>`_. But, old VMs won't be updated, so the bug might still be on those VMs.
