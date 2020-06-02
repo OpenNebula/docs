@@ -12,8 +12,3 @@ Accounting and Showback
 =======================
 
 A bug that might lead to innacurate hours in accounting and showback have been fixed. You can check all the information `here <https://github.com/OpenNebula/one/issues/1662>`_. But, old VMs won't be updated, so the bug might be still on those VMs.
-
-DockerHub Images
-==========================
-
-DockerHub images are currently only fully tested for Firecracker MicroVMs, it could fail for LXD containers. KVM Virtual Machines are not supported yet, we are working on it for the final release.
