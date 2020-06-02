@@ -22,8 +22,3 @@ OneFlow
 =======
 
 Services using ``ready_status_gate: true``, will be in running state although ``READY=YES`` is not in the VM template.
-
-DockerHub Images
-==========================
-
-DockerHub images are currently only fully tested for Firecracker MicroVMs, it could fail for LXD containers. KVM Virtual Machines are not supported yet, we are working on it for the final release.
