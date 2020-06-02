@@ -225,7 +225,7 @@ OpenNebula has been validated and is supported on VMware Cloud on AWS. Customers
 Certified Infrastructure Scale
 ================================================================================
 
-A single instance of OpenNebula (ie, a single ``oned`` process) has been stress tested to cope with 500 hypervisors without performance degradation. This is the maximum recommended configuration for a single instance, and depending on the underlying configuration of storage and networking mainly, it is recommended to switch to a federated scenario for any larger number of hypervisors.
+A single instance of OpenNebula (ie, a single ``oned`` process) has been stress-tested to cope with 500 hypervisors without performance degradation. This is the maximum recommended configuration for a single instance, and depending on the underlying configuration of storage and networking mainly, it is recommended to switch to a federated scenario for any larger number of hypervisors.
 
 However, there are several OpenNebula users managing significant higher numbers of hypervisors (on the order of two thousand) with a single instance. This largely depends, as mentioned, on the storage, networking and also monitoring configuration.
 
