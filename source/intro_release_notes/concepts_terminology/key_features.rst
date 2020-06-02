@@ -203,7 +203,10 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 - All key functionalities for enterprise cloud computing, storage and networking in a :ref:`single install <frontend_installation>`
 
-- Long term stability and performance through a :ref:`single integrated patching and upgrade process <upgrade_overview>`
+- Long term stability and performance through a single integrated patching and upgrade process (TODO).
+
+.. todo::
+   Add link to new upgrade guides
 
 - :ref:`Automatic import of existing VMs <import_wild_vms>` running in local hypervisors and public clouds for hybrid cloud computing
 

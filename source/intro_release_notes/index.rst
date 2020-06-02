@@ -9,4 +9,3 @@ Introduction and Release Notes
 
    Concepts and Terminology <concepts_terminology/index>
    Release Notes 5.11.90 <release_notes/index>
-   Upgrades <upgrades/index>
