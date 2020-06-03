@@ -10,5 +10,6 @@ Docker and Kubernetes
    Overview <overview>
    Docker <docker>
    Docker Machine <docker_machine>
+   Docker Hub <docker_hub>
    Kubernetes <kubernetes>
    Rancher Integration <rancher_integration>
