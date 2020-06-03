@@ -17,6 +17,11 @@ OneFlow revamp
 
 In the new OneFlow server, the state **poweroff** sets the service state to **warning**.
 
+MySQL Backend
+=============
+
+MySQL can be configured to use the BINARY clause in SELECT operations. This make object names to be case sensitive (as sqlite or PostgreSQL). The default behavior is to **not** use this feature to be backward compatible. Note that if you are using LDAP or AD as authentication backends this feature is not recommended.
+
 New default restricted attributes
 =================================
 

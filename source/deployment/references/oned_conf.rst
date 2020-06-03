@@ -33,6 +33,7 @@ Daemon Configuration Attributes
    -  ``user`` (MySQL only): MySQL user's login ID.
    -  ``passwd`` (MySQL only): MySQL user's password.
    -  ``db_name`` (MySQL only): MySQL database name.
+   -  ``compare_binary`` (MySQL only): compare strings using BINARY clause makes name searches case sensitive.
    -  ``connections`` (MySQL only): maximum number of connections to the MySQL server.
 
 -  ``VNC_PORTS``: VNC port pool for automatic VNC port assignment. If possible, the port will be set to ``START`` + ``VMID``. Refer to the :ref:`VM template reference <template>` for further information:

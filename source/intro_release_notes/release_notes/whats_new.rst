@@ -168,3 +168,4 @@ Other Issues Solved
 - `Add IP Leases, disk quotas and datastore quotas in Cloud view dashboard <https://github.com/OpenNebula/one/issues/1946>`_.
 - `Assign VMGroup when create a service <https://github.com/OpenNebula/one/issues/2992>`_.
 - `Fixed incorrect assignation of network type when import NSX-V networks <https://github.com/OpenNebula/one/issues/4004>`_.
+- `MySQL can be configured to perform case-sensitive object name searches <https://github.com/OpenNebula/one/issues/4115>`_.
