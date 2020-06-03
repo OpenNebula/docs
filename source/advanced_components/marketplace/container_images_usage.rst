@@ -1,7 +1,7 @@
 .. _container_image_usage:
 
 ====================================================
-Container Image Usage
+Deploying VMs with Container Images
 ====================================================
 
 The images from the OpenNebula container marketplaces (:ref:`Docker Hub <market_dh>`, :ref:`Turnkey Linux <market_turnkey_linux>`, and :ref:`Linux Containers <market_linux_container>`) are just filesystem images. When used together with LXD those images are enough for deploying a container, but in order to use any of these images to deploy a Firecracker MicroVM or a KVM VM an uncompressed linux kernel is required.
