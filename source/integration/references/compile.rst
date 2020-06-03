@@ -9,7 +9,7 @@ This page will show you how to compile and install OpenNebula from the sources.
 .. warning:: Do not forget to check the :ref:`Building Dependencies <build_deps>` for a list of specific software requirements to build OpenNebula.
 
 .. note::
-   If you need to build customized OpenNebula packages you can find the source packages for pubicly released versions available in the download repositories for easy rebuilds and customizations. If you need to access the package templates, please expose your case to <community-manager@opennebula.io>.
+   If you need to build customized OpenNebula packages you can find the source packages for publicly released versions available in the download repositories for easy rebuilds and customizations. If you need to access the packaging tools, please expose your case to <community-manager@opennebula.io>.
 
 Compiling the Software
 ================================================================================
