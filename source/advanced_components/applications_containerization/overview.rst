@@ -15,8 +15,6 @@ Despite the differences in the goals and concepts of these two containerization 
 
 Furthermore there is an integration with the most popular Linux container orchestration tool called `Kubernetes <https://kubernetes.io>`_ via OpenNebula's `Kubernetes appliance <https://docs.opennebula.io/appliances/service/kubernetes.html>`_.
 
-|docker-machine|
-
 How Should I Read This Chapter
 ================================================================================
 
