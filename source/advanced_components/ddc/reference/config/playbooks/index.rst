@@ -9,5 +9,6 @@ Playbooks
 
    Overview <overview>
    Playbook 'default' <default>
+   Playbook 'default_firecracker' <default_firecracker>
    Playbook 'default_lxd' <default_lxd>
    Playbook 'static_vxlan' <static_vxlan>
