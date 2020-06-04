@@ -14,5 +14,5 @@ Advanced Components Guide
    Application Insight <application_insight/index>
    Public Cloud <public_cloud/index>
    MarketPlace <marketplace/index>
-   Applications Containerization <applications_containerization/index>
+   Docker and Kubernetes <applications_containerization/index>
    Infrastructure Provision <ddc/index>
