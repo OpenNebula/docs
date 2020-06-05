@@ -4,7 +4,7 @@
 Customized Infrastructure Provision
 ===================================
 
-Each new provision is described by the :ref:`provision template <ddc_provision_template>`, a YAML document specifying the OpenNebula resources to add (cluster, hosts, datastores, virtual networks), physical resources to provision from the remote infrastructure provider, the connection parameters for SSH and configuration steps (playbook) with tunables. The template is prepared by the experienced Cloud Administrator and passed to the command line tool ``oneprovision``. At the end of the process, there is a new cluster available in OpenNebula.
+Each new provision is described by the :ref:`provision template <ddc_provision_template>`, a YAML document specifying the OpenNebula resources to add (cluster, hosts, datastores, virtual networks), physical resources to provision from the remote infrastructure provider, the connection parameters for SSH and configuration steps (playbook) with tunables. The template is prepared by an experienced Cloud Administrator and passed to the command line tool ``oneprovision``. At the end of the process, there is a new cluster available in OpenNebula.
 
 .. image:: /images/ddc_create.png
     :width: 50%
