@@ -6,7 +6,7 @@ Overview
 
 The aim of this advanced component is to provide the tools and methods needed to dynamically grow your cloud infrastructure with physical resources running on remote bare-metal cloud providers.
 
-Two of the use cases that are supported by this new elastic infrastructe approach will be:
+Two of the use cases that are supported by this new elastic infrastructure approach will be:
 
 * **Edge Cloud Computing**. This approach will allow the transition from centralized clouds to distributed edge-like cloud environments. You will be able to grow your private cloud with resources at edge data center locations to meet latency and bandwidth needs of your workload.
 * **Hybrid Cloud Computing**. This approach works as an alternative to the existing hybrid cloud drivers. So if there is a peak of demand and need for extra computing power you will be able to dynamically grow your underlying physical infrastructure. Compared with the use of hybrid drivers, this approach can be more efficient because it involves a single management layer. Also, it is a simpler approach because you can continue using the existing OpenNebula images and templates. Moreover, you always keep complete control over the infrastructure and avoid vendor lock-in.
