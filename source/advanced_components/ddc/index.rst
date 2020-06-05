@@ -1,7 +1,7 @@
 .. _ddc:
 
 ========================
-Infrastructure Provision
+Elastic Infrastructure Provision
 ========================
 
 .. toctree::
