@@ -22,6 +22,11 @@ MySQL Backend
 
 MySQL can be configured to use the BINARY clause in SELECT operations. This make object names to be case sensitive (as sqlite or PostgreSQL). The default behavior is to **not** use this feature to be backward compatible. Note that if you are using LDAP or AD as authentication backends this feature is not recommended.
 
+SQLite Backend
+==============
+
+New configuration option for SQLite TIMEOUT defines timeout in milliseconds for acquiring lock to DB. You may consider increasing this value if you have following error messages in monitor.log or oned.log: ``SQL command was: ... error: database is locked``
+
 New default restricted attributes
 =================================
 
