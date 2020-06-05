@@ -65,44 +65,47 @@ Hypervisor Scalability
 
 .. todo: update with actual values for new monitoring
 
-The number of VMs (or containers) a virtualization node can run is limited by the monitoring probes. In this section we have evaluated the performance of the monitoring probes for the KVM and LXD drivers. The host specs are the following:
+The number of VMs, micro-VMs or containers that a virtualization node can run is limited by the virtualization tehcnology, hardware configuration and OpenNebula node components (drivers). In this section we have evaluated only the performance of OpenNebula part, virtualization and monitoring drivers for the KVM, Firecracker and LXD. The host specs are the following:
 
-+---------------+--------------------------------------------------------+
-| CPU model:    | Intel(R) Atom(TM) CPU C2550 @ 2.40GHz, 4 cores, no HT  |
-+---------------+--------------------------------------------------------+
-| RAM:          | 8GB, DDR3, 1600 MT/s, single channel                   |
-+---------------+--------------------------------------------------------+
-| HDD:          | INTEL SSDSC2BB150G7                                    |
-+---------------+--------------------------------------------------------+
-| OS:           | Ubuntu 18.04                                           |
-+---------------+--------------------------------------------------------+
-| Hypervisor:   | Libvirt (4.0), Qemu (2.11), lxd (3.03)                 |
-+---------------+--------------------------------------------------------+
++---------------+---------------------------------------------------------------+
+| CPU model:    | Intel(R) Xeon(TM) E5-2650 v4 @2.2GHz, 2 sockets 24 cores (HT) |
++---------------+---------------------------------------------------------------+
+| RAM:          | 256GB, DDR4                                                   |
++---------------+---------------------------------------------------------------+
+| HDD:          | 480GB Micron M510DC SSD Raid - 420MB/s (r) 380MB/s(w)         |
++---------------+---------------------------------------------------------------+
+| OS:           | Ubuntu 18.04                                                  |
++---------------+---------------------------------------------------------------+
+| Hypervisor:   | Libvirt (4.0), Qemu (2.11), lxd (3.03)                        |
++---------------+---------------------------------------------------------------+
 
-Containers and VMs settings used for monitoring tests:
+**Virtualization Drivers**: We have tested the ability of OpenNebula drivers to manage a given number of VMs. Note that the actual limits of the virtualization technologies are greater, and that the following tests does not try to assess these limits. In particular, OpenNebula is capable of managing the following number of VMs for each driver:
 
-+-------------+-------------------+-------+------------+--------------+
-| Hypervisor  | OS                | RAM   | CPU        | Max. VM/host |
-+-------------+-------------------+-------+------------+--------------+
-| KVM         | None (empty disk) | 32MB  | 0.1        | 250          |
-+-------------+-------------------+-------+------------+--------------+
-| LXD         | Alpine            | 32MB  | 0.1        | 250          |
-+-------------+-------------------+-------+------------+--------------+
++-------------+-------------------+-------+------+--------------+-----------+-----+
+| Hypervisor  | OS                | RAM   | CPU  | Max. VM/host | Context   | VNC |
++-------------+-------------------+-------+------+--------------+-----------+-----+
+| KVM         | None (empty disk) | 32MB  | 0.1  | 500          | SSH keys  | yes |
++-------------+-------------------+-------+------+--------------+-----------+-----+
+| LXD         | Alpine            | 32MB  | 0.1  | 500          | SSH keys  | yes |
++-------------+-------------------+-------+------+--------------+-----------+-----+
+| FireCracker | Alpine            | 32MB  | 0.1  | 2000         | SSH keys  | yes |
++-------------+-------------------+-------+------+--------------+-----------+-----+
 
-Note: 250 instances were deployed for both types of hypervisor because both templates were created with the same capacity requirements. This made allocated resources grow at the same rate, so the scheduler instantiated the same number of KVM VMs as LXD containers. It is worth noticing that the overhead on KVM VMs is bigger than on LXD containers, so the latter hypervisor technology allows for bigger density when compared to KVM, as shown in `this report <https://blog.ubuntu.com/2015/05/18/lxd-crushes-kvm-in-density-and-speed>`_.
+Note: VMs have been deployed in 100 chunks in all the cases.
 
-Monitoring times for each type of instance are shown below:
+**Monitoring Drivers**: In this case we have measured the time it takes the monitor driver to gather VM monitoring and state information:
 
-+-------------+----------------------------------------+
-| Hypervisor  | Monitoring time (seconds) per instance |
-+-------------+----------------------------------------+
-| KVM         | 0.42                                   |
-+-------------+----------------------------------------+
-| LXD         | 0.1                                    |
-+-------------+----------------------------------------+
++-------------+-----------------------+--------------------------+
+| Hypervisor  | Total monitoring time | Instance Monitoring time |
++-------------+-----------------------+--------------------------+
+| KVM         | 52s (500 VMs)         | 0.11s                    |
++-------------+-----------------------+--------------------------+
+| LXD         | 48s (500 containers)  | 0.10s                    |
++-------------+-----------------------+--------------------------+
+| Firecracker | xxs (2000 micro-VMs)  | 0.xxs                    |
++-------------+-----------------------+--------------------------+
 
-
-Note that there may be other factors that limit the number of VMs or containers running in a single host.
+Note: These values can be used as a baseline to adjust the probe frecuency in monitord.conf.
 
 Tuning for Large Scale
 ==================================
