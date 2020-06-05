@@ -10,6 +10,6 @@ Elastic Infrastructure Provisioning
    Overview <overview>
    OneProvision Installation <install>
    Automated Cluster Provisioning <default>
-   Extending the Provision Template <custom/index>
+   Provision Template <custom/index>
    OneProvision Usage <usage>
    Provision and Configuration Reference <reference/index>
