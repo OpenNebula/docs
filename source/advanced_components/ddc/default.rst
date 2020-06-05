@@ -4,8 +4,7 @@
 Default Infrastructure Provision
 ================================
 
-In this section you can see how to easily deploy a fully operational cluster with ``oneprovision``. This is a cluster with all the resources needed to deploy a virtual machine,
-it includes hosts, datastores and virtual networks. You will also see some examples about how to deploy the virtual machine and ssh to it.
+In this section you can see how to automatically deploy a fully operational remote cluster with ``oneprovision``. This is a cluster with all the resources needed to run virtual machines, including hosts, datastores and virtual networks. You will also see some examples about how to run the virtual machine and ssh to it.
 
 Default Templates
 -----------------
@@ -15,12 +14,10 @@ OpenNebula provision currently supports two different providers:
 - AWS
 - Packet
 
-For each of them, you can find an example template, ready to use, provided by OpenNebula. These templates are located in ``/usr/share/one/oneprovision/examples``:
+For each of them, OpenNebula brings an example template, ready to use, provided by OpenNebula. These templates are located in ``/usr/share/one/oneprovision/examples``:
 
 - example_ec2.yaml
 - example_packet.yaml
-
-In the following sections you are going to see what changes are needed to deploy these templates and a picture with the resulting infrastructure.
 
 AWS Deployment
 --------------
@@ -145,7 +142,7 @@ We can now deploy virtual machines on those hosts. You just need to download and
 Packet Deployment
 -----------------
 
-In this example we are going to deploy a cluster with two hosts and the rest of infrastructure resources. Virtual machines deployed in each host will be able to communicate with each other and also we are going to be able to ssh them from outside the host.
+In this example we are going to deploy a cluster with two hosts and the rest of infrastructure resources. Virtual machines deployed in each host will be able to communicate with each other and also we are going to be able to ssh them.
 
 
 .. image:: /images/ddc_packet_deployment.png
@@ -154,7 +151,7 @@ In this example we are going to deploy a cluster with two hosts and the rest of 
 Deployment File
 ###############
 
-The deployment file provided by OpenNebula (``/usr/share/one/oneprovision/examples/example_packet.yaml``) Needs some changes in order to deploy the hosts.
+The deployment file provided by OpenNebula (``/usr/share/one/oneprovision/examples/example_packet.yaml``) needs some changes in order to deploy the hosts.
 
 First of all, you need to add your Packet credentials and project ID:
 
