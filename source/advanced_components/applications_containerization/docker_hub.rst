@@ -6,4 +6,4 @@ Docker Hub
 
 `Docker Hub <https://hub.docker.com>`_ is the official, public, and free `Docker <https://www.docker.com>`_ image repository.
 
-OpenNebula provides integration with Docker Hub via a dedicated :ref:`marketplace <market_dh>` driver. It allows to export the images hosted on Docker Hub into the OpenNebula to the image datastores. Such images can be used to run as micro virtual machines on specialized :ref:`Firecracker <fcmg>` (or even common) hypervisor.
+OpenNebula provides integration with Docker Hub via a dedicated :ref:`marketplace <market_dh>` driver. It allows to easily import these DockerHub images to the OpenNebula cloud. The OpenNebula context packages are installed during the import process so once an image is imported it’s fully prepared to be used. Such images can be used to run as Firecracker micro-VMs, LXD system containers or KVM virtual machines.
