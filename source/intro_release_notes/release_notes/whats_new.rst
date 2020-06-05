@@ -169,3 +169,4 @@ Other Issues Solved
 - `Assign VMGroup when create a service <https://github.com/OpenNebula/one/issues/2992>`_.
 - `Fixed incorrect assignation of network type when import NSX-V networks <https://github.com/OpenNebula/one/issues/4004>`_.
 - `MySQL can be configured to perform case-sensitive object name searches <https://github.com/OpenNebula/one/issues/4115>`_.
+- Timeout for SQLite DB lock can be configured in oned.conf
