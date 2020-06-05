@@ -13,12 +13,13 @@ The DockerHub marketplace will also create a new VM template associated with the
 
 |image1|
 
-Requirements
+Requirements and limitations
 ================================================================================
 
 - OpenNebula's frontend needs an Internet connection to https://hub.docker.com.
 - Docker must be installed and configured at the frontend. ``oneadmin`` user must have permissions for running docker.
 - Approximately 6GB of storage plus the container image size configured on your frontend.
+- As images are builded in the OpenNebula Frontend node the architecture of this node will limit the images architecture.
 
 Configuration
 ================================================================================
@@ -46,7 +47,7 @@ The DockerHub MarketPlace have available only the `DockerHub Official Images <ht
 
 .. code::
 
-    docker://<image>?size=<image_size>&filesystem=<fs_type>&format=raw&tag=<tag>
+    docker://<image>?size=<image_size>&filesystem=<fs_type>&format=raw&tag=<tag>&distro=<distro>
 
 The different arguments of the URL are explained below:
 
@@ -62,6 +63,10 @@ The different arguments of the URL are explained below:
 +-----------------------+-------------------------------------------------------+
 | ``<tag>``             | Image tag name (default ``latest``).                  |
 +-----------------------+-------------------------------------------------------+
+| ``<distro>``          | (Optional) image distribution.                        |
++-----------------------+-------------------------------------------------------+
+
+.. warning:: OpenNebula finds out the image distribution automatically by running the container and checking ``/etc/os-release`` file. If the container have any access restriction (e.g any environment variable or some extra configuration is required) the image distribution must be passed as an URL parameter.
 
 For example, with the command below we will create a new image called ``nginx-dh`` based on the ``nginx`` image from DockerHub with 3GB size using ``ext4`` and the ``alpine`` tag, the image will be stored in the image DS with id 1:
 
