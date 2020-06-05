@@ -88,7 +88,7 @@ The number of VMs, micro-VMs or containers that a virtualization node can run is
 +-------------+-------------------+-------+------+--------------+-----------+-----+
 | LXD         | Alpine            | 32MB  | 0.1  | 500          | SSH keys  | yes |
 +-------------+-------------------+-------+------+--------------+-----------+-----+
-| FireCracker | Alpine            | 32MB  | 0.1  | 2000         | SSH keys  | yes |
+| FireCracker | Alpine            | 32MB  | 0.1  | 1500         | SSH keys  | yes |
 +-------------+-------------------+-------+------+--------------+-----------+-----+
 
 Note: VMs have been deployed in 100 chunks in all the cases.
@@ -102,7 +102,7 @@ Note: VMs have been deployed in 100 chunks in all the cases.
 +-------------+-----------------------+--------------------------+
 | LXD         | 48s (500 containers)  | 0.10s                    |
 +-------------+-----------------------+--------------------------+
-| Firecracker | xxs (2000 micro-VMs)  | 0.xxs                    |
+| Firecracker | 43s (1500 micro-VMs)  | 0.03s                    |
 +-------------+-----------------------+--------------------------+
 
 Note: These values can be used as a baseline to adjust the probe frecuency in monitord.conf.
