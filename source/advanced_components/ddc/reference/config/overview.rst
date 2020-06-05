@@ -25,11 +25,14 @@ All code for Ansible (tasks, roles, playbooks) is installed into ``/usr/share/on
     /usr/share/one/oneprovision/ansible
     |-- inventories
     |   |-- default
+    |   |-- default_firecracker
+    |   |-- default_lxd
     |   `-- static_vxlan
     |-- roles
     |   |-- bridged-networking
     |   |-- ddc
     |   |-- iptables
+    |   |-- opennebula-node-firecracker
     |   |-- opennebula-node-kvm
     |   |-- opennebula-node-lxd
     |   |-- opennebula-p2p-vxlan
@@ -37,8 +40,12 @@ All code for Ansible (tasks, roles, playbooks) is installed into ``/usr/share/on
     |   |-- opennebula-ssh
     |   |-- python
     |   `-- tuntap
+    |-- ansible.cfg.erb
+    |-- default_firecracker.yml
+    |-- default_lxd.yml
     |-- default.yml
-    `-- static_packet.yml
+    |-- dummy.yml
+    `-- static_vxlan.yml
 
 Description:
 
