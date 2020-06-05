@@ -4,9 +4,34 @@
 Upgrading from OpenNebula 5.10.x
 =================================
 
-This section describes the installation procedure for systems that are already running a 5.10.x OpenNebula. The upgrade to OpenNebula |version| can be done directly following this section; you don't need to perform intermediate version upgrades. The upgrade will preserve all current users, hosts, resources and configurations, for both Sqlite and MySQL backends.
+This section describes the installation procedure for systems that are already running a 5.10.x OpenNebula Enterprise Edition. The upgrade to OpenNebula |version| can be done directly following this section; you don't need to perform intermediate version upgrades. The upgrade will preserve all current users, hosts, resources and configurations, for both Sqlite and MySQL backends.
 
 Read the :ref:`Compatibility Guide <compatibility>` and `Release Notes <http://opennebula.org/software/release/>`_ to know what is new in OpenNebula |version|.
+
+
+Preparing the OpenNebula Cloud for the Upgrade
+==============================================
+
+Step 1. Install Configuration Management Module
+-----------------------------------------------
+
+In order to upgrade OpenNebula Enterprise Edition, please install first the :ref:`OneScape package <configuration_management_module>` to leverage the `onecfg` command functionality.
+
+Step 1. Check Virtual Machine Status
+--------------------------------------------------------------------------------
+Before proceeding, make sure you don't have any VMs in a transient state (prolog, migr, epil, save). Wait until these VMs get to a final state (running, suspended, stopped, done). Check the :ref:`Managing Virtual Machines guide <vm_guide_2>` for more information on the VM life-cycle.
+
+Step 1. Set all host to offline mode
+--------------------------------------------------------------------------------
+
+Set all host to offline mode to stop all monitoring processes.
+
+
+Step 2. Stop the HA Cluster
+--------------------------------------------------------------------------------
+
+You need to stop all the nodes in the cluster to upgrade them at the same time. Start from the followers and leave the leader to the end.
+
 
 
 Upgrading Single Front-end Deployments
