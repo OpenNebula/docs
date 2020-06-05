@@ -6,7 +6,7 @@ What's a HotFix Release?
 
 A hotfix release is a type of incremental release that fixes specific issues.
 
-While OpenNebula is fully open source, packages from hotfix incremental versions are not publicly released, and are only available for users with an active commercial subscription. However, rest assured that the code is publicly available in the `GitHub repository <https://github.com/OpenNebula/one>`__, as is the `templates to create packages <https://github.com/OpenNebula/packages>`__ for the different supported platforms.
+While OpenNebula is fully open source, packages from hotfix incremental versions are not publicly released, and are only available for users with an active commercial subscription. However, rest assured that the code is publicly available in the `GitHub repository <https://github.com/OpenNebula/one>`__, as are the `sources to create packages <https://github.com/OpenNebula/one/tree/master/share/pkgs>`__ for the different supported platforms.
 
 Hence, everyone can create their own packages or :ref:`build OpenNebula from the source code <compile>`, but only OpenNebula Systems customers have the convenience of pre-created packages for hotfix incremental releases.
 
