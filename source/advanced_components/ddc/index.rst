@@ -1,7 +1,7 @@
 .. _ddc:
 
 ========================
-Elastic Infrastructure Provision
+Elastic Infrastructure Provisioning
 ========================
 
 .. toctree::
@@ -9,7 +9,7 @@ Elastic Infrastructure Provision
 
    Overview <overview>
    OneProvision Installation <install>
-   Default Infrastructure Provision <default>
-   Customized Infrastructure Provision <custom/index>
+   Automated Cluster Provisioning <default>
+   Extending the Provision Template <custom/index>
    OneProvision Usage <usage>
    Provision and Configuration Reference <reference/index>
