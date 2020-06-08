@@ -37,16 +37,6 @@ New OpenNebula major releases require the latest OneScape. You may experience th
         ...
         ERROR: Configurations metadata are outdated.
 
-Prepare the OpenNebula Cloud for the Upgrade
-==============================================
-
-Before proceeding, make sure you don't have any VMs in a transient state (prolog, migr, epil, save). Wait until these VMs get to a final state (running, suspended, stopped, done). Check the :ref:`Managing Virtual Machines guide <vm_guide_2>` for more information on the VM life-cycle.
-
-Set all host to offline mode to stop all monitoring processes. Stop OpenNebula and any other related services you may have running: OneFlow, EC2, and Sunstone. Preferably use the system tools, like systemctl or service as root in order to stop the services.
-
-If you are running an HA cluster you need to stop all the nodes in the cluster to upgrade them at the same time. Start from the followers and leave the leader to the end.
-
-
 Upgrade OpenNebula
 ==============================================
 

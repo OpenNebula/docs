@@ -132,6 +132,8 @@ Debian and Ubuntu
 
    $ sudo apt-get install onescape
 
+.. _conf_management_usage:
+
 Basic Usage
 ===========
 

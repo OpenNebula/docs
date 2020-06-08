@@ -4,22 +4,27 @@
 Upgrading High Availability Clusters
 ================================================================================
 
-Step 1. Set all host to offline mode
+Step 1. Check Virtual Machine Status
+================================================================================
+
+Before proceeding, make sure you don't have any VMs in a transient state (prolog, migr, epil, save). Wait until these VMs get to a final state (running, suspended, stopped, done). Check the :ref:`Managing Virtual Machines guide <vm_guide_2>` for more information on the VM life-cycle.
+
+Step 2. Set all host to offline mode
 ================================================================================
 
 Set all host to offline mode to stop all monitoring processes.
 
-
-Step 2. Stop the HA Cluster
+Step 3. Stop the HA Cluster
 ================================================================================
 
 You need to stop all the nodes in the cluster to upgrade them at the same time. Start from the followers and leave the leader to the end.
 
-
-Step 3. Upgrade the Leader
+Step 4. Upgrade the Leader
 ================================================================================
 
-Follow Steps 4 to 8 described in the previous Section (Upgrading Single Front-end deployments). Finally create a database backup to replicate the *upgraded* state to the followers:
+Follow Steps 4 to 8 described in the :ref:`Upgrading Single Front-end Deployments <upgrade_single_510>` guide in the HA leader.
+
+Afterwards create a database backup to replicate the *upgraded* state to the followers:
 
 .. prompt:: bash $ auto
 
@@ -29,13 +34,12 @@ Follow Steps 4 to 8 described in the previous Section (Upgrading Single Front-en
   mysql -u user -h server -P port db_name < backup_file
 
 
-Step 4. Upgrade OpenNebula in the Followers
+Step 5. Upgrade OpenNebula in the Followers
 ================================================================================
 
-Upgrade OpenNebula packages as described in Step 4 in the previous section (Upgrading Single Front-end deployments)
+Follow Steps 4 to 8 described in the :ref:`Upgrading Single Front-end Deployments <upgrade_single_510>` guide in the HA followers.
 
-
-Step 5. Replicate Database and configuration
+Step 6. Replicate Database and configuration
 ================================================================================
 
 Copy the database backup of the leader to each follower and restore it:
@@ -56,18 +60,17 @@ Synchronize the configuration files to the followers:
   $ rsync -r /var/lib/one/remotes/etc root@<follower_ip>:/var/lib/one/remotes
 
 
-Step 6. Start OpenNebula in the Leader and Followers
+Step 7. Start OpenNebula in the Leader and Followers
 ================================================================================
 
-Start OpenNebula in the followers as described in Step 8 in the previous section (Upgrading Single Front-end deployments).
+Start OpenNebula in the followers as described in Step 8 in the :ref:`Upgrading Single Front-end Deployments <upgrade_single_510>` guide.
 
-
-Step 7. Check Cluster Health
+Step 8. Check Cluster Health
 ================================================================================
 
 At this point the ``onezone show`` command should display all the followers active and in sync with the leader.
 
-Step 8. Update the Hypervisors (KVM & LXD)
+Step 9. Update the Hypervisors (KVM & LXD)
 ================================================================================
 
-Finally upgrade the hypervisors as described in Step 9 in the previous section (Upgrading Single Front-end deployments).
+Finally upgrade the hypervisors as described in Step 11 in the :ref:`Upgrading Single Front-end Deployments <upgrade_single_510>` guide.
