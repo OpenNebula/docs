@@ -11,6 +11,8 @@ OpenNebula DockerHub integration provide access to `DockerHub Official Images <h
 
 The DockerHub marketplace will also create a new VM template associated with the imported image. This template can be customized by the user (e.g adding the desire kernel, tune parameter, etc...).
 
+.. note:: More information on how to use DockerHub images with the different hypervisors can be found :ref:`here <container_image_usage>`.
+
 |image1|
 
 Requirements and limitations
@@ -66,7 +68,7 @@ The different arguments of the URL are explained below:
 | ``<distro>``          | (Optional) image distribution.                        |
 +-----------------------+-------------------------------------------------------+
 
-.. warning:: OpenNebula finds out the image distribution automatically by running the container and checking ``/etc/os-release`` file. If the container have any access restriction (e.g any environment variable or some extra configuration is required) the image distribution must be passed as an URL parameter.
+.. warning:: OpenNebula finds out the image distribution automatically by running the container and checking ``/etc/os-release`` file. If this information is not available inside the container the ``distro`` argument have to be used.
 
 For example, with the command below we will create a new image called ``nginx-dh`` based on the ``nginx`` image from DockerHub with 3GB size using ``ext4`` and the ``alpine`` tag, the image will be stored in the image DS with id 1:
 
