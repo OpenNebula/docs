@@ -11,6 +11,8 @@ Overview
 
 OpenNebula's TurnKey Linux marketplace enable users to easily download, contextualize and add Turnkey Linux images to an OpenNebula datastore. The container images are downloaded in a compressed form. In order to use them, OpenNebula creates an image, where it dumps the content, install the corresponding context packages, and later uploads it to the datastore. The marketplace also creates a VM template with a set of required and optional values. There is a log file (``/var/log/chroot.log``) inside the imported app filesystem which shows information about the operations done during the app setup process; in case of issues it could be a useful source of information.
 
+.. note:: More information on how to use Turnkey Linux images with the different hypervisors can be found :ref:`here <container_image_usage>`.
+
 Requirements
 ================================================================================
 

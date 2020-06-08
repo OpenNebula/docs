@@ -4,11 +4,16 @@
 Deploying VMs with Container Images
 ====================================================
 
-The images from the OpenNebula container marketplaces (:ref:`Docker Hub <market_dh>`, :ref:`Turnkey Linux <market_turnkey_linux>`, and :ref:`Linux Containers <market_linux_container>`) are just filesystem images. When used together with LXD those images are enough for deploying a container, but in order to use any of these images to deploy a Firecracker MicroVM or a KVM VM an uncompressed linux kernel is required.
+The images from the OpenNebula container marketplaces (:ref:`Docker Hub <market_dh>`, :ref:`Turnkey Linux <market_turnkey_linux>`, and :ref:`Linux Containers <market_linux_container>`) are just filesystem images. Depending on the hypervisor some extra configuration might be required.
 
 .. note:: More info on Kernel images can be found :ref:`here <file_ds>`.
 
 .. important:: Container images are not supported for vCenter hypervisor.
+
+Using Container Images with LXD
+====================================================
+
+As container images are just filesystem images when used with LXD no extra configuration is required.
 
 Using Container Images with Firecracker
 ====================================================
@@ -33,6 +38,7 @@ Getting Kernel Images
 
 The kernel images can be either directly build by using the kernel configuration files provided by Firecracker or OpenNebula or can be directly downloaded from OpenNebula marketplace:
 
-- `Firecracker recommended kernel <https://marketplace.opennebula.io/appliance/289ed567-a8b1-4111-aa74-d3b4393f336a>`__
+- `Firecracker recommended kernel <http://marketplace.opennebula.io/appliance/634c654e-e32c-43d4-9370-20d0e97a3de2>`__
+- `KVM kernel with minimal configuration <http://marketplace.opennebula.io/appliance/8e41b18a-3d62-4342-a26f-20629999b56a>`__
 
-.. note:: The provided kernel images and configuration files have a basic configuration, custom kernel can be built to satisfy different use cases, as long as they fulfill the requirements specified above for the corresponding hypervisor.
+.. note:: The provided kernel images and configuration files have a basic configuration, custom kernel can be built to satisfy different use cases, as long as they fulfill the requirements specified above for the corresponding hypervisor. The configuration used for building the kernel images above can be found in the same link.
