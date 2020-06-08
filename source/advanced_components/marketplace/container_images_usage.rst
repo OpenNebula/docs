@@ -13,7 +13,7 @@ The images from the OpenNebula container marketplaces (:ref:`Docker Hub <market_
 Using Container Images with LXD
 ====================================================
 
-As container images are just filesystem images when used with LXD no extra configuration is required.
+As container images are just filesystem images when using LXD no extra configuration is required.
 
 Using Container Images with Firecracker
 ====================================================
