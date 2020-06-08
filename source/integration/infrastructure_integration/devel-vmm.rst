@@ -209,7 +209,6 @@ VMM actions, they are the same as the names of the scripts:
 
       -  **DOMAIN**: Domain name: one-286
       -  **DESTINATION\_HOST**: Host where to migrate the VM
-      -  **HOST**: Host where the VM is currently running
 
    -  Response
 
