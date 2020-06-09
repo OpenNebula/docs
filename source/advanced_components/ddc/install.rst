@@ -7,7 +7,7 @@ Introduction and Installation
 Introduction
 ============
 
-This tool allows you to deploy a fully operational OpenNebula cluster in a remote provider. Each new provision is described by the :ref:`provision template <ddc_provision_template>`, a YAML document specifying the OpenNebula resources to add (cluster, hosts, datastores, virtual networks), physical resources to provision from the remote infrastructure provider, the connection parameters for SSH and configuration steps (playbook) with tunables. The template is prepared by an experienced Cloud Administrator and passed to the command line tool ``oneprovision``. At the end of the process, there is a new cluster available in OpenNebula.
+The OneProvision tool allows you to deploy a fully operational OpenNebula cluster in a remote provider. Each new provision is described by the :ref:`provision template <ddc_provision_template>`, a YAML document specifying the OpenNebula resources to add (cluster, hosts, datastores, virtual networks), physical resources to provision from the remote infrastructure provider, the connection parameters for SSH and configuration steps (playbook) with tunables. The template is prepared by an experienced Cloud Administrator and passed to the command line tool ``oneprovision``. At the end of the process, there is a new cluster available in OpenNebula.
 
 .. image:: /images/ddc_create.png
     :width: 50%
@@ -15,7 +15,7 @@ This tool allows you to deploy a fully operational OpenNebula cluster in a remot
 
 All operations with the provision and physical resources are performed only with the command line tool ``oneprovision``: create a new provision, manage (reboot, reset, power off, resume) the existing provisions, and delete the provision at the end.
 
-In this chapter we will cover the installation of the tool and also the extra configuration steps that need to be done in OpenNebula in order to use a part of the functionality.
+In this chapter we will cover the installation of the tool and also the optional configuration steps needed in OpenNebula to deploy VMs with public IP connectivuty in the remote cluster.
 
 Installation
 ============
@@ -92,7 +92,7 @@ Check that Ansible is installed properly:
 OpenNebula Configuration
 ========================
 
-.. important:: These steps are only needed if you are going to use Packet and you want that virtual machines have public connectivity. If you are going to use a different scenario you can skip it.
+.. important:: These steps are only needed if you use Packet and you want virtual machines to have publicIP connectivity. 
 
 .. _ddc_hooks_alias_ip:
 
@@ -101,7 +101,7 @@ NIC Alias IP Hook
 
 .. note::
 
-    Feature available since **OpenNebula 5.8.5** only.
+    Feature available from **OpenNebula 5.8.5** only.
 
 This hook ensures the IPAM-managed IP addresses are assigned to the physical host where the particular Virtual Machines are running. The hook is triggered on significant Virtual Machine state changes — when it starts, when a new NIC is hotplugged and when the Virtual Machine is destroyed. Read more about :ref:`Using Hooks <hooks>` in the Integration Guide.
 
@@ -173,7 +173,7 @@ NAT Mapping Driver for Aliased NICs
 
 .. note::
 
-    Feature available since **OpenNebula 5.8.5** only.
+    Feature available from **OpenNebula 5.8.5** only.
 
 This driver configures SNAT and DNAT firewall rules on the hypervisor host to seamlessly translate traffic between Virtual Machines' **external NIC aliased** (public) IP addresses and directly attached main NIC private IP addresses. It provides an "elastic IP"-like functionality. When a Virtual Machine is reachable over different (external NIC aliased) IP address, then that is directly configured in the Virtual Machine.
 
@@ -211,7 +211,7 @@ Packet IPAM driver
 
 .. note::
 
-    Feature available since **OpenNebula 5.8.5** only.
+    Feature available from **OpenNebula 5.8.5** only.
 
 This IPAM driver is responsible for managing the public IPv4 ranges on Packet as IPv4 Address Ranges within the OpenNebula Virtual Networks. It manages full lifecycles of the Address Range from allocation of a new custom range to its release. Read more about the :ref:`IPAM Driver <devel-ipam>` in the Integration Guide.
 
