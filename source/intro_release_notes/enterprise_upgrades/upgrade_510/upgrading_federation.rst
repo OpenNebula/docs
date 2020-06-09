@@ -29,7 +29,7 @@ Check that federation is in sync and all zones are at the same index (FED_INDEX)
 .. prompt:: text # auto
 
     # onezone list
-    C   ID NAME                                         ENDPOINT                                      FED_INDEX 
+    C   ID NAME                                         ENDPOINT                                      FED_INDEX
        101 S-US-CA                                      http://192.168.150.3:2633/RPC2                715438
        100 S-EU-GE                                      http://192.168.150.2:2633/RPC2                715438
     *    0 M-EU-FR                                      http://192.168.150.1:2633/RPC2                715438
@@ -46,7 +46,7 @@ Step 3. Upgrade zones
 
 You can upgrade now each zone following the corresponding guide. The master zone **must be the last one to upgrade**:
 
-    * :ref:`Follow the upgrading for single front-end deployments <upgrading_single>`
-    * :ref:`Follow the upgrading for high availability clusters <upgrading_ha>`
+    * :ref:`Follow the upgrading for single front-end deployments <upgrade_single_510>`
+    * :ref:`Follow the upgrading for high availability clusters <upgrade_ha_510>`
 
 You will restart OpenNebula in each zone as part of the upgrade. Once you finish upgrading your master remove any access restriction to the API imposed in Step 1.

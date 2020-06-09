@@ -28,7 +28,7 @@ Afterwards create a database backup to replicate the *upgraded* state to the fol
 
 .. prompt:: bash $ auto
 
-  $ onedb backup -u oneadmin -p oneadmin -d opennebula
+  $ onedb backup
   MySQL dump stored in /var/lib/one/mysql_localhost_opennebula_2019-9-27_11:52:47.sql
   Use 'onedb restore' or restore the DB using the mysql command:
   mysql -u user -h server -P port db_name < backup_file
@@ -48,7 +48,7 @@ Copy the database backup of the leader to each follower and restore it:
 
   $ scp /var/lib/one/mysql_localhost_opennebula_2019-9-27_11:52:47.sql <follower_ip>:/tmp
 
-  $ onedb restore -f -u oneadmin -p oneadmin -d opennebula /tmp/mysql_localhost_opennebula_2019-9-27_11:52:47.sql
+  $ onedb restore -f /tmp/mysql_localhost_opennebula_2019-9-27_11:52:47.sql
   MySQL DB opennebula at localhost restored.
 
 Synchronize the configuration files to the followers:

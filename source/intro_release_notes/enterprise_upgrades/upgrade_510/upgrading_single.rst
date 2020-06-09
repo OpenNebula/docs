@@ -68,20 +68,16 @@ Step 7. Upgrade the Database version
 
 .. note:: Make sure at this point that OpenNebula is not running. If you installed from packages, the service may have been started automatically.
 
-Simply run the ``onedb upgrade -v`` command. The connection parameters have to be supplied with the command line options, see the :ref:`onedb manpage <cli>` for more information. For example:
-
-.. prompt:: text $ auto
-
-    $ onedb upgrade -v -S localhost -u oneadmin -p oneadmin -d opennebula
+Simply run the ``onedb upgrade -v`` command. The connection parameters are automatically retrieved from ``oned.conf``.
 
 Step 8. Check DB Consistency
 ================================================================================
 
-First, move the |version| backup file created by the upgrade command to a safe place. If you face any issues, the ``onedb`` command can restore this backup, but it won't downgrade databases to previous versions. Then execute the ``onedb fsck`` command, providing the same connection parameter used during the database upgrade:
+First, move the |version| backup file created by the upgrade command to a safe place. If you face any issues, the ``onedb`` command can restore this backup, but it won't downgrade databases to previous versions. Then execute the ``onedb fsck`` command:
 
 .. code::
 
-    $ onedb fsck -S localhost -u oneadmin -p oneadmin -d opennebula
+    $ onedb fsck
     MySQL dump stored in /var/lib/one/mysql_localhost_opennebula.sql
     Use 'onedb restore' or restore the DB using the mysql command:
     mysql -u user -h server -P port db_name < backup_file

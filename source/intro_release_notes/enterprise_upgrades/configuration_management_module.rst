@@ -7,7 +7,7 @@ Configuration Management Module
 Overview
 ========
 
-The aim of the **Configuration Module** is to provide the means to manage and interact with configuration files. It provides the following functionality:
+The **Configuration Module** is part of the OneScape enterprise tool, its aim is to provide the means to manage and interact with configuration files. It provides the following functionality:
 
 - Upgrade your configuration files for the new OpenNebula version.
 - Check the versions status of the current installation.
@@ -24,7 +24,7 @@ In order to use the Configuration Management Module, the onescape package must b
 Step 1. Repository Setup
 ------------------------
 
-ou need to configure your host to have access to dedicated authenticated customer repositories, then you can install or update OneScape packages.
+The host needs to be configured to have access to dedicated authenticated customer repositories, then you can install or update OneScape packages.
 
 Access to the software repositories with OneScape is authenticated by the customer's user name and token. Repository definitions below contain the placeholders ``${AUTH}`` where customer's credentials should be put. To simplify the process and to avoid dealing with the repository configurations manually, export your credentials following way before running the next commands.
 
@@ -97,6 +97,12 @@ To add OneScape repository on Debian/Ubuntu execute as root:
 .. prompt:: bash # auto
 
     # echo "deb https://${AUTH}@enterprise.opennebula.io/repo/onescape/5.10/Ubuntu/18.04 stable onescape" > /etc/apt/sources.list.d/onescape.list
+
+**Ubuntu 20.04**
+
+.. prompt:: bash # auto
+
+    # echo "deb https://${AUTH}@enterprise.opennebula.io/repo/onescape/5.10/Ubuntu/20.04 stable onescape" > /etc/apt/sources.list.d/onescape.list
 
 Step 2. Installation
 --------------------
