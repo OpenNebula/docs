@@ -7,5 +7,6 @@ Customized Infrastructure Provision
 .. toctree::
    :maxdepth: 2
 
-   Customized Infrastructure Provision <custom>
-   Virtual Infrastructure Provision <virtual/index>
+   Physical Objects Provisioning <physical>
+   Virtual Objects Provisioning <virtual/index>
+   Template Reference <reference/index>
