@@ -22,6 +22,6 @@ How Should I Read This Chapter
 
 You should be reading this Chapter as part of the :ref:`Advanced Components Guide <advanced_components>`. You should be aware of the :ref:`Cloud Bursting <cloud_bursting>` functionality, as the cluster provisioning shares some approaches.
 
-In this Chapter, you can find a guide on how to provide additional resources from public bare-metal cloud providers into your OpenNebula. Cloud Administrators should follow the sections which cover the :ref:`installation of the OneProvision tiil <ddc_install>`, :ref:`an example of automated remote cluster provisioning <default_ddc_templates>`, guidelines about how to extend the pprovision templates, and :ref:`the available commands to interact with the provision <ddc_usage>`.
+In this Chapter, you can find a guide about how to automatically allocate and provision remote resources from bare-metal cloud providers, and add them to your OpenNebula. Cloud Administrators should follow the sections which cover the :ref:`installation of the OneProvision tool <ddc_install>`, :ref:`an example of automated provisioning of a remote cluster on AWS and Packet <default_ddc_templates>`, :ref:`the available commands to create and manage resource provisions <ddc_usage>`and references about provision templates, provision drivers and automated configuration.
 
 After reading this chapter you can continue with other topics from :ref:`Advanced Components <advanced_components>`.
