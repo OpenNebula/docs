@@ -37,6 +37,8 @@ New OpenNebula major releases require the latest OneScape. You may experience th
         ...
         ERROR: Configurations metadata are outdated.
 
+.. _upgrade_guides:
+
 Upgrade OpenNebula
 ==============================================
 
