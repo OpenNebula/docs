@@ -7,6 +7,5 @@ Automated Configuration
 .. toctree::
    :maxdepth: 2
 
-   Overview <overview>
-   Playbooks <playbooks/index>
+   Playbooks <playbooks>
    Roles <roles>
