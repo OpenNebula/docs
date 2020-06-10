@@ -1,8 +1,8 @@
 .. _default_ddc_templates:
 
-================================
-Automated Cluster Provisioning
-================================
+============================
+Cluster Provisioning Example
+============================
 
 In this section you can see how to automatically deploy a fully operational remote cluster with ``oneprovision``. This is a cluster with all the resources needed to run virtual machines, including hosts, datastores and virtual networks. You will also see some examples about how to run the virtual machine and ssh to it.
 
