@@ -25,7 +25,7 @@ All deployment steps (create, provision, configuration) are covered by a single 
 Deployment of a new provision is a 4 step process:
 
 - **Add**. OpenNebula infrastructure objects (cluster, hosts, datastores, networks) are created, but disabled for general use.
-- :ref:`Provision <ddc_provision>`. Resources are allocated on the remote provider (e.g. use the provider's API to get clean new hosts).
+- :ref:`Provision <ddc_template>`. Resources are allocated on the remote provider (e.g. use the provider's API to get clean new hosts).
 - :ref:`Configure <ddc_config>`. Resources are reconfigured for a particular use (e.g. install virtualization tools on new hosts).
 - **Add**. OpenNebula virtual objects(images, marketplace apps, VM Templates, VNet templates, OneFlow service templates) are created.
 - **Enable**. Ready-to-use resources are enabled in OpenNebula.

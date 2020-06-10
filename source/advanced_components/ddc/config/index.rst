@@ -1,7 +1,7 @@
 .. _ddc_config:
 
 =======================
-Configuration Reference
+Automated Configuration
 =======================
 
 .. toctree::

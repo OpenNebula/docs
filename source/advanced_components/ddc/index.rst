@@ -1,15 +1,16 @@
 .. _ddc:
 
-========================
-Elastic Infrastructure Provisioning
-========================
+==================================
+Remote Infrastructure Provisioning
+==================================
 
 .. toctree::
    :maxdepth: 2
 
    Overview <overview>
-   OneProvision Installation <install>
-   Automated Cluster Provisioning <default>
-   Provision Template <custom/index>
+   Introduction and Installation <install>
+   Cluster Provisioning Example <default>
    OneProvision Usage <usage>
-   Provision and Configuration Reference <reference/index>
+   Provision Template <template/index>
+   Provision Drivers <drivers/index>
+   Automated Configuration <config/index>

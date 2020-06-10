@@ -1,18 +1,10 @@
 .. _ddc_custom:
 
-===================================
-Customized Infrastructure Provision
-===================================
+=============================
+Physical Objects Provisioning
+=============================
 
-Each new provision is described by the :ref:`provision template <ddc_provision_template>`, a YAML document specifying the OpenNebula resources to add (cluster, hosts, datastores, virtual networks), physical resources to provision from the remote infrastructure provider, the connection parameters for SSH and configuration steps (playbook) with tunables. The template is prepared by an experienced Cloud Administrator and passed to the command line tool ``oneprovision``. At the end of the process, there is a new cluster available in OpenNebula.
-
-.. image:: /images/ddc_create.png
-    :width: 50%
-    :align: center
-
-All operations with the provision and physical resources are performed only with the command line tool ``oneprovision``: create a new provision, manage (reboot, reset, power off, resume) the existing provisions, and delete the provision at the end.
-
-In this chapter, we'll cover the basics of writing the provision templates and available commands to interact with the provision.
+In this chapter, we'll cover the basics of writing the provision templates.
 
 .. _ddc_usage_template:
 

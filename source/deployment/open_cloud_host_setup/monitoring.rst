@@ -277,3 +277,90 @@ For the troubleshooting of errors produced during the execution of the monitorin
 
 
 .. |image0| image:: /images/collector.png
+
+.. _monit_cli:
+
+Getting Monitoring Information Through the CLI
+==============================================
+
+The information that you can retrieve is:
+
+- CAPACITY/FREE_CPU
+- CAPACITY/FREE_MEMORY
+- CAPACITY/USED_CPU
+- CAPACITY/USED_MEMORY
+- SYSTEM/NETRX
+- SYSTEM/NETTX
+
+You can get monitoring information in three different ways:
+
+Table
+-----
+
+.. prompt:: bash $ auto
+
+    $ onehost monitoring 0 USED_MEMORY --unit G --n 10 --table
+
+    Host 0 USED_MEMORY in GB from 09/06/2020 09:36 to 09/06/2020 14:38
+
+    TIME    VALUE
+    14:09  6.48 GB
+    14:12  6.54 GB
+    14:16  6.54 GB
+    14:19  6.54 GB
+    14:22  6.53 GB
+    14:25  6.42 GB
+    14:29  6.43 GB
+    14:32  6.44 GB
+    14:35  6.49 GB
+    14:38  6.48 GB
+
+
+CSV
+---
+
+.. prompt:: bash $ auto
+
+    $ onehost monitoring 0 USED_MEMORY --unit G --n 10 --csv ';'
+
+    TIME;VALUE
+    14:09;6.48 GB
+    14:12;6.54 GB
+    14:16;6.54 GB
+    14:19;6.54 GB
+    14:22;6.53 GB
+    14:25;6.42 GB
+    14:29;6.43 GB
+    14:32;6.44 GB
+    14:35;6.49 GB
+    14:38;6.48 GB
+
+Plot
+----
+
+.. prompt:: bash $ auto
+
+    $ onehost monitoring 0 USED_MEMORY --unit G --n 10
+
+         Host 0 USED_MEMORY in GB from 09/06/2020 09:36 to 09/06/2020 14:38
+
+     6.54 +----------------------------------------------------------------+
+          |     *+     +     +      + A    +     +     +      +      +     |
+     6.52 |-+  *                       *                                 +-|
+          |   *                        *                                   |
+          |  *                          *                                  |
+      6.5 |-*                           *                                +-|
+          |*                             *                        A******  |
+     6.48 |-+                            *                       *       A-|
+          |                               *                     *          |
+          |                               *                    *           |
+     6.46 |-+                              *                  *          +-|
+          |                                *                 *             |
+     6.44 |-+                               *            ***A            +-|
+          |                                 *      **A***                  |
+          |                                  * ****                        |
+     6.42 |-+                                A*                          +-|
+          |      +     +     +      +      +     +     +      +      +     |
+      6.4 +----------------------------------------------------------------+
+        14:09  14:12 14:15 14:18  14:21  14:24 14:27 14:30  14:33  14:36 14:39
+                                        Time
