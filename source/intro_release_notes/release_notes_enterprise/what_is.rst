@@ -4,14 +4,18 @@
 What Is OpenNebula Enterprise Edition
 =====================================
 
-The Enterprise Edition of OpenNebula is a tested, hardened, and production-ready version that incorporates additional bug fixes and software patches with minor enhancements, and enterprise tools to simplify upgrades and maintenance of production clouds.
+The Enterprise Edition of OpenNebula is a tested, hardened, and production-ready version that incorporates additional bug fixes and software patches with minor enhancements.
 
-While we made all of our products open source, under the Apache 2 license, the packages of the Enterprise Edition and the enterprise tools are distributed under commercial license terms to customers with an active OpenNebula Subscription [https://opennebula.io/subscriptions/].
+While we have made all of our products open source under the Apache 2 license, the packages of the Enterprise Edition and the Enterprise Tools are distributed under commercial license terms to customers with an active `OpenNebula Subscription <https://opennebula.io/subscriptions>`__.
 
-If you are an OpenNebula Systems customer with an active support subscription, you have immediate access to the enterprise edition. Please check your private repository at OpenNebula.pro
+If you are an OpenNebula Systems customer with an active support subscription, you have immediate access to the Enterprise Edition. Please check your private repository at OpenNebula.pro
 
-The OpenNebula Enterprise Edition 5.12 comes with everything available in the 5.12 community plus:
-Enterprise tools
-Migrators
+OpenNebula 5.12 Enterprise Edition
+==================================
 
-The upcoming maintenance version of the EE will bring bug fixes, security patches and minor enhancements to ensure full production capabilities.
+OpenNebula 5.12 Enterprise Edition comes with everything available in the 5.12 Community Edition plus:
+
+* :ref:`Migration Packages <upgrades>` to easily upgrade your production cloud to the latest version.
+* `OneScape <http://docs.opennebula.io/onescape>`__ enterprise tool to simplify maintenance, management and upgrade of the OpenNebula deployments. Although current features are limited to managing configuration files and generating diagnostics, it is evolving into the central control, maintenance and monitoring point of the installation.
+
+The upcoming maintenance versions of the Enterprise Edition will bring bug fixes, security patches and minor enhancements to ensure full production capabilities.
