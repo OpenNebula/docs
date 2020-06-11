@@ -1,7 +1,7 @@
 .. _docker_hub_overview:
 
 ================================================================================
-Docker Hub
+Importing Docker Hub Images
 ================================================================================
 
 `Docker Hub <https://hub.docker.com>`_ is the official, public, and free `Docker <https://www.docker.com>`_ image repository.
