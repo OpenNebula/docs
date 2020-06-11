@@ -8,9 +8,9 @@ Docker and Kubernetes
    :maxdepth: 2
 
    Overview <overview>
-   Hosted Docker Engine <docker>
+   Hosted Docker <docker>
    Docker Machine <docker_machine>
    Docker Engine Clusters <docker_swarm>
-   Docker Hub <docker_hub>
+   Importing Docker Hub Images <docker_hub>
    Hosted Kubernetes <kubernetes>
    Rancher Integration <rancher_integration>
