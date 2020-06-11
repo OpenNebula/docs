@@ -79,7 +79,6 @@ The following limitations applies to the OpenNebula-NSX integration:
 - Universal Logical Switches are not supported
 - Only support one NSX Manager per vCenter Server
 - The process of preparing a NSX cluster must be done from NSX Manager
-- Imported networks work with vcenter id instead of nsx id
 - ICMP subprotocols are not implemented
 - Transport zone names can only contain alphanumeric characters and underscores
 
@@ -128,7 +127,7 @@ After a vCenter cluster is imported and monitor cycle finalises, the NSX Manager
 
     Infrastructure > Hosts
 
-And clicking on the desired OpenNebula Host, the following information is available under Attributes section
+And clicking on the desired OpenNebula Host, the following information is available under NSX tab
 
 .. figure:: /images/nsx_autodiscover_01.png
     :align: center
@@ -138,18 +137,18 @@ In particular the following attributes are retrieved:
     - **NSX_MANAGER**: Containing the url for that NSX Manager
     - **NSX_TYPE**: Indicating if it’s NSX-V or NSX-T
     - **NSX_VERSION**: Version of that NSX Manager
-    - **NSX_STATUS**: Describing the status of the last nsx manager check
+    - **NSX_LABEL**: Label read from vCenter
 
 You have a more detailed explanation of these parameters in the :ref:`NSX attributes section <nsx-non-editable-attributes>`.
 
 Setting NSX Manager Credentials
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Once a vCenter cluster is imported as an OpenNebula Host, the next step is to introduce the NSX credentials. A new tab called “NSX” is showing now into the Host:
+Once a vCenter cluster is imported as an OpenNebula Host, the next step is to introduce the NSX credentials, going to:
 
     Infrastructure > Hosts
 
-After clicking on the relevant host:
+After clicking on the relevant host and clicking on NSX tab:
 
 .. figure:: /images/nsx_setting_nsx_credentials_01.png
     :align: center
@@ -181,14 +180,13 @@ To check NSX status, proceed to:
 
     Infrastructure > Hosts
 
-And click on desired host and look into “Attributes” section
+And click on desired host and look into “NSX” section
 
 .. figure:: /images/nsx_status.png
     :align: center
 
-If everything works properly the next two attributes will show up:
+If everything works properly the next attribute will show up:
 
-    - **NSX_STATUS** = OK
     - **NSX_TRANSPORT_ZONES** = Containing the Transport zones availables.
 
 .. _nsx-non-editable-attributes:
@@ -204,22 +202,6 @@ These attributes are autodiscovered and they cannot be modified manually.
 | NSX_LABEL             | STRING     | "NSX - Manager" | "NSX-T Manager" | Label for NSX Manager type                                                                |
 +-----------------------+------------+-----------------------------------+-------------------------------------------------------------------------------------------+
 | NSX_MANAGER           | STRING     | URL of endpoint                   | Endpoint containing the NSX Manager URL. OpenNebula must reach that url to send commands  |
-+-----------------------+------------+-----------------------------------+-------------------------------------------------------------------------------------------+
-| NSX_STATUS            | STRING     | Possible values are:              | Describe the latest NSX status                                                            |
-+-----------------------+------------+-----------------------------------+-------------------------------------------------------------------------------------------+
-|                                    | OK                                | NSX_USER and NSX_PASSWORD are correct and a validation query has been made successfully   |
-+                                    +-----------------------------------+-------------------------------------------------------------------------------------------+
-|                                    | Missing NSX_USER                  | Attribute NSX_USER is not configured                                                      |
-+                                    +-----------------------------------+-------------------------------------------------------------------------------------------+
-|                                    | Missing NSX_PASSWORD              | Attribute NSX_PASSWORD is not configured                                                  |
-+                                    +-----------------------------------+-------------------------------------------------------------------------------------------+
-|                                    | Missing NSX_TYPE                  | Attribute NSX_TYPE has not been discovered                                                |
-+                                    +-----------------------------------+-------------------------------------------------------------------------------------------+
-|                                    | Missing NSX_MANAGER               | Attribute NSX_MANAGER has not been discovered                                             |
-+                                    +-----------------------------------+-------------------------------------------------------------------------------------------+
-|                                    | Response code incorrect           | Validation query had a bad response, usually is due to an invalid user or password        |
-+                                    +-----------------------------------+-------------------------------------------------------------------------------------------+
-|                                    | Error connecting to NSX_MANAGER   | NSX_MANAGER has an incorrect IP or there is a problem to communicate with NSX Manager     |
 +-----------------------+------------+-----------------------------------+-------------------------------------------------------------------------------------------+
 | NSX_TRANSPORT_ZONES   | HASH_ARRAY | [TZ_NAME => TZ_ID, ...]           | List with all the Transport Zones detected                                                |
 +-----------------------+------------+-----------------------------------+-------------------------------------------------------------------------------------------+
