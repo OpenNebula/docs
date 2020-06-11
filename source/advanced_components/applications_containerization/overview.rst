@@ -8,13 +8,13 @@ Application container technologies, like `Docker <https://docker.com>`_ and `Kub
 
 OpenNebula supports application containerization by offering different tools and integrations.
 
-Firstly, OpenNebula brings a built-in integration with Docker to simplify the provision and management of Dockerized hosts on your private cloud. OpenNebula provides cloud users with two approaches:
+Firstly, OpenNebula brings a built-in integration with Docker Engine to simplify the provision and management of Dockerized hosts on your private cloud. OpenNebula provides cloud users with two approaches:
 
 * The simpler approach is to directly instantiate the :ref:`OpenNebula Docker Appliance <docker_appliance_overview>` available on the OpenNebula Marketplace and then manage the dockerized hosts by using OpenNebula CLI or Sunstone.
 
 * OpenNebula also provides a driver for :ref:`Docker Machine <docker_machine_overview>`, which allows the remote provision and management of Docker hosts within OpenNebula cloud, and the execution of Docker commands on the remote host from your Docker client.
 
-As an alternative to run containerized applications, :ref:`OpenNebula Docker Hub Integration <docker_hub_overview>` provide access to `Docker Hub <https://hub.docker.com>`_ Official Images. This integration allows to easily import Docker images to the OpenNebula cloud. The OpenNebula context packages are installed during the import process so once an image is imported it’s fully prepared to be used on any supported hypervisor.
+As an alternative to run containerized applications, :ref:`OpenNebula Docker Hub Integration <docker_hub_overview>` provide access to `Docker Hub <https://hub.docker.com>`_ Official Images. This integration allows to easily import Docker images to the OpenNebula cloud. The OpenNebula context packages are installed during the import process so once an image is imported it’s fully prepared to be used on any supported hypervisor. You can easily deploy multi-vm applications as OneFlow services that can be scaled up and down “manually” or automatically based on user-defined “metrics”. 
 
 Furthermore, you can use different container orchestration platforms in your OpenNebula cloud: 
 
@@ -42,6 +42,6 @@ After reading this chapter you can continue configuring more :ref:`Advanced Comp
 Hypervisor Compatibility
 ================================================================================
 
-This Chapter applies both to KVM and vCenter.
+This Chapter applies to all hypervisors.
 
 .. |docker-machine| image:: /images/docker_arch.png
