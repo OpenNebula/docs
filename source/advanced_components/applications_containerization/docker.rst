@@ -1,7 +1,7 @@
 .. _docker_appliance_overview:
 
 ================================================================================
-Docker Engine
+Hosted Docker
 ================================================================================
 
 `Docker <https://www.docker.com>`_ is one of the many Linux container runtimes but it is also the most popular and the most supported. Docker pioneered the new approach to the containerization and with the advent of microservices it changed the landscape of how complex applications are designed and built.
