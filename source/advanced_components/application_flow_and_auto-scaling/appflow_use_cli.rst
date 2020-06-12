@@ -167,7 +167,7 @@ All these operations can be also done through the CLI. When you instantiate the 
     {"networks_values": [{"Private":{"id":"0"}}]}
 
     # Reserve from a network
-    {"networks_valies": [{"reserve_from": "0", "extra":"NAME=RESERVATION\nSIZE=5"}]}
+    {"networks_values":[{"Private":{"reserve_from":"0", "extra": ""NAME=RESERVATION\nSIZE=5""}}]}
 
     # Instantiate a network template
     {"networks_values": [{"Private":{"template_id":"0", "extra":"AR=[ IP=192.168.122.10, SIZE=10, TYPE=IP4 ]"}}]}
