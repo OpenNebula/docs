@@ -14,7 +14,7 @@ Previous Steps
 Commmunity Edition
 ------------------
 
-User of the Community Edition of OpenNebula can upgrade from the previous stable version if they are running a non commercial OpenNebula cloud. In order to access the migrator package a request needs to be made through this `online form <https://opennebula.io/get-migration/>`__.
+User of the Community Edition of OpenNebula can upgrade from the previous stable version if they are running a non-commercial OpenNebula cloud. In order to access the migrator package a request needs to be made through this `online form <https://opennebula.io/get-migration/>`__.
 
 After you get the 'opennebula-migration-community' package, you need to install it in the OpenNebula front-end:
 
@@ -23,18 +23,19 @@ CentOS/RHEL
 
 .. prompt:: bash # auto
 
-		# rpm -i opennebula-migration-community.rpm
+		# rpm -i opennebula-migration-community*.rpm
 
 Debian/Ubuntu
+~~~~~~~~~~~~~
 
 .. prompt:: bash # auto
 
-		# dpkg -i opennebula-migration-community.deb
+		# dpkg -i opennebula-migration-community*.deb
 
 Enterprise Edition
 ------------------
 
-OneScape is an enterprise tool that includes an upgrade facilitator, 'onecfg'. Please `install or update your existing OneScape installation <http://docs.opennebula.io/onescape/5.10/install/index.html>`__.
+OneScape is an enterprise tool that includes an upgrade facilitator, 'onecfg'. Please `install or upgrade your existing OneScape installation <http://docs.opennebula.io/onescape/5.12/install/index.html>`__.
 
 New OpenNebula major releases require the latest OneScape. You may experience the following error if your OneScape version is too old:
 
@@ -48,7 +49,7 @@ New OpenNebula major releases require the latest OneScape. You may experience th
 
 .. important::
 
-    **For each OpenNebula upgrade (even between minor versions, e.g. 5.10.2 and 5.10.3), configuration files must be processed via 'onecfg upgrade'**. If you skip configuration upgrade step for some OpenNebula upgrade, the tool will lose the current version state and you'll have to handle files upgrade manually and `reinitialize <http://docs.opennebula.io/onescape/5.10/module/config/usage.html#cfg-init>`__ the configuration version management state.
+    **For each OpenNebula upgrade (even between minor versions, e.g. 5.10.2 and 5.10.3), configuration files must be processed via 'onecfg upgrade'**. If you skip configuration upgrade step for some OpenNebula upgrade, the tool will lose the current version state and you'll have to handle files upgrade manually and `reinitialize <http://docs.opennebula.io/onescape/5.12/module/config/usage.html#cfg-init>`__ the configuration version management state.
 
     .. prompt:: bash # auto
 
@@ -66,21 +67,17 @@ Upgrade OpenNebula
 ==============================================
 
 
-Update your OpenNebula packages by following the guide that applies to your current OpenNebula configuration:
+Update your OpenNebula packages by only following the guide that applies to your current OpenNebula configuration:
 
 - :ref:`Upgrading a Single Front-End Deployment <upgrade_single>`
 - :ref:`Upgrading an HA Cluster <upgrade_ha>`
 - :ref:`Upgrading a Federation <upgrade_federation>`
 
-Follow `onecfg upgrade <http://docs.opennebula.io/onescape/5.10/module/config/usage.html#cfg-upgrade>`__ documentation on how to upgrade and troubleshoot the configurations.
+Follow `onecfg upgrade <http://docs.opennebula.io/onescape/5.12/module/config/usage.html#cfg-upgrade>`__ documentation on how to upgrade and troubleshoot the configurations.
 
 .. important::
 
-   It's necessary to upgrade your current OpenNebula directly to **5.10.2** or later, which supports the automatic configuration backups. Also, configuration upgrade must be done after each OpenNebula upgrade!
-
-.. important::
-
-    Please read the corresponding guides (only the one that applies to the specidic version you are upgrading from) if you are upgrading from OpenNebula 5.6 or 5.8 and make sure you apply any required change described in the corresponding guide.
+    Please read the corresponding guides (only the one that applies to the specific version you are upgrading from) if you are upgrading from OpenNebula :ref:`5.6 <upgrade_56>` or :ref:`5.8 <upgrade_58>` and make sure you apply any required change described in the corresponding guide.
 
 Validate OpenNebula
 ==============================================

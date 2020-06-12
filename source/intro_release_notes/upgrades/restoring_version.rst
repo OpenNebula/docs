@@ -1,4 +1,4 @@
-.. _restoring_version_5.10:
+.. _restoring_version:
 
 ==============================
 Restoring Previous Version

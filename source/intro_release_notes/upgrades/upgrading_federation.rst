@@ -36,12 +36,12 @@ Check that federation is in sync and all zones are at the same index (FED_INDEX)
 
 It is a good idea to prevent any API access to the master zone during this step (e.g. by filtering out access to API).
 
-Step 2. Stop all zones
+Step 2. Stop All Zones
 ================================================================================
 
 Stop OpenNebula and any other related services you may have running: OneFlow, EC2, and Sunstone, **in all zones**. Preferably use the system tools, like `systemctl` or `service` as `root` in order to stop the services.
 
-Step 3. Upgrade zones
+Step 3. Upgrade Zones
 ================================================================================
 
 You can upgrade now each zone following the corresponding guide. The master zone **must be the last one to upgrade**:

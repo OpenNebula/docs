@@ -9,7 +9,7 @@ Step 1. Check Virtual Machine Status
 
 Before proceeding, make sure you don't have any VMs in a transient state (prolog, migr, epil, save). Wait until these VMs get to a final state (running, suspended, stopped, done). Check the :ref:`Managing Virtual Machines guide <vm_guide_2>` for more information on the VM life-cycle.
 
-Step 2. Set all host to offline mode
+Step 2. Set all Host to Offline Mode
 ================================================================================
 
 Set all host to offline mode to stop all monitoring processes
@@ -61,7 +61,64 @@ In order to update the configuration files with your existing customizations you
 Enterprise Edition
 ------------------
 
-If you have modified configuration files lets's use onecfg to automate the configuiration file upgrades. In most cases, running the following command without any extra parameters will suffice, as it will upgrade based on internal configuration version tracking and currently installed OpenNebula.
+If you have modified configuration files lets's use onecfg to automate the configuration file upgrades.
+
+Before upgrading OpenNebula, you need to ensure that state of OneScape configuration module is clean without any pending migrations from past or outdated configurations. Run ``onecfg status`` to check the configuration state.
+
+Clean state might look like:
+
+    .. prompt:: bash # auto
+
+        # onecfg status
+        --- Versions ------------------------------
+        OpenNebula:  5.8.5
+        Config:      5.8.0
+
+        --- Available Configuration Updates -------
+        No updates available.
+
+Unknown Configuration Version Error
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If you get error message about unknown configuration version, you don't need to do anything. Configuration version will be automatically initialized during OpenNebula upgrade. Version of current configuration will be based on old OpenNebula version.
+
+    .. prompt:: bash # auto
+
+        # onecfg status
+        --- Versions ------------------------------
+        OpenNebula:  5.8.5
+        Config:      unknown
+        ERROR: Unknown config version
+
+Configuration Metadata Outdated Error
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If the configuration module complains about outdated metadata, you have missed to run configuration upgrade during some of OpenNebula upgrades in the past. Please note configuration must be upgraded or processed with even OpenNebula maintenance releases.
+
+Following invalid state:
+
+    .. prompt:: bash # auto
+
+        # onecfg status
+        --- Versions ------------------------------
+        OpenNebula:  5.8.5
+        Config:      5.8.0
+        ERROR: Configurations metadata are outdated.
+
+needs to be fixed by reinitialization of the configuration state. Any unprocessed upgrades will be lost and current state will be initialized based on your current OpenNebula version and configurations located in system directories.
+
+    .. prompt:: bash # auto
+
+        # onecfg init --force
+        # onecfg status
+        --- Versions ------------------------------
+        OpenNebula:  5.8.5
+        Config:      5.8.5
+
+        --- Available Configuration Updates -------
+        No updates available.<Paste>
+
+After checking the state of OneScape, in most cases running the following command without any extra parameters will suffice, as it will upgrade based on internal configuration version tracking and currently installed OpenNebula.
 
 .. prompt:: text # auto
 
@@ -69,7 +126,7 @@ If you have modified configuration files lets's use onecfg to automate the confi
      ANY   : Backup stored in '/tmp/onescape/backups/2020-6
      ANY   : Configuration updated to 5.12.0
 
-If you get conflicts when running onecfg upgrade refer to the `onecfg upgrade basic usage documentation <http://docs.opennebula.io/onescape/5.10/module/config/usage.html>`__ on how to upgrade and troubleshoot the configurations, in particular the `onecfg upgrade doc <http://docs.opennebula.io/onescape/5.10/module/config/usage.html#cfg-upgrade>`__ and the `troubleshooting section <http://docs.opennebula.io/onescape/5.10/module/config/conflicts.html>`__.
+If you get conflicts when running onecfg upgrade refer to the `onecfg upgrade basic usage documentation <http://docs.opennebula.io/onescape/5.12/module/config/usage.html>`__ on how to upgrade and troubleshoot the configurations, in particular the `onecfg upgrade doc <http://docs.opennebula.io/onescape/5.12/module/config/usage.html#cfg-upgrade>`__ and the `troubleshooting section <http://docs.opennebula.io/onescape/5.12/module/config/conflicts.html>`__.
 
 .. todo: Is onescape ready for 5.12
 
@@ -108,7 +165,7 @@ Now you should be able to start OpenNebula as usual, running ``service opennebul
 
 At this point OpenNebula will continue the monitoring and management of your previous Hosts and VMs.  As a measure of caution, look for any error messages in ``oned.log``, and check that all drivers are loaded successfully. You may also try some  **show** subcommand for some resources to check everything is working (e.g. ``onehost show``, or ``onevm show``).
 
-Step 10. Restore custom probes
+Step 10. Restore Custom Probes
 ================================================================================
 
 If you have any custom monitoring probe, follow :ref:`these instructions <devel-im>`, to update them to new monitoring system
@@ -147,7 +204,7 @@ CentOS
     # systemctl restart libvirtd
 
 
-Step 12. Enable hosts
+Step 12. Enable Hosts
 ================================================================================
 
 Enable all hosts, disabled in step 2

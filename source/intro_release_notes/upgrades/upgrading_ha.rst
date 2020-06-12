@@ -9,7 +9,7 @@ Step 1. Check Virtual Machine Status
 
 Before proceeding, make sure you don't have any VMs in a transient state (prolog, migr, epil, save). Wait until these VMs get to a final state (running, suspended, stopped, done). Check the :ref:`Managing Virtual Machines guide <vm_guide_2>` for more information on the VM life-cycle.
 
-Step 2. Set all host to offline mode
+Step 2. Set All Host to Offline Mode
 ================================================================================
 
 Set all host to offline mode to stop all monitoring processes.
@@ -39,7 +39,7 @@ Step 5. Upgrade OpenNebula in the Followers
 
 Follow Steps 4 to 8 described in the :ref:`Upgrading Single Front-end Deployments <upgrade_single>` guide in the HA followers.
 
-Step 6. Replicate Database and configuration
+Step 6. Replicate Database and Configuration
 ================================================================================
 
 Copy the database backup of the leader to each follower and restore it:
