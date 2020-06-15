@@ -316,8 +316,8 @@ Locations of the VIB installation package or ZIP bundle:
 * On the public download server. In a case of installation problems,
   insecure HTTP access can be used at your own risk!
 
-  * https://downloads.opennebula.io/packages/opennebula-5.11.80/fw-vnc-5.11.80.vib
-  * https://downloads.opennebula.io/packages/opennebula-5.11.80/fw-vnc-5.11.80.zip
+  * https://downloads.opennebula.io/packages/opennebula-5.12.0/fw-vnc-5.12.0.vib
+  * https://downloads.opennebula.io/packages/opennebula-5.12.0/fw-vnc-5.12.0.zip
 
 
 .. note::
@@ -413,7 +413,7 @@ to allow the community packages to be installed and proceed with the install.
 .. prompt:: bash $ auto
 
     $ esxcli <connection options> software acceptance set --level=CommunitySupported
-    $ esxcli <connection options> software vib install -v 'https://downloads.opennebula.io/packages/opennebula-5.11.80/fw-vnc-5.11.80.vib'
+    $ esxcli <connection options> software vib install -v 'https://downloads.opennebula.io/packages/opennebula-5.12.0/fw-vnc-5.12.0.vib'
 
 This enables VNC ports for any remote host. You should
 limit access to the VNC only from your OpenNebula Front-end. In this

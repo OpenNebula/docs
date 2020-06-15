@@ -9,7 +9,7 @@ PyONE is an implementation of Open Nebula XML-RPC bindings in Python. It has bee
 API Documentation
 ================================================================================
 
-You can consult the `doc online </doc/5.11/oca/python/>`__, but as long as the code is generated it is not much useful, the main source of the documentation is still the `XML-RPC doc <api>`
+You can consult the `doc online </doc/5.12/oca/python/>`__, but as long as the code is generated it is not much useful, the main source of the documentation is still the `XML-RPC doc <api>`
 
 Download and installation
 ================================================================================
