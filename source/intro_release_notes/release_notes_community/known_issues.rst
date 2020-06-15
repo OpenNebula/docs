@@ -17,3 +17,5 @@ Sunstone
 ========
 
 Inputs expressing sizes (disk, memory) that have units in MB, GB or TB have a bug. Once expressed in MB, if you want to update its value you'll need to change the units to GB or TB.
+
+Setting a password for remote connection to VNC / SPICE from a VM imported from a vCenter host is not working properly.
