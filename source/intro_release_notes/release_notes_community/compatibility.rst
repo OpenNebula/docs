@@ -53,3 +53,7 @@ All the states that make Virtual Machines to remain in the host are taken in acc
 
 - Poweroff
 - Suspend
+
+Azure driver
+============
+Azure driver was revamped to support Azure Resource Manager, there are new attributes requried to be defined for the Azure host. Please refer to the :ref:`Azure driver <azg>`.
