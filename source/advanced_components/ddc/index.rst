@@ -1,7 +1,7 @@
 .. _ddc:
 
 ==================================
-Remote Infrastructure Provisioning
+Distributed Edge Provisioning
 ==================================
 
 .. toctree::
