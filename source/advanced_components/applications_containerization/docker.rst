@@ -8,7 +8,7 @@ Docker Hosting
 
 OpenNebula brings a built-in integration with Docker to simplify the provision and management of Dockerized hosts on your private cloud. OpenNebula provides cloud users with two approaches to use the Docker engine instances hosted by these virtualized Docker hosts.
 
-The simpler approach is to directly instantiate the `OpenNebula Docker Appliance <http://docs.opennebula.io/appliances/service/docker.html`_ available on the OpenNebula Marketplace that should be previously downloaded and registered in the cloud datastore and then manage the Dockerized hosts by using OpenNebula CLI or Sunstone.
+The simpler approach is to directly instantiate the `OpenNebula Docker Appliance <http://docs.opennebula.io/appliances/service/docker.html>`__ available on the OpenNebula Marketplace that should be previously downloaded and registered in the cloud datastore and then manage the Dockerized hosts by using OpenNebula CLI or Sunstone.
 
 OpenNebula also provides a driver for :ref:`Docker Machine <docker_machine_overview>`, which allows the remote provision and management of Docker hosts within OpenNebula cloud, and the execution of Docker commands on the remote host from your Docker client.
 

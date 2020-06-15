@@ -52,7 +52,7 @@ After the changes, you should reboot the machine.
 Step 2. Add OpenNebula Repositories
 ================================================================================
 
-.. include:: ../repositories.txt
+Refer to this :ref:`guide <repositories>` to add the community or enterprise edition repositories.
 
 Step 3. Installing the Software
 ================================================================================
