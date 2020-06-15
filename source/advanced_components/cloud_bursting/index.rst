@@ -1,8 +1,8 @@
 .. _cloud_bursting:
 
-==============
+=====================
 Hybrid Cloud Bursting
-==============
+=====================
 
 .. toctree::
    :maxdepth: 2

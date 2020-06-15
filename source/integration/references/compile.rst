@@ -48,6 +48,8 @@ Follow these simple steps to install the OpenNebula software:
 +----------------+--------------------------------------------------------+
 | docker_machine | **yes** if you want to build the docker-machine driver |
 +----------------+--------------------------------------------------------+
+| rubygems       | **yes** if you want to generate ruby gems              |
++----------------+--------------------------------------------------------+
 | svncterm       | **no** to skip building vnc support for LXD drivers    |
 +----------------+--------------------------------------------------------+
 
@@ -108,7 +110,7 @@ where *<install\_options>* can be one or more of:
     If you choose the ``system-wide`` installation, OpenNebula will be installed in the following folders:
         -   /etc/one
         -   /usr/lib/one
-        -   /usr/share/docs/one
+        -   /usr/share/doc/one
         -   /usr/share/one
         -   /var/lib/one
         -   /var/lock/one
@@ -135,7 +137,7 @@ Ruby Dependencies
 
 Ruby version needs to be:
 
--  **ruby** >= 1.8.7
+-  **ruby** >= 2.0.0
 
 Some OpenNebula components need ruby libraries. Some of these libraries are interfaces to binary libraries and the development packages should be installed in your machine. This is the list of the ruby libraries that need a development package:
 
@@ -145,22 +147,26 @@ Some OpenNebula components need ruby libraries. Some of these libraries are inte
 -  **curb**: curl development library
 -  **nokogiri**: expat development librarie
 -  **xmlparse**: libxml2 and libxslt development libraries
+-  **zeromq**: libzmq5 and libzmq3 development libraries
+-  **augeas**: libaugeas development libraries
 
 You will also need ruby development package to be able to compile these gems.
 
 We provide a script to ease the installation of these gems. it is located in ``/usr/share/one/install_gems`` (system-wide mode). It can be called with the components you want the gem dependencies to be installed. Here are the options:
 
--  **optional**: libraries that make CLI and OCA faster
 -  **quota**: quota system
 -  **sunstone**: sunstone graphical interface
 -  **cloud**: ec2 and occi interfaces
--  **ozones\_client**: CLI of ozones
--  **ozones\_server**: server part of ozones, both mysql and sqlite support
--  **ozones\_server\_sqlite**: ozones server, only sqlite support
--  **ozones\_server\_mysql**: ozones server, only mysql support
--  **acct**: accounting collector, both mysql and sqlite support
--  **acct\_sqlite**: accounting collector, only sqlite support
--  **acct\_mysql**: accounting collector, only mysql support
+-  **hybrid**: azure and configuration parser
+-  **auth_ldap**: net ldap authentication
+-  **vmware**: rbvmomi and json for vCenter support
+-  **oneflow**: sinatra, treetop and parse cron for OneFlow support
+-  **ec2_hybrid**: aws sdk support
+-  **oca**: ox support
+-  **onedb**: mysql and postgres support
+-  **hooks**: zeromq support
+-  **serversync**: augeas support
+-  **gnuplot**: gnuplot support
 
 The tool can be also called without parameters and all the packages will be installed.
 
@@ -237,27 +243,41 @@ to the ``oneadmin``.
 +---------------+-------------------------------------------------------------+
 | Section       | Commands                                                    |
 +===============+=============================================================+
-| networking    | ebtables, iptables, ip6tables, ip, ipset                    |
+| networking    | ebtables, iptables, ip6tables, ipset, ip link, ip tuntap    |
 +---------------+-------------------------------------------------------------+
-| LVM           | lvcreate, lvremove, lvs, vgdisplay, lvchange, lvscan        |
+| LVM           | lvcreate, lvremove, lvs, vgdisplay, lvchange, lvscan,       |
+|               | lvextend                                                    |
 +---------------+-------------------------------------------------------------+
 | Open vSwitch  | ovs-ofctl, ovs-vsctl                                        |
 +---------------+-------------------------------------------------------------+
 | Ceph          | rbd                                                         |
 +---------------+-------------------------------------------------------------+
-| LXD           | lsblk, losetup, mount, umount, kpartx, qemu-nbd, mkdir,     |
-|               | blkid, e2fsck, resize2fs, xfs_growfs, rbd, rbd-nbd          |
-|               | /snap/bin/lxd, /usr/bin/catfstab                            |
+| LXD           | /snap/bin/lxc, /usr/bin/catfstab, mount, umount, mkdir,     |
+|               | lsblk, losetup, kpartx, qemu-nbd, blkid, e2fsck, resize2fs, |
+|               | xfs_growfs, rbd-nbd, xfs_admin, tune2fs                     |
 +---------------+-------------------------------------------------------------+
 | HA            | systemctl start opennebula-flow,                            |
 |               | systemctl stop opennebula-flow,                             |
 |               | systemctl start opennebula-gate,                            |
 |               | systemctl stop opennebula-gate,                             |
+|               | systemctl start opennebula-hem,                             |
+|               | systemctl stop opennebula-hem,                              |
+|               | systemctl start opennebula-showback.timer,                  |
+|               | systemctl stop opennebula-showback.timer,                   |
 |               | service opennebula-flow start,                              |
 |               | service opennebula-flow stop,                               |
 |               | service opennebula-gate start,                              |
 |               | service opennebula-gate stop,                               |
-|               | arping                                                      |
+|               | service opennebula-hem start,                               |
+|               | service opennebula-hem stop,                                |
+|               | ip address *                                                |
++---------------+-------------------------------------------------------------+
+| MARKET        | {lib_location}/sh/create_container_image.sh,                |
+|               | {lib_location}/sh/create_docker_image.sh                    |
++---------------+-------------------------------------------------------------+
+| FIRECRACKER   | /usr/bin/jailer,                                            |
+|               | /usr/sbin/one-clean-firecracker-domain,                     |
+|               | /usr/sbin/one-prepare-firecracker-domain                    |
 +---------------+-------------------------------------------------------------+
 
 Each command has to be specified with the absolute path, which can be
