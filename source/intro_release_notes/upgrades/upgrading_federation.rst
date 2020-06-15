@@ -4,8 +4,6 @@
 Upgrading a Federation
 ================================================================================
 
-.. todo: Describe federation update due to PostgreSql support
-
 ..
     TYPE A. NO CHANGES IN FEDERATION TABLES
 
