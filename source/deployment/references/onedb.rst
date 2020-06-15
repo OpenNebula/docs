@@ -153,10 +153,7 @@ Each time the DB is upgraded, the process is logged. You can use the ``history``
 onedb upgrade
 =============
 
-The upgrade process is fully documented in the Upgrading from Previous Versions guide (TODO).
-
-.. todo::
-   Add links to upgrade guides
+The upgrade process is fully documented in the :ref:`upgrade guides <upgrade>`.
 
 onedb backup
 ============

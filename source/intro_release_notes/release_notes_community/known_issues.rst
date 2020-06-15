@@ -12,3 +12,8 @@ Accounting and Showback
 =======================
 
 A bug that might lead to innacurate hours in accounting and showback has been fixed. You can check all the information `here <https://github.com/OpenNebula/one/issues/1662>`_. But, old VMs won't be updated, so the bug might still be on those VMs.
+
+Sunstone
+========
+
+Inputs expressing sizes (disk, memory) that have units in MB, GB or TB have a bug. Once expressed in MB, if you want to update its value you'll need to change the units to GB or TB.
