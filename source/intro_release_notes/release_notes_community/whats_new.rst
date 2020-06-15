@@ -57,7 +57,7 @@ Networking
 Authentication
 ================================================================================
 
-- **Group admins for LDAP driver**, when configuring your LDAP driver you can define *group_admin_group_dn* which will cause that members of that group will be group admins of all the mapped LDAP group in OpenNebula :ref:`LDAP driver <ldap>`
+- **Group admins for LDAP driver**, when configuring your LDAP driver you can define *group_admin_group_dn* which make members of that group to become group admins of all the mapped LDAP group in OpenNebula :ref:`LDAP driver <ldap>`
 
 
 Sunstone
@@ -94,13 +94,13 @@ Scheduler
 Disaggregated Data Centers
 ================================================================================
 - Provision support of other object types. Refer to :ref:`this <ddc_virtual>` for more information.
-- Provision templates can extends multiple ones. Refer to :ref:`this <ddc_usage_example6>` for more information.
-- Provision templates supports multiple playbooks. Refer to :ref:`this <ddc_usage_example7>` for more information.
+- Provision templates can extend multiple ones. Refer to :ref:`this <ddc_usage_example6>` for more information.
+- Provision templates support multiple playbooks. Refer to :ref:`this <ddc_usage_example7>` for more information.
 - New examples of complete clusters, check them :ref:`here <ddc_provision_cluster_templates>`.
 
 OneFlow & OneGate
 ===============================================================================
-- The OneFlow component has been revamped to improve its performance. This revamp has been made in terms of elapsed time, so we have reduced a lot of the time that each operations consumes. The API is the same as it was before. Click :ref:`here <appflow_use_cli>` to check more information about this component.
+- The OneFlow component has been revamped to improve its performance. This revamp has been made in terms of elapsed time, so we have reduced a lot of the time that each operation consumes. The API is the same as it was before. Click :ref:`here <appflow_use_cli>` to check more information about this component.
 - **OneFlow template** can be :ref:`cloned <service_clone>`, optionally in a recursive fashion so all the VM Templates and images are cloned, as well.
 - OneFlow sched actions at service level. Refer to :ref:`this <flow_sched>` for more information.
 - Now with OneGate you can update template with string with white spaces. Check more information about OneGate :ref:`here <onegate_usage>`.
@@ -119,7 +119,7 @@ Packaging
 
 VMware Virtualization driver
 ===============================================================================
-- **vCenter Resource pool tab**, within the host individual view a new tab displays the information of all :ref:`resource pools <vcenter_resource_pool>` defined in the vCenter cluster corresponding to the OpenNebula host.
+- **vCenter Resource pool tab**, within the host individual view, a new tab displays the information of all :ref:`resource pools <vcenter_resource_pool>` defined in the vCenter cluster corresponding to the OpenNebula host.
 - Monitoring the physical path of the disks inside the vCenter datastore - :ref:`Monitoring Attributes <vm_monitoring_attributes_vcenter>`.
 - Differentiate created :ref:`Virtual Machine Templates <vm_templates>` on vCenter.
 - Option to create :ref:`Tags and Categories <vcenter_tags_and_categories>` on vCenter.
