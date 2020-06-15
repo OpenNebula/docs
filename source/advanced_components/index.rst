@@ -10,7 +10,7 @@ Advanced Components Guide
    Multi-VM Applications and Auto-scaling <application_flow_and_auto-scaling/index>
    High Availability <ha/index>
    Data Center Federation <data_center_federation/index>
-   Cloud Bursting <cloud_bursting/index>
+   Hybrid Cloud Bursting <cloud_bursting/index>
    Application Insight <application_insight/index>
    Public Cloud <public_cloud/index>
    MarketPlace <marketplace/index>
