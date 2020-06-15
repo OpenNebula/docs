@@ -15,4 +15,4 @@ Advanced Components Guide
    Public Cloud <public_cloud/index>
    MarketPlace <marketplace/index>
    Docker and Kubernetes <applications_containerization/index>
-   Remote Infrastructure Provisioning <ddc/index>
+   Distributed Edge Provisioning <ddc/index>
