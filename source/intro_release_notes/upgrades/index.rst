@@ -9,7 +9,7 @@ Upgrades
 
    Overview <overview>
    Start Here <start_here>
-   Upgrading Single Front-End Deployments <upgrading_single>
+   Upgrading Single Front-End <upgrading_single>
    Upgrading Hgh Availability Clusters <upgrading_ha>
    Upgrading a Federation <upgrading_federation>
    Additional Steps for 5.8.x <upgrade_58>
