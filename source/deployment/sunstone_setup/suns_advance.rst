@@ -223,7 +223,7 @@ and generate the keytab for the http service. Here is an example with Passenger:
     <VirtualHost *:80>
       ServerName sunstone-server
       PassengerUser oneadmin
-      # For OpenNebula >= 5.11, variables configuring dedicated directory
+      # For OpenNebula >= 5.10, variables configuring dedicated directory
       # with shipped Ruby gems must be set if these gems weren't explicitly
       # disabled (by removing specified directory symlink).
       SetEnv GEM_PATH /usr/share/one/gems/
