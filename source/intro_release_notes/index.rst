@@ -8,4 +8,6 @@ Introduction and Release Notes
    :maxdepth: 2
 
    Concepts and Terminology <concepts_terminology/index>
-   Release Notes 5.11.90 <release_notes/index>
+   Release Notes 5.12.0 <release_notes_community/index>
+   Release Notes 5.12.0 Enterprise Edition <release_notes_enterprise/index>
+   Upgrades <upgrades/index>

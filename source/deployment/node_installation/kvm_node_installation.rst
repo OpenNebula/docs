@@ -13,7 +13,7 @@ Using the packages provided on our site is the recommended method, to ensure the
 Step 1. Add OpenNebula Repositories
 ===================================
 
-.. include:: ../repositories.txt
+Refer to this :ref:`guide <repositories>` to add the community or enterprise edition repositories.
 
 Step 2. Installing the Software
 ===============================

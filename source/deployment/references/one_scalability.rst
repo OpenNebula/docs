@@ -63,8 +63,6 @@ The four most common API calls were used to stress the core at the same time in 
 Hypervisor Scalability
 --------------------------------------
 
-.. todo: update with actual values for new monitoring
-
 The number of VMs, micro-VMs or containers that a virtualization node can run is limited by the virtualization tehcnology, hardware configuration and OpenNebula node components (drivers). In this section we have evaluated only the performance of OpenNebula part, virtualization and monitoring drivers for the KVM, Firecracker and LXD. The host specs are the following:
 
 +---------------+---------------------------------------------------------------+

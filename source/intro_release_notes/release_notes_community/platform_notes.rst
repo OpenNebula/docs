@@ -103,6 +103,8 @@ Linux Contextualization Packages
 +------------------------------+-----------------------------------+------------------------------------------------------------------------------------------+
 | SUSE Linux Enterprise Server | 12 SP3                            | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
 +------------------------------+-----------------------------------+------------------------------------------------------------------------------------------+
+| ALT Linux                    | p9, Sisyphus                      | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
++------------------------------+-----------------------------------+------------------------------------------------------------------------------------------+
 | Debian                       | 8, 9, 10                          | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
 +------------------------------+-----------------------------------+------------------------------------------------------------------------------------------+
 | Devuan                       | 2                                 | `Linux Contextualization Packages <https://github.com/OpenNebula/addon-context-linux>`__ |
