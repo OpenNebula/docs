@@ -86,10 +86,10 @@ The error you might experience:
     /usr/local/share/ruby/site_ruby/rubygems/specification.rb:1764: warning: previous definition of DateTimeFormat was here
     Error: wrong number of arguments (0 for 1)
 
-Failing monitroing for EC2 driver
+Failing monitoring for EC2 driver
 =================================
 
-When there more than 1 AWS intances monitored, the monitoring probe fails due to a bug.
+When there more than 1 AWS instances monitored, the monitoring probe fails due to a bug.
 
 As workaround, apply the following patch to the ec2_driver.rb
 
