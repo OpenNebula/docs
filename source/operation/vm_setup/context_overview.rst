@@ -8,7 +8,7 @@ OpenNebula uses a method called contextualization to send information to the VM 
 
 How Should I Read This Chapter
 ================================================================================
-Before reading this chapter, you should have already installed your :ref:`Frontend <frontend_installation>`, the :ref:`KVM Hosts <kvm_node>`, :ref:`LXD Hosts <lxd_node>` or :ref:`vCenter node <vcenter_node>` and have an OpenNebula cloud up and running with at least one virtualization node.
+Before reading this chapter, you should have already installed your :ref:`Frontend <frontend_installation>`, the :ref:`KVM Hosts <kvm_node>`, :ref:`LXD Hosts <lxd_node>`, :ref:`Firecracker Hosts <fc_node>` or :ref:`vCenter node <vcenter_node>` and have an OpenNebula cloud up and running with at least one virtualization node.
 
 To enable the use of contextualization there are two steps that you need to perform:
 
@@ -20,12 +20,12 @@ Learn how to do that in the contextualization guide linked below for the hypervi
 Hypervisor Compatibility
 ================================================================================
 
-+--------------------------------------------------------------+-----------------------------------------------+
-|                           Section                            |                 Compatibility                 |
-+==============================================================+===============================================+
-| :ref:`Open Cloud Contextualization <kvm_contextualization>`  | This Section applies to KVM and LXD.          |
-+--------------------------------------------------------------+-----------------------------------------------+
-| :ref:`vCenter Contextualization <vcenter_contextualization>` | This Section applies to vCenter.              |
-+--------------------------------------------------------------+-----------------------------------------------+
-| :ref:`Adding Content to your Cloud <add_content>`            | This Section applies to all hypervisors.      |
-+--------------------------------------------------------------+-----------------------------------------------+
++--------------------------------------------------------------+--------------------------------------------------------------------+
+|                           Section                            |                 Compatibility                                      |
++==============================================================+====================================================================+
+| :ref:`Open Cloud Contextualization <kvm_contextualization>`  | This Section applies to KVM, LXD and Firecracker.                  |
++--------------------------------------------------------------+--------------------------------------------------------------------+
+| :ref:`vCenter Contextualization <vcenter_contextualization>` | This Section applies to vCenter.                                   |
++--------------------------------------------------------------+--------------------------------------------------------------------+
+| :ref:`Adding Content to your Cloud <add_content>`            | This Section applies to all hypervisors.                           |
++--------------------------------------------------------------+--------------------------------------------------------------------+
