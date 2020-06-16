@@ -85,10 +85,3 @@ The error you might experience:
     /usr/share/rubygems/rubygems/specification.rb:1419: warning: already initialized constant Gem::Specification::DateTimeFormat
     /usr/local/share/ruby/site_ruby/rubygems/specification.rb:1764: warning: previous definition of DateTimeFormat was here
     Error: wrong number of arguments (0 for 1)
-
-vCenter
-=======================
-
-There is a bug that doesn't allow to retrieve vcenter networks when vCenter server is in version 6.0
-
-IMPORTANT!: If you are using vCenter 6.0 or below, we recommend not to upgrade to OpenNebula 5.12 and upgrade to vCenter 6.5 or above is recommended. You can check all the information `<https://github.com/OpenNebula/one/issues/4930>`_.
