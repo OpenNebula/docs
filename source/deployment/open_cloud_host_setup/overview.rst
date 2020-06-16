@@ -24,6 +24,6 @@ After reading this chapter, you should read the :ref:`Open Cloud Storage <storag
 Hypervisor Compatibility
 ================================================================================
 
-This chapter applies to KVM LXD and Firecracker.
+This chapter applies to KVM, LXD and Firecracker.
 
 Follow the :ref:`vCenter Node <vcenter_node>` section for a similar guide for vCenter.

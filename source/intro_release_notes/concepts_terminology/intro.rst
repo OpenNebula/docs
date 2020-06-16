@@ -63,7 +63,7 @@ However when using KVM, LXD or Firecracker, in the open cloud architecture, Open
 
 -  **Storage setup** with :ref:`filesystem datastore <fs_ds>`, :ref:`LVM datastore <lvm_drivers>`, :ref:`Ceph <ceph_ds>`, :ref:`Dev <dev_ds>`, or :ref:`iSCSI <iscsi_ds>` datastore.
 
--  **Host setup** with the configuration options for the :ref:`KVM hosts <kvmg>`, :ref:`LXD hosts <lxdmg>`, :ref:`LXD hosts <fcmg>` :ref:`Monitoring subsystem <mon>`, :ref:`Virtual Machine HA <ftguide>` or :ref:`PCI Passthrough <kvm_pci_passthrough>`.
+-  **Host setup** with the configuration options for the :ref:`KVM hosts <kvmg>`, :ref:`LXD hosts <lxdmg>`, :ref:`Firecracker hosts <fcmg>` :ref:`Monitoring subsystem <mon>`, :ref:`Virtual Machine HA <ftguide>` or :ref:`PCI Passthrough <kvm_pci_passthrough>`.
 
 3.2. Configure Cloud Services
 --------------------------------------------------
