@@ -21,12 +21,12 @@ CentOS/RHEL
     # cat << EOT > /etc/yum.repos.d/opennebula.repo
       [opennebula]
       name=opennebula
-      baseurl=https://<token>@downloads.opennebula.systems/repo/5.12/CentOS/7/x86_64
+      baseurl=https://<token>@enterprise.opennebula.io/repo/5.12/CentOS/7/x86_64
       enabled=1
-      gpgkey=https://downloads.opennebula.org/repo/repo.key
+      gpgkey=https://downloads.opennebula.io/repo/repo.key
       gpgcheck=1
       #repo_gpgcheck=1
-      EOT
+    EOT
     # yum makecache fast
 
 *CentOS/RHEL 8*
@@ -36,12 +36,12 @@ CentOS/RHEL
     # cat << EOT > /etc/yum.repos.d/opennebula.repo
       [opennebula]
       name=opennebula
-      baseurl=https://<token>@downloads.opennebula.systems/repo/5.12/CentOS/8/x86_64
+      baseurl=https://<token>@enterprise.opennebula.io/repo/5.12/CentOS/8/x86_64
       enabled=1
-      gpgkey=https://downloads.opennebula.org/repo/repo.key
+      gpgkey=https://downloads.opennebula.io/repo/repo.key
       gpgcheck=1
       #repo_gpgcheck=1
-      EOT
+    EOT
     # yum makecache fast
 
 Debian/Ubuntu
@@ -51,51 +51,46 @@ Debian/Ubuntu
 
 .. prompt:: bash # auto
 
-    # echo "deb https://<token>@downloads.opennebula.systems/repo/5.12/Debian/9 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # echo "deb https://<token>@enterprise.opennebula.io/repo/5.12/Debian/9 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
 
 *Debian 10*
 
 .. prompt:: bash # auto
 
-    # echo "deb https://<token>@downloads.opennebula.systems/repo/5.12/Debian/10 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # echo "deb https://<token>@enterprise.opennebula.io/repo/5.12/Debian/10 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
 
 *Ubuntu 16.04*
 
 .. prompt:: bash # auto
 
-    # echo "deb https://<token>@downloads.opennebula.systems/repo/5.12/Ubuntu/16.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # echo "deb https://<token>@enterprise.opennebula.io/repo/5.12/Ubuntu/16.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
 
 *Ubuntu 18.04*
 
 .. prompt:: bash # auto
 
-    # echo "deb https://<token>@downloads.opennebula.systems/repo/5.12/Ubuntu/18.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # echo "deb https://<token>@enterprise.opennebula.io/repo/5.12/Ubuntu/18.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
 
-*Ubuntu 19.04*
+*Ubuntu 20.04*
 
 .. prompt:: bash # auto
 
-    # echo "deb https://<token>@downloads.opennebula.systems/repo/5.12/Ubuntu/19.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
-    # apt-get update
-
-*Ubuntu 19.10*
-
-.. prompt:: bash # auto
-
-    # echo "deb https://<token>@downloads.opennebula.systems/repo/5.12/Ubuntu/19.10 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+    # echo "deb https://<token>@enterprise.opennebula.io/repo/5.12/Ubuntu/20.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
     # apt-get update
 
 .. note::
-    Please note that you can point to a specific 5.12.x version changing the occurrence of 5.12 in any of the above to the specific version number. For instance, to point to version 5.12.1 in Ubuntu 18.04:
 
-    Ubuntu 18.04
-    # echo "deb https://<token>@downloads.opennebula.systems/repo/5.12.1/Ubuntu/18.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
-    # apt-get update
+   Please note that you can point to a specific 5.12.x version changing the occurrence of 5.12 in any of the above to the specific version number. For instance, to point to version 5.12.1 in Ubuntu 18.04:
 
+    .. prompt:: bash # auto
+
+       Ubuntu 18.04
+       # echo "deb https://<token>@enterprise.opennebula.io/repo/5.12.1/Ubuntu/18.04 stable opennebula" > /etc/apt/sources.list.d/opennebula.list
+       # apt-get update
 
 Community Edition
 =================
