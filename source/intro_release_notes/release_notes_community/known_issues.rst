@@ -89,7 +89,7 @@ The error you might experience:
 Failing monitoring for EC2 driver
 =================================
 
-When there more than 1 AWS instances monitored, the monitoring probe fails due to a bug.
+When there are more than 1 AWS instances monitored, the monitoring probe fails due to a bug.
 
 As workaround, apply the following patch to the ec2_driver.rb
 
