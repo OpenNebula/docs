@@ -115,6 +115,8 @@ To add OpenNebula repository execute the following as root:
     gpgcheck=1
     repo_gpgcheck=1
     EOT
+    
+    # yum makecache
 
 **CentOS/RHEL 8**
 
@@ -129,6 +131,8 @@ To add OpenNebula repository execute the following as root:
     gpgcheck=1
     repo_gpgcheck=1
     EOT
+    
+    # yum makecache
 
 **Fedora 32**
 
@@ -145,6 +149,8 @@ To add OpenNebula repository execute the following as root:
     gpgcheck=1
     repo_gpgcheck=1
     EOT
+    
+    # yum makecache
 
 Debian/Ubuntu
 -------------
