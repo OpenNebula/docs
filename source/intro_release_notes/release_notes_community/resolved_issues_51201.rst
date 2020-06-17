@@ -11,4 +11,4 @@ The following new features has been backported to 5.12.0.1:
 
 The following issues has been solved in 5.12.0.1:
 
-- `Write some nice description here <https://github.com/OpenNebula/one/issues/XXX>`__.
+- `onevcenter list -o datastores doesn't show the full REF <https://github.com/OpenNebula/one/issues/2703>`__.
