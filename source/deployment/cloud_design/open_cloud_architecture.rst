@@ -64,6 +64,10 @@ Regarding the dimensions of the Linux virtualization nodes:
 
 Since LXD avoids using virtual hardware, the amount of resources dedicated to the hypervisor are much lower when compared to KVM. There is no exact figure but you can get an idea from `this resource usage comparison vs KVM <https://insights.ubuntu.com/2015/05/18/lxd-crushes-kvm-in-density-and-speed/>`_
 
+**Firecracker nodes**
+
+Firecracker is a lightweight and optimized VMM. The amount of resources dedicated required for it are much lower when compared to Qemu/KVM. Check the :ref:`the microVM density tests result guide <hv_scalability>` for an overview of the related required resources.
+
 **Storage**
 
 It is important to understand how OpenNebula uses storage, mainly the difference between system and image datastores.
@@ -113,7 +117,7 @@ Virtualization Hosts
 
 The hosts are the physical machines that will run the VMs. There are several certified platforms to act as nodes for each version of OpenNebula. Refer to the :ref:`platform notes <uspng>` and chose the one that best fits your needs. The Virtualization Subsystem is the component in charge of talking to the hypervisor installed in the hosts and taking the actions needed for each step in the VM life-cycle.
 
-OpenNebula natively supports two open source hypervisors, the :ref:`KVM <kvmg>` and :ref:`LXD <lxdmg>`.
+OpenNebula natively supports three open source hypervisors, the :ref:`KVM <kvmg>`, :ref:`LXD <lxdmg>` and :ref:`Firecracker <fcmg>`.
 
 Ideally, the configuration of the nodes will be homogeneous in terms of the software components installed, the oneadmin administration user, accessible storage and network connectivity. This may not always be the case, and homogeneous hosts can be grouped in OpenNebula :ref:`clusters <cluster_guide>`, e.g. LXD cluster and KVM cluster.
 

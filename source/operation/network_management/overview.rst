@@ -7,17 +7,17 @@ This chapter contains documentation on how to create and manage :ref:`Virtual Ne
 How Should I Read This Chapter
 ================================================================================
 
-Before reading this chapter, you should have already installed your :ref:`Frontend <frontend_installation>`, the :ref:`KVM Hosts <kvm_node>` or :ref:`vCenter node <vcenter_node>` and have an OpenNebula cloud up and running with at least one virtualization node.
+Before reading this chapter, you should have already installed your :ref:`Frontend <frontend_installation>`, the :ref:`KVM Hosts <kvm_node>`, :ref:`Firecracker Hosts <fc_node>` or :ref:`vCenter node <vcenter_node>` and have an OpenNebula cloud up and running with at least one virtualization node.
 
 Hypervisor Compatibility
 ================================================================================
 
-+-------------------------------------------------+-----------------------------------------------+
-|                     Section                     |                 Compatibility                 |
-+=================================================+===============================================+
-| :ref:`Virtual Networks <manage_vnets>`          | This Section applies to all Hypervisors       |
-+-------------------------------------------------+-----------------------------------------------+
-| :ref:`Security Groups <security_groups>`        | This Section applies to KVM and LXD           |
-+-------------------------------------------------+-----------------------------------------------+
-| :ref:`Virtual Routers <vrouter>`                | This Section applies to all Hypervisors       |
-+-------------------------------------------------+-----------------------------------------------+
++-------------------------------------------------+-----------------------------------------------------------------+
+|                     Section                     |                 Compatibility                                   |
++=================================================+=================================================================+
+| :ref:`Virtual Networks <manage_vnets>`          | This Section applies to all Hypervisors                         |
++-------------------------------------------------+-----------------------------------------------------------------+
+| :ref:`Security Groups <security_groups>`        | This Section applies to KVM, LXD and Firecracker                |
++-------------------------------------------------+-----------------------------------------------------------------+
+| :ref:`Virtual Routers <vrouter>`                | This Section applies to all Hypervisors                         |
++-------------------------------------------------+-----------------------------------------------------------------+
