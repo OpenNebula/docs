@@ -61,10 +61,11 @@ After reading this chapter you should read the :ref:`Open Cloud Networking <nm>`
 Hypervisor Compatibility
 ================================================================================
 
-This chapter applies to KVM and LXD.
+This chapter applies to KVM, Firecracker and LXD.
 
 .. note:: LXD Drivers only support Filesystem and Ceph
 
+.. note:: Firecracker Drivers only support Filesystem
 
 Follow the :ref:`vCenter Storage <vcenter_ds>` section for a similar guide for vCenter.
 
