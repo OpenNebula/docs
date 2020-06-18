@@ -15,7 +15,31 @@ This page lists the **build** dependencies for OpenNebula.
 * **libxml2** development libraries (>= 2.7)
 * **libvncserver** development libraries (>= 0.9)
 * **openssl** development libraries (>= 0.9.8)
-* **ruby** interpreter (>= 1.8.7)
+* **ruby** interpreter (>= 2.0.0)
+
+Ubuntu 20.04
+================================================================================
+
+* **bash-completion**
+* **bison**
+* **debhelper (>= 7.0.50~)**
+* **default-jdk**
+* **flex**
+* **javahelper (>= 0.32)**
+* **libmysql++-dev**
+* **libsqlite3-dev**
+* **libssl-dev**
+* **libsystemd-dev**
+* **libws-commons-util-java**
+* **libxml2-dev**
+* **libxslt1-dev**
+* **libcurl4-openssl-dev**
+* **libcurl4**
+* **libvncserver-dev**
+* **postgresql-server-dev-all**
+* **python3-setuptools**
+* **ruby**
+* **scons**
 
 Ubuntu 18.04
 ================================================================================
@@ -44,7 +68,6 @@ Ubuntu 18.04
 * **ruby**
 * **scons**
 
-
 Ubuntu 16.04
 ================================================================================
 
@@ -70,29 +93,27 @@ Ubuntu 16.04
 * **ruby**
 * **scons**
 
-Ubuntu 14.04
+Debian 10
 ================================================================================
 
-* **bash-completion**
 * **bison**
-* **debhelper (>= 7.0.50~)**
 * **default-jdk**
 * **flex**
-* **javahelper (>= 0.32)**
+* **javahelper**
 * **libmysql++-dev**
 * **libsqlite3-dev**
 * **libssl-dev**
+* **libsystemd-dev**
 * **libws-commons-util-java**
 * **libxml2-dev**
+* **libxmlrpc-c++8-dev**
 * **libxmlrpc3-client-java**
 * **libxmlrpc3-common-java**
 * **libxslt1-dev**
-* **libcurl4-openssl-dev**
 * **libvncserver-dev**
 * **postgresql-server-dev-all**
 * **ruby**
 * **scons**
-* **libxmlrpc-c++8-dev**
 
 Debian 9
 ================================================================================
@@ -116,32 +137,16 @@ Debian 9
 * **ruby**
 * **scons**
 
-CentOS 7
-================================================================================
-
-* **gcc-c++**
-* **java-1.7.0-openjdk-devel**
-* **libcurl-devel**
-* **libxml2-devel**
-* **mysql-devel**
-* **openssh**
-* **openssl-devel**
-* **postgresql-devel**
-* **pkgconfig**
-* **ruby**
-* **scons**
-* **sqlite-devel**
-* **systemd-devel**
-* **xmlrpc-c**
-* **xmlrpc-c-devel**
-* **libvncserver-devel**
-
 CentOS 8
 ================================================================================
 
 * **gcc-c++**
+* **gnutls-devel**
 * **libcurl-devel**
+* **libjpeg-turbo-devel**
+* **libnsl2-devel**
 * **libpq-devel**
+* **libvncserver-devel**
 * **libxml2-devel**
 * **mysql-devel**
 * **openssh**
@@ -156,9 +161,31 @@ CentOS 8
 * **python3-wheel**
 * **ruby**
 * **sqlite-devel**
-* **sqlite-devel**
 * **systemd-devel**
 * **xmlrpc-c-devel**
+
+CentOS 7
+================================================================================
+
+* **gcc-c++**
+* **gnutls-devel**
+* **java-1.7.0-openjdk-devel**
+* **libcurl-devel**
+* **libjpeg-turbo-devel**
+* **libvncserver-devel**
+* **libxml2-devel**
+* **mysql-devel**
+* **openssh**
+* **openssl-devel**
+* **postgresql-devel**
+* **pkgconfig**
+* **ruby**
+* **scons**
+* **sqlite-devel**
+* **systemd-devel**
+* **xmlrpc-c**
+* **xmlrpc-c-devel**
+* **ws-commons-util**
 
 Arch
 ================================================================================
