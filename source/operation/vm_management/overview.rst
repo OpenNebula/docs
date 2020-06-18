@@ -9,7 +9,7 @@ This chapter contains documentation on how to create and manage Virtual Machine 
 How Should I Read This Chapter
 ================================================================================
 
-Before reading this chapter, you should have already installed your :ref:`Frontend <frontend_installation>`, the :ref:`KVM Hosts <kvm_node>`, :ref:`LXD Hosts <lxd_node>` or :ref:`vCenter node <vcenter_node>` and have an OpenNebula cloud up and running with at least one virtualization node.
+Before reading this chapter, you should have already installed your :ref:`Frontend <frontend_installation>`, the :ref:`KVM Hosts <kvm_node>`, :ref:`LXD Hosts <lxd_node>`, :ref:`Firecracker Hosts <fc_node>` or :ref:`vCenter node <vcenter_node>` and have an OpenNebula cloud up and running with at least one virtualization node.
 
 For vCenter based infrastructures read first the :ref:`vCenter Specifics <vcenter_specifics>` Section.
 
