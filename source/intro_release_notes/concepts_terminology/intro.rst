@@ -21,6 +21,8 @@ The first step is to decide on the hypervisor that you will use in your cloud in
 
 -  **Containerization with LXD**. Containers are the next step towards virtualization. They have a minimal memory footprint and skip the compute intensive and sometimes unacceptable performance degradation inherent to hardware emulation. You can have a very high density of containers per virtualization node and run workloads close to bare-metal metrics. LXD focuses on system containers, instead of similar technologies like Docker, which focuses on application containers.
 
+-  **Lightweight Virtualization on Firecracker**. Firecracker MicroVMs provide enhanced security and workload isolation over traditional container solution while preserving their speed and resource efficiency. MicroVMs are especially designed for creating and managing secure, multi-tenant container (CaaS) and function-based (FaaS) services.
+
 After having installed the cloud with one hypervisor you may add other hypervisors. You can deploy heterogeneous multi-hypervisor environments managed by a single OpenNebula instance. An advantage of using OpenNebula on VMware is the strategic path to openness as companies move beyond virtualization toward a private cloud. OpenNebula can leverage existing VMware infrastructure, protecting IT investments, and at the same time gradually integrate other open-source hypervisors, therefore avoiding future vendor lock-in and strengthening the negotiating position of the company.
 
 There are other virtualization technologies, like Xen, supported by the community. Please refer to the `OpenNebula Add-ons Catalog <https://github.com/OpenNebula/one/wiki/Add_ons-Catalog>`__.
@@ -45,7 +47,7 @@ Optionally you can setup a :ref:`high available cluster for OpenNebula <frontend
 2.3. Install the Virtualization hosts
 -------------------------------------------------
 
-Now you are ready to **add the virtualization nodes**. The OpenNebula packages bring support for :ref:`KVM <kvm_node>`, :ref:`LXD <lxd_node>` and :ref:`vCenter <vCenter_node>` nodes. In the case of vCenter, a host represents a vCenter cluster with all its ESX hosts. You can add different hypervisors to the same OpenNebula instance, or any other virtualization technology, like Xen, supported by the community. Please refer to the `OpenNebula Add-ons Catalog <https://github.com/OpenNebula/one/wiki/Add_ons-Catalog>`__.
+Now you are ready to **add the virtualization nodes**. The OpenNebula packages bring support for :ref:`KVM <kvm_node>`, :ref:`LXD <lxd_node>`, :ref:`Firecracker <fc_node>` and :ref:`vCenter <vCenter_node>` nodes. In the case of vCenter, a host represents a vCenter cluster with all its ESX hosts. You can add different hypervisors to the same OpenNebula instance, or any other virtualization technology, like Xen, supported by the community. Please refer to the `OpenNebula Add-ons Catalog <https://github.com/OpenNebula/one/wiki/Add_ons-Catalog>`__.
 
 Step 3. Set-up Infrastructure and Services
 ===============================================
@@ -55,13 +57,13 @@ Step 3. Set-up Infrastructure and Services
 
 Now you should have an OpenNebula cloud up and running with at least one virtualization node. The next step is, if needed, to perform the integration of OpenNebula with your infrastructure platform and define the configuration of its components. When using the vCenter driver, no additional integration is required because the interaction with the underlying networking, storage and compute infrastructure is performed through vCenter.
 
-However when using KVM or LXD, in the open cloud architecture, OpenNebula directly manages the hypervisor, networking and storage platforms, and you may need additional configuration:
+However when using KVM, LXD or Firecracker, in the open cloud architecture, OpenNebula directly manages the hypervisor, networking and storage platforms, and you may need additional configuration:
 
 -  **Networking setup** with :ref:`802.1Q VLANs <hm-vlan>`, :ref:`ebtables <ebtables>`, :ref:`Open vSwitch <openvswitch>` or :ref:`VXLAN <vxlan>`.
 
 -  **Storage setup** with :ref:`filesystem datastore <fs_ds>`, :ref:`LVM datastore <lvm_drivers>`, :ref:`Ceph <ceph_ds>`, :ref:`Dev <dev_ds>`, or :ref:`iSCSI <iscsi_ds>` datastore.
 
--  **Host setup** with the configuration options for the :ref:`KVM hosts <kvmg>`, :ref:`LXD hosts <lxdmg>`, :ref:`Monitoring subsystem <mon>`, :ref:`Virtual Machine HA <ftguide>` or :ref:`PCI Passthrough <kvm_pci_passthrough>`.
+-  **Host setup** with the configuration options for the :ref:`KVM hosts <kvmg>`, :ref:`LXD hosts <lxdmg>`, :ref:`Firecracker hosts <fcmg>` :ref:`Monitoring subsystem <mon>`, :ref:`Virtual Machine HA <ftguide>` or :ref:`PCI Passthrough <kvm_pci_passthrough>`.
 
 3.2. Configure Cloud Services
 --------------------------------------------------
@@ -93,7 +95,7 @@ Now everything is ready for operation. OpenNebula provides full control to manag
 
 -  **Virtual machine image management** that allows storing :ref:`disk images in catalogs <img_guide>` (termed datastores), that can then be used to define VMs or shared with other users. The images can be OS installations, persistent data sets or empty data blocks that are created within the datastore.
 
--  **Virtual network management** of :ref:`Virtual networks <vgg>` that can be organized in network catalogs, and provide means to interconnect virtual machines. This kind of resource can be defined as IPv4, IPv6, or mixed networks, and can be used to achieve full isolation between virtual networks. Networks can be easily interconnected by using :ref:`virtual routers <vrouter>` and KVM and LXD users can also dynamically configure :ref:`security groups <security_groups>`
+-  **Virtual network management** of :ref:`Virtual networks <vgg>` that can be organized in network catalogs, and provide means to interconnect virtual machines. This kind of resource can be defined as IPv4, IPv6, or mixed networks, and can be used to achieve full isolation between virtual networks. Networks can be easily interconnected by using :ref:`virtual routers <vrouter>` and KVM, LXD and Firecracker users can also dynamically configure :ref:`security groups <security_groups>`
 
 -  **Virtual machine template management** with a :ref:`template catalog <vm_guide>` system that allows registering :ref:`virtual machine <vm_guide_2>` definitions in the system, to be instantiated later as virtual machine instances.
 
