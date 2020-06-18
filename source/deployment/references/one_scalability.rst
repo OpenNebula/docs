@@ -60,6 +60,8 @@ The four most common API calls were used to stress the core at the same time in 
 | vmpool.info (20%)     | 2.39                | 4.68               | 6.36               |
 +-----------------------+---------------------+--------------------+--------------------+
 
+.. _hv_scalability:
+
 Hypervisor Scalability
 --------------------------------------
 

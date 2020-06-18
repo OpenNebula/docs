@@ -29,9 +29,11 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 -  Volume and network hotplugging
 
--  :ref:`Disk snapshot capabilities <vm_guide_2_disk_snapshots>` and :ref:`disk resizing <vm_guide2_resize_disk>` for KVM and LXD instances
+-  :ref:`Disk snapshot capabilities <vm_guide_2_disk_snapshots>` and :ref:`disk resizing <vm_guide2_resize_disk>` for KVM, LXD and Firecracker instances
 
-- LXD Containers are treated the same way as VMs in OpenNebula and support most of the VM features.
+- LXD Containers are treated the same way as VMs in OpenNebula and support most of the VM features
+
+- Firecracker MicroVMs are treated the same way as VMs in OpenNebula and support most of the VM features
 
 
 **VIRTUAL NETWORK MANAGEMENT**
@@ -42,7 +44,7 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 - :ref:`Virtual routers <vrouter>`
 
-- :ref:`Security Groups <security_groups>` to define firewall rules and apply them to KVM and LXD instances
+- :ref:`Security Groups <security_groups>` to define firewall rules and apply them to KVM, LXD, Firecracker and vCenter instances
 
 
 **APPLICATION CONFIGURATION AND INSIGHT**
@@ -136,7 +138,7 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 - :ref:`Resource quota management <quota_auth>` to track and limit computing, storage and networking resource utilization
 
-- Support for multiple data stores to balance I/O operations between storage servers, or to define different SLA policies (e.g. backup) and performance features for different KVM VM types or users
+- Support for multiple data stores to balance I/O operations between storage servers, or to define different SLA policies (e.g. backup) and performance features for different types or users using KVM, LXD or Firecracker based virtualization.
 
 - :ref:`PCI passthrough <kvm_pci_passthrough>` available for KVM VMs that need consumption of raw GPU devices
 
@@ -154,7 +156,7 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 - Persistent database backend with support for high availability configurations
 
-- :ref:`Configurable behavior in the event of host or KVM/LXD instance failure <ftguide>` to provide easy to use and cost-effective failover solutions
+- :ref:`Configurable behavior in the event of host or KVM/LXD/Firecracker instance failure <ftguide>` to provide easy to use and cost-effective failover solutions
 
 
 **CLOUD BURSTING**
@@ -166,7 +168,7 @@ OpenNebula offers a **simple but feature-rich and flexible solution** to build a
 
 - Fully platform independent
 
-- Hypervisor agnostic with broad hypervisor support (:ref:`KVM <kvmg>`, :ref:`LXD <lxdmg>` and :ref:`VMware vCenter <vcenterg>`) and centralized management of environments with multiple hypervisors
+- Hypervisor agnostic with broad hypervisor support (:ref:`KVM <kvmg>`, :ref:`LXD <lxdmg>`, :ref:`Firecracker <fcmg>` and :ref:`VMware vCenter <vcenterg>`) and centralized management of environments with multiple hypervisors
 
 - :ref:`Broad support for commodity and enterprise-grade hypervisor, monitoring, storage, networking and user management services <uspng>`
 
