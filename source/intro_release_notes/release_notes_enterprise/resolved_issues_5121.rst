@@ -17,3 +17,4 @@ The following issues has been solved in 5.12.1:
 - `Fix onevcenter list -o datastores command to show the full REF <https://github.com/OpenNebula/one/issues/2703>`__.
 - `Fix scheduled policy start_time to support POSIX time definition <https://github.com/OpenNebula/one/issues/668>`__.
 - `Fix Firecracker deployment and cleanup race condition error <https://github.com/OpenNebula/one/issues/4926>`__.
+- `Fix issue with hashed SSH known_hosts file and upcased hostname <https://github.com/OpenNebula/one/issues/4935>`__.
