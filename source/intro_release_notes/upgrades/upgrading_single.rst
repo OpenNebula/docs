@@ -135,7 +135,17 @@ Step 7. Upgrade the Database version
 
 .. note:: Make sure at this point that OpenNebula is not running. If you installed from packages, the service may have been started automatically.
 
-Simply run the ``onedb upgrade -v`` command. The connection parameters are automatically retrieved from ``oned.conf``.
+Simply run the ``onedb upgrade`` command. The connection parameters have to be supplied with the command line options, see the :ref:`onedb manpage <cli>` for more information. For example:
+
+.. prompt:: text $ auto
+
+    # MySQL server
+    $ onedb upgrade -v -S localhost -u oneadmin -p oneadmin -d opennebula
+
+.. prompt:: text $ auto
+
+    # Sqlite3
+    $ onedb upgrade -v -s /var/lib/one/one.db
 
 Step 8. Check DB Consistency
 ================================================================================
