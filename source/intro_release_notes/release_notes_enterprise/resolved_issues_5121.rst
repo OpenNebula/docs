@@ -20,3 +20,4 @@ The following issues has been solved in 5.12.1:
 - `Fix issue with hashed SSH known_hosts file and upcased hostname <https://github.com/OpenNebula/one/issues/4935>`__.
 - `Systemd timer for ssh-socks-cleaner loops on service condition check <https://github.com/OpenNebula/one/issues/4939>`__.
 - `Respect Ruby site_ruby paths for local overrides <https://github.com/OpenNebula/one/issues/4929>`__.
+- `Fix sort by used CPU and used Memory in VM list <https://github.com/OpenNebula/one/issues/4031>`__.
