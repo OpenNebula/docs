@@ -93,7 +93,7 @@ When there are more than 1 AWS instances monitored, the monitoring probe fails d
 
 As workaround, apply the following patch to the ec2_driver.rb
 
-Save the patch to the ec2_driver.patch
+Save the patch to a file called ec2_driver.patch
 
 .. code-block:: bash
 
@@ -119,3 +119,34 @@ And then run
 .. code-block:: bash
 
     patch /usr/lib/one/ruby/ec2_driver.rb < ec2_driver.patch
+
+vCenter monitoring stuck
+========================
+
+vCenter monitoring can fail due to too many open sockets. This is due to a wrong disposal of vCenter connections.
+
+As a workaround, apply the following patch to the vcenter_monitor.rb.
+
+Save the patch to a file called vcenter_monitor.patch
+
+.. code-block:: bash
+
+    --- /var/lib/one/remotes/im/lib/vcenter_monitor.rb
+    +++ /var/lib/one/remotes/im/lib/vcenter_monitor.rb.new
+    @@ -145,8 +145,10 @@ class Cluster
+             cluster_monitoring
+         end
+
+    +    # Try connectivity to a vCenter instance and close the connection
+         def beacon_host
+    -        VCenterDriver::VIClient.new(connection, @host.id)
+    +        vi_client = VCenterDriver::VIClient.new(connection, @host.id)
+    +        vi_client.close_connection
+             Time.now.to_s
+         end
+
+And then run
+
+.. code-block:: bash
+
+    patch /var/lib/one/remotes/im/lib/vcenter_monitor.rb < vcenter_monitor.patch
