@@ -21,3 +21,4 @@ The following issues has been solved in 5.12.1:
 - `Systemd timer for ssh-socks-cleaner loops on service condition check <https://github.com/OpenNebula/one/issues/4939>`__.
 - `Respect Ruby site_ruby paths for local overrides <https://github.com/OpenNebula/one/issues/4929>`__.
 - `Fix sort by used CPU and used Memory in VM list <https://github.com/OpenNebula/one/issues/4031>`__.
+- `Fix remote buttons after state VM switches to RUNNING in Sunstone <https://github.com/OpenNebula/one/issues/4948>`__.
