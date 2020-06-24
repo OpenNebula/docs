@@ -9,6 +9,7 @@ The following new features has been backported to 5.12.1:
 
 - `Add support for VM Charters in the CLI <https://github.com/OpenNebula/one/issues/4552>`__.
 - `New failover combinations for Provision module <https://github.com/OpenNebula/one/issues/4205>`__.
+- `Add CLI autocomplete on tab feature <https://github.com/OpenNebula/one/issues/607>`__.
 
 The following issues has been solved in 5.12.1:
 
