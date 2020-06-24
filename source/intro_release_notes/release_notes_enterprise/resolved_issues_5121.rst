@@ -12,14 +12,16 @@ The following new features has been backported to 5.12.1:
 
 The following issues has been solved in 5.12.1:
 
+- Fix several vcenter monitoring stability issues.
+- Fix monitoring of hybrid Amazon EC2 VMs.
 - `Fix logging information for services <https://github.com/OpenNebula/one/issues/796>`__.
 - `Fix onevnet updatear command to include --append option <https://github.com/OpenNebula/one/issues/810>`__.
 - `Fix onevcenter list -o datastores command to show the full REF <https://github.com/OpenNebula/one/issues/2703>`__.
 - `Fix scheduled policy start_time to support POSIX time definition <https://github.com/OpenNebula/one/issues/668>`__.
 - `Fix Firecracker deployment and cleanup race condition error <https://github.com/OpenNebula/one/issues/4926>`__.
 - `Fix issue with hashed SSH known_hosts file and upcased hostname <https://github.com/OpenNebula/one/issues/4935>`__.
-- `Systemd timer for ssh-socks-cleaner loops on service condition check <https://github.com/OpenNebula/one/issues/4939>`__.
-- `Respect Ruby site_ruby paths for local overrides <https://github.com/OpenNebula/one/issues/4929>`__.
+- `Fix Ruby library paths to support local overrides <https://github.com/OpenNebula/one/issues/4929>`__.
+- `Fix systemd cleaning of SSH sockets that may lead to increased CPU usage <https://github.com/OpenNebula/one/issues/4939>`__.
 - `Fix sort by used CPU and used Memory in VM list <https://github.com/OpenNebula/one/issues/4031>`__.
 - `Fix remote buttons after state VM switches to RUNNING in Sunstone <https://github.com/OpenNebula/one/issues/4948>`__.
 - `Fix VM Instantiate custom attributes in Sunstone <https://github.com/OpenNebula/one/issues/4946>`__.

@@ -11,4 +11,8 @@ The following new features has been backported to 5.12.0.1:
 
 The following issues has been solved in 5.12.0.1:
 
-- `Fix <add here description of what is fixed <https://github.com/OpenNebula/one/issues/XXX>`__.
+- Fix several vCenter monitoring stability issues.
+- Fix monitoring of hybrid Amazon EC2 VMs.
+- `Fix issue with hashed SSH known_hosts file and upcased hostname <https://github.com/OpenNebula/one/issues/4935>`__.
+- `Fix Ruby library paths to support local overrides <https://github.com/OpenNebula/one/issues/4929>`__.
+- `Fix systemd cleaning of SSH sockets that may lead to increased CPU usage <https://github.com/OpenNebula/one/issues/4939>`__.
