@@ -13,7 +13,7 @@ The following new features has been backported to 5.12.1:
 
 The following issues has been solved in 5.12.1:
 
-- Fix several vcenter monitoring stability issues.
+- Fix several vCenter monitoring stability issues.
 - Fix monitoring of hybrid Amazon EC2 VMs.
 - `Fix logging information for services <https://github.com/OpenNebula/one/issues/796>`__.
 - `Fix onevnet updatear command to include --append option <https://github.com/OpenNebula/one/issues/810>`__.
