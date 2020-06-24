@@ -22,3 +22,4 @@ The following issues has been solved in 5.12.1:
 - `Respect Ruby site_ruby paths for local overrides <https://github.com/OpenNebula/one/issues/4929>`__.
 - `Fix sort by used CPU and used Memory in VM list <https://github.com/OpenNebula/one/issues/4031>`__.
 - `Fix remote buttons after state VM switches to RUNNING in Sunstone <https://github.com/OpenNebula/one/issues/4948>`__.
+- `Fix VM Instantiate custom attributes in Sunstone <https://github.com/OpenNebula/one/issues/4946>`__.
