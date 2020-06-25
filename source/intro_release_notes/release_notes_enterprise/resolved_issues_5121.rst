@@ -27,3 +27,4 @@ The following issues has been solved in 5.12.1:
 - `Fix remote buttons after state VM switches to RUNNING in Sunstone <https://github.com/OpenNebula/one/issues/4948>`__.
 - `Fix VM instantiate doesn't ask for user inputs in Sunstone <https://github.com/OpenNebula/one/issues/4946>`__.
 - `Fix disk resize doesn't show error on VCenter with snapshots in Sunstone <https://github.com/OpenNebula/one/issues/4928>`__.
+- `Fix Cloud View dashboard doesn't have a correct value for running VMs quota in Sunstone <https://github.com/OpenNebula/one/issues/4951>`__.
