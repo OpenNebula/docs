@@ -125,7 +125,7 @@ vCenter monitoring stuck
 
 vCenter monitoring can fail due to too many open sockets. This is due to a wrong disposal of vCenter connections.
 
-As a workaround, apply the following patch to the vcenter_monitor.rb.
+As a workaround, apply the following patch to the vcenter_cluster.rb.
 
 Save the patch to a file called vcenter_cluster.patch
 
