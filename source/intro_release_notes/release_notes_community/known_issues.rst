@@ -127,12 +127,12 @@ vCenter monitoring can fail due to too many open sockets. This is due to a wrong
 
 As a workaround, apply the following patch to the vcenter_monitor.rb.
 
-Save the patch to a file called vcenter_monitor.patch
+Save the patch to a file called vcenter_cluster.patch
 
 .. code-block:: bash
 
-    --- /var/lib/one/remotes/im/lib/vcenter_monitor.rb
-    +++ /var/lib/one/remotes/im/lib/vcenter_monitor.rb.new
+    --- /var/lib/one/remotes/im/lib/vcenter_cluster.rb
+    +++ /var/lib/one/remotes/im/lib/vcenter_cluster.rb.new
     @@ -145,8 +145,10 @@ class Cluster
              cluster_monitoring
          end
@@ -149,4 +149,4 @@ And then run
 
 .. code-block:: bash
 
-    patch /var/lib/one/remotes/im/lib/vcenter_monitor.rb < vcenter_monitor.patch
+    patch /var/lib/one/remotes/im/lib/vcenter_cluster.rb < vcenter_cluster.patch
